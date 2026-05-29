@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Reading the Shema</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p><a href="../../halakhah/mishneh-torah-reading-the-shema/">Open Mishneh Torah, Reading the Shema</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Reading the Shema</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
+          </section>
+        </div>
+        <p class="meta">27 total source units | imported 2026-05-29</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>664 matched</strong> / 2053 unique forms.</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-7-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:8:1">1:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-9-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:9:1">1:9:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-11-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:11:1">1:11:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-13-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:13:1">1:13:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-2-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-2-2" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:2:2">2:2:2</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:3:1">2:3:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-6-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:8:1">2:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-11-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:11:1">2:11:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-11-2" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:11:2">2:11:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-5-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:5:1">3:5:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-7-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:8:1">3:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-10-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:10:1">3:10:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-12-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:12:1">3:12:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-14-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:14:1">3:14:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-18-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:18:1">3:18:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-4-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-4-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 4:3:1">4:3:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-4-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 4:8:1">4:8:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Chapter 1</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:1:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-1">Mishneh Torah, Reading the Shema 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פַּעֲמַיִם בְּכָל יוֹם קוֹרְאִין קְרִיאַת שְׁמַע, בָּעֶרֶב וּבַבֹּקֶר. שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ז)</span> ״וּבְשָׁכְבְּךָ וּבְקוּמֶךָ״ בְּשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם שׁוֹכְבִין וְזֶה הוּא לַיְלָה. וּבְשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם עוֹמְדִין וְזֶה הוּא יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פעמים בכל כו׳.</strong> בגמרא דף כ&quot;א פליגי אי ק&quot;ש מן התורה או מדרבנן ובמס׳ סוטה דף ל&quot;ב ע&quot;ב בתוספות ד&quot;ה ורבי האריכו הלכה כמאן ובש&quot;ע סימן ס&quot;ז הכריע הלכה דק&quot;ש מן התורה שכן הוא משמעות רבינו פה והרי&quot;ף והרא&quot;ש דהכי משמע רהיטת הסוגיא בהרבה מקומות. ורבינו יונה בפירקין כתב אפילו למ&quot;ד ק&quot;ש דרבנן עכ&quot;פ מחוייב לקרות איזה דבר מן התורה וחייב לקרותה דוקא בזמן שכיבה וקימה ולפ&quot;ז נדחים כל הראיות. ועיין בשו&quot;ת שא&quot;ר סימן א׳ שכ׳ דע&quot;כ מוכח דקיי&quot;ל כמ&quot;ד ק&quot;ש מה&quot;ת מהא דתנן פ&quot;ק דשבת מ&quot;ב מפסיקין לק&quot;ש ואין מפסיקין לתפלה ומוקי לה בגמרא שם דף י&quot;א בחברים העוסקים בתורה וק׳ מ&quot;ש ק&quot;ש מתפלה והא שם בעוסקים בתורה מיירי ואזדא לה סברת ר&quot;י וא&quot;כ הא ק&quot;ש ג&quot;כ דרבנן כמו תפלה ע&quot;ש שדחק ליישב אע&quot;ג דק&quot;ש דרבנן מ&quot;מ כיון דקבלת מלכות שמים היא מפסיקין ע&quot;ש וכבר כתבתי בחיבורי שלום ירושלי׳ דנעלם ממנו לפי שעתו סוגיית הירושלמי בשבת דפתר לה למ&quot;ד ק&quot;ש דרבנן בתרין פתרי אמר ר׳ בא ק&quot;ש זמנה קבוע תפלה אין זמנה קבוע ועוד ק&quot;ש מגו דאינון צבחר פירוש דבר מועט הוא מש&quot;ה מפסיקין עיין שם בפי׳ הרע&quot;ב שם הארכתי. ולענ&quot;ד נראה דמשמע בירושלמי ר&quot;פ דקיי&quot;ל כמ&quot;ד ק&quot;ש מן התורה דגרסינן שם דף א׳ תני הקורא קודם לכן פי׳ קודם צ&quot;ה לא יצא ומק׳ שם וקודם לכן לאו ספק הוא פירוש דהא עכ&quot;פ הוא בה&quot;ש ואמאי לא יצא וקאמר זאת אומרת ספק קרא ק&quot;ש ספק לא קרא חוזר וקורא הרי להדיא דסתמא דתלמודא בירושלמי הוכיח מברייתא דספק קרא ק&quot;ש חוזר וקורא והיינו משום דק&quot;ש מה&quot;ת:<br><strong> ודע </strong> אף דסתמא דתלמודא סובר כמ&quot;ד ק&quot;ש מן התורה מ&quot;מ מוכרח ליישב למ&quot;ד ספק קרא ק&quot;ש אינו חוזר וקורא הך ברייתא והרא&quot;פ כתב שם בתוספותיו דמוקי לה כר&quot;י דאמר בה&quot;ש כהרף עין ולדידיה ודאי דלא יצא דהא קרא ביום. והנה תי׳ זה נכון למ&quot;ד דבה&quot;ש דר&quot;י הוא כה&quot;ע קודם צ&quot;ה אבל למ&quot;ד בירושלמי שבכל חצי מיל ספק הוא אי השתא הוא בה&quot;ש דר&quot;י או לא א&quot;כ עדיין למ&quot;ד ק&quot;ש דרבנן יצא בקרא קודם לכן וע&quot;כ מ&quot;ד ספק קרא אינו חוזר וקורא לא ס&quot;ל הכי ור&quot;מ דבבלי ג&quot;כ ס&quot;ל כהך מ&quot;ד דהא אמרינן ברפ&quot;ק דף ב׳ ע&quot;ב דר&quot;מ השיב לר&quot;י מי סברת אנא בה&quot;ש דידך קאמינא אנא בה&quot;ש דר&quot;י קאמינא ואי ס&quot;ד דמספקי׳ בכל שיעורא דר&quot;נ אי השתא הוא בה&quot;ש דר&quot;י אכתי קשיא והלא כהנים מבע&quot;י הם טובלים:<br><strong> ובזה </strong> אפשר לומר דהא דאקשיה ר&quot;י לר&quot;מ ולא אסיק אדעתא אולי כר&quot;י ס&quot;ל אלא דהיה סובר דר&quot;י ספוקי מספקא ליה אימתי הוא בה&quot;ש דידי׳ ולפי מה דמשמע בירושלמי דוקא בה&quot;ש דר&quot;נ מספקא ליה דהויא חצי מיל ובזה אפשר ליישב לשון רש&quot;י שם מ&quot;ש בה&quot;ש דר&quot;י חצי מיל ועיין שם בהגהת הגאון רא&quot;ו ודו&quot;ק:<br><strong> ולענ&quot;ד </strong> נראה דמ&quot;ד דס&quot;ל ספק קרא ק&quot;ש אינו חוזר וקורא ס&quot;ל דאינו קורא בברכות משום דספק דרבנן להקל וא&quot;כ אינו רשאי לברך משום חששא דל&quot;ת את שם כו׳ משא&quot;כ הפרשיות ודאי דצריך לקרותן דהוי ספק דרבנן באיקבע חיובא ודמי לספק איסור דרבנן באיקבע איסורא דכתב הש&quot;כ ביו&quot;ד סימן ק&quot;י דאזלינן לחומרא גם מדרבנן ומקורו מדברי התוספות במס׳ פסחים דף ט׳ ע&quot;א לחד תירוצא וע&quot;ש. והך ברייתא דקתני לה הקורא קודם לצ&quot;ה לא יצא מוקי לה דלא יצא וחייב לקרות מיהת הפרשיות של ק&quot;ש אבל בלא ברכות דאין הברכות מעכבות ומ&quot;ד ספק קרא ק&quot;ש חוזר וקורא פירוש אפילו בברכות משום דס&quot;ל ק&quot;ש מה&quot;ת וחייב לברך ג&quot;כ וכמ&quot;ש הרמב&quot;ם בפ&quot;ב מה׳ ק&quot;ש. ואפילו את&quot;ל דמ&quot;ד אינו חוזר וקורא קאי אפילו על הפרשיות י&quot;ל משום דאיכא למימר הגם דחיובא ודאי רמי עליו מ&quot;מ ספק זה דקרא ג&quot;כ מיחשב כודאי דחזקה עשה כרגילתו דרגיל הוא בכל יום לקרות ק&quot;ש שחרית וערבית ודמי קצת למ&quot;ש הט&quot;ז בי&quot;ד סי׳ ס&quot;ט באשה ששכחה אם עשתה הדחה ע&quot;ש. וכ&quot;ז שייך בספק אם קרא או לא אזי אמרינן מסתמא עשה כרגילתו אבל בקרא קודם לצ&quot;ה בבה&quot;ש דספיקא דממילא הוא ואיתחזק חיובא אין ספק מוציא מידי ודאי וחייב לקרות מספיקא בלא ברכות דאינן מעכבות:<br><strong> שוב </strong> ראיתי למופת דורנו הרב הגאון בספר צל&quot;ח דקשיא ליה עליה דמ&quot;ד ספק קרא קריאת שמע אינו חוזר וקורא הא אין ספק קריאה מוציא מידי ודאי חיובו והביא שם לדברי הש&quot;ך בכללי ס&quot;ס כלל כ׳ והאריך בקושיות והביא ראיה מפאת קושיא זו לחלק בין הפרקים באיסורי דרבנן אי יש לו עיקר מן התורה אז ספיקו לחומרא בחזקת איסור ואי עיקרו דרבנן אז ספיקו להקל גם בחזקת איסור. ולענ&quot;ד אין מכאן ראיה כלל וכמ&quot;ש. ואין להביא ראיה מהא דמקשה תלמודא ביצה דף ג׳ ע&quot;ב אלא א&quot;א משום גזירה ספיקא דרבנן הוא ולהקל ומאי קושיא דילמא מיירי הא דספיקא באיתחזק איסורא וביותר לפי שיטת המרדכי דסובר דהא דמחמרינן בספיקא דרבנן בדשיל&quot;מ הוא דוקא באיתחזק איסורא וע&quot;כ ביצה שנולדה מיקרי איתחזק איסורא ע&quot;ש מילתא בטעמא דמוקמינן לאם בחזקת שלא הולידה עדיין והבאתי דבריו בריש ביצה בחיבורי ש&quot;י וא&quot;כ ל&quot;ל לשנויי משום דשיל&quot;מ הא בכה&quot;ג לפי הבנת הש&quot;ך בכל איסורא הגם דבר שאין לו מתירין ג&quot;כ מחמרינן בספיקא היכא דיש לו חזקת איסור א&quot;ו דז&quot;א אלא ביש לו עיקר מה&quot;ת אבל בדבר שאין לו עיקר מן התורה לא מחמרינן גם היכא דאיכא חזקת איסור ובדשיל&quot;מ מחמרינן אפילו היכא דעיקרו דרבנן וא&quot;כ יש ראיה לדברי הצל&quot;ח. דז&quot;א די&quot;ל דמשום דנתערבה באלף כולן אסורות מוקמא לה בטעמא דדשיל&quot;מ ובאמת מדברי המרדכי משמע דלא כהש&quot;כ ואין כאן מקומו להאריך בפרט הזה. ועוד נראה להביא ראיה דק&quot;ש מן התורה מהא דאוקי בירושלמי מתניתין דפרק ג׳ בעל קרי מהרהר בלבו דקאי על הברכות אבל ק&quot;ש עצמה קורא בדיבור משמע דק&quot;ש מן התורה דע&quot;כ לא כתב הרשב&quot;א בחי׳ להתיר אפילו למ&quot;ד ק&quot;ש משום קבלת מלכות שמים כ&quot;א להרהר אבל לא בדיבור ממש ועיין מ&quot;ש לקמן בס&quot;ד. א&quot;ו נראה דק&quot;ש מן התורה וכמ&quot;ש הרמב&quot;ם, קצת משמע שם ברמב&quot;ם דכל ג׳ פרשיות הם מן התורה ובפר&quot;ח ריש הלכות ק&quot;ש האריך בזה וא&quot;כ כיון דק&quot;ש מן התורה מש&quot;ה הביא הטור סימן רל&quot;ה הך ברייתא דירושלמי הקורא בה&quot;ש לא יצא ומ&quot;ש הטור שם בשם רב פלטוי ומביא ג&quot;כ בש&quot;ג הקורא ק&quot;ש קודם לצ&quot;ה אם נתכוין לכך לא יצא י&quot;ח ואם לא נתכוין וטעה וכו׳ צע&quot;ק למה לא פירש בירושלמי גם לשון הברייתא הכי בקורא במתכוין ואף דכתב כן לדידן דקיימ&quot;ל דעבד כמר כו׳ דילמא גם הברייתא הכי ס&quot;ל ועיין בתוס׳ ר&quot;פ תפלת השחר:<br><strong> וכיון </strong> דקיימ&quot;ל ק&quot;ש מן התורה א&quot;כ בספק אם קרא חוזר וקורא עם ברכותיה כמ&quot;ש הרמב&quot;ם וכתב הפר&quot;ח בהלכות ק&quot;ש דיש לדקדק בזה ממ&quot;ש הרמב&quot;ם בהלכות מילה פ&quot;ג קטן שנולד כשהוא מהול וכן אדרוגינוס אין מברכין עליהם וכ&quot;כ עוד בפ&quot;ו מהלכות סוכה טומטום ואנדרוגינוס אין מברכין לישב בסוכה מפני שאין מברכין מספק אלמא אפילו במידי דעיקרו מדאורייתא כיון דברכות דרבנן אינו מברך וא&quot;כ קשה טובא איך כתב כאן בק&quot;ש דחוזר וקורא הברכות ג&quot;כ וכתב החילוק האמתי בזה כמ&quot;ש בכנה&quot;ג שלא כתב הרמב&quot;ם ז&quot;ל גבי סוכה ומילה אלא מפני שנולד הספק בגוף המצוה אי מיחייב או לא כגון כוי וטומטום ואדרוגינוס שנולד הספק בעיקר החיוב אבל היכא דאיכא חיוב ברור כמו הכא גבי ק&quot;ש וכן בספק נטל לולב וכיוצא דאתיליד ספיקא בתר דאיכא חיובא חייב לברך ברכה הראויה לכל דבר עכת&quot;ד וסיים שם הט אזנך וקבל האמת שהחילוק מוכרח לדעת הרמב&quot;ם ואין לנטות ממנו ימין ושמאל ע&quot;כ:<br><strong> ובזה </strong> יש ג&quot;כ מקום לחלק מה שכתב בס׳ בני חייא במה שחידש לנו מרגניתא תותי׳ הרב הלבוש בא&quot;ח סי׳ טו&quot;ב היכא דיש ספק ספיקא חייב לברך ואין כאן חששא דלא תשא כגון אנדרוגינוס לברך על ציצית דהוה ספק א׳ אולי הוא זכר ואת&quot;ל שהוא נקבה דלמא הלכה כר&quot;ת דנשים ג&quot;כ מברכות על מ&quot;ע ובס׳ ל&quot;ח חלק עליו כיון דיש כאן ספק ל&quot;ת מה לי חד ספיקא מה לי ספק ספיקא וכתב הוא דמשמע מדברי הת&quot;ה כשיטת הלבוש דהרי כתב מי שמסופק אם ספר לילה אחת או לא רשאי לספור בברכה דיש ספק ספיקא חדא דילמא ספר ועוד אולי הלכה כאותן שיטות דכל לילה מצוה בפ&quot;ע הוא ע&quot;ש וא&quot;כ הרי דגבי ספק ספיקא מברכין ולפי דברי הפ&quot;ח אין הנדון דומה דשם גברא בר חיובא הוא וכיון דאיכא ספק ספיקא מברך משא&quot;כ בנדון הלבוש דהספק הוא בעיקר המצוה ובאמת עיקר מחלוקת זה אי בס&quot;ס רשאי לברך אפילו בדבר דרבנן יש לתלות בפלוגתא אי ספק ספיקא מותר מטעם רוב או לא ואין כאן מקומו להאריך ולא באתי אלא לעורר לב המעיין ועיין עוד בס׳ בני חייא בא&quot;ח סימן ר&quot;ז:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:3:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-3">Mishneh Torah, Reading the Shema 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁאֵין מִצְוַת צִיצִית נוֹהֶגֶת בַּלַּיְלָה קוֹרְאִין אוֹתָהּ בַּלַּיְלָה מִפְּנֵי שֶׁיֵּשׁ בָּהּ זִכְרוֹן יְצִיאַת מִצְרַיִם וּמִצְוָה לְהַזְכִּיר יְצִיאַת מִצְרַיִם בַּיּוֹם וּבַלַּיְלָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז ג)</span> ״לְמַעַן תִּזְכֹּר אֶת יוֹם צֵאתְךָ מֵאֶרֶץ מִצְרַיִם כּל יְמֵי חַיֶּיךָ״. וּקְרִיאַת שָׁלֹשׁ פָּרָשִׁיּוֹת אֵלּוּ עַל סֵדֶר זֶה הִיא הַנִּקְרֵאת קְרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנאמר למען תזכור את יום צאתך מארץ מצרים כו׳.</strong> כן הוא במתניתין אמר ראב&quot;ע ולא זכיתי שתאמר יציאת מצרים בלילות כו׳ כתב בחי׳ רשב&quot;א בשם הראב&quot;ד דגם רבנן מודים דצריך לקרות יציאת מצרים בלילה אלא דאין החיוב כ&quot;א מדרבנן וראב&quot;ע סובר דמה&quot;ת מזכירין גם בלילה ולזה אמר עד שדרשה בן זומא מקרא דהוא מן התורה והביא ראיה לדבריו ע&quot;ש. והוא ז&quot;ל תמה עליו דאיך יפרנס לדבריו מה דאמר ראב&quot;ע לא זכיתי שתאמר מאי נ&quot;מ היה לו בזה כיון דעכ&quot;פ הא מזכירין יציאת מצרים בלילה אי הוי מדרבנן או מן התורה. ונראה לענ&quot;ד עפ&quot;י מה דאמרינן בר&quot;פ תפ&quot;ה בפלוגתא דר&quot;י ורבנן תפלת המנחה עד הערב ור&quot;י אומר עד פלג וקיימ&quot;ל דעבד כמר עבד ודעבד כמר עבד ופשטא דמילתא משמע דספק הלכה היא ועפי&quot;ז נתקשה הרב בשו&quot;ת שא&quot;ר סימן טו&quot;ב על הרמב&quot;ם שפסק זמן הקרבת תמיד בכל יום וכן בהלכות ק&quot;פ דבדיעבד כשר עד צ&quot;ה אמאי הא ספיקא הוא ובשל תורה להחמיר ע&quot;ש. ובאמת י&quot;ל דלק&quot;מ דהרי כתבו התוספות דף כ&quot;ז ד&quot;ה ת&quot;ש כו׳ ובהאי דפלג המנחה נמי משום דעבד כמר כו׳ משמע דגם תנא דמתניתין הכי ס&quot;ל ולכאורה קשה טובא א&quot;כ למה תני רבי לפלוגתא דר&quot;י ורבנן במס׳ ברכות לענין תפלה ולמה לא הביא פלוגתא זו במס׳ מגילה פ&quot;ב גבי האי דתנן דבר שמצותו כל היום כו׳ הו&quot;ל להביא פלוגתא דר&quot;י ורבנן א&quot;ו דקים ליה לתנא דקיי&quot;ל יחיד ורבים הלכה כרבים וכרבנן ועד צ&quot;ה יום הוא לכל מילי וכל מצות של תורה שזמנם ביום אם עבר ולא עשה כל היום זמנו עד צ&quot;ה וכן דבר שמצותו בלילה צריך להיות דוקא בלילה ממש ולא הביא רבי מחלוקת זה אלא לענין תפלה דהוא מדרבנן דאף לשיטת הסוברים דתפלה מן התורה הוא בפ&quot;א ביום מיהו סגי באיזה זמן שיהיה ובדרבנן קיימ&quot;ל דעבד כמר עבד ודעכ&quot;ע וא&quot;כ שפיר עולה פסקי הרמב&quot;ם:<br><strong> העולה </strong> מזה לענין הלכה בדבר דרבנן יוכל לסמוך על ר&quot;י דאחר פלג המנחה כבר הוא לילה אבל בדבר שהוא מן התורה צ&quot;ל בלילה ממש וכרבנן דעד צה&quot;כ יום הוא וא&quot;כ ביצ&quot;מ לרבנן דאינו מחוייב כ&quot;א מדרבנן אם כן רשאי לקרות לאחר פלג כדרך שמתפללין ערבית אבל כיון דדרש בן זומא דהוי מן התורה אם כן אינו רשאי לקרותו כ&quot;א בלילה ממש והמתפלל ערבית מבע&quot;י צריך לקרות יציאת מצרים בלילה ושפיר אמר ראב&quot;ע ומדייק בלשונו ולא זכיתי שתאמר יציאת מצרים בלילות פירוש בלילה ממש אחר צ&quot;ה ושפיר מיושב פירוש הראב&quot;ד ולישנא דמתניתין דייקא כוותיה:<br><strong> שוב </strong> מצאתי ברבינו יונה בר&quot;פ שכתב כדברי לחלק בדבר דאורייתא שצריך להיות אחר צ&quot;ה דוקא ובדבר דרבנן יוכל לסמוך על ר&quot;י לאחר פלג המנחה אלא שכתב שם דיש מפרשים כיון דלא נפיק אלא מדרשא דכל שפיר רשאי לקרותו אחר פלג וצ&quot;ע עליו דהא מנ&quot;ל ואף אם דעתו כן מ&quot;מ הראב&quot;ד חולק בזה וסובר אע&quot;ג דמדרשא נפקא הוי כשל תורה ממש והדברים ברורים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:4:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-4">Mishneh Torah, Reading the Shema 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא קְרִיאַת שְׁמַע כְּשֶׁהוּא גּוֹמֵר פָּסוּק רִאשׁוֹן אוֹמֵר בְּלַחַשׁ בָּרוּךְ שֵׁם כְּבוֹד מַלְכוּתוֹ לְעוֹלָם וָעֶד וְחוֹזֵר וְקוֹרֵא כְּדַרְכּוֹ <span class="source-small">(דברים ו ה)</span> ״וְאָהַבְתָּ אֵת יְיָ׳‎ אֱלֹהֶיךָ״ עַד סוֹפָהּ. וְלָמָּה קוֹרִין כֵּן. מָסֹרֶת הִיא בְּיָדֵינוּ שֶׁבְּשָׁעָה שֶׁקִּבֵּץ יַעֲקֹב אָבִינוּ אֶת בָּנָיו בְּמִצְרַיִם בִּשְׁעַת מִיתָתוֹ צִוָּם וְזֵרְזָם עַל יִחוּד הַשֵּׁם וְעַל דֶּרֶךְ ה׳‎ שֶׁהָלַךְ בָּהּ אַבְרָהָם וְיִצְחָק אָבִיו וְשָׁאַל אוֹתָם וְאָמַר לָהֶם בָּנַי שֶׁמָּא יֵשׁ בָּכֶם פַּסְלוּת מִי שֶׁאֵינוֹ עוֹמֵד עִמִּי בְּיִחוּד הַשֵּׁם כָּעִנְיָן שֶׁאָמַר לָנוּ משֶׁה רַבֵּנוּ <span class="source-small">(דברים כט יז)</span> ״פֶּן יֵשׁ בָּכֶם אִישׁ אוֹ אִשָּׁה״ וְגוֹ׳‎. עָנוּ כֻּלָּם וְאָמְרוּ <span class="source-small">(דברים ו ד)</span> ״שְׁמַע יִשְׂרָאֵל יְיָ׳‎ אֱלֹהֵינוּ יְיָ׳‎ אֶחָד״. כְּלוֹמַר שְׁמַע מִמֶּנּוּ אָבִינוּ יִשְׂרָאֵל יְיָ׳‎ אֱלֹהֵינוּ יְיָ׳‎ אֶחָד. פָּתַח הַזָּקֵן וְאָמַר בָּרוּךְ שֵׁם כְּבוֹד מַלְכוּתוֹ לְעוֹלָם וָעֶד. לְפִיכָךְ נָהֲגוּ כָּל יִשְׂרָאֵל לוֹמַר שֶׁבַח שֶׁשִּׁבֵּחַ בּוֹ יִשְׂרָאֵל הַזָּקֵן אַחַר פָּסוּק זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא ק&quot;ש כו׳ אומר בלחש כו׳.</strong> אע&quot;ג דאמרינן בגמרא פסחים אר&quot;א התקינו שיהו אומרים בקול רם מפני תרעומות המינין מ&quot;מ עכשיו בזמנינו ליכא חששא דמינין כלל. ועיין בטור או&quot;ח סימן א׳ במ&quot;ש לומר עשרת הדברות בכל יום ובתבואות שור:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:7:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-7-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:7:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-7">Mishneh Torah, Reading the Shema 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּרָכָה רִאשׁוֹנָה שֶׁלְּפָנֶיהָ בֵּין בַּיּוֹם בֵּין בַּלַּיְלָה פּוֹתֵחַ בָּהּ בְּבָרוּךְ וְחוֹתֵם בָּהּ בְּבָרוּךְ. וּשְׁאָר בִּרְכוֹתֶיהָ חוֹתֵם בְּכָל אַחַת מֵהֶן בְּבָרוּךְ וְאֵין לָהֶם פְּתִיחָה בְּבָרוּךְ. בְּרָכוֹת אֵלּוּ עִם שְׁאָר כָּל הַבְּרָכוֹת הָעֲרוּכוֹת בְּפִי כָּל יִשְׂרָאֵל עֶזְרָא הַסּוֹפֵר וּבֵית דִּינוֹ תִּקְּנוּם וְאֵין אָדָם רַשַּׁאי לִפְחֹת מֵהֶם וְלֹא לְהוֹסִיף עֲלֵיהֶם. מָקוֹם שֶׁהִתְקִינוּ לַחְתֹּם בְּבָרוּךְ אֵינוֹ רַשַּׁאי שֶׁלֹּא לַחְתֹּם. וּמָקוֹם שֶׁהִתְקִינוּ שֶׁלֹּא לַחְתֹּם אֵינוֹ רַשַּׁאי לַחְתֹּם. מָקוֹם שֶׁהִתְקִינוּ שֶׁלֹּא לִפְתֹּחַ בְּבָרוּךְ אֵינוֹ רַשַּׁאי לִפְתֹּחַ. מָקוֹם שֶׁהִתְקִינוּ לִפְתֹּחַ אֵינוֹ רַשַּׁאי שֶׁלֹּא לִפְתֹּחַ. כְּלָלוֹ שֶׁל דָּבָר כָּל הַמְשַׁנֶּה מִמַּטְבֵּעַ שֶׁטָּבְעוּ חֲכָמִים בַּבְּרָכוֹת הֲרֵי זֶה טוֹעֶה וְחוֹזֵר וּמְבָרֵךְ כַּמַּטְבֵּעַ. וְכָל שֶׁאֵינוֹ אוֹמֵר אֱמֶת וְיַצִּיב בְּשַׁחֲרִית וֶאֱמֶת וֶאֱמוּנָה בְּעַרְבִית לֹא יָצָא יְדֵי חוֹבָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המשנה ממטבע כו׳.</strong> וכן הוא בהלכות ברכות פ&quot;א הלכה ה׳ ובגמרא ברכות דף מ׳ ע&quot;ב ת&quot;ר כתנאי ראה פת ואמר כ&quot;נ פת זו ב&quot;ה שבראה יצא ר&quot;י אומר כו׳ דברי ר&quot;מ ר&quot;י אומר כל המשנה ממטבע שט&quot;ח בברכות ל&quot;י י&quot;ח א&quot;כ רבינו פסק כר&quot;י ולא כר&quot;מ. ונראה דהא דאמרינן שם מנימין רעיא כריך רפתא ואמר בריך מריה דהאי פתא ואמר רב יצא היינו אליבא דר&quot;מ אבל לר&quot;י לא עדיף בריך מריה דהאי פתא מהא דאמר כמה נאה פת זו ברוך המקום שבראה דלא יצא אליבא דר׳ יהודה וכן הא דאמרינן פרק הרואה דף נ&quot;ד ע&quot;ב דא&quot;ל בריך רחמנא דיהבך ניהלן ולא יהבך לעפרא ואמר להו ר&quot;י דפטרתון יתי מלאודויי ר&quot;י הוא תלמידיה דרב וכרב ס&quot;ל הלכה כר&quot;מ אבל לדידן דקיי&quot;ל כר׳ יוסי באמת לא יצא ידי ברכת הגומל באמירת בריך רחמנא כו׳ וכן לא יצא באם אומר על הפת כמה נאה פת זו וכו׳ וכן באמת לא העתיק רבינו להלכה הך דאמר כמה נאה פת זו והך דבריך רחמנא דיהבך ניהלן ובטוש&quot;ע או&quot;ח סימן קס&quot;ז שהעתיקו להך כמה נאה פת זו כו׳ ובסימן רי&quot;ט דבריך רחמנא דיהבך ניהלן הם לא העתיקו הך דכל המשנה ממטבע שט&quot;ח ובזה סרה קושי׳ הרמ&quot;ך שהביא הכ&quot;מ מעל רבינו וצ&quot;ע שלא העירו בזה מפרשי הטור והרמב&quot;ם. והא דמקשה בגמרא מאי קמ&quot;ל עיין בס׳ צל&quot;ח שם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:8:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-8">Mishneh Torah, Reading the Shema 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִקְדִּים בְּרָכָה שְׁנִיָּה לִבְרָכָה רִאשׁוֹנָה בֵּין בַּיּוֹם בֵּין בַּלַּיְלָה בֵּין לְפָנֶיהָ בֵּין לְאַחֲרֶיהָ יָצָא לְפִי שֶׁאֵין סֵדֶר בַּבְּרָכוֹת. בְּשַׁחֲרִית פָּתַח יוֹצֵר אוֹר וְסִיֵּם מַעֲרִיב עֲרָבִים לֹא יָצָא. פָּתַח בְּמַעֲרִיב עֲרָבִים וְסִיֵּם בְּיוֹצֵר אוֹר יָצָא. וּבָעֶרֶב פָּתַח בְּמַעֲרִיב עֲרָבִים וְסִיֵּם בְּיוֹצֵר אוֹר לֹא יָצָא. פָּתַח בְּיוֹצֵר אוֹר וְסִיֵּם בְּמַעֲרִיב עֲרָבִים יָצָא. שֶׁכָּל הַבְּרָכוֹת הוֹלְכוֹת אַחַר חֲתִימָתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקדים כו׳.</strong> עיין בכ&quot;מ ועיין בחי׳ רשב&quot;א במתניתין בשחר מברך שתים לפניה וכו׳ דסובר דברכת אהבה רבה ואהבת עולם לא מיקרו ברכה הסמוכה והא דקרי לי׳ ברכה י&quot;ל לפי מ&quot;ש הב&quot;ח בשם מהר&quot;י פאלק דדבר זה שכל ברכה שאין בה שם ומלכות לא נאמרה כ&quot;א בברכת פירות וברכת המצות אבל לא בברכת השבח והוכיח הדבר דהא בי&quot;ח ברכות לא נזכר מלכות והכ&quot;מ סובר כמ&quot;ש התוספות דף מ׳ דאלהי אברהם היינו מלכות וכל ברכות שלאחריה מיקרו ברכות סמוכות וא&quot;צ מלכות ודו&quot;ק ועיין בתשובת רשב&quot;א שנשאל ג&quot;כ קושיית הכ&quot;מ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:9:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:9:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-9">Mishneh Torah, Reading the Shema 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵיזֶה הוּא זְמַן קְרִיאַת שְׁמַע בַּלַּיְלָה. מִצְוָתָהּ מִשְּׁעַת יְצִיאַת הַכּוֹכָבִים עַד חֲצִי הַלַּיְלָה. וְאִם עָבַר וְאִחֵר וְקָרָא עַד שֶׁלֹּא עָלָה עַמּוּד הַשַּׁחַר יָצָא יְדֵי חוֹבָתוֹ שֶׁלֹּא אָמְרוּ עַד חֲצוֹת אֶלָּא כְּדֵי לְהַרְחִיק אָדָם מִן הַפְּשִׁיעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אי זהו זמן ק&quot;ש כו׳ עד חצי הלילה כו׳.</strong> מתני׳ ריש ברכות וחכמים אומרים עד חצות כו׳. עיין רבינו יונה די&quot;מ דרבנן עבדו הרחקה אם לא קרא שוב לא יקרא עוד דיש כח ביד חכמים לעקור מ&quot;ע מן התורה בשב וא&quot;ת וי&quot;מ דלא עבדו רבנן הרחקה כ&quot;א לכתחילה ולפ&quot;ז ר&quot;ג דאמר עד עלות השחר סובר דלא עשו הרחקה כלל אפילו לכתחילה אבל לפי פירוש הא׳ א&quot;כ י&quot;ל דר&quot;ג לא פליג כ&quot;א משום דשמיע ליה לת&quot;ק דסובר דעשו הרחקה גם בדיעבד והוא חולק בזה וסובר דבדיעבד זמנה עד שיעלה עמוד השחר אבל מודה ר&quot;ג דלכתחילה לא יקרא אחר חצות משום הרחקה. ובזה פי׳ הב&quot;ח הא דאמר בגמרא דף ח׳ ע&quot;ב אמר ר&quot;י א&quot;ש הלכה כר&quot;ג פי׳ דהרחקה אינו כ&quot;א לכתחילה וזה הוא שיטת הרמב&quot;ם דפסק ע&quot;ח אע&quot;ג דבגמרא אמר הלכה כר&quot;ג והב&quot;י דחק עצמו ליישב בסימן רל&quot;ה ומביאו בתויו&quot;ט. ועיין בגמרא בהא דאמר ור&quot;ג מי קאמר ע&quot;ח לפירוש הב&quot;ח צע&quot;ק:<br><strong> והנה </strong> היה נראה בישוב דברי הרמב&quot;ם דסובר כפירוש הב׳ דחכמים ור&quot;ג פליגי אי עבדי הרחקה כלל ולמ&quot;ד ק&quot;ש דרבנן מסתבר טעמיה דר&quot;ג ולמ&quot;ד ק&quot;ש מן התורה שורת הדין נותן למיעבד הרחקה לד&quot;ת ומסתבר טעמייהו דרבנן וא&quot;כ ר&quot;י א&quot;ש דאמר הלכה כר&quot;ג אזיל לשיטתיה לפי מה דגרס הרי&quot;ף והרא&quot;ש ברכות דף כ&quot;א ע&quot;א אמר ר&quot;י א&quot;ש ספק קרא ק&quot;ש כו׳ אינו חוזר וקורא משום דס&quot;ל ק&quot;ש מדרבנן משום הכי פסק כר&quot;ג והרמב&quot;ם דס&quot;ל להלכה דק&quot;ש מן התורה כמ&quot;ש לעיל וא&quot;כ מש&quot;ה שבק דברי ר&quot;י א&quot;ש ופסק כחכמים דלמ&quot;ד ק&quot;ש מן התורה מסתבר כרבנן. אבל העיקר נראה לי כמ&quot;ש הב&quot;ח והחזיק בשיטת הי&quot;מ דרבנן עבדו חיזוק אפילו בדיעבד דהכי משמע פשטא דברייתא דף ד׳ חכמים עשו סייג לדבריהם דמלת לדבריהם למ&quot;ד ק&quot;ש מן התורה קשה ולפ&quot;ד י&quot;מ ניחא דעשו סייג להרחקה דידהו אפילו לבטל המצוה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:11:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-11-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:11:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-11">Mishneh Torah, Reading the Shema 1:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵי זֶה הוּא זְמַנָּה בַּיּוֹם. מִצְוָתָהּ שֶׁיַּתְחִיל לִקְרוֹת קֹדֶם הָנֵץ הַחַמָּה כְּדֵי שֶׁיִּגְמֹר לִקְרוֹת וּלְבָרֵךְ בְּרָכָה אַחֲרוֹנָה עִם הָנֵץ הַחַמָּה. וְשִׁעוּר זֶה כְּמוֹ [עִשּׂוּר] שָׁעָה קֹדֶם שֶׁתַּעֲלֶה הַשֶּׁמֶשׁ. וְאִם אִחֵר וְקָרָא קְרִיאַת שְׁמַע אַחַר שֶׁתַּעֲלֶה הַשֶּׁמֶשׁ יָצָא יְדֵי חוֹבָתוֹ שֶׁעוֹנָתָהּ עַד סוֹף שָׁלֹשׁ שָׁעוֹת בַּיּוֹם לְמִי שֶׁעָבַר וְאִחֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עד סוף שלש שעות כו׳.</strong> עיין בש&quot;ג י&quot;א עד ולא עד בכלל ואע&quot;ג דמשמע בירושלמי עד סוף שלש שעות ס&quot;ל להי&quot;א דבדאורייתא אמרינן לחומרא כדמשמע במס׳ נדה דף נ&quot;ח ע&quot;ב ואנן הא קיימ&quot;ל כמ&quot;ד ק&quot;ש מן התורה ודעת הרמב&quot;ם וכל הפוסקים דלפי מה שכתב הכ&quot;מ בהלכה י&quot;ג דזמן ק&quot;ש מן התורה זמנה כל היום וזמן דשלש שעות אינו אלא מדרבנן א&quot;כ שפיר י&quot;ל דעד ועד בכלל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:13:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-1-13-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 1:13:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-13">Mishneh Torah, Reading the Shema 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אַחַר שָׁלֹשׁ שָׁעוֹת בַּיּוֹם אֲפִלּוּ הָיָה אָנוּס לֹא יָצָא יְדֵי חוֹבַת קְרִיאַת שְׁמַע בְּעוֹנָתוֹ. אֶלָּא הֲרֵי הוּא כְּקוֹרֵא בַּתּוֹרָה. וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ כָּל הַיּוֹם אֲפִלּוּ אִחֵר וְקָרָא אַחַר שָׁלֹשׁ שָׁעוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומברך לפניה ולאחריה כל היום כו׳.</strong> וי&quot;א עד חצות. ומסקנת הש&quot;ע או&quot;ח סימן נ&quot;ח כרבינו האי עד ד׳ שעות ודעת רבינו שכל היום זמנה מפני שסובר כמו שכתב הכ&quot;מ דק&quot;ש זמנה כל היום מן התורה כמו דדרשינן בשכבך כל זמן שבני אדם שוכבים כן ה&quot;נ דרשינן ובקומך כ&quot;ז שבני אדם עומדים והא דקשה ע&quot;ז מהא דאמר בגמרא דף י&quot;א א&quot;כ נימא קרא בבוקר ובערב ומאי קושיא הא בוקר ודאי דלא הוי כל היום ע&quot;ש, נלענ&quot;ד דאדרבה משם ראייה לדברי הכ&quot;מ דלכאורה קשה למה לא משני הגמרא הך קושיא על ב&quot;ה אלא נראה דב&quot;ש לטעמייהו דס&quot;ל כר&quot;א עד אשמורה ראשונה דר&quot;א מתלמידי דב&quot;ש וכמו שכתבו התוס׳ בפרק משילין בשם הירושלמי וא&quot;כ דרשי בשכבך כל זמן שבני אדם הולכים לשכב א&quot;כ גם ובקומך הכי משמע שפיר קאמר נימא קרא בבקר כו׳ וב&quot;ה כחכמים ס&quot;ל דדרשי כ&quot;ז שבני אדם שוכבים וא&quot;כ באמת מה&quot;ט לא מצי למכתב בקר כקושיית מ&quot;א. ועי׳ במ&quot;ר דלאו דוקא קאמר לכתוב בקר וערב אלא יום ולילה ועי׳ ר&quot;פ תמיד נשחט:<br><strong> והוי </strong> יודע דענין השעות האלו האריכו האחרונים אי חשבינן להו שעות זמניות ורובם הסכימו כן כמ&quot;ש הרע&quot;ב והרמב&quot;ם בפי׳ המשנה ריש ברכות דחשבינן לשעות זמניות וכ&quot;ה עיקר לדינא ועיין בספר עטרת ראש הרחיב ביאור ובספר לחם שמים ראיתי שכתב וז&quot;ל ואפשר עד שעה שמכה זוג המקשקש בזמנינו ט׳ רשאי עדיין לקרות הברכות ולא הפסיד הברכות אליבא דכ&quot;ע. ונראה לתלות דבר זה במחלוקת הלבוש והמע&quot;מ שהבאתי דבריהם בהלכה א׳ אי אמרינן במקום ס&quot;ס ספק ברכה להחמיר שיברך ה&quot;נ איכא ספק ספיקא דחשבינן לשעות זמניות או לא ואפילו את&quot;ל דחשבינן לזמניות דילמא קיימ&quot;ל כשיטת הסוברים עד חצות לא הפסיד הברכות וא&quot;כ לפי מאי דמסיק בספר בני חייא לברך במקום שיש ספק ספיקא א&quot;כ כל אדם רשאי לסמוך על זה שלא להפסיד הברכות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Chapter 2</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:1:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-1">Mishneh Torah, Reading the Shema 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אֶת שְׁמַע וְלֹא כִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן שֶׁהוּא <span class="source-small">(דברים ו ד)</span> ״שְׁמַע יִשְׂרָאֵל״ לֹא יָצָא יְדֵי חוֹבָתוֹ וְהַשְּׁאָר אִם לֹא כִּוֵּן לִבּוֹ יָצָא. אֲפִלּוּ הָיָה קוֹרֵא בַּתּוֹרָה כְּדַרְכּוֹ אוֹ מַגִּיהַּ אֶת הַפָּרָשִׁיּוֹת הָאֵלּוּ בְּעוֹנַת קְרִיאָה יָצָא וְהוּא שֶׁכִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא כו׳ בפסוק ראשון כו׳ והשאר כו׳.</strong> עיין בכ&quot;מ מה שהקשה על רבינו הא אפילו למאי דהוי ס&quot;ד למ&quot;ד א&quot;צ כוונה קורא להגיה לא יצא וכ&quot;ש לדידן ע&quot;ש מ&quot;ש והיא הנותנת וקצת דוחק. ולי נראה דרבינו הכי מפרש גם להס&quot;ד בשאר אפילו קורא להגיה ג&quot;כ יצא דהנה דעת רבינו בהא דתני בברייתא שמע ישראל וגו׳ צריך כוונת הלב דברי ר&quot;מ הך צריך פירושו דלא יצא אפילו בדיעבד ואין כן דעת הרשב&quot;א בחידושו אלא פירושו דצריך היינו לכתחילה ורבינו דחק ליה לפרש דלא כהרשב&quot;א משום דלשון הברייתא משמע הכי כיון דדריש להו מקראי. והנה הרשב&quot;א הקשה בחידושיו מאי קשיא לתלמודא ש&quot;מ מצות צ&quot;כ דילמא מיירי מתני׳ בפסוק ראשון ולכ&quot;ע צריך כוונה ותי׳ בדוחק ע&quot;ש והר&quot;ם ז&quot;ל היה מפרש דס&quot;ד דתלמודא כיון דלא ידע מהברייתא דר&quot;מ ורבנן הגם דמצד הסברא פסוק ראשון ודאי דצריך כוונת הלב דהיא עיקר קבלת מלכות שמים אבל היה ס&quot;ל דבדיעבד יצא וכמו דס&quot;ל להרשב&quot;א לפי האמת ומעתה שפיר קא קשיא ליה הא במתני׳ קתני אם כיון לבו יצא דמשמע מינה אם לא כיון לבו א&quot;י אפילו בדיעבד ושפיר קאמר ש&quot;מ מצות צ&quot;כ דאל&quot;כ אלא דבשאר מצות א&quot;צ כוונה א&quot;כ די לנו לומר בק&quot;ש דלכתחילה בעי׳ מיהת כוונה אבל לא לעכב בדיעבד והגמרא משני דמש&quot;ה קתני במתניתין לשון יצא דאיירי בקורא להגיה משא&quot;כ אם קורא בתורה כדרכו באמת יצא בדיעבד וכ&quot;ז בפסוק ראשון ובשאר אפילו להגיה יוצא בדיעבד דמזה לא איירי מתניתין אבל להמסקנא דידעו מברייתא דסובר הר&quot;מ דפשטא דלישנא משמע אפילו בדיעבד כמ&quot;ש וא&quot;כ שפיר פירש רבינו דבפסוק ראשון אפילו בקורא בתורה כדרכו ג&quot;כ לא יצא בדיעבד אבל בשאר אפילו קורא להגיה יצא כמו להס&quot;ד וזה הפירוש נראה לי ברור בס&quot;ד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:2:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:2:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-2">Mishneh Torah, Reading the Shema 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אָדָם קוֹרִין כְּדַרְכָּן בֵּין עוֹמְדִין בֵּין מְהַלְּכִין בֵּין שׁוֹכְבִין בֵּין רוֹכְבִין עַל גַּבֵּי בְּהֵמָה. וְאָסוּר לִקְרוֹת קְרִיאַת שְׁמַע וְהוּא מֻטָּל וּפָנָיו טוּחוֹת בַּקַּרְקַע אוֹ מֻשְׁלָךְ עַל גַּבּוֹ וּפָנָיו לְמַעְלָה. אֲבָל קוֹרֵא הוּא וְהוּא שׁוֹכֵב עַל צִדּוֹ. וְאִם הָיָה בַּעַל בָּשָׂר הַרְבֵּה וְאֵינוֹ יָכוֹל לְהִתְהַפֵּךְ עַל צִדּוֹ אוֹ שֶׁהָיָה חוֹלֶה נוֹטֶה מְעַט לְצִדּוֹ וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין רוכבין כו׳.</strong> הכ&quot;מ לא הראה לנו מקומו ונראה דלמד רבינו מהא דתניא בתוספתא והובא בגמרא ברכות דף ל׳ ת&quot;ר היה רוכב על גבי החמור והגיע זמן תפלה כו׳ רבי אומר ב&quot;כ וב&quot;כ יושב במקומו ויתפלל ואם בתפלה מקילין כ&quot;ש בק&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:2:2</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-2-2" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:2:2">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-2">Mishneh Torah, Reading the Shema 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אָדָם קוֹרִין כְּדַרְכָּן בֵּין עוֹמְדִין בֵּין מְהַלְּכִין בֵּין שׁוֹכְבִין בֵּין רוֹכְבִין עַל גַּבֵּי בְּהֵמָה. וְאָסוּר לִקְרוֹת קְרִיאַת שְׁמַע וְהוּא מֻטָּל וּפָנָיו טוּחוֹת בַּקַּרְקַע אוֹ מֻשְׁלָךְ עַל גַּבּוֹ וּפָנָיו לְמַעְלָה. אֲבָל קוֹרֵא הוּא וְהוּא שׁוֹכֵב עַל צִדּוֹ. וְאִם הָיָה בַּעַל בָּשָׂר הַרְבֵּה וְאֵינוֹ יָכוֹל לְהִתְהַפֵּךְ עַל צִדּוֹ אוֹ שֶׁהָיָה חוֹלֶה נוֹטֶה מְעַט לְצִדּוֹ וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בד&quot;ה </strong>
+<strong> ואסור לקרות ק&quot;ש כו׳.</strong>
+<strong> סובר רבינו דמלת פרקדן סובל ב׳ פירושים על פניו ועל גבו וכן פירש בחידושי הרשב&quot;א ורש&quot;י שפירש שוכב על גבו ופניו למעלה עיין בסנהדרין דף מ&quot;ה ע&quot;א נהפך על לבו הופכו על מתניו פירש&quot;י שהשוכב על פרקדן מגונה יותר א&quot;כ דברי רש&quot;י סותרין אהדדי ופני משה חילק בין אפרקיד ובין פרקדן ועיין בשו&quot;ת שבות יעקב חלק שני ואפשר דגם רש&quot;י כדעת רבינו ס&quot;ל דמלת פרקדן סובל ב׳ פירושים אלא דסובר רש&quot;י דאיסור קריאת שמע אינו אלא בשוכב על גבו:</strong></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:3:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-3">Mishneh Torah, Reading the Shema 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיָה מְהַלֵּךְ עַל רַגְלָיו עוֹמֵד בְּפָסוּק רִאשׁוֹן וְהַשְּׁאָר קוֹרֵא וְהוּא מְהַלֵּךְ. הָיָה יָשֵׁן מְצַעֲרִין אוֹתוֹ וּמְעִירִין אוֹתוֹ עַד שֶׁיִּקְרָא פָּסוּק רִאשׁוֹן וּמִכָּאן וְאֵילָךְ אִם אֲנָסַתּוּ שֵׁנָה אֵין מְצַעֲרִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והשאר קורא והוא מהלך.</strong> לכאורה שפת יתר הוא גם בתוספות דף י&quot;ג ע&quot;ב ד&quot;ה על לבבך וכו׳ סיימו וכשיגיע לואהבת ילך לדרכו. ונראה דקמ&quot;ל דל&quot;ת הגם דמצד הדין א&quot;צ לעמוד רק בפסוק ראשון מכל מקום לכתחילה הו&quot;א דיעמוד עכ&quot;פ עד על לבבך כמו שכתב הרא&quot;ש משום שלא יהיה נראה כקורא עראי קמ&quot;ל דליתא אלא דרשאי לילך לדרכו כנ&quot;ל דלא כב&quot;ח באו&quot;ח סימן ס&quot;ג שלמד ממה שסיים הרמב&quot;ם והשאר דבא ללמדנו דמכאן ואילך אינו רשאי לעמוד דנראה כעושה כב&quot;ש ולא נהירא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:4:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-4">Mishneh Torah, Reading the Shema 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיָה עוֹסֵק בִּמְלָאכָה מַפְסִיק עַד שֶׁיִּקְרָא פָּרָשָׁה רִאשׁוֹנָה כֻּלָּהּ. וְכֵן הָאֻמָּנִין בְּטֵלִין מִמְּלַאכְתָּן בְּפָרָשָׁה רִאשׁוֹנָה כְּדֵי שֶׁלֹּא תְּהֵא קְרִיאָתָן עַרְאַי, וְהַשְּׁאָר קוֹרֵא הוּא כְּדַרְכּוֹ וְעוֹסֵק בִּמְלַאכְתּוֹ. אֲפִלּוּ הָיָה עוֹמֵד בְּרֹאשׁ הָאִילָן אוֹ בְּרֹאשׁ הַכֹּתֶל קוֹרֵא בִּמְקוֹמוֹ וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיין </strong> בתוספות דף ט&quot;ז ע&quot;א ד&quot;ה הא שחולק על הרמב&quot;ם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:6:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:6:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-6">Mishneh Torah, Reading the Shema 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה עוֹסֵק בַּאֲכִילָה אוֹ שֶׁהָיָה בַּמֶּרְחָץ אוֹ שֶׁהָיָה עוֹסֵק בְּתִסְפֹּרֶת אוֹ שֶׁהָיָה מְהַפֵּךְ בְּעוֹרוֹת אוֹ שֶׁהָיוּ עוֹסְקִין בַּדִּין גּוֹמֵר וְאַחַר כָּךְ קוֹרֵא קְרִיאַת שְׁמַע. וְאִם הָיָה מִתְיָרֵא שֶׁמָּא יַעֲבֹר זְמַן קְרִיאָה וּפָסַק וְקָרָא הֲרֵי זֶה מְשֻׁבָּח:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהשגת</strong> הראב&quot;ד ורמיזא נמי במס׳ ברכות. היינו הא דתנן במתניתין דף ט&quot;ז האומנין קורין בראש האילן כו׳ ופי׳ כשהן עסוקים במלאכתן והגיע זמן קריאת שמע קורין מיד כמו שפירש&quot;י משמע אפילו ביש שהות מפסיקין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:8:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-8">Mishneh Torah, Reading the Shema 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא קְרִיאַת שְׁמַע לֹא יִרְמֹז בְּעֵינָיו וְלֹא יִקְרֹץ בִּשְׂפָתָיו וְלֹא יַרְאֶה בְּאֶצְבְּעוֹתָיו כְּדֵי שֶׁלֹּא תִּהְיֶה קְרִיאָתוֹ עַרְאַי. וְאִם עָשָׂה כֵּן אַף עַל פִּי שֶׁיָּצָא יְדֵי חוֹבָתוֹ הֲרֵי זֶה מְגֻנֶּה. וְצָרִיךְ לְהַשְׁמִיעַ לְאָזְנוֹ כְּשֶׁהוּא קוֹרֵא וְאִם לֹא הִשְׁמִיעַ לְאָזְנוֹ יָצָא. וְצָרִיךְ לְדַקְדֵּק בְּאוֹתִיּוֹתָיו וְאִם לֹא דִּקְדֵּק יָצָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיין </strong> בכ&quot;מ מ&quot;ש בשם הר&quot;ר מנוח כו׳ לא שיקרא בלבו. פירוש דאם קרא בלבו לבד ולא הוציא בשפתיו הוי הרהור בעלמא ואנן קיימ&quot;ל בדאורייתא הרהור לאו כד&quot;ד כמו שכתב הרז&quot;ה בסוגיא דהרהור כד&quot;ד לדחות מי שרוצה לדמות פלוגתא דהרהור כד&quot;ד לפלוגתא דר׳ יוסי ור&quot;י אם לא השמיע לאזנו ע&quot;ש, ובזה מתורץ דבירושלמי בפ&quot;ב מקשה על הא דאמרינן הלכה כדברי שניהם להקל אמאי צ&quot;ל הלכה דהא סתם לן תנא להקל מביאו בחידושי רשב&quot;א ונראה דתלמודא דידן לא חש לקושיא זו דסד&quot;א כיון דאנן קיי&quot;ל הרהור לאו כד&quot;ד א&quot;כ אם לא השמיע לאזניו לא יצא קמ&quot;ל כחילוקו של הרז&quot;ה. כתב בכנה&quot;ג א&quot;ח סימן ס&quot;ב וז&quot;ל השומע ק&quot;ש ולא קרא יצא י&quot;ח הרא&quot;ם ח&quot;א סימן ע&quot;א ובסימן מ&quot;ב כתב בשם הר&quot;ם אלשקר ז&quot;ל שלא יצא ועיין בהשגת הראב&quot;ד על בעל המאור בפ׳ הי׳ קורא הובא בס׳ תמים דעים סימן ר&quot;ט וריא&quot;ז כתב שאפילו הרהר בלבו יצא ע&quot;כ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:11:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-11-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:11:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-11">Mishneh Torah, Reading the Shema 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא לְמַפְרֵעַ לֹא יָצָא. בַּמֶּה דְּבָרִים אֲמוּרִים בְּסֵדֶר הַפְּסוּקִים אֲבָל אִם הִקְדִּים פָּרָשָׁה לְפָרָשָׁה אַף עַל פִּי שֶׁאֵינוֹ רַשַּׁאי אֲנִי אוֹמֵר שֶׁיָּצָא לְפִי שֶׁאֵינָהּ סְמוּכָה לָהּ בַּתּוֹרָה. קָרָא פָּסוּק וְחָזַר וּקְרָאוֹ פַּעַם שְׁנִיָּה הֲרֵי זֶה מְגֻנֶּה. קָרָא מִלָּה אַחַת וּכְפָלָהּ כְּגוֹן שֶׁקָּרָא שְׁמַע שְׁמַע מְשַׁתְּקִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא כו׳ בסדר הפסוקים.</strong> המעיין ברש&quot;י דף י&quot;ג ע&quot;א ד&quot;ה מדברים כו׳ פירש ולא למפרע כגון ובשעריך ביתך מזוזת דהיינו תיבות למפרע אבל הפסוקים לית לן בה. ונראה דע&quot;כ לא כתב רש&quot;י זאת אלא אליבא דרבי דדרש והיו בהווייתן יהיו ולמפרע נפקא ליה מן ה׳ דהדברים ודי לנו לאוקמי קרא על התיבות שיקרא התיבות כסדרן מיהת אבל רבנן דדרשי והיו שלא יקרא למפרע דמשמע והיו הדברים הכתובים. בפרשה לקרותן כסדרן מודה רש&quot;י לדינא דגם הפסוקים לא יקרא למפרע כדעת הרמב&quot;ם וע&quot;כ מוכח לומר כן דלמה נטר רש&quot;י לפרש מלת למפרע אליבא דרבי ולא פירש מקודם בהא דאמרו רבנן והיו שלא יקרא למפרע א&quot;ו כמ&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-11-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:11:2</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-2-11-2" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 2:11:2">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-11">Mishneh Torah, Reading the Shema 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא לְמַפְרֵעַ לֹא יָצָא. בַּמֶּה דְּבָרִים אֲמוּרִים בְּסֵדֶר הַפְּסוּקִים אֲבָל אִם הִקְדִּים פָּרָשָׁה לְפָרָשָׁה אַף עַל פִּי שֶׁאֵינוֹ רַשַּׁאי אֲנִי אוֹמֵר שֶׁיָּצָא לְפִי שֶׁאֵינָהּ סְמוּכָה לָהּ בַּתּוֹרָה. קָרָא פָּסוּק וְחָזַר וּקְרָאוֹ פַּעַם שְׁנִיָּה הֲרֵי זֶה מְגֻנֶּה. קָרָא מִלָּה אַחַת וּכְפָלָהּ כְּגוֹן שֶׁקָּרָא שְׁמַע שְׁמַע מְשַׁתְּקִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קרא כו׳ משתקין אותו.</strong> ועיין בכ&quot;מ מ&quot;ש מה שאומרים בסליחות ב&quot;פ שמע ישראל יש ללמדם שלא יאמרו וכן כתב בש&quot;ע סימן ס&quot;ב סעיף י&quot;א וכתב המג&quot;א אות ט׳ והב&quot;ח כתב כיון שכל הקהל אומרים אותו ליכא קפידא ואשתמיטתי׳ גמרא פ&quot;ד דסוכה שהיו אומרים אנו ליה וליה עינינו ופריך בגמרא והאמרינן האומר שמע שמע משתקין אותו והתם כולם היו אומרים אע&quot;כ כו׳ ע&quot;ש. ולי נראה דיפה כיון הב&quot;ח דכתב זאת לשיטת הרי&quot;ף והרמב&quot;ם דבקרא הפסוקים לא הוי אלא מגונה ועיקר סברת מגונה היינו שנראה כמתלוצץ ויפה עולה סברת הב&quot;ח דבצבור לא שייך מתלוצץ אבל מודה הב&quot;ח באומר מלה מלה וכפלה דמשתקין היינו דהוי איסורא א&quot;כ אין לחלק בין ציבור ליחיד ושם דמקשה הגמרא מן מלה מלה דמשתקין מקשה שפיר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-3">Chapter 3</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:5:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:5:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-5">Mishneh Torah, Reading the Shema 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּבָרִים שֶׁל חֹל מֻתָּר לְאָמְרָן בִּלְשׁוֹן קֹדֶשׁ בְּבֵית הַכִּסֵּא. וְכֵן הַכִּנּוּיִים כְּגוֹן רַחוּם וְחַנּוּן וְנֶאֱמָן וְכַיּוֹצֵא בָּהֶן מֻתָּר לְאָמְרָן בְּבֵית הַכִּסֵּא. אֲבָל הַשֵּׁמוֹת הַמְיֻחָדִים וְהֵן הַשֵּׁמוֹת שֶׁאֵינָן נִמְחָקִין אָסוּר לְהַזְכִּירָן בְּבֵית הַכִּסֵּא וּבְבֵית הַמֶּרְחָץ יָשָׁן. וְאִם נִזְדַּמֵּן לוֹ לְהַפְרִישׁ מִן דָּבָר הָאָסוּר בְּבֵית הַמֶּרְחָץ אוֹ בְּבֵית הַכִּסֵּא מַפְרִישׁ וַאֲפִלּוּ בִּלְשׁוֹן קֹדֶשׁ וּבְעִנְיְנֵי קֹדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מה </strong> שהקשה בכ&quot;מ אמאי לא הזכיר רבינו שאסור לומר שלום בבית המרחץ עיין בספר לחם יהודה דטעם רבינו דלא קיימ&quot;ל כהך סוגי׳ דשבת מדאיתא בסוטה דף יו&quot;ד שמש שמו של הקב&quot;ה ופריך א&quot;מ לא ימחה אלא מעין שמו משמע דזה תליא בזה כל שהוא שמו לא ימחה וכיון דאשכחן בפ&quot;ד דשבועות דלא מני שלום בהני שמות שאינם נמחקים משמע דס&quot;ל דשלום אינו אלא כינוי ולא ס&quot;ל לרבינו מה שכתוב בתוס׳ סוטה דתני ושייר ועיין פר&quot;ח או&quot;ח סימן פ&quot;ה דהר&quot;מ ס&quot;ל דפירוש הברייתא שלום היינו דוקא בשם אבל שלום לחודא לית לן בה ועיין ברכי יוסף סימן פ&quot;ד מש&quot;כ בזה וצע&quot;ג:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:7:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-7-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:7:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-7">Mishneh Torah, Reading the Shema 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה צוֹאָה יְבֵשָׁה כְּחֶרֶשׂ אָסוּר לִקְרוֹת כְּנֶגְדָּהּ. וְאִם הָיְתָה יְבֵשָׁה יוֹתֵר מֵחֶרֶשׂ עַד שֶׁאִם זְרָקָהּ תִּתְפָּרֵךְ הֲרֵי הִיא כְּעָפָר וּמֻתָּר לִקְרוֹת כְּנֶגְדָּהּ. מֵי רַגְלַיִם שֶׁנִּבְלְעוּ בַּקַּרְקַע אִם הָיוּ מַרְטִיבִין הַיָּד אָסוּר לִקְרוֹת כְּנֶגְדָּן וְאִם לָאו מֻתָּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עד שאם זרקה תתפרך.</strong> עיין כ&quot;מ וכתב הר&quot;ן שפירא בגליון אלפסי דהסברא היא כרש&quot;י אלא דקשה אמאי פסק הרמב&quot;ם לקולא ע&quot;ש. ואפשר דס&quot;ל דפלוגתתן אינו אלא בדרבנן דמדאורייתא כ&quot;ע מודים כיון שקרמו פניה לא אסרה תורה וראיה לדבר דלא צריכין דב׳ אמוראי אליבא דרב דהא דאמר ר&quot;י משמיה דרב צואה כיון שקרמו פניה שריא מדאורייתא והא דאמר רבה בר&quot;ה משמיה דאפילו כחרס אסור היינו מדרבנן ועפי&quot;ז י&quot;ל היטב פלוגתא דר&quot;י ואביי וכיון דמדרבנן שפיר פסק הר&quot;מ להקל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:8:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-8">Mishneh Torah, Reading the Shema 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּמָּה יַרְחִיק אָדָם מִצּוֹאָה וּמִמֵּי רַגְלַיִם וְאַחַר כָּךְ יִקְרָא, אַרְבַּע אַמּוֹת. בַּמֶּה דְּבָרִים אֲמוּרִים בִּזְמַן שֶׁהֵם מִלַּאֲחוֹרָיו אוֹ מִצִּדָּיו אֲבָל אִם הָיוּ כְּנֶגֶד פָּנָיו מַרְחִיק מֵהֶן עַד שֶׁלֹּא יִרְאֶה אוֹתָן וְאַחַר כָּךְ יִקְרָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כמה ירחק כו׳ ד׳ אמות כו׳.</strong> ומוכח בירושלמי פ&quot;ד דעירובין הלכה א׳ דאמרינן שם מי שיש לו ד׳ אמות כשהוא נפנה נפנה מן הצד וכשהוא מתפלל מתפלל לוכסון שיהיה רחוק מן הצואה ד׳ אמות שבלוכסון הם ה׳ אמות וג׳ חומשין ולענין שבת נותנים לו ד&quot;א הן ואלכסונן ש&quot;מ שא&quot;צ להרחיק ד&quot;א ואלכסונן אלא ד&quot;א ואפילו בלוכסון סגי ד׳ אמות ועיין שם בק&quot;ע ד&quot;ה מתפלל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:10:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:10:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-10">Mishneh Torah, Reading the Shema 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה בֵּינוֹ וּבֵין הַצּוֹאָה מְחִצָּה שֶׁל זְכוּכִית אַף עַל פִּי שֶׁהוּא רוֹאֶה אוֹתָהּ מֵאַחֲרֵי הַזְּכוּכִית מֻתָּר לִקְרוֹת בְּצִדָּהּ. נָתַן רְבִיעִית מַיִם לְתוֹךְ מֵי רַגְלַיִם שֶׁל פַּעַם אַחַת מֻתָּר לִקְרוֹת עִמָּהֶן בְּתוֹךְ אַרְבַּע אַמּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נתן רביעית מים כו׳.</strong> עיין בכ&quot;מ ועיין בשו&quot;ת ח&quot;צ סימן ק&quot;ב דסובר דאם מי רגלים הוא פחות מרביעית סגי ברוב מים לבטל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:12:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:12:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-12">Mishneh Torah, Reading the Shema 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רֵיחַ רַע שֶׁיֵּשׁ לוֹ עִקָּר מַרְחִיק ד׳‎ אַמּוֹת וְקוֹרֵא אִם פָּסַק הָרֵיחַ. וְאִם לֹא פָּסַק הָרֵיחַ מַרְחִיק עַד מָקוֹם שֶׁפָּסַק הָרֵיחַ. וְשֶׁאֵין לוֹ עִקָּר כְּגוֹן מִי שֶׁיָּצָא מִמֶּנּוּ רוּחַ מִלְּמַטָּה מַרְחִיק עַד מָקוֹם שֶׁתִּכְלֶה הָרֵיחַ וְקוֹרֵא. גְּרָף שֶׁל רְעִי וַעֲבִיט שֶׁל מֵימֵי רַגְלַיִם אָסוּר לִקְרוֹת קְרִיאַת שְׁמַע כְּנֶגְדָּן וְאַף עַל פִּי שֶׁאֵין בָּהֶן כְּלוּם וְאֵין לָהֶם רֵיחַ רַע מִפְּנֵי שֶׁהֵם כְּבֵית הַכִּסֵּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ריח רע כו׳ מרחיק ד&quot;א.</strong> בגמרא דף כ&quot;ה ע&quot;א פליגי ר&quot;ה ור&quot;ח ונראה דכ&quot;ע מודים דמן התורה א&quot;צ להרחיק כ&quot;א ד׳ אמות ממקום הצואה דנפקא מוהיה מחניך קדוש כמ&quot;ש בחידושי רשב&quot;א וד&quot;א של אדם מיקרי מחנהו אבל ד&quot;א ממקום שכלה הריח אינו אלא הרחקה מדרבנן. ולפי&quot;ז א&quot;ל דגבי מי רגלים כ&quot;ע מודים דא&quot;צ להרחיק אלא ד&quot;א ממקום מי רגלים גם עם הריח כיון דלא אסרה תורה אלא כנגד העמוד ובזה א&quot;ל דדעת הש&quot;ע כן שכתב בסימן ע&quot;ח דאם נפלו מי רגלים בארץ צריך להרחיק ד׳ אמות ולא הזכיר ממקום שכלה הריח כמו בסימן ע&quot;ט גבי צואה ודוחק לומר דמן הסתם אין במי רגלים סרחון יותר מד&quot;א. ולדברינו יש לומר דגבי מר&quot;ג מודה ר&quot;ח. וכתב הסמ&quot;ג דהלכה כר&quot;ח הואיל ותניא כוותיה והקשה הא&quot;ר בסימן פ&quot;ט אמאי צריך לטעם זה הא בלא&quot;ה הלכה כמחמיר כמו שפסק הוא גופי׳ בדין צואה על בשרו והוא נמי פלוגתא דר&quot;ה ור&quot;ח ולפמ&quot;ש ל&quot;ד דהתם בדאורייתא פליגי אזלינן לחומרא והכא בדרבנן פליגי דמה&quot;ת כ&quot;ע מודים וא&quot;כ ה&quot;א דאזלינן לקולא וצריכין לטעמא דת&quot;כ וזה הוא טעם רבינו דפסק כר&quot;ה וק&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:14:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-14-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:14:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-14">Mishneh Torah, Reading the Shema 3:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה קוֹרֵא וְהִגִּיעַ לִמְקוֹם הַטִּנֹּפֶת לֹא יַנִּיחַ יָדוֹ עַל פִּיו וְיִקְרָא אֶלָּא יַפְסִיק עַד שֶׁיַּעֲבֹר מֵאוֹתוֹ מָקוֹם. וְכֵן הַקּוֹרֵא שֶׁיָּצְתָה מִמֶּנּוּ רוּחַ מִלְּמַטָּה יַפְסִיק עַד שֶׁתִּכְלֶה בַּאֲשָׁהּ וְחוֹזֵר לִקְרִיאָתוֹ. וְכֵן בְּדִבְרֵי תּוֹרָה. יָצְתָה רוּחַ מֵחֲבֵרוֹ אַף עַל פִּי שֶׁמַּפְסִיק לִקְרִיאַת שְׁמַע אֵינוֹ פּוֹסֵק לְדִבְרֵי תּוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה קורא לא יניח ידו ע&quot;פ כו׳.</strong> בגמרא איכא תרי לישני ורבינו פסק כל&quot;ב וצ&quot;ע אם הולך במבואות ואם לא יקרא ק&quot;ש יעבור הזמן אם מותר לסמוך על האי מ&quot;ד להניח ידו על פיו ויקרא ואע&quot;ג דקיימ&quot;ל מי שברי לו שאינו יכול לעמוד על עצמו מלהפיח עד שיגמור ק&quot;ש מוטב שיעבור זמן ק&quot;ש כמבואר בש&quot;ע סימן פ׳ והוא מתשובת הרא&quot;ש ש&quot;ה דהגוף אינו נקי משא&quot;כ הכא דהגוף נקי וגם נראה דבהולך לא מקרי ד&quot;א מחנהו דה&quot;ט דמ&quot;ד דמניח ידו על פיו. והיה נראה לה&quot;ר דמותר בכה&quot;ג להניח ידו ע&quot;פ מהא דאמרינן בגמרא דף כ&quot;ד ע&quot;ב אמר רבי מייש׳ בר בריה דריב&quot;ל כו׳ וגי׳ הרא&quot;ש ובה&quot;ג משמיה דריב&quot;ל ואם כן קשה הא ריב&quot;ל סותר עצמו והא לעיל מיניה אמר ריב&quot;ל מניח ידו על פיו וקורא קריאת שמע ולפ&quot;ז יש לומר דהא דאמר מניח ידו ע&quot;פ איירי בכה&quot;ג אבל אם עדיין לא עבר זמן קריאת שמע בזה אייתי ראיה מקראי דצריך להפסיק וצ&quot;ע לדינא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:18:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-3-18-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 3:18:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-18">Mishneh Torah, Reading the Shema 3:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנַיִם שֶׁהָיוּ יְשֵׁנִים בְּטַלִּית אַחַת כָּל אֶחָד מֵהֶן אָסוּר לִקְרוֹת אַף עַל פִּי שֶׁיְּכַסֶּה מִתַּחַת לִבּוֹ עַד שֶׁתְּהֵא טַלִּית מַפְסֶקֶת בֵּינֵיהֶן עַד שֶׁלֹּא יִגַּע בְּשַׂר זֶה בִּבְשַׂר זֶה מִמָּתְנָיו וּלְמַטָּה. וְאִם הָיָה יָשֵׁן עִם אִשְׁתּוֹ אוֹ בָּנָיו וּבְנֵי בֵּיתוֹ הַקְּטַנִּים הֲרֵי גּוּפָן כְּגוּפוֹ וְאֵינוֹ מַרְגִּישׁ מֵהֶן. לְפִיכָךְ אַף עַל פִּי שֶׁבְּשָׂרוֹ נוֹגֵעַ בָּהֶם מַחֲזִיר פָּנָיו וְחוֹצֵץ מִתַּחַת לִבּוֹ וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם היה ישן עם אשתו.</strong> עיין בכ&quot;מ שהיה לו גי׳ התוספות וגי׳ רש&quot;י מדחה התוספות חדא דאשתו לא מיקרי ב&quot;ב ועוד כו׳. ואפשר להליץ בעד רש&quot;י דודאי מש&quot;כ התוספות דלא מצינו אשתו מיקרי ב&quot;ב צ&quot;ע דמוכח במתניתין פ&quot;ב דמעשרות מ&quot;א דאשתו בכלל ב&quot;ב ומצאתי שכבר הרגיש בה הפ&quot;ח בלקוטיו וגם לפי מה דנראה שם מפירוש רש&quot;י ד&quot;ה ואם היה ישן במטה דהי׳ לפני רש&quot;י הגי׳ בני ביתו ולא גרס בניו וכן העתיק בתוספות שם א&quot;כ יש לומר דרש&quot;י גם כן ס&quot;ל דברייתא אחרת היא וברייתא ראשונה דתני גם כן בניו א&quot;כ שפיר י&quot;ל דב&quot;ב לאו היינו אשתו דאל&quot;כ למה פרט בניו הלא המה ודאי בכללא דב&quot;ב אלא ש&quot;מ דלאגלויי אתי דב&quot;ב דקתני הכא היינו אחרים אבל בברייתא שניי׳ דלא תני בניו כ&quot;א בני ביתו ודאי גם אשתו בכלל בני ביתו ודו&quot;ק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-4">Chapter 4</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-4-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 4:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-4-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 4:1:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-1">Mishneh Torah, Reading the Shema 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִקְּרִיאַת שְׁמַע. וּמְלַמְּדִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ בְּעוֹנָתָהּ וּמְבָרְכִין לְפָנֶיהָ וּלְאַחֲרֶיהָ כְּדֵי לְחַנְּכָן בְּמִצְוֹת. מִי שֶׁהָיָה לִבּוֹ טָרוּד וְנֶחְפַּז לִדְבַר מִצְוָה פָּטוּר מִכָּל הַמִּצְוֹת וּמִקְּרִיאַת שְׁמַע. לְפִיכָךְ חָתָן שֶׁנָּשָׂא בְּתוּלָה פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיָּבוֹא עָלֶיהָ. לְפִי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה שֶׁמָּא לֹא יִמְצָא לָהּ בְּתוּלִים. וְאִם שָׁהָה עַד מוֹצָאֵי שַׁבָּת וְלֹא בָּעַל חַיָּב לִקְרוֹת מִמּוֹצָאֵי שַׁבָּת וְאֵילָךְ שֶׁהֲרֵי נִתְקָרְרָה דַּעְתּוֹ וְלִבּוֹ גַּס בָּהּ אַף עַל פִּי שֶׁלֹּא בָּעַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך חתן כו׳.</strong> עיין בר&quot;מ פ&quot;ו מהלכות סוכה הלכה ד׳ ובהמ&quot;מ שם שכתב דיש מ&quot;ש והוא שיהיה בענין שאם ישבו בסוכה יתבטל קצת מאותו מצוה ול&quot;נ כן מדברי הגאונים ולא מדברי רבינו אלא בכל גווני פטורים כל זמן שעוסקים במצוה ודלא כמו שכתב הרמ&quot;א באו&quot;ח סימן ל&quot;ח סעיף ח׳ וע&quot;ש במג&quot;א אות ט׳. ונראה לענ&quot;ד ראיה לדברי הרמב&quot;ם דבגמרא ברכות דף י&quot;א ע&quot;א מקשה הגמרא מי לא עסקינן דקאזיל לדבר מצוה ומקשים המשכילים א&quot;כ ל&quot;ל קרא דהא מסברא ידעינן דהרי איצטריך קרא לפטורא ש&quot;מ דסברא חיצונה הוא לחיובי ועי׳ בחידושי רשב&quot;א שם. ולפי שיטת הרמב&quot;ם י&quot;ל דודאי הסברא חיצונה דאם אפשר לקיים שניהם דחייב ואם א&quot;א אלא דצריך לטרוח סברא חיצונה דפטור א&quot;כ קאמר שפיר הגמרא בלכתך בדרך ממעט עוסק במצוה גם באפשר לקיים שניהם דא&quot;צ לטרוח דבא&quot;א לקיים שניהם מסברא ידעינן דפטורים לפי&quot;ז מקשה שפיר מנ&quot;ל דאסור להורות נגד הסברא לקולא דילמא אתי להורות נגד הסברא לחומרא דהיינו גם בצריך לטרוח דמסברא ה&quot;א דפטורים קמ&quot;ל קרא דחייב ומשני לכתוב רחמנא בשבת ובלכת כו׳ אע&quot;כ דהקרא לפטורא וע&quot;כ גם לאין צריך לטרוח וכדעת הרמב&quot;ם ז&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-4-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 4:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-4-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 4:3:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-3">Mishneh Torah, Reading the Shema 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁמֵּת לוֹ מֵת שֶׁהוּא חַיָּב לְהִתְאַבֵּל עָלָיו פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיִּקְבְּרֶנּוּ מִפְּנֵי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה לִקְרוֹת. וְאִם הָיָה מְשַׁמֵּר אֶת הַמֵּת אַף עַל פִּי שֶׁאֵינוֹ מֵתוֹ פָּטוּר מִקְּרִיאַת שְׁמַע. וְאִם הָיוּ הַשּׁוֹמְרִים שְׁנַיִם הָאֶחָד מְשַׁמֵּר וְהַשֵּׁנִי נִשְׁמָט לְמָקוֹם אַחֵר וְקוֹרֵא וְחוֹזֵר וּמְשַׁמֵּר וְנִשְׁמָט הָאַחֵר וְקוֹרֵא. וְכֵן הַחוֹפֵר קֶבֶר לְמֵת פָּטוּר מִקְּרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פטור מקריאת שמע כו׳.</strong> הנה לדעת רש&quot;י הך פטור אם רוצה קורא ואין כן דעת התוספות אלא דאינו רשאי להחמיר והרא&quot;ש הקשה על רש&quot;י מהא דאמרינן בגמרא הכא חוץ לד׳ אמות אסור. וראיתי למופת הדור בספר ביאור מרדכי שכתב דרש&quot;י מודה בק&quot;ש דמשום כוונה הוא דאסר רשב&quot;ג לחתן להחמיר ע&quot;ע משום דמיחזי כיוהרא גם באונן אסור להחמיר ולפ&quot;ז הא דקאמר חוץ לד׳ אמות אסור קאי על קריאת שמע ואליבא דרשב&quot;ג ע&quot;ש. וצ&quot;ל לדבריו דרש&quot;י פסק כרשב&quot;ג דלא כהרי&quot;ף והרמב&quot;ם אלא כדעת הרא&quot;ש וגם לענ&quot;ד לולא דבריו הקדושים י&quot;ל דגבי אונן מודה רשב&quot;ג דלא חשדינן ליה שהוא עושה לשם יוהרא אלא להצדיק מעשיו:<br><strong> וליישב </strong> קושיית הרא&quot;ש על רש&quot;י נראה לי דהנה הא דתנן ומן התפילין מקשה בירושלמי הא אפילו ביום ב׳ אסור להניח תפילין אלא בגין דתני דא תני דא כ&quot;ה הגי׳ לפנינו שבירושלמי (ובחידושי רשב&quot;א יראה שהיה לו גירסא אחרת) ונ&quot;ל פירושו דהירושלמי לטעמיה אזיל דא&quot;ל פירוש המתניתין דאינו רשאי דדריש מקראי למען תזכור את יום וכו׳ א&quot;כ מש&quot;ה תני תפילין בהדייהו להורות דכאן הוי דומיא דתפילין דמה בתפילין אינו רשאי להחמיר אף דכאן כן והא דלא תני בהדיא אינו רשאי משום סיפא דנושאי המטה דלא שייך רק לשון פטור ולשיטת רש&quot;י ע&quot;כ צ&quot;ל הא כדאיתא והא כדאיתא דתפילין הוא לאיסורא א&quot;כ מיושב קושיית הרא&quot;ש הא דקאמר הגמרא חוץ לד׳ אמות אסור קאי על תפילין וגם בלא&quot;ה לפי גי׳ דידן גרסינן חוץ לד׳ אמות פטור ובלתי ספק כן היה גי׳ רש&quot;י ומה דדחיק ליה לרש&quot;י לפרש דלא כהירושלמי יש לומר דמשמע ליה לרש&quot;י דגמרא דידן חולק בזה מדמקשה שם בגמרא מוטל לפניו אין כו׳ ורמינהו כו׳ ולפי מאי דס&quot;ד דמקשה דוקא מוטל לפניו קשה מ&quot;ש מוטל לפניו מאין מ&quot;ל ולפירש&quot;י ניחא דמוטל לפניו א&quot;א להסיר טרדותו משא&quot;כ כשאין מוטל לפניו וע&quot;ש בצל&quot;ח ודו&quot;ק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-4-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 4:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-4-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Reading the Shema 4:8:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-8">Mishneh Torah, Reading the Shema 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַטְּמֵאִין חַיָּבִין בִּקְרִיאַת שְׁמַע וּמְבָרְכִין לְפָנֶיהָ וּלְאַחֲרֶיהָ וְהֵן בְּטֻמְאָתָן. אַף עַל פִּי שֶׁאֶפְשָׁר לָהֶן לַעֲלוֹת מִטֻּמְאָתָן בּוֹ בַּיּוֹם כְּגוֹן הַנּוֹגְעִין בְּשֶׁרֶץ אוֹ בְּנִדָּה וְזָבָה וּמִשְׁכָּבָהּ וְכַיּוֹצֵא בָּהֶן. וְעֶזְרָא וּבֵית דִּינוֹ תִּקְּנוּ שֶׁלֹּא יִקְרָא בְּדִבְרֵי תּוֹרָה בַּעַל קֶרִי לְבַדּוֹ וְהוֹצִיאוּהוּ מִכְּלַל שְׁאָר הַטְּמֵאִין עַד שֶׁיִּטְבּל. וְלֹא פָּשְׁטָה תַּקָּנָה זוֹ בְּכָל יִשְׂרָאֵל וְלֹא הָיָה כֹּחַ בְּרֹב הַצִּבּוּר לַעֲמֹד בָּהּ לְפִיכָךְ בָּטְלָה. וּכְבָר נָהֲגוּ כָּל יִשְׂרָאֵל לִקְרוֹת בַּתּוֹרָה וְלִקְרוֹת קְרִיאַת שְׁמַע וְהֵן בַּעֲלֵי קְרָיִין לְפִי שֶׁאֵין דִּבְרֵי תּוֹרָה מְקַבְּלִין טֻמְאָה אֶלָּא עוֹמְדִין בְּטָהֳרָתָן לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(ירמיה כג כט)</span> ״הֲלוֹא כֹה דְבָרִי כָּאֵשׁ נְאֻם יְיָ׳‎״ מָה אֵשׁ אֵינָהּ מְקַבֶּלֶת טֻמְאָה אַף דִּבְרֵי תּוֹרָה אֵינָם מְקַבְּלִין טֻמְאָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא פשטה תקנה זו בכל ישראל כו׳.</strong> עי׳ בכ&quot;מ דלא בטלו לתקנה מש&quot;ה חסידים ואנשי מעשה אשר להם כח נוהגין סלסול בעצמם וטובלים טבילת קרי ועיין בד&quot;מ סימן פ&quot;ח וכבר אמרו אשרי הנזהר בו ודורשי רשומות רמזו בקרא יראת ה׳ טהורה היינו כשהיא בטהרה עומדת לעד ולא ינתק קשר היראה. והנה ראיתי להעתיק פה מה שמצאתי בכ&quot;י מגאון אחד מיוחד הרב מו&quot;ה מהר&quot;ם ה&quot;ב שנדרש מאנשי מעשה הנוהגין בטבילת קרי אם נמצא עליו דברים החוצצים וכן אם צריך לעיין קודם טבילה מדברים החוצצים ופלפל בחכמה והסכימה דעתו הרמה הואיל ואינו אלא מנהגא א&quot;צ להקפיד ע&quot;ז ואינו חוצץ דמעוט המקפיד אינו אלא מדרבנן ומביא ראיה לאיסור מהא דאמרינן יבמות דף מ&quot;ה ע&quot;ב ההוא דהוו קרו ליה בר ארמאה וקאמר ריב&quot;ל מי לא טבל לקריו והנה בטבילת גרים אמרינן שם דף מ&quot;ז דחוצץ כל דבר החוצץ בנדה וא&quot;כ מה קאמר מי לא טבל לקריו הא לקרי אינו משגיח בדברים החוצצים ובטבילת גר לא מהני א&quot;ו דגם לטבילת קרי מעכב כל דבר החוצץ בנדה שוב הביא שם מה שהקשה לו חכם אחד ע&quot;ז דאכתי קשה הא ריב&quot;ל גופא אמר בגמרא מאי טיבן של טובלי שחרין דדי בט׳ קבין א&quot;כ איך אמר שם מי לא טבל לקריו הא לקרי לא צריך טבילה כלל. ולענ&quot;ד דזה טעמא דהר&quot;מ והרי&quot;ף ז&quot;ל דפירשו שם מי לא טבל לקריו כו׳ היינו כיון דחזינן דמקיימי מצות א&quot;כ ודאי דטבלו כמשפט לשם גירות עיין ברמב&quot;ם פי&quot;ג מהל׳ א&quot;ב ובטור יו&quot;ד סימן רס&quot;ח וב&quot;י שם ומפאת קושיא זו היתה הוכחה לפירושם. ואפשר דגם דעת התוספות כן דלא הקשו שם רק אנדה דבזה לא מסתבר סברת הרמב&quot;ם:<br><strong> אכן </strong> המעיין בירושלמי ס&quot;פ האומר הביאו בעל מ&quot;ע פי&quot;ג מה׳ א&quot;ב יראה דכך היה מנהגן לטבול כל גר מקריו הואיל ומזוהם היה בזנות כדגרסינן שם אתיא דריב&quot;ל כב&quot;ק אין גר עד שיטבול לקריו מ&quot;מ העלה שם להלן כיון דאינו אלא מנהגא א&quot;צ לחוש לדברים החוצצים. וצ&quot;ע בהא דאמרינן ר&quot;ה דף י&quot;ז חייב אדם לטהר את עצמו ברגל ופסקו הרמב&quot;ם בסוף הלכות טומאת אוכלין דחיוב גמור הוא אלא שאין לוקה ועיין מל&quot;מ הביא שיטת הפוסקים דמה&quot;ת הוא. הגם דכתב הר&quot;מ הטעם משום דעולין לרגל והלכתא למשיחא עכ&quot;פ אנו עושין זכר וטובלין עצמינו יש לדון דצריך לדקדק מדברים החוצצים הגם דאמרינן בטבילת קרי דא&quot;צ לדקדק ומהא דאמרינן ברכות דף כ&quot;ב ע&quot;ב דר&quot;ח טבל במעלי יומא דפסחא להוציא רבים י&quot;ח ולא טבל נפשיה מטהרת רגל משמע קצת דאינו אלא מצד מנהגא ולא מדינא א&quot;כ דין אחד להם טבילת קרי וטבילת ערב הרגל דא&quot;צ לדקדק על עניני חציצה לפי הסכמת הגאון הנ&quot;ל וכן הסכים ג&quot;כ הגאון מ&quot;ו להלכה ועיין במס׳ יומא דף ל׳ ע&quot;ב א&quot;ל אביי לר&quot;י לר&quot;י דאמר סרך טבילה היא זו חוצץ או אינו חוצץ א&quot;ל כל דתקון רבנן כעין דאורייתא תקון וע&quot;ש בתוספות ד&quot;ה חוצץ משמע קצת דגם בטבילת קרי צריך לדקדק מדברים החוצצים וצ&quot;ע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema.manifest.json">Lexical manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

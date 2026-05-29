@@ -78,10 +78,52 @@ function preserveGeneratedAtTextIfUnchanged(filePath, value) {
   return value;
 }
 
+function sleepSync(ms) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+function writeFileStable(filePath, value) {
+  const dir = path.dirname(filePath);
+  fs.mkdirSync(dir, { recursive: true });
+  const tempPath = path.join(dir, `.${path.basename(filePath)}.${process.pid}.${Date.now()}.tmp`);
+  let lastError = null;
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    try {
+      fs.writeFileSync(tempPath, value, 'utf8');
+      fs.renameSync(tempPath, filePath);
+      return;
+    } catch (error) {
+      lastError = error;
+      try {
+        if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath);
+      } catch {
+        // Ignore cleanup failures; the next attempt uses a fresh temp name.
+      }
+      sleepSync(50 * (attempt + 1));
+    }
+  }
+  throw lastError;
+}
+
+function appendFileStable(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  let lastError = null;
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    try {
+      fs.appendFileSync(filePath, value, 'utf8');
+      return;
+    } catch (error) {
+      lastError = error;
+      sleepSync(50 * (attempt + 1));
+    }
+  }
+  throw lastError;
+}
+
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   const body = `${JSON.stringify(preserveGeneratedAtIfUnchanged(filePath, value), null, 2)}\n`;
-  fs.writeFileSync(filePath, preserveGeneratedAtTextIfUnchanged(filePath, body), 'utf8');
+  writeFileStable(filePath, preserveGeneratedAtTextIfUnchanged(filePath, body));
 }
 
 function writeText(filePath, value) {
@@ -92,17 +134,17 @@ function writeText(filePath, value) {
       return;
     }
   }
-  fs.writeFileSync(filePath, value, 'utf8');
+  writeFileStable(filePath, value);
 }
 
 function appendJsonlLine(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.appendFileSync(filePath, `${JSON.stringify(value)}\n`, 'utf8');
+  appendFileStable(filePath, `${JSON.stringify(value)}\n`);
 }
 
 function resetFile(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, '', 'utf8');
+  writeFileStable(filePath, '');
 }
 
 function writeJsonlChunks(rows, outputDir, prefix, maxBytes = 8 * 1024 * 1024) {
@@ -118,7 +160,7 @@ function writeJsonlChunks(rows, outputDir, prefix, maxBytes = 8 * 1024 * 1024) {
     const chunkName = `${prefix}-${String(chunkIndex).padStart(3, '0')}.jsonl`;
     const chunkPath = path.join(outputDir, chunkName);
     const body = chunkRows.map((row) => JSON.stringify(row)).join('\n') + '\n';
-    fs.writeFileSync(chunkPath, body, 'utf8');
+    writeFileStable(chunkPath, body);
     chunks.push({
       path: chunkPath.replace(/\\/g, '/'),
       row_count: chunkRows.length,
