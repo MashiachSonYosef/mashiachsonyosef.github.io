@@ -167,12 +167,23 @@ function Get-HomeGroup {
   $slugParts = @($Source.work_slug -split '[\\/]' | Where-Object { $_ })
   if ($slugParts.Count -gt 1) {
     $first = $slugParts[0]
+    if ($first -eq 'gra') {
+      $title = [string]$Source.work_title
+      $baseTitle = [string]$Source.base_work_title
+      $label = [string]$Source.display_label
+      $groupingText = "$title $baseTitle $label"
+      if ($groupingText -match 'Shulchan Arukh') { return 'Halakhah' }
+      if ($groupingText -match 'Jerusalem Talmud|Tractate|Pirkei Avot') { return 'Talmud / Rabbinic' }
+      if ($groupingText -match 'Avot D''Rabbi Natan') { return 'Midrash / Aggadah' }
+      if ($groupingText -match 'Torah') { return 'Tanakh' }
+      if ($groupingText -match 'Zohar|Sifra DeTzniuta|Sefer Yetzirah|Kol HaTor') { return 'Kabbalah / Esoteric' }
+      return 'Thought / Musar / Chasidut'
+    }
     if ($first -eq 'tanakh') { return 'Tanakh' }
     if ($first -eq 'midrash') { return 'Midrash / Aggadah' }
     if ($first -eq 'talmud') { return 'Talmud / Rabbinic' }
     if ($first -eq 'tosefta') { return 'Talmud / Rabbinic' }
     if ($first -eq 'ari') { return 'Kabbalah / Esoteric' }
-    if ($first -eq 'gra') { return 'Kabbalah / Esoteric' }
     if ($first -eq 'kabbalah') { return 'Kabbalah / Esoteric' }
     if ($first -eq 'rav-kook') { return 'Thought / Musar / Chasidut' }
     if ($first -eq 'jewish-thought') { return 'Thought / Musar / Chasidut' }
@@ -2587,9 +2598,6 @@ foreach ($source in $renderSources) {
       [void]$page.AppendLine("        <p class=""meta lexical-coverage"">Lexical HUD coverage: <strong>$lexicalMatched matched</strong> / $lexicalTotal unique forms.</p>")
     }
   }
-  if ($workHasLexical) {
-    Append-WorkLexicalDownloadLinks -Builder $page -Source $source -RootHref $rootHref -WorkLexicalExternal $workLexicalExternal
-  }
   if ($MaxUnits -gt 0) {
     [void]$page.AppendLine("        <p class=""fallback-note"">Fallback render active. Showing first $MaxUnits units only while route stability is verified.</p>")
   }
@@ -2681,6 +2689,10 @@ foreach ($source in $renderSources) {
     }
     [void]$page.AppendLine('            </tbody>')
     [void]$page.AppendLine('          </table>')
+  }
+
+  if ($workHasLexical) {
+    Append-WorkLexicalDownloadLinks -Builder $page -Source $source -RootHref $rootHref -WorkLexicalExternal $workLexicalExternal
   }
 
   [void]$page.AppendLine('        </article>')
