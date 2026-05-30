@@ -59,17 +59,6 @@
       margin: 0 0 10px;
     }
 
-    .version-pill {
-      display: inline-flex;
-      border: 1px solid var(--line-strong);
-      color: var(--gold);
-      padding: 4px 9px;
-      margin: 0 0 12px;
-      font-size: 0.76rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
     .sample-card {
       margin-top: 20px;
       border: 1px solid var(--line);
@@ -158,29 +147,30 @@
       gap: 14px;
     }
 
-    .claim {
+    .best-hit {
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.025);
-      padding: 12px;
+      padding: clamp(16px, 3vw, 22px);
       display: grid;
-      gap: 7px;
+      gap: 10px;
       min-width: 0;
     }
 
-    .claim.is-primary {
+    .best-hit {
       border-color: var(--line-strong);
       background: rgba(223, 198, 139, 0.052);
-      padding: clamp(14px, 3vw, 20px);
     }
 
-    .claim.is-row {
+    .support-row {
+      border-top: 1px solid var(--line);
+      display: grid;
       grid-template-columns: minmax(88px, 0.18fr) minmax(0, 1fr) auto;
       align-items: center;
       gap: 10px;
-      padding: 10px 12px;
+      padding: 10px 0 0;
     }
 
-    .claim-head {
+    .best-head {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -198,7 +188,7 @@
       overflow-wrap: anywhere;
     }
 
-    .claim.is-row .claim-form {
+    .support-row .claim-form {
       font-size: clamp(1.08rem, 3vw, 1.55rem);
       text-align: right;
     }
@@ -215,11 +205,17 @@
       text-transform: uppercase;
     }
 
+    .meta-line,
     .lane-label {
       color: var(--gold);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 0.72rem;
+      text-align: center;
+    }
+
+    .meta-line {
+      color: var(--muted);
     }
 
     .rendering {
@@ -228,7 +224,7 @@
       margin: 0;
     }
 
-    .claim.is-row .rendering {
+    .support-row .rendering {
       text-align: left;
       line-height: 1.4;
     }
@@ -274,9 +270,9 @@
     }
 
     @media (max-width: 720px) {
-      .claim.is-row { grid-template-columns: 1fr; }
-      .claim.is-row .rendering { text-align: center; }
-      .claim.is-row .claim-form { text-align: center; }
+      .support-row { grid-template-columns: 1fr; }
+      .support-row .rendering { text-align: center; }
+      .support-row .claim-form { text-align: center; }
     }
   </style>
 </head>
@@ -285,7 +281,6 @@
     <section class="shell">
       <div class="hero">
         <p><a href="../">Back to library</a></p>
-        <div class="version-pill">Preview v4: primary card + compact rows</div>
         <h1>Lexical HUD Sampler</h1>
         <p>This is a public sampler for the Hebrew Source Workbench lexical HUD. It is not a translation page, does not publish English translations, and does not import English translations.</p>
         <p>Use this page to test the HUD layout before changes are applied to generated work pages.</p>
@@ -333,26 +328,26 @@
       devarim: {
         word: he.devarim,
         claims: [
-          { lane: "Hebrew", match: "surface", score: 96, form: he.davar, rendering: "word / thing / matter", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
-          { lane: "Lemma", match: "lemma", score: 93, form: he.davar, rendering: "word / thing / matter / speech", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
-          { lane: "Lemma", match: "lemma", score: 70, form: he.devarimPlain, rendering: "alternate lemma candidate", source: "Project HUD sampler fixture", license: "project-authored / CC0" },
-          { lane: "Hebrew", match: "fuzzy", score: 52, form: he.devarimPlain, rendering: "low-confidence Hebrew candidate", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
+          { sourceType: "dictionary", lane: "Hebrew", match: "surface", score: 96, form: he.davar, rendering: "word / thing / matter", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
+          { sourceType: "dictionary", lane: "Lemma", match: "lemma", score: 93, form: he.davar, rendering: "word / thing / matter / speech", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
+          { sourceType: "project", lane: "Lemma", match: "lemma", score: 70, form: he.devarimPlain, rendering: "alternate lemma candidate", source: "Project HUD sampler fixture", license: "project-authored / CC0" },
+          { sourceType: "project", lane: "Hebrew", match: "fuzzy", score: 52, form: he.devarimPlain, rendering: "low-confidence Hebrew candidate", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
         ],
         placeholders: [{ lane: "Aramaic", text: "No strict Aramaic match." }]
       },
       shel: {
         word: he.shel,
         claims: [
-          { lane: "Hebrew", match: "surface", score: 98, form: he.shel, rendering: "of / belonging to", source: "Project grammar/function-word layer", license: "project-authored / CC0" },
-          { lane: "Lemma", match: "lemma", score: 90, form: he.shelPlain, rendering: "of / belonging to", source: "Project grammar/function-word layer", license: "project-authored / CC0" }
+          { sourceType: "grammar", lane: "Hebrew", match: "surface", score: 98, form: he.shel, rendering: "of / belonging to", source: "Project grammar/function-word layer", license: "project-authored / CC0" },
+          { sourceType: "grammar", lane: "Lemma", match: "lemma", score: 90, form: he.shelPlain, rendering: "of / belonging to", source: "Project grammar/function-word layer", license: "project-authored / CC0" }
         ],
         placeholders: [{ lane: "Aramaic", text: "No strict Aramaic match." }]
       },
       dela: {
         word: he.dela,
         claims: [
-          { lane: "Aramaic", match: "surface", score: 94, form: he.dela, rendering: "that not / which does not / without", source: "Project Aramaic grammar layer", license: "project-authored / CC0" },
-          { lane: "Lemma", match: "lemma", score: 82, form: he.dPlusLo, rendering: "Aramaic relative prefix plus negation", source: "Project Aramaic grammar layer", license: "project-authored / CC0" }
+          { sourceType: "grammar", lane: "Aramaic", match: "surface", score: 94, form: he.dela, rendering: "that not / which does not / without", source: "Project Aramaic grammar layer", license: "project-authored / CC0" },
+          { sourceType: "grammar", lane: "Lemma", match: "lemma", score: 82, form: he.dPlusLo, rendering: "Aramaic relative prefix plus negation", source: "Project Aramaic grammar layer", license: "project-authored / CC0" }
         ],
         placeholders: [{ lane: "Hebrew", text: "No strict Hebrew match." }]
       },
@@ -377,13 +372,12 @@
 
     const rankClaim = (row) => (lanePriority[row.match] * 1000) + row.score;
 
-    const primaryHtml = (row) => `
-      <section class="claim is-primary">
-        <div class="claim-head">
+    const bestHitHtml = (row) => `
+      <section class="best-hit">
+        <div class="best-head">
           <div class="claim-form" lang="he" dir="rtl">${row.form}</div>
-          <div class="badge">${row.match} - ${row.score}%</div>
         </div>
-        <div class="lane-label">${row.lane}</div>
+        <div class="meta-line">${row.sourceType || "lexical"} / ${row.lane} / ${row.match} / ${row.score}%</div>
         <p class="rendering">${row.rendering}</p>
         <p class="source">Source: ${row.source}</p>
         <p class="source">License: ${row.license}</p>
@@ -391,7 +385,7 @@
     `;
 
     const secondaryHtml = (row) => `
-      <section class="claim is-row">
+      <section class="support-row">
         <div class="lane-label">${row.lane}</div>
         <div>
           <div class="claim-form" lang="he" dir="rtl">${row.form}</div>
@@ -412,12 +406,12 @@
       const [primary, ...secondary] = sortedClaims;
       hudStack.innerHTML = primary
         ? [
-          primaryHtml(primary),
-          secondary.length ? `<div class="section-title">Also matched</div>${secondary.map(secondaryHtml).join("")}` : "",
+          bestHitHtml(primary),
+          secondary.length ? `<div class="section-title">Supporting hits</div>${secondary.map(secondaryHtml).join("")}` : "",
           checksHtml(sample.placeholders)
         ].join("")
         : [
-          `<section class="claim is-primary"><div class="badge">Unresolved - 0%</div><p class="rendering">No lexical claim is shown for this token.</p></section>`,
+          `<section class="best-hit"><div class="badge">Unresolved - 0%</div><p class="rendering">No lexical claim is shown for this token.</p></section>`,
           checksHtml(sample.placeholders)
         ].join("");
       sources.innerHTML = sample.claims.length
