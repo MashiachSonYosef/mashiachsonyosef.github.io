@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "layer_id": "project-paraphrase-route-policy",
+  "source_family": "workspace",
+  "license": "project-authored / CC0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_name": "Project-authored paraphrase route policy",
+  "description": "Routing rules for source-backed paraphrase evidence. This file defines HUD route behavior only; it is not a dictionary and does not import English translations.",
+  "route_families": [
+    {
+      "route_type": "biblical_paraphrase_evidence",
+      "plain_label": "Biblical paraphrase match",
+      "source_scope": "Imported license-safe Hebrew biblical source text.",
+      "evidence_required": [
+        "Hebrew phrase or verse segment",
+        "focused Hebrew token, lemma, or subphrase",
+        "source reference",
+        "source/version/license row"
+      ],
+      "meaning_rule": "The row may show a project-authored plain-language paraphrase of how the cited Hebrew usage bears on the focused token. It must not present that paraphrase as an imported translation.",
+      "ordering_rule": "Can become the winning answer only if no stronger strict Hebrew, strict Aramaic, morphology, or lemma route wins after route scoring."
+    },
+    {
+      "route_type": "citable_paraphrase_evidence",
+      "plain_label": "Citable paraphrase match",
+      "source_scope": "Imported license-safe Hebrew Torah literature outside the biblical route, such as Midrash, Zohar/Tikkunei, Gra, Rav Kook, or other accepted Hebrew source layers.",
+      "evidence_required": [
+        "Hebrew phrase or source segment",
+        "focused Hebrew token, lemma, or subphrase",
+        "work title and source reference",
+        "source/version/license row"
+      ],
+      "meaning_rule": "The row may show a project-authored plain-language paraphrase of the cited source's usage or expansion. It must stay visibly separate from dictionary definitions and from biblical paraphrase evidence.",
+      "ordering_rule": "Can become the winning answer only if no stronger strict Hebrew, strict Aramaic, morphology, lemma, subphrase, or biblical paraphrase route wins after route scoring."
+    }
+  ],
+  "scoring_policy": {
+    "display_percent": "Show the route's own match percent plainly. Do not hide low scores.",
+    "ordering_adjustment": "Strict Hebrew and strict Aramaic routes receive a 20 point route-priority advantage over softer lemma, subphrase, biblical paraphrase, and citable paraphrase routes. The displayed percent remains the route's own percent.",
+    "fallback_rule": "If no strict route exists, any real licensed route family can carry the primary answer, including a low-percent paraphrase route.",
+    "failed_route_rule": "Failed routes are shown only as tiny audit traces."
+  },
+  "hud_policy": [
+    "No vague maybe-labels.",
+    "No editorial prose in the HUD.",
+    "Show route type, language/source type, match type, percent, definition or paraphrase, and source/license.",
+    "Use plain language first; if a technical term is necessary, explain its significance immediately.",
+    "Keep source and license rows visible by default."
+  ],
+  "source_rows": [
+    {
+      "source_name": "Project-authored paraphrase route policy",
+      "source_family": "workspace",
+      "source_id": "project-paraphrase-route-policy",
+      "source_url": "local:project-paraphrase-route-policy",
+      "license": "project-authored / CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "fields_used": [
+        "route labels",
+        "scoring policy",
+        "HUD display policy"
+      ],
+      "notes": "Project-authored route metadata only. No external dictionary text or English translation is imported."
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "title": "Definition route manifest",
+  "generated_at": "2026-05-30T19:59:39.494Z",
+  "license_policy": "Definition claims remain source-layered. Third-party rows retain their own licenses and are not relabeled as CC0.",
+  "route_policy": {
+    "answer_priority": [
+      "strict_source_match",
+      "morphology_explained_strict_match",
+      "lemma_or_form_match",
+      "subphrase_evidence",
+      "biblical_paraphrase_evidence",
+      "citable_paraphrase_evidence"
+    ],
+    "hud_copy_rules": [
+      "Show the winning route as the answer.",
+      "Show other real routes as evidence.",
+      "Show failed routes only as tiny audit traces.",
+      "Never make a failed or weak route visually equal to the answer.",
+      "Avoid vague maybe-labels; every visible row must name the actual route family.",
+      "Keep source and license rows visible by default.",
+      "Use horizontal card lanes when a route family has many real matches."
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "project-morphology-rules",
+      "source_name": "Project-authored conservative morphology rules",
+      "source_family": "workspace",
+      "license": "project-authored / CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "local:project-morphology-rules",
+      "accepted": true,
+      "public_use": true,
+      "notes": "Project-authored closed grammar and token-shape metadata. No external dictionary text imported."
+    },
+    {
+      "source_id": "project-paraphrase-route-policy",
+      "source_name": "Project-authored paraphrase route policy",
+      "source_family": "workspace",
+      "license": "project-authored / CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_url": "local:project-paraphrase-route-policy",
+      "accepted": true,
+      "public_use": true,
+      "notes": "Project-authored route metadata for biblical and citable paraphrase evidence. No source-text translation imported."
+    },
+    {
+      "source_id": "kaikki-hebrew-enwiktionary",
+      "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+      "source_family": "kaikki",
+      "license": "CC BY-SA 4.0 / GFDL",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+      "accepted": true,
+      "public_use": true,
+      "notes": "Uses Hebrew entries from English Wiktionary through Kaikki. Examples and quotation translations are intentionally excluded."
+    },
+    {
+      "source_id": "wikidata-lexeme",
+      "source_name": "Wikidata Lexeme",
+      "source_family": "wikidata",
+      "license": "CC0",
+      "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "source_url": "https://www.wikidata.org/wiki/Wikidata:Lexicographical_data",
+      "accepted": true,
+      "public_use": true,
+      "notes": "Structured lexeme data and gloss labels remain CC0 source rows."
+    },
+    {
+      "source_id": "openscriptures-hebrewlexicon",
+      "source_name": "OpenScriptures HebrewLexicon",
+      "source_family": "openscriptures",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://github.com/openscriptures/HebrewLexicon",
+      "accepted": true,
+      "public_use": true,
+      "notes": "OpenScriptures files state CC BY 4.0; public-domain underlying dictionary text remains separated by source row."
+    }
+  ],
+  "local_cache": {
+    "directory": ".local-cache/definition-routes",
+    "files": [
+      "kaikki-definition-claims.jsonl",
+      "kaikki-definition-claims.csv",
+      "source-layer-definition-claims.jsonl",
+      "source-phrase-evidence.jsonl",
+      "source-phrase-evidence.csv",
+      "source-phrase-token-index.json",
+      "definition-route-manifest.json"
+    ]
+  },
+  "public_artifacts": [
+    "data/definitions/morphology-rules.json",
+    "data/definitions/paraphrase-route-policy.json",
+    "data/definitions/source-license-inventory.json",
+    "data/definitions/definition-route-sample.json",
+    "data/definitions/phrase-evidence-sample.json"
+  ],
+  "counts": {
+    "morphology_rules": 29,
+    "morphology_claims": 29,
+    "kaikki_entries_read": 17077,
+    "kaikki_lemma_claims": 17033,
+    "kaikki_form_claims": 121426,
+    "source_layer_claims": 4477
+  },
+  "source_rows": [
+    {
+      "source_name": "Project-authored conservative morphology rules",
+      "source_family": "workspace",
+      "source_id": "project-morphology-rules",
+      "source_url": "local:project-morphology-rules",
+      "license": "project-authored / CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "fields_used": [
+        "source policy",
+        "license metadata",
+        "definition route provenance"
+      ],
+      "notes": "Project-authored closed grammar and token-shape metadata. No external dictionary text imported."
+    },
+    {
+      "source_name": "Project-authored paraphrase route policy",
+      "source_family": "workspace",
+      "source_id": "project-paraphrase-route-policy",
+      "source_url": "local:project-paraphrase-route-policy",
+      "license": "project-authored / CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "fields_used": [
+        "source policy",
+        "license metadata",
+        "definition route provenance"
+      ],
+      "notes": "Project-authored route metadata for biblical and citable paraphrase evidence. No source-text translation imported."
+    },
+    {
+      "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+      "source_family": "kaikki",
+      "source_id": "kaikki-hebrew-enwiktionary",
+      "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+      "license": "CC BY-SA 4.0 / GFDL",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "fields_used": [
+        "source policy",
+        "license metadata",
+        "definition route provenance"
+      ],
+      "notes": "Uses Hebrew entries from English Wiktionary through Kaikki. Examples and quotation translations are intentionally excluded."
+    },
+    {
+      "source_name": "Wikidata Lexeme",
+      "source_family": "wikidata",
+      "source_id": "wikidata-lexeme",
+      "source_url": "https://www.wikidata.org/wiki/Wikidata:Lexicographical_data",
+      "license": "CC0",
+      "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "fields_used": [
+        "source policy",
+        "license metadata",
+        "definition route provenance"
+      ],
+      "notes": "Structured lexeme data and gloss labels remain CC0 source rows."
+    },
+    {
+      "source_name": "OpenScriptures HebrewLexicon",
+      "source_family": "openscriptures",
+      "source_id": "openscriptures-hebrewlexicon",
+      "source_url": "https://github.com/openscriptures/HebrewLexicon",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "fields_used": [
+        "source policy",
+        "license metadata",
+        "definition route provenance"
+      ],
+      "notes": "OpenScriptures files state CC BY 4.0; public-domain underlying dictionary text remains separated by source row."
+    }
+  ],
+  "phrase_evidence": {
+    "generated_at": "2026-05-30T19:59:56.677Z",
+    "source_policy": "Hebrew phrase evidence is source text, not a definition claim. Each row preserves its original source/version/license metadata.",
+    "untracked_sources_included": false,
+    "max_per_token": 80,
+    "window_tokens_each_side": 3,
+    "counts": {
+      "source_files_scanned": 2,
+      "allowed_units": 2897,
+      "rejected_units": 0,
+      "token_occurrences": 36712,
+      "evidence_rows": 40396,
+      "maqaf_subphrase_rows": 7843,
+      "distinct_normalized_tokens": 12843,
+      "accepted_license_counts": {
+        "CC-BY-SA": 2897
+      },
+      "rejected_license_counts": {}
+    }
+  }
+}
