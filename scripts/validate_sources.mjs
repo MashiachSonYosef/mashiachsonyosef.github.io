@@ -532,7 +532,7 @@ for (const lexicalFile of lexicalFiles) {
   const lexicalPagePath = rel(lexical.work_slug, 'index.html');
   if (exists(lexicalPagePath)) {
     const lexicalPage = readText(lexicalPagePath);
-    for (const requiredText of ['data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'data-hud-word', 'Breakdown', 'Potential options', 'Related options', 'Sources / licenses', 'No lexical entry yet.']) {
+    for (const requiredText of ['data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Breakdown', 'Potential options', 'Related options', 'Sources / licenses', 'No lexical entry yet.']) {
       if (!lexicalPage.includes(requiredText)) {
         errors.push(`Lexical target page missing required text '${requiredText}' for ${lexical.work_id}`);
       }
