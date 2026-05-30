@@ -49,6 +49,10 @@ Generated: 2026-05-30
 | Avot DeRabbi Natan | 253 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Azharot of Solomon ibn Gabirol | 275 | Vilna, 1879 -- vocalized (https://www.nli.org.il/he/books/NNL_ALEPH001872727/NLI&local_base=NNL01) | Public Domain | yes | no | none required by license; source/version retained |
 | Ba'alei HaNefesh | 340 | Vilna, 1911 (https://www.nli.org.il/he/books/NNL_ALEPH990010887420205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Ba'er Hetev on Shulchan Arukh, Choshen Mishpat | 6253 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Ba'er Hetev on Shulchan Arukh, Even HaEzer | 2236 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Ba'er Hetev on Shulchan Arukh, Orach Chayim | 5485 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Ba'er Hetev on Shulchan Arukh, Yoreh De'ah | 4717 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Bechinat Olam | 605 | Bechinat Olam, Vilna 1879 (https://www.nli.org.il/he/books/NNL_ALEPH990020506360205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Bedikat HaSakin | 36 | Teshuvot HaGeonim, Coronel 1871 (https://www.nli.org.il/he/books/NNL_ALEPH001014411) | Public Domain | yes | no | none required by license; source/version retained |
 | Beit Aharon | 2388 | Beit Aharon, Brody, 1875. (https://www.nli.org.il/he/books/NNL_ALEPH001124498) | Public Domain | yes | no | none required by license; source/version retained |
