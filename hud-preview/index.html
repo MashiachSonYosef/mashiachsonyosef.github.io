@@ -253,6 +253,39 @@
       line-height: 1.3;
     }
 
+    .phrase-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .phrase-row {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .phrase-line {
+      direction: rtl;
+      unicode-bidi: plaintext;
+      text-align: right;
+      color: var(--hebrew);
+      font-size: clamp(1.25rem, 3.6vw, 1.9rem);
+      line-height: 1.35;
+    }
+
+    .phrase-focus {
+      border-bottom: 2px solid var(--gold);
+      background: rgba(223, 198, 139, 0.12);
+      padding: 0 0.1em;
+    }
+
+    .phrase-note {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.86rem;
+    }
+
     details {
       margin-top: 18px;
       border: 1px solid var(--line);
@@ -286,6 +319,7 @@
         <div class="sample-card">
           <p class="sample-line" lang="he">
             <button class="sample-token" type="button" data-token="devarim">&#1491;&#1456;&#1468;&#1489;&#1464;&#1512;&#1460;&#1497;&#1501;</button>
+            <button class="sample-token" type="button" data-token="bereshit">&#1489;&#1512;&#1488;&#1513;&#1497;&#1514;</button>
             <button class="sample-token" type="button" data-token="shel">&#1513;&#1462;&#1473;&#1500;</button>
             <button class="sample-token" type="button" data-token="dela">&#1491;&#1500;&#1488;</button>
             <button class="sample-token" type="button" data-token="unresolved">&#1508;&#1500;&#1493;&#1504;&#1497;</button>
@@ -313,6 +347,8 @@
       devarim: "\u05d3\u05b0\u05bc\u05d1\u05b8\u05e8\u05b4\u05d9\u05dd",
       davar: "\u05d3\u05b8\u05bc\u05d1\u05b8\u05e8",
       devarimPlain: "\u05d3\u05d1\u05e8\u05d9\u05dd",
+      bereshit: "\u05d1\u05e8\u05d0\u05e9\u05d9\u05ea",
+      yirmeyahu: "\u05d9\u05e8\u05de\u05d9\u05d4\u05d5",
       shel: "\u05e9\u05b6\u05c1\u05dc",
       shelPlain: "\u05e9\u05dc",
       dela: "\u05d3\u05dc\u05d0",
@@ -330,6 +366,9 @@
           { route: "Hebrew fuzzy", confidence: 52, form: he.devarimPlain, gloss: "low-confidence Hebrew candidate", sourceType: "project", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
         ],
         checked: [{ route: "Aramaic strict", result: "none" }],
+        phrases: [
+          { route: "Phrase", confidence: 64, before: "", focus: he.devarimPlain, after: " \u05d0\u05d7\u05d3\u05d9\u05dd", gloss: "license-safe used phrase; evidence only, not a forced meaning", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
+        ],
         suppressed: []
       },
       shel: {
@@ -339,6 +378,7 @@
           { route: "Lemma", confidence: 90, form: he.shelPlain, gloss: "of / belonging to", sourceType: "grammar", source: "Project grammar/function-word layer", license: "project-authored / CC0" }
         ],
         checked: [{ route: "Aramaic strict", result: "none" }],
+        phrases: [],
         suppressed: []
       },
       dela: {
@@ -348,6 +388,21 @@
           { route: "Lemma", confidence: 82, form: he.dPlusLo, gloss: "Aramaic relative prefix plus negation", sourceType: "grammar", source: "Project Aramaic grammar layer", license: "project-authored / CC0" }
         ],
         checked: [{ route: "Hebrew strict", result: "none" }],
+        phrases: [
+          { route: "Phrase", confidence: 76, before: "", focus: he.dela, after: " \u05e4\u05dc\u05d5\u05e0\u05d9", gloss: "license-safe Aramaic phrase form; supports the winning route without forcing it", source: "Project Aramaic phrase fixture", license: "project-authored / CC0" }
+        ],
+        suppressed: []
+      },
+      bereshit: {
+        word: he.bereshit,
+        winner: { route: "Hebrew strict", confidence: 95, form: he.bereshit, gloss: "beginning / first stage", sourceType: "dictionary", source: "Project HUD sampler fixture", license: "project-authored / CC0" },
+        evidence: [
+          { route: "Lemma", confidence: 88, form: "\u05e8\u05d0\u05e9\u05d9\u05ea", gloss: "beginning / first / first yield", sourceType: "dictionary", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
+        ],
+        checked: [{ route: "Aramaic strict", result: "none" }],
+        phrases: [
+          { route: "Phrase", confidence: 81, before: "", focus: he.bereshit, after: " \u05d9\u05e8\u05de\u05d9\u05d4\u05d5", gloss: "one license-free used form where the focused word points toward first yield / first stage", source: "Project phrase fixture for Jeremiah usage", license: "project-authored / CC0" }
+        ],
         suppressed: []
       },
       unresolved: {
@@ -359,6 +414,7 @@
           { route: "Aramaic strict", result: "none" },
           { route: "Lemma", result: "none" }
         ],
+        phrases: [],
         suppressed: []
       }
     };
@@ -396,6 +452,20 @@
       ? `<div class="section-title">Checked</div><div class="check-list">${rows.map((row) => `<span class="check-chip">${row.route}: ${row.result}</span>`).join("")}</div>`
       : "";
 
+    const phraseHtml = (row) => `
+      <section class="phrase-row">
+        <div class="lane-label">${row.route} - ${row.confidence}%</div>
+        <div class="phrase-line" lang="he" dir="rtl">${row.before}<span class="phrase-focus">${row.focus}</span>${row.after}</div>
+        <p class="phrase-note">Focus: <span lang="he" dir="rtl">${row.focus}</span>. ${row.gloss}</p>
+        <p class="source">Source: ${row.source}</p>
+        <p class="source">License: ${row.license}</p>
+      </section>
+    `;
+
+    const phrasesHtml = (rows) => rows.length
+      ? `<div class="section-title">Phrase evidence</div><div class="phrase-list">${rows.map(phraseHtml).join("")}</div>`
+      : "";
+
     const openHud = (key) => {
       const sample = rows[key];
       hudWord.textContent = sample.word;
@@ -403,15 +473,20 @@
         ? [
           answerHtml(sample.winner),
           sample.evidence.length ? `<div class="section-title">Evidence</div>${sample.evidence.map(evidenceHtml).join("")}` : "",
-          checksHtml(sample.checked)
+          checksHtml(sample.checked),
+          phrasesHtml(sample.phrases)
         ].join("")
         : [
           `<section class="answer-card"><div class="section-title">Answer</div><div class="badge">Unresolved</div><p class="rendering">No winning route for this token.</p></section>`,
-          checksHtml(sample.checked)
+          checksHtml(sample.checked),
+          phrasesHtml(sample.phrases)
         ].join("");
-      const sourceRows = [sample.winner, ...sample.evidence].filter(Boolean);
+      const sourceRows = [sample.winner, ...sample.evidence, ...sample.phrases].filter(Boolean);
       sources.innerHTML = sourceRows.length
-        ? sourceRows.map((row) => `<p>For <span lang="he" dir="rtl">${row.form}</span> - ${row.gloss}: ${row.source} | ${row.license}</p>`).join("")
+        ? sourceRows.map((row) => {
+          const form = row.form || row.focus || "";
+          return `<p>For <span lang="he" dir="rtl">${form}</span> - ${row.gloss}: ${row.source} | ${row.license}</p>`;
+        }).join("")
         : "<p>No sourced lexical claim is shown for this token.</p>";
       hud.hidden = false;
       hud.scrollTop = 0;
