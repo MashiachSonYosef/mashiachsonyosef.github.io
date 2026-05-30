@@ -896,6 +896,7 @@ Generated: 2026-05-30
 | Psalms | 2527 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Ra'avad on Sefer Yetzirah | 451 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Ra'avad on Sifra | 1684 | Wien, 1862 (https://www.nli.org.il/he/books/NNL_ALEPH990020310840205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Rabbi Akiva Eiger on Shulchan Arukh, Choshen Mishpat | 1818 | Shulhan Arukh, Hoshen ha-Mishpat, Lemberg, 1898 (https://www.nli.org.il/he/books/NNL_ALEPH002097680) | Public Domain | yes | no | none required by license; source/version retained |
 | Rabbi Akiva Eiger on Shulchan Arukh, Yoreh De'ah | 1409 | Ashlei Ravrevei: Shulchan Aruch Yoreh Deah, Lemberg, 1888 (https://www.nli.org.il/he/books/NNL_ALEPH002097765&context=L) | Public Domain | yes | no | none required by license; source/version retained |
 | Ramban on Sefer Yetzirah | 105 | Ramban on Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Rasag on Sefer Yetzirah | 91 | Rasage on Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
@@ -1107,6 +1108,7 @@ Generated: 2026-05-30
 | Tractate Semachot | 14 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Tractate Soferim | 227 | Talmud Bavli, Vilna 1883 ed. (https://www.nli.org.il/he/books/NNL_ALEPH001300957) | Public Domain | yes | no | none required by license; source/version retained |
 | Treatise on Logic | 182 | Milot Higayon, Warsaw, 1928 (https://he.wikisource.org/wiki/%D7%9E%D7%99%D7%9C%D7%95%D7%AA_%D7%94%D7%92%D7%99%D7%95%D7%9F) | CC-BY-SA | yes | yes | required |
+| Turei Zahav on Shulchan Arukh, Choshen Mishpat | 1581 | Shulhan Arukh, Hoshen ha-Mishpat, Lemberg, 1898 (https://www.nli.org.il/he/books/NNL_ALEPH002097680) | Public Domain | yes | no | none required by license; source/version retained |
 | Tzafnat Pa'neach on Mishneh Torah, Appraisals and Devoted Property | 111 | Tzafnat Pa'neach on Mishneh Torah, Warsaw-Piotrków, 1903-1908 (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Tzafnat Pa'neach on Mishneh Torah, Circumcision | 23 | Tzafnat Pa'neach on Mishneh Torah, Warsaw-Piotrków, 1903-1908 (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Tzafnat Pa'neach on Mishneh Torah, Diverse Species | 97 | Tzafnat Pa'neach on Mishneh Torah, Warsaw-Piotrków, 1903-1908 (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -1137,6 +1139,8 @@ Generated: 2026-05-30
 | Tziunei Maharan on Mishneh Torah, Firstlings | 2 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Tziunei Maharan on Mishneh Torah, Mourning | 13 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Tziunei Maharan on Mishneh Torah, Repentance | 6 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Urim VeTumim, Tumim | 886 | Urim veTumim, Warsaw 1881, Vol 1 (https://www.nli.org.il/he/books/NNL_ALEPH001167224) | Public Domain | yes | no | none required by license; source/version retained |
+| Urim VeTumim, Tumim | 739 | Urim veTumim, Warsaw 1881, Vol 2 (https://www.nli.org.il/he/books/NNL_ALEPH001167224) | Public Domain | yes | no | none required by license; source/version retained |
 | Ya'arot Devash I | 219 | Yaarot Devash -- OYW (http://mobile.tora.ws/index.html?bgf=lnn(500121,0,0)) | Public Domain | yes | no | none required by license; source/version retained |
 | Ya'arot Devash II | 1308 | Józefów, 1866 (https://www.nli.org.il/he/books/NNL_ALEPH990011676280205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Yad David on Mishneh Torah, Robbery and Lost Property | 1 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
