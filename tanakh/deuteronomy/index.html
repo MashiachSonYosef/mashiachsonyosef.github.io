@@ -31,11 +31,6 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
-    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
-    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
-    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
-    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -52,7 +47,6 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
-    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -89,12 +83,11 @@
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; inset: 0; z-index: 1000; background: rgba(10,14,18,0.82); padding: clamp(12px, 3vw, 28px); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-panel { width: min(980px, 100%); min-height: min(760px, calc(100vh - clamp(24px, 6vw, 56px))); margin: 0 auto; border: 1px solid var(--line); background: var(--panel-2); padding: clamp(16px, 3vw, 28px); box-shadow: 0 18px 70px rgba(0,0,0,0.5); }
-    .hud-head { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; margin-bottom: 18px; }
-    .hud-clicked-word { min-width: 0; text-align: center; color: var(--hebrew); font-family: var(--hebrew-font); font-size: clamp(2rem, 7vw, 4.8rem); line-height: 1.08; overflow-wrap: anywhere; }
-    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); width: 34px; height: 34px; line-height: 1; cursor: pointer; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
     .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
     .lexical-field-row { display: contents; }
@@ -113,12 +106,12 @@
     .lexical-entry .entry-hebrew { color: var(--hebrew); }
     .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
     .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 12px; display: grid; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
-    .claim-row-head { display: grid; gap: 7px; justify-items: center; text-align: center; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
     .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-family: var(--hebrew-font); font-size: clamp(1.35rem, 3.8vw, 2.25rem); line-height: 1.12; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
     .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; text-align: center; font-size: 1.02rem; }
+    .claim-renderings { color: var(--text); margin: 0; }
     .other-entries { margin-top: 12px; }
     .claim-row-list details { margin-top: 8px; }
     .source-details { margin-top: 16px; }
@@ -16662,19 +16655,18 @@
           </section>
         <div class="license-notice lexical-downloads">
           <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/deuteronomy.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/deuteronomy-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/deuteronomy.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/deuteronomy-token-claims-min60.csv" download>Token claims CSV</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
   <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-panel" role="dialog" aria-modal="true" aria-label="Lexical HUD">
-    <div class="hud-head"><div class="hud-clicked-word" data-hud-word lang="he" dir="rtl">N/A</div><button class="hud-close" type="button" data-hud-close aria-label="Close lexical HUD">&times;</button></div>
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
     <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
       <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-lemma-strict-row><dt>Strict Lemma</dt><dd data-hud-lemma-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
       <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
       <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
       <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
@@ -16684,10 +16676,9 @@
       <summary>Sources / licenses</summary>
       <div data-hud-sources></div>
     </details>
-    </div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/deuteronomy.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/deuteronomy.manifest.json","occurrence_url":"../../data/lexical/occurrences/deuteronomy.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/deuteronomy.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/deuteronomy.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/deuteronomy.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -16830,14 +16821,24 @@
       if (!buttons.length || !hud) return;
       let activeHudButton = null;
       if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const closeHud = () => {
-        hud.hidden = true;
-        activeHudButton = null;
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-      };
       const positionHudNearButton = (button) => {
         if (!button || hud.hidden) return;
-        hud.scrollTop = 0;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
       };
       const scheduleHudPosition = () => {
         if (!activeHudButton || hud.hidden) return;
@@ -16898,9 +16899,8 @@
         const strictEntries = strictEntriesForView(view);
         const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
         const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        const lemmaLikely = cleanStrictRenderings(strictEntries.flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]), lemma: lemmaLikely };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely, lemma: lemmaLikely };
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
       };
       const strictEntryKeys = (view) => {
         return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
@@ -17035,7 +17035,6 @@
         else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
         else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
         else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else if (status === "Strict Lemma") { score = 78; reasons.push("strict lemma row"); }
         else { score = 84; reasons.push("strict Hebrew row"); }
         const rendered = cleanStrictRenderings(renderings || []);
         if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
@@ -17057,8 +17056,8 @@
         if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
         if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
         if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, "Strict Lemma": 95, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, "Strict Lemma": 50, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
         const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
         const display = applyDisplayBoost(status, rawScore, view);
         return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
@@ -17098,7 +17097,7 @@
       const DISPLAY_THRESHOLD = 50;
       const MAX_VISIBLE_CLAIMS = 5;
       const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, "Strict Lemma": 2, Potential: 3, Related: 4, Caution: 5, Unresolved: 6 };
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
       const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
       const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
       const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
@@ -17117,7 +17116,7 @@
         hebrew.lang = "he";
         hebrew.dir = "rtl";
         hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(hebrew, badge);
+        head.append(badge, hebrew);
         card.appendChild(head);
         if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
         const renderings = document.createElement("p");
@@ -17168,9 +17167,8 @@
         if (!visibleRows.length) { node.textContent = "N/A"; return; }
         node.appendChild(list);
       };
-      const placeholderClaim = (status, hebrew, message) => makeClaim("Unresolved", hebrew || "Clicked form", [message], [], "", { statusOverride: status });
       const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [], lemma: [] };
+        const claims = { hebrew: [], aramaic: [] };
         const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
         if (surfaceRenderings.length) {
           const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
@@ -17180,19 +17178,16 @@
         strictEntriesForView(view).forEach((entry) => {
           const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
           const bucket = strictBuckets[bucketName] || [];
-          const lemmaRenderings = cleanStrictRenderings(entry.strict_renderings || []);
-          if (!lemmaRenderings.length) return;
-          claims.lemma.push(claimFromEntry(view, entry, "Strict Lemma", lemmaRenderings));
-          const laneRenderings = lemmaRenderings.filter((rendering) => bucket.includes(rendering));
-          if (!laneRenderings.length) return;
-          if (surfaceRenderings.length && laneRenderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", laneRenderings));
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
         });
         if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
           if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
           if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
         }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic), lemma: uniqueClaims(claims.lemma) };
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
       };
       const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
       const uniqueSourceGroups = (groups) => {
@@ -17207,9 +17202,9 @@
       };
       const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
       const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || [])]);
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
       const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
       };
       const appendSecondarySources = (container, view, entries, label) => {
         const groups = sourceGroupsForEntries(view, entries);
@@ -17323,12 +17318,9 @@
         positionHudNearButton(button);
         setText(hud, "[data-hud-word]", button.textContent.trim());
         setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
-        setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
         setRowHidden(hud, "[data-hud-caution-row]", true);
         setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        setList(hud, "[data-hud-aramaic-strict]", ["Loading lexical entry..."]);
-        setList(hud, "[data-hud-lemma-strict]", ["Loading lexical entry..."]);
         renderBreakdown(hud, {});
         renderPotentialAndRelatedEntries(hud, {}, false, false);
         renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
@@ -17338,15 +17330,12 @@
           setText(hud, "[data-hud-word]", view.hebrew_word);
           const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
           const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [], lemma: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0 || strictClaims.lemma.length > 0;
-          const clickedForm = view.hebrew_word || view.surface_word || "Clicked form";
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
-          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew.length ? strictClaims.hebrew : [placeholderClaim("Strict Hebrew", clickedForm, "No Hebrew strict match yet.")]);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic.length ? strictClaims.aramaic : [placeholderClaim("Strict Aramaic", clickedForm, "No Aramaic strict match yet.")]);
-          appendClaimRows(hud.querySelector("[data-hud-lemma-strict]"), strictClaims.lemma.length ? strictClaims.lemma : [placeholderClaim("Strict Lemma", clickedForm, "No lemma strict match yet.")]);
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
           renderBreakdown(hud, view);
           const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
           renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
@@ -17356,11 +17345,8 @@
         } catch (error) {
           console.error(error);
           setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
-          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
           setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          setList(hud, "[data-hud-aramaic-strict]", ["No Aramaic strict match yet."]);
-          setList(hud, "[data-hud-lemma-strict]", ["No lemma strict match yet."]);
           positionHudNearButton(button);
         }
       };
@@ -17372,11 +17358,14 @@
           if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
         });
       });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => button.addEventListener("click", closeHud));
-      hud.addEventListener("click", (event) => {
-        closeHud();
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
       });
-      document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !hud.hidden) closeHud(); });
       window.addEventListener("resize", scheduleHudPosition);
       window.addEventListener("scroll", scheduleHudPosition, true);
     })();
