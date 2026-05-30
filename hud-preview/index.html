@@ -147,30 +147,26 @@
       gap: 14px;
     }
 
-    .best-hit {
+    .answer-card {
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.025);
+      border-color: var(--line-strong);
+      background: rgba(223, 198, 139, 0.052);
       padding: clamp(16px, 3vw, 22px);
       display: grid;
       gap: 10px;
       min-width: 0;
     }
 
-    .best-hit {
-      border-color: var(--line-strong);
-      background: rgba(223, 198, 139, 0.052);
-    }
-
-    .support-row {
+    .evidence-row {
       border-top: 1px solid var(--line);
       display: grid;
-      grid-template-columns: minmax(88px, 0.18fr) minmax(0, 1fr) auto;
+      grid-template-columns: minmax(130px, 0.22fr) minmax(0, 1fr);
       align-items: center;
       gap: 10px;
       padding: 10px 0 0;
     }
 
-    .best-head {
+    .answer-head {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -188,7 +184,7 @@
       overflow-wrap: anywhere;
     }
 
-    .support-row .claim-form {
+    .evidence-row .claim-form {
       font-size: clamp(1.08rem, 3vw, 1.55rem);
       text-align: right;
     }
@@ -224,7 +220,7 @@
       margin: 0;
     }
 
-    .support-row .rendering {
+    .evidence-row .rendering {
       text-align: left;
       line-height: 1.4;
     }
@@ -270,9 +266,9 @@
     }
 
     @media (max-width: 720px) {
-      .support-row { grid-template-columns: 1fr; }
-      .support-row .rendering { text-align: center; }
-      .support-row .claim-form { text-align: center; }
+      .evidence-row { grid-template-columns: 1fr; }
+      .evidence-row .rendering { text-align: center; }
+      .evidence-row .claim-form { text-align: center; }
     }
   </style>
 </head>
@@ -327,38 +323,43 @@
     const rows = {
       devarim: {
         word: he.devarim,
-        claims: [
-          { sourceType: "dictionary", lane: "Hebrew", match: "surface", score: 96, form: he.davar, rendering: "word / thing / matter", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
-          { sourceType: "dictionary", lane: "Lemma", match: "lemma", score: 93, form: he.davar, rendering: "word / thing / matter / speech", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
-          { sourceType: "project", lane: "Lemma", match: "lemma", score: 70, form: he.devarimPlain, rendering: "alternate lemma candidate", source: "Project HUD sampler fixture", license: "project-authored / CC0" },
-          { sourceType: "project", lane: "Hebrew", match: "fuzzy", score: 52, form: he.devarimPlain, rendering: "low-confidence Hebrew candidate", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
+        winner: { route: "Hebrew strict", confidence: 96, form: he.davar, gloss: "word / thing / matter", sourceType: "dictionary", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
+        evidence: [
+          { route: "Lemma", confidence: 93, form: he.davar, gloss: "word / thing / matter / speech", sourceType: "dictionary", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
+          { route: "Lemma", confidence: 70, form: he.devarimPlain, gloss: "alternate lemma candidate", sourceType: "project", source: "Project HUD sampler fixture", license: "project-authored / CC0" },
+          { route: "Hebrew fuzzy", confidence: 52, form: he.devarimPlain, gloss: "low-confidence Hebrew candidate", sourceType: "project", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
         ],
-        placeholders: [{ lane: "Aramaic", text: "No strict Aramaic match." }]
+        checked: [{ route: "Aramaic strict", result: "none" }],
+        suppressed: []
       },
       shel: {
         word: he.shel,
-        claims: [
-          { sourceType: "grammar", lane: "Hebrew", match: "surface", score: 98, form: he.shel, rendering: "of / belonging to", source: "Project grammar/function-word layer", license: "project-authored / CC0" },
-          { sourceType: "grammar", lane: "Lemma", match: "lemma", score: 90, form: he.shelPlain, rendering: "of / belonging to", source: "Project grammar/function-word layer", license: "project-authored / CC0" }
+        winner: { route: "Hebrew strict", confidence: 98, form: he.shel, gloss: "of / belonging to", sourceType: "grammar", source: "Project grammar/function-word layer", license: "project-authored / CC0" },
+        evidence: [
+          { route: "Lemma", confidence: 90, form: he.shelPlain, gloss: "of / belonging to", sourceType: "grammar", source: "Project grammar/function-word layer", license: "project-authored / CC0" }
         ],
-        placeholders: [{ lane: "Aramaic", text: "No strict Aramaic match." }]
+        checked: [{ route: "Aramaic strict", result: "none" }],
+        suppressed: []
       },
       dela: {
         word: he.dela,
-        claims: [
-          { sourceType: "grammar", lane: "Aramaic", match: "surface", score: 94, form: he.dela, rendering: "that not / which does not / without", source: "Project Aramaic grammar layer", license: "project-authored / CC0" },
-          { sourceType: "grammar", lane: "Lemma", match: "lemma", score: 82, form: he.dPlusLo, rendering: "Aramaic relative prefix plus negation", source: "Project Aramaic grammar layer", license: "project-authored / CC0" }
+        winner: { route: "Aramaic strict", confidence: 94, form: he.dela, gloss: "that not / which does not / without", sourceType: "grammar", source: "Project Aramaic grammar layer", license: "project-authored / CC0" },
+        evidence: [
+          { route: "Lemma", confidence: 82, form: he.dPlusLo, gloss: "Aramaic relative prefix plus negation", sourceType: "grammar", source: "Project Aramaic grammar layer", license: "project-authored / CC0" }
         ],
-        placeholders: [{ lane: "Hebrew", text: "No strict Hebrew match." }]
+        checked: [{ route: "Hebrew strict", result: "none" }],
+        suppressed: []
       },
       unresolved: {
         word: he.ploni,
-        claims: [],
-        placeholders: [
-          { lane: "Hebrew", text: "No strict Hebrew match." },
-          { lane: "Aramaic", text: "No strict Aramaic match." },
-          { lane: "Lemma", text: "No lemma match." }
-        ]
+        winner: null,
+        evidence: [],
+        checked: [
+          { route: "Hebrew strict", result: "none" },
+          { route: "Aramaic strict", result: "none" },
+          { route: "Lemma", result: "none" }
+        ],
+        suppressed: []
       }
     };
 
@@ -366,56 +367,51 @@
     const hudWord = document.querySelector("[data-hud-word]");
     const sources = document.querySelector("[data-sources]");
     const hudStack = document.querySelector("[data-hud-stack]");
-    const lanePriority = { surface: 3, lemma: 2, fuzzy: 1, placeholder: 0 };
-
     const closeHud = () => { hud.hidden = true; };
 
-    const rankClaim = (row) => (lanePriority[row.match] * 1000) + row.score;
-
-    const bestHitHtml = (row) => `
-      <section class="best-hit">
-        <div class="best-head">
+    const answerHtml = (row) => `
+      <section class="answer-card">
+        <div class="section-title">Answer</div>
+        <div class="answer-head">
           <div class="claim-form" lang="he" dir="rtl">${row.form}</div>
         </div>
-        <div class="meta-line">${row.sourceType || "lexical"} / ${row.lane} / ${row.match} / ${row.score}%</div>
-        <p class="rendering">${row.rendering}</p>
+        <div class="meta-line">${row.sourceType} / ${row.route} / ${row.confidence}%</div>
+        <p class="rendering">${row.gloss}</p>
         <p class="source">Source: ${row.source}</p>
         <p class="source">License: ${row.license}</p>
       </section>
     `;
 
-    const secondaryHtml = (row) => `
-      <section class="support-row">
-        <div class="lane-label">${row.lane}</div>
+    const evidenceHtml = (row) => `
+      <section class="evidence-row">
+        <div class="lane-label">${row.route} - ${row.confidence}%</div>
         <div>
           <div class="claim-form" lang="he" dir="rtl">${row.form}</div>
-          <p class="rendering">${row.rendering}</p>
+          <p class="rendering">${row.gloss}</p>
         </div>
-        <div class="badge">${row.match} - ${row.score}%</div>
       </section>
     `;
 
     const checksHtml = (rows) => rows.length
-      ? `<div class="section-title">Checked</div><div class="check-list">${rows.map((row) => `<span class="check-chip">${row.lane}: ${row.text}</span>`).join("")}</div>`
+      ? `<div class="section-title">Checked</div><div class="check-list">${rows.map((row) => `<span class="check-chip">${row.route}: ${row.result}</span>`).join("")}</div>`
       : "";
 
     const openHud = (key) => {
       const sample = rows[key];
       hudWord.textContent = sample.word;
-      const sortedClaims = [...sample.claims].sort((a, b) => rankClaim(b) - rankClaim(a));
-      const [primary, ...secondary] = sortedClaims;
-      hudStack.innerHTML = primary
+      hudStack.innerHTML = sample.winner
         ? [
-          bestHitHtml(primary),
-          secondary.length ? `<div class="section-title">Supporting hits</div>${secondary.map(secondaryHtml).join("")}` : "",
-          checksHtml(sample.placeholders)
+          answerHtml(sample.winner),
+          sample.evidence.length ? `<div class="section-title">Evidence</div>${sample.evidence.map(evidenceHtml).join("")}` : "",
+          checksHtml(sample.checked)
         ].join("")
         : [
-          `<section class="best-hit"><div class="badge">Unresolved - 0%</div><p class="rendering">No lexical claim is shown for this token.</p></section>`,
-          checksHtml(sample.placeholders)
+          `<section class="answer-card"><div class="section-title">Answer</div><div class="badge">Unresolved</div><p class="rendering">No winning route for this token.</p></section>`,
+          checksHtml(sample.checked)
         ].join("");
-      sources.innerHTML = sample.claims.length
-        ? sample.claims.map((row) => `<p>For <span lang="he" dir="rtl">${row.form}</span> - ${row.rendering}: ${row.source} | ${row.license}</p>`).join("")
+      const sourceRows = [sample.winner, ...sample.evidence].filter(Boolean);
+      sources.innerHTML = sourceRows.length
+        ? sourceRows.map((row) => `<p>For <span lang="he" dir="rtl">${row.form}</span> - ${row.gloss}: ${row.source} | ${row.license}</p>`).join("")
         : "<p>No sourced lexical claim is shown for this token.</p>";
       hud.hidden = false;
       hud.scrollTop = 0;
