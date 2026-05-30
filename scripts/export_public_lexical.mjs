@@ -284,7 +284,6 @@ function confidenceForClaim({ status, token, candidate, sourceRow, surfaceClaim 
   if (matchMethod.startsWith('project_') || sourceFamily === 'workspace') score += 7;
   if (matchMethod === 'fixed_expression') score += 8;
   if (matchMethod === 'project_function_word' || matchMethod === 'project_abbreviation' || matchMethod === 'project_midrash_formula' || matchMethod === 'project_aramaic_grammar') score += 5;
-  if (matchMethod === 'project_technical') score += 4;
   if (matchMethod.includes('prefix') || matchMethod.includes('affix')) score -= 4;
   if (sourceFamily === 'openscriptures' || sourceName.includes('openscriptures')) score += 3;
   if (sourceFamily === 'wikidata' || sourceName.includes('wikidata')) score += 1;
@@ -1277,7 +1276,7 @@ const reportLines = [
   '- Overlay/export namespaces were not changed by this export task.',
   '- Lexical source/license metadata remains per row.',
   '- Third-party rows were not relabeled as CC0.',
-  '- Orot meanings were not changed.',
+  '- Lexical export rows remain source/layer attributed; no passage translations are generated.',
 ];
 writeText('reports/public-lexical-export-report.md', `${reportLines.join('\n')}\n`);
 

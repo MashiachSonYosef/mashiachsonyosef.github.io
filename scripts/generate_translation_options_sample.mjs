@@ -56,7 +56,7 @@ function sourceBucket(row) {
   if (family === 'workspace' || family === 'curated' || /project|workspace/i.test(row?.source_name || '')) {
     if (/abbreviation/i.test(row?.source_name || row?.source_id || '')) return 'project abbreviations';
     if (/grammar|fixed-expression|function/i.test(row?.source_name || row?.source_id || '')) return 'project grammar/function rules';
-    if (/technical/i.test(row?.source_name || row?.source_id || '')) return 'project technical terms';
+    if (/technical/i.test(row?.source_name || row?.source_id || '')) return 'project-authored lexical rows';
     if (/CC0/i.test(license)) return 'project grammar/abbreviation/technical CC0';
     return 'project grammar/abbreviation/technical local rule';
   }

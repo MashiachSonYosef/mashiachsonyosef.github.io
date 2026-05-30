@@ -1,6 +1,6 @@
 # Corpus Coverage Pipeline Report
 
-Generated: 2026-05-30T05:04:31.980Z
+Generated: 2026-05-30T07:34:26.067Z
 
 ## Summary
 
@@ -10,9 +10,9 @@ Generated: 2026-05-30T05:04:31.980Z
 - Unique surface forms: 1020969
 - Unique normalized forms: 679441
 - Lexical coverage: 56.97%
-- Strict tokens: 18030268
-- Potential tokens: 10425029
-- Unresolved tokens: 21495031
+- Strict tokens: 18029321
+- Potential tokens: 10425199
+- Unresolved tokens: 21495808
 
 ## Generated Outputs
 

@@ -99,13 +99,6 @@ const lexicalLayerFiles = [
     description: 'Project-authored scoped Midrash citation formulas, source labels, and proper-name labels. Short factual mappings only.',
   },
   {
-    layer_id: 'project-technical-terms',
-    source_family: 'workspace',
-    license: 'project-authored / CC0',
-    path: 'source-layers/project-technical-terms.json',
-    description: 'Project-authored scoped technical term rows. Short factual mappings only.',
-  },
-  {
     layer_id: 'wikidata-cc0',
     source_family: 'wikidata',
     license: 'CC0',
@@ -324,7 +317,6 @@ const projectAbbreviationDefinitions = [
   { source_id: 'project-abbreviation:al-yedei-zeh', surface: 'עי״ז', expansion: 'על ידי זה', renderings: ['by this', 'through this'] },
   { source_id: 'project-abbreviation:achar-kach', surface: 'אח״כ', expansion: 'אחר כך', renderings: ['afterward', 'after that'] },
   { source_id: 'project-abbreviation:hakadosh-baruch-hu', surface: '\u05D4\u05E7\u05D1\u05F4\u05D4', expansion: '\u05D4\u05E7\u05D3\u05D5\u05E9 \u05D1\u05E8\u05D5\u05DA \u05D4\u05D5\u05D0', renderings: ['the Holy One, blessed be He'] },
-  { source_id: 'project-abbreviation:orot-ei-efshar', surface: '\u05D0\u05F4\u05D0', expansion: '\u05D0\u05D9 \u05D0\u05E4\u05E9\u05E8', renderings: ['impossible', 'it is not possible'], work_scope: 'orot' },
   { source_id: 'project-abbreviation:zeir-anpin', surface: 'ז״א', expansion: 'זעיר אנפין', renderings: ['Zeir Anpin'], work_scope: 'kabbalah' },
   { source_id: 'project-abbreviation:de-zeir-anpin', surface: 'דז״א', expansion: 'דזעיר אנפין', renderings: ['of Zeir Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'ז״א', strict_renderings: ['Zeir Anpin'] }] },
   { source_id: 'project-abbreviation:de-zeir', surface: 'דזעיר', expansion: 'דזעיר אנפין', renderings: ['of Zeir Anpin'], work_scope: 'kabbalah', breakdown: [{ hebrew: 'ד־', strict_renderings: ['of'] }, { hebrew: 'זעיר', strict_renderings: ['Zeir'] }] },
@@ -1208,184 +1200,12 @@ const fixedExpressions = [
       license: 'N/A - project lexical rule',
       license_url: 'local:grammar-rules',
       fields_used: ['closed-class Hebrew grammar form lookup', 'strict renderings', 'mechanical breakdown'],
-      notes: 'Project-maintained grammar rule for the Orot opening canary. No external dictionary text imported.',
+      notes: 'Project-maintained closed-class Hebrew grammar rule. No external dictionary text imported.',
     },
   },
 ];
 
 const fixedExpressionByNormalized = new Map(fixedExpressions.map((expression) => [expression.normalized_word, expression]));
-
-const projectTechnicalTermDefinitions = [
-  {
-    key: 'tokhen',
-    lemma: '\u05EA\u05D5\u05DB\u05DF',
-    renderings: ['content', 'substance'],
-    forms: ['\u05EA\u05D5\u05DB\u05DF', '\u05D4\u05EA\u05D5\u05DB\u05DF', '\u05D5\u05EA\u05D5\u05DB\u05DF', '\u05DE\u05EA\u05D5\u05DB\u05DF'],
-  },
-  {
-    key: 'netiyot',
-    lemma: '\u05E0\u05D8\u05D9\u05D5\u05EA',
-    renderings: ['tendencies', 'inclinations'],
-    forms: ['\u05E0\u05D8\u05D9\u05D5\u05EA', '\u05D4\u05E0\u05D8\u05D9\u05D5\u05EA'],
-  },
-  {
-    key: 'elohit',
-    lemma: '\u05D0\u05DC\u05D4\u05D9\u05EA',
-    renderings: ['divine', 'godly'],
-    forms: ['\u05D4\u05D0\u05DC\u05D4\u05D9\u05EA', '\u05D0\u05DC\u05D4\u05D9\u05EA'],
-  },
-  {
-    key: 'elohiyim',
-    lemma: '\u05D0\u05DC\u05D4\u05D9\u05D9\u05DD',
-    renderings: ['divine', 'godly'],
-    forms: ['\u05D4\u05D0\u05DC\u05D4\u05D9\u05D9\u05DD'],
-  },
-  {
-    key: 'elohiyot',
-    lemma: '\u05D0\u05DC\u05D4\u05D9\u05D5\u05EA',
-    renderings: ['divine', 'godly'],
-    forms: ['\u05D4\u05D0\u05DC\u05D4\u05D9\u05D5\u05EA'],
-  },
-  {
-    key: 'elohut',
-    lemma: '\u05D0\u05DC\u05D4\u05D5\u05EA',
-    renderings: ['divinity', 'godhood'],
-    forms: ['\u05D4\u05D0\u05DC\u05D4\u05D5\u05EA'],
-  },
-  {
-    key: 'idea',
-    lemma: '\u05D0\u05D9\u05D3\u05D9\u05D0\u05D4',
-    renderings: ['idea'],
-    forms: ['\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05D4', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05D5\u05EA'],
-  },
-  {
-    key: 'ideal',
-    lemma: '\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC',
-    renderings: ['ideal'],
-    forms: ['\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05EA', '\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05EA', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05DD'],
-  },
-  {
-    key: 'mussari',
-    lemma: '\u05DE\u05D5\u05E1\u05E8\u05D9\u05EA',
-    renderings: ['moral', 'ethical'],
-    forms: ['\u05D4\u05DE\u05D5\u05E1\u05E8\u05D9\u05EA', '\u05D4\u05DE\u05D5\u05E1\u05E8\u05D9\u05D5\u05EA'],
-  },
-  {
-    key: 'datit',
-    lemma: '\u05D3\u05EA\u05D9\u05EA',
-    renderings: ['religious'],
-    forms: ['\u05D3\u05EA\u05D9\u05EA', '\u05D4\u05D3\u05EA\u05D9\u05EA'],
-  },
-  {
-    key: 'zuhama',
-    lemma: '\u05D6\u05D5\u05D4\u05DE\u05D0',
-    renderings: ['filth', 'pollution'],
-    forms: ['\u05D6\u05D5\u05D4\u05DE\u05D0', '\u05D4\u05D6\u05D5\u05D4\u05DE\u05D0'],
-  },
-  {
-    key: 'hutzpa',
-    lemma: '\u05D7\u05D5\u05E6\u05E4\u05D0',
-    renderings: ['brazenness', 'insolence'],
-    forms: ['\u05D7\u05D5\u05E6\u05E4\u05D0', '\u05D4\u05D7\u05D5\u05E6\u05E4\u05D0'],
-  },
-  {
-    key: 'hashkafah',
-    lemma: '\u05D4\u05E9\u05E7\u05E4\u05D4',
-    renderings: ['outlook', 'perspective'],
-    forms: ['\u05D4\u05E9\u05E7\u05E4\u05D4', '\u05D4\u05D4\u05E9\u05E7\u05E4\u05D4'],
-  },
-  {
-    key: 'histori',
-    lemma: '\u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9',
-    renderings: ['historical'],
-    forms: ['\u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9', '\u05D4\u05D4\u05D9\u05E1\u05EA\u05D5\u05E8\u05D9', '\u05D4\u05D4\u05D9\u05E1\u05EA\u05D5\u05E8\u05D9\u05EA'],
-  },
-  {
-    key: 'historia',
-    lemma: '\u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9\u05D4',
-    renderings: ['history'],
-    forms: ['\u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9\u05D4', '\u05D4\u05D4\u05D9\u05E1\u05EA\u05D5\u05E8\u05D9\u05D4'],
-  },
-  {
-    key: 'yisraeli',
-    lemma: '\u05D9\u05E9\u05E8\u05D0\u05DC\u05D9',
-    renderings: ['Israelite', 'Israeli'],
-    forms: ['\u05D9\u05E9\u05E8\u05D0\u05DC\u05D9', '\u05D4\u05D9\u05E9\u05E8\u05D0\u05DC\u05D9\u05D9\u05DD', '\u05D4\u05D9\u05E9\u05E8\u05D0\u05DC\u05D9\u05D5\u05EA'],
-  },
-  {
-    key: 'homriyut',
-    lemma: '\u05D7\u05DE\u05E8\u05D9\u05D5\u05EA',
-    renderings: ['materiality', 'physicality'],
-    forms: ['\u05D7\u05DE\u05E8\u05D9\u05D5\u05EA', '\u05D4\u05D7\u05DE\u05E8\u05D9\u05D5\u05EA'],
-  },
-  {
-    key: 'homri',
-    lemma: '\u05D7\u05DE\u05E8',
-    renderings: ['material', 'physical'],
-    forms: ['\u05D7\u05DE\u05E8\u05D9\u05EA', '\u05D4\u05D7\u05DE\u05E8\u05D9\u05EA', '\u05D7\u05DE\u05E8\u05D9\u05D9\u05DD', '\u05D4\u05D7\u05DE\u05E8\u05D9\u05D9\u05DD'],
-  },
-  {
-    key: 'tzinorot',
-    lemma: '\u05E6\u05E0\u05D5\u05E8\u05D5\u05EA',
-    renderings: ['channels', 'conduits'],
-    forms: ['\u05E6\u05E0\u05D5\u05E8\u05D5\u05EA', '\u05D4\u05E6\u05E0\u05D5\u05E8\u05D5\u05EA'],
-  },
-  {
-    key: 'kultura',
-    lemma: '\u05E7\u05D5\u05DC\u05D8\u05D5\u05E8\u05D4',
-    renderings: ['culture'],
-    forms: ['\u05E7\u05D5\u05DC\u05D8\u05D5\u05E8\u05D4', '\u05D4\u05E7\u05D5\u05DC\u05D8\u05D5\u05E8\u05D4'],
-  },
-  {
-    key: 'idealiyut',
-    lemma: '\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA',
-    renderings: ['ideality', 'ideal qualities'],
-    forms: ['\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA', '\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA', '\u05D5\u05D4\u05D0\u05D9\u05D3\u05D9\u05D0\u05DC\u05D9\u05D5\u05EA'],
-  },
-  {
-    key: 'nishmati',
-    lemma: '\u05E0\u05E9\u05DE\u05EA\u05D9\u05EA',
-    renderings: ['soul-related', 'spiritual-soul'],
-    forms: ['\u05D4\u05E0\u05E9\u05DE\u05EA\u05D9\u05EA'],
-  },
-  {
-    key: 'mekori-prefixed',
-    lemma: '\u05DE\u05E7\u05D5\u05E8\u05D9\u05EA',
-    renderings: ['original', 'source-like'],
-    forms: ['\u05D4\u05DE\u05E7\u05D5\u05E8\u05D9\u05EA'],
-  },
-  {
-    key: 'pnimi',
-    lemma: '\u05E4\u05E0\u05D9\u05DE\u05D9',
-    renderings: ['inner', 'internal', 'inward'],
-    forms: ['\u05E4\u05E0\u05D9\u05DE\u05D9', '\u05E4\u05E0\u05D9\u05DE\u05D9\u05EA', '\u05E4\u05E0\u05D9\u05DE\u05D9\u05D5\u05EA', '\u05D4\u05E4\u05E0\u05D9\u05DE\u05D9\u05D5\u05EA'],
-  },
-  {
-    key: 'machshavah',
-    lemma: '\u05DE\u05D7\u05E9\u05D1\u05D4',
-    renderings: ['thought', 'thinking', 'idea', 'contemplation'],
-    forms: [
-      '\u05DE\u05D7\u05E9\u05D1\u05D4',
-      '\u05D4\u05DE\u05D7\u05E9\u05D1\u05D4',
-      '\u05DE\u05D7\u05E9\u05D1\u05EA',
-      '\u05DE\u05D7\u05E9\u05D1\u05D5\u05EA',
-      '\u05D1\u05DE\u05D7\u05E9\u05D1\u05D4',
-    ],
-  },
-  {
-    key: 'segulot',
-    lemma: '\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA',
-    renderings: ['quality', 'property', 'special quality', 'distinctive quality', 'treasured quality'],
-    forms: [
-      '\u05E1\u05D2\u05D5\u05DC\u05D4',
-      '\u05E1\u05D2\u05D5\u05DC\u05EA',
-      '\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA',
-      '\u05E1\u05B0\u05D2\u05BB\u05DC\u05D5\u05B9\u05EA',
-      '\u05D1\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA',
-      '\u05D1\u05B4\u05BC\u05E1\u05B0\u05D2\u05BB\u05DC\u05D5\u05B9\u05EA',
-    ],
-  },
-];
 
 const prefixRules = new Map([
   ['\u05D5', { hebrew: '\u05D5\u05BE', renderings: ['and'] }],
@@ -1529,10 +1349,6 @@ function entryLayerId(entry) {
   if (String(entry.entry_id || '').startsWith('lex-midrash-formula-')
     || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-midrash-'))) {
     return 'project-midrash-formulas';
-  }
-  if (String(entry.entry_id || '').startsWith('lex-project-technical-term-')
-    || (entry.source_rows || []).some((row) => String(row.source_id || '').startsWith('project-technical:'))) {
-    return 'project-technical-terms';
   }
   const families = unique((entry.source_rows || []).map((row) => row.source_family || row.source_name).filter(Boolean));
   if (families.some((family) => family === 'kaikki' || family === 'wiktionary')) return 'kaikki-wiktionary-cc-by-sa-gfdl';
@@ -1898,78 +1714,6 @@ function ensureProjectZoharAriTechnicalTermEntries(lexicon) {
   return changed;
 }
 
-function makeProjectTechnicalTermEntry(definition) {
-  const lemma = normalizeHebrewPunctuation(definition.lemma);
-  const workScope = definition.work_scope || 'orot';
-  const sourceId = `project-technical:${workScope}:${definition.key}`;
-  const entryId = stableId('lex-project-technical-term', sourceId);
-  const sourceRowKey = `workspace|${sourceId}`;
-  const surfaceForms = unique([lemma, ...(definition.forms || [])].map(normalizeHebrewPunctuation));
-  const possibleEntry = {
-    entry_key: sourceId,
-    lemma,
-    match_key: normalizeHebrewToken(lemma),
-    source_name: 'Project scoped technical term table',
-    source_family: 'workspace',
-    source_id: sourceId,
-    transliteration: '',
-    strict_renderings: definition.renderings,
-    root: '',
-    root_transliteration: '',
-    root_meaning: [],
-    context_role: 'likely_contextual',
-    relation_label: 'scoped project technical term',
-    source_row_keys: [sourceRowKey],
-  };
-  const sourceRow = {
-    source_name: 'Project scoped technical term table',
-    source_family: 'workspace',
-    source_id: sourceId,
-    source_url: 'local:project-technical-term-table',
-    license: 'project-authored / CC0',
-    license_url: 'https://creativecommons.org/publicdomain/zero/1.0/',
-    fields_used: ['surface form', 'mechanical normalization', 'short lexical renderings'],
-    notes: 'Project-authored scoped technical term row. Short lexical renderings only; no external dictionary prose imported.',
-  };
-  return {
-    entry_id: entryId,
-    hebrew_word: lemma,
-    surface_forms: surfaceForms,
-    transliteration: '',
-    strict_renderings: definition.renderings,
-    root: '',
-    root_transliteration: '',
-    root_meaning: [],
-    disambiguation_status: 'likely',
-    context_note: 'Resolved as a scoped project technical term.',
-    work_scope: workScope,
-    possible_entries_truncated: 0,
-    possible_entries: [possibleEntry],
-    source_rows: [sourceRow],
-  };
-}
-
-function ensureProjectTechnicalTermEntries(lexicon) {
-  const entries = Array.isArray(lexicon.entries) ? lexicon.entries : [];
-  const generatedSourceIds = new Set(projectTechnicalTermDefinitions.map((definition) => (
-    `project-technical:${definition.work_scope || 'orot'}:${definition.key}`
-  )));
-  const withoutGeneratedTerms = entries.filter((entry) => {
-    const ids = [
-      ...(entry?.source_rows || []).map((row) => row.source_id),
-      ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
-    ].filter(Boolean).map(String);
-    return !ids.some((sourceId) => generatedSourceIds.has(sourceId));
-  });
-  const nextEntries = [
-    ...withoutGeneratedTerms,
-    ...projectTechnicalTermDefinitions.map(makeProjectTechnicalTermEntry),
-  ];
-  const changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
-  lexicon.entries = nextEntries;
-  return changed;
-}
-
 function sourceFamiliesFor(row) {
   const entry = lexiconById.get(row.lexicon_entry_id);
   return unique((entry?.source_rows || []).map((sourceRow) => sourceRow.source_family || sourceRow.source_name));
@@ -2033,7 +1777,6 @@ function conservativeBaseRenderings(entry, normalized, workId) {
   }
   const direct = entryRenderings(entry);
   if (direct.length) return direct;
-  if (workId !== 'orot') return [];
   return exactCandidateRenderings(entry, normalized);
 }
 
@@ -2167,14 +1910,6 @@ function isRabbinicTitleWork(workId) {
     || String(workId || '').startsWith('beur-hagra-on-jerusalem-talmud-');
 }
 
-function isProjectTechnicalTermEntry(entry) {
-  const sourceIds = [
-    ...(entry?.source_rows || []).map((row) => row.source_id),
-    ...(entry?.possible_entries || []).map((row) => row.source_id || row.entry_key),
-  ].filter(Boolean).map(String);
-  return sourceIds.some((sourceId) => sourceId.startsWith('project-technical:'));
-}
-
 function isProjectMidrashFormulaEntry(entry) {
   const sourceIds = [
     ...(entry?.source_rows || []).map((row) => row.source_id),
@@ -2194,8 +1929,6 @@ function lookupLexiconEntryId(normalized, workId) {
       return projectMidrashEntry.entry_id;
     }
   }
-  const projectTechnicalEntry = candidates.find(isProjectTechnicalTermEntry);
-  if (projectTechnicalEntry) return projectTechnicalEntry.entry_id;
   return candidates[0].entry_id || '';
 }
 
@@ -2275,7 +2008,6 @@ function matchMethodForEntry(entry, fallback = 'direct') {
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-aramaic:'))) return 'project_aramaic_grammar';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-zohar-ari-technical:'))) return 'project_zohar_ari_technical';
   if (sourceIds.some((sourceId) => sourceId.startsWith('project-midrash-'))) return 'project_midrash_formula';
-  if (sourceIds.some((sourceId) => sourceId.startsWith('project-technical:'))) return 'project_technical';
   return fallback;
 }
 
@@ -2311,7 +2043,7 @@ function analyzeAffixSurfaceForm(surfaceWord, normalizedWord, workId) {
     const entry = lexiconById.get(entryId);
     const matchMethod = matchMethodForEntry(entry, 'direct');
     if (matchMethod === 'project_function_word' && !isAllowedProjectFunctionAffix(attempt)) continue;
-    const trustedProjectBase = ['project_technical', 'project_function_word', 'project_abbreviation', 'project_midrash_formula'].includes(matchMethod);
+    const trustedProjectBase = ['project_function_word', 'project_abbreviation', 'project_midrash_formula'].includes(matchMethod);
     if (!trustedProjectBase && (observedNormalizedCounts.get(attempt.baseNormalized) || 0) < 5) continue;
     const baseRenderings = conservativeBaseRenderings(entry, attempt.baseNormalized, workId);
     if (!baseRenderings.length) continue;
@@ -2417,96 +2149,6 @@ function analyzeSurfaceForm(surfaceWord, entry) {
       breakdown: entry?.breakdown || [],
     };
   }
-  if (sourceIds.some((sourceId) => sourceId === 'project-technical:orot:machshavah')) {
-    const normalized = normalizeHebrewToken(surfaceWord);
-    const baseBreakdown = {
-      hebrew: '\u05DE\u05D7\u05E9\u05D1\u05D4',
-      strict_renderings: ['thought', 'thinking', 'idea', 'contemplation'],
-    };
-    const machshavahForms = {
-      ['\u05DE\u05D7\u05E9\u05D1\u05D4']: {
-        surface_renderings: ['thought', 'thinking', 'idea', 'contemplation'],
-        breakdown: [],
-      },
-      ['\u05D4\u05DE\u05D7\u05E9\u05D1\u05D4']: {
-        surface_renderings: ['the thought', 'the thinking', 'the idea', 'the contemplation'],
-        breakdown: [
-          { hebrew: '\u05D4\u05BE', strict_renderings: ['the'] },
-          baseBreakdown,
-        ],
-      },
-      ['\u05DE\u05D7\u05E9\u05D1\u05EA']: {
-        surface_renderings: ['thought of', 'thinking of', 'idea of', 'contemplation of'],
-        breakdown: [
-          {
-            hebrew: '\u05DE\u05D7\u05E9\u05D1\u05EA',
-            strict_renderings: ['construct form of \u05DE\u05D7\u05E9\u05D1\u05D4'],
-          },
-        ],
-      },
-      ['\u05DE\u05D7\u05E9\u05D1\u05D5\u05EA']: {
-        surface_renderings: ['thoughts', 'ideas', 'contemplations'],
-        breakdown: [
-          {
-            hebrew: '\u05DE\u05D7\u05E9\u05D1\u05D5\u05EA',
-            strict_renderings: ['plural form of \u05DE\u05D7\u05E9\u05D1\u05D4'],
-          },
-        ],
-      },
-      ['\u05D1\u05DE\u05D7\u05E9\u05D1\u05D4']: {
-        surface_renderings: ['in thought', 'with thought', 'by thought', 'in thinking', 'with thinking', 'by thinking'],
-        breakdown: [
-          { hebrew: '\u05D1\u05BE', strict_renderings: ['in', 'with', 'by'] },
-          baseBreakdown,
-        ],
-      },
-    };
-    const formAnalysis = machshavahForms[normalized];
-    if (formAnalysis) {
-      return {
-        surface_transliteration: '',
-        surface_renderings: formAnalysis.surface_renderings,
-        surface_context_status: 'resolved_project_technical',
-        surface_context_note: 'Resolved as the scoped machshavah/thought technical field.',
-        breakdown: formAnalysis.breakdown,
-      };
-    }
-  }
-  if (sourceIds.some((sourceId) => sourceId === 'project-technical:orot:segulot')) {
-    const normalized = normalizeHebrewToken(surfaceWord);
-    const normalizedWithQubutsMater = normalizeHebrewTokenWithQubutsMater(surfaceWord);
-    const isBetSegulot = normalized === '\u05D1\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA'
-      || normalized === '\u05D1\u05E1\u05D2\u05DC\u05D5\u05EA'
-      || normalizedWithQubutsMater === '\u05D1\u05E1\u05D2\u05D5\u05DC\u05D5\u05EA';
-    if (isBetSegulot) {
-      return {
-        surface_transliteration: '',
-        surface_renderings: ['with qualities', 'with properties', 'in qualities', 'by qualities'],
-        surface_context_status: 'resolved_prefix_base',
-        surface_context_note: 'Resolved as bet prefix plus the scoped technical base term.',
-        breakdown: [
-          {
-            hebrew: '\u05D1\u05B4\u05BC\u05BE',
-            strict_renderings: ['in', 'with', 'by'],
-          },
-          {
-            hebrew: '\u05E1\u05B0\u05D2\u05BB\u05DC\u05D5\u05B9\u05EA',
-            strict_renderings: ['qualities', 'properties', 'special qualities'],
-          },
-        ],
-      };
-    }
-  }
-  if (sourceIds.some((sourceId) => sourceId.startsWith('project-technical:'))) {
-    return {
-      surface_transliteration: '',
-      surface_renderings: entry?.strict_renderings || [],
-      surface_context_status: 'resolved_project_technical',
-      surface_context_note: entry?.context_note || 'Resolved as a scoped project technical term.',
-      breakdown: entry?.breakdown || [],
-    };
-  }
-
   const likely = (entry?.possible_entries || []).find((possibleEntry) => possibleEntry.context_role === 'likely_contextual');
   const lamed = getLeadingLamedBase(surfaceWord);
   if (!likely || !lamed) return null;
@@ -2565,8 +2207,7 @@ const abbreviationEntriesChanged = ensureProjectAbbreviationEntries(lexicon);
 const midrashFormulaEntriesChanged = ensureProjectMidrashFormulaEntries(lexicon);
 const aramaicGrammarEntriesChanged = ensureProjectAramaicGrammarEntries(lexicon);
 const zoharAriTermEntriesChanged = ensureProjectZoharAriTechnicalTermEntries(lexicon);
-const projectTechnicalEntriesChanged = ensureProjectTechnicalTermEntries(lexicon);
-const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || midrashFormulaEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged || projectTechnicalEntriesChanged;
+const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || midrashFormulaEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged;
 if (!isTargetedBuild || lexiconChanged) {
   writeLexicon(lexicon);
 }
@@ -2882,11 +2523,10 @@ const topRemainingUnmatched = unmatchedForms
   .sort((a, b) => b.occurrence_count - a.occurrence_count || a.surface_word.localeCompare(b.surface_word, 'he'))
   .slice(0, 50)
   .map((row) => `${row.occurrence_count}x ${formatUnmatchedSample(row)}`);
-const testRefs = [
-  'Orot, Lights from Darkness, Land of Israel 1:1',
-  'Orot, Lights from Darkness, War 1:1',
-  'Orot, Lights from Darkness, Lights of Rebirth 70:5',
-];
+const testRefs = matchedForms
+  .slice(0, 3)
+  .flatMap((row) => (row.refs || []).slice(0, 1))
+  .filter(Boolean);
 
 fs.mkdirSync(path.dirname(reportPath), { recursive: true });
 fs.writeFileSync(reportPath, `# Sitewide Lexical Build Report
@@ -2935,7 +2575,7 @@ ${formatList(unmatchedSamples)}
 
 ${formatList(topRemainingUnmatched)}
 
-## Exact Orot Refs To Test
+## Sample Refs To Test
 
 ${formatList(testRefs)}
 `, 'utf8');

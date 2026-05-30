@@ -687,6 +687,11 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .work-card .meta { display: block; margin-top: 6px; }')
   [void]$Builder.AppendLine('    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }')
   [void]$Builder.AppendLine('    .work-card.placeholder-card { opacity: 0.72; }')
+  [void]$Builder.AppendLine('    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }')
+  [void]$Builder.AppendLine('    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }')
+  [void]$Builder.AppendLine('    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }')
+  [void]$Builder.AppendLine('    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }')
+  [void]$Builder.AppendLine('    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }')
   [void]$Builder.AppendLine('    .library-stack { display: grid; gap: 14px; }')
   [void]$Builder.AppendLine('    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }')
   [void]$Builder.AppendLine('    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }')
@@ -703,6 +708,7 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }')
   [void]$Builder.AppendLine('    .library-grid.direct { padding: 0; }')
   [void]$Builder.AppendLine('    .library-grid .work-card { min-height: 116px; padding: 14px; }')
+  [void]$Builder.AppendLine('    [hidden] { display: none !important; }')
   [void]$Builder.AppendLine('    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }')
   [void]$Builder.AppendLine('    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }')
   [void]$Builder.AppendLine('    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }')
@@ -827,7 +833,6 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();')
   [void]$Builder.AppendLine('      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");')
   [void]$Builder.AppendLine('      const localSourceUrlMap = {')
-  [void]$Builder.AppendLine('        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",')
   [void]$Builder.AppendLine('        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",')
   [void]$Builder.AppendLine('        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",')
   [void]$Builder.AppendLine('        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",')
@@ -1029,8 +1034,9 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        const strictEntries = strictEntriesForView(view);')
   [void]$Builder.AppendLine('        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));')
   [void]$Builder.AppendLine('        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));')
-  [void]$Builder.AppendLine('        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };')
-  [void]$Builder.AppendLine('        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };')
+  [void]$Builder.AppendLine('        const lemmaLikely = cleanStrictRenderings(strictEntries.flatMap((entry) => entry.strict_renderings || []));')
+  [void]$Builder.AppendLine('        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]), lemma: lemmaLikely };')
+  [void]$Builder.AppendLine('        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely, lemma: lemmaLikely };')
   [void]$Builder.AppendLine('      };')
   [void]$Builder.AppendLine('      const strictEntryKeys = (view) => {')
   [void]$Builder.AppendLine('        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));')
@@ -1165,6 +1171,7 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }')
       [void]$Builder.AppendLine('        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }')
       [void]$Builder.AppendLine('        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }')
+      [void]$Builder.AppendLine('        else if (status === "Strict Lemma") { score = 78; reasons.push("strict lemma row"); }')
       [void]$Builder.AppendLine('        else { score = 84; reasons.push("strict Hebrew row"); }')
       [void]$Builder.AppendLine('        const rendered = cleanStrictRenderings(renderings || []);')
       [void]$Builder.AppendLine('        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }')
@@ -1186,8 +1193,8 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);')
       [void]$Builder.AppendLine('        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }')
       [void]$Builder.AppendLine('        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }')
-      [void]$Builder.AppendLine('        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };')
-      [void]$Builder.AppendLine('        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };')
+      [void]$Builder.AppendLine('        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, "Strict Lemma": 95, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };')
+      [void]$Builder.AppendLine('        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, "Strict Lemma": 50, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };')
       [void]$Builder.AppendLine('        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);')
       [void]$Builder.AppendLine('        const display = applyDisplayBoost(status, rawScore, view);')
       [void]$Builder.AppendLine('        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };')
@@ -1227,7 +1234,7 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('      const DISPLAY_THRESHOLD = 50;')
       [void]$Builder.AppendLine('      const MAX_VISIBLE_CLAIMS = 5;')
       [void]$Builder.AppendLine('      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);')
-      [void]$Builder.AppendLine('      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };')
+      [void]$Builder.AppendLine('      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, "Strict Lemma": 2, Potential: 3, Related: 4, Caution: 5, Unresolved: 6 };')
       [void]$Builder.AppendLine('      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));')
       [void]$Builder.AppendLine('      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;')
       [void]$Builder.AppendLine('      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);')
@@ -1297,8 +1304,9 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('        if (!visibleRows.length) { node.textContent = "N/A"; return; }')
       [void]$Builder.AppendLine('        node.appendChild(list);')
       [void]$Builder.AppendLine('      };')
+      [void]$Builder.AppendLine('      const placeholderClaim = (status, hebrew, message) => makeClaim("Unresolved", hebrew || "Clicked form", [message], [], "", { statusOverride: status });')
       [void]$Builder.AppendLine('      const strictClaimsForView = (view, strictBuckets) => {')
-      [void]$Builder.AppendLine('        const claims = { hebrew: [], aramaic: [] };')
+      [void]$Builder.AppendLine('        const claims = { hebrew: [], aramaic: [], lemma: [] };')
       [void]$Builder.AppendLine('        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);')
       [void]$Builder.AppendLine('        if (surfaceRenderings.length) {')
       [void]$Builder.AppendLine('          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";')
@@ -1310,6 +1318,7 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('          const bucket = strictBuckets[bucketName] || [];')
       [void]$Builder.AppendLine('          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));')
       [void]$Builder.AppendLine('          if (!renderings.length) return;')
+      [void]$Builder.AppendLine('          claims.lemma.push(claimFromEntry(view, entry, "Strict Lemma", renderings));')
       [void]$Builder.AppendLine('          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;')
       [void]$Builder.AppendLine('          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));')
       [void]$Builder.AppendLine('        });')
@@ -1317,7 +1326,7 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));')
       [void]$Builder.AppendLine('          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));')
       [void]$Builder.AppendLine('        }')
-      [void]$Builder.AppendLine('        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };')
+      [void]$Builder.AppendLine('        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic), lemma: uniqueClaims(claims.lemma) };')
       [void]$Builder.AppendLine('      };')
       [void]$Builder.AppendLine('      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });')
       [void]$Builder.AppendLine('      const uniqueSourceGroups = (groups) => {')
@@ -1332,9 +1341,9 @@ function Append-LexicalHudScript {
       [void]$Builder.AppendLine('      };')
       [void]$Builder.AppendLine('      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));')
       [void]$Builder.AppendLine('      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));')
-      [void]$Builder.AppendLine('      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);')
+      [void]$Builder.AppendLine('      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || [])]);')
       [void]$Builder.AppendLine('      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {')
-      [void]$Builder.AppendLine('        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);')
+      [void]$Builder.AppendLine('        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);')
       [void]$Builder.AppendLine('      };')
       [void]$Builder.AppendLine('      const appendSecondarySources = (container, view, entries, label) => {')
       [void]$Builder.AppendLine('        const groups = sourceGroupsForEntries(view, entries);')
@@ -1446,11 +1455,14 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        button.setAttribute("aria-pressed", "true");')
   [void]$Builder.AppendLine('        hud.hidden = false;')
   [void]$Builder.AppendLine('        positionHudNearButton(button);')
-  [void]$Builder.AppendLine('        setText(hud, "[data-hud-word]", button.textContent.trim());')
-  [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
-  [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);')
-  [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-caution-row]", true);')
-  [void]$Builder.AppendLine('        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);')
+      [void]$Builder.AppendLine('        setText(hud, "[data-hud-word]", button.textContent.trim());')
+      [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
+      [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);')
+      [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-lemma-strict-row]", false);')
+      [void]$Builder.AppendLine('        setRowHidden(hud, "[data-hud-caution-row]", true);')
+      [void]$Builder.AppendLine('        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);')
+      [void]$Builder.AppendLine('        setList(hud, "[data-hud-aramaic-strict]", ["Loading lexical entry..."]);')
+      [void]$Builder.AppendLine('        setList(hud, "[data-hud-lemma-strict]", ["Loading lexical entry..."]);')
   [void]$Builder.AppendLine('        renderBreakdown(hud, {});')
   [void]$Builder.AppendLine('        renderPotentialAndRelatedEntries(hud, {}, false, false);')
   [void]$Builder.AppendLine('        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);')
@@ -1460,12 +1472,15 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          setText(hud, "[data-hud-word]", view.hebrew_word);')
   [void]$Builder.AppendLine('          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);')
   [void]$Builder.AppendLine('          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };')
-  [void]$Builder.AppendLine('          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };')
-  [void]$Builder.AppendLine('          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;')
-  [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);')
-  [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);')
-  [void]$Builder.AppendLine('          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);')
-  [void]$Builder.AppendLine('          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);')
+      [void]$Builder.AppendLine('          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [], lemma: [] };')
+      [void]$Builder.AppendLine('          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0 || strictClaims.lemma.length > 0;')
+      [void]$Builder.AppendLine('          const clickedForm = view.hebrew_word || view.surface_word || "Clicked form";')
+      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
+      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);')
+      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);')
+      [void]$Builder.AppendLine('          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew.length ? strictClaims.hebrew : [placeholderClaim("Strict Hebrew", clickedForm, "No Hebrew strict match yet.")]);')
+      [void]$Builder.AppendLine('          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic.length ? strictClaims.aramaic : [placeholderClaim("Strict Aramaic", clickedForm, "No Aramaic strict match yet.")]);')
+      [void]$Builder.AppendLine('          appendClaimRows(hud.querySelector("[data-hud-lemma-strict]"), strictClaims.lemma.length ? strictClaims.lemma : [placeholderClaim("Strict Lemma", clickedForm, "No lemma strict match yet.")]);')
   [void]$Builder.AppendLine('          renderBreakdown(hud, view);')
   [void]$Builder.AppendLine('          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);')
   [void]$Builder.AppendLine('          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));')
@@ -1473,10 +1488,13 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('          if (details) details.open = false;')
   [void]$Builder.AppendLine('          positionHudNearButton(button);')
   [void]$Builder.AppendLine('        } catch (error) {')
-  [void]$Builder.AppendLine('          console.error(error);')
-  [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
-  [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);')
-  [void]$Builder.AppendLine('          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);')
+      [void]$Builder.AppendLine('          console.error(error);')
+      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);')
+      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);')
+      [void]$Builder.AppendLine('          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);')
+      [void]$Builder.AppendLine('          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);')
+      [void]$Builder.AppendLine('          setList(hud, "[data-hud-aramaic-strict]", ["No Aramaic strict match yet."]);')
+      [void]$Builder.AppendLine('          setList(hud, "[data-hud-lemma-strict]", ["No lemma strict match yet."]);')
   [void]$Builder.AppendLine('          positionHudNearButton(button);')
   [void]$Builder.AppendLine('        }')
   [void]$Builder.AppendLine('      };')
@@ -2305,20 +2323,94 @@ function Append-FeatureCard {
   }
 }
 
+function Get-LibrarySearchText {
+  param(
+    [object]$Source,
+    [string]$Group = '',
+    [string]$Subgroup = ''
+  )
+
+  $parts = New-Object System.Collections.Generic.List[string]
+  foreach ($value in @(
+      $Source.work_title,
+      $Source.he_title,
+      $Source.work_id,
+      $Source.work_slug,
+      $Source.display_label,
+      $Source.base_work_title,
+      $Source.source_system,
+      $Group,
+      $Subgroup
+    )) {
+    if ($value) {
+      $parts.Add([string]$value)
+    }
+  }
+  return ($parts -join ' ')
+}
+
 function Append-LibraryWorkCard {
   param(
     [System.Text.StringBuilder]$Builder,
     [object]$Source,
-    [string]$HrefPrefix = ''
+    [string]$HrefPrefix = '',
+    [string]$Group = '',
+    [string]$Subgroup = ''
   )
 
-  [void]$Builder.AppendLine("              <a class=""work-card"" href=""$HrefPrefix$($Source.work_slug)/"">")
+  $searchText = Encode-Html (Get-LibrarySearchText -Source $Source -Group $Group -Subgroup $Subgroup)
+  [void]$Builder.AppendLine("              <a class=""work-card"" data-library-card data-search-text=""$searchText"" href=""$HrefPrefix$($Source.work_slug)/"">")
   [void]$Builder.AppendLine("                <strong>$(Encode-Html $Source.work_title)</strong>")
   if ($Source.display_label) {
     [void]$Builder.AppendLine("                <span class=""work-label"">$(Encode-Html $Source.display_label)</span>")
   }
   [void]$Builder.AppendLine("                <span class=""meta"">$(Get-SourceUnitCount -Source $Source) source units</span>")
   [void]$Builder.AppendLine('              </a>')
+}
+
+function Append-LibrarySearchScript {
+  param([System.Text.StringBuilder]$Builder)
+
+  [void]$Builder.AppendLine('  <script>')
+  [void]$Builder.AppendLine('    (() => {')
+  [void]$Builder.AppendLine('      const input = document.getElementById("library-search");')
+  [void]$Builder.AppendLine('      if (!input) return;')
+  [void]$Builder.AppendLine('      const cards = Array.from(document.querySelectorAll("[data-library-card]"));')
+  [void]$Builder.AppendLine('      const shelves = Array.from(document.querySelectorAll(".library-shelf, .library-subgroup")).map((el) => ({ el, open: el.hasAttribute("open") }));')
+  [void]$Builder.AppendLine('      const count = document.getElementById("library-search-count");')
+  [void]$Builder.AppendLine('      const empty = document.getElementById("library-search-empty");')
+  [void]$Builder.AppendLine('      const normalize = (value) => (value || "").toLocaleLowerCase();')
+  [void]$Builder.AppendLine('      const plural = (countValue, word) => `${countValue} ${word}${countValue === 1 ? "" : "s"}`;')
+  [void]$Builder.AppendLine('      const update = () => {')
+  [void]$Builder.AppendLine('        const query = normalize(input.value.trim());')
+  [void]$Builder.AppendLine('        let visibleCount = 0;')
+  [void]$Builder.AppendLine('        for (const card of cards) {')
+  [void]$Builder.AppendLine('          const haystack = normalize(card.dataset.searchText || card.textContent);')
+  [void]$Builder.AppendLine('          const visible = !query || haystack.includes(query);')
+  [void]$Builder.AppendLine('          card.hidden = !visible;')
+  [void]$Builder.AppendLine('          if (visible) visibleCount += 1;')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        for (const shelf of shelves) {')
+  [void]$Builder.AppendLine('          const hasVisibleCard = Array.from(shelf.el.querySelectorAll("[data-library-card]")).some((card) => !card.hidden);')
+  [void]$Builder.AppendLine('          shelf.el.hidden = Boolean(query) && !hasVisibleCard;')
+  [void]$Builder.AppendLine('          if (query && hasVisibleCard) {')
+  [void]$Builder.AppendLine('            shelf.el.open = true;')
+  [void]$Builder.AppendLine('          } else if (!query) {')
+  [void]$Builder.AppendLine('            shelf.el.open = shelf.open;')
+  [void]$Builder.AppendLine('          }')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        if (count) {')
+  [void]$Builder.AppendLine('          count.textContent = query ? `${plural(visibleCount, "matching work")}.` : `Search ${plural(cards.length, "work")}.`;')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('        if (empty) {')
+  [void]$Builder.AppendLine('          empty.hidden = !query || visibleCount > 0;')
+  [void]$Builder.AppendLine('        }')
+  [void]$Builder.AppendLine('      };')
+  [void]$Builder.AppendLine('      input.addEventListener("input", update);')
+  [void]$Builder.AppendLine('      input.addEventListener("search", update);')
+  [void]$Builder.AppendLine('      update();')
+  [void]$Builder.AppendLine('    })();')
+  [void]$Builder.AppendLine('  </script>')
 }
 
 function Append-LibrarySections {
@@ -2363,7 +2455,7 @@ function Append-LibrarySections {
     if ($subgroups.Count -le 1) {
       [void]$Builder.AppendLine('              <div class="library-grid direct">')
       foreach ($source in @($groupSources | Sort-Object work_title)) {
-        Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix
+        Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix -Group $homeGroup.Name
       }
       [void]$Builder.AppendLine('              </div>')
     } else {
@@ -2381,7 +2473,7 @@ function Append-LibrarySections {
         [void]$Builder.AppendLine('                </summary>')
         [void]$Builder.AppendLine('                <div class="library-grid">')
         foreach ($source in @($subgroupSources | Sort-Object work_title)) {
-          Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix
+          Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix -Group $homeGroup.Name -Subgroup $subgroup.Name
         }
         [void]$Builder.AppendLine('                </div>')
         [void]$Builder.AppendLine('              </details>')
@@ -2405,7 +2497,7 @@ function Append-LibrarySections {
     [void]$Builder.AppendLine('            <div class="library-shelf-body">')
     [void]$Builder.AppendLine('              <div class="library-grid direct">')
     foreach ($source in @($internalSources | Sort-Object work_title)) {
-      Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix
+      Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix -Group 'Additional archive'
     }
     [void]$Builder.AppendLine('              </div>')
     [void]$Builder.AppendLine('            </div>')
@@ -2488,10 +2580,17 @@ function New-LibraryPageHtml {
   [void]$page.AppendLine("        <p class=""meta"">$corpusSummary</p>")
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('      <div style="padding:22px">')
+  [void]$page.AppendLine('        <div class="library-tools" role="search">')
+  [void]$page.AppendLine('          <label for="library-search">Search library</label>')
+  [void]$page.AppendLine('          <input id="library-search" class="library-search" type="search" placeholder="Search Ezekiel, Aggadat Bereshit, Talmud, Zohar..." autocomplete="off">')
+  [void]$page.AppendLine('          <p id="library-search-count" class="meta">Search works.</p>')
+  [void]$page.AppendLine('        </div>')
+  [void]$page.AppendLine('        <p id="library-search-empty" class="library-empty" hidden>No matching works.</p>')
   Append-LibrarySections -Builder $page -Sources $Sources -HrefPrefix $HrefPrefix
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('    </div>')
   [void]$page.AppendLine('  </main>')
+  Append-LibrarySearchScript -Builder $page
   [void]$page.AppendLine('</body>')
   [void]$page.AppendLine('</html>')
   return $page.ToString()
@@ -2827,7 +2926,8 @@ foreach ($source in $renderSources) {
     [void]$page.AppendLine('    <dl class="lexical-fields">')
     [void]$page.AppendLine('      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>')
     [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>')
-    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>')
+    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-aramaic-strict-row><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>')
+    [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-lemma-strict-row><dt>Strict Lemma</dt><dd data-hud-lemma-strict>N/A</dd></div>')
     [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>')
     [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>')
     [void]$page.AppendLine('      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>')

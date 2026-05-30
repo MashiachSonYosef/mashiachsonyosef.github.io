@@ -31,6 +31,11 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -47,6 +52,7 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -4538,7 +4544,8 @@
     <dl class="lexical-fields">
       <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
       <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-lemma-strict-row><dt>Strict Lemma</dt><dd data-hud-lemma-strict>N/A</dd></div>
       <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
       <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
       <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
@@ -4570,7 +4577,6 @@
       const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
       const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
       const localSourceUrlMap = {
-        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
         "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
         "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
@@ -4772,8 +4778,9 @@
         const strictEntries = strictEntriesForView(view);
         const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
         const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+        const lemmaLikely = cleanStrictRenderings(strictEntries.flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]), lemma: lemmaLikely };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely, lemma: lemmaLikely };
       };
       const strictEntryKeys = (view) => {
         return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
@@ -4908,6 +4915,7 @@
         else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
         else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
         else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else if (status === "Strict Lemma") { score = 78; reasons.push("strict lemma row"); }
         else { score = 84; reasons.push("strict Hebrew row"); }
         const rendered = cleanStrictRenderings(renderings || []);
         if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
@@ -4929,8 +4937,8 @@
         if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
         if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
         if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, "Strict Lemma": 95, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, "Strict Lemma": 50, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
         const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
         const display = applyDisplayBoost(status, rawScore, view);
         return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
@@ -4970,7 +4978,7 @@
       const DISPLAY_THRESHOLD = 50;
       const MAX_VISIBLE_CLAIMS = 5;
       const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, "Strict Lemma": 2, Potential: 3, Related: 4, Caution: 5, Unresolved: 6 };
       const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
       const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
       const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
@@ -5040,8 +5048,9 @@
         if (!visibleRows.length) { node.textContent = "N/A"; return; }
         node.appendChild(list);
       };
+      const placeholderClaim = (status, hebrew, message) => makeClaim("Unresolved", hebrew || "Clicked form", [message], [], "", { statusOverride: status });
       const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [] };
+        const claims = { hebrew: [], aramaic: [], lemma: [] };
         const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
         if (surfaceRenderings.length) {
           const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
@@ -5053,6 +5062,7 @@
           const bucket = strictBuckets[bucketName] || [];
           const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
           if (!renderings.length) return;
+          claims.lemma.push(claimFromEntry(view, entry, "Strict Lemma", renderings));
           if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
           claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
         });
@@ -5060,7 +5070,7 @@
           if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
           if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
         }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic), lemma: uniqueClaims(claims.lemma) };
       };
       const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
       const uniqueSourceGroups = (groups) => {
@@ -5075,9 +5085,9 @@
       };
       const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
       const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || [])]);
       const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
       };
       const appendSecondarySources = (container, view, entries, label) => {
         const groups = sourceGroupsForEntries(view, entries);
@@ -5191,9 +5201,12 @@
         positionHudNearButton(button);
         setText(hud, "[data-hud-word]", button.textContent.trim());
         setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
+        setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
         setRowHidden(hud, "[data-hud-caution-row]", true);
         setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        setList(hud, "[data-hud-aramaic-strict]", ["Loading lexical entry..."]);
+        setList(hud, "[data-hud-lemma-strict]", ["Loading lexical entry..."]);
         renderBreakdown(hud, {});
         renderPotentialAndRelatedEntries(hud, {}, false, false);
         renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
@@ -5203,12 +5216,15 @@
           setText(hud, "[data-hud-word]", view.hebrew_word);
           const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
           const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [], lemma: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0 || strictClaims.lemma.length > 0;
+          const clickedForm = view.hebrew_word || view.surface_word || "Clicked form";
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
+          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew.length ? strictClaims.hebrew : [placeholderClaim("Strict Hebrew", clickedForm, "No Hebrew strict match yet.")]);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic.length ? strictClaims.aramaic : [placeholderClaim("Strict Aramaic", clickedForm, "No Aramaic strict match yet.")]);
+          appendClaimRows(hud.querySelector("[data-hud-lemma-strict]"), strictClaims.lemma.length ? strictClaims.lemma : [placeholderClaim("Strict Lemma", clickedForm, "No lemma strict match yet.")]);
           renderBreakdown(hud, view);
           const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
           renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
@@ -5218,8 +5234,11 @@
         } catch (error) {
           console.error(error);
           setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
+          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
           setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          setList(hud, "[data-hud-aramaic-strict]", ["No Aramaic strict match yet."]);
+          setList(hud, "[data-hud-lemma-strict]", ["No lemma strict match yet."]);
           positionHudNearButton(button);
         }
       };

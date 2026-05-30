@@ -349,7 +349,6 @@ function classifyTokenRow(row, entry) {
     'project_midrash_formula',
     'project_override',
     'project_zohar_ari_technical_term',
-    'project_technical',
     'fixed_expression',
     'affix_parser',
     'quote_artifact_cleanup',
