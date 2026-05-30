@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HUD Sampler | Hebrew Source Workbench</title>
+  <title>HUD Preview | Hebrew Source Workbench</title>
   <style>
     :root {
       color-scheme: dark;
       --bg: #080a0d;
       --panel: rgba(17, 20, 26, 0.95);
-      --panel-strong: rgba(22, 26, 34, 0.98);
+      --panel-strong: rgba(22, 26, 34, 0.985);
+      --soft: rgba(223, 198, 139, 0.08);
       --line: rgba(223, 198, 139, 0.18);
-      --line-strong: rgba(223, 198, 139, 0.38);
+      --line-strong: rgba(223, 198, 139, 0.42);
       --text: #f1eadc;
       --muted: #b5ac9b;
       --gold: #dfc68b;
       --hebrew: #fff6e6;
+      --bad: #d6a88a;
     }
 
     * { box-sizing: border-box; }
@@ -23,16 +25,16 @@
     body {
       margin: 0;
       background:
-        radial-gradient(circle at top left, rgba(223, 198, 139, 0.12), transparent 30rem),
+        radial-gradient(circle at 12% 0%, rgba(223, 198, 139, 0.15), transparent 32rem),
         linear-gradient(180deg, #080a0d 0%, #11151c 100%);
       color: var(--text);
       font-family: Georgia, "Times New Roman", serif;
     }
 
     main {
-      width: min(1060px, calc(100% - 28px));
+      width: min(1120px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 28px 0 70px;
+      padding: 28px 0 76px;
     }
 
     a { color: var(--gold); }
@@ -43,13 +45,13 @@
       box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
     }
 
-    .hero, .body { padding: clamp(18px, 4vw, 32px); }
+    .hero, .body { padding: clamp(18px, 4vw, 34px); }
     .hero { border-bottom: 1px solid var(--line); }
 
     h1 {
       margin: 0 0 14px;
       font-weight: 400;
-      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      font-size: clamp(2.45rem, 7vw, 5.7rem);
       line-height: 0.92;
     }
 
@@ -72,8 +74,8 @@
       unicode-bidi: plaintext;
       text-align: right;
       color: var(--hebrew);
-      font-size: clamp(1.7rem, 6vw, 3.15rem);
-      line-height: 1.8;
+      font-size: clamp(1.65rem, 5.7vw, 3.1rem);
+      line-height: 1.9;
     }
 
     .sample-token {
@@ -93,10 +95,7 @@
       background: rgba(223, 198, 139, 0.12);
     }
 
-    .note {
-      margin-top: 18px;
-      font-size: 0.95rem;
-    }
+    .note { margin-top: 18px; font-size: 0.95rem; }
 
     .hud {
       position: fixed;
@@ -111,24 +110,13 @@
 
     .hud-panel {
       position: relative;
-      width: min(980px, 100%);
+      width: min(1040px, 100%);
       min-height: min(760px, calc(100vh - clamp(24px, 6vw, 56px)));
       margin: 0 auto;
       border: 1px solid var(--line-strong);
       background: var(--panel-strong);
       padding: clamp(16px, 4vw, 30px);
       box-shadow: 0 30px 95px rgba(0, 0, 0, 0.54);
-    }
-
-    .hud-word {
-      direction: rtl;
-      unicode-bidi: plaintext;
-      text-align: center;
-      color: var(--hebrew);
-      font-size: clamp(2.4rem, 9vw, 5.7rem);
-      line-height: 1.08;
-      overflow-wrap: anywhere;
-      margin: 0 0 20px;
     }
 
     .close-hint {
@@ -139,139 +127,187 @@
       font-size: 0.72rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      opacity: 0.72;
+      opacity: 0.76;
     }
 
-    .hud-stack {
-      display: grid;
-      gap: 14px;
+    .hud-word {
+      direction: rtl;
+      unicode-bidi: plaintext;
+      text-align: center;
+      color: var(--hebrew);
+      font-size: clamp(2.5rem, 9vw, 5.9rem);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+      margin: 0 0 20px;
+    }
+
+    .hud-stack { display: grid; gap: 16px; }
+
+    .answer-card,
+    .route-section,
+    .license-panel {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.025);
+      padding: clamp(14px, 3vw, 22px);
     }
 
     .answer-card {
-      border: 1px solid var(--line);
       border-color: var(--line-strong);
-      background: rgba(223, 198, 139, 0.052);
-      padding: clamp(16px, 3vw, 22px);
+      background: var(--soft);
       display: grid;
       gap: 10px;
-      min-width: 0;
+      text-align: center;
     }
 
-    .evidence-row {
-      border-top: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: minmax(130px, 0.22fr) minmax(0, 1fr);
-      align-items: center;
-      gap: 10px;
-      padding: 10px 0 0;
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 0.72rem;
     }
 
-    .answer-head {
+    .answer-route {
       display: flex;
-      align-items: center;
       justify-content: center;
       gap: 8px;
       flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .confidence {
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--gold);
+      padding: 1px 8px;
+      white-space: nowrap;
     }
 
     .claim-form {
       direction: rtl;
       unicode-bidi: plaintext;
-      text-align: center;
       color: var(--hebrew);
       font-size: clamp(1.35rem, 4vw, 2.35rem);
-      line-height: 1.12;
+      line-height: 1.15;
       overflow-wrap: anywhere;
     }
 
-    .evidence-row .claim-form {
-      font-size: clamp(1.08rem, 3vw, 1.55rem);
-      text-align: right;
+    .definition {
+      color: var(--text);
+      font-size: clamp(1.05rem, 2.5vw, 1.28rem);
+      margin: 0;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--line-strong);
+    .plain-note,
+    .source-line {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .breakdown-grid,
+    .audit-list,
+    .license-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .route-grid,
+    .phrase-grid {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: clamp(250px, 38%, 380px);
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scroll-snap-type: x proximity;
+      overscroll-behavior-inline: contain;
+      scrollbar-color: var(--gold) rgba(255, 255, 255, 0.08);
+      scrollbar-width: thin;
+    }
+
+    .route-grid::after,
+    .phrase-grid::after {
+      content: "";
+      width: 18px;
+    }
+
+    .route-grid::-webkit-scrollbar,
+    .phrase-grid::-webkit-scrollbar {
+      height: 9px;
+    }
+
+    .route-grid::-webkit-scrollbar-track,
+    .phrase-grid::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .route-grid::-webkit-scrollbar-thumb,
+    .phrase-grid::-webkit-scrollbar-thumb {
+      background: var(--line-strong);
       border-radius: 999px;
-      color: var(--gold);
-      padding: 2px 8px;
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
     }
 
-    .meta-line,
-    .lane-label {
+    .scroll-note {
+      color: var(--muted);
+      margin: 3px 0 0;
+      font-size: 0.82rem;
+    }
+
+    .breakdown-row,
+    .route-card,
+    .phrase-card,
+    .license-row {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      min-width: 0;
+    }
+
+    .breakdown-row {
+      display: grid;
+      grid-template-columns: minmax(90px, 0.22fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .piece {
+      direction: rtl;
+      unicode-bidi: plaintext;
+      color: var(--hebrew);
+      font-size: 1.35rem;
+    }
+
+    .route-card {
+      display: grid;
+      grid-template-columns: minmax(145px, 0.28fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      scroll-snap-align: start;
+    }
+
+    .route-meta {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .route-kind {
       color: var(--gold);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 0.72rem;
-      text-align: center;
     }
 
-    .meta-line {
-      color: var(--muted);
-    }
-
-    .rendering {
-      text-align: center;
-      color: var(--text);
-      margin: 0;
-    }
-
-    .evidence-row .rendering {
-      text-align: left;
-      line-height: 1.4;
-    }
-
-    .source {
-      color: var(--muted);
-      margin: 0;
-      font-size: 0.86rem;
-    }
-
-    .section-title {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      font-size: 0.74rem;
-      margin: 8px 0 -5px;
-    }
-
-    .check-list {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .check-chip {
-      border: 1px dashed var(--line);
-      color: var(--muted);
-      padding: 4px 8px;
-      font-size: 0.78rem;
-      line-height: 1.3;
-    }
-
-    .phrase-list {
-      display: grid;
-      gap: 9px;
-    }
-
-    .phrase-row {
-      border-top: 1px solid var(--line);
-      padding-top: 10px;
-      display: grid;
-      gap: 6px;
-    }
+    .route-body { display: grid; gap: 6px; }
 
     .phrase-line {
       direction: rtl;
       unicode-bidi: plaintext;
       text-align: right;
       color: var(--hebrew);
-      font-size: clamp(1.25rem, 3.6vw, 1.9rem);
-      line-height: 1.35;
+      font-size: clamp(1.2rem, 3.5vw, 1.85rem);
+      line-height: 1.45;
     }
 
     .phrase-focus {
@@ -280,28 +316,48 @@
       padding: 0 0.1em;
     }
 
-    .phrase-note {
-      color: var(--muted);
-      margin: 0;
-      font-size: 0.86rem;
+    .audit-list {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
-    details {
+    .audit-chip {
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      padding: 5px 8px;
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .license-panel {
       margin-top: 18px;
       border: 1px solid var(--line);
       background: rgba(8, 10, 13, 0.42);
       padding: 10px 12px;
     }
 
-    summary {
-      color: var(--gold);
+    .hud-close {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: var(--muted);
+      padding: 4px 9px;
+      font: inherit;
       cursor: pointer;
     }
 
-    @media (max-width: 720px) {
-      .evidence-row { grid-template-columns: 1fr; }
-      .evidence-row .rendering { text-align: center; }
-      .evidence-row .claim-form { text-align: center; }
+    .hud-close:hover,
+    .hud-close:focus-visible {
+      color: var(--text);
+      border-color: var(--gold);
+      outline: none;
+    }
+
+    @media (max-width: 760px) {
+      .breakdown-row,
+      .route-card { grid-template-columns: 1fr; }
+      .route-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; }
     }
   </style>
 </head>
@@ -310,112 +366,195 @@
     <section class="shell">
       <div class="hero">
         <p><a href="../">Back to library</a></p>
-        <h1>Lexical HUD Sampler</h1>
-        <p>This is a public sampler for the Hebrew Source Workbench lexical HUD. It is not a translation page, does not publish English translations, and does not import English translations.</p>
-        <p>Use this page to test the HUD layout before changes are applied to generated work pages.</p>
+        <h1>Lexical HUD Preview</h1>
+        <p>Conservative preview for the sitewide lexical HUD. It shows the winning route first, real alternatives as evidence, failed checks as small audit traces, and phrase/paraphrase evidence as separate source-backed routes.</p>
       </div>
       <div class="body">
-        <p>Click a Hebrew or Aramaic sample token. Click anywhere inside the opened HUD to close it.</p>
+        <p>Click a sample token. Use the close button, Escape, or the dark backdrop outside the card to close it. Source and license rows stay expanded.</p>
         <div class="sample-card">
           <p class="sample-line" lang="he">
             <button class="sample-token" type="button" data-token="devarim">&#1491;&#1456;&#1468;&#1489;&#1464;&#1512;&#1460;&#1497;&#1501;</button>
-            <button class="sample-token" type="button" data-token="bereshit">&#1489;&#1512;&#1488;&#1513;&#1497;&#1514;</button>
-            <button class="sample-token" type="button" data-token="shel">&#1513;&#1462;&#1473;&#1500;</button>
+            <button class="sample-token" type="button" data-token="uvidvarekha">&#1493;&#1468;&#1489;&#1460;&#1491;&#1456;&#1489;&#1464;&#1512;&#1462;&#1497;&#1498;&#1464;</button>
             <button class="sample-token" type="button" data-token="dela">&#1491;&#1500;&#1488;</button>
+            <button class="sample-token" type="button" data-token="bereshit">&#1489;&#1512;&#1488;&#1513;&#1497;&#1514;</button>
+            <button class="sample-token" type="button" data-token="benDavid">&#1489;&#1503;&#1470;&#1491;&#1493;&#1491;</button>
             <button class="sample-token" type="button" data-token="unresolved">&#1508;&#1500;&#1493;&#1504;&#1497;</button>
           </p>
         </div>
-        <p class="note">Sampler rows are fixtures for UI testing. They are not a new dictionary source and are not exported as lexical data.</p>
+        <p class="note">Preview rows are UI fixtures only. They are not exported as lexical data and do not import English translations.</p>
       </div>
     </section>
   </main>
 
   <section class="hud" data-hud hidden aria-live="polite">
-    <div class="hud-panel" role="dialog" aria-modal="true" aria-label="Lexical HUD sampler">
-      <div class="close-hint">Click anywhere to close</div>
+    <div class="hud-panel" role="dialog" aria-modal="true" aria-label="Lexical HUD preview">
+      <button class="hud-close" type="button" data-close>Close</button>
+      <div class="close-hint">Sources stay open</div>
       <h2 class="hud-word" data-hud-word lang="he" dir="rtl"></h2>
       <div class="hud-stack" data-hud-stack></div>
-      <details>
-        <summary>Sources / licenses</summary>
-        <div data-sources></div>
-      </details>
+      <section class="license-panel">
+        <div class="label">Sources / Licenses</div>
+        <div class="license-grid" data-sources></div>
+      </section>
     </div>
   </section>
 
   <script>
     const he = {
       devarim: "\u05d3\u05b0\u05bc\u05d1\u05b8\u05e8\u05b4\u05d9\u05dd",
+      uvidvarekha: "\u05d5\u05bc\u05d1\u05b4\u05d3\u05b0\u05d1\u05b8\u05e8\u05b6\u05d9\u05da\u05b8",
       davar: "\u05d3\u05b8\u05bc\u05d1\u05b8\u05e8",
       devarimPlain: "\u05d3\u05d1\u05e8\u05d9\u05dd",
       bereshit: "\u05d1\u05e8\u05d0\u05e9\u05d9\u05ea",
-      yirmeyahu: "\u05d9\u05e8\u05de\u05d9\u05d4\u05d5",
-      shel: "\u05e9\u05b6\u05c1\u05dc",
-      shelPlain: "\u05e9\u05dc",
+      reshit: "\u05e8\u05d0\u05e9\u05d9\u05ea",
       dela: "\u05d3\u05dc\u05d0",
-      dPlusLo: "\u05d3\u05be + \u05dc\u05d0",
-      ploni: "\u05e4\u05dc\u05d5\u05e0\u05d9"
+      dPrefix: "\u05d3\u05be",
+      lo: "\u05dc\u05d0",
+      benDavid: "\u05d1\u05df\u05be\u05d3\u05d5\u05d3",
+      ben: "\u05d1\u05df",
+      david: "\u05d3\u05d5\u05d3",
+      ploni: "\u05e4\u05dc\u05d5\u05e0\u05d9",
+      vav: "\u05d5\u05be",
+      bet: "\u05d1\u05be",
+      ykha: "\u05d9\u05da\u05b8"
+    };
+
+    const source = {
+      morph: { name: "Project morphology rules", license: "project-authored / CC0" },
+      open: { name: "OpenScriptures HebrewLexicon", license: "CC BY 4.0" },
+      kaikki: { name: "Hebrew Wiktionary via Kaikki", license: "CC BY-SA 4.0 / GFDL" },
+      bible: { name: "Imported Hebrew biblical source text", license: "source-version license retained" },
+      cite: { name: "Imported Hebrew citable source text", license: "source-version license retained" }
     };
 
     const rows = {
       devarim: {
         word: he.devarim,
-        winner: { route: "Hebrew strict", confidence: 96, form: he.davar, gloss: "word / thing / matter", sourceType: "dictionary", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
-        evidence: [
-          { route: "Lemma", confidence: 93, form: he.davar, gloss: "word / thing / matter / speech", sourceType: "dictionary", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
-          { route: "Lemma", confidence: 70, form: he.devarimPlain, gloss: "alternate lemma candidate", sourceType: "project", source: "Project HUD sampler fixture", license: "project-authored / CC0" },
-          { route: "Hebrew fuzzy", confidence: 52, form: he.devarimPlain, gloss: "low-confidence Hebrew candidate", sourceType: "project", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
+        winner: {
+          route: "Strict Hebrew",
+          confidence: 96,
+          form: he.devarim,
+          language: "Hebrew",
+          match: "clicked form + plural ending",
+          definition: "word; thing; matter; speech",
+          note: "The final letters mark a plural form. The core word stays \u05d3\u05d1\u05e8.",
+          source: source.open
+        },
+        breakdown: [
+          { piece: he.davar, role: "main word", definition: "word; thing; matter; speech", source: source.open },
+          { piece: "\u05d9\u05dd", role: "ending", definition: "plural marker", source: source.morph }
         ],
-        checked: [{ route: "Aramaic strict", result: "none" }],
+        supporting: [
+          { route: "Lemma", confidence: 93, form: he.davar, language: "Hebrew", match: "lemma after plural ending is removed", definition: "word; thing; matter; speech", source: source.open },
+          { route: "Other Hebrew match", confidence: 52, form: he.devarimPlain, language: "Hebrew", match: "same spelling after vowel dots are removed", definition: "words; matters; things", source: source.kaikki }
+        ],
         phrases: [
-          { route: "Phrase", confidence: 64, before: "", focus: he.devarimPlain, after: " \u05d0\u05d7\u05d3\u05d9\u05dd", gloss: "license-safe used phrase; evidence only, not a forced meaning", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
+          { route: "Licensed phrase evidence", confidence: 64, phrase: `<span class="phrase-focus">${he.devarimPlain}</span> \u05d0\u05d7\u05d3\u05d9\u05dd`, focus: he.devarimPlain, definition: "usage context only; this row does not force the meaning", source: source.bible }
         ],
-        suppressed: []
+        audit: ["Aramaic strict: none", "Biblical paraphrase: none", "Citable paraphrase: none"]
       },
-      shel: {
-        word: he.shel,
-        winner: { route: "Hebrew strict", confidence: 98, form: he.shel, gloss: "of / belonging to", sourceType: "grammar", source: "Project grammar/function-word layer", license: "project-authored / CC0" },
-        evidence: [
-          { route: "Lemma", confidence: 90, form: he.shelPlain, gloss: "of / belonging to", sourceType: "grammar", source: "Project grammar/function-word layer", license: "project-authored / CC0" }
+      uvidvarekha: {
+        word: he.uvidvarekha,
+        winner: {
+          route: "Morphology explained strict match",
+          confidence: 96,
+          form: he.uvidvarekha,
+          language: "Hebrew",
+          match: "prefix + prefix + main word + ending",
+          definition: "and + in + word/thing/matter + your",
+          note: "The clicked token is several small pieces attached to one main word.",
+          source: source.morph
+        },
+        breakdown: [
+          { piece: he.vav, role: "prefix", definition: "and", source: source.morph },
+          { piece: he.bet, role: "prefix", definition: "in; with; by", source: source.morph },
+          { piece: he.davar, role: "main word", definition: "word; thing; matter; speech", source: source.open },
+          { piece: he.ykha, role: "ending", definition: "your", source: source.morph }
         ],
-        checked: [{ route: "Aramaic strict", result: "none" }],
+        supporting: [
+          { route: "Lemma", confidence: 93, form: he.davar, language: "Hebrew", match: "main-word lemma inside the parsed form", definition: "word; thing; matter; speech", source: source.open }
+        ],
         phrases: [],
-        suppressed: []
+        audit: ["Whole-token strict Hebrew: none", "Aramaic strict: none", "Biblical paraphrase: none"]
       },
       dela: {
         word: he.dela,
-        winner: { route: "Aramaic strict", confidence: 94, form: he.dela, gloss: "that not / which does not / without", sourceType: "grammar", source: "Project Aramaic grammar layer", license: "project-authored / CC0" },
-        evidence: [
-          { route: "Lemma", confidence: 82, form: he.dPlusLo, gloss: "Aramaic relative prefix plus negation", sourceType: "grammar", source: "Project Aramaic grammar layer", license: "project-authored / CC0" }
+        winner: {
+          route: "Strict Aramaic",
+          confidence: 94,
+          form: he.dela,
+          language: "Aramaic",
+          match: "whole-token Aramaic function form",
+          definition: "that not; which does not; without",
+          note: "Aramaic wins because this is the strongest real route for the clicked form.",
+          source: source.morph
+        },
+        breakdown: [
+          { piece: he.dPrefix, role: "Aramaic prefix", definition: "that; which; of", source: source.morph },
+          { piece: he.lo, role: "negation", definition: "not; no", source: source.morph }
         ],
-        checked: [{ route: "Hebrew strict", result: "none" }],
+        supporting: [
+          { route: "Lemma", confidence: 82, form: `${he.dPrefix} + ${he.lo}`, language: "Aramaic", match: "parsed pieces", definition: "that / which + not", source: source.morph }
+        ],
         phrases: [
-          { route: "Phrase", confidence: 76, before: "", focus: he.dela, after: " \u05e4\u05dc\u05d5\u05e0\u05d9", gloss: "license-safe Aramaic phrase form; supports the winning route without forcing it", source: "Project Aramaic phrase fixture", license: "project-authored / CC0" }
+          { route: "Licensed phrase evidence", confidence: 76, phrase: `<span class="phrase-focus">${he.dela}</span> ${he.ploni}`, focus: he.dela, definition: "usage context only; phrase row supports the form without replacing the answer", source: source.cite }
         ],
-        suppressed: []
+        audit: ["Hebrew strict: none", "Biblical paraphrase: none"]
       },
       bereshit: {
         word: he.bereshit,
-        winner: { route: "Hebrew strict", confidence: 95, form: he.bereshit, gloss: "beginning / first stage", sourceType: "dictionary", source: "Project HUD sampler fixture", license: "project-authored / CC0" },
-        evidence: [
-          { route: "Lemma", confidence: 88, form: "\u05e8\u05d0\u05e9\u05d9\u05ea", gloss: "beginning / first / first yield", sourceType: "dictionary", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
+        winner: {
+          route: "Strict Hebrew",
+          confidence: 94,
+          form: he.bereshit,
+          language: "Hebrew",
+          match: "whole-token dictionary route",
+          definition: "in the beginning; at first; initially",
+          note: "Strict Hebrew wins. Other source-based readings stay visible below.",
+          source: source.kaikki
+        },
+        breakdown: [
+          { piece: "\u05d1\u05be", role: "prefix", definition: "in; with; by", source: source.morph },
+          { piece: he.reshit, role: "main word", definition: "beginning; first; first part/yield", source: source.open }
         ],
-        checked: [{ route: "Aramaic strict", result: "none" }],
+        supporting: [
+          { route: "Lemma", confidence: 88, form: he.reshit, language: "Hebrew", match: "subword lemma", definition: "beginning; first; first part/yield", source: source.open }
+        ],
         phrases: [
-          { route: "Phrase", confidence: 81, before: "", focus: he.bereshit, after: " \u05d9\u05e8\u05de\u05d9\u05d4\u05d5", gloss: "one license-free used form where the focused word points toward first yield / first stage", source: "Project phrase fixture for Jeremiah usage", license: "project-authored / CC0" }
+          { route: "Biblical paraphrase match", confidence: 72, phrase: `\u05e8\u05d0\u05e9\u05d9\u05ea <span class="phrase-focus">\u05d3\u05d2\u05e0\u05da</span>`, focus: he.reshit, definition: "source usage points to first part/yield; it defines \u05e8\u05d0\u05e9\u05d9\u05ea, not the whole word \u05d1\u05e8\u05d0\u05e9\u05d9\u05ea", source: source.bible },
+          { route: "Citable paraphrase match", confidence: 68, phrase: `<span class="phrase-focus">${he.bereshit}</span>`, focus: he.bereshit, definition: "cited Torah-source expansion candidate; interpretive route, not a dictionary route", source: source.cite }
         ],
-        suppressed: []
+        audit: ["Aramaic strict: none"]
+      },
+      benDavid: {
+        word: he.benDavid,
+        winner: {
+          route: "Subphrase match",
+          confidence: 88,
+          form: he.benDavid,
+          language: "Hebrew",
+          match: "joined words checked as separate parts",
+          definition: "son + David",
+          note: "No whole-compound dictionary route is being invented; the HUD shows the two sourced parts.",
+          source: source.morph
+        },
+        breakdown: [
+          { piece: he.ben, role: "joined word part", definition: "son", source: source.kaikki },
+          { piece: he.david, role: "joined word part", definition: "David", source: source.kaikki }
+        ],
+        supporting: [
+          { route: "Joined-word shape check", confidence: 100, form: "\u05be", language: "Hebrew", match: "joining dash (maqaf)", definition: "marks words that can be checked as a compound and as separate parts", source: source.morph }
+        ],
+        phrases: [],
+        audit: ["Whole-token strict Hebrew: none", "Aramaic strict: none", "Biblical paraphrase: none"]
       },
       unresolved: {
         word: he.ploni,
         winner: null,
-        evidence: [],
-        checked: [
-          { route: "Hebrew strict", result: "none" },
-          { route: "Aramaic strict", result: "none" },
-          { route: "Lemma", result: "none" }
-        ],
+        breakdown: [],
+        supporting: [],
         phrases: [],
-        suppressed: []
+        audit: ["Hebrew strict: none", "Aramaic strict: none", "Lemma: none", "Biblical paraphrase: none", "Citable paraphrase: none"]
       }
     };
 
@@ -425,68 +564,124 @@
     const hudStack = document.querySelector("[data-hud-stack]");
     const closeHud = () => { hud.hidden = true; };
 
-    const answerHtml = (row) => `
+    const escapeHtml = (value) => String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+
+    const sourceLine = (row) => `<p class="source-line">Source: ${escapeHtml(row.source.name)} | License: ${escapeHtml(row.source.license)}</p>`;
+
+    const answerHtml = (row) => row ? `
       <section class="answer-card">
-        <div class="section-title">Answer</div>
-        <div class="answer-head">
-          <div class="claim-form" lang="he" dir="rtl">${row.form}</div>
+        <div class="label">Answer</div>
+        <div class="claim-form" lang="he" dir="rtl">${escapeHtml(row.form)}</div>
+        <div class="answer-route">
+          <span>${escapeHtml(row.route)}</span>
+          <span>${escapeHtml(row.language)}</span>
+          <span>${escapeHtml(row.match)}</span>
+          <span class="confidence">${row.confidence}% match</span>
         </div>
-        <div class="meta-line">${row.sourceType} / ${row.route} / ${row.confidence}%</div>
-        <p class="rendering">${row.gloss}</p>
-        <p class="source">Source: ${row.source}</p>
-        <p class="source">License: ${row.license}</p>
+        <p class="definition">${escapeHtml(row.definition)}</p>
+        <p class="plain-note">${escapeHtml(row.note)}</p>
+        ${sourceLine(row)}
+      </section>
+    ` : `
+      <section class="answer-card">
+        <div class="label">Answer</div>
+        <div class="confidence">0% match</div>
+        <p class="definition">No winning route for this token yet.</p>
+        <p class="plain-note">The HUD keeps checked routes visible below without pretending a definition exists.</p>
       </section>
     `;
 
-    const evidenceHtml = (row) => `
-      <section class="evidence-row">
-        <div class="lane-label">${row.route} - ${row.confidence}%</div>
-        <div>
-          <div class="claim-form" lang="he" dir="rtl">${row.form}</div>
-          <p class="rendering">${row.gloss}</p>
+    const breakdownHtml = (rows) => rows.length ? `
+      <section class="route-section">
+        <div class="label">Breakdown</div>
+        <div class="breakdown-grid">
+          ${rows.map((row) => `
+            <div class="breakdown-row">
+              <div class="piece" lang="he" dir="rtl">${escapeHtml(row.piece)}</div>
+              <div>
+                <p class="definition">${escapeHtml(row.role)}: ${escapeHtml(row.definition)}</p>
+                ${sourceLine(row)}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      </section>
+    ` : "";
+
+    const routeHtml = (row) => `
+      <section class="route-card">
+        <div class="route-meta">
+          <span class="route-kind">${escapeHtml(row.route)}</span>
+          <span>${escapeHtml(row.language)}</span>
+          <span>${escapeHtml(row.match)}</span>
+          <span class="confidence">${row.confidence}% match</span>
+        </div>
+        <div class="route-body">
+          <div class="claim-form" lang="he" dir="rtl">${escapeHtml(row.form)}</div>
+          <p class="definition">${escapeHtml(row.definition)}</p>
+          ${sourceLine(row)}
         </div>
       </section>
     `;
 
-    const checksHtml = (rows) => rows.length
-      ? `<div class="section-title">Checked</div><div class="check-list">${rows.map((row) => `<span class="check-chip">${row.route}: ${row.result}</span>`).join("")}</div>`
-      : "";
-
-    const phraseHtml = (row) => `
-      <section class="phrase-row">
-        <div class="lane-label">${row.route} - ${row.confidence}%</div>
-        <div class="phrase-line" lang="he" dir="rtl">${row.before}<span class="phrase-focus">${row.focus}</span>${row.after}</div>
-        <p class="phrase-note">Focus: <span lang="he" dir="rtl">${row.focus}</span>. ${row.gloss}</p>
-        <p class="source">Source: ${row.source}</p>
-        <p class="source">License: ${row.license}</p>
+    const supportingHtml = (rows) => rows.length ? `
+      <section class="route-section">
+        <div class="label">Other Real Routes</div>
+        <p class="scroll-note">Hover this lane and use the wheel or trackpad to move sideways.</p>
+        <div class="route-grid">${rows.map(routeHtml).join("")}</div>
       </section>
-    `;
+    ` : "";
 
-    const phrasesHtml = (rows) => rows.length
-      ? `<div class="section-title">Phrase evidence</div><div class="phrase-list">${rows.map(phraseHtml).join("")}</div>`
-      : "";
+    const phraseHtml = (rows) => rows.length ? `
+      <section class="route-section">
+        <div class="label">Phrase And Paraphrase Evidence</div>
+        <p class="scroll-note">Hover this lane and use the wheel or trackpad to move sideways.</p>
+        <div class="phrase-grid">
+          ${rows.map((row) => `
+            <section class="phrase-card">
+              <div class="route-meta">
+                <span class="route-kind">${escapeHtml(row.route)}</span>
+                <span class="confidence">${row.confidence}% match</span>
+              </div>
+              <div class="phrase-line" lang="he" dir="rtl">${row.phrase}</div>
+              <p class="plain-note">Focus: <span lang="he" dir="rtl">${escapeHtml(row.focus)}</span>. ${escapeHtml(row.definition)}</p>
+              ${sourceLine(row)}
+            </section>
+          `).join("")}
+        </div>
+      </section>
+    ` : "";
+
+    const auditHtml = (rows) => rows.length ? `
+      <section class="route-section">
+        <div class="label">Tiny Checks</div>
+        <div class="audit-list">${rows.map((row) => `<span class="audit-chip">${escapeHtml(row)}</span>`).join("")}</div>
+      </section>
+    ` : "";
 
     const openHud = (key) => {
       const sample = rows[key];
       hudWord.textContent = sample.word;
-      hudStack.innerHTML = sample.winner
-        ? [
-          answerHtml(sample.winner),
-          sample.evidence.length ? `<div class="section-title">Evidence</div>${sample.evidence.map(evidenceHtml).join("")}` : "",
-          checksHtml(sample.checked),
-          phrasesHtml(sample.phrases)
-        ].join("")
-        : [
-          `<section class="answer-card"><div class="section-title">Answer</div><div class="badge">Unresolved</div><p class="rendering">No winning route for this token.</p></section>`,
-          checksHtml(sample.checked),
-          phrasesHtml(sample.phrases)
-        ].join("");
-      const sourceRows = [sample.winner, ...sample.evidence, ...sample.phrases].filter(Boolean);
+      hudStack.innerHTML = [
+        answerHtml(sample.winner),
+        breakdownHtml(sample.breakdown),
+        supportingHtml(sample.supporting),
+        phraseHtml(sample.phrases),
+        auditHtml(sample.audit)
+      ].join("");
+
+      const sourceRows = [sample.winner, ...sample.breakdown, ...sample.supporting, ...sample.phrases].filter(Boolean);
       sources.innerHTML = sourceRows.length
-        ? sourceRows.map((row) => {
-          const form = row.form || row.focus || "";
-          return `<p>For <span lang="he" dir="rtl">${form}</span> - ${row.gloss}: ${row.source} | ${row.license}</p>`;
-        }).join("")
+        ? sourceRows.map((row) => `
+          <div class="license-row">
+            <p class="source-line"><span lang="he" dir="rtl">${escapeHtml(row.form || row.piece || row.focus || sample.word)}</span> | ${escapeHtml(row.definition)}</p>
+            ${sourceLine(row)}
+          </div>
+        `).join("")
         : "<p>No sourced lexical claim is shown for this token.</p>";
       hud.hidden = false;
       hud.scrollTop = 0;
@@ -498,7 +693,20 @@
         openHud(button.dataset.token);
       });
     });
-    hud.addEventListener("click", closeHud);
+
+    document.addEventListener("wheel", (event) => {
+      const lane = event.target.closest(".route-grid, .phrase-grid");
+      if (!lane) return;
+      const horizontalDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      if (!horizontalDelta) return;
+      event.preventDefault();
+      lane.scrollLeft += horizontalDelta;
+    }, { passive: false });
+
+    document.querySelector("[data-close]").addEventListener("click", closeHud);
+    hud.addEventListener("click", (event) => {
+      if (event.target === hud) closeHud();
+    });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && !hud.hidden) closeHud();
     });
