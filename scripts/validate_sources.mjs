@@ -532,10 +532,16 @@ for (const lexicalFile of lexicalFiles) {
   const lexicalPagePath = rel(lexical.work_slug, 'index.html');
   if (exists(lexicalPagePath)) {
     const lexicalPage = readText(lexicalPagePath);
-    for (const requiredText of ['data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Breakdown', 'Potential options', 'Related options', 'Sources / licenses', 'No lexical entry yet.']) {
+    for (const requiredText of ['data-lexical-occurrences', 'data-lexical-config', 'data-lexical-slot', 'data-lexical-hud', 'Clicked Hebrew form', 'Breakdown', 'Sources / licenses', 'No lexical entry yet.']) {
       if (!lexicalPage.includes(requiredText)) {
         errors.push(`Lexical target page missing required text '${requiredText}' for ${lexical.work_id}`);
       }
+    }
+    if (!lexicalPage.includes('Potential options') && !lexicalPage.includes('Other source matches')) {
+      errors.push(`Lexical target page missing potential/other-options label for ${lexical.work_id}`);
+    }
+    if (!lexicalPage.includes('Related options') && !lexicalPage.includes('Related source matches')) {
+      errors.push(`Lexical target page missing related-options label for ${lexical.work_id}`);
     }
     if (!lexicalPage.includes('Show more') && !lexicalPage.includes('Show potential options')) {
       errors.push(`Lexical target page missing option expansion text for ${lexical.work_id}`);
@@ -545,9 +551,6 @@ for (const lexicalFile of lexicalFiles) {
     }
     if (!lexicalPage.includes('Strict Hebrew') && !lexicalPage.includes('Strict renderings')) {
       errors.push(`Lexical target page missing strict-rendering label for ${lexical.work_id}`);
-    }
-    if (!lexicalPage.includes('Potential options')) {
-      errors.push(`Lexical target page missing potential-options label for ${lexical.work_id}`);
     }
     for (const embeddedPayloadMarker of ['data-lexical-token-index>', 'data-lexical-lexicon>']) {
       if (lexicalPage.includes(embeddedPayloadMarker)) {

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "contract_id": "hud-route-card-contract",
+  "title": "HUD route card contract",
+  "purpose": "Stable UI-facing route model for replacing the live lexical HUD without rebuilding scoring rules inside rendered pages.",
+  "license_policy": "Definition and evidence cards must keep source_rows intact. Third-party rows retain their own licenses and are never relabeled as CC0.",
+  "rendering_rules": {
+    "show_answer_first": true,
+    "show_real_routes_as_evidence": true,
+    "show_failed_routes_as_tiny_audit": true,
+    "source_license_expanded_by_default": true,
+    "supports_unbounded_cards": true,
+    "supports_horizontal_card_lanes": true,
+    "close_behavior": "explicit close button, Escape, or backdrop only; never close when an interior source/license area is clicked",
+    "forbidden_label_policy": "Route labels must name the actual route family. Vague maybe-labels are blocked."
+  },
+  "route_sections": [
+    {
+      "section_id": "answer",
+      "title": "Best actual hit",
+      "display_role": "answer",
+      "allows_placeholders": false
+    },
+    {
+      "section_id": "strict_hebrew",
+      "title": "Strict Hebrew matches",
+      "display_role": "evidence",
+      "empty_display": "audit_trace_only"
+    },
+    {
+      "section_id": "strict_aramaic",
+      "title": "Strict Aramaic matches",
+      "display_role": "evidence",
+      "empty_display": "audit_trace_only"
+    },
+    {
+      "section_id": "lemma",
+      "title": "Lemma matches",
+      "display_role": "evidence",
+      "empty_display": "audit_trace_only"
+    },
+    {
+      "section_id": "morphology",
+      "title": "Word-part breakdown",
+      "display_role": "evidence",
+      "empty_display": "omit"
+    },
+    {
+      "section_id": "subphrase_evidence",
+      "title": "Subphrase evidence",
+      "display_role": "evidence",
+      "empty_display": "omit"
+    },
+    {
+      "section_id": "biblical_paraphrase_evidence",
+      "title": "Biblical definition/paraphrase matches",
+      "display_role": "evidence",
+      "empty_display": "omit"
+    },
+    {
+      "section_id": "citable_paraphrase_evidence",
+      "title": "Citable definition/paraphrase matches",
+      "display_role": "evidence",
+      "empty_display": "omit"
+    },
+    {
+      "section_id": "phrase_evidence",
+      "title": "Licensed phrase uses",
+      "display_role": "evidence",
+      "empty_display": "omit"
+    },
+    {
+      "section_id": "source_license",
+      "title": "Full source and license rows",
+      "display_role": "provenance",
+      "empty_display": "audit_trace_only"
+    },
+    {
+      "section_id": "audit",
+      "title": "Tiny checks only",
+      "display_role": "audit",
+      "empty_display": "always_available"
+    }
+  ],
+  "scoring_rules": {
+    "display_percent_is_raw_route_confidence": true,
+    "strict_language_route_priority_bonus": 20,
+    "priority_bonus_changes_order_only": true,
+    "fallback_route_can_win_when_no_strict_route_exists": true,
+    "biblical_paraphrase_and_citable_paraphrase_are_separate_families": true
+  },
+  "card_fields": [
+    "card_id",
+    "route_family",
+    "route_type",
+    "language",
+    "match_type",
+    "confidence_percent",
+    "display_label",
+    "hebrew",
+    "definition",
+    "plain_note",
+    "source_rows"
+  ]
+}

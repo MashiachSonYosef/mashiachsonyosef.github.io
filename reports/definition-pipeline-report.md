@@ -1,6 +1,6 @@
 # Definition Pipeline Report
 
-Generated: 2026-05-30T19:59:39.494Z
+Generated: 2026-05-30T20:21:43.598Z
 
 ## Scope
 
@@ -13,6 +13,7 @@ Generated: 2026-05-30T19:59:39.494Z
 
 - Project-authored conservative morphology rules: project-authored / CC0 (local:project-morphology-rules)
 - Project-authored paraphrase route policy: project-authored / CC0 (local:project-paraphrase-route-policy)
+- Project-authored HUD route card contract: project-authored / CC0 (local:project-hud-route-contract)
 - Hebrew Wiktionary data via Kaikki/Wiktextract: CC BY-SA 4.0 / GFDL (https://kaikki.org/dictionary/Hebrew/index.html)
 - Wikidata Lexeme: CC0 (https://www.wikidata.org/wiki/Wikidata:Lexicographical_data)
 - OpenScriptures HebrewLexicon: CC BY 4.0 (https://github.com/openscriptures/HebrewLexicon)
@@ -22,6 +23,8 @@ Generated: 2026-05-30T19:59:39.494Z
 - data/definitions/manifest.json
 - data/definitions/source-license-inventory.json
 - data/definitions/morphology-rules.json
+- data/definitions/hud-route-contract.json
+- data/definitions/hud-route-fixtures.json
 - data/definitions/definition-route-sample.json
 - .local-cache/definition-routes/kaikki-definition-claims.jsonl
 - .local-cache/definition-routes/kaikki-definition-claims.csv
@@ -44,7 +47,7 @@ Generated: 2026-05-30T19:59:39.494Z
 - Wire HUD to consume `data/definitions/definition-route-sample.json` first, then promote the local JSONL cache to chunked public artifacts when the UX is settled.
 ## Phrase Evidence
 
-- Generated: 2026-05-30T19:59:56.677Z
+- Generated: 2026-05-30T20:22:52.419Z
 - Tracked source files scanned: 2
 - Allowed units scanned: 2897
 - Rejected units skipped: 0

@@ -60,11 +60,50 @@ function validateManifest(issues) {
   }
   for (const artifact of [
     'data/definitions/paraphrase-route-policy.json',
+    'data/definitions/hud-route-contract.json',
+    'data/definitions/hud-route-fixtures.json',
     'data/definitions/definition-route-sample.json',
     'data/definitions/phrase-evidence-sample.json',
   ]) {
     if (!asArray(manifest.public_artifacts).includes(artifact)) {
       issues.push(`manifest public_artifacts: missing ${artifact}`);
+    }
+  }
+}
+
+function validateHudRouteArtifacts(issues) {
+  const contract = readJson('data/definitions/hud-route-contract.json');
+  const fixtures = readJson('data/definitions/hud-route-fixtures.json');
+  const contractSections = new Set(asArray(contract.route_sections).map((section) => section.section_id));
+  for (const required of [
+    'answer',
+    'strict_hebrew',
+    'strict_aramaic',
+    'lemma',
+    'subphrase_evidence',
+    'biblical_paraphrase_evidence',
+    'citable_paraphrase_evidence',
+    'phrase_evidence',
+    'source_license',
+    'audit',
+  ]) {
+    if (!contractSections.has(required)) issues.push(`hud-route-contract route_sections: missing ${required}`);
+  }
+  if (contract.rendering_rules?.source_license_expanded_by_default !== true) {
+    issues.push('hud-route-contract: source/license rows must be expanded by default');
+  }
+  if (contract.rendering_rules?.supports_unbounded_cards !== true) {
+    issues.push('hud-route-contract: must support unbounded route cards');
+  }
+  checkNoForbiddenText(JSON.stringify(contract), 'hud-route-contract', issues);
+  checkNoForbiddenText(JSON.stringify(fixtures), 'hud-route-fixtures', issues);
+  for (const [sampleIndex, sample] of asArray(fixtures.samples).entries()) {
+    const context = `hud-route-fixtures.samples[${sampleIndex}]`;
+    if (!asArray(sample.route_sections).length) issues.push(`${context}: missing route_sections`);
+    if (!asArray(sample.audit_checks).length) issues.push(`${context}: missing audit_checks`);
+    if (sample.answer_card) validateSourceRows(sample.answer_card.source_rows, `${context}.answer_card`, issues);
+    for (const [groupIndex, group] of asArray(sample.source_license_groups).entries()) {
+      validateSourceRows([group], `${context}.source_license_groups[${groupIndex}]`, issues);
     }
   }
 }
@@ -126,4 +165,5 @@ validateManifest(issues);
 validateDefinitionSamples(issues);
 validatePhraseSamples(issues);
 validateParaphrasePolicy(issues);
+validateHudRouteArtifacts(issues);
 fail(issues);
