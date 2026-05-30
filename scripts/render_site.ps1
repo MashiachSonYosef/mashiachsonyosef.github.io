@@ -2725,10 +2725,12 @@ foreach ($source in $renderSources) {
     if ($SkipLexicalPayloadFiles) {
       $manifestRelative = "data/lexical/$($source.work_id).manifest.json"
       $occurrenceRelative = "data/lexical/occurrences/$($source.work_id).json"
-      $assetRoot = if ($LexicalAssetBaseUrl.Trim()) { $LexicalAssetBaseUrl.TrimEnd('/') + '/' } else { $rootHref }
+      # Runtime HUD payloads must stay same-origin. Cross-domain raw GitHub URLs
+      # are slower and can leave pages with plain, non-clickable Hebrew if blocked.
+      $assetRoot = $rootHref
       [pscustomobject]@{
-        manifest_url = if ($LexicalAssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $LexicalAssetBaseUrl -RelativePath $manifestRelative } else { "$rootHref$manifestRelative" }
-        occurrence_url = if ($LexicalAssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $LexicalAssetBaseUrl -RelativePath $occurrenceRelative } else { "$rootHref$occurrenceRelative" }
+        manifest_url = "$rootHref$manifestRelative"
+        occurrence_url = "$rootHref$occurrenceRelative"
         root_href = $assetRoot
       }
     } else {
