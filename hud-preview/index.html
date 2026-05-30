@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HUD Sampler | Hebrew Source Workbench</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080a0d;
+      --panel: rgba(17, 20, 26, 0.95);
+      --panel-strong: rgba(22, 26, 34, 0.98);
+      --line: rgba(223, 198, 139, 0.18);
+      --line-strong: rgba(223, 198, 139, 0.38);
+      --text: #f1eadc;
+      --muted: #b5ac9b;
+      --gold: #dfc68b;
+      --hebrew: #fff6e6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(223, 198, 139, 0.12), transparent 30rem),
+        linear-gradient(180deg, #080a0d 0%, #11151c 100%);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    main {
+      width: min(1060px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    a { color: var(--gold); }
+
+    .shell {
+      border: 1px solid var(--line);
+      background: rgba(8, 10, 13, 0.72);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+    }
+
+    .hero, .body { padding: clamp(18px, 4vw, 32px); }
+    .hero { border-bottom: 1px solid var(--line); }
+
+    h1 {
+      margin: 0 0 14px;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      line-height: 0.92;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 10px;
+    }
+
+    .sample-card {
+      margin-top: 20px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: clamp(16px, 4vw, 24px);
+    }
+
+    .sample-line {
+      margin: 0;
+      direction: rtl;
+      unicode-bidi: plaintext;
+      text-align: right;
+      color: var(--hebrew);
+      font-size: clamp(1.7rem, 6vw, 3.15rem);
+      line-height: 1.8;
+    }
+
+    .sample-token {
+      display: inline-block;
+      border: 0;
+      border-bottom: 1px dotted var(--line-strong);
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      padding: 0 0.08em;
+    }
+
+    .sample-token:hover,
+    .sample-token:focus-visible {
+      outline: 1px solid var(--gold);
+      background: rgba(223, 198, 139, 0.12);
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 0.95rem;
+    }
+
+    .hud {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      overflow: auto;
+      padding: clamp(12px, 3vw, 28px);
+      background: rgba(5, 8, 11, 0.86);
+    }
+
+    .hud[hidden] { display: none; }
+
+    .hud-panel {
+      width: min(980px, 100%);
+      min-height: min(760px, calc(100vh - clamp(24px, 6vw, 56px)));
+      margin: 0 auto;
+      border: 1px solid var(--line-strong);
+      background: var(--panel-strong);
+      padding: clamp(16px, 4vw, 30px);
+      box-shadow: 0 30px 95px rgba(0, 0, 0, 0.54);
+    }
+
+    .hud-word {
+      direction: rtl;
+      unicode-bidi: plaintext;
+      text-align: center;
+      color: var(--hebrew);
+      font-size: clamp(2.4rem, 9vw, 5.7rem);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+      margin: 0 0 20px;
+    }
+
+    .lane-list {
+      display: grid;
+      gap: 15px;
+      margin: 0;
+    }
+
+    .lane {
+      display: grid;
+      grid-template-columns: minmax(135px, 0.2fr) minmax(0, 1fr);
+      gap: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 15px;
+    }
+
+    .lane dt {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+    }
+
+    .lane dd {
+      margin: 0;
+      min-width: 0;
+    }
+
+    .claim-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .claim {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.025);
+      padding: 12px;
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .claim-form {
+      direction: rtl;
+      unicode-bidi: plaintext;
+      text-align: center;
+      color: var(--hebrew);
+      font-size: clamp(1.35rem, 4vw, 2.35rem);
+      line-height: 1.12;
+      overflow-wrap: anywhere;
+    }
+
+    .badge {
+      justify-self: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--gold);
+      padding: 2px 8px;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .rendering {
+      text-align: center;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .source {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.86rem;
+    }
+
+    details {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      background: rgba(8, 10, 13, 0.42);
+      padding: 10px 12px;
+    }
+
+    summary {
+      color: var(--gold);
+      cursor: pointer;
+    }
+
+    @media (max-width: 720px) {
+      .lane { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="shell">
+      <div class="hero">
+        <p><a href="../">Back to library</a></p>
+        <h1>Lexical HUD Sampler</h1>
+        <p>This is a public sampler for the Hebrew Source Workbench lexical HUD. It is not a translation page, does not publish English translations, and does not import English translations.</p>
+        <p>Use this page to test the HUD layout before changes are applied to generated work pages.</p>
+      </div>
+      <div class="body">
+        <p>Click a Hebrew or Aramaic sample token. Click anywhere inside the opened HUD to close it.</p>
+        <div class="sample-card">
+          <p class="sample-line" lang="he">
+            <button class="sample-token" type="button" data-token="devarim">דְּבָרִים</button>
+            <button class="sample-token" type="button" data-token="shel">שֶׁל</button>
+            <button class="sample-token" type="button" data-token="dela">דלא</button>
+            <button class="sample-token" type="button" data-token="unresolved">פלוני</button>
+          </p>
+        </div>
+        <p class="note">Sampler rows are fixtures for UI testing. They are not a new dictionary source and are not exported as lexical data.</p>
+      </div>
+    </section>
+  </main>
+
+  <section class="hud" data-hud hidden aria-live="polite">
+    <div class="hud-panel" role="dialog" aria-modal="true" aria-label="Lexical HUD sampler">
+      <h2 class="hud-word" data-hud-word lang="he" dir="rtl"></h2>
+      <dl class="lane-list">
+        <div class="lane"><dt>Strict Hebrew</dt><dd><div class="claim-list" data-lane="hebrew"></div></dd></div>
+        <div class="lane"><dt>Strict Aramaic</dt><dd><div class="claim-list" data-lane="aramaic"></div></dd></div>
+        <div class="lane"><dt>Strict Lemma</dt><dd><div class="claim-list" data-lane="lemma"></div></dd></div>
+        <div class="lane"><dt>Potential</dt><dd><div class="claim-list" data-lane="potential"></div></dd></div>
+      </dl>
+      <details>
+        <summary>Sources / licenses</summary>
+        <div data-sources></div>
+      </details>
+    </div>
+  </section>
+
+  <script>
+    const rows = {
+      devarim: {
+        word: "דְּבָרִים",
+        lanes: {
+          hebrew: [{ form: "דָּבָר", badge: "Strict Hebrew - 96%", rendering: "word / thing / matter", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" }],
+          aramaic: [{ form: "דְּבָרִים", badge: "Unresolved - 0%", rendering: "No Aramaic strict match yet.", source: "Unresolved placeholder", license: "N/A" }],
+          lemma: [
+            { form: "דָּבָר", badge: "Strict Lemma - 93%", rendering: "word / thing / matter / speech", source: "OpenScriptures Hebrew Bible H1697", license: "CC BY 4.0" },
+            { form: "דברים", badge: "Strict Lemma - 70%", rendering: "sample alternate lemma lane", source: "Project HUD sampler fixture", license: "project-authored / CC0" }
+          ],
+          potential: [{ form: "דברים", badge: "Potential - 52%", rendering: "sample low-priority option", source: "Project HUD sampler fixture", license: "project-authored / CC0" }]
+        }
+      },
+      shel: {
+        word: "שֶׁל",
+        lanes: {
+          hebrew: [{ form: "שֶׁל", badge: "Strict Hebrew - 98%", rendering: "of / belonging to", source: "Project grammar/function-word layer", license: "project-authored / CC0" }],
+          aramaic: [{ form: "שֶׁל", badge: "Unresolved - 0%", rendering: "No Aramaic strict match yet.", source: "Unresolved placeholder", license: "N/A" }],
+          lemma: [{ form: "של", badge: "Strict Lemma - 90%", rendering: "of / belonging to", source: "Project grammar/function-word layer", license: "project-authored / CC0" }],
+          potential: []
+        }
+      },
+      dela: {
+        word: "דלא",
+        lanes: {
+          hebrew: [{ form: "דלא", badge: "Unresolved - 0%", rendering: "No Hebrew strict match yet.", source: "Unresolved placeholder", license: "N/A" }],
+          aramaic: [{ form: "דלא", badge: "Strict Aramaic - 94%", rendering: "that not / which does not / without", source: "Project Aramaic grammar layer", license: "project-authored / CC0" }],
+          lemma: [{ form: "ד־ + לא", badge: "Strict Lemma - 82%", rendering: "Aramaic relative prefix plus negation", source: "Project Aramaic grammar layer", license: "project-authored / CC0" }],
+          potential: []
+        }
+      },
+      unresolved: {
+        word: "פלוני",
+        lanes: {
+          hebrew: [{ form: "פלוני", badge: "Unresolved - 0%", rendering: "No Hebrew strict match yet.", source: "Unresolved placeholder", license: "N/A" }],
+          aramaic: [{ form: "פלוני", badge: "Unresolved - 0%", rendering: "No Aramaic strict match yet.", source: "Unresolved placeholder", license: "N/A" }],
+          lemma: [{ form: "פלוני", badge: "Unresolved - 0%", rendering: "No lemma strict match yet.", source: "Unresolved placeholder", license: "N/A" }],
+          potential: []
+        }
+      }
+    };
+
+    const hud = document.querySelector("[data-hud]");
+    const hudWord = document.querySelector("[data-hud-word]");
+    const sources = document.querySelector("[data-sources]");
+    const lanes = Object.fromEntries(Array.from(document.querySelectorAll("[data-lane]")).map((node) => [node.dataset.lane, node]));
+
+    const closeHud = () => { hud.hidden = true; };
+
+    const claimHtml = (row) => `
+      <section class="claim">
+        <div class="claim-form" lang="he" dir="rtl">${row.form}</div>
+        <div class="badge">${row.badge}</div>
+        <p class="rendering">${row.rendering}</p>
+        <p class="source">Source: ${row.source}</p>
+        <p class="source">License: ${row.license}</p>
+      </section>
+    `;
+
+    const openHud = (key) => {
+      const sample = rows[key];
+      hudWord.textContent = sample.word;
+      for (const [lane, node] of Object.entries(lanes)) {
+        const laneRows = sample.lanes[lane] || [];
+        node.innerHTML = laneRows.length ? laneRows.map(claimHtml).join("") : '<section class="claim"><div class="badge">Unresolved - 0%</div><p class="rendering">No row in this lane.</p><p class="source">Source: Unresolved placeholder</p><p class="source">License: N/A</p></section>';
+      }
+      const allRows = Object.values(sample.lanes).flat();
+      sources.innerHTML = allRows.map((row) => `<p>For ${row.form} - ${row.rendering}: ${row.source} | ${row.license}</p>`).join("");
+      hud.hidden = false;
+      hud.scrollTop = 0;
+    };
+
+    document.querySelectorAll("[data-token]").forEach((button) => {
+      button.addEventListener("click", () => openHud(button.dataset.token));
+    });
+    hud.addEventListener("click", closeHud);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !hud.hidden) closeHud();
+    });
+  </script>
+</body>
+</html>
