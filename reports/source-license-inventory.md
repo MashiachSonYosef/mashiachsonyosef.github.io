@@ -896,6 +896,7 @@ Generated: 2026-05-30
 | Psalms | 2527 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Ra'avad on Sefer Yetzirah | 451 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Ra'avad on Sifra | 1684 | Wien, 1862 (https://www.nli.org.il/he/books/NNL_ALEPH990020310840205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Rabbi Akiva Eiger on Shulchan Arukh, Yoreh De'ah | 1409 | Ashlei Ravrevei: Shulchan Aruch Yoreh Deah, Lemberg, 1888 (https://www.nli.org.il/he/books/NNL_ALEPH002097765&context=L) | Public Domain | yes | no | none required by license; source/version retained |
 | Ramban on Sefer Yetzirah | 105 | Ramban on Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Rasag on Sefer Yetzirah | 91 | Rasage on Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Rashi on Bereshit Rabbah | 270 | Midrash Rabbah, Vilna, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI) | Public Domain | yes | no | none required by license; source/version retained |
@@ -926,6 +927,7 @@ Generated: 2026-05-30
 | Sefer HaIkkarim | 223 | Sefer Ha-'ikkarim (https://www.nli.org.il/he/books/NNL_ALEPH001187491) | CC-BY | yes | no | required |
 | Sefer HaKanah | 1502 | Sefer HaKana (http://www.hebrew.grimoar.cz/anonym/sefer_ha-kana.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer HaMachkim | 331 | Kraków, 1909 (https://www.nli.org.il/he/books/NNL_ALEPH002021196/NLI) | Public Domain | yes | no | none required by license; source/version retained |
+| Sefer HaMakhria | 1438 | Livorno, 1779 (https://www.nli.org.il/he/books/NNL_ALEPH001919747/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer HaMenucha on Mishneh Torah, Leavened and Unleavened Bread | 112 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer HaMenucha on Mishneh Torah, Shofar, Sukkah and Lulav | 125 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer HaMiddot | 2681 | Sefer HaMidot -- rabenubook (http://rabenubook.com/category/%D7%A1%D7%A4%D7%A8-%D7%94%D7%9E%D7%99%D7%93%D7%95%D7%AA/) | Public Domain | yes | no | none required by license; source/version retained |
@@ -966,6 +968,7 @@ Generated: 2026-05-30
 | Sha'arei Orah | 1559 | Shaarei Orah, grimoar (http://www.hebrew.grimoar.cz/gikatalia/saare_ora.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sha'arei Teshuvah | 338 | Sefaria Vocalized Edition (https://www.sefaria.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Sha'arei Teshuvah | 1 | Torat Emet (http://www.toratemetfreeware.com/online/f_01645.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Sha'arei Teshuvah on Shulchan Arukh, Orach Chayim | 1396 | Maginei Eretz: Shulchan Aruch Orach Chaim, Lemberg, 1893 (https://www.nli.org.il/he/books/NNL_ALEPH002084080) | Public Domain | yes | no | none required by license; source/version retained |
 | Shalom Aleichem | 8 | Shalom Alechem (http://en.wikipedia.org/wiki/Shalom_Aleichem_(liturgy)) | CC-BY-SA | yes | yes | required |
 | Shekel HaKodesh | 440 | Shekel Hakodesh, London 1919 (https://www.nli.org.il/he/books/NNL_ALEPH002034753) | Public Domain | yes | no | none required by license; source/version retained |
 | Shenei Luchot HaBerit | 2667 | Shenei Luchot HaBrit, based on Amsterdam, 1698 ed. Part I (https://www.nli.org.il/he/books/NNL_ALEPH001881900) | Public Domain | yes | no | none required by license; source/version retained |
