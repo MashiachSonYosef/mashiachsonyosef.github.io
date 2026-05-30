@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HUD Preview | Hebrew Source Workbench</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.97); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    main { width: min(1100px, calc(100% - 28px)); margin: 0 auto; padding: 28px 0 60px; }
+    a { color: var(--accent); }
+    h1 { font-weight: 400; font-size: clamp(2.2rem, 6vw, 5rem); line-height: 0.95; margin: 0 0 14px; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 10px; }
+    .shell { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { padding: 22px; border-bottom: 1px solid var(--line); }
+    .preview-body { padding: 22px; }
+    .sample-line { border: 1px solid var(--line); background: var(--panel); padding: 18px; margin-top: 18px; }
+    .hebrew { direction: rtl; unicode-bidi: plaintext; text-align: right; color: var(--hebrew); font-size: clamp(1.5rem, 5vw, 2.6rem); line-height: 1.8; }
+    .lexical-word { cursor: pointer; border-bottom: 1px dotted var(--line-2); padding: 0 2px; }
+    .lexical-word:hover, .lexical-word:focus-visible { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-hud { position: fixed; inset: 0; z-index: 1000; background: rgba(10,14,18,0.82); padding: clamp(12px, 3vw, 28px); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-panel { width: min(980px, 100%); min-height: min(760px, calc(100vh - clamp(24px, 6vw, 56px))); margin: 0 auto; border: 1px solid var(--line); background: var(--panel-2); padding: clamp(16px, 3vw, 28px); box-shadow: 0 18px 70px rgba(0,0,0,0.5); }
+    .hud-head { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; margin-bottom: 18px; }
+    .hud-clicked-word { min-width: 0; text-align: center; color: var(--hebrew); font-size: clamp(2rem, 7vw, 4.8rem); line-height: 1.08; overflow-wrap: anywhere; }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); width: 34px; height: 34px; line-height: 1; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; gap: 16px; margin: 0; }
+    .lexical-field-row { display: grid; grid-template-columns: minmax(130px, 0.18fr) minmax(0, 1fr); gap: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
+    .lexical-field-row dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-field-row dd { margin: 0; }
+    .claim-row-list { display: grid; gap: 10px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 12px; display: grid; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: grid; gap: 7px; justify-items: center; text-align: center; }
+    .claim-hebrew { color: var(--hebrew); font-size: clamp(1.35rem, 3.8vw, 2.25rem); line-height: 1.12; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-renderings { color: var(--text); margin: 0; text-align: center; font-size: 1.02rem; }
+    .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .source-details { margin-top: 16px; border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    @media (max-width: 760px) { .lexical-field-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero">
+        <p><a href="../">Library</a></p>
+        <h1>Lexical HUD Preview</h1>
+        <p>This is a public preview for the Hebrew Source Workbench lexical HUD. It is not a translation page and does not import English translations.</p>
+        <p>The purpose is to test clicked Hebrew display, source/license clarity, and strict Hebrew / strict Aramaic / strict lemma lanes before applying the renderer broadly.</p>
+      </div>
+      <div class="preview-body">
+        <p>Click the Hebrew sample word. Then click anywhere in the HUD to close it.</p>
+        <div class="sample-line">
+          <p class="hebrew"><span class="lexical-word" tabindex="0" role="button" data-preview-token>דְּבָרִים</span> אֵלֶּה הַדְּבָרִים</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-panel" role="dialog" aria-modal="true" aria-label="Lexical HUD">
+      <div class="hud-head"><div class="hud-clicked-word" data-hud-word lang="he" dir="rtl">דְּבָרִים</div><button class="hud-close" type="button" data-hud-close aria-label="Close lexical HUD">&times;</button></div>
+      <dl class="lexical-fields">
+        <div class="lexical-field-row"><dt>Strict Hebrew</dt><dd><div class="claim-row-list">
+          <section class="claim-row"><div class="claim-row-head"><strong class="claim-hebrew" lang="he" dir="rtl">דָּבָר</strong><span class="claim-status">Strict Hebrew - 96%</span></div><p class="claim-renderings">word / thing / matter</p><p class="claim-source">Source: OpenScriptures Hebrew Bible H1697</p><p class="claim-license">License: CC BY 4.0</p></section>
+        </div></dd></div>
+        <div class="lexical-field-row"><dt>Strict Aramaic</dt><dd><div class="claim-row-list">
+          <section class="claim-row"><div class="claim-row-head"><strong class="claim-hebrew" lang="he" dir="rtl">דְּבַר</strong><span class="claim-status">Unresolved - 0%</span></div><p class="claim-renderings">No Aramaic strict match yet.</p></section>
+        </div></dd></div>
+        <div class="lexical-field-row"><dt>Strict Lemma</dt><dd><div class="claim-row-list">
+          <section class="claim-row"><div class="claim-row-head"><strong class="claim-hebrew" lang="he" dir="rtl">דָּבָר</strong><span class="claim-status">Strict Lemma - 93%</span></div><p class="claim-renderings">word / thing / matter / speech</p><p class="claim-source">Source: OpenScriptures Hebrew Bible H1697</p><p class="claim-license">License: CC BY 4.0</p></section>
+          <section class="claim-row"><div class="claim-row-head"><strong class="claim-hebrew" lang="he" dir="rtl">דברים</strong><span class="claim-status">Strict Lemma - 82%</span></div><p class="claim-renderings">Deuteronomy</p><p class="claim-source">Source: Project HUD preview fixture, not exported lexical data</p><p class="claim-license">License: project-authored / CC0</p></section>
+        </div></dd></div>
+      </dl>
+      <details class="source-details">
+        <summary>Sources / licenses</summary>
+        <p>For דָּבָר - word, thing, matter: OpenScriptures Hebrew Bible H1697 | CC BY 4.0</p>
+        <p>For דברים - Deuteronomy: Project HUD preview fixture, not exported lexical data | project-authored / CC0</p>
+      </details>
+    </div>
+  </section>
+  <script>
+    const hud = document.querySelector('[data-lexical-hud]');
+    const word = document.querySelector('[data-preview-token]');
+    const closeHud = () => { hud.hidden = true; word.setAttribute('aria-pressed', 'false'); };
+    const openHud = () => { hud.hidden = false; word.setAttribute('aria-pressed', 'true'); hud.scrollTop = 0; };
+    word.addEventListener('click', openHud);
+    word.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openHud(); } });
+    hud.addEventListener('click', closeHud);
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !hud.hidden) closeHud(); });
+  </script>
+</body>
+</html>
