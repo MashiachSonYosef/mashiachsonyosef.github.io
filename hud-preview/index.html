@@ -110,6 +110,7 @@
     .hud[hidden] { display: none; }
 
     .hud-panel {
+      position: relative;
       width: min(980px, 100%);
       min-height: min(760px, calc(100vh - clamp(24px, 6vw, 56px)));
       margin: 0 auto;
@@ -128,6 +129,17 @@
       line-height: 1.08;
       overflow-wrap: anywhere;
       margin: 0 0 20px;
+    }
+
+    .close-hint {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.72;
     }
 
     .hud-stack {
@@ -283,6 +295,7 @@
 
   <section class="hud" data-hud hidden aria-live="polite">
     <div class="hud-panel" role="dialog" aria-modal="true" aria-label="Lexical HUD sampler">
+      <div class="close-hint">Click anywhere to close</div>
       <h2 class="hud-word" data-hud-word lang="he" dir="rtl"></h2>
       <div class="hud-stack" data-hud-stack></div>
       <details>
