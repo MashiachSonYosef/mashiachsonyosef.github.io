@@ -62,6 +62,7 @@ function validateManifest(issues) {
     'data/definitions/paraphrase-route-policy.json',
     'data/definitions/hud-route-contract.json',
     'data/definitions/hud-route-fixtures.json',
+    'data/definitions/hud-route-store-sample.json',
     'data/definitions/definition-route-sample.json',
     'data/definitions/phrase-evidence-sample.json',
   ]) {

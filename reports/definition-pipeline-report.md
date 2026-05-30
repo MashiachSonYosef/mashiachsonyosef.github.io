@@ -1,6 +1,6 @@
 # Definition Pipeline Report
 
-Generated: 2026-05-30T20:21:43.598Z
+Generated: 2026-05-30T20:32:12.445Z
 
 ## Scope
 
@@ -25,6 +25,7 @@ Generated: 2026-05-30T20:21:43.598Z
 - data/definitions/morphology-rules.json
 - data/definitions/hud-route-contract.json
 - data/definitions/hud-route-fixtures.json
+- data/definitions/hud-route-store-sample.json
 - data/definitions/definition-route-sample.json
 - .local-cache/definition-routes/kaikki-definition-claims.jsonl
 - .local-cache/definition-routes/kaikki-definition-claims.csv
@@ -47,7 +48,7 @@ Generated: 2026-05-30T20:21:43.598Z
 - Wire HUD to consume `data/definitions/definition-route-sample.json` first, then promote the local JSONL cache to chunked public artifacts when the UX is settled.
 ## Phrase Evidence
 
-- Generated: 2026-05-30T20:22:52.419Z
+- Generated: 2026-05-30T20:32:24.112Z
 - Tracked source files scanned: 2
 - Allowed units scanned: 2897
 - Rejected units skipped: 0
