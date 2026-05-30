@@ -130,53 +130,9 @@
       margin: 0 0 20px;
     }
 
-    .lane-list {
+    .hud-stack {
       display: grid;
-      gap: 12px;
-      margin: 0;
-    }
-
-    .lane {
-      display: grid;
-      grid-template-columns: minmax(160px, 0.22fr) minmax(0, 1fr);
       gap: 14px;
-      border-top: 1px solid var(--line);
-      padding: 15px 0 0;
-    }
-
-    .lane.is-primary {
-      border-top-color: var(--line-strong);
-      background: rgba(223, 198, 139, 0.045);
-      margin: 0 -10px;
-      padding: 15px 10px 10px;
-    }
-
-    .lane.is-quiet { opacity: 0.68; }
-
-    .lane dt {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.78rem;
-    }
-
-    .lane-meta {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.78rem;
-      letter-spacing: 0;
-      text-transform: none;
-    }
-
-    .lane dd {
-      margin: 0;
-      min-width: 0;
-    }
-
-    .claim-list {
-      display: grid;
-      gap: 10px;
     }
 
     .claim {
@@ -188,9 +144,17 @@
       min-width: 0;
     }
 
-    .claim.is-placeholder {
-      border-style: dashed;
-      background: transparent;
+    .claim.is-primary {
+      border-color: var(--line-strong);
+      background: rgba(223, 198, 139, 0.052);
+      padding: clamp(14px, 3vw, 20px);
+    }
+
+    .claim.is-row {
+      grid-template-columns: minmax(88px, 0.18fr) minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
     }
 
     .claim-head {
@@ -211,6 +175,11 @@
       overflow-wrap: anywhere;
     }
 
+    .claim.is-row .claim-form {
+      font-size: clamp(1.08rem, 3vw, 1.55rem);
+      text-align: right;
+    }
+
     .badge {
       display: inline-flex;
       align-items: center;
@@ -223,16 +192,50 @@
       text-transform: uppercase;
     }
 
+    .lane-label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+    }
+
     .rendering {
       text-align: center;
       color: var(--text);
       margin: 0;
     }
 
+    .claim.is-row .rendering {
+      text-align: left;
+      line-height: 1.4;
+    }
+
     .source {
       color: var(--muted);
       margin: 0;
       font-size: 0.86rem;
+    }
+
+    .section-title {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 0.74rem;
+      margin: 8px 0 -5px;
+    }
+
+    .check-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .check-chip {
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      line-height: 1.3;
     }
 
     details {
@@ -248,7 +251,9 @@
     }
 
     @media (max-width: 720px) {
-      .lane { grid-template-columns: 1fr; }
+      .claim.is-row { grid-template-columns: 1fr; }
+      .claim.is-row .rendering { text-align: center; }
+      .claim.is-row .claim-form { text-align: center; }
     }
   </style>
 </head>
@@ -279,7 +284,7 @@
   <section class="hud" data-hud hidden aria-live="polite">
     <div class="hud-panel" role="dialog" aria-modal="true" aria-label="Lexical HUD sampler">
       <h2 class="hud-word" data-hud-word lang="he" dir="rtl"></h2>
-      <dl class="lane-list" data-lane-list></dl>
+      <div class="hud-stack" data-hud-stack></div>
       <details>
         <summary>Sources / licenses</summary>
         <div data-sources></div>
@@ -340,64 +345,56 @@
     const hud = document.querySelector("[data-hud]");
     const hudWord = document.querySelector("[data-hud-word]");
     const sources = document.querySelector("[data-sources]");
-    const laneList = document.querySelector("[data-lane-list]");
+    const hudStack = document.querySelector("[data-hud-stack]");
     const lanePriority = { surface: 3, lemma: 2, fuzzy: 1, placeholder: 0 };
 
     const closeHud = () => { hud.hidden = true; };
 
-    const claimHtml = (row) => `
-      <section class="claim">
+    const rankClaim = (row) => (lanePriority[row.match] * 1000) + row.score;
+
+    const primaryHtml = (row) => `
+      <section class="claim is-primary">
         <div class="claim-head">
           <div class="claim-form" lang="he" dir="rtl">${row.form}</div>
           <div class="badge">${row.match} - ${row.score}%</div>
         </div>
+        <div class="lane-label">${row.lane}</div>
         <p class="rendering">${row.rendering}</p>
         <p class="source">Source: ${row.source}</p>
         <p class="source">License: ${row.license}</p>
       </section>
     `;
 
-    const placeholderHtml = (row) => `
-      <section class="claim is-placeholder">
-        <div class="badge">Unresolved - 0%</div>
-        <p class="rendering">${row.text}</p>
-        <p class="source">Source: Unresolved placeholder</p>
-        <p class="source">License: N/A</p>
+    const secondaryHtml = (row) => `
+      <section class="claim is-row">
+        <div class="lane-label">${row.lane}</div>
+        <div>
+          <div class="claim-form" lang="he" dir="rtl">${row.form}</div>
+          <p class="rendering">${row.rendering}</p>
+        </div>
+        <div class="badge">${row.match} - ${row.score}%</div>
       </section>
     `;
 
-    const laneScore = (claims) => claims.reduce((best, row) => {
-      const score = (lanePriority[row.match] * 1000) + row.score;
-      return Math.max(best, score);
-    }, 0);
-
-    const renderLane = ({ lane, claims, placeholders }, index) => {
-      const best = claims[0];
-      const meta = best ? `${best.match} match, best ${best.score}%` : "placeholder";
-      const quietClass = best ? "" : " is-quiet";
-      const primaryClass = index === 0 && best ? " is-primary" : "";
-      const rowsHtml = claims.length ? claims.map(claimHtml).join("") : placeholders.map(placeholderHtml).join("");
-      return `<div class="lane${primaryClass}${quietClass}"><dt>${lane}<span class="lane-meta">${meta}</span></dt><dd><div class="claim-list">${rowsHtml}</div></dd></div>`;
-    };
-
-    const groupByLane = (items) => items.reduce((map, row) => {
-      if (!map.has(row.lane)) map.set(row.lane, []);
-      map.get(row.lane).push(row);
-      return map;
-    }, new Map());
+    const checksHtml = (rows) => rows.length
+      ? `<div class="section-title">Checked</div><div class="check-list">${rows.map((row) => `<span class="check-chip">${row.lane}: ${row.text}</span>`).join("")}</div>`
+      : "";
 
     const openHud = (key) => {
       const sample = rows[key];
       hudWord.textContent = sample.word;
-      const groupedClaims = groupByLane(sample.claims);
-      const groupedPlaceholders = groupByLane(sample.placeholders);
-      const laneNames = Array.from(new Set([...groupedClaims.keys(), ...groupedPlaceholders.keys()]));
-      const laneModels = laneNames.map((lane) => ({
-        lane,
-        claims: (groupedClaims.get(lane) || []).sort((a, b) => (lanePriority[b.match] - lanePriority[a.match]) || (b.score - a.score)),
-        placeholders: groupedPlaceholders.get(lane) || []
-      })).sort((a, b) => laneScore(b.claims) - laneScore(a.claims));
-      laneList.innerHTML = laneModels.map(renderLane).join("");
+      const sortedClaims = [...sample.claims].sort((a, b) => rankClaim(b) - rankClaim(a));
+      const [primary, ...secondary] = sortedClaims;
+      hudStack.innerHTML = primary
+        ? [
+          primaryHtml(primary),
+          secondary.length ? `<div class="section-title">Also matched</div>${secondary.map(secondaryHtml).join("")}` : "",
+          checksHtml(sample.placeholders)
+        ].join("")
+        : [
+          `<section class="claim is-primary"><div class="badge">Unresolved - 0%</div><p class="rendering">No lexical claim is shown for this token.</p></section>`,
+          checksHtml(sample.placeholders)
+        ].join("");
       sources.innerHTML = sample.claims.length
         ? sample.claims.map((row) => `<p>For <span lang="he" dir="rtl">${row.form}</span> - ${row.rendering}: ${row.source} | ${row.license}</p>`).join("")
         : "<p>No sourced lexical claim is shown for this token.</p>";
