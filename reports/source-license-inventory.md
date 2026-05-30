@@ -1,6 +1,6 @@
 # Source License Inventory
 
-Generated: 2026-05-29
+Generated: 2026-05-30
 
 | Work | Units | Hebrew version title (source URL) | License | Commercial reuse allowed | Share-alike | Attribution requirements |
 |---|---:|---|---|---|---|---|
@@ -37,6 +37,7 @@ Generated: 2026-05-29
 | Arukh HaShulchan | 2508 | Arukh HaShulchan, Yoreh De'ah -- Wikisource (https://he.wikisource.org/wiki/%D7%A2%D7%A8%D7%95%D7%9A_%D7%94%D7%A9%D7%95%D7%9C%D7%97%D7%9F) | CC-BY-SA | yes | yes | required |
 | Arukh HaShulchan HeAtid | 1602 | Arukh HaShulchan HeAtid, Zeraim, Tel Aviv 1938 (https://www.nli.org.il/he/books/NNL_ALEPH001832511/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Asarah Perakim LeRamchal | 85 | Assarah Perakim -- Torat Emet (http://www.ateret4u.com/online/f_01919.html#HtmpReportNum0001_L2) | Public Domain | yes | no | none required by license; source/version retained |
+| Ateret Zekenim on Shulchan Arukh, Orach Chayim | 1003 | Maginei Eretz: Shulchan Aruch Orach Chaim, Lemberg, 1893 (https://www.nli.org.il/he/books/NNL_ALEPH002084080) | Public Domain | yes | no | none required by license; source/version retained |
 | Avodat HaKodesh | 112 | Gerlitz edition, published by Oraita (https://www.sefaria.org) | CC0 | yes | no | none required by license; source/version retained |
 | Avodat HaMelekh on Mishneh Torah, Foreign Worship and Customs of the Nations | 306 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Avodat HaMelekh on Mishneh Torah, Foundations of the Torah | 159 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -489,6 +490,7 @@ Generated: 2026-05-29
 | Maaseh Rokeach on Rest on the Tenth of Tishrei | 55 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rokeach on Ritual Slaughter | 271 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rokeach on Robbery and Lost Property | 184 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
+| Maaseh Rokeach on Sabbath | 1349 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rokeach on Sabbatical Year and the Jubilee | 113 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rokeach on Sacrifices Rendered Unfit | 205 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rokeach on Sacrificial Procedure | 193 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
@@ -522,6 +524,7 @@ Generated: 2026-05-29
 | Maggid Mishneh on Mishneh Torah, Rest on the Tenth of Tishrei | 59 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Ritual Slaughter | 456 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Robbery and Lost Property | 432 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Maggid Mishneh on Mishneh Torah, Sabbath | 1277 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah | 108 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Shofar, Sukkah and Lulav | 240 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Theft | 200 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
@@ -918,6 +921,7 @@ Generated: 2026-05-29
 | Seder Olam Rabbah | 2 | Seder Olam, Warsaw 1904 (https://www.nli.org.il/he/books/NNL_ALEPH001364770) | Public Domain | yes | no | none required by license; source/version retained |
 | Seder Olam Zutta | 10 | Seder Olam Zuta, Rabbi M. Grossberg. London, 1910 (https://beta.nli.org.il/he/books/NNL_ALEPH002021777/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefat Emet | 7082 | Sefat emet, Piotrków, 1905-1908 (https://www.nli.org.il/he/books/NNL_ALEPH001186213) | Public Domain | yes | no | none required by license; source/version retained |
+| Sefer Chasidim | 1175 | Sefer Chassidim, Zhitomir, 1857 (https://www.nli.org.il/he/books/NNL01) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer Etz Chaim | 7 | Sefer Etz Chaim (http://www.hebrew.grimoar.cz/vital/ec_chajim.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | Sefer HaIkkarim | 223 | Sefer Ha-'ikkarim (https://www.nli.org.il/he/books/NNL_ALEPH001187491) | CC-BY | yes | no | required |
 | Sefer HaKanah | 1502 | Sefer HaKana (http://www.hebrew.grimoar.cz/anonym/sefer_ha-kana.htm) | Public Domain | yes | no | none required by license; source/version retained |
