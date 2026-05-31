@@ -22,8 +22,8 @@ const defaults = {
   maxSourceFiles: 5,
   maxCacheGb: 80,
   warnCacheGb: 70,
-  maxEmptyBatches: 3,
-  maxFailedBatches: 3,
+  maxEmptyBatches: 1,
+  maxFailedBatches: 1,
   sleepSeconds: 0,
 };
 
