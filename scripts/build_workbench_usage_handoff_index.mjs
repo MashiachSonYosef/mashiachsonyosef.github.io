@@ -186,6 +186,7 @@ function buildCommands(options, manifest) {
   commands.build_cluster_index = `node scripts/build_workbench_usage_cluster_index.mjs --concordance=${concordancePath} --output=${options.clusterIndex} --report=reports/workbench-usage-cluster-index.md --max-samples=8`;
   commands.validate_cluster_index = `node scripts/validate_workbench_usage_cluster_index.mjs ${options.clusterIndex}`;
   commands.build_route_coverage = `node scripts/build_workbench_usage_route_coverage.mjs --concordance=${concordancePath} --output=${options.routeCoverage} --report=reports/workbench-usage-route-coverage.md --max-samples=8`;
+  commands.validate_route_coverage = `node scripts/validate_workbench_usage_route_coverage.mjs ${options.routeCoverage}`;
   commands.build_handoff_index = [
     'node scripts/build_workbench_usage_handoff_index.mjs',
     `--manifest=${options.manifest}`,

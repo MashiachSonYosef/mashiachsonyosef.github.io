@@ -137,6 +137,7 @@ function validateCommands() {
     build_cluster_index: 'build_workbench_usage_cluster_index.mjs',
     validate_cluster_index: 'validate_workbench_usage_cluster_index.mjs',
     build_route_coverage: 'build_workbench_usage_route_coverage.mjs',
+    validate_route_coverage: 'validate_workbench_usage_route_coverage.mjs',
     build_handoff_index: 'build_workbench_usage_handoff_index.mjs',
     validate_handoff_index: 'validate_workbench_usage_handoff_index.mjs',
     validate_smoke_pipeline: 'validate_workbench_smoke_pipeline.mjs',

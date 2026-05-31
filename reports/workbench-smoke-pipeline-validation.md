@@ -4,7 +4,7 @@ Generated: 2026-05-31T16:14:11.679Z
 
 ## Summary
 
-- Steps: 20
+- Steps: 21
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -44,6 +44,7 @@ Generated: 2026-05-31T16:14:11.679Z
 | build_usage_cluster_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-cluster-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-cluster-index.md / Usage cluster index clusters 2; rows 2390 |
 | validate_usage_cluster_index | passed | Workbench usage cluster index validation passed. Clusters: 2. Rows: 2390. |
 | build_usage_route_coverage | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-coverage.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-coverage.md / Usage route coverage route IDs 1; linked rows 2390; observed-only 0 |
+| validate_usage_route_coverage | passed | Workbench usage route coverage validation passed. Route IDs: 1. Links: 2390. |
 | check_usage_concordance_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.md / Usage concordance link check passed; rows 2390; source URL bad 0; work anchors bad 0 |
 | check_usage_route_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.md / Usage route link check passed; rows 2390; links 2390; unresolved 0; metadata mismatches 0 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |

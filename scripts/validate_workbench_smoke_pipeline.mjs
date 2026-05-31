@@ -119,6 +119,11 @@ await runStep('build_usage_route_coverage', [
   '--max-samples=6',
 ]);
 
+await runStep('validate_usage_route_coverage', [
+  'scripts/validate_workbench_usage_route_coverage.mjs',
+  usageRouteCoverageJson,
+]);
+
 const usageConcordanceLinkCheckJson = `${options.scratchDir}/usage-concordance-link-check.json`;
 await runStep('check_usage_concordance_links', [
   'scripts/check_workbench_usage_concordance_links.mjs',
