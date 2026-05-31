@@ -17,6 +17,7 @@ const defaults = {
   selectedOccurrences: '.local-cache/workbench-evidence/usage-selected-occurrences.json',
   selectedOccurrenceLookup: '.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json',
   agent6BoundaryPacket: '.local-cache/workbench-evidence/usage-agent6-boundary-packet.json',
+  concentrationPacket: '.local-cache/workbench-evidence/usage-concentration-packet.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   skipSmokeValidation: false,
   output: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -37,6 +38,7 @@ const selectedSlicesIndex = readJsonIfExists(options.selectedSlicesIndex);
 const selectedOccurrences = readJsonIfExists(options.selectedOccurrences);
 const selectedOccurrenceLookup = readJsonIfExists(options.selectedOccurrenceLookup);
 const agent6BoundaryPacket = readJsonIfExists(options.agent6BoundaryPacket);
+const concentrationPacket = readJsonIfExists(options.concentrationPacket);
 const smokeValidation = options.smokeValidation ? readJsonIfExists(options.smokeValidation) : null;
 
 if (manifest.artifact_type !== 'workbench_usage_navigation_concordance_manifest') {
@@ -63,6 +65,7 @@ const artifact = {
     selected_occurrences: options.selectedOccurrences,
     selected_occurrence_lookup: options.selectedOccurrenceLookup,
     agent6_boundary_packet: options.agent6BoundaryPacket,
+    concentration_packet: options.concentrationPacket,
     smoke_validation: options.smokeValidation || null,
     smoke_validation_mode: options.skipSmokeValidation ? 'skipped_self_reference' : 'external_artifact',
   },
@@ -83,6 +86,7 @@ const artifact = {
     selected_occurrences_report: 'reports/workbench-usage-selected-occurrences.md',
     selected_occurrence_lookup_report: 'reports/workbench-usage-selected-occurrence-lookup.md',
     agent6_boundary_packet_report: 'reports/workbench-usage-agent6-boundary-packet.md',
+    concentration_packet_report: 'reports/workbench-usage-concentration-packet.md',
     smoke_validation_report: 'reports/workbench-smoke-pipeline-validation.md',
   },
   commands: buildCommands(options, manifest),
@@ -117,6 +121,12 @@ const artifact = {
     agent6_boundary_failed_checks: Array.isArray(agent6BoundaryPacket?.checks)
       ? agent6BoundaryPacket.checks.filter((check) => check.status !== 'passed').length
       : null,
+    concentration_status: concentrationPacket?.quality?.status ?? null,
+    concentration_warnings: concentrationPacket?.quality?.warning_count ?? null,
+    concentration_failed_checks: concentrationPacket?.quality?.failed_count ?? null,
+    concentration_route_id_buckets: concentrationPacket?.counts?.route_id_buckets ?? null,
+    concentration_cluster_buckets: concentrationPacket?.counts?.cluster_buckets ?? null,
+    concentration_route_payload_field_hits: concentrationPacket?.counts?.route_payload_field_hits ?? null,
   },
   validation: {
     occurrence_link_check_status: occurrenceLinkCheck?.quality?.status ?? 'not_run',
@@ -151,6 +161,11 @@ const artifact = {
     agent6_boundary_failed_checks: Array.isArray(agent6BoundaryPacket?.checks)
       ? agent6BoundaryPacket.checks.filter((check) => check.status !== 'passed').length
       : null,
+    concentration_packet_status: concentrationPacket?.artifact_type === 'workbench_usage_concentration_packet' ? 'present' : 'not_run',
+    concentration_quality_status: concentrationPacket?.quality?.status ?? null,
+    concentration_warnings: concentrationPacket?.quality?.warning_count ?? null,
+    concentration_failed_checks: concentrationPacket?.quality?.failed_count ?? null,
+    concentration_route_payload_field_hits: concentrationPacket?.counts?.route_payload_field_hits ?? null,
     smoke_validation_status: options.skipSmokeValidation
       ? 'skipped_self_reference'
       : smokeValidation ? (smokeValidation.counts?.failed_steps === 0 ? 'passed' : 'failed') : 'not_run',
@@ -202,6 +217,9 @@ function writeReport(relativePath, artifact) {
     `- Selected occurrence duplicate memberships: ${artifact.counts.selected_occurrence_duplicate_memberships}`,
     `- Selected occurrence lookup buckets: works ${artifact.counts.selected_occurrence_lookup_work_buckets}, clusters ${artifact.counts.selected_occurrence_lookup_cluster_buckets}, statuses ${artifact.counts.selected_occurrence_lookup_status_buckets}`,
     `- Agent 6 boundary checks: ${artifact.counts.agent6_boundary_checks}, failed ${artifact.counts.agent6_boundary_failed_checks}`,
+    `- Concentration packet: ${artifact.counts.concentration_status}, warnings ${artifact.counts.concentration_warnings}, failed ${artifact.counts.concentration_failed_checks}`,
+    `- Concentration buckets: routes ${artifact.counts.concentration_route_id_buckets}, clusters ${artifact.counts.concentration_cluster_buckets}`,
+    `- Concentration route payload-like field hits: ${artifact.counts.concentration_route_payload_field_hits}`,
     '',
     '## Validation',
     '',
@@ -217,6 +235,8 @@ function writeReport(relativePath, artifact) {
     `- Selected occurrences: ${artifact.validation.selected_occurrences_status}, rows ${artifact.validation.selected_occurrence_rows}`,
     `- Selected occurrence lookup: ${artifact.validation.selected_occurrence_lookup_status}, work buckets ${artifact.validation.selected_occurrence_lookup_work_buckets}`,
     `- Agent 6 boundary packet: ${artifact.validation.agent6_boundary_packet_status}, checks ${artifact.validation.agent6_boundary_checks}, failed ${artifact.validation.agent6_boundary_failed_checks}`,
+    `- Concentration packet: ${artifact.validation.concentration_packet_status}, quality ${artifact.validation.concentration_quality_status}, warnings ${artifact.validation.concentration_warnings}, failed ${artifact.validation.concentration_failed_checks}`,
+    `- Concentration route payload-like field hits: ${artifact.validation.concentration_route_payload_field_hits}`,
     `- Smoke validation: ${artifact.validation.smoke_validation_status}, steps ${artifact.validation.smoke_steps}, failed ${artifact.validation.smoke_failed_steps}`,
     '',
     '## Artifacts',
@@ -238,6 +258,7 @@ function writeReport(relativePath, artifact) {
     `| selected occurrences | ${mdCell(artifact.artifacts.selected_occurrences_report)} | yes |`,
     `| selected occurrence lookup | ${mdCell(artifact.artifacts.selected_occurrence_lookup_report)} | yes |`,
     `| Agent 6 boundary packet | ${mdCell(artifact.artifacts.agent6_boundary_packet_report)} | yes |`,
+    `| concentration packet | ${mdCell(artifact.artifacts.concentration_packet_report)} | yes |`,
     `| smoke validation | ${mdCell(artifact.artifacts.smoke_validation_report)} | yes |`,
     '',
     '## Commands',
@@ -269,6 +290,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-occurrences=')) parsed.selectedOccurrences = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-lookup=')) parsed.selectedOccurrenceLookup = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--agent6-boundary-packet=')) parsed.agent6BoundaryPacket = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--concentration-packet=')) parsed.concentrationPacket = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg === '--no-smoke-validation') {
       parsed.smokeValidation = null;
@@ -304,6 +326,8 @@ function buildCommands(options, manifest) {
   commands.validate_selected_occurrence_lookup = `node scripts/validate_workbench_usage_selected_occurrence_lookup.mjs ${options.selectedOccurrenceLookup}`;
   commands.build_agent6_boundary_packet = `node scripts/build_workbench_usage_agent6_boundary_packet.mjs --handoff=${options.output} --selected-occurrences=${options.selectedOccurrences} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --route-link-check=${options.routeLinkCheck} --audit-review=${options.auditReview} --smoke-validation=${options.smokeValidation || '.local-cache/workbench-evidence/smoke-pipeline-validation.json'} --output=${options.agent6BoundaryPacket} --report=reports/workbench-usage-agent6-boundary-packet.md`;
   commands.validate_agent6_boundary_packet = `node scripts/validate_workbench_usage_agent6_boundary_packet.mjs ${options.agent6BoundaryPacket}`;
+  commands.build_concentration_packet = `node scripts/build_workbench_usage_concentration_packet.mjs --selected-occurrences=${options.selectedOccurrences} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --output=${options.concentrationPacket} --report=reports/workbench-usage-concentration-packet.md`;
+  commands.validate_concentration_packet = `node scripts/validate_workbench_usage_concentration_packet.mjs ${options.concentrationPacket}`;
   commands.build_handoff_index = [
     'node scripts/build_workbench_usage_handoff_index.mjs',
     `--manifest=${options.manifest}`,
@@ -319,6 +343,7 @@ function buildCommands(options, manifest) {
     `--selected-occurrences=${options.selectedOccurrences}`,
     `--selected-occurrence-lookup=${options.selectedOccurrenceLookup}`,
     `--agent6-boundary-packet=${options.agent6BoundaryPacket}`,
+    `--concentration-packet=${options.concentrationPacket}`,
     options.smokeValidation ? `--smoke-validation=${options.smokeValidation}` : '--no-smoke-validation',
     `--output=${options.output}`,
     `--report=${options.report}`,
