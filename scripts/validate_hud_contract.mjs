@@ -23,6 +23,8 @@ function assert(condition, message, issues) {
 
 const issues = [];
 const preview = read('hud-preview/index.html');
+const routePreview = read('hud-preview/routes/index.html');
+const routePreviewApp = read('hud-preview/routes/app.js');
 const renderer = read('scripts/render_site.ps1');
 const previewScripts = [...preview.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((match) => match[1]).join('\n');
 
@@ -42,6 +44,21 @@ assert(preview.includes('grid-auto-columns: clamp(250px, 38%, 380px)'), 'preview
 assert(preview.includes('document.addEventListener("wheel"'), 'preview must translate hovered wheel movement into horizontal lane scrolling', issues);
 assert(preview.includes('passive: false'), 'preview wheel handler must be cancelable for horizontal lane scrolling', issues);
 assert(!/\bPotential\b|potential option/i.test(preview), 'preview must not use vague Potential labeling', issues);
+
+try {
+  new Function(routePreviewApp);
+} catch (error) {
+  issues.push(`hud-preview/routes app JavaScript syntax failed: ${error.message}`);
+}
+
+assert(routePreview.includes('hud-route-data'), 'route preview must embed route contract data', issues);
+assert(routePreview.includes('app.js'), 'route preview must load its renderer script', issues);
+assert(routePreview.includes('Full source and license rows'), 'route preview must keep source/license rows expanded in plain sections', issues);
+assert(routePreview.includes('grid-auto-flow: column'), 'route preview must include horizontal card lanes', issues);
+assert(routePreviewApp.includes('document.addEventListener("wheel"'), 'route preview must support horizontal lane wheel scrolling', issues);
+assert(routePreviewApp.includes('passive: false'), 'route preview wheel handler must be cancelable', issues);
+assert(!/<details/i.test(routePreview), 'route preview source/license rows should not be hidden behind details', issues);
+assert(!/\bPotential\b|potential option|low confidence/i.test(`${routePreview}\n${routePreviewApp}`), 'route preview must not use vague or demoting labels', issues);
 
 assert(!renderer.includes('Potential options'), 'renderer must not label route groups as Potential options', issues);
 assert(!renderer.includes('status === "Potential"'), 'renderer must not score any claim as Potential', issues);
