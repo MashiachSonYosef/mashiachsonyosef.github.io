@@ -1,13 +1,26 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-31T01:22:09.075Z",
-  "source_manifest": ".local-cache/hud-route-store/manifest.json",
-  "route_store_policy": "Large HUD route store stays local until the live renderer is ready for chunked on-demand loading.",
+  "generated_at": "2026-05-31T01:23:15.341Z",
+  "source_store_sample": "data/definitions/hud-route-store-sample.json",
+  "local_lookup_manifest": ".local-cache/hud-route-lookup/manifest.json",
+  "lookup_strategy": "Compute the normalized-token prefix, fetch one keyed JSON shard, then read routes_by_normalized[normalized].",
+  "prefix_length": 2,
+  "counts": {
+    "cards_read": 183317,
+    "cards_written": 183317,
+    "distinct_normalized_tokens": 122490,
+    "shard_count": 547,
+    "max_shard_bytes": 8051138,
+    "max_shard": "05d0-05dc"
+  },
   "sample_tokens": [
     {
       "token": "דְּבָרִים",
       "normalized": "דברימ",
+      "shard": "05d3-05d1",
+      "shard_path": "shards/05d3-05d1.json",
       "card_count": 6,
+      "sample_card_count": 6,
       "missing_card_reason": "",
       "cards": [
         {
@@ -288,14 +301,20 @@
     {
       "token": "וּבִדְבָרֶיךָ",
       "normalized": "ובדבריכ",
+      "shard": "05d5-05d1",
+      "shard_path": "shards/05d5-05d1.json",
       "card_count": 0,
+      "sample_card_count": 0,
       "missing_card_reason": "No direct definition/phrase card in the local route store; runtime morphology fixtures may still resolve this token.",
       "cards": []
     },
     {
       "token": "דלא",
       "normalized": "דלא",
+      "shard": "05d3-05dc",
+      "shard_path": "shards/05d3-05dc.json",
       "card_count": 1,
+      "sample_card_count": 1,
       "missing_card_reason": "",
       "cards": [
         {
@@ -339,7 +358,10 @@
     {
       "token": "בראשית",
       "normalized": "בראשית",
+      "shard": "05d1-05e8",
+      "shard_path": "shards/05d1-05e8.json",
       "card_count": 6,
+      "sample_card_count": 6,
       "missing_card_reason": "",
       "cards": [
         {
@@ -695,7 +717,10 @@
     {
       "token": "ראשית",
       "normalized": "ראשית",
+      "shard": "05e8-05d0",
+      "shard_path": "shards/05e8-05d0.json",
       "card_count": 7,
+      "sample_card_count": 7,
       "missing_card_reason": "",
       "cards": [
         {
@@ -1093,7 +1118,10 @@
     {
       "token": "בן־דוד",
       "normalized": "בנ־דוד",
+      "shard": "05d1-05e0",
+      "shard_path": "shards/05d1-05e0.json",
       "card_count": 1,
+      "sample_card_count": 1,
       "missing_card_reason": "",
       "cards": [
         {

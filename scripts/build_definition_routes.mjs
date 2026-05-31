@@ -752,6 +752,7 @@ function writeReport({ morphology, morphologyClaims, kaikkiStats, sourceLayerSta
     '- data/definitions/hud-route-contract.json',
     '- data/definitions/hud-route-fixtures.json',
     '- data/definitions/hud-route-store-sample.json',
+    ...(fs.existsSync(path.join(root, 'data/definitions/hud-route-lookup-sample.json')) ? ['- data/definitions/hud-route-lookup-sample.json'] : []),
     '- data/definitions/definition-route-sample.json',
     `- ${kaikkiStats.local_jsonl_path || '.local-cache/definition-routes/kaikki-definition-claims.jsonl'}`,
     `- ${kaikkiStats.local_csv_path || '.local-cache/definition-routes/kaikki-definition-claims.csv'}`,
@@ -771,7 +772,7 @@ function writeReport({ morphology, morphologyClaims, kaikkiStats, sourceLayerSta
     '',
     '- Add a phrase/subphrase index from already-imported Hebrew source texts, keeping Hebrew citation text separate from English definition claims.',
     '- Add Sefaria phrase candidates only version-by-version after rejecting NC, unclear, or unverified versions.',
-    '- Wire HUD to consume `data/definitions/definition-route-sample.json` first, then promote the local JSONL cache to chunked public artifacts when the UX is settled.',
+    '- Wire HUD to consume the route fixture/lookup samples first, then promote the local lookup shards to chunked public artifacts when the live renderer is ready for on-demand loading.',
     '',
   ].join('\n');
   fs.writeFileSync(path.join(root, 'reports/definition-pipeline-report.md'), report, 'utf8');
@@ -836,6 +837,7 @@ async function main() {
       'data/definitions/hud-route-contract.json',
       ...(fs.existsSync(path.join(root, 'data/definitions/hud-route-fixtures.json')) ? ['data/definitions/hud-route-fixtures.json'] : []),
       ...(fs.existsSync(path.join(root, 'data/definitions/hud-route-store-sample.json')) ? ['data/definitions/hud-route-store-sample.json'] : []),
+      ...(fs.existsSync(path.join(root, 'data/definitions/hud-route-lookup-sample.json')) ? ['data/definitions/hud-route-lookup-sample.json'] : []),
       'data/definitions/source-license-inventory.json',
       'data/definitions/definition-route-sample.json',
       ...(fs.existsSync(path.join(root, 'data/definitions/phrase-evidence-sample.json')) ? ['data/definitions/phrase-evidence-sample.json'] : []),
