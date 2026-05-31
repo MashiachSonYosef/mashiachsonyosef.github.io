@@ -6,6 +6,7 @@ const root = process.cwd();
 const clusterIndexPath = cleanRelativePath(process.argv[2] || '.local-cache/workbench-evidence/usage-cluster-index.json');
 const artifact = readJson(clusterIndexPath);
 const issues = [];
+const fileCache = new Map();
 const allowedStatuses = new Set(['supported', 'candidate', 'weak']);
 const forbiddenFieldNames = new Set([
   'definition',
@@ -97,10 +98,33 @@ function validateSample(sample, context) {
   if (!Number.isFinite(rawScore) || rawScore < 0 || rawScore > 100) issues.push(`${context}.raw_score must be 0-100`);
   if (!/^https?:\/\//.test(String(sample.source_href || ''))) issues.push(`${context}.source_href must be http(s)`);
   if (!String(sample.work_anchor_href || '').includes('#')) issues.push(`${context}.work_anchor_href must include a local anchor`);
+  validateWorkAnchor(sample.work_anchor_href, context);
   if (/[A-Za-z]{4,}/.test(String(sample.phrase_hebrew || ''))) {
     issues.push(`${context}.phrase_hebrew must not contain English words`);
   }
   if (!Array.isArray(sample.route_ids)) issues.push(`${context}.route_ids must be an array`);
+}
+
+function validateWorkAnchor(href, context) {
+  const [filePart, anchorId, extra] = String(href || '').split('#');
+  if (!filePart || !anchorId || extra !== undefined) {
+    issues.push(`${context}.work_anchor_href must be file#id`);
+    return;
+  }
+  const cleanFile = cleanRelativePath(filePart);
+  const absoluteFile = path.resolve(root, cleanFile);
+  if (!absoluteFile.startsWith(root + path.sep)) {
+    issues.push(`${context}.work_anchor_href escapes workspace`);
+    return;
+  }
+  if (!fs.existsSync(absoluteFile)) {
+    issues.push(`${context}.work_anchor_href file missing: ${cleanFile}`);
+    return;
+  }
+  const html = readCachedFile(absoluteFile);
+  if (!hasHtmlId(html, anchorId)) {
+    issues.push(`${context}.work_anchor_href anchor missing: ${cleanFile}#${anchorId}`);
+  }
 }
 
 function validateTotals() {
@@ -147,6 +171,22 @@ function walkNoForbiddenFields(value, context, pathParts = []) {
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, cleanRelativePath(relativePath)), 'utf8'));
+}
+
+function readCachedFile(absoluteFile) {
+  if (!fileCache.has(absoluteFile)) {
+    fileCache.set(absoluteFile, fs.readFileSync(absoluteFile, 'utf8'));
+  }
+  return fileCache.get(absoluteFile);
+}
+
+function hasHtmlId(html, anchorId) {
+  const escaped = escapeRegex(anchorId);
+  return new RegExp(`\\sid=["']${escaped}["']`).test(html);
+}
+
+function escapeRegex(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 function cleanRelativePath(value) {
