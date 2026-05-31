@@ -1,6 +1,6 @@
 # Definition Pipeline Report
 
-Generated: 2026-05-31T01:21:29.976Z
+Generated: 2026-05-31T02:02:35.750Z
 
 ## Scope
 
@@ -27,6 +27,7 @@ Generated: 2026-05-31T01:21:29.976Z
 - data/definitions/hud-route-fixtures.json
 - data/definitions/hud-route-store-sample.json
 - data/definitions/hud-route-lookup-sample.json
+- data/definitions/hud-route-lookup/manifest.json
 - data/definitions/definition-route-sample.json
 - .local-cache/definition-routes/kaikki-definition-claims.jsonl
 - .local-cache/definition-routes/kaikki-definition-claims.csv
@@ -49,7 +50,7 @@ Generated: 2026-05-31T01:21:29.976Z
 - Wire HUD to consume the route fixture/lookup samples first, then promote the local lookup shards to chunked public artifacts when the live renderer is ready for on-demand loading.
 ## Phrase Evidence
 
-- Generated: 2026-05-31T01:21:45.820Z
+- Generated: 2026-05-31T02:09:20.554Z
 - Tracked source files scanned: 2
 - Allowed units scanned: 2897
 - Rejected units skipped: 0
