@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const root = process.cwd();
 const defaults = {
@@ -24,6 +25,7 @@ const targets = (Array.isArray(queue.targets) ? queue.targets : [])
 const manifests = targets.map((target, index) => inspectManifest(target, index));
 const aggregateSourceMetadata = summarizeSourceMetadata(manifests);
 const aggregateClusterMetadata = summarizeClusterMetadata(manifests);
+const integritySummary = summarizeFileIntegrity(manifests);
 const totals = manifests.reduce((sum, row) => {
   sum.selected_targets += 1;
   if (row.validation.status === 'passed') sum.validation_passed += 1;
@@ -101,6 +103,7 @@ const artifact = {
   quality_gates: buildQualityGates(totals, sourceFreshness),
   aggregate_source_metadata: aggregateSourceMetadata,
   aggregate_cluster_metadata: aggregateClusterMetadata,
+  integrity_summary: integritySummary,
   counts: totals,
   manifests,
 };
@@ -203,6 +206,7 @@ function makeManifestRow(target, index, slug, manifestPath, manifest, validation
       token_normalized: target.token_normalized || manifest?.focus?.token_normalized || null,
     },
     manifest_path: manifestPath,
+    file_integrity: buildFileIntegrity(manifestPath, manifest?.paths || null),
     source_artifacts: manifest?.source_artifacts || null,
     generated_at: manifest?.generated_at || null,
     counts: manifest?.counts || { occurrence_markers: 0, candidate_rows: 0, clusters: 0, blocked_rows: 0 },
@@ -296,6 +300,30 @@ function readJsonl(relativePath, issues, label) {
     }
   }
   return rows;
+}
+
+function buildFileIntegrity(manifestPath, manifestPaths) {
+  return {
+    manifest_json: fileDigest(manifestPath),
+    occurrences_jsonl: fileDigest(manifestPaths?.occurrences_jsonl),
+    candidates_jsonl: fileDigest(manifestPaths?.candidates_jsonl),
+    clusters_json: fileDigest(manifestPaths?.clusters_json),
+    blocked_jsonl: fileDigest(manifestPaths?.blocked_jsonl),
+  };
+}
+
+function fileDigest(relativePath) {
+  const cleanPath = cleanRelativePath(relativePath);
+  if (!cleanPath) return { path: null, exists: false, bytes: 0, sha256: null };
+  const fullPath = path.join(root, cleanPath);
+  if (!fs.existsSync(fullPath)) return { path: cleanPath, exists: false, bytes: 0, sha256: null };
+  const bytes = fs.readFileSync(fullPath);
+  return {
+    path: cleanPath,
+    exists: true,
+    bytes: bytes.length,
+    sha256: crypto.createHash('sha256').update(bytes).digest('hex'),
+  };
 }
 
 function readSourceFreshness(relativePath) {
@@ -398,6 +426,38 @@ function summarizeClusterMetadata(manifests) {
   };
 }
 
+function summarizeFileIntegrity(manifests) {
+  const byKind = new Map();
+  for (const manifest of manifests) {
+    for (const [kind, row] of Object.entries(manifest.file_integrity || {})) {
+      const summary = byKind.get(kind) || {
+        kind,
+        files: 0,
+        existing_files: 0,
+        missing_files: 0,
+        bytes: 0,
+      };
+      summary.files += 1;
+      if (row?.exists === true) {
+        summary.existing_files += 1;
+        summary.bytes += Number(row.bytes || 0);
+      } else {
+        summary.missing_files += 1;
+      }
+      byKind.set(kind, summary);
+    }
+  }
+  const byKindRows = [...byKind.values()].sort((a, b) => a.kind.localeCompare(b.kind));
+  return {
+    files: byKindRows.reduce((sum, row) => sum + row.files, 0),
+    existing_files: byKindRows.reduce((sum, row) => sum + row.existing_files, 0),
+    missing_files: byKindRows.reduce((sum, row) => sum + row.missing_files, 0),
+    bytes: byKindRows.reduce((sum, row) => sum + row.bytes, 0),
+    by_kind: byKindRows,
+    notes: 'Integrity hashes identify selected local handoff artifacts without exposing row payloads.',
+  };
+}
+
 function writeJson(relativePath, data) {
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
@@ -429,6 +489,13 @@ function writeReport(relativePath, artifact) {
     `- Ambiguous rows audit-only: ${artifact.quality_gates.ambiguous_rows_audit_only ? 'yes' : 'no'}`,
     `- Source freshness status: ${artifact.quality_gates.source_freshness_status}`,
     `- Warnings: ${artifact.quality_gates.warnings.length ? artifact.quality_gates.warnings.join(', ') : 'none'}`,
+    '',
+    '## Integrity Summary',
+    '',
+    `- Files: ${artifact.integrity_summary.files}`,
+    `- Existing files: ${artifact.integrity_summary.existing_files}`,
+    `- Missing files: ${artifact.integrity_summary.missing_files}`,
+    `- Bytes: ${artifact.integrity_summary.bytes}`,
     '',
     '## Coverage Boundary',
     '',

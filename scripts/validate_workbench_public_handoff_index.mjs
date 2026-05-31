@@ -10,6 +10,13 @@ const allowedStatuses = new Set(['supported', 'candidate', 'weak', 'ambiguous', 
 const expectedLicenseCounts = new Map();
 const expectedWorkCounts = new Map();
 const expectedClusterCounts = new Map();
+const expectedIntegritySummary = {
+  files: 0,
+  existing_files: 0,
+  missing_files: 0,
+  bytes: 0,
+  by_kind: new Map(),
+};
 const forbiddenFieldNames = new Set([
   'phrase_hebrew',
   'phrase_tokens',
@@ -66,6 +73,7 @@ for (const status of allowedStatuses) {
 validateQualityGates(artifact.quality_gates);
 validateAggregateSourceMetadata(artifact.aggregate_source_metadata);
 validateAggregateClusterMetadata(artifact.aggregate_cluster_metadata);
+validateIntegritySummary(artifact.integrity_summary);
 
 walkNoRowPayloads(artifact, indexPath);
 
@@ -126,6 +134,7 @@ function validateManifest(row, context) {
   if (Number(row.counts?.candidate_rows || 0) + Number(row.counts?.blocked_rows || 0) !== statusTotal) {
     issues.push(`${context}: status counts do not match candidate_rows + blocked_rows`);
   }
+  validateFileIntegrity(row.file_integrity, `${context}.file_integrity`, validationStatus === 'passed');
   for (const [index, licenseRow] of (row.license_counts || []).entries()) {
     validateCountRow(licenseRow, `${context}.license_counts[${index}]`);
     incrementBy(expectedLicenseCounts, licenseRow.value, licenseRow.count);
@@ -294,6 +303,62 @@ function validateAggregateClusterMetadata(metadata) {
   }
 }
 
+function validateFileIntegrity(fileIntegrity, context, requirePresent) {
+  if (!fileIntegrity || typeof fileIntegrity !== 'object') {
+    issues.push(`${context} must be present`);
+    return;
+  }
+  for (const label of ['manifest_json', 'occurrences_jsonl', 'candidates_jsonl', 'clusters_json', 'blocked_jsonl']) {
+    const row = fileIntegrity[label];
+    if (!row || typeof row !== 'object') {
+      issues.push(`${context}.${label} must be present`);
+      continue;
+    }
+    if (requirePresent && row.exists !== true) issues.push(`${context}.${label}.exists must be true for passed manifests`);
+    if (row.exists === true) {
+      if (!String(row.path || '').trim()) issues.push(`${context}.${label}.path must be non-empty`);
+      const bytes = Number(row.bytes || 0);
+      if (!Number.isInteger(bytes) || bytes < 0) issues.push(`${context}.${label}.bytes must be a non-negative integer`);
+      if (!/^[a-f0-9]{64}$/.test(String(row.sha256 || ''))) issues.push(`${context}.${label}.sha256 must be a lowercase sha256 hex digest`);
+      addIntegrity(label, true, bytes);
+    } else {
+      if (Number(row.bytes || 0) !== 0) issues.push(`${context}.${label}.bytes must be 0 when missing`);
+      if (row.sha256 !== null) issues.push(`${context}.${label}.sha256 must be null when missing`);
+      addIntegrity(label, false, 0);
+    }
+  }
+}
+
+function validateIntegritySummary(summary) {
+  if (!summary || typeof summary !== 'object') {
+    issues.push('integrity_summary must be present');
+    return;
+  }
+  for (const key of ['files', 'existing_files', 'missing_files', 'bytes']) {
+    if (Number(summary[key] || 0) !== expectedIntegritySummary[key]) {
+      issues.push(`integrity_summary.${key} expected ${expectedIntegritySummary[key]}, found ${summary[key]}`);
+    }
+  }
+  const expectedByKind = [...expectedIntegritySummary.by_kind.values()].sort((a, b) => a.kind.localeCompare(b.kind));
+  const actualByKind = summary.by_kind;
+  if (!Array.isArray(actualByKind)) {
+    issues.push('integrity_summary.by_kind must be an array');
+    return;
+  }
+  if (actualByKind.length !== expectedByKind.length) {
+    issues.push(`integrity_summary.by_kind expected ${expectedByKind.length} rows, found ${actualByKind.length}`);
+    return;
+  }
+  for (const [index, expectedRow] of expectedByKind.entries()) {
+    const actualRow = actualByKind[index] || {};
+    for (const key of ['kind', 'files', 'existing_files', 'missing_files', 'bytes']) {
+      if (actualRow[key] !== expectedRow[key]) {
+        issues.push(`integrity_summary.by_kind[${index}].${key} expected ${expectedRow[key]}, found ${actualRow[key]}`);
+      }
+    }
+  }
+}
+
 function walkNoRowPayloads(value, context, pathParts = []) {
   if (Array.isArray(value)) {
     value.forEach((item, index) => walkNoRowPayloads(item, context, [...pathParts, String(index)]));
@@ -397,4 +462,26 @@ function incrementCluster(map, row) {
     existing[key] += Number(row[key] || 0);
   }
   map.set(clusterId, existing);
+}
+
+function addIntegrity(kind, exists, bytes) {
+  const summary = expectedIntegritySummary.by_kind.get(kind) || {
+    kind,
+    files: 0,
+    existing_files: 0,
+    missing_files: 0,
+    bytes: 0,
+  };
+  summary.files += 1;
+  expectedIntegritySummary.files += 1;
+  if (exists) {
+    summary.existing_files += 1;
+    summary.bytes += bytes;
+    expectedIntegritySummary.existing_files += 1;
+    expectedIntegritySummary.bytes += bytes;
+  } else {
+    summary.missing_files += 1;
+    expectedIntegritySummary.missing_files += 1;
+  }
+  expectedIntegritySummary.by_kind.set(kind, summary);
 }

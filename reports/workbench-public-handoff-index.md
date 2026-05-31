@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T15:58:03.497Z
+Generated: 2026-05-31T16:06:18.956Z
 
 ## Summary
 
@@ -21,6 +21,13 @@ Generated: 2026-05-31T15:58:03.497Z
 - Ambiguous rows audit-only: yes
 - Source freshness status: stale
 - Warnings: source_freshness_stale, ambiguous_rows_count_only
+
+## Integrity Summary
+
+- Files: 275
+- Existing files: 275
+- Missing files: 0
+- Bytes: 34697580
 
 ## Coverage Boundary
 
