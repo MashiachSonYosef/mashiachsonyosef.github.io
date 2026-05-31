@@ -236,7 +236,7 @@ function writeReport(relativePath, artifact, sourceSummaries, generatedTargets) 
     '',
     '## Generated Targets',
     '',
-    ...generatedTargets.map((target) => `- ${target.slug}: supported ${target.expected_status_counts.supported}, candidate ${target.expected_status_counts.candidate}, weak ${target.expected_status_counts.weak}, ambiguous ${target.expected_status_counts.ambiguous}, source files ${target.source_files.length}`),
+    ...generatedTargets.map((target) => `- ${target.slug}: known nonzero supported ${target.expected_status_counts.supported}, candidate ${target.expected_status_counts.candidate}, weak ${target.expected_status_counts.weak}, ambiguous ${target.expected_status_counts.ambiguous}, source files ${target.source_files.length}`),
     '',
     '## Top Source Files',
     '',
@@ -244,7 +244,7 @@ function writeReport(relativePath, artifact, sourceSummaries, generatedTargets) 
     '',
     '## Boundary',
     '',
-    'This queue is smoke-only. Every generated target is derived from observed nonzero exact-match candidate rows and remains graph/candidate evidence, not a definition verdict.',
+    'This queue is smoke-only. Target counts are known-nonzero selection estimates from prior observed rows; graph reports remain the final source for supported/candidate/weak/ambiguous counts. Every generated target remains graph/candidate evidence, not a definition verdict.',
     '',
   ];
   const fullPath = path.join(root, relativePath);
