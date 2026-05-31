@@ -7,12 +7,21 @@ const defaults = {
   evidenceDir: '.local-cache/workbench-evidence/handoff,data/workbench-evidence',
   output: '.local-cache/workbench-evidence/handoff-index.json',
   report: 'reports/workbench-handoff-index.md',
+  targetQueue: null,
   includeSmoke: false,
+  onlySmoke: false,
+  dedupe: null,
 };
 
 const options = parseArgs(process.argv.slice(2));
+if (options.dedupe === null) options.dedupe = !(options.onlySmoke || options.targetQueue);
 const evidenceDirs = splitPathList(options.evidenceDir);
-const manifests = dedupeManifests(evidenceDirs.flatMap((evidenceDir) => collectHandoffManifests(evidenceDir)));
+const allowedSlugs = options.targetQueue ? loadTargetQueueSlugs(options.targetQueue) : null;
+const rawManifests = evidenceDirs
+  .flatMap((evidenceDir) => collectHandoffManifests(evidenceDir))
+  .filter((manifest) => !allowedSlugs || allowedSlugs.has(manifest.slug));
+const manifests = (options.dedupe ? dedupeManifests(rawManifests) : rawManifests)
+  .sort((a, b) => String(a.focus?.token_normalized || '').localeCompare(String(b.focus?.token_normalized || '')) || a.manifest_path.localeCompare(b.manifest_path));
 const generatedAt = new Date().toISOString();
 
 const artifact = {
@@ -22,6 +31,12 @@ const artifact = {
   generator: 'scripts/build_workbench_handoff_index.mjs',
   policy: 'Discovery index for completed Agent 3 occurrence/candidate handoff streams. This is not a ranking artifact.',
   evidence_dirs: evidenceDirs,
+  options: {
+    target_queue: options.targetQueue,
+    include_smoke: options.includeSmoke,
+    only_smoke: options.onlySmoke,
+    dedupe: options.dedupe,
+  },
   counts: {
     manifests: manifests.length,
     occurrence_markers: sum(manifests, (row) => row.counts.occurrence_markers),
@@ -43,7 +58,14 @@ function parseArgs(args) {
     if (arg.startsWith('--evidence-dir=')) parsed.evidenceDir = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(arg.split('=').slice(1).join('='));
+    else if (arg.startsWith('--target-queue=')) parsed.targetQueue = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg === '--include-smoke') parsed.includeSmoke = true;
+    else if (arg === '--only-smoke') {
+      parsed.onlySmoke = true;
+      parsed.includeSmoke = true;
+    }
+    else if (arg === '--dedupe') parsed.dedupe = true;
+    else if (arg === '--no-dedupe') parsed.dedupe = false;
     else throw new Error(`Unknown argument: ${arg}`);
   }
   return parsed;
@@ -54,13 +76,18 @@ function collectHandoffManifests(evidenceDir) {
   if (!fs.existsSync(base)) return [];
   return fs.readdirSync(base, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
-    .filter((entry) => options.includeSmoke || !/smoke/i.test(entry.name))
-    .map((entry) => `${evidenceDir}/${entry.name}/manifest.json`)
-    .filter((relativePath) => fs.existsSync(path.join(root, relativePath)))
-    .map((relativePath) => {
+    .filter((entry) => (options.onlySmoke ? /smoke/i.test(entry.name) : (options.includeSmoke || !/smoke/i.test(entry.name))))
+    .map((entry) => ({
+      slug: entry.name,
+      relativePath: `${evidenceDir}/${entry.name}/manifest.json`,
+    }))
+    .filter((row) => fs.existsSync(path.join(root, row.relativePath)))
+    .map((row) => {
+      const { relativePath } = row;
       const manifest = readJson(relativePath);
       if (manifest.artifact_type !== 'workbench_usage_handoff_manifest') return null;
       return {
+        slug: row.slug,
         manifest_path: relativePath,
         generated_at: manifest.generated_at,
         focus: manifest.focus,
@@ -95,6 +122,14 @@ function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 }
 
+function loadTargetQueueSlugs(relativePath) {
+  const queue = readJson(relativePath);
+  if (queue.artifact_type !== 'workbench_target_queue') throw new Error(`${relativePath} is not a workbench target queue`);
+  return new Set((Array.isArray(queue.targets) ? queue.targets : [])
+    .map((target) => target.slug || target.slug_override)
+    .filter(Boolean));
+}
+
 function cleanRelativePath(value) {
   return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
 }
@@ -125,6 +160,10 @@ function writeReport(relativePath, artifact) {
     `- Candidate rows: ${artifact.counts.candidate_rows}`,
     `- Clusters: ${artifact.counts.clusters}`,
     `- Blocked rows: ${artifact.counts.blocked_rows}`,
+    `- Target queue: ${artifact.options.target_queue || 'none'}`,
+    `- Include smoke: ${artifact.options.include_smoke ? 'yes' : 'no'}`,
+    `- Only smoke: ${artifact.options.only_smoke ? 'yes' : 'no'}`,
+    `- Dedupe: ${artifact.options.dedupe ? 'yes' : 'no'}`,
     '',
     '## Manifests',
     '',
