@@ -96,6 +96,14 @@ await runStep('validate_usage_concordance', [
   `--manifest=${usageConcordanceManifestJson}`,
 ]);
 
+const usageConcordanceLinkCheckJson = `${options.scratchDir}/usage-concordance-link-check.json`;
+await runStep('check_usage_concordance_links', [
+  'scripts/check_workbench_usage_concordance_links.mjs',
+  `--concordance=${usageConcordanceJson}`,
+  `--output=${usageConcordanceLinkCheckJson}`,
+  `--report=${options.scratchDir}/usage-concordance-link-check.md`,
+]);
+
 const publicHandoffIntegrityJson = `${options.scratchDir}/public-handoff-integrity-check.json`;
 await runStep('check_public_handoff_integrity', [
   'scripts/check_workbench_public_handoff_integrity.mjs',
@@ -118,6 +126,7 @@ const handoffIndex = readJsonIfExists(handoffIndexJson);
 const publicHandoffIndex = readJsonIfExists(publicHandoffIndexJson);
 const usageConcordance = readJsonIfExists(usageConcordanceJson);
 const usageConcordanceManifest = readJsonIfExists(usageConcordanceManifestJson);
+const usageConcordanceLinkCheck = readJsonIfExists(usageConcordanceLinkCheckJson);
 const publicHandoffIntegrity = readJsonIfExists(publicHandoffIntegrityJson);
 const artifactAudit = readJsonIfExists(artifactAuditJson);
 const failedSteps = steps.filter((step) => step.status !== 'passed');
@@ -178,6 +187,10 @@ const artifact = {
     usage_concordance_manifest_status: usageConcordanceManifest?.artifact_type === 'workbench_usage_navigation_concordance_manifest' ? 'present' : 'missing',
     usage_concordance_manifest_json_tracked: usageConcordanceManifest?.outputs?.concordance_json?.tracked_in_git ?? null,
     usage_concordance_manifest_report_tracked: usageConcordanceManifest?.outputs?.concordance_report?.tracked_in_git ?? null,
+    usage_concordance_link_check_status: usageConcordanceLinkCheck?.quality?.status ?? null,
+    usage_concordance_link_check_source_url_bad: usageConcordanceLinkCheck?.counts?.source_url_bad ?? null,
+    usage_concordance_link_check_work_anchor_bad: usageConcordanceLinkCheck?.counts?.work_anchor_bad ?? null,
+    usage_concordance_link_check_issue_count: usageConcordanceLinkCheck?.quality?.issue_count ?? null,
     public_handoff_integrity_status: publicHandoffIntegrity?.quality?.status ?? null,
     public_handoff_integrity_files: publicHandoffIntegrity?.counts?.files ?? null,
     public_handoff_integrity_matched: publicHandoffIntegrity?.counts?.matched ?? null,
@@ -314,6 +327,7 @@ function writeReport(relativePath, artifact) {
     `- Public handoff quality/license: quality ${artifact.counts.public_handoff_quality_status}, license ${artifact.counts.public_handoff_license_status}, blocked license rows ${artifact.counts.public_handoff_license_blocked_row_count}, blocked licenses ${artifact.counts.public_handoff_license_blocked_licenses}`,
     `- Usage concordance: rows ${artifact.counts.usage_concordance_rows}, supported ${artifact.counts.usage_concordance_supported}, candidate ${artifact.counts.usage_concordance_candidate}, weak ${artifact.counts.usage_concordance_weak}, route-linked ${artifact.counts.usage_concordance_route_linked}, observed-only ${artifact.counts.usage_concordance_observed_only}, audit-only ambiguous ${artifact.counts.usage_concordance_audit_only_ambiguous}, ambiguous reader-facing ${artifact.counts.usage_concordance_ambiguous_reader_facing ? 'yes' : 'no'}`,
     `- Usage concordance manifest: ${artifact.counts.usage_concordance_manifest_status}, JSON tracked ${artifact.counts.usage_concordance_manifest_json_tracked ? 'yes' : 'no'}, report tracked ${artifact.counts.usage_concordance_manifest_report_tracked ? 'yes' : 'no'}`,
+    `- Usage concordance link check: ${artifact.counts.usage_concordance_link_check_status}, source URL bad ${artifact.counts.usage_concordance_link_check_source_url_bad}, work anchor bad ${artifact.counts.usage_concordance_link_check_work_anchor_bad}, issues ${artifact.counts.usage_concordance_link_check_issue_count}`,
     `- Public handoff integrity: ${artifact.counts.public_handoff_integrity_status}, files ${artifact.counts.public_handoff_integrity_files}, matched ${artifact.counts.public_handoff_integrity_matched}, missing ${artifact.counts.public_handoff_integrity_missing}, mismatched ${artifact.counts.public_handoff_integrity_mismatched}, unexpected ${artifact.counts.public_handoff_integrity_unexpected_present}`,
     `- Candidate artifact audit quality: ${artifact.counts.candidate_artifact_audit_quality_status}, warnings ${artifact.counts.candidate_artifact_audit_warning_count}, broad queue blocked ${artifact.counts.candidate_artifact_audit_broad_queue_blocked ? 'yes' : 'no'}, orphan smoke review ${artifact.counts.candidate_artifact_audit_orphan_smoke_review ? 'yes' : 'no'}`,
     `- Candidate artifact audit: useful ${artifact.counts.useful_artifacts}, zero-useful non-smoke ${artifact.counts.zero_useful_non_smoke_artifacts}, orphan smoke ${artifact.counts.orphan_smoke_artifacts}`,
