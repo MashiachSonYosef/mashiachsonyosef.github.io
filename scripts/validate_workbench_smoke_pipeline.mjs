@@ -24,6 +24,13 @@ await runStep('validate_smoke_queue', [
 ]);
 
 const coverageJson = `${options.scratchDir}/reshit-smoke-coverage.json`;
+const sourceFreshnessJson = `${options.scratchDir}/source-freshness.json`;
+await runStep('report_source_freshness', [
+  'scripts/report_workbench_source_freshness.mjs',
+  `--output=${sourceFreshnessJson}`,
+  `--report=${options.scratchDir}/source-freshness.md`,
+]);
+
 await runStep('report_reshit_smoke_coverage', [
   'scripts/report_reshit_smoke_coverage.mjs',
   `--target-queue=${options.targetQueue}`,
@@ -70,6 +77,7 @@ const smokeCounts = readJsonIfExists(smokeCountsJson);
 const handoffIndex = readJsonIfExists(handoffIndexJson);
 const artifactAudit = readJsonIfExists(artifactAuditJson);
 const failedSteps = steps.filter((step) => step.status !== 'passed');
+const sourceFreshness = readJsonIfExists(sourceFreshnessJson);
 
 const artifact = {
   schema_version: 1,
@@ -93,6 +101,9 @@ const artifact = {
     smoke_ambiguous: smokeCounts?.counts?.ambiguous ?? null,
     smoke_missing: smokeCounts?.counts?.missing ?? null,
     smoke_zero_useful: smokeCounts?.counts?.zero_useful ?? null,
+    source_freshness_status: sourceFreshness?.status ?? null,
+    source_count_delta: sourceFreshness?.current_inventory?.count_delta_vs_artifact_scan ?? null,
+    source_files_modified_after_artifact: sourceFreshness?.current_inventory?.files_modified_after_artifact ?? null,
     known_nonzero_source_files: coverage?.counts?.known_nonzero_source_files ?? null,
     covered_source_files: coverage?.counts?.covered_source_files ?? null,
     uncovered_source_files: coverage?.counts?.uncovered_source_files ?? null,
@@ -215,6 +226,7 @@ function writeReport(relativePath, artifact) {
     `- Smoke counts: supported ${artifact.counts.smoke_supported}, candidate ${artifact.counts.smoke_candidate}, weak ${artifact.counts.smoke_weak}, ambiguous ${artifact.counts.smoke_ambiguous}`,
     `- Missing smoke artifacts: ${artifact.counts.smoke_missing}`,
     `- Zero-useful smoke targets: ${artifact.counts.smoke_zero_useful}`,
+    `- Source freshness: ${artifact.counts.source_freshness_status}, count delta ${artifact.counts.source_count_delta}, modified after artifact ${artifact.counts.source_files_modified_after_artifact}`,
     `- Reshit source coverage: ${artifact.counts.covered_source_files}/${artifact.counts.known_nonzero_source_files}, uncovered ${artifact.counts.uncovered_source_files}`,
     `- Handoff coverage: ${artifact.counts.handoff_manifests} manifests, missing targets ${artifact.counts.handoff_missing_targets}`,
     `- Candidate artifact audit: useful ${artifact.counts.useful_artifacts}, zero-useful non-smoke ${artifact.counts.zero_useful_non_smoke_artifacts}, orphan smoke ${artifact.counts.orphan_smoke_artifacts}`,
