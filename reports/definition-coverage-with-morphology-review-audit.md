@@ -12,25 +12,25 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 
 - Phrase rows read: 200000
 - Citable rows read: 200000
-- Accepted citable rows: 162920
-- Proposed citable rows: 37080
+- Accepted citable rows: 174174
+- Proposed citable rows: 25826
 - Rejected citable rows: 0
 - Distinct phrase/subphrase focus tokens: 82104
-- Distinct citable focus tokens, all statuses: 26634
-- Distinct accepted citable focus tokens: 17587
-- Distinct proposed citable focus tokens: 9047
-- Phrase focus tokens with any citable route: 26634
-- Phrase focus token coverage, any status: 32.44%
-- Phrase focus tokens with accepted citable route: 17587
-- Phrase focus token coverage, accepted only: 21.42%
-- Phrase focus tokens with proposed citable route: 9047
-- Citable focus tokens also seen in phrase evidence: 26634
+- Distinct citable focus tokens, all statuses: 23905
+- Distinct accepted citable focus tokens: 18217
+- Distinct proposed citable focus tokens: 5688
+- Phrase focus tokens with any citable route: 23905
+- Phrase focus token coverage, any status: 29.12%
+- Phrase focus tokens with accepted citable route: 18217
+- Phrase focus token coverage, accepted only: 22.19%
+- Phrase focus tokens with proposed citable route: 5688
+- Citable focus tokens also seen in phrase evidence: 23905
 - Citable overlap with phrase evidence: 100.00%
 
 ## Citable Statuses
 
-- accepted: 162920
-- proposed: 37080
+- accepted: 174174
+- proposed: 25826
 
 ## Phrase Route Types
 
@@ -39,11 +39,11 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 
 ## Citable Definition Sources
 
-- wiktionary_definition: 130023
-- project_morphology: 37080
-- openscriptures_definition: 30063
-- wikidata_definition: 2052
-- project_lexical: 782
+- wiktionary_definition: 138897
+- openscriptures_definition: 32225
+- project_morphology: 25826
+- wikidata_definition: 2250
+- project_lexical: 802
 
 ## Top Phrase Works
 
@@ -55,11 +55,11 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 
 ## Top Citable Works
 
-- akeidat-yitzchak: 88620
-- abudarham: 75578
-- ahavat-chesed: 18968
-- aggadat-bereshit: 13500
-- aderet-eliyahu: 3334
+- akeidat-yitzchak: 94893
+- abudarham: 71561
+- ahavat-chesed: 17536
+- aggadat-bereshit: 12828
+- aderet-eliyahu: 3182
 
 ## Top Phrase Tokens Without Citable Route
 
@@ -68,7 +68,7 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 - אאע: 5
 - אבדתו: 5
 - אבהו: 5
-- אבוס: 5
+- אבותיהמ: 5
 - אבחרהו: 5
 - אביי: 5
 - אברככ: 5
@@ -80,6 +80,7 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 - אדעתא: 5
 - אהבימ: 5
 - אהדדי: 5
+- אהי: 5
 - אודות: 5
 - אוהבו: 5
 - אוהבי: 5
@@ -87,12 +88,11 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 - אוהל: 5
 - אוחילה: 5
 - אוכלינ: 5
+- אומ: 5
 - אומנותו: 5
 - אומרינ: 5
 - אומתנו: 5
 - אונקלוס: 5
-- אורייתא: 5
-- אוריתא: 5
 
 ## Validation
 

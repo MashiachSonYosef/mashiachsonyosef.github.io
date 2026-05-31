@@ -175,8 +175,7 @@ const report = [
   '## Sample Risk Rows',
   '',
   ...samples.map((row) => `- ${row.evidence_id} | ${row.focus_surface} | ${row.work_id} | ${row.source_ref} | ${row.roles} | base=${row.main_surface}/${row.main_normalized} | risks=${row.risks.join(',')}`),
-  '',
-].join('\n');
+].join('\n').trimEnd() + '\n';
 
 fs.mkdirSync(path.dirname(path.join(root, reportPath)), { recursive: true });
 fs.writeFileSync(path.join(root, reportPath), report, 'utf8');

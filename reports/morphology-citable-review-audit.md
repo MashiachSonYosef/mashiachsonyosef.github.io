@@ -13,13 +13,13 @@ Generated from the current local citable paraphrase evidence JSONL.
 ## Counts
 
 - Rows: 200000
-- Accepted rows: 162920
-- Proposed rows: 37080
+- Accepted rows: 174174
+- Proposed rows: 25826
 - Rejected rows: 0
-- Raw score range: 85-100
-- Adjusted score range: 65-80
+- Raw score range: 88-100
+- Adjusted score range: 68-80
 - Distinct works: 5
-- Distinct focus tokens: 26634
+- Distinct focus tokens: 23905
 
 ## Route Types
 
@@ -27,11 +27,11 @@ Generated from the current local citable paraphrase evidence JSONL.
 
 ## Definition Sources
 
-- wiktionary_definition: 130023
-- project_morphology: 37080
-- openscriptures_definition: 30063
-- wikidata_definition: 2052
-- project_lexical: 782
+- wiktionary_definition: 138897
+- openscriptures_definition: 32225
+- project_morphology: 25826
+- wikidata_definition: 2250
+- project_lexical: 802
 
 ## Usage Licenses
 
@@ -40,18 +40,18 @@ Generated from the current local citable paraphrase evidence JSONL.
 ## Source Licenses
 
 - Public Domain: 200000
-- CC BY 4.0: 137354
-- CC BY-SA 4.0 / GFDL: 130023
-- CC0: 68376
-- project-authored / CC0: 62142
+- CC BY-SA 4.0 / GFDL: 138897
+- CC BY 4.0: 129011
+- CC0: 66247
+- project-authored / CC0: 33184
 
 ## Top Works
 
-- akeidat-yitzchak: 88620
-- abudarham: 75578
-- ahavat-chesed: 18968
-- aggadat-bereshit: 13500
-- aderet-eliyahu: 3334
+- akeidat-yitzchak: 94893
+- abudarham: 71561
+- ahavat-chesed: 17536
+- aggadat-bereshit: 12828
+- aderet-eliyahu: 3182
 
 ## Top Focus Tokens
 
@@ -74,7 +74,7 @@ Generated from the current local citable paraphrase evidence JSONL.
 - אדונ: 40
 - אדוני: 40
 - אדמ: 40
-- אדר: 40
+- אדני: 40
 
 ## Validation
 
