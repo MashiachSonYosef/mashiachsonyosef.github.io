@@ -1,0 +1,354 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:1 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:2 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:3 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:4 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:5 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:6 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:7 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:8 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:9 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:10 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:11 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:12 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-12 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:13 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-13 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:14 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-14 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:15 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-15 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:16 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-16 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:17 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-17 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:18 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-18 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:19 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-19 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:20 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-20 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:21 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-21 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:22 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-22 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of Niddah:23 | likkutei-hapardes-the-laws-of-niddah-the-laws-of-niddah-23 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:1 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:2 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:3 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:4 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:5 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:6 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:7 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:8 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:9 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:10 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:11 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:12 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-12 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:13 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-13 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:14 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-14 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:15 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-15 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:16 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-16 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:17 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-17 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:18 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-18 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:19 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-19 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:20 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-20 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:21 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-21 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:22 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-22 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:23 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-23 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:24 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-24 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:25 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-25 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:26 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-26 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:27 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-27 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:28 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-28 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:29 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-29 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:30 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-30 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:31 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-31 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Laws of the Groom in his First Year:32 | likkutei-hapardes-the-laws-of-the-groom-in-his-first-year-the-laws-of-the-groom-in-his-first-year-32 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:1 | likkutei-hapardes-blessings-blessings-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:2 | likkutei-hapardes-blessings-blessings-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:3 | likkutei-hapardes-blessings-blessings-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:4 | likkutei-hapardes-blessings-blessings-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:5 | likkutei-hapardes-blessings-blessings-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:6 | likkutei-hapardes-blessings-blessings-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:7 | likkutei-hapardes-blessings-blessings-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:8 | likkutei-hapardes-blessings-blessings-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:9 | likkutei-hapardes-blessings-blessings-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Blessings:10 | likkutei-hapardes-blessings-blessings-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:1 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:2 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:3 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:4 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:5 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:6 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:7 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:8 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:9 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:10 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Washing of the Hands:11 | likkutei-hapardes-the-washing-of-the-hands-the-washing-of-the-hands-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:1 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:2 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:3 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:4 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:5 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:6 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:7 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:8 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:9 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:10 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:11 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:12 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-12 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:13 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-13 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:14 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-14 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:15 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-15 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:16 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-16 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:17 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-17 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:18 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-18 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:19 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-19 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:20 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-20 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:21 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-21 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:22 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-22 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:23 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-23 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:24 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-24 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:25 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-25 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:26 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-26 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:27 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-27 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:28 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-28 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:29 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-29 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:30 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-30 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:31 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-31 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:32 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-32 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:33 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-33 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:34 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-34 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:35 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-35 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:36 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-36 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:37 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-37 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:38 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-38 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:39 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-39 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:40 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-40 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:41 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-41 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:42 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-42 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:43 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-43 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:44 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-44 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:45 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-45 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:46 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-46 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:47 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-47 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:48 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-48 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:49 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-49 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:50 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-50 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:51 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-51 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:52 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-52 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:53 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-53 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:54 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-54 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:55 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-55 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:56 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-56 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:57 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-57 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:58 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-58 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:59 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-59 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:60 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-60 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:61 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-61 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:62 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-62 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:63 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-63 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Interpretation of the Kaddish:64 | likkutei-hapardes-interpretation-of-the-kaddish-interpretation-of-the-kaddish-64 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:1 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:2 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:3 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:4 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:5 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:6 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:7 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:8 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:9 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:10 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:11 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:12 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-12 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:13 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-13 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:14 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-14 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:15 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-15 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:16 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-16 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:17 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-17 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:18 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-18 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:19 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-19 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:20 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-20 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:21 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-21 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:22 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-22 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:23 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-23 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Motzei Shabbat:24 | likkutei-hapardes-motzei-shabbat-motzei-shabbat-24 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:1 | likkutei-hapardes-yom-kippur-yom-kippur-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:2 | likkutei-hapardes-yom-kippur-yom-kippur-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:3 | likkutei-hapardes-yom-kippur-yom-kippur-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:4 | likkutei-hapardes-yom-kippur-yom-kippur-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:5 | likkutei-hapardes-yom-kippur-yom-kippur-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:6 | likkutei-hapardes-yom-kippur-yom-kippur-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:7 | likkutei-hapardes-yom-kippur-yom-kippur-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:8 | likkutei-hapardes-yom-kippur-yom-kippur-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:9 | likkutei-hapardes-yom-kippur-yom-kippur-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:10 | likkutei-hapardes-yom-kippur-yom-kippur-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:11 | likkutei-hapardes-yom-kippur-yom-kippur-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:12 | likkutei-hapardes-yom-kippur-yom-kippur-12 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:13 | likkutei-hapardes-yom-kippur-yom-kippur-13 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:14 | likkutei-hapardes-yom-kippur-yom-kippur-14 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:15 | likkutei-hapardes-yom-kippur-yom-kippur-15 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:16 | likkutei-hapardes-yom-kippur-yom-kippur-16 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:17 | likkutei-hapardes-yom-kippur-yom-kippur-17 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:18 | likkutei-hapardes-yom-kippur-yom-kippur-18 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Yom Kippur:19 | likkutei-hapardes-yom-kippur-yom-kippur-19 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Parashat Aser Teaser:1 | likkutei-hapardes-parashat-aser-teaser-parashat-aser-teaser-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Parashat Aser Teaser:2 | likkutei-hapardes-parashat-aser-teaser-parashat-aser-teaser-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Parashat Aser Teaser:3 | likkutei-hapardes-parashat-aser-teaser-parashat-aser-teaser-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Parashat Aser Teaser:4 | likkutei-hapardes-parashat-aser-teaser-parashat-aser-teaser-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Parashat Aser Teaser:5 | likkutei-hapardes-parashat-aser-teaser-parashat-aser-teaser-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Parashat Aser Teaser:6 | likkutei-hapardes-parashat-aser-teaser-parashat-aser-teaser-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Parashat Aser Teaser:7 | likkutei-hapardes-parashat-aser-teaser-parashat-aser-teaser-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Parashat Aser Teaser:8 | likkutei-hapardes-parashat-aser-teaser-parashat-aser-teaser-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Redemption of the Firstborn:1 | likkutei-hapardes-the-redemption-of-the-firstborn-the-redemption-of-the-firstborn-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Redemption of the Firstborn:2 | likkutei-hapardes-the-redemption-of-the-firstborn-the-redemption-of-the-firstborn-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Redemption of the Firstborn:3 | likkutei-hapardes-the-redemption-of-the-firstborn-the-redemption-of-the-firstborn-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:1 | likkutei-hapardes-circumcision-circumcision-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:2 | likkutei-hapardes-circumcision-circumcision-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:3 | likkutei-hapardes-circumcision-circumcision-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:4 | likkutei-hapardes-circumcision-circumcision-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:5 | likkutei-hapardes-circumcision-circumcision-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:6 | likkutei-hapardes-circumcision-circumcision-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:7 | likkutei-hapardes-circumcision-circumcision-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:8 | likkutei-hapardes-circumcision-circumcision-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:9 | likkutei-hapardes-circumcision-circumcision-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:10 | likkutei-hapardes-circumcision-circumcision-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:11 | likkutei-hapardes-circumcision-circumcision-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:12 | likkutei-hapardes-circumcision-circumcision-12 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:13 | likkutei-hapardes-circumcision-circumcision-13 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:14 | likkutei-hapardes-circumcision-circumcision-14 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:15 | likkutei-hapardes-circumcision-circumcision-15 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:16 | likkutei-hapardes-circumcision-circumcision-16 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:17 | likkutei-hapardes-circumcision-circumcision-17 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:18 | likkutei-hapardes-circumcision-circumcision-18 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:19 | likkutei-hapardes-circumcision-circumcision-19 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:20 | likkutei-hapardes-circumcision-circumcision-20 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:21 | likkutei-hapardes-circumcision-circumcision-21 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:22 | likkutei-hapardes-circumcision-circumcision-22 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:23 | likkutei-hapardes-circumcision-circumcision-23 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:24 | likkutei-hapardes-circumcision-circumcision-24 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:25 | likkutei-hapardes-circumcision-circumcision-25 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:26 | likkutei-hapardes-circumcision-circumcision-26 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:27 | likkutei-hapardes-circumcision-circumcision-27 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Circumcision:28 | likkutei-hapardes-circumcision-circumcision-28 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:1 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:2 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:3 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:4 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:5 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:6 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:7 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:8 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:9 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:10 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Visiting of the Sick:11 | likkutei-hapardes-visiting-of-the-sick-visiting-of-the-sick-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Fasting:1 | likkutei-hapardes-fasting-fasting-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Fasting:2 | likkutei-hapardes-fasting-fasting-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Fasting:3 | likkutei-hapardes-fasting-fasting-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Fasting:4 | likkutei-hapardes-fasting-fasting-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Fasting:5 | likkutei-hapardes-fasting-fasting-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:1 | likkutei-hapardes-tisha-beav-tisha-beav-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:2 | likkutei-hapardes-tisha-beav-tisha-beav-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:3 | likkutei-hapardes-tisha-beav-tisha-beav-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:4 | likkutei-hapardes-tisha-beav-tisha-beav-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:5 | likkutei-hapardes-tisha-beav-tisha-beav-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:6 | likkutei-hapardes-tisha-beav-tisha-beav-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:7 | likkutei-hapardes-tisha-beav-tisha-beav-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:8 | likkutei-hapardes-tisha-beav-tisha-beav-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:9 | likkutei-hapardes-tisha-beav-tisha-beav-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:10 | likkutei-hapardes-tisha-beav-tisha-beav-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:11 | likkutei-hapardes-tisha-beav-tisha-beav-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:12 | likkutei-hapardes-tisha-beav-tisha-beav-12 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:13 | likkutei-hapardes-tisha-beav-tisha-beav-13 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:14 | likkutei-hapardes-tisha-beav-tisha-beav-14 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:15 | likkutei-hapardes-tisha-beav-tisha-beav-15 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:16 | likkutei-hapardes-tisha-beav-tisha-beav-16 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:17 | likkutei-hapardes-tisha-beav-tisha-beav-17 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:18 | likkutei-hapardes-tisha-beav-tisha-beav-18 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:19 | likkutei-hapardes-tisha-beav-tisha-beav-19 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:20 | likkutei-hapardes-tisha-beav-tisha-beav-20 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:21 | likkutei-hapardes-tisha-beav-tisha-beav-21 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:22 | likkutei-hapardes-tisha-beav-tisha-beav-22 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:23 | likkutei-hapardes-tisha-beav-tisha-beav-23 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:24 | likkutei-hapardes-tisha-beav-tisha-beav-24 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:25 | likkutei-hapardes-tisha-beav-tisha-beav-25 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:26 | likkutei-hapardes-tisha-beav-tisha-beav-26 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:27 | likkutei-hapardes-tisha-beav-tisha-beav-27 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:28 | likkutei-hapardes-tisha-beav-tisha-beav-28 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:29 | likkutei-hapardes-tisha-beav-tisha-beav-29 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:30 | likkutei-hapardes-tisha-beav-tisha-beav-30 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:31 | likkutei-hapardes-tisha-beav-tisha-beav-31 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:32 | likkutei-hapardes-tisha-beav-tisha-beav-32 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:33 | likkutei-hapardes-tisha-beav-tisha-beav-33 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:34 | likkutei-hapardes-tisha-beav-tisha-beav-34 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:35 | likkutei-hapardes-tisha-beav-tisha-beav-35 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:36 | likkutei-hapardes-tisha-beav-tisha-beav-36 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:37 | likkutei-hapardes-tisha-beav-tisha-beav-37 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:38 | likkutei-hapardes-tisha-beav-tisha-beav-38 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:39 | likkutei-hapardes-tisha-beav-tisha-beav-39 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:40 | likkutei-hapardes-tisha-beav-tisha-beav-40 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Tisha Be'Av:41 | likkutei-hapardes-tisha-beav-tisha-beav-41 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Haftarot:1 | likkutei-hapardes-the-signs-of-the-haftarot-the-signs-of-the-haftarot-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Haftarot:2 | likkutei-hapardes-the-signs-of-the-haftarot-the-signs-of-the-haftarot-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Haftarot:3 | likkutei-hapardes-the-signs-of-the-haftarot-the-signs-of-the-haftarot-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Haftarot:4 | likkutei-hapardes-the-signs-of-the-haftarot-the-signs-of-the-haftarot-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Haftarot:5 | likkutei-hapardes-the-signs-of-the-haftarot-the-signs-of-the-haftarot-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Haftarot:6 | likkutei-hapardes-the-signs-of-the-haftarot-the-signs-of-the-haftarot-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:1 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:2 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:3 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:4 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:5 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:6 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:7 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:8 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:9 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:10 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Order of the Parshiyot:11 | likkutei-hapardes-the-order-of-the-parshiyot-the-order-of-the-parshiyot-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:1 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:2 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:3 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:4 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:5 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:6 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:7 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:8 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:9 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:10 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:11 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:12 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-12 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:13 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-13 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:14 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-14 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:15 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-15 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:16 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-16 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:17 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-17 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:18 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-18 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:19 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-19 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:20 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-20 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:21 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-21 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:22 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-22 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:23 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-23 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:24 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-24 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:25 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-25 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:26 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-26 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:27 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-27 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:28 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-28 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:29 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-29 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, The Signs of the Holidays and their Tradition:30 | likkutei-hapardes-the-signs-of-the-holidays-and-their-tradition-the-signs-of-the-holidays-and-their-tradition-30 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:1 | likkutei-hapardes-addition-addition-1 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:2 | likkutei-hapardes-addition-addition-2 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:3 | likkutei-hapardes-addition-addition-3 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:4 | likkutei-hapardes-addition-addition-4 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:5 | likkutei-hapardes-addition-addition-5 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:6 | likkutei-hapardes-addition-addition-6 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:7 | likkutei-hapardes-addition-addition-7 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:8 | likkutei-hapardes-addition-addition-8 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:9 | likkutei-hapardes-addition-addition-9 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:10 | likkutei-hapardes-addition-addition-10 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:11 | likkutei-hapardes-addition-addition-11 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:12 | likkutei-hapardes-addition-addition-12 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:13 | likkutei-hapardes-addition-addition-13 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:14 | likkutei-hapardes-addition-addition-14 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:15 | likkutei-hapardes-addition-addition-15 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:16 | likkutei-hapardes-addition-addition-16 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:17 | likkutei-hapardes-addition-addition-17 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:18 | likkutei-hapardes-addition-addition-18 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:19 | likkutei-hapardes-addition-addition-19 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:20 | likkutei-hapardes-addition-addition-20 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:21 | likkutei-hapardes-addition-addition-21 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:22 | likkutei-hapardes-addition-addition-22 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:23 | likkutei-hapardes-addition-addition-23 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:24 | likkutei-hapardes-addition-addition-24 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:25 | likkutei-hapardes-addition-addition-25 |  |  | not_done |  |
+| likkutei-hapardes | Likkutei HaPardes | Likkutei HaPardes, Addition:26 | likkutei-hapardes-addition-addition-26 |  |  | not_done |  |
