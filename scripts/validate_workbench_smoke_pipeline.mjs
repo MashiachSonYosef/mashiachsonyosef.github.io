@@ -105,6 +105,11 @@ await runStep('build_usage_cluster_index', [
   '--max-samples=6',
 ]);
 
+await runStep('validate_usage_cluster_index', [
+  'scripts/validate_workbench_usage_cluster_index.mjs',
+  usageClusterIndexJson,
+]);
+
 const usageConcordanceLinkCheckJson = `${options.scratchDir}/usage-concordance-link-check.json`;
 await runStep('check_usage_concordance_links', [
   'scripts/check_workbench_usage_concordance_links.mjs',

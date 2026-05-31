@@ -18,7 +18,7 @@ Generated: 2026-05-31T17:34:29.055Z
 - Route links: passed, resolved 2390, unresolved 0, metadata mismatches 0
 - Audit review: rows 2064, reader-facing no
 - Cluster index: present, rows 2390, clusters 2
-- Smoke validation: passed, steps 17, failed 0
+- Smoke validation: passed, steps 18, failed 0
 
 ## Artifacts
 
