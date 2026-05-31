@@ -1,0 +1,335 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const defaults = {
+  targetQueue: '.local-cache/workbench-evidence/smoke-target-queue.json',
+  handoffRoot: '.local-cache/workbench-evidence/handoff',
+  output: 'data/workbench-evidence/public-handoff-index.json',
+  report: 'reports/workbench-public-handoff-index.md',
+  maxIssuesPerManifest: 12,
+};
+
+const options = parseArgs(process.argv.slice(2));
+const queue = readJson(options.targetQueue);
+if (queue.artifact_type !== 'workbench_target_queue') {
+  throw new Error(`${options.targetQueue} is not a workbench target queue`);
+}
+
+const targets = (Array.isArray(queue.targets) ? queue.targets : [])
+  .filter((target) => isSelectedSmokeTarget(target));
+const manifests = targets.map((target, index) => inspectManifest(target, index));
+const totals = manifests.reduce((sum, row) => {
+  sum.selected_targets += 1;
+  if (row.validation.status === 'passed') sum.validation_passed += 1;
+  else sum.validation_failed += 1;
+  if (row.validation.status === 'missing_manifest') sum.missing_manifests += 1;
+  for (const key of ['occurrence_markers', 'candidate_rows', 'clusters', 'blocked_rows']) {
+    sum[key] += Number(row.counts?.[key] || 0);
+  }
+  for (const key of ['supported', 'candidate', 'weak', 'ambiguous', 'blocked']) {
+    sum.status_counts[key] += Number(row.status_counts?.[key] || 0);
+  }
+  sum.reader_facing_eligible_rows += Number(row.reader_facing_eligible_rows || 0);
+  sum.count_only_ambiguous_rows += Number(row.status_counts?.ambiguous || 0);
+  return sum;
+}, {
+  selected_targets: 0,
+  validation_passed: 0,
+  validation_failed: 0,
+  missing_manifests: 0,
+  occurrence_markers: 0,
+  candidate_rows: 0,
+  clusters: 0,
+  blocked_rows: 0,
+  reader_facing_eligible_rows: 0,
+  count_only_ambiguous_rows: 0,
+  status_counts: { supported: 0, candidate: 0, weak: 0, ambiguous: 0, blocked: 0 },
+});
+
+const artifact = {
+  schema_version: 1,
+  artifact_type: 'workbench_public_handoff_index',
+  generated_at: new Date().toISOString(),
+  generator: 'scripts/build_workbench_public_handoff_index.mjs',
+  policy: 'Public index of selected workbench usage-evidence handoff packages. It is not a definition artifact and does not choose HUD winners. Ambiguous rows are counted for audit only and are not reader-facing eligible.',
+  inputs: {
+    target_queue: options.targetQueue,
+    handoff_root: options.handoffRoot,
+    selected_target_filter: 'known-useful-or-seeded-smoke',
+  },
+  reader_facing_policy: {
+    eligible_statuses: ['supported', 'candidate', 'weak'],
+    count_only_statuses: ['ambiguous', 'blocked'],
+    ambiguous_rows_reader_facing: false,
+    notes: 'Downstream HUD/ranking may consume eligible statuses as usage evidence. Ambiguous rows remain audit-only unless a later validated frame seed changes their status.',
+  },
+  counts: totals,
+  manifests,
+};
+
+writeJson(options.output, artifact);
+writeReport(options.report, artifact);
+console.log(`Wrote ${options.output}`);
+console.log(`Wrote ${options.report}`);
+console.log(`Public handoff index selected ${totals.selected_targets}; validation passed ${totals.validation_passed}; failed ${totals.validation_failed}; reader-facing eligible rows ${totals.reader_facing_eligible_rows}; ambiguous count-only rows ${totals.count_only_ambiguous_rows}`);
+if (totals.validation_failed > 0) process.exitCode = 2;
+
+function parseArgs(args) {
+  const parsed = { ...defaults };
+  for (const arg of args) {
+    if (arg.startsWith('--target-queue=')) parsed.targetQueue = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--handoff-root=')) parsed.handoffRoot = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--max-issues-per-manifest=')) parsed.maxIssuesPerManifest = Number(valueAfterEquals(arg));
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  if (!Number.isInteger(parsed.maxIssuesPerManifest) || parsed.maxIssuesPerManifest < 1) {
+    throw new Error('--max-issues-per-manifest must be a positive integer');
+  }
+  return parsed;
+}
+
+function inspectManifest(target, index) {
+  const slug = String(target.slug || target.slug_override || '').trim();
+  const manifestPath = `${options.handoffRoot}/${slug}/manifest.json`;
+  const issues = [];
+  if (!slug) issues.push('missing target slug');
+  if (!fs.existsSync(path.join(root, manifestPath))) {
+    return makeManifestRow(target, index, slug, manifestPath, null, {
+      status: 'missing_manifest',
+      issues: [`missing manifest ${manifestPath}`],
+    });
+  }
+
+  const manifest = readJson(manifestPath);
+  if (manifest.artifact_type !== 'workbench_usage_handoff_manifest') issues.push('invalid manifest artifact_type');
+  if (manifest.focus?.token_key !== target.token_key) issues.push('manifest focus.token_key differs from target token_key');
+  const occurrenceRows = readJsonl(manifest.paths?.occurrences_jsonl, issues, 'occurrences_jsonl');
+  const candidateRows = readJsonl(manifest.paths?.candidates_jsonl, issues, 'candidates_jsonl');
+  const clusters = readJsonIfExists(manifest.paths?.clusters_json, issues, 'clusters_json');
+  const blockedRows = readJsonl(manifest.paths?.blocked_jsonl, issues, 'blocked_jsonl');
+
+  const occurrenceIds = new Set(occurrenceRows.map((row) => row.occurrence_id).filter(Boolean));
+  const statusCounts = { supported: 0, candidate: 0, weak: 0, ambiguous: 0, blocked: 0 };
+  const licenseCounts = new Map();
+  const workCounts = new Map();
+  const clusterCounts = new Map();
+
+  for (const row of candidateRows) {
+    validateCandidateRow(row, occurrenceIds, issues);
+    const status = statusCounts[row.candidate_status] === undefined ? 'ambiguous' : row.candidate_status;
+    statusCounts[status] += 1;
+    increment(licenseCounts, row.license || 'missing');
+    increment(workCounts, row.work_id || 'missing');
+    increment(clusterCounts, row.cluster_id || 'unclustered');
+  }
+  statusCounts.blocked += blockedRows.length;
+
+  if (Number(manifest.counts?.occurrence_markers || 0) !== occurrenceRows.length) issues.push('manifest occurrence count mismatch');
+  if (Number(manifest.counts?.candidate_rows || 0) !== candidateRows.length) issues.push('manifest candidate count mismatch');
+  if (Number(manifest.counts?.blocked_rows || 0) !== blockedRows.length) issues.push('manifest blocked count mismatch');
+
+  const clusterSummaries = summarizeClusters(clusters, clusterCounts);
+  const validation = issues.length ? {
+    status: 'failed',
+    issues: issues.slice(0, options.maxIssuesPerManifest),
+  } : {
+    status: 'passed',
+    issues: [],
+  };
+
+  return makeManifestRow(target, index, slug, manifestPath, manifest, validation, {
+    statusCounts,
+    licenseCounts,
+    workCounts,
+    clusterSummaries,
+  });
+}
+
+function makeManifestRow(target, index, slug, manifestPath, manifest, validation, details = {}) {
+  const statusCounts = details.statusCounts || { supported: 0, candidate: 0, weak: 0, ambiguous: 0, blocked: 0 };
+  const readerFacingEligibleRows = statusCounts.supported + statusCounts.candidate + statusCounts.weak;
+  return {
+    index,
+    slug,
+    selection: {
+      target_reason: target.target_reason || null,
+      target_kind: target.target_kind || null,
+      known_nonzero_support: target.known_nonzero_support === true,
+      source_files: Array.isArray(target.source_files) ? target.source_files.length : 0,
+    },
+    focus: {
+      token_key: target.token_key || manifest?.focus?.token_key || null,
+      token_normalized: target.token_normalized || manifest?.focus?.token_normalized || null,
+    },
+    manifest_path: manifestPath,
+    source_artifacts: manifest?.source_artifacts || null,
+    generated_at: manifest?.generated_at || null,
+    counts: manifest?.counts || { occurrence_markers: 0, candidate_rows: 0, clusters: 0, blocked_rows: 0 },
+    status_counts: statusCounts,
+    reader_facing_eligible_rows: readerFacingEligibleRows,
+    ambiguous_rows_reader_facing: false,
+    validation,
+    cluster_summaries: details.clusterSummaries || [],
+    license_counts: topCounts(details.licenseCounts || new Map(), 12),
+    work_counts: topCounts(details.workCounts || new Map(), 12),
+  };
+}
+
+function validateCandidateRow(row, occurrenceIds, issues) {
+  for (const field of ['candidate_id', 'occurrence_id', 'token_key', 'route_type', 'candidate_status', 'raw_score', 'source_ref', 'work_id', 'license', 'license_url']) {
+    if (row?.[field] === undefined || row?.[field] === null || row?.[field] === '') issues.push(`candidate row missing ${field}`);
+  }
+  if (!occurrenceIds.has(row.occurrence_id)) issues.push(`candidate ${row.candidate_id || 'unknown'} references missing occurrence_id`);
+  if (row.route_type !== 'workbench_usage_commentary') issues.push(`candidate ${row.candidate_id || 'unknown'} has invalid route_type ${row.route_type}`);
+  if (row.not_a_definition !== true) issues.push(`candidate ${row.candidate_id || 'unknown'} missing not_a_definition=true`);
+  if (row.observed_usage_only !== true) issues.push(`candidate ${row.candidate_id || 'unknown'} missing observed_usage_only=true`);
+  if (!['supported', 'candidate', 'weak', 'ambiguous'].includes(row.candidate_status)) issues.push(`candidate ${row.candidate_id || 'unknown'} has invalid status ${row.candidate_status}`);
+  if (/[A-Za-z]{4,}/.test(String(row.phrase_hebrew || ''))) issues.push(`candidate ${row.candidate_id || 'unknown'} has non-Hebrew phrase_hebrew`);
+  if (!Array.isArray(row.phrase_tokens) || !row.phrase_tokens.some((token) => token.role === 'focus-token')) issues.push(`candidate ${row.candidate_id || 'unknown'} missing focus-token`);
+}
+
+function summarizeClusters(clustersArtifact, clusterCounts) {
+  const clusters = Array.isArray(clustersArtifact?.clusters) ? clustersArtifact.clusters : [];
+  return clusters.map((cluster) => {
+    const supported = Number(cluster.supported_count || 0);
+    const candidate = Number(cluster.candidate_count || 0);
+    const weak = Number(cluster.weak_count || 0);
+    const ambiguous = Number(cluster.ambiguous_count || 0);
+    return {
+      cluster_id: cluster.cluster_id || 'unclustered',
+      frame_label: cluster.frame_label || '',
+      occurrence_count: Number(cluster.occurrence_count || clusterCounts.get(cluster.cluster_id) || 0),
+      supported,
+      candidate,
+      weak,
+      ambiguous,
+      reader_facing_eligible_rows: supported + candidate + weak,
+      ambiguous_rows_reader_facing: false,
+    };
+  }).sort((a, b) => b.reader_facing_eligible_rows - a.reader_facing_eligible_rows || b.occurrence_count - a.occurrence_count || a.cluster_id.localeCompare(b.cluster_id));
+}
+
+function isSelectedSmokeTarget(target) {
+  return target?.known_nonzero_support === true
+    && target?.allow_prefix_family === false
+    && ['seeded_nonzero_support_smoke', 'known_nonzero_support_smoke'].includes(String(target.target_kind || ''));
+}
+
+function readJson(relativePath) {
+  const fullPath = path.join(root, cleanRelativePath(relativePath));
+  if (!fs.existsSync(fullPath)) throw new Error(`Missing file: ${relativePath}`);
+  return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+}
+
+function readJsonIfExists(relativePath, issues, label) {
+  if (!relativePath) {
+    issues.push(`missing ${label} path`);
+    return null;
+  }
+  const fullPath = path.join(root, cleanRelativePath(relativePath));
+  if (!fs.existsSync(fullPath)) {
+    issues.push(`missing ${label} file ${relativePath}`);
+    return null;
+  }
+  return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+}
+
+function readJsonl(relativePath, issues, label) {
+  if (!relativePath) {
+    issues.push(`missing ${label} path`);
+    return [];
+  }
+  const fullPath = path.join(root, cleanRelativePath(relativePath));
+  if (!fs.existsSync(fullPath)) {
+    issues.push(`missing ${label} file ${relativePath}`);
+    return [];
+  }
+  const rows = [];
+  const lines = fs.readFileSync(fullPath, 'utf8').split(/\r?\n/);
+  for (const [index, line] of lines.entries()) {
+    if (!line.trim()) continue;
+    try {
+      rows.push(JSON.parse(line));
+    } catch (error) {
+      issues.push(`${label} line ${index + 1}: invalid JSON ${error.message}`);
+    }
+  }
+  return rows;
+}
+
+function writeJson(relativePath, data) {
+  const fullPath = path.join(root, relativePath);
+  fs.mkdirSync(path.dirname(fullPath), { recursive: true });
+  fs.writeFileSync(fullPath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
+}
+
+function writeReport(relativePath, artifact) {
+  const lines = [
+    '# Workbench Public Handoff Index',
+    '',
+    `Generated: ${artifact.generated_at}`,
+    '',
+    '## Summary',
+    '',
+    `- Selected targets: ${artifact.counts.selected_targets}`,
+    `- Validation passed: ${artifact.counts.validation_passed}`,
+    `- Validation failed: ${artifact.counts.validation_failed}`,
+    `- Reader-facing eligible rows: ${artifact.counts.reader_facing_eligible_rows}`,
+    `- Ambiguous count-only rows: ${artifact.counts.count_only_ambiguous_rows}`,
+    `- Status counts: supported ${artifact.counts.status_counts.supported}, candidate ${artifact.counts.status_counts.candidate}, weak ${artifact.counts.status_counts.weak}, ambiguous ${artifact.counts.status_counts.ambiguous}`,
+    '',
+    '## Policy',
+    '',
+    `- Eligible statuses: ${artifact.reader_facing_policy.eligible_statuses.join(', ')}`,
+    `- Count-only statuses: ${artifact.reader_facing_policy.count_only_statuses.join(', ')}`,
+    `- Ambiguous reader-facing: ${artifact.reader_facing_policy.ambiguous_rows_reader_facing ? 'yes' : 'no'}`,
+    '',
+    '## Manifests',
+    '',
+    '| slug | validation | source files | rows | eligible | ambiguous | clusters | manifest |',
+    '|---|---|---:|---:|---:|---:|---:|---|',
+    ...artifact.manifests.map((row) => `| ${mdCell(row.slug)} | ${row.validation.status} | ${row.selection.source_files} | ${row.counts.candidate_rows} | ${row.reader_facing_eligible_rows} | ${row.status_counts.ambiguous} | ${row.counts.clusters} | ${mdCell(row.manifest_path)} |`),
+    '',
+    '## Validation Issues',
+    '',
+    ...artifact.manifests
+      .filter((row) => row.validation.status !== 'passed')
+      .map((row) => `- ${row.slug}: ${row.validation.issues.join('; ')}`),
+    '',
+    '## Boundary',
+    '',
+    'This public index exposes selected usage-evidence handoff packages and validation state only. It does not include candidate phrase rows, does not rank definitions, and does not make ambiguous rows reader-facing.',
+  ];
+  const fullPath = path.join(root, relativePath);
+  fs.mkdirSync(path.dirname(fullPath), { recursive: true });
+  fs.writeFileSync(fullPath, `${lines.join('\n')}\n`, 'utf8');
+}
+
+function topCounts(map, limit) {
+  return [...map.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+    .map(([value, count]) => ({ value, count }));
+}
+
+function increment(map, key) {
+  const safeKey = String(key || '').trim();
+  if (!safeKey) return;
+  map.set(safeKey, (map.get(safeKey) || 0) + 1);
+}
+
+function cleanRelativePath(value) {
+  return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+}
+
+function valueAfterEquals(arg) {
+  return arg.split('=').slice(1).join('=');
+}
+
+function mdCell(value) {
+  return String(value ?? '').replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
+}

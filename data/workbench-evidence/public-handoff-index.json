@@ -1,0 +1,5597 @@
+{
+  "schema_version": 1,
+  "artifact_type": "workbench_public_handoff_index",
+  "generated_at": "2026-05-31T15:18:17.256Z",
+  "generator": "scripts/build_workbench_public_handoff_index.mjs",
+  "policy": "Public index of selected workbench usage-evidence handoff packages. It is not a definition artifact and does not choose HUD winners. Ambiguous rows are counted for audit only and are not reader-facing eligible.",
+  "inputs": {
+    "target_queue": ".local-cache/workbench-evidence/smoke-target-queue.json",
+    "handoff_root": ".local-cache/workbench-evidence/handoff",
+    "selected_target_filter": "known-useful-or-seeded-smoke"
+  },
+  "reader_facing_policy": {
+    "eligible_statuses": [
+      "supported",
+      "candidate",
+      "weak"
+    ],
+    "count_only_statuses": [
+      "ambiguous",
+      "blocked"
+    ],
+    "ambiguous_rows_reader_facing": false,
+    "notes": "Downstream HUD/ranking may consume eligible statuses as usage evidence. Ambiguous rows remain audit-only unless a later validated frame seed changes their status."
+  },
+  "counts": {
+    "selected_targets": 55,
+    "validation_passed": 55,
+    "validation_failed": 0,
+    "missing_manifests": 0,
+    "occurrence_markers": 4454,
+    "candidate_rows": 4454,
+    "clusters": 152,
+    "blocked_rows": 0,
+    "reader_facing_eligible_rows": 2390,
+    "count_only_ambiguous_rows": 2064,
+    "status_counts": {
+      "supported": 339,
+      "candidate": 1351,
+      "weak": 700,
+      "ambiguous": 2064,
+      "blocked": 0
+    }
+  },
+  "manifests": [
+    {
+      "index": 0,
+      "slug": "reshit-smoke-seeded",
+      "selection": {
+        "target_reason": "seeded_frame_available",
+        "target_kind": "seeded_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-seeded/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-seeded-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-seeded-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:30:11.264Z",
+      "counts": {
+        "occurrence_markers": 11,
+        "candidate_rows": 11,
+        "clusters": 2,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 1,
+        "candidate": 3,
+        "weak": 2,
+        "ambiguous": 5,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 6,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 6,
+          "supported": 1,
+          "candidate": 3,
+          "weak": 2,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 6,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 5,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "CC-BY-SA",
+          "count": 11
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "deuteronomy",
+          "count": 3
+        },
+        {
+          "value": "exodus",
+          "count": 2
+        },
+        {
+          "value": "jeremiah",
+          "count": 2
+        },
+        {
+          "value": "leviticus",
+          "count": 2
+        },
+        {
+          "value": "numbers",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "slug": "reshit-smoke-001",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-001/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-001-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-001-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:38:17.935Z",
+      "counts": {
+        "occurrence_markers": 1002,
+        "candidate_rows": 1002,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 71,
+        "candidate": 314,
+        "weak": 137,
+        "ambiguous": 480,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 522,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 305,
+          "supported": 16,
+          "candidate": 194,
+          "weak": 95,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 305,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 217,
+          "supported": 55,
+          "candidate": 120,
+          "weak": 42,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 217,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 480,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 480,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 1002
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "shenei-luchot-haberit",
+          "count": 335
+        },
+        {
+          "value": "sefat-emet",
+          "count": 306
+        },
+        {
+          "value": "ohr-hachammah-on-zohar",
+          "count": 274
+        },
+        {
+          "value": "recanati-on-the-torah",
+          "count": 59
+        },
+        {
+          "value": "arukh-hashulchan-heatid",
+          "count": 28
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "slug": "reshit-smoke-002",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-002/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-002-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-002-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:41:20.159Z",
+      "counts": {
+        "occurrence_markers": 528,
+        "candidate_rows": 528,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 48,
+        "candidate": 143,
+        "weak": 57,
+        "ambiguous": 280,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 248,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 133,
+          "supported": 18,
+          "candidate": 86,
+          "weak": 29,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 133,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 115,
+          "supported": 30,
+          "candidate": 57,
+          "weak": 28,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 115,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 280,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 280,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 528
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "peri-tzadik",
+          "count": 326
+        },
+        {
+          "value": "sod-yesharim",
+          "count": 83
+        },
+        {
+          "value": "meor-einayim",
+          "count": 50
+        },
+        {
+          "value": "otzar-midrashim",
+          "count": 45
+        },
+        {
+          "value": "midrash-tanchuma-buber",
+          "count": 24
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "slug": "reshit-smoke-003",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-003/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-003-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-003-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:41:37.981Z",
+      "counts": {
+        "occurrence_markers": 332,
+        "candidate_rows": 332,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 33,
+        "candidate": 112,
+        "weak": 39,
+        "ambiguous": 148,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 184,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 98,
+          "supported": 16,
+          "candidate": 62,
+          "weak": 20,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 98,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 86,
+          "supported": 17,
+          "candidate": 50,
+          "weak": 19,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 86,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 148,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 148,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 332
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "ohev-yisrael",
+          "count": 103
+        },
+        {
+          "value": "ketem-paz-on-zohar",
+          "count": 95
+        },
+        {
+          "value": "yismach-moshe",
+          "count": 82
+        },
+        {
+          "value": "ben-ish-hai",
+          "count": 34
+        },
+        {
+          "value": "midbar-shur",
+          "count": 18
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "slug": "reshit-smoke-004",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-004/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-004-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-004-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:42:23.273Z",
+      "counts": {
+        "occurrence_markers": 132,
+        "candidate_rows": 132,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 26,
+        "candidate": 48,
+        "weak": 30,
+        "ambiguous": 28,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 104,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 80,
+          "supported": 21,
+          "candidate": 35,
+          "weak": 24,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 80,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 24,
+          "supported": 5,
+          "candidate": 13,
+          "weak": 6,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 24,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 28,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 28,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 132
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "midrash-lekach-tov",
+          "count": 46
+        },
+        {
+          "value": "kiryat-sefer-on-mishneh-torah-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary",
+          "count": 38
+        },
+        {
+          "value": "midrash-tanchuma",
+          "count": 23
+        },
+        {
+          "value": "raavad-on-sifra",
+          "count": 16
+        },
+        {
+          "value": "ibn-ezra-on-genesis",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "slug": "reshit-smoke-005",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-005/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-005-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-005-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:44:32.155Z",
+      "counts": {
+        "occurrence_markers": 131,
+        "candidate_rows": 131,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 20,
+        "candidate": 43,
+        "weak": 23,
+        "ambiguous": 45,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 86,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 51,
+          "supported": 14,
+          "candidate": 24,
+          "weak": 13,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 51,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 35,
+          "supported": 6,
+          "candidate": 19,
+          "weak": 10,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 35,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 45,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 45,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 102
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 29
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "arukh-hashulchan",
+          "count": 48
+        },
+        {
+          "value": "sefer-yereim",
+          "count": 30
+        },
+        {
+          "value": "zohar-chadash",
+          "count": 29
+        },
+        {
+          "value": "notes-and-corrections-on-midrash-lekach-tov",
+          "count": 14
+        },
+        {
+          "value": "halakhot-gedolot",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "slug": "reshit-smoke-006",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-006/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-006-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-006-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:45:22.723Z",
+      "counts": {
+        "occurrence_markers": 175,
+        "candidate_rows": 175,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 17,
+        "candidate": 51,
+        "weak": 19,
+        "ambiguous": 88,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 87,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 59,
+          "supported": 5,
+          "candidate": 43,
+          "weak": 11,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 59,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 28,
+          "supported": 12,
+          "candidate": 8,
+          "weak": 8,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 28,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 88,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 88,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 175
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "mikdash-melekh-on-zohar",
+          "count": 87
+        },
+        {
+          "value": "maggid-devarav-leyaakov",
+          "count": 32
+        },
+        {
+          "value": "minchat-chinukh",
+          "count": 31
+        },
+        {
+          "value": "shaarei-orah",
+          "count": 15
+        },
+        {
+          "value": "midrash-tehillim",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "slug": "reshit-smoke-007",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-007/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-007-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-007-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:46:28.142Z",
+      "counts": {
+        "occurrence_markers": 105,
+        "candidate_rows": 105,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 15,
+        "candidate": 32,
+        "weak": 23,
+        "ambiguous": 35,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 70,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 44,
+          "supported": 12,
+          "candidate": 19,
+          "weak": 13,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 44,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 26,
+          "supported": 3,
+          "candidate": 13,
+          "weak": 10,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 26,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 35,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 35,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 105
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "beit-yosef",
+          "count": 44
+        },
+        {
+          "value": "machzor-vitry",
+          "count": 23
+        },
+        {
+          "value": "beur-haradal-on-pirkei-derabbi-eliezer",
+          "count": 16
+        },
+        {
+          "value": "kiryat-sefer-on-mishneh-torah-heave-offerings",
+          "count": 11
+        },
+        {
+          "value": "midrash-aggadah",
+          "count": 11
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "slug": "reshit-smoke-008",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-008/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-008-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-008-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:47:21.181Z",
+      "counts": {
+        "occurrence_markers": 56,
+        "candidate_rows": 56,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 15,
+        "candidate": 13,
+        "weak": 10,
+        "ambiguous": 18,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 38,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 28,
+          "supported": 10,
+          "candidate": 9,
+          "weak": 9,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 28,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 10,
+          "supported": 5,
+          "candidate": 4,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 10,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 18,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 18,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 46
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 10
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "zohar-harakia",
+          "count": 16
+        },
+        {
+          "value": "prisha",
+          "count": 15
+        },
+        {
+          "value": "abudarham",
+          "count": 10
+        },
+        {
+          "value": "maaseh-rokeach-on-mishnah",
+          "count": 10
+        },
+        {
+          "value": "rashi-on-genesis",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "slug": "reshit-smoke-009",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-009/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-009-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-009-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:47:35.146Z",
+      "counts": {
+        "occurrence_markers": 446,
+        "candidate_rows": 446,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 11,
+        "candidate": 110,
+        "weak": 54,
+        "ambiguous": 271,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 175,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 109,
+          "supported": 2,
+          "candidate": 74,
+          "weak": 33,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 109,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 66,
+          "supported": 9,
+          "candidate": 36,
+          "weak": 21,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 66,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 271,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 271,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 446
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "zera-kodesh",
+          "count": 209
+        },
+        {
+          "value": "pardes-rimmonim",
+          "count": 100
+        },
+        {
+          "value": "akeidat-yitzchak",
+          "count": 87
+        },
+        {
+          "value": "avodat-yisrael",
+          "count": 35
+        },
+        {
+          "value": "sefer-chasidim",
+          "count": 15
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "slug": "reshit-smoke-010",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-010/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-010-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-010-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:48:02.414Z",
+      "counts": {
+        "occurrence_markers": 108,
+        "candidate_rows": 108,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 10,
+        "candidate": 35,
+        "weak": 23,
+        "ambiguous": 40,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 68,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 36,
+          "supported": 6,
+          "candidate": 16,
+          "weak": 14,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 36,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 32,
+          "supported": 4,
+          "candidate": 19,
+          "weak": 9,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 32,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 40,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 40,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 108
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "kessef-mishneh-on-mishneh-torah-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary",
+          "count": 41
+        },
+        {
+          "value": "pele-yoetz",
+          "count": 21
+        },
+        {
+          "value": "peri-haaretz",
+          "count": 21
+        },
+        {
+          "value": "mishneh-torah-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary",
+          "count": 15
+        },
+        {
+          "value": "etz-yosef-on-bereishit-rabbah",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "slug": "reshit-smoke-011",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-011/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-011-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-011-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:48:56.648Z",
+      "counts": {
+        "occurrence_markers": 71,
+        "candidate_rows": 71,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 10,
+        "candidate": 18,
+        "weak": 16,
+        "ambiguous": 27,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 44,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 23,
+          "supported": 5,
+          "candidate": 9,
+          "weak": 9,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 23,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 21,
+          "supported": 5,
+          "candidate": 9,
+          "weak": 7,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 21,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 27,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 27,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 42
+        },
+        {
+          "value": "CC0",
+          "count": 19
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 10
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "piskei-challah",
+          "count": 19
+        },
+        {
+          "value": "menorat-hamaor",
+          "count": 18
+        },
+        {
+          "value": "beit-elohim",
+          "count": 13
+        },
+        {
+          "value": "midrash-sekhel-tov",
+          "count": 11
+        },
+        {
+          "value": "sifrei-bamidbar",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "slug": "reshit-smoke-012",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-012/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-012-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-012-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:48:56.831Z",
+      "counts": {
+        "occurrence_markers": 30,
+        "candidate_rows": 30,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 10,
+        "candidate": 6,
+        "weak": 4,
+        "ambiguous": 10,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 20,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 14,
+          "supported": 10,
+          "candidate": 3,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 14,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 6,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 3,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 6,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 10,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 10,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 25
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 5
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "shulchan-arukh-yoreh-deah",
+          "count": 9
+        },
+        {
+          "value": "yaarot-devash-i",
+          "count": 6
+        },
+        {
+          "value": "maasai-lamelekh-on-mishneh-torah-sacrificial-procedure",
+          "count": 5
+        },
+        {
+          "value": "mishneh-torah-positive-mitzvot",
+          "count": 5
+        },
+        {
+          "value": "sefer-mitzvot-gadol",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "slug": "reshit-smoke-013",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-013/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-013-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-013-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:54:10.198Z",
+      "counts": {
+        "occurrence_markers": 238,
+        "candidate_rows": 238,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 7,
+        "candidate": 87,
+        "weak": 31,
+        "ambiguous": 113,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 125,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 83,
+          "supported": 2,
+          "candidate": 55,
+          "weak": 26,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 83,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 42,
+          "supported": 5,
+          "candidate": 32,
+          "weak": 5,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 42,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 113,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 113,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 238
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "beit-aharon",
+          "count": 102
+        },
+        {
+          "value": "maor-vashemesh",
+          "count": 71
+        },
+        {
+          "value": "tiferet-shlomo",
+          "count": 58
+        },
+        {
+          "value": "shaar-hamitzvot",
+          "count": 4
+        },
+        {
+          "value": "turei-zahav-on-shulchan-arukh-choshen-mishpat",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "slug": "reshit-smoke-014",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-014/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-014-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-014-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:55:07.368Z",
+      "counts": {
+        "occurrence_markers": 208,
+        "candidate_rows": 208,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 5,
+        "candidate": 66,
+        "weak": 36,
+        "ambiguous": 101,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 107,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 85,
+          "supported": 2,
+          "candidate": 52,
+          "weak": 31,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 85,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 22,
+          "supported": 3,
+          "candidate": 14,
+          "weak": 5,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 22,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 101,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 101,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 188
+        },
+        {
+          "value": "CC-BY",
+          "count": 20
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "moreh-nevukhei-hazeman",
+          "count": 58
+        },
+        {
+          "value": "ohr-hameir",
+          "count": 54
+        },
+        {
+          "value": "bnei-yissaschar",
+          "count": 51
+        },
+        {
+          "value": "aderet-eliyahu",
+          "count": 25
+        },
+        {
+          "value": "sifrei-devarim",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "slug": "reshit-smoke-015",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-015/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-015-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-015-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:55:53.288Z",
+      "counts": {
+        "occurrence_markers": 83,
+        "candidate_rows": 83,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 5,
+        "candidate": 29,
+        "weak": 20,
+        "ambiguous": 29,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 54,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 30,
+          "supported": 1,
+          "candidate": 19,
+          "weak": 10,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 30,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 24,
+          "supported": 4,
+          "candidate": 10,
+          "weak": 10,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 24,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 29,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 29,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 63
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 20
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "the-wars-of-god",
+          "count": 20
+        },
+        {
+          "value": "ein-yaakov",
+          "count": 18
+        },
+        {
+          "value": "chafetz-chaim-on-sifra",
+          "count": 17
+        },
+        {
+          "value": "midrash-shmuel-on-avot",
+          "count": 16
+        },
+        {
+          "value": "minchat-kenaot",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "slug": "reshit-smoke-016",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-016/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-016-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-016-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:56:36.786Z",
+      "counts": {
+        "occurrence_markers": 81,
+        "candidate_rows": 81,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 5,
+        "candidate": 20,
+        "weak": 15,
+        "ambiguous": 41,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 40,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 31,
+          "supported": 2,
+          "candidate": 17,
+          "weak": 12,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 31,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 9,
+          "supported": 3,
+          "candidate": 3,
+          "weak": 3,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 9,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 41,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 41,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 81
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "midrash-haittamari",
+          "count": 25
+        },
+        {
+          "value": "noam-elimelekh",
+          "count": 16
+        },
+        {
+          "value": "kad-hakemach",
+          "count": 15
+        },
+        {
+          "value": "maavar-yabbok",
+          "count": 15
+        },
+        {
+          "value": "the-wars-of-the-lord",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "slug": "reshit-smoke-017",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-017/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-017-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-017-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:57:12.257Z",
+      "counts": {
+        "occurrence_markers": 34,
+        "candidate_rows": 34,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 5,
+        "candidate": 11,
+        "weak": 5,
+        "ambiguous": 13,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 21,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 16,
+          "supported": 5,
+          "candidate": 9,
+          "weak": 2,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 16,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 3,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 13,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 13,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 34
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "tzidkat-hatzadik",
+          "count": 16
+        },
+        {
+          "value": "rashi-on-deuteronomy",
+          "count": 8
+        },
+        {
+          "value": "mishneh-torah-heave-offerings",
+          "count": 4
+        },
+        {
+          "value": "sefer-haorah",
+          "count": 3
+        },
+        {
+          "value": "tanna-debei-eliyahu-zuta",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "slug": "reshit-smoke-018",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-018/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-018-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-018-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:57:55.842Z",
+      "counts": {
+        "occurrence_markers": 20,
+        "candidate_rows": 20,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 5,
+        "candidate": 8,
+        "weak": 0,
+        "ambiguous": 7,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 13,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 8,
+          "supported": 2,
+          "candidate": 6,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 8,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 5,
+          "supported": 3,
+          "candidate": 2,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 7,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 7,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 20
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "shaar-maamarei-rashbi",
+          "count": 7
+        },
+        {
+          "value": "sefer-hamitzvot",
+          "count": 6
+        },
+        {
+          "value": "seder-mishnah-on-mishneh-torah-sabbath",
+          "count": 3
+        },
+        {
+          "value": "maasai-lamelekh-on-mishneh-torah-the-chosen-temple",
+          "count": 2
+        },
+        {
+          "value": "perush-maharzu-on-shir-hashirim-rabbah",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "slug": "reshit-smoke-019",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-019/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-019-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-019-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:58:31.326Z",
+      "counts": {
+        "occurrence_markers": 28,
+        "candidate_rows": 28,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 5,
+        "candidate": 2,
+        "weak": 10,
+        "ambiguous": 11,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 17,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 14,
+          "supported": 5,
+          "candidate": 1,
+          "weak": 8,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 14,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 1,
+          "weak": 2,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 11,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 11,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 28
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "kiryat-sefer-on-mishneh-torah-daily-offerings-and-additional-offerings",
+          "count": 9
+        },
+        {
+          "value": "nishmat-chayyim",
+          "count": 9
+        },
+        {
+          "value": "mishnat-rabbi-eliezer",
+          "count": 4
+        },
+        {
+          "value": "tosefta-chullin",
+          "count": 4
+        },
+        {
+          "value": "mishnah-terumot",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "slug": "reshit-smoke-020",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-020/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-020-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-020-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T09:59:16.747Z",
+      "counts": {
+        "occurrence_markers": 8,
+        "candidate_rows": 8,
+        "clusters": 2,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 5,
+        "candidate": 0,
+        "weak": 3,
+        "ambiguous": 0,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 8,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 6,
+          "supported": 4,
+          "candidate": 0,
+          "weak": 2,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 6,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 2,
+          "supported": 1,
+          "candidate": 0,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 7
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 1
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "mishneh-torah-daily-offerings-and-additional-offerings",
+          "count": 2
+        },
+        {
+          "value": "mishneh-torah-inheritances",
+          "count": 2
+        },
+        {
+          "value": "shulchan-arukh-choshen-mishpat",
+          "count": 2
+        },
+        {
+          "value": "etz-yosef-on-shemot-rabbah",
+          "count": 1
+        },
+        {
+          "value": "ii-chronicles",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "slug": "reshit-smoke-021",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-021/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-021-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-021-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:00:00.583Z",
+      "counts": {
+        "occurrence_markers": 5,
+        "candidate_rows": 5,
+        "clusters": 2,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 5,
+        "candidate": 0,
+        "weak": 0,
+        "ambiguous": 0,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 4,
+          "supported": 4,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 4,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 1,
+          "supported": 1,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 1,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 5
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "kessef-mishneh-on-mishneh-torah-tithes",
+          "count": 1
+        },
+        {
+          "value": "matnot-kehunah-on-bamidbar-rabbah",
+          "count": 1
+        },
+        {
+          "value": "perush-maharzu-on-kohelet-rabbah",
+          "count": 1
+        },
+        {
+          "value": "sefer-mitzvot-katan",
+          "count": 1
+        },
+        {
+          "value": "tosefta-challah",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "slug": "reshit-smoke-022",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-022/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-022-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-022-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:00:43.933Z",
+      "counts": {
+        "occurrence_markers": 6,
+        "candidate_rows": 6,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 5,
+        "candidate": 0,
+        "weak": 0,
+        "ambiguous": 1,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 4,
+          "supported": 4,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 4,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 1,
+          "supported": 1,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 1,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 1,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 6
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "kiryat-sefer-on-mishneh-torah-inheritances",
+          "count": 2
+        },
+        {
+          "value": "ohr-sameach-on-mishneh-torah-firstlings",
+          "count": 1
+        },
+        {
+          "value": "rabbi-akiva-eiger-on-shulchan-arukh-yoreh-deah",
+          "count": 1
+        },
+        {
+          "value": "siddur-rashi",
+          "count": 1
+        },
+        {
+          "value": "yefeh-toar-on-shemot-rabbah",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "slug": "reshit-smoke-023",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-023/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-023-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-023-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:01:29.120Z",
+      "counts": {
+        "occurrence_markers": 97,
+        "candidate_rows": 97,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 39,
+        "weak": 14,
+        "ambiguous": 44,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 53,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 32,
+          "supported": 0,
+          "candidate": 22,
+          "weak": 10,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 32,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 21,
+          "supported": 0,
+          "candidate": 17,
+          "weak": 4,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 21,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 44,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 44,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 97
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "degel-machaneh-ephraim",
+          "count": 27
+        },
+        {
+          "value": "raavad-on-sefer-yetzirah",
+          "count": 26
+        },
+        {
+          "value": "megalleh-amukkot-on-parashat-vaetchanan",
+          "count": 19
+        },
+        {
+          "value": "beur-hareem-on-midrash-lekach-tov",
+          "count": 14
+        },
+        {
+          "value": "tanna-debei-eliyahu-rabbah",
+          "count": 11
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "slug": "reshit-smoke-024",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-024/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-024-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-024-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:02:19.355Z",
+      "counts": {
+        "occurrence_markers": 62,
+        "candidate_rows": 62,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 24,
+        "weak": 5,
+        "ambiguous": 33,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 29,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 15,
+          "supported": 0,
+          "candidate": 14,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 15,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 14,
+          "supported": 0,
+          "candidate": 10,
+          "weak": 4,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 14,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 33,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 33,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 62
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "beur-hagra-on-sifra-detzniuta",
+          "count": 31
+        },
+        {
+          "value": "kol-bo",
+          "count": 9
+        },
+        {
+          "value": "sheiltot-drav-achai-gaon",
+          "count": 9
+        },
+        {
+          "value": "yaarot-devash-ii",
+          "count": 7
+        },
+        {
+          "value": "yefeh-toar-on-bereshit-rabbah",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "slug": "reshit-smoke-025",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-025/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-025-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-025-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:07:27.038Z",
+      "counts": {
+        "occurrence_markers": 72,
+        "candidate_rows": 72,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 18,
+        "weak": 20,
+        "ambiguous": 34,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 38,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 20,
+          "supported": 0,
+          "candidate": 7,
+          "weak": 13,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 20,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 18,
+          "supported": 0,
+          "candidate": 11,
+          "weak": 7,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 18,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 34,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 34,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 43
+        },
+        {
+          "value": "CC-BY",
+          "count": 29
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "the-sabbath-epistle",
+          "count": 29
+        },
+        {
+          "value": "tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor",
+          "count": 20
+        },
+        {
+          "value": "maaseh-rokeach-on-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary",
+          "count": 12
+        },
+        {
+          "value": "perush-maharzu-on-bereshit-rabbah",
+          "count": 7
+        },
+        {
+          "value": "even-haazel-on-mishneh-torah-damages-to-property",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "slug": "reshit-smoke-026",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-026/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-026-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-026-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:08:02.271Z",
+      "counts": {
+        "occurrence_markers": 35,
+        "candidate_rows": 35,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 14,
+        "weak": 4,
+        "ambiguous": 17,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 18,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 11,
+          "supported": 0,
+          "candidate": 9,
+          "weak": 2,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 11,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 7,
+          "supported": 0,
+          "candidate": 5,
+          "weak": 2,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 7,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 17,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 17,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 20
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 15
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "shevet-musar",
+          "count": 19
+        },
+        {
+          "value": "ibn-ezra-on-exodus",
+          "count": 7
+        },
+        {
+          "value": "maharzu-hakatzar-on-bereshit-rabbah",
+          "count": 3
+        },
+        {
+          "value": "mishnah-bikkurim",
+          "count": 3
+        },
+        {
+          "value": "selichot-nusach-polin",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "slug": "reshit-smoke-027",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-027/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-027-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-027-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:08:48.284Z",
+      "counts": {
+        "occurrence_markers": 26,
+        "candidate_rows": 26,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 10,
+        "weak": 7,
+        "ambiguous": 9,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 17,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 9,
+          "supported": 0,
+          "candidate": 5,
+          "weak": 4,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 9,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 8,
+          "supported": 0,
+          "candidate": 5,
+          "weak": 3,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 8,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 9,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 9,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 21
+        },
+        {
+          "value": "CC0",
+          "count": 5
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "marbeh-lesaper-on-pesach-haggadah",
+          "count": 6
+        },
+        {
+          "value": "drisha",
+          "count": 5
+        },
+        {
+          "value": "ibn-ezra-on-deuteronomy",
+          "count": 5
+        },
+        {
+          "value": "rashi-on-numbers",
+          "count": 5
+        },
+        {
+          "value": "siddur-edot-hamizrach",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "slug": "reshit-smoke-028",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-028/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-028-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-028-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:09:28.093Z",
+      "counts": {
+        "occurrence_markers": 16,
+        "candidate_rows": 16,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 10,
+        "weak": 1,
+        "ambiguous": 5,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 11,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 6,
+          "supported": 0,
+          "candidate": 6,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 6,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 4,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 5,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 11
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 5
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "ben-sira",
+          "count": 5
+        },
+        {
+          "value": "divrei-yirmiyahu-on-mishneh-torah-torah-study",
+          "count": 3
+        },
+        {
+          "value": "har-hamoriyah-on-mishneh-torah-trespass",
+          "count": 3
+        },
+        {
+          "value": "seder-hayom",
+          "count": 3
+        },
+        {
+          "value": "pirkei-derabbi-eliezer",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "slug": "reshit-smoke-029",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-029/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-029-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-029-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:10:06.259Z",
+      "counts": {
+        "occurrence_markers": 14,
+        "candidate_rows": 14,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 10,
+        "weak": 0,
+        "ambiguous": 4,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 10,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 8,
+          "supported": 0,
+          "candidate": 8,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 8,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 4,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 11
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 3
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "hagra-on-sefer-yetzirah-gra-version",
+          "count": 4
+        },
+        {
+          "value": "divrei-emet",
+          "count": 3
+        },
+        {
+          "value": "psalms",
+          "count": 3
+        },
+        {
+          "value": "ibn-ezra-on-numbers",
+          "count": 2
+        },
+        {
+          "value": "nefesh-hachayim",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "slug": "reshit-smoke-030",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-030/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-030-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-030-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:10:49.630Z",
+      "counts": {
+        "occurrence_markers": 21,
+        "candidate_rows": 21,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 6,
+        "weak": 8,
+        "ambiguous": 7,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 14,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 10,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 7,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 10,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 4,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 7,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 7,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 18
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 3
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "yitzchak-yeranen-on-mishneh-torah-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary",
+          "count": 8
+        },
+        {
+          "value": "pri-yitzhak-on-sefer-yetzirah-gra-version",
+          "count": 4
+        },
+        {
+          "value": "notes-and-corrections-on-midrash-aggadah",
+          "count": 3
+        },
+        {
+          "value": "sefer-haterumah",
+          "count": 3
+        },
+        {
+          "value": "selichot-nusach-ashkenaz-lita",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "slug": "reshit-smoke-031",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-031/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-031-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-031-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:11:30.598Z",
+      "counts": {
+        "occurrence_markers": 12,
+        "candidate_rows": 12,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 5,
+        "ambiguous": 2,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 10,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 9,
+          "supported": 0,
+          "candidate": 5,
+          "weak": 4,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 9,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 1,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 2,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 12
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "biur-halacha",
+          "count": 3
+        },
+        {
+          "value": "ibn-ezra-on-leviticus",
+          "count": 3
+        },
+        {
+          "value": "perush-maharzu-on-bamidbar-rabbah",
+          "count": 2
+        },
+        {
+          "value": "sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav",
+          "count": 2
+        },
+        {
+          "value": "tosefta-tevul-yom",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "slug": "reshit-smoke-032",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-032/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-032-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-032-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:12:03.991Z",
+      "counts": {
+        "occurrence_markers": 15,
+        "candidate_rows": 15,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 5,
+        "ambiguous": 5,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 10,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 2,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 3,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 5,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 9
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 6
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "book-of-jubilees",
+          "count": 4
+        },
+        {
+          "value": "kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar",
+          "count": 3
+        },
+        {
+          "value": "kiryat-sefer-on-mishneh-torah-trespass",
+          "count": 3
+        },
+        {
+          "value": "pitchei-teshuva-on-shulchan-arukh-yoreh-deah",
+          "count": 3
+        },
+        {
+          "value": "genesis",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "slug": "reshit-smoke-033",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-033/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-033-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-033-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:12:36.637Z",
+      "counts": {
+        "occurrence_markers": 12,
+        "candidate_rows": 12,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 2,
+        "ambiguous": 5,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 7,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 2,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 4,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 5,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 12
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "shaarei-teshuvah",
+          "count": 4
+        },
+        {
+          "value": "torat-haolah",
+          "count": 3
+        },
+        {
+          "value": "yesod-veshoresh-haavodah",
+          "count": 3
+        },
+        {
+          "value": "book-of-judith",
+          "count": 1
+        },
+        {
+          "value": "mishneh-torah-gifts-to-the-poor",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "slug": "reshit-smoke-034",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-034/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-034-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-034-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:13:11.550Z",
+      "counts": {
+        "occurrence_markers": 5,
+        "candidate_rows": 5,
+        "clusters": 2,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 0,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 4
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 1
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "kessef-hakodashim-on-shulchan-arukh-choshen-mishpat",
+          "count": 1
+        },
+        {
+          "value": "maaseh-rav",
+          "count": 1
+        },
+        {
+          "value": "midrash-lekach-tov-on-ecclesiastes",
+          "count": 1
+        },
+        {
+          "value": "sefer-yetzirah",
+          "count": 1
+        },
+        {
+          "value": "sefer-yetzirah-gra-version",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "slug": "reshit-smoke-035",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-035/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-035-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-035-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:13:49.070Z",
+      "counts": {
+        "occurrence_markers": 14,
+        "candidate_rows": 14,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 9,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 9,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 9,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 14
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "maasai-lamelekh-on-mishneh-torah-things-forbidden-on-the-altar",
+          "count": 4
+        },
+        {
+          "value": "the-wisdom-of-solomon",
+          "count": 4
+        },
+        {
+          "value": "kessef-mishneh-on-mishneh-torah-diverse-species",
+          "count": 3
+        },
+        {
+          "value": "shaarei-teshuvah-on-shulchan-arukh-orach-chayim",
+          "count": 2
+        },
+        {
+          "value": "tosefta-terumot",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "slug": "reshit-smoke-036",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-036/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-036-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-036-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:14:32.791Z",
+      "counts": {
+        "occurrence_markers": 5,
+        "candidate_rows": 5,
+        "clusters": 1,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 0,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 5,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 5
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "even-haazel-on-mishneh-torah-ownerless-property-and-gifts",
+          "count": 1
+        },
+        {
+          "value": "kessef-mishneh-on-mishneh-torah-firstlings",
+          "count": 1
+        },
+        {
+          "value": "kiryat-sefer-on-mishneh-torah-festival-offering",
+          "count": 1
+        },
+        {
+          "value": "kiryat-sefer-on-mishneh-torah-firstlings",
+          "count": 1
+        },
+        {
+          "value": "midrash-tannaim-on-deuteronomy",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "slug": "reshit-smoke-037",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-037/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-037-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-037-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:15:17.043Z",
+      "counts": {
+        "occurrence_markers": 8,
+        "candidate_rows": 8,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 3,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 4,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 4,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 1,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 1,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 3,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 7
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 1
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "aggadat-bereshit",
+          "count": 4
+        },
+        {
+          "value": "mishneh-torah-overview-of-mishneh-torah-contents",
+          "count": 1
+        },
+        {
+          "value": "pesikta-rabbati",
+          "count": 1
+        },
+        {
+          "value": "tashbetz-katan",
+          "count": 1
+        },
+        {
+          "value": "tosefta-shekalim",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "slug": "reshit-smoke-038",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-038/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-038-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-038-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:15:56.294Z",
+      "counts": {
+        "occurrence_markers": 10,
+        "candidate_rows": 10,
+        "clusters": 2,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 5,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 5,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 5,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 10
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "kessef-mishneh-on-mishneh-torah-things-forbidden-on-the-altar",
+          "count": 4
+        },
+        {
+          "value": "baer-hetev-on-shulchan-arukh-orach-chayim",
+          "count": 2
+        },
+        {
+          "value": "matnot-kehunah-on-bereshit-rabbah",
+          "count": 2
+        },
+        {
+          "value": "maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein",
+          "count": 1
+        },
+        {
+          "value": "nachal-eitan-on-mishneh-torah-leavened-and-unleavened-bread",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "slug": "reshit-smoke-039",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-039/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-039-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-039-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:16:41.931Z",
+      "counts": {
+        "occurrence_markers": 12,
+        "candidate_rows": 12,
+        "clusters": 2,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 7,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 5,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 7,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 7,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 9
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 3
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "ahavat-chesed",
+          "count": 3
+        },
+        {
+          "value": "ohr-sameach-on-mishneh-torah-trespass",
+          "count": 3
+        },
+        {
+          "value": "orot-ha-kodesh",
+          "count": 3
+        },
+        {
+          "value": "sefer-hakanah",
+          "count": 2
+        },
+        {
+          "value": "shaar-hamelekh-on-mishneh-torah-diverse-species",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "slug": "reshit-smoke-040",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-040/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-040-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-040-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:17:27.682Z",
+      "counts": {
+        "occurrence_markers": 7,
+        "candidate_rows": 7,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 2,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 2,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 5
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 2
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "chesed-leavraham",
+          "count": 3
+        },
+        {
+          "value": "bechinat-olam",
+          "count": 1
+        },
+        {
+          "value": "darkhei-yesharim",
+          "count": 1
+        },
+        {
+          "value": "ezekiel",
+          "count": 1
+        },
+        {
+          "value": "job",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 41,
+      "slug": "reshit-smoke-041",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-041/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-041-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-041-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:18:08.035Z",
+      "counts": {
+        "occurrence_markers": 9,
+        "candidate_rows": 9,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 4,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 4,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "CC-BY-SA",
+          "count": 6
+        },
+        {
+          "value": "Public Domain",
+          "count": 3
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "letter-of-aristeas",
+          "count": 4
+        },
+        {
+          "value": "maggid-meisharim",
+          "count": 2
+        },
+        {
+          "value": "kinnot-for-tisha-bav-ashkenaz",
+          "count": 1
+        },
+        {
+          "value": "kol-hator",
+          "count": 1
+        },
+        {
+          "value": "maaseh-rokeach-on-sabbath",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "slug": "reshit-smoke-042",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-042/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-042-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-042-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:18:49.133Z",
+      "counts": {
+        "occurrence_markers": 6,
+        "candidate_rows": 6,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 1,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 1,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "CC-BY-SA",
+          "count": 3
+        },
+        {
+          "value": "Public Domain",
+          "count": 3
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "orchot-tzadikim",
+          "count": 2
+        },
+        {
+          "value": "matnot-kehunah-on-shir-hashirim-rabbah",
+          "count": 1
+        },
+        {
+          "value": "midrash-shmuel",
+          "count": 1
+        },
+        {
+          "value": "midrash-yelamdenu-selections-from-yalkut-talmud-torah",
+          "count": 1
+        },
+        {
+          "value": "orot-ha-torah",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 43,
+      "slug": "reshit-smoke-043",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-043/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-043-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-043-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:19:27.537Z",
+      "counts": {
+        "occurrence_markers": 8,
+        "candidate_rows": 8,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 0,
+        "ambiguous": 3,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 3,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 3,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "CC-BY-SA",
+          "count": 4
+        },
+        {
+          "value": "Public Domain",
+          "count": 4
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "proverbs",
+          "count": 4
+        },
+        {
+          "value": "peleti-on-shulchan-arukh-yoreh-deah",
+          "count": 1
+        },
+        {
+          "value": "pirkei-avot",
+          "count": 1
+        },
+        {
+          "value": "ramban-on-sefer-yetzirah",
+          "count": 1
+        },
+        {
+          "value": "sansan-leyair",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 44,
+      "slug": "reshit-smoke-044",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-044/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-044-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-044-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:20:01.722Z",
+      "counts": {
+        "occurrence_markers": 15,
+        "candidate_rows": 15,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 4,
+        "weak": 10,
+        "ambiguous": 1,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 14,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 12,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 10,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 12,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 2,
+          "weak": 0,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 1,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 15
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "even-haazel-on-mishneh-torah-daily-offerings-and-additional-offerings",
+          "count": 10
+        },
+        {
+          "value": "yad-ephraim-on-shulchan-arukh-yoreh-deah",
+          "count": 2
+        },
+        {
+          "value": "sefer-hamitzvot-of-rasag",
+          "count": 1
+        },
+        {
+          "value": "sefer-hayashar",
+          "count": 1
+        },
+        {
+          "value": "simlah-chadashah",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 45,
+      "slug": "reshit-smoke-045",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-045/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-045-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-045-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:20:52.782Z",
+      "counts": {
+        "occurrence_markers": 22,
+        "candidate_rows": 22,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 16,
+        "ambiguous": 6,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 16,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 13,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 13,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 13,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 3,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 6,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 6,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 17
+        },
+        {
+          "value": "CC-BY",
+          "count": 5
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "beur-hagra-on-jerusalem-talmud-challah",
+          "count": 7
+        },
+        {
+          "value": "pesikta-derav-kahana",
+          "count": 5
+        },
+        {
+          "value": "baer-hetev-on-shulchan-arukh-yoreh-deah",
+          "count": 4
+        },
+        {
+          "value": "beur-hagra-on-shulchan-arukh-yoreh-deah",
+          "count": 4
+        },
+        {
+          "value": "chayyei-adam",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "index": 46,
+      "slug": "reshit-smoke-046",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-046/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-046-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-046-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:21:38.310Z",
+      "counts": {
+        "occurrence_markers": 26,
+        "candidate_rows": 26,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 10,
+        "ambiguous": 16,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 10,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 6,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 6,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 6,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 4,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 4,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 16,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 16,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 26
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "shaar-hapesukim",
+          "count": 14
+        },
+        {
+          "value": "etz-yosef-on-kohelet-rabbah",
+          "count": 5
+        },
+        {
+          "value": "kessef-mishneh-on-mishneh-torah-heave-offerings",
+          "count": 3
+        },
+        {
+          "value": "har-hamoriyah-on-mishneh-torah-daily-offerings-and-additional-offerings",
+          "count": 2
+        },
+        {
+          "value": "imrei-binah",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "index": 47,
+      "slug": "reshit-smoke-047",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-047/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-047-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-047-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:22:17.913Z",
+      "counts": {
+        "occurrence_markers": 9,
+        "candidate_rows": 9,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 5,
+        "ambiguous": 4,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 4,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 4,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 1,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 4,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 7
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 2
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "beer-hagolah-on-shulchan-arukh-yoreh-deah",
+          "count": 4
+        },
+        {
+          "value": "kuzari",
+          "count": 2
+        },
+        {
+          "value": "divrei-yirmiyahu-on-mishneh-torah-reading-the-shema",
+          "count": 1
+        },
+        {
+          "value": "etz-yosef-on-esther-rabbah",
+          "count": 1
+        },
+        {
+          "value": "maasai-lamelekh-on-mishneh-torah-admission-into-the-sanctuary",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 48,
+      "slug": "reshit-smoke-048",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-048/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-048-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-048-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:22:57.781Z",
+      "counts": {
+        "occurrence_markers": 6,
+        "candidate_rows": 6,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 5,
+        "ambiguous": 1,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 4,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 4,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 1,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 1,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 6
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "maaseh-rokeach-on-marriage",
+          "count": 2
+        },
+        {
+          "value": "ohr-sameach-on-mishneh-torah-neighbors",
+          "count": 1
+        },
+        {
+          "value": "sefer-hamakhria",
+          "count": 1
+        },
+        {
+          "value": "the-book-of-maccabees-i",
+          "count": 1
+        },
+        {
+          "value": "tosefta-eduyot",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 49,
+      "slug": "reshit-smoke-049",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-049/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-049-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-049-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:24:11.462Z",
+      "counts": {
+        "occurrence_markers": 11,
+        "candidate_rows": 11,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 5,
+        "ambiguous": 6,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 3,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 3,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 3,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 2,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 2,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 2,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 6,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 6,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 11
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "tzafnat-paneach-on-mishneh-torah-foreign-worship-and-customs-of-the-nations",
+          "count": 7
+        },
+        {
+          "value": "azharot-of-solomon-ibn-gabirol",
+          "count": 1
+        },
+        {
+          "value": "chatam-sofer-on-shulchan-arukh-orach-chayim",
+          "count": 1
+        },
+        {
+          "value": "mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property",
+          "count": 1
+        },
+        {
+          "value": "tzafnat-paneach-on-mishneh-torah-ritual-slaughter",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 50,
+      "slug": "reshit-smoke-050",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-050/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-050-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-050-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:24:50.536Z",
+      "counts": {
+        "occurrence_markers": 11,
+        "candidate_rows": 11,
+        "clusters": 3,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 5,
+        "ambiguous": 6,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-first-yield-priority",
+          "frame_label": "first-yield / first-produce frame",
+          "occurrence_count": 4,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 4,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 4,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 1,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 6,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 6,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 6
+        },
+        {
+          "value": "CC-BY-SA",
+          "count": 5
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "orot",
+          "count": 5
+        },
+        {
+          "value": "rashi-on-leviticus",
+          "count": 3
+        },
+        {
+          "value": "perush-maharzu-on-eichah-rabbah",
+          "count": 1
+        },
+        {
+          "value": "tosefta-demai",
+          "count": 1
+        },
+        {
+          "value": "tzafnat-paneach-on-mishneh-torah-forbidden-foods",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 51,
+      "slug": "reshit-smoke-051",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-051/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-051-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-051-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:25:27.007Z",
+      "counts": {
+        "occurrence_markers": 20,
+        "candidate_rows": 20,
+        "clusters": 2,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 5,
+        "ambiguous": 15,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 5,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 15,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 15,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 20
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "kalach-pitchei-chokhmah",
+          "count": 16
+        },
+        {
+          "value": "benei-binyamin-on-mishneh-torah-circumcision",
+          "count": 1
+        },
+        {
+          "value": "chokhmat-shlomo-on-shulchan-arukh-orach-chayim",
+          "count": 1
+        },
+        {
+          "value": "divrei-yirmiyahu-on-mishneh-torah-shofar-sukkah-and-lulav",
+          "count": 1
+        },
+        {
+          "value": "haemunot-vehadeot",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 52,
+      "slug": "reshit-smoke-052",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-052/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-052-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-052-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:26:14.031Z",
+      "counts": {
+        "occurrence_markers": 17,
+        "candidate_rows": 17,
+        "clusters": 2,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 5,
+        "ambiguous": 12,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 5,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 12,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 12,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 17
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "kessef-mishneh-on-mishneh-torah-gifts-to-the-poor",
+          "count": 9
+        },
+        {
+          "value": "maalot-hamiddot",
+          "count": 4
+        },
+        {
+          "value": "nineteen-letters",
+          "count": 2
+        },
+        {
+          "value": "matnot-kehunah-on-kohelet-rabbah",
+          "count": 1
+        },
+        {
+          "value": "mishneh-torah-foundations-of-the-torah",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 53,
+      "slug": "reshit-smoke-053",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 5
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-053/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-053-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-053-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:26:57.776Z",
+      "counts": {
+        "occurrence_markers": 12,
+        "candidate_rows": 12,
+        "clusters": 2,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 5,
+        "ambiguous": 7,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 5,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 5,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 5,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 5,
+          "ambiguous_rows_reader_facing": false
+        },
+        {
+          "cluster_id": "unclustered",
+          "frame_label": "",
+          "occurrence_count": 7,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 0,
+          "ambiguous": 7,
+          "reader_facing_eligible_rows": 0,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 12
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property",
+          "count": 6
+        },
+        {
+          "value": "shaar-hahakdamot",
+          "count": 3
+        },
+        {
+          "value": "seder-mishnah-on-mishneh-torah-rest-on-the-tenth-of-tishrei",
+          "count": 1
+        },
+        {
+          "value": "shivchei-habesht",
+          "count": 1
+        },
+        {
+          "value": "tzavaat-harivash",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "index": 54,
+      "slug": "reshit-smoke-054",
+      "selection": {
+        "target_reason": "known_nonzero_support_smoke",
+        "target_kind": "known_nonzero_support_smoke",
+        "known_nonzero_support": true,
+        "source_files": 1
+      },
+      "focus": {
+        "token_key": "he:ראשית",
+        "token_normalized": "ראשית"
+      },
+      "manifest_path": ".local-cache/workbench-evidence/handoff/reshit-smoke-054/manifest.json",
+      "source_artifacts": {
+        "graph": ".local-cache/workbench-evidence/full/reshit-smoke-054-occurrence-graph.json",
+        "candidates": ".local-cache/workbench-evidence/full/reshit-smoke-054-candidate-evidence.json"
+      },
+      "generated_at": "2026-05-31T10:27:36.780Z",
+      "counts": {
+        "occurrence_markers": 1,
+        "candidate_rows": 1,
+        "clusters": 1,
+        "blocked_rows": 0
+      },
+      "status_counts": {
+        "supported": 0,
+        "candidate": 0,
+        "weak": 1,
+        "ambiguous": 0,
+        "blocked": 0
+      },
+      "reader_facing_eligible_rows": 1,
+      "ambiguous_rows_reader_facing": false,
+      "validation": {
+        "status": "passed",
+        "issues": []
+      },
+      "cluster_summaries": [
+        {
+          "cluster_id": "reshit-opening-time-order",
+          "frame_label": "opening / first-in-order frame",
+          "occurrence_count": 1,
+          "supported": 0,
+          "candidate": 0,
+          "weak": 1,
+          "ambiguous": 0,
+          "reader_facing_eligible_rows": 1,
+          "ambiguous_rows_reader_facing": false
+        }
+      ],
+      "license_counts": [
+        {
+          "value": "Public Domain",
+          "count": 1
+        }
+      ],
+      "work_counts": [
+        {
+          "value": "urim-vetumim-tumim",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}
