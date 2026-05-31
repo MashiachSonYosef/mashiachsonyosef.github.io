@@ -26,7 +26,7 @@ const defaults = {
   includePrefixFamily: false,
   prefixFamilyMinFocusLength: 4,
   includeAmbiguousCandidates: true,
-  failFast: false,
+  failFast: true,
 };
 
 const options = parseArgs(process.argv.slice(2));
@@ -60,6 +60,7 @@ const run = {
     include_prefix_family: options.includePrefixFamily,
     prefix_family_min_focus_length: options.prefixFamilyMinFocusLength,
     include_ambiguous_candidates: options.includeAmbiguousCandidates,
+    fail_fast: options.failFast,
   },
   processed: [],
   skipped: [],
@@ -196,6 +197,7 @@ function parseArgs(args) {
     else if (arg === '--no-prefix-family') parsed.includePrefixFamily = false;
     else if (arg === '--no-ambiguous-candidates') parsed.includeAmbiguousCandidates = false;
     else if (arg === '--fail-fast') parsed.failFast = true;
+    else if (arg === '--no-fail-fast') parsed.failFast = false;
     else if (arg.startsWith('--target-queue=')) parsed.targetQueue = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--output-dir=')) parsed.outputDir = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--report-dir=')) parsed.reportDir = cleanRelativePath(arg.split('=').slice(1).join('='));
@@ -317,6 +319,7 @@ function renderReport(run) {
     `- Processed: ${run.processed.length}`,
     `- Skipped: ${run.skipped.length}`,
     `- Failed: ${run.failed.length}`,
+    `- Fail fast: ${run.inputs.fail_fast ? 'yes' : 'no'}`,
     '',
     '## Processed',
     '',
