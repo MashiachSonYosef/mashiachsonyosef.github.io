@@ -14,6 +14,7 @@ Generated: 2026-05-31T16:14:11.679Z
 - Reshit source coverage: 271/271, uncovered 0
 - Handoff coverage: 55 manifests, missing targets 0
 - Public handoff index: 55 selected, validation failed 0, eligible 2390, ambiguous count-only 2064, zero-useful 0, ambiguous reader-facing no
+- Public handoff quality/license: quality pass_with_warnings, license passed, blocked license rows 0, blocked licenses 0
 - Public handoff integrity: passed, files 275, matched 275, missing 0, mismatched 0, unexpected 0
 - Candidate artifact audit: useful 59, zero-useful non-smoke 30, orphan smoke 2
 

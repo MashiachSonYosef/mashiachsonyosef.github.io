@@ -143,6 +143,12 @@ const artifact = {
     public_handoff_count_only_ambiguous_rows: publicHandoffIndex?.counts?.count_only_ambiguous_rows ?? null,
     public_handoff_zero_useful_targets: publicHandoffIndex?.counts?.zero_useful_targets ?? null,
     public_handoff_ambiguous_reader_facing: publicHandoffIndex?.reader_facing_policy?.ambiguous_rows_reader_facing ?? null,
+    public_handoff_quality_status: publicHandoffIndex?.quality_gates?.overall_status ?? null,
+    public_handoff_license_status: publicHandoffIndex?.license_policy?.status ?? null,
+    public_handoff_license_blocked_row_count: publicHandoffIndex?.license_policy?.blocked_row_count ?? null,
+    public_handoff_license_blocked_licenses: Array.isArray(publicHandoffIndex?.license_policy?.blocked_license_rows)
+      ? publicHandoffIndex.license_policy.blocked_license_rows.length
+      : null,
     public_handoff_integrity_status: publicHandoffIntegrity?.quality?.status ?? null,
     public_handoff_integrity_files: publicHandoffIntegrity?.counts?.files ?? null,
     public_handoff_integrity_matched: publicHandoffIntegrity?.counts?.matched ?? null,
@@ -270,6 +276,7 @@ function writeReport(relativePath, artifact) {
     `- Reshit source coverage: ${artifact.counts.covered_source_files}/${artifact.counts.known_nonzero_source_files}, uncovered ${artifact.counts.uncovered_source_files}`,
     `- Handoff coverage: ${artifact.counts.handoff_manifests} manifests, missing targets ${artifact.counts.handoff_missing_targets}`,
     `- Public handoff index: ${artifact.counts.public_handoff_selected_targets} selected, validation failed ${artifact.counts.public_handoff_validation_failed}, eligible ${artifact.counts.public_handoff_reader_facing_eligible_rows}, ambiguous count-only ${artifact.counts.public_handoff_count_only_ambiguous_rows}, zero-useful ${artifact.counts.public_handoff_zero_useful_targets}, ambiguous reader-facing ${artifact.counts.public_handoff_ambiguous_reader_facing ? 'yes' : 'no'}`,
+    `- Public handoff quality/license: quality ${artifact.counts.public_handoff_quality_status}, license ${artifact.counts.public_handoff_license_status}, blocked license rows ${artifact.counts.public_handoff_license_blocked_row_count}, blocked licenses ${artifact.counts.public_handoff_license_blocked_licenses}`,
     `- Public handoff integrity: ${artifact.counts.public_handoff_integrity_status}, files ${artifact.counts.public_handoff_integrity_files}, matched ${artifact.counts.public_handoff_integrity_matched}, missing ${artifact.counts.public_handoff_integrity_missing}, mismatched ${artifact.counts.public_handoff_integrity_mismatched}, unexpected ${artifact.counts.public_handoff_integrity_unexpected_present}`,
     `- Candidate artifact audit: useful ${artifact.counts.useful_artifacts}, zero-useful non-smoke ${artifact.counts.zero_useful_non_smoke_artifacts}, orphan smoke ${artifact.counts.orphan_smoke_artifacts}`,
     '',
