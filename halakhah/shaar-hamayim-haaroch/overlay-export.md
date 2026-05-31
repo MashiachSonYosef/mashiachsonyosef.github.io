@@ -1,0 +1,29 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:1 | shaar-hamayim-haaroch-preface-preface-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:2 | shaar-hamayim-haaroch-preface-preface-2 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:3 | shaar-hamayim-haaroch-preface-preface-3 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:4 | shaar-hamayim-haaroch-preface-preface-4 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:5 | shaar-hamayim-haaroch-preface-preface-5 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:6 | shaar-hamayim-haaroch-preface-preface-6 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:7 | shaar-hamayim-haaroch-preface-preface-7 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:8 | shaar-hamayim-haaroch-preface-preface-8 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:9 | shaar-hamayim-haaroch-preface-preface-9 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:10 | shaar-hamayim-haaroch-preface-preface-10 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:11 | shaar-hamayim-haaroch-preface-preface-11 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, Preface:12 | shaar-hamayim-haaroch-preface-preface-12 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The First Gate:1 | shaar-hamayim-haaroch-the-first-gate-the-first-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The First Gate:2 | shaar-hamayim-haaroch-the-first-gate-the-first-gate-2 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Second Gate:1 | shaar-hamayim-haaroch-the-second-gate-the-second-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Third Gate:1 | shaar-hamayim-haaroch-the-third-gate-the-third-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Fourth Gate:1 | shaar-hamayim-haaroch-the-fourth-gate-the-fourth-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Fifth Gate:1 | shaar-hamayim-haaroch-the-fifth-gate-the-fifth-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Sixth Gate:1 | shaar-hamayim-haaroch-the-sixth-gate-the-sixth-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Seventh Gate:1 | shaar-hamayim-haaroch-the-seventh-gate-the-seventh-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Eighth Gate:1 | shaar-hamayim-haaroch-the-eighth-gate-the-eighth-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Ninth Gate:1 | shaar-hamayim-haaroch-the-ninth-gate-the-ninth-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Tenth Gate:1 | shaar-hamayim-haaroch-the-tenth-gate-the-tenth-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Tenth Gate:2 | shaar-hamayim-haaroch-the-tenth-gate-the-tenth-gate-2 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Tenth Gate:3 | shaar-hamayim-haaroch-the-tenth-gate-the-tenth-gate-3 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Eleventh Gate:1 | shaar-hamayim-haaroch-the-eleventh-gate-the-eleventh-gate-1 |  |  | not_done |  |
+| shaar-hamayim-haaroch | Sha'ar HaMayim HaAroch | Sha'ar HaMayim HaAroch, The Eleventh Gate:2 | shaar-hamayim-haaroch-the-eleventh-gate-the-eleventh-gate-2 |  |  | not_done |  |
