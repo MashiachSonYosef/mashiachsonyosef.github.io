@@ -9,6 +9,7 @@ const defaults = {
   routeLinkCheck: '.local-cache/workbench-evidence/usage-route-link-check.json',
   auditReview: '.local-cache/workbench-evidence/usage-audit-only-review.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
+  skipSmokeValidation: false,
   output: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
   report: 'reports/workbench-usage-navigation-handoff.md',
 };
@@ -36,6 +37,7 @@ const artifact = {
     route_link_check: options.routeLinkCheck,
     audit_review: options.auditReview,
     smoke_validation: options.smokeValidation || null,
+    smoke_validation_mode: options.skipSmokeValidation ? 'skipped_self_reference' : 'external_artifact',
   },
   authority_policy: manifest.authority_policy,
   artifacts: {
@@ -69,7 +71,9 @@ const artifact = {
     route_metadata_mismatches: routeLinkCheck?.counts?.route_metadata_mismatch ?? null,
     audit_review_rows: auditReview?.counts?.rows ?? null,
     audit_review_reader_facing: auditReview?.reader_facing_policy?.reader_facing ?? null,
-    smoke_validation_status: smokeValidation ? (smokeValidation.counts?.failed_steps === 0 ? 'passed' : 'failed') : 'not_run',
+    smoke_validation_status: options.skipSmokeValidation
+      ? 'skipped_self_reference'
+      : smokeValidation ? (smokeValidation.counts?.failed_steps === 0 ? 'passed' : 'failed') : 'not_run',
     smoke_steps: smokeValidation?.counts?.steps ?? null,
     smoke_failed_steps: smokeValidation?.counts?.failed_steps ?? null,
   },
@@ -143,7 +147,10 @@ function parseArgs(args) {
     else if (arg.startsWith('--route-link-check=')) parsed.routeLinkCheck = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--audit-review=')) parsed.auditReview = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
-    else if (arg === '--no-smoke-validation') parsed.smokeValidation = null;
+    else if (arg === '--no-smoke-validation') {
+      parsed.smokeValidation = null;
+      parsed.skipSmokeValidation = true;
+    }
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
     else throw new Error(`Unknown argument: ${arg}`);
