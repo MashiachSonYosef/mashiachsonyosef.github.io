@@ -93,6 +93,8 @@ const artifact = {
     selected_slice_works: selectedSlice?.counts?.works ?? null,
     selected_slices_index_slices: selectedSlicesIndex?.counts?.slices ?? null,
     selected_slices_index_rows: selectedSlicesIndex?.counts?.rows ?? null,
+    selected_slices_index_unique_occurrences: selectedSlicesIndex?.deduped_counts?.occurrence_refs ?? null,
+    selected_slices_index_duplicate_rows: selectedSlicesIndex?.deduped_counts?.duplicate_slice_rows ?? null,
   },
   validation: {
     occurrence_link_check_status: occurrenceLinkCheck?.quality?.status ?? 'not_run',
@@ -117,6 +119,7 @@ const artifact = {
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
     selected_slices_index_status: selectedSlicesIndex?.artifact_type === 'workbench_usage_navigation_selected_slices_index' ? 'present' : 'not_run',
     selected_slices_index_slices: selectedSlicesIndex?.counts?.slices ?? null,
+    selected_slices_index_unique_occurrences: selectedSlicesIndex?.deduped_counts?.occurrence_refs ?? null,
     smoke_validation_status: options.skipSmokeValidation
       ? 'skipped_self_reference'
       : smokeValidation ? (smokeValidation.counts?.failed_steps === 0 ? 'passed' : 'failed') : 'not_run',
@@ -161,6 +164,8 @@ function writeReport(relativePath, artifact) {
     `- Selected slice works: ${artifact.counts.selected_slice_works}`,
     `- Selected slices index: ${artifact.counts.selected_slices_index_slices}`,
     `- Selected slices index rows: ${artifact.counts.selected_slices_index_rows}`,
+    `- Selected slices unique occurrences: ${artifact.counts.selected_slices_index_unique_occurrences}`,
+    `- Selected slices duplicate rows: ${artifact.counts.selected_slices_index_duplicate_rows}`,
     '',
     '## Validation',
     '',
@@ -172,7 +177,7 @@ function writeReport(relativePath, artifact) {
     `- Sample index: ${artifact.validation.sample_index_status}, samples ${artifact.validation.sample_index_rows}`,
     `- Lookup index: ${artifact.validation.lookup_index_status}, occurrence refs ${artifact.validation.lookup_index_occurrence_refs}`,
     `- Selected slice: ${artifact.validation.selected_slice_status}, id ${artifact.validation.selected_slice_id}, rows ${artifact.validation.selected_slice_rows}`,
-    `- Selected slices index: ${artifact.validation.selected_slices_index_status}, slices ${artifact.validation.selected_slices_index_slices}`,
+    `- Selected slices index: ${artifact.validation.selected_slices_index_status}, slices ${artifact.validation.selected_slices_index_slices}, unique occurrences ${artifact.validation.selected_slices_index_unique_occurrences}`,
     `- Smoke validation: ${artifact.validation.smoke_validation_status}, steps ${artifact.validation.smoke_steps}, failed ${artifact.validation.smoke_failed_steps}`,
     '',
     '## Artifacts',

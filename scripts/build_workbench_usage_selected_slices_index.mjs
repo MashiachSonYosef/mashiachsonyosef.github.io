@@ -28,6 +28,8 @@ const totals = {
   route_linked_observed_usage: 0,
   observed_usage_only: 0,
 };
+const uniqueOccurrences = new Map();
+const occurrenceMemberships = new Map();
 
 for (const fileName of sliceFiles) {
   const artifactPath = `${options.slicesDir}/${fileName}`;
@@ -56,7 +58,10 @@ for (const fileName of sliceFiles) {
   slices.push(entry);
   totals.slices += 1;
   for (const key of Object.keys(entry.counts)) totals[key] += entry.counts[key];
+  for (const occurrence of artifact.occurrence_refs || []) registerOccurrence(entry.slice_id, occurrence);
 }
+
+const dedupedCounts = buildDedupedCounts();
 
 const output = {
   schema_version: 1,
@@ -74,6 +79,8 @@ const output = {
     ambiguous_rows_reader_facing: false,
   },
   counts: totals,
+  deduped_counts: dedupedCounts,
+  overlap_occurrences: buildOverlapOccurrences(),
   slices,
 };
 
@@ -81,7 +88,82 @@ writeJson(options.output, output);
 writeReport(options.report, output);
 console.log(`Wrote ${options.output}`);
 console.log(`Wrote ${options.report}`);
-console.log(`Usage selected slices index slices ${output.counts.slices}; rows ${output.counts.rows}`);
+console.log(`Usage selected slices index slices ${output.counts.slices}; rows ${output.counts.rows}; unique occurrences ${output.deduped_counts.occurrence_refs}`);
+
+function registerOccurrence(sliceId, occurrence) {
+  const occurrenceId = occurrence.occurrence_id || occurrence.candidate_id;
+  if (!occurrenceId) return;
+  if (!uniqueOccurrences.has(occurrenceId)) {
+    uniqueOccurrences.set(occurrenceId, {
+      occurrence_id: occurrenceId,
+      candidate_id: occurrence.candidate_id || null,
+      status: occurrence.status || null,
+      route_link_state: occurrence.route_link_state || null,
+      source_ref: occurrence.source_ref || null,
+      source_href: occurrence.source_href || null,
+      work_anchor_href: occurrence.work_anchor_href || null,
+      work_slug: occurrence.work_slug || null,
+      work_id: occurrence.work_id || null,
+      work_title: occurrence.work_title || null,
+      cluster_id: occurrence.cluster_id || null,
+      route_ids: Array.isArray(occurrence.route_ids) ? occurrence.route_ids.filter(Boolean) : [],
+    });
+  }
+  if (!occurrenceMemberships.has(occurrenceId)) occurrenceMemberships.set(occurrenceId, new Set());
+  occurrenceMemberships.get(occurrenceId).add(sliceId || 'unknown-slice');
+}
+
+function buildDedupedCounts() {
+  const works = new Set();
+  const clusters = new Set();
+  const routeIds = new Set();
+  const statusCounts = { supported: 0, candidate: 0, weak: 0 };
+  const routeLinkStateCounts = {
+    route_linked_observed_usage: 0,
+    observed_usage_only: 0,
+  };
+
+  for (const occurrence of uniqueOccurrences.values()) {
+    if (occurrence.work_slug || occurrence.work_id || occurrence.work_title) {
+      works.add(occurrence.work_slug || occurrence.work_id || occurrence.work_title);
+    }
+    if (occurrence.cluster_id) clusters.add(occurrence.cluster_id);
+    for (const routeId of occurrence.route_ids) routeIds.add(routeId);
+    if (Object.hasOwn(statusCounts, occurrence.status)) statusCounts[occurrence.status] += 1;
+    if (Object.hasOwn(routeLinkStateCounts, occurrence.route_link_state)) routeLinkStateCounts[occurrence.route_link_state] += 1;
+  }
+
+  const overlappingOccurrences = [...occurrenceMemberships.values()].filter((sliceIds) => sliceIds.size > 1).length;
+  return {
+    occurrence_refs: uniqueOccurrences.size,
+    works: works.size,
+    clusters: clusters.size,
+    route_ids: routeIds.size,
+    status_counts: statusCounts,
+    route_link_state_counts: routeLinkStateCounts,
+    duplicate_slice_rows: Math.max(0, totals.rows - uniqueOccurrences.size),
+    overlapping_occurrences: overlappingOccurrences,
+  };
+}
+
+function buildOverlapOccurrences() {
+  return [...occurrenceMemberships.entries()]
+    .filter(([, sliceIds]) => sliceIds.size > 1)
+    .map(([occurrenceId, sliceIds]) => {
+      const occurrence = uniqueOccurrences.get(occurrenceId) || {};
+      return {
+        occurrence_id: occurrenceId,
+        slice_ids: [...sliceIds].sort((a, b) => a.localeCompare(b)),
+        source_ref: occurrence.source_ref || null,
+        source_href: occurrence.source_href || null,
+        work_anchor_href: occurrence.work_anchor_href || null,
+        cluster_id: occurrence.cluster_id || null,
+        status: occurrence.status || null,
+        route_ids: occurrence.route_ids || [],
+      };
+    })
+    .sort((a, b) => String(a.source_ref || '').localeCompare(String(b.source_ref || '')) || a.occurrence_id.localeCompare(b.occurrence_id));
+}
 
 function parseArgs(args) {
   const parsed = { ...defaults };
@@ -103,12 +185,16 @@ function writeReport(relativePath, artifact) {
     '## Summary',
     '',
     `- Slices: ${artifact.counts.slices}`,
-    `- Rows: ${artifact.counts.rows}`,
-    `- Works: ${artifact.counts.works}`,
-    `- Clusters: ${artifact.counts.clusters}`,
-    `- Route IDs: ${artifact.counts.route_ids}`,
-    `- Status counts: supported ${artifact.counts.supported}, candidate ${artifact.counts.candidate}, weak ${artifact.counts.weak}`,
-    `- Route link states: route-linked ${artifact.counts.route_linked_observed_usage}, observed-only ${artifact.counts.observed_usage_only}`,
+    `- Slice-summed rows: ${artifact.counts.rows}`,
+    `- Unique occurrence refs: ${artifact.deduped_counts.occurrence_refs}`,
+    `- Duplicate slice rows: ${artifact.deduped_counts.duplicate_slice_rows}`,
+    `- Overlapping occurrences: ${artifact.deduped_counts.overlapping_occurrences}`,
+    `- Slice-summed works/clusters/routes: works ${artifact.counts.works}, clusters ${artifact.counts.clusters}, route IDs ${artifact.counts.route_ids}`,
+    `- Unique works/clusters/routes: works ${artifact.deduped_counts.works}, clusters ${artifact.deduped_counts.clusters}, route IDs ${artifact.deduped_counts.route_ids}`,
+    `- Slice-summed status counts: supported ${artifact.counts.supported}, candidate ${artifact.counts.candidate}, weak ${artifact.counts.weak}`,
+    `- Unique status counts: supported ${artifact.deduped_counts.status_counts.supported}, candidate ${artifact.deduped_counts.status_counts.candidate}, weak ${artifact.deduped_counts.status_counts.weak}`,
+    `- Slice-summed route link states: route-linked ${artifact.counts.route_linked_observed_usage}, observed-only ${artifact.counts.observed_usage_only}`,
+    `- Unique route link states: route-linked ${artifact.deduped_counts.route_link_state_counts.route_linked_observed_usage}, observed-only ${artifact.deduped_counts.route_link_state_counts.observed_usage_only}`,
     '',
     '## Policy',
     '',
@@ -133,6 +219,19 @@ function writeReport(relativePath, artifact) {
       slice.counts.observed_usage_only,
       slice.artifact_path,
       slice.report_path,
+    ].map(mdCell).join(' | ')} |`),
+    '',
+    '## Overlap Occurrences',
+    '',
+    '| occurrence | slices | source | cluster | status | route ids |',
+    '|---|---|---|---|---|---|',
+    ...artifact.overlap_occurrences.map((occurrence) => `| ${[
+      occurrence.occurrence_id,
+      occurrence.slice_ids.join(', '),
+      mdLink(occurrence.source_ref, occurrence.source_href),
+      occurrence.cluster_id,
+      occurrence.status,
+      occurrence.route_ids.join(', '),
     ].map(mdCell).join(' | ')} |`),
   ];
   writeText(relativePath, `${lines.join('\n')}\n`);
@@ -162,4 +261,10 @@ function valueAfterEquals(arg) {
 
 function mdCell(value) {
   return String(value ?? '').replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
+}
+
+function mdLink(label, href) {
+  if (!label) return '';
+  if (!href) return label;
+  return `[${label}](${href})`;
 }

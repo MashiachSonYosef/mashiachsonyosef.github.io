@@ -75,6 +75,10 @@ function validateCounts() {
     'lookup_works',
     'selected_slice_rows',
     'selected_slice_works',
+    'selected_slices_index_slices',
+    'selected_slices_index_rows',
+    'selected_slices_index_unique_occurrences',
+    'selected_slices_index_duplicate_rows',
   ]) {
     const value = Number(artifact.counts?.[field]);
     if (!Number.isInteger(value) || value < 0) issues.push(`counts.${field} must be a non-negative integer`);
@@ -89,6 +93,16 @@ function validateCounts() {
     + Number(artifact.counts?.observed_only_rows || 0);
   if (routeStateRows !== Number(artifact.counts?.concordance_rows || 0)) {
     issues.push('route_linked_rows + observed_only_rows must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.selected_slices_index_unique_occurrences || 0) > Number(artifact.counts?.selected_slices_index_rows || 0)) {
+    issues.push('selected_slices_index_unique_occurrences cannot exceed selected_slices_index_rows');
+  }
+  if (
+    Number(artifact.counts?.selected_slices_index_rows || 0)
+      - Number(artifact.counts?.selected_slices_index_unique_occurrences || 0)
+    !== Number(artifact.counts?.selected_slices_index_duplicate_rows || 0)
+  ) {
+    issues.push('selected_slices_index_duplicate_rows must equal selected_slices_index_rows minus unique occurrences');
   }
 }
 
@@ -105,6 +119,7 @@ function validateArtifacts() {
     'sample_index_report',
     'lookup_index_report',
     'selected_slice_report',
+    'selected_slices_index_report',
     'smoke_validation_report',
   ]) {
     if (!String(artifact.artifacts?.[field] || '').trim()) issues.push(`artifacts.${field} must be present`);
@@ -124,6 +139,7 @@ function validateValidation() {
   if (artifact.validation?.sample_index_status !== 'present') issues.push('validation.sample_index_status must be present');
   if (artifact.validation?.lookup_index_status !== 'present') issues.push('validation.lookup_index_status must be present');
   if (artifact.validation?.selected_slice_status !== 'present') issues.push('validation.selected_slice_status must be present');
+  if (artifact.validation?.selected_slices_index_status !== 'present') issues.push('validation.selected_slices_index_status must be present');
   if (Number(artifact.validation?.occurrence_source_url_bad || 0) !== 0) issues.push('occurrence source URL issues must be 0');
   if (Number(artifact.validation?.occurrence_work_anchor_bad || 0) !== 0) issues.push('occurrence work anchor issues must be 0');
   if (Number(artifact.validation?.route_links_unresolved || 0) !== 0) issues.push('route_links_unresolved must be 0');
@@ -138,6 +154,12 @@ function validateValidation() {
   }
   if (!String(artifact.validation?.selected_slice_id || '').trim()) issues.push('selected_slice_id must be present');
   if (Number(artifact.validation?.selected_slice_rows || 0) <= 0) issues.push('selected_slice_rows must be positive');
+  if (Number(artifact.validation?.selected_slices_index_slices || 0) <= 0) {
+    issues.push('selected_slices_index_slices must be positive');
+  }
+  if (Number(artifact.validation?.selected_slices_index_unique_occurrences || 0) <= 0) {
+    issues.push('selected_slices_index_unique_occurrences must be positive');
+  }
   if (!allowedSmoke.has(artifact.validation?.smoke_validation_status)) {
     issues.push('smoke_validation_status must be passed/failed/not_run/skipped_self_reference');
   }
@@ -161,6 +183,10 @@ function validateCommands() {
     validate_lookup_index: 'validate_workbench_usage_lookup_index.mjs',
     build_selected_slice: 'build_workbench_usage_slice_index.mjs',
     validate_selected_slice: 'validate_workbench_usage_slice_index.mjs',
+    build_selected_slice_jeremiah: 'build_workbench_usage_slice_index.mjs',
+    validate_selected_slice_jeremiah: 'validate_workbench_usage_slice_index.mjs',
+    build_selected_slices_index: 'build_workbench_usage_selected_slices_index.mjs',
+    validate_selected_slices_index: 'validate_workbench_usage_selected_slices_index.mjs',
     build_handoff_index: 'build_workbench_usage_handoff_index.mjs',
     validate_handoff_index: 'validate_workbench_usage_handoff_index.mjs',
     validate_smoke_pipeline: 'validate_workbench_smoke_pipeline.mjs',

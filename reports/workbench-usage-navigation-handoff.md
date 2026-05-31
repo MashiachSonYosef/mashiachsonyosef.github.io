@@ -1,6 +1,6 @@
 # Workbench Usage Navigation Handoff
 
-Generated: 2026-05-31T19:19:16.935Z
+Generated: 2026-05-31T19:29:53.912Z
 
 ## Summary
 
@@ -19,6 +19,8 @@ Generated: 2026-05-31T19:19:16.935Z
 - Selected slice works: 20
 - Selected slices index: 2
 - Selected slices index rows: 50
+- Selected slices unique occurrences: 49
+- Selected slices duplicate rows: 1
 
 ## Validation
 
@@ -30,7 +32,7 @@ Generated: 2026-05-31T19:19:16.935Z
 - Sample index: present, samples 30
 - Lookup index: present, occurrence refs 2390
 - Selected slice: present, id tanakh-workbench-section, rows 49
-- Selected slices index: present, slices 2
+- Selected slices index: present, slices 2, unique occurrences 49
 - Smoke validation: passed, steps 31, failed 0
 
 ## Artifacts
