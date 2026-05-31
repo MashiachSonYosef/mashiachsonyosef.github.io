@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T16:18:44.270Z
+Generated: 2026-05-31T16:23:01.987Z
 
 ## Summary
 
@@ -72,6 +72,16 @@ Generated: 2026-05-31T16:18:44.270Z
 | ohr-hameir | 54 |
 | bnei-yissaschar | 51 |
 | meor-einayim | 50 |
+
+## Route Link Summary
+
+- Linked candidate rows: 2390
+- Unlinked candidate rows: 2064
+- Total route links: 2390
+
+| route family | links |
+|---|---:|
+| wiktionary_definition | 2390 |
 
 ## Usage Frame Summary
 

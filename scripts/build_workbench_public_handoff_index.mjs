@@ -25,6 +25,7 @@ const targets = (Array.isArray(queue.targets) ? queue.targets : [])
 const manifests = targets.map((target, index) => inspectManifest(target, index));
 const aggregateSourceMetadata = summarizeSourceMetadata(manifests);
 const aggregateClusterMetadata = summarizeClusterMetadata(manifests);
+const aggregateRouteLinkMetadata = summarizeRouteLinkMetadata(manifests);
 const integritySummary = summarizeFileIntegrity(manifests);
 const totals = manifests.reduce((sum, row) => {
   sum.selected_targets += 1;
@@ -104,6 +105,7 @@ const artifact = {
   quality_gates: buildQualityGates(totals, sourceFreshness),
   aggregate_source_metadata: aggregateSourceMetadata,
   aggregate_cluster_metadata: aggregateClusterMetadata,
+  aggregate_route_link_metadata: aggregateRouteLinkMetadata,
   integrity_summary: integritySummary,
   counts: totals,
   manifests,
@@ -158,6 +160,7 @@ function inspectManifest(target, index) {
   const licenseCounts = new Map();
   const workCounts = new Map();
   const clusterCounts = new Map();
+  const routeLinkCounts = makeRouteLinkAccumulator();
 
   for (const row of candidateRows) {
     validateCandidateRow(row, occurrenceIds, issues);
@@ -166,6 +169,7 @@ function inspectManifest(target, index) {
     increment(licenseCounts, row.license || 'missing');
     increment(workCounts, row.work_id || 'missing');
     increment(clusterCounts, row.cluster_id || 'unclustered');
+    addRouteLinks(routeLinkCounts, row.route_links);
   }
   statusCounts.blocked += blockedRows.length;
 
@@ -187,6 +191,7 @@ function inspectManifest(target, index) {
     licenseCounts,
     workCounts,
     clusterSummaries,
+    routeLinkCounts,
   });
 }
 
@@ -218,6 +223,7 @@ function makeManifestRow(target, index, slug, manifestPath, manifest, validation
     cluster_summaries: details.clusterSummaries || [],
     license_counts: topCounts(details.licenseCounts || new Map(), 12),
     work_counts: topCounts(details.workCounts || new Map(), 12),
+    route_link_summary: summarizeRouteLinks(details.routeLinkCounts || makeRouteLinkAccumulator()),
   };
 }
 
@@ -232,6 +238,7 @@ function validateCandidateRow(row, occurrenceIds, issues) {
   if (!['supported', 'candidate', 'weak', 'ambiguous'].includes(row.candidate_status)) issues.push(`candidate ${row.candidate_id || 'unknown'} has invalid status ${row.candidate_status}`);
   if (/[A-Za-z]{4,}/.test(String(row.phrase_hebrew || ''))) issues.push(`candidate ${row.candidate_id || 'unknown'} has non-Hebrew phrase_hebrew`);
   if (!Array.isArray(row.phrase_tokens) || !row.phrase_tokens.some((token) => token.role === 'focus-token')) issues.push(`candidate ${row.candidate_id || 'unknown'} missing focus-token`);
+  if (row.route_links !== undefined && !Array.isArray(row.route_links)) issues.push(`candidate ${row.candidate_id || 'unknown'} route_links must be an array when present`);
 }
 
 function summarizeClusters(clustersArtifact, clusterCounts) {
@@ -502,6 +509,55 @@ function summarizeClusterMetadata(manifests) {
   };
 }
 
+function summarizeRouteLinkMetadata(manifests) {
+  const totals = makeRouteLinkAccumulator();
+  for (const manifest of manifests) {
+    const summary = manifest.route_link_summary || {};
+    totals.linkedRows += Number(summary.linked_candidate_rows || 0);
+    totals.unlinkedRows += Number(summary.unlinked_candidate_rows || 0);
+    totals.totalLinks += Number(summary.total_route_links || 0);
+    for (const row of summary.route_family_counts || []) incrementBy(totals.routeFamilies, row.value, row.count);
+    for (const row of summary.route_type_counts || []) incrementBy(totals.routeTypes, row.value, row.count);
+    for (const row of summary.route_source_counts || []) incrementBy(totals.routeSources, row.value, row.count);
+  }
+  return summarizeRouteLinks(totals);
+}
+
+function makeRouteLinkAccumulator() {
+  return {
+    linkedRows: 0,
+    unlinkedRows: 0,
+    totalLinks: 0,
+    routeFamilies: new Map(),
+    routeTypes: new Map(),
+    routeSources: new Map(),
+  };
+}
+
+function addRouteLinks(accumulator, routeLinks) {
+  const links = Array.isArray(routeLinks) ? routeLinks : [];
+  if (links.length) accumulator.linkedRows += 1;
+  else accumulator.unlinkedRows += 1;
+  accumulator.totalLinks += links.length;
+  for (const link of links) {
+    increment(accumulator.routeFamilies, link?.route_family || 'missing');
+    increment(accumulator.routeTypes, link?.route_type || 'missing');
+    increment(accumulator.routeSources, link?.route_source || 'missing');
+  }
+}
+
+function summarizeRouteLinks(accumulator) {
+  return {
+    linked_candidate_rows: Number(accumulator.linkedRows || 0),
+    unlinked_candidate_rows: Number(accumulator.unlinkedRows || 0),
+    total_route_links: Number(accumulator.totalLinks || 0),
+    route_family_counts: topCounts(accumulator.routeFamilies || new Map(), 20),
+    route_type_counts: topCounts(accumulator.routeTypes || new Map(), 20),
+    route_source_counts: topCounts(accumulator.routeSources || new Map(), 20),
+    notes: 'Route links connect usage evidence rows to upstream route artifacts when available. They are provenance links only and do not choose a final HUD answer.',
+  };
+}
+
 function summarizeFileIntegrity(manifests) {
   const byKind = new Map();
   for (const manifest of manifests) {
@@ -594,6 +650,16 @@ function writeReport(relativePath, artifact) {
     '| work | rows |',
     '|---|---:|',
     ...artifact.aggregate_source_metadata.top_work_counts.slice(0, 20).map((row) => `| ${mdCell(row.value)} | ${row.count} |`),
+    '',
+    '## Route Link Summary',
+    '',
+    `- Linked candidate rows: ${artifact.aggregate_route_link_metadata.linked_candidate_rows}`,
+    `- Unlinked candidate rows: ${artifact.aggregate_route_link_metadata.unlinked_candidate_rows}`,
+    `- Total route links: ${artifact.aggregate_route_link_metadata.total_route_links}`,
+    '',
+    '| route family | links |',
+    '|---|---:|',
+    ...artifact.aggregate_route_link_metadata.route_family_counts.map((row) => `| ${mdCell(row.value)} | ${row.count} |`),
     '',
     '## Usage Frame Summary',
     '',

@@ -10,6 +10,7 @@ const allowedStatuses = new Set(['supported', 'candidate', 'weak', 'ambiguous', 
 const expectedLicenseCounts = new Map();
 const expectedWorkCounts = new Map();
 const expectedClusterCounts = new Map();
+const expectedRouteLinkMetadata = makeRouteLinkAccumulator();
 const expectedIntegritySummary = {
   files: 0,
   existing_files: 0,
@@ -74,6 +75,7 @@ for (const status of allowedStatuses) {
 validateQualityGates(artifact.quality_gates);
 validateAggregateSourceMetadata(artifact.aggregate_source_metadata);
 validateAggregateClusterMetadata(artifact.aggregate_cluster_metadata);
+validateAggregateRouteLinkMetadata(artifact.aggregate_route_link_metadata);
 validateIntegritySummary(artifact.integrity_summary);
 
 walkNoRowPayloads(artifact, indexPath);
@@ -148,6 +150,8 @@ function validateManifest(row, context) {
     validateClusterRow(clusterRow, `${context}.cluster_summaries[${index}]`);
     incrementCluster(expectedClusterCounts, clusterRow);
   }
+  validateRouteLinkSummary(row.route_link_summary, `${context}.route_link_summary`, Number(row.counts?.candidate_rows || 0));
+  incrementRouteLinkSummary(expectedRouteLinkMetadata, row.route_link_summary);
 }
 
 function validateStatusSemantics(semantics) {
@@ -232,16 +236,17 @@ function validatePayloadFileContract(row) {
   if (!Array.isArray(row.required_fields)) {
     issues.push(`handoff_payload_contract.files.${row.key || 'unknown'} required_fields must be an array`);
   }
+  const requiredFields = Array.isArray(row.required_fields) ? row.required_fields : [];
   if (row.key === 'occurrences_jsonl') {
     for (const field of ['occurrence_id', 'token_key', 'phrase_window', 'source_ref', 'work_id', 'license', 'license_url', 'cluster_id']) {
-      if (!row.required_fields.includes(field)) issues.push(`handoff_payload_contract.files.occurrences_jsonl missing required field ${field}`);
+      if (!requiredFields.includes(field)) issues.push(`handoff_payload_contract.files.occurrences_jsonl missing required field ${field}`);
     }
     if (row.may_include_english_translation !== false) issues.push('handoff_payload_contract.files.occurrences_jsonl may_include_english_translation must be false');
     if (row.final_ranking_authority !== false) issues.push('handoff_payload_contract.files.occurrences_jsonl final_ranking_authority must be false');
   }
   if (row.key === 'candidates_jsonl') {
     for (const field of ['candidate_id', 'occurrence_id', 'route_type', 'candidate_status', 'not_a_definition', 'observed_usage_only', 'raw_score']) {
-      if (!row.required_fields.includes(field)) issues.push(`handoff_payload_contract.files.candidates_jsonl missing required field ${field}`);
+      if (!requiredFields.includes(field)) issues.push(`handoff_payload_contract.files.candidates_jsonl missing required field ${field}`);
     }
     if (row.status_field !== 'candidate_status') issues.push('handoff_payload_contract.files.candidates_jsonl status_field must be candidate_status');
     if (row.score_field !== 'raw_score') issues.push('handoff_payload_contract.files.candidates_jsonl score_field must be raw_score');
@@ -379,6 +384,22 @@ function validateAggregateClusterMetadata(metadata) {
       issues.push(`aggregate_cluster_metadata.cluster_counts[${index}].ambiguous_rows_reader_facing must be false`);
     }
   }
+}
+
+function validateAggregateRouteLinkMetadata(metadata) {
+  if (!metadata || typeof metadata !== 'object') {
+    issues.push('aggregate_route_link_metadata must be present');
+    return;
+  }
+  const expectedSummary = summarizeRouteLinks(expectedRouteLinkMetadata);
+  for (const key of ['linked_candidate_rows', 'unlinked_candidate_rows', 'total_route_links']) {
+    if (Number(metadata[key] || 0) !== expectedSummary[key]) {
+      issues.push(`aggregate_route_link_metadata.${key} expected ${expectedSummary[key]}, found ${metadata[key]}`);
+    }
+  }
+  validateCountList(metadata.route_family_counts, expectedSummary.route_family_counts, 'aggregate_route_link_metadata.route_family_counts');
+  validateCountList(metadata.route_type_counts, expectedSummary.route_type_counts, 'aggregate_route_link_metadata.route_type_counts');
+  validateCountList(metadata.route_source_counts, expectedSummary.route_source_counts, 'aggregate_route_link_metadata.route_source_counts');
 }
 
 function validateFileIntegrity(fileIntegrity, context, requirePresent) {
@@ -520,6 +541,33 @@ function validateClusterRow(row, context) {
   if (row.ambiguous_rows_reader_facing !== false) issues.push(`${context}.ambiguous_rows_reader_facing must be false`);
 }
 
+function validateRouteLinkSummary(row, context, candidateRows) {
+  if (!row || typeof row !== 'object') {
+    issues.push(`${context}: must be present`);
+    return;
+  }
+  for (const key of ['linked_candidate_rows', 'unlinked_candidate_rows', 'total_route_links']) {
+    const value = Number(row[key]);
+    if (!Number.isInteger(value) || value < 0) issues.push(`${context}.${key} must be a non-negative integer`);
+  }
+  const linked = Number(row.linked_candidate_rows || 0);
+  const unlinked = Number(row.unlinked_candidate_rows || 0);
+  const totalLinks = Number(row.total_route_links || 0);
+  if (linked + unlinked !== candidateRows) {
+    issues.push(`${context}: linked + unlinked rows must equal candidate_rows (${candidateRows})`);
+  }
+  if (totalLinks < linked) issues.push(`${context}.total_route_links must be at least linked_candidate_rows`);
+  for (const [index, countRow] of (row.route_family_counts || []).entries()) {
+    validateCountRow(countRow, `${context}.route_family_counts[${index}]`);
+  }
+  for (const [index, countRow] of (row.route_type_counts || []).entries()) {
+    validateCountRow(countRow, `${context}.route_type_counts[${index}]`);
+  }
+  for (const [index, countRow] of (row.route_source_counts || []).entries()) {
+    validateCountRow(countRow, `${context}.route_source_counts[${index}]`);
+  }
+}
+
 function incrementCluster(map, row) {
   const clusterId = String(row.cluster_id || 'unclustered');
   const existing = map.get(clusterId) || {
@@ -540,6 +588,38 @@ function incrementCluster(map, row) {
     existing[key] += Number(row[key] || 0);
   }
   map.set(clusterId, existing);
+}
+
+function makeRouteLinkAccumulator() {
+  return {
+    linkedRows: 0,
+    unlinkedRows: 0,
+    totalLinks: 0,
+    routeFamilies: new Map(),
+    routeTypes: new Map(),
+    routeSources: new Map(),
+  };
+}
+
+function incrementRouteLinkSummary(accumulator, summary) {
+  if (!summary || typeof summary !== 'object') return;
+  accumulator.linkedRows += Number(summary.linked_candidate_rows || 0);
+  accumulator.unlinkedRows += Number(summary.unlinked_candidate_rows || 0);
+  accumulator.totalLinks += Number(summary.total_route_links || 0);
+  for (const row of summary.route_family_counts || []) incrementBy(accumulator.routeFamilies, row.value, row.count);
+  for (const row of summary.route_type_counts || []) incrementBy(accumulator.routeTypes, row.value, row.count);
+  for (const row of summary.route_source_counts || []) incrementBy(accumulator.routeSources, row.value, row.count);
+}
+
+function summarizeRouteLinks(accumulator) {
+  return {
+    linked_candidate_rows: Number(accumulator.linkedRows || 0),
+    unlinked_candidate_rows: Number(accumulator.unlinkedRows || 0),
+    total_route_links: Number(accumulator.totalLinks || 0),
+    route_family_counts: topCounts(accumulator.routeFamilies || new Map(), 20),
+    route_type_counts: topCounts(accumulator.routeTypes || new Map(), 20),
+    route_source_counts: topCounts(accumulator.routeSources || new Map(), 20),
+  };
 }
 
 function addIntegrity(kind, exists, bytes) {
