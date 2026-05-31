@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -107,9 +114,9 @@
       <div class="hero">
         <p class="crumbs"><a href="./">Library</a> &middot; <a href="about/">About / License</a></p>
         <h1>Hebrew Source Workbench</h1>
-        <p>Browse imported Hebrew source texts by corpus with lexical HUD support. Work pages preserve source/version/license metadata and expose book-local lexical HUD data when available.</p>
-        <p>No public English translation layer is displayed here; lexical rows are source-indexed study options.</p>
-        <p class="meta">1192 works | 578398 source units | 11 corpus groups</p>
+        <p>Browse imported Hebrew source texts by corpus with route HUD support. Work pages preserve source/version/license metadata and expose book-local token and route-card data when available.</p>
+        <p>No public English translation layer is displayed here; route rows are source-indexed study evidence.</p>
+        <p class="meta">1197 works | 593895 source units | 11 corpus groups</p>
       </div>
       <div style="padding:22px">
         <div class="library-tools" role="search">
@@ -1335,7 +1342,7 @@
             <summary>
               <span class="library-shelf-title">
                 <strong>Halakhah</strong>
-                <span>722 works | 274358 source units</span>
+                <span>727 works | 289855 source units</span>
               </span>
               <span class="library-summary-meta">Browse</span>
             </summary>
@@ -4240,7 +4247,7 @@
                 <summary>
                   <span class="library-shelf-title">
                     <strong>Works</strong>
-                    <span>145 works | 94412 source units</span>
+                    <span>150 works | 109909 source units</span>
                   </span>
                   <span class="library-summary-meta">Browse</span>
                 </summary>
@@ -4689,6 +4696,10 @@
                 <strong>Moreh BeEtzba</strong>
                 <span class="meta">368 source units</span>
               </a>
+              <a class="work-card" data-library-card data-search-text="Peri Megadim on Orach Chayim peri-megadim-on-orach-chayim halakhah/peri-megadim-on-orach-chayim Sefaria API Halakhah Works" href="halakhah/peri-megadim-on-orach-chayim/">
+                <strong>Peri Megadim on Orach Chayim</strong>
+                <span class="meta">12281 source units</span>
+              </a>
               <a class="work-card" data-library-card data-search-text="Piskei Challah piskei-challah halakhah/piskei-challah Sefaria API Halakhah Works" href="halakhah/piskei-challah/">
                 <strong>Piskei Challah</strong>
                 <span class="meta">47 source units</span>
@@ -4773,6 +4784,14 @@
                 <strong>Sheiltot d&#39;Rav Achai Gaon</strong>
                 <span class="meta">476 source units</span>
               </a>
+              <a class="work-card" data-library-card data-search-text="Shev Shmateta shev-shmateta halakhah/shev-shmateta Sefaria API Halakhah Works" href="halakhah/shev-shmateta/">
+                <strong>Shev Shmateta</strong>
+                <span class="meta">99 source units</span>
+              </a>
+              <a class="work-card" data-library-card data-search-text="Shibbolei HaLeket shibbolei-haleket halakhah/shibbolei-haleket Sefaria API Halakhah Works" href="halakhah/shibbolei-haleket/">
+                <strong>Shibbolei HaLeket</strong>
+                <span class="meta">2831 source units</span>
+              </a>
               <a class="work-card" data-library-card data-search-text="Shomer Yisrael shomer-yisrael halakhah/shomer-yisrael Sefaria API Halakhah Works" href="halakhah/shomer-yisrael/">
                 <strong>Shomer Yisrael</strong>
                 <span class="meta">181 source units</span>
@@ -4812,6 +4831,14 @@
               <a class="work-card" data-library-card data-search-text="The Sabbath Epistle the-sabbath-epistle halakhah/the-sabbath-epistle Sefaria API Halakhah Works" href="halakhah/the-sabbath-epistle/">
                 <strong>The Sabbath Epistle</strong>
                 <span class="meta">79 source units</span>
+              </a>
+              <a class="work-card" data-library-card data-search-text="Torat HaBayit HaAroch torat-habayit-haaroch halakhah/torat-habayit-haaroch Sefaria API Halakhah Works" href="halakhah/torat-habayit-haaroch/">
+                <strong>Torat HaBayit HaAroch</strong>
+                <span class="meta">167 source units</span>
+              </a>
+              <a class="work-card" data-library-card data-search-text="Torat HaBayit HaKatzar torat-habayit-hakatzar halakhah/torat-habayit-hakatzar Sefaria API Halakhah Works" href="halakhah/torat-habayit-hakatzar/">
+                <strong>Torat HaBayit HaKatzar</strong>
+                <span class="meta">119 source units</span>
               </a>
               <a class="work-card" data-library-card data-search-text="Tziporen Shamir tziporen-shamir halakhah/tziporen-shamir Sefaria API Halakhah Works" href="halakhah/tziporen-shamir/">
                 <strong>Tziporen Shamir</strong>
