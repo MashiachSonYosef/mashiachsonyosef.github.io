@@ -6,14 +6,15 @@ import { execFileSync } from 'node:child_process';
 const root = process.cwd();
 const startedAt = new Date();
 const defaults = {
-  targetQueue: '.local-cache/workbench-evidence/target-queue.json',
+  targetQueue: '.local-cache/workbench-evidence/smoke-target-queue.json',
   cacheDir: '.local-cache/workbench-evidence',
-  handoffIndex: '.local-cache/workbench-evidence/handoff-index-target-queue.json',
-  handoffReport: 'reports/workbench-handoff-index-target-queue.md',
+  handoffIndex: '.local-cache/workbench-evidence/handoff-index-smoke-queue.json',
+  handoffReport: 'reports/workbench-handoff-index-smoke-queue.md',
   batchDir: '.local-cache/workbench-evidence/batch-runs',
   report: `reports/workbench-autonomy-${stamp(startedAt)}.md`,
   runJson: `.local-cache/workbench-evidence/autonomy-runs/workbench-autonomy-${stamp(startedAt)}.json`,
-  mode: 'full',
+  mode: 'smoke',
+  allowFullWorkbench: false,
   durationMinutes: 60,
   maxIterations: 0,
   batchLimit: 2,
@@ -129,6 +130,7 @@ function parseArgs(args) {
       parsed.handoffIndex = '.local-cache/workbench-evidence/handoff-index-smoke-queue.json';
       parsed.handoffReport = 'reports/workbench-handoff-index-smoke-queue.md';
     } else if (arg === '--full') parsed.mode = 'full';
+    else if (arg === '--allow-full-workbench') parsed.allowFullWorkbench = true;
     else if (arg.startsWith('--target-queue=')) parsed.targetQueue = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--cache-dir=')) parsed.cacheDir = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--handoff-index=')) parsed.handoffIndex = cleanRelativePath(valueAfterEquals(arg));
@@ -154,6 +156,9 @@ function parseArgs(args) {
     }
   }
   if (!['full', 'smoke'].includes(parsed.mode)) throw new Error('--mode must be full or smoke');
+  if (parsed.mode === 'full' && !parsed.allowFullWorkbench) {
+    throw new Error('Full workbench autonomy is disabled by default. Use --full --allow-full-workbench only after approving broad non-smoke runs.');
+  }
   if (parsed.batchLimit < 1) throw new Error('--batch-limit must be at least 1');
   if (parsed.maxSourceFiles < 1 || parsed.maxSourceFiles > 5) throw new Error('--max-source-files must be 1-5');
   if (parsed.warnCacheGb > parsed.maxCacheGb) throw new Error('--warn-cache-gb cannot exceed --max-cache-gb');
@@ -162,7 +167,7 @@ function parseArgs(args) {
 
 function ensureInputQueue() {
   if (!fs.existsSync(path.join(root, options.targetQueue))) {
-    throw new Error(`Missing target queue ${options.targetQueue}. Run scripts/select_workbench_targets.mjs first.`);
+    throw new Error(`Missing target queue ${options.targetQueue}. Build or select a workbench target queue first.`);
   }
   runNode(['scripts/validate_workbench_target_queue.mjs', options.targetQueue]);
 }
@@ -233,6 +238,7 @@ function renderReport(data) {
     `- Target queue: ${data.options.targetQueue}`,
     `- Batch limit: ${data.options.batchLimit}`,
     `- Duration minutes: ${data.options.durationMinutes}`,
+    `- Full workbench override: ${data.options.allowFullWorkbench ? 'yes' : 'no'}`,
     `- Max cache GB: ${data.options.maxCacheGb}`,
     '',
     '## Iterations',
