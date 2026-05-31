@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma&#39;amar Mezakeh HaRabim</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .hud-card-lane { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(250px, 38%, 380px); gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; overscroll-behavior-inline: contain; scrollbar-color: var(--accent) rgba(255,255,255,0.08); scrollbar-width: thin; }
+    .hud-card-lane::after { content: ""; width: 18px; }
+    .hud-card-lane .claim-row { scroll-snap-align: start; }
+    .hud-scroll-note { color: var(--muted); margin: 0 0 6px; font-size: 0.82rem; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Ma&#39;amar Mezakeh HaRabim</h1>
+        <p class="meta">59 total source units | imported 2026-05-31</p>
+        <p class="meta source-citation">Hebrew version: Piotrk&#243;w, 1924 | Version source: <a href="https://www.nli.org.il/he/books/NNL01">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>1201 matched</strong> / 2407 unique forms.</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Ma&#39;amar Mezakeh HaRabim <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Ma&#39;amar Mezakeh HaRabim <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-1" title="Ma&#39;amar Mezakeh HaRabim 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-2" title="Ma&#39;amar Mezakeh HaRabim 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-3" title="Ma&#39;amar Mezakeh HaRabim 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-4" title="Ma&#39;amar Mezakeh HaRabim 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-5" title="Ma&#39;amar Mezakeh HaRabim 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-6" title="Ma&#39;amar Mezakeh HaRabim 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-7" title="Ma&#39;amar Mezakeh HaRabim 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-8" title="Ma&#39;amar Mezakeh HaRabim 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-9" title="Ma&#39;amar Mezakeh HaRabim 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-10" title="Ma&#39;amar Mezakeh HaRabim 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-11" title="Ma&#39;amar Mezakeh HaRabim 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-12" title="Ma&#39;amar Mezakeh HaRabim 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-13" title="Ma&#39;amar Mezakeh HaRabim 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-14" title="Ma&#39;amar Mezakeh HaRabim 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-1-15" title="Ma&#39;amar Mezakeh HaRabim 1:15">1:15</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-2-1" title="Ma&#39;amar Mezakeh HaRabim 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-2-2" title="Ma&#39;amar Mezakeh HaRabim 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-2-3" title="Ma&#39;amar Mezakeh HaRabim 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-2-4" title="Ma&#39;amar Mezakeh HaRabim 2:4">2:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-3-1" title="Ma&#39;amar Mezakeh HaRabim 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-3-2" title="Ma&#39;amar Mezakeh HaRabim 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-3-3" title="Ma&#39;amar Mezakeh HaRabim 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-3-4" title="Ma&#39;amar Mezakeh HaRabim 3:4">3:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-4-1" title="Ma&#39;amar Mezakeh HaRabim 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-4-2" title="Ma&#39;amar Mezakeh HaRabim 4:2">4:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-5-1" title="Ma&#39;amar Mezakeh HaRabim 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-5-2" title="Ma&#39;amar Mezakeh HaRabim 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-5-3" title="Ma&#39;amar Mezakeh HaRabim 5:3">5:3</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-5-4" title="Ma&#39;amar Mezakeh HaRabim 5:4">5:4</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-5-5" title="Ma&#39;amar Mezakeh HaRabim 5:5">5:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-6-1" title="Ma&#39;amar Mezakeh HaRabim 6:1">6:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-6-2" title="Ma&#39;amar Mezakeh HaRabim 6:2">6:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-6-3" title="Ma&#39;amar Mezakeh HaRabim 6:3">6:3</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-6-4" title="Ma&#39;amar Mezakeh HaRabim 6:4">6:4</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-6-5" title="Ma&#39;amar Mezakeh HaRabim 6:5">6:5</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-6-6" title="Ma&#39;amar Mezakeh HaRabim 6:6">6:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-7-1" title="Ma&#39;amar Mezakeh HaRabim 7:1">7:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-7-2" title="Ma&#39;amar Mezakeh HaRabim 7:2">7:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-7-3" title="Ma&#39;amar Mezakeh HaRabim 7:3">7:3</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-7-4" title="Ma&#39;amar Mezakeh HaRabim 7:4">7:4</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-7-5" title="Ma&#39;amar Mezakeh HaRabim 7:5">7:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-8-1" title="Ma&#39;amar Mezakeh HaRabim 8:1">8:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-8-2" title="Ma&#39;amar Mezakeh HaRabim 8:2">8:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-8-3" title="Ma&#39;amar Mezakeh HaRabim 8:3">8:3</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-8-4" title="Ma&#39;amar Mezakeh HaRabim 8:4">8:4</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-8-5" title="Ma&#39;amar Mezakeh HaRabim 8:5">8:5</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-8-6" title="Ma&#39;amar Mezakeh HaRabim 8:6">8:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-9-1" title="Ma&#39;amar Mezakeh HaRabim 9:1">9:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-9-2" title="Ma&#39;amar Mezakeh HaRabim 9:2">9:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-9-3" title="Ma&#39;amar Mezakeh HaRabim 9:3">9:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-10-1" title="Ma&#39;amar Mezakeh HaRabim 10:1">10:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-10-2" title="Ma&#39;amar Mezakeh HaRabim 10:2">10:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-10-3" title="Ma&#39;amar Mezakeh HaRabim 10:3">10:3</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-10-4" title="Ma&#39;amar Mezakeh HaRabim 10:4">10:4</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-10-5" title="Ma&#39;amar Mezakeh HaRabim 10:5">10:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-maamar-mezakeh-harabim-text-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-11-1" title="Ma&#39;amar Mezakeh HaRabim 11:1">11:1</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-11-2" title="Ma&#39;amar Mezakeh HaRabim 11:2">11:2</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-11-3" title="Ma&#39;amar Mezakeh HaRabim 11:3">11:3</a></li>
+                    <li><a class="toc-unit" href="#maamar-mezakeh-harabim-11-4" title="Ma&#39;amar Mezakeh HaRabim 11:4">11:4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-1">Chapter 1</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומצדיקי הרבים ככוכבים לעולם ועד. (דניאל י״ב:ג׳).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כשם בשעה שהאדם מכיר את חסרונו, אז לפי מדרגת הכרתו יתעורר לבקש דרך לתקן חסרונו, ועושה כל ההשתדלות שמקרבין המטרה ועומד על זה, כן וכל כאשר מכיר האדם את החסרון הגדול שיש בהעולם מסכנת החינוך של הדור הצעיר, אשר רבים חללים הפילה ועצומים כל הרוגי׳, צריך להתעורר ולאזור כל כחותיו לעמוד כפרץ להסיר המכשלה ולהרים המטרה האמתית. ואמנם בזמן הזה, כאשר מצודת השיטה של עבירה פרוסה גם על תינוקות של בית רבן, ונמצא כל דרכי התורה שוממין ולא נשארו רק יחידי סגולה העומדים על משמרתם ולא זזו ממקומם. אמנם ידוע אם אין גדיים אין תיישים. ויכול, ח״ו, בהמשך הזמן לישכח תורה מישראל. אי לזאת צריך האדם להתעורר מתרדמתו ולהתבונן בסכנות המרחפות מול פניו, ולצאת בעוז ותעצומות ולעבוד בכל כשרונו והרגשתו ולעשות כל מה שבידו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמנם מי קרוב יותר להרגיש בהעדר התורה והיראה, רק אלה ההוגים בתורת ד׳ יומם ולילה, רק אלה המבינים מעלות השלימות וחסרונות החינוך המוטעה והמותעה הפרוסה באין מוחים. אשר על כן מוטל עליהם החוב לעשות בענין זה כל מה שבידם, ולא יפטרו את עצמם בשום אופן וטענה ואמתלא ולא יחוסו על עתם וזמנם ועבודתם של עצמם. כי זה כמו פיקוח נפש של כל הכלל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:4</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-4" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמנם לפי שלא נתברר להם עבודה זו שרשי׳ וענפי׳, חובתה והתפתחותה לכן הם משתמטים בטענות ופוטרים עצמם, אשר על כן מצאנו חוב להסביר הענין הזה וכל מקומות הטעות כדי שיכיר האדם שלא יכול לפטור את עצמו מזה בשום אופן. ושמענו כי יש עשרה שאלות שלא נתבררו כל צרכן בענין העבודה של ״מזכה את הרבים״:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:5</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-5" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">א) אם יש דרך החינוך לעשות מחונכים בעבודת הרבים עד שיהי׳ ראוי לזה?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:6</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-6" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ב) אם צריכים להיות נושא בעול גם בעבודת הגשמיות וכדומה?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:7</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-7" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ג) מה שדוחה הדבר הזה אל הגדולים שבדור ומחזיק עצמו לאינו מחויב?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:8</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-8" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ד) אם יש אופן שיכול אחד לפטור את עצמו מעבודת הרבים?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:9</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-9" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ה) אם התורה מחייבת להיות גולה ממקום למקום עבור הרבצת התורה?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:10</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-10" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ו) אם יש ביד יחידים לפעול על כל העולם כולו בלא שום אמצעים צדדיים כ״א ברוחו?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:11</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-11" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ז) אם מחויבים כ״כ לעיין בכל מילי דצעירים ולפשפש בכל תהלוכותיהם לתקנם?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:12</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-12" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ח) אם עבודת הרבים סתירה לעבודת עצמו?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:13</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-13" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ט) מה שרוצה להבין הכרת בני אדם קודם המעשה?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:14</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-14" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">י) מה שרוצה להיות עובד ברבים אבל הוא מסרב מלקבל עליו האחריות?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-1-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 1:15</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-1-15" aria-label="Copy link to Ma'amar Mezakeh HaRabim 1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מפני כל השאלות והספקות האלה לא יתחיל מי שצריך להתחיל ויתרשלו גם אלה שהתחילו. לזה מצאנו חובה לבאר הדברים האלה אחת לאחת לפי מקורי חז״ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-2">Chapter 2</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 2:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-2-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">איתא במחז״ל, כי הוו מינצי רבי חנינא ורבי חייא אמר לו רבי חנינא לרבי חייא בהדי דידי קא מינצית, ח״ו אי משתכחת תורה מישראל מהדרנא לה בפלפולי. א״ל רבי חייא לרבי חנינא בהדי דידי קא מינצת דעבדי לתורה דלא תשתכח מישראל, מאי עבידנא אזלינא ושדינא כיתנא, וגדלינא נשבי, וציידנא טבי, ומאכילנא בשרייהו ליתמי, ואריכנא מגילתא, וכתבנא חמשה חומשי וסליקנא למתא, ומקרינא חמשה ינוקי חמשה חומשי, ומתנינא שיתא ינוקי שיתא סדרא, ואמרנא להו, עד דהדרנא ואתינא, אקרו אהדדי, ואתנו אהדדי, ועבדי לה לתורה לא תשתכח מישראל, והיינו אמר רבי כמה גדולים מעשה חייא, עכ״ל (בבא מציעא פ״ה, ע״ב).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 2:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-2-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אם נתבונן על עיקר גדלות מעשיו נמצא שהיתה בזה אשר הפקיר עצמו לעבודת הרבים, לבקש רק תועלת הרבים וטובת הרבים ולא הי׳ שום נוגע עם עצמו, כי מצד עצמו הי׳ יפה לו להיות גם עבד למבקשי השלימות, וכמו שמש לרבים, וכל מגמתו הי׳ רק לכוון במעשיו שיהיו מעשים נצחיים בעוה״ז, אשר על כן לא הי׳ די לו להשפיע ביכלתו לבד, אלא עיקר מעשיו הי׳ לעשות חינוך של עובדים אשר גם בלעדו יעשו ויביאו תועלת בכל מקום שהם, במה שסדר שיהיו ״אתנו אהדדי״, אשר עי״ז בא כל אחד לחינוך להיות מגמתו להביא תועלת ודוגמתו, כמו רופא של מלך אשר כל תעודתו ומגמתו לעשות כל הזהירות שלא יבוא לידי מחלה, ע״י שמסדר להם ההנהגות המועילות לבריאות, וע״י שמחנך כל בני החצר שיכירו ענין המחלה וענין השמירה, כן הי׳ כל כוונת רבי חייא לראות את הנולד ולעשות עובדות כאלה שלא יבא לידי מחלה, לידי שכחת התורה ח״ו, ע״י שסדר מקודם חינוך של עובדים, שיכולים לעמוד בפרץ ולהרביץ תורה ויראה בכל מקום שהם, ע״י אמצעים של התאחדות חברים, אשר כל בן תורה שבא ללמוד יכנוס כמו אל מכונה גדולה הפועלת בקרוב להחליף השקפתו, ואשר ירצה גם הוא להיות מסוג המחונכים להביא תועלת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 2:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-2-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואם נתבונן במעשיו מה שסדר שיהיו ״אתנו אהדדי״ יש בזה יסוד גדול לקיום הרבים. כי כל הקרירות בעבודת הרבים בא ע״י מה שנמצא איזה עקשנים העומדים על מדותיהם בהשקפה אחרת ומקררין לכל מי שפוגש עמהם. וכמה גדולים ״מעשה חייא״ אשר סדר וחינך אותם שיהא כולם בהשקפה אחת, אשר כל שיחתם והגיונם יהיו רק ״אתנו אהדדי״, והי׳ ה״אהדדי״ הסבה שנתנה הרוח חיים בה״אתנו״ שילכו מעלה מעלה, והיו כלם מצד אחד מתלמדים זה מזה, ומצד השני משפיעים זה על זה. לכן נצמח מזה תועלת עצום לכוונתו לחנך עובדים. ולכן אמר בתקיפות ״אנא עבידנא דלא תשתכח תורה מישראל״.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 2:4</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-2-4" aria-label="Copy link to Ma'amar Mezakeh HaRabim 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואם נסתכל עוד יותר נתפעל, הלא רבי חייא שהי׳ מסדר הברייתות, יסודי הש״ס, מסר כל יכלתו לעשות חינוך של מחונכים בעבודת הרבים מאלה שהתחילו עכשיו ליכנס בכרם ד׳ זו ד׳ אמות של הלכה ויראת שמים, בע״כ שמצא כי גם אלה צריכים להתחנך להיות עובדים. ועוד שנית, כי ע״י ״אתנו אהדדי״ באו לכלל ראוי לדבר זה, עד שמצא בעובדות האלה שיש בהן קיום התורה והיראה, וקיום הכלל והפרט. וכל זה השיג רק מפני שהי׳ כוונתו רצוי להביט רק על תועלת הרבים, אעפ״י שהי׳ הדבר הזה לחידוש, מ״מ עמד חזק על זה, מפני שהי׳ לו הבטה רחוקה על העתיד וראה כי מזה יצמח תורה ויראה בכל מקום. והי׳ יפה לו כמו כן לסבול כל מיני סבלנות, כמו שאמרו זרענא כיתנא וכו׳, הכל לטובת הרבים. כן צריך כל מחונך ועובד להתלמד שיהי׳ יפה לו להיות עבד לרבים, ושמש למבקשי השלימות ולא יביט כי אם על התועלת בלבד. כי במדה זו כמה שיכול להפקיר מכבודו וממצבו בעד הרבים, במדה זו יצליח בכל אשר יפנה. ואמר הכ׳ ״חנוך לנער ע״פ דרכו גם כי יזקין לא יסור ממנה״ (משלי כ״ב:ו׳), ממנה—מן החינוך. ואיזהו חינוך? שיכול להתקיים גם בימי זקנותו, הוי אומר זו חינוך של עבודת הרבים, דהיינו שירצה רק טובת הדבר. וכתב הגר״א שיש חינוך במדרגת הלשמה, וע״ז אמר רבי כמה גדולים מעשה חייא, שרצה רק טובת הרבים. וע״כ הצליח במעשיו שלא תשתכח תורה מישראל ע״י שהעמיד חינוך של מחנכים בעבודת הרבים לפי מדרגתם שיהיו עובדים כל ימי חייהם. ובזה סר השאלה הראשונה אם יש חינוך להתחנך בעבודת הרבים, הלא רבי חייא עשה כן וחינך צעירים לאתני אהדדי והצליח במעשיו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-3">Chapter 3</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 3:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-3-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועוד יותר יש להתפעל, הלא רבי חייא שהי׳ מיסודי הש״ס, איך לא חס על כבודו ועל זמנו למסור כ״כ לעבודת הרבים, ע״י שהי׳ יפה לו גם לעשות עובדות גשמיות, כמו לצוד צביים והאכיל הבשר לינוקא ועשה קלפין וכתב פרשיות. ואנו רואים כי פה הי׳ עיקר חידושו. כי רק הוא הי׳ הראשון שחתר בשכלו הדרך הזה והאמצעים האלו, ואיך עשה הדבר הזה ולא מנע מלהתערב גם בעובדות גשמיות ועכ״פ סדר הדברים איך לעשות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 3:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-3-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מבהיל הרעיון כמה לשם שמים יש במצב הזה. לא אמר: זה אני רוצה, זה אני יכול, זה לפי כבודי. אלא כל מה שהרבים דורשים עשה בהתלהטות, אשר כך נרצה בעיני ד׳, אעפ״י שחיצוניות המעשים המה בלי שרק, בלי כחל ובלי פרכוס. לא הביט על הברק החיצוני, אלא כיון שהבין אשר כך קרובה אל המטרה שלא תשתכח תורה מישראל, לא חת מפני כל, ולא מנע אפילו כקוצו של יו״ד מאמצעים כאלה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 3:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-3-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וראוי לנו לדעת כי אותם המעשים שעשה רבי חייא, אעפ״י שלכאורה אין אנו מבינים הכרח מטרתם, מה מני יהלוך אם יבא הגשמיות ממי שהוא וממקור שהוא, אמנם מחידושו ומסירת נפשו ניכר כי רבי חייא לא קרא הדברים האלה ״מעשים״ אלא ״יסודות״ אשר על זה דוקא יכול הענין להתקיים, אעפ״י שאין אנו יכולים להחליט הטעם והכוונה, אם מפני שלא מצא דרך אחרת, ואם מפני שהפקיר מקורים אחרים כדי להזהר מחשש העדר התועלת למטרתו הנעלה ואם להנצל מחשש גזל המפריע לסייעתא דשמיא, כמו שאומרים בשם הגר״א אם האדם לומד בבית שיש בגנו מסמר אחד של גזילה יחסר לו בהצלחה. איך שהוא, אבל כמה גדולים מעשיו שעשה הכל מה שהכיר שיהי׳ תועלת להענין, וע״כ לא הי׳ קשה לו להעמיד המצב הגשמי על יסודות של הפקר, והיו לו השתוות המעשים לעשות הכל בלי שום סרבנות כלל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 3:4</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-3-4" aria-label="Copy link to Ma'amar Mezakeh HaRabim 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כה ממש צריך העובד להרגיש בתקופה הזאת שכל מצב התורה והיראה עומדת בסכנה, וע״כ צריכים להקים בכל מה שבידנו ולעשות כל דבר הן ברוח והן בחומר להקים מקומות של תורה ולא ימנע עצמו מן התוכחה, ויעשה פניו כחלמיש, וכל איש יסייע בכל עובדא שיש בידו גם עובדות כאלה שאין להם בדק לא יסרב מלעשותם, ולא יחוס על כבודו, כיון שהדבר דורש ממנו יצריך לעשות, ולא יביט על האומר והמעורר כי אם על הדבר. ואם הוא מרגיש אשר אם יעסוק הוא יהי׳ התועלת יותר גדול, לא יסמוך בדבר זה על מי שהוא, כדי לסלק את עצמו ואל יאמר קטנות הוא אלא ירגיש חובתו לדקדק על התועלת ולא יוציא מתחת ידו דבר שאינו מתוקן. כי יש חילוק גדול אם הגשמיות בא מן הרוחניות ובין אם הרוחניות בא מן הגשמיות. ע״כ כל מי שיכול לעשות בעובדות הגשמיות באופן יותר נרצה להמטרה האמתית אסור לו להסתלק מזה, כי ע״ז אמר רבי גדולים מעשה חייא שלא הביט על הברק החיצוני, אלא עשה הכל למען התועלת, כי גם לעבודת הגשמיות צריכים לגשת בהכנה של לב טהור ולשם שמים. רק אז יצמח מזה תועלת גדול להרוח. ואם לאו יכול הגשמיות לאכול את הרוחניות, ע״כ נקרא זה מיסודות של הרוחניות מהרבים וא״כ צריכים להכיר זה למקצוע גדול ונכבד להתלמד מגדולים איך להתנהג במקצוע זה. ובזה סר השאלה השני׳ אם צריכים להיות נושא בעול גם בעבודת הגשמיות. הלא רבי חייא עסק בעבודה זו ויסוד גדול הוא בתועלת הרבים ומחויב כל אחד לעזור ולסייע ברוחו ובמוחו והוא נרצה בעיני ד׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-4">Chapter 4</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 4:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-4-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואם נסתכל עוד במעשה רבי חייא נמצא, הלא הי׳ יכול למצוא בנקל גדולי תורה שיש בכרמו כל שיתא מתניתא וילמדו עם כלם יחד ולמה הי׳ לו לעשות בענין שיהא ״אתנו אהדדי״ ולעשות כ״א מתלמידיו לראוי ומחויב ללמוד עם חבירו וכן חבירו אליו? וע״כ צריכים אנו לאמר כי רק ע״י שיעשה את כולם למחויבים אז יצליח מטרתו הרוממה, כי רק עי״ז יתרבה נמשכים. והשכל מחייב כן. כי בשעה שהבן תורה מורגל לדעת שהוא צריך לחשוב רק אודות עצמו ולרכוש רק מה שיפה לו, בע״כ שאין זה נובע מטהרת הלב, וע״כ שיש לו דמיונות שמסייעים לו, לכן כשם שמייחד דמיונותיו לעצמו כן מייחד רוחניות שלו לעצמו, כי הא בהא תליא, ויוצא מסוג מביאי תועלת הדואגים בעד ״עולם מיוחד״ של השקפה גבוהה ברוחניות. וגם עבודת עצמו אינה עומדת על יסודות חזקות רחוק מכל פשרות ונדנוד רע. אבל בשעה שהבן תורה מסלק את עצמו מכל השפעת העולם והשפעת שאלות החיים ורוצה הנקודה האמתית ודואג שיהי׳ עולם מיוחד של רוחניות אשר כל אחד דואג בעד קיום מצב השלימות של חבירו ישקל במאזני צדק לדעת מה שיש לו יתרון על חבירו ומה שיש לחבירו יתרון עליו, אז אין לך יסוד גדול להרבצת התורה גדול מזה. וע״ז אמר רבי כמה גדולים ״מעשה חייא״, שעשה אותם למחונכים בעבודת הרבים גם במקום גדולים כדי להגדיל תורה ולהאדירה, כי על פי רוב יש ביד התלמידים להשפיע על אלה אשר בלעדם היו נאבדים לגמרי. כי אין בכח הגדולים להקיף כ״כ הכמות והאיכות בכל העולם כולה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 4:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-4-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואל יאמר האדם אמתין עד שאהי׳ בן ארבעים לבינה או שיעבור רוב שנותי ולא אחטא ואח״כ אמסר נפשי לעבודת הרבים. אם יאמר כן, לא די שלא יבא לכלל עבודת הרבים, אלא שיאבד גם עבודת עצמו שהשיג בימי חרפו. כי בעוד שהוא חושב אם לעבוד ברבים אם לא, יתגבר עליו יצרו ויפול במצודה שהכל דשין בה ואין אומר השב. ולכן צריך כל אחד להרגיש חיוב לפעול. על כל מי שסביב לו להצילו מפח טמנו לו, כי אם הוא שיודע ממנו לא יחוס עליו, מי יחוס עליו? כי הנסיון מוכיח כי כל מי שהכניסו אותו המחונכים בעבודת הרבים, תחת כנפי השלימות, הי׳ עלול מצד עצמו בלי שום ספק ליפול בהמצודה הפרוסה לפני כל צעירי הדור, אשר על כן אינו צריך לסמוך על אחר, כי ההכרח נורא, כי׳ אין מספר להאומללים התועים בדרכי החיים וצריך לעשות מה שמוצא ומצוי לפניו להצילו משטף מים הזדונים השוטפים בזרמים גם צעירי החרדים, להכניסו למקום מפלט, היא חבורת מבקשי השלימות, אשר כל מגמתם ללמוד וללמד, לשמור ולעשות. והמציל מפי הרחוב כמציל מפי ארי, כי כל באי׳ לא ישובון. וע״כ צריך כל אחד להרגיש כי הוא מחויב לעשות גם בשעה שיש גדולים, כי אין בכחם להקיף כל העולם כולו. ע״כ הזריזות בזה משובח ואין מקום להשאלה השלישית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-5">Chapter 5</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 5:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-5-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועל השאלה אם יש אחד שיכול לפטור את עצמו מלעבוד עבודת הרבים אם לאו, יש בזה שני אופנים. כי עבודת הרבים נחלק לשתי מדרגות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-5-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 5:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-5-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">א) יש דרך להחזיר לבות בני אדם אל התורה ע״י פלפולא חריפא, והעמקה נפלאה והבנה ישרה, אשר לב בעלי שכל נמשכים אחריהם. והחיוב הזה מוטל על גדולי וגאוני הדור. וע״ז אמר רבי חנינא בהדי דידי קא מינצת ח״ו אי משתכח תורה מישראל מהדרנא בפלפולא. ומזה יכולים הרבה לפטור עצמם מחיוב זה, כי לא רבים יחכמו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-5-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 5:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-5-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ב) ויש דרך שני לעבוד בעבודת הרבים ע״י דיבוק חברים, כמו שסדר רבי חייא שיהא ״אקרי אהדדי ואתני אהדדי״, ולעשות על יסודות כאלה ישיבות וקיבוצים בכל מקום, הן בכרך והן בעיר והן בכפר לסבב כל הדור הצעיר תחת דגל התורה והיראה בכל מקום, והחיוב הזה מוטל על כל אחד ואחד, כי כל אחד יכול לסייע בהקמת התורה. זה יכול להגיד שיעורים, וזה יכול לעשות וועדים, וזה יכול להמשיך ולקרב, וזה יכול לעסוק בגשמיות, וזה יכול, לנסוע לקבץ נערים בהסביבה, וזה יכול לסדר להם אכסנאות ודרישתם הפרטיות, וזה יכול לנהל ת״ת וכדומה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-5-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 5:4</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-5-4" aria-label="Copy link to Ma'amar Mezakeh HaRabim 5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וע״ז אמר הכ׳ ארור אשר לא יקום את דברי התו׳ הזאת, ופחז״ל והי׳ ספק בידו להחזיק ולא החזיק הרי הוא בכלל ארור (ירושלמי סוטה פ״ד ה״ד), והדבר מובן, כי הקללה אינה סובבת על מי שאינו מהדר בפלפולא, כי מזה יכול ליפטר ולומר כי אין זה בידו, אלא הקללה סובבת על מי שאין מסייע על דרך השני של דיבוק חברים שזה יש בידו, כי בכל עיר ועיר יכולים לעשות חברות של שמירת שבת ותיקון מקוואות, וכן בכל דבר ודבר שנוגע לחיזוק הדת. וצריך כל אחד לפחד אולי הוא עומד תחת הקללה לפי שאינו עושה מה שבידו לעשות או כדבעי למיעבד לא עבד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-5-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 5:5</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-5-5" aria-label="Copy link to Ma'amar Mezakeh HaRabim 5:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ע״כ צריך האדם לקום מתרדמתו וירגיש כי אם יקצר בעבודה זו אז ח״ו יקצר את חייו, כי התורה צווחת ״ארור אשר לא יקים״, וע״ז אמר רבי חייא בהדי דידי קא מינצית אנא עבידנא דלא תשתכח תורה מישראל וכ׳ וצריך האדם לילך בעקבותיו לעשות כל מה שנחוץ לרבים ואז יתנחם בכפלים, שיזכה ויראה בהרמת קרן התורה והיראה ויציל את עצמו מן הקללה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-6">Chapter 6</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 6:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-6-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועד כמה תובעת התורה מן העובד שיפקיר מנוחתו להיות גולה ממקום למקום להרביץ תורה ויראה, אנו רואים ממה שספרו לנו חז״ל (תב״א פי״א): ושמא תאמרו אותן שבעין אלף איש שנהרגו בגבעת בנימן מפני מה נהרגו, לפי שהיו להם לסנהדרי׳ גדולה שהניח משה ויהושע ופנחס הי׳ להם לילך ולקשור חבלים של ברזל במתניהם ולהגבי׳ בגדיהם למעלה מארכובותיהם ויחזרו בכל ערי ישראל יום אחד ללכיש יום אחד לחברון, יום אחד לבית אל, יום אחד לירושלים וכן בכל מקומות ישראל, וילמדו את ישראל דרך ארץ בשנה ושתים ושלש כדי שיתגדל ויתקדש שמו של הקב״ה, והם לא עשו כן, אלא נכנסו כ״א לכרמו וכ׳ ואמר שלום עליך נפשי כדי שלא להרבות עליהם הטורח, לפיכך בגבעת בנימן שלא היו עוסקין בתורה ודרך ארץ נהרגו בהם שבעים אלף איש. ומי הרג את כל אלה אלא סנהדרי׳ גדולה שהניח משה ויהושע ופנחס, עכ״ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-6-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 6:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-6-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מבהיל על הרעיון עד כמה מגיע החיוב על העובד, כי התורה מטילה עליו אחריות של כל העולם כולו, ולא יכול לפטור נפשו במה שהוא יושב ועובד על מקום אחד, אלא צריך לנסוע ממקום למקום גם בעת שתנאי הנסיעה קשים ביותר שאין סוס ואין רכב לרכוב עליו, גם אז הוא מחויב להגבי׳ בגדיו למעלה מארכובותיו ולילך ברגליו ממקום למקום לייסד שמה מקומות של תורה. ואם נסתכל על מי אמרו חז״ל שהי׳ להם לקשור חבלים במתניהם וכ׳ ולילך ברגל? על מי? אפשר על אותם שלא טעמו טעם טורח מימיהם? הלא אנו מדברים אודות סנהדרין הגדולה, אשר לכאורה איזה אשמה הי׳ אם היו יושבים על מקומם וישפטו על מקומם וישיבו דבר ד׳ על מקומם. כמה יגיעות יגעו עד שזכו להמעלה הזאת, כמה לילות כימים עשו עד עכשיו להגות בתורת ד׳ ויראת שמים, כמה חיים וכוחות הפקירו ממבחר חייהם למען התורה, כמה נסיונות רצופים סבלו למען קנות קניני השלימות. ואם כה סבלו עד עכשיו איזה חטא יש כאן אם ינפשו מעט ויקצרו בטרחות, וימנעו נפשם מנדידות רצופות וישיבו להדורשים ולמבקשים על מקומם?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-6-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 6:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-6-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 6:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מ״מ מצינו בחז״ל אשר דווקא עליהם מוטל האחריות, ודוקא עליהם כל הטענות ורק מהם תובעים כל עון וכל אשמה וחטא שנעשה בהעולם הגדול, ובע״כ צריכים אנו להבין כי במקום שיש סכנה של העדר התורה והיראה הגורם אבדון הנפש והחומר של כל ישראל ח״ו, אז לא יועיל שום טענות, ואז אין חולקין כבוד ומנוחה לעצמו, יהי׳ מי שיהי׳. והדמיון בזה לרב החובל המוליך ספינה עם שבעים אלף איש שאינם יודעים שאסור לעשות חריץ וקדיחה בתוך כותלי הספינה, ואז באותו שעה אם רב החובל לא ישים לב לזה, אלא יושב בחדרו תחת עול עבודתו בתנועת הספינה, הלא אין לך חטא גדול מזה. מה יועיל כל עבודתו אשר כל הספינה ואנשי׳ עומדים בסכנה? ועוד יותר, אשר סכנת הספינה היא סכנתו ואבדון אנשי׳ גם אבדון נפשו? הלא שם אנו מבינים כי החוב מוטל רק עליו שיודע הסכנה הבא מהקדיחה, לכן עליו לטרוח מזוית לזוית ומחדר לחדר לצוות באזהרה חמורה שיזהרו מקדיחה ומכל דבר שיכול לבוא על ידו לידי חריצה כל שהיא, ולא ימתין עד שיבואו אליו בשאלה אם מותר לקדוח אם לאו, כי אם ישאלו כולם חוץ מאחד מהם יכול הספינה להיות בסכנה ע״י החריץ שלו, ובשעה זו לא יכול לפטור נפשו, אלא עליו לטרוח בלי שום ספק ולעשות כל הלימודים והאזהרות, ואם לא עשה כן נמצא שהוא הרג כל אותם שבעים אלף איש שהיו בספינה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-6-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 6:4</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-6-4" aria-label="Copy link to Ma'amar Mezakeh HaRabim 6:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כן ממש אמרו חז״ל שהי׳ להם להרגיש הפיקוח נפש של הכלל כולו. ובשעה זו אי אפשר לאדם, יהי׳ מי שיהי׳ להביט על נפשו, כי גם הוא בסכנה. כי בשעה שאין עולם אין יחידים, אם אין גדיים אין תיישים. לכן אמרו חז״ל אשר רק עליהם מוטל הטורח, ואדרבה, מפני שיגעו לילות כימים על התורה ועל היראה חובם יותר גדול ללמד את בני ישראל תורה ודרך ארץ. ודוקא אותם שהפקירו כל ימיהם ומבחר כוחותיהם למען האמת, דוקא הם יודעים ערכה אשר יפה בעדה לנסוע ממקום למקום, לא בסוסים ולא במרכבה ולא במכונה, אלא בטרחה פשוטה וכבדה לקשור חבלים של ברזל במתנים ולהגבי׳ הבגדים למעלה מארכובותיהם (אויפהויבען די פאלעס) ולילך ברגל ממקום למקום — ללכיש ולחברון ולירושלים, ולא על זמן קצר, אלא לשנה ושתים ולשלש, עד שיקיפו בעבודתם כל העולם כולו. עד שלא ישאר מקום מופנה, הן בכרך והן בעיר והן בכפר. ודוקא אותם שלא הביטו עד עכשיו על הסכמת העולם ולא על כל מניעה ועיכוב, רק אותם האנשים מחוייבים לסבול נסיונות רצופים, ולא להפסיק בעבודתם אלא ילכו ליסד מקומות של תורה, גם במקום שאין מכירים אותם, גם במקום שלא יקבלום בתופים ובמחולות, גם במקום שתהלתם מר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-6-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 6:5</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-6-5" aria-label="Copy link to Ma'amar Mezakeh HaRabim 6:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואם תאמר, כיון שהטורח כ״כ גדול והנסיונות מרובין, אין החטא גדול כ״כ גדול אם יהי׳ השתדלותם במדה קטנה ומחוקה? הבט נא וראה אם לא עשו כן, מה אמרו עליהם חז״ל — שהרגו שבעים אלף איש. כמה נורא החיוב הזה ומה נענה ליום פקודה. כי אין טענה והתנצלות להקטין החוב, כי האחריות ארוכה מארץ מדה ורחבה מני ים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-6-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 6:6</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-6-6" aria-label="Copy link to Ma'amar Mezakeh HaRabim 6:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ע״כ כל מי שיש בידו להקים את התורה אל יטמון ידו בצלחת ולא יפנה אל כרמו ראשונה ולא יאהב המנוחה, אלא יאזור כוחותיו להיות גולה ממקום למקום ליסד מקומות של תורה ויראת שמים. כי מי יהיו מן הנתבעים על שפלות התורה והיראה? רק העובדים שהי׳ בידם להקים ולבטוח בד׳ שימלא משאלותיהם. ע״כ מוטל עליהם האחריות עד שיקיפו כל המקומות תחת דגל התורה. ובזה נפתר השאלה החמישית שהאדם הוא מחויב להיות גולה ממקום למקום עבור הרבצת התורה, ואי אפשר לו להפטר מזה לא בשום טענה ומענה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-7">Chapter 7</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 7:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-7-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומה ששואלים אם יכול היחיד לפעול על כל העולם כולו בלי שום אמצעים מצלצלים, כי אם בחייו האמתיים? נוכל להתפעל ולראות בחוש יכולת הדבר הזה, ממה שספרו לנו חז״ל (ילקוט ש״א): אלקנה ואשתו ובניו ואחיותיו וכל קרוביו הי׳ מעלה עמו לרגל ובאים ולנים ברחובה של עיר, והיתה המדינה מרגשת והיו שואלים אותם להיכן תלכו, ואומרים לבית ד׳ שבשילה, שמשם תצא תורה ומצוות ואתם למה לא תבואו עמנו ונלך יחד, מיד עיניהם משגרות דמעות ואומרים להם נלך עמכם, ואומרים להם הן, עד לשנה הבאה חמשה בתים, לשנה אחרת עשרה בתים עד שהיו כולם עולים. אמר לו הקב״ה אלקנה אתה הכרעת את ישראל לכף זכות וחנכתם במצות וזכו רבים על ידך, אני מוציא בן ממך שיכריע את ישראל לכף זכות ויחנכם במצוות, הא למדת שבשכר אלקנה שמואל, עכ״ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-7-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 7:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-7-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואם נתבונן בזה נתפעל עד כמה כל דבר תלוי רק ביחיד. הלא המצוה הזאת שהיו בהתרשלות וכמעט שנשכח, אותו הדבר עצמו נעשה לדבר חי בכל העולם כולו. כמה קשה הדבר להשיב לבו של אדם אל דבר בלתי מורגל, וכ״ש אל דבר שיש בו טורח, וכ״ש אל דבר שיש בו הפקרות, ואם על אדם אחד קשה לפעול כ״ש על חבורה, וכ״ש על עיר וכ״ש על מדינה כולה. ואם אנו רואים מצוה זו לעלות לרגל לירושלים, היא מצוה שיש בזה היפוך ההרגל, ויש, בזה טורח ויש בה הפקרות, ולא טורח של יחיד ולא של עיר אחת, אלא של מדינה כולה, כמה יש בה מן הנמנעות. ומי עשה זה, ומי גרם כל זאת? רק עובד אחד ואלקנה שמו. הרי לנו כח היחיד, שיכול להחזיר עטרה ליושנה בכל העולם כולו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-7-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 7:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-7-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 7:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואם נתבונן בזה במה הי׳ כוחו גדול? איזה אמצעים עשה? איזה אגודה עשה? איזה תוארי הכבוד נתן לכל אחד ואחד? איזה מצבים נתן לכל אחד בעד זה? איזה פרסומים ואסיפות עשה בעולם לעורר הענין הזה? ואמנם ספרו לנו חז״ל שלא עשה אגודה ולא חלק כבוד ולא ממון ולא עשה אסיפות, אלא פעל כ״ז בחייו במעשיו של עצמו, בקיום התורה שלו. זאת ראו כולם ונמשכו אחריו כברזל אחר אבן השואבת. הוא לקח דרך של ״להפקיר את עצמו ובני ביתו בעד קיום התורה״, בזה פעל על כל העולם כולו, כאשר מספרים חז״ל כשעבר הוא ומשפחתו דרך עיר לא נכנסו לבית, אלא לנו ברחוב כדי לקדש שם שמים, וכאשר הרגישו בני העיר והתלקטו בפליאה לשאול מה זה ועל מה זה, אז אמרו בעוז ותעצומות לבית ד׳ בשילה, ובאותה שעה עמד אלקנה לצד האנשים ומשפחתו לצד הנשים והוכיחו אותם בדברים יורדים חדרי בטן: ואתם למה לא תבואו אתנו? עזבתם מקור מים חיים זה בית ד׳ בשילה, והחלפתם על תוף וכנור וחליל ויין משתיהם, וזכרו להם המעלות שהשיגו אז, ואיך הנהגתם מקולקלת עכשיו, עד שגעו כולם בבכי ושאלו ״נלך עמכם״ ואמרו להם הן. ומובן כאשר באו אל עיר שני׳ אז הי׳ המספר יותר גדול ונמשכו עי״ז הרבה עד שבהמשך הזמן עלו כולם, ובדרך זה החזיר אלקנה עטרה ליושנה, כי בשעה שראו כולם מסירת נפשו והפקרות כל חייו ומשפחתו כדי לעלות לרגל נתפעלו כולם והלכו אחריו והוציא את כולם ממצודת עבר ושנה נעשה כהיתר אל אור גדול וכל זכות הרבים תלוי בו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-7-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 7:4</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-7-4" aria-label="Copy link to Ma'amar Mezakeh HaRabim 7:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הרי לנו מזה כי גדול כח ההפקרות שיכול היחיד בכוונתו הרצוי׳ ובמעשיו האמתיים וברוחו הכביר להיות כמו לאקאמאטיוו המושך כמה וכמה עגלות אחריו. כן יכול בהמשכתו התמימה להחזיר כל העולם כולו אל מה שסרו ממנו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-7-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 7:5</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-7-5" aria-label="Copy link to Ma'amar Mezakeh HaRabim 7:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכן כל עובד ועובד אם מפקיר כוחותיו ומשפחתו בעד האמת אז גם אם הוא יחיד יכול לפעול על כל העולם כולו. כי אמנם יש בעולם הרבה נמשכים אחר האמת, עד שכולם נוטים לקיום התורה ולדרכי השלימות, אלא שאין להם מי שיעמידם על האמת הנכונה, שיהי׳ להם על מי להביט וממי להתלמד. אבל כשהיחיד הוא נר ישראל ופטיש החזק אז יש בידו לסבב בכל מקום ומקום תורה, וחברות של קיום המצות ולימוד הלכות, ובלבד שהיחיד יהי׳ יחיד ולא יחזור ראשו לאחוריו לראות אם הרבים רודפים אחריו, אלא יעמוד חזק על נקודת האמת וסוף הרבים לבוא. כי רק היחיד האמיתי אשר מוסר כל עוזו וגדלו לסבב הרבים אל האמת הנכון, כמו שעשה אלקנה, רק הוא זוכה לראות את הרבים האמתי אשר כל מגמותם קשור אל רצון ד׳. וכאמת אנו רואים אשר כל האידעעס נתפתחו רק מיחידים, אלא שהרשות נתונה ביד כל אדם להיות כמשה רבנו לזכה את הרבים, או כירבעם בן נבט להחטיא את הרבים. אבל הדבר מונח רק בידי היחידים. ע״כ אין ספק שהיחיד האמיתי צריך להכריע את כל העולם כולו לכף זכות וצריך האדם בהיות במקום תורה להשגיח על כל המעשים כולם, כי בפעולה אחת יכול להצדיק או להרשיע ח״ו. וצריך כל יחיד להרגיש חובתו להפקיר כל תשוקותיו המדומות ולא יכסוף אלא לקדש שם שמים בכל יכלתו. ובזה סר השאלה הששית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-8">Chapter 8</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 8:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-8-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומה שמסתפק אם מחויבים לפשפש כ״כ בכל מילי של הצעירים ולעיין בכל צורך מצרכיהם, יש לנו לברר כי דבר זה מחויב ומוכרח וכן מצינו בחז״ל (תענית כ״ד):</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-8-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 8:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-8-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">״רב איקלע לההוא אתרא גזר תעניתא ולא אתי מיטרא, נחית קמי׳ שליחא דצבורא אמר משיב הרוח אתי זיקא אמר מוריד הגשם אתי מיטרא. אמר לו מאי עובדך, אמר לי׳ מקרי דדרדקי אנא ומקרינא לבני ענייא כבני עתירא, וכל דלא אפשר לי׳ לא שקילנא מיני׳ מידי ואית לי פירי דכוורא (מחילות של דגים) וכל מאן דפשע משחרינא לי׳ מינייהו ומסדרינן לי׳ ומפייסינן לי׳ (מתקנן כסדר) עד דאתי וקרי׳, עכ״ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-8-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 8:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-8-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 8:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כמה גדולים מעשיו, אשר מלבד שמסר נפשו ללמוד עם בני עניים כבני עשירים וכל דלא אפשר לי׳ לא שקל ממנו דבר, עוד התגבר בכל מיני התקרבות להשיב לבו של הפושע אל התורה, אשר לכאורה די הי׳ מה שיגע בכל כוחו עם המבקש אשר משים אזנו כאפרכסת, הלא גם אז היגיעה גדולה להבינו ולשכללו, אבל הפושע שעושה עצמו לקשה עורף, האם גם אותו צריכים לרדפהו ולחזקהו בלי הרף?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-8-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 8:4</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-8-4" aria-label="Copy link to Ma'amar Mezakeh HaRabim 8:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אבל כמה נפלא תום לבבו ומסירת נפשו שלמד בחנם וגם עוד נתן לו שכר כדי שירצה ללמוד. ואמנם כי העובד האמיתי מוצא דוקא במקום זה עיקר התחייבות השתדלותו ועבודתו וערמימותו, כי על המבקש נאמר ישמע חכם ויוסיף לקח (משלי א׳), יש לו המשכה מצד מבוקשו לרדוף, להשיג ולשמוע. אבל הפושע, כשהוא מתעקש על דעתו ואינו מכיר חסרונו או שקשה לו לפרוש אם יניח אותו העובד יוכל לרדת מתהום אל תהום ואין רפואה למכתו אשר על כן רק שם תעודת המבקש העובד לבוא עמו בדברים, עד שיבין מה שלפניו, ועד שיראה מקום הטעות, ועד שישיג נטי׳ אל האמת, ועד שיוותר משלו אחר הבירור ועד שיתבונן להיות מבקש האמת כל ימי חייו, ולא יהיו מכת רבים מתחילים, אלא מכת החזקים המתמידים, ולכן בשעה שהתנהג באופן זה הי׳ זכותו גדול מאד עד ״ויגזר אמר ויקם לך״.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-8-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 8:5</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-8-5" aria-label="Copy link to Ma'amar Mezakeh HaRabim 8:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מזה יש לנו להבין כמה גדול זכות מי שמקרב לבות בני אדם לאביו שבשמים, ויש לנו להבין ממה שהי׳ משתדל ע״י ״פירי דכוורא״ לשחד ולפייס ולסדר כל מי שלא הי׳ שבע רצון, כי העיקר בעבודת הרבים לפשפש בלבות התלמידים והמבקשים שלא ישאו בתוכם הקפדות, כי זה ראש כל חטאת, כי בשעה שנכנס טינא של קנאה, אם לא יעבור על מדותיו, יכול בכל פגישה לקרר כל דבר המביא תועלת, ותמיד יסרב מלהיות נמנה עם חבירו לדבר מצוה, ויקרר גם אחרים בטענות שוא ומדוחים. לכן על העובד להשגיח על אלה לרפא מחלתם בפירי דכוורא ולסדרו ולפייסו, שישוב לבו נח ושקט ויעשה בלי הפסק וילמוד בלי ערבוב המוח, וראוי להעובד להבין לב כל אחד ואחד גם בעת שלא ניכר הקפדתו בחיצוניותו, גם בעת שהוא רואה שהוא יוצא בתופים ובמחולות לקראת מי שהקפדתו או קנאתו עליו, כי לכל דבר יש גבול, וצריך לדעת כל הדברים במה שיכולים לכפר ולשכך הרגזתו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-8-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 8:6</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-8-6" aria-label="Copy link to Ma'amar Mezakeh HaRabim 8:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואל יאמר העובד הן עלי מוטל רק להגיד שיעור או הענין ביראת שמים, אבל קשה עלי לפקח על כל מיליו איך יתנהג עם חביריו ואיך יתנהג בהאכסניא, כי זה מפריע לעיוני, אל יאמר כן, כי אם יתנהג כדבריו עוד מעט יראה כי אין לו בעד מי להגיד השיעור או הענין, ואדרבה הידיעה בדברים האלה יוכל לסייע לו שעי״ז ידע מי לרחק ומי לקרב, מה להגיד ומה לשתוק. וכמה פעמים אנו רואים בחוש אשר בהקפדה כל שהוא נעשה פירוד לבבות ומזה בא לידי פירוד הדעות עד שיכול ח״ו לבוא לידי שנה ופירש, אשר על כן יחשב העבודה במקצוע הזה ליסוד גדול שאין לזוז ממנה ועיקר להשגיח על כל התאגדותם שלא יהא תלוי בחסרון. ואמר חכם אחד אני מכיר את החדשים כשבאים להתחבר עם הישנים. ואמר עוד קשה יותר לסבול הזמן שיש מקצת מלסבול הזמן שיחסר בכלל, שאז החלוקה באופן שלא יהי׳ הקפדות קשה ביותר, ואין התועלת יוצא מהכרה לבד, אלא מהשתדלות וחריצות לתקן כל ענין וענין, כמו שמבואר בתענית אשר שתים עשה, למד עם המבקשים והשתדל לעשות מבקשים ולהתמיד זמן ביקושם. ובזה סר השאלה השביעית עם צריכים לעיין במילי דינוקא. הלא זה יסוד קיום הרבים, שלא יהרס ממפריעים הפנימים ומזה זכה העובד הנרצה עד ״ויגזור אומר ויקם לך״.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-9">Chapter 9</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 9:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-9-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומה שמפחד שמא יהי׳ סתירה לעבודת עצמו יש לנו מראי׳ מרבי פרידא אשר מזה גופא זכה להיות ״רבי פרידא״, כמבואר בחז״ל (עירובין נ״ד): רבי פרידא הוי לי׳ ההוא תלמידא דהוו תני לי׳ ארבע מאה זימני וגמר, יומא חדא בעיוה למילתא דמצוה תנא לי׳ ולא גמר, א״ל האידנא מאי שנא, א״ל מהאי שעתא דאמרו לי׳ למר איכא מילתא דמצוה אסחאי לדעתאי אמינא השתא קאי מר, א״ל הב דעתך דאתני לך תנא לי׳ ארבע מאה זימני אחריתא וגמר, נפקא בת קול ואמרה לי׳ ניחא לך דליספי על חייך ארבע מאה שנה, או דתזכה את ודרך לעלמא דאתי, אמר לי׳ בעינא דאזכה אנא ודראי לעלמא דאתי, אמר להן הקב״ה תנו לו זו וזו״, עכ״ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-9-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 9:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-9-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 9:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הרי לנו בפירוש אשר רק עי״ז זכה לכל המעלה, והי׳ צריך באמת כל עובד להטיח פניו בקרקע, כי כל מסירת נפשו כקליפת השום נגד המסירת נפש של רבי פרידא, מכל זאת עוד ישתומם איך הי׳ יפה להפקיר הזמן על תלמיד כזה איך לא חס על עבודת עצמו? אדרבה הקושיא הוא עליך, למה תביט על זה כעל וותרנות ופזרנות והפסד לעצמו, הלא שם אתה רואה ההיפוך, כי רק ע״י הסבלנות והמסירות נפש זכה למדרגה גדולה בעבודת ד׳ ותיקון המדות, ואתה שקשה לך למסור כל נפשך בעד הרבים ותמיד אתה מחשב חשבונות שמא יהי׳ הפסד, הלא הסוף שאין לך עבודת ד׳ ואין לך תיקון המדות, כי לא יכול האדם לבוא אל ההצלחה בתורה ויראה, אלא רק אם לבו טהור ומוחו אינו מבולבל בדמיונות שוא ושקר, וא״כ רק זה מה שלא יכול להפקיר דמיונותיו יעבוד במסירת נפש,. אלא יבקש רק במקום קל וקרוב אל שכרו בעה״ז, מזה ודאי לא יכול לבוא לידי גדלות ושלימות האמיתי. ועוד ראוי לנו לדעת כי הדבר היותר קשה בעבודת השם הוא לדעת השתמשות המדות במקומם ובזמנם ובזה קרוב הטעות ומצוי המכשול, וזה רק אם האדם חי על השערתו של עצמו, ורוצה לכוון האמת בדעתו, אז אין לו ידיעה אמתית, אבל בשעה שהאדם נעשה עבד להרבים ושמש למבקשי השלמות אז הוא צריך להשתמש במדותיו לפי הגבול שהדבר מחייבו והרבים יכול לתת לו גבול וקצבה בכל מדותיו והפוכם ומשתמש בטח בלי שום פקפוק כלל, כיון שאינו נוגע עם עצמו אלא עם הדבר. וזה הי׳ דרכו של רבי פרידא, שהתלמיד הזה חייב אותו שישתמש בכח סבלנותו עד שמונה מאות פעמים וידע בטח כי פה צריך להתנהג כך, לא כן האדם שעושה על דעת עצמו אז לא יכול לחייב את עצמו בסבלנות גדולה כ״כ.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-9-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 9:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-9-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 9:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לכן הדרך האמיתי בהשתמשות המדות הוא רק בעבודת הרבים, כי שם צריך להתנהג לפי הדבר בכוחות ובהיפוכי כוחות ואין שום סתירה. כי פעם מחייב הדבר להתנהג בגאוה ופעם בשפלות, פעם באכזריות ופעם ברחמנות, פעם בפזרנות ופעם בקמצנות, פעם בהצנע ופעם בפרסום, פעם ללמוד חדשות, ופעם לשמור הישנות, פעם לדבר קרוב אל הנטי׳, ופעם רחוק מהנטי׳, פעם עם חדשים, ופעם עם ישנים, פעם עם מי שרוצה ופעם עם מי שנגד רצונו, פעם עבודה רוחנית ופעם עבודה גשמית פעם לדבר ופעם לשתוק, הכל לפי התועלת שהדבר מחייב, ואז דוגמתו כמו אופן עגלה שהיא עגולה סביב ואין שליבה אחת יוצא חוץ לשורת האופן. כי אם הי׳ שליבה אחת יוצאת חוץ לשורת האופן, לא הי האופן מתגלגל, כי השליבה הקיצונה מעכבת התנועה. כן ממש המתנהג לפי דעתו, אז תמיד נכשל במדה הקיצונה שבו, ואין לו דרך על איזה מצב ישאר. אבל מי שמוסר עצמו לרבים, כמו רבי פרידא ובמסירת נפש, אז הרבים מוציאים שלימותו מכח אל הפועל בישרות ובמדה גדולה וקטנה, הכל לפי טובת הענין, כמו רבי פרידא שמסר סבלנותו לפי כשרון התלמיד, וכאשר יזדמן תלמיד שיש לו תפיסה קשה, אז הוציא לו תלמידו סבלנותו מכח אל הפועל, עד שמונה מאות פעמים. וזהו הדרך הנרצה בהשתמשות המדות, שיביט על הדבר ולא על עצמו, ויעשה ברבים במקום ששם נגד נטיתו כמו שעושה במקום שיש לו נטי׳. ובזה סר השאלה השמינית, כי אדרבה, עבודת הרבים מיישרת את עבודת עצמו ונותן לו דרך להבין ולהסביר, לסבול ולישא כמו שהתורה דורשת ממנו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-10">Chapter 10</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 10:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-10-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומה שרוצה להבין הכרת בני אדם קודם המעשה, ג״כ מופרך מהכא. כי אם נשאל שאלה איך יהי׳ משפט הנער שלומדים עמו חמשים פעמים ואינו משיג, אם שוב יש לו תקנה? הלא השכל מחייב כי הוא ספק גדול, וכמעט שההכרעה על צד השלילה, ולפי זה אם לומדים עמו מאה פעמים ואינו מבין, כ״ש שקשה להאמין בתקנתו, וכ״ש אחר שתי מאות פעמים, וכ״ש אחר שלשה מאות, שעל זה ודאי נאמר שזורק יגיעתו בים המלח, וכ״ש אחר שלש מאות ותשעים ותשעה פעמים ששוב אין לו תקנה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-10-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 10:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-10-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומה אנו רואין ממעשה דרבי פרידא? אשר למד עמו שלש מאות ותשעים ותשעה פעמים ועוד לא הבין, למד עמו עוד פעם וראה כי השיג ותפס עד שאח״כ לא הי׳ ניכר שלא ידע מקודם, ומאין ידע רבי פרידא כי יש גבול להעדר ההבנה בתלמיד הזה? האם הי׳ לו ידיעה קדומה? לא ולא, הוא הלך בתמימות ולמד עמו פעם אחר פעם עד שלמד עמו כ״כ עד שבא ע״י יגיעתו לידי ידיעת הגבול של היגיעה, ואילו לא הי׳ מבין בפעם הארבע מאה, הי׳ לומד עמו עוד, והראי׳, כי בעת שקרה אשר התלמיד הסיח דעתו למד עמו שוב עד תמניא מאה, הרי לנו מזה שרק התמימות מביא לידי ערמימות, כי רק ע״י היגיעה ידע עד כמה להתייגע, ומובן מזה אם יתנהג האדם באופן אשר מיד כשרואה כי הוא קשה לקבל תועלת מיד יבטלו ביד וידחפהו בשתי ידים, מלבד שאין זה מדרגת העובד הנאמן אלא יכול ההנהגה הזאת להפיל רבים חללים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-10-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 10:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-10-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 10:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כמה מאות נערים הלכו שובב בדרך לבם מפני שראו ביטולם בפניהם בלי שום תקנה, ובאמת הדבר להיפוך, רק מי יכול לדעת ההפוך, רק אחר היגיעה בתמימות ואז רואה בחוש מה שהורונו חז״ל אל תהי בז לכל אדם (אבות פ״ד מ״ג), ומעשה לרבי פרידא יוכיח אשר הוא גלה הדרך הזה מיגיעתו התמימה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-10-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 10:4</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-10-4" aria-label="Copy link to Ma'amar Mezakeh HaRabim 10:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועל ההקשה הזאת נמצא כמה פעמים שמתרשלים לעבוד עם אחד שיש לו עליו חשד שלא יבא לידי תועלת כי קשה לו לפרוש מהנחותיו מהרגלו מרצונו מדרכו וכדומה, אמנם כמו אצל החולה יארע אשר אחר שיעלה החמימות למדרגה גבוה יכול פתאום להיות משבר, ואין אומרים נואש לחולה הזה כן בחולי הנפש לא נאמר נואש לכל חולה, אעפ״י שדיבורו מבאיש ריחו אבל אנו צריכין לסבול ולעוררהו פעמים אין מספר וסוף הרושם לבא, כי כבר מפורסם טבע הרושם שבא בפעם הראשונה, כי אם לא כן לא הי׳ בא בפעם האחרונה, יען כי אז הי׳ הוא הראשונה, ובע״כ שיש רושם בפעם הראשונה, אלא שאינו ניכר עד הפעם האחרונה. כן הרושם על מקבל התועלת, אינו בא במילואו עד לאחר פעמים רבות, אבל באמת גם בפעם הראשון הי׳ רושם, וכלל הדברים שהסבלנות יסוד להעובד, וכל מי שמוסר נפשו בסבלנות יזכה ויראה הגבולין של היגיעה עם כל אחד ואחד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-10-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 10:5</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-10-5" aria-label="Copy link to Ma'amar Mezakeh HaRabim 10:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועוד יש להתפעל עד כמה הי׳ רבי פרידא מסור לטובת הרבים, אשר בשעה ששאלו אותו איזה מהם חפץ יותר, אם לחיות ארבע מאות שנה, או שיזכה הוא ודורו לעלמא דאתי ובחר יותר הוא ודורו לעלמא דאתי. מזה יש לראות מגמתו רק לטובת הרבים, והקב״ה משלם מדה כנגד מדה, לפי שהפקיר חייו לכן נתן לו גם ארבע מאות שנה לחיות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-maamar-mezakeh-harabim-text-11">Chapter 11</h4>
+          <section class="unit" id="maamar-mezakeh-harabim-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 11:1</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-11-1" aria-label="Copy link to Ma'amar Mezakeh HaRabim 11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומה שאינו חפץ לקבל עליו האחריות, בטענה שהאחריות מכביד יותר על העובד, זהו טעות. והבי׳ בזה, כי מצינו בתו׳ שמשה רבנו בקש מהקב״ה עוזרים, ואמר לא אוכל אנכי לבדי לשאת וכו׳, ואמר לו הקב״ה אספה לי שבעים איש וכו׳ ואצלתי מן הרוח אשר עליך וכו׳ (במדבר י״א:י״ז), והוא תמוה, הלא כוונתו בשאלתו שיתן לו הקב״ה עוזרים, זאת אומרת, כוחות נוספות על מה שיש לו, ומה נתן לו הקב״ה? ואמנם שהוסיף לו שבעים איש, אבל לא הוסיף לו שבעים כחות נוסף על כוחותיו, כי האציל מרוחו ונתן עליהם. משל למה הדבר דומה, לכלי שמרכיבין לתוכו צנור שני, אין הכלי יתרחב על ידי זה. כן בהוספה זו לא בא יתרון באיכות, אלא אותו המדה והמשקל שעשה משה לבדו נעשתה עכשיו ע״י שבעים איש ג״כ, בלי תוספות. ונמצא שהכוחות בא להם מצד כי נגרע ממנו, כמ״ש ואצלתי וכו׳, אעפ״י שיש מ״ד שהוא כמדליק נר מנר (ספרי), אבל עכ״פ יש בזה משום אכחושי מצוה כדאשכחן בנר חנוכה (שבת כ״א), והוא תמוה, הדא כוונתו בשאלתו הי׳ על תוספות כוחות?</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-11-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 11:2</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-11-2" aria-label="Copy link to Ma'amar Mezakeh HaRabim 11:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמנם צריכים אנו להבין שזה גופא בירר לו הקב״ה שיש מדה ידועה של סייעתא דשמיא הניתן בעד הרבים הרוצים לעבוד ד׳ בכנופיא, וזה מוכן בעד נושא האחריות המקבל עליו לישא עולו של כל חבורת חכמים מבקשי שלימות, ולא יזכה העובד זה מצד עצמו ולא מצד מעלותיו, אלא מצד שהוא נושא אחריות, לכן בשעה שמשה רבנו. נשא לבדו קבל הוא לבד העזר השם, אבל בשעה שבקש עוזרים אמר לו הקב״ה שבהכרח יזכו גם המה מאותה מדה סייעתא דשמיא, כיון שגם המה נושאי האחריות, וז״ש ״ואצלתי מן הרוח וכו׳״.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-11-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 11:3</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-11-3" aria-label="Copy link to Ma'amar Mezakeh HaRabim 11:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ונמצא לפי זה שאותו הטעם שרוצה על ידו להקל מעליו משאו, הוא גורם שעי״ז מגרע כוחו, ואדרבה. בזה שמקבל עליו כל האחריות זה גופא גורם שיהי׳ נקל אצלו, כי הנתינה היא קבלה, אשר על כן צריך העובד לעמוד על משמרתו ולא יפרוק מעליו עול האחריות, כי יזכה עי״ז לכל הסייעתא דשמיא הניתן בעד הרבים להצילם מכל נסיון, הן בחומר והן ברוח, הן בכח והן במח, ואל יאמר העובד לא אוכל שאת לבדי, כי ראוי לו לדעת אשר כל מה שנשא עד עכשיו לא בכוחו ועוצם ידו נשא, כי אם על ידי עזר השם. א״כ בשעה שהוא רוצה לסלק חלק מן האחריות אז מפסיד כפלים, הא׳ הכנת לבו ומסירת נפשו במה שנכנס תחת עול הזה, אשר עי״ז זוכה לעזר השם, והב׳, העזר השם הניתן ממרומים שיכול לישא עול הרבים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="maamar-mezakeh-harabim-11-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ma&#39;amar Mezakeh HaRabim 11:4</h4></div>
+              <a class="anchor" href="#maamar-mezakeh-harabim-11-4" aria-label="Copy link to Ma'amar Mezakeh HaRabim 11:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכן מראה הנסיון אשר כל רבים מבקשי השלימות עומדת על ניסים רצופים ואין לך מקום יותר נגלה השגחה פרטית כמו שם. כמה פעמים יארע שאלות דוחקות את השעה אשר כלתה כח ההשערה לפותרן עד שנדמה שאין דרך להמלט הן בחמר והן ברוח, ואח״כ אנו רואים בחוש, כי מזה גופא צמח הישועה ונפתח מפת תקוה, ממש כמו יש מאין. והעובד הנושא בעול וסובל כל השאלות העומדות על הפרק, ועומד על משמרתו בבטחון חזק זוכה ורואה בישועתו של הקב״ה, יש לו היכולת לעמוד ברבים גדול, גם בשעה שתנאי הזמן קשים ביותר והאדם המסרב עצמו מלקבל אחריות הוא סובר כי להקל מצבו מכוון, אבל תמיד ישאר דבר טפל ולא יכול לישא כלל. וז״ש במדרש, שבשביל שאמר איכה אשא לבדי נענשו ואמרו איכה ישבה בדד וכו׳, ורק המקבל עליו אחריות, הגם שתחלתו מר, אבל סופו מתוק שזוכה לראות רבים מבקשי השלימות עומדת על סייעתא דשמיא בכל מקום, בכל עת ובכל שעה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-maamar-mezakeh-harabim-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/maamar-mezakeh-harabim.manifest.json">Lexical manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-lemma-strict-row><dt>Strict Lemma</dt><dd data-hud-lemma-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Other source matches</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related source matches</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Audit-only checks</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details" open>
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/maamar-mezakeh-harabim.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/maamar-mezakeh-harabim.manifest.json","occurrence_url":"../../data/lexical/occurrences/maamar-mezakeh-harabim.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        const lemmaLikely = cleanStrictRenderings(strictEntries.flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]), lemma: lemmaLikely };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely, lemma: lemmaLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related source match" : "Other source match"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-ʻʿʾʼ()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Other Match") { score = 58; reasons.push("other real source match"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else if (status === "Strict Lemma") { score = 78; reasons.push("strict lemma row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, "Strict Lemma": 95, "Other Match": 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, "Strict Lemma": 50, "Other Match": 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, "Strict Lemma": 2, "Other Match": 3, Related: 4, Caution: 5, Unresolved: 6 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Other Match"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = rows.length > 2 ? "claim-row-list hud-card-lane" : "claim-row-list";
+        if (rows.length > 2) { const note = document.createElement("p"); note.className = "hud-scroll-note"; note.textContent = "Hover this lane and use the wheel or trackpad to move sideways."; node.appendChild(note); }
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const placeholderClaim = (status, hebrew, message) => makeClaim("Unresolved", hebrew || "Clicked form", [message], [], "", { statusOverride: status });
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [], lemma: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          claims.lemma.push(claimFromEntry(view, entry, "Strict Lemma", renderings));
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic), lemma: uniqueClaims(claims.lemma) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        sourceDetails.open = true;
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Other Match")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
+        setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        setList(hud, "[data-hud-aramaic-strict]", ["Loading lexical entry..."]);
+        setList(hud, "[data-hud-lemma-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [], lemma: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0 || strictClaims.lemma.length > 0;
+          const clickedForm = view.hebrew_word || view.surface_word || "Clicked form";
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
+          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew.length ? strictClaims.hebrew : [placeholderClaim("Strict Hebrew", clickedForm, "No Hebrew strict match yet.")]);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic.length ? strictClaims.aramaic : [placeholderClaim("Strict Aramaic", clickedForm, "No Aramaic strict match yet.")]);
+          appendClaimRows(hud.querySelector("[data-hud-lemma-strict]"), strictClaims.lemma.length ? strictClaims.lemma : [placeholderClaim("Strict Lemma", clickedForm, "No lemma strict match yet.")]);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = true;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
+          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          setList(hud, "[data-hud-aramaic-strict]", ["No Aramaic strict match yet."]);
+          setList(hud, "[data-hud-lemma-strict]", ["No lemma strict match yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      document.addEventListener("wheel", (event) => {
+        const lane = event.target.closest(".hud-card-lane");
+        if (!lane) return;
+        const horizontalDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+        if (!horizontalDelta) return;
+        event.preventDefault();
+        lane.scrollLeft += horizontalDelta;
+      }, { passive: false });
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>
