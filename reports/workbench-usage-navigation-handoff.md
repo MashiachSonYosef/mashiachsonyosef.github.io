@@ -1,6 +1,6 @@
 # Workbench Usage Navigation Handoff
 
-Generated: 2026-05-31T23:21:54.662Z
+Generated: 2026-05-31T23:26:50.118Z
 
 ## Summary
 
@@ -25,6 +25,7 @@ Generated: 2026-05-31T23:21:54.662Z
 - Selected occurrence memberships: 50
 - Selected occurrence duplicate memberships: 1
 - Selected occurrence lookup buckets: works 20, clusters 2, statuses 3
+- Agent 6 boundary checks: 11, failed 0
 
 ## Validation
 
@@ -39,6 +40,7 @@ Generated: 2026-05-31T23:21:54.662Z
 - Selected slices index: present, slices 2, unique occurrences 49
 - Selected occurrences: present, rows 49
 - Selected occurrence lookup: present, work buckets 20
+- Agent 6 boundary packet: present, checks 11, failed 0
 - Smoke validation: passed, steps 35, failed 0
 
 ## Artifacts
@@ -59,6 +61,7 @@ Generated: 2026-05-31T23:21:54.662Z
 | selected slices index | reports/workbench-usage-selected-slices-index.md | yes |
 | selected occurrences | reports/workbench-usage-selected-occurrences.md | yes |
 | selected occurrence lookup | reports/workbench-usage-selected-occurrence-lookup.md | yes |
+| Agent 6 boundary packet | reports/workbench-usage-agent6-boundary-packet.md | yes |
 | smoke validation | reports/workbench-smoke-pipeline-validation.md | yes |
 
 ## Commands
@@ -90,7 +93,9 @@ Generated: 2026-05-31T23:21:54.662Z
 | validate_selected_occurrences | node scripts/validate_workbench_usage_selected_occurrences.mjs .local-cache/workbench-evidence/usage-selected-occurrences.json |
 | build_selected_occurrence_lookup | node scripts/build_workbench_usage_selected_occurrence_lookup.mjs --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --output=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --report=reports/workbench-usage-selected-occurrence-lookup.md --max-samples=5 |
 | validate_selected_occurrence_lookup | node scripts/validate_workbench_usage_selected_occurrence_lookup.mjs .local-cache/workbench-evidence/usage-selected-occurrence-lookup.json |
-| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --sample-index=.local-cache/workbench-evidence/usage-sample-index.json --lookup-index=.local-cache/workbench-evidence/usage-lookup-index.json --selected-slice=.local-cache/workbench-evidence/usage-slice-tanakh.json --selected-slices-index=.local-cache/workbench-evidence/usage-selected-slices-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
+| build_agent6_boundary_packet | node scripts/build_workbench_usage_agent6_boundary_packet.mjs --handoff=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-agent6-boundary-packet.json --report=reports/workbench-usage-agent6-boundary-packet.md |
+| validate_agent6_boundary_packet | node scripts/validate_workbench_usage_agent6_boundary_packet.mjs .local-cache/workbench-evidence/usage-agent6-boundary-packet.json |
+| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --sample-index=.local-cache/workbench-evidence/usage-sample-index.json --lookup-index=.local-cache/workbench-evidence/usage-lookup-index.json --selected-slice=.local-cache/workbench-evidence/usage-slice-tanakh.json --selected-slices-index=.local-cache/workbench-evidence/usage-selected-slices-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --agent6-boundary-packet=.local-cache/workbench-evidence/usage-agent6-boundary-packet.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
 | validate_handoff_index | node scripts/validate_workbench_usage_handoff_index.mjs .local-cache/workbench-evidence/usage-navigation-handoff-index.json |
 
 ## Boundary

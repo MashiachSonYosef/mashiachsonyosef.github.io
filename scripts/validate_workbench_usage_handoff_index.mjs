@@ -85,6 +85,8 @@ function validateCounts() {
     'selected_occurrence_lookup_work_buckets',
     'selected_occurrence_lookup_cluster_buckets',
     'selected_occurrence_lookup_status_buckets',
+    'agent6_boundary_checks',
+    'agent6_boundary_failed_checks',
   ]) {
     const value = Number(artifact.counts?.[field]);
     if (!Number.isInteger(value) || value < 0) issues.push(`counts.${field} must be a non-negative integer`);
@@ -141,6 +143,7 @@ function validateArtifacts() {
     'selected_slices_index_report',
     'selected_occurrences_report',
     'selected_occurrence_lookup_report',
+    'agent6_boundary_packet_report',
     'smoke_validation_report',
   ]) {
     if (!String(artifact.artifacts?.[field] || '').trim()) issues.push(`artifacts.${field} must be present`);
@@ -164,6 +167,9 @@ function validateValidation() {
   if (artifact.validation?.selected_occurrences_status !== 'present') issues.push('validation.selected_occurrences_status must be present');
   if (artifact.validation?.selected_occurrence_lookup_status !== 'present') {
     issues.push('validation.selected_occurrence_lookup_status must be present');
+  }
+  if (artifact.validation?.agent6_boundary_packet_status !== 'present') {
+    issues.push('validation.agent6_boundary_packet_status must be present');
   }
   if (Number(artifact.validation?.occurrence_source_url_bad || 0) !== 0) issues.push('occurrence source URL issues must be 0');
   if (Number(artifact.validation?.occurrence_work_anchor_bad || 0) !== 0) issues.push('occurrence work anchor issues must be 0');
@@ -190,6 +196,10 @@ function validateValidation() {
   }
   if (Number(artifact.validation?.selected_occurrence_lookup_work_buckets || 0) <= 0) {
     issues.push('selected_occurrence_lookup_work_buckets must be positive');
+  }
+  if (Number(artifact.validation?.agent6_boundary_checks || 0) <= 0) issues.push('agent6_boundary_checks must be positive');
+  if (Number(artifact.validation?.agent6_boundary_failed_checks || 0) !== 0) {
+    issues.push('agent6_boundary_failed_checks must be 0');
   }
   if (!allowedSmoke.has(artifact.validation?.smoke_validation_status)) {
     issues.push('smoke_validation_status must be passed/failed/not_run/skipped_self_reference');
@@ -222,6 +232,8 @@ function validateCommands() {
     validate_selected_occurrences: 'validate_workbench_usage_selected_occurrences.mjs',
     build_selected_occurrence_lookup: 'build_workbench_usage_selected_occurrence_lookup.mjs',
     validate_selected_occurrence_lookup: 'validate_workbench_usage_selected_occurrence_lookup.mjs',
+    build_agent6_boundary_packet: 'build_workbench_usage_agent6_boundary_packet.mjs',
+    validate_agent6_boundary_packet: 'validate_workbench_usage_agent6_boundary_packet.mjs',
     build_handoff_index: 'build_workbench_usage_handoff_index.mjs',
     validate_handoff_index: 'validate_workbench_usage_handoff_index.mjs',
     validate_smoke_pipeline: 'validate_workbench_smoke_pipeline.mjs',
