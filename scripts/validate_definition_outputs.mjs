@@ -63,6 +63,7 @@ function validateManifest(issues) {
     'data/definitions/paraphrase-evidence-contract.json',
     'data/definitions/paraphrase-evidence-sample.json',
     'data/definitions/citable-paraphrase-evidence-sample.json',
+    'data/definitions/citable-boundary-regression-fixtures.json',
     'data/definitions/hud-route-contract.json',
     'data/definitions/hud-route-fixtures.json',
     'data/definitions/hud-route-store-sample.json',
@@ -227,6 +228,62 @@ function validateCitableParaphraseSamples(issues) {
   }
 }
 
+function normalizeHebrewBoundaryKey(value) {
+  return String(value || '')
+    .normalize('NFC')
+    .replace(/[\u0591-\u05BD\u05BF-\u05C7]/gu, '')
+    .replace(/\u05BE/gu, '-')
+    .replace(/[\s-]+/gu, '-')
+    .replace(/[^\u0590-\u05FF-]/gu, '')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function normalizeHebrewTokenKey(value) {
+  return String(value || '')
+    .normalize('NFC')
+    .replace(/[\u0591-\u05BD\u05BF-\u05C7]/gu, '')
+    .replace(/[^\u0590-\u05FF-]/gu, '');
+}
+
+function hasWordBoundary(value) {
+  return /[\s\u05BE-]/u.test(String(value || ''));
+}
+
+function lookupKeyForBoundaryFixture(value) {
+  return hasWordBoundary(value) ? normalizeHebrewBoundaryKey(value) : normalizeHebrewTokenKey(value);
+}
+
+function validateCitableBoundaryFixtures(issues) {
+  const fixture = readJson('data/definitions/citable-boundary-regression-fixtures.json');
+  const cases = asArray(fixture.cases);
+  if (!cases.length) {
+    issues.push('citable-boundary-regression-fixtures: missing cases');
+    return;
+  }
+  const hasBatYamBlocker = cases.some((testCase) => (
+    testCase.expected_match === false
+    && String(testCase.claim_surface || '').includes('\u05d1\u05ea \u05d9\u05dd')
+    && String(testCase.source_surface || '').includes('\u05d1\u05ea\u05d9\u05dd')
+  ));
+  if (!hasBatYamBlocker) {
+    issues.push('citable-boundary-regression-fixtures: missing bat-yam/mermaid vs batim/houses must-not-match case');
+  }
+  for (const [index, testCase] of cases.entries()) {
+    const context = `citable-boundary-regression-fixtures.cases[${index}]`;
+    if (typeof testCase.expected_match !== 'boolean') {
+      issues.push(`${context}: expected_match must be boolean`);
+      continue;
+    }
+    const claimKey = lookupKeyForBoundaryFixture(testCase.claim_surface);
+    const sourceKey = lookupKeyForBoundaryFixture(testCase.source_surface);
+    const matched = claimKey === sourceKey;
+    if (matched !== testCase.expected_match) {
+      issues.push(`${context}: expected_match=${testCase.expected_match}, got ${matched}`);
+    }
+  }
+}
+
 function validateParaphrasePolicy(issues) {
   const policy = readJson('data/definitions/paraphrase-route-policy.json');
   const routeTypes = new Set(asArray(policy.route_families).map((route) => route.route_type));
@@ -261,6 +318,7 @@ validateManifest(issues);
 validateDefinitionSamples(issues);
 validatePhraseSamples(issues);
 validateCitableParaphraseSamples(issues);
+validateCitableBoundaryFixtures(issues);
 validateParaphrasePolicy(issues);
 validateParaphraseEvidenceContract(issues);
 validateHudRouteArtifacts(issues);

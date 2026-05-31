@@ -950,6 +950,7 @@ async function main() {
     'data/definitions/paraphrase-evidence-contract.json',
     'data/definitions/paraphrase-evidence-sample.json',
     ...(fs.existsSync(path.join(root, 'data/definitions/citable-paraphrase-evidence-sample.json')) ? ['data/definitions/citable-paraphrase-evidence-sample.json'] : []),
+    ...(fs.existsSync(path.join(root, 'data/definitions/citable-boundary-regression-fixtures.json')) ? ['data/definitions/citable-boundary-regression-fixtures.json'] : []),
     'data/definitions/hud-route-contract.json',
       ...(fs.existsSync(path.join(root, 'data/definitions/hud-route-fixtures.json')) ? ['data/definitions/hud-route-fixtures.json'] : []),
       ...(fs.existsSync(path.join(root, 'data/definitions/hud-route-store-sample.json')) ? ['data/definitions/hud-route-store-sample.json'] : []),

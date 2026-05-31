@@ -50,6 +50,7 @@ const steps = [
     '--public-sample', options.lookupSample,
   ]),
   nodeStep('validate local HUD route lookup', 'scripts/validate_hud_route_lookup.mjs', []),
+  nodeStep('validate route answer safety contract', 'scripts/validate_route_answer_safety.mjs', []),
   nodeStep('publish public HUD route lookup', 'scripts/publish_hud_route_lookup.mjs', [
     '--local-dir', options.lookupDir,
     '--public-dir', options.publicDir,
