@@ -118,6 +118,11 @@ function buildManifest(artifact, options) {
     commands: {
       regenerate: `node scripts/build_workbench_usage_concordance.mjs --index=${options.index} --output=${options.output} --report=${options.report} --manifest=${options.manifest}`,
       validate: `node scripts/validate_workbench_usage_concordance.mjs ${options.output} --manifest=${options.manifest}`,
+      validate_concordance: `node scripts/validate_workbench_usage_concordance.mjs ${options.output} --manifest=${options.manifest}`,
+      check_occurrence_links: `node scripts/check_workbench_usage_concordance_links.mjs --concordance=${options.output} --output=.local-cache/workbench-evidence/usage-concordance-link-check.json --report=reports/workbench-usage-concordance-link-check.md`,
+      check_route_links: `node scripts/check_workbench_usage_route_links.mjs --concordance=${options.output} --output=.local-cache/workbench-evidence/usage-route-link-check.json --report=reports/workbench-usage-route-link-check.md`,
+      build_audit_review: `node scripts/build_workbench_usage_audit_review.mjs --index=${options.index} --output=.local-cache/workbench-evidence/usage-audit-only-review.json --report=reports/workbench-usage-audit-only-review.md --max-samples=80`,
+      validate_smoke_pipeline: 'node scripts/validate_workbench_smoke_pipeline.mjs',
     },
     authority_policy: {
       usage_navigation_only: true,

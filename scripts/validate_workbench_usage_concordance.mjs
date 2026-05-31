@@ -87,9 +87,18 @@ function validateManifest(manifest) {
   if (JSON.stringify(manifest.counts || {}) !== JSON.stringify(artifact.counts || {})) {
     issues.push('manifest.counts must match concordance counts');
   }
-  for (const field of ['regenerate', 'validate']) {
-    if (!String(manifest.commands?.[field] || '').includes('usage_concordance')) {
-      issues.push(`manifest.commands.${field} must reference usage concordance scripts`);
+  const expectedCommands = {
+    regenerate: 'build_workbench_usage_concordance.mjs',
+    validate: 'validate_workbench_usage_concordance.mjs',
+    validate_concordance: 'validate_workbench_usage_concordance.mjs',
+    check_occurrence_links: 'check_workbench_usage_concordance_links.mjs',
+    check_route_links: 'check_workbench_usage_route_links.mjs',
+    build_audit_review: 'build_workbench_usage_audit_review.mjs',
+    validate_smoke_pipeline: 'validate_workbench_smoke_pipeline.mjs',
+  };
+  for (const [field, expectedScript] of Object.entries(expectedCommands)) {
+    if (!String(manifest.commands?.[field] || '').includes(expectedScript)) {
+      issues.push(`manifest.commands.${field} must reference ${expectedScript}`);
     }
   }
   const requiredSections = manifest.row_contract?.required_sections || [];

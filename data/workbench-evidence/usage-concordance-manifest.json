@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "workbench_usage_navigation_concordance_manifest",
-  "generated_at": "2026-05-31T17:00:02.713Z",
+  "generated_at": "2026-05-31T17:24:43.580Z",
   "generator": "scripts/build_workbench_usage_concordance.mjs",
   "handoff_role": "compact tracked manifest for a regenerated usage-navigation concordance",
   "inputs": {
@@ -12,12 +12,12 @@
       "path": "data/workbench-evidence/usage-concordance.json",
       "tracked_in_git": false,
       "reason": "high-volume generated workbench JSON is intentionally ignored; regenerate with the command below",
-      "sha256": "29d1efe174214c9316b3565efba4f065ece1fdb507a054a2a77e4ebbcf390793"
+      "sha256": "8208226daf8d9fa883bec6772795fd3e57bf7e177452bb15dc5e258dd71c6aa2"
     },
     "concordance_report": {
       "path": "reports/workbench-usage-concordance.md",
       "tracked_in_git": true,
-      "sha256": "79029eeeddc7a6ec1c023992e0f768a32af543f12997e0c86e7f1b6b026c73a9"
+      "sha256": "a492a88de4d2325d3a1b40752d02dc1d325866ea462cca759117d0567f990d1f"
     },
     "manifest": {
       "path": "data/workbench-evidence/usage-concordance-manifest.json",
@@ -26,7 +26,12 @@
   },
   "commands": {
     "regenerate": "node scripts/build_workbench_usage_concordance.mjs --index=data/workbench-evidence/public-handoff-index.json --output=data/workbench-evidence/usage-concordance.json --report=reports/workbench-usage-concordance.md --manifest=data/workbench-evidence/usage-concordance-manifest.json",
-    "validate": "node scripts/validate_workbench_usage_concordance.mjs data/workbench-evidence/usage-concordance.json --manifest=data/workbench-evidence/usage-concordance-manifest.json"
+    "validate": "node scripts/validate_workbench_usage_concordance.mjs data/workbench-evidence/usage-concordance.json --manifest=data/workbench-evidence/usage-concordance-manifest.json",
+    "validate_concordance": "node scripts/validate_workbench_usage_concordance.mjs data/workbench-evidence/usage-concordance.json --manifest=data/workbench-evidence/usage-concordance-manifest.json",
+    "check_occurrence_links": "node scripts/check_workbench_usage_concordance_links.mjs --concordance=data/workbench-evidence/usage-concordance.json --output=.local-cache/workbench-evidence/usage-concordance-link-check.json --report=reports/workbench-usage-concordance-link-check.md",
+    "check_route_links": "node scripts/check_workbench_usage_route_links.mjs --concordance=data/workbench-evidence/usage-concordance.json --output=.local-cache/workbench-evidence/usage-route-link-check.json --report=reports/workbench-usage-route-link-check.md",
+    "build_audit_review": "node scripts/build_workbench_usage_audit_review.mjs --index=data/workbench-evidence/public-handoff-index.json --output=.local-cache/workbench-evidence/usage-audit-only-review.json --report=reports/workbench-usage-audit-only-review.md --max-samples=80",
+    "validate_smoke_pipeline": "node scripts/validate_workbench_smoke_pipeline.mjs"
   },
   "authority_policy": {
     "usage_navigation_only": true,
