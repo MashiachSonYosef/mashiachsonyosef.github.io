@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import readline from 'node:readline';
+import crypto from 'node:crypto';
 
 const root = process.cwd();
 const defaults = {
@@ -19,6 +20,7 @@ const defaults = {
   minOccurrences: 25,
   maxTargets: 5000,
   maxStopwordRank: 300,
+  maxSourceFiles: 5,
 };
 
 const options = parseArgs(process.argv.slice(2));
@@ -40,13 +42,21 @@ await readJsonl(inventory.paths.tokens_jsonl, (row) => {
     if (Number(row.occurrence_count || 0) < options.minOccurrences) return;
     if (isStopword) return;
   }
+  const sourceFiles = sourceFilesForTarget(row, options.maxSourceFiles);
+  if (!sourceFiles.length) return;
   candidates.push({
     token_key: row.token_key,
     token_normalized: normalized,
+    slug: isSeeded && normalized === '\u05e8\u05d0\u05e9\u05d9\u05ea' ? 'reshit' : stableSlug(normalized),
+    target_kind: isSeeded ? 'seeded_route_linked' : 'route_linked_bounded_source',
     occurrence_count: row.occurrence_count,
     work_count: row.work_count,
     target_reason: isSeeded ? 'seeded_frame_available' : routeLinks ? 'definition_route_linked' : chooseReason(row),
     priority_score: scoreTarget(row, { isSeeded, routeLinks }),
+    known_nonzero_support: false,
+    allow_prefix_family: false,
+    source_files: sourceFiles.map((item) => item.source_file),
+    source_file_summaries: sourceFiles,
     route_links: routeLinks,
     top_surfaces: row.top_surfaces || [],
     top_works: row.top_works || [],
@@ -69,6 +79,7 @@ const artifact = {
     min_length: options.minLength,
     min_occurrences: options.minOccurrences,
     max_stopword_rank: options.maxStopwordRank,
+    max_source_files: options.maxSourceFiles,
   },
   counts: {
     candidate_targets: candidates.length,
@@ -96,13 +107,15 @@ function parseArgs(args) {
     else if (arg.startsWith('--min-occurrences=')) parsed.minOccurrences = Number(arg.split('=')[1]);
     else if (arg.startsWith('--max-targets=')) parsed.maxTargets = Number(arg.split('=')[1]);
     else if (arg.startsWith('--max-stopword-rank=')) parsed.maxStopwordRank = Number(arg.split('=')[1]);
+    else if (arg.startsWith('--max-source-files=')) parsed.maxSourceFiles = Number(arg.split('=')[1]);
     else throw new Error(`Unknown argument: ${arg}`);
   }
-  for (const key of ['minLength', 'minOccurrences', 'maxTargets', 'maxStopwordRank']) {
+  for (const key of ['minLength', 'minOccurrences', 'maxTargets', 'maxStopwordRank', 'maxSourceFiles']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 0) {
       throw new Error(`--${key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)} must be a non-negative integer`);
     }
   }
+  if (parsed.maxSourceFiles < 1 || parsed.maxSourceFiles > 5) throw new Error('--max-source-files must be 1-5');
   return parsed;
 }
 
@@ -192,6 +205,29 @@ function chooseReason(row) {
   return 'manageable_recurrence';
 }
 
+function sourceFilesForTarget(row, maxSourceFiles) {
+  const byWorkId = new Map();
+  for (const source of [...(row.top_works || []), ...(row.first_refs || [])]) {
+    const workId = String(source.work_id || '').trim();
+    if (!workId || byWorkId.has(workId)) continue;
+    const sourceFile = `data/sources/${workId}.json`;
+    if (!fs.existsSync(path.join(root, sourceFile))) continue;
+    byWorkId.set(workId, {
+      source_file: sourceFile,
+      work_id: workId,
+      work_title: source.work_title || workId,
+      occurrence_count: Number(source.count || 0),
+      sample_ref: source.source_ref || null,
+    });
+    if (byWorkId.size >= maxSourceFiles) break;
+  }
+  return [...byWorkId.values()];
+}
+
+function stableSlug(value) {
+  return `target-${crypto.createHash('sha1').update(String(value), 'utf8').digest('hex').slice(0, 16)}`;
+}
+
 function writeJson(relativePath, data) {
   fs.mkdirSync(path.dirname(path.join(root, relativePath)), { recursive: true });
   fs.writeFileSync(path.join(root, relativePath), `${JSON.stringify(data, null, 2)}\n`, 'utf8');
@@ -213,7 +249,7 @@ function writeReport(relativePath, artifact) {
     '## Top Targets',
     '',
     ...artifact.targets.slice(0, 40).map((row) => (
-      `- ${row.token_normalized}: priority ${row.priority_score}, ${row.occurrence_count} occurrence(s), ${row.work_count} work(s), ${row.target_reason}`
+      `- ${row.token_normalized}: priority ${row.priority_score}, ${row.occurrence_count} occurrence(s), ${row.work_count} work(s), ${row.source_files.length} source file(s), ${row.target_reason}`
     )),
     '',
     '## Boundary',
