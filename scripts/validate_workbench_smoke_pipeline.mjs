@@ -169,6 +169,23 @@ await runStep('validate_usage_selected_slice', [
   usageSelectedSliceJson,
 ]);
 
+const usageJeremiahSliceJson = `${options.scratchDir}/usage-slice-jeremiah.json`;
+await runStep('build_usage_selected_slice_jeremiah', [
+  'scripts/build_workbench_usage_slice_index.mjs',
+  `--concordance=${usageConcordanceJson}`,
+  '--source-ref-prefix=Jeremiah',
+  '--slice-id=jeremiah-workbench-section',
+  '--label=Jeremiah workbench section',
+  `--output=${usageJeremiahSliceJson}`,
+  `--report=${options.scratchDir}/usage-slice-jeremiah.md`,
+  '--max-samples=30',
+]);
+
+await runStep('validate_usage_selected_slice_jeremiah', [
+  'scripts/validate_workbench_usage_slice_index.mjs',
+  usageJeremiahSliceJson,
+]);
+
 const usageSelectedSlicesIndexJson = `${options.scratchDir}/usage-selected-slices-index.json`;
 await runStep('build_usage_selected_slices_index', [
   'scripts/build_workbench_usage_selected_slices_index.mjs',

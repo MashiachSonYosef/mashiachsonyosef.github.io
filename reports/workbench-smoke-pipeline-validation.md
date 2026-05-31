@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-05-31T19:12:34.550Z
+Generated: 2026-05-31T19:17:22.379Z
 
 ## Summary
 
-- Steps: 29
+- Steps: 31
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -22,7 +22,7 @@ Generated: 2026-05-31T19:12:34.550Z
 - Usage sample index: present, samples 24, clusters 2
 - Usage lookup index: present, occurrence refs 2390, works 271
 - Usage selected slice: present, id tanakh-workbench-section, rows 49, works 20
-- Usage selected slices index: present, slices 1, rows 49
+- Usage selected slices index: present, slices 2, rows 50
 - Usage concordance link check: passed, source URL bad 0, work anchor bad 0, issues 0
 - Usage route link check: passed, links 2390, resolved 2390, unresolved 0, metadata mismatches 0, unique route IDs 1
 - Usage audit-only review: rows 2064, ambiguous 2064, blocked 0, reader-facing no
@@ -55,8 +55,10 @@ Generated: 2026-05-31T19:12:34.550Z
 | validate_usage_lookup_index | passed | Workbench usage lookup index validation passed. Occurrences: 2390. Works: 271. |
 | build_usage_selected_slice | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.md / Usage slice tanakh-workbench-section rows 49; works 20; clusters 2 |
 | validate_usage_selected_slice | passed | Workbench usage slice index validation passed. Slice rows: 49. Works: 20. |
-| build_usage_selected_slices_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-slices-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-slices-index.md / Usage selected slices index slices 1; rows 49 |
-| validate_usage_selected_slices_index | passed | Validated usage selected slices index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-slices-index.json: slices 1; rows 49 |
+| build_usage_selected_slice_jeremiah | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-jeremiah.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-jeremiah.md / Usage slice jeremiah-workbench-section rows 1; works 1; clusters 1 |
+| validate_usage_selected_slice_jeremiah | passed | Workbench usage slice index validation passed. Slice rows: 1. Works: 1. |
+| build_usage_selected_slices_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-slices-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-slices-index.md / Usage selected slices index slices 2; rows 50 |
+| validate_usage_selected_slices_index | passed | Validated usage selected slices index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-slices-index.json: slices 2; rows 50 |
 | check_usage_concordance_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.md / Usage concordance link check passed; rows 2390; source URL bad 0; work anchors bad 0 |
 | check_usage_route_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.md / Usage route link check passed; rows 2390; links 2390; unresolved 0; metadata mismatches 0 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |

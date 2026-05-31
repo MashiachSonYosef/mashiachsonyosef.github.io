@@ -92,6 +92,7 @@ const artifact = {
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
     selected_slice_works: selectedSlice?.counts?.works ?? null,
     selected_slices_index_slices: selectedSlicesIndex?.counts?.slices ?? null,
+    selected_slices_index_rows: selectedSlicesIndex?.counts?.rows ?? null,
   },
   validation: {
     occurrence_link_check_status: occurrenceLinkCheck?.quality?.status ?? 'not_run',
@@ -159,6 +160,7 @@ function writeReport(relativePath, artifact) {
     `- Selected slice rows: ${artifact.counts.selected_slice_rows}`,
     `- Selected slice works: ${artifact.counts.selected_slice_works}`,
     `- Selected slices index: ${artifact.counts.selected_slices_index_slices}`,
+    `- Selected slices index rows: ${artifact.counts.selected_slices_index_rows}`,
     '',
     '## Validation',
     '',
@@ -242,6 +244,8 @@ function buildCommands(options, manifest) {
   commands.validate_lookup_index = `node scripts/validate_workbench_usage_lookup_index.mjs ${options.lookupIndex}`;
   commands.build_selected_slice = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --work-prefix=tanakh/ --slice-id=tanakh-workbench-section --label="Tanakh workbench section" --output=${options.selectedSlice} --report=reports/workbench-usage-slice-tanakh.md --max-samples=30`;
   commands.validate_selected_slice = `node scripts/validate_workbench_usage_slice_index.mjs ${options.selectedSlice}`;
+  commands.build_selected_slice_jeremiah = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --source-ref-prefix=Jeremiah --slice-id=jeremiah-workbench-section --label="Jeremiah workbench section" --output=${path.posix.dirname(options.selectedSlice)}/usage-slice-jeremiah.json --report=reports/workbench-usage-slice-jeremiah.md --max-samples=30`;
+  commands.validate_selected_slice_jeremiah = `node scripts/validate_workbench_usage_slice_index.mjs ${path.posix.dirname(options.selectedSlice)}/usage-slice-jeremiah.json`;
   commands.build_selected_slices_index = `node scripts/build_workbench_usage_selected_slices_index.mjs --slices-dir=${path.posix.dirname(options.selectedSlice)} --output=${options.selectedSlicesIndex} --report=reports/workbench-usage-selected-slices-index.md`;
   commands.validate_selected_slices_index = `node scripts/validate_workbench_usage_selected_slices_index.mjs ${options.selectedSlicesIndex}`;
   commands.build_handoff_index = [
