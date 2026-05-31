@@ -10,13 +10,15 @@ Generated: 2026-05-31T17:34:29.055Z
 - Audit-only rows: ambiguous 2064, blocked 0
 - Route-linked rows: 2390
 - Observed-only rows: 0
+- Usage clusters: 2
 
 ## Validation
 
 - Occurrence links: passed, bad source URLs 0, bad work anchors 0
 - Route links: passed, resolved 2390, unresolved 0, metadata mismatches 0
 - Audit review: rows 2064, reader-facing no
-- Smoke validation: passed, steps 16, failed 0
+- Cluster index: present, rows 2390, clusters 2
+- Smoke validation: passed, steps 17, failed 0
 
 ## Artifacts
 
@@ -28,6 +30,7 @@ Generated: 2026-05-31T17:34:29.055Z
 | occurrence link check | reports/workbench-usage-concordance-link-check.md | yes |
 | route link check | reports/workbench-usage-route-link-check.md | yes |
 | audit-only review | reports/workbench-usage-audit-only-review.md | yes |
+| cluster index | reports/workbench-usage-cluster-index.md | yes |
 | smoke validation | reports/workbench-smoke-pipeline-validation.md | yes |
 
 ## Commands

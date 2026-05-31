@@ -96,6 +96,15 @@ await runStep('validate_usage_concordance', [
   `--manifest=${usageConcordanceManifestJson}`,
 ]);
 
+const usageClusterIndexJson = `${options.scratchDir}/usage-cluster-index.json`;
+await runStep('build_usage_cluster_index', [
+  'scripts/build_workbench_usage_cluster_index.mjs',
+  `--concordance=${usageConcordanceJson}`,
+  `--output=${usageClusterIndexJson}`,
+  `--report=${options.scratchDir}/usage-cluster-index.md`,
+  '--max-samples=6',
+]);
+
 const usageConcordanceLinkCheckJson = `${options.scratchDir}/usage-concordance-link-check.json`;
 await runStep('check_usage_concordance_links', [
   'scripts/check_workbench_usage_concordance_links.mjs',
@@ -128,6 +137,7 @@ await runStep('build_usage_handoff_index', [
   `--occurrence-link-check=${usageConcordanceLinkCheckJson}`,
   `--route-link-check=${usageRouteLinkCheckJson}`,
   `--audit-review=${usageAuditReviewJson}`,
+  `--cluster-index=${usageClusterIndexJson}`,
   '--no-smoke-validation',
   `--output=${usageHandoffIndexJson}`,
   `--report=${options.scratchDir}/usage-navigation-handoff-index.md`,
@@ -155,6 +165,7 @@ const handoffIndex = readJsonIfExists(handoffIndexJson);
 const publicHandoffIndex = readJsonIfExists(publicHandoffIndexJson);
 const usageConcordance = readJsonIfExists(usageConcordanceJson);
 const usageConcordanceManifest = readJsonIfExists(usageConcordanceManifestJson);
+const usageClusterIndex = readJsonIfExists(usageClusterIndexJson);
 const usageConcordanceLinkCheck = readJsonIfExists(usageConcordanceLinkCheckJson);
 const usageRouteLinkCheck = readJsonIfExists(usageRouteLinkCheckJson);
 const usageAuditReview = readJsonIfExists(usageAuditReviewJson);
@@ -219,6 +230,9 @@ const artifact = {
     usage_concordance_manifest_status: usageConcordanceManifest?.artifact_type === 'workbench_usage_navigation_concordance_manifest' ? 'present' : 'missing',
     usage_concordance_manifest_json_tracked: usageConcordanceManifest?.outputs?.concordance_json?.tracked_in_git ?? null,
     usage_concordance_manifest_report_tracked: usageConcordanceManifest?.outputs?.concordance_report?.tracked_in_git ?? null,
+    usage_cluster_index_status: usageClusterIndex?.artifact_type === 'workbench_usage_navigation_cluster_index' ? 'present' : 'missing',
+    usage_cluster_index_clusters: usageClusterIndex?.counts?.clusters ?? null,
+    usage_cluster_index_rows: usageClusterIndex?.counts?.rows ?? null,
     usage_concordance_link_check_status: usageConcordanceLinkCheck?.quality?.status ?? null,
     usage_concordance_link_check_source_url_bad: usageConcordanceLinkCheck?.counts?.source_url_bad ?? null,
     usage_concordance_link_check_work_anchor_bad: usageConcordanceLinkCheck?.counts?.work_anchor_bad ?? null,
@@ -371,6 +385,7 @@ function writeReport(relativePath, artifact) {
     `- Public handoff quality/license: quality ${artifact.counts.public_handoff_quality_status}, license ${artifact.counts.public_handoff_license_status}, blocked license rows ${artifact.counts.public_handoff_license_blocked_row_count}, blocked licenses ${artifact.counts.public_handoff_license_blocked_licenses}`,
     `- Usage concordance: rows ${artifact.counts.usage_concordance_rows}, supported ${artifact.counts.usage_concordance_supported}, candidate ${artifact.counts.usage_concordance_candidate}, weak ${artifact.counts.usage_concordance_weak}, route-linked ${artifact.counts.usage_concordance_route_linked}, observed-only ${artifact.counts.usage_concordance_observed_only}, audit-only ambiguous ${artifact.counts.usage_concordance_audit_only_ambiguous}, ambiguous reader-facing ${artifact.counts.usage_concordance_ambiguous_reader_facing ? 'yes' : 'no'}`,
     `- Usage concordance manifest: ${artifact.counts.usage_concordance_manifest_status}, JSON tracked ${artifact.counts.usage_concordance_manifest_json_tracked ? 'yes' : 'no'}, report tracked ${artifact.counts.usage_concordance_manifest_report_tracked ? 'yes' : 'no'}`,
+    `- Usage cluster index: ${artifact.counts.usage_cluster_index_status}, clusters ${artifact.counts.usage_cluster_index_clusters}, rows ${artifact.counts.usage_cluster_index_rows}`,
     `- Usage concordance link check: ${artifact.counts.usage_concordance_link_check_status}, source URL bad ${artifact.counts.usage_concordance_link_check_source_url_bad}, work anchor bad ${artifact.counts.usage_concordance_link_check_work_anchor_bad}, issues ${artifact.counts.usage_concordance_link_check_issue_count}`,
     `- Usage route link check: ${artifact.counts.usage_route_link_check_status}, links ${artifact.counts.usage_route_link_check_links}, resolved ${artifact.counts.usage_route_link_check_resolved}, unresolved ${artifact.counts.usage_route_link_check_unresolved}, metadata mismatches ${artifact.counts.usage_route_link_check_metadata_mismatches}, unique route IDs ${artifact.counts.usage_route_link_check_unique_route_ids}`,
     `- Usage audit-only review: rows ${artifact.counts.usage_audit_review_rows}, ambiguous ${artifact.counts.usage_audit_review_ambiguous}, blocked ${artifact.counts.usage_audit_review_blocked}, reader-facing ${artifact.counts.usage_audit_review_reader_facing ? 'yes' : 'no'}`,

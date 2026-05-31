@@ -4,7 +4,7 @@ Generated: 2026-05-31T16:14:11.679Z
 
 ## Summary
 
-- Steps: 16
+- Steps: 17
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -17,6 +17,7 @@ Generated: 2026-05-31T16:14:11.679Z
 - Public handoff quality/license: quality pass_with_warnings, license passed, blocked license rows 0, blocked licenses 0
 - Usage concordance: rows 2390, supported 339, candidate 1351, weak 700, route-linked 2390, observed-only 0, audit-only ambiguous 2064, ambiguous reader-facing no
 - Usage concordance manifest: present, JSON tracked no, report tracked yes
+- Usage cluster index: present, clusters 2, rows 2390
 - Usage concordance link check: passed, source URL bad 0, work anchor bad 0, issues 0
 - Usage route link check: passed, links 2390, resolved 2390, unresolved 0, metadata mismatches 0, unique route IDs 1
 - Usage audit-only review: rows 2064, ambiguous 2064, blocked 0, reader-facing no
@@ -39,6 +40,7 @@ Generated: 2026-05-31T16:14:11.679Z
 | validate_public_handoff_index | passed | Workbench public handoff index validation passed. Manifests: 55. Eligible rows: 2390. Ambiguous count-only rows: 2064. Quality: pass_with_warnings. Top frame: reshit-opening-time-order (1271 eligible). |
 | build_usage_concordance | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance.md / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-manifest.json / Usage concordance rows 2390; supported 339; candidate 1351; weak 700; audit-only ambiguous 2064 |
 | validate_usage_concordance | passed | Workbench usage concordance validation passed. Rows: 2390. Supported: 339. Candidate: 1351. Weak: 700. Audit-only ambiguous: 2064. |
+| build_usage_cluster_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-cluster-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-cluster-index.md / Usage cluster index clusters 2; rows 2390 |
 | check_usage_concordance_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.md / Usage concordance link check passed; rows 2390; source URL bad 0; work anchors bad 0 |
 | check_usage_route_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.md / Usage route link check passed; rows 2390; links 2390; unresolved 0; metadata mismatches 0 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |

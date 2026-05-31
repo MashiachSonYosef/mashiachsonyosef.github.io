@@ -8,6 +8,7 @@ const defaults = {
   occurrenceLinkCheck: '.local-cache/workbench-evidence/usage-concordance-link-check.json',
   routeLinkCheck: '.local-cache/workbench-evidence/usage-route-link-check.json',
   auditReview: '.local-cache/workbench-evidence/usage-audit-only-review.json',
+  clusterIndex: '.local-cache/workbench-evidence/usage-cluster-index.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   skipSmokeValidation: false,
   output: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -19,6 +20,7 @@ const manifest = readJson(options.manifest);
 const occurrenceLinkCheck = readJsonIfExists(options.occurrenceLinkCheck);
 const routeLinkCheck = readJsonIfExists(options.routeLinkCheck);
 const auditReview = readJsonIfExists(options.auditReview);
+const clusterIndex = readJsonIfExists(options.clusterIndex);
 const smokeValidation = options.smokeValidation ? readJsonIfExists(options.smokeValidation) : null;
 
 if (manifest.artifact_type !== 'workbench_usage_navigation_concordance_manifest') {
@@ -36,6 +38,7 @@ const artifact = {
     occurrence_link_check: options.occurrenceLinkCheck,
     route_link_check: options.routeLinkCheck,
     audit_review: options.auditReview,
+    cluster_index: options.clusterIndex,
     smoke_validation: options.smokeValidation || null,
     smoke_validation_mode: options.skipSmokeValidation ? 'skipped_self_reference' : 'external_artifact',
   },
@@ -47,6 +50,7 @@ const artifact = {
     occurrence_link_check_report: 'reports/workbench-usage-concordance-link-check.md',
     route_link_check_report: 'reports/workbench-usage-route-link-check.md',
     audit_only_review_report: 'reports/workbench-usage-audit-only-review.md',
+    cluster_index_report: 'reports/workbench-usage-cluster-index.md',
     smoke_validation_report: 'reports/workbench-smoke-pipeline-validation.md',
   },
   commands: manifest.commands,
@@ -60,6 +64,7 @@ const artifact = {
     audit_only_blocked: manifest.counts?.audit_only_counts?.blocked ?? null,
     route_linked_rows: manifest.counts?.route_link_state_counts?.route_linked_observed_usage ?? null,
     observed_only_rows: manifest.counts?.route_link_state_counts?.observed_usage_only ?? null,
+    usage_clusters: clusterIndex?.counts?.clusters ?? null,
   },
   validation: {
     occurrence_link_check_status: occurrenceLinkCheck?.quality?.status ?? 'not_run',
@@ -71,6 +76,8 @@ const artifact = {
     route_metadata_mismatches: routeLinkCheck?.counts?.route_metadata_mismatch ?? null,
     audit_review_rows: auditReview?.counts?.rows ?? null,
     audit_review_reader_facing: auditReview?.reader_facing_policy?.reader_facing ?? null,
+    cluster_index_status: clusterIndex?.artifact_type === 'workbench_usage_navigation_cluster_index' ? 'present' : 'not_run',
+    cluster_index_rows: clusterIndex?.counts?.rows ?? null,
     smoke_validation_status: options.skipSmokeValidation
       ? 'skipped_self_reference'
       : smokeValidation ? (smokeValidation.counts?.failed_steps === 0 ? 'passed' : 'failed') : 'not_run',
@@ -106,12 +113,14 @@ function writeReport(relativePath, artifact) {
     `- Audit-only rows: ambiguous ${artifact.counts.audit_only_ambiguous}, blocked ${artifact.counts.audit_only_blocked}`,
     `- Route-linked rows: ${artifact.counts.route_linked_rows}`,
     `- Observed-only rows: ${artifact.counts.observed_only_rows}`,
+    `- Usage clusters: ${artifact.counts.usage_clusters}`,
     '',
     '## Validation',
     '',
     `- Occurrence links: ${artifact.validation.occurrence_link_check_status}, bad source URLs ${artifact.validation.occurrence_source_url_bad}, bad work anchors ${artifact.validation.occurrence_work_anchor_bad}`,
     `- Route links: ${artifact.validation.route_link_check_status}, resolved ${artifact.validation.route_links_resolved}, unresolved ${artifact.validation.route_links_unresolved}, metadata mismatches ${artifact.validation.route_metadata_mismatches}`,
     `- Audit review: rows ${artifact.validation.audit_review_rows}, reader-facing ${artifact.validation.audit_review_reader_facing ? 'yes' : 'no'}`,
+    `- Cluster index: ${artifact.validation.cluster_index_status}, rows ${artifact.validation.cluster_index_rows}, clusters ${artifact.counts.usage_clusters}`,
     `- Smoke validation: ${artifact.validation.smoke_validation_status}, steps ${artifact.validation.smoke_steps}, failed ${artifact.validation.smoke_failed_steps}`,
     '',
     '## Artifacts',
@@ -124,6 +133,7 @@ function writeReport(relativePath, artifact) {
     `| occurrence link check | ${mdCell(artifact.artifacts.occurrence_link_check_report)} | yes |`,
     `| route link check | ${mdCell(artifact.artifacts.route_link_check_report)} | yes |`,
     `| audit-only review | ${mdCell(artifact.artifacts.audit_only_review_report)} | yes |`,
+    `| cluster index | ${mdCell(artifact.artifacts.cluster_index_report)} | yes |`,
     `| smoke validation | ${mdCell(artifact.artifacts.smoke_validation_report)} | yes |`,
     '',
     '## Commands',
@@ -146,6 +156,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--occurrence-link-check=')) parsed.occurrenceLinkCheck = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--route-link-check=')) parsed.routeLinkCheck = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--audit-review=')) parsed.auditReview = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--cluster-index=')) parsed.clusterIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg === '--no-smoke-validation') {
       parsed.smokeValidation = null;
