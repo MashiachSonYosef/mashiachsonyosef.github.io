@@ -14,6 +14,7 @@ const defaults = {
   lookupIndex: '.local-cache/workbench-evidence/usage-lookup-index.json',
   selectedSlice: '.local-cache/workbench-evidence/usage-slice-tanakh.json',
   selectedSlicesIndex: '.local-cache/workbench-evidence/usage-selected-slices-index.json',
+  selectedOccurrences: '.local-cache/workbench-evidence/usage-selected-occurrences.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   skipSmokeValidation: false,
   output: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -31,6 +32,7 @@ const sampleIndex = readJsonIfExists(options.sampleIndex);
 const lookupIndex = readJsonIfExists(options.lookupIndex);
 const selectedSlice = readJsonIfExists(options.selectedSlice);
 const selectedSlicesIndex = readJsonIfExists(options.selectedSlicesIndex);
+const selectedOccurrences = readJsonIfExists(options.selectedOccurrences);
 const smokeValidation = options.smokeValidation ? readJsonIfExists(options.smokeValidation) : null;
 
 if (manifest.artifact_type !== 'workbench_usage_navigation_concordance_manifest') {
@@ -54,6 +56,7 @@ const artifact = {
     lookup_index: options.lookupIndex,
     selected_slice: options.selectedSlice,
     selected_slices_index: options.selectedSlicesIndex,
+    selected_occurrences: options.selectedOccurrences,
     smoke_validation: options.smokeValidation || null,
     smoke_validation_mode: options.skipSmokeValidation ? 'skipped_self_reference' : 'external_artifact',
   },
@@ -71,6 +74,7 @@ const artifact = {
     lookup_index_report: 'reports/workbench-usage-lookup-index.md',
     selected_slice_report: 'reports/workbench-usage-slice-tanakh.md',
     selected_slices_index_report: 'reports/workbench-usage-selected-slices-index.md',
+    selected_occurrences_report: 'reports/workbench-usage-selected-occurrences.md',
     smoke_validation_report: 'reports/workbench-smoke-pipeline-validation.md',
   },
   commands: buildCommands(options, manifest),
@@ -95,6 +99,9 @@ const artifact = {
     selected_slices_index_rows: selectedSlicesIndex?.counts?.rows ?? null,
     selected_slices_index_unique_occurrences: selectedSlicesIndex?.deduped_counts?.occurrence_refs ?? null,
     selected_slices_index_duplicate_rows: selectedSlicesIndex?.deduped_counts?.duplicate_slice_rows ?? null,
+    selected_occurrence_rows: selectedOccurrences?.counts?.occurrence_refs ?? null,
+    selected_occurrence_memberships: selectedOccurrences?.counts?.slice_memberships ?? null,
+    selected_occurrence_duplicate_memberships: selectedOccurrences?.counts?.duplicate_slice_memberships ?? null,
   },
   validation: {
     occurrence_link_check_status: occurrenceLinkCheck?.quality?.status ?? 'not_run',
@@ -120,6 +127,8 @@ const artifact = {
     selected_slices_index_status: selectedSlicesIndex?.artifact_type === 'workbench_usage_navigation_selected_slices_index' ? 'present' : 'not_run',
     selected_slices_index_slices: selectedSlicesIndex?.counts?.slices ?? null,
     selected_slices_index_unique_occurrences: selectedSlicesIndex?.deduped_counts?.occurrence_refs ?? null,
+    selected_occurrences_status: selectedOccurrences?.artifact_type === 'workbench_usage_navigation_selected_occurrences' ? 'present' : 'not_run',
+    selected_occurrence_rows: selectedOccurrences?.counts?.occurrence_refs ?? null,
     smoke_validation_status: options.skipSmokeValidation
       ? 'skipped_self_reference'
       : smokeValidation ? (smokeValidation.counts?.failed_steps === 0 ? 'passed' : 'failed') : 'not_run',
@@ -166,6 +175,9 @@ function writeReport(relativePath, artifact) {
     `- Selected slices index rows: ${artifact.counts.selected_slices_index_rows}`,
     `- Selected slices unique occurrences: ${artifact.counts.selected_slices_index_unique_occurrences}`,
     `- Selected slices duplicate rows: ${artifact.counts.selected_slices_index_duplicate_rows}`,
+    `- Selected occurrence rows: ${artifact.counts.selected_occurrence_rows}`,
+    `- Selected occurrence memberships: ${artifact.counts.selected_occurrence_memberships}`,
+    `- Selected occurrence duplicate memberships: ${artifact.counts.selected_occurrence_duplicate_memberships}`,
     '',
     '## Validation',
     '',
@@ -178,6 +190,7 @@ function writeReport(relativePath, artifact) {
     `- Lookup index: ${artifact.validation.lookup_index_status}, occurrence refs ${artifact.validation.lookup_index_occurrence_refs}`,
     `- Selected slice: ${artifact.validation.selected_slice_status}, id ${artifact.validation.selected_slice_id}, rows ${artifact.validation.selected_slice_rows}`,
     `- Selected slices index: ${artifact.validation.selected_slices_index_status}, slices ${artifact.validation.selected_slices_index_slices}, unique occurrences ${artifact.validation.selected_slices_index_unique_occurrences}`,
+    `- Selected occurrences: ${artifact.validation.selected_occurrences_status}, rows ${artifact.validation.selected_occurrence_rows}`,
     `- Smoke validation: ${artifact.validation.smoke_validation_status}, steps ${artifact.validation.smoke_steps}, failed ${artifact.validation.smoke_failed_steps}`,
     '',
     '## Artifacts',
@@ -196,6 +209,7 @@ function writeReport(relativePath, artifact) {
     `| lookup index | ${mdCell(artifact.artifacts.lookup_index_report)} | yes |`,
     `| selected slice | ${mdCell(artifact.artifacts.selected_slice_report)} | yes |`,
     `| selected slices index | ${mdCell(artifact.artifacts.selected_slices_index_report)} | yes |`,
+    `| selected occurrences | ${mdCell(artifact.artifacts.selected_occurrences_report)} | yes |`,
     `| smoke validation | ${mdCell(artifact.artifacts.smoke_validation_report)} | yes |`,
     '',
     '## Commands',
@@ -224,6 +238,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--lookup-index=')) parsed.lookupIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slice=')) parsed.selectedSlice = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slices-index=')) parsed.selectedSlicesIndex = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-occurrences=')) parsed.selectedOccurrences = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg === '--no-smoke-validation') {
       parsed.smokeValidation = null;
@@ -253,6 +268,8 @@ function buildCommands(options, manifest) {
   commands.validate_selected_slice_jeremiah = `node scripts/validate_workbench_usage_slice_index.mjs ${path.posix.dirname(options.selectedSlice)}/usage-slice-jeremiah.json`;
   commands.build_selected_slices_index = `node scripts/build_workbench_usage_selected_slices_index.mjs --slices-dir=${path.posix.dirname(options.selectedSlice)} --output=${options.selectedSlicesIndex} --report=reports/workbench-usage-selected-slices-index.md`;
   commands.validate_selected_slices_index = `node scripts/validate_workbench_usage_selected_slices_index.mjs ${options.selectedSlicesIndex}`;
+  commands.build_selected_occurrences = `node scripts/build_workbench_usage_selected_occurrences.mjs --selected-slices-index=${options.selectedSlicesIndex} --output=${options.selectedOccurrences} --report=reports/workbench-usage-selected-occurrences.md`;
+  commands.validate_selected_occurrences = `node scripts/validate_workbench_usage_selected_occurrences.mjs ${options.selectedOccurrences}`;
   commands.build_handoff_index = [
     'node scripts/build_workbench_usage_handoff_index.mjs',
     `--manifest=${options.manifest}`,
@@ -265,6 +282,7 @@ function buildCommands(options, manifest) {
     `--lookup-index=${options.lookupIndex}`,
     `--selected-slice=${options.selectedSlice}`,
     `--selected-slices-index=${options.selectedSlicesIndex}`,
+    `--selected-occurrences=${options.selectedOccurrences}`,
     options.smokeValidation ? `--smoke-validation=${options.smokeValidation}` : '--no-smoke-validation',
     `--output=${options.output}`,
     `--report=${options.report}`,

@@ -199,6 +199,19 @@ await runStep('validate_usage_selected_slices_index', [
   usageSelectedSlicesIndexJson,
 ]);
 
+const usageSelectedOccurrencesJson = `${options.scratchDir}/usage-selected-occurrences.json`;
+await runStep('build_usage_selected_occurrences', [
+  'scripts/build_workbench_usage_selected_occurrences.mjs',
+  `--selected-slices-index=${usageSelectedSlicesIndexJson}`,
+  `--output=${usageSelectedOccurrencesJson}`,
+  `--report=${options.scratchDir}/usage-selected-occurrences.md`,
+]);
+
+await runStep('validate_usage_selected_occurrences', [
+  'scripts/validate_workbench_usage_selected_occurrences.mjs',
+  usageSelectedOccurrencesJson,
+]);
+
 const usageConcordanceLinkCheckJson = `${options.scratchDir}/usage-concordance-link-check.json`;
 await runStep('check_usage_concordance_links', [
   'scripts/check_workbench_usage_concordance_links.mjs',
@@ -237,6 +250,7 @@ await runStep('build_usage_handoff_index', [
   `--lookup-index=${usageLookupIndexJson}`,
   `--selected-slice=${usageSelectedSliceJson}`,
   `--selected-slices-index=${usageSelectedSlicesIndexJson}`,
+  `--selected-occurrences=${usageSelectedOccurrencesJson}`,
   '--no-smoke-validation',
   `--output=${usageHandoffIndexJson}`,
   `--report=${options.scratchDir}/usage-navigation-handoff-index.md`,
@@ -275,6 +289,7 @@ const usageSampleIndex = readJsonIfExists(usageSampleIndexJson);
 const usageLookupIndex = readJsonIfExists(usageLookupIndexJson);
 const usageSelectedSlice = readJsonIfExists(usageSelectedSliceJson);
 const usageSelectedSlicesIndex = readJsonIfExists(usageSelectedSlicesIndexJson);
+const usageSelectedOccurrences = readJsonIfExists(usageSelectedOccurrencesJson);
 const usageConcordanceLinkCheck = readJsonIfExists(usageConcordanceLinkCheckJson);
 const usageRouteLinkCheck = readJsonIfExists(usageRouteLinkCheckJson);
 const usageAuditReview = readJsonIfExists(usageAuditReviewJson);
@@ -360,6 +375,10 @@ const artifact = {
     usage_selected_slices_index_rows: usageSelectedSlicesIndex?.counts?.rows ?? null,
     usage_selected_slices_index_unique_occurrences: usageSelectedSlicesIndex?.deduped_counts?.occurrence_refs ?? null,
     usage_selected_slices_index_duplicate_rows: usageSelectedSlicesIndex?.deduped_counts?.duplicate_slice_rows ?? null,
+    usage_selected_occurrences_status: usageSelectedOccurrences?.artifact_type === 'workbench_usage_navigation_selected_occurrences' ? 'present' : 'missing',
+    usage_selected_occurrence_rows: usageSelectedOccurrences?.counts?.occurrence_refs ?? null,
+    usage_selected_occurrence_memberships: usageSelectedOccurrences?.counts?.slice_memberships ?? null,
+    usage_selected_occurrence_duplicate_memberships: usageSelectedOccurrences?.counts?.duplicate_slice_memberships ?? null,
     usage_concordance_link_check_status: usageConcordanceLinkCheck?.quality?.status ?? null,
     usage_concordance_link_check_source_url_bad: usageConcordanceLinkCheck?.counts?.source_url_bad ?? null,
     usage_concordance_link_check_work_anchor_bad: usageConcordanceLinkCheck?.counts?.work_anchor_bad ?? null,
@@ -518,6 +537,7 @@ function writeReport(relativePath, artifact) {
     `- Usage lookup index: ${artifact.counts.usage_lookup_index_status}, occurrence refs ${artifact.counts.usage_lookup_index_occurrence_refs}, works ${artifact.counts.usage_lookup_index_works}`,
     `- Usage selected slice: ${artifact.counts.usage_selected_slice_status}, id ${artifact.counts.usage_selected_slice_id}, rows ${artifact.counts.usage_selected_slice_rows}, works ${artifact.counts.usage_selected_slice_works}`,
     `- Usage selected slices index: ${artifact.counts.usage_selected_slices_index_status}, slices ${artifact.counts.usage_selected_slices_index_slices}, rows ${artifact.counts.usage_selected_slices_index_rows}, unique occurrences ${artifact.counts.usage_selected_slices_index_unique_occurrences}, duplicate rows ${artifact.counts.usage_selected_slices_index_duplicate_rows}`,
+    `- Usage selected occurrences: ${artifact.counts.usage_selected_occurrences_status}, rows ${artifact.counts.usage_selected_occurrence_rows}, memberships ${artifact.counts.usage_selected_occurrence_memberships}, duplicate memberships ${artifact.counts.usage_selected_occurrence_duplicate_memberships}`,
     `- Usage concordance link check: ${artifact.counts.usage_concordance_link_check_status}, source URL bad ${artifact.counts.usage_concordance_link_check_source_url_bad}, work anchor bad ${artifact.counts.usage_concordance_link_check_work_anchor_bad}, issues ${artifact.counts.usage_concordance_link_check_issue_count}`,
     `- Usage route link check: ${artifact.counts.usage_route_link_check_status}, links ${artifact.counts.usage_route_link_check_links}, resolved ${artifact.counts.usage_route_link_check_resolved}, unresolved ${artifact.counts.usage_route_link_check_unresolved}, metadata mismatches ${artifact.counts.usage_route_link_check_metadata_mismatches}, unique route IDs ${artifact.counts.usage_route_link_check_unique_route_ids}`,
     `- Usage audit-only review: rows ${artifact.counts.usage_audit_review_rows}, ambiguous ${artifact.counts.usage_audit_review_ambiguous}, blocked ${artifact.counts.usage_audit_review_blocked}, reader-facing ${artifact.counts.usage_audit_review_reader_facing ? 'yes' : 'no'}`,
