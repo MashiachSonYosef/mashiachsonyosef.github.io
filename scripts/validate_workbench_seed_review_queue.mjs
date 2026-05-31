@@ -64,6 +64,14 @@ function validateTarget(target, context) {
     if (!Number.isInteger(cue.count) || cue.count < 0) issues.push(`${cueContext}: invalid count`);
     if (!Number.isInteger(cue.near_focus_count) || cue.near_focus_count < 0) issues.push(`${cueContext}: invalid near_focus_count`);
   }
+  for (const [routeIndex, route] of (target.sample_route_links || []).entries()) {
+    const routeContext = `${context}.sample_route_links[${routeIndex}]`;
+    if (!route.route_id) issues.push(`${routeContext}: missing route_id`);
+    if (!route.route_source) issues.push(`${routeContext}: missing route_source`);
+    if (route.normalized && !/^[\u0590-\u05FF-]+$/u.test(String(route.normalized))) {
+      issues.push(`${routeContext}: normalized must be Hebrew text when present`);
+    }
+  }
   for (const [licenseIndex, row] of (target.source_licenses || []).entries()) {
     if (forbiddenLicenseRe.test(String(row.value || ''))) {
       issues.push(`${context}.source_licenses[${licenseIndex}]: unsafe or unclear license ${row.value}`);

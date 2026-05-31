@@ -10,6 +10,7 @@ const defaults = {
   maxTargets: 24,
   maxCuesPerTarget: 10,
   maxSampleRefs: 8,
+  maxRouteLinksPerTarget: 12,
   minRouteLinks: 1,
   minNearFocusCueCount: 25,
   minCueLength: 3,
@@ -40,6 +41,7 @@ const artifact = {
     max_targets: options.maxTargets,
     max_cues_per_target: options.maxCuesPerTarget,
     max_sample_refs: options.maxSampleRefs,
+    max_route_links_per_target: options.maxRouteLinksPerTarget,
     min_route_links: options.minRouteLinks,
     min_near_focus_cue_count: options.minNearFocusCueCount,
     min_cue_length: options.minCueLength,
@@ -69,19 +71,21 @@ function parseArgs(args) {
     else if (arg.startsWith('--max-targets=')) parsed.maxTargets = Number(valueAfterEquals(arg));
     else if (arg.startsWith('--max-cues-per-target=')) parsed.maxCuesPerTarget = Number(valueAfterEquals(arg));
     else if (arg.startsWith('--max-sample-refs=')) parsed.maxSampleRefs = Number(valueAfterEquals(arg));
+    else if (arg.startsWith('--max-route-links-per-target=')) parsed.maxRouteLinksPerTarget = Number(valueAfterEquals(arg));
     else if (arg.startsWith('--min-route-links=')) parsed.minRouteLinks = Number(valueAfterEquals(arg));
     else if (arg.startsWith('--min-near-focus-cue-count=')) parsed.minNearFocusCueCount = Number(valueAfterEquals(arg));
     else if (arg.startsWith('--min-cue-length=')) parsed.minCueLength = Number(valueAfterEquals(arg));
     else if (arg === '--include-abbreviation-cues') parsed.excludeAbbreviationCues = false;
     else throw new Error(`Unknown argument: ${arg}`);
   }
-  for (const key of ['maxTargets', 'maxCuesPerTarget', 'maxSampleRefs', 'minRouteLinks', 'minNearFocusCueCount', 'minCueLength']) {
+  for (const key of ['maxTargets', 'maxCuesPerTarget', 'maxSampleRefs', 'maxRouteLinksPerTarget', 'minRouteLinks', 'minNearFocusCueCount', 'minCueLength']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 0) {
       throw new Error(`--${key.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)} must be a non-negative integer`);
     }
   }
   if (parsed.maxTargets < 1) throw new Error('--max-targets must be at least 1');
   if (parsed.maxCuesPerTarget < 1) throw new Error('--max-cues-per-target must be at least 1');
+  if (parsed.maxRouteLinksPerTarget < 1) throw new Error('--max-route-links-per-target must be at least 1');
   return parsed;
 }
 
@@ -102,6 +106,7 @@ function makeTarget(gap) {
 
   const rowsScanned = Number(gap.rows_scanned || 0);
   const routeLinks = Number(gap.route_links_available || 0);
+  const sampledRouteLinks = loadCandidateRouteLinks(gap.path).slice(0, options.maxRouteLinksPerTarget);
   const nearFocusTotal = selectedCues.reduce((sum, cue) => sum + cue.near_focus_count, 0);
   const cueDiversity = selectedCues.length;
   const priorityScore = Math.round(
@@ -123,6 +128,7 @@ function makeTarget(gap) {
     route_links_available: routeLinks,
     route_families: (gap.route_families || []).slice(0, 12),
     route_types: (gap.route_types || []).slice(0, 12),
+    sample_route_links: sampledRouteLinks,
     source_licenses: (gap.source_licenses || []).slice(0, 12),
     source_families: (gap.source_families || []).slice(0, 12),
     selected_context_cues: selectedCues,
@@ -143,6 +149,23 @@ function isUsableCue(cue, focusNormalized) {
     && value !== focusNormalized
     && (!options.excludeAbbreviationCues || !/[\u05F3\u05F4]/u.test(value))
     && Number(cue.near_focus_count || 0) >= options.minNearFocusCueCount;
+}
+
+function loadCandidateRouteLinks(relativePath) {
+  const candidate = readJson(relativePath);
+  return (Array.isArray(candidate.route_links_available) ? candidate.route_links_available : [])
+    .map((route) => ({
+      route_id: route.route_id || '',
+      route_source: route.route_source || '',
+      route_family: route.route_family || '',
+      route_type: route.route_type || '',
+      display_section: route.display_section || '',
+      normalized: route.normalized || '',
+      surface: route.surface || '',
+      answer_score: Number.isFinite(route.answer_score) ? route.answer_score : null,
+      raw_score: Number.isFinite(route.raw_score) ? route.raw_score : null,
+      source_row_count: Number(route.source_row_count || 0),
+    }));
 }
 
 function readJson(relativePath) {
@@ -184,6 +207,7 @@ function writeReport(relativePath, data) {
     lines.push(`- Priority score: ${target.priority_score}`);
     lines.push(`- Rows scanned: ${target.rows_scanned}`);
     lines.push(`- Route links: ${target.route_links_available}`);
+    lines.push(`- Sample route IDs: ${target.sample_route_links.map((route) => `\`${route.route_id}\``).join(', ') || 'none'}`);
     lines.push('');
     lines.push('| cue | count | near focus | top surfaces |');
     lines.push('|---|---:|---:|---|');
