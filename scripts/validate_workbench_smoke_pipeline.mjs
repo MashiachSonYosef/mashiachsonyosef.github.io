@@ -169,6 +169,19 @@ await runStep('validate_usage_selected_slice', [
   usageSelectedSliceJson,
 ]);
 
+const usageSelectedSlicesIndexJson = `${options.scratchDir}/usage-selected-slices-index.json`;
+await runStep('build_usage_selected_slices_index', [
+  'scripts/build_workbench_usage_selected_slices_index.mjs',
+  `--slices-dir=${options.scratchDir}`,
+  `--output=${usageSelectedSlicesIndexJson}`,
+  `--report=${options.scratchDir}/usage-selected-slices-index.md`,
+]);
+
+await runStep('validate_usage_selected_slices_index', [
+  'scripts/validate_workbench_usage_selected_slices_index.mjs',
+  usageSelectedSlicesIndexJson,
+]);
+
 const usageConcordanceLinkCheckJson = `${options.scratchDir}/usage-concordance-link-check.json`;
 await runStep('check_usage_concordance_links', [
   'scripts/check_workbench_usage_concordance_links.mjs',
@@ -206,6 +219,7 @@ await runStep('build_usage_handoff_index', [
   `--sample-index=${usageSampleIndexJson}`,
   `--lookup-index=${usageLookupIndexJson}`,
   `--selected-slice=${usageSelectedSliceJson}`,
+  `--selected-slices-index=${usageSelectedSlicesIndexJson}`,
   '--no-smoke-validation',
   `--output=${usageHandoffIndexJson}`,
   `--report=${options.scratchDir}/usage-navigation-handoff-index.md`,
@@ -243,6 +257,7 @@ const usageRouteCoverage = readJsonIfExists(usageRouteCoverageJson);
 const usageSampleIndex = readJsonIfExists(usageSampleIndexJson);
 const usageLookupIndex = readJsonIfExists(usageLookupIndexJson);
 const usageSelectedSlice = readJsonIfExists(usageSelectedSliceJson);
+const usageSelectedSlicesIndex = readJsonIfExists(usageSelectedSlicesIndexJson);
 const usageConcordanceLinkCheck = readJsonIfExists(usageConcordanceLinkCheckJson);
 const usageRouteLinkCheck = readJsonIfExists(usageRouteLinkCheckJson);
 const usageAuditReview = readJsonIfExists(usageAuditReviewJson);
@@ -323,6 +338,9 @@ const artifact = {
     usage_selected_slice_id: usageSelectedSlice?.filter?.slice_id ?? null,
     usage_selected_slice_rows: usageSelectedSlice?.counts?.slice_rows ?? null,
     usage_selected_slice_works: usageSelectedSlice?.counts?.works ?? null,
+    usage_selected_slices_index_status: usageSelectedSlicesIndex?.artifact_type === 'workbench_usage_navigation_selected_slices_index' ? 'present' : 'missing',
+    usage_selected_slices_index_slices: usageSelectedSlicesIndex?.counts?.slices ?? null,
+    usage_selected_slices_index_rows: usageSelectedSlicesIndex?.counts?.rows ?? null,
     usage_concordance_link_check_status: usageConcordanceLinkCheck?.quality?.status ?? null,
     usage_concordance_link_check_source_url_bad: usageConcordanceLinkCheck?.counts?.source_url_bad ?? null,
     usage_concordance_link_check_work_anchor_bad: usageConcordanceLinkCheck?.counts?.work_anchor_bad ?? null,
@@ -480,6 +498,7 @@ function writeReport(relativePath, artifact) {
     `- Usage sample index: ${artifact.counts.usage_sample_index_status}, samples ${artifact.counts.usage_sample_index_samples}, clusters ${artifact.counts.usage_sample_index_clusters}`,
     `- Usage lookup index: ${artifact.counts.usage_lookup_index_status}, occurrence refs ${artifact.counts.usage_lookup_index_occurrence_refs}, works ${artifact.counts.usage_lookup_index_works}`,
     `- Usage selected slice: ${artifact.counts.usage_selected_slice_status}, id ${artifact.counts.usage_selected_slice_id}, rows ${artifact.counts.usage_selected_slice_rows}, works ${artifact.counts.usage_selected_slice_works}`,
+    `- Usage selected slices index: ${artifact.counts.usage_selected_slices_index_status}, slices ${artifact.counts.usage_selected_slices_index_slices}, rows ${artifact.counts.usage_selected_slices_index_rows}`,
     `- Usage concordance link check: ${artifact.counts.usage_concordance_link_check_status}, source URL bad ${artifact.counts.usage_concordance_link_check_source_url_bad}, work anchor bad ${artifact.counts.usage_concordance_link_check_work_anchor_bad}, issues ${artifact.counts.usage_concordance_link_check_issue_count}`,
     `- Usage route link check: ${artifact.counts.usage_route_link_check_status}, links ${artifact.counts.usage_route_link_check_links}, resolved ${artifact.counts.usage_route_link_check_resolved}, unresolved ${artifact.counts.usage_route_link_check_unresolved}, metadata mismatches ${artifact.counts.usage_route_link_check_metadata_mismatches}, unique route IDs ${artifact.counts.usage_route_link_check_unique_route_ids}`,
     `- Usage audit-only review: rows ${artifact.counts.usage_audit_review_rows}, ambiguous ${artifact.counts.usage_audit_review_ambiguous}, blocked ${artifact.counts.usage_audit_review_blocked}, reader-facing ${artifact.counts.usage_audit_review_reader_facing ? 'yes' : 'no'}`,
