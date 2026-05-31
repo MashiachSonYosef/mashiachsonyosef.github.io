@@ -4,6 +4,18 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 
 const root = process.cwd();
+const forbiddenPayloadFieldNames = new Set([
+  'definition',
+  'definition_text',
+  'meaning',
+  'meaning_claim',
+  'translation',
+  'translation_text',
+  'english',
+  'english_text',
+  'english_translation',
+  'imported_translation',
+]);
 const defaults = {
   targetQueue: '.local-cache/workbench-evidence/smoke-target-queue.json',
   handoffRoot: '.local-cache/workbench-evidence/handoff',
@@ -167,6 +179,10 @@ function inspectManifest(target, index) {
   const routeLinkCounts = makeRouteLinkAccumulator();
   const scoreCounts = makeScoreAccumulator();
 
+  for (const row of occurrenceRows) {
+    validateOccurrenceRow(row, issues);
+  }
+
   for (const row of candidateRows) {
     validateCandidateRow(row, occurrenceIds, issues);
     const status = statusCounts[row.candidate_status] === undefined ? 'ambiguous' : row.candidate_status;
@@ -235,6 +251,20 @@ function makeManifestRow(target, index, slug, manifestPath, manifest, validation
   };
 }
 
+function validateOccurrenceRow(row, issues) {
+  for (const field of ['occurrence_id', 'token_key', 'focus_normalized', 'phrase_window', 'source_ref', 'work_id', 'license', 'license_url', 'source_rows']) {
+    if (row?.[field] === undefined || row?.[field] === null || row?.[field] === '') issues.push(`occurrence row missing ${field}`);
+  }
+  if (/[A-Za-z]{4,}/.test(String(row?.phrase_window?.phrase_hebrew || ''))) {
+    issues.push(`occurrence ${row?.occurrence_id || 'unknown'} has non-Hebrew phrase_window.phrase_hebrew`);
+  }
+  if (!Array.isArray(row?.phrase_window?.phrase_tokens) || !row.phrase_window.phrase_tokens.some((token) => token.role === 'focus-token')) {
+    issues.push(`occurrence ${row?.occurrence_id || 'unknown'} missing focus-token`);
+  }
+  validatePayloadNoForbiddenFields(row, `occurrence ${row?.occurrence_id || 'unknown'}`, issues);
+  validateSourceRows(row?.source_rows, `occurrence ${row?.occurrence_id || 'unknown'}`, issues);
+}
+
 function validateCandidateRow(row, occurrenceIds, issues) {
   for (const field of ['candidate_id', 'occurrence_id', 'token_key', 'route_type', 'candidate_status', 'raw_score', 'source_ref', 'work_id', 'license', 'license_url']) {
     if (row?.[field] === undefined || row?.[field] === null || row?.[field] === '') issues.push(`candidate row missing ${field}`);
@@ -247,6 +277,38 @@ function validateCandidateRow(row, occurrenceIds, issues) {
   if (/[A-Za-z]{4,}/.test(String(row.phrase_hebrew || ''))) issues.push(`candidate ${row.candidate_id || 'unknown'} has non-Hebrew phrase_hebrew`);
   if (!Array.isArray(row.phrase_tokens) || !row.phrase_tokens.some((token) => token.role === 'focus-token')) issues.push(`candidate ${row.candidate_id || 'unknown'} missing focus-token`);
   if (row.route_links !== undefined && !Array.isArray(row.route_links)) issues.push(`candidate ${row.candidate_id || 'unknown'} route_links must be an array when present`);
+  validatePayloadNoForbiddenFields(row, `candidate ${row.candidate_id || 'unknown'}`, issues);
+  validateSourceRows(row.source_rows, `candidate ${row.candidate_id || 'unknown'}`, issues);
+}
+
+function validatePayloadNoForbiddenFields(value, context, issues, pathParts = []) {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => validatePayloadNoForbiddenFields(item, context, issues, [...pathParts, String(index)]));
+    return;
+  }
+  if (!value || typeof value !== 'object') return;
+  for (const [key, item] of Object.entries(value)) {
+    const itemPath = [...pathParts, key].join('.');
+    if (forbiddenPayloadFieldNames.has(key)) issues.push(`${context}.${itemPath}: forbidden translation/definition field ${key}`);
+    validatePayloadNoForbiddenFields(item, context, issues, [...pathParts, key]);
+  }
+}
+
+function validateSourceRows(sourceRows, context, issues) {
+  if (!Array.isArray(sourceRows) || sourceRows.length === 0) {
+    issues.push(`${context}: source_rows must be a non-empty array`);
+    return;
+  }
+  for (const [index, row] of sourceRows.entries()) {
+    const rowContext = `${context}.source_rows[${index}]`;
+    if (row?.source_family !== 'hebrew_source_text') issues.push(`${rowContext}: source_family must be hebrew_source_text`);
+    const classification = classifyLicense(row?.license);
+    if (classification.status !== 'allowed') issues.push(`${rowContext}: blocked license ${row?.license || 'missing'}`);
+    const fieldsUsed = Array.isArray(row?.fields_used) ? row.fields_used.map((field) => String(field).toLowerCase()) : [];
+    if (fieldsUsed.some((field) => /english|translation/.test(field))) {
+      issues.push(`${rowContext}: fields_used must not include English or translation fields`);
+    }
+  }
 }
 
 function summarizeClusters(clustersArtifact, clusterCounts) {
