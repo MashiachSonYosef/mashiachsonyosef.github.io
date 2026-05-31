@@ -53,7 +53,7 @@ const artifact = {
     cluster_index_report: 'reports/workbench-usage-cluster-index.md',
     smoke_validation_report: 'reports/workbench-smoke-pipeline-validation.md',
   },
-  commands: manifest.commands,
+  commands: buildCommands(options, manifest),
   counts: {
     concordance_rows: manifest.counts?.rows ?? null,
     selected_manifests: manifest.counts?.selected_manifests ?? null,
@@ -167,6 +167,26 @@ function parseArgs(args) {
     else throw new Error(`Unknown argument: ${arg}`);
   }
   return parsed;
+}
+
+function buildCommands(options, manifest) {
+  const concordancePath = manifest.outputs?.concordance_json?.path || 'data/workbench-evidence/usage-concordance.json';
+  const commands = { ...(manifest.commands || {}) };
+  commands.build_cluster_index = `node scripts/build_workbench_usage_cluster_index.mjs --concordance=${concordancePath} --output=${options.clusterIndex} --report=reports/workbench-usage-cluster-index.md --max-samples=8`;
+  commands.validate_cluster_index = `node scripts/validate_workbench_usage_cluster_index.mjs ${options.clusterIndex}`;
+  commands.build_handoff_index = [
+    'node scripts/build_workbench_usage_handoff_index.mjs',
+    `--manifest=${options.manifest}`,
+    `--occurrence-link-check=${options.occurrenceLinkCheck}`,
+    `--route-link-check=${options.routeLinkCheck}`,
+    `--audit-review=${options.auditReview}`,
+    `--cluster-index=${options.clusterIndex}`,
+    options.smokeValidation ? `--smoke-validation=${options.smokeValidation}` : '--no-smoke-validation',
+    `--output=${options.output}`,
+    `--report=${options.report}`,
+  ].join(' ');
+  commands.validate_handoff_index = `node scripts/validate_workbench_usage_handoff_index.mjs ${options.output}`;
+  return commands;
 }
 
 function readJson(relativePath) {

@@ -148,6 +148,11 @@ await runStep('build_usage_handoff_index', [
   `--report=${options.scratchDir}/usage-navigation-handoff-index.md`,
 ]);
 
+await runStep('validate_usage_handoff_index', [
+  'scripts/validate_workbench_usage_handoff_index.mjs',
+  usageHandoffIndexJson,
+]);
+
 const publicHandoffIntegrityJson = `${options.scratchDir}/public-handoff-integrity-check.json`;
 await runStep('check_public_handoff_integrity', [
   'scripts/check_workbench_public_handoff_integrity.mjs',
