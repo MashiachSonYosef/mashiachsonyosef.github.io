@@ -4,6 +4,10 @@ Generated: 2026-05-31T11:01:14.740Z
 
 ## Scope
 
+- Quality status: pass_with_warnings
+- Warnings: zero_useful_non_smoke_artifacts_present, orphan_smoke_artifacts_present
+- Broad queue blocked by zero-useful non-smoke artifacts: yes
+- Orphan smoke artifacts require queue review: yes
 - Artifacts: 89
 - Useful artifacts: 59
 - Zero-useful artifacts: 30

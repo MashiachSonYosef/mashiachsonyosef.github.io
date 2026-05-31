@@ -43,6 +43,7 @@ const totals = rows.reduce((sum, row) => {
   weak: 0,
   ambiguous: 0,
 });
+const quality = buildQuality(totals);
 
 const artifact = {
   schema_version: 1,
@@ -55,6 +56,7 @@ const artifact = {
     target_queue: options.targetQueue,
     header_bytes: options.headerBytes,
   },
+  quality,
   counts: totals,
   rows: rows.sort((a, b) => (
     b.useful_count - a.useful_count
@@ -67,7 +69,7 @@ writeJson(options.output, artifact);
 writeReport(options.report, artifact);
 console.log(`Wrote ${options.output}`);
 console.log(`Wrote ${options.report}`);
-console.log(`Artifacts ${totals.artifacts}; useful ${totals.useful_artifacts}; zero useful ${totals.zero_useful_artifacts}; zero useful non-smoke ${totals.zero_useful_non_smoke_artifacts}; orphan smoke ${totals.orphan_smoke_artifacts}`);
+console.log(`Artifacts ${totals.artifacts}; useful ${totals.useful_artifacts}; zero useful ${totals.zero_useful_artifacts}; zero useful non-smoke ${totals.zero_useful_non_smoke_artifacts}; orphan smoke ${totals.orphan_smoke_artifacts}; quality ${quality.status}`);
 
 if (options.failOnZeroUseful && totals.zero_useful_non_smoke_artifacts > 0) process.exitCode = 2;
 
@@ -189,6 +191,19 @@ function loadTargetQueueSlugs(relativePath) {
     .filter(Boolean));
 }
 
+function buildQuality(totals) {
+  const warnings = [];
+  if (totals.zero_useful_non_smoke_artifacts > 0) warnings.push('zero_useful_non_smoke_artifacts_present');
+  if (totals.orphan_smoke_artifacts > 0) warnings.push('orphan_smoke_artifacts_present');
+  return {
+    status: warnings.length ? 'pass_with_warnings' : 'passed',
+    zero_useful_non_smoke_artifacts_block_broad_queue: totals.zero_useful_non_smoke_artifacts > 0,
+    orphan_smoke_artifacts_require_queue_review: totals.orphan_smoke_artifacts > 0,
+    warnings,
+    notes: 'Warnings identify artifact lanes that should not be promoted into public handoff selection without seeded nonzero support. They do not invalidate the selected smoke handoff package.',
+  };
+}
+
 function writeJson(relativePath, data) {
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
@@ -203,6 +218,10 @@ function writeReport(relativePath, artifact) {
     '',
     '## Scope',
     '',
+    `- Quality status: ${artifact.quality.status}`,
+    `- Warnings: ${artifact.quality.warnings.length ? artifact.quality.warnings.join(', ') : 'none'}`,
+    `- Broad queue blocked by zero-useful non-smoke artifacts: ${artifact.quality.zero_useful_non_smoke_artifacts_block_broad_queue ? 'yes' : 'no'}`,
+    `- Orphan smoke artifacts require queue review: ${artifact.quality.orphan_smoke_artifacts_require_queue_review ? 'yes' : 'no'}`,
     `- Artifacts: ${artifact.counts.artifacts}`,
     `- Useful artifacts: ${artifact.counts.useful_artifacts}`,
     `- Zero-useful artifacts: ${artifact.counts.zero_useful_artifacts}`,
