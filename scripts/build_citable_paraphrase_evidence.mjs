@@ -30,6 +30,7 @@ const defaults = {
   candidateStatus: 'accepted',
   includeBiblical: false,
   includeUntracked: false,
+  localOnly: false,
   sourceFiles: [],
 };
 
@@ -92,6 +93,7 @@ function parseArgs(args) {
   for (const arg of args) {
     if (arg === '--include-biblical') parsed.includeBiblical = true;
     else if (arg === '--include-untracked') parsed.includeUntracked = true;
+    else if (arg === '--local-only') parsed.localOnly = true;
     else if (arg.startsWith('--source-file=')) parsed.sourceFiles.push(cleanRelativePath(arg.split('=').slice(1).join('=')));
     else if (arg.startsWith('--claim-file=')) parsed.claimFiles.push(cleanRelativePath(arg.split('=').slice(1).join('=')));
     else if (arg.startsWith('--jsonl=')) parsed.jsonl = cleanRelativePath(arg.split('=').slice(1).join('='));
@@ -114,6 +116,9 @@ function parseArgs(args) {
   }
   if (!['proposed', 'accepted', 'rejected'].includes(parsed.candidateStatus)) {
     throw new Error('--candidate-status must be proposed, accepted, or rejected');
+  }
+  if (parsed.localOnly && parsed.sample === defaults.sample) {
+    parsed.sample = `${parsed.localDir}/source-citable-paraphrase-evidence-sample.json`;
   }
   parsed.claimFiles = [...new Set(parsed.claimFiles.map(cleanRelativePath))];
   return parsed;
@@ -641,11 +646,14 @@ async function main() {
     include_biblical: options.includeBiblical,
     samples,
   });
-  patchManifest(stats);
-  patchReport(stats);
+  if (!options.localOnly) {
+    patchManifest(stats);
+    patchReport(stats);
+  }
 
   console.log(JSON.stringify({
     generated_at: generatedAt,
+    local_only: options.localOnly,
     counts: stats,
     local_cache: options.localDir,
     jsonl: options.jsonl,
