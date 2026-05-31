@@ -1,20 +1,20 @@
 # Workbench Candidate Artifact Audit
 
-Generated: 2026-05-31T10:43:44.824Z
+Generated: 2026-05-31T11:01:14.740Z
 
 ## Scope
 
-- Artifacts: 83
+- Artifacts: 89
 - Useful artifacts: 59
-- Zero-useful artifacts: 24
-- Zero-useful non-smoke artifacts: 24
+- Zero-useful artifacts: 30
+- Zero-useful non-smoke artifacts: 30
 - Smoke artifacts: 57
 - Orphan smoke artifacts: 2
-- Candidate rows: 232818
+- Candidate rows: 257764
 - Supported: 1594
 - Candidate: 13857
 - Weak: 9155
-- Ambiguous: 208212
+- Ambiguous: 233158
 
 ## Useful Lanes
 
@@ -94,7 +94,9 @@ Generated: 2026-05-31T10:43:44.824Z
 | target-201f49f75b6a4f95 | הרבה | no | no | 5226 | 5226 | .local-cache/workbench-evidence/full/target-201f49f75b6a4f95-candidate-evidence.json |
 | 389b77a1dfe744be | ידעתי | no | no | 5086 | 5086 | data/workbench-evidence/389b77a1dfe744be-candidate-evidence.json |
 | f96f23955d2ad136 | מבית | no | no | 5057 | 5057 | data/workbench-evidence/f96f23955d2ad136-candidate-evidence.json |
+| target-52cae1bb700249e0 | אומרימ | no | no | 5046 | 5046 | .local-cache/workbench-evidence/full/target-52cae1bb700249e0-candidate-evidence.json |
 | 39048793fdbb3d13 | באחד | no | no | 4976 | 4976 | data/workbench-evidence/39048793fdbb3d13-candidate-evidence.json |
+| target-26a7fb927feb512a | מיד | no | no | 4974 | 4974 | .local-cache/workbench-evidence/full/target-26a7fb927feb512a-candidate-evidence.json |
 | b9e16c5bad5db2d7 | ודבר | no | no | 4917 | 4917 | data/workbench-evidence/b9e16c5bad5db2d7-candidate-evidence.json |
 | target-ae74fed5e6810890 | נמצא | no | no | 4763 | 4763 | .local-cache/workbench-evidence/full/target-ae74fed5e6810890-candidate-evidence.json |
 | target-1179b6d9e6c8a4a9 | בתוכ | no | no | 4676 | 4676 | .local-cache/workbench-evidence/full/target-1179b6d9e6c8a4a9-candidate-evidence.json |
@@ -102,9 +104,13 @@ Generated: 2026-05-31T10:43:44.824Z
 | target-9c8ad198c0b07239 | יצא | no | no | 4179 | 4179 | .local-cache/workbench-evidence/full/target-9c8ad198c0b07239-candidate-evidence.json |
 | target-13355967b204720a | חוצ | no | no | 4036 | 4036 | .local-cache/workbench-evidence/full/target-13355967b204720a-candidate-evidence.json |
 | target-4de0b1f2abe7fd4d | סופ | no | no | 4020 | 4020 | .local-cache/workbench-evidence/full/target-4de0b1f2abe7fd4d-candidate-evidence.json |
+| target-e00d20706d3db358 | ראשונ | no | no | 3982 | 3982 | .local-cache/workbench-evidence/full/target-e00d20706d3db358-candidate-evidence.json |
 | target-d2cca62fc87b7265 | חכמימ | no | no | 3853 | 3853 | .local-cache/workbench-evidence/full/target-d2cca62fc87b7265-candidate-evidence.json |
+| target-9ca1a3e1674f71b4 | יודע | no | no | 3776 | 3776 | .local-cache/workbench-evidence/full/target-9ca1a3e1674f71b4-candidate-evidence.json |
 | target-1e9be15ed18ea4da | נתנ | no | no | 3720 | 3720 | .local-cache/workbench-evidence/full/target-1e9be15ed18ea4da-candidate-evidence.json |
+| target-f1bac3115e8c0d79 | אשה | no | no | 3665 | 3665 | .local-cache/workbench-evidence/full/target-f1bac3115e8c0d79-candidate-evidence.json |
 | target-a8c48c63232f9eaf | שהיו | no | no | 3540 | 3540 | .local-cache/workbench-evidence/full/target-a8c48c63232f9eaf-candidate-evidence.json |
+| target-e7a2c73c884c9d08 | בהנ | no | no | 3503 | 3503 | .local-cache/workbench-evidence/full/target-e7a2c73c884c9d08-candidate-evidence.json |
 | target-004d88f4aff41f1e | והיה | no | no | 3453 | 3453 | .local-cache/workbench-evidence/full/target-004d88f4aff41f1e-candidate-evidence.json |
 | target-ffd7fe1f76d594bc | עושה | no | no | 3219 | 3219 | .local-cache/workbench-evidence/full/target-ffd7fe1f76d594bc-candidate-evidence.json |
 | target-1be36a6be7c6a357 | שתי | no | no | 3180 | 3180 | .local-cache/workbench-evidence/full/target-1be36a6be7c6a357-candidate-evidence.json |
