@@ -24,6 +24,12 @@ node scripts\build_citable_paraphrase_evidence.mjs --local-only --include-morpho
 
 Morphology-derived rows default to `candidate_status=proposed`, even when exact citable rows are accepted. This keeps sketchy prefix/suffix parses out of the live HUD until a review pass promotes them deliberately.
 
+Obvious-risk morphology rows are skipped by default. Use `--include-risky-morphology` only for a diagnostic sweep that should be paired with:
+
+```powershell
+node scripts\audit_morphology_review_quality.mjs
+```
+
 ## Validation Command
 
 Audit the local batch before promoting any public artifact:
