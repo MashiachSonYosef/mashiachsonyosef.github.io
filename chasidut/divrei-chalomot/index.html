@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divrei Chalomot</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .hud-card-lane { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(250px, 38%, 380px); gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; overscroll-behavior-inline: contain; scrollbar-color: var(--accent) rgba(255,255,255,0.08); scrollbar-width: thin; }
+    .hud-card-lane::after { content: ""; width: 18px; }
+    .hud-card-lane .claim-row { scroll-snap-align: start; }
+    .hud-scroll-note { color: var(--muted); margin: 0 0 6px; font-size: 0.82rem; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Divrei Chalomot</h1>
+        <p class="meta">34 total source units | imported 2026-05-31</p>
+        <p class="meta source-citation">Hebrew version: R&#39; Zadok -- Divrei Chalomot | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH002015186">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>1820 matched</strong> / 3778 unique forms.</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Divrei Chalomot <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Divrei Chalomot <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-1-1" title="Divrei Chalomot 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-chalomot-1-2" title="Divrei Chalomot 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#divrei-chalomot-1-3" title="Divrei Chalomot 1:3">1:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-2-1" title="Divrei Chalomot 2:1">2:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-3-1" title="Divrei Chalomot 3:1">3:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-4-1" title="Divrei Chalomot 4:1">4:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-5-1" title="Divrei Chalomot 5:1">5:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-6-1" title="Divrei Chalomot 6:1">6:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-7-1" title="Divrei Chalomot 7:1">7:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-8-1" title="Divrei Chalomot 8:1">8:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-9-1" title="Divrei Chalomot 9:1">9:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-10-1" title="Divrei Chalomot 10:1">10:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-11-1" title="Divrei Chalomot 11:1">11:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-12-1" title="Divrei Chalomot 12:1">12:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-13-1" title="Divrei Chalomot 13:1">13:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-14-1" title="Divrei Chalomot 14:1">14:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-15-1" title="Divrei Chalomot 15:1">15:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 16</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-16">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-16-1" title="Divrei Chalomot 16:1">16:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 17</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-17">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-17-1" title="Divrei Chalomot 17:1">17:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 18</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-18">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-18-1" title="Divrei Chalomot 18:1">18:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 19</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-19">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-19-1" title="Divrei Chalomot 19:1">19:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 20</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-20">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-20-1" title="Divrei Chalomot 20:1">20:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 21</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-21">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-21-1" title="Divrei Chalomot 21:1">21:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 22</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-22">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-22-1" title="Divrei Chalomot 22:1">22:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 23</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-23">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-23-1" title="Divrei Chalomot 23:1">23:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 24</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-24">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-24-1" title="Divrei Chalomot 24:1">24:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 25</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-25">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-25-1" title="Divrei Chalomot 25:1">25:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-chalomot-25-2" title="Divrei Chalomot 25:2">25:2</a></li>
+                    <li><a class="toc-unit" href="#divrei-chalomot-25-3" title="Divrei Chalomot 25:3">25:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 26</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-26">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-26-1" title="Divrei Chalomot 26:1">26:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 27</summary>
+                  <a class="toc-start" href="#chapter-divrei-chalomot-text-27">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-chalomot-27-1" title="Divrei Chalomot 27:1">27:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-chalomot-27-2" title="Divrei Chalomot 27:2">27:2</a></li>
+                    <li><a class="toc-unit" href="#divrei-chalomot-27-3" title="Divrei Chalomot 27:3">27:3</a></li>
+                    <li><a class="toc-unit" href="#divrei-chalomot-27-4" title="Divrei Chalomot 27:4">27:4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-divrei-chalomot-text-1">Chapter 1</h4>
+          <section class="unit" id="divrei-chalomot-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 1:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-1-1" aria-label="Copy link to Divrei Chalomot 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בס&quot;ד קונטרס קראתיו <strong>דברי חלומות</strong></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-chalomot-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 1:2</h4></div>
+              <a class="anchor" href="#divrei-chalomot-1-2" aria-label="Copy link to Divrei Chalomot 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">רשימת דברים שנתגלו לי בעזרת השם יתברך בחלום הלילה ממה שעלה בזכרוני. מלבד איזה דברים כתבתים במקומות אחרים בקונטריסיי אגב גררא. וחבל על דאבדין ומשתכחין כמה דברי תורה שחלמתי ולא רשמתים בשעתם אחר הקיצי משנתי ונשכחו ממני. והשם יתברך יתן חלקנו בתורתו וישים חלקנו בין תלמידים העוסקים בתורה לשמה. ומה שנוסף במחשבתי בשעת כתיבה כתבתי מוקף:</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-chalomot-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 1:3</h4></div>
+              <a class="anchor" href="#divrei-chalomot-1-3" aria-label="Copy link to Divrei Chalomot 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בימי</strong> חורפי ליל ג׳ כ&quot;ב כסלו תר&quot;ה [כך מצאתי רשום אצלי בעלה אחד שרשמתי כפי הנראה אז בו בפרק] חלם לי על פסוק ואיבה אשית וגו׳ ובין זרעה דייק לשון זרעה ולא זרע האדם דאיתא כל החיות נושכות ושוברות עצם ונחש נושך ואינו שובר עצם רק מקלקל הבשר ואיתא בנידה <span class="source-small">(לא.)</span> אשה מזרעת אודם שממנו בשר ואיש מזריע לובן שממנו עצמות. ועל כן האיבה רק בין זרעה לא במה שמזרע האיש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-2">Chapter 2</h4>
+          <section class="unit" id="divrei-chalomot-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 2:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-2-1" aria-label="Copy link to Divrei Chalomot 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עוד</strong> מזמן הנזכר שנה וירח הנזכר ליל א׳ כ&quot;ז כסלו. על לשון הספרי <span class="source-small">(תצא)</span> אין שלום יוצא מתוך מריבה שראיתי בכתבי אדון אבי הגאון ז&quot;ל בדרושיו אז איזה דרוש על זה. וחלם לי דהפירוש הפשוט דיש פעמים מריבה כענין <span class="source-small">(ב&quot;ב כא.)</span> קנאת סופרים תרבה חכמה. ומחלוקת לשם שמים שהיא לטובה ואפשר שיצמח ממנה דברים טובים [אך בשמות רבה פרשה ל׳ איתא אין דבר טוב ואין שלום יוצא מתוך מריבה, עד כאן] אבל זה הטוב של שלום [שהוא חיבור השלימות וכלי המחזיק ברכה שאי אפשר ליחיד להיות שלם בכל רק על ידי שהם באחדות אז יש חבור כל השלימות ושלום שרשו שלם ותוספת הוא מורה בכל מקום על החבור] אי אפשר שיצא ממריבה אף שהיא טובה ולשם שמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-3">Chapter 3</h4>
+          <section class="unit" id="divrei-chalomot-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 3:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-3-1" aria-label="Copy link to Divrei Chalomot 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חלם</strong> לי [בהיותי באיזביצא] שהיו מגלין לי איזה דברים משורש נשמתי ובכלל הדברים היו אומרים לי כי הדור של משיח יהיה אותם הנפשות עצמן של דור המדבר [ומשיח נשמת משה רבינו ע&quot;ה כנזכר ברעיא מהימנא <span class="source-small">(זח&quot;ג רמו ב)</span>] והם עצמן אותן הנפשות של דור המבול [דגם משה רבינו ע&quot;ה היה שם כדאיתא בזוהר <span class="source-small">(ח&quot;ג רטז ב)</span> וכמו שאמרו בחולין קל&quot;ט ב׳ בשגם גימטריא משה] ואז השחיתו דרכם וחטא זה נקרא בספרים חטאת נעורים וכ&quot;א בהם כי יצר וגו׳ מנעוריו ותיקנו זה בדור המדבר והיה נקרא אז חסד נעורים [כנודע בסוד תאות אדם חסדו] כמו שכתוב זכרתי לך חסד נעוריך. והדור של משיח יהיה בסוד תתחדש כנשר נעורייכי שיהיה גם כן אותו הדור של חסד נעורים שיתחדש שנית. עד כאן תורף הדברים מה שאני זוכר עדיין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-4">Chapter 4</h4>
+          <section class="unit" id="divrei-chalomot-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 4:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-4-1" aria-label="Copy link to Divrei Chalomot 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פעם</strong> אחת ביום טוב ראשון של פסח חלם לי פירוש לשון ההגדה אני הוא ולא אחר. רצה לומר דרגא דאני שהוא מדרגה היותר תחתונה סוד השכינה [השוכן בתוך הלבבות דבני ישראל עד שיכול לומר בשם ה׳ לשון אני] כנודע. הוא עצמו דרגא דהוא, שהוא מדרגה היותר עליונה הנעלמת סוד כתר עליון [ובזוהר הקדוש פרשת קרח קע&quot;ח ריש ע&quot;ב הוא דא עתיקא. שלמעלה מקומת אדם והשגתו בחכמה שבמוחו דעל זה אמרו במופלא ממך וגו׳ כידוע] ואינו דבר אחר רק הכל אחד [וכדרך שאמרו בתיקונים <span class="source-small">(סוף תיקון סט)</span> דמאן דנטיל מלכות בלא ט׳ ספירות או ט׳ ספירות בלא מלכות הוא מקצץ בנטיעות או כופר בעיקר. והמכוון לענין דיציאת מצרים שהיה במורא גדול זו גילוי שכינה היה ההמשכה מריש כל דרגין שורש הנעלם ששם דבוקים הנפשות דישראל בשרשן בסוד תפילין שבראש דמארי עלמא דכתיב בהו מי כעמך ישראל וגו׳ כמו שאמרו בברכות <span class="source-small">(ו.)</span> וסוד קשר של תפילין שהראהו הקב&quot;ה למשה רבינו ע&quot;ה כשאמר לו וראית את אחורי ואין כאן מקומו להאריך].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-5">Chapter 5</h4>
+          <section class="unit" id="divrei-chalomot-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 5:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-5-1" aria-label="Copy link to Divrei Chalomot 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במוצאי</strong> שבת קדש של פרשת שמות תזכ&quot;ר חלם לי שחכם אחד היה דורש ומדקדק על פסוק ואכלת ושבעת השמרו לכם פן יפתה וגו׳ הסמיכות וגם הלשון יפתה דמשמע ממילא [שהיה לו לומר תתפתו בלבבכם] ואמר שכבר דקדקו בספרים על זה והוא היה אומר איזה תירוץ על זה שאיני זוכר. ואני הייתי משיב על זה בזה הלשון מי שטעם טעם יראת חטא מימיו ונכנס בדרכי החסידות יודע כי התחלת החסידות לקדש אכילתו שיהיה בקדושה וכמו שכתב בתנא דבי אליהו רבא [פרק כ&quot;ו והובא בתוספות כתובות ק&quot;ד א׳] עד שאדם מתפלל [כן הוא הלשון בתוספות אבל בתנא דבי אליהו רבא איתא ואם לא זכה אדם לבקש רחמים על דברי תורה כו׳ מכל מקום יבקש רחמים כו׳] על דברי תורה שיכנסו לתוך מעיו יתפלל על אכילה ושתיה יתירה [כן הוא לשון התנא דבי אליהו רבא ובתוספות איתא מעדנים] שלא יכנס לתוך מעיו והיינו שלא בקדושה רק הכל בקדושה כדרבי [שנקרא רבינו הקדוש כי לא נהנה מעולם הזה כו׳ אף שאמרו בע&quot;ז <span class="source-small">(יא. עיין שם בתוס׳)</span> דלא פסקה מעל שלחנו צנון וחזרת רק שהיה הכל בקדושה] כי השביעה מתאות אכילה שלא בקדושה גוררת עון כמו שאמרו בברכות <span class="source-small">(לב.)</span> מלי כריסי זני בישי וכמו שנאמר פן תאכל ושבעת וגו׳ ורם לבבך ושכחת וגו׳. וזהו השמרו לכם באכילה ושביעה שיהיה בקדושה פן אם לא יהיה בקדושה יפתה על ידי זה ממילא הלב [וכנודע בסוד האכילה כשאין מעלה הניצוצות שבאוכל יוכלו חס ושלום לקלקלו ולהחטיאו] וסרתם וגו׳. והוא מפורש כן בפירוש רש&quot;י במקומו בחומש. עד כאן מה שנשאר רשום עדיין במחשבתי בהקיצי משנתי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-6">Chapter 6</h4>
+          <section class="unit" id="divrei-chalomot-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 6:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-6-1" aria-label="Copy link to Divrei Chalomot 6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> ג׳ פרשת בא ב׳ שבט. חלם לי על מה שאמרו סנהדרין <span class="source-small">(סה ב׳)</span> אמר לו תוב לעפרך דדקדק מזה בתשובות חכם צבי <span class="source-small">(סימן צג)</span> שאין בו תועלת לצרפו לדבר שבקדושה. אין מוכרח דיש לומר דהיה ירא שלא יהיה נעשה מזיק לבריות כשיגדל קצת ואז אפילו העושהו יהיה קשה לו גם כן להחזירו לעפרו כי יוכל להזיק גם לו וכמו שסיפר בשאילת יעב&quot;ץ חלק ב׳ <span class="source-small">(סימן פב)</span> מאותו הנוצר על ידי זקינו מה&quot;ר אליהו בעל שם. ועל כן אין להשהות בריה כזה אלא לבראו לצורך הדבר שצריך לו [דמסתמא הא דשדריה לקמיה דרבי זירא היה לצורך איזה דבר כמוס שלא נתפרש בתלמוד שהיה ההכרח לשלוח על דרך זה בריה כזה] ולהחזירו מיד אחר כך לעפרו. ומהא טעמא אמרו שם אחר כך ברבי חנינא ורבי אושעיה דברו עגלא תלתא איתא דהיה בערב שבת ובתשובות רשב&quot;א <span class="source-small">(סימן תיג)</span> דקדק על זה וכתב טעם ויש לומר דנראה דגם זה בכלל מעשה נסים שאסור ליהנות מהם כדאיתא בתענית <span class="source-small">(כד:)</span> רק לצורך מצוה יש לומר דשרי והם היו עניים כי הם רב חנינא ורב אושעיא הנזכר בפרק ערבי פסחים <span class="source-small">(קיג ריש ע&quot;ב)</span> שהיו אושכפי לא רבי חנינא ורבי אושעיה תלמידי רבי <span class="source-small">(ועיין קרבן מנחה למהר&quot;י חאגיז סוף סימן שצה)</span> ולא היה להם לצורך שבת ואכלי ליה בסעודת שבת ועל כן עשו בערב שבת [ובלאו הכי נמי כל הכנות לשבת יש לעשות בערב שבת כמו שכתוב ביום הששי והכינו וכידוע] דאי עבדי מקודם היה גדל עד שבת ונעשה מזיק והיו צריכים להחזירו לעפרו. והיה נראה לי דהיה צריך גם כן לעשות בו מום מקודם שלא יהיה ראוי לקרבן דאם לא כן אין להחזירו לעפרו כיון דיש בו תועלת דראוי להקרבה [כך היה נראה לי בחלום בפשיטות דחזי להקרבה ואם היה כן יש מקום קצת בזמן שבית המקדש קיים מיהת דאפשר להקריבו לאסור ההחזרה לעפרו משום בל תשחית כיון דחזי לאיזה דבר וכמו שהיה פשוט בעיני בחלומי אלא דאם כן גם הטלת מום יאסר רק יקריבוהו. אבל האמת נראה לי עתה פשוט שזה מכלל הדברים בטלים שאי אפשר לחלום בלעדם דוודאי פסול להקרבה דכתיב כי יוולד וכי היכי דממעטינן מזה יוצא דופן הא הדין וכל שכן זה דלא נולד מבטן אם כלל וכל שכן לפי מה שכתב בשל&quot;ה פרשת וישב דאין צריך שחיטה ועיין שם גם כן דאין בו איסור חלב ודם עיין שם ועל כרחך דאין קרב על גבי המזבח. ובעיקר דינו דהחכם צבי נראה לי דחידוש הנזכר טובה. ובחלומי היה נראה לי פשוט הדין דלא כותיה ודחזי לדבר שבקדושה. ונראה דאפשר לקיים זה ומה שכתב בשאילת יעב&quot;ץ שם דלא עדיף מחרש שאינו שומע ואינו מדבר וכן הוא בברכי יוסף או&quot;ח סימן נ&quot;ה. אין מוכרח דחרש לאו בר דעת הוא כמו קטן דאדם נוצר בלא דעת רק כשגדל בא לו הדעת וזה שאינו שומע ואינו מדבר אם הוא בתולדה לפי שאין למד דעת מבני אדם ואם נתחרש אחר כך הוא לפי שנולד בו חסרון במוח אין בו דעת אבל זה שנוצר בקומתו כאדם גדול יש לומר דיש בו גם כן דעת כבגדול ואף על פי שאינו שומע ואינו מדבר יש לומר דאינו מחסרון במוחו ודעתו ושלא יהיה בו דעת. ואף שכתב בחסד לאברהם עין יעקב נהר ל׳ דאין לו נשמה ורוח ממללא רק רוח הבהמית ועל כן מותר להרגו כבהמה עיין שם וכן הוא במהרש&quot;א בחלק א׳ בסנהדרין שם יש לומר דמכל מקום אינו כבהמה בדמות אדם שהרי הוא נוצר בספר יצירה על דרך יצירת האדם ולא על דרך יצירת הבהמה. אלא דנשמת חיים דויפח באפיו שהיא הרוח ממללא על ידי שהוא חלק אלוה ממעל זה אין יכולים לתת בו אבל מכל מקום לא גרע מעכו&quot;ם דגם כן אין לו חלק אלוה ממעל ואף על פי שיכול לדבר היינו בלשונו ואין זה קרוי דבור. דעל כן אמרו <span class="source-small">(מדרש רבה בלק)</span> דעכו&quot;ם המדבר בלשון הקודש לשונו סרוח כי אין לו רוח ממללא האמיתי רק כעין צפצופי עופות וכמו הנחש קודם החטא שהיה יכול לדבר אף דלא היה בו נשמת חיים והוא מצד הסטרא אחרא וקומת אדם בליעל. וזה הנוצר בקדושה על ידי ספר יצירה אין יכולים להכניס בו הדבור מצד הסטרא אחרא ורוח ממללא דקדושה גם כן אי אפשר ועל כן אין מדבר [ולפי זה אפשר לומר דהוא שומע ולא כדפשיטא להו] ואם כן לא דמי לבהמה רק לעכו&quot;ם. ואפילו תאמר דגם בן נח רשאי להרגו ואינו נהרג עליו יש לומר דהיינו מגזירת הכתוב דהאדם באדם כמו שכתב בתשובות חכם צבי שם אבל מכל מקום לענין דעת שפיר יש לומר דיש לו כמו דנקרא העכו&quot;ם בר דעת אלא דאדעתא דנפשיה קעביד וכמו שאמרו בגיטין כ&quot;ג א׳. ואין לומר דלעולם הדעת תלוי בדבור והעכו&quot;ם כמו שדבורו מצד הקליפה כן דעתו וזה פירוש אדעתא דנפשיה עביד ולא מהני דעתו לגט ודבר של מצוה ובגולם כמו שאין לו דבור מטעם הנזכר כך אין לו דעת. דזה אינו דהרי שם בגיטין פירש רש&quot;י שמא כו׳ הרי דרק מספק פסלינן דעתו לגט ובתוס׳ שם כתב דדעתו סתם ודעל כן כשר למילה אף דצריך לשמה עיין שם. ועוד דאין הדעת תלוי בדבור לבד כלל דהרי אלם יש לו דעת ואפילו אלם בתולדה אפשר דשומע ואם כן אפשר דהאי נמי חשיב בר דעת. אלא דיש לומר מטעם אחר דהא מכל מקום לאו בר חיוב מצות הוא ואם כן אפילו תאמר דקרינן ביה בני ישראל מטעמו דהחכם צבי שם דהוא מעשה ידיו של צדיק מכל מקום נראה דאין להטיל עליו חובת מצות מטעם זה ולומר דכל מה שכתוב בתורה דבר אל בני ישראל יהיה גם הוא בכלל כיון דאין בו נשמת חיים והשארת נפש לעולם הבא לשכר לעונש ואם כן איך נצרפו לדבר שבקדושה כיון דהוא לאו בר חיובא. ואפשר לומר מכל מקום לענין עשרה לברכת המזון אם יכול לאכול דמצרפין קטן מצרפין גם אותו ואפשר דגם כן יודע למי מברכין וצריך ביאור ואין כאן מקומו להאריך יותר].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-7">Chapter 7</h4>
+          <section class="unit" id="divrei-chalomot-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 7:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-7-1" aria-label="Copy link to Divrei Chalomot 7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> וערב שבת קודש יתרו. חלם לי דהאבות שקיימו כל התורה כולה עד שלא ניתנה היינו רק לכתחילה מה דאפשר לקיים. ובזה לא קשה איעקב שנשא שתי אחיות כי רחל כבר נתקדשה לו בשכר פעולה להסוברים אומן קונה בשבח כלי [ולהט&quot;ז סימן כ&quot;ח דאין צריך אמירה חדשה אחר כך רק באמירה הקודמת סגי והיתה אז קטנה וזכה אביה בקדושין וז&quot;ש הוא תנאי] ונתקדשה על ידי אעבדך וגו׳ ויעקב דחשדו לרמאי שימסור לו שפחה אחרת [דחשדו לרמאי יותר וגם יש לומר דלא חשד את לאה שתרמאנו רק שיקח שפחה רמאית כמותו] ולא רצה לעשות בעילתו בעילת זנות מספק חשב לקדשה בביאה [ויש לומר דפרוטה לא היה לו משלו שאינו דלבן. ובשטר יש לומר דלא רצה לבן דהוא חשב לרמאות ועל מה שאמר אעבדך יאמר דחזר בו אחר כך קודם שהתחיל בעבודה מה שאין כן כשקידשה עכשיו בשטר לפני עדים דתהיה קנויה. ואם כן יש לומר גם אם לא חש לרמאות רצה לקדש רחל שנית גם כן לצאת ידי הסוברים דאין יכול לקדש בשכר פעולה. ויש לומר זה טעם לשון ואבואה אליה דאפילו קל שבקלים כו׳ רק רצה לייחד עדי קידושין] ונמצא נתקדשה לו לאה וקודם מתן תורה דקדושין תופסין אחותה הרי שניהם מקודשות לו. ובדיעבד לא חש לגרש אחת מאחר שכבר קנויה לו ועדיין לא ניתנה תורה [ועוד דאיסורא איכא לגרש אשתו ראשונה ושניהם קרוים אצלו ראשונה זו באירוסין וזו בנשואין] לחוש אף דיעבד וחלם לי עוד הרבה משא ומתן בענין זה ונשכח ממני יתר הדברים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-8">Chapter 8</h4>
+          <section class="unit" id="divrei-chalomot-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 8:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-8-1" aria-label="Copy link to Divrei Chalomot 8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> א׳ דחול המועד פסח הגידו לי בחלום ענין מה שאמרו <span class="source-small">(תיקוני זוהר תיקון יג וש&quot;מ)</span> משה מלגאו יעקב מלבר. כי שורש יעקב מדת האמת וזהו עצמיותו. והלבוש למדת האמת הוא מדת התמימות דבזה היה מצויין לכל וניכר ונודע כמו שכתוב ויעקב איש תם. ובכל דבר יש פנימיות וחיצוניות [הפנימיות הוא עיקר הדבר כמות שהוא והחיצוניות הוא התפשטות הדבר לענינים החוציים שאי אפשר להתגלות בהם כמות שהוא בפנימיותו רק בענין אחר ולפעמים אפילו בהיפך ממה שהוא באמת. ומכל מקום על האמת הכל אחד עם הפנימיות רק שזה הוא מצד החיצוניות אי אפשר להתגלות דבר זה בחיצונים ועל פי חוץ בענין אחר ומכל מקום הוא הוא ודא ודא חדא] ופנימיות התמימות הוא ההנהגה בתום [שזהו עצם ענין התמימות שהוא ההנהגה על דרך האמת כפיו כן לבו ואין יודע לרמות]. ופעמים יש שאי אפשר להתנהג בתמימות הפשוט דעם עקש תתפלל כתיב וכדרך שעשה יעקב עם לבן וכמו שאמרו <span class="source-small">(מגילה יג:)</span> אחיו אני ברמאות. ויעקב אבינו ע&quot;ה ששרשו מדת האמת והתמימות הגמור היה ממולא בה גם בחיצוניותו עד שאפילו מנהגיו עם לבן במקלות ברמאות לא יצא גם כן מלבר ממדת תמימותו בזה כלל [וזהו שורש קדושת זרעו אחריו זרע ישראל שאין בו פסולת כלל שאפילו יוצא לבר ועושה מה שעושה לא יצא משורש נקודת האמת ליעקב כלל וכמו שאמרו <span class="source-small">(שבת פט:)</span> דיהיו חטאיכם כשנים הללו שסדורות ובאות מששת ימי בראשית] ומשה רבינו ע&quot;ה גם כן ממדה זו [דאמת שהוא שורש התורה דכתוב בה אמת ונקרא תורת אמת וזכה ונקראת על שמו תורת משה. והלבוש להשגת אמיתות התורה הוא התמימות להיות תמים עם ה׳ דתומת ישרים תנחם וכמו שאמרו בפרק רבי עקיבא אנן דסגינן בתמימותא כו׳] אבל רק בפנימיות [דהנהגת התורה הוא להיות מוגדר כפי מצותיה ושלא לצאת מלבר כלל] היינו להתנהג בתמימות בפעל גמור בכל דבר לא בענין אחר כלל. עד כאן מה שאני זוכר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-9">Chapter 9</h4>
+          <section class="unit" id="divrei-chalomot-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 9:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-9-1" aria-label="Copy link to Divrei Chalomot 9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> שבת קודש תצא ברכו&quot;ת. חלם לי פירוש מה שאמרו <span class="source-small">(שבת קנו ריש ע&quot;ב)</span> דקאי צדק במערב אהדרנא ליה למזרח כי ישראל נמשלו לכוכבים נגד כל אחד יש כוכב ברקיע [וכן הוא בתיקונים תיקון כח עג סוף ע&quot;א <span class="source-small">(בדפוס מנטובה ובדפוסים חדשים בהקדמה א ד&quot;ה קם סבא)</span> דצדיקייא ככוכבים וכל אחד אית ליה כוכב] וכפי השתלמות הנפש כן הוא הארת אותו כוכב. ואברהם אבינו ע&quot;ה ראש אומה הישראלית כוכבו הוא כוכב המזהיר הנראה בכל לילה ראשון לכל הכוכבים בסמוך ללבנה ומאיר ביותר כידוע ולאותו כוכב קראו צדק [על שם אברהם אבינו ע&quot;ה שדרשו עליו בבראשית רבה <span class="source-small">(פרשה מט)</span> קרא דאהבת צדק וכן פשטיה דקרא מי העיר ממזרח צדק שפירשו בו על אברהם אבינו קרי לאברהם אבינו צדק ועל שמו קראו כן גם לכוכבו. כי מה שנאמר מונה מספר לכוכבים לכולם שמות יקרא היינו בשם הראוי לו לפי כוחו הנמשך מאור הנפש מאחד בני ישראל שהוא כנגדו. ולפיכך אין שום אדם יכול לקרוא שמות לכוכבים רק השם יתברך] ועד שלא נשלם אברהם אבינו ע&quot;ה בתכלית שלימותו ולא זכה עדיין ללידת יצחק ולהיות אב לאומה הישראלית ושיהיה ההשתלשלות ממנו לא היה אותו כוכב מאיר ומזהיר כלל בתחילה להיות ראש לכוכבים ולא ניכר אורו רק בסוף הלילה סמוך לשקיעת הלבנה [כי כבר התחיל להאיר מצד אור עצמו אבל היה עדיין בתכלית הקוטן וההעלם] וזהו דקאי במערב ששם הלבנה שוקעת בסוף הלילה. ומזה הבין דהוא ערירי ואין שום השתלשלות נמשך ממנו ואחריו. ואמר לו מהדרנא למזרח שהוא בתחילת הזריחה דאדרבה אתה ראש לכל השתלשלות אומה הישראלית וראשון לכל הכוכבים. וזה כשנשלם וזכה ללידת יצחק והשתלשלות האומה ממנו אז התחיל להזריח אותו כוכב מיד בתחילת הלילה במזרח כמו שהוא היום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-10">Chapter 10</h4>
+          <section class="unit" id="divrei-chalomot-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 10:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-10-1" aria-label="Copy link to Divrei Chalomot 10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> ב׳ וישב בברכו&quot;ת. על מה שמתפללין נוסח האר&quot;י וצדיקים הגדולים המכוונים בתפלתן. יש לתת טעם על זה וכנודע מה שכתב במכתב שבסוף ספר נועם אלימלך. אבל לא כל אחד זוכה לזה רק הטעם דיש לנו להתפלל בנוסח שמתפללין בו אותן שהשם יתברך חפץ לשמוע תפלתן וכמו שנאמר תפלת ישרים רצונו. ומאחר שרצונו יתברך בתפלת הצדיקים המתפללין בנוסח זה הרי אותו נוסח חשוב ומרוצה ומקובל לפניו על ידי תפלת אותן המכוונין לבן בתפלתן. ועל כן אחריהם כל אחד ימשוך להתפלל הנוסח שידענו שמרוצה לפניו יתברך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-11">Chapter 11</h4>
+          <section class="unit" id="divrei-chalomot-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 11:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-11-1" aria-label="Copy link to Divrei Chalomot 11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> ג׳ ויגש. מה שכתוב בתורה <span class="source-small">(פרשת ויצא)</span> דברי בני לבן לקח יעקב את כל אשר לאבינו ומאשר לאבינו עשה וגו׳. וכן דברי לבן והצאן צאני וכל אשר אתה רואה לי וגו׳ לכאורה הם דברי שקרים בעלמא וכמו שהוכיחו יעקב דלא לקח משלו מאומה ובשכר פעולתו זכה באותו צאן שהתנה עמו מתחלת לידתן ואחר כך שלח ה׳ ברכה בשלו. ומה טעם שתזכיר התורה דברי הבלים וכזבים שלהם דתורה שהיא תורת אמת לא שייך שתזכיר דברי שקר של בני אדם [ואף במה שאמר הבנות בנותי והבנים בני יש לדקדק להסוברים דאבות יצאו מכלל בן נח אם כן גם האמהות כגר שנתגייר דכקטן שנולד ואין קרויים עוד בנות לבן ולא בניהם בני בנותיו שיהיו כבניו. וגם על דברי יעקב ויצל אלהים את מקנה אביכם ויתן לי. וכן דברי האמהות כל העושר אשר הציל אלהים מאבינו לנו וגו׳ יש לדקדק על מה קראו זה הצלה והפרשה משל לבן והרי הוא זכה בו בשכר פעולתו כפי תנאו ככל פועל ושלו הוא]. אבל בזה רמוז הידוע דרק ארץ ישראל הוא נחלת ה׳ לישראל ושם מקבלים השפע מהשם יתברך אבל חוץ לארץ הוא תחת יד השרים אשר חלק ה׳ לכל העמים שכל שר משפיע לאומתו וישראל שבחוץ לארץ מקבלים רק התמצית מהם ומה שיונקים מהם. ואף הנפשות דבני ישראל הנולדים בחוץ לארץ אף שהם ממקום קדוש יצאו מכל מקום עוברים דרך מעבר הקליפות של האומה ההוא ומתלבשים בלבוש הקליפות ההוא. ורק כשיבואו לארץ ישראל יפשטנו מעליו וכמבואר בחסד לאברהם מעין ג׳ [נהר י&quot;ד עיין שם בפנים וראיתי אותן דברים שם לפני השינה בלילה קודמת וגם באותה לילה לפני השינה הסתכלתי בענינים ההם בספר ההוא שם]. ולפי שעדיין לא הגיעו אז לארץ ישראל ולבן היה שורש כח הקליפות של אומות ארם [דעל כן נקרא הארמי] על כן אמר הבנות בנותי והבנים בני מצד אותו הלבוש דקליפות שלו שהיו מלובשים בו עד שלא הגיעו לארץ ישראל. וכן הצאן צאני כי כל השפע שהגיע ליעקב בארם ושר של אותו מלכות הוא רק מה שלקח מלבן שעיקר השפע היה אותו השר משפיע רק ללבן. ואם אפילו בנפשות יש לבוש דקליפות כל שכן בנכסים שקונה שם דכולו מכח השפעת שר האומה. ואף על פי שהפרישו השם יתברך מחלק רע דלבן ושרו ונתנו ליעקב מכל מקום אינו אלא מה שלקח וקלט ממנו. ועל כן לא אמר שקר דהוא מאשר לאביהם ושהכל שלו דכל זמן שלא נכנס לארץ עדיין היה הכל מלובש בכח הקליפות שלו [ונראה דהרכוש שרכש בחוץ לארץ אף בבואו לארץ ישראל לא יתפשט ממנו הקליפות לגמרי ולהיות כאלו רכשו בארץ ישראל. ואינו דומה לגוף האדם עצמו ונפשו שעיקרו ממקום קדוש והקליפות הם רק לבוש מה שאין כן במה שרכש שם דעיקרו אלא על ידי השפעת השר שהוא כח הקליפות של האומה. ואף על פי שהשם יתברך הפרישו מהם והוא זכה בו ומצד שנעשה קנינו דישראל מתפשטת עליו כח הקדושה דשם בעליו הישראל. מכל מקום אין כח הקליפות נעקרת ממנו לגמרי גם כבואו לארץ ישראל. ועל כן אמרו ז&quot;ל <span class="source-small">(בראשית רבה פרשה ק וש&quot;מ)</span> דיעקב אבינו ע&quot;ה נתן כל מה דרכש בבית לבן לעשו בעד חלקו במערה ואמר אין נכסי חוץ לארץ כדאי לי כי ממקום הטינופת באו ולמקום הטינופת ילכו. ורק הועילו לו לדחות על ידם טענת עשו מחלק המערה שזהו שלו באמת ואין כאן מקומו להאריך יותר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-12">Chapter 12</h4>
+          <section class="unit" id="divrei-chalomot-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 12:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-12-1" aria-label="Copy link to Divrei Chalomot 12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מוצאי</strong> שבת קדש יתרו. דמה שאמרו <span class="source-small">(יומא עה.)</span> במן שמתהפך לכל הטעמים היינו גוף המן שאכלו ישראל. אבל מה שאמרו ז&quot;ל <span class="source-small">(מכילתא בשלח ויסע פרשה ה)</span> דעזים וצבאים היו אוכלין ממנו ואומות העולם טועמין מבשרן טעם מן בהם היה נרגש רק עצם טעם מן המפורש בתורה כצפיחית בדבש ותו לא דהטעם הבלוע בבשרן לא היה עוד מתהפך ועל כן יכלו גם אומות העולם לטעמו. ולכן לא קשה מה דאיתא דהערב רב לא יכלו לטעום מהמן [היינו הטעמים שהוא משתנה דזהו עיקר שינוי המן משאר כל מאכלים וניכר שהוא לחם מהשמים ולא מארץ שאין דוגמתו בארץ כלל ודבר זה אין שייך אלא לישראל שהם יכלו לאכול לחם כזה. אבל הערב רב אף דגם כן מסתמא ניזונו במדבר מהמן והם שאמרו נפשנו קצה בלחם הקלוקל שכל התרעומות היה התחלה מהם על כל פנים והרוב הכל מהם. ולפי שהם הרגישו בו רק טעם אחד פשוט ועל כן קצו ברגילותו ועיין זוהר הקדוש תשא קצ&quot;א ב׳ דקרא אכריז בני ישראל אכלו את המן ולא הערב רב ומכל מקום איתא שם דאכלו מתמצית וממה דיהבין לון ישראל עיין שם ויש לומר גם כן כמו שכתבתי].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-12">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-13">Chapter 13</h4>
+          <section class="unit" id="divrei-chalomot-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 13:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-13-1" aria-label="Copy link to Divrei Chalomot 13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> שבת קודש פרשת בראשית תרל&quot;ב. חלם לי דמה שאמרו בבראשית רבה [פרשה מו, ד] על פסוק והיה תמים למטרונא כו׳ אין בך פסולת אלא צפורן אצבע קטנה גדול קמעא העבירו ובטל המום. זהו באברהם אבינו ע&quot;ה שהיה [תחלה לגרים כמו שאמרו בחגיגה ג׳ א׳ והיה עדיין] ערל עד שנימול והיה הפסולת בדבר המחובר לגוף עצמו. דצפורן אף על פי שהוא חוץ לגוף ויכולין לגזזו מכל מקום הוא מכלל הגוף עצמו. אבל בני ישראל דאפילו ערלים נקראו מולים כמו שאמרו בנדרים <span class="source-small">(ל&quot;א ב׳)</span> אין בהם עוד פסולת מחובר לעצם גופם כלל. רק הפסולת להם כבטן המליאה ומעלה סרחון וכשנפנה ויצא הפסולת המסריח מקרב גופן עבר המום. ואין שום פסולת וסרחון בבני ישראל מעצמיותם רק דא׳ יש בקרב גופם המסריח ובקרבם כח הדוחה לדחותו ולהוציאו בעל כרחו מגופו ויסור הסרחון [והמשל מכיון שמצד אחד טינופת זו גרוע דהוא בפנימיותו וגם שמסריח הרבה עוד שאי אפשר לעמוד אצלו וגורם חס ושלום לשכינה שתסתלק. אבל מכל מקום הכל לא מצד עצמיותו דאיש יהודי וכמו שאמרו סנהדרין מאן דאמר ריש עמוד א׳ היינו דאמרי אסא דקאי ביני חילפי כו׳ עיין שם דחטאי בני ישראל הם דברים שמבחוץ הסובב לעצמיותו כקוצים הסובבים לשושנה וטבע עצמיותו לדחותו בעל כרחו ובקל הסרחון סר ויוצא ממנו].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-13">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-14">Chapter 14</h4>
+          <section class="unit" id="divrei-chalomot-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 14:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-14-1" aria-label="Copy link to Divrei Chalomot 14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מוצאי</strong> שבת קודש בראשית א׳ דראש חדש חשוון. נדמה לי שהוא ראש השנה וציוו לי לילך להגיד איזה דבר לפני העם קודם התקיעות. ואמרתי אגיד להם רק הפסוק תקעו וגו׳ שמצות היום בשופר והוא בכסא ליום חגינו עתה ביום החג הוא מכוסה ונעלם ואין אתנו יודע טעמו וסודו של דבר שיהיה מאיר נוכח עינינו. כי חוק לישראל הוא שניתן לבני ישראל דרך חוק וגזירה בלא טעם רק אלהים הבין דרכה. ומשפט שהוא דבר שיש לו טעם וסברא הוא לאלהי יעקב דאצלו קרוי מצוה זו משפט אבל אצלינו הוא בגדר חוק שטעמו בכסא ונעלם. אבל הוא רק עתה ביום החג ואחר שקיימנו מצות החג והתקיעות המצוה עצמה היא נר המאירה לנו לעמוד על טעמה וסודה ולהאיר במעמקי הלב [כי עיקר המצות דמברכין אשר קדשנו במצותיו וצונו להכניס קדושה בלב כל מצוה קדושה מיוחדת כפי אור דאותה מצוה. מצות שופר מביאה יראה בלב וכמו שכתוב אם יתקע וגו׳ ועם לא יחרדו. וזהו עיקר המבוקש מאיש הישראלי וכמו שכתוב מה ה׳ וגו׳ כי אם ליראה ונאמר סוף דבר הכל וגו׳ האלהים ירא וגו׳ כי זה כל האדם. ועל כן מצוה זו בראש השנה להכניס היראה בלב על כל ימות השנה. וזהו הרגשת אור המצוה כאשר טועם בלבו מהקדושה שמכנסת בלב זהו שהטעם והטעימה גלוי בלב. וזהו משפט על דרך שאמרו בברכות <span class="source-small">(סא:)</span> צדיקים יצר טוב שופטן. וחוק הוא גזירה שאין להרהר אף שאין לו שום הרגשה בלב מה טעם וטעימת קדושה בלב מזה כי מסתמא הוא במעמקים ובהעלם שלא בהתגלות לבו ואין הוא עצמו מרגיש. ובזה יש חילוק בין המצות דיש שכל אחד מרגיש וטועם בלבו אור הקדושה הנכנס ללבו בעשייתה. ויש שנעלם אצל רוב בני אדם זולת אצל יחידים כמשה רבינו ע&quot;ה שטעם טעימת כל המצות בלבו כמו שאמרו <span class="source-small">(מדרש רבה ותנחומא חקת)</span> לך אני מגלה טעמי פרה ולאחרים חוקה דעל כן נקרא איש האלהים וכן כל אחד כפי מדריגתו אבל ברוב בני ישראל הוא דרך חוק. ומצות שופר בראש השנה עצמו אין הקדושה מתגלית בלב עדיין והוא בכסא רק אחר כך היא פועלת בהתגלות לבו. וכל מחשבות של יראת שמים הבאים ללב האדם בכל ימות השנה הכל מקיום מצות שופר בראש השנה. ואין כאן מקומו להאריך יותר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-14">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-15">Chapter 15</h4>
+          <section class="unit" id="divrei-chalomot-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 15:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-15-1" aria-label="Copy link to Divrei Chalomot 15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> שבת קודש מקץ. דכל גדולת ומלוכת יוסף באדר כי הוא חדשו כידוע דעל כן פעמים ב׳ אדרי&quot;ן כמו יוסף פעמים ב׳ שבטים ויהושע בן נון מלך הראשון מזרעא דיוסף מלך באדר [כי ז׳ באדר מת משה רבינו ע&quot;ה ואז מלך אחריו יהושע] אבל דוד מזרעא דיהודה מלך בניסן שהוא נגד שבט יהודה. ובריש ראש השנה ילפינן דלמלכים מונין מניסן ממלכות שלמה וכן כל נצחונותיו במלחמותיו בניסן כמו שכתוב לתשובת השנה לעת צאת המלכים עיין שם ברש&quot;י שמצוי בשדה והוא חודש האביב. וכן יהיה לעתיד משיח בן יוסף באדר ומשיח בן דוד בניסן [דבו עתידין ליגאל גאולה השלימה ובאדר הוא מחיית עמלק הקודמת לשלימות השם והכסא המתגלה בגאולה השלימה שאינו נופל אלא ביד זרעא דיוסף שהוא הלהבה לשרוף את בית עשו. ומשיח בן יוסף הוא יהיה הנלחם עם עמלק וזהו הזמן באדר ואחר מחייתו יזכה לשם שלם שהוא דרגא דיהודה דנקרא כולו על שמו של הקב&quot;ה מה שאין כן ביוסף רק שלש אותיות וכמו שאמרו בסוטה <span class="source-small">(י:)</span> וזהו כל זמן שעדיין אין השם שלם].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-15">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-16">Chapter 16</h4>
+          <section class="unit" id="divrei-chalomot-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 16:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-16-1" aria-label="Copy link to Divrei Chalomot 16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבת</strong> קודש במדבר. בפרשת וישלח וילך ראובן וגו׳ ויהיו בני יעקב שנים עשר דייקא אז [וזהו הפעם הראשון שנמנה מספר השבטים יחד ולא נזכר מקודם מספרם יחד] כי כל זמן שלא יצא החסרון שהיה בו לפעל במעשה לא היה אפשר למנותו בכלל השבטים מפני החסרון שיש בו בכח ומי יודע עד היכן הוא מגיע ואולי חס ושלום ידחה על ידי זה כשיצא לפעל [דכל חטא גם קודם שהוא בפעל ישנו בכח שהוא מוכן לזה וכמו שנאמר באליאב כי מאסתיהו וגו׳ ואמרו ז&quot;ל <span class="source-small">(פסחים סו:)</span> מפני כעסו על שחרה אפו בדוד. וזה היה אחר כך רק דאחר כך היה היציאה לפעל וכבר היה חסרון זה בו בכח מקודם] ואחר שיצא לפעל ונתברר דאינו חסרון אלא בדבר קל וכמו שאמרו <span class="source-small">(שבת נה:)</span> כל האומר ראובן חטא אינו אלא טועה [רק שלמעלתו הגדולה מעלה עליו הכתוב כאלו חטא דסביביו נשערה מאוד ולגבי דידיה נחשב לחטא וחסרון] ואף על זה החטא הקל היה עסוק בשקו ותעניתו ושב בתשובה שלימה כאלו היה חטא חמור. ובזה נתבררה מעלתו השלימה שאין בו חסרון ועל כן אז דייקא נשלם מנין הי&quot;ב שבטים שיהיה נמנה עמהם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-16">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-17">Chapter 17</h4>
+          <section class="unit" id="divrei-chalomot-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 17:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-17-1" aria-label="Copy link to Divrei Chalomot 17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> שבת קודש בא הברכו&quot;ת. ואדם ביקר בל ילין נמשל כבהמות נדמו. שהמיתה נקרא לינה כמו שאמרו ז&quot;ל <span class="source-small">(סוטה כא: ואבות פרק ו)</span> על פסוק בשכבך תשמור עליך בקבר והקיצות וגו׳ בעולם הבא [וכן נקרא בירושלמי ומדרש המיתה בכל מקום בלשון שינה כד דמך ר׳ פלוני ועיין בירושלמי פרק ב׳ דחגיגה ובמדרש רות על פסוק ליני הלילה על אחר בקבר] ויש אדם שזכה לכבוד ויקר בעולם הזה שהכל חרדים לקראתו ועוסקים במלאכתו להזמין לו פרנסתו ולשמשו ולכבדו בכל מיני כבוד ויקר אבל אם לא ילין יקר זה עמו גם בקבר ואחר מיתה להיות גם שם המלאכים והנשמות חרדים לקראת בואו ועוסקים בכבודו ויקרו כבעולם הזה אין היקר דעולם הזה אלא נמשל כבהמות שגם כן פרנסתם וכל צרכיהם מעופף להם על ידי הבעלים המשתדלים בצרכיהם וממנים עליהם רועה לרעותם במרעה טוב ושמן וכיוצא ואין זה קרוי כבוד ויקר להם כלל [ועל כן אמרו <span class="source-small">(שב.סג ת) &amp;lt;</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-17">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-18">Chapter 18</h4>
+          <section class="unit" id="divrei-chalomot-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 18:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-18-1" aria-label="Copy link to Divrei Chalomot 18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> וערב שבת קודש תזריע כ׳ למב&quot;י. לך דוד ועמך בן ישי. כי בחירת דוד היתה מצד מעלת עצמו וגם מצד אביו וכמבואר מלשון הכתוב כי ראיתי בבניו לי מלך דמבואר דהבחירה למלך היה באחד מבניו של ישי דוקא [כי הוא היה הצדיק יסוד עולם שלא חטא מעולם כמו שאמרו ז&quot;ל בשבת <span class="source-small">(נה:)</span> דמת בעטיו של נחש ומהיסוד בא מלכות] וכאמרם ז&quot;ל <span class="source-small">(פסחים סו:)</span> על פסוק כי מאסתיהו מכלל דהוי חזי משמע דתחלת הבחירה באחד מבני ישי כי האב זוכה לבנו כו׳ [וכן אמרו בתנא דבי אליהו <span class="source-small">(סדר אליהו רבה פרק כ)</span> על הרבה שבאו בזכות אבותם ועל הרוב גם זכות אבותם מסייעתם. וכן אמרו <span class="source-small">(שבת שם)</span> בעמרם אבי משה רבינו ע&quot;ה דמארבעה שמתו בעטיו של נחש ועל כן יצא ממנו משה רבינו ע&quot;ה ורק אברהם אבינו ע&quot;ה שנקרא אב לכל העולם כולו כי הוא האב והראשון שאין לפניו ולא בא בזכות אבותיו ועל כן נקרא תחלה לגרים בחגיגה ג׳ א׳] ושאול שהיה שונאו וידע ממעלתו חשב דהכל מצד אביו לבד ועל כן קראו רק בן ישי מדוע לא בא בן ישי. בוחר אתה לבן ישי. לכולכם יתן בן ישי. בכרת בני עם בן ישי, וכדומה, שתלה כל מעלתו במה שהוא בן ישי לבד. אבל באמת היה לו שני המעלות על כן עמשא אמר לו שניהם [ואמר לשון לך דוד שבזה הוא נבדל מכל אחר ואין דומה לו כלל על כן אמר לך שהם שייכים לו כעבד לאדונו. אבל לשון עמך משמע שמחוברים ודומים לו. וזהו מצד מעלת בן ישי דגם אחיו כן ואינו מיוחד בזה מכל האדם ואפשר להיות דומה לו וגם עמשא הוא בן בתו של ישי כמו שאמרו ז&quot;ל <span class="source-small">(שבת שם)</span> ועל כן אמר לשון עמך בזה].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-18">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-19">Chapter 19</h4>
+          <section class="unit" id="divrei-chalomot-19-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 19:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-19-1" aria-label="Copy link to Divrei Chalomot 19:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> שבת קודש האזינו וברכו&quot;ת. נשכח ממני כל הענין בהקיצי רק תמצית דבר אחד שאמרו לי בשם אחד קדוש. דלעתיד לבוא יהיה שבת שלשה ימים וכן תשעה באב יהיה שלשה ימים [ותיכף בהקיצי משנתי אז בעוד ליל עלה במחשבתי [ועיין ברית מנוחה דף י&quot;ח ריש ע&quot;ג מענין שלש שבתות ובדף י&quot;ט ע&quot;א עיין שם] הכונה לשלשה עולמות בראיה יצירה עשיה שבכל אחד יש שבעה ימי הבנין. כי כל עולם נברא בששת ימי המעשה ויום השביעי יום השבת כי בו שבת מה שאין כן עולם אצילות שנאצל ולא נברא שהוא למעלה מהבריאה ולמעלה מהזמן. ובאדם שלשה חלקי נפש רוח נשמה שבמוח ולב ואברי המעשה [שכחם מהדם הוא הנפש] הם מבריאה יצירה עשיה כידוע <span class="source-small">(תיקוני זוהר תיקון ו)</span> והם מלובשים בגוף האדם עצמו אבל הנשמה לנשמה והוא חיה יחידה שבאצילות הוא למעלה מהקומה בסוד מקיף כידוע. וכאשר האדם שלם בכל חלקי נפש רוח נשמה בתכלית השלימות בלי שום פגם זוכה להשיג קדושת שלשה ימי השבתות שבעולמות בריאה יצירה עשיה. וזהו תכלית השלימות כי בו שבת וגו׳ ואלמלי זכה אדם הראשון שלא חטא ונכנס לקדושת יום השבת בלא חטא היו כל העולמות בשלימותן כי היה קומתו מסוף עולם ועד סופו <span class="source-small">(חגיגה יב.)</span> היינו בכל העולמות כולם הוא כולל כולם. על ידי קומת נפשו כל עולם העשיה ורוחו ביצירה ונשמתו בבריאה והיה אותו שבת היום שכולו שבת דלעתיד לבוא. אלא שהחטא גרם וצריכים להמתין לזה עד אלף השביעי. ואלמלי שמרו ישראל שתי שבתות היו נגאלין. <span class="source-small">(שבת קיח:)</span> יש לומר הכונה כי עיקר עבודת האדם הוא במעשה בפעל באברים שבהם פעולת כל המצות ואזהרות שבתורה וכל החטאים מתייחסין לנפש נפש כי תחטא כי החטא הוא במעשה דשם בעולם העשיה הרע גובר כידוע. וגם במדות שבלב ששם משכן הרוח שביצירה ששם טוב ורע שקולים כידוע כי שם משכן שני היצרים לב חכם לימינו ולב כסיל לשמאלו כמו שאמרו ז&quot;ל. וכשאדם זוכה להשלים נפש ורוח וזוכה לשתי שבתות אלו דיצירה ועשיה אז ממילא זוכה גם לנשמה שבבריאה כי שם הטוב מרובה כידוע ואין צריך יגיעת אדם כל כך וכמו שאמרו נשמה שנתת בי טהורה היא וגו׳ ומיד נגאלין וזוכין לביאת המשיח שהוא הבא לתקן חטא אדם הראשון ולזכות לנפש רוח נשמה בתכלית השלימות שאז יזכה לשלשה שבתות. ולפי שקדושת השבת קבועא וקיימא מששת ימי בראשית מצד השם יתברך בלא השתדלות אדם רק האדם צריך שיהיה מוכן לקבל הקדושה על כן יוכל להשיג כל אחד בפני עצמו ונחשב לשלשה ימים. מה שאין כן יום טוב דישראל מקדשי שהוא הקדושה שמצד השתדלות אדם ואצלו ומצידו כולם כלולים יחד והנפש הוא מלבוש לרוחו ורוח לנשמה ודברים אלו ארוכים ואין כאן מקום להאריך. ולכן דוקא שבת יהיה לעתיד שלשה ימים וכן תשעה באב שיהיה אז לששון ולשמחה הקדושה שיהיה בו אז שיהיה יום טוב אינו מצד ישראל דמקדשי שהרי הם אדרבה חטאו וגרמו שיהיה אותו יום יום פורעניות רק לעתיד שיהיה חטאיכם כשנים הללו שסדורות ובאות מששת ימי בראשית כמו שאמרו בשבת פ&quot;ט ב׳ דאז כשלג ילבינו ויתהפכו לזכיות על ידי זה שכך היה רצון השם יתברך מששת ימי בראשית שיהיה כן. ונמצא עיקר הקדושה בו רק מה שכך היה רצון השם יתברך בתחלת הבריאה והוא הקדושה דקבוע וקיימא כקדושת השבת אלא שאינה מתגלית אלא לעתיד אחר התיקון שאינו בהתגלות בעולם הזה כשבת שבו שבת וגו׳ רק זה הוא קדושת יום השבת הגנוזה גם בששת ימי המעשה המתגלית לאחר התשובה והתיקון לכל החטאים. וזה יהיה קדושת יום תשעה באב לעתיד לבוא ועל כן גם הוא יהיה שלשה ימים היינו שישיגו בו הקדושה בכל חלקי נפש רוח נשמה שבאדם שהוא קדושת היום ההוא בכל השלשה עולמות בריאה יצירה עשיה וזהו שלשה ימים כנזכר לעיל. כך נפל במחשבתי אז בלילה בהקיצי לקיים דברי החלום הנזכר להיות יציבא מילתא ומהימן פשריה ועל כן רשמתיו הנה].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-19">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-20">Chapter 20</h4>
+          <section class="unit" id="divrei-chalomot-20-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 20:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-20-1" aria-label="Copy link to Divrei Chalomot 20:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> מוצאי שבת קודש וישלח. כי היום שהאדם נולד בו אז הוא בתוקף מזלו ואין לו לירא באותו יום בכל שנה משום דבר שיורע מזלו אז. ומה שאמרו בקידושין <span class="source-small">(לח.)</span> דצדיקים מתים ביום שנולד היינו לפי שאצלם המיתה היא התרוממות מזלו ומעלתו שפושט לבוש שק הגופני ולובש חלוקא דרבנן הרוחני ליכנס לעולמות העליונים למעלה עליונה ליהנות מזיו השכינה. וכמו שביום לידתו ירד לעולם הזה לתוספות מעלה שעל ידי עבודתו בעולם הזה בתורה ומצות ומעשים טובים הוא מגיע למעלה עליונה יותר ממה שהיה קודם. כן ביום המיתה מגיע למעלה עליונה עוד יותר דטוב יום המות מיום הולדו ועל כן הם מתים ביום לידתם דהוא יום התרוממות מזלם. אבל מי שאין צדיקים שאין המיתה מיד ביומו התרוממות מעלה [שאף על פי שסוף שיגיעו למעלות בעד תורה ומצות שעשו. כיון דמכל מקום צריכים מקודם לקבל עונש גם כן וחיבוט הקבר וצער מיתה אם כן יום המיתה עצמו צער גדול ואתרע מזליה הוא להם וכלשון רז&quot;ל בכמה דוכתי ולא התרוממות] אין להם לירא ביום לידתם מן המיתה. [ובהקיצי עלה במחשבתי שאפשר לומר דהא בהא תליא ורק לצדיקים שלידתם גרם להם התרוממות מעלה על כן יום הלידה הוא תוקף מזלם מה שאין כן מי שאין יציאתו מן העולם בלא חטא כביאתו לעולם דנמצא נוח היה לו יותר שלא נברא והיה נקי מהחטא משנברא. לזה אין יום הלידה התרוממות מזלו כלל ואם כן גם הוא יש לו לירא מהמיתה גם כן ביומו שגם לידתו היה לו השפלה ממדריגתו הקודמת ולא התרוממות. אלא שיש לומר זהו ברשעים גמורים שנוח שנהפך שלייתם על פיהם ולא נוצרו. אבל הבינונים נהי דמצד החטאים קלקל עוד בלידתו מכל מקום אחר שיקבל עונש על החטאים ויצטרף ויתלבן מהם יש לו שכר הרבה מתורה ומצות שסיגל בעולם הזה שיגיע בו למעלה עליונה שפיר הוי אצלו יום הלידה התרוממות ותוקף מזלו ולא ימות אז. ואף דגם מיתתו מצד זה יש בה מעלה שיגיע למעלה עליונה מכל מקום יום המיתה עצמו מיהת צער הוא לו כנזכר לעיל].
+<strong>עוד</strong> בלילה הנזכר לעיל דהמגלה רזין וסודות שאין ראוי לגלותן עונשו להתגלגל ולהיות בגלגול שני שיכור דנכנס יין יצא סוד עד כאן תמצית הדברים שאני זוכר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-20">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-21">Chapter 21</h4>
+          <section class="unit" id="divrei-chalomot-21-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 21:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-21-1" aria-label="Copy link to Divrei Chalomot 21:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> מוצאי שבת קודש בשלח נסתפקתי בחלום הלילה בהא דיבמות ל&quot;ז א׳ בספק בן תשעה לראשון ספק בן שבעה ליבם דולד אחד כשר והשני ספק ממזר. היכי דחזינן דולד ראשון צניעי ומעלי והשני מקטפיה ידיע ובמעלליו מינקותו שהוא עז פנים כרובן של ממזירים הן המורדים והפושעים. אי סמכינן על זה לדינא להחזיקו על ידי זה כממזר ודאי [ומסברא היה נראה פשוט דלא סמכינן דטובי עזי פנים יש בעולם דלאו ממזירים ובעוקבתא דמשיח חוצפא סגי וכן טובי רשעים דזורו מרחם יש. ואף דהם בני אב ואם אחד אם הראשון בן יבם יעקב ועשו יוכיחו והם תאומים ובני אב ואם צדיקים גמורים וכל שכן שאין תאומים ובאינשי דעלמא. ואולי השני מבני תשע מדות דנדרים כ׳ ב׳ וכיוצא. אלא שיש לעיין לכאורה בעובדא דר׳ בנאה בב&quot;ב נ&quot;ח א׳ שסמך על אומדנא להחזיק העזי פנים לממזירים גם לענין ממון וצריך לומר אף על גב דבממון לא אזלינן בתר חזקה היינו להוציא ממוחזק. אלא דיש לומר שם היה ודאי תשע מהם ממזירים וכאן מי יימר דאיכא ממזר. אך בלאו הכי התם כיון דהאב ציוה שהאחד ירש ולא פירש מי על כרחך סמך על חכמת הבית דין שיבררו הדבר בחכמתם. וגם יש לומר דדמיא להא דכתובות פ&quot;ה ב׳ נכסי לטוביה ואתו שני טוביה דשודא דדייני לפירוש רש&quot;י שם לאמוד דעת המת עיין שם. ושוב ראיתי ברשב&quot;ם ב&quot;ב שם כתב כמו שכתבתי עיין שם בד&quot;ה לחד כו׳ שיבררו בית דין ובד&quot;ה אמר כו׳ ויפה דן ר׳ בנאה דלא שייך הכא אלא שודא כו׳ יעויין שם. אלא דלא ידעתי למה ארכבה אתרי רוכשי ומייתי ראיה לשודא דדייני מהא דכתובות הנזכר ולפי מה שכתבתי תחלה דהיה כונתו לאיזה שיבררו בית דין אם כן פשיטא דלבית דין לברר כפי דעתם וסברתם דלא נביאים הם לידע לאיזה כיון והוא עצמו לא ידע ואמר סתם שאי אפשר לשום אדם לידע ועל כן מסר הדבר לבית דין. והם שהלשינו שמפיק ממונא מאינשי בלא סהדי ובלא מידי לשון הרע בעלמא אמרו עליו ולאו אפוקי ממונא הוא כלל דהרי האב אמר בהדיא רק לחד והדבר שקול וגם על כרחך היה כונתו כן. ובההוא דכתובות הוא ידע לאיזה טוביה כיון ויש לומר דשכח ולא אסיק אדעתיה אז בחליו מטוביה האחר שיצטרך לסמן את זה להבדילו ואין ראיה דמסר לבית דין ומכל מקום אמרו בזה שודא דדייני וזהו רבותא דאצטריך לאשמועינן התם אבל האי דהכא פשוט דהרי מסר הדבר לבית דין ועל כרחך מבואר בדבריו ככל מה שכתבתי. ולכאורה מיניה ראיה להיפך דאי לאו דהדין בזה שודא דדייני לא יפה דן ולא סמכינן אאומד הנזכר. ומיהו יש לומר שאני שם דאינו עזות כל כך דהרי ר׳ בנאה ציום לעשות כן וברשות בית דין עבדי ואפשר גם הכשר יעשה כן ומה שכתב בריש ד&quot;ה חבוטו שהממזרים עזי פנים יחבוטו היינו דהם ודאי יעשו מה שאין כן הכשר אולי לא ירצה אף דמצוה ואז יסמוך על זה וכמו שהיה והוא רק שודא בעלמא וליכא אומדנא גמורה].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-21">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-22">Chapter 22</h4>
+          <section class="unit" id="divrei-chalomot-22-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 22:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-22-1" aria-label="Copy link to Divrei Chalomot 22:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> שבת קודש שלח ובברכו&quot;ת. כי יבין מלך כנען שהוא לבדו היה מהכנענים שהשאיר הקב&quot;ה אחר כיבוש יהושע בן נון שלחץ לישראל [דשאר לוחציהם בימי השופטים היו משאר אומות ארם ומואב ומדין ועמון ופלשתים] היה בקליפה ובזה לעומת זה שעשה האלהים נגד יהושע בן נון בקדושה [כי הוא היה בסוד היסוד דקדושה מזרעא דיוסף דצדיקים ירשו ארץ והוא שורש משיח בן יוסף הנלחם וכובש לאומות. ואלו זכו אז שהיה כובש הכל ולא היה צריך דוד המלך ע&quot;ה הבא אחריו ללחום ולכבוש עוד היה הוא משיח בן יוסף ותיכף אחריו דוד המלך ע&quot;ה משיח בן דוד בונה הבית הקיים לעד. אלא שהחטאים גרמו שלא נשלם עדיין תיקון היסוד לגמרי ביומו אף דמל בני ישראל שנית והוא הפריעה שניתנה ליהושע <span class="source-small">(כמו שאמרו יבמות עא סוף ע&quot;ב ופרקי דרבי אליעזר פרק כט)</span> היינו התגלות קדושת היסוד דבני ישראל. ומקודם ביציאת מצרים אמרו ז&quot;ל גם כן <span class="source-small">(שיר השירים רבה פרק א פסוק יב)</span> דמשה היה מוהל ואהרן פורע ויהושע משקה שהיה צריך לחברו עמהם. וכן במלחמת עמלק שחתך ערלותיהם כו׳ <span class="source-small">(מדרש תנחומא תצא סימן י)</span>. ובמרגלים לפי שברית לשון נגד ברית המעור וחשש משה רבינו ע&quot;ה אולי יגרמו קלקול כל כך לתפוס גם יהושע במצודתם ויקולקל חס ושלום שלא היו יכולים ליכנס אז לארץ על כן ביקש עליו רחמים י&quot;ה יושיעך כו׳ והוסיף ה-י׳ בשמו שרומז על החכמה כי קלקול היסוד בא רק על ידי שטות כמו שאמרו <span class="source-small">(סוטה ג.)</span> אין אדם עובר עבירה אלא אם כן נכנס בו רוח שטות וכן בברית הלשון מוציא דבה הוא כסיל וכן אמרו במדרש <span class="source-small">(שלח)</span> אמרגלים כסילים היו ושולח דברים ביד כסיל. וכמו בימי עזרא גרם החטא דנשים נכריות כמו שאמרו בברכות ד׳ א׳ <span class="source-small">(וכמו שכתב זוהר הקדוש שמות ז א)</span> כן בכבוש יהושע כמו שכתוב שופטים ג׳ ויקחו את בנותיהם וגו׳ ואת בנותיהם וגו׳ וזה גרם שלא יכול יהושע בן נון לתקן היסוד לגמרי בשלימות דעל כן לא זכה לבנים ואמרו <span class="source-small">(פסחים קי&quot;ט:)</span> דעל כן לא יברך בכוס של ברכה לעתיד כי זה קצת פגם בשורשו שלא תיקן עדיין כל ישראל שבדורו שהם התפשטות ענפיו בקדושת הברית לגמרי ועל ידי זה נתעורר אחר כך קליפת יבין שמלך בחצור ששם היה משכן קליפה זו דיסוד דטומאה הסובבת על הפרי והקדושה והוא בגימטריא ש&quot;ד חסר י׳ משם הקדוש המורה על מדת היסוד כנודע וכמו שכתוב דאות י׳ מורה חכמה שעל ידי זה הוא קדושת היסוד. והטומאה מלך זקן וכסיל ואשת כסילות הומיה לפתאים ונער חסר לב כמו שכתוב במשלי. וכבר נתבאר במקום אחר גם כן כי רוחין ושדין ולילין הם תפארת יסוד מלכות דקליפה ושדין ביסוד דקליפות וזהו שדין יהודאין הנזכרים בזוהר הקדוש והם הנוצרים מטפי קרי של יהודאין ואנשים גדולים [כדרך שאמרו בעירובין <span class="source-small">(יח:)</span> באדם הראשון] שראו לאונסן. וזהו ששרף יהושע לחצור כמו שכתוב יהושע י&quot;א דאותה לבד שרף ואמרו ז&quot;ל <span class="source-small">(בראשית רבה פרשה פא)</span> דכך נצטוה ממשה רבינו ע&quot;ה וידוע דבשריפת המקום נשרפו כל הקליפות אשר שם וזה טעם שריפת עיר הנדחת. ועל כן נצטוה לשרוף ולבער מהעולם שורש קליפת היסוד ובזה היה תיקון השלם. אלמלא גרם החטא אחר כך <span class="source-small">(עיין זח&quot;ב ג ע&quot;ב)</span> וחזרו הכנענים להתגבר בחצור שהיא חצר הטומאה וסוד חצר מות שמזה מקור המיתה ועטיו של נחש בזוהמא שהטיל והכל יורדין על עסקי הנס כמו שאמרו ז&quot;ל <span class="source-small">(עירובין יט.)</span> והו׳ הוא היסוד דקדושה ששלט האדם בליעל באדם דקדושה לפי שעה לרע לו כי סוף להוציא בלעו מפיו. והמליכו שם מלך והמלך ידוע שבו שורש כל הקליפות שבאותו מלכות] וסימן לד׳ אותיות שמו כי אותיות יב&quot;ן הוא ראשי תיבות של הקדושה דיהושע בן נון [והוא ה-י במילוי יהושע על שם הישועה די&quot;ה יושיעו ובן על שם הבינה וכמו שכתוב ברמב&quot;ן על התורה <span class="source-small">(פרשת תשא לג)</span> דעל כן נקרא בכל מקום בן נון ה-ב׳ בחירק לרמז על בינתו היתירה דבינה לבא שהוא היפך לבב הזונה] לרמז שהיה זה לעומת זה ואות ה-י הוא הניצוץ קדוש [של החכמה שהיפך השטות שבלע והעלימו] שקלט על ידי חטאי ישראל שעל ידי זה היה לו כח וחיות וממשלה ועל ידי זה לחץ בני ישראל בחזקה ואמרו ז&quot;ל <span class="source-small">(ויקרא רבה פרשה ז וש&quot;מ)</span> בחירופין וגידופין [שזהו טומאת ברית הלשון שנגד ברית המעור ומפלתו בסיסרא על ידי יעל דכרע שכב וגו׳ כמו שאמרו ז&quot;ל <span class="source-small">(נזיר כג:)</span>. על דרך מפלת המן על ידי לקיחת אסתר לאחשורוש כי ידוע כאשר אין הדור זכאי אז דודי שלח ידו מן החור והקב&quot;ה ממתיק המר במר שכאשר מראה שיש בעשיית חטא כזה דבר גדול גם כן ועבירה לשמה הגדול כמצוה שלא לשמה <span class="source-small">(כמ&quot;ש שם)</span> ועל ידי זה נעשים החטאים כשנים וכשלג כמו שכתבתי במקום אחר] וניצוחו על ידי דבורה אשה נביאה [שהיא תיקנה קדושת היסוד דנוקבא וברק היסוד דדכורא דעל כן נקראת לפידות על דרך בית יוסף להבה שצריך להיות לפיד אש דקדושה שהוא אש אוכלת אש דיצר הבוער כתנור בוערה מאופה וחכמות נשים בנתה ביתה להוציא על ידי זה בלעו הוא היו&quot;ד מפיו ועל ידי זה נפתח פיהם לומר שירה קדושת הלשון היפך חירופין וגידופין שלו].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-22">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-23">Chapter 23</h4>
+          <section class="unit" id="divrei-chalomot-23-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 23:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-23-1" aria-label="Copy link to Divrei Chalomot 23:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> שבת חזון שנת ברו&quot;ב ההודאו&quot;ת. כי אחד קדוש היה אומר דלא שייך כלל הרגש חיות אלא במקום שיש מציאות מיתה [והוא על דרך שאמרו הרע מבחין את הטוב] ואני הוספתי דעל כן התורה שהיא מקור החיים וכמו שאמרו ז&quot;ל <span class="source-small">(שוחר טוב מזמור ח)</span> הדברות של חיים לא ניתנו למלאכי השרת ואמרו ז&quot;ל <span class="source-small">(שם וזהר הקדוש שמות ג א)</span> דאמר להם מה כתיב בה אדם כי ימות [באהל. ורז&quot;ל דרשו בכל מקום לשון אהל על אהלי תורה כמו ברכות ט&quot;ז ריש עמוד א׳ אהלים לנחלים. ובחלק ק&quot;ה ב׳ על פסוק מה טובו אוהליך וכן על פסוק זה עצמו בברכות ס&quot;ג ב׳ ושם יש לומר גם משום רישיה דזאת התורה. ועל פי מה שכתבתי יש לומר דרצה לומר דעל ידי אדם כי ימות על ידי זה זוכה לזאת התורה ולישב באהלי תורה] כלום מיתה יש ביניכם. והיינו כיון דאין בכם מיתה אין בכם מציאות הרגש חיות גם כן ועל כן אין לכם שייכות עם התורה שהוא הרגשת החיות של מקור החיים [וישראל דבוקים באלהים חיים שהוא חי העולמים מקור החיות של כל העולמות ולכן קודשא בריך הוא ואורייתא וישראל חד על כן יש שייכות בהם הרגש חיות גם לעתיד כשיבולע המות לנצח כי מחיצתן יהיה לפנים ממחיצת מלאכי השרת כמו שאמרו ז&quot;ל <span class="source-small">(ירושלמי סוף פרק ו דשבת)</span> על פסוק כעת יאמר וגו׳ שהם הדבוקים בו יתברך ידעו מה פעל. ומצד הזה יהיה בהם אז ההרגשה אף שלא יהיה גם אצלם מציאות ההיפך. וכמו ששמעתי על לשון התיקונים אנת הוא חכים ולא בחכמה ידיעא מבין ולא בבינה ידיעא כי החכמה הוא ידיעת השכל שבמוח ובינה הוא הרגשת הלב ומלאכים יש בהם ידיעה מצד החכמה שהשם יתברך משפיע בהם אבל אין להם הרגשת הלב [והיינו כמו שכתבתי כי לא שייך הרגשה בשום דבר בלב אלא על ידי מציאות ההיפוך גם כן בלב. והמלאכים אינם בעלי בחירה ועל כן נקראים קיימיא שהם קבועים וקיימים כפי מה שבראם השם יתברך ואין בהם שינוי. וכן החכמה קבוע וקיימא בהם כל אחד כפי מה שהשם יתברך השפיע בו בבריאתו ואין זה קרוי אלא ידיעה וחכמה ולא בינה והרגשה בלב] וישראל יש להם [רק] בינה שהיא ההרגשה שבלב [וכל חכמתם נמשכה מצד הרגשת לבם ועל כן מורגל בתלמוד לשון אליבא דר׳ פלוני ושמעתי דהוא לשון לב שכל אחד אמר כל דבר הלכה רק כפי הרגשת לבו. וכן אמרו בסנהדרין ל&quot;ה סוף ע&quot;א ליבא דאינשי אינשי וזהו חכמה תתאה חכמת שלמה המלך ע&quot;ה שהיא חכמת התורה שבעל פה הנובע מלב חכמי ישראל שעל זה אמרו ב&quot;ב י&quot;ב א׳ דחכם עדיף מנביא מקרא דנביא לבב חכמה שעל ידי החכמה שבלבבם ששם הוא ההרגשה ומשם נובע חכמתם היא עדיפא מנבואה שהוא בראיה כמ&quot;ש דלנביא יקרא לפנים הרואה והוא שמואל רבן של כל הנביאים וכן חזון ישעיה וגד החוזה וכדומה. וכן בחכמה שבלב נאמר ולבי ראה הרבה חכמה כי מה שמרגיש בלב הוא כמו שרואה בעיניו וכן במתן תורה בתורה שבכתב אף שהוא נתונה מן השמים נאמר וכל העם רואים את הקולות שהיו רואים את הנשמע דשמיעה הוא הידיעה שבמוח הדבר ששומע אבל ראיה הוא על ידי ההרגשה שבלב. וזהו עיקר מתן תורה לישראל שיהיה נבלע בלבם וכמו שכתוב כתבם על לוח לבך ולעתיד נאמר ועל לבם אכתבנה ונאמר מי יתן והיה לבבם זה להם וגו׳ דרחמנא לבא לבד בעי כמו שאמרו סנהדרין ק&quot;ו ב׳. ועיקר מתן תורה היה ללבבות דבני ישראל וכמו שאמרו בדברים רבה <span class="source-small">(פרשת ברכה)</span> כל מי שיש בו יראת שמים כל התורה וכל החכמה נתונין בלבו ויראת שמים עיקרו בהרגשת הלב כמו שאמרו ביומא ע&quot;ב ב׳ על פסוק ולב אין. ועל כן נקראת תורת משה דלגביה יראה מלתא זוטרתי כמו שאמרו ברכות ל&quot;ג סוף ע&quot;ב והוא בסוד הדעת כידוע המחבר חכמה ובינה שאף על פי שהוא חכמת השם יתברך נותן התורה מכל מקום אינו מושגת לבני ישראל אלא בהרגש הלב שהוא הבינה שמבין מעצמו. וזה שכתב רש&quot;י פרשת תשא דדעת הוא רוח הקודש שזהו נבואת החכמים כמו שכתב הרמב&quot;ן בבא בתרא שם דמה שמכוין בחכמת לבו אל האמת זהו שפע רוח הקודש הנובע מקודש העליון וחכמה העליונה דעל כן אמרו בבראשית רבה <span class="source-small">(פרשה יז)</span> נובלות חכמה העליונה תורה ואין כאן מקומו להאריך יותר בזה] והקב&quot;ה כולל שניהם אבל חכמתו הוא אינו בחכמה ידיעא היינו כמו כל חכם שיודע בחכמה והחכמה דבר נבדל מהחכם שהוא משיג החכמה ואצל השם יתברך כולו חד כי הוא היודע כו׳ <span class="source-small">(רמב&quot;ם פרק ב מהלכות יסודי התורה הלכה י)</span> וזהו חכם ולא בחכמה וכן מבין ולא בבינה היינו שיש בו הרגשה כמו לבני אדם אבל לא בבינה כדרך המבין בבינה שהוא בא מורגש מצד ההעלם וההיפך שהיה לו מקודם ועתה מבין ומזה בא ההרגש. ואצל הקדוש ברוך הוא לא שייך כלל זה רק אצל הנפרדים אבל אצלו הכל ביחוד ובעצם ועל כן מה שהוא מבין אינו בבינה וכדרך הרגשת בני אדם על ידי בינת הלב. עד כאן מה ששמעתי תורף דבריו עם הוספת ביאור והרחבת דבריו כפי מה שנראה לי. ולעתיד לבוא יהיה הרגשתם מעין הרגשת השם יתברך ולא בבינה ואצל המלאכים לא יהיה התחדשות והשתנות אז גם כן והם רק חכמים בחכמה והכל מטעם הנזכר לעיל לפי שאין בהם מציאות ההיפך. ועל דרך זה שמעתי כי אין הרגשת אור קדושה מבהיק אלא במקום שיש מציאות ההיפך. ואמר סיפור סמך לזה מאחד קדוש מפורסם למשמש ברוח הקודש שהיה אומר ברוח קדשו על יין שמראין לו זה כשר וזה אסור ופעם אחת טעו והביאו בקבוק של מי דבש שסברו שהוא יין והראו לו ואמר שאין רואה בו שום איסור אבל גם אור הכשרות אין מבהיק בו כבכשרים והוא עצמו לא ידע הענין ואולי חשב שיש בו איזה ענין שאין אוסר מדינא רק ממדת חסידות וכיוצא. ואחר כך נודע שהיה מי דבש ואמר דמאחר דלא שייך בו כלל איסור אין בו על ידי כשרותו אור מבהיק במה שהוא כשר כמו שיש באותו שיש בו מציאות איסור והוא אינו איסור רק כשר].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-23">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-24">Chapter 24</h4>
+          <section class="unit" id="divrei-chalomot-24-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 24:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-24-1" aria-label="Copy link to Divrei Chalomot 24:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> שבת קודש תזריע שנת והברכו&quot;ת. כי תלתא דפורענותא שמפטירין דברי ושמעו וחזון הוא תוכחות הנביאים לתקן הפגמים שפגמו בדבור ושמיעה וראיה שעל זה היה החורבן. ונגד זה בפסח שהוא זמן גאולה אלו השלש נתקנו. ועל כן קורין בשבת חול המועד ראה אתה אומר אלי ומפטירין העצמות היבשות שמעו והוא תיקון הראיה והשמיעה ובשביעי של פסח קורין השירה ומפטירין וידבר דוד את דברי השירה הוא תיקון הדבור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-24">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-25">Chapter 25</h4>
+          <section class="unit" id="divrei-chalomot-25-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 25:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-25-1" aria-label="Copy link to Divrei Chalomot 25:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מוצאי</strong> שבת קודש מקץ ה׳ דחנוכה ברכת&quot;י ב&quot;ו. כי שלש עשרה שבטים שעם מנשה ואפרים הם נגד שלש עשרה מידות של רחמים כי כל אחד יש לו ענין קדושה [של דביקות בהשם יתברך דהדבק במדותיו כמו שאמרו בסוטה <span class="source-small">(יד.)</span>] בפני עצמו שיש בו משרשו. וכל אחד כלול משנים [כי הם זרע יעקב קו האמצעי הכלול מחסד וגבורה וכל דבר יש בו על כרחך שני קצוות אלו וקו אמצעי הוא המחברן ומאחדן להתנהג בכל קצה במקום הראוי לו ולא לנטות לצד אחד ביותר רק להיות הכל בשיווי וכל דבר כפי הצורך וזהו דרך הממוצע] ונגדם כ&quot;ו כי לעולם חסדו החסדים שהשפיע השם יתברך בעולמו [על ידי הקדושות שבשבטי י&quot;ה שהוא שורש הקדושות דישראל שבשבילם היה כל הבריאה. ובפרק ערבי פסחים <span class="source-small">(קיח.)</span> אמרו דהם נגד כ&quot;ו דור שעד מתן תורה שנהג העולם בחסדו כי במתן תורה נתקדשה כל האומה ישראלית ונתפשטו כל קדושת השבטים כולם בכל אחד מישראל בפרט בהתגלות והם עיקר העולם. ומקודם בכל דור ודאי היו גם כן צדיקים או על כל פנים צדיק אחד יסוד עולם שעליו העולם היה עומד ומתקיים רק שזה היה בחסדו מה שהשם יתברך היה שולח איזה ניצוץ קדוש כל דור לצורך קיום העולם כפי הראוי לאותו דור קדושה אחד מאותן כ&quot;ו קדושות שזכו אחר כך ישראל במתן תורה לכולם. ותשעה כי לעולם חסדו הראשונים הם החסדים ושרשי הקדושות דקביעא וקיימא בבריאת עולם שהוא מצד השם יתברך לבד. והעשירי הוא למכה מצרים שזהו התחלת בנין אומה ישראלית ביציאת מצרים על ידי צעקתם להשם יתברך. וזהו נגד דור המבול ונח שהוא האחד שנאמר בו צדיק תמים וצדיק לפני שהתחיל בהשתדלותו להיות יסוד עולם. ודור המבול אמרו בזוהר הקדוש <span class="source-small">(ח&quot;ג רטז ריש ע&quot;ב)</span> שהיה ראוי להיות אז מתן תורה וכן אמרו בחולין <span class="source-small">(קלט ב)</span> בשגם זה משה כי כבר התחיל התעוררות בנין כנסת ישראל והתחלות התגלות אותם הניצוצות קדושות בעולם אלא שנשקעו אז עדיין בעמקי הקליפות עד שאבדו במבול ובאה אחר כך לגלות מצרים כידוע שהם מאותם הנפשות. ואחר כך ויוצא ישראל מתוכם התגלות שם ישראל הוא בשם בן נח שהוא האחד שייחד הקב&quot;ה שמו עליו שאמר הכתוב עליו אלהי שם וכן עבר תלמידו וחבירו בדומה לו שנזכר בכמה מקומות בית המדרש של שם ועבר ויעקב אבינו ע&quot;ה למד אצלם כי בהם כבר היה בהעלם ניצוץ קדוש משורש ישראל שנתגלה ביעקב ועל כן נגדו הוא והעביר ישראל בתוכו גם כן נזכר שם ישראל מה שלא נזכר בשאר כגון למוליך עמו לא אמר למוליך ישראל. ובקריעת ים סוף אז היה ההתגלות דראיה שראתה שפחה על הים וכו׳ <span class="source-small">(מכילתא וזוהר הקדוש בשלח)</span> שזכו לה אחר כך במתן תורה בקנין כמו שכתבתי במקום אחר ועל כן אמרו <span class="source-small">(בראשית רבה סוף פרשה לז)</span> נביא גדול היה עבר שקרא שם בנו פלג ולא מצינו בכתוב בפירוש נבואה בשם נראה שבזה היה עבר גדול יותר. ואברהם אבינו ע&quot;ה שהוא אב והתחלת האומה נגד ולעוג מלך הבשן שהוא הפליט מדור המבול <span class="source-small">(נדה סא סוף ע&quot;א)</span> שבא לאברהם אבינו ע&quot;ה ואמרו <span class="source-small">(בראשית רבה סוף פרשה מב)</span> שרצה שיהרג ויקח שרה כי הוא היה חושב עצמו דוגמתו דמה שנפלט בדור המבול מסתמא לא היה בו שום חטא שיהיה נתפס עמהם דעל כן נתיירא משה רבינו ע&quot;ה ממנו. אבל מכל מקום לא היה צדיק לפניו יתברך שיזכה לתיבה כנח כי ה׳ יראה העיקר ללבב שורש הקדושה שבלב שיהיה כונתו לשם שמים נמנע מן הרע בשביל יראתו יתברך ועושה הטוב לאהבתו והכל לכבודו ולקילוסו. והתחלת התגלות הקדושה שבלב היה אצל אברהם אבינו ע&quot;ה שהוא שורש כנסת ישראל דחלק ה׳ עמו ונאמר צור לבבי וחלקי וגו׳ ואמרו בשיר השירים רבה על פסוק ולבי ער דהקב&quot;ה לבן של ישראל ועל כן אמרו <span class="source-small">(סנהדרין מד.)</span> דאפילו חטא ישראל הוא ששורש דמעמקי הלב לא ניתק מהשם יתברך והוא נקרא אסא דקאי ביני הוצי. וזכו לזה כל ישראל במתן תורה שאז בחרם השם יתברך לחלקו ואמר ואתם תהיו לי מיוחד לשמי ממלכת כהנים כולם כהנים עובדי ה׳ וגו׳ כולו קדוש וכן אמרו כי כל העדה כולם קדושים וגו׳ וראוים לכהונה. ואברהם אבינו ע&quot;ה ממנו התחלת שני אלפים תורה שזכה להיות שתי כליותיו כשני מעיינות ונובעות תורה <span class="source-small">(בראשית רבה פרשה סא)</span> ונאמר אתה כהן לעולם שזכה לכהונה <span class="source-small">(נדרים לב:)</span> אלא שהיה בזה אז עדיין יחיד בדורו. ועוג שנתאוה לשרה הוא היה הקליפה החופפת לפרי דאברהם אבינו ע&quot;ה דזה לעומת זה עשה אלהים ומסתמא גם הוא השיג מחכמת חיצונית מה שהיה בקליפה הסובבת לחכמת התורה. כי בכל דבר יש קליפה הקודמת לפרי כידוע דברישא חשוכא והדר נהורא. והיה חושב עצמו גם כן לצדיק כנזכר לעיל אבל אצלו היה הכל רק כמחיר ביד כסיל לקנות חכמה דלב אין כי בלבבו לא היה שום שורש קדושה וטוב כלל. ואבדן הקליפה דעוג שהיה בפעל על ידי משה רבינו ע&quot;ה בסוף ארבעים שנה דמדבר הוא מה שבאה להם בהשתדלותם דעל ידי זה זכו לניצוח הרע בפעל להאבידו לגמרי מהעולם. ואברהם אבינו ע&quot;ה הוא התחלת הקדושה ששלח השם יתברך בחסדו נפש כזה לעולם שהוא ההיפך והמאביד לאותו קליפה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-25">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-chalomot-25-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 25:2</h4></div>
+              <a class="anchor" href="#divrei-chalomot-25-2" aria-label="Copy link to Divrei Chalomot 25:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויצחק</strong> נגד נתן ארצם לנחלה כי נחלת הארץ הנקרא ארץ ישראל שיש בה קדושת הארץ הוא כאשר זוכה להתפשטות גם במעשה הארציות וגופניות. והוא על ידי הצמצום בתאות שהוא מדת יצחק אבינו ע&quot;ה יושב בארץ הנגב מנוגב מכל תאות וחמדות עולם הזה <span class="source-small">(על דרך שאמרו תמורה טז.)</span>. אבל באברהם אבינו ע&quot;ה נאמר רק הלוך ונסוע הנגבה שעל זה היה השתדלותו כל ימיו. ויצחק אבינו ע&quot;ה כבר נולד בשרשו כן דעל כן הוא הראשון שנימול לשמונה שבא בברית חותמו מבטן ומצד שורשו והמילה הוא להגדרת התאוה כנודע. ואחר כך יעקב אבינו ע&quot;ה נגד נחלה לישראל שהוא זכה לשם ישראל בהתגלות ולהיות עבדו וקנינו יתברך כמו שכתוב הוא אביך קנך. ואחר כך מתחיל שבשפלנו ויפרקנו מדבר בעדנו ולא כדלעיל. כי ממנו והלאה כל זרעו כולו קודש שמטתו שלימה ואף שלא היה עדיין בהתגלות עד מתן תורה קמי שמיא גליא. והדור שזכו אחר כך למתן תורה לידתם היה בחסדו יתברך ששלח נפשות כאלו בעולם שיהיו ראוים להתגלות דמתן תורה. וזהו הודו לאל השמים דקמי שמיא גליא שכבר השלימו כל מדריגות הקדושה שבלב להורדת השכינה לתחתונים עד שראוים להרכנת שמים העליונים על הר סיני להיות מתגלה הכל בארץ עד שאחר כך נאמר לא בשמים היא כי עיקר התורה והשכינה בתחתונים ואין כאן מקומו להאריך יותר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-25">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-chalomot-25-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 25:3</h4></div>
+              <a class="anchor" href="#divrei-chalomot-25-3" aria-label="Copy link to Divrei Chalomot 25:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואלו</strong> כ&quot;ו קדושות חסדים הם י&quot;ג נגד י&quot;ג אחד בהתפשטות ואחד בצמצום מצד מדת הגבורה שבחסד והם נגד שלש עשרה שבטים שבכל אחד ב׳ המחוברים על ידי קו האמצעי של שרשם מיעקב אביהם המחבר הכל למעלה ומאחד כולם כאחד. כי אחד בגימטריא י&quot;ג שהכל חוזר ליחוד על ידי הדביקות הגמור באלהים חיים מקור הכל.] וכל אחד אמר מלאך בפני עצמו כידוע הם המלאכים הבאים מכח אותם הקדושות של כל שבט [שכל אחד יש לו שני מלאכים המלווין כמו שאמרו בחגיגה ט&quot;ז א׳ והם אחד טוב ואחד רע כמו שאמרו בשבת קי&quot;ט ב׳ והוא היצר רע שנקרא טוב מאוד כמו שאמרו בבראשית רבה <span class="source-small">(פרשה ט)</span>. כי בכל דבר ובכל מדה והתנהגות יש טוב ורע היינו כשמתנהג באותה מדה שלא במקום הראוי. ועל ידי ההתנהגות בקו אמצעי מדת אמת ליעקב נעשה מן הרע טוב] וידוע דזה לעומת זה יש בכל נפש כפי מעלת הטוב והקדושה שבו כן יש בו חסרון מסטרא דרע הבא על ידי ערבוב דטוב ורע. וכן יש לכל שבט חסרון אחד בשורשו שהוא נגד השורש דקדושה שלו שנגדם י&quot;א ארורים דפרשת תבא [שהם נגד השבטים עיין שם ברש&quot;י. וקבלתי כן שהם החסרונות שבכל שבט מתולדה ודשמעון נכלל ביהודה כמו שנכלל נחלתו בנחלת בני יהודה בחלוקה דיהושע. ומנשה ואפרים נכללו יחד ביוסף ועל כן הם י&quot;א] ומצד אותם החסרונות [עד שלא תיקנום להיות נעשה מן הרע טוב] באו לגלות מצרים לתקון ולברר הקדושה שבהם [ולהיות גם הרע חוזר לטוב כנזכר לעיל]. ואחר יציאת מצרים ומתן תורה נתגלה אותן הקדושות בזרעם. ומלכות יון הרשעה שבקשו להשכיח תורתיך רצו להחזיר אותם החסרונות. [ולא נתגלה לי יותר בחלום ונראה לי שהוא על ידי חכמת יונית שלהם שהוא הקליפת הסובבת לפרי דחכמת תורה שבעל פה דחכמי ישראל שהוא השורש דכנסת ישראל ששם כל הקדושת דהתחלתם מהחכמה העליונה ששם התחלת התגלות היש מאין ומשם הוריד משה רבינו ע&quot;ה התורה שהיא נובלת חכמה עליונה <span class="source-small">(בראשית רבה פרשה יז)</span> וממנה נמשך לחכמה תתאה דמלכות פה תורה שבעל פה ורגליה יורדת מות לחכמה חיצונית ששם היפך כל הקדושה הנמשך מחכמה הקדושה. על כן משם שורש כל החסרונות כולם כי בא מזה לידי אפקורסות וכפירת כל התורה כולה. וניצוחם על ידי הכהנים שהם שורש כל הקדושות דעל כן נקראו ישראל ממלכת כהנים להיות גוי קדוש כוללים כל מדריגות הקדושה להתאחד בגוי אחד. וכן יש להם כהן גדול אחד שבו נכלל כל הקדושות כי בכהנים נאמר וקדשתו שמשפיעים בהם כל הקדושות והם כולם בכהן גדול העומד במקום אהרן שורש לכל הכהנים שנבדל להקדישו קודש קדשים. וזהו הפך שמן שמצאו חתום בחותמו של כהן גדול שלא יכלו לטמאות בחכמתם הטמאה לשורש החכמה דקדושה החתום בשורש הקדושה דכהן גדול. דאין מגיע מגע זר לשורש השושנה העליונה שהיא מעין חתום. וכל התחכמותם לטמאות אותו מעין חתום בגזירת תבעל להגמון תחלה <span class="source-small">(רש&quot;י שבת כ&quot;ג ריש עמוד א ד&quot;ה היו)</span> שחשבו לטמאות בזה שורש דכנסת ישראל מלידה מבטן שאין אשה כורתת ברית אלא למי שעשאה כלי <span class="source-small">(סנהדרין כב:)</span> ותהיה דבוקה בו להוליד בדומה לו לא הועילה להם כשהגיע הדבר לבתו של חשמונאי כהן גדול שאז נתגלה שורש הקדושה המבטל ומאביד לשורש הטומאה. ובכהנים הוא שורש חכמת תורה שבעל פה כמו שכתוב יורו משפטיך ליעקב ותורתך ונאמר ובאת אל הכהנים הלוים וגו׳ דכלל שבט לוי גם כן מוכן לזה. ומשה רבינו ע&quot;ה שורש כל הלוים הוריד התורה שבכתב שהוא בסוד הדעת שהוא חיבור חכמה ובינה מוחא ולבא שמשם המשכת תורה שבכתב ושבעל פה שעיקרה בלב כידוע מלשון אליבא דר׳ פלוני וכמו שאמרו בסנהדרין <span class="source-small">(לה.)</span> ליבא דאינשי אינשי דהמשכת חכמה דסנהדרין חכמי התורה שבעל פה הוא מן הלב ומהשם יתברך שהוא צור לבבם לב טהור. ושם גם כן משכן היצר רע שהוא לב טמא ורע שעליו נאמר לא תתורו אחרי לבבכם זו מינות שאמר נבל בלבו כמו שאמרו בברכות י&quot;ב ב׳ שהוא חכמת המינים עם נבל ולא חכם שמנבלים עצמם ולא על דברי תורה שהוא הסכלות שהיפך החכמה באמת. כי כל חכמתם להנאת גופם ותאותם ונגד תאותם לא יועיל כל חכמה שהרי בלעם חכם שבאומות העולם והשיג מעלת ישראל שהוא לאין קץ ועם כל זה השיא עצה להכשילם בזנות וחשב מחשבות לקללם נגד רצון השם יתברך ולא הועילה לו כל חכמתו והשגתו נגד תאות לבו הרעה. והרשעים הם ברשות לבם <span class="source-small">(בראשית רבה פרשה לד)</span> וכל חכמתם נמשכת אחר הלב רע שלהם. אבל ישראל כל חכמתם הוא רק למצוא דרך האמת לעשות רצון שמים ולמסור נפשם וגופם לו יתברך. וזהו שורש הקדושה דשבט לוי דנקרא לשון ילוה אישי היינו הדביקות בהשם יתברך שהוא יחוד קודשא בריך הוא ושכינתיה דיעקב אבינו ע&quot;ה צורת אדם שעל הכסא שורש שם הוי&quot;ה כנודע. ועל כן כשאמר משה רבינו ע&quot;ה מי לה׳ אלי קרבו אליו כל בני לוי שהם כולם לה׳ וכן עשו למסור נפשם על קידוש השם במה שהרגו לחוטאים ולא נתייראו מכל ישראל שיקומו נגדם וכמו שנתיירא אהרן. והוא עשה זה לא מפני שלא רצה חס ושלום למסור נפשו רק מצד הבינה יתירה שבלבו כמו שאמרו <span class="source-small">(סנהדרין ז, ריש עמוד א)</span> על פסוק ויבן מזבח מזבוח כו׳ כי הוא שושבינא דמטרוניתא <span class="source-small">(זח&quot;ג נג ב)</span> שעל ידי זה זכה להיות השורש לתורה שבעל פה כמו משה רבינו ע&quot;ה שושבינא דמלכא לתורה שבכתב. ומרוב אהבת ישראל אמר מוטב יתלה הסרחון בי <span class="source-small">(ויקרא רבה פרשה י)</span> שהוא לא רצה למסור נפש. ועל ידי זה דייקא זכה לכהונה שהוא הבדלה לקודש קדשים כנזכר לעיל. וזהו הקדושה דשבט לוי האומר לאביו ולאמו לא ראיתיו שהיה בפעל כנזכר לעיל. ובפנימיות הלב ידוע דאבא ואמא הם חכמה ובינה היינו שאין משגיח בחכמה ובינה שלו שהם הנקראים אביו ואמו דייקא במה שהוא נגד רצון השם יתברך דאין חכמה ואין תבונה נגד ה׳ ולבם ברשותם. וזהו שורש לכל הקדושות הנמשכות מלב הקדוש להיות נובע חכמה דקדושה. והחסרון דזה לעומת זה וקליפה החופפת הוא ארור מקלה אביו ואמו שעושה אותו הדבר עצמו שלא לכבוד שמים ואז הוא אדרבה ארור בזה ורע. וזהו בפנימיות הלב כשנמשך אחר הרע לבזות החכמה ובינה דקדושה שמזה נמשך כל מיני רע וזהו החכמת יונית שרצו להשכיח חס ושלום על ידי זה התורה. ונצחום הכהנים הקדושים וזרע אהרן שורש חכמת התורה שבעל פה וקבעו שמונה ימי חנוכה וידוע דיש שבעת ימי הבנין שהם שבע תחתונות והשמיני הוא הבינה שבלב שממנה נמשך כל המדות דשבע תחתונות שהם כוללים י&quot;ג היינו שבע מעילא לתתא ואחר כך חוזר המיין נוקבין מתתא לעילא והן שש ובמצות הדלקת הנרות ממשיכים חכמה תתאה הקדושה ממטה למעלה עד הבינה שבלב להיות הכל בקדושה].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-25">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-26">Chapter 26</h4>
+          <section class="unit" id="divrei-chalomot-26-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 26:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-26-1" aria-label="Copy link to Divrei Chalomot 26:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> וערב שבת קודש וארא כ&quot;ז טבת שנת ברכותי&quot;ה. חלם לי ששאלוני אם אחד בספק בדבר שיש בו צד חומר לכל צד כיצד ניזיל להחמיר. כגון למאן דאמר <span class="source-small">(מכות יא:)</span> מצוה לגואל הדם להרוג רוצח [חוץ לעיר מקלטו] וכשיש ספק [אם הוא חוץ לעיר מקלט] אם מצוה להרגו או לא ואז איכא איסור שפיכות דמים איך נעשה דספק מצוה דאורייתא להחמיר וכדומה לזה. והשבתי דבספק הנזכר לעיל אין צריך לפנים דספק נפשות להקל ואיסור שפיכות דמים חמור טובא ומצות גואל הדם מצוה בעלמא ואין לשאול אלא בשני דברים דומים כשלכל צד יש רק מצוה או שלכל צד יש איסור באיסורין שוין שאין אחד חמור מחבירו ובכהאי גוונא לדעתי תליא בפלוגתא דר&quot;א ור&quot;י [זבחים פ׳ א׳ ועיין בעירובין ק׳.] וקיימא לן כר&quot;י דאמר כשנתת עברת על בל תוסיף ועשית מעשה בידך כשלא נתת עברת על בל תגרע ולא עשית מעשה בידך. והכא נמי יש לו להיות שב ואל תעשה ולא לעשות מעשה בקום ועשה [והגם דהם דברים פשוטים יען אינם דברים בטילים ואני זכור מהם בהקיצי רשמתים].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-26">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-chalomot-text-27">Chapter 27</h4>
+          <section class="unit" id="divrei-chalomot-27-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 27:1</h4></div>
+              <a class="anchor" href="#divrei-chalomot-27-1" aria-label="Copy link to Divrei Chalomot 27:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ליל</strong> שבת קודש בהר שנת ברכותי&quot;ה. מה שנתפרש בתורה קללות וארורים דהר עיבל ולא הברכות דהר גריזים. כי מה שאמרו בתורה דכתיבא ומנחא גלוי לכל הם דברים הגלוים ומושגים לכל שנראים לעין אבל מה שאין גלוי לעין נאמר בעל פה [כמו שאמרו <span class="source-small">(במדרש תנחומא וירא ה)</span> מי שמסטורין שלי בידו על המשנה] והוא דברים שבעל פה שאי אתה רשאי לאומרם בכתב <span class="source-small">(גיטין ס.)</span> שדברים אלו אי אפשר בהתגלות לכל רק למי שמשיג. ועל כן לא נאמר בתורה אלא שכר עולם הזה דשכר עולם הבא עין לא ראתה. ואותן ארורים וקללות אינן אלא בעולם הזה מה שאין כן הברכות [הללו שאחר כניסתן לארץ ישראל שאז השיגו מעין עולם הבא שהוא ארץ העליונה כמו שאמרו בריש פרק חלק דכל ישראל יש להם חלק לעולם הבא מקרא דלעולם יירשו ארץ. ועל כן כשהגיעו לירושת הארץ אז נתגלה להם השכר דחלק לעולם הבא שלכל אחד] היו בעולם הבא ועל כן לא ניתנו בכתב. ע&quot;כ מכתי&quot;ק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-27">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-chalomot-27-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 27:2</h4></div>
+              <a class="anchor" href="#divrei-chalomot-27-2" aria-label="Copy link to Divrei Chalomot 27:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סליק קונטרס דברי חלומות בסייעתא דשמיא:</strong></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-27">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-chalomot-27-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 27:3</h4></div>
+              <a class="anchor" href="#divrei-chalomot-27-3" aria-label="Copy link to Divrei Chalomot 27:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">ויאמר ישראל אברך על המוגמר שזיכני השם יתברך לציין המראה מקומות בהספר רסיסי לילה ובקונטרס דברי חלומות והם מוקפים בב׳ חצאי עגולים כזה (). והשם יתברך יעזרני שיכנסו דברי רבינו זצוקללה&quot;ה בלבינו לאהבה וליראה את ה׳ ויהיה זרעינו וזרע זרעינו עוסקים בתורה ויראת ה׳ כל הימים:</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-27">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-chalomot-27-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Chalomot 27:4</h4></div>
+              <a class="anchor" href="#divrei-chalomot-27-4" aria-label="Copy link to Divrei Chalomot 27:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">ישראל באאמו&quot;ר הרה&quot;ח מו&quot;ה יוסף יוזל זללה&quot;ה מלובלין</span></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-chalomot-text-27">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/divrei-chalomot.manifest.json">Lexical manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-lemma-strict-row><dt>Strict Lemma</dt><dd data-hud-lemma-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Other source matches</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related source matches</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Audit-only checks</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details" open>
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/divrei-chalomot.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/divrei-chalomot.manifest.json","occurrence_url":"../../data/lexical/occurrences/divrei-chalomot.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        const lemmaLikely = cleanStrictRenderings(strictEntries.flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]), lemma: lemmaLikely };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely, lemma: lemmaLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related source match" : "Other source match"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-ʻʿʾʼ()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Other Match") { score = 58; reasons.push("other real source match"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else if (status === "Strict Lemma") { score = 78; reasons.push("strict lemma row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, "Strict Lemma": 95, "Other Match": 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, "Strict Lemma": 50, "Other Match": 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, "Strict Lemma": 2, "Other Match": 3, Related: 4, Caution: 5, Unresolved: 6 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Other Match"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = rows.length > 2 ? "claim-row-list hud-card-lane" : "claim-row-list";
+        if (rows.length > 2) { const note = document.createElement("p"); note.className = "hud-scroll-note"; note.textContent = "Hover this lane and use the wheel or trackpad to move sideways."; node.appendChild(note); }
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const placeholderClaim = (status, hebrew, message) => makeClaim("Unresolved", hebrew || "Clicked form", [message], [], "", { statusOverride: status });
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [], lemma: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          claims.lemma.push(claimFromEntry(view, entry, "Strict Lemma", renderings));
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic), lemma: uniqueClaims(claims.lemma) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        sourceDetails.open = true;
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Other Match")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
+        setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        setList(hud, "[data-hud-aramaic-strict]", ["Loading lexical entry..."]);
+        setList(hud, "[data-hud-lemma-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [], lemma: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0 || strictClaims.lemma.length > 0;
+          const clickedForm = view.hebrew_word || view.surface_word || "Clicked form";
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
+          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew.length ? strictClaims.hebrew : [placeholderClaim("Strict Hebrew", clickedForm, "No Hebrew strict match yet.")]);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic.length ? strictClaims.aramaic : [placeholderClaim("Strict Aramaic", clickedForm, "No Aramaic strict match yet.")]);
+          appendClaimRows(hud.querySelector("[data-hud-lemma-strict]"), strictClaims.lemma.length ? strictClaims.lemma : [placeholderClaim("Strict Lemma", clickedForm, "No lemma strict match yet.")]);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = true;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
+          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          setList(hud, "[data-hud-aramaic-strict]", ["No Aramaic strict match yet."]);
+          setList(hud, "[data-hud-lemma-strict]", ["No lemma strict match yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      document.addEventListener("wheel", (event) => {
+        const lane = event.target.closest(".hud-card-lane");
+        if (!lane) return;
+        const horizontalDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+        if (!horizontalDelta) return;
+        event.preventDefault();
+        lane.scrollLeft += horizontalDelta;
+      }, { passive: false });
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>
