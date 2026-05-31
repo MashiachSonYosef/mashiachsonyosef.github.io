@@ -10,7 +10,7 @@ const defaults = {
   focusNormalized: '\u05e8\u05d0\u05e9\u05d9\u05ea',
   slugPrefix: 'reshit-smoke',
   chunkSize: 5,
-  maxTargets: 24,
+  maxTargets: 0,
   minNonAmbiguous: 1,
   includeSeededTarget: true,
   excludeSeedSourceFiles: true,
@@ -50,10 +50,12 @@ const focus = String(options.focusNormalized || artifact.focus?.token_normalized
 const tokenKey = String(artifact.focus?.token_key || `he:${focus}`);
 const seedSources = new Set(options.excludeSeedSourceFiles ? seededTarget.source_files : []);
 const sourceSummaries = collectSourceSummaries(artifact, { focus, seedSources });
-const selectedSources = sourceSummaries
-  .filter((row) => row.status_counts.non_ambiguous >= options.minNonAmbiguous)
-  .slice(0, Math.max(0, options.maxTargets * options.chunkSize));
-const generatedTargets = chunk(selectedSources, options.chunkSize).slice(0, options.maxTargets).map((rows, index) => makeTarget(rows, index + 1, { focus, tokenKey }));
+const selectedSources = sourceSummaries.filter((row) => row.status_counts.non_ambiguous >= options.minNonAmbiguous);
+const generatedTargetChunks = chunk(selectedSources, options.chunkSize);
+const limitedTargetChunks = options.maxTargets > 0
+  ? generatedTargetChunks.slice(0, options.maxTargets)
+  : generatedTargetChunks;
+const generatedTargets = limitedTargetChunks.map((rows, index) => makeTarget(rows, index + 1, { focus, tokenKey }));
 const targets = options.includeSeededTarget ? [seededTarget, ...generatedTargets] : generatedTargets;
 
 const output = {
@@ -68,7 +70,7 @@ const output = {
     match_basis: 'normalized_exact',
     status_filter: ['supported', 'candidate', 'weak'],
     chunk_size: options.chunkSize,
-    max_targets: options.maxTargets,
+    max_targets: options.maxTargets || 'all',
     min_non_ambiguous_per_source: options.minNonAmbiguous,
     include_seeded_target: options.includeSeededTarget,
     exclude_seed_source_files: options.excludeSeedSourceFiles,
@@ -105,10 +107,13 @@ function parseArgs(args) {
     else if (arg === '--include-seed-source-files') parsed.excludeSeedSourceFiles = false;
     else throw new Error(`Unknown argument: ${arg}`);
   }
-  for (const key of ['chunkSize', 'maxTargets', 'minNonAmbiguous']) {
+  for (const key of ['chunkSize', 'minNonAmbiguous']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 1) {
       throw new Error(`--${key.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)} must be a positive integer`);
     }
+  }
+  if (!Number.isInteger(parsed.maxTargets) || parsed.maxTargets < 0) {
+    throw new Error('--max-targets must be a non-negative integer; 0 means all known nonzero target chunks');
   }
   if (parsed.chunkSize > 5) throw new Error('--chunk-size must be 1-5 for smoke targets');
   return parsed;
@@ -232,6 +237,7 @@ function writeReport(relativePath, artifact, sourceSummaries, generatedTargets) 
     `- Seeded targets: ${artifact.counts.seeded_targets}`,
     `- Known nonzero targets: ${artifact.counts.known_nonzero_targets}`,
     `- Chunk size: ${artifact.inputs.chunk_size}`,
+    `- Max targets: ${artifact.inputs.max_targets}`,
     `- Prefix family: off`,
     '',
     '## Generated Targets',
