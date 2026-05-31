@@ -162,8 +162,6 @@ function loadCandidateRouteLinks(relativePath) {
       display_section: route.display_section || '',
       normalized: route.normalized || '',
       surface: route.surface || '',
-      answer_score: Number.isFinite(route.answer_score) ? route.answer_score : null,
-      raw_score: Number.isFinite(route.raw_score) ? route.raw_score : null,
       source_row_count: Number(route.source_row_count || 0),
     }));
 }

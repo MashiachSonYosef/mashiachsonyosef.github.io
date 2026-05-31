@@ -71,6 +71,9 @@ function validateTarget(target, context) {
     if (route.normalized && !/^[\u0590-\u05FF-]+$/u.test(String(route.normalized))) {
       issues.push(`${routeContext}: normalized must be Hebrew text when present`);
     }
+    if ('answer_score' in route || 'raw_score' in route || 'definition' in route || 'gloss' in route) {
+      issues.push(`${routeContext}: sampled route links must carry IDs/provenance only, not scores or text claims`);
+    }
   }
   for (const [licenseIndex, row] of (target.source_licenses || []).entries()) {
     if (forbiddenLicenseRe.test(String(row.value || ''))) {
