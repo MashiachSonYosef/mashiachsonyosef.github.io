@@ -39,6 +39,7 @@ if (artifact.reader_facing_policy?.ambiguous_rows_reader_facing !== false) {
 }
 validateStatusSemantics(artifact.reader_facing_policy?.status_semantics);
 validateConsumerContract(artifact.consumer_contract);
+validateHandoffPayloadContract(artifact.handoff_payload_contract);
 validateCoverageBoundary(artifact.coverage_boundary);
 
 const expected = {
@@ -178,6 +179,83 @@ function validateConsumerContract(contract) {
   if (contract.final_ranking_authority !== false) issues.push('consumer_contract.final_ranking_authority must be false');
   if (contract.visible_answer_authority !== false) issues.push('consumer_contract.visible_answer_authority must be false');
   if (contract.carries_text_rows !== false) issues.push('consumer_contract.carries_text_rows must be false');
+}
+
+function validateHandoffPayloadContract(contract) {
+  if (!contract || typeof contract !== 'object') {
+    issues.push('handoff_payload_contract must be present');
+    return;
+  }
+  if (contract.contract_version !== 1) issues.push('handoff_payload_contract.contract_version must be 1');
+  if (!String(contract.payload_root || '').trim()) issues.push('handoff_payload_contract.payload_root must be present');
+  if (contract.public_index_carries_payload_rows !== false) {
+    issues.push('handoff_payload_contract.public_index_carries_payload_rows must be false');
+  }
+  if (contract.row_model !== 'observed_usage_first_candidate_second') {
+    issues.push('handoff_payload_contract.row_model must be observed_usage_first_candidate_second');
+  }
+  if (contract.score_authority !== 'raw_score_only_non_final') {
+    issues.push('handoff_payload_contract.score_authority must be raw_score_only_non_final');
+  }
+  if (!sameList(contract.visible_statuses, ['supported', 'candidate', 'weak'])) {
+    issues.push('handoff_payload_contract.visible_statuses must be supported,candidate,weak');
+  }
+  if (!sameList(contract.audit_only_statuses, ['ambiguous', 'blocked'])) {
+    issues.push('handoff_payload_contract.audit_only_statuses must be ambiguous,blocked');
+  }
+  for (const stableId of ['token_key', 'occurrence_id', 'candidate_id', 'cluster_id']) {
+    if (!Array.isArray(contract.stable_ids) || !contract.stable_ids.includes(stableId)) {
+      issues.push(`handoff_payload_contract.stable_ids missing ${stableId}`);
+    }
+  }
+  const files = Array.isArray(contract.files) ? contract.files : [];
+  if (!sameList(files.map((row) => row.key), ['manifest_json', 'occurrences_jsonl', 'candidates_jsonl', 'clusters_json', 'blocked_jsonl'])) {
+    issues.push('handoff_payload_contract.files must list manifest_json,occurrences_jsonl,candidates_jsonl,clusters_json,blocked_jsonl in order');
+  }
+  for (const row of files) validatePayloadFileContract(row);
+  const mustNot = Array.isArray(contract.consumer_must_not) ? contract.consumer_must_not.join(' ') : '';
+  for (const phrase of ['definition', 'ambiguous', 'raw_score', 'corpus-exhaustive', 'English translations']) {
+    if (!mustNot.includes(phrase)) issues.push(`handoff_payload_contract.consumer_must_not missing ${phrase}`);
+  }
+}
+
+function validatePayloadFileContract(row) {
+  if (!row || typeof row !== 'object') {
+    issues.push('handoff_payload_contract.files entry must be an object');
+    return;
+  }
+  if (!String(row.key || '').trim()) issues.push('handoff_payload_contract.files entry missing key');
+  if (!String(row.role || '').trim()) issues.push(`handoff_payload_contract.files.${row.key || 'unknown'} missing role`);
+  if (!['json', 'jsonl'].includes(String(row.format || ''))) {
+    issues.push(`handoff_payload_contract.files.${row.key || 'unknown'} format must be json or jsonl`);
+  }
+  if (!Array.isArray(row.required_fields)) {
+    issues.push(`handoff_payload_contract.files.${row.key || 'unknown'} required_fields must be an array`);
+  }
+  if (row.key === 'occurrences_jsonl') {
+    for (const field of ['occurrence_id', 'token_key', 'phrase_window', 'source_ref', 'work_id', 'license', 'license_url', 'cluster_id']) {
+      if (!row.required_fields.includes(field)) issues.push(`handoff_payload_contract.files.occurrences_jsonl missing required field ${field}`);
+    }
+    if (row.may_include_english_translation !== false) issues.push('handoff_payload_contract.files.occurrences_jsonl may_include_english_translation must be false');
+    if (row.final_ranking_authority !== false) issues.push('handoff_payload_contract.files.occurrences_jsonl final_ranking_authority must be false');
+  }
+  if (row.key === 'candidates_jsonl') {
+    for (const field of ['candidate_id', 'occurrence_id', 'route_type', 'candidate_status', 'not_a_definition', 'observed_usage_only', 'raw_score']) {
+      if (!row.required_fields.includes(field)) issues.push(`handoff_payload_contract.files.candidates_jsonl missing required field ${field}`);
+    }
+    if (row.status_field !== 'candidate_status') issues.push('handoff_payload_contract.files.candidates_jsonl status_field must be candidate_status');
+    if (row.score_field !== 'raw_score') issues.push('handoff_payload_contract.files.candidates_jsonl score_field must be raw_score');
+    if (row.route_link_field !== 'route_links') issues.push('handoff_payload_contract.files.candidates_jsonl route_link_field must be route_links');
+    if (row.may_include_english_translation !== false) issues.push('handoff_payload_contract.files.candidates_jsonl may_include_english_translation must be false');
+    if (row.final_ranking_authority !== false) issues.push('handoff_payload_contract.files.candidates_jsonl final_ranking_authority must be false');
+  }
+  if (row.key === 'clusters_json') {
+    if (row.frame_labels_are_definitions !== false) issues.push('handoff_payload_contract.files.clusters_json frame_labels_are_definitions must be false');
+    if (row.final_ranking_authority !== false) issues.push('handoff_payload_contract.files.clusters_json final_ranking_authority must be false');
+  }
+  if (row.key === 'blocked_jsonl' && row.reader_facing_eligible !== false) {
+    issues.push('handoff_payload_contract.files.blocked_jsonl reader_facing_eligible must be false');
+  }
 }
 
 function validateCoverageBoundary(boundary) {

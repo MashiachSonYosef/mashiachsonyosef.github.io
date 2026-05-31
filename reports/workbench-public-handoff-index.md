@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T16:06:18.956Z
+Generated: 2026-05-31T16:18:44.270Z
 
 ## Summary
 
@@ -104,6 +104,23 @@ Generated: 2026-05-31T16:06:18.956Z
 - Final ranking authority: no
 - Visible answer authority: no
 - Carries text rows: no
+
+## Payload File Contract
+
+- Contract version: 1
+- Payload root: .local-cache/workbench-evidence/handoff
+- Public index carries payload rows: no
+- Row model: observed_usage_first_candidate_second
+- Score authority: raw_score_only_non_final
+- Stable ids: token_key, occurrence_id, candidate_id, cluster_id
+
+| file key | role | format | final rank authority |
+|---|---|---|---|
+| manifest_json | handoff_package_manifest | json | n/a |
+| occurrences_jsonl | occurrence_graph_rows | jsonl | no |
+| candidates_jsonl | candidate_evidence_rows | jsonl | no |
+| clusters_json | usage_frame_counts | json | no |
+| blocked_jsonl | audit_only_blocked_rows | jsonl | no |
 
 ## Manifests
 
