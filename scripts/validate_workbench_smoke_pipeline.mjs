@@ -80,6 +80,19 @@ await runStep('validate_public_handoff_index', [
   publicHandoffIndexJson,
 ]);
 
+const usageConcordanceJson = `${options.scratchDir}/usage-concordance.json`;
+await runStep('build_usage_concordance', [
+  'scripts/build_workbench_usage_concordance.mjs',
+  `--index=${publicHandoffIndexJson}`,
+  `--output=${usageConcordanceJson}`,
+  `--report=${options.scratchDir}/usage-concordance.md`,
+]);
+
+await runStep('validate_usage_concordance', [
+  'scripts/validate_workbench_usage_concordance.mjs',
+  usageConcordanceJson,
+]);
+
 const publicHandoffIntegrityJson = `${options.scratchDir}/public-handoff-integrity-check.json`;
 await runStep('check_public_handoff_integrity', [
   'scripts/check_workbench_public_handoff_integrity.mjs',
@@ -100,6 +113,7 @@ const coverage = readJsonIfExists(coverageJson);
 const smokeCounts = readJsonIfExists(smokeCountsJson);
 const handoffIndex = readJsonIfExists(handoffIndexJson);
 const publicHandoffIndex = readJsonIfExists(publicHandoffIndexJson);
+const usageConcordance = readJsonIfExists(usageConcordanceJson);
 const publicHandoffIntegrity = readJsonIfExists(publicHandoffIntegrityJson);
 const artifactAudit = readJsonIfExists(artifactAuditJson);
 const failedSteps = steps.filter((step) => step.status !== 'passed');
@@ -149,12 +163,26 @@ const artifact = {
     public_handoff_license_blocked_licenses: Array.isArray(publicHandoffIndex?.license_policy?.blocked_license_rows)
       ? publicHandoffIndex.license_policy.blocked_license_rows.length
       : null,
+    usage_concordance_rows: usageConcordance?.counts?.rows ?? null,
+    usage_concordance_supported: usageConcordance?.counts?.status_counts?.supported ?? null,
+    usage_concordance_candidate: usageConcordance?.counts?.status_counts?.candidate ?? null,
+    usage_concordance_weak: usageConcordance?.counts?.status_counts?.weak ?? null,
+    usage_concordance_route_linked: usageConcordance?.counts?.route_link_state_counts?.route_linked_observed_usage ?? null,
+    usage_concordance_observed_only: usageConcordance?.counts?.route_link_state_counts?.observed_usage_only ?? null,
+    usage_concordance_audit_only_ambiguous: usageConcordance?.counts?.audit_only_counts?.ambiguous ?? null,
+    usage_concordance_ambiguous_reader_facing: usageConcordance?.reader_facing_policy?.ambiguous_rows_reader_facing ?? null,
     public_handoff_integrity_status: publicHandoffIntegrity?.quality?.status ?? null,
     public_handoff_integrity_files: publicHandoffIntegrity?.counts?.files ?? null,
     public_handoff_integrity_matched: publicHandoffIntegrity?.counts?.matched ?? null,
     public_handoff_integrity_missing: publicHandoffIntegrity?.counts?.missing ?? null,
     public_handoff_integrity_mismatched: publicHandoffIntegrity?.counts?.mismatched ?? null,
     public_handoff_integrity_unexpected_present: publicHandoffIntegrity?.counts?.unexpected_present ?? null,
+    candidate_artifact_audit_quality_status: artifactAudit?.quality?.status ?? null,
+    candidate_artifact_audit_warning_count: Array.isArray(artifactAudit?.quality?.warnings)
+      ? artifactAudit.quality.warnings.length
+      : null,
+    candidate_artifact_audit_broad_queue_blocked: artifactAudit?.quality?.zero_useful_non_smoke_artifacts_block_broad_queue ?? null,
+    candidate_artifact_audit_orphan_smoke_review: artifactAudit?.quality?.orphan_smoke_artifacts_require_queue_review ?? null,
     useful_artifacts: artifactAudit?.counts?.useful_artifacts ?? null,
     zero_useful_non_smoke_artifacts: artifactAudit?.counts?.zero_useful_non_smoke_artifacts ?? null,
     orphan_smoke_artifacts: artifactAudit?.counts?.orphan_smoke_artifacts ?? null,
@@ -277,7 +305,9 @@ function writeReport(relativePath, artifact) {
     `- Handoff coverage: ${artifact.counts.handoff_manifests} manifests, missing targets ${artifact.counts.handoff_missing_targets}`,
     `- Public handoff index: ${artifact.counts.public_handoff_selected_targets} selected, validation failed ${artifact.counts.public_handoff_validation_failed}, eligible ${artifact.counts.public_handoff_reader_facing_eligible_rows}, ambiguous count-only ${artifact.counts.public_handoff_count_only_ambiguous_rows}, zero-useful ${artifact.counts.public_handoff_zero_useful_targets}, ambiguous reader-facing ${artifact.counts.public_handoff_ambiguous_reader_facing ? 'yes' : 'no'}`,
     `- Public handoff quality/license: quality ${artifact.counts.public_handoff_quality_status}, license ${artifact.counts.public_handoff_license_status}, blocked license rows ${artifact.counts.public_handoff_license_blocked_row_count}, blocked licenses ${artifact.counts.public_handoff_license_blocked_licenses}`,
+    `- Usage concordance: rows ${artifact.counts.usage_concordance_rows}, supported ${artifact.counts.usage_concordance_supported}, candidate ${artifact.counts.usage_concordance_candidate}, weak ${artifact.counts.usage_concordance_weak}, route-linked ${artifact.counts.usage_concordance_route_linked}, observed-only ${artifact.counts.usage_concordance_observed_only}, audit-only ambiguous ${artifact.counts.usage_concordance_audit_only_ambiguous}, ambiguous reader-facing ${artifact.counts.usage_concordance_ambiguous_reader_facing ? 'yes' : 'no'}`,
     `- Public handoff integrity: ${artifact.counts.public_handoff_integrity_status}, files ${artifact.counts.public_handoff_integrity_files}, matched ${artifact.counts.public_handoff_integrity_matched}, missing ${artifact.counts.public_handoff_integrity_missing}, mismatched ${artifact.counts.public_handoff_integrity_mismatched}, unexpected ${artifact.counts.public_handoff_integrity_unexpected_present}`,
+    `- Candidate artifact audit quality: ${artifact.counts.candidate_artifact_audit_quality_status}, warnings ${artifact.counts.candidate_artifact_audit_warning_count}, broad queue blocked ${artifact.counts.candidate_artifact_audit_broad_queue_blocked ? 'yes' : 'no'}, orphan smoke review ${artifact.counts.candidate_artifact_audit_orphan_smoke_review ? 'yes' : 'no'}`,
     `- Candidate artifact audit: useful ${artifact.counts.useful_artifacts}, zero-useful non-smoke ${artifact.counts.zero_useful_non_smoke_artifacts}, orphan smoke ${artifact.counts.orphan_smoke_artifacts}`,
     '',
     '## Steps',
@@ -288,7 +318,7 @@ function writeReport(relativePath, artifact) {
     '',
     '## Boundary',
     '',
-    'This wrapper validates smoke-only workbench evidence and the public handoff index contract. It does not run broad target selection, expand prefix families, import source text, rank definitions, make ambiguous rows reader-facing, or choose HUD winners.',
+    'This wrapper validates smoke-only workbench evidence, the public handoff index contract, and the usage-navigation concordance. It does not run broad target selection, expand prefix families, import source text, rank definitions, make ambiguous rows reader-facing, or choose HUD winners.',
   ];
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
