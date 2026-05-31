@@ -110,7 +110,10 @@
       "source-phrase-evidence.jsonl",
       "source-phrase-evidence.csv",
       "source-phrase-token-index.json",
-      "definition-route-manifest.json"
+      "definition-route-manifest.json",
+      "source-citable-paraphrase-evidence.jsonl",
+      "source-citable-paraphrase-evidence.csv",
+      "source-citable-paraphrase-token-index.json"
     ]
   },
   "public_artifacts": [
@@ -125,7 +128,8 @@
     "data/definitions/hud-route-lookup/manifest.json",
     "data/definitions/source-license-inventory.json",
     "data/definitions/definition-route-sample.json",
-    "data/definitions/phrase-evidence-sample.json"
+    "data/definitions/phrase-evidence-sample.json",
+    "data/definitions/citable-paraphrase-evidence-sample.json"
   ],
   "counts": {
     "morphology_rules": 29,
@@ -253,6 +257,34 @@
         "CC-BY-SA": 2897
       },
       "rejected_license_counts": {}
+    }
+  },
+  "citable_paraphrase_evidence": {
+    "generated_at": "2026-05-31T03:03:32.477Z",
+    "source_policy": "Citable paraphrase rows join an accepted lexical definition row to a licensed non-biblical Hebrew usage row. Biblical-definition rows are produced by a separate lane.",
+    "include_biblical": false,
+    "candidate_status": "accepted",
+    "max_per_token": 1,
+    "max_total_rows": 12000,
+    "counts": {
+      "claim_files_read": 2,
+      "claims_read": 142936,
+      "claims_indexed": 139219,
+      "distinct_normalized_claims": 113604,
+      "source_files_scanned": 5,
+      "biblical_source_files_skipped": 0,
+      "allowed_units": 2351,
+      "rejected_units": 633,
+      "token_occurrences": 302562,
+      "evidence_rows": 12000,
+      "distinct_normalized_tokens_seen": 36813,
+      "distinct_normalized_tokens_emitted": 12000,
+      "accepted_license_counts": {
+        "Public Domain": 2351
+      },
+      "rejected_license_counts": {
+        "PD": 633
+      }
     }
   }
 }

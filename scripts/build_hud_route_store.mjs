@@ -265,6 +265,12 @@ function paraphraseToCard(row) {
   return addRouteScoreFields(card, rawScore, scoreHandicap, adjustedScore);
 }
 
+const paraphraseInputFiles = [
+  'source-biblical-paraphrase-evidence.jsonl',
+  'source-citable-paraphrase-evidence.jsonl',
+  'source-paraphrase-evidence.jsonl',
+];
+
 async function readJsonl(filePath, onRecord) {
   if (!fs.existsSync(filePath)) return 0;
   const stream = fs.createReadStream(filePath, 'utf8');
@@ -348,11 +354,17 @@ async function main() {
     stats.definition_claims_read += await readJsonl(path.join(localDir, fileName), (claim) => collect(claimToCard(claim)));
   }
   stats.phrase_rows_read += await readJsonl(path.join(localDir, 'source-phrase-evidence.jsonl'), (row) => collect(phraseToCard(row)));
-  stats.paraphrase_rows_read += await readJsonl(path.join(localDir, 'source-paraphrase-evidence.jsonl'), (row) => {
-    if (row?.candidate_status !== 'accepted') return;
-    stats.accepted_paraphrase_rows_read += 1;
-    collect(paraphraseToCard(row));
-  });
+  const seenParaphraseRows = new Set();
+  for (const fileName of paraphraseInputFiles) {
+    stats.paraphrase_rows_read += await readJsonl(path.join(localDir, fileName), (row) => {
+      if (row?.candidate_status !== 'accepted') return;
+      const rowId = row?.evidence_id || row?.route_id || JSON.stringify([row?.route_type, row?.focus_normalized, row?.source_ref]);
+      if (seenParaphraseRows.has(rowId)) return;
+      seenParaphraseRows.add(rowId);
+      stats.accepted_paraphrase_rows_read += 1;
+      collect(paraphraseToCard(row));
+    });
+  }
   await writer.close();
 
   const generatedAt = new Date().toISOString();

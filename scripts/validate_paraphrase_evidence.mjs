@@ -6,7 +6,11 @@ import readline from 'node:readline';
 const root = process.cwd();
 const contractPath = path.join(root, 'data', 'definitions', 'paraphrase-evidence-contract.json');
 const samplePath = path.join(root, 'data', 'definitions', 'paraphrase-evidence-sample.json');
-const localJsonlPath = path.join(root, '.local-cache', 'definition-routes', 'source-paraphrase-evidence.jsonl');
+const localJsonlPaths = [
+  path.join(root, '.local-cache', 'definition-routes', 'source-biblical-paraphrase-evidence.jsonl'),
+  path.join(root, '.local-cache', 'definition-routes', 'source-citable-paraphrase-evidence.jsonl'),
+  path.join(root, '.local-cache', 'definition-routes', 'source-paraphrase-evidence.jsonl'),
+];
 
 const allowedRouteTypes = new Set([
   'biblical_paraphrase_evidence',
@@ -146,13 +150,20 @@ if (!issues.length) {
   }
 }
 
-const localRowsRead = await readJsonl(localJsonlPath, (row, lineNumber, error) => {
-  if (error) {
-    issues.push(`local JSONL line ${lineNumber}: invalid JSON ${error.message}`);
-    return;
-  }
-  validateRow(row, `local JSONL line ${lineNumber}`, issues);
-});
+let localRowsRead = 0;
+const localFileCounts = {};
+for (const localJsonlPath of localJsonlPaths) {
+  const displayPath = path.relative(root, localJsonlPath).replace(/\\/g, '/');
+  const count = await readJsonl(localJsonlPath, (row, lineNumber, error) => {
+    if (error) {
+      issues.push(`${displayPath} line ${lineNumber}: invalid JSON ${error.message}`);
+      return;
+    }
+    validateRow(row, `${displayPath} line ${lineNumber}`, issues);
+  });
+  localFileCounts[displayPath] = count;
+  localRowsRead += count;
+}
 
 if (issues.length) {
   console.error(`Paraphrase evidence validation failed with ${issues.length} issue(s):`);
@@ -160,4 +171,4 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log(`Paraphrase evidence validation passed. Local rows read: ${localRowsRead}.`);
+console.log(`Paraphrase evidence validation passed. Local rows read: ${localRowsRead}. ${JSON.stringify(localFileCounts)}`);

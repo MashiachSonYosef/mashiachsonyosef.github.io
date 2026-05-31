@@ -72,3 +72,19 @@ Generated: 2026-05-31T02:28:35.020Z
 - Lemma, subphrase, biblical paraphrase, and citable paraphrase routes use raw score minus 20 as adjusted score.
 - HUD lookup ordering sorts by adjusted score first, raw score second, and route family only as a tie-breaker.
 - Validation script: `node scripts\validate_hud_route_scoring.mjs`
+
+## Citable Paraphrase Evidence
+
+- Generated: 2026-05-31T03:03:32.477Z
+- Source files scanned: 5
+- Biblical source files skipped: 0
+- Allowed source units scanned: 2351
+- Rejected source units skipped: 633
+- Definition claims read: 142936
+- Definition claims indexed: 139219
+- Citable rows emitted: 12000
+- Candidate status: accepted
+- Max rows per normalized token: 1
+- Public sample: data/definitions/citable-paraphrase-evidence-sample.json
+- Local cache: .local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl
+- Lane rule: citable importers produce source-backed rows and scores only; final HUD/ranking owns winner selection and rendering.

@@ -62,6 +62,7 @@ function validateManifest(issues) {
     'data/definitions/paraphrase-route-policy.json',
     'data/definitions/paraphrase-evidence-contract.json',
     'data/definitions/paraphrase-evidence-sample.json',
+    'data/definitions/citable-paraphrase-evidence-sample.json',
     'data/definitions/hud-route-contract.json',
     'data/definitions/hud-route-fixtures.json',
     'data/definitions/hud-route-store-sample.json',
@@ -155,6 +156,35 @@ function validatePhraseSamples(issues) {
   }
 }
 
+function validateCitableParaphraseSamples(issues) {
+  const sample = readJson('data/definitions/citable-paraphrase-evidence-sample.json', false);
+  if (!sample) return;
+  for (const [index, row] of asArray(sample.samples).entries()) {
+    const context = `citable-paraphrase-evidence-sample.samples[${index}]`;
+    validateSourceRows(row.source_rows, context, issues);
+    if (row.route_type !== 'citable_paraphrase_evidence') {
+      issues.push(`${context}: unexpected route_type ${row.route_type}`);
+    }
+    if (!['proposed', 'accepted', 'rejected'].includes(row.candidate_status)) {
+      issues.push(`${context}: invalid candidate_status ${row.candidate_status}`);
+    }
+    if (!Number.isFinite(row.raw_score) || row.raw_score < 0 || row.raw_score > 100) {
+      issues.push(`${context}: raw_score must be 0..100`);
+    }
+    if (row.score_handicap !== 20) issues.push(`${context}: score_handicap must be 20`);
+    if (Number.isFinite(row.raw_score) && row.adjusted_score !== row.raw_score - 20) {
+      issues.push(`${context}: adjusted_score must equal raw_score - 20`);
+    }
+    if (!asArray(row.phrase_tokens).some((token) => token?.role === 'focus-token')) {
+      issues.push(`${context}: phrase_tokens must include a focus-token`);
+    }
+    if (!row.source_definition_claim_id) {
+      issues.push(`${context}: missing source_definition_claim_id`);
+    }
+    checkNoForbiddenText(JSON.stringify(row), context, issues);
+  }
+}
+
 function validateParaphrasePolicy(issues) {
   const policy = readJson('data/definitions/paraphrase-route-policy.json');
   const routeTypes = new Set(asArray(policy.route_families).map((route) => route.route_type));
@@ -188,6 +218,7 @@ const issues = [];
 validateManifest(issues);
 validateDefinitionSamples(issues);
 validatePhraseSamples(issues);
+validateCitableParaphraseSamples(issues);
 validateParaphrasePolicy(issues);
 validateParaphraseEvidenceContract(issues);
 validateHudRouteArtifacts(issues);

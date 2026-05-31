@@ -747,6 +747,7 @@ function writeReport({ morphology, morphologyClaims, kaikkiStats, sourceLayerSta
     '## Scope',
     '',
     '- Definitions/HUD routing are treated as rebuildable project-owned internals.',
+    '- Definition importers own license-safe route rows and raw match scores; final HUD/ranking owns display, winner selection, and live renderer changes.',
     '- Hebrew source imports remain inputs unless an explicit integration pass rewrites shared artifacts.',
     '- Examples and quotation translations from Wiktionary/Kaikki are excluded to avoid importing source-text translations or fair-use quotations.',
     '- Sefaria phrase/subphrase extraction is not treated as globally safe; every version must pass license checks before use.',
@@ -762,6 +763,7 @@ function writeReport({ morphology, morphologyClaims, kaikkiStats, sourceLayerSta
     '- data/definitions/morphology-rules.json',
     '- data/definitions/paraphrase-evidence-contract.json',
     '- data/definitions/paraphrase-evidence-sample.json',
+    ...(fs.existsSync(path.join(root, 'data/definitions/citable-paraphrase-evidence-sample.json')) ? ['- data/definitions/citable-paraphrase-evidence-sample.json'] : []),
     '- data/definitions/hud-route-contract.json',
     '- data/definitions/hud-route-fixtures.json',
     '- data/definitions/hud-route-store-sample.json',
@@ -771,6 +773,7 @@ function writeReport({ morphology, morphologyClaims, kaikkiStats, sourceLayerSta
     `- ${kaikkiStats.local_jsonl_path || '.local-cache/definition-routes/kaikki-definition-claims.jsonl'}`,
     `- ${kaikkiStats.local_csv_path || '.local-cache/definition-routes/kaikki-definition-claims.csv'}`,
     `- ${sourceLayerStats.local_jsonl_path}`,
+    ...(fs.existsSync(path.join(root, paths.localDir, 'source-citable-paraphrase-evidence.jsonl')) ? ['- .local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl'] : []),
     '',
     '## Counts',
     '',
@@ -842,6 +845,10 @@ async function main() {
         ...(fs.existsSync(path.join(root, paths.localDir, 'source-phrase-evidence.jsonl')) ? ['source-phrase-evidence.jsonl'] : []),
         ...(fs.existsSync(path.join(root, paths.localDir, 'source-phrase-evidence.csv')) ? ['source-phrase-evidence.csv'] : []),
         ...(fs.existsSync(path.join(root, paths.localDir, 'source-phrase-token-index.json')) ? ['source-phrase-token-index.json'] : []),
+        ...(fs.existsSync(path.join(root, paths.localDir, 'source-biblical-paraphrase-evidence.jsonl')) ? ['source-biblical-paraphrase-evidence.jsonl'] : []),
+        ...(fs.existsSync(path.join(root, paths.localDir, 'source-citable-paraphrase-evidence.jsonl')) ? ['source-citable-paraphrase-evidence.jsonl'] : []),
+        ...(fs.existsSync(path.join(root, paths.localDir, 'source-citable-paraphrase-evidence.csv')) ? ['source-citable-paraphrase-evidence.csv'] : []),
+        ...(fs.existsSync(path.join(root, paths.localDir, 'source-citable-paraphrase-token-index.json')) ? ['source-citable-paraphrase-token-index.json'] : []),
         'definition-route-manifest.json',
       ],
     },
@@ -850,6 +857,7 @@ async function main() {
     'data/definitions/paraphrase-route-policy.json',
     'data/definitions/paraphrase-evidence-contract.json',
     'data/definitions/paraphrase-evidence-sample.json',
+    ...(fs.existsSync(path.join(root, 'data/definitions/citable-paraphrase-evidence-sample.json')) ? ['data/definitions/citable-paraphrase-evidence-sample.json'] : []),
     'data/definitions/hud-route-contract.json',
       ...(fs.existsSync(path.join(root, 'data/definitions/hud-route-fixtures.json')) ? ['data/definitions/hud-route-fixtures.json'] : []),
       ...(fs.existsSync(path.join(root, 'data/definitions/hud-route-store-sample.json')) ? ['data/definitions/hud-route-store-sample.json'] : []),
@@ -872,6 +880,7 @@ async function main() {
     })),
   };
   if (previousManifest?.phrase_evidence) manifest.phrase_evidence = previousManifest.phrase_evidence;
+  if (previousManifest?.citable_paraphrase_evidence) manifest.citable_paraphrase_evidence = previousManifest.citable_paraphrase_evidence;
 
   writeJson('data/definitions/manifest.json', manifest);
   writeJson('data/definitions/source-license-inventory.json', {
