@@ -74,6 +74,10 @@ function parseArgs(args) {
     window: 3,
     includeUntracked: false,
     localOnly: false,
+    jsonl: '',
+    csv: '',
+    index: '',
+    sample: '',
     sourceFiles: [],
   };
 
@@ -85,6 +89,10 @@ function parseArgs(args) {
     else if (arg.startsWith('--max-total-rows=')) parsed.maxTotalRows = Number(arg.split('=')[1]);
     else if (arg.startsWith('--sample-limit=')) parsed.sampleLimit = Number(arg.split('=')[1]);
     else if (arg.startsWith('--window=')) parsed.window = Number(arg.split('=')[1]);
+    else if (arg.startsWith('--jsonl=')) parsed.jsonl = cleanRelativePath(arg.split('=').slice(1).join('='));
+    else if (arg.startsWith('--csv=')) parsed.csv = cleanRelativePath(arg.split('=').slice(1).join('='));
+    else if (arg.startsWith('--index=')) parsed.index = cleanRelativePath(arg.split('=').slice(1).join('='));
+    else if (arg.startsWith('--sample=')) parsed.sample = cleanRelativePath(arg.split('=').slice(1).join('='));
     else throw new Error(`Unknown argument: ${arg}`);
   }
 
@@ -95,6 +103,14 @@ function parseArgs(args) {
   }
 
   return parsed;
+}
+
+function cleanRelativePath(value) {
+  return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+}
+
+for (const key of ['jsonl', 'csv', 'index', 'sample']) {
+  if (options[key]) paths[key] = options[key];
 }
 
 function mkdirp(relativePath) {
@@ -111,6 +127,7 @@ function readJson(relativePath, required = true) {
 }
 
 function writeJson(relativePath, data) {
+  fs.mkdirSync(path.dirname(path.join(root, relativePath)), { recursive: true });
   fs.writeFileSync(path.join(root, relativePath), `${JSON.stringify(data, null, 2)}\n`, 'utf8');
 }
 
@@ -424,6 +441,9 @@ function patchReport(stats) {
 async function main() {
   mkdirp(paths.definitionsDir);
   mkdirp(paths.localDir);
+  mkdirp(path.dirname(paths.jsonl));
+  mkdirp(path.dirname(paths.csv));
+  mkdirp(path.dirname(paths.index));
 
   const sourceFiles = collectSourceFiles();
   const jsonl = fs.createWriteStream(path.join(root, paths.jsonl), { encoding: 'utf8' });
@@ -530,7 +550,9 @@ async function main() {
   stats.accepted_license_counts = sortedObject(acceptedLicenseCounts);
   stats.rejected_license_counts = sortedObject(rejectedLicenseCounts);
 
-  const samplePath = options.localOnly
+  const samplePath = options.sample
+    ? paths.sample
+    : options.localOnly
     ? `${paths.localDir}/source-phrase-evidence-sample.json`
     : paths.sample;
 
