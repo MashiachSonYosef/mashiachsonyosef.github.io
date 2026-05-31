@@ -35,7 +35,23 @@ const occurrenceIds = new Set();
 await readJsonl(manifest.paths?.occurrences_jsonl, (row, lineNumber) => {
   occurrenceCount += 1;
   const context = `occurrences line ${lineNumber}`;
-  requireFields(row, ['occurrence_id', 'token_key', 'token_surface', 'token_normalized', 'focus_normalized', 'source_ref', 'work_id', 'license'], context);
+  requireFields(row, [
+    'occurrence_id',
+    'token_key',
+    'token_surface',
+    'token_normalized',
+    'focus_normalized',
+    'match_basis',
+    'cluster_id',
+    'source_ref',
+    'work_id',
+    'work_title',
+    'source_url',
+    'version_title',
+    'version_source',
+    'license',
+    'license_url',
+  ], context);
   occurrenceIds.add(row.occurrence_id);
   if (!hasFocusToken(row.phrase_window?.phrase_tokens)) issues.push(`${context}: missing focus-token`);
   validateSourceRows(row.source_rows, context);
@@ -47,7 +63,28 @@ let candidateCount = 0;
 await readJsonl(manifest.paths?.candidates_jsonl, (row, lineNumber) => {
   candidateCount += 1;
   const context = `candidates line ${lineNumber}`;
-  requireFields(row, ['candidate_id', 'occurrence_id', 'token_key', 'candidate_status', 'route_type', 'raw_score', 'usage_note'], context);
+  requireFields(row, [
+    'candidate_id',
+    'occurrence_id',
+    'token_key',
+    'token_surface',
+    'token_normalized',
+    'focus_normalized',
+    'route_type',
+    'candidate_status',
+    'cluster_id',
+    'raw_score',
+    'phrase_hebrew',
+    'source_ref',
+    'work_id',
+    'work_title',
+    'source_url',
+    'version_title',
+    'version_source',
+    'license',
+    'license_url',
+    'usage_note',
+  ], context);
   if (!occurrenceIds.has(row.occurrence_id)) issues.push(`${context}: unknown occurrence_id`);
   if (row.route_type !== 'workbench_usage_commentary') issues.push(`${context}: invalid route_type ${row.route_type}`);
   if (!allowedStatuses.has(row.candidate_status)) issues.push(`${context}: invalid candidate_status ${row.candidate_status}`);
@@ -68,7 +105,10 @@ let blockedCount = 0;
 await readJsonl(manifest.paths?.blocked_jsonl, (row, lineNumber) => {
   blockedCount += 1;
   const context = `blocked line ${lineNumber}`;
-  requireFields(row, ['blocked_id', 'reason', 'source_file', 'work_id', 'work_title', 'license'], context);
+  requireFields(row, ['blocked_id', 'reason', 'source_file', 'work_id', 'work_title', 'license', 'note'], context);
+  if (!/Blocked before source text quotation/.test(row.note || '')) {
+    issues.push(`${context}: blocked note must confirm no source text quotation`);
+  }
 });
 
 if (manifest.counts?.occurrence_markers !== occurrenceCount) issues.push('manifest occurrence count does not match JSONL');
