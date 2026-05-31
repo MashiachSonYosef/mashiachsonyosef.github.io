@@ -4,13 +4,15 @@ import path from 'node:path';
 
 const root = process.cwd();
 const defaults = {
-  evidenceDir: '.local-cache/workbench-evidence/handoff',
+  evidenceDir: '.local-cache/workbench-evidence/handoff,data/workbench-evidence',
   output: '.local-cache/workbench-evidence/handoff-index.json',
   report: 'reports/workbench-handoff-index.md',
+  includeSmoke: false,
 };
 
 const options = parseArgs(process.argv.slice(2));
-const manifests = collectHandoffManifests(options.evidenceDir);
+const evidenceDirs = splitPathList(options.evidenceDir);
+const manifests = dedupeManifests(evidenceDirs.flatMap((evidenceDir) => collectHandoffManifests(evidenceDir)));
 const generatedAt = new Date().toISOString();
 
 const artifact = {
@@ -19,7 +21,7 @@ const artifact = {
   generated_at: generatedAt,
   generator: 'scripts/build_workbench_handoff_index.mjs',
   policy: 'Discovery index for completed Agent 3 occurrence/candidate handoff streams. This is not a ranking artifact.',
-  evidence_dir: options.evidenceDir,
+  evidence_dirs: evidenceDirs,
   counts: {
     manifests: manifests.length,
     occurrence_markers: sum(manifests, (row) => row.counts.occurrence_markers),
@@ -41,6 +43,7 @@ function parseArgs(args) {
     if (arg.startsWith('--evidence-dir=')) parsed.evidenceDir = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(arg.split('=').slice(1).join('='));
+    else if (arg === '--include-smoke') parsed.includeSmoke = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
   return parsed;
@@ -51,6 +54,7 @@ function collectHandoffManifests(evidenceDir) {
   if (!fs.existsSync(base)) return [];
   return fs.readdirSync(base, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
+    .filter((entry) => options.includeSmoke || !/smoke/i.test(entry.name))
     .map((entry) => `${evidenceDir}/${entry.name}/manifest.json`)
     .filter((relativePath) => fs.existsSync(path.join(root, relativePath)))
     .map((relativePath) => {
@@ -69,12 +73,34 @@ function collectHandoffManifests(evidenceDir) {
     .sort((a, b) => String(a.focus?.token_normalized || '').localeCompare(String(b.focus?.token_normalized || '')));
 }
 
+function dedupeManifests(manifests) {
+  const byTokenKey = new Map();
+  for (const manifest of manifests) {
+    const tokenKey = manifest.focus?.token_key || manifest.focus?.token_normalized || manifest.manifest_path;
+    const existing = byTokenKey.get(tokenKey);
+    if (!existing || preferManifest(manifest, existing)) byTokenKey.set(tokenKey, manifest);
+  }
+  return Array.from(byTokenKey.values())
+    .sort((a, b) => String(a.focus?.token_normalized || '').localeCompare(String(b.focus?.token_normalized || '')));
+}
+
+function preferManifest(candidate, existing) {
+  const candidateLocal = candidate.manifest_path.startsWith('.local-cache/');
+  const existingLocal = existing.manifest_path.startsWith('.local-cache/');
+  if (candidateLocal !== existingLocal) return candidateLocal;
+  return String(candidate.generated_at || '') > String(existing.generated_at || '');
+}
+
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 }
 
 function cleanRelativePath(value) {
   return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+}
+
+function splitPathList(value) {
+  return String(value || '').split(',').map((part) => cleanRelativePath(part.trim())).filter(Boolean);
 }
 
 function sum(rows, getValue) {

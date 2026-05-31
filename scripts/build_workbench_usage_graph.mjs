@@ -25,10 +25,12 @@ const defaults = {
   reportDir: 'reports',
   window: 8,
   includeUntracked: false,
-  includePrefixFamily: true,
+  includePrefixFamily: false,
   emitAmbiguousCandidates: true,
   autoContextClusters: true,
   minAutoClusterSize: 3,
+  allowFullCorpus: false,
+  maxSourceFiles: 5,
   maxBlocked: 250,
 };
 
@@ -190,6 +192,8 @@ const graphArtifact = {
     include_prefix_family: options.includePrefixFamily,
     auto_context_clusters: options.autoContextClusters,
     min_auto_cluster_size: options.minAutoClusterSize,
+    allow_full_corpus: options.allowFullCorpus,
+    max_source_files: options.maxSourceFiles,
     window: options.window,
   },
   counts: {
@@ -252,9 +256,11 @@ function parseArgs(args) {
   };
   for (const arg of args) {
     if (arg === '--include-untracked') parsed.includeUntracked = true;
+    else if (arg === '--include-prefix-family') parsed.includePrefixFamily = true;
     else if (arg === '--no-prefix-family') parsed.includePrefixFamily = false;
     else if (arg === '--no-ambiguous-candidates') parsed.emitAmbiguousCandidates = false;
     else if (arg === '--no-auto-context-clusters') parsed.autoContextClusters = false;
+    else if (arg === '--allow-full-corpus') parsed.allowFullCorpus = true;
     else if (arg.startsWith('--focus=')) parsed.focus = arg.split('=').slice(1).join('=');
     else if (arg.startsWith('--focus-normalized=')) parsed.focusNormalized = arg.split('=').slice(1).join('=');
     else if (arg.startsWith('--slug=')) parsed.slug = arg.split('=').slice(1).join('=');
@@ -267,9 +273,10 @@ function parseArgs(args) {
     else if (arg.startsWith('--window=')) parsed.window = Number(arg.split('=')[1]);
     else if (arg.startsWith('--max-blocked=')) parsed.maxBlocked = Number(arg.split('=')[1]);
     else if (arg.startsWith('--min-auto-cluster-size=')) parsed.minAutoClusterSize = Number(arg.split('=')[1]);
+    else if (arg.startsWith('--max-source-files=')) parsed.maxSourceFiles = Number(arg.split('=')[1]);
     else throw new Error(`Unknown argument: ${arg}`);
   }
-  for (const key of ['window', 'maxBlocked', 'minAutoClusterSize']) {
+  for (const key of ['window', 'maxBlocked', 'minAutoClusterSize', 'maxSourceFiles']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 0) {
       throw new Error(`--${key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)} must be a non-negative integer`);
     }
@@ -351,6 +358,9 @@ function isAllowedLicense(license) {
 
 function collectSourceFiles() {
   if (options.sourceFiles.length) {
+    if (options.sourceFiles.length > options.maxSourceFiles) {
+      throw new Error(`Refusing broad source scope: got ${options.sourceFiles.length} --source-file value(s), max is ${options.maxSourceFiles}.`);
+    }
     return options.sourceFiles.map(cleanRelativePath).map((file) => {
       if (!file.startsWith(`${options.sourceDir}/`) || !file.endsWith('.json')) {
         throw new Error(`--source-file must point to a JSON file under ${options.sourceDir}: ${file}`);
@@ -358,6 +368,10 @@ function collectSourceFiles() {
       if (!fs.existsSync(path.join(root, file))) throw new Error(`--source-file does not exist: ${file}`);
       return file;
     }).sort();
+  }
+
+  if (!options.allowFullCorpus) {
+    throw new Error('Refusing full-corpus graph build without --allow-full-corpus. For smoke runs pass 1-5 explicit --source-file values.');
   }
 
   if (options.includeUntracked) {

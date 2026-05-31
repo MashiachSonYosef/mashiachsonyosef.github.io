@@ -6,19 +6,24 @@ import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 const defaults = {
-  targetQueue: '.local-cache/workbench-evidence/target-queue.json',
+  targetQueue: '.local-cache/workbench-evidence/smoke-target-queue.json',
   outputDir: '.local-cache/workbench-evidence/full',
   reportDir: 'reports',
   handoffRoot: '.local-cache/workbench-evidence/handoff',
   batchDir: '.local-cache/workbench-evidence/batch-runs',
+  handoffIndex: '.local-cache/workbench-evidence/handoff-index.json',
   limit: 1,
   startIndex: 0,
   maxOccurrences: 25000,
   minPriority: 0,
   skipExisting: true,
+  skipIndexed: false,
+  smokeOnly: true,
+  maxSourceFiles: 5,
+  requireNonzeroSupport: true,
   exportHandoff: true,
   validate: true,
-  includePrefixFamily: true,
+  includePrefixFamily: false,
   prefixFamilyMinFocusLength: 4,
   includeAmbiguousCandidates: true,
   failFast: false,
@@ -42,11 +47,16 @@ const run = {
     target_queue: options.targetQueue,
     output_dir: options.outputDir,
     handoff_root: options.handoffRoot,
+    handoff_index: options.handoffIndex,
     start_index: options.startIndex,
     limit: options.limit,
     max_occurrences: options.maxOccurrences,
     min_priority: options.minPriority,
     skip_existing: options.skipExisting,
+    skip_indexed: options.skipIndexed,
+    smoke_only: options.smokeOnly,
+    max_source_files: options.maxSourceFiles,
+    require_nonzero_support: options.requireNonzeroSupport,
     include_prefix_family: options.includePrefixFamily,
     prefix_family_min_focus_length: options.prefixFamilyMinFocusLength,
     include_ambiguous_candidates: options.includeAmbiguousCandidates,
@@ -56,11 +66,16 @@ const run = {
   failed: [],
 };
 
+const indexedTokenKeys = options.skipIndexed ? loadIndexedTokenKeys(options.handoffIndex) : new Set();
 let attempts = 0;
 for (const [index, target] of queue.targets.entries()) {
   if (index < options.startIndex) continue;
   if (attempts >= options.limit) break;
   if (!target?.token_normalized) continue;
+  if (options.smokeOnly && !isSmokeTarget(target)) {
+    run.skipped.push(skipRecord(index, target, 'non_smoke_target'));
+    continue;
+  }
   if (Number(target.priority_score || 0) < options.minPriority) {
     run.skipped.push(skipRecord(index, target, 'below_min_priority'));
     continue;
@@ -70,12 +85,23 @@ for (const [index, target] of queue.targets.entries()) {
     continue;
   }
 
-  const slug = slugForFocus(target.token_normalized);
+  const slug = cleanSlug(target.slug || target.slug_override || slugForFocus(target.token_normalized));
   const graphPath = `${options.outputDir}/${slug}-occurrence-graph.json`;
   const candidatesPath = `${options.outputDir}/${slug}-candidate-evidence.json`;
   const handoffDir = `${options.handoffRoot}/${slug}`;
   const manifestPath = `${handoffDir}/manifest.json`;
-  const prefixFamilyEnabled = options.includePrefixFamily && target.token_normalized.length >= options.prefixFamilyMinFocusLength;
+  const sourceFiles = validateTargetSourceFiles(target);
+  const prefixFamilyEnabled = options.includePrefixFamily
+    && target.allow_prefix_family === true
+    && target.token_normalized.length >= options.prefixFamilyMinFocusLength;
+
+  if (options.skipIndexed && indexedTokenKeys.has(target.token_key)) {
+    run.skipped.push({
+      ...skipRecord(index, target, 'existing_handoff_index_entry'),
+      slug,
+    });
+    continue;
+  }
 
   if (options.skipExisting && fs.existsSync(path.join(root, manifestPath))) {
     run.skipped.push({
@@ -96,6 +122,7 @@ for (const [index, target] of queue.targets.entries()) {
     occurrence_count: target.occurrence_count,
     work_count: target.work_count,
     prefix_family_enabled: prefixFamilyEnabled,
+    source_files: sourceFiles,
     slug,
     graph_path: graphPath,
     candidates_path: candidatesPath,
@@ -108,14 +135,21 @@ for (const [index, target] of queue.targets.entries()) {
       `--focus-normalized=${target.token_normalized}`,
       `--slug=${slug}`,
       `--output-dir=${options.outputDir}`,
+      `--max-source-files=${options.maxSourceFiles}`,
     ];
+    for (const sourceFile of sourceFiles) graphArgs.push(`--source-file=${sourceFile}`);
     if (options.reportDir) graphArgs.push(`--report-dir=${options.reportDir}`);
-    if (!prefixFamilyEnabled) graphArgs.push('--no-prefix-family');
+    if (prefixFamilyEnabled) graphArgs.push('--include-prefix-family');
     if (!options.includeAmbiguousCandidates) graphArgs.push('--no-ambiguous-candidates');
     runNode(graphArgs);
 
     if (options.validate) {
       runNode(['scripts/validate_workbench_usage_graph.mjs', graphPath, candidatesPath]);
+    }
+    const candidateArtifact = readJson(candidatesPath);
+    const candidateStatusCounts = candidateArtifact.counts || {};
+    if (options.requireNonzeroSupport && !hasNonzeroSupport(candidateStatusCounts)) {
+      throw new Error(`zero_non_ambiguous_candidate_counts: supported=${candidateStatusCounts.supported || 0}, candidate=${candidateStatusCounts.candidate || 0}, weak=${candidateStatusCounts.weak || 0}, ambiguous=${candidateStatusCounts.ambiguous || 0}`);
     }
     if (options.exportHandoff) {
       runNode(['scripts/export_workbench_usage_handoff.mjs', graphPath, candidatesPath, handoffDir]);
@@ -127,7 +161,8 @@ for (const [index, target] of queue.targets.entries()) {
       ...record,
       status: 'completed',
       output_counts: outputManifest?.counts || null,
-      prefix_family_expansion: outputManifest?.counts
+      candidate_status_counts: candidateStatusCounts,
+      prefix_family_expansion: outputManifest?.counts && Number(target.occurrence_count || 0) > 0
         ? Number(outputManifest.counts.occurrence_markers || 0) - Number(target.occurrence_count || 0)
         : null,
     });
@@ -151,8 +186,13 @@ function parseArgs(args) {
   const parsed = { ...defaults };
   for (const arg of args) {
     if (arg === '--no-skip-existing') parsed.skipExisting = false;
+    else if (arg === '--skip-indexed') parsed.skipIndexed = true;
+    else if (arg === '--no-skip-indexed') parsed.skipIndexed = false;
+    else if (arg === '--allow-non-smoke') parsed.smokeOnly = false;
+    else if (arg === '--allow-zero-support') parsed.requireNonzeroSupport = false;
     else if (arg === '--no-export-handoff') parsed.exportHandoff = false;
     else if (arg === '--no-validate') parsed.validate = false;
+    else if (arg === '--include-prefix-family') parsed.includePrefixFamily = true;
     else if (arg === '--no-prefix-family') parsed.includePrefixFamily = false;
     else if (arg === '--no-ambiguous-candidates') parsed.includeAmbiguousCandidates = false;
     else if (arg === '--fail-fast') parsed.failFast = true;
@@ -160,15 +200,17 @@ function parseArgs(args) {
     else if (arg.startsWith('--output-dir=')) parsed.outputDir = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--report-dir=')) parsed.reportDir = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--handoff-root=')) parsed.handoffRoot = cleanRelativePath(arg.split('=').slice(1).join('='));
+    else if (arg.startsWith('--handoff-index=')) parsed.handoffIndex = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--batch-dir=')) parsed.batchDir = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--limit=')) parsed.limit = Number(arg.split('=')[1]);
     else if (arg.startsWith('--start-index=')) parsed.startIndex = Number(arg.split('=')[1]);
     else if (arg.startsWith('--max-occurrences=')) parsed.maxOccurrences = Number(arg.split('=')[1]);
     else if (arg.startsWith('--min-priority=')) parsed.minPriority = Number(arg.split('=')[1]);
     else if (arg.startsWith('--prefix-family-min-focus-length=')) parsed.prefixFamilyMinFocusLength = Number(arg.split('=')[1]);
+    else if (arg.startsWith('--max-source-files=')) parsed.maxSourceFiles = Number(arg.split('=')[1]);
     else throw new Error(`Unknown argument: ${arg}`);
   }
-  for (const key of ['limit', 'startIndex', 'maxOccurrences', 'minPriority', 'prefixFamilyMinFocusLength']) {
+  for (const key of ['limit', 'startIndex', 'maxOccurrences', 'minPriority', 'prefixFamilyMinFocusLength', 'maxSourceFiles']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 0) {
       throw new Error(`--${key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)} must be a non-negative integer`);
     }
@@ -180,6 +222,12 @@ function cleanRelativePath(value) {
   return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
 }
 
+function cleanSlug(value) {
+  const slug = String(value || '').replace(/[^a-zA-Z0-9._-]/g, '-').replace(/^-+|-+$/g, '');
+  if (!slug) throw new Error('Target slug resolved to an empty value.');
+  return slug;
+}
+
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 }
@@ -189,6 +237,42 @@ function runNode(args) {
     cwd: root,
     stdio: 'inherit',
   });
+}
+
+function isSmokeTarget(target) {
+  return target.target_reason === 'seeded_frame_available'
+    || target.target_kind === 'seeded_nonzero_support_smoke'
+    || target.known_nonzero_support === true;
+}
+
+function validateTargetSourceFiles(target) {
+  const sourceFiles = (Array.isArray(target.source_files) ? target.source_files : []).map(cleanRelativePath).filter(Boolean);
+  if (!sourceFiles.length) throw new Error(`Smoke target ${target.token_normalized} must provide 1-${options.maxSourceFiles} source_files.`);
+  if (sourceFiles.length > options.maxSourceFiles) {
+    throw new Error(`Smoke target ${target.token_normalized} has ${sourceFiles.length} source_files; max is ${options.maxSourceFiles}.`);
+  }
+  for (const sourceFile of sourceFiles) {
+    if (!sourceFile.startsWith('data/sources/') || !sourceFile.endsWith('.json')) {
+      throw new Error(`Invalid smoke source file for ${target.token_normalized}: ${sourceFile}`);
+    }
+    if (!fs.existsSync(path.join(root, sourceFile))) {
+      throw new Error(`Missing smoke source file for ${target.token_normalized}: ${sourceFile}`);
+    }
+  }
+  return sourceFiles;
+}
+
+function hasNonzeroSupport(counts) {
+  return Number(counts.supported || 0) + Number(counts.candidate || 0) + Number(counts.weak || 0) > 0;
+}
+
+function loadIndexedTokenKeys(relativePath) {
+  const fullPath = path.join(root, relativePath);
+  if (!fs.existsSync(fullPath)) return new Set();
+  const index = readJson(relativePath);
+  return new Set((Array.isArray(index.manifests) ? index.manifests : [])
+    .map((row) => row.focus?.token_key)
+    .filter(Boolean));
 }
 
 function slugForFocus(normalized) {
@@ -236,7 +320,7 @@ function renderReport(run) {
     '',
     '## Processed',
     '',
-    ...run.processed.map((row) => `- ${row.token_normalized}: ${row.slug}, queue exact ${row.occurrence_count}, graph ${row.output_counts?.occurrence_markers ?? 'n/a'}, prefix expansion ${row.prefix_family_expansion ?? 'n/a'}, prefix family ${row.prefix_family_enabled ? 'on' : 'off'}, ${row.target_reason}`),
+    ...run.processed.map((row) => `- ${row.token_normalized}: ${row.slug}, supported ${row.candidate_status_counts?.supported ?? 'n/a'}, candidate ${row.candidate_status_counts?.candidate ?? 'n/a'}, weak ${row.candidate_status_counts?.weak ?? 'n/a'}, ambiguous ${row.candidate_status_counts?.ambiguous ?? 'n/a'}, source files ${row.source_files.length}, prefix family ${row.prefix_family_enabled ? 'on' : 'off'}`),
     '',
     '## Failed',
     '',
@@ -244,7 +328,7 @@ function renderReport(run) {
     '',
     '## Boundary',
     '',
-    'Queue occurrence counts are exact inventory counts. Graph counts may be larger when prefix-family candidates are enabled.',
+    'Default mode is seeded/known nonzero smoke only. Every processed target must report supported/candidate/weak/ambiguous counts.',
     '',
     'This run builds source-backed occurrence/candidate artifacts only. It does not select visible HUD answers.',
     '',
