@@ -29,6 +29,7 @@ if (!Array.isArray(artifact.evidence_dirs) || !artifact.evidence_dirs.length) is
 if (!Array.isArray(artifact.manifests)) issues.push('manifests must be an array');
 
 const manifestRows = Array.isArray(artifact.manifests) ? artifact.manifests : [];
+const manifestSlugs = new Set(manifestRows.map((row) => row.slug).filter(Boolean));
 const seenTokenKeys = new Set();
 const expectedCounts = {
   manifests: manifestRows.length,
@@ -48,6 +49,7 @@ for (const [key, expected] of Object.entries(expectedCounts)) {
     issues.push(`counts.${key} expected ${expected}, found ${artifact.counts?.[key]}`);
   }
 }
+validateTargetQueueCoverage();
 
 walk(artifact, indexPath);
 
@@ -90,6 +92,32 @@ function validateManifestEntry(row, context) {
     } else {
       expectedCounts[key] += value;
     }
+  }
+}
+
+function validateTargetQueueCoverage() {
+  if (!artifact.target_queue_coverage) return;
+  const coverage = artifact.target_queue_coverage;
+  const targetCount = Number(coverage.target_count);
+  const coveredTargets = Number(coverage.covered_targets);
+  const missingTargets = Array.isArray(coverage.missing_targets) ? coverage.missing_targets : null;
+  if (!Number.isInteger(targetCount) || targetCount < 0) issues.push('target_queue_coverage.target_count must be a non-negative integer');
+  if (!Number.isInteger(coveredTargets) || coveredTargets < 0) issues.push('target_queue_coverage.covered_targets must be a non-negative integer');
+  if (!missingTargets) {
+    issues.push('target_queue_coverage.missing_targets must be an array');
+    return;
+  }
+  if (Number.isInteger(targetCount) && Number.isInteger(coveredTargets) && targetCount !== coveredTargets + missingTargets.length) {
+    issues.push(`target_queue_coverage count mismatch: target_count ${targetCount}, covered ${coveredTargets}, missing ${missingTargets.length}`);
+  }
+  for (const [index, target] of missingTargets.entries()) {
+    if (!target.slug) issues.push(`target_queue_coverage.missing_targets[${index}]: missing slug`);
+    if (target.slug && manifestSlugs.has(target.slug)) {
+      issues.push(`target_queue_coverage.missing_targets[${index}]: slug ${target.slug} is present in manifests`);
+    }
+  }
+  if (artifact.options?.require_target_queue_complete === true && missingTargets.length > 0) {
+    issues.push(`target_queue_coverage has ${missingTargets.length} missing target(s) but require_target_queue_complete is true`);
   }
 }
 

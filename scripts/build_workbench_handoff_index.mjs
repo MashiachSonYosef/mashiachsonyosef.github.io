@@ -11,17 +11,20 @@ const defaults = {
   includeSmoke: false,
   onlySmoke: false,
   dedupe: null,
+  requireTargetQueueComplete: false,
 };
 
 const options = parseArgs(process.argv.slice(2));
 if (options.dedupe === null) options.dedupe = !(options.onlySmoke || options.targetQueue);
 const evidenceDirs = splitPathList(options.evidenceDir);
-const allowedSlugs = options.targetQueue ? loadTargetQueueSlugs(options.targetQueue) : null;
+const targetQueue = options.targetQueue ? loadTargetQueue(options.targetQueue) : null;
+const allowedSlugs = targetQueue ? targetQueue.slugs : null;
 const rawManifests = evidenceDirs
   .flatMap((evidenceDir) => collectHandoffManifests(evidenceDir))
   .filter((manifest) => !allowedSlugs || allowedSlugs.has(manifest.slug));
 const manifests = (options.dedupe ? dedupeManifests(rawManifests) : rawManifests)
   .sort((a, b) => String(a.focus?.token_normalized || '').localeCompare(String(b.focus?.token_normalized || '')) || a.manifest_path.localeCompare(b.manifest_path));
+const targetQueueCoverage = targetQueue ? summarizeTargetQueueCoverage(targetQueue.targets, manifests) : null;
 const generatedAt = new Date().toISOString();
 
 const artifact = {
@@ -36,6 +39,7 @@ const artifact = {
     include_smoke: options.includeSmoke,
     only_smoke: options.onlySmoke,
     dedupe: options.dedupe,
+    require_target_queue_complete: options.requireTargetQueueComplete,
   },
   counts: {
     manifests: manifests.length,
@@ -44,6 +48,7 @@ const artifact = {
     clusters: sum(manifests, (row) => row.counts.clusters),
     blocked_rows: sum(manifests, (row) => row.counts.blocked_rows),
   },
+  target_queue_coverage: targetQueueCoverage,
   manifests,
 };
 
@@ -51,6 +56,10 @@ writeJson(options.output, artifact);
 writeReport(options.report, artifact);
 console.log(`Wrote ${options.output}`);
 console.log(`Wrote ${options.report}`);
+if (targetQueueCoverage) {
+  console.log(`Target queue coverage: ${targetQueueCoverage.covered_targets}/${targetQueueCoverage.target_count}; missing ${targetQueueCoverage.missing_targets.length}`);
+}
+if (options.requireTargetQueueComplete && targetQueueCoverage?.missing_targets.length) process.exitCode = 2;
 
 function parseArgs(args) {
   const parsed = { ...defaults };
@@ -66,6 +75,7 @@ function parseArgs(args) {
     }
     else if (arg === '--dedupe') parsed.dedupe = true;
     else if (arg === '--no-dedupe') parsed.dedupe = false;
+    else if (arg === '--require-target-queue-complete') parsed.requireTargetQueueComplete = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
   return parsed;
@@ -122,12 +132,41 @@ function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 }
 
-function loadTargetQueueSlugs(relativePath) {
+function loadTargetQueue(relativePath) {
   const queue = readJson(relativePath);
   if (queue.artifact_type !== 'workbench_target_queue') throw new Error(`${relativePath} is not a workbench target queue`);
-  return new Set((Array.isArray(queue.targets) ? queue.targets : [])
-    .map((target) => target.slug || target.slug_override)
-    .filter(Boolean));
+  const targets = (Array.isArray(queue.targets) ? queue.targets : [])
+    .map((target, index) => ({
+      index,
+      slug: target.slug || target.slug_override,
+      token_key: target.token_key || null,
+      token_normalized: target.token_normalized || null,
+      source_files: Array.isArray(target.source_files) ? target.source_files.length : 0,
+    }))
+    .filter((target) => target.slug);
+  return {
+    path: relativePath,
+    targets,
+    slugs: new Set(targets.map((target) => target.slug)),
+  };
+}
+
+function summarizeTargetQueueCoverage(targets, manifests) {
+  const manifestSlugs = new Set(manifests.map((manifest) => manifest.slug));
+  const missingTargets = targets
+    .filter((target) => !manifestSlugs.has(target.slug))
+    .map((target) => ({
+      index: target.index,
+      slug: target.slug,
+      token_key: target.token_key,
+      token_normalized: target.token_normalized,
+      source_files: target.source_files,
+    }));
+  return {
+    target_count: targets.length,
+    covered_targets: targets.length - missingTargets.length,
+    missing_targets: missingTargets,
+  };
 }
 
 function cleanRelativePath(value) {
@@ -164,6 +203,19 @@ function writeReport(relativePath, artifact) {
     `- Include smoke: ${artifact.options.include_smoke ? 'yes' : 'no'}`,
     `- Only smoke: ${artifact.options.only_smoke ? 'yes' : 'no'}`,
     `- Dedupe: ${artifact.options.dedupe ? 'yes' : 'no'}`,
+    `- Require target queue complete: ${artifact.options.require_target_queue_complete ? 'yes' : 'no'}`,
+    '',
+    '## Target Queue Coverage',
+    '',
+    `- Target count: ${artifact.target_queue_coverage?.target_count ?? 'n/a'}`,
+    `- Covered targets: ${artifact.target_queue_coverage?.covered_targets ?? 'n/a'}`,
+    `- Missing targets: ${artifact.target_queue_coverage?.missing_targets?.length ?? 'n/a'}`,
+    '',
+    '| missing slug | token | source files |',
+    '|---|---|---:|',
+    ...(artifact.target_queue_coverage?.missing_targets || []).slice(0, 80).map((row) => (
+      `| ${mdCell(row.slug)} | ${mdCell(row.token_normalized || '')} | ${row.source_files} |`
+    )),
     '',
     '## Manifests',
     '',
@@ -178,4 +230,8 @@ function writeReport(relativePath, artifact) {
   ];
   fs.mkdirSync(path.dirname(path.join(root, relativePath)), { recursive: true });
   fs.writeFileSync(path.join(root, relativePath), `${lines.join('\n')}\n`, 'utf8');
+}
+
+function mdCell(value) {
+  return String(value ?? '').replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
 }
