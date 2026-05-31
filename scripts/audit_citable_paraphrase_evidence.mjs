@@ -129,7 +129,7 @@ const report = [
   `- Input: ${inputPath}`,
   '- Lane: citable definitions/paraphrases only.',
   '- Biblical definition rows are intentionally excluded; the biblical cross-reference worker owns that lane.',
-  '- Rows combine an accepted lexical definition source row with a licensed non-biblical Hebrew usage row.',
+  '- Rows combine a licensed lexical definition or project morphology source row with a licensed non-biblical Hebrew usage row.',
   '- This report does not publish row definitions or source excerpts; it only summarizes provenance and scoring health.',
   '',
   '## Counts',

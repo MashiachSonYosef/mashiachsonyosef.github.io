@@ -4,7 +4,7 @@ Generated from the current local citable paraphrase evidence JSONL.
 
 ## Scope
 
-- Input: .local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl
+- Input: .local-cache\definition-routes\source-citable-morphology-review-evidence.jsonl
 - Lane: citable definitions/paraphrases only.
 - Biblical definition rows are intentionally excluded; the biblical cross-reference worker owns that lane.
 - Rows combine a licensed lexical definition or project morphology source row with a licensed non-biblical Hebrew usage row.
@@ -13,13 +13,13 @@ Generated from the current local citable paraphrase evidence JSONL.
 ## Counts
 
 - Rows: 200000
-- Accepted rows: 200000
-- Proposed rows: 0
+- Accepted rows: 162920
+- Proposed rows: 37080
 - Rejected rows: 0
-- Raw score range: 92-100
-- Adjusted score range: 72-80
+- Raw score range: 85-100
+- Adjusted score range: 65-80
 - Distinct works: 5
-- Distinct focus tokens: 19534
+- Distinct focus tokens: 26634
 
 ## Route Types
 
@@ -27,10 +27,11 @@ Generated from the current local citable paraphrase evidence JSONL.
 
 ## Definition Sources
 
-- wiktionary_definition: 159365
-- openscriptures_definition: 37023
-- wikidata_definition: 2754
-- project_lexical: 858
+- wiktionary_definition: 130023
+- project_morphology: 37080
+- openscriptures_definition: 30063
+- wikidata_definition: 2052
+- project_lexical: 782
 
 ## Usage Licenses
 
@@ -39,18 +40,18 @@ Generated from the current local citable paraphrase evidence JSONL.
 ## Source Licenses
 
 - Public Domain: 200000
-- CC BY-SA 4.0 / GFDL: 159365
-- CC BY 4.0: 81345
-- CC0: 44813
-- project-authored / CC0: 858
+- CC BY 4.0: 137354
+- CC BY-SA 4.0 / GFDL: 130023
+- CC0: 68376
+- project-authored / CC0: 62142
 
 ## Top Works
 
-- akeidat-yitzchak: 106031
-- abudarham: 64015
-- ahavat-chesed: 15398
-- aggadat-bereshit: 11684
-- aderet-eliyahu: 2872
+- akeidat-yitzchak: 88620
+- abudarham: 75578
+- ahavat-chesed: 18968
+- aggadat-bereshit: 13500
+- aderet-eliyahu: 3334
 
 ## Top Focus Tokens
 
@@ -61,7 +62,6 @@ Generated from the current local citable paraphrase evidence JSONL.
 - אבותי: 40
 - אבותינו: 40
 - אבי: 40
-- אביה: 40
 - אביהמ: 40
 - אביו: 40
 - אביכ: 40
@@ -69,11 +69,12 @@ Generated from the current local citable paraphrase evidence JSONL.
 - אבינו: 40
 - אבל: 40
 - אבנ: 40
-- אבנימ: 40
 - אברהמ: 40
 - אברמ: 40
-- אדומ: 40
 - אדונ: 40
+- אדוני: 40
+- אדמ: 40
+- אדר: 40
 
 ## Validation
 
