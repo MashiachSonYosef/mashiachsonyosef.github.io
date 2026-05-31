@@ -28,6 +28,7 @@ if (artifact.reader_facing_policy?.ambiguous_rows_reader_facing !== false) {
   issues.push('reader_facing_policy.ambiguous_rows_reader_facing must be false');
 }
 validateConsumerContract(artifact.consumer_contract);
+validateCoverageBoundary(artifact.coverage_boundary);
 
 const expected = {
   selected_targets: 0,
@@ -124,6 +125,31 @@ function validateConsumerContract(contract) {
   if (contract.final_ranking_authority !== false) issues.push('consumer_contract.final_ranking_authority must be false');
   if (contract.visible_answer_authority !== false) issues.push('consumer_contract.visible_answer_authority must be false');
   if (contract.carries_text_rows !== false) issues.push('consumer_contract.carries_text_rows must be false');
+}
+
+function validateCoverageBoundary(boundary) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push('coverage_boundary must be present');
+    return;
+  }
+  if (boundary.selection_mode !== 'known_useful_or_seeded_smoke_only') {
+    issues.push('coverage_boundary.selection_mode must be known_useful_or_seeded_smoke_only');
+  }
+  if (boundary.corpus_exhaustive !== false) issues.push('coverage_boundary.corpus_exhaustive must be false');
+  const freshness = boundary.source_freshness;
+  if (!freshness || typeof freshness !== 'object') {
+    issues.push('coverage_boundary.source_freshness must be present');
+    return;
+  }
+  if (!['current', 'stale', 'unavailable', 'unknown'].includes(String(freshness.status || ''))) {
+    issues.push(`coverage_boundary.source_freshness.status invalid: ${freshness.status}`);
+  }
+  if (freshness.status !== 'unavailable') {
+    for (const key of ['artifact_source_files_scanned', 'current_source_files', 'count_delta_vs_artifact_scan', 'files_modified_after_artifact', 'files_created_after_artifact']) {
+      const value = Number(freshness[key]);
+      if (!Number.isInteger(value) || value < 0) issues.push(`coverage_boundary.source_freshness.${key} must be a non-negative integer`);
+    }
+  }
 }
 
 function walkNoRowPayloads(value, context, pathParts = []) {

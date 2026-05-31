@@ -6,6 +6,7 @@ const root = process.cwd();
 const defaults = {
   targetQueue: '.local-cache/workbench-evidence/smoke-target-queue.json',
   handoffRoot: '.local-cache/workbench-evidence/handoff',
+  sourceFreshness: '.local-cache/workbench-evidence/source-freshness.json',
   output: 'data/workbench-evidence/public-handoff-index.json',
   report: 'reports/workbench-public-handoff-index.md',
   maxIssuesPerManifest: 12,
@@ -16,6 +17,7 @@ const queue = readJson(options.targetQueue);
 if (queue.artifact_type !== 'workbench_target_queue') {
   throw new Error(`${options.targetQueue} is not a workbench target queue`);
 }
+const sourceFreshness = readSourceFreshness(options.sourceFreshness);
 
 const targets = (Array.isArray(queue.targets) ? queue.targets : [])
   .filter((target) => isSelectedSmokeTarget(target));
@@ -57,7 +59,17 @@ const artifact = {
   inputs: {
     target_queue: options.targetQueue,
     handoff_root: options.handoffRoot,
+    source_freshness: sourceFreshness?.path || null,
     selected_target_filter: 'known-useful-or-seeded-smoke',
+  },
+  coverage_boundary: {
+    selection_mode: 'known_useful_or_seeded_smoke_only',
+    corpus_exhaustive: false,
+    source_freshness: sourceFreshness?.summary || {
+      status: 'unavailable',
+      notes: `No source freshness report found at ${options.sourceFreshness}`,
+    },
+    notes: 'This index promotes selected validated handoff packages only. It is not a current-corpus exhaustive coverage claim while source imports continue.',
   },
   reader_facing_policy: {
     eligible_statuses: ['supported', 'candidate', 'weak'],
@@ -91,6 +103,7 @@ function parseArgs(args) {
   for (const arg of args) {
     if (arg.startsWith('--target-queue=')) parsed.targetQueue = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--handoff-root=')) parsed.handoffRoot = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--source-freshness=')) parsed.sourceFreshness = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--max-issues-per-manifest=')) parsed.maxIssuesPerManifest = Number(valueAfterEquals(arg));
@@ -271,6 +284,26 @@ function readJsonl(relativePath, issues, label) {
   return rows;
 }
 
+function readSourceFreshness(relativePath) {
+  if (!relativePath) return null;
+  const cleanPath = cleanRelativePath(relativePath);
+  const fullPath = path.join(root, cleanPath);
+  if (!fs.existsSync(fullPath)) return null;
+  const freshness = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+  return {
+    path: cleanPath,
+    summary: {
+      status: freshness.status || 'unknown',
+      artifact_generated_at: freshness.artifact_snapshot?.generated_at || null,
+      artifact_source_files_scanned: freshness.artifact_snapshot?.source_files_scanned ?? null,
+      current_source_files: freshness.current_inventory?.source_files ?? null,
+      count_delta_vs_artifact_scan: freshness.current_inventory?.count_delta_vs_artifact_scan ?? null,
+      files_modified_after_artifact: freshness.current_inventory?.files_modified_after_artifact ?? null,
+      files_created_after_artifact: freshness.current_inventory?.files_created_after_artifact ?? null,
+    },
+  };
+}
+
 function writeJson(relativePath, data) {
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
@@ -291,6 +324,16 @@ function writeReport(relativePath, artifact) {
     `- Reader-facing eligible rows: ${artifact.counts.reader_facing_eligible_rows}`,
     `- Ambiguous count-only rows: ${artifact.counts.count_only_ambiguous_rows}`,
     `- Status counts: supported ${artifact.counts.status_counts.supported}, candidate ${artifact.counts.status_counts.candidate}, weak ${artifact.counts.status_counts.weak}, ambiguous ${artifact.counts.status_counts.ambiguous}`,
+    '',
+    '## Coverage Boundary',
+    '',
+    `- Selection mode: ${artifact.coverage_boundary.selection_mode}`,
+    `- Corpus exhaustive: ${artifact.coverage_boundary.corpus_exhaustive ? 'yes' : 'no'}`,
+    `- Source freshness: ${artifact.coverage_boundary.source_freshness.status}`,
+    `- Artifact source files scanned: ${artifact.coverage_boundary.source_freshness.artifact_source_files_scanned ?? 'n/a'}`,
+    `- Current source files: ${artifact.coverage_boundary.source_freshness.current_source_files ?? 'n/a'}`,
+    `- Count delta: ${artifact.coverage_boundary.source_freshness.count_delta_vs_artifact_scan ?? 'n/a'}`,
+    `- Files modified after artifact: ${artifact.coverage_boundary.source_freshness.files_modified_after_artifact ?? 'n/a'}`,
     '',
     '## Policy',
     '',

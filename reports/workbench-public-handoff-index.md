@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T15:34:48.634Z
+Generated: 2026-05-31T15:41:02.866Z
 
 ## Summary
 
@@ -10,6 +10,16 @@ Generated: 2026-05-31T15:34:48.634Z
 - Reader-facing eligible rows: 2390
 - Ambiguous count-only rows: 2064
 - Status counts: supported 339, candidate 1351, weak 700, ambiguous 2064
+
+## Coverage Boundary
+
+- Selection mode: known_useful_or_seeded_smoke_only
+- Corpus exhaustive: no
+- Source freshness: stale
+- Artifact source files scanned: 1192
+- Current source files: 1235
+- Count delta: 43
+- Files modified after artifact: 43
 
 ## Policy
 

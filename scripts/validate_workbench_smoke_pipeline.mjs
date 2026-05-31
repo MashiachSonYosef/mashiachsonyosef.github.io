@@ -70,6 +70,7 @@ await runStep('build_public_handoff_index', [
   'scripts/build_workbench_public_handoff_index.mjs',
   `--target-queue=${options.targetQueue}`,
   `--handoff-root=${options.handoffRoot}`,
+  `--source-freshness=${sourceFreshnessJson}`,
   `--output=${publicHandoffIndexJson}`,
   `--report=${options.scratchDir}/public-handoff-index.md`,
 ]);
