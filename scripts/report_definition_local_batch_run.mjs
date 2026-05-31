@@ -43,6 +43,7 @@ const lines = [
   `- Run ID: \`${metric(reports.summary, 'Run ID')}\``,
   `- Run directory: \`${metric(reports.summary, 'Run directory') || runDir}\``,
   `- Max rows per lane: ${metric(reports.summary, 'Max rows per lane')}`,
+  `- JSONL shard max bytes: ${metric(reports.summary, 'JSONL shard max bytes') || 'not recorded'}`,
   `- Include risky morphology: ${metric(reports.summary, 'Include risky morphology')}`,
   '- Purpose: exercise the definition importer pipeline end-to-end without touching public HUD/source artifacts.',
   '',

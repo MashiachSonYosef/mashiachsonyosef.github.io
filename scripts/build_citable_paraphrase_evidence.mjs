@@ -17,6 +17,7 @@ const defaults = {
   ],
   morphologyRules: 'data/lexical/morphology-rules.json',
   jsonl: '.local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl',
+  jsonlShardMaxBytes: 0,
   csv: '.local-cache/definition-routes/source-citable-paraphrase-evidence.csv',
   index: '.local-cache/definition-routes/source-citable-paraphrase-token-index.json',
   sample: 'data/definitions/citable-paraphrase-evidence-sample.json',
@@ -104,6 +105,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--claim-file=')) parsed.claimFiles.push(cleanRelativePath(arg.split('=').slice(1).join('=')));
     else if (arg.startsWith('--morphology-rules=')) parsed.morphologyRules = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--jsonl=')) parsed.jsonl = cleanRelativePath(arg.split('=').slice(1).join('='));
+    else if (arg.startsWith('--jsonl-shard-max-bytes=')) parsed.jsonlShardMaxBytes = Number(arg.split('=')[1]);
     else if (arg.startsWith('--csv=')) parsed.csv = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--index=')) parsed.index = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--sample=')) parsed.sample = cleanRelativePath(arg.split('=').slice(1).join('='));
@@ -117,7 +119,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--morphology-candidate-status=')) parsed.morphologyCandidateStatus = arg.split('=').slice(1).join('=');
     else throw new Error(`Unknown argument: ${arg}`);
   }
-  for (const key of ['maxPerToken', 'maxTotalRows', 'maxClaimsPerNormalized', 'maxDefinitionsPerOccurrence', 'maxSourceFiles', 'window']) {
+  for (const key of ['maxPerToken', 'maxTotalRows', 'maxClaimsPerNormalized', 'maxDefinitionsPerOccurrence', 'maxSourceFiles', 'window', 'jsonlShardMaxBytes']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 0) {
       throw new Error(`--${key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)} must be a non-negative integer`);
     }
@@ -141,6 +143,132 @@ function cleanRelativePath(value) {
 
 function mkdirp(relativePath) {
   fs.mkdirSync(path.dirname(path.join(root, relativePath)), { recursive: true });
+}
+
+function createWriteErrorMessage(relativePath, error) {
+  return `Failed writing ${relativePath}: ${error?.message || error}`;
+}
+
+function writeStreamChunk(stream, relativePath, chunk) {
+  return new Promise((resolve, reject) => {
+    const cleanup = () => {
+      stream.off('drain', onDrain);
+      stream.off('error', onError);
+    };
+    const onDrain = () => {
+      cleanup();
+      resolve();
+    };
+    const onError = (error) => {
+      cleanup();
+      reject(new Error(createWriteErrorMessage(relativePath, error)));
+    };
+    stream.once('error', onError);
+    const ready = stream.write(chunk, 'utf8');
+    if (ready) {
+      cleanup();
+      resolve();
+    } else {
+      stream.once('drain', onDrain);
+    }
+  });
+}
+
+function endStream(stream, relativePath) {
+  return new Promise((resolve, reject) => {
+    const cleanup = () => {
+      stream.off('finish', onFinish);
+      stream.off('error', onError);
+    };
+    const onFinish = () => {
+      cleanup();
+      resolve();
+    };
+    const onError = (error) => {
+      cleanup();
+      reject(new Error(createWriteErrorMessage(relativePath, error)));
+    };
+    stream.once('finish', onFinish);
+    stream.once('error', onError);
+    stream.end();
+  });
+}
+
+class JsonlWriter {
+  constructor(relativePath, shardMaxBytes) {
+    this.relativePath = relativePath;
+    this.shardMaxBytes = shardMaxBytes;
+    this.sharded = shardMaxBytes > 0;
+    this.rows = 0;
+    this.bytes = 0;
+    this.shards = [];
+    this.currentStream = null;
+    this.currentPath = '';
+    this.currentBytes = 0;
+    this.currentRows = 0;
+    this.shardIndex = 0;
+    this.shardDir = `${relativePath}.shards`;
+    this.basename = path.basename(relativePath).replace(/\.jsonl$/i, '');
+  }
+
+  async write(line) {
+    const bytes = Buffer.byteLength(line, 'utf8');
+    if (!this.currentStream || (this.sharded && this.currentBytes > 0 && this.currentBytes + bytes > this.shardMaxBytes)) {
+      await this.rotate();
+    }
+    await writeStreamChunk(this.currentStream, this.currentPath, line);
+    this.currentBytes += bytes;
+    this.currentRows += 1;
+    this.bytes += bytes;
+    this.rows += 1;
+  }
+
+  async rotate() {
+    if (this.currentStream) await this.closeCurrent();
+    if (this.sharded) {
+      this.shardIndex += 1;
+      const shardName = `${this.basename}.part-${String(this.shardIndex).padStart(6, '0')}.jsonl`;
+      this.currentPath = path.posix.join(this.shardDir, shardName);
+    } else {
+      this.currentPath = this.relativePath;
+    }
+    mkdirp(this.currentPath);
+    this.currentStream = fs.createWriteStream(path.join(root, this.currentPath), { encoding: 'utf8' });
+    this.currentBytes = 0;
+    this.currentRows = 0;
+  }
+
+  async closeCurrent() {
+    await endStream(this.currentStream, this.currentPath);
+    this.shards.push({
+      path: this.currentPath,
+      rows: this.currentRows,
+      bytes: this.currentBytes,
+    });
+    this.currentStream = null;
+  }
+
+  async close() {
+    if (this.currentStream) await this.closeCurrent();
+    if (this.sharded) {
+      writeJson(this.relativePath, {
+        schema_version: 1,
+        format: 'jsonl-shards',
+        generated_at: generatedAt,
+        rows: this.rows,
+        bytes: this.bytes,
+        shard_max_bytes: this.shardMaxBytes,
+        shards: this.shards,
+      });
+    }
+    return {
+      path: this.relativePath,
+      sharded: this.sharded,
+      rows: this.rows,
+      bytes: this.bytes,
+      shards: this.shards.length,
+    };
+  }
 }
 
 function readJson(relativePath, required = true) {
@@ -635,8 +763,8 @@ function csvEscape(value) {
   return `"${text.replace(/"/g, '""')}"`;
 }
 
-function writeCsvHeader(stream) {
-  stream.write([
+function csvHeaderLine() {
+  return [
     'evidence_id',
     'candidate_status',
     'focus_surface',
@@ -649,11 +777,11 @@ function writeCsvHeader(stream) {
     'source_ref',
     'work_id',
     'work_title',
-  ].join(',') + '\n');
+  ].join(',') + '\n';
 }
 
-function writeCsvRow(stream, row) {
-  stream.write([
+function csvRowLine(row) {
+  return [
     row.evidence_id,
     row.candidate_status,
     row.focus_surface,
@@ -666,7 +794,7 @@ function writeCsvRow(stream, row) {
     row.source_ref,
     row.work_id,
     row.work_title,
-  ].map(csvEscape).join(',') + '\n');
+  ].map(csvEscape).join(',') + '\n';
 }
 
 function shouldEmit(normalized, emittedByToken, totalRows) {
@@ -764,9 +892,9 @@ async function main() {
   const { index: claimIndex, stats: claimStats } = await loadClaimIndex();
   const morphology = loadMorphologyRules();
   const sourceFiles = collectSourceFiles();
-  const jsonl = fs.createWriteStream(path.join(root, options.jsonl), { encoding: 'utf8' });
+  const jsonl = new JsonlWriter(options.jsonl, options.jsonlShardMaxBytes);
   const csv = fs.createWriteStream(path.join(root, options.csv), { encoding: 'utf8' });
-  writeCsvHeader(csv);
+  await writeStreamChunk(csv, options.csv, csvHeaderLine());
 
   const emittedByToken = new Map();
   const tokenTotals = new Map();
@@ -836,8 +964,8 @@ async function main() {
         for (const claim of claims) {
           if (!shouldEmit(token.normalized, emittedByToken, stats.evidence_rows)) break;
           const row = makeEvidenceRow({ claim, data, unit, relativePath, tokens, tokenIndex, license });
-          jsonl.write(`${JSON.stringify(row)}\n`);
-          writeCsvRow(csv, row);
+          await jsonl.write(`${JSON.stringify(row)}\n`);
+          await writeStreamChunk(csv, options.csv, csvRowLine(row));
           count(emittedByToken, token.normalized);
           maybeCollectSample(row, samples, sampleWorkCounts);
           stats.evidence_rows += 1;
@@ -847,10 +975,8 @@ async function main() {
     }
   }
 
-  await Promise.all([
-    new Promise((resolve) => jsonl.end(resolve)),
-    new Promise((resolve) => csv.end(resolve)),
-  ]);
+  const jsonlInfo = await jsonl.close();
+  await endStream(csv, options.csv);
 
   stats.distinct_normalized_tokens_seen = tokenTotals.size;
   stats.distinct_normalized_tokens_emitted = emittedByToken.size;
@@ -898,6 +1024,7 @@ async function main() {
     counts: stats,
     local_cache: options.localDir,
     jsonl: options.jsonl,
+    jsonl_info: jsonlInfo,
     sample: options.sample,
   }, null, 2));
 }

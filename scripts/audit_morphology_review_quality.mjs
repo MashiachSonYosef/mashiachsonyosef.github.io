@@ -65,20 +65,49 @@ function classifyRisks(row) {
 }
 
 async function readJsonl(relativePath, onRow) {
-  const fullPath = path.join(root, relativePath);
-  if (!fs.existsSync(fullPath)) throw new Error(`Missing morphology review JSONL: ${relativePath}`);
-  const rl = readline.createInterface({
-    input: fs.createReadStream(fullPath, 'utf8'),
-    crlfDelay: Infinity,
-  });
   let rows = 0;
-  for await (const line of rl) {
-    const trimmed = line.trim();
-    if (!trimmed) continue;
-    rows += 1;
-    onRow(JSON.parse(trimmed), rows);
+  for (const input of jsonlInputs(relativePath)) {
+    const fullPath = path.join(root, input);
+    const rl = readline.createInterface({
+      input: fs.createReadStream(fullPath, 'utf8'),
+      crlfDelay: Infinity,
+    });
+    for await (const line of rl) {
+      const trimmed = line.trim();
+      if (!trimmed) continue;
+      rows += 1;
+      onRow(JSON.parse(trimmed), rows);
+    }
   }
   return rows;
+}
+
+function jsonlInputs(relativePath) {
+  const fullPath = path.join(root, relativePath);
+  if (!fs.existsSync(fullPath)) throw new Error(`Missing morphology review JSONL: ${relativePath}`);
+  const head = readHead(fullPath);
+  if (!head.includes('"jsonl-shards"')) return [relativePath];
+  const manifest = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+  if (manifest.format !== 'jsonl-shards' || !Array.isArray(manifest.shards)) {
+    throw new Error(`Invalid JSONL shard manifest: ${relativePath}`);
+  }
+  return manifest.shards.map((shard) => {
+    const shardPath = typeof shard === 'string' ? shard : shard?.path;
+    if (!shardPath) throw new Error(`Invalid shard entry in ${relativePath}`);
+    if (!fs.existsSync(path.join(root, shardPath))) throw new Error(`Missing JSONL shard: ${shardPath}`);
+    return shardPath;
+  });
+}
+
+function readHead(fullPath) {
+  const fd = fs.openSync(fullPath, 'r');
+  try {
+    const buffer = Buffer.alloc(8192);
+    const bytes = fs.readSync(fd, buffer, 0, buffer.length, 0);
+    return buffer.toString('utf8', 0, bytes);
+  } finally {
+    fs.closeSync(fd);
+  }
 }
 
 const stats = {

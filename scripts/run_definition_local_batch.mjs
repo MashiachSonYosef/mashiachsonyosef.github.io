@@ -11,6 +11,7 @@ const defaults = {
   citableMaxPerToken: 40,
   phraseMaxPerToken: 5,
   morphologyMaxPerToken: 40,
+  jsonlShardMaxBytes: 1800000000,
   window: 3,
   includeRiskyMorphology: false,
 };
@@ -28,10 +29,11 @@ function parseArgs(args) {
     else if (arg.startsWith('--citable-max-per-token=')) parsed.citableMaxPerToken = Number(arg.split('=')[1]);
     else if (arg.startsWith('--phrase-max-per-token=')) parsed.phraseMaxPerToken = Number(arg.split('=')[1]);
     else if (arg.startsWith('--morphology-max-per-token=')) parsed.morphologyMaxPerToken = Number(arg.split('=')[1]);
+    else if (arg.startsWith('--jsonl-shard-max-bytes=')) parsed.jsonlShardMaxBytes = Number(arg.split('=')[1]);
     else if (arg.startsWith('--window=')) parsed.window = Number(arg.split('=')[1]);
     else throw new Error(`Unknown argument: ${arg}`);
   }
-  for (const key of ['maxTotalRows', 'citableMaxPerToken', 'phraseMaxPerToken', 'morphologyMaxPerToken', 'window']) {
+  for (const key of ['maxTotalRows', 'citableMaxPerToken', 'phraseMaxPerToken', 'morphologyMaxPerToken', 'jsonlShardMaxBytes', 'window']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 0) {
       throw new Error(`--${key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)} must be a non-negative integer`);
     }
@@ -100,6 +102,7 @@ steps.push(runNode('scripts/build_citable_paraphrase_evidence.mjs', [
   `--max-total-rows=${options.maxTotalRows}`,
   `--max-per-token=${options.citableMaxPerToken}`,
   `--window=${options.window}`,
+  `--jsonl-shard-max-bytes=${options.jsonlShardMaxBytes}`,
   `--jsonl=${paths.citableJsonl}`,
   `--csv=${paths.citableCsv}`,
   `--index=${paths.citableIndex}`,
@@ -125,6 +128,7 @@ const morphologyArgs = [
   `--max-total-rows=${options.maxTotalRows}`,
   `--max-per-token=${options.morphologyMaxPerToken}`,
   `--window=${options.window}`,
+  `--jsonl-shard-max-bytes=${options.jsonlShardMaxBytes}`,
   `--jsonl=${paths.morphologyJsonl}`,
   `--csv=${paths.morphologyCsv}`,
   `--index=${paths.morphologyIndex}`,
@@ -144,6 +148,7 @@ const summary = [
   `- Run ID: ${options.runId}`,
   `- Run directory: ${runDir}`,
   `- Max rows per lane: ${options.maxTotalRows}`,
+  `- JSONL shard max bytes: ${options.jsonlShardMaxBytes}`,
   `- Include risky morphology: ${options.includeRiskyMorphology ? 'yes' : 'no'}`,
   '',
   '## Outputs',
