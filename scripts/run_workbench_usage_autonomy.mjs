@@ -10,6 +10,10 @@ const defaults = {
   cacheDir: '.local-cache/workbench-evidence',
   handoffIndex: '.local-cache/workbench-evidence/handoff-index-smoke-queue.json',
   handoffReport: 'reports/workbench-handoff-index-smoke-queue.md',
+  smokeCoverageInput: '.local-cache/workbench-evidence/full/reshit-candidate-evidence.json',
+  smokeCoverageOutput: '.local-cache/workbench-evidence/reshit-smoke-coverage-autonomy.json',
+  smokeCoverageReport: '.local-cache/workbench-evidence/reshit-smoke-coverage-autonomy.md',
+  smokeCoveragePreflight: true,
   batchDir: '.local-cache/workbench-evidence/batch-runs',
   report: `reports/workbench-autonomy-${stamp(startedAt)}.md`,
   runJson: `.local-cache/workbench-evidence/autonomy-runs/workbench-autonomy-${stamp(startedAt)}.json`,
@@ -135,6 +139,10 @@ function parseArgs(args) {
     else if (arg.startsWith('--cache-dir=')) parsed.cacheDir = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--handoff-index=')) parsed.handoffIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--handoff-report=')) parsed.handoffReport = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--smoke-coverage-input=')) parsed.smokeCoverageInput = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--smoke-coverage-output=')) parsed.smokeCoverageOutput = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--smoke-coverage-report=')) parsed.smokeCoverageReport = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg === '--no-smoke-coverage-preflight') parsed.smokeCoveragePreflight = false;
     else if (arg.startsWith('--batch-dir=')) parsed.batchDir = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--run-json=')) parsed.runJson = cleanRelativePath(valueAfterEquals(arg));
@@ -173,6 +181,21 @@ function ensureInputQueue() {
     ? 'scripts/validate_workbench_smoke_targets.mjs'
     : 'scripts/validate_workbench_target_queue.mjs';
   runNode([validator, options.targetQueue]);
+  if (options.mode === 'smoke' && options.smokeCoveragePreflight) runSmokeCoveragePreflight();
+}
+
+function runSmokeCoveragePreflight() {
+  if (!fs.existsSync(path.join(root, options.smokeCoverageInput))) {
+    throw new Error(`Missing smoke coverage input ${options.smokeCoverageInput}. Rebuild or locate the reshit candidate artifact before running smoke autonomy.`);
+  }
+  runNode([
+    'scripts/report_reshit_smoke_coverage.mjs',
+    `--input=${options.smokeCoverageInput}`,
+    `--target-queue=${options.targetQueue}`,
+    `--output=${options.smokeCoverageOutput}`,
+    `--report=${options.smokeCoverageReport}`,
+    '--fail-on-uncovered',
+  ]);
 }
 
 function runBatch() {
@@ -242,6 +265,7 @@ function renderReport(data) {
     `- Batch limit: ${data.options.batchLimit}`,
     `- Duration minutes: ${data.options.durationMinutes}`,
     `- Full workbench override: ${data.options.allowFullWorkbench ? 'yes' : 'no'}`,
+    `- Smoke coverage preflight: ${data.options.smokeCoveragePreflight ? 'yes' : 'no'}`,
     `- Max cache GB: ${data.options.maxCacheGb}`,
     '',
     '## Iterations',
