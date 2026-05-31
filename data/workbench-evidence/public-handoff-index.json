@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "workbench_public_handoff_index",
-  "generated_at": "2026-05-31T16:27:19.566Z",
+  "generated_at": "2026-05-31T16:31:31.112Z",
   "generator": "scripts/build_workbench_public_handoff_index.mjs",
   "policy": "Public index of selected workbench usage-evidence handoff packages. It is not a definition artifact and does not choose HUD winners. Ambiguous rows are counted for audit only and are not reader-facing eligible.",
   "inputs": {
@@ -193,12 +193,60 @@
       "import or generate English translations from this contract"
     ]
   },
+  "license_policy": {
+    "status": "passed",
+    "allowed_license_families": [
+      "Public Domain",
+      "CC0",
+      "CC-BY",
+      "CC-BY-SA"
+    ],
+    "blocked_license_patterns": [
+      "NC",
+      "NonCommercial",
+      "NoDerivatives",
+      "all rights reserved",
+      "unclear",
+      "unknown",
+      "missing"
+    ],
+    "license_rows": [
+      {
+        "license": "Public Domain",
+        "count": 4231,
+        "status": "allowed",
+        "reason": "public_domain"
+      },
+      {
+        "license": "CC-BY-SA",
+        "count": 145,
+        "status": "allowed",
+        "reason": "cc_by_sa"
+      },
+      {
+        "license": "CC-BY",
+        "count": 54,
+        "status": "allowed",
+        "reason": "cc_by"
+      },
+      {
+        "license": "CC0",
+        "count": 24,
+        "status": "allowed",
+        "reason": "cc0"
+      }
+    ],
+    "blocked_license_rows": [],
+    "blocked_row_count": 0,
+    "notes": "Only license-safe selected handoff rows are consumable. Unrecognized, missing, NC, unclear, or all-rights-reserved licenses block the public handoff."
+  },
   "quality_gates": {
     "overall_status": "pass_with_warnings",
     "downstream_consumable": true,
     "validation_passed": true,
     "zero_useful_targets_blocked": true,
     "ambiguous_rows_audit_only": true,
+    "license_policy_passed": true,
     "source_freshness_status": "stale",
     "warnings": [
       "source_freshness_stale",

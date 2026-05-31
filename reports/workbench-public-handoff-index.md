@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T16:27:19.566Z
+Generated: 2026-05-31T16:31:31.112Z
 
 ## Summary
 
@@ -20,7 +20,21 @@ Generated: 2026-05-31T16:27:19.566Z
 - Zero-useful targets blocked: yes
 - Ambiguous rows audit-only: yes
 - Source freshness status: stale
+- License policy passed: yes
 - Warnings: source_freshness_stale, ambiguous_rows_count_only
+
+## License Policy
+
+- Status: passed
+- Blocked row count: 0
+- Allowed licenses: Public Domain, CC0, CC-BY, CC-BY-SA
+
+| license | rows | status | reason |
+|---|---:|---|---|
+| Public Domain | 4231 | allowed | public_domain |
+| CC-BY-SA | 145 | allowed | cc_by_sa |
+| CC-BY | 54 | allowed | cc_by |
+| CC0 | 24 | allowed | cc0 |
 
 ## Integrity Summary
 

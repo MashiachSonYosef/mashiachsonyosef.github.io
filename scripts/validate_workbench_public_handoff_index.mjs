@@ -75,6 +75,7 @@ for (const status of allowedStatuses) {
 }
 validateQualityGates(artifact.quality_gates);
 validateAggregateSourceMetadata(artifact.aggregate_source_metadata);
+validateLicensePolicy(artifact.license_policy);
 validateAggregateClusterMetadata(artifact.aggregate_cluster_metadata);
 validateAggregateRouteLinkMetadata(artifact.aggregate_route_link_metadata);
 validateAggregateScoreMetadata(artifact.aggregate_score_metadata);
@@ -300,9 +301,11 @@ function validateQualityGates(gates) {
   const expectedValidationPassed = expected.validation_failed === 0;
   const expectedZeroUsefulTargetsBlocked = expected.zero_useful_targets === 0;
   const expectedAmbiguousRowsAuditOnly = true;
+  const expectedLicensePolicyPassed = artifact.license_policy?.status === 'passed';
   const expectedDownstreamConsumable = expectedValidationPassed
     && expectedZeroUsefulTargetsBlocked
-    && expectedAmbiguousRowsAuditOnly;
+    && expectedAmbiguousRowsAuditOnly
+    && expectedLicensePolicyPassed;
   const expectedWarnings = [];
   const freshnessStatus = artifact.coverage_boundary?.source_freshness?.status || 'unavailable';
   if (freshnessStatus === 'stale') expectedWarnings.push('source_freshness_stale');
@@ -327,6 +330,9 @@ function validateQualityGates(gates) {
   if (gates.ambiguous_rows_audit_only !== expectedAmbiguousRowsAuditOnly) {
     issues.push('quality_gates.ambiguous_rows_audit_only must be true');
   }
+  if (gates.license_policy_passed !== expectedLicensePolicyPassed) {
+    issues.push(`quality_gates.license_policy_passed expected ${expectedLicensePolicyPassed}`);
+  }
   if (gates.source_freshness_status !== freshnessStatus) {
     issues.push(`quality_gates.source_freshness_status expected ${freshnessStatus}, found ${gates.source_freshness_status}`);
   }
@@ -350,6 +356,70 @@ function validateAggregateSourceMetadata(metadata) {
     topCounts(expectedWorkCounts, 40),
     'aggregate_source_metadata.top_work_counts',
   );
+}
+
+function validateLicensePolicy(policy) {
+  if (!policy || typeof policy !== 'object') {
+    issues.push('license_policy must be present');
+    return;
+  }
+  if (!sameList(policy.allowed_license_families, ['Public Domain', 'CC0', 'CC-BY', 'CC-BY-SA'])) {
+    issues.push('license_policy.allowed_license_families must be Public Domain,CC0,CC-BY,CC-BY-SA');
+  }
+  const expectedRows = topCounts(expectedLicenseCounts, 20).map((row) => {
+    const classification = classifyLicense(row.value);
+    return {
+      license: row.value,
+      count: row.count,
+      status: classification.status,
+      reason: classification.reason,
+    };
+  });
+  const actualRows = policy.license_rows;
+  if (!Array.isArray(actualRows)) {
+    issues.push('license_policy.license_rows must be an array');
+    return;
+  }
+  if (actualRows.length !== expectedRows.length) {
+    issues.push(`license_policy.license_rows expected ${expectedRows.length} rows, found ${actualRows.length}`);
+    return;
+  }
+  for (const [index, expectedRow] of expectedRows.entries()) {
+    const actualRow = actualRows[index] || {};
+    for (const key of ['license', 'status', 'reason']) {
+      if (actualRow[key] !== expectedRow[key]) {
+        issues.push(`license_policy.license_rows[${index}].${key} expected ${expectedRow[key]}, found ${actualRow[key]}`);
+      }
+    }
+    if (Number(actualRow.count || 0) !== expectedRow.count) {
+      issues.push(`license_policy.license_rows[${index}].count expected ${expectedRow.count}, found ${actualRow.count}`);
+    }
+  }
+  const expectedBlockedRows = expectedRows.filter((row) => row.status !== 'allowed');
+  const expectedBlockedRowCount = expectedBlockedRows.reduce((sum, row) => sum + Number(row.count || 0), 0);
+  if (policy.status !== (expectedBlockedRows.length ? 'blocked' : 'passed')) {
+    issues.push(`license_policy.status expected ${expectedBlockedRows.length ? 'blocked' : 'passed'}, found ${policy.status}`);
+  }
+  if (Number(policy.blocked_row_count || 0) !== expectedBlockedRowCount) {
+    issues.push(`license_policy.blocked_row_count expected ${expectedBlockedRowCount}, found ${policy.blocked_row_count}`);
+  }
+  if (!Array.isArray(policy.blocked_license_rows) || policy.blocked_license_rows.length !== expectedBlockedRows.length) {
+    issues.push(`license_policy.blocked_license_rows expected ${expectedBlockedRows.length} rows, found ${Array.isArray(policy.blocked_license_rows) ? policy.blocked_license_rows.length : 'non-array'}`);
+  }
+}
+
+function classifyLicense(value) {
+  const license = String(value || '').trim();
+  const normalized = license.toLowerCase();
+  if (!license) return { status: 'blocked', reason: 'missing_license' };
+  if (normalized === 'public domain') return { status: 'allowed', reason: 'public_domain' };
+  if (normalized === 'cc0') return { status: 'allowed', reason: 'cc0' };
+  if (normalized === 'cc-by') return { status: 'allowed', reason: 'cc_by' };
+  if (normalized === 'cc-by-sa') return { status: 'allowed', reason: 'cc_by_sa' };
+  if (/\bnc\b|noncommercial|no derivatives|noderivatives|all rights reserved|unclear|unknown|missing/.test(normalized)) {
+    return { status: 'blocked', reason: 'blocked_or_unclear_license' };
+  }
+  return { status: 'blocked', reason: 'not_in_allowed_license_families' };
 }
 
 function validateAggregateClusterMetadata(metadata) {

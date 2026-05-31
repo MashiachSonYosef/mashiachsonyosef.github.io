@@ -24,6 +24,7 @@ const targets = (Array.isArray(queue.targets) ? queue.targets : [])
   .filter((target) => isSelectedSmokeTarget(target));
 const manifests = targets.map((target, index) => inspectManifest(target, index));
 const aggregateSourceMetadata = summarizeSourceMetadata(manifests);
+const licensePolicy = buildLicensePolicy(aggregateSourceMetadata.license_counts);
 const aggregateClusterMetadata = summarizeClusterMetadata(manifests);
 const aggregateRouteLinkMetadata = summarizeRouteLinkMetadata(manifests);
 const aggregateScoreMetadata = summarizeScoreMetadata(manifests);
@@ -103,7 +104,8 @@ const artifact = {
     notes: 'Consumers can link to selected handoff manifests and counts. They must not treat this index as final ranking, source translation, or definition discovery output.',
   },
   handoff_payload_contract: buildHandoffPayloadContract(),
-  quality_gates: buildQualityGates(totals, sourceFreshness),
+  license_policy: licensePolicy,
+  quality_gates: buildQualityGates(totals, sourceFreshness, licensePolicy),
   aggregate_source_metadata: aggregateSourceMetadata,
   aggregate_cluster_metadata: aggregateClusterMetadata,
   aggregate_route_link_metadata: aggregateRouteLinkMetadata,
@@ -360,7 +362,7 @@ function readSourceFreshness(relativePath) {
   };
 }
 
-function buildQualityGates(totals, freshness) {
+function buildQualityGates(totals, freshness, licensePolicy) {
   const warnings = [];
   const freshnessStatus = freshness?.summary?.status || 'unavailable';
   if (freshnessStatus === 'stale') warnings.push('source_freshness_stale');
@@ -370,17 +372,60 @@ function buildQualityGates(totals, freshness) {
   const validationPassed = totals.validation_failed === 0;
   const zeroUsefulTargetsBlocked = totals.zero_useful_targets === 0;
   const ambiguousRowsAuditOnly = true;
-  const downstreamConsumable = validationPassed && zeroUsefulTargetsBlocked && ambiguousRowsAuditOnly;
+  const licensePolicyPassed = licensePolicy?.status === 'passed';
+  const downstreamConsumable = validationPassed
+    && zeroUsefulTargetsBlocked
+    && ambiguousRowsAuditOnly
+    && licensePolicyPassed;
   return {
     overall_status: downstreamConsumable && warnings.length ? 'pass_with_warnings' : downstreamConsumable ? 'pass' : 'fail',
     downstream_consumable: downstreamConsumable,
     validation_passed: validationPassed,
     zero_useful_targets_blocked: zeroUsefulTargetsBlocked,
     ambiguous_rows_audit_only: ambiguousRowsAuditOnly,
+    license_policy_passed: licensePolicyPassed,
     source_freshness_status: freshnessStatus,
     warnings,
     notes: 'Quality gates describe whether this handoff index is structurally consumable as usage evidence. They do not rank definitions or choose visible answers.',
   };
+}
+
+function buildLicensePolicy(licenseCounts) {
+  const allowed_license_families = ['Public Domain', 'CC0', 'CC-BY', 'CC-BY-SA'];
+  const blocked_license_patterns = ['NC', 'NonCommercial', 'NoDerivatives', 'all rights reserved', 'unclear', 'unknown', 'missing'];
+  const license_rows = (licenseCounts || []).map((row) => {
+    const classification = classifyLicense(row.value);
+    return {
+      license: row.value,
+      count: row.count,
+      status: classification.status,
+      reason: classification.reason,
+    };
+  });
+  const blocked_rows = license_rows.filter((row) => row.status !== 'allowed');
+  return {
+    status: blocked_rows.length ? 'blocked' : 'passed',
+    allowed_license_families,
+    blocked_license_patterns,
+    license_rows,
+    blocked_license_rows: blocked_rows,
+    blocked_row_count: blocked_rows.reduce((sum, row) => sum + Number(row.count || 0), 0),
+    notes: 'Only license-safe selected handoff rows are consumable. Unrecognized, missing, NC, unclear, or all-rights-reserved licenses block the public handoff.',
+  };
+}
+
+function classifyLicense(value) {
+  const license = String(value || '').trim();
+  const normalized = license.toLowerCase();
+  if (!license) return { status: 'blocked', reason: 'missing_license' };
+  if (normalized === 'public domain') return { status: 'allowed', reason: 'public_domain' };
+  if (normalized === 'cc0') return { status: 'allowed', reason: 'cc0' };
+  if (normalized === 'cc-by') return { status: 'allowed', reason: 'cc_by' };
+  if (normalized === 'cc-by-sa') return { status: 'allowed', reason: 'cc_by_sa' };
+  if (/\bnc\b|noncommercial|no derivatives|noderivatives|all rights reserved|unclear|unknown|missing/.test(normalized)) {
+    return { status: 'blocked', reason: 'blocked_or_unclear_license' };
+  }
+  return { status: 'blocked', reason: 'not_in_allowed_license_families' };
 }
 
 function buildHandoffPayloadContract() {
@@ -700,7 +745,18 @@ function writeReport(relativePath, artifact) {
     `- Zero-useful targets blocked: ${artifact.quality_gates.zero_useful_targets_blocked ? 'yes' : 'no'}`,
     `- Ambiguous rows audit-only: ${artifact.quality_gates.ambiguous_rows_audit_only ? 'yes' : 'no'}`,
     `- Source freshness status: ${artifact.quality_gates.source_freshness_status}`,
+    `- License policy passed: ${artifact.quality_gates.license_policy_passed ? 'yes' : 'no'}`,
     `- Warnings: ${artifact.quality_gates.warnings.length ? artifact.quality_gates.warnings.join(', ') : 'none'}`,
+    '',
+    '## License Policy',
+    '',
+    `- Status: ${artifact.license_policy.status}`,
+    `- Blocked row count: ${artifact.license_policy.blocked_row_count}`,
+    `- Allowed licenses: ${artifact.license_policy.allowed_license_families.join(', ')}`,
+    '',
+    '| license | rows | status | reason |',
+    '|---|---:|---|---|',
+    ...artifact.license_policy.license_rows.map((row) => `| ${mdCell(row.license)} | ${row.count} | ${row.status} | ${mdCell(row.reason)} |`),
     '',
     '## Integrity Summary',
     '',
