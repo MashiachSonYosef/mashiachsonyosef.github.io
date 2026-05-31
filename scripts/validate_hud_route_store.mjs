@@ -41,6 +41,20 @@ function validateCard(card, context, issues) {
   for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label']) {
     if (!card?.[field]) issues.push(`${context}: missing ${field}`);
   }
+  if (typeof card.answer_eligible !== 'boolean') issues.push(`${context}: missing boolean answer_eligible`);
+  if (!card.answer_role) issues.push(`${context}: missing answer_role`);
+  if (card.answer_eligible === true && card.answer_role !== 'answer') {
+    issues.push(`${context}: answer_eligible card must use answer_role=answer`);
+  }
+  if (card.answer_eligible !== true && Number.isFinite(card.answer_score)) {
+    issues.push(`${context}: non-answer card must not carry answer_score`);
+  }
+  if (card.answer_role === 'form_reference') {
+    if (card.answer_eligible !== false) issues.push(`${context}: form_reference must not be answer_eligible`);
+    if (!/^form of\b/i.test(String(card.definition || ''))) {
+      issues.push(`${context}: form_reference definition must display as "form of [lemma]"`);
+    }
+  }
   if (card.route_type !== 'shape' && card.display_section !== 'audit' && !card.definition) {
     issues.push(`${context}: missing definition text`);
   }
@@ -54,6 +68,9 @@ function validateCard(card, context, issues) {
       issues.push(`${context}: paraphrase card adjusted_score must equal raw_score - 20`);
     }
     if (card.candidate_status !== 'accepted') issues.push(`${context}: paraphrase card must be candidate_status=accepted`);
+    if (card.boundary_safe === false && card.answer_eligible === true) {
+      issues.push(`${context}: boundary-unsafe paraphrase must not be answer_eligible`);
+    }
   }
   if (card.route_type !== 'shape' && card.display_section !== 'audit' && (!Array.isArray(card.source_rows) || !card.source_rows.length)) {
     issues.push(`${context}: missing source_rows`);

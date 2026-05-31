@@ -165,6 +165,7 @@ function sourceRow(sourceId, extra = {}) {
 function makeMorphologyClaims(morphology) {
   const claims = [];
   for (const rule of morphology.rules || []) {
+    const answerEligible = rule.kind !== 'shape';
     claims.push({
       claim_id: stableId('def-morph', [rule.rule_id, rule.hebrew, rule.meanings]),
       route_family: 'project_morphology',
@@ -174,6 +175,8 @@ function makeMorphologyClaims(morphology) {
       normalized: normalizeHebrew(rule.normalized || rule.hebrew),
       match_type: rule.route_role,
       confidence: rule.confidence,
+      answer_eligible: answerEligible,
+      answer_role: answerEligible ? 'answer' : 'audit',
       meanings: rule.meanings,
       gloss: rule.meanings.join('; '),
       morphology: {
@@ -213,7 +216,7 @@ function classifyMeanings(meanings) {
   const values = (meanings || []).map(cleanText).filter(Boolean);
   if (!values.length) return { meaning_quality: 'empty', answer_eligible: false, answer_score_adjustment: -40 };
   if (values.every(isFormReferenceGloss)) {
-    return { meaning_quality: 'form_reference', answer_eligible: true, answer_score_adjustment: -26 };
+    return { meaning_quality: 'form_reference', answer_eligible: false, answer_score_adjustment: -26 };
   }
   return { meaning_quality: 'definition', answer_eligible: true, answer_score_adjustment: 6 };
 }
@@ -246,6 +249,7 @@ function makeKaikkiDefinitionClaim(entry, lineNumber) {
     source_order: lineNumber,
     meaning_quality: meaningRank.meaning_quality,
     answer_eligible: meaningRank.answer_eligible,
+    answer_role: meaningRank.answer_eligible ? 'answer' : 'evidence',
     part_of_speech: entry.pos || '',
     transliteration: cleanText((entry.head_templates || [])[0]?.args?.tr || ''),
     meanings: glosses,
@@ -271,7 +275,7 @@ function makeKaikkiFormClaims(entry, lemmaClaim, lineNumber) {
     seen.add(normalized);
     const tags = compactTags(form.tags);
     if (!tags.length || tags.includes('romanization') || tags.includes('table-tags') || tags.includes('inflection-template')) continue;
-    const meaningRank = classifyMeanings(lemmaClaim.meanings);
+    const formGloss = `form of ${lemmaClaim.surface}`;
     claims.push({
       claim_id: stableId('def-kaikki-form', [lemmaClaim.claim_id, normalized, tags]),
       route_family: 'wiktionary_definition',
@@ -282,13 +286,16 @@ function makeKaikkiFormClaims(entry, lemmaClaim, lineNumber) {
       normalized,
       match_type: 'inflected_form',
       confidence: 84,
-      answer_score: Math.max(0, Math.min(100, 84 + meaningRank.answer_score_adjustment)),
+      answer_score: null,
       source_order: lineNumber,
-      meaning_quality: meaningRank.meaning_quality,
-      answer_eligible: meaningRank.answer_eligible,
+      meaning_quality: 'form_reference',
+      answer_eligible: false,
+      answer_role: 'form_reference',
       part_of_speech: entry.pos || '',
-      meanings: lemmaClaim.meanings,
-      gloss: lemmaClaim.gloss,
+      meanings: [formGloss],
+      gloss: formGloss,
+      inherited_meanings: lemmaClaim.meanings,
+      inherited_gloss: lemmaClaim.gloss,
       form_of: {
         lemma: lemmaClaim.surface,
         normalized_lemma: lemmaClaim.normalized,
@@ -296,8 +303,8 @@ function makeKaikkiFormClaims(entry, lemmaClaim, lineNumber) {
       },
       source_rows: [sourceRow('kaikki-hebrew-enwiktionary', {
         source_id: lemmaClaim.source_rows[0].source_id,
-        fields_used: ['forms', 'form tags', 'lemma glosses'],
-        notes: `Kaikki Hebrew JSONL line ${lineNumber}. Form route points back to the licensed lemma gloss row.`,
+        fields_used: ['forms', 'form tags', 'lemma pointer'],
+        notes: `Kaikki Hebrew JSONL line ${lineNumber}. Form route points back to the licensed lemma row; inherited lemma gloss is evidence only.`,
       })],
     });
     if (claims.length >= 80) break;
@@ -417,6 +424,7 @@ function buildLayerClaims() {
         source_order: order,
         meaning_quality: meaningRank.meaning_quality,
         answer_eligible: meaningRank.answer_eligible,
+        answer_role: meaningRank.answer_eligible ? 'answer' : 'evidence',
         part_of_speech: '',
         meanings,
         gloss: meanings.join('; '),
@@ -450,17 +458,61 @@ function buildLayerClaims() {
   };
 }
 
+function routeDisplaySection(route) {
+  const routeType = route?.route_type || '';
+  const routeFamily = route?.route_family || '';
+  const language = String(route?.language || '').toLowerCase();
+  if (routeType === 'shape') return 'audit';
+  if (routeType === 'morphology_parse') return 'morphology';
+  if (routeType === 'subphrase_evidence') return 'subphrase_evidence';
+  if (routeType === 'biblical_paraphrase_evidence' || routeFamily === 'biblical_paraphrase_evidence') return 'biblical_paraphrase_evidence';
+  if (routeType === 'citable_paraphrase_evidence' || routeFamily === 'citable_paraphrase_evidence') return 'citable_paraphrase_evidence';
+  if (routeType === 'phrase_evidence') return 'phrase_evidence';
+  if (routeType === 'form' && language.includes('aramaic')) return 'strict_aramaic';
+  if (routeType === 'form') return 'strict_hebrew';
+  if (routeType === 'lemma') return 'lemma';
+  return 'audit';
+}
+
+function routeScoreHandicap(route) {
+  return ['lemma', 'subphrase_evidence', 'biblical_paraphrase_evidence', 'citable_paraphrase_evidence']
+    .includes(routeDisplaySection(route)) ? 20 : 0;
+}
+
+function routeRank(route) {
+  const sectionRank = new Map([
+    ['strict_hebrew', 0],
+    ['strict_aramaic', 1],
+    ['lemma', 2],
+    ['morphology', 3],
+    ['subphrase_evidence', 4],
+    ['biblical_paraphrase_evidence', 5],
+    ['citable_paraphrase_evidence', 6],
+    ['phrase_evidence', 7],
+    ['audit', 8],
+  ]);
+  const rawScore = Number.isFinite(route?.answer_score)
+    ? route.answer_score
+    : (Number.isFinite(route?.confidence) ? route.confidence : null);
+  const adjustedScore = rawScore === null ? null : rawScore - routeScoreHandicap(route);
+  return [
+    -(adjustedScore ?? -1000),
+    -(rawScore ?? -1000),
+    sectionRank.get(routeDisplaySection(route)) ?? 9,
+    -(Number.isFinite(route?.context_rank_score) ? route.context_rank_score : 0),
+    Number(route?.source_order ?? Number.MAX_SAFE_INTEGER),
+    String(route?.claim_id || ''),
+  ];
+}
+
 function compareRoutes(a, b) {
-  const scoreA = Number(a.context_rank_score ?? a.answer_score ?? a.confidence ?? 0);
-  const scoreB = Number(b.context_rank_score ?? b.answer_score ?? b.confidence ?? 0);
-  if (scoreA !== scoreB) return scoreB - scoreA;
-  const confidenceA = Number(a.confidence ?? 0);
-  const confidenceB = Number(b.confidence ?? 0);
-  if (confidenceA !== confidenceB) return confidenceB - confidenceA;
-  const orderA = Number(a.source_order ?? Number.MAX_SAFE_INTEGER);
-  const orderB = Number(b.source_order ?? Number.MAX_SAFE_INTEGER);
-  if (orderA !== orderB) return orderA - orderB;
-  return String(a.claim_id).localeCompare(String(b.claim_id));
+  const left = routeRank(a);
+  const right = routeRank(b);
+  for (let i = 0; i < left.length; i += 1) {
+    if (left[i] < right[i]) return -1;
+    if (left[i] > right[i]) return 1;
+  }
+  return 0;
 }
 
 function compactClaimForSample(claim) {
@@ -474,10 +526,12 @@ function compactClaimForSample(claim) {
     normalized: claim.normalized,
     match_type: claim.match_type,
     confidence: claim.confidence,
-    answer_score: claim.answer_score,
+    answer_score: claim.answer_eligible === true ? claim.answer_score : null,
     context_rank_score: claim.context_rank_score,
     source_order: claim.source_order,
     meaning_quality: claim.meaning_quality,
+    answer_eligible: claim.answer_eligible === true,
+    answer_role: claim.answer_role || (claim.answer_eligible === true ? 'answer' : 'evidence'),
     part_of_speech: claim.part_of_speech || '',
     meanings: claim.meanings || [],
     gloss: claim.gloss || '',
@@ -505,7 +559,7 @@ function routeWithContextScore(route, clickedToken = '') {
 
 function makeAnswerEnvelope(routes, shapeRoutes = [], clickedToken = '') {
   const contextRoutes = routes.map((route) => routeWithContextScore(route, clickedToken));
-  const eligible = contextRoutes.filter((route) => route.answer_eligible !== false).sort(compareRoutes);
+  const eligible = contextRoutes.filter((route) => route.answer_eligible === true).sort(compareRoutes);
   const winner = eligible[0] || null;
   const supporting = contextRoutes
     .filter((route) => !winner || route.claim_id !== winner.claim_id)
@@ -632,6 +686,7 @@ function makeMorphologyParseClaim(token, directRoutes, sourceLayerByNormalized, 
     answer_score: confidence + 4,
     meaning_quality: 'definition',
     answer_eligible: true,
+    answer_role: 'answer',
     meanings,
     gloss: meanings.join(' + '),
     breakdown,
@@ -660,6 +715,7 @@ function makeMaqafCompoundClaim(token, partRoutes, maqafClaim) {
     answer_score: confidence + 4,
     meaning_quality: 'definition',
     answer_eligible: true,
+    answer_role: 'answer',
     meanings,
     gloss: meanings.join(' + '),
     breakdown: partRoutes.map((part) => ({

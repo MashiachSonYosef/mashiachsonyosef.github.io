@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-31T02:31:12.460Z",
+  "generated_at": "2026-05-31T03:12:12.115Z",
   "source_files": {
     "definitions": "data/definitions/definition-route-sample.json",
     "phrases": "data/definitions/phrase-evidence-sample.json",
@@ -35,22 +35,29 @@
       "token": "דְּבָרִים",
       "normalized": "דברימ",
       "answer_card": {
-        "card_id": "def-morph-parse-8613c45faab44be8",
+        "card_id": "def-kaikki-form-8d147375886adb0b",
         "display_role": "answer",
-        "route_family": "project_morphology",
-        "route_type": "morphology_parse",
+        "route_family": "wiktionary_definition",
+        "route_type": "form",
         "language": "Hebrew",
-        "match_type": "base_suffix",
-        "confidence_percent": 96,
-        "answer_score": 100,
-        "display_label": "Morphology explained Hebrew match",
+        "match_type": "inflected_form",
+        "confidence_percent": 84,
+        "answer_score": 90,
+        "display_label": "Hebrew form match",
         "hebrew": "דְּבָרִים",
         "normalized": "דברימ",
-        "definition": "thing; speech; word (unit of language) + plural marker",
-        "plain_note": "Parsed word parts are shown so the user can see what was matched.",
-        "part_of_speech": "",
+        "definition": "thing; speech; word (unit of language)",
+        "plain_note": "Points back to lemma דבר.",
+        "part_of_speech": "noun",
         "meaning_quality": "definition",
-        "form_of": null,
+        "form_of": {
+          "lemma": "דבר",
+          "normalized_lemma": "דבר",
+          "tags": [
+            "indefinite",
+            "plural"
+          ]
+        },
         "morphology": null,
         "source_rows": [
           {
@@ -61,31 +68,16 @@
             "license": "CC BY-SA 4.0 / GFDL",
             "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
             "fields_used": [
-              "word",
-              "part of speech",
-              "glosses",
-              "forms/tags without examples"
+              "forms",
+              "form tags",
+              "lemma glosses"
             ],
-            "notes": "Kaikki Hebrew JSONL line 2009. Examples and quotation translations excluded."
-          },
-          {
-            "source_name": "Project-authored conservative morphology rules",
-            "source_family": "workspace",
-            "source_id": "project-morphology-rules",
-            "source_url": "local:project-morphology-rules",
-            "license": "project-authored / CC0",
-            "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-            "fields_used": [
-              "closed-class grammar rule",
-              "token-shape rule",
-              "plain UI label"
-            ],
-            "notes": "Project-authored closed grammar and token-shape metadata. No external dictionary text imported."
+            "notes": "Kaikki Hebrew JSONL line 2009. Form route points back to the licensed lemma gloss row."
           }
         ],
-        "raw_score": 100,
+        "raw_score": 90,
         "score_handicap": 0,
-        "adjusted_score": 100
+        "adjusted_score": 90
       },
       "route_sections": [
         {
@@ -94,51 +86,6 @@
           "display_role": "evidence",
           "card_count": 2,
           "cards": [
-            {
-              "card_id": "def-kaikki-form-8d147375886adb0b",
-              "display_role": "evidence",
-              "route_family": "wiktionary_definition",
-              "route_type": "form",
-              "language": "Hebrew",
-              "match_type": "inflected_form",
-              "confidence_percent": 84,
-              "answer_score": 90,
-              "display_label": "Hebrew form match",
-              "hebrew": "דְּבָרִים",
-              "normalized": "דברימ",
-              "definition": "thing; speech; word (unit of language)",
-              "plain_note": "Points back to lemma דבר.",
-              "part_of_speech": "noun",
-              "meaning_quality": "definition",
-              "form_of": {
-                "lemma": "דבר",
-                "normalized_lemma": "דבר",
-                "tags": [
-                  "indefinite",
-                  "plural"
-                ]
-              },
-              "morphology": null,
-              "source_rows": [
-                {
-                  "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
-                  "source_family": "kaikki",
-                  "source_id": "kaikki-40c5e66f816f94a7",
-                  "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
-                  "license": "CC BY-SA 4.0 / GFDL",
-                  "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
-                  "fields_used": [
-                    "forms",
-                    "form tags",
-                    "lemma glosses"
-                  ],
-                  "notes": "Kaikki Hebrew JSONL line 2009. Form route points back to the licensed lemma gloss row."
-                }
-              ],
-              "raw_score": 90,
-              "score_handicap": 0,
-              "adjusted_score": 90
-            },
             {
               "card_id": "def-kaikki-form-a8fba6c5604d3555",
               "display_role": "evidence",
@@ -178,6 +125,51 @@
                     "lemma glosses"
                   ],
                   "notes": "Kaikki Hebrew JSONL line 2010. Form route points back to the licensed lemma gloss row."
+                }
+              ],
+              "raw_score": 90,
+              "score_handicap": 0,
+              "adjusted_score": 90
+            },
+            {
+              "card_id": "def-kaikki-form-8d147375886adb0b",
+              "display_role": "evidence",
+              "route_family": "wiktionary_definition",
+              "route_type": "form",
+              "language": "Hebrew",
+              "match_type": "inflected_form",
+              "confidence_percent": 84,
+              "answer_score": 90,
+              "display_label": "Hebrew form match",
+              "hebrew": "דְּבָרִים",
+              "normalized": "דברימ",
+              "definition": "thing; speech; word (unit of language)",
+              "plain_note": "Points back to lemma דבר.",
+              "part_of_speech": "noun",
+              "meaning_quality": "definition",
+              "form_of": {
+                "lemma": "דבר",
+                "normalized_lemma": "דבר",
+                "tags": [
+                  "indefinite",
+                  "plural"
+                ]
+              },
+              "morphology": null,
+              "source_rows": [
+                {
+                  "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+                  "source_family": "kaikki",
+                  "source_id": "kaikki-40c5e66f816f94a7",
+                  "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+                  "license": "CC BY-SA 4.0 / GFDL",
+                  "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+                  "fields_used": [
+                    "forms",
+                    "form tags",
+                    "lemma glosses"
+                  ],
+                  "notes": "Kaikki Hebrew JSONL line 2009. Form route points back to the licensed lemma gloss row."
                 }
               ],
               "raw_score": 90,
@@ -328,18 +320,18 @@
           "card_count": 1,
           "cards": [
             {
-              "card_id": "def-morph-parse-8613c45faab44be8",
+              "card_id": "def-morph-parse-6bae2a06ce2de4d1",
               "display_role": "evidence",
               "route_family": "project_morphology",
               "route_type": "morphology_parse",
               "language": "Hebrew",
               "match_type": "base_suffix",
-              "confidence_percent": 96,
-              "answer_score": 100,
+              "confidence_percent": 86,
+              "answer_score": 90,
               "display_label": "Morphology explained Hebrew match",
               "hebrew": "דְּבָרִים",
               "normalized": "דברימ",
-              "definition": "thing; speech; word (unit of language) + plural marker",
+              "definition": "to speak (say words) + plural marker",
               "plain_note": "Parsed word parts are shown so the user can see what was matched.",
               "part_of_speech": "",
               "meaning_quality": "definition",
@@ -349,17 +341,16 @@
                 {
                   "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
                   "source_family": "kaikki",
-                  "source_id": "kaikki-40c5e66f816f94a7",
+                  "source_id": "kaikki-8bd9f2824281d555",
                   "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
                   "license": "CC BY-SA 4.0 / GFDL",
                   "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
                   "fields_used": [
-                    "word",
-                    "part of speech",
-                    "glosses",
-                    "forms/tags without examples"
+                    "forms",
+                    "form tags",
+                    "lemma glosses"
                   ],
-                  "notes": "Kaikki Hebrew JSONL line 2009. Examples and quotation translations excluded."
+                  "notes": "Kaikki Hebrew JSONL line 2229. Form route points back to the licensed lemma gloss row."
                 },
                 {
                   "source_name": "Project-authored conservative morphology rules",
@@ -376,9 +367,9 @@
                   "notes": "Project-authored closed grammar and token-shape metadata. No external dictionary text imported."
                 }
               ],
-              "raw_score": 100,
+              "raw_score": 90,
               "score_handicap": 0,
-              "adjusted_score": 100
+              "adjusted_score": 90
             }
           ],
           "empty_display": "cards"
@@ -527,26 +518,11 @@
           "license": "CC BY-SA 4.0 / GFDL",
           "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
           "fields_used": [
-            "word",
-            "part of speech",
-            "glosses",
-            "forms/tags without examples"
+            "forms",
+            "form tags",
+            "lemma glosses"
           ],
-          "notes": "Kaikki Hebrew JSONL line 2009. Examples and quotation translations excluded."
-        },
-        {
-          "source_name": "Project-authored conservative morphology rules",
-          "source_family": "workspace",
-          "source_id": "project-morphology-rules",
-          "source_url": "local:project-morphology-rules",
-          "license": "project-authored / CC0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "fields_used": [
-            "closed-class grammar rule",
-            "token-shape rule",
-            "plain UI label"
-          ],
-          "notes": "Project-authored closed grammar and token-shape metadata. No external dictionary text imported."
+          "notes": "Kaikki Hebrew JSONL line 2009. Form route points back to the licensed lemma gloss row."
         },
         {
           "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
@@ -606,6 +582,34 @@
             "forms/tags without examples"
           ],
           "notes": "Kaikki Hebrew JSONL line 1227. Examples and quotation translations excluded."
+        },
+        {
+          "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+          "source_family": "kaikki",
+          "source_id": "kaikki-8bd9f2824281d555",
+          "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+          "license": "CC BY-SA 4.0 / GFDL",
+          "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+          "fields_used": [
+            "forms",
+            "form tags",
+            "lemma glosses"
+          ],
+          "notes": "Kaikki Hebrew JSONL line 2229. Form route points back to the licensed lemma gloss row."
+        },
+        {
+          "source_name": "Project-authored conservative morphology rules",
+          "source_family": "workspace",
+          "source_id": "project-morphology-rules",
+          "source_url": "local:project-morphology-rules",
+          "license": "project-authored / CC0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "fields_used": [
+            "closed-class grammar rule",
+            "token-shape rule",
+            "plain UI label"
+          ],
+          "notes": "Project-authored closed grammar and token-shape metadata. No external dictionary text imported."
         },
         {
           "source_name": "Miqra according to the Masorah",
@@ -778,18 +782,18 @@
       "token": "וּבִדְבָרֶיךָ",
       "normalized": "ובדבריכ",
       "answer_card": {
-        "card_id": "def-morph-parse-e61e8bb753be26d1",
+        "card_id": "def-morph-parse-4abb9b6621be756d",
         "display_role": "answer",
         "route_family": "project_morphology",
         "route_type": "morphology_parse",
         "language": "Hebrew",
         "match_type": "prefix_base_suffix",
-        "confidence_percent": 96,
-        "answer_score": 100,
+        "confidence_percent": 86,
+        "answer_score": 90,
         "display_label": "Morphology explained Hebrew match",
         "hebrew": "וּבִדְבָרֶיךָ",
         "normalized": "ובדבריכ",
-        "definition": "and + in + thing; speech; word (unit of language) + your",
+        "definition": "and + in + to speak (say words) + your",
         "plain_note": "Parsed word parts are shown so the user can see what was matched.",
         "part_of_speech": "",
         "meaning_quality": "definition",
@@ -827,17 +831,16 @@
           {
             "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
             "source_family": "kaikki",
-            "source_id": "kaikki-40c5e66f816f94a7",
+            "source_id": "kaikki-8bd9f2824281d555",
             "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
             "license": "CC BY-SA 4.0 / GFDL",
             "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
             "fields_used": [
-              "word",
-              "part of speech",
-              "glosses",
-              "forms/tags without examples"
+              "forms",
+              "form tags",
+              "lemma glosses"
             ],
-            "notes": "Kaikki Hebrew JSONL line 2009. Examples and quotation translations excluded."
+            "notes": "Kaikki Hebrew JSONL line 2229. Form route points back to the licensed lemma gloss row."
           },
           {
             "source_name": "Project-authored conservative morphology rules",
@@ -854,9 +857,9 @@
             "notes": "Project-authored closed grammar and token-shape metadata. No external dictionary text imported."
           }
         ],
-        "raw_score": 100,
+        "raw_score": 90,
         "score_handicap": 0,
-        "adjusted_score": 100
+        "adjusted_score": 90
       },
       "route_sections": [
         {
@@ -890,18 +893,18 @@
           "card_count": 1,
           "cards": [
             {
-              "card_id": "def-morph-parse-e61e8bb753be26d1",
+              "card_id": "def-morph-parse-4abb9b6621be756d",
               "display_role": "evidence",
               "route_family": "project_morphology",
               "route_type": "morphology_parse",
               "language": "Hebrew",
               "match_type": "prefix_base_suffix",
-              "confidence_percent": 96,
-              "answer_score": 100,
+              "confidence_percent": 86,
+              "answer_score": 90,
               "display_label": "Morphology explained Hebrew match",
               "hebrew": "וּבִדְבָרֶיךָ",
               "normalized": "ובדבריכ",
-              "definition": "and + in + thing; speech; word (unit of language) + your",
+              "definition": "and + in + to speak (say words) + your",
               "plain_note": "Parsed word parts are shown so the user can see what was matched.",
               "part_of_speech": "",
               "meaning_quality": "definition",
@@ -939,17 +942,16 @@
                 {
                   "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
                   "source_family": "kaikki",
-                  "source_id": "kaikki-40c5e66f816f94a7",
+                  "source_id": "kaikki-8bd9f2824281d555",
                   "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
                   "license": "CC BY-SA 4.0 / GFDL",
                   "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
                   "fields_used": [
-                    "word",
-                    "part of speech",
-                    "glosses",
-                    "forms/tags without examples"
+                    "forms",
+                    "form tags",
+                    "lemma glosses"
                   ],
-                  "notes": "Kaikki Hebrew JSONL line 2009. Examples and quotation translations excluded."
+                  "notes": "Kaikki Hebrew JSONL line 2229. Form route points back to the licensed lemma gloss row."
                 },
                 {
                   "source_name": "Project-authored conservative morphology rules",
@@ -966,9 +968,9 @@
                   "notes": "Project-authored closed grammar and token-shape metadata. No external dictionary text imported."
                 }
               ],
-              "raw_score": 100,
+              "raw_score": 90,
               "score_handicap": 0,
-              "adjusted_score": 100
+              "adjusted_score": 90
             }
           ],
           "empty_display": "cards"
@@ -1047,17 +1049,16 @@
         {
           "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
           "source_family": "kaikki",
-          "source_id": "kaikki-40c5e66f816f94a7",
+          "source_id": "kaikki-8bd9f2824281d555",
           "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
           "license": "CC BY-SA 4.0 / GFDL",
           "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
           "fields_used": [
-            "word",
-            "part of speech",
-            "glosses",
-            "forms/tags without examples"
+            "forms",
+            "form tags",
+            "lemma glosses"
           ],
-          "notes": "Kaikki Hebrew JSONL line 2009. Examples and quotation translations excluded."
+          "notes": "Kaikki Hebrew JSONL line 2229. Form route points back to the licensed lemma gloss row."
         }
       ],
       "fixture_limits": {
@@ -1808,43 +1809,48 @@
       "token": "ראשית",
       "normalized": "ראשית",
       "answer_card": {
-        "card_id": "def-kaikki-lemma-e4f94cd5131316a8",
+        "card_id": "def-kaikki-form-a7123c6e91daab34",
         "display_role": "answer",
         "route_family": "wiktionary_definition",
-        "route_type": "lemma",
+        "route_type": "form",
         "language": "Hebrew",
-        "match_type": "lemma",
-        "confidence_percent": 94,
-        "answer_score": 100,
-        "display_label": "Hebrew lemma match",
-        "hebrew": "ראשית",
+        "match_type": "inflected_form",
+        "confidence_percent": 84,
+        "answer_score": 90,
+        "display_label": "Hebrew form match",
+        "hebrew": "רָאשִׁית",
         "normalized": "ראשית",
-        "definition": "the first, in place, time, order or rank (specifically a firstfruit): - beginning, chief (-est), first (-fruits, part, time), principal thing.",
-        "plain_note": "",
-        "part_of_speech": "noun",
+        "definition": "main, principal",
+        "plain_note": "Points back to lemma ראשי.",
+        "part_of_speech": "adj",
         "meaning_quality": "definition",
-        "form_of": null,
+        "form_of": {
+          "lemma": "ראשי",
+          "normalized_lemma": "ראשי",
+          "tags": [
+            "feminine"
+          ]
+        },
         "morphology": null,
         "source_rows": [
           {
             "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
             "source_family": "kaikki",
-            "source_id": "kaikki-07cda45e0ce27966",
+            "source_id": "kaikki-35421e8cba70ec71",
             "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
             "license": "CC BY-SA 4.0 / GFDL",
             "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
             "fields_used": [
-              "word",
-              "part of speech",
-              "glosses",
-              "forms/tags without examples"
+              "forms",
+              "form tags",
+              "lemma glosses"
             ],
-            "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            "notes": "Kaikki Hebrew JSONL line 5389. Form route points back to the licensed lemma gloss row."
           }
         ],
-        "raw_score": 100,
-        "score_handicap": 20,
-        "adjusted_score": 80
+        "raw_score": 90,
+        "score_handicap": 0,
+        "adjusted_score": 90
       },
       "route_sections": [
         {
@@ -1915,45 +1921,6 @@
           "card_count": 2,
           "cards": [
             {
-              "card_id": "def-kaikki-lemma-3205dd299f7cabfc",
-              "display_role": "evidence",
-              "route_family": "wiktionary_definition",
-              "route_type": "lemma",
-              "language": "Hebrew",
-              "match_type": "lemma",
-              "confidence_percent": 94,
-              "answer_score": 100,
-              "display_label": "Hebrew lemma match",
-              "hebrew": "ראשית",
-              "normalized": "ראשית",
-              "definition": "first of all, first",
-              "plain_note": "",
-              "part_of_speech": "adv",
-              "meaning_quality": "definition",
-              "form_of": null,
-              "morphology": null,
-              "source_rows": [
-                {
-                  "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
-                  "source_family": "kaikki",
-                  "source_id": "kaikki-bb184145e97f219e",
-                  "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
-                  "license": "CC BY-SA 4.0 / GFDL",
-                  "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
-                  "fields_used": [
-                    "word",
-                    "part of speech",
-                    "glosses",
-                    "forms/tags without examples"
-                  ],
-                  "notes": "Kaikki Hebrew JSONL line 521. Examples and quotation translations excluded."
-                }
-              ],
-              "raw_score": 100,
-              "score_handicap": 20,
-              "adjusted_score": 80
-            },
-            {
               "card_id": "def-kaikki-lemma-e4f94cd5131316a8",
               "display_role": "evidence",
               "route_family": "wiktionary_definition",
@@ -1986,6 +1953,45 @@
                     "forms/tags without examples"
                   ],
                   "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+                }
+              ],
+              "raw_score": 100,
+              "score_handicap": 20,
+              "adjusted_score": 80
+            },
+            {
+              "card_id": "def-kaikki-lemma-3205dd299f7cabfc",
+              "display_role": "evidence",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "language": "Hebrew",
+              "match_type": "lemma",
+              "confidence_percent": 94,
+              "answer_score": 100,
+              "display_label": "Hebrew lemma match",
+              "hebrew": "ראשית",
+              "normalized": "ראשית",
+              "definition": "first of all, first",
+              "plain_note": "",
+              "part_of_speech": "adv",
+              "meaning_quality": "definition",
+              "form_of": null,
+              "morphology": null,
+              "source_rows": [
+                {
+                  "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+                  "source_family": "kaikki",
+                  "source_id": "kaikki-bb184145e97f219e",
+                  "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+                  "license": "CC BY-SA 4.0 / GFDL",
+                  "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+                  "fields_used": [
+                    "word",
+                    "part of speech",
+                    "glosses",
+                    "forms/tags without examples"
+                  ],
+                  "notes": "Kaikki Hebrew JSONL line 521. Examples and quotation translations excluded."
                 }
               ],
               "raw_score": 100,
@@ -2346,6 +2352,20 @@
         {
           "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
           "source_family": "kaikki",
+          "source_id": "kaikki-35421e8cba70ec71",
+          "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+          "license": "CC BY-SA 4.0 / GFDL",
+          "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+          "fields_used": [
+            "forms",
+            "form tags",
+            "lemma glosses"
+          ],
+          "notes": "Kaikki Hebrew JSONL line 5389. Form route points back to the licensed lemma gloss row."
+        },
+        {
+          "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+          "source_family": "kaikki",
           "source_id": "kaikki-07cda45e0ce27966",
           "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
           "license": "CC BY-SA 4.0 / GFDL",
@@ -2357,20 +2377,6 @@
             "forms/tags without examples"
           ],
           "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
-        },
-        {
-          "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
-          "source_family": "kaikki",
-          "source_id": "kaikki-35421e8cba70ec71",
-          "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
-          "license": "CC BY-SA 4.0 / GFDL",
-          "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
-          "fields_used": [
-            "forms",
-            "form tags",
-            "lemma glosses"
-          ],
-          "notes": "Kaikki Hebrew JSONL line 5389. Form route points back to the licensed lemma gloss row."
         },
         {
           "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
@@ -2430,43 +2436,48 @@
       "token": "כלב",
       "normalized": "כלב",
       "answer_card": {
-        "card_id": "def-kaikki-lemma-26c0bdacf8d89395",
+        "card_id": "def-kaikki-form-07da4c153736dd0b",
         "display_role": "answer",
         "route_family": "wiktionary_definition",
-        "route_type": "lemma",
+        "route_type": "form",
         "language": "Hebrew",
-        "match_type": "lemma",
-        "confidence_percent": 94,
-        "answer_score": 100,
-        "display_label": "Hebrew lemma match",
-        "hebrew": "כלב",
+        "match_type": "inflected_form",
+        "confidence_percent": 84,
+        "answer_score": 90,
+        "display_label": "Hebrew form match",
+        "hebrew": "כֶּלֶב",
         "normalized": "כלב",
-        "definition": "dog (the species Canis familiaris (sometimes designated Canis lupus familiaris), domesticated for thousands of years and of highly variable appearance because of human breeding); scoundrel, bitch",
-        "plain_note": "",
+        "definition": "dog (female), bitch; A bitch (a term of abuse for a woman).",
+        "plain_note": "Points back to lemma כלבה.",
         "part_of_speech": "noun",
         "meaning_quality": "definition",
-        "form_of": null,
+        "form_of": {
+          "lemma": "כלבה",
+          "normalized_lemma": "כלבה",
+          "tags": [
+            "masculine"
+          ]
+        },
         "morphology": null,
         "source_rows": [
           {
             "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
             "source_family": "kaikki",
-            "source_id": "kaikki-9887d2abe4252a3c",
+            "source_id": "kaikki-49c60db4cd1335b1",
             "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
             "license": "CC BY-SA 4.0 / GFDL",
             "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
             "fields_used": [
-              "word",
-              "part of speech",
-              "glosses",
-              "forms/tags without examples"
+              "forms",
+              "form tags",
+              "lemma glosses"
             ],
-            "notes": "Kaikki Hebrew JSONL line 1. Examples and quotation translations excluded."
+            "notes": "Kaikki Hebrew JSONL line 4060. Form route points back to the licensed lemma gloss row."
           }
         ],
-        "raw_score": 100,
-        "score_handicap": 20,
-        "adjusted_score": 80
+        "raw_score": 90,
+        "score_handicap": 0,
+        "adjusted_score": 90
       },
       "route_sections": [
         {
@@ -2646,6 +2657,20 @@
         {
           "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
           "source_family": "kaikki",
+          "source_id": "kaikki-49c60db4cd1335b1",
+          "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+          "license": "CC BY-SA 4.0 / GFDL",
+          "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+          "fields_used": [
+            "forms",
+            "form tags",
+            "lemma glosses"
+          ],
+          "notes": "Kaikki Hebrew JSONL line 4060. Form route points back to the licensed lemma gloss row."
+        },
+        {
+          "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+          "source_family": "kaikki",
           "source_id": "kaikki-9887d2abe4252a3c",
           "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
           "license": "CC BY-SA 4.0 / GFDL",
@@ -2657,20 +2682,6 @@
             "forms/tags without examples"
           ],
           "notes": "Kaikki Hebrew JSONL line 1. Examples and quotation translations excluded."
-        },
-        {
-          "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
-          "source_family": "kaikki",
-          "source_id": "kaikki-49c60db4cd1335b1",
-          "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
-          "license": "CC BY-SA 4.0 / GFDL",
-          "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
-          "fields_used": [
-            "forms",
-            "form tags",
-            "lemma glosses"
-          ],
-          "notes": "Kaikki Hebrew JSONL line 4060. Form route points back to the licensed lemma gloss row."
         }
       ],
       "fixture_limits": {
@@ -2683,43 +2694,48 @@
       "token": "שמר",
       "normalized": "שמר",
       "answer_card": {
-        "card_id": "def-kaikki-lemma-a285b61169cff24e",
+        "card_id": "def-kaikki-form-ce7ee305d3e8370b",
         "display_role": "answer",
         "route_family": "wiktionary_definition",
-        "route_type": "lemma",
+        "route_type": "form",
         "language": "Hebrew",
-        "match_type": "lemma",
-        "confidence_percent": 94,
-        "answer_score": 100,
-        "display_label": "Hebrew lemma match",
-        "hebrew": "שמר",
+        "match_type": "inflected_form",
+        "confidence_percent": 84,
+        "answer_score": 90,
+        "display_label": "Hebrew form match",
+        "hebrew": "שָׁמַר",
         "normalized": "שמר",
-        "definition": "to guard; to keep; to save",
-        "plain_note": "",
+        "definition": "to be guarded by someone, to be protected",
+        "plain_note": "Points back to lemma נשמר.",
         "part_of_speech": "verb",
         "meaning_quality": "definition",
-        "form_of": null,
+        "form_of": {
+          "lemma": "נשמר",
+          "normalized_lemma": "נשמר",
+          "tags": [
+            "active"
+          ]
+        },
         "morphology": null,
         "source_rows": [
           {
             "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
             "source_family": "kaikki",
-            "source_id": "kaikki-69de723da3e197fa",
+            "source_id": "kaikki-08c57e7ce07b4651",
             "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
             "license": "CC BY-SA 4.0 / GFDL",
             "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
             "fields_used": [
-              "word",
-              "part of speech",
-              "glosses",
-              "forms/tags without examples"
+              "forms",
+              "form tags",
+              "lemma glosses"
             ],
-            "notes": "Kaikki Hebrew JSONL line 17. Examples and quotation translations excluded."
+            "notes": "Kaikki Hebrew JSONL line 333. Form route points back to the licensed lemma gloss row."
           }
         ],
-        "raw_score": 100,
-        "score_handicap": 20,
-        "adjusted_score": 80
+        "raw_score": 90,
+        "score_handicap": 0,
+        "adjusted_score": 90
       },
       "route_sections": [
         {
@@ -2728,50 +2744,6 @@
           "display_role": "evidence",
           "card_count": 4,
           "cards": [
-            {
-              "card_id": "def-kaikki-form-ce7ee305d3e8370b",
-              "display_role": "evidence",
-              "route_family": "wiktionary_definition",
-              "route_type": "form",
-              "language": "Hebrew",
-              "match_type": "inflected_form",
-              "confidence_percent": 84,
-              "answer_score": 90,
-              "display_label": "Hebrew form match",
-              "hebrew": "שָׁמַר",
-              "normalized": "שמר",
-              "definition": "to be guarded by someone, to be protected",
-              "plain_note": "Points back to lemma נשמר.",
-              "part_of_speech": "verb",
-              "meaning_quality": "definition",
-              "form_of": {
-                "lemma": "נשמר",
-                "normalized_lemma": "נשמר",
-                "tags": [
-                  "active"
-                ]
-              },
-              "morphology": null,
-              "source_rows": [
-                {
-                  "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
-                  "source_family": "kaikki",
-                  "source_id": "kaikki-08c57e7ce07b4651",
-                  "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
-                  "license": "CC BY-SA 4.0 / GFDL",
-                  "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
-                  "fields_used": [
-                    "forms",
-                    "form tags",
-                    "lemma glosses"
-                  ],
-                  "notes": "Kaikki Hebrew JSONL line 333. Form route points back to the licensed lemma gloss row."
-                }
-              ],
-              "raw_score": 90,
-              "score_handicap": 0,
-              "adjusted_score": 90
-            },
             {
               "card_id": "def-kaikki-form-4126d9f5ec1255b9",
               "display_role": "evidence",
@@ -2904,6 +2876,50 @@
               "raw_score": 90,
               "score_handicap": 0,
               "adjusted_score": 90
+            },
+            {
+              "card_id": "def-kaikki-form-ce7ee305d3e8370b",
+              "display_role": "evidence",
+              "route_family": "wiktionary_definition",
+              "route_type": "form",
+              "language": "Hebrew",
+              "match_type": "inflected_form",
+              "confidence_percent": 84,
+              "answer_score": 90,
+              "display_label": "Hebrew form match",
+              "hebrew": "שָׁמַר",
+              "normalized": "שמר",
+              "definition": "to be guarded by someone, to be protected",
+              "plain_note": "Points back to lemma נשמר.",
+              "part_of_speech": "verb",
+              "meaning_quality": "definition",
+              "form_of": {
+                "lemma": "נשמר",
+                "normalized_lemma": "נשמר",
+                "tags": [
+                  "active"
+                ]
+              },
+              "morphology": null,
+              "source_rows": [
+                {
+                  "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+                  "source_family": "kaikki",
+                  "source_id": "kaikki-08c57e7ce07b4651",
+                  "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+                  "license": "CC BY-SA 4.0 / GFDL",
+                  "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+                  "fields_used": [
+                    "forms",
+                    "form tags",
+                    "lemma glosses"
+                  ],
+                  "notes": "Kaikki Hebrew JSONL line 333. Form route points back to the licensed lemma gloss row."
+                }
+              ],
+              "raw_score": 90,
+              "score_handicap": 0,
+              "adjusted_score": 90
             }
           ],
           "empty_display": "cards"
@@ -2922,6 +2938,45 @@
           "display_role": "evidence",
           "card_count": 5,
           "cards": [
+            {
+              "card_id": "def-kaikki-lemma-a285b61169cff24e",
+              "display_role": "evidence",
+              "route_family": "wiktionary_definition",
+              "route_type": "lemma",
+              "language": "Hebrew",
+              "match_type": "lemma",
+              "confidence_percent": 94,
+              "answer_score": 100,
+              "display_label": "Hebrew lemma match",
+              "hebrew": "שמר",
+              "normalized": "שמר",
+              "definition": "to guard; to keep; to save",
+              "plain_note": "",
+              "part_of_speech": "verb",
+              "meaning_quality": "definition",
+              "form_of": null,
+              "morphology": null,
+              "source_rows": [
+                {
+                  "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+                  "source_family": "kaikki",
+                  "source_id": "kaikki-69de723da3e197fa",
+                  "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+                  "license": "CC BY-SA 4.0 / GFDL",
+                  "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+                  "fields_used": [
+                    "word",
+                    "part of speech",
+                    "glosses",
+                    "forms/tags without examples"
+                  ],
+                  "notes": "Kaikki Hebrew JSONL line 17. Examples and quotation translations excluded."
+                }
+              ],
+              "raw_score": 100,
+              "score_handicap": 20,
+              "adjusted_score": 80
+            },
             {
               "card_id": "def-kaikki-lemma-a7107394550031bc",
               "display_role": "evidence",
@@ -3077,45 +3132,6 @@
               "raw_score": 68,
               "score_handicap": 20,
               "adjusted_score": 48
-            },
-            {
-              "card_id": "def-kaikki-lemma-a285b61169cff24e",
-              "display_role": "evidence",
-              "route_family": "wiktionary_definition",
-              "route_type": "lemma",
-              "language": "Hebrew",
-              "match_type": "lemma",
-              "confidence_percent": 94,
-              "answer_score": 100,
-              "display_label": "Hebrew lemma match",
-              "hebrew": "שמר",
-              "normalized": "שמר",
-              "definition": "to guard; to keep; to save",
-              "plain_note": "",
-              "part_of_speech": "verb",
-              "meaning_quality": "definition",
-              "form_of": null,
-              "morphology": null,
-              "source_rows": [
-                {
-                  "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
-                  "source_family": "kaikki",
-                  "source_id": "kaikki-69de723da3e197fa",
-                  "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
-                  "license": "CC BY-SA 4.0 / GFDL",
-                  "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
-                  "fields_used": [
-                    "word",
-                    "part of speech",
-                    "glosses",
-                    "forms/tags without examples"
-                  ],
-                  "notes": "Kaikki Hebrew JSONL line 17. Examples and quotation translations excluded."
-                }
-              ],
-              "raw_score": 100,
-              "score_handicap": 20,
-              "adjusted_score": 80
             }
           ],
           "empty_display": "cards"
@@ -3188,21 +3204,6 @@
         {
           "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
           "source_family": "kaikki",
-          "source_id": "kaikki-69de723da3e197fa",
-          "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
-          "license": "CC BY-SA 4.0 / GFDL",
-          "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
-          "fields_used": [
-            "word",
-            "part of speech",
-            "glosses",
-            "forms/tags without examples"
-          ],
-          "notes": "Kaikki Hebrew JSONL line 17. Examples and quotation translations excluded."
-        },
-        {
-          "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
-          "source_family": "kaikki",
           "source_id": "kaikki-08c57e7ce07b4651",
           "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
           "license": "CC BY-SA 4.0 / GFDL",
@@ -3255,6 +3256,21 @@
             "lemma glosses"
           ],
           "notes": "Kaikki Hebrew JSONL line 9792. Form route points back to the licensed lemma gloss row."
+        },
+        {
+          "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+          "source_family": "kaikki",
+          "source_id": "kaikki-69de723da3e197fa",
+          "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+          "license": "CC BY-SA 4.0 / GFDL",
+          "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+          "fields_used": [
+            "word",
+            "part of speech",
+            "glosses",
+            "forms/tags without examples"
+          ],
+          "notes": "Kaikki Hebrew JSONL line 17. Examples and quotation translations excluded."
         },
         {
           "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",

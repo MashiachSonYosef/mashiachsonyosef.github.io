@@ -36,6 +36,8 @@ const defaults = {
   includeMorphology: false,
   includeRiskyMorphology: false,
   localOnly: false,
+  selfTestBoundarySafety: false,
+  boundarySafetyFixture: 'data/definitions/citable-boundary-regression-fixtures.json',
   sourceFiles: [],
 };
 
@@ -101,6 +103,8 @@ function parseArgs(args) {
     else if (arg === '--include-morphology') parsed.includeMorphology = true;
     else if (arg === '--include-risky-morphology') parsed.includeRiskyMorphology = true;
     else if (arg === '--local-only') parsed.localOnly = true;
+    else if (arg === '--self-test-boundary-safety') parsed.selfTestBoundarySafety = true;
+    else if (arg.startsWith('--boundary-safety-fixture=')) parsed.boundarySafetyFixture = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--source-file=')) parsed.sourceFiles.push(cleanRelativePath(arg.split('=').slice(1).join('=')));
     else if (arg.startsWith('--claim-file=')) parsed.claimFiles.push(cleanRelativePath(arg.split('=').slice(1).join('=')));
     else if (arg.startsWith('--morphology-rules=')) parsed.morphologyRules = cleanRelativePath(arg.split('=').slice(1).join('='));
@@ -322,6 +326,80 @@ function normalizeHebrew(value) {
   return normalized;
 }
 
+function hasWordBoundary(value) {
+  return /[\s\u05BE-]/u.test(normalizeHebrewPunctuation(value));
+}
+
+function normalizeHebrewBoundaryKey(value) {
+  let normalized = normalizeHebrewPunctuation(value)
+    .replace(niqqudAndCantillationRe, '')
+    .replace(/\u05BE/gu, '-')
+    .replace(/[\s-]+/gu, '-')
+    .replace(/[^\u0590-\u05FF-]/gu, '')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+  normalized = Array.from(normalized, (ch) => finalLetters.get(ch) || ch).join('');
+  return normalized;
+}
+
+function lookupKeyForSurface(value) {
+  return hasWordBoundary(value) ? normalizeHebrewBoundaryKey(value) : normalizeHebrew(value);
+}
+
+function lookupKeyForClaim(claim) {
+  const surface = claim?.surface || claim?.normalized || '';
+  const boundarySensitive = hasWordBoundary(surface);
+  return {
+    lookup_key: boundarySensitive ? normalizeHebrewBoundaryKey(surface) : normalizeHebrew(claim?.normalized || surface),
+    boundary_sensitive: boundarySensitive,
+  };
+}
+
+function runBoundarySafetySelfTest() {
+  const fixture = readJson(options.boundarySafetyFixture);
+  const issues = [];
+  for (const [index, testCase] of (fixture.cases || []).entries()) {
+    const claim = {
+      claim_id: `boundary-fixture-${index}`,
+      route_family: 'boundary_regression',
+      route_type: 'lemma',
+      surface: testCase.claim_surface,
+      normalized: testCase.claim_normalized || testCase.claim_surface,
+      match_type: 'fixture',
+      confidence: 100,
+      answer_score: 100,
+      meaning_quality: 'definition',
+      answer_eligible: true,
+      gloss: 'boundary regression fixture',
+      source_rows: [{
+        source_name: 'Citable boundary regression fixture',
+        source_family: 'workspace',
+        source_id: `boundary-fixture-${index}`,
+        source_url: 'local:citable-boundary-regression-fixtures',
+        license: 'project-authored / CC0',
+      }],
+    };
+    const claimIndex = new Map();
+    const indexed = addClaim(claimIndex, claim);
+    const token = {
+      surface: testCase.source_surface,
+      normalized: normalizeHebrew(testCase.source_surface),
+      lookup_key: lookupKeyForSurface(testCase.source_surface),
+    };
+    const matched = Boolean(indexed && (claimIndex.get(token.lookup_key) || []).some((row) => row.claim_id === claim.claim_id));
+    if (matched !== testCase.expected_match) {
+      const claimLookup = lookupKeyForClaim(claim);
+      issues.push(`${testCase.label || `case ${index}`}: expected_match=${testCase.expected_match}, got ${matched}, claim_key=${claimLookup.lookup_key}, token_key=${token.lookup_key}`);
+    }
+  }
+  if (issues.length) {
+    console.error(`Boundary safety self-test failed with ${issues.length} issue(s):`);
+    for (const issue of issues) console.error(`- ${issue}`);
+    process.exit(1);
+  }
+  console.log(`Boundary safety self-test passed (${(fixture.cases || []).length} cases).`);
+}
+
 function isAllowedLicense(license) {
   if (!license || typeof license !== 'string') return false;
   if (forbiddenLicenseRe.test(license)) return false;
@@ -390,7 +468,12 @@ function tokenize(text) {
     const surface = match[0];
     const normalized = normalizeHebrew(surface);
     if (!normalized) continue;
-    tokens.push({ surface, normalized });
+    tokens.push({
+      surface,
+      normalized,
+      lookup_key: lookupKeyForSurface(surface),
+      boundary_sensitive: hasWordBoundary(surface),
+    });
   }
   return tokens;
 }
@@ -439,7 +522,8 @@ function shouldUseClaim(claim) {
 function addClaim(index, claim) {
   if (!shouldUseClaim(claim)) return false;
   const normalized = normalizeHebrew(claim.normalized);
-  if (!normalized) return false;
+  const lookup = lookupKeyForClaim(claim);
+  if (!normalized || !lookup.lookup_key) return false;
   const compact = {
     claim_id: claim.claim_id,
     route_family: claim.route_family || '',
@@ -447,6 +531,8 @@ function addClaim(index, claim) {
     language: claim.language || 'Hebrew',
     surface: claim.surface || '',
     normalized,
+    lookup_key: lookup.lookup_key,
+    boundary_sensitive: lookup.boundary_sensitive,
     match_type: claim.match_type || claim.route_type || 'definition route',
     confidence: Number.isFinite(claim.confidence) ? claim.confidence : null,
     answer_score: Number.isFinite(claim.answer_score) ? claim.answer_score : null,
@@ -456,8 +542,8 @@ function addClaim(index, claim) {
     definition: claimDefinition(claim),
     source_rows: (claim.source_rows || []).map(compactSourceRow),
   };
-  if (!index.has(normalized)) index.set(normalized, []);
-  const bucket = index.get(normalized);
+  if (!index.has(lookup.lookup_key)) index.set(lookup.lookup_key, []);
+  const bucket = index.get(lookup.lookup_key);
   bucket.push(compact);
   bucket.sort((a, b) => claimScore(b) - claimScore(a) || String(a.claim_id).localeCompare(String(b.claim_id)));
   if (bucket.length > options.maxClaimsPerNormalized) bucket.length = options.maxClaimsPerNormalized;
@@ -718,6 +804,7 @@ function makeEvidenceRow({ claim, data, unit, relativePath, tokens, tokenIndex, 
   const phraseTokens = phraseFor(tokens, tokenIndex);
   const rawScore = rawScoreForClaim(claim);
   const scoreHandicap = 20;
+  const claimBoundarySafe = claim.boundary_sensitive ? Boolean(token.boundary_sensitive && claim.lookup_key === token.lookup_key) : true;
   return {
     evidence_id: stableId('citable-para', [
       claim.claim_id,
@@ -741,6 +828,11 @@ function makeEvidenceRow({ claim, data, unit, relativePath, tokens, tokenIndex, 
     source_definition_claim_id: claim.claim_id,
     source_definition_route_family: claim.route_family,
     source_definition_route_type: claim.route_type,
+    source_definition_surface: claim.surface || '',
+    source_definition_normalized: claim.normalized || '',
+    source_definition_lookup_key: claim.lookup_key || '',
+    boundary_sensitive: claim.boundary_sensitive === true,
+    boundary_safe: claimBoundarySafe,
     morphology_breakdown: claim.morphology_breakdown,
     morphology_risk_flags: claim.morphology_risk_flags,
     phrase_hebrew: phraseTokens.map((phraseToken) => phraseToken.surface).join(' '),
@@ -884,6 +976,11 @@ function patchReport(stats) {
 }
 
 async function main() {
+  if (options.selfTestBoundarySafety) {
+    runBoundarySafetySelfTest();
+    return;
+  }
+
   mkdirp(options.jsonl);
   mkdirp(options.csv);
   mkdirp(options.index);
@@ -944,7 +1041,7 @@ async function main() {
         const token = tokens[tokenIndex];
         stats.token_occurrences += 1;
         count(tokenTotals, token.normalized);
-        let claims = (claimIndex.get(token.normalized) || []).slice(0, options.maxDefinitionsPerOccurrence);
+        let claims = (claimIndex.get(token.lookup_key || token.normalized) || []).slice(0, options.maxDefinitionsPerOccurrence);
         if (!claims.length && options.includeMorphology) {
           const morphologyClaim = makeMorphologyClaim(token, claimIndex, morphology);
           if (morphologyClaim) {

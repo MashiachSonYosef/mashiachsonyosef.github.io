@@ -120,6 +120,9 @@ function validateDefinitionSamples(issues) {
     const context = `definition-route-sample.samples[${index}]`;
     if (sample.winner) {
       validateSourceRows(sample.winner.source_rows, `${context}.winner`, issues);
+      if (sample.winner.answer_eligible !== true || sample.winner.answer_role !== 'answer') {
+        issues.push(`${context}.winner: winner must be answer_eligible with answer_role=answer`);
+      }
       if (sample.winner.route_type === 'lemma' && /Deuteronomy/i.test(sample.winner.gloss || '')) {
         issues.push(`${context}.winner: Deuteronomy lemma should not win a clicked-form sample`);
       }
@@ -129,6 +132,9 @@ function validateDefinitionSamples(issues) {
     }
     for (const [routeIndex, route] of asArray(sample.supporting_routes).entries()) {
       validateSourceRows(route.source_rows, `${context}.supporting_routes[${routeIndex}]`, issues);
+      if (route.answer_eligible !== true && Number.isFinite(route.answer_score)) {
+        issues.push(`${context}.supporting_routes[${routeIndex}]: non-answer route must not carry answer_score`);
+      }
     }
     for (const [traceIndex, trace] of asArray(sample.audit_traces).entries()) {
       validateSourceRows(trace.source_rows, `${context}.audit_traces[${traceIndex}]`, issues);

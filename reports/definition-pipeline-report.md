@@ -1,6 +1,6 @@
 # Definition Pipeline Report
 
-Generated: 2026-05-31T02:28:35.020Z
+Generated: 2026-05-31T08:09:49.634Z
 
 ## Scope
 
@@ -27,6 +27,7 @@ Generated: 2026-05-31T02:28:35.020Z
 - data/definitions/morphology-rules.json
 - data/definitions/paraphrase-evidence-contract.json
 - data/definitions/paraphrase-evidence-sample.json
+- data/definitions/citable-paraphrase-evidence-sample.json
 - data/definitions/hud-route-contract.json
 - data/definitions/hud-route-fixtures.json
 - data/definitions/hud-route-store-sample.json
@@ -36,6 +37,7 @@ Generated: 2026-05-31T02:28:35.020Z
 - .local-cache/definition-routes/kaikki-definition-claims.jsonl
 - .local-cache/definition-routes/kaikki-definition-claims.csv
 - .local-cache/definition-routes/source-layer-definition-claims.jsonl
+- .local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl
 
 ## Counts
 
@@ -52,39 +54,3 @@ Generated: 2026-05-31T02:28:35.020Z
 - Add a phrase/subphrase index from already-imported Hebrew source texts, keeping Hebrew citation text separate from English definition claims.
 - Add Sefaria phrase candidates only version-by-version after rejecting NC, unclear, or unverified versions.
 - Wire HUD to consume the route fixture/lookup samples first, then promote the local lookup shards to chunked public artifacts when the live renderer is ready for on-demand loading.
-## Phrase Evidence
-
-- Generated: 2026-05-31T02:31:01.932Z
-- Tracked source files scanned: 2
-- Allowed units scanned: 2897
-- Rejected units skipped: 0
-- Token occurrences counted: 36712
-- Phrase evidence rows emitted: 40396
-- Distinct normalized tokens counted: 12843
-- Max rows per normalized token: 80
-- Public sample: data/definitions/phrase-evidence-sample.json
-- Local cache: .local-cache/definition-routes/source-phrase-evidence.jsonl
-- License rule: every phrase row keeps its own source/version/license metadata; skipped licenses are counted but not emitted.
-
-## HUD Route Scoring
-
-- Strict Hebrew, strict Aramaic, and morphology routes use raw score as adjusted score.
-- Lemma, subphrase, biblical paraphrase, and citable paraphrase routes use raw score minus 20 as adjusted score.
-- HUD lookup ordering sorts by adjusted score first, raw score second, and route family only as a tie-breaker.
-- Validation script: `node scripts\validate_hud_route_scoring.mjs`
-
-## Citable Paraphrase Evidence
-
-- Generated: 2026-05-31T03:03:32.477Z
-- Source files scanned: 5
-- Biblical source files skipped: 0
-- Allowed source units scanned: 2351
-- Rejected source units skipped: 633
-- Definition claims read: 142936
-- Definition claims indexed: 139219
-- Citable rows emitted: 12000
-- Candidate status: accepted
-- Max rows per normalized token: 1
-- Public sample: data/definitions/citable-paraphrase-evidence-sample.json
-- Local cache: .local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl
-- Lane rule: citable importers produce source-backed rows and scores only; final HUD/ranking owns winner selection and rendering.

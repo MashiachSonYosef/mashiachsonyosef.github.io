@@ -13,6 +13,66 @@ const escapeHtml = (value) => String(value ?? "")
 
 const confidence = (card) => Number.isFinite(card.confidence_percent) ? `${card.confidence_percent}%` : "checked";
 const metaParts = (card) => [card.route_family, card.language, card.match_type || card.route_type].filter(Boolean).join(" / ");
+const productionSections = new Set([
+  "strict_hebrew",
+  "strict_aramaic",
+  "lemma",
+  "morphology",
+  "subphrase_evidence",
+  "biblical_paraphrase_evidence",
+  "citable_paraphrase_evidence",
+]);
+
+function rankCard(card) {
+  const sectionRank = new Map([
+    ["strict_hebrew", 0],
+    ["strict_aramaic", 1],
+    ["lemma", 2],
+    ["morphology", 3],
+    ["subphrase_evidence", 4],
+    ["biblical_paraphrase_evidence", 5],
+    ["citable_paraphrase_evidence", 6],
+    ["phrase_evidence", 7],
+    ["audit", 8],
+  ]);
+  const adjustedScore = Number.isFinite(card.adjusted_score)
+    ? card.adjusted_score
+    : (Number.isFinite(card.answer_score) ? card.answer_score : null);
+  const rawScore = Number.isFinite(card.raw_score)
+    ? card.raw_score
+    : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : null);
+  const answerRank = card.answer_eligible === true && card.answer_role === "answer" ? 0 : 1;
+  return [
+    answerRank,
+    -(adjustedScore ?? -1000),
+    -(rawScore ?? -1000),
+    sectionRank.get(card.display_section) ?? 9,
+    -(Number.isFinite(card.answer_score) ? card.answer_score : 0),
+    String(card.card_id || ""),
+  ];
+}
+
+function compareCards(a, b) {
+  const left = rankCard(a);
+  const right = rankCard(b);
+  for (let i = 0; i < left.length; i += 1) {
+    if (left[i] < right[i]) return -1;
+    if (left[i] > right[i]) return 1;
+  }
+  return 0;
+}
+
+function isAnswerEligible(card) {
+  return card?.answer_eligible === true && card?.answer_role === "answer";
+}
+
+function scoreLine(card) {
+  const parts = [];
+  if (Number.isFinite(card.raw_score)) parts.push(`raw ${card.raw_score}`);
+  if (Number.isFinite(card.score_handicap) && card.score_handicap) parts.push(`handicap ${card.score_handicap}`);
+  if (Number.isFinite(card.adjusted_score)) parts.push(`adjusted ${card.adjusted_score}`);
+  return parts.length ? `<p class="source-mini">Rank: ${escapeHtml(parts.join(" / "))}</p>` : "";
+}
 
 function sourceSummary(rows = []) {
   const names = [...new Set(rows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`))];
@@ -46,6 +106,7 @@ function renderCard(card, role = "evidence") {
       <p class="definition">${escapeHtml(card.definition || "No definition claim in this row.")}</p>
       ${phraseHtml(card)}
       ${card.plain_note ? `<p class="plain-note">${escapeHtml(card.plain_note)}</p>` : ""}
+      ${scoreLine(card)}
       ${source.source ? `<p class="source-mini">Source: ${escapeHtml(source.source)}</p>` : ""}
       ${source.license ? `<p class="source-mini">License: ${escapeHtml(source.license)}</p>` : ""}
     </article>`;
@@ -112,6 +173,17 @@ function renderSources(rows = []) {
     </section>`;
 }
 
+function collectRankedCards(sample, storeRow, lookupRow) {
+  const sectionCards = (sample.route_sections || [])
+    .filter((section) => productionSections.has(section.section_id))
+    .flatMap((section) => section.cards || []);
+  const directStoreCards = storeRow?.cards || [];
+  const directLookupCards = lookupRow?.cards || [];
+  return [...sectionCards, ...directStoreCards, ...directLookupCards]
+    .filter((card) => productionSections.has(card.display_section))
+    .sort(compareCards);
+}
+
 function setActive(index) {
   const sample = samples[index] || samples[0];
   const storeRow = storeSamples.get(sample.normalized);
@@ -120,6 +192,8 @@ function setActive(index) {
     button.setAttribute("aria-pressed", button.dataset.index === String(index) ? "true" : "false");
   });
   const routeSections = (sample.route_sections || []).filter((section) => section.cards && section.cards.length);
+  const rankedCards = collectRankedCards(sample, storeRow, lookupRow);
+  const rankedAnswer = rankedCards.find(isAnswerEligible) || null;
   const storeCards = storeRow && storeRow.cards && storeRow.cards.length ? {
     title: "Route-store direct cards",
     card_count: storeRow.cards.length,
@@ -130,15 +204,16 @@ function setActive(index) {
     card_count: lookupRow.cards.length,
     cards: lookupRow.cards.map((card) => ({ ...card, hebrew: card.surface })),
   } : null;
+  const fixtureMismatch = sample.answer_card && rankedAnswer && sample.answer_card.card_id !== rankedAnswer.card_id;
   panel.innerHTML = `
     <div class="selected-token" lang="he" dir="rtl">${escapeHtml(sample.token)}</div>
-    ${sample.answer_card ? renderCard(sample.answer_card, "answer") : '<section class="answer-card"><p class="definition">No winning route for this token yet.</p></section>'}
+    ${rankedAnswer ? renderCard(rankedAnswer, "answer") : '<section class="answer-card"><p class="definition">No winning route for this token yet.</p></section>'}
+    ${fixtureMismatch ? `<section class="audit-card"><h3>Ranking override</h3><p class="plain-note">The HUD-ranked answer differs from the fixture answer. Fixture: ${escapeHtml(sample.answer_card.display_label || sample.answer_card.card_id || "unknown")} -> Live rank: ${escapeHtml(rankedAnswer.display_label || rankedAnswer.card_id || "unknown")}.</p></section>` : ""}
     ${routeSections.map(renderSection).join("")}
     ${renderLookupMeta(sample, lookupRow)}
-    ${lookupCards ? renderSection(lookupCards) : ""}
-    ${storeCards ? renderSection(storeCards) : ""}
     ${renderAudit(sample, storeRow)}
-    ${renderSources(sample.source_license_groups || [])}`;
+    ${renderSources(sample.source_license_groups || [])}
+    ${(lookupCards || storeCards) ? `<details class="audit-card"><summary>Debug storage views</summary>${lookupCards ? renderSection(lookupCards) : ""}${storeCards ? renderSection(storeCards) : ""}</details>` : ""}`;
   panel.scrollIntoView({ block: "nearest" });
 }
 

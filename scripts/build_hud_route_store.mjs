@@ -142,6 +142,18 @@ function finiteNumber(value) {
   return Number.isFinite(value) ? value : null;
 }
 
+function isInheritedFormReference(value) {
+  return value?.route_type === 'form' && (value?.meaning_quality === 'form_reference' || Boolean(value?.form_of?.lemma));
+}
+
+function answerRoleFor(value, answerEligible) {
+  if (isInheritedFormReference(value)) return 'form_reference';
+  const role = String(value?.answer_role || '').trim();
+  if (answerEligible && (!role || role === 'definition')) return 'answer';
+  if (role) return role;
+  return answerEligible ? 'answer' : 'evidence';
+}
+
 function addRouteScoreFields(card, explicitRaw = null, explicitHandicap = null, explicitAdjusted = null) {
   const rawScore = finiteNumber(explicitRaw)
     ?? finiteNumber(card.answer_score)
@@ -167,6 +179,11 @@ function shardKey(normalized) {
 
 function claimToCard(claim) {
   const normalized = claim?.normalized || normalizeHebrewKey(claim?.surface || '');
+  const explicitRole = String(claim?.answer_role || '').trim();
+  const answerEligible = claim?.answer_eligible === true
+    && !isInheritedFormReference(claim)
+    && !['evidence', 'audit', 'form_reference'].includes(explicitRole);
+  const answerRole = answerRoleFor(claim, answerEligible);
   const card = {
     card_id: claim?.claim_id || '',
     normalized,
@@ -178,7 +195,9 @@ function claimToCard(claim) {
     language: claim?.language || '',
     match_type: claim?.match_type || '',
     confidence_percent: Number.isFinite(claim?.confidence) ? claim.confidence : null,
-    answer_score: Number.isFinite(claim?.answer_score) ? claim.answer_score : null,
+    answer_eligible: answerEligible,
+    answer_role: answerRole,
+    answer_score: answerEligible && Number.isFinite(claim?.answer_score) ? claim.answer_score : null,
     context_rank_score: Number.isFinite(claim?.context_rank_score) ? claim.context_rank_score : null,
     definition: definitionText(claim),
     plain_note: '',
@@ -207,10 +226,12 @@ function phraseToCard(row) {
     language: row?.language || 'Hebrew/Aramaic',
     match_type: row?.match_type || 'licensed phrase occurrence',
     confidence_percent: Number.isFinite(row?.evidence_strength) ? row.evidence_strength : null,
+    answer_eligible: false,
+    answer_role: 'evidence',
     answer_score: null,
     context_rank_score: null,
     definition: 'Usage context only; no meaning is forced by this phrase row.',
-    plain_note: 'The focus token is marked so the surrounding words do not become the definition.',
+    plain_note: '',
     phrase_hebrew: row?.phrase_hebrew || '',
     phrase_tokens: Array.isArray(row?.phrase_tokens) ? row.phrase_tokens : [],
     source_ref: row?.source_ref || row?.sefaria_ref || '',
@@ -231,6 +252,12 @@ function paraphraseToCard(row) {
   const rawScore = Number.isFinite(row?.raw_score) ? row.raw_score : row?.confidence;
   const scoreHandicap = Number.isFinite(row?.score_handicap) ? row.score_handicap : 20;
   const adjustedScore = Number.isFinite(row?.adjusted_score) ? row.adjusted_score : rawScore - scoreHandicap;
+  const boundarySafe = row?.boundary_safe !== false;
+  const explicitRole = String(row?.answer_role || '').trim();
+  const answerEligible = row?.candidate_status === 'accepted'
+    && row?.answer_eligible === true
+    && boundarySafe
+    && !['evidence', 'audit', 'form_reference'].includes(explicitRole);
   const card = {
     card_id: row?.evidence_id || row?.route_id || '',
     normalized: row?.focus_normalized || normalizeHebrewKey(row?.focus_surface || ''),
@@ -242,7 +269,9 @@ function paraphraseToCard(row) {
     language: row?.language || 'Hebrew',
     match_type: row?.match_type || 'source-backed paraphrase',
     confidence_percent: Number.isFinite(rawScore) ? rawScore : null,
-    answer_score: Number.isFinite(adjustedScore) ? adjustedScore : null,
+    answer_eligible: answerEligible,
+    answer_role: answerRoleFor(row, answerEligible),
+    answer_score: answerEligible && Number.isFinite(adjustedScore) ? adjustedScore : null,
     context_rank_score: Number.isFinite(row?.context_rank_score) ? row.context_rank_score : null,
     definition: row?.definition || row?.route_definition || row?.paraphrase || '',
     plain_note: '',
@@ -257,6 +286,11 @@ function paraphraseToCard(row) {
     work_title: row?.work_title || '',
     route_id: row?.route_id || '',
     cluster_id: row?.cluster_id || '',
+    source_definition_surface: row?.source_definition_surface || '',
+    source_definition_normalized: row?.source_definition_normalized || '',
+    source_definition_lookup_key: row?.source_definition_lookup_key || '',
+    boundary_sensitive: row?.boundary_sensitive === true,
+    boundary_safe: boundarySafe,
     candidate_status: row?.candidate_status || '',
     source_rows: (row?.source_rows || []).map(compactSourceRow),
   };
@@ -335,6 +369,10 @@ async function main() {
     phrase_rows_read: 0,
     paraphrase_rows_read: 0,
     accepted_paraphrase_rows_read: 0,
+    answer_eligible_cards: 0,
+    evidence_only_cards: 0,
+    form_reference_cards: 0,
+    boundary_blocked_cards: 0,
     cards_written: 0,
   };
 
@@ -342,6 +380,10 @@ async function main() {
     if (!card.normalized) return;
     normalizedTokens.add(card.normalized);
     routeCounts.set(card.display_section, (routeCounts.get(card.display_section) || 0) + 1);
+    if (card.answer_eligible === true && card.answer_role === 'answer') stats.answer_eligible_cards += 1;
+    else stats.evidence_only_cards += 1;
+    if (card.answer_role === 'form_reference') stats.form_reference_cards += 1;
+    if (card.boundary_safe === false) stats.boundary_blocked_cards += 1;
     for (const row of card.source_rows || []) sourceRows.set(sourceKey(row), row);
     writer.write(card);
     stats.cards_written += 1;

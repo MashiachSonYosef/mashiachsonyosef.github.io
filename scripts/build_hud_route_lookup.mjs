@@ -10,7 +10,7 @@ const defaults = {
   storeDir: '.local-cache/hud-route-store',
   outDir: '.local-cache/hud-route-lookup',
   publicSample: 'data/definitions/hud-route-lookup-sample.json',
-  prefixLength: 2,
+  prefixLength: 3,
   maxSampleCards: 80,
 };
 
@@ -44,7 +44,7 @@ function usage() {
     '  --store-dir .local-cache/hud-route-store',
     '  --out-dir .local-cache/hud-route-lookup',
     '  --public-sample data/definitions/hud-route-lookup-sample.json',
-    '  --prefix-length 2',
+    '  --prefix-length 3',
     '  --max-sample-cards 80',
   ].join('\n');
 }
@@ -128,7 +128,9 @@ export function rankCard(card) {
   const rawScore = Number.isFinite(card.raw_score)
     ? card.raw_score
     : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : null);
+  const answerRank = card.answer_eligible === true && card.answer_role === 'answer' ? 0 : 1;
   return [
+    answerRank,
     -(adjustedScore ?? -1000),
     -(rawScore ?? -1000),
     sectionRank.get(card.display_section) ?? 9,

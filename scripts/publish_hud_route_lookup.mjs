@@ -42,21 +42,26 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
-function writeJson(filePath, value) {
+function writeTextAtomic(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+  const tmpPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+  fs.writeFileSync(tmpPath, content, 'utf8');
+  fs.renameSync(tmpPath, filePath);
+}
+
+function writeJson(filePath, value) {
+  writeTextAtomic(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
 function writeCompactJson(source, target) {
-  fs.mkdirSync(path.dirname(target), { recursive: true });
   const parsed = readJson(source);
-  fs.writeFileSync(target, `${JSON.stringify(parsed)}\n`, 'utf8');
+  writeTextAtomic(target, `${JSON.stringify(parsed)}\n`);
 }
 
 function validateSourceManifest(manifest, args) {
   const issues = [];
   if (manifest.schema_version !== 1) issues.push('local lookup manifest schema_version must be 1');
-  if (manifest.prefix_length !== 2) issues.push(`unexpected prefix_length ${manifest.prefix_length}`);
+  if (manifest.prefix_length !== 3) issues.push(`unexpected prefix_length ${manifest.prefix_length}`);
   if (!Array.isArray(manifest.shards) || !manifest.shards.length) issues.push('local lookup manifest has no shards');
   if (manifest.counts?.max_shard_bytes > args.maxShardBytes) {
     issues.push(`max shard too large: ${manifest.counts.max_shard_bytes} bytes`);
@@ -93,7 +98,6 @@ function main() {
   const localManifest = readJson(localManifestPath);
   validateSourceManifest(localManifest, args);
 
-  fs.rmSync(publicDir, { recursive: true, force: true });
   fs.mkdirSync(path.join(publicDir, 'shards'), { recursive: true });
 
   const publicShards = [];

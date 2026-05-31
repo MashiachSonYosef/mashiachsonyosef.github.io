@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "purpose": "Regression fixtures for citable paraphrase boundary-safe lookup keys.",
+  "cases": [
+    {
+      "label": "bat-yam spaced claim must not match batim one-token source",
+      "claim_surface": "\u05d1\u05ea \u05d9\u05dd",
+      "source_surface": "\u05d1\u05ea\u05d9\u05dd",
+      "expected_match": false
+    },
+    {
+      "label": "bat-yam spaced claim may match maqaf source",
+      "claim_surface": "\u05d1\u05ea \u05d9\u05dd",
+      "source_surface": "\u05d1\u05ea\u05be\u05d9\u05dd",
+      "expected_match": true
+    },
+    {
+      "label": "bat-yam spaced claim may match hyphen source",
+      "claim_surface": "\u05d1\u05ea \u05d9\u05dd",
+      "source_surface": "\u05d1\u05ea-\u05d9\u05dd",
+      "expected_match": true
+    },
+    {
+      "label": "batim one-token claim still matches batim one-token source",
+      "claim_surface": "\u05d1\u05ea\u05d9\u05dd",
+      "source_surface": "\u05d1\u05ea\u05d9\u05dd",
+      "expected_match": true
+    }
+  ]
+}
