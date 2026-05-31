@@ -1,0 +1,184 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const defaults = {
+  manifest: 'data/workbench-evidence/usage-concordance-manifest.json',
+  occurrenceLinkCheck: '.local-cache/workbench-evidence/usage-concordance-link-check.json',
+  routeLinkCheck: '.local-cache/workbench-evidence/usage-route-link-check.json',
+  auditReview: '.local-cache/workbench-evidence/usage-audit-only-review.json',
+  smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
+  output: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
+  report: 'reports/workbench-usage-navigation-handoff.md',
+};
+
+const options = parseArgs(process.argv.slice(2));
+const manifest = readJson(options.manifest);
+const occurrenceLinkCheck = readJsonIfExists(options.occurrenceLinkCheck);
+const routeLinkCheck = readJsonIfExists(options.routeLinkCheck);
+const auditReview = readJsonIfExists(options.auditReview);
+const smokeValidation = options.smokeValidation ? readJsonIfExists(options.smokeValidation) : null;
+
+if (manifest.artifact_type !== 'workbench_usage_navigation_concordance_manifest') {
+  throw new Error(`${options.manifest} is not a usage concordance manifest`);
+}
+
+const artifact = {
+  schema_version: 1,
+  artifact_type: 'workbench_usage_navigation_handoff_index',
+  generated_at: new Date().toISOString(),
+  generator: 'scripts/build_workbench_usage_handoff_index.mjs',
+  policy: 'Compact handoff index for the usage-navigation/concordance lane. It summarizes artifacts and validation state only; it does not rank routes, select visible answers, or make meaning claims.',
+  inputs: {
+    manifest: options.manifest,
+    occurrence_link_check: options.occurrenceLinkCheck,
+    route_link_check: options.routeLinkCheck,
+    audit_review: options.auditReview,
+    smoke_validation: options.smokeValidation || null,
+  },
+  authority_policy: manifest.authority_policy,
+  artifacts: {
+    concordance_json: manifest.outputs?.concordance_json || null,
+    concordance_report: manifest.outputs?.concordance_report || null,
+    manifest: manifest.outputs?.manifest || null,
+    occurrence_link_check_report: 'reports/workbench-usage-concordance-link-check.md',
+    route_link_check_report: 'reports/workbench-usage-route-link-check.md',
+    audit_only_review_report: 'reports/workbench-usage-audit-only-review.md',
+    smoke_validation_report: 'reports/workbench-smoke-pipeline-validation.md',
+  },
+  commands: manifest.commands,
+  counts: {
+    concordance_rows: manifest.counts?.rows ?? null,
+    selected_manifests: manifest.counts?.selected_manifests ?? null,
+    supported: manifest.counts?.status_counts?.supported ?? null,
+    candidate: manifest.counts?.status_counts?.candidate ?? null,
+    weak: manifest.counts?.status_counts?.weak ?? null,
+    audit_only_ambiguous: manifest.counts?.audit_only_counts?.ambiguous ?? null,
+    audit_only_blocked: manifest.counts?.audit_only_counts?.blocked ?? null,
+    route_linked_rows: manifest.counts?.route_link_state_counts?.route_linked_observed_usage ?? null,
+    observed_only_rows: manifest.counts?.route_link_state_counts?.observed_usage_only ?? null,
+  },
+  validation: {
+    occurrence_link_check_status: occurrenceLinkCheck?.quality?.status ?? 'not_run',
+    occurrence_source_url_bad: occurrenceLinkCheck?.counts?.source_url_bad ?? null,
+    occurrence_work_anchor_bad: occurrenceLinkCheck?.counts?.work_anchor_bad ?? null,
+    route_link_check_status: routeLinkCheck?.quality?.status ?? 'not_run',
+    route_links_resolved: routeLinkCheck?.counts?.route_links_resolved ?? null,
+    route_links_unresolved: routeLinkCheck?.counts?.route_links_unresolved ?? null,
+    route_metadata_mismatches: routeLinkCheck?.counts?.route_metadata_mismatch ?? null,
+    audit_review_rows: auditReview?.counts?.rows ?? null,
+    audit_review_reader_facing: auditReview?.reader_facing_policy?.reader_facing ?? null,
+    smoke_validation_status: smokeValidation ? (smokeValidation.counts?.failed_steps === 0 ? 'passed' : 'failed') : 'not_run',
+    smoke_steps: smokeValidation?.counts?.steps ?? null,
+    smoke_failed_steps: smokeValidation?.counts?.failed_steps ?? null,
+  },
+  consumer_boundary: {
+    observed_usage_not_meaning_claim: true,
+    ambiguous_rows_reader_facing: false,
+    ranks_routes: false,
+    selects_visible_result: false,
+    broad_target_expansion: false,
+  },
+};
+
+writeJson(options.output, artifact);
+writeReport(options.report, artifact);
+console.log(`Wrote ${options.output}`);
+console.log(`Wrote ${options.report}`);
+console.log(`Usage handoff index rows ${artifact.counts.concordance_rows}; occurrence links ${artifact.validation.occurrence_link_check_status}; route links ${artifact.validation.route_link_check_status}; smoke ${artifact.validation.smoke_validation_status}`);
+
+function writeReport(relativePath, artifact) {
+  const lines = [
+    '# Workbench Usage Navigation Handoff',
+    '',
+    `Generated: ${artifact.generated_at}`,
+    '',
+    '## Summary',
+    '',
+    `- Concordance rows: ${artifact.counts.concordance_rows}`,
+    `- Selected manifests: ${artifact.counts.selected_manifests}`,
+    `- Reader-facing statuses: supported ${artifact.counts.supported}, candidate ${artifact.counts.candidate}, weak ${artifact.counts.weak}`,
+    `- Audit-only rows: ambiguous ${artifact.counts.audit_only_ambiguous}, blocked ${artifact.counts.audit_only_blocked}`,
+    `- Route-linked rows: ${artifact.counts.route_linked_rows}`,
+    `- Observed-only rows: ${artifact.counts.observed_only_rows}`,
+    '',
+    '## Validation',
+    '',
+    `- Occurrence links: ${artifact.validation.occurrence_link_check_status}, bad source URLs ${artifact.validation.occurrence_source_url_bad}, bad work anchors ${artifact.validation.occurrence_work_anchor_bad}`,
+    `- Route links: ${artifact.validation.route_link_check_status}, resolved ${artifact.validation.route_links_resolved}, unresolved ${artifact.validation.route_links_unresolved}, metadata mismatches ${artifact.validation.route_metadata_mismatches}`,
+    `- Audit review: rows ${artifact.validation.audit_review_rows}, reader-facing ${artifact.validation.audit_review_reader_facing ? 'yes' : 'no'}`,
+    `- Smoke validation: ${artifact.validation.smoke_validation_status}, steps ${artifact.validation.smoke_steps}, failed ${artifact.validation.smoke_failed_steps}`,
+    '',
+    '## Artifacts',
+    '',
+    '| artifact | path | tracked |',
+    '|---|---|---|',
+    `| concordance JSON | ${mdCell(artifact.artifacts.concordance_json?.path)} | ${artifact.artifacts.concordance_json?.tracked_in_git ? 'yes' : 'no'} |`,
+    `| concordance report | ${mdCell(artifact.artifacts.concordance_report?.path)} | ${artifact.artifacts.concordance_report?.tracked_in_git ? 'yes' : 'no'} |`,
+    `| manifest | ${mdCell(artifact.artifacts.manifest?.path)} | ${artifact.artifacts.manifest?.tracked_in_git ? 'yes' : 'no'} |`,
+    `| occurrence link check | ${mdCell(artifact.artifacts.occurrence_link_check_report)} | yes |`,
+    `| route link check | ${mdCell(artifact.artifacts.route_link_check_report)} | yes |`,
+    `| audit-only review | ${mdCell(artifact.artifacts.audit_only_review_report)} | yes |`,
+    `| smoke validation | ${mdCell(artifact.artifacts.smoke_validation_report)} | yes |`,
+    '',
+    '## Commands',
+    '',
+    '| command | value |',
+    '|---|---|',
+    ...Object.entries(artifact.commands || {}).map(([key, value]) => `| ${mdCell(key)} | ${mdCell(value)} |`),
+    '',
+    '## Boundary',
+    '',
+    'This handoff is for usage navigation and concordance only. It preserves observed usage, route links, validation state, and audit-only ambiguous rows without ranking routes, selecting visible answers, or making meaning claims.',
+  ];
+  writeText(relativePath, `${lines.join('\n')}\n`);
+}
+
+function parseArgs(args) {
+  const parsed = { ...defaults };
+  for (const arg of args) {
+    if (arg.startsWith('--manifest=')) parsed.manifest = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--occurrence-link-check=')) parsed.occurrenceLinkCheck = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--route-link-check=')) parsed.routeLinkCheck = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--audit-review=')) parsed.auditReview = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg === '--no-smoke-validation') parsed.smokeValidation = null;
+    else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  return parsed;
+}
+
+function readJson(relativePath) {
+  return JSON.parse(fs.readFileSync(path.join(root, cleanRelativePath(relativePath)), 'utf8'));
+}
+
+function readJsonIfExists(relativePath) {
+  const fullPath = path.join(root, cleanRelativePath(relativePath));
+  if (!fs.existsSync(fullPath)) return null;
+  return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+}
+
+function writeJson(relativePath, data) {
+  writeText(relativePath, `${JSON.stringify(data, null, 2)}\n`);
+}
+
+function writeText(relativePath, text) {
+  const fullPath = path.join(root, cleanRelativePath(relativePath));
+  fs.mkdirSync(path.dirname(fullPath), { recursive: true });
+  fs.writeFileSync(fullPath, text, 'utf8');
+}
+
+function cleanRelativePath(value) {
+  return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+}
+
+function valueAfterEquals(arg) {
+  return arg.split('=').slice(1).join('=');
+}
+
+function mdCell(value) {
+  return String(value ?? '').replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
+}
