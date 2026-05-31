@@ -35,6 +35,7 @@ const totals = manifests.reduce((sum, row) => {
   }
   sum.reader_facing_eligible_rows += Number(row.reader_facing_eligible_rows || 0);
   sum.count_only_ambiguous_rows += Number(row.status_counts?.ambiguous || 0);
+  if (row.validation.status === 'passed' && Number(row.reader_facing_eligible_rows || 0) === 0) sum.zero_useful_targets += 1;
   return sum;
 }, {
   selected_targets: 0,
@@ -47,6 +48,7 @@ const totals = manifests.reduce((sum, row) => {
   blocked_rows: 0,
   reader_facing_eligible_rows: 0,
   count_only_ambiguous_rows: 0,
+  zero_useful_targets: 0,
   status_counts: { supported: 0, candidate: 0, weak: 0, ambiguous: 0, blocked: 0 },
 });
 
@@ -323,6 +325,7 @@ function writeReport(relativePath, artifact) {
     `- Validation failed: ${artifact.counts.validation_failed}`,
     `- Reader-facing eligible rows: ${artifact.counts.reader_facing_eligible_rows}`,
     `- Ambiguous count-only rows: ${artifact.counts.count_only_ambiguous_rows}`,
+    `- Zero-useful selected targets: ${artifact.counts.zero_useful_targets}`,
     `- Status counts: supported ${artifact.counts.status_counts.supported}, candidate ${artifact.counts.status_counts.candidate}, weak ${artifact.counts.status_counts.weak}, ambiguous ${artifact.counts.status_counts.ambiguous}`,
     '',
     '## Coverage Boundary',

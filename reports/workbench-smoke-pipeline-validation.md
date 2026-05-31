@@ -1,6 +1,6 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-05-31T15:41:10.434Z
+Generated: 2026-05-31T15:43:09.276Z
 
 ## Summary
 
@@ -13,7 +13,7 @@ Generated: 2026-05-31T15:41:10.434Z
 - Source freshness: stale, count delta 43, modified after artifact 43
 - Reshit source coverage: 271/271, uncovered 0
 - Handoff coverage: 55 manifests, missing targets 0
-- Public handoff index: 55 selected, validation failed 0, eligible 2390, ambiguous count-only 2064, ambiguous reader-facing no
+- Public handoff index: 55 selected, validation failed 0, eligible 2390, ambiguous count-only 2064, zero-useful 0, ambiguous reader-facing no
 - Candidate artifact audit: useful 59, zero-useful non-smoke 30, orphan smoke 2
 
 ## Steps

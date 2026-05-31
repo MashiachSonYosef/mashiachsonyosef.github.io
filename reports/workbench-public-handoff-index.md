@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T15:41:02.866Z
+Generated: 2026-05-31T15:43:04.261Z
 
 ## Summary
 
@@ -9,6 +9,7 @@ Generated: 2026-05-31T15:41:02.866Z
 - Validation failed: 0
 - Reader-facing eligible rows: 2390
 - Ambiguous count-only rows: 2064
+- Zero-useful selected targets: 0
 - Status counts: supported 339, candidate 1351, weak 700, ambiguous 2064
 
 ## Coverage Boundary

@@ -41,6 +41,7 @@ const expected = {
   blocked_rows: 0,
   reader_facing_eligible_rows: 0,
   count_only_ambiguous_rows: 0,
+  zero_useful_targets: 0,
   status_counts: { supported: 0, candidate: 0, weak: 0, ambiguous: 0, blocked: 0 },
 };
 
@@ -48,7 +49,7 @@ for (const [index, manifest] of (artifact.manifests || []).entries()) {
   validateManifest(manifest, `manifests[${index}]`);
 }
 
-for (const key of ['selected_targets', 'validation_passed', 'validation_failed', 'missing_manifests', 'occurrence_markers', 'candidate_rows', 'clusters', 'blocked_rows', 'reader_facing_eligible_rows', 'count_only_ambiguous_rows']) {
+for (const key of ['selected_targets', 'validation_passed', 'validation_failed', 'missing_manifests', 'occurrence_markers', 'candidate_rows', 'clusters', 'blocked_rows', 'reader_facing_eligible_rows', 'count_only_ambiguous_rows', 'zero_useful_targets']) {
   if (Number(artifact.counts?.[key] || 0) !== expected[key]) {
     issues.push(`counts.${key} expected ${expected[key]}, found ${artifact.counts?.[key]}`);
   }
@@ -100,6 +101,10 @@ function validateManifest(row, context) {
   }
   expected.reader_facing_eligible_rows += eligible;
   expected.count_only_ambiguous_rows += Math.max(0, Number(row.status_counts?.ambiguous || 0));
+  if (validationStatus === 'passed' && eligible === 0) {
+    expected.zero_useful_targets += 1;
+    issues.push(`${context}: passed selected target has 0 supported + candidate + weak rows`);
+  }
   if (Number(row.reader_facing_eligible_rows || 0) !== eligible) {
     issues.push(`${context}: reader_facing_eligible_rows expected ${eligible}, found ${row.reader_facing_eligible_rows}`);
   }
