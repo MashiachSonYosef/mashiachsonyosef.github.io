@@ -71,6 +71,8 @@ function validateCounts() {
     'usage_clusters',
     'unique_route_ids',
     'sample_rows',
+    'lookup_occurrence_refs',
+    'lookup_works',
   ]) {
     const value = Number(artifact.counts?.[field]);
     if (!Number.isInteger(value) || value < 0) issues.push(`counts.${field} must be a non-negative integer`);
@@ -99,6 +101,7 @@ function validateArtifacts() {
     'cluster_index_report',
     'route_coverage_report',
     'sample_index_report',
+    'lookup_index_report',
     'smoke_validation_report',
   ]) {
     if (!String(artifact.artifacts?.[field] || '').trim()) issues.push(`artifacts.${field} must be present`);
@@ -116,6 +119,7 @@ function validateValidation() {
   if (artifact.validation?.cluster_index_status !== 'present') issues.push('validation.cluster_index_status must be present');
   if (artifact.validation?.route_coverage_status !== 'present') issues.push('validation.route_coverage_status must be present');
   if (artifact.validation?.sample_index_status !== 'present') issues.push('validation.sample_index_status must be present');
+  if (artifact.validation?.lookup_index_status !== 'present') issues.push('validation.lookup_index_status must be present');
   if (Number(artifact.validation?.occurrence_source_url_bad || 0) !== 0) issues.push('occurrence source URL issues must be 0');
   if (Number(artifact.validation?.occurrence_work_anchor_bad || 0) !== 0) issues.push('occurrence work anchor issues must be 0');
   if (Number(artifact.validation?.route_links_unresolved || 0) !== 0) issues.push('route_links_unresolved must be 0');
@@ -125,6 +129,9 @@ function validateValidation() {
     issues.push('route_coverage_links must be at least route_linked_rows');
   }
   if (Number(artifact.validation?.sample_index_rows || 0) <= 0) issues.push('sample_index_rows must be positive');
+  if (Number(artifact.validation?.lookup_index_occurrence_refs || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('lookup_index_occurrence_refs must equal concordance_rows');
+  }
   if (!allowedSmoke.has(artifact.validation?.smoke_validation_status)) {
     issues.push('smoke_validation_status must be passed/failed/not_run/skipped_self_reference');
   }
@@ -144,6 +151,8 @@ function validateCommands() {
     validate_route_coverage: 'validate_workbench_usage_route_coverage.mjs',
     build_sample_index: 'build_workbench_usage_sample_index.mjs',
     validate_sample_index: 'validate_workbench_usage_sample_index.mjs',
+    build_lookup_index: 'build_workbench_usage_lookup_index.mjs',
+    validate_lookup_index: 'validate_workbench_usage_lookup_index.mjs',
     build_handoff_index: 'build_workbench_usage_handoff_index.mjs',
     validate_handoff_index: 'validate_workbench_usage_handoff_index.mjs',
     validate_smoke_pipeline: 'validate_workbench_smoke_pipeline.mjs',

@@ -1,16 +1,16 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-05-31T18:39:11.685Z
+Generated: 2026-05-31T18:50:53.122Z
 
 ## Summary
 
-- Steps: 23
+- Steps: 25
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
 - Missing smoke artifacts: 0
 - Zero-useful smoke targets: 0
-- Source freshness: stale, count delta 60, modified after artifact 60
+- Source freshness: stale, count delta 61, modified after artifact 61
 - Reshit source coverage: 271/271, uncovered 0
 - Handoff coverage: 55 manifests, missing targets 0
 - Public handoff index: 55 selected, validation failed 0, eligible 2390, ambiguous count-only 2064, zero-useful 0, ambiguous reader-facing no
@@ -20,6 +20,7 @@ Generated: 2026-05-31T18:39:11.685Z
 - Usage cluster index: present, clusters 2, rows 2390
 - Usage route coverage: present, route IDs 1, links 2390
 - Usage sample index: present, samples 24, clusters 2
+- Usage lookup index: present, occurrence refs 2390, works 271
 - Usage concordance link check: passed, source URL bad 0, work anchor bad 0, issues 0
 - Usage route link check: passed, links 2390, resolved 2390, unresolved 0, metadata mismatches 0, unique route IDs 1
 - Usage audit-only review: rows 2064, ambiguous 2064, blocked 0, reader-facing no
@@ -33,7 +34,7 @@ Generated: 2026-05-31T18:39:11.685Z
 | step | status | output |
 |---|---|---|
 | validate_smoke_queue | passed | Workbench smoke target validation passed. Targets: 55. |
-| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1252; scanned 1192; modified after artifact 60; created after artifact 60 |
+| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1253; scanned 1192; modified after artifact 61; created after artifact 61 |
 | report_reshit_smoke_coverage | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.md / Known nonzero source files 271; covered 271; uncovered 0; suggested gap targets 0 |
 | report_workbench_smoke_counts | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.md / Targets 55; supported 339; candidate 1351; weak 700; ambiguous 2064; missing 0; zero useful 0 |
 | build_complete_handoff_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.md / Target queue coverage: 55/55; missing 0 |
@@ -48,6 +49,8 @@ Generated: 2026-05-31T18:39:11.685Z
 | validate_usage_route_coverage | passed | Workbench usage route coverage validation passed. Route IDs: 1. Links: 2390. |
 | build_usage_sample_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-sample-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-sample-index.md / Usage sample index samples 24; clusters 2 |
 | validate_usage_sample_index | passed | Workbench usage sample index validation passed. Samples: 24. Clusters: 2. |
+| build_usage_lookup_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-lookup-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-lookup-index.md / Usage lookup index occurrences 2390; works 271; clusters 2 |
+| validate_usage_lookup_index | passed | Workbench usage lookup index validation passed. Occurrences: 2390. Works: 271. |
 | check_usage_concordance_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.md / Usage concordance link check passed; rows 2390; source URL bad 0; work anchors bad 0 |
 | check_usage_route_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.md / Usage route link check passed; rows 2390; links 2390; unresolved 0; metadata mismatches 0 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |
