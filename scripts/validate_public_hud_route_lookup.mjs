@@ -102,6 +102,18 @@ if (!issues.length) {
     if (forbiddenTextRe.test(text)) issues.push(`manifest forbidden text ${text.slice(0, 120)}`);
   });
 
+  const manifestShardPaths = new Set((manifest.shards || []).map((shardInfo) => shardInfo.path));
+  const shardDir = path.join(publicDir, 'shards');
+  const diskShardPaths = fs.existsSync(shardDir)
+    ? fs.readdirSync(shardDir).filter((name) => name.endsWith('.json')).map((name) => `shards/${name}`)
+    : [];
+  if (diskShardPaths.length !== manifestShardPaths.size) {
+    issues.push(`public shard file count mismatch: manifest lists ${manifestShardPaths.size}, disk has ${diskShardPaths.length}`);
+  }
+  for (const shardPath of diskShardPaths) {
+    if (!manifestShardPaths.has(shardPath)) issues.push(`stale public lookup shard not listed in manifest: ${shardPath}`);
+  }
+
   let totalBytes = fs.statSync(manifestPath).size;
   for (const shardInfo of manifest.shards || []) {
     const shardPath = path.join(publicDir, shardInfo.path);

@@ -98,6 +98,7 @@ function main() {
   const localManifest = readJson(localManifestPath);
   validateSourceManifest(localManifest, args);
 
+  fs.rmSync(publicDir, { recursive: true, force: true });
   fs.mkdirSync(path.join(publicDir, 'shards'), { recursive: true });
 
   const publicShards = [];
