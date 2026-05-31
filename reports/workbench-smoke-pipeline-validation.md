@@ -1,16 +1,16 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-05-31T23:19:16.652Z
+Generated: 2026-05-31T23:54:56.394Z
 
 ## Summary
 
-- Steps: 35
+- Steps: 39
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
 - Missing smoke artifacts: 0
 - Zero-useful smoke targets: 0
-- Source freshness: stale, count delta 70, modified after artifact 70
+- Source freshness: stale, count delta 74, modified after artifact 79
 - Reshit source coverage: 271/271, uncovered 0
 - Handoff coverage: 55 manifests, missing targets 0
 - Public handoff index: 55 selected, validation failed 0, eligible 2390, ambiguous count-only 2064, zero-useful 0, ambiguous reader-facing no
@@ -25,6 +25,9 @@ Generated: 2026-05-31T23:19:16.652Z
 - Usage selected slices index: present, slices 2, rows 50, unique occurrences 49, duplicate rows 1
 - Usage selected occurrences: present, rows 49, memberships 50, duplicate memberships 1
 - Usage selected occurrence lookup: present, work buckets 20, cluster buckets 2, status buckets 3
+- Usage crossmatch links: present, occurrences 49, directed edges 2352, undirected pairs 1176, route payload hits 0
+- Usage crossmatch strengths: strong 1206, moderate 1146, weak 0
+- Usage crossmatch bridge index: present, bridge edges 1160, same-frame edges 1192, bridge buckets 2, route payload hits 0
 - Usage concordance link check: passed, source URL bad 0, work anchor bad 0, issues 0
 - Usage route link check: passed, links 2390, resolved 2390, unresolved 0, metadata mismatches 0, unique route IDs 1
 - Usage audit-only review: rows 2064, ambiguous 2064, blocked 0, reader-facing no
@@ -38,7 +41,7 @@ Generated: 2026-05-31T23:19:16.652Z
 | step | status | output |
 |---|---|---|
 | validate_smoke_queue | passed | Workbench smoke target validation passed. Targets: 55. |
-| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1262; scanned 1192; modified after artifact 70; created after artifact 70 |
+| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1266; scanned 1192; modified after artifact 79; created after artifact 74 |
 | report_reshit_smoke_coverage | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.md / Known nonzero source files 271; covered 271; uncovered 0; suggested gap targets 0 |
 | report_workbench_smoke_counts | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.md / Targets 55; supported 339; candidate 1351; weak 700; ambiguous 2064; missing 0; zero useful 0 |
 | build_complete_handoff_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.md / Target queue coverage: 55/55; missing 0 |
@@ -65,6 +68,10 @@ Generated: 2026-05-31T23:19:16.652Z
 | validate_usage_selected_occurrences | passed | Validated usage selected occurrences .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrences.json: rows 49; memberships 50 |
 | build_usage_selected_occurrence_lookup | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-lookup.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-lookup.md / Usage selected occurrence lookup occurrences 49; works 20 |
 | validate_usage_selected_occurrence_lookup | passed | Validated selected occurrence lookup .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-lookup.json: occurrences 49; works 20 |
+| build_usage_crossmatch_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-links.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-links.md / Usage crossmatch links occurrences 49; directed edges 2352 |
+| validate_usage_crossmatch_links | passed | Validated usage crossmatch links .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-links.json: occurrences 49; edges 2352 |
+| build_usage_crossmatch_bridge_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-bridge-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-bridge-index.md / Usage crossmatch bridge index bridges 2; bridge edges 1160 |
+| validate_usage_crossmatch_bridge_index | passed | Validated usage crossmatch bridge index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-bridge-index.json: bridges 2; bridge edges 1160 |
 | check_usage_concordance_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.md / Usage concordance link check passed; rows 2390; source URL bad 0; work anchors bad 0 |
 | check_usage_route_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.md / Usage route link check passed; rows 2390; links 2390; unresolved 0; metadata mismatches 0 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |
