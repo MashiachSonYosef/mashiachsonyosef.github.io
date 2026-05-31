@@ -7,6 +7,7 @@ const root = process.cwd();
 const defaults = {
   targetQueue: '.local-cache/workbench-evidence/smoke-target-queue.json',
   fullDir: '.local-cache/workbench-evidence/full',
+  handoffRoot: '.local-cache/workbench-evidence/handoff',
   evidenceDir: '.local-cache/workbench-evidence/handoff,data/workbench-evidence',
   output: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   report: 'reports/workbench-smoke-pipeline-validation.md',
@@ -64,6 +65,20 @@ await runStep('validate_complete_handoff_index', [
   handoffIndexJson,
 ]);
 
+const publicHandoffIndexJson = `${options.scratchDir}/public-handoff-index.json`;
+await runStep('build_public_handoff_index', [
+  'scripts/build_workbench_public_handoff_index.mjs',
+  `--target-queue=${options.targetQueue}`,
+  `--handoff-root=${options.handoffRoot}`,
+  `--output=${publicHandoffIndexJson}`,
+  `--report=${options.scratchDir}/public-handoff-index.md`,
+]);
+
+await runStep('validate_public_handoff_index', [
+  'scripts/validate_workbench_public_handoff_index.mjs',
+  publicHandoffIndexJson,
+]);
+
 const artifactAuditJson = `${options.scratchDir}/candidate-artifact-audit.json`;
 await runStep('audit_candidate_artifacts', [
   'scripts/audit_workbench_candidate_artifacts.mjs',
@@ -75,6 +90,7 @@ await runStep('audit_candidate_artifacts', [
 const coverage = readJsonIfExists(coverageJson);
 const smokeCounts = readJsonIfExists(smokeCountsJson);
 const handoffIndex = readJsonIfExists(handoffIndexJson);
+const publicHandoffIndex = readJsonIfExists(publicHandoffIndexJson);
 const artifactAudit = readJsonIfExists(artifactAuditJson);
 const failedSteps = steps.filter((step) => step.status !== 'passed');
 const sourceFreshness = readJsonIfExists(sourceFreshnessJson);
@@ -88,6 +104,7 @@ const artifact = {
   inputs: {
     target_queue: options.targetQueue,
     full_dir: options.fullDir,
+    handoff_root: options.handoffRoot,
     evidence_dir: options.evidenceDir,
     scratch_dir: options.scratchDir,
   },
@@ -110,6 +127,11 @@ const artifact = {
     handoff_manifests: handoffIndex?.counts?.manifests ?? null,
     handoff_candidate_rows: handoffIndex?.counts?.candidate_rows ?? null,
     handoff_missing_targets: handoffIndex?.target_queue_coverage?.missing_targets?.length ?? null,
+    public_handoff_selected_targets: publicHandoffIndex?.counts?.selected_targets ?? null,
+    public_handoff_validation_failed: publicHandoffIndex?.counts?.validation_failed ?? null,
+    public_handoff_reader_facing_eligible_rows: publicHandoffIndex?.counts?.reader_facing_eligible_rows ?? null,
+    public_handoff_count_only_ambiguous_rows: publicHandoffIndex?.counts?.count_only_ambiguous_rows ?? null,
+    public_handoff_ambiguous_reader_facing: publicHandoffIndex?.reader_facing_policy?.ambiguous_rows_reader_facing ?? null,
     useful_artifacts: artifactAudit?.counts?.useful_artifacts ?? null,
     zero_useful_non_smoke_artifacts: artifactAudit?.counts?.zero_useful_non_smoke_artifacts ?? null,
     orphan_smoke_artifacts: artifactAudit?.counts?.orphan_smoke_artifacts ?? null,
@@ -129,6 +151,7 @@ function parseArgs(args) {
   for (const arg of args) {
     if (arg.startsWith('--target-queue=')) parsed.targetQueue = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--full-dir=')) parsed.fullDir = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--handoff-root=')) parsed.handoffRoot = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--evidence-dir=')) parsed.evidenceDir = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
@@ -229,6 +252,7 @@ function writeReport(relativePath, artifact) {
     `- Source freshness: ${artifact.counts.source_freshness_status}, count delta ${artifact.counts.source_count_delta}, modified after artifact ${artifact.counts.source_files_modified_after_artifact}`,
     `- Reshit source coverage: ${artifact.counts.covered_source_files}/${artifact.counts.known_nonzero_source_files}, uncovered ${artifact.counts.uncovered_source_files}`,
     `- Handoff coverage: ${artifact.counts.handoff_manifests} manifests, missing targets ${artifact.counts.handoff_missing_targets}`,
+    `- Public handoff index: ${artifact.counts.public_handoff_selected_targets} selected, validation failed ${artifact.counts.public_handoff_validation_failed}, eligible ${artifact.counts.public_handoff_reader_facing_eligible_rows}, ambiguous count-only ${artifact.counts.public_handoff_count_only_ambiguous_rows}, ambiguous reader-facing ${artifact.counts.public_handoff_ambiguous_reader_facing ? 'yes' : 'no'}`,
     `- Candidate artifact audit: useful ${artifact.counts.useful_artifacts}, zero-useful non-smoke ${artifact.counts.zero_useful_non_smoke_artifacts}, orphan smoke ${artifact.counts.orphan_smoke_artifacts}`,
     '',
     '## Steps',
@@ -239,7 +263,7 @@ function writeReport(relativePath, artifact) {
     '',
     '## Boundary',
     '',
-    'This wrapper validates smoke-only workbench evidence. It does not run broad target selection, expand prefix families, import source text, rank definitions, or choose HUD winners.',
+    'This wrapper validates smoke-only workbench evidence and the public handoff index contract. It does not run broad target selection, expand prefix families, import source text, rank definitions, make ambiguous rows reader-facing, or choose HUD winners.',
   ];
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
