@@ -69,22 +69,26 @@ const sampleFocus = new Set([
 function parseArgs(args) {
   const parsed = {
     maxPerToken: 250,
+    maxTotalRows: 0,
     sampleLimit: 200,
     window: 3,
     includeUntracked: false,
+    localOnly: false,
     sourceFiles: [],
   };
 
   for (const arg of args) {
     if (arg === '--include-untracked') parsed.includeUntracked = true;
+    else if (arg === '--local-only') parsed.localOnly = true;
     else if (arg.startsWith('--source-file=')) parsed.sourceFiles.push(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--max-per-token=')) parsed.maxPerToken = Number(arg.split('=')[1]);
+    else if (arg.startsWith('--max-total-rows=')) parsed.maxTotalRows = Number(arg.split('=')[1]);
     else if (arg.startsWith('--sample-limit=')) parsed.sampleLimit = Number(arg.split('=')[1]);
     else if (arg.startsWith('--window=')) parsed.window = Number(arg.split('=')[1]);
     else throw new Error(`Unknown argument: ${arg}`);
   }
 
-  for (const key of ['maxPerToken', 'sampleLimit', 'window']) {
+  for (const key of ['maxPerToken', 'maxTotalRows', 'sampleLimit', 'window']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 0) {
       throw new Error(`--${key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)} must be a non-negative integer`);
     }
@@ -177,11 +181,8 @@ function collectSourceFiles() {
       stdio: ['ignore', 'pipe', 'pipe'],
     });
     return stdout.split(/\r?\n/).filter(Boolean).sort();
-  } catch {
-    return fs.readdirSync(dir)
-      .filter((name) => name.endsWith('.json'))
-      .map((name) => path.join(paths.sourceDir, name).replace(/\\/g, '/'))
-      .sort();
+  } catch (error) {
+    throw new Error(`Unable to list tracked source files with git. Pass explicit --source-file paths or use --include-untracked deliberately. ${error.message}`);
   }
 }
 
@@ -323,6 +324,10 @@ function shouldEmit(normalized, emittedByToken) {
   return (emittedByToken.get(normalized) || 0) < options.maxPerToken;
 }
 
+function totalLimitReached(stats) {
+  return options.maxTotalRows > 0 && stats.evidence_rows >= options.maxTotalRows;
+}
+
 function noteEmission(normalized, emittedByToken) {
   emittedByToken.set(normalized, (emittedByToken.get(normalized) || 0) + 1);
 }
@@ -441,11 +446,12 @@ async function main() {
   };
 
   for (const relativePath of sourceFiles) {
-    const fullPath = path.join(root, relativePath);
+    if (totalLimitReached(stats)) break;
     const data = readJson(relativePath);
     stats.source_files_scanned += 1;
 
     for (const unit of Array.isArray(data.units) ? data.units : []) {
+      if (totalLimitReached(stats)) break;
       const license = unit.license || data.license || '';
       if (!isAllowedLicense(license)) {
         stats.rejected_units += 1;
@@ -463,11 +469,12 @@ async function main() {
       count(acceptedLicenseCounts, license);
 
       for (let tokenIndex = 0; tokenIndex < tokens.length; tokenIndex += 1) {
+        if (totalLimitReached(stats)) break;
         const token = tokens[tokenIndex];
         stats.token_occurrences += 1;
         count(tokenTotals, token.normalized);
 
-        if (shouldEmit(token.normalized, emittedByToken)) {
+        if (!totalLimitReached(stats) && shouldEmit(token.normalized, emittedByToken)) {
           const row = makeEvidenceRow({
             data,
             unit,
@@ -488,6 +495,7 @@ async function main() {
 
         if (token.maqaf_parts.length > 1) {
           for (const [partIndex, part] of token.maqaf_parts.entries()) {
+            if (totalLimitReached(stats)) break;
             count(tokenTotals, part.normalized);
             if (!shouldEmit(part.normalized, emittedByToken)) continue;
             const row = makeEvidenceRow({
@@ -522,8 +530,12 @@ async function main() {
   stats.accepted_license_counts = sortedObject(acceptedLicenseCounts);
   stats.rejected_license_counts = sortedObject(rejectedLicenseCounts);
 
+  const samplePath = options.localOnly
+    ? `${paths.localDir}/source-phrase-evidence-sample.json`
+    : paths.sample;
+
   writeIndex(paths.index, tokenTotals, emittedByToken);
-  writeJson(paths.sample, {
+  writeJson(samplePath, {
     schema_version: 1,
     generated_at: generatedAt,
     route_policy: 'Phrase rows prove license-safe usage context only; they do not force an English meaning.',
@@ -532,13 +544,17 @@ async function main() {
     window_tokens_each_side: options.window,
     samples,
   });
-  patchManifest(stats);
-  patchReport(stats);
+  if (!options.localOnly) {
+    patchManifest(stats);
+    patchReport(stats);
+  }
 
   console.log(JSON.stringify({
     generated_at: generatedAt,
+    local_only: options.localOnly,
     counts: stats,
     local_cache: paths.localDir,
+    sample: samplePath,
   }, null, 2));
 }
 
