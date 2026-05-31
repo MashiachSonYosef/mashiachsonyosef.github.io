@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const root = process.cwd();
 const defaults = {
   index: 'data/workbench-evidence/public-handoff-index.json',
   output: 'data/workbench-evidence/usage-concordance.json',
   report: 'reports/workbench-usage-concordance.md',
+  manifest: 'data/workbench-evidence/usage-concordance-manifest.json',
   maxReportRows: 5000,
 };
 const eligibleStatuses = new Set(['supported', 'candidate', 'weak']);
@@ -79,9 +81,86 @@ const artifact = {
 
 writeJson(options.output, artifact);
 writeReport(options.report, artifact);
+const manifest = buildManifest(artifact, options);
+writeJson(options.manifest, manifest);
 console.log(`Wrote ${options.output}`);
 console.log(`Wrote ${options.report}`);
+console.log(`Wrote ${options.manifest}`);
 console.log(`Usage concordance rows ${artifact.counts.rows}; supported ${statusCounts.supported}; candidate ${statusCounts.candidate}; weak ${statusCounts.weak}; audit-only ambiguous ${auditOnlyCounts.ambiguous}`);
+
+function buildManifest(artifact, options) {
+  return {
+    schema_version: 1,
+    artifact_type: 'workbench_usage_navigation_concordance_manifest',
+    generated_at: artifact.generated_at,
+    generator: 'scripts/build_workbench_usage_concordance.mjs',
+    handoff_role: 'compact tracked manifest for a regenerated usage-navigation concordance',
+    inputs: {
+      public_handoff_index: options.index,
+    },
+    outputs: {
+      concordance_json: {
+        path: options.output,
+        tracked_in_git: false,
+        reason: 'high-volume generated workbench JSON is intentionally ignored; regenerate with the command below',
+        sha256: fileSha256(options.output),
+      },
+      concordance_report: {
+        path: options.report,
+        tracked_in_git: true,
+        sha256: fileSha256(options.report),
+      },
+      manifest: {
+        path: options.manifest,
+        tracked_in_git: true,
+      },
+    },
+    commands: {
+      regenerate: `node scripts/build_workbench_usage_concordance.mjs --index=${options.index} --output=${options.output} --report=${options.report} --manifest=${options.manifest}`,
+      validate: `node scripts/validate_workbench_usage_concordance.mjs ${options.output} --manifest=${options.manifest}`,
+    },
+    authority_policy: {
+      usage_navigation_only: true,
+      ranks_routes: false,
+      selects_visible_result: false,
+      ambiguous_rows_reader_facing: false,
+      no_route_label: 'observed usage only',
+    },
+    emitted_row_statuses: [...eligibleStatuses],
+    audit_only_statuses: [...auditOnlyStatuses],
+    counts: artifact.counts,
+    row_contract: {
+      required_sections: [
+        'ids',
+        'token',
+        'usage_frame',
+        'status',
+        'occurrence_links',
+        'phrase',
+        'source',
+        'agent2_route_ids',
+        'route_links',
+      ],
+      clickable_links: [
+        'occurrence_links.source_ref.href',
+        'occurrence_links.work_anchor.href',
+      ],
+      forbidden_row_fields: [
+        'definition',
+        'definition_text',
+        'meaning',
+        'meaning_claim',
+        'translation',
+        'translation_text',
+        'english',
+        'english_text',
+        'english_translation',
+        'imported_translation',
+        'final_answer',
+      ],
+    },
+  };
+}
 
 function buildConcordanceRow(row, manifest) {
   const routeLinks = Array.isArray(row.route_links) ? row.route_links.map(compactRouteLink).filter((link) => link.route_id) : [];
@@ -183,6 +262,7 @@ function parseArgs(args) {
     if (arg.startsWith('--index=')) parsed.index = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--manifest=')) parsed.manifest = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--max-report-rows=')) parsed.maxReportRows = Number(valueAfterEquals(arg));
     else throw new Error(`Unknown argument: ${arg}`);
   }
@@ -210,6 +290,11 @@ function writeJson(relativePath, data) {
   const fullPath = path.join(root, cleanRelativePath(relativePath));
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
   fs.writeFileSync(fullPath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
+}
+
+function fileSha256(relativePath) {
+  const fullPath = path.join(root, cleanRelativePath(relativePath));
+  return crypto.createHash('sha256').update(fs.readFileSync(fullPath)).digest('hex');
 }
 
 function writeReport(relativePath, artifact) {

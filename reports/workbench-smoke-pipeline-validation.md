@@ -16,6 +16,7 @@ Generated: 2026-05-31T16:14:11.679Z
 - Public handoff index: 55 selected, validation failed 0, eligible 2390, ambiguous count-only 2064, zero-useful 0, ambiguous reader-facing no
 - Public handoff quality/license: quality pass_with_warnings, license passed, blocked license rows 0, blocked licenses 0
 - Usage concordance: rows 2390, supported 339, candidate 1351, weak 700, route-linked 2390, observed-only 0, audit-only ambiguous 2064, ambiguous reader-facing no
+- Usage concordance manifest: present, JSON tracked no, report tracked yes
 - Public handoff integrity: passed, files 275, matched 275, missing 0, mismatched 0, unexpected 0
 - Candidate artifact audit quality: pass_with_warnings, warnings 2, broad queue blocked yes, orphan smoke review yes
 - Candidate artifact audit: useful 59, zero-useful non-smoke 30, orphan smoke 2
@@ -32,7 +33,7 @@ Generated: 2026-05-31T16:14:11.679Z
 | validate_complete_handoff_index | passed | Workbench handoff index validation passed. Manifests: 55. Candidates: 4454. |
 | build_public_handoff_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/public-handoff-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/public-handoff-index.md / Public handoff index selected 55; validation passed 55; failed 0; reader-facing eligible rows 2390; ambiguous count-only rows 2064 |
 | validate_public_handoff_index | passed | Workbench public handoff index validation passed. Manifests: 55. Eligible rows: 2390. Ambiguous count-only rows: 2064. Quality: pass_with_warnings. Top frame: reshit-opening-time-order (1271 eligible). |
-| build_usage_concordance | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance.md / Usage concordance rows 2390; supported 339; candidate 1351; weak 700; audit-only ambiguous 2064 |
+| build_usage_concordance | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance.md / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-manifest.json / Usage concordance rows 2390; supported 339; candidate 1351; weak 700; audit-only ambiguous 2064 |
 | validate_usage_concordance | passed | Workbench usage concordance validation passed. Rows: 2390. Supported: 339. Candidate: 1351. Weak: 700. Audit-only ambiguous: 2064. |
 | check_public_handoff_integrity | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/public-handoff-integrity-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/public-handoff-integrity-check.md / Public handoff integrity passed; files 275; matched 275; missing 0; mismatched 0; unexpected 0 |
 | audit_candidate_artifacts | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/candidate-artifact-audit.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/candidate-artifact-audit.md / Artifacts 89; useful 59; zero useful 30; zero useful non-smoke 30; orphan smoke 2; quality pass_with_warnings |

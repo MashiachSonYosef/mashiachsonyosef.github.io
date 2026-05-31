@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "artifact_type": "workbench_usage_navigation_concordance_manifest",
+  "generated_at": "2026-05-31T17:00:02.713Z",
+  "generator": "scripts/build_workbench_usage_concordance.mjs",
+  "handoff_role": "compact tracked manifest for a regenerated usage-navigation concordance",
+  "inputs": {
+    "public_handoff_index": "data/workbench-evidence/public-handoff-index.json"
+  },
+  "outputs": {
+    "concordance_json": {
+      "path": "data/workbench-evidence/usage-concordance.json",
+      "tracked_in_git": false,
+      "reason": "high-volume generated workbench JSON is intentionally ignored; regenerate with the command below",
+      "sha256": "29d1efe174214c9316b3565efba4f065ece1fdb507a054a2a77e4ebbcf390793"
+    },
+    "concordance_report": {
+      "path": "reports/workbench-usage-concordance.md",
+      "tracked_in_git": true,
+      "sha256": "79029eeeddc7a6ec1c023992e0f768a32af543f12997e0c86e7f1b6b026c73a9"
+    },
+    "manifest": {
+      "path": "data/workbench-evidence/usage-concordance-manifest.json",
+      "tracked_in_git": true
+    }
+  },
+  "commands": {
+    "regenerate": "node scripts/build_workbench_usage_concordance.mjs --index=data/workbench-evidence/public-handoff-index.json --output=data/workbench-evidence/usage-concordance.json --report=reports/workbench-usage-concordance.md --manifest=data/workbench-evidence/usage-concordance-manifest.json",
+    "validate": "node scripts/validate_workbench_usage_concordance.mjs data/workbench-evidence/usage-concordance.json --manifest=data/workbench-evidence/usage-concordance-manifest.json"
+  },
+  "authority_policy": {
+    "usage_navigation_only": true,
+    "ranks_routes": false,
+    "selects_visible_result": false,
+    "ambiguous_rows_reader_facing": false,
+    "no_route_label": "observed usage only"
+  },
+  "emitted_row_statuses": [
+    "supported",
+    "candidate",
+    "weak"
+  ],
+  "audit_only_statuses": [
+    "ambiguous",
+    "blocked"
+  ],
+  "counts": {
+    "rows": 2390,
+    "selected_manifests": 55,
+    "status_counts": {
+      "supported": 339,
+      "candidate": 1351,
+      "weak": 700
+    },
+    "route_link_state_counts": {
+      "route_linked_observed_usage": 2390,
+      "observed_usage_only": 0
+    },
+    "audit_only_counts": {
+      "ambiguous": 2064,
+      "blocked": 0
+    }
+  },
+  "row_contract": {
+    "required_sections": [
+      "ids",
+      "token",
+      "usage_frame",
+      "status",
+      "occurrence_links",
+      "phrase",
+      "source",
+      "agent2_route_ids",
+      "route_links"
+    ],
+    "clickable_links": [
+      "occurrence_links.source_ref.href",
+      "occurrence_links.work_anchor.href"
+    ],
+    "forbidden_row_fields": [
+      "definition",
+      "definition_text",
+      "meaning",
+      "meaning_claim",
+      "translation",
+      "translation_text",
+      "english",
+      "english_text",
+      "english_translation",
+      "imported_translation",
+      "final_answer"
+    ]
+  }
+}

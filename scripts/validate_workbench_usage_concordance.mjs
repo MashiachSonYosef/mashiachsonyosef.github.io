@@ -3,8 +3,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const concordancePath = cleanRelativePath(process.argv[2] || 'data/workbench-evidence/usage-concordance.json');
+const options = parseArgs(process.argv.slice(2));
+const concordancePath = options.concordance;
 const artifact = readJson(concordancePath);
+const manifest = options.manifest ? readJson(options.manifest) : null;
 const issues = [];
 const eligibleStatuses = new Set(['supported', 'candidate', 'weak']);
 const forbiddenFieldNames = new Set([
@@ -45,6 +47,7 @@ for (const [index, row] of (artifact.rows || []).entries()) {
   validateRow(row, `rows[${index}]`);
 }
 validateCounts();
+if (manifest) validateManifest(manifest);
 walkNoForbiddenFields(artifact, concordancePath);
 
 if (issues.length) {
@@ -54,6 +57,50 @@ if (issues.length) {
 }
 
 console.log(`Workbench usage concordance validation passed. Rows: ${artifact.rows.length}. Supported: ${expectedStatusCounts.supported}. Candidate: ${expectedStatusCounts.candidate}. Weak: ${expectedStatusCounts.weak}. Audit-only ambiguous: ${artifact.counts?.audit_only_counts?.ambiguous ?? 0}.`);
+
+function validateManifest(manifest) {
+  if (manifest.schema_version !== 1) issues.push('manifest.schema_version must be 1');
+  if (manifest.artifact_type !== 'workbench_usage_navigation_concordance_manifest') {
+    issues.push('manifest.artifact_type must be workbench_usage_navigation_concordance_manifest');
+  }
+  if (manifest.outputs?.concordance_json?.tracked_in_git !== false) {
+    issues.push('manifest.outputs.concordance_json.tracked_in_git must be false');
+  }
+  if (manifest.outputs?.concordance_report?.tracked_in_git !== true) {
+    issues.push('manifest.outputs.concordance_report.tracked_in_git must be true');
+  }
+  if (manifest.outputs?.manifest?.tracked_in_git !== true) {
+    issues.push('manifest.outputs.manifest.tracked_in_git must be true');
+  }
+  if (manifest.authority_policy?.usage_navigation_only !== true) issues.push('manifest.authority_policy.usage_navigation_only must be true');
+  if (manifest.authority_policy?.ranks_routes !== false) issues.push('manifest.authority_policy.ranks_routes must be false');
+  if (manifest.authority_policy?.selects_visible_result !== false) issues.push('manifest.authority_policy.selects_visible_result must be false');
+  if (manifest.authority_policy?.ambiguous_rows_reader_facing !== false) {
+    issues.push('manifest.authority_policy.ambiguous_rows_reader_facing must be false');
+  }
+  if (!sameList(manifest.emitted_row_statuses, ['supported', 'candidate', 'weak'])) {
+    issues.push('manifest.emitted_row_statuses must be supported,candidate,weak');
+  }
+  if (!sameList(manifest.audit_only_statuses, ['ambiguous', 'blocked'])) {
+    issues.push('manifest.audit_only_statuses must be ambiguous,blocked');
+  }
+  if (JSON.stringify(manifest.counts || {}) !== JSON.stringify(artifact.counts || {})) {
+    issues.push('manifest.counts must match concordance counts');
+  }
+  for (const field of ['regenerate', 'validate']) {
+    if (!String(manifest.commands?.[field] || '').includes('usage_concordance')) {
+      issues.push(`manifest.commands.${field} must reference usage concordance scripts`);
+    }
+  }
+  const requiredSections = manifest.row_contract?.required_sections || [];
+  for (const field of ['ids', 'token', 'usage_frame', 'status', 'occurrence_links', 'phrase', 'source', 'agent2_route_ids', 'route_links']) {
+    if (!requiredSections.includes(field)) issues.push(`manifest.row_contract.required_sections missing ${field}`);
+  }
+  const forbiddenRows = manifest.row_contract?.forbidden_row_fields || [];
+  for (const field of forbiddenFieldNames) {
+    if (!forbiddenRows.includes(field)) issues.push(`manifest.row_contract.forbidden_row_fields missing ${field}`);
+  }
+}
 
 function validateRow(row, context) {
   for (const field of ['row_role', 'observed_usage_only', 'navigation_label', 'route_link_state', 'authority', 'ids', 'token', 'usage_frame', 'status', 'occurrence_links', 'phrase', 'source', 'agent2_route_ids', 'route_links']) {
@@ -148,8 +195,28 @@ function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, cleanRelativePath(relativePath)), 'utf8'));
 }
 
+function parseArgs(args) {
+  const parsed = {
+    concordance: 'data/workbench-evidence/usage-concordance.json',
+    manifest: null,
+  };
+  for (const arg of args) {
+    if (arg.startsWith('--manifest=')) parsed.manifest = cleanRelativePath(valueAfterEquals(arg));
+    else if (!arg.startsWith('--') && parsed.concordance === 'data/workbench-evidence/usage-concordance.json') {
+      parsed.concordance = cleanRelativePath(arg);
+    } else {
+      throw new Error(`Unknown argument: ${arg}`);
+    }
+  }
+  return parsed;
+}
+
 function cleanRelativePath(value) {
   return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+}
+
+function valueAfterEquals(arg) {
+  return arg.split('=').slice(1).join('=');
 }
 
 function sameList(value, expected) {
