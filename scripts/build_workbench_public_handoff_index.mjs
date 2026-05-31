@@ -26,6 +26,7 @@ const manifests = targets.map((target, index) => inspectManifest(target, index))
 const aggregateSourceMetadata = summarizeSourceMetadata(manifests);
 const aggregateClusterMetadata = summarizeClusterMetadata(manifests);
 const aggregateRouteLinkMetadata = summarizeRouteLinkMetadata(manifests);
+const aggregateScoreMetadata = summarizeScoreMetadata(manifests);
 const integritySummary = summarizeFileIntegrity(manifests);
 const totals = manifests.reduce((sum, row) => {
   sum.selected_targets += 1;
@@ -106,6 +107,7 @@ const artifact = {
   aggregate_source_metadata: aggregateSourceMetadata,
   aggregate_cluster_metadata: aggregateClusterMetadata,
   aggregate_route_link_metadata: aggregateRouteLinkMetadata,
+  aggregate_score_metadata: aggregateScoreMetadata,
   integrity_summary: integritySummary,
   counts: totals,
   manifests,
@@ -161,6 +163,7 @@ function inspectManifest(target, index) {
   const workCounts = new Map();
   const clusterCounts = new Map();
   const routeLinkCounts = makeRouteLinkAccumulator();
+  const scoreCounts = makeScoreAccumulator();
 
   for (const row of candidateRows) {
     validateCandidateRow(row, occurrenceIds, issues);
@@ -170,6 +173,7 @@ function inspectManifest(target, index) {
     increment(workCounts, row.work_id || 'missing');
     increment(clusterCounts, row.cluster_id || 'unclustered');
     addRouteLinks(routeLinkCounts, row.route_links);
+    addScore(scoreCounts, status, row.raw_score);
   }
   statusCounts.blocked += blockedRows.length;
 
@@ -192,6 +196,7 @@ function inspectManifest(target, index) {
     workCounts,
     clusterSummaries,
     routeLinkCounts,
+    scoreCounts,
   });
 }
 
@@ -224,6 +229,7 @@ function makeManifestRow(target, index, slug, manifestPath, manifest, validation
     license_counts: topCounts(details.licenseCounts || new Map(), 12),
     work_counts: topCounts(details.workCounts || new Map(), 12),
     route_link_summary: summarizeRouteLinks(details.routeLinkCounts || makeRouteLinkAccumulator()),
+    score_summary: summarizeScores(details.scoreCounts || makeScoreAccumulator()),
   };
 }
 
@@ -523,6 +529,80 @@ function summarizeRouteLinkMetadata(manifests) {
   return summarizeRouteLinks(totals);
 }
 
+function summarizeScoreMetadata(manifests) {
+  const accumulator = makeScoreAccumulator();
+  for (const manifest of manifests) {
+    mergeScoreSummary(accumulator, manifest.score_summary);
+  }
+  return summarizeScores(accumulator);
+}
+
+function makeScoreAccumulator() {
+  return {
+    supported: makeScoreBucket(),
+    candidate: makeScoreBucket(),
+    weak: makeScoreBucket(),
+    ambiguous: makeScoreBucket(),
+  };
+}
+
+function makeScoreBucket() {
+  return {
+    rows: 0,
+    sum: 0,
+    min: null,
+    max: null,
+  };
+}
+
+function addScore(accumulator, status, rawScore) {
+  const bucket = accumulator[status] || accumulator.ambiguous;
+  const score = Number(rawScore);
+  if (!Number.isFinite(score)) return;
+  bucket.rows += 1;
+  bucket.sum += score;
+  bucket.min = bucket.min === null ? score : Math.min(bucket.min, score);
+  bucket.max = bucket.max === null ? score : Math.max(bucket.max, score);
+}
+
+function mergeScoreSummary(accumulator, summary) {
+  const byStatus = summary?.by_status || {};
+  for (const status of Object.keys(accumulator)) {
+    const row = byStatus[status];
+    if (!row) continue;
+    const bucket = accumulator[status];
+    const rows = Number(row.rows || 0);
+    const sum = Number(row.sum_raw_score || 0);
+    bucket.rows += rows;
+    bucket.sum += sum;
+    if (row.min_raw_score !== null && row.min_raw_score !== undefined) {
+      const min = Number(row.min_raw_score);
+      if (Number.isFinite(min)) bucket.min = bucket.min === null ? min : Math.min(bucket.min, min);
+    }
+    if (row.max_raw_score !== null && row.max_raw_score !== undefined) {
+      const max = Number(row.max_raw_score);
+      if (Number.isFinite(max)) bucket.max = bucket.max === null ? max : Math.max(bucket.max, max);
+    }
+  }
+}
+
+function summarizeScores(accumulator) {
+  const byStatus = {};
+  for (const [status, bucket] of Object.entries(accumulator)) {
+    byStatus[status] = {
+      rows: bucket.rows,
+      min_raw_score: bucket.rows ? bucket.min : null,
+      max_raw_score: bucket.rows ? bucket.max : null,
+      average_raw_score: bucket.rows ? Number((bucket.sum / bucket.rows).toFixed(2)) : null,
+      sum_raw_score: Number(bucket.sum.toFixed(6)),
+    };
+  }
+  return {
+    by_status: byStatus,
+    notes: 'Raw scores summarize source-fit candidate rows only. They are not adjusted scores and do not choose final HUD winners.',
+  };
+}
+
 function makeRouteLinkAccumulator() {
   return {
     linkedRows: 0,
@@ -660,6 +740,15 @@ function writeReport(relativePath, artifact) {
     '| route family | links |',
     '|---|---:|',
     ...artifact.aggregate_route_link_metadata.route_family_counts.map((row) => `| ${mdCell(row.value)} | ${row.count} |`),
+    '',
+    '## Raw Score Summary',
+    '',
+    '| status | rows | min | max | average |',
+    '|---|---:|---:|---:|---:|',
+    ...['supported', 'candidate', 'weak', 'ambiguous'].map((status) => {
+      const row = artifact.aggregate_score_metadata.by_status[status];
+      return `| ${status} | ${row.rows} | ${row.min_raw_score ?? 'n/a'} | ${row.max_raw_score ?? 'n/a'} | ${row.average_raw_score ?? 'n/a'} |`;
+    }),
     '',
     '## Usage Frame Summary',
     '',

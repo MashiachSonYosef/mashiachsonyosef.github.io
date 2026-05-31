@@ -11,6 +11,7 @@ const expectedLicenseCounts = new Map();
 const expectedWorkCounts = new Map();
 const expectedClusterCounts = new Map();
 const expectedRouteLinkMetadata = makeRouteLinkAccumulator();
+const expectedScoreMetadata = makeScoreAccumulator();
 const expectedIntegritySummary = {
   files: 0,
   existing_files: 0,
@@ -76,6 +77,7 @@ validateQualityGates(artifact.quality_gates);
 validateAggregateSourceMetadata(artifact.aggregate_source_metadata);
 validateAggregateClusterMetadata(artifact.aggregate_cluster_metadata);
 validateAggregateRouteLinkMetadata(artifact.aggregate_route_link_metadata);
+validateAggregateScoreMetadata(artifact.aggregate_score_metadata);
 validateIntegritySummary(artifact.integrity_summary);
 
 walkNoRowPayloads(artifact, indexPath);
@@ -152,6 +154,8 @@ function validateManifest(row, context) {
   }
   validateRouteLinkSummary(row.route_link_summary, `${context}.route_link_summary`, Number(row.counts?.candidate_rows || 0));
   incrementRouteLinkSummary(expectedRouteLinkMetadata, row.route_link_summary);
+  validateScoreSummary(row.score_summary, `${context}.score_summary`, row.status_counts || {});
+  incrementScoreSummary(expectedScoreMetadata, row.score_summary);
 }
 
 function validateStatusSemantics(semantics) {
@@ -402,6 +406,22 @@ function validateAggregateRouteLinkMetadata(metadata) {
   validateCountList(metadata.route_source_counts, expectedSummary.route_source_counts, 'aggregate_route_link_metadata.route_source_counts');
 }
 
+function validateAggregateScoreMetadata(metadata) {
+  if (!metadata || typeof metadata !== 'object') {
+    issues.push('aggregate_score_metadata must be present');
+    return;
+  }
+  validateScoreSummary(metadata, 'aggregate_score_metadata', expected.status_counts);
+  const expectedSummary = summarizeScores(expectedScoreMetadata);
+  for (const status of ['supported', 'candidate', 'weak', 'ambiguous']) {
+    compareScoreBucket(
+      metadata.by_status?.[status],
+      expectedSummary.by_status[status],
+      `aggregate_score_metadata.by_status.${status}`,
+    );
+  }
+}
+
 function validateFileIntegrity(fileIntegrity, context, requirePresent) {
   if (!fileIntegrity || typeof fileIntegrity !== 'object') {
     issues.push(`${context} must be present`);
@@ -568,6 +588,67 @@ function validateRouteLinkSummary(row, context, candidateRows) {
   }
 }
 
+function validateScoreSummary(summary, context, statusCounts) {
+  if (!summary || typeof summary !== 'object') {
+    issues.push(`${context}: must be present`);
+    return;
+  }
+  if (!summary.by_status || typeof summary.by_status !== 'object') {
+    issues.push(`${context}.by_status must be present`);
+    return;
+  }
+  for (const status of ['supported', 'candidate', 'weak', 'ambiguous']) {
+    const row = summary.by_status[status];
+    const expectedRows = Number(statusCounts?.[status] || 0);
+    if (!row || typeof row !== 'object') {
+      issues.push(`${context}.by_status.${status}: must be present`);
+      continue;
+    }
+    const rows = Number(row.rows || 0);
+    if (!Number.isInteger(rows) || rows < 0) issues.push(`${context}.by_status.${status}.rows must be a non-negative integer`);
+    if (rows !== expectedRows) issues.push(`${context}.by_status.${status}.rows expected ${expectedRows}, found ${row.rows}`);
+    validateScoreBucket(row, `${context}.by_status.${status}`);
+  }
+}
+
+function validateScoreBucket(row, context) {
+  const rows = Number(row.rows || 0);
+  const sum = Number(row.sum_raw_score || 0);
+  if (!Number.isFinite(sum) || sum < 0) issues.push(`${context}.sum_raw_score must be a non-negative number`);
+  if (rows === 0) {
+    for (const key of ['min_raw_score', 'max_raw_score', 'average_raw_score']) {
+      if (row[key] !== null) issues.push(`${context}.${key} must be null when rows is 0`);
+    }
+    return;
+  }
+  for (const key of ['min_raw_score', 'max_raw_score', 'average_raw_score']) {
+    const value = Number(row[key]);
+    if (!Number.isFinite(value) || value < 0) issues.push(`${context}.${key} must be a non-negative number`);
+  }
+  if (Number(row.min_raw_score) > Number(row.max_raw_score)) issues.push(`${context}.min_raw_score must be <= max_raw_score`);
+  const expectedAverage = Number((sum / rows).toFixed(2));
+  if (Number(row.average_raw_score) !== expectedAverage) {
+    issues.push(`${context}.average_raw_score expected ${expectedAverage}, found ${row.average_raw_score}`);
+  }
+}
+
+function compareScoreBucket(actual, expectedRow, context) {
+  if (!actual || typeof actual !== 'object') {
+    issues.push(`${context}: must be present`);
+    return;
+  }
+  for (const key of ['rows', 'sum_raw_score']) {
+    if (Number(actual[key] || 0) !== Number(expectedRow[key] || 0)) {
+      issues.push(`${context}.${key} expected ${expectedRow[key]}, found ${actual[key]}`);
+    }
+  }
+  for (const key of ['min_raw_score', 'max_raw_score', 'average_raw_score']) {
+    if ((actual[key] ?? null) !== (expectedRow[key] ?? null)) {
+      issues.push(`${context}.${key} expected ${expectedRow[key]}, found ${actual[key]}`);
+    }
+  }
+}
+
 function incrementCluster(map, row) {
   const clusterId = String(row.cluster_id || 'unclustered');
   const existing = map.get(clusterId) || {
@@ -620,6 +701,59 @@ function summarizeRouteLinks(accumulator) {
     route_type_counts: topCounts(accumulator.routeTypes || new Map(), 20),
     route_source_counts: topCounts(accumulator.routeSources || new Map(), 20),
   };
+}
+
+function makeScoreAccumulator() {
+  return {
+    supported: makeScoreBucket(),
+    candidate: makeScoreBucket(),
+    weak: makeScoreBucket(),
+    ambiguous: makeScoreBucket(),
+  };
+}
+
+function makeScoreBucket() {
+  return {
+    rows: 0,
+    sum: 0,
+    min: null,
+    max: null,
+  };
+}
+
+function incrementScoreSummary(accumulator, summary) {
+  const byStatus = summary?.by_status || {};
+  for (const status of Object.keys(accumulator)) {
+    const row = byStatus[status];
+    if (!row) continue;
+    const bucket = accumulator[status];
+    const rows = Number(row.rows || 0);
+    const sum = Number(row.sum_raw_score || 0);
+    bucket.rows += rows;
+    bucket.sum += sum;
+    if (row.min_raw_score !== null && row.min_raw_score !== undefined) {
+      const min = Number(row.min_raw_score);
+      if (Number.isFinite(min)) bucket.min = bucket.min === null ? min : Math.min(bucket.min, min);
+    }
+    if (row.max_raw_score !== null && row.max_raw_score !== undefined) {
+      const max = Number(row.max_raw_score);
+      if (Number.isFinite(max)) bucket.max = bucket.max === null ? max : Math.max(bucket.max, max);
+    }
+  }
+}
+
+function summarizeScores(accumulator) {
+  const byStatus = {};
+  for (const [status, bucket] of Object.entries(accumulator)) {
+    byStatus[status] = {
+      rows: bucket.rows,
+      min_raw_score: bucket.rows ? bucket.min : null,
+      max_raw_score: bucket.rows ? bucket.max : null,
+      average_raw_score: bucket.rows ? Number((bucket.sum / bucket.rows).toFixed(2)) : null,
+      sum_raw_score: Number(bucket.sum.toFixed(6)),
+    };
+  }
+  return { by_status: byStatus };
 }
 
 function addIntegrity(kind, exists, bytes) {

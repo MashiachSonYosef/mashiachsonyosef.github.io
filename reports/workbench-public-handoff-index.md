@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T16:23:01.987Z
+Generated: 2026-05-31T16:27:19.566Z
 
 ## Summary
 
@@ -82,6 +82,15 @@ Generated: 2026-05-31T16:23:01.987Z
 | route family | links |
 |---|---:|
 | wiktionary_definition | 2390 |
+
+## Raw Score Summary
+
+| status | rows | min | max | average |
+|---|---:|---:|---:|---:|
+| supported | 339 | 90 | 99 | 95.63 |
+| candidate | 1351 | 71 | 88 | 75.36 |
+| weak | 700 | 63 | 69 | 66.23 |
+| ambiguous | 2064 | 0 | 0 | 0 |
 
 ## Usage Frame Summary
 
