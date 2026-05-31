@@ -1,6 +1,7 @@
 const data = JSON.parse(document.getElementById("hud-route-data").textContent);
 const samples = data.fixtures.samples || [];
 const storeSamples = new Map((data.storeSample.sample_tokens || []).map((row) => [row.normalized, row]));
+const lookupSamples = new Map((data.lookupSample?.sample_tokens || []).map((row) => [row.normalized, row]));
 const tokenList = document.querySelector("[data-token-list]");
 const panel = document.querySelector("[data-hud-panel]");
 
@@ -81,6 +82,20 @@ function renderAudit(sample, storeRow) {
     </section>`;
 }
 
+function renderLookupMeta(sample, row) {
+  const normalized = row?.normalized || sample.normalized || "";
+  return `
+    <section class="audit-card">
+      <h3>Lookup shard path</h3>
+      <div class="audit-grid">
+        <p><strong>Normalized key:</strong> <span lang="he" dir="rtl">${escapeHtml(normalized)}</span></p>
+        <p><strong>Shard:</strong> ${escapeHtml(row?.shard_path || row?.shard || "not present in lookup sample")}</p>
+        <p><strong>Cards for this key:</strong> ${escapeHtml(row?.card_count ?? 0)}</p>
+        <p><strong>Sample cards shown:</strong> ${escapeHtml(row?.sample_card_count ?? 0)}</p>
+      </div>
+    </section>`;
+}
+
 function renderSources(rows = []) {
   return `
     <section class="source-license-card">
@@ -100,6 +115,7 @@ function renderSources(rows = []) {
 function setActive(index) {
   const sample = samples[index] || samples[0];
   const storeRow = storeSamples.get(sample.normalized);
+  const lookupRow = lookupSamples.get(sample.normalized);
   tokenList.querySelectorAll("button").forEach((button) => {
     button.setAttribute("aria-pressed", button.dataset.index === String(index) ? "true" : "false");
   });
@@ -109,10 +125,17 @@ function setActive(index) {
     card_count: storeRow.cards.length,
     cards: storeRow.cards.map((card) => ({ ...card, hebrew: card.surface })),
   } : null;
+  const lookupCards = lookupRow && lookupRow.cards && lookupRow.cards.length ? {
+    title: "Lookup shard direct cards",
+    card_count: lookupRow.cards.length,
+    cards: lookupRow.cards.map((card) => ({ ...card, hebrew: card.surface })),
+  } : null;
   panel.innerHTML = `
     <div class="selected-token" lang="he" dir="rtl">${escapeHtml(sample.token)}</div>
     ${sample.answer_card ? renderCard(sample.answer_card, "answer") : '<section class="answer-card"><p class="definition">No winning route for this token yet.</p></section>'}
     ${routeSections.map(renderSection).join("")}
+    ${renderLookupMeta(sample, lookupRow)}
+    ${lookupCards ? renderSection(lookupCards) : ""}
     ${storeCards ? renderSection(storeCards) : ""}
     ${renderAudit(sample, storeRow)}
     ${renderSources(sample.source_license_groups || [])}`;

@@ -7,6 +7,7 @@ const root = process.cwd();
 const defaults = {
   fixtures: 'data/definitions/hud-route-fixtures.json',
   storeSample: 'data/definitions/hud-route-store-sample.json',
+  lookupSample: 'data/definitions/hud-route-lookup-sample.json',
   contract: 'data/definitions/hud-route-contract.json',
   out: 'hud-preview/routes/index.html',
 };
@@ -17,6 +18,7 @@ function parseArgs(argv) {
     const arg = argv[i];
     if (arg === '--fixtures') args.fixtures = argv[++i];
     else if (arg === '--store-sample') args.storeSample = argv[++i];
+    else if (arg === '--lookup-sample') args.lookupSample = argv[++i];
     else if (arg === '--contract') args.contract = argv[++i];
     else if (arg === '--out') args.out = argv[++i];
     else if (arg === '--help' || arg === '-h') args.help = true;
@@ -33,6 +35,7 @@ function usage() {
     'Options:',
     '  --fixtures data/definitions/hud-route-fixtures.json',
     '  --store-sample data/definitions/hud-route-store-sample.json',
+    '  --lookup-sample data/definitions/hud-route-lookup-sample.json',
     '  --contract data/definitions/hud-route-contract.json',
     '  --out hud-preview/routes/index.html',
   ].join('\n');
@@ -49,8 +52,8 @@ function jsonForHtml(value) {
     .replace(/&/g, '\\u0026');
 }
 
-function renderPage({ fixtures, storeSample, contract }) {
-  const payload = jsonForHtml({ fixtures, storeSample, contract });
+function renderPage({ fixtures, storeSample, lookupSample, contract }) {
+  const payload = jsonForHtml({ fixtures, storeSample, lookupSample, contract });
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,7 +130,7 @@ function renderPage({ fixtures, storeSample, contract }) {
       <div class="hero">
         <p><a href="../">Back to HUD preview</a> | <a href="../../">Back to library</a></p>
         <h1>Route Contract HUD Preview</h1>
-        <p>This preview is generated from the committed HUD route contract, route fixtures, and route-store sample. It is the bridge between the data pipeline and a future sitewide HUD replacement.</p>
+        <p>This preview is generated from the committed HUD route contract, route fixtures, route-store sample, and lookup-shard sample. It is the bridge between the data pipeline and a future sitewide HUD replacement.</p>
         <p>No public English source translation is imported here. Definition cards are source-layered lexical claims; phrase cards are Hebrew usage evidence only.</p>
       </div>
       <div class="layout">
@@ -151,8 +154,9 @@ if (args.help) {
 
 const fixtures = readJson(args.fixtures);
 const storeSample = readJson(args.storeSample);
+const lookupSample = readJson(args.lookupSample);
 const contract = readJson(args.contract);
-const html = renderPage({ fixtures, storeSample, contract });
+const html = renderPage({ fixtures, storeSample, lookupSample, contract });
 const outPath = path.join(root, args.out);
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, html, 'utf8');

@@ -45,6 +45,7 @@ for (const required of [
   'Licensed phrase use',
   'Full source and license rows',
   'Tiny checks only',
+  'Lookup shard path',
   'grid-auto-flow: column',
   'document.addEventListener("wheel"',
   'passive: false',
@@ -68,6 +69,9 @@ if (!jsonMatch) {
     }
     if (!Array.isArray(data.storeSample?.sample_tokens) || !data.storeSample.sample_tokens.length) {
       issues.push('embedded route-store sample is empty');
+    }
+    if (!Array.isArray(data.lookupSample?.sample_tokens) || !data.lookupSample.sample_tokens.length) {
+      issues.push('embedded route-lookup sample is empty');
     }
   } catch (error) {
     issues.push(`embedded JSON does not parse: ${error.message}`);
