@@ -28,6 +28,11 @@ function readJson(filePath) {
 
 function safeLicense(row) {
   const license = String(row?.license || '').trim();
+  if (license === 'N/A - project lexical rule') {
+    return row?.source_family === 'workspace'
+      && String(row?.source_url || '').startsWith('local:')
+      && /No external dictionary text imported/i.test(String(row?.notes || ''));
+  }
   return allowedLicensePatterns.some((pattern) => pattern.test(license));
 }
 
@@ -78,9 +83,27 @@ function validateCard(card, context, issues) {
   for (const [index, row] of (card.source_rows || []).entries()) {
     if (!safeLicense(row)) issues.push(`${context}.source_rows[${index}]: unsafe or unclear license ${row?.license || 'missing'}`);
   }
-  walkStrings(card, (text) => {
+  for (const text of policyStringsForCard(card)) {
     if (forbiddenTextRe.test(text)) issues.push(`${context}: forbidden text ${text.slice(0, 120)}`);
-  });
+  }
+}
+
+function policyStringsForCard(card) {
+  const values = [
+    card?.route_family,
+    card?.route_type,
+    card?.display_section,
+    card?.display_label,
+    card?.match_type,
+    card?.plain_note,
+    card?.meaning_quality,
+    card?.answer_role,
+    card?.candidate_status,
+  ];
+  for (const row of card?.source_rows || []) {
+    values.push(row?.source_name, row?.source_family, row?.license, row?.notes);
+  }
+  return values.filter((value) => typeof value === 'string' && value);
 }
 
 async function firstCardsFromShard(shardPath, limit) {

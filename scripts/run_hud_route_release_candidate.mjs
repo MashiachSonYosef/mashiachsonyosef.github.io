@@ -57,6 +57,10 @@ const steps = [
   nodeStep('validate public HUD route lookup structure', 'scripts/validate_public_hud_route_lookup.mjs', [
     '--skip-release-stamp',
   ]),
+  nodeStep('scan public HUD route cards', 'scripts/validate_public_hud_route_cards.mjs', [
+    '--manifest', publicManifest,
+    '--report', 'reports/public-hud-route-card-scan.md',
+  ]),
   nodeStep('stamp HUD route release', 'scripts/stamp_hud_route_release.mjs', [
     '--freeze-manifest', frozenManifest,
     '--store-manifest', storeManifest,
