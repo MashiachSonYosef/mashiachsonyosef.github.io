@@ -27,6 +27,7 @@ if (!Array.isArray(artifact.manifests) || !artifact.manifests.length) issues.pus
 if (artifact.reader_facing_policy?.ambiguous_rows_reader_facing !== false) {
   issues.push('reader_facing_policy.ambiguous_rows_reader_facing must be false');
 }
+validateConsumerContract(artifact.consumer_contract);
 
 const expected = {
   selected_targets: 0,
@@ -107,6 +108,24 @@ function validateManifest(row, context) {
   }
 }
 
+function validateConsumerContract(contract) {
+  if (!contract || typeof contract !== 'object') {
+    issues.push('consumer_contract must be present');
+    return;
+  }
+  if (contract.artifact_role !== 'usage_evidence_index') issues.push('consumer_contract.artifact_role must be usage_evidence_index');
+  if (contract.evidence_model !== 'graph_first_candidate_second') issues.push('consumer_contract.evidence_model must be graph_first_candidate_second');
+  if (!sameList(contract.downstream_visible_statuses, ['supported', 'candidate', 'weak'])) {
+    issues.push('consumer_contract.downstream_visible_statuses must be supported,candidate,weak');
+  }
+  if (!sameList(contract.audit_only_statuses, ['ambiguous', 'blocked'])) {
+    issues.push('consumer_contract.audit_only_statuses must be ambiguous,blocked');
+  }
+  if (contract.final_ranking_authority !== false) issues.push('consumer_contract.final_ranking_authority must be false');
+  if (contract.visible_answer_authority !== false) issues.push('consumer_contract.visible_answer_authority must be false');
+  if (contract.carries_text_rows !== false) issues.push('consumer_contract.carries_text_rows must be false');
+}
+
 function walkNoRowPayloads(value, context, pathParts = []) {
   if (Array.isArray(value)) {
     value.forEach((item, index) => walkNoRowPayloads(item, context, [...pathParts, String(index)]));
@@ -128,4 +147,10 @@ function readJson(relativePath) {
 
 function cleanRelativePath(value) {
   return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+}
+
+function sameList(value, expected) {
+  return Array.isArray(value)
+    && value.length === expected.length
+    && value.every((item, index) => item === expected[index]);
 }

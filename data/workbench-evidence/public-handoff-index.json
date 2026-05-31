@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "workbench_public_handoff_index",
-  "generated_at": "2026-05-31T15:18:17.256Z",
+  "generated_at": "2026-05-31T15:32:20.242Z",
   "generator": "scripts/build_workbench_public_handoff_index.mjs",
   "policy": "Public index of selected workbench usage-evidence handoff packages. It is not a definition artifact and does not choose HUD winners. Ambiguous rows are counted for audit only and are not reader-facing eligible.",
   "inputs": {
@@ -21,6 +21,23 @@
     ],
     "ambiguous_rows_reader_facing": false,
     "notes": "Downstream HUD/ranking may consume eligible statuses as usage evidence. Ambiguous rows remain audit-only unless a later validated frame seed changes their status."
+  },
+  "consumer_contract": {
+    "artifact_role": "usage_evidence_index",
+    "evidence_model": "graph_first_candidate_second",
+    "downstream_visible_statuses": [
+      "supported",
+      "candidate",
+      "weak"
+    ],
+    "audit_only_statuses": [
+      "ambiguous",
+      "blocked"
+    ],
+    "final_ranking_authority": false,
+    "visible_answer_authority": false,
+    "carries_text_rows": false,
+    "notes": "Consumers can link to selected handoff manifests and counts. They must not treat this index as final ranking, source translation, or definition discovery output."
   },
   "counts": {
     "selected_targets": 55,

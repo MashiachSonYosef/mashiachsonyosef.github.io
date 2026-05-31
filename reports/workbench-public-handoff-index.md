@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T15:18:17.256Z
+Generated: 2026-05-31T15:32:20.242Z
 
 ## Summary
 
@@ -16,6 +16,16 @@ Generated: 2026-05-31T15:18:17.256Z
 - Eligible statuses: supported, candidate, weak
 - Count-only statuses: ambiguous, blocked
 - Ambiguous reader-facing: no
+
+## Consumer Contract
+
+- Artifact role: usage_evidence_index
+- Evidence model: graph_first_candidate_second
+- Downstream visible statuses: supported, candidate, weak
+- Audit-only statuses: ambiguous, blocked
+- Final ranking authority: no
+- Visible answer authority: no
+- Carries text rows: no
 
 ## Manifests
 
