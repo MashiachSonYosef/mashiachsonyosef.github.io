@@ -169,7 +169,10 @@ function ensureInputQueue() {
   if (!fs.existsSync(path.join(root, options.targetQueue))) {
     throw new Error(`Missing target queue ${options.targetQueue}. Build or select a workbench target queue first.`);
   }
-  runNode(['scripts/validate_workbench_target_queue.mjs', options.targetQueue]);
+  const validator = options.mode === 'smoke'
+    ? 'scripts/validate_workbench_smoke_targets.mjs'
+    : 'scripts/validate_workbench_target_queue.mjs';
+  runNode([validator, options.targetQueue]);
 }
 
 function runBatch() {
