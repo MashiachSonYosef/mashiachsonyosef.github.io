@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "workbench_public_handoff_index",
-  "generated_at": "2026-05-31T15:43:04.261Z",
+  "generated_at": "2026-05-31T15:45:25.428Z",
   "generator": "scripts/build_workbench_public_handoff_index.mjs",
   "policy": "Public index of selected workbench usage-evidence handoff packages. It is not a definition artifact and does not choose HUD winners. Ambiguous rows are counted for audit only and are not reader-facing eligible.",
   "inputs": {
@@ -35,6 +35,13 @@
       "blocked"
     ],
     "ambiguous_rows_reader_facing": false,
+    "status_semantics": {
+      "supported": "Selected usage evidence with strong cluster/frame support; not final answer authority.",
+      "candidate": "Selected usage evidence with moderate cluster/frame support; not final answer authority.",
+      "weak": "Selected usage evidence with low cluster/frame support; reviewable but still eligible as usage evidence.",
+      "ambiguous": "Observed usage row without enough support for reader-facing display; count-only audit state.",
+      "blocked": "Unavailable or invalid handoff row; count-only audit state."
+    },
     "notes": "Downstream HUD/ranking may consume eligible statuses as usage evidence. Ambiguous rows remain audit-only unless a later validated frame seed changes their status."
   },
   "consumer_contract": {

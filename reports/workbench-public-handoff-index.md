@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T15:43:04.261Z
+Generated: 2026-05-31T15:45:25.428Z
 
 ## Summary
 
@@ -27,6 +27,14 @@ Generated: 2026-05-31T15:43:04.261Z
 - Eligible statuses: supported, candidate, weak
 - Count-only statuses: ambiguous, blocked
 - Ambiguous reader-facing: no
+
+## Status Semantics
+
+- supported: Selected usage evidence with strong cluster/frame support; not final answer authority.
+- candidate: Selected usage evidence with moderate cluster/frame support; not final answer authority.
+- weak: Selected usage evidence with low cluster/frame support; reviewable but still eligible as usage evidence.
+- ambiguous: Observed usage row without enough support for reader-facing display; count-only audit state.
+- blocked: Unavailable or invalid handoff row; count-only audit state.
 
 ## Consumer Contract
 

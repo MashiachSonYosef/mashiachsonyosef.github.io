@@ -77,6 +77,13 @@ const artifact = {
     eligible_statuses: ['supported', 'candidate', 'weak'],
     count_only_statuses: ['ambiguous', 'blocked'],
     ambiguous_rows_reader_facing: false,
+    status_semantics: {
+      supported: 'Selected usage evidence with strong cluster/frame support; not final answer authority.',
+      candidate: 'Selected usage evidence with moderate cluster/frame support; not final answer authority.',
+      weak: 'Selected usage evidence with low cluster/frame support; reviewable but still eligible as usage evidence.',
+      ambiguous: 'Observed usage row without enough support for reader-facing display; count-only audit state.',
+      blocked: 'Unavailable or invalid handoff row; count-only audit state.',
+    },
     notes: 'Downstream HUD/ranking may consume eligible statuses as usage evidence. Ambiguous rows remain audit-only unless a later validated frame seed changes their status.',
   },
   consumer_contract: {
@@ -343,6 +350,11 @@ function writeReport(relativePath, artifact) {
     `- Eligible statuses: ${artifact.reader_facing_policy.eligible_statuses.join(', ')}`,
     `- Count-only statuses: ${artifact.reader_facing_policy.count_only_statuses.join(', ')}`,
     `- Ambiguous reader-facing: ${artifact.reader_facing_policy.ambiguous_rows_reader_facing ? 'yes' : 'no'}`,
+    '',
+    '## Status Semantics',
+    '',
+    ...artifact.reader_facing_policy.eligible_statuses.concat(artifact.reader_facing_policy.count_only_statuses)
+      .map((status) => `- ${status}: ${artifact.reader_facing_policy.status_semantics[status]}`),
     '',
     '## Consumer Contract',
     '',

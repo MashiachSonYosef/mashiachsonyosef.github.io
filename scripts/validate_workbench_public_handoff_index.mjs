@@ -27,6 +27,7 @@ if (!Array.isArray(artifact.manifests) || !artifact.manifests.length) issues.pus
 if (artifact.reader_facing_policy?.ambiguous_rows_reader_facing !== false) {
   issues.push('reader_facing_policy.ambiguous_rows_reader_facing must be false');
 }
+validateStatusSemantics(artifact.reader_facing_policy?.status_semantics);
 validateConsumerContract(artifact.consumer_contract);
 validateCoverageBoundary(artifact.coverage_boundary);
 
@@ -111,6 +112,19 @@ function validateManifest(row, context) {
   const statusTotal = [...allowedStatuses].reduce((sum, status) => sum + Number(row.status_counts?.[status] || 0), 0);
   if (Number(row.counts?.candidate_rows || 0) + Number(row.counts?.blocked_rows || 0) !== statusTotal) {
     issues.push(`${context}: status counts do not match candidate_rows + blocked_rows`);
+  }
+}
+
+function validateStatusSemantics(semantics) {
+  if (!semantics || typeof semantics !== 'object') {
+    issues.push('reader_facing_policy.status_semantics must be present');
+    return;
+  }
+  for (const status of allowedStatuses) {
+    const text = semantics[status];
+    if (typeof text !== 'string' || !text.trim()) {
+      issues.push(`reader_facing_policy.status_semantics.${status} must be a non-empty string`);
+    }
   }
 }
 
