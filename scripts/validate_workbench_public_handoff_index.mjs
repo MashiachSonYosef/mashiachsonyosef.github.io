@@ -9,6 +9,7 @@ const issues = [];
 const allowedStatuses = new Set(['supported', 'candidate', 'weak', 'ambiguous', 'blocked']);
 const expectedLicenseCounts = new Map();
 const expectedWorkCounts = new Map();
+const expectedClusterCounts = new Map();
 const forbiddenFieldNames = new Set([
   'phrase_hebrew',
   'phrase_tokens',
@@ -64,6 +65,7 @@ for (const status of allowedStatuses) {
 }
 validateQualityGates(artifact.quality_gates);
 validateAggregateSourceMetadata(artifact.aggregate_source_metadata);
+validateAggregateClusterMetadata(artifact.aggregate_cluster_metadata);
 
 walkNoRowPayloads(artifact, indexPath);
 
@@ -124,6 +126,10 @@ function validateManifest(row, context) {
   for (const [index, workRow] of (row.work_counts || []).entries()) {
     validateCountRow(workRow, `${context}.work_counts[${index}]`);
     incrementBy(expectedWorkCounts, workRow.value, workRow.count);
+  }
+  for (const [index, clusterRow] of (row.cluster_summaries || []).entries()) {
+    validateClusterRow(clusterRow, `${context}.cluster_summaries[${index}]`);
+    incrementCluster(expectedClusterCounts, clusterRow);
   }
 }
 
@@ -243,6 +249,44 @@ function validateAggregateSourceMetadata(metadata) {
   );
 }
 
+function validateAggregateClusterMetadata(metadata) {
+  if (!metadata || typeof metadata !== 'object') {
+    issues.push('aggregate_cluster_metadata must be present');
+    return;
+  }
+  const expectedRows = [...expectedClusterCounts.values()]
+    .sort((a, b) => (
+      b.reader_facing_eligible_rows - a.reader_facing_eligible_rows
+      || b.occurrence_count - a.occurrence_count
+      || a.cluster_id.localeCompare(b.cluster_id)
+    ));
+  const actualRows = metadata.cluster_counts;
+  if (!Array.isArray(actualRows)) {
+    issues.push('aggregate_cluster_metadata.cluster_counts must be an array');
+    return;
+  }
+  if (actualRows.length !== expectedRows.length) {
+    issues.push(`aggregate_cluster_metadata.cluster_counts expected ${expectedRows.length} rows, found ${actualRows.length}`);
+    return;
+  }
+  for (const [index, expectedRow] of expectedRows.entries()) {
+    const actualRow = actualRows[index] || {};
+    for (const key of ['cluster_id', 'frame_label']) {
+      if (actualRow[key] !== expectedRow[key]) {
+        issues.push(`aggregate_cluster_metadata.cluster_counts[${index}].${key} expected ${expectedRow[key]}, found ${actualRow[key]}`);
+      }
+    }
+    for (const key of ['manifest_count', 'occurrence_count', 'supported', 'candidate', 'weak', 'ambiguous', 'reader_facing_eligible_rows']) {
+      if (Number(actualRow[key] || 0) !== expectedRow[key]) {
+        issues.push(`aggregate_cluster_metadata.cluster_counts[${index}].${key} expected ${expectedRow[key]}, found ${actualRow[key]}`);
+      }
+    }
+    if (actualRow.ambiguous_rows_reader_facing !== false) {
+      issues.push(`aggregate_cluster_metadata.cluster_counts[${index}].ambiguous_rows_reader_facing must be false`);
+    }
+  }
+}
+
 function walkNoRowPayloads(value, context, pathParts = []) {
   if (Array.isArray(value)) {
     value.forEach((item, index) => walkNoRowPayloads(item, context, [...pathParts, String(index)]));
@@ -311,4 +355,39 @@ function incrementBy(map, key, count) {
   const safeCount = Number(count || 0);
   if (!safeKey || !Number.isFinite(safeCount) || safeCount <= 0) return;
   map.set(safeKey, (map.get(safeKey) || 0) + safeCount);
+}
+
+function validateClusterRow(row, context) {
+  if (!row || typeof row !== 'object') {
+    issues.push(`${context}: must be an object`);
+    return;
+  }
+  if (!String(row.cluster_id || '').trim()) issues.push(`${context}.cluster_id must be non-empty`);
+  for (const key of ['occurrence_count', 'supported', 'candidate', 'weak', 'ambiguous', 'reader_facing_eligible_rows']) {
+    const value = Number(row[key]);
+    if (!Number.isInteger(value) || value < 0) issues.push(`${context}.${key} must be a non-negative integer`);
+  }
+  if (row.ambiguous_rows_reader_facing !== false) issues.push(`${context}.ambiguous_rows_reader_facing must be false`);
+}
+
+function incrementCluster(map, row) {
+  const clusterId = String(row.cluster_id || 'unclustered');
+  const existing = map.get(clusterId) || {
+    cluster_id: clusterId,
+    frame_label: '',
+    manifest_count: 0,
+    occurrence_count: 0,
+    supported: 0,
+    candidate: 0,
+    weak: 0,
+    ambiguous: 0,
+    reader_facing_eligible_rows: 0,
+    ambiguous_rows_reader_facing: false,
+  };
+  if (!existing.frame_label && row.frame_label) existing.frame_label = row.frame_label;
+  existing.manifest_count += 1;
+  for (const key of ['occurrence_count', 'supported', 'candidate', 'weak', 'ambiguous', 'reader_facing_eligible_rows']) {
+    existing[key] += Number(row[key] || 0);
+  }
+  map.set(clusterId, existing);
 }

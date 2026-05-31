@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T15:52:45.299Z
+Generated: 2026-05-31T15:58:03.497Z
 
 ## Summary
 
@@ -65,6 +65,14 @@ Generated: 2026-05-31T15:52:45.299Z
 | ohr-hameir | 54 |
 | bnei-yissaschar | 51 |
 | meor-einayim | 50 |
+
+## Usage Frame Summary
+
+| cluster | frame | manifests | supported | candidate | weak | ambiguous | eligible | occurrences |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| reshit-opening-time-order | opening / first-in-order frame | 53 | 98 | 785 | 388 | 0 | 1271 | 1271 |
+| reshit-first-yield-priority | first-yield / first-produce frame | 49 | 241 | 566 | 312 | 0 | 1119 | 1119 |
+| unclustered |  | 50 | 0 | 0 | 0 | 2064 | 0 | 2064 |
 
 ## Policy
 

@@ -23,6 +23,7 @@ const targets = (Array.isArray(queue.targets) ? queue.targets : [])
   .filter((target) => isSelectedSmokeTarget(target));
 const manifests = targets.map((target, index) => inspectManifest(target, index));
 const aggregateSourceMetadata = summarizeSourceMetadata(manifests);
+const aggregateClusterMetadata = summarizeClusterMetadata(manifests);
 const totals = manifests.reduce((sum, row) => {
   sum.selected_targets += 1;
   if (row.validation.status === 'passed') sum.validation_passed += 1;
@@ -99,6 +100,7 @@ const artifact = {
   },
   quality_gates: buildQualityGates(totals, sourceFreshness),
   aggregate_source_metadata: aggregateSourceMetadata,
+  aggregate_cluster_metadata: aggregateClusterMetadata,
   counts: totals,
   manifests,
 };
@@ -357,6 +359,45 @@ function summarizeSourceMetadata(manifests) {
   };
 }
 
+function summarizeClusterMetadata(manifests) {
+  const clusters = new Map();
+  for (const manifest of manifests) {
+    for (const row of manifest.cluster_summaries || []) {
+      const clusterId = String(row.cluster_id || 'unclustered');
+      const existing = clusters.get(clusterId) || {
+        cluster_id: clusterId,
+        frame_label: '',
+        manifest_count: 0,
+        occurrence_count: 0,
+        supported: 0,
+        candidate: 0,
+        weak: 0,
+        ambiguous: 0,
+        reader_facing_eligible_rows: 0,
+        ambiguous_rows_reader_facing: false,
+      };
+      if (!existing.frame_label && row.frame_label) existing.frame_label = row.frame_label;
+      existing.manifest_count += 1;
+      existing.occurrence_count += Number(row.occurrence_count || 0);
+      existing.supported += Number(row.supported || 0);
+      existing.candidate += Number(row.candidate || 0);
+      existing.weak += Number(row.weak || 0);
+      existing.ambiguous += Number(row.ambiguous || 0);
+      existing.reader_facing_eligible_rows += Number(row.reader_facing_eligible_rows || 0);
+      clusters.set(clusterId, existing);
+    }
+  }
+  return {
+    cluster_counts: [...clusters.values()]
+      .sort((a, b) => (
+        b.reader_facing_eligible_rows - a.reader_facing_eligible_rows
+        || b.occurrence_count - a.occurrence_count
+        || a.cluster_id.localeCompare(b.cluster_id)
+      )),
+    notes: 'Cluster summaries are aggregated usage-frame counts from selected handoff manifests only. They are not definition verdicts and do not make ambiguous rows reader-facing.',
+  };
+}
+
 function writeJson(relativePath, data) {
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
@@ -410,6 +451,12 @@ function writeReport(relativePath, artifact) {
     '| work | rows |',
     '|---|---:|',
     ...artifact.aggregate_source_metadata.top_work_counts.slice(0, 20).map((row) => `| ${mdCell(row.value)} | ${row.count} |`),
+    '',
+    '## Usage Frame Summary',
+    '',
+    '| cluster | frame | manifests | supported | candidate | weak | ambiguous | eligible | occurrences |',
+    '|---|---|---:|---:|---:|---:|---:|---:|---:|',
+    ...artifact.aggregate_cluster_metadata.cluster_counts.map((row) => `| ${mdCell(row.cluster_id)} | ${mdCell(row.frame_label)} | ${row.manifest_count} | ${row.supported} | ${row.candidate} | ${row.weak} | ${row.ambiguous} | ${row.reader_facing_eligible_rows} | ${row.occurrence_count} |`),
     '',
     '## Policy',
     '',
