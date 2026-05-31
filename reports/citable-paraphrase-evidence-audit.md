@@ -12,67 +12,68 @@ Generated from the current local citable paraphrase evidence JSONL.
 
 ## Counts
 
-- Rows: 12000
-- Accepted rows: 12000
+- Rows: 200000
+- Accepted rows: 200000
 - Proposed rows: 0
 - Rejected rows: 0
 - Raw score range: 92-100
 - Adjusted score range: 72-80
-- Distinct works: 4
-- Distinct focus tokens: 12000
+- Distinct works: 5
+- Distinct focus tokens: 19534
 
 ## Route Types
 
-- citable_paraphrase_evidence: 12000
+- citable_paraphrase_evidence: 200000
 
 ## Definition Sources
 
-- wiktionary_definition: 10090
-- openscriptures_definition: 1745
-- wikidata_definition: 136
-- project_lexical: 29
+- wiktionary_definition: 159365
+- openscriptures_definition: 37023
+- wikidata_definition: 2754
+- project_lexical: 858
 
 ## Usage Licenses
 
-- Public Domain: 12000
+- Public Domain: 200000
 
 ## Source Licenses
 
-- Public Domain: 12000
-- CC BY-SA 4.0 / GFDL: 10090
-- CC BY 4.0: 3716
-- CC0: 2070
-- project-authored / CC0: 29
+- Public Domain: 200000
+- CC BY-SA 4.0 / GFDL: 159365
+- CC BY 4.0: 81345
+- CC0: 44813
+- project-authored / CC0: 858
 
 ## Top Works
 
-- abudarham: 9064
-- aggadat-bereshit: 1270
-- ahavat-chesed: 1237
-- aderet-eliyahu: 429
+- akeidat-yitzchak: 106031
+- abudarham: 64015
+- ahavat-chesed: 15398
+- aggadat-bereshit: 11684
+- aderet-eliyahu: 2872
 
 ## Top Focus Tokens
 
-- א: 1
-- א״י: 1
-- א״ל: 1
-- א״ר: 1
-- אאסופ: 1
-- אב: 1
-- אבא: 1
-- אבאר: 1
-- אבד: 1
-- אבדה: 1
-- אבדו: 1
-- אבדיל: 1
-- אבדת: 1
-- אבה: 1
-- אבוא: 1
-- אבוד: 1
-- אבודימ: 1
-- אבוקה: 1
-- אבות: 1
-- אבותי: 1
+- א: 40
+- אב: 40
+- אבא: 40
+- אבות: 40
+- אבותי: 40
+- אבותינו: 40
+- אבי: 40
+- אביה: 40
+- אביהמ: 40
+- אביו: 40
+- אביכ: 40
+- אבימלכ: 40
+- אבינו: 40
+- אבל: 40
+- אבנ: 40
+- אבנימ: 40
+- אברהמ: 40
+- אברמ: 40
+- אדומ: 40
+- אדונ: 40
 
 ## Validation
 
