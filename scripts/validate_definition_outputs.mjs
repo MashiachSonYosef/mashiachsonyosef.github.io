@@ -68,6 +68,7 @@ function validateManifest(issues) {
     'data/definitions/hud-route-store-sample.json',
     'data/definitions/hud-route-lookup-sample.json',
     'data/definitions/hud-route-lookup/manifest.json',
+    'data/definitions/hud-route-release-stamp.json',
     'data/definitions/definition-route-sample.json',
     'data/definitions/phrase-evidence-sample.json',
   ]) {
@@ -111,6 +112,41 @@ function validateHudRouteArtifacts(issues) {
     for (const [groupIndex, group] of asArray(sample.source_license_groups).entries()) {
       validateSourceRows([group], `${context}.source_license_groups[${groupIndex}]`, issues);
     }
+  }
+}
+
+function validateHudRouteReleaseStamp(issues) {
+  const stamp = readJson('data/definitions/hud-route-release-stamp.json');
+  const publicManifest = readJson('data/definitions/hud-route-lookup/manifest.json');
+  if (stamp.schema_version !== 1) issues.push('hud-route-release-stamp: schema_version must be 1');
+  if (stamp.artifact_type !== 'hud_route_release_stamp') {
+    issues.push('hud-route-release-stamp: artifact_type must be hud_route_release_stamp');
+  }
+  if (stamp.status !== 'release_candidate') {
+    issues.push(`hud-route-release-stamp: status must be release_candidate, got ${stamp.status || 'missing'}`);
+  }
+  if (asArray(stamp.issues).length) {
+    issues.push(`hud-route-release-stamp: carries ${stamp.issues.length} issue(s)`);
+  }
+  if (stamp.reconciliation?.counts_match !== true) {
+    issues.push('hud-route-release-stamp: reconciliation.counts_match must be true');
+  }
+  if (stamp.public_lookup?.manifest_path !== 'data/definitions/hud-route-lookup/manifest.json') {
+    issues.push('hud-route-release-stamp: public lookup manifest path mismatch');
+  }
+  if (stamp.public_lookup?.published_at !== publicManifest.published_at) {
+    issues.push('hud-route-release-stamp: published_at does not match public lookup manifest');
+  }
+  const stampCounts = stamp.reconciliation || {};
+  const publicCounts = publicManifest.counts || {};
+  if (stampCounts.public_cards_written !== publicCounts.cards_written) {
+    issues.push('hud-route-release-stamp: public card count does not match manifest');
+  }
+  if (stampCounts.public_distinct_normalized_tokens !== publicCounts.distinct_normalized_tokens) {
+    issues.push('hud-route-release-stamp: public normalized token count does not match manifest');
+  }
+  if (stampCounts.public_shard_count !== publicCounts.shard_count) {
+    issues.push('hud-route-release-stamp: public shard count does not match manifest');
   }
 }
 
@@ -228,4 +264,5 @@ validateCitableParaphraseSamples(issues);
 validateParaphrasePolicy(issues);
 validateParaphraseEvidenceContract(issues);
 validateHudRouteArtifacts(issues);
+validateHudRouteReleaseStamp(issues);
 fail(issues);
