@@ -64,7 +64,6 @@ for (const routePath of routePaths) {
   await auditRouteFile(routePath);
 }
 
-audit.counts.issue_count = audit.issues.length;
 writeJson(options.output, audit);
 writeReport(options.report, audit);
 console.log(`Wrote ${options.output}`);
@@ -181,6 +180,7 @@ function validateSourceRows(row, fileSummary, relativePath, lineNumber) {
 }
 
 function addIssue(fileSummary, relativePath, lineNumber, code, detail) {
+  audit.counts.issue_count += 1;
   fileSummary.issue_count += 1;
   if (audit.issues.length >= options.maxIssues) return;
   audit.issues.push({
