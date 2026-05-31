@@ -148,4 +148,3 @@ Generated: 2026-05-31T10:36:38.899Z
 ## Boundary
 
 This report audits smoke graph outputs only. It does not rank definitions, choose HUD winners, or convert usage commentary into a definition.
-
