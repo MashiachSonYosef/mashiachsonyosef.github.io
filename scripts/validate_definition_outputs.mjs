@@ -60,6 +60,8 @@ function validateManifest(issues) {
   }
   for (const artifact of [
     'data/definitions/paraphrase-route-policy.json',
+    'data/definitions/paraphrase-evidence-contract.json',
+    'data/definitions/paraphrase-evidence-sample.json',
     'data/definitions/hud-route-contract.json',
     'data/definitions/hud-route-fixtures.json',
     'data/definitions/hud-route-store-sample.json',
@@ -163,10 +165,30 @@ function validateParaphrasePolicy(issues) {
   checkNoForbiddenText(JSON.stringify(policy), 'paraphrase-route-policy', issues);
 }
 
+function validateParaphraseEvidenceContract(issues) {
+  const contract = readJson('data/definitions/paraphrase-evidence-contract.json');
+  const sample = readJson('data/definitions/paraphrase-evidence-sample.json');
+  const routeTypes = new Set(asArray(contract.route_types));
+  for (const routeType of requiredRouteTypes) {
+    if (!routeTypes.has(routeType)) issues.push(`paraphrase-evidence-contract route_types: missing ${routeType}`);
+  }
+  if (contract.scoring?.required_score_handicap !== 20) {
+    issues.push('paraphrase-evidence-contract scoring.required_score_handicap must be 20');
+  }
+  if (contract.hud_consumption_rule && !/accepted/.test(contract.hud_consumption_rule)) {
+    issues.push('paraphrase-evidence-contract must state that only accepted rows are consumed');
+  }
+  validateSourceRows(contract.source_rows, 'paraphrase-evidence-contract', issues);
+  if (!Array.isArray(sample.samples)) issues.push('paraphrase-evidence-sample.samples must be an array');
+  checkNoForbiddenText(JSON.stringify(contract), 'paraphrase-evidence-contract', issues);
+  checkNoForbiddenText(JSON.stringify(sample), 'paraphrase-evidence-sample', issues);
+}
+
 const issues = [];
 validateManifest(issues);
 validateDefinitionSamples(issues);
 validatePhraseSamples(issues);
 validateParaphrasePolicy(issues);
+validateParaphraseEvidenceContract(issues);
 validateHudRouteArtifacts(issues);
 fail(issues);

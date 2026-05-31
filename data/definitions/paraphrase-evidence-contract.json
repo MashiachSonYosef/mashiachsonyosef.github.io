@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "contract_id": "paraphrase-evidence-ingest-contract",
+  "title": "Paraphrase Evidence Ingest Contract",
+  "purpose": "Stable input contract for importer lanes that emit source-backed paraphrase candidates. Importers may score and license-check rows, but the final HUD/ranking lane owns aggregation, winner selection, and rendering.",
+  "producer_lane": "definition and paraphrase importer lanes",
+  "consumer_lane": "final HUD/ranking lane",
+  "license_policy": "Every row must preserve source/version/license metadata. Unclear, commercial-use-restricted, closed-rights, or imported English translation material is not allowed.",
+  "route_types": [
+    "biblical_paraphrase_evidence",
+    "citable_paraphrase_evidence"
+  ],
+  "candidate_statuses": [
+    "proposed",
+    "accepted",
+    "rejected"
+  ],
+  "hud_consumption_rule": "Only candidate_status=accepted rows are consumed by the HUD route store. Proposed rows may be kept for review, but they do not appear as definition cards.",
+  "scoring": {
+    "raw_score_min": 0,
+    "raw_score_max": 100,
+    "required_score_handicap": 20,
+    "adjusted_score_formula": "adjusted_score = raw_score - score_handicap",
+    "display_percent": "The HUD displays raw_score as the match percent.",
+    "ordering_score": "The HUD sorts eligible routes by adjusted_score first, then raw_score, then route family tie-breakers.",
+    "strict_route_comparison": "Strict Hebrew, strict Aramaic, and morphology routes use no paraphrase handicap; lemma, subphrase, biblical paraphrase, and citable paraphrase use the same 20 point handicap."
+  },
+  "required_row_fields": [
+    "evidence_id",
+    "route_type",
+    "candidate_status",
+    "focus_surface",
+    "focus_normalized",
+    "definition",
+    "raw_score",
+    "score_handicap",
+    "adjusted_score",
+    "match_type",
+    "phrase_hebrew",
+    "phrase_tokens",
+    "source_ref",
+    "work_id",
+    "work_title",
+    "source_rows"
+  ],
+  "optional_row_fields": [
+    "route_id",
+    "cluster_id",
+    "sefaria_ref",
+    "left_context",
+    "right_context",
+    "review_notes"
+  ],
+  "forbidden_row_fields": [
+    "imported_translation",
+    "english_translation",
+    "source_translation",
+    "ai_as_citation",
+    "license_override"
+  ],
+  "source_evidence_rules": [
+    "phrase_hebrew must be Hebrew/Aramaic source text from an accepted workbench source row.",
+    "phrase_tokens must mark the focus with role=focus-token.",
+    "definition is a project-authored paraphrase candidate, not an imported translation.",
+    "source_rows must include the source text license row used as evidence.",
+    "Importer lanes must not touch HUD rendering, final route sorting, winner selection, or live page files."
+  ],
+  "source_rows": [
+    {
+      "source_name": "Project-authored paraphrase evidence ingest contract",
+      "source_family": "workspace",
+      "source_id": "project-paraphrase-evidence-contract",
+      "source_url": "local:project-paraphrase-evidence-contract",
+      "license": "project-authored / CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "fields_used": [
+        "ingest schema",
+        "scoring policy",
+        "license policy"
+      ],
+      "notes": "Project-authored coordination contract only. No external dictionary text or English translation is imported."
+    }
+  ]
+}

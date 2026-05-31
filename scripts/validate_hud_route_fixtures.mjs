@@ -121,6 +121,15 @@ for (const sample of fixture.samples || []) {
     if (card.route_type === 'phrase_evidence' && card.meaning_claim !== undefined && card.meaning_claim !== null) {
       issues.push(`${token}: phrase evidence card must not force a meaning_claim`);
     }
+    if (['biblical_paraphrase_evidence', 'citable_paraphrase_evidence'].includes(card.route_type)) {
+      if (card.score_handicap !== 20) issues.push(`${token}: ${card.card_id || card.display_label} paraphrase score_handicap must be 20`);
+      if (!Number.isFinite(card.raw_score) || card.raw_score < 0 || card.raw_score > 100) {
+        issues.push(`${token}: ${card.card_id || card.display_label} paraphrase raw_score must be 0..100`);
+      }
+      if (Number.isFinite(card.raw_score) && card.adjusted_score !== card.raw_score - 20) {
+        issues.push(`${token}: ${card.card_id || card.display_label} paraphrase adjusted_score must equal raw_score - 20`);
+      }
+    }
     if (card.display_role !== 'audit' && card.route_type !== 'shape') {
       if (!Array.isArray(card.source_rows) || !card.source_rows.length) {
         issues.push(`${token}: ${card.card_id || card.display_label} missing source rows`);

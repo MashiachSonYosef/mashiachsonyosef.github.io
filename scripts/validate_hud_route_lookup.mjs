@@ -46,6 +46,14 @@ function validateCard(card, context, issues) {
   if (card.route_type === 'phrase_evidence' && card.meaning_claim !== null) {
     issues.push(`${context}: phrase evidence must not force meaning_claim`);
   }
+  if (['biblical_paraphrase_evidence', 'citable_paraphrase_evidence'].includes(card.route_type)) {
+    if (card.score_handicap !== 20) issues.push(`${context}: paraphrase card score_handicap must be 20`);
+    if (!Number.isFinite(card.raw_score) || card.raw_score < 0 || card.raw_score > 100) issues.push(`${context}: paraphrase card raw_score must be 0..100`);
+    if (Number.isFinite(card.raw_score) && card.adjusted_score !== card.raw_score - 20) {
+      issues.push(`${context}: paraphrase card adjusted_score must equal raw_score - 20`);
+    }
+    if (card.candidate_status !== 'accepted') issues.push(`${context}: paraphrase card must be candidate_status=accepted`);
+  }
   if (card.route_type !== 'shape' && card.display_section !== 'audit' && (!Array.isArray(card.source_rows) || !card.source_rows.length)) {
     issues.push(`${context}: missing source_rows`);
   }

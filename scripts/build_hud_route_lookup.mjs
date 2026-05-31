@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import readline from 'node:readline';
+import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
 
@@ -109,7 +110,7 @@ class TempShardWriter {
   }
 }
 
-function rankCard(card) {
+export function rankCard(card) {
   const sectionRank = new Map([
     ['strict_hebrew', 0],
     ['strict_aramaic', 1],
@@ -121,7 +122,15 @@ function rankCard(card) {
     ['phrase_evidence', 7],
     ['audit', 8],
   ]);
+  const adjustedScore = Number.isFinite(card.adjusted_score)
+    ? card.adjusted_score
+    : (Number.isFinite(card.answer_score) ? card.answer_score : null);
+  const rawScore = Number.isFinite(card.raw_score)
+    ? card.raw_score
+    : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : null);
   return [
+    -(adjustedScore ?? -1000),
+    -(rawScore ?? -1000),
     sectionRank.get(card.display_section) ?? 9,
     -(Number.isFinite(card.answer_score) ? card.answer_score : 0),
     -(Number.isFinite(card.confidence_percent) ? card.confidence_percent : 0),
@@ -129,7 +138,7 @@ function rankCard(card) {
   ];
 }
 
-function compareCards(a, b) {
+export function compareCards(a, b) {
   const left = rankCard(a);
   const right = rankCard(b);
   for (let i = 0; i < left.length; i += 1) {
@@ -252,7 +261,9 @@ async function main() {
   }, null, 2));
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}

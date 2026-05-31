@@ -1,10 +1,11 @@
 # Definition Pipeline Report
 
-Generated: 2026-05-31T02:02:35.750Z
+Generated: 2026-05-31T02:28:35.020Z
 
 ## Scope
 
 - Definitions/HUD routing are treated as rebuildable project-owned internals.
+- Definition importers own license-safe route rows and raw match scores; final HUD/ranking owns display, winner selection, and live renderer changes.
 - Hebrew source imports remain inputs unless an explicit integration pass rewrites shared artifacts.
 - Examples and quotation translations from Wiktionary/Kaikki are excluded to avoid importing source-text translations or fair-use quotations.
 - Sefaria phrase/subphrase extraction is not treated as globally safe; every version must pass license checks before use.
@@ -13,6 +14,7 @@ Generated: 2026-05-31T02:02:35.750Z
 
 - Project-authored conservative morphology rules: project-authored / CC0 (local:project-morphology-rules)
 - Project-authored paraphrase route policy: project-authored / CC0 (local:project-paraphrase-route-policy)
+- Project-authored paraphrase evidence ingest contract: project-authored / CC0 (local:project-paraphrase-evidence-contract)
 - Project-authored HUD route card contract: project-authored / CC0 (local:project-hud-route-contract)
 - Hebrew Wiktionary data via Kaikki/Wiktextract: CC BY-SA 4.0 / GFDL (https://kaikki.org/dictionary/Hebrew/index.html)
 - Wikidata Lexeme: CC0 (https://www.wikidata.org/wiki/Wikidata:Lexicographical_data)
@@ -23,6 +25,8 @@ Generated: 2026-05-31T02:02:35.750Z
 - data/definitions/manifest.json
 - data/definitions/source-license-inventory.json
 - data/definitions/morphology-rules.json
+- data/definitions/paraphrase-evidence-contract.json
+- data/definitions/paraphrase-evidence-sample.json
 - data/definitions/hud-route-contract.json
 - data/definitions/hud-route-fixtures.json
 - data/definitions/hud-route-store-sample.json
@@ -50,7 +54,7 @@ Generated: 2026-05-31T02:02:35.750Z
 - Wire HUD to consume the route fixture/lookup samples first, then promote the local lookup shards to chunked public artifacts when the live renderer is ready for on-demand loading.
 ## Phrase Evidence
 
-- Generated: 2026-05-31T02:09:20.554Z
+- Generated: 2026-05-31T02:31:01.932Z
 - Tracked source files scanned: 2
 - Allowed units scanned: 2897
 - Rejected units skipped: 0
@@ -61,3 +65,10 @@ Generated: 2026-05-31T02:02:35.750Z
 - Public sample: data/definitions/phrase-evidence-sample.json
 - Local cache: .local-cache/definition-routes/source-phrase-evidence.jsonl
 - License rule: every phrase row keeps its own source/version/license metadata; skipped licenses are counted but not emitted.
+
+## HUD Route Scoring
+
+- Strict Hebrew, strict Aramaic, and morphology routes use raw score as adjusted score.
+- Lemma, subphrase, biblical paraphrase, and citable paraphrase routes use raw score minus 20 as adjusted score.
+- HUD lookup ordering sorts by adjusted score first, raw score second, and route family only as a tie-breaker.
+- Validation script: `node scripts\validate_hud_route_scoring.mjs`

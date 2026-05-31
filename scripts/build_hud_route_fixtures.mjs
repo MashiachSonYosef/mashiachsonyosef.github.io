@@ -113,8 +113,8 @@ function labelForClaim(claim) {
   if (routeType === 'lemma') return `${language || 'Source'} lemma match`;
   if (routeType === 'phrase_evidence') return 'Licensed phrase use';
   if (routeType === 'subphrase_evidence') return 'Subphrase evidence';
-  if (routeFamily === 'biblical_paraphrase_evidence') return 'Biblical definition/paraphrase match';
-  if (routeFamily === 'citable_paraphrase_evidence') return 'Citable definition/paraphrase match';
+  if (routeType === 'biblical_paraphrase_evidence' || routeFamily === 'biblical_paraphrase_evidence') return 'Biblical definition/paraphrase match';
+  if (routeType === 'citable_paraphrase_evidence' || routeFamily === 'citable_paraphrase_evidence') return 'Citable definition/paraphrase match';
   return `${routeFamily || 'Source'} ${routeType || 'route'}`.replace(/_/g, ' ').trim();
 }
 
@@ -124,6 +124,12 @@ function noteForClaim(claim) {
   }
   if (claim?.route_type === 'phrase_evidence') {
     return 'Licensed Hebrew phrase evidence only; this row does not force a meaning.';
+  }
+  if (claim?.route_type === 'biblical_paraphrase_evidence') {
+    return 'Source-backed biblical paraphrase route; displayed percent is the route match percent.';
+  }
+  if (claim?.route_type === 'citable_paraphrase_evidence') {
+    return 'Source-backed citable paraphrase route; displayed percent is the route match percent.';
   }
   if (claim?.meaning_quality === 'form_reference') {
     return 'Form-reference route; useful evidence, not a stronger definition than a sourced direct meaning.';
@@ -137,8 +143,28 @@ function noteForClaim(claim) {
   return '';
 }
 
-function claimToCard(claim, role = 'evidence') {
+function routeScoreHandicap(sectionId) {
+  if (['lemma', 'subphrase_evidence', 'biblical_paraphrase_evidence', 'citable_paraphrase_evidence'].includes(sectionId)) {
+    return 20;
+  }
+  return 0;
+}
+
+function scoreFieldsForCard(card) {
+  const rawScore = Number.isFinite(card.answer_score)
+    ? card.answer_score
+    : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : null);
+  const sectionId = groupForClaim(card);
+  const scoreHandicap = routeScoreHandicap(sectionId);
   return {
+    raw_score: rawScore,
+    score_handicap: scoreHandicap,
+    adjusted_score: rawScore === null ? null : rawScore - scoreHandicap,
+  };
+}
+
+function claimToCard(claim, role = 'evidence') {
+  const card = {
     card_id: claim?.claim_id || '',
     display_role: role,
     route_family: claim?.route_family || '',
@@ -158,10 +184,14 @@ function claimToCard(claim, role = 'evidence') {
     morphology: claim?.morphology || null,
     source_rows: (claim?.source_rows || []).map(compactSourceRow),
   };
+  return {
+    ...card,
+    ...scoreFieldsForCard(card),
+  };
 }
 
 function phraseToCard(row) {
-  return {
+  const card = {
     card_id: row?.evidence_id || '',
     display_role: 'evidence',
     route_family: row?.route_family || 'source_phrase_evidence',
@@ -183,6 +213,10 @@ function phraseToCard(row) {
     meaning_claim: row?.meaning_claim ?? null,
     source_rows: (row?.source_rows || []).map(compactSourceRow),
   };
+  return {
+    ...card,
+    ...scoreFieldsForCard(card),
+  };
 }
 
 function groupForClaim(claim) {
@@ -190,8 +224,8 @@ function groupForClaim(claim) {
   const routeFamily = claim?.route_family || '';
   const language = String(claim?.language || '').toLowerCase();
   if (routeType === 'shape') return 'audit';
-  if (routeFamily === 'biblical_paraphrase_evidence') return 'biblical_paraphrase_evidence';
-  if (routeFamily === 'citable_paraphrase_evidence') return 'citable_paraphrase_evidence';
+  if (routeType === 'biblical_paraphrase_evidence' || routeFamily === 'biblical_paraphrase_evidence') return 'biblical_paraphrase_evidence';
+  if (routeType === 'citable_paraphrase_evidence' || routeFamily === 'citable_paraphrase_evidence') return 'citable_paraphrase_evidence';
   if (routeType === 'subphrase_evidence') return 'subphrase_evidence';
   if (routeType === 'morphology_parse') return 'morphology';
   if (routeType === 'form' && language.includes('aramaic')) return 'strict_aramaic';
