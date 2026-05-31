@@ -15,7 +15,10 @@ const paths = {
 };
 
 const niqqudRe = /[\u0591-\u05BD\u05BF-\u05C7]/gu;
-const hebrewTokenRe = /[\u0590-\u05FF]+/u;
+const hebrewLetterRe = /[\u05D0-\u05EA]/u;
+const unsafeHebrewSurfaceRe = /[A-Za-z0-9+\\\/?;:\[\]{}<>_=*|@#$%^&~]/u;
+const allowedLemmaSurfaceRe = /^[\u0590-\u05FF\s.'"(),.-]+$/u;
+const allowedFormSurfaceRe = /^[\u0590-\u05FF.'"-]+$/u;
 const finalLetters = new Map([
   ['ך', 'כ'],
   ['ם', 'מ'],
@@ -193,8 +196,25 @@ function makeMorphologyClaims(morphology) {
   return claims;
 }
 
-function isHebrewForm(value) {
-  return hebrewTokenRe.test(String(value || ''));
+function bumpStat(stats, key) {
+  if (!stats) return;
+  stats[key] = (stats[key] || 0) + 1;
+}
+
+function isHebrewLemmaSurface(value) {
+  const text = normalizeHebrewPunctuation(value).trim();
+  return Boolean(text)
+    && hebrewLetterRe.test(text)
+    && !unsafeHebrewSurfaceRe.test(text)
+    && allowedLemmaSurfaceRe.test(text);
+}
+
+function isHebrewFormSurface(value) {
+  const text = normalizeHebrewPunctuation(value).trim();
+  return Boolean(text)
+    && hebrewLetterRe.test(text)
+    && !unsafeHebrewSurfaceRe.test(text)
+    && allowedFormSurfaceRe.test(text);
 }
 
 function collectGlosses(entry) {
@@ -225,10 +245,14 @@ function compactTags(tags) {
   return Array.from(new Set((tags || []).map(cleanText).filter(Boolean))).slice(0, 12);
 }
 
-function makeKaikkiDefinitionClaim(entry, lineNumber) {
+function makeKaikkiDefinitionClaim(entry, lineNumber, stats = null) {
   const word = cleanText(entry.word);
   const glosses = collectGlosses(entry);
-  if (!word || !isHebrewForm(word) || !glosses.length) return null;
+  if (!word || !isHebrewLemmaSurface(word)) {
+    bumpStat(stats, 'skipped_malformed_lemma_surface');
+    return null;
+  }
+  if (!glosses.length) return null;
   const senseIds = [];
   for (const sense of entry.senses || []) {
     if (sense.id) senseIds.push(sense.id);
@@ -263,18 +287,22 @@ function makeKaikkiDefinitionClaim(entry, lineNumber) {
   };
 }
 
-function makeKaikkiFormClaims(entry, lemmaClaim, lineNumber) {
+function makeKaikkiFormClaims(entry, lemmaClaim, lineNumber, stats = null) {
   if (!lemmaClaim || !Array.isArray(entry.forms)) return [];
   const claims = [];
   const seen = new Set();
   for (const form of entry.forms) {
+    const tags = compactTags(form.tags);
+    if (!tags.length || tags.includes('romanization') || tags.includes('table-tags') || tags.includes('inflection-template')) continue;
     const surface = cleanText(form.form);
-    if (!surface || !isHebrewForm(surface)) continue;
+    if (!surface) continue;
+    if (!isHebrewFormSurface(surface)) {
+      bumpStat(stats, 'skipped_malformed_form_surface');
+      continue;
+    }
     const normalized = normalizeHebrew(surface);
     if (!normalized || normalized === lemmaClaim.normalized || seen.has(normalized)) continue;
     seen.add(normalized);
-    const tags = compactTags(form.tags);
-    if (!tags.length || tags.includes('romanization') || tags.includes('table-tags') || tags.includes('inflection-template')) continue;
     const formGloss = `form of ${lemmaClaim.surface}`;
     claims.push({
       claim_id: stableId('def-kaikki-form', [lemmaClaim.claim_id, normalized, tags]),
@@ -335,6 +363,8 @@ async function buildKaikkiClaims() {
     lemma_claims: 0,
     form_claims: 0,
     skipped_no_gloss: 0,
+    skipped_malformed_lemma_surface: 0,
+    skipped_malformed_form_surface: 0,
   };
 
   const rl = readline.createInterface({
@@ -353,12 +383,15 @@ async function buildKaikkiClaims() {
       continue;
     }
     if (entry.lang_code !== 'he' && entry.lang !== 'Hebrew') continue;
-    const lemmaClaim = makeKaikkiDefinitionClaim(entry, stats.entries_read);
+    const skippedMalformedLemmaBefore = stats.skipped_malformed_lemma_surface;
+    const lemmaClaim = makeKaikkiDefinitionClaim(entry, stats.entries_read, stats);
     if (!lemmaClaim) {
-      stats.skipped_no_gloss += 1;
+      if (stats.skipped_malformed_lemma_surface === skippedMalformedLemmaBefore) {
+        stats.skipped_no_gloss += 1;
+      }
       continue;
     }
-    const claims = [lemmaClaim, ...makeKaikkiFormClaims(entry, lemmaClaim, stats.entries_read)];
+    const claims = [lemmaClaim, ...makeKaikkiFormClaims(entry, lemmaClaim, stats.entries_read, stats)];
     stats.lemma_claims += 1;
     stats.form_claims += claims.length - 1;
     for (const claim of claims) {
@@ -839,6 +872,8 @@ function writeReport({ morphology, morphologyClaims, kaikkiStats, sourceLayerSta
     `- Kaikki entries read: ${kaikkiStats.entries_read || 0}`,
     `- Kaikki lemma claims: ${kaikkiStats.lemma_claims || 0}`,
     `- Kaikki form claims: ${kaikkiStats.form_claims || 0}`,
+    `- Kaikki malformed lemma surfaces skipped: ${kaikkiStats.skipped_malformed_lemma_surface || 0}`,
+    `- Kaikki malformed form surfaces skipped: ${kaikkiStats.skipped_malformed_form_surface || 0}`,
     `- Existing source-layer claims: ${sourceLayerStats.total_claims}`,
     `- Sample tokens: ${sampleRoutes.length}`,
     '',
@@ -931,6 +966,8 @@ async function main() {
       kaikki_entries_read: kaikki.stats.entries_read || 0,
       kaikki_lemma_claims: kaikki.stats.lemma_claims || 0,
       kaikki_form_claims: kaikki.stats.form_claims || 0,
+      kaikki_skipped_malformed_lemma_surfaces: kaikki.stats.skipped_malformed_lemma_surface || 0,
+      kaikki_skipped_malformed_form_surfaces: kaikki.stats.skipped_malformed_form_surface || 0,
       source_layer_claims: sourceLayers.stats.total_claims,
     },
     source_rows: allowedDefinitionSources.map((source) => sourceRow(source.source_id, {

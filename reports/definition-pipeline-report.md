@@ -1,6 +1,6 @@
 # Definition Pipeline Report
 
-Generated: 2026-05-31T11:30:39.291Z
+Generated: 2026-05-31T16:55:04.720Z
 
 ## Scope
 
@@ -33,6 +33,7 @@ Generated: 2026-05-31T11:30:39.291Z
 - data/definitions/hud-route-store-sample.json
 - data/definitions/hud-route-lookup-sample.json
 - data/definitions/hud-route-lookup/manifest.json
+- data/definitions/hud-route-release-stamp.json
 - data/definitions/definition-route-sample.json
 - .local-cache/definition-routes/kaikki-definition-claims.jsonl
 - .local-cache/definition-routes/kaikki-definition-claims.csv
@@ -44,8 +45,10 @@ Generated: 2026-05-31T11:30:39.291Z
 - Morphology rules: 29
 - Morphology claims: 29
 - Kaikki entries read: 17077
-- Kaikki lemma claims: 17033
-- Kaikki form claims: 121426
+- Kaikki lemma claims: 17008
+- Kaikki form claims: 118176
+- Kaikki malformed lemma surfaces skipped: 59
+- Kaikki malformed form surfaces skipped: 5719
 - Existing source-layer claims: 4477
 - Sample tokens: 8
 

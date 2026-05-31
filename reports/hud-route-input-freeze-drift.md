@@ -1,8 +1,8 @@
 # HUD Route Input Freeze Drift
 
-Generated: 2026-05-31T16:29:11.336Z
+Generated: 2026-05-31T17:12:09.021Z
 Status: pass
-Release ID: hud-route-rc-2026-05-31T15-22-27-823Z
+Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 Fail on drift: yes
 
 ## Scope
@@ -24,11 +24,11 @@ Fail on drift: yes
 
 | file | required | rows | bytes | frozen status | current status |
 |---|---:|---:|---:|---|---|
-| kaikki-definition-claims.jsonl | yes | 138459 | 163144393 | matches stamp | matches release freeze |
+| kaikki-definition-claims.jsonl | yes | 135184 | 159157420 | matches stamp | matches release freeze |
 | source-layer-definition-claims.jsonl | yes | 4477 | 7418794 | matches stamp | matches release freeze |
 | source-phrase-evidence.jsonl | yes | 200000 | 355922433 | matches stamp | matches release freeze |
 | source-citable-paraphrase-evidence.jsonl | no | 200000 | 493745179 | matches stamp | matches release freeze |
-| definition-route-manifest.json | yes |  | 11918 | matches stamp | matches release freeze |
+| definition-route-manifest.json | yes |  | 12074 | matches stamp | matches release freeze |
 | source-biblical-paraphrase-evidence.jsonl | no |  |  | not frozen optional | absent at release freeze and absent now |
 | source-paraphrase-evidence.jsonl | no |  |  | not frozen optional | absent at release freeze and absent now |
 

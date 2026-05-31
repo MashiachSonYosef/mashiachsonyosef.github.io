@@ -307,7 +307,6 @@ function writeReport(relativePath, result) {
     '## Warnings',
     '',
     ...(result.warnings.length ? result.warnings.map((warning) => `- ${warning}`) : ['- None']),
-    '',
   ];
   fs.writeFileSync(filePath, `${lines.join('\n')}\n`, 'utf8');
 }

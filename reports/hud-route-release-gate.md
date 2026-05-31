@@ -1,15 +1,15 @@
 # HUD Route Release Gate
 
-Generated: 2026-05-31T16:03:08.227Z
+Generated: 2026-05-31T17:30:48.229Z
 Status: pass
-Release ID: hud-route-rc-2026-05-31T15-22-27-823Z
+Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 
 ## Public Lookup
 
 - Manifest: `data/definitions/hud-route-lookup/manifest.json`
-- Cards: 542921
-- Normalized tokens: 176356
-- Shards: 8021
+- Cards: 539661
+- Normalized tokens: 175216
+- Shards: 7990
 - Sample tokens checked: 6
 
 ## Issues

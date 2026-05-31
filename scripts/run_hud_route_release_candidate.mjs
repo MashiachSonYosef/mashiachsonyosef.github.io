@@ -61,6 +61,12 @@ const steps = [
     '--manifest', publicManifest,
     '--report', 'reports/public-hud-route-card-scan.md',
   ]),
+  nodeStep('audit public HUD normalized keys', 'scripts/validate_public_hud_normalized_keys.mjs', [
+    '--manifest', publicManifest,
+    '--report', 'reports/public-hud-normalized-key-audit.md',
+    '--json', 'reports/public-hud-normalized-key-audit.json',
+    '--fail-on-issues',
+  ]),
   nodeStep('stamp HUD route release', 'scripts/stamp_hud_route_release.mjs', [
     '--freeze-manifest', frozenManifest,
     '--store-manifest', storeManifest,

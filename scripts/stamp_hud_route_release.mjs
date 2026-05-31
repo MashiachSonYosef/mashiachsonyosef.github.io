@@ -306,7 +306,6 @@ function writeReport(filePath, stamp) {
     '## Boundary',
     '',
     'This stamp records a release-candidate route-data generation. It does not introduce route families, source imports, or English source-text translations.',
-    '',
   ];
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${lines.join('\n')}\n`, 'utf8');
