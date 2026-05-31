@@ -1,11 +1,14 @@
 #!/usr/bin/env node
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
 const publicDir = path.join(root, 'data', 'definitions', 'hud-route-lookup');
 const manifestPath = path.join(publicDir, 'manifest.json');
+const releaseStampPath = path.join(root, 'data', 'definitions', 'hud-route-release-stamp.json');
 const samplePath = path.join(root, 'data', 'definitions', 'hud-route-lookup-sample.json');
+const options = parseArgs(process.argv.slice(2));
 const forbiddenTextRe = /\bPotential\b|potential option|low confidence|copyright unclear|all rights reserved|Non-?Commercial|\bNC\b/i;
 const allowedLicensePatterns = [
   /^CC0$/i,
@@ -24,6 +27,32 @@ const allowedLicensePatterns = [
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function sha256File(filePath) {
+  return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
+}
+
+function parseArgs(args) {
+  const parsed = {
+    checkReleaseStamp: true,
+  };
+  for (const arg of args) {
+    if (arg === '--skip-release-stamp') parsed.checkReleaseStamp = false;
+    else if (arg === '--help' || arg === '-h') parsed.help = true;
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  if (parsed.help) {
+    console.log([
+      'Usage:',
+      '  node scripts/validate_public_hud_route_lookup.mjs',
+      '',
+      'Options:',
+      '  --skip-release-stamp  Validate public lookup structure before a new release stamp is written.',
+    ].join('\n'));
+    process.exit(0);
+  }
+  return parsed;
 }
 
 function safeLicense(row) {
@@ -83,6 +112,43 @@ function validateCard(card, context, issues) {
   });
 }
 
+function validateReleaseStamp(manifest, issues) {
+  if (!fs.existsSync(releaseStampPath)) {
+    issues.push('missing HUD route release stamp: data/definitions/hud-route-release-stamp.json');
+    return;
+  }
+  const stamp = readJson(releaseStampPath);
+  if (stamp.schema_version !== 1) issues.push('release stamp schema_version must be 1');
+  if (stamp.artifact_type !== 'hud_route_release_stamp') issues.push('release stamp artifact_type must be hud_route_release_stamp');
+  if (stamp.status !== 'release_candidate') issues.push(`release stamp status must be release_candidate, got ${stamp.status || 'missing'}`);
+  if ((stamp.issues || []).length) issues.push(`release stamp carries ${stamp.issues.length} issue(s)`);
+  if (stamp.public_lookup?.manifest_path !== 'data/definitions/hud-route-lookup/manifest.json') {
+    issues.push('release stamp public_lookup.manifest_path does not point at the public lookup manifest');
+  }
+  if (stamp.public_lookup?.published_at !== manifest.published_at) {
+    issues.push('release stamp public_lookup.published_at does not match public lookup manifest');
+  }
+  const actualManifestBytes = fs.statSync(manifestPath).size;
+  if (stamp.public_lookup?.file?.byte_length !== actualManifestBytes) {
+    issues.push('release stamp public lookup manifest byte_length does not match current manifest');
+  }
+  if (stamp.public_lookup?.file?.sha256 !== sha256File(manifestPath)) {
+    issues.push('release stamp public lookup manifest sha256 does not match current manifest');
+  }
+  if (stamp.reconciliation?.counts_match !== true) issues.push('release stamp reconciliation.counts_match must be true');
+  const publicCounts = manifest.counts || {};
+  const stampCounts = stamp.reconciliation || {};
+  if (stampCounts.public_cards_written !== publicCounts.cards_written) {
+    issues.push('release stamp public card count does not match public manifest');
+  }
+  if (stampCounts.public_distinct_normalized_tokens !== publicCounts.distinct_normalized_tokens) {
+    issues.push('release stamp public normalized token count does not match public manifest');
+  }
+  if (stampCounts.public_shard_count !== publicCounts.shard_count) {
+    issues.push('release stamp public shard count does not match public manifest');
+  }
+}
+
 const issues = [];
 if (!fs.existsSync(manifestPath)) issues.push(`missing public HUD route lookup manifest: ${manifestPath}`);
 if (!fs.existsSync(samplePath)) issues.push(`missing HUD route lookup sample: ${samplePath}`);
@@ -101,6 +167,7 @@ if (!issues.length) {
   walkStrings(manifest, (text) => {
     if (forbiddenTextRe.test(text)) issues.push(`manifest forbidden text ${text.slice(0, 120)}`);
   });
+  if (options.checkReleaseStamp) validateReleaseStamp(manifest, issues);
 
   const manifestShardPaths = new Set((manifest.shards || []).map((shardInfo) => shardInfo.path));
   const shardDir = path.join(publicDir, 'shards');

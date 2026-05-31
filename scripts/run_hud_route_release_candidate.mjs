@@ -54,7 +54,9 @@ const steps = [
     '--local-dir', options.lookupDir,
     '--public-dir', options.publicDir,
   ]),
-  nodeStep('validate public HUD route lookup', 'scripts/validate_public_hud_route_lookup.mjs', []),
+  nodeStep('validate public HUD route lookup structure', 'scripts/validate_public_hud_route_lookup.mjs', [
+    '--skip-release-stamp',
+  ]),
   nodeStep('stamp HUD route release', 'scripts/stamp_hud_route_release.mjs', [
     '--freeze-manifest', frozenManifest,
     '--store-manifest', storeManifest,
