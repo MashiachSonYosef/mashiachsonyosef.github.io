@@ -50,8 +50,13 @@ const phrase = {
 const citable = {
   rows: 0,
   acceptedRows: 0,
+  proposedRows: 0,
+  rejectedRows: 0,
   focus: new Set(),
+  acceptedFocus: new Set(),
+  proposedFocus: new Set(),
   focusCounts: new Map(),
+  statusCounts: new Map(),
   definitionSources: new Map(),
   works: new Map(),
 };
@@ -75,24 +80,30 @@ citable.rows = await readJsonl(citablePath, (row, lineNumber) => {
     issues.push(`${citablePath} line ${lineNumber}: unexpected route_type ${row.route_type || 'missing'}`);
   }
   if (row.candidate_status === 'accepted') citable.acceptedRows += 1;
-  else issues.push(`${citablePath} line ${lineNumber}: non-accepted candidate_status ${row.candidate_status || 'missing'}`);
+  else if (row.candidate_status === 'proposed') citable.proposedRows += 1;
+  else if (row.candidate_status === 'rejected') citable.rejectedRows += 1;
+  else issues.push(`${citablePath} line ${lineNumber}: invalid candidate_status ${row.candidate_status || 'missing'}`);
   if (!row.focus_normalized) issues.push(`${citablePath} line ${lineNumber}: missing focus_normalized`);
   if (row.focus_normalized) {
     citable.focus.add(row.focus_normalized);
+    if (row.candidate_status === 'accepted') citable.acceptedFocus.add(row.focus_normalized);
+    if (row.candidate_status === 'proposed') citable.proposedFocus.add(row.focus_normalized);
     count(citable.focusCounts, row.focus_normalized);
   }
+  count(citable.statusCounts, row.candidate_status || '(missing)');
   count(citable.definitionSources, row.source_definition_route_family || '(missing)');
   count(citable.works, row.work_id || '(missing)');
 });
 
 let phraseCoveredByCitable = 0;
+let phraseCoveredByAcceptedCitable = 0;
+let phraseCoveredByProposedCitable = 0;
 const uncoveredPhraseCounts = new Map();
 for (const normalized of phrase.focus) {
-  if (citable.focus.has(normalized)) {
-    phraseCoveredByCitable += 1;
-  } else {
-    uncoveredPhraseCounts.set(normalized, phrase.focusCounts.get(normalized) || 0);
-  }
+  if (citable.focus.has(normalized)) phraseCoveredByCitable += 1;
+  if (citable.acceptedFocus.has(normalized)) phraseCoveredByAcceptedCitable += 1;
+  if (citable.proposedFocus.has(normalized)) phraseCoveredByProposedCitable += 1;
+  if (!citable.focus.has(normalized)) uncoveredPhraseCounts.set(normalized, phrase.focusCounts.get(normalized) || 0);
 }
 
 let citableSeenInPhrase = 0;
@@ -116,12 +127,23 @@ const report = [
   `- Phrase rows read: ${phrase.rows}`,
   `- Citable rows read: ${citable.rows}`,
   `- Accepted citable rows: ${citable.acceptedRows}`,
+  `- Proposed citable rows: ${citable.proposedRows}`,
+  `- Rejected citable rows: ${citable.rejectedRows}`,
   `- Distinct phrase/subphrase focus tokens: ${phrase.focus.size}`,
-  `- Distinct citable definition-backed focus tokens: ${citable.focus.size}`,
-  `- Phrase focus tokens with citable route: ${phraseCoveredByCitable}`,
-  `- Phrase focus token coverage: ${percent(phraseCoveredByCitable, phrase.focus.size)}`,
+  `- Distinct citable focus tokens, all statuses: ${citable.focus.size}`,
+  `- Distinct accepted citable focus tokens: ${citable.acceptedFocus.size}`,
+  `- Distinct proposed citable focus tokens: ${citable.proposedFocus.size}`,
+  `- Phrase focus tokens with any citable route: ${phraseCoveredByCitable}`,
+  `- Phrase focus token coverage, any status: ${percent(phraseCoveredByCitable, phrase.focus.size)}`,
+  `- Phrase focus tokens with accepted citable route: ${phraseCoveredByAcceptedCitable}`,
+  `- Phrase focus token coverage, accepted only: ${percent(phraseCoveredByAcceptedCitable, phrase.focus.size)}`,
+  `- Phrase focus tokens with proposed citable route: ${phraseCoveredByProposedCitable}`,
   `- Citable focus tokens also seen in phrase evidence: ${citableSeenInPhrase}`,
   `- Citable overlap with phrase evidence: ${percent(citableSeenInPhrase, citable.focus.size)}`,
+  '',
+  '## Citable Statuses',
+  '',
+  ...sortedEntries(citable.statusCounts).map(([key, value]) => `- ${key}: ${value}`),
   '',
   '## Phrase Route Types',
   '',

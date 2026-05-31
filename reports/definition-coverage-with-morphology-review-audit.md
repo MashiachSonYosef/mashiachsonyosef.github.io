@@ -4,32 +4,33 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 
 ## Scope
 
-- Phrase input: .local-cache/definition-routes/source-phrase-evidence.jsonl
-- Citable input: .local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl
+- Phrase input: .local-cache\definition-routes\source-phrase-evidence.jsonl
+- Citable input: .local-cache\definition-routes\source-citable-morphology-review-evidence.jsonl
 - This is a planning audit only. It publishes no definitions, source excerpts, or HUD cards.
 
 ## Coverage
 
 - Phrase rows read: 200000
 - Citable rows read: 200000
-- Accepted citable rows: 200000
-- Proposed citable rows: 0
+- Accepted citable rows: 162920
+- Proposed citable rows: 37080
 - Rejected citable rows: 0
 - Distinct phrase/subphrase focus tokens: 82104
-- Distinct citable focus tokens, all statuses: 19534
-- Distinct accepted citable focus tokens: 19534
-- Distinct proposed citable focus tokens: 0
-- Phrase focus tokens with any citable route: 19534
-- Phrase focus token coverage, any status: 23.79%
-- Phrase focus tokens with accepted citable route: 19534
-- Phrase focus token coverage, accepted only: 23.79%
-- Phrase focus tokens with proposed citable route: 0
-- Citable focus tokens also seen in phrase evidence: 19534
+- Distinct citable focus tokens, all statuses: 26634
+- Distinct accepted citable focus tokens: 17587
+- Distinct proposed citable focus tokens: 9047
+- Phrase focus tokens with any citable route: 26634
+- Phrase focus token coverage, any status: 32.44%
+- Phrase focus tokens with accepted citable route: 17587
+- Phrase focus token coverage, accepted only: 21.42%
+- Phrase focus tokens with proposed citable route: 9047
+- Citable focus tokens also seen in phrase evidence: 26634
 - Citable overlap with phrase evidence: 100.00%
 
 ## Citable Statuses
 
-- accepted: 200000
+- accepted: 162920
+- proposed: 37080
 
 ## Phrase Route Types
 
@@ -38,10 +39,11 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 
 ## Citable Definition Sources
 
-- wiktionary_definition: 159365
-- openscriptures_definition: 37023
-- wikidata_definition: 2754
-- project_lexical: 858
+- wiktionary_definition: 130023
+- project_morphology: 37080
+- openscriptures_definition: 30063
+- wikidata_definition: 2052
+- project_lexical: 782
 
 ## Top Phrase Works
 
@@ -53,11 +55,11 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 
 ## Top Citable Works
 
-- akeidat-yitzchak: 106031
-- abudarham: 64015
-- ahavat-chesed: 15398
-- aggadat-bereshit: 11684
-- aderet-eliyahu: 2872
+- akeidat-yitzchak: 88620
+- abudarham: 75578
+- ahavat-chesed: 18968
+- aggadat-bereshit: 13500
+- aderet-eliyahu: 3334
 
 ## Top Phrase Tokens Without Citable Route
 
@@ -66,7 +68,7 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 - אאע: 5
 - אבדתו: 5
 - אבהו: 5
-- אבותיהמ: 5
+- אבוס: 5
 - אבחרהו: 5
 - אביי: 5
 - אברככ: 5
@@ -77,20 +79,20 @@ Generated from local phrase evidence and citable paraphrase evidence JSONL files
 - אדמוני: 5
 - אדעתא: 5
 - אהבימ: 5
-- אהבתיכ: 5
 - אהדדי: 5
-- אהי: 5
 - אודות: 5
 - אוהבו: 5
 - אוהבי: 5
 - אוהביו: 5
+- אוהל: 5
 - אוחילה: 5
 - אוכלינ: 5
-- אומ: 5
 - אומנותו: 5
 - אומרינ: 5
 - אומתנו: 5
 - אונקלוס: 5
+- אורייתא: 5
+- אוריתא: 5
 
 ## Validation
 
