@@ -70,6 +70,7 @@ function validateCounts() {
     'observed_only_rows',
     'usage_clusters',
     'unique_route_ids',
+    'sample_rows',
   ]) {
     const value = Number(artifact.counts?.[field]);
     if (!Number.isInteger(value) || value < 0) issues.push(`counts.${field} must be a non-negative integer`);
@@ -97,6 +98,7 @@ function validateArtifacts() {
     'audit_only_review_report',
     'cluster_index_report',
     'route_coverage_report',
+    'sample_index_report',
     'smoke_validation_report',
   ]) {
     if (!String(artifact.artifacts?.[field] || '').trim()) issues.push(`artifacts.${field} must be present`);
@@ -113,6 +115,7 @@ function validateValidation() {
   }
   if (artifact.validation?.cluster_index_status !== 'present') issues.push('validation.cluster_index_status must be present');
   if (artifact.validation?.route_coverage_status !== 'present') issues.push('validation.route_coverage_status must be present');
+  if (artifact.validation?.sample_index_status !== 'present') issues.push('validation.sample_index_status must be present');
   if (Number(artifact.validation?.occurrence_source_url_bad || 0) !== 0) issues.push('occurrence source URL issues must be 0');
   if (Number(artifact.validation?.occurrence_work_anchor_bad || 0) !== 0) issues.push('occurrence work anchor issues must be 0');
   if (Number(artifact.validation?.route_links_unresolved || 0) !== 0) issues.push('route_links_unresolved must be 0');
@@ -121,6 +124,7 @@ function validateValidation() {
   if (Number(artifact.validation?.route_coverage_links || 0) < Number(artifact.counts?.route_linked_rows || 0)) {
     issues.push('route_coverage_links must be at least route_linked_rows');
   }
+  if (Number(artifact.validation?.sample_index_rows || 0) <= 0) issues.push('sample_index_rows must be positive');
   if (!allowedSmoke.has(artifact.validation?.smoke_validation_status)) {
     issues.push('smoke_validation_status must be passed/failed/not_run/skipped_self_reference');
   }
@@ -138,6 +142,8 @@ function validateCommands() {
     validate_cluster_index: 'validate_workbench_usage_cluster_index.mjs',
     build_route_coverage: 'build_workbench_usage_route_coverage.mjs',
     validate_route_coverage: 'validate_workbench_usage_route_coverage.mjs',
+    build_sample_index: 'build_workbench_usage_sample_index.mjs',
+    validate_sample_index: 'validate_workbench_usage_sample_index.mjs',
     build_handoff_index: 'build_workbench_usage_handoff_index.mjs',
     validate_handoff_index: 'validate_workbench_usage_handoff_index.mjs',
     validate_smoke_pipeline: 'validate_workbench_smoke_pipeline.mjs',

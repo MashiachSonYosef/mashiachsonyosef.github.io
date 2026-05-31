@@ -10,6 +10,7 @@ const defaults = {
   auditReview: '.local-cache/workbench-evidence/usage-audit-only-review.json',
   clusterIndex: '.local-cache/workbench-evidence/usage-cluster-index.json',
   routeCoverage: '.local-cache/workbench-evidence/usage-route-coverage.json',
+  sampleIndex: '.local-cache/workbench-evidence/usage-sample-index.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   skipSmokeValidation: false,
   output: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -23,6 +24,7 @@ const routeLinkCheck = readJsonIfExists(options.routeLinkCheck);
 const auditReview = readJsonIfExists(options.auditReview);
 const clusterIndex = readJsonIfExists(options.clusterIndex);
 const routeCoverage = readJsonIfExists(options.routeCoverage);
+const sampleIndex = readJsonIfExists(options.sampleIndex);
 const smokeValidation = options.smokeValidation ? readJsonIfExists(options.smokeValidation) : null;
 
 if (manifest.artifact_type !== 'workbench_usage_navigation_concordance_manifest') {
@@ -42,6 +44,7 @@ const artifact = {
     audit_review: options.auditReview,
     cluster_index: options.clusterIndex,
     route_coverage: options.routeCoverage,
+    sample_index: options.sampleIndex,
     smoke_validation: options.smokeValidation || null,
     smoke_validation_mode: options.skipSmokeValidation ? 'skipped_self_reference' : 'external_artifact',
   },
@@ -55,6 +58,7 @@ const artifact = {
     audit_only_review_report: 'reports/workbench-usage-audit-only-review.md',
     cluster_index_report: 'reports/workbench-usage-cluster-index.md',
     route_coverage_report: 'reports/workbench-usage-route-coverage.md',
+    sample_index_report: 'reports/workbench-usage-sample-index.md',
     smoke_validation_report: 'reports/workbench-smoke-pipeline-validation.md',
   },
   commands: buildCommands(options, manifest),
@@ -70,6 +74,7 @@ const artifact = {
     observed_only_rows: manifest.counts?.route_link_state_counts?.observed_usage_only ?? null,
     usage_clusters: clusterIndex?.counts?.clusters ?? null,
     unique_route_ids: routeCoverage?.counts?.unique_route_ids ?? null,
+    sample_rows: sampleIndex?.counts?.sample_rows ?? null,
   },
   validation: {
     occurrence_link_check_status: occurrenceLinkCheck?.quality?.status ?? 'not_run',
@@ -85,6 +90,8 @@ const artifact = {
     cluster_index_rows: clusterIndex?.counts?.rows ?? null,
     route_coverage_status: routeCoverage?.artifact_type === 'workbench_usage_route_coverage_index' ? 'present' : 'not_run',
     route_coverage_links: routeCoverage?.counts?.route_links ?? null,
+    sample_index_status: sampleIndex?.artifact_type === 'workbench_usage_navigation_sample_index' ? 'present' : 'not_run',
+    sample_index_rows: sampleIndex?.counts?.sample_rows ?? null,
     smoke_validation_status: options.skipSmokeValidation
       ? 'skipped_self_reference'
       : smokeValidation ? (smokeValidation.counts?.failed_steps === 0 ? 'passed' : 'failed') : 'not_run',
@@ -122,6 +129,7 @@ function writeReport(relativePath, artifact) {
     `- Observed-only rows: ${artifact.counts.observed_only_rows}`,
     `- Usage clusters: ${artifact.counts.usage_clusters}`,
     `- Unique route IDs: ${artifact.counts.unique_route_ids}`,
+    `- Sample rows: ${artifact.counts.sample_rows}`,
     '',
     '## Validation',
     '',
@@ -130,6 +138,7 @@ function writeReport(relativePath, artifact) {
     `- Audit review: rows ${artifact.validation.audit_review_rows}, reader-facing ${artifact.validation.audit_review_reader_facing ? 'yes' : 'no'}`,
     `- Cluster index: ${artifact.validation.cluster_index_status}, rows ${artifact.validation.cluster_index_rows}, clusters ${artifact.counts.usage_clusters}`,
     `- Route coverage: ${artifact.validation.route_coverage_status}, links ${artifact.validation.route_coverage_links}, unique route IDs ${artifact.counts.unique_route_ids}`,
+    `- Sample index: ${artifact.validation.sample_index_status}, samples ${artifact.validation.sample_index_rows}`,
     `- Smoke validation: ${artifact.validation.smoke_validation_status}, steps ${artifact.validation.smoke_steps}, failed ${artifact.validation.smoke_failed_steps}`,
     '',
     '## Artifacts',
@@ -144,6 +153,7 @@ function writeReport(relativePath, artifact) {
     `| audit-only review | ${mdCell(artifact.artifacts.audit_only_review_report)} | yes |`,
     `| cluster index | ${mdCell(artifact.artifacts.cluster_index_report)} | yes |`,
     `| route coverage | ${mdCell(artifact.artifacts.route_coverage_report)} | yes |`,
+    `| sample index | ${mdCell(artifact.artifacts.sample_index_report)} | yes |`,
     `| smoke validation | ${mdCell(artifact.artifacts.smoke_validation_report)} | yes |`,
     '',
     '## Commands',
@@ -168,6 +178,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--audit-review=')) parsed.auditReview = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--cluster-index=')) parsed.clusterIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--route-coverage=')) parsed.routeCoverage = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--sample-index=')) parsed.sampleIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg === '--no-smoke-validation') {
       parsed.smokeValidation = null;
@@ -187,6 +198,8 @@ function buildCommands(options, manifest) {
   commands.validate_cluster_index = `node scripts/validate_workbench_usage_cluster_index.mjs ${options.clusterIndex}`;
   commands.build_route_coverage = `node scripts/build_workbench_usage_route_coverage.mjs --concordance=${concordancePath} --output=${options.routeCoverage} --report=reports/workbench-usage-route-coverage.md --max-samples=8`;
   commands.validate_route_coverage = `node scripts/validate_workbench_usage_route_coverage.mjs ${options.routeCoverage}`;
+  commands.build_sample_index = `node scripts/build_workbench_usage_sample_index.mjs --concordance=${concordancePath} --output=${options.sampleIndex} --report=reports/workbench-usage-sample-index.md --max-samples-per-status=5`;
+  commands.validate_sample_index = `node scripts/validate_workbench_usage_sample_index.mjs ${options.sampleIndex}`;
   commands.build_handoff_index = [
     'node scripts/build_workbench_usage_handoff_index.mjs',
     `--manifest=${options.manifest}`,
@@ -195,6 +208,7 @@ function buildCommands(options, manifest) {
     `--audit-review=${options.auditReview}`,
     `--cluster-index=${options.clusterIndex}`,
     `--route-coverage=${options.routeCoverage}`,
+    `--sample-index=${options.sampleIndex}`,
     options.smokeValidation ? `--smoke-validation=${options.smokeValidation}` : '--no-smoke-validation',
     `--output=${options.output}`,
     `--report=${options.report}`,

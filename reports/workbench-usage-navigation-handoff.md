@@ -1,6 +1,6 @@
 # Workbench Usage Navigation Handoff
 
-Generated: 2026-05-31T17:34:29.055Z
+Generated: 2026-05-31T18:40:41.473Z
 
 ## Summary
 
@@ -12,6 +12,7 @@ Generated: 2026-05-31T17:34:29.055Z
 - Observed-only rows: 0
 - Usage clusters: 2
 - Unique route IDs: 1
+- Sample rows: 30
 
 ## Validation
 
@@ -20,7 +21,8 @@ Generated: 2026-05-31T17:34:29.055Z
 - Audit review: rows 2064, reader-facing no
 - Cluster index: present, rows 2390, clusters 2
 - Route coverage: present, links 2390, unique route IDs 1
-- Smoke validation: passed, steps 21, failed 0
+- Sample index: present, samples 30
+- Smoke validation: passed, steps 23, failed 0
 
 ## Artifacts
 
@@ -34,6 +36,7 @@ Generated: 2026-05-31T17:34:29.055Z
 | audit-only review | reports/workbench-usage-audit-only-review.md | yes |
 | cluster index | reports/workbench-usage-cluster-index.md | yes |
 | route coverage | reports/workbench-usage-route-coverage.md | yes |
+| sample index | reports/workbench-usage-sample-index.md | yes |
 | smoke validation | reports/workbench-smoke-pipeline-validation.md | yes |
 
 ## Commands
@@ -51,7 +54,9 @@ Generated: 2026-05-31T17:34:29.055Z
 | validate_cluster_index | node scripts/validate_workbench_usage_cluster_index.mjs .local-cache/workbench-evidence/usage-cluster-index.json |
 | build_route_coverage | node scripts/build_workbench_usage_route_coverage.mjs --concordance=data/workbench-evidence/usage-concordance.json --output=.local-cache/workbench-evidence/usage-route-coverage.json --report=reports/workbench-usage-route-coverage.md --max-samples=8 |
 | validate_route_coverage | node scripts/validate_workbench_usage_route_coverage.mjs .local-cache/workbench-evidence/usage-route-coverage.json |
-| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
+| build_sample_index | node scripts/build_workbench_usage_sample_index.mjs --concordance=data/workbench-evidence/usage-concordance.json --output=.local-cache/workbench-evidence/usage-sample-index.json --report=reports/workbench-usage-sample-index.md --max-samples-per-status=5 |
+| validate_sample_index | node scripts/validate_workbench_usage_sample_index.mjs .local-cache/workbench-evidence/usage-sample-index.json |
+| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --sample-index=.local-cache/workbench-evidence/usage-sample-index.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
 | validate_handoff_index | node scripts/validate_workbench_usage_handoff_index.mjs .local-cache/workbench-evidence/usage-navigation-handoff-index.json |
 
 ## Boundary
