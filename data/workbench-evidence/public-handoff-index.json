@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "workbench_public_handoff_index",
-  "generated_at": "2026-05-31T15:45:25.428Z",
+  "generated_at": "2026-05-31T15:49:05.255Z",
   "generator": "scripts/build_workbench_public_handoff_index.mjs",
   "policy": "Public index of selected workbench usage-evidence handoff packages. It is not a definition artifact and does not choose HUD winners. Ambiguous rows are counted for audit only and are not reader-facing eligible.",
   "inputs": {
@@ -60,6 +60,19 @@
     "visible_answer_authority": false,
     "carries_text_rows": false,
     "notes": "Consumers can link to selected handoff manifests and counts. They must not treat this index as final ranking, source translation, or definition discovery output."
+  },
+  "quality_gates": {
+    "overall_status": "pass_with_warnings",
+    "downstream_consumable": true,
+    "validation_passed": true,
+    "zero_useful_targets_blocked": true,
+    "ambiguous_rows_audit_only": true,
+    "source_freshness_status": "stale",
+    "warnings": [
+      "source_freshness_stale",
+      "ambiguous_rows_count_only"
+    ],
+    "notes": "Quality gates describe whether this handoff index is structurally consumable as usage evidence. They do not rank definitions or choose visible answers."
   },
   "counts": {
     "selected_targets": 55,

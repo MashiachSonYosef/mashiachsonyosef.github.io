@@ -96,6 +96,7 @@ const artifact = {
     carries_text_rows: false,
     notes: 'Consumers can link to selected handoff manifests and counts. They must not treat this index as final ranking, source translation, or definition discovery output.',
   },
+  quality_gates: buildQualityGates(totals, sourceFreshness),
   counts: totals,
   manifests,
 };
@@ -313,6 +314,29 @@ function readSourceFreshness(relativePath) {
   };
 }
 
+function buildQualityGates(totals, freshness) {
+  const warnings = [];
+  const freshnessStatus = freshness?.summary?.status || 'unavailable';
+  if (freshnessStatus === 'stale') warnings.push('source_freshness_stale');
+  else if (freshnessStatus === 'unavailable') warnings.push('source_freshness_unavailable');
+  if (totals.count_only_ambiguous_rows > 0) warnings.push('ambiguous_rows_count_only');
+
+  const validationPassed = totals.validation_failed === 0;
+  const zeroUsefulTargetsBlocked = totals.zero_useful_targets === 0;
+  const ambiguousRowsAuditOnly = true;
+  const downstreamConsumable = validationPassed && zeroUsefulTargetsBlocked && ambiguousRowsAuditOnly;
+  return {
+    overall_status: downstreamConsumable && warnings.length ? 'pass_with_warnings' : downstreamConsumable ? 'pass' : 'fail',
+    downstream_consumable: downstreamConsumable,
+    validation_passed: validationPassed,
+    zero_useful_targets_blocked: zeroUsefulTargetsBlocked,
+    ambiguous_rows_audit_only: ambiguousRowsAuditOnly,
+    source_freshness_status: freshnessStatus,
+    warnings,
+    notes: 'Quality gates describe whether this handoff index is structurally consumable as usage evidence. They do not rank definitions or choose visible answers.',
+  };
+}
+
 function writeJson(relativePath, data) {
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
@@ -334,6 +358,16 @@ function writeReport(relativePath, artifact) {
     `- Ambiguous count-only rows: ${artifact.counts.count_only_ambiguous_rows}`,
     `- Zero-useful selected targets: ${artifact.counts.zero_useful_targets}`,
     `- Status counts: supported ${artifact.counts.status_counts.supported}, candidate ${artifact.counts.status_counts.candidate}, weak ${artifact.counts.status_counts.weak}, ambiguous ${artifact.counts.status_counts.ambiguous}`,
+    '',
+    '## Quality Gates',
+    '',
+    `- Overall status: ${artifact.quality_gates.overall_status}`,
+    `- Downstream consumable: ${artifact.quality_gates.downstream_consumable ? 'yes' : 'no'}`,
+    `- Validation passed: ${artifact.quality_gates.validation_passed ? 'yes' : 'no'}`,
+    `- Zero-useful targets blocked: ${artifact.quality_gates.zero_useful_targets_blocked ? 'yes' : 'no'}`,
+    `- Ambiguous rows audit-only: ${artifact.quality_gates.ambiguous_rows_audit_only ? 'yes' : 'no'}`,
+    `- Source freshness status: ${artifact.quality_gates.source_freshness_status}`,
+    `- Warnings: ${artifact.quality_gates.warnings.length ? artifact.quality_gates.warnings.join(', ') : 'none'}`,
     '',
     '## Coverage Boundary',
     '',

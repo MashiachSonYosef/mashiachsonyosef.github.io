@@ -60,6 +60,7 @@ for (const status of allowedStatuses) {
     issues.push(`counts.status_counts.${status} expected ${expected.status_counts[status]}, found ${artifact.counts?.status_counts?.[status]}`);
   }
 }
+validateQualityGates(artifact.quality_gates);
 
 walkNoRowPayloads(artifact, indexPath);
 
@@ -168,6 +169,49 @@ function validateCoverageBoundary(boundary) {
       const value = Number(freshness[key]);
       if (!Number.isInteger(value) || value < 0) issues.push(`coverage_boundary.source_freshness.${key} must be a non-negative integer`);
     }
+  }
+}
+
+function validateQualityGates(gates) {
+  if (!gates || typeof gates !== 'object') {
+    issues.push('quality_gates must be present');
+    return;
+  }
+  const expectedValidationPassed = expected.validation_failed === 0;
+  const expectedZeroUsefulTargetsBlocked = expected.zero_useful_targets === 0;
+  const expectedAmbiguousRowsAuditOnly = true;
+  const expectedDownstreamConsumable = expectedValidationPassed
+    && expectedZeroUsefulTargetsBlocked
+    && expectedAmbiguousRowsAuditOnly;
+  const expectedWarnings = [];
+  const freshnessStatus = artifact.coverage_boundary?.source_freshness?.status || 'unavailable';
+  if (freshnessStatus === 'stale') expectedWarnings.push('source_freshness_stale');
+  else if (freshnessStatus === 'unavailable') expectedWarnings.push('source_freshness_unavailable');
+  if (expected.count_only_ambiguous_rows > 0) expectedWarnings.push('ambiguous_rows_count_only');
+  const expectedOverallStatus = expectedDownstreamConsumable && expectedWarnings.length
+    ? 'pass_with_warnings'
+    : expectedDownstreamConsumable ? 'pass' : 'fail';
+
+  if (gates.overall_status !== expectedOverallStatus) {
+    issues.push(`quality_gates.overall_status expected ${expectedOverallStatus}, found ${gates.overall_status}`);
+  }
+  if (gates.downstream_consumable !== expectedDownstreamConsumable) {
+    issues.push(`quality_gates.downstream_consumable expected ${expectedDownstreamConsumable}`);
+  }
+  if (gates.validation_passed !== expectedValidationPassed) {
+    issues.push(`quality_gates.validation_passed expected ${expectedValidationPassed}`);
+  }
+  if (gates.zero_useful_targets_blocked !== expectedZeroUsefulTargetsBlocked) {
+    issues.push(`quality_gates.zero_useful_targets_blocked expected ${expectedZeroUsefulTargetsBlocked}`);
+  }
+  if (gates.ambiguous_rows_audit_only !== expectedAmbiguousRowsAuditOnly) {
+    issues.push('quality_gates.ambiguous_rows_audit_only must be true');
+  }
+  if (gates.source_freshness_status !== freshnessStatus) {
+    issues.push(`quality_gates.source_freshness_status expected ${freshnessStatus}, found ${gates.source_freshness_status}`);
+  }
+  if (!sameList(gates.warnings || [], expectedWarnings)) {
+    issues.push(`quality_gates.warnings expected ${expectedWarnings.join(',')}, found ${(gates.warnings || []).join(',')}`);
   }
 }
 

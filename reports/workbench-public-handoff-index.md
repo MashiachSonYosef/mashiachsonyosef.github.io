@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T15:45:25.428Z
+Generated: 2026-05-31T15:49:05.255Z
 
 ## Summary
 
@@ -11,6 +11,16 @@ Generated: 2026-05-31T15:45:25.428Z
 - Ambiguous count-only rows: 2064
 - Zero-useful selected targets: 0
 - Status counts: supported 339, candidate 1351, weak 700, ambiguous 2064
+
+## Quality Gates
+
+- Overall status: pass_with_warnings
+- Downstream consumable: yes
+- Validation passed: yes
+- Zero-useful targets blocked: yes
+- Ambiguous rows audit-only: yes
+- Source freshness status: stale
+- Warnings: source_freshness_stale, ambiguous_rows_count_only
 
 ## Coverage Boundary
 
