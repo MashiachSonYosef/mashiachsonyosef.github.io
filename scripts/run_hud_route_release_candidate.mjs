@@ -69,6 +69,12 @@ const steps = [
   nodeStep('validate HUD route release stamp', 'scripts/validate_hud_route_release_stamp.mjs', [
     options.releaseStamp,
   ]),
+  nodeStep('validate frozen route inputs against current sources', 'scripts/validate_hud_route_input_freeze.mjs', [
+    '--stamp', options.releaseStamp,
+    '--source-dir', options.sourceDir,
+    '--report', 'reports/hud-route-input-freeze-drift.md',
+    '--fail-on-drift',
+  ]),
   nodeStep('validate HUD route release gate', 'scripts/validate_hud_route_release_gate.mjs', [
     '--report', options.gateReport,
   ]),
