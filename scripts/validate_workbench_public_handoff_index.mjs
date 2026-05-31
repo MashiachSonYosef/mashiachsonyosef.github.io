@@ -75,7 +75,14 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log(`Workbench public handoff index validation passed. Manifests: ${expected.selected_targets}. Eligible rows: ${expected.reader_facing_eligible_rows}. Ambiguous count-only rows: ${expected.count_only_ambiguous_rows}.`);
+const topCluster = (artifact.aggregate_cluster_metadata?.cluster_counts || [])[0] || null;
+console.log([
+  `Workbench public handoff index validation passed. Manifests: ${expected.selected_targets}.`,
+  `Eligible rows: ${expected.reader_facing_eligible_rows}.`,
+  `Ambiguous count-only rows: ${expected.count_only_ambiguous_rows}.`,
+  `Quality: ${artifact.quality_gates?.overall_status || 'unknown'}.`,
+  `Top frame: ${topCluster ? `${topCluster.cluster_id} (${topCluster.reader_facing_eligible_rows} eligible)` : 'none'}.`,
+].join(' '));
 
 function validateManifest(row, context) {
   expected.selected_targets += 1;
