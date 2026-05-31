@@ -7,6 +7,8 @@ const indexPath = cleanRelativePath(process.argv[2] || 'data/workbench-evidence/
 const artifact = readJson(indexPath);
 const issues = [];
 const allowedStatuses = new Set(['supported', 'candidate', 'weak', 'ambiguous', 'blocked']);
+const expectedLicenseCounts = new Map();
+const expectedWorkCounts = new Map();
 const forbiddenFieldNames = new Set([
   'phrase_hebrew',
   'phrase_tokens',
@@ -61,6 +63,7 @@ for (const status of allowedStatuses) {
   }
 }
 validateQualityGates(artifact.quality_gates);
+validateAggregateSourceMetadata(artifact.aggregate_source_metadata);
 
 walkNoRowPayloads(artifact, indexPath);
 
@@ -113,6 +116,14 @@ function validateManifest(row, context) {
   const statusTotal = [...allowedStatuses].reduce((sum, status) => sum + Number(row.status_counts?.[status] || 0), 0);
   if (Number(row.counts?.candidate_rows || 0) + Number(row.counts?.blocked_rows || 0) !== statusTotal) {
     issues.push(`${context}: status counts do not match candidate_rows + blocked_rows`);
+  }
+  for (const [index, licenseRow] of (row.license_counts || []).entries()) {
+    validateCountRow(licenseRow, `${context}.license_counts[${index}]`);
+    incrementBy(expectedLicenseCounts, licenseRow.value, licenseRow.count);
+  }
+  for (const [index, workRow] of (row.work_counts || []).entries()) {
+    validateCountRow(workRow, `${context}.work_counts[${index}]`);
+    incrementBy(expectedWorkCounts, workRow.value, workRow.count);
   }
 }
 
@@ -215,6 +226,23 @@ function validateQualityGates(gates) {
   }
 }
 
+function validateAggregateSourceMetadata(metadata) {
+  if (!metadata || typeof metadata !== 'object') {
+    issues.push('aggregate_source_metadata must be present');
+    return;
+  }
+  validateCountList(
+    metadata.license_counts,
+    topCounts(expectedLicenseCounts, 20),
+    'aggregate_source_metadata.license_counts',
+  );
+  validateCountList(
+    metadata.top_work_counts,
+    topCounts(expectedWorkCounts, 40),
+    'aggregate_source_metadata.top_work_counts',
+  );
+}
+
 function walkNoRowPayloads(value, context, pathParts = []) {
   if (Array.isArray(value)) {
     value.forEach((item, index) => walkNoRowPayloads(item, context, [...pathParts, String(index)]));
@@ -242,4 +270,45 @@ function sameList(value, expected) {
   return Array.isArray(value)
     && value.length === expected.length
     && value.every((item, index) => item === expected[index]);
+}
+
+function validateCountRow(row, context) {
+  if (!row || typeof row !== 'object') {
+    issues.push(`${context}: must be an object`);
+    return;
+  }
+  if (!String(row.value || '').trim()) issues.push(`${context}.value must be non-empty`);
+  const count = Number(row.count);
+  if (!Number.isInteger(count) || count < 0) issues.push(`${context}.count must be a non-negative integer`);
+}
+
+function validateCountList(actual, expectedRows, context) {
+  if (!Array.isArray(actual)) {
+    issues.push(`${context} must be an array`);
+    return;
+  }
+  if (actual.length !== expectedRows.length) {
+    issues.push(`${context} expected ${expectedRows.length} rows, found ${actual.length}`);
+    return;
+  }
+  for (const [index, expectedRow] of expectedRows.entries()) {
+    const actualRow = actual[index] || {};
+    if (actualRow.value !== expectedRow.value || Number(actualRow.count || 0) !== expectedRow.count) {
+      issues.push(`${context}[${index}] expected ${expectedRow.value}:${expectedRow.count}, found ${actualRow.value}:${actualRow.count}`);
+    }
+  }
+}
+
+function topCounts(map, limit) {
+  return [...map.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+    .map(([value, count]) => ({ value, count }));
+}
+
+function incrementBy(map, key, count) {
+  const safeKey = String(key || '').trim();
+  const safeCount = Number(count || 0);
+  if (!safeKey || !Number.isFinite(safeCount) || safeCount <= 0) return;
+  map.set(safeKey, (map.get(safeKey) || 0) + safeCount);
 }

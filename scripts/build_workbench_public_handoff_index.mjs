@@ -22,6 +22,7 @@ const sourceFreshness = readSourceFreshness(options.sourceFreshness);
 const targets = (Array.isArray(queue.targets) ? queue.targets : [])
   .filter((target) => isSelectedSmokeTarget(target));
 const manifests = targets.map((target, index) => inspectManifest(target, index));
+const aggregateSourceMetadata = summarizeSourceMetadata(manifests);
 const totals = manifests.reduce((sum, row) => {
   sum.selected_targets += 1;
   if (row.validation.status === 'passed') sum.validation_passed += 1;
@@ -97,6 +98,7 @@ const artifact = {
     notes: 'Consumers can link to selected handoff manifests and counts. They must not treat this index as final ranking, source translation, or definition discovery output.',
   },
   quality_gates: buildQualityGates(totals, sourceFreshness),
+  aggregate_source_metadata: aggregateSourceMetadata,
   counts: totals,
   manifests,
 };
@@ -337,6 +339,24 @@ function buildQualityGates(totals, freshness) {
   };
 }
 
+function summarizeSourceMetadata(manifests) {
+  const licenseCounts = new Map();
+  const workCounts = new Map();
+  for (const manifest of manifests) {
+    for (const row of manifest.license_counts || []) {
+      incrementBy(licenseCounts, row.value, row.count);
+    }
+    for (const row of manifest.work_counts || []) {
+      incrementBy(workCounts, row.value, row.count);
+    }
+  }
+  return {
+    license_counts: topCounts(licenseCounts, 20),
+    top_work_counts: topCounts(workCounts, 40),
+    work_counts_note: 'Top works are aggregated from each selected manifest summary and are for handoff triage only, not corpus-wide coverage.',
+  };
+}
+
 function writeJson(relativePath, data) {
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
@@ -378,6 +398,18 @@ function writeReport(relativePath, artifact) {
     `- Current source files: ${artifact.coverage_boundary.source_freshness.current_source_files ?? 'n/a'}`,
     `- Count delta: ${artifact.coverage_boundary.source_freshness.count_delta_vs_artifact_scan ?? 'n/a'}`,
     `- Files modified after artifact: ${artifact.coverage_boundary.source_freshness.files_modified_after_artifact ?? 'n/a'}`,
+    '',
+    '## Source Metadata Summary',
+    '',
+    '| license | rows |',
+    '|---|---:|',
+    ...artifact.aggregate_source_metadata.license_counts.map((row) => `| ${mdCell(row.value)} | ${row.count} |`),
+    '',
+    '## Top Work Summary',
+    '',
+    '| work | rows |',
+    '|---|---:|',
+    ...artifact.aggregate_source_metadata.top_work_counts.slice(0, 20).map((row) => `| ${mdCell(row.value)} | ${row.count} |`),
     '',
     '## Policy',
     '',
@@ -432,6 +464,13 @@ function increment(map, key) {
   const safeKey = String(key || '').trim();
   if (!safeKey) return;
   map.set(safeKey, (map.get(safeKey) || 0) + 1);
+}
+
+function incrementBy(map, key, count) {
+  const safeKey = String(key || '').trim();
+  const safeCount = Number(count || 0);
+  if (!safeKey || !Number.isFinite(safeCount) || safeCount <= 0) return;
+  map.set(safeKey, (map.get(safeKey) || 0) + safeCount);
 }
 
 function cleanRelativePath(value) {

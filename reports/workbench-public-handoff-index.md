@@ -1,6 +1,6 @@
 # Workbench Public Handoff Index
 
-Generated: 2026-05-31T15:49:05.255Z
+Generated: 2026-05-31T15:52:45.299Z
 
 ## Summary
 
@@ -31,6 +31,40 @@ Generated: 2026-05-31T15:49:05.255Z
 - Current source files: 1235
 - Count delta: 43
 - Files modified after artifact: 43
+
+## Source Metadata Summary
+
+| license | rows |
+|---|---:|
+| Public Domain | 4231 |
+| CC-BY-SA | 145 |
+| CC-BY | 54 |
+| CC0 | 24 |
+
+## Top Work Summary
+
+| work | rows |
+|---|---:|
+| shenei-luchot-haberit | 335 |
+| peri-tzadik | 326 |
+| sefat-emet | 306 |
+| ohr-hachammah-on-zohar | 274 |
+| zera-kodesh | 209 |
+| ohev-yisrael | 103 |
+| beit-aharon | 102 |
+| pardes-rimmonim | 100 |
+| ketem-paz-on-zohar | 95 |
+| akeidat-yitzchak | 87 |
+| mikdash-melekh-on-zohar | 87 |
+| sod-yesharim | 83 |
+| yismach-moshe | 82 |
+| maor-vashemesh | 71 |
+| recanati-on-the-torah | 59 |
+| moreh-nevukhei-hazeman | 58 |
+| tiferet-shlomo | 58 |
+| ohr-hameir | 54 |
+| bnei-yissaschar | 51 |
+| meor-einayim | 50 |
 
 ## Policy
 
