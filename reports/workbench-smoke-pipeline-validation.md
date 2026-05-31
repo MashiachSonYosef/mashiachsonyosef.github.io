@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-05-31T18:50:53.122Z
+Generated: 2026-05-31T19:00:45.799Z
 
 ## Summary
 
-- Steps: 25
+- Steps: 27
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -21,6 +21,7 @@ Generated: 2026-05-31T18:50:53.122Z
 - Usage route coverage: present, route IDs 1, links 2390
 - Usage sample index: present, samples 24, clusters 2
 - Usage lookup index: present, occurrence refs 2390, works 271
+- Usage selected slice: present, id tanakh-workbench-section, rows 49, works 20
 - Usage concordance link check: passed, source URL bad 0, work anchor bad 0, issues 0
 - Usage route link check: passed, links 2390, resolved 2390, unresolved 0, metadata mismatches 0, unique route IDs 1
 - Usage audit-only review: rows 2064, ambiguous 2064, blocked 0, reader-facing no
@@ -51,6 +52,8 @@ Generated: 2026-05-31T18:50:53.122Z
 | validate_usage_sample_index | passed | Workbench usage sample index validation passed. Samples: 24. Clusters: 2. |
 | build_usage_lookup_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-lookup-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-lookup-index.md / Usage lookup index occurrences 2390; works 271; clusters 2 |
 | validate_usage_lookup_index | passed | Workbench usage lookup index validation passed. Occurrences: 2390. Works: 271. |
+| build_usage_selected_slice | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.md / Usage slice tanakh-workbench-section rows 49; works 20; clusters 2 |
+| validate_usage_selected_slice | passed | Workbench usage slice index validation passed. Slice rows: 49. Works: 20. |
 | check_usage_concordance_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.md / Usage concordance link check passed; rows 2390; source URL bad 0; work anchors bad 0 |
 | check_usage_route_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.md / Usage route link check passed; rows 2390; links 2390; unresolved 0; metadata mismatches 0 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |
