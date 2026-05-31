@@ -14,6 +14,16 @@ node scripts\build_citable_paraphrase_evidence.mjs --local-only --max-total-rows
 
 Local-only mode writes the JSONL, CSV, token index, and sample under `.local-cache/definition-routes/`. It does not patch `data/definitions/manifest.json`, `reports/definition-pipeline-report.md`, or the public sample file.
 
+## Morphology Review Mode
+
+Prefix/suffix parsing is opt-in and conservative:
+
+```powershell
+node scripts\build_citable_paraphrase_evidence.mjs --local-only --include-morphology --max-total-rows=200000 --max-per-token=40
+```
+
+Morphology-derived rows default to `candidate_status=proposed`, even when exact citable rows are accepted. This keeps sketchy prefix/suffix parses out of the live HUD until a review pass promotes them deliberately.
+
 ## Validation Command
 
 Audit the local batch before promoting any public artifact:

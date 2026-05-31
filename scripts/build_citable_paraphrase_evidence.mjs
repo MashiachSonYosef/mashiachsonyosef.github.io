@@ -15,6 +15,7 @@ const defaults = {
     '.local-cache/definition-routes/source-layer-definition-claims.jsonl',
     '.local-cache/definition-routes/kaikki-definition-claims.jsonl',
   ],
+  morphologyRules: 'data/lexical/morphology-rules.json',
   jsonl: '.local-cache/definition-routes/source-citable-paraphrase-evidence.jsonl',
   csv: '.local-cache/definition-routes/source-citable-paraphrase-evidence.csv',
   index: '.local-cache/definition-routes/source-citable-paraphrase-token-index.json',
@@ -28,8 +29,10 @@ const defaults = {
   maxSourceFiles: 0,
   window: 3,
   candidateStatus: 'accepted',
+  morphologyCandidateStatus: 'proposed',
   includeBiblical: false,
   includeUntracked: false,
+  includeMorphology: false,
   localOnly: false,
   sourceFiles: [],
 };
@@ -93,9 +96,11 @@ function parseArgs(args) {
   for (const arg of args) {
     if (arg === '--include-biblical') parsed.includeBiblical = true;
     else if (arg === '--include-untracked') parsed.includeUntracked = true;
+    else if (arg === '--include-morphology') parsed.includeMorphology = true;
     else if (arg === '--local-only') parsed.localOnly = true;
     else if (arg.startsWith('--source-file=')) parsed.sourceFiles.push(cleanRelativePath(arg.split('=').slice(1).join('=')));
     else if (arg.startsWith('--claim-file=')) parsed.claimFiles.push(cleanRelativePath(arg.split('=').slice(1).join('=')));
+    else if (arg.startsWith('--morphology-rules=')) parsed.morphologyRules = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--jsonl=')) parsed.jsonl = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--csv=')) parsed.csv = cleanRelativePath(arg.split('=').slice(1).join('='));
     else if (arg.startsWith('--index=')) parsed.index = cleanRelativePath(arg.split('=').slice(1).join('='));
@@ -107,6 +112,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--max-source-files=')) parsed.maxSourceFiles = Number(arg.split('=')[1]);
     else if (arg.startsWith('--window=')) parsed.window = Number(arg.split('=')[1]);
     else if (arg.startsWith('--candidate-status=')) parsed.candidateStatus = arg.split('=').slice(1).join('=');
+    else if (arg.startsWith('--morphology-candidate-status=')) parsed.morphologyCandidateStatus = arg.split('=').slice(1).join('=');
     else throw new Error(`Unknown argument: ${arg}`);
   }
   for (const key of ['maxPerToken', 'maxTotalRows', 'maxClaimsPerNormalized', 'maxDefinitionsPerOccurrence', 'maxSourceFiles', 'window']) {
@@ -116,6 +122,9 @@ function parseArgs(args) {
   }
   if (!['proposed', 'accepted', 'rejected'].includes(parsed.candidateStatus)) {
     throw new Error('--candidate-status must be proposed, accepted, or rejected');
+  }
+  if (!['proposed', 'accepted', 'rejected'].includes(parsed.morphologyCandidateStatus)) {
+    throw new Error('--morphology-candidate-status must be proposed, accepted, or rejected');
   }
   if (parsed.localOnly && parsed.sample === defaults.sample) {
     parsed.sample = `${parsed.localDir}/source-citable-paraphrase-evidence-sample.json`;
@@ -345,6 +354,160 @@ async function loadClaimIndex() {
   return { index, stats };
 }
 
+function morphologySourceRow(layer, rule) {
+  return compactSourceRow({
+    source_name: layer.source_name || 'Project-authored conservative morphology rules',
+    source_family: layer.source_family || 'workspace',
+    source_id: `${layer.layer_id || 'project-morphology-rules'}:${rule.rule_id || rule.normalized || rule.hebrew}`,
+    source_url: `local:${layer.layer_id || 'project-morphology-rules'}`,
+    license: layer.license || 'project-authored / CC0',
+    license_url: layer.license_url || licenseUrls.get('project-authored / CC0') || '',
+    fields_used: ['rule_id', 'kind', 'normalized', 'meanings'],
+    notes: 'Project-authored morphology rule. Grammar metadata only; no external definition text imported.',
+  });
+}
+
+function loadMorphologyRules() {
+  if (!options.includeMorphology) return null;
+  const layer = readJson(options.morphologyRules);
+  const prefixRules = [];
+  const suffixRules = [];
+  for (const rule of Array.isArray(layer.rules) ? layer.rules : []) {
+    if (!rule.safe_default) continue;
+    if (!['prefix', 'suffix'].includes(rule.route_role)) continue;
+    const normalized = normalizeHebrew(rule.normalized || rule.hebrew || '');
+    if (!normalized) continue;
+    const compact = {
+      rule_id: rule.rule_id || stableId('morph-rule', [rule.kind, rule.hebrew, normalized]),
+      kind: rule.kind,
+      language: rule.language || 'Hebrew/Aramaic',
+      surface: rule.hebrew || normalized,
+      normalized,
+      meanings: Array.isArray(rule.meanings) ? rule.meanings.map(cleanDefinition).filter(Boolean) : [],
+      confidence: Number.isFinite(rule.confidence) ? rule.confidence : 80,
+      source_rows: [morphologySourceRow(layer, rule)],
+    };
+    if (!compact.meanings.length || !safeSourceRows(compact.source_rows)) continue;
+    if (rule.route_role === 'prefix') prefixRules.push(compact);
+    if (rule.route_role === 'suffix') suffixRules.push(compact);
+  }
+  suffixRules.sort((a, b) => b.normalized.length - a.normalized.length);
+  return { prefixRules, suffixRules };
+}
+
+function enumeratePrefixSplits(normalizedToken, prefixRules, maxDepth = 3) {
+  const results = [{ prefixes: [], rest: normalizedToken }];
+  function visit(rest, prefixes) {
+    if (prefixes.length >= maxDepth) return;
+    for (const rule of prefixRules) {
+      if (!rest.startsWith(rule.normalized) || rest.length <= rule.normalized.length + 1) continue;
+      const next = rest.slice(rule.normalized.length);
+      const nextPrefixes = [...prefixes, rule];
+      results.push({ prefixes: nextPrefixes, rest: next });
+      visit(next, nextPrefixes);
+    }
+  }
+  visit(normalizedToken, []);
+  return results;
+}
+
+function suffixSplits(rest, suffixRules) {
+  const splits = [{ suffix: null, base: rest }];
+  for (const rule of suffixRules) {
+    if (rest.endsWith(rule.normalized) && rest.length > rule.normalized.length + 1) {
+      splits.push({ suffix: rule, base: rest.slice(0, -rule.normalized.length) });
+    }
+  }
+  return splits;
+}
+
+function morphologyBaseClaim(base, claimIndex) {
+  return (claimIndex.get(base) || []).find((claim) => claim.route_family !== 'wiktionary_definition') || null;
+}
+
+function makeMorphologyClaim(token, claimIndex, morphology) {
+  if (!morphology) return null;
+  const normalizedToken = token.normalized;
+  if (!normalizedToken || claimIndex.has(normalizedToken)) return null;
+  const candidates = [];
+  for (const split of enumeratePrefixSplits(normalizedToken, morphology.prefixRules)) {
+    for (const option of suffixSplits(split.rest, morphology.suffixRules)) {
+      const { suffix, base } = option;
+      if (!split.prefixes.length && !suffix) continue;
+      if (!base || base.length < 2) continue;
+      const baseClaim = morphologyBaseClaim(base, claimIndex);
+      if (!baseClaim?.definition) continue;
+      const morphologyConfidence = Math.min(
+        ...[
+          ...split.prefixes.map((rule) => rule.confidence),
+          ...(suffix ? [suffix.confidence] : []),
+        ],
+      );
+      const baseScore = claimScore(baseClaim);
+      const rawScore = Math.max(55, Math.min(96, Math.round((baseScore * 0.72) + (morphologyConfidence * 0.28) - (split.prefixes.length * 2) - (suffix ? 2 : 0))));
+      candidates.push({
+        prefixes: split.prefixes,
+        suffix,
+        base,
+        baseClaim,
+        rawScore,
+        score: rawScore + base.length - (split.prefixes.length * 2),
+      });
+    }
+  }
+  candidates.sort((a, b) => b.score - a.score || b.base.length - a.base.length);
+  const selected = candidates[0];
+  if (!selected) return null;
+  const prefixMeanings = selected.prefixes.flatMap((rule) => rule.meanings.slice(0, 1));
+  const suffixMeanings = selected.suffix?.meanings || [];
+  const meanings = [...prefixMeanings, selected.baseClaim.definition, ...suffixMeanings];
+  return {
+    claim_id: stableId('def-citable-morphology', [
+      normalizedToken,
+      selected.prefixes.map((rule) => rule.rule_id),
+      selected.baseClaim.claim_id,
+      selected.suffix?.rule_id || '',
+    ]),
+    route_family: 'project_morphology',
+    route_type: 'morphology_parse',
+    language: selected.prefixes.some((rule) => rule.language === 'Aramaic') || selected.suffix?.language === 'Aramaic' ? 'Aramaic/Hebrew' : 'Hebrew',
+    surface: token.surface,
+    normalized: normalizedToken,
+    match_type: selected.prefixes.length && selected.suffix ? 'prefix_base_suffix' : selected.prefixes.length ? 'prefix_base' : 'base_suffix',
+    confidence: selected.rawScore,
+    answer_score: selected.rawScore,
+    candidate_status: options.morphologyCandidateStatus,
+    meaning_quality: 'definition',
+    part_of_speech: selected.baseClaim.part_of_speech || '',
+    definition: meanings.join(' + '),
+    morphology_breakdown: [
+      ...selected.prefixes.map((rule) => ({
+        role: 'prefix',
+        surface: rule.surface,
+        normalized: rule.normalized,
+        meanings: rule.meanings,
+      })),
+      {
+        role: 'main word',
+        surface: selected.baseClaim.surface,
+        normalized: selected.base,
+        meanings: [selected.baseClaim.definition],
+      },
+      ...(selected.suffix ? [{
+        role: 'ending',
+        surface: selected.suffix.surface,
+        normalized: selected.suffix.normalized,
+        meanings: selected.suffix.meanings,
+      }] : []),
+    ],
+    source_rows: [
+      ...selected.prefixes.flatMap((rule) => rule.source_rows),
+      ...selected.baseClaim.source_rows,
+      ...(selected.suffix?.source_rows || []),
+    ],
+  };
+}
+
 function makeSourceRow(data, unit, relativePath, license) {
   return {
     source_name: unit.version_title || data.work_title || path.basename(relativePath, '.json'),
@@ -394,7 +557,7 @@ function makeEvidenceRow({ claim, data, unit, relativePath, tokens, tokenIndex, 
     ]),
     route_type: 'citable_paraphrase_evidence',
     route_family: 'citable_paraphrase_evidence',
-    candidate_status: options.candidateStatus,
+    candidate_status: claim.candidate_status || options.candidateStatus,
     focus_surface: token.surface,
     focus_normalized: token.normalized,
     definition: claim.definition,
@@ -406,6 +569,7 @@ function makeEvidenceRow({ claim, data, unit, relativePath, tokens, tokenIndex, 
     source_definition_claim_id: claim.claim_id,
     source_definition_route_family: claim.route_family,
     source_definition_route_type: claim.route_type,
+    morphology_breakdown: claim.morphology_breakdown,
     phrase_hebrew: phraseTokens.map((phraseToken) => phraseToken.surface).join(' '),
     phrase_tokens: phraseTokens,
     source_ref: unit.source_ref || unit.sefaria_ref || '',
@@ -492,7 +656,9 @@ function patchManifest(stats) {
     generated_at: generatedAt,
     source_policy: 'Citable paraphrase rows join an accepted lexical definition row to a licensed non-biblical Hebrew usage row. Biblical-definition rows are produced by a separate lane.',
     include_biblical: options.includeBiblical,
+    include_morphology: options.includeMorphology,
     candidate_status: options.candidateStatus,
+    morphology_candidate_status: options.morphologyCandidateStatus,
     max_per_token: options.maxPerToken,
     max_total_rows: options.maxTotalRows,
     counts: stats,
@@ -529,7 +695,10 @@ function patchReport(stats) {
     `- Definition claims read: ${stats.claims_read}`,
     `- Definition claims indexed: ${stats.claims_indexed}`,
     `- Citable rows emitted: ${stats.evidence_rows}`,
+    `- Morphology-derived citable rows emitted: ${stats.morphology_evidence_rows || 0}`,
     `- Candidate status: ${options.candidateStatus}`,
+    `- Morphology candidate status: ${options.morphologyCandidateStatus}`,
+    `- Morphology parsing enabled: ${options.includeMorphology ? 'yes' : 'no'}`,
     `- Max rows per normalized token: ${options.maxPerToken === 0 ? 'unlimited' : options.maxPerToken}`,
     `- Public sample: ${options.sample}`,
     `- Local cache: ${options.jsonl}`,
@@ -546,6 +715,7 @@ async function main() {
   mkdirp(options.sample);
 
   const { index: claimIndex, stats: claimStats } = await loadClaimIndex();
+  const morphology = loadMorphologyRules();
   const sourceFiles = collectSourceFiles();
   const jsonl = fs.createWriteStream(path.join(root, options.jsonl), { encoding: 'utf8' });
   const csv = fs.createWriteStream(path.join(root, options.csv), { encoding: 'utf8' });
@@ -565,6 +735,7 @@ async function main() {
     rejected_units: 0,
     token_occurrences: 0,
     evidence_rows: 0,
+    morphology_evidence_rows: 0,
     distinct_normalized_tokens_seen: 0,
     distinct_normalized_tokens_emitted: 0,
   };
@@ -596,7 +767,11 @@ async function main() {
         const token = tokens[tokenIndex];
         stats.token_occurrences += 1;
         count(tokenTotals, token.normalized);
-        const claims = (claimIndex.get(token.normalized) || []).slice(0, options.maxDefinitionsPerOccurrence);
+        let claims = (claimIndex.get(token.normalized) || []).slice(0, options.maxDefinitionsPerOccurrence);
+        if (!claims.length && options.includeMorphology) {
+          const morphologyClaim = makeMorphologyClaim(token, claimIndex, morphology);
+          if (morphologyClaim) claims = [morphologyClaim];
+        }
         if (!claims.length || !shouldEmit(token.normalized, emittedByToken, stats.evidence_rows)) continue;
         for (const claim of claims) {
           if (!shouldEmit(token.normalized, emittedByToken, stats.evidence_rows)) break;
@@ -606,6 +781,7 @@ async function main() {
           count(emittedByToken, token.normalized);
           maybeCollectSample(row, samples, sampleWorkCounts);
           stats.evidence_rows += 1;
+          if (claim.route_family === 'project_morphology') stats.morphology_evidence_rows += 1;
         }
       }
     }
@@ -625,6 +801,7 @@ async function main() {
     schema_version: 1,
     generated_at: generatedAt,
     include_biblical: options.includeBiblical,
+    include_morphology: options.includeMorphology,
     max_per_token: options.maxPerToken,
     max_total_rows: options.maxTotalRows,
     distinct_normalized_tokens_seen: tokenTotals.size,
@@ -643,7 +820,9 @@ async function main() {
     generated_at: generatedAt,
     route_policy: 'Citable rows join an accepted lexical definition row to licensed non-biblical Hebrew usage evidence. They do not import English source-text translations.',
     candidate_status: options.candidateStatus,
+    morphology_candidate_status: options.morphologyCandidateStatus,
     include_biblical: options.includeBiblical,
+    include_morphology: options.includeMorphology,
     samples,
   });
   if (!options.localOnly) {
