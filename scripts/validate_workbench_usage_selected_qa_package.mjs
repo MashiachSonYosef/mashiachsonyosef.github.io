@@ -66,7 +66,7 @@ console.log(`Validated usage selected QA package ${artifactPath}: items ${items.
 
 function validateCounts(packageItems) {
   if (Number(artifact.counts?.package_items || 0) !== packageItems.length) issues.push('package_items count must equal package_items length');
-  if (packageItems.length !== 17) issues.push('package must contain 17 selected artifact items');
+  if (packageItems.length !== 18) issues.push('package must contain 18 selected artifact items');
   if (Number(artifact.counts?.selected_rows || 0) <= 0) issues.push('selected_rows must be positive');
   if (Number(artifact.counts?.selected_source_refs || 0) <= 1) issues.push('selected_source_refs must show diversity');
   if (Number(artifact.counts?.selected_works || 0) <= 1) issues.push('selected_works must show diversity');
@@ -138,6 +138,48 @@ function validateCounts(packageItems) {
   }
   if (Number(artifact.counts?.selected_route_provenance_samples || 0) !== Number(artifact.counts?.selected_route_links || 0)) {
     issues.push('selected_route_provenance_samples must equal selected_route_links');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_navigation_rows must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_source_refs || 0) !== Number(artifact.counts?.selected_source_refs || 0)) {
+    issues.push('selected_occurrence_navigation_source_refs must equal selected_source_refs');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_work_anchors || 0) !== Number(artifact.counts?.selected_source_refs || 0)) {
+    issues.push('selected_occurrence_navigation_work_anchors must equal selected_source_refs');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_works || 0) !== Number(artifact.counts?.selected_works || 0)) {
+    issues.push('selected_occurrence_navigation_works must equal selected_works');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_frames || 0) !== Number(artifact.counts?.selected_frame_summary_frames || 0)) {
+    issues.push('selected_occurrence_navigation_frames must equal selected_frame_summary_frames');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_route_ids || 0) !== Number(artifact.counts?.selected_route_ids || 0)) {
+    issues.push('selected_occurrence_navigation_route_ids must equal selected_route_ids');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_provenance_buckets || 0) !== Number(artifact.counts?.selected_provenance_buckets || 0)) {
+    issues.push('selected_occurrence_navigation_provenance_buckets must equal selected_provenance_buckets');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_rows_with_source_link || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_navigation_rows_with_source_link must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_rows_with_work_anchor || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_navigation_rows_with_work_anchor must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_rows_with_hebrew_context || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_navigation_rows_with_hebrew_context must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_rows_with_focus_marker || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_navigation_rows_with_focus_marker must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_rows_with_provenance || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_navigation_rows_with_provenance must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_collision_member_rows || 0) <= 0) {
+    issues.push('selected_occurrence_navigation_collision_member_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_occurrence_navigation_collision_memberships || 0) !== Number(artifact.counts?.selected_collision_occurrence_rows || 0)) {
+    issues.push('selected_occurrence_navigation_collision_memberships must equal selected_collision_occurrence_rows');
   }
   if (Number(artifact.counts?.selected_focus_context_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
     issues.push('selected_focus_context_rows must equal selected_rows');
