@@ -160,6 +160,10 @@ function buildCounts(rows) {
     proof_rows_with_license: rows.filter((row) => row.license && row.license_url).length,
     proof_rows_with_version: rows.filter((row) => row.version_title && row.version_source).length,
     proof_rows_with_route_ids: rows.filter((row) => Array.isArray(row.route_ids) && row.route_ids.length > 0).length,
+    proof_rows_with_hebrew_token: rows.filter((row) => hasHebrew(`${row.token_key} ${row.normalized_form}`)).length,
+    proof_rows_with_hebrew_context: rows.filter((row) => hasHebrew(row.context_focus_marked)).length,
+    proof_rows_with_focus_marker: rows.filter((row) => String(row.context_focus_marked || '').includes('[') && String(row.context_focus_marked || '').includes(']')).length,
+    proof_mojibake_rows: rows.filter((row) => hasMojibake(`${row.token_key} ${row.normalized_form} ${row.context_focus_marked}`)).length,
     route_ids: new Set(rows.flatMap((row) => row.route_ids || [])).size,
     tokens: new Set(rows.map((row) => row.token_key)).size,
     usage_frames: new Set(rows.map((row) => row.usage_frame_label).filter(Boolean)).size,
@@ -186,6 +190,7 @@ function buildChecks(counts) {
     check('artifact_chain_present', counts.evidence_artifacts === 6 && counts.validator_scripts === 4 ? 'passed' : 'failed', `evidence artifacts ${counts.evidence_artifacts}; validators ${counts.validator_scripts}`),
     check('proof_occurrences_present', counts.proof_occurrence_rows > 0 ? 'passed' : 'failed', `proof occurrence rows ${counts.proof_occurrence_rows}`),
     check('proof_occurrence_metadata_complete', counts.proof_rows_with_source === counts.proof_occurrence_rows && counts.proof_rows_with_work_anchor === counts.proof_occurrence_rows && counts.proof_rows_with_context === counts.proof_occurrence_rows && counts.proof_rows_with_license === counts.proof_occurrence_rows && counts.proof_rows_with_version === counts.proof_occurrence_rows ? 'passed' : 'failed', `source/work/context/license/version ${counts.proof_rows_with_source}/${counts.proof_rows_with_work_anchor}/${counts.proof_rows_with_context}/${counts.proof_rows_with_license}/${counts.proof_rows_with_version}`),
+    check('proof_hebrew_context_intact', counts.proof_rows_with_hebrew_token === counts.proof_occurrence_rows && counts.proof_rows_with_hebrew_context === counts.proof_occurrence_rows && counts.proof_rows_with_focus_marker === counts.proof_occurrence_rows && counts.proof_mojibake_rows === 0 ? 'passed' : 'failed', `Hebrew token/context ${counts.proof_rows_with_hebrew_token}/${counts.proof_rows_with_hebrew_context}; focus markers ${counts.proof_rows_with_focus_marker}; mojibake ${counts.proof_mojibake_rows}`),
     check('route_ids_only', counts.route_ids > 0 && counts.proof_rows_with_route_ids === counts.proof_occurrence_rows && counts.route_payload_field_hits === 0 ? 'passed' : 'failed', `route IDs ${counts.route_ids}; route-id rows ${counts.proof_rows_with_route_ids}; payload hits ${counts.route_payload_field_hits}`),
     check('usage_seed_absence_visible', counts.current_sample_rows > 0 && counts.current_sample_rows_with_usage_links === 0 && counts.usage_tokens_absent_from_current_sample > 0 ? 'passed' : 'warning', `sample rows ${counts.current_sample_rows}; current usage links ${counts.current_sample_rows_with_usage_links}; absent seeds ${counts.usage_tokens_absent_from_current_sample}`),
     check('sample_review_status_not_verified', counts.current_sample_review_verified_rows === 0 ? 'passed' : 'failed', `machine verified sample rows ${counts.current_sample_review_verified_rows}`),
@@ -211,6 +216,7 @@ function writeReport(relativePath, artifact) {
     `- Projected usage-link rows: ${artifact.counts.projected_usage_link_rows}`,
     `- Proof occurrence rows: ${artifact.counts.proof_occurrence_rows}`,
     `- Proof rows with source/work/context/license/version/route IDs: ${artifact.counts.proof_rows_with_source}/${artifact.counts.proof_rows_with_work_anchor}/${artifact.counts.proof_rows_with_context}/${artifact.counts.proof_rows_with_license}/${artifact.counts.proof_rows_with_version}/${artifact.counts.proof_rows_with_route_ids}`,
+    `- Proof Hebrew/focus/mojibake rows: token ${artifact.counts.proof_rows_with_hebrew_token}, context ${artifact.counts.proof_rows_with_hebrew_context}, focus markers ${artifact.counts.proof_rows_with_focus_marker}, mojibake ${artifact.counts.proof_mojibake_rows}`,
     `- Supported/candidate/weak proof rows: ${artifact.counts.supported_rows}/${artifact.counts.candidate_rows}/${artifact.counts.weak_rows}`,
     `- Route IDs: ${artifact.counts.route_ids}`,
     `- Usage frames: ${artifact.counts.usage_frames}`,
@@ -243,6 +249,14 @@ function writeReport(relativePath, artifact) {
 
 function check(id, status, detail) {
   return { id, status, detail };
+}
+
+function hasHebrew(value) {
+  return /[\u0590-\u05ff]/.test(String(value || ''));
+}
+
+function hasMojibake(value) {
+  return /[\u00d7\u00d6\ufffd]/.test(String(value || ''));
 }
 
 function currentSampleReviewVerifiedRows() {

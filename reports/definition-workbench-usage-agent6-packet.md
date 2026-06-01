@@ -1,6 +1,6 @@
 # Definition Workbench Usage Agent 6 Packet
 
-Generated: 2026-06-01T13:54:41.115Z
+Generated: 2026-06-01T14:15:18.209Z
 
 ## Summary
 
@@ -11,6 +11,7 @@ Generated: 2026-06-01T13:54:41.115Z
 - Projected usage-link rows: 2390
 - Proof occurrence rows: 12
 - Proof rows with source/work/context/license/version/route IDs: 12/12/12/12/12/12
+- Proof Hebrew/focus/mojibake rows: token 12, context 12, focus markers 12, mojibake 0
 - Supported/candidate/weak proof rows: 11/1/0
 - Route IDs: 1
 - Usage frames: 2
@@ -25,6 +26,7 @@ Generated: 2026-06-01T13:54:41.115Z
 | artifact_chain_present | passed | evidence artifacts 6; validators 4 |
 | proof_occurrences_present | passed | proof occurrence rows 12 |
 | proof_occurrence_metadata_complete | passed | source/work/context/license/version 12/12/12/12/12 |
+| proof_hebrew_context_intact | passed | Hebrew token/context 12/12; focus markers 12; mojibake 0 |
 | route_ids_only | passed | route IDs 1; route-id rows 12; payload hits 0 |
 | usage_seed_absence_visible | passed | sample rows 200; current usage links 0; absent seeds 1 |
 | sample_review_status_not_verified | passed | machine verified sample rows 0 |

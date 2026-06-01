@@ -136,6 +136,10 @@ function validateCounts(counts) {
     'proof_rows_with_license',
     'proof_rows_with_version',
     'proof_rows_with_route_ids',
+    'proof_rows_with_hebrew_token',
+    'proof_rows_with_hebrew_context',
+    'proof_rows_with_focus_marker',
+    'proof_mojibake_rows',
     'route_ids',
     'tokens',
     'usage_frames',
@@ -167,6 +171,10 @@ function validateCounts(counts) {
   if (counts.proof_rows_with_license !== counts.proof_occurrence_rows) issues.push('all proof rows must include license metadata');
   if (counts.proof_rows_with_version !== counts.proof_occurrence_rows) issues.push('all proof rows must include version metadata');
   if (counts.proof_rows_with_route_ids !== counts.proof_occurrence_rows) issues.push('all proof rows must include route IDs');
+  if (counts.proof_rows_with_hebrew_token !== counts.proof_occurrence_rows) issues.push('all proof rows must include Hebrew token fields');
+  if (counts.proof_rows_with_hebrew_context !== counts.proof_occurrence_rows) issues.push('all proof rows must include Hebrew context');
+  if (counts.proof_rows_with_focus_marker !== counts.proof_occurrence_rows) issues.push('all proof rows must include focus markers');
+  if (counts.proof_mojibake_rows !== 0) issues.push('proof_mojibake_rows must be 0');
   if (counts.route_ids < 1) issues.push('route_ids must be positive');
   if (counts.tokens < 1) issues.push('tokens must be positive');
   if (counts.usage_frames < 1) issues.push('usage_frames must be positive');
@@ -211,6 +219,14 @@ function validateProofOccurrences(rows) {
     requireString(row.work_anchor_href, `${context}.work_anchor_href`);
     if (!['supported', 'candidate', 'weak'].includes(row.status)) issues.push(`${context}.status must be supported, candidate, or weak`);
     requireString(row.context_focus_marked, `${context}.context_focus_marked`);
+    if (!String(row.context_focus_marked || '').includes('[') || !String(row.context_focus_marked || '').includes(']')) {
+      issues.push(`${context}.context_focus_marked must include bracketed focus markers`);
+    }
+    if (!hasHebrew(`${row.token_key} ${row.normalized_form}`)) issues.push(`${context}.token_key/normalized_form must include Hebrew`);
+    if (!hasHebrew(row.context_focus_marked)) issues.push(`${context}.context_focus_marked must include Hebrew`);
+    if (hasMojibake(`${row.token_key} ${row.normalized_form} ${row.context_focus_marked}`)) {
+      issues.push(`${context}.token/context fields contain mojibake-like characters`);
+    }
     requireString(row.license, `${context}.license`);
     requireString(row.license_url, `${context}.license_url`);
     requireString(row.version_title, `${context}.version_title`);
@@ -249,6 +265,14 @@ function requireOccurrenceBoundary(boundary, context) {
   if (boundary.reader_facing !== false) issues.push(`${context}.reader_facing must be false`);
   if (boundary.route_ids_only !== true) issues.push(`${context}.route_ids_only must be true`);
   if (boundary.not_answer_authority !== true) issues.push(`${context}.not_answer_authority must be true`);
+}
+
+function hasHebrew(value) {
+  return /[\u0590-\u05ff]/.test(String(value || ''));
+}
+
+function hasMojibake(value) {
+  return /[\u00d7\u00d6\ufffd]/.test(String(value || ''));
 }
 
 function requireString(value, field) {
