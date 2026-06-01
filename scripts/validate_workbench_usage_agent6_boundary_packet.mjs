@@ -35,9 +35,10 @@ if (Number(packet.counts?.route_links_unresolved || 0) !== 0) issues.push('route
 if (Number(packet.counts?.route_payload_field_hits || 0) !== 0) issues.push('route_payload_field_hits must be 0');
 if (Number(packet.counts?.forbidden_field_hits || 0) !== 0) issues.push('forbidden_field_hits must be 0');
 if (Number(packet.counts?.selected_audit_status_rows || 0) !== 0) issues.push('selected_audit_status_rows must be 0');
-if (Number(packet.counts?.selected_qa_package_items || 0) < 24) issues.push('selected_qa_package_items must be at least 24');
+if (Number(packet.counts?.selected_qa_package_items || 0) < 25) issues.push('selected_qa_package_items must be at least 25');
 if (packet.counts?.selected_source_hub_status !== 'present') issues.push('selected_source_hub_status must be present');
 if (packet.counts?.selected_work_hub_status !== 'present') issues.push('selected_work_hub_status must be present');
+if (packet.counts?.selected_frame_neighbor_matrix_status !== 'present') issues.push('selected_frame_neighbor_matrix_status must be present');
 if (Number(packet.counts?.selected_source_hub_occurrence_rows || 0) !== selectedRows) {
   issues.push('selected_source_hub_occurrence_rows must equal selected_occurrence_rows');
 }
@@ -61,6 +62,27 @@ if (Number(packet.counts?.selected_source_hub_route_payload_field_hits || 0) !==
 }
 if (Number(packet.counts?.selected_work_hub_route_payload_field_hits || 0) !== 0) {
   issues.push('selected_work_hub_route_payload_field_hits must be 0');
+}
+if (Number(packet.counts?.selected_frame_neighbor_frame_rows || 0) <= 0) {
+  issues.push('selected_frame_neighbor_frame_rows must be positive');
+}
+if (Number(packet.counts?.selected_frame_neighbor_cells || 0) <= 0) {
+  issues.push('selected_frame_neighbor_cells must be positive');
+}
+if (Number(packet.counts?.selected_frame_neighbor_observations || 0) <= 0) {
+  issues.push('selected_frame_neighbor_observations must be positive');
+}
+if (Number(packet.counts?.selected_frame_neighbor_shared_buckets || 0) <= 0) {
+  issues.push('selected_frame_neighbor_shared_buckets must be positive');
+}
+if (Number(packet.counts?.selected_frame_neighbor_specific_buckets || 0) <= 0) {
+  issues.push('selected_frame_neighbor_specific_buckets must be positive');
+}
+if (Number(packet.counts?.selected_frame_neighbor_reader_facing_rows || 0) !== 0) {
+  issues.push('selected_frame_neighbor_reader_facing_rows must be 0');
+}
+if (Number(packet.counts?.selected_frame_neighbor_route_payload_field_hits || 0) !== 0) {
+  issues.push('selected_frame_neighbor_route_payload_field_hits must be 0');
 }
 if (packet.graph_boundary?.source_hub_present !== true) issues.push('graph_boundary.source_hub_present must be true');
 if (packet.graph_boundary?.work_hub_present !== true) issues.push('graph_boundary.work_hub_present must be true');

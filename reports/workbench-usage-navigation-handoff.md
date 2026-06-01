@@ -1,6 +1,6 @@
 # Workbench Usage Navigation Handoff
 
-Generated: 2026-06-01T10:06:35.291Z
+Generated: 2026-06-01T10:23:57.096Z
 
 ## Summary
 
@@ -96,13 +96,16 @@ Generated: 2026-06-01T10:06:35.291Z
 - Selected focus neighbor completeness: focus markers 49, windows 49, source links 49, work anchors 49, marked context 49, provenance 49
 - Selected focus neighbor route/provenance: route IDs 1, provenance buckets 5
 - Selected focus neighbor route payload-like field hits: 0
+- Selected frame neighbor matrix: frames 2, cells 223, observations 256, immediate 90
+- Selected frame neighbor shared/frame-specific buckets: 14/195
+- Selected frame neighbor route/provenance/payload: route IDs 1, provenance buckets 5, payload hits 0
 - Selected focus/context audit: rows 49, focus marker rows 49, mismatches 0, repeated-focus rows 8, missing Hebrew context rows 0, reader-facing rows 0
 - Selected focus/context audit route payload-like field hits: 0
 - Selected frame summary: frames 2, rows 49, repeated-focus rows 8, samples 16, reader-facing rows 0
 - Selected frame summary route payload-like field hits: 0
 - Selected work/frame matrix: rows 25, selected rows 49, works 20, frames 2, samples 48, reader-facing rows 0
 - Selected work/frame matrix route payload-like field hits: 0
-- Selected QA package: items 24, rows 49, route IDs 1, unresolved routes 0, route warning visible 1, directed edges 2352, bridge edges 1160, reader-facing rows 0, failed checks 0
+- Selected QA package: items 25, rows 49, route IDs 1, unresolved routes 0, route warning visible 1, directed edges 2352, bridge edges 1160, reader-facing rows 0, failed checks 0
 - Selected QA package route payload-like field hits: 0
 - Selected occurrence lookup buckets: works 20, clusters 2, statuses 3
 - Crossmatch links: occurrences 49, directed edges 2352, undirected pairs 1176
@@ -112,7 +115,7 @@ Generated: 2026-06-01T10:06:35.291Z
 - Crossmatch bridge route payload-like field hits: 0
 - Crossmatch neighborhoods: 49, same-frame links 1192, bridge links 1160
 - Crossmatch neighborhood route payload-like field hits: 0
-- Agent 6 boundary checks: 15, failed 0
+- Agent 6 boundary checks: 16, failed 0
 - Concentration packet: pass_with_warnings, warnings 1, failed 0
 - Concentration buckets: routes 1, clusters 2
 - Concentration route payload-like field hits: 0
@@ -200,13 +203,15 @@ Generated: 2026-06-01T10:06:35.291Z
 - Selected focus neighbor completeness: focus markers 49, windows 49, source links 49, work anchors 49, marked context 49, provenance 49
 - Selected focus neighbor route/provenance: route IDs 1, provenance buckets 5
 - Selected focus neighbor route payload-like field hits: 0
+- Selected frame neighbor matrix: present, frames 2, cells 223, observations 256, immediate 90, shared/specific 14/195, warnings 0, failed 0
+- Selected frame neighbor route/provenance/payload: route IDs 1, provenance buckets 5, payload hits 0
 - Selected focus/context audit: present, rows 49, focus marker rows 49, mismatches 0, repeated-focus rows 8, missing Hebrew context rows 0, reader-facing rows 0, warnings 1, failed 0
 - Selected focus/context audit route payload-like field hits: 0
 - Selected frame summary: present, frames 2, rows 49, repeated-focus rows 8, samples 16, reader-facing rows 0, warnings 0, failed 0
 - Selected frame summary route payload-like field hits: 0
 - Selected work/frame matrix: present, rows 25, selected rows 49, works 20, frames 2, samples 48, reader-facing rows 0, warnings 0, failed 0
 - Selected work/frame matrix route payload-like field hits: 0
-- Selected QA package: present, items 24, rows 49, route IDs 1, unresolved routes 0, route warning visible 1, directed edges 2352, bridge edges 1160, reader-facing rows 0, warnings 1, failed 0
+- Selected QA package: present, items 25, rows 49, route IDs 1, unresolved routes 0, route warning visible 1, directed edges 2352, bridge edges 1160, reader-facing rows 0, warnings 1, failed 0
 - Selected QA package route payload-like field hits: 0
 - Selected occurrence lookup: present, work buckets 20
 - Crossmatch links: present, occurrences 49, directed edges 2352, failed 0
@@ -215,10 +220,10 @@ Generated: 2026-06-01T10:06:35.291Z
 - Crossmatch bridge route payload-like field hits: 0
 - Crossmatch neighborhoods: present, neighborhoods 49, same-frame links 1192, bridge links 1160, failed 0
 - Crossmatch neighborhood route payload-like field hits: 0
-- Agent 6 boundary packet: present, checks 15, failed 0
+- Agent 6 boundary packet: present, checks 16, failed 0
 - Concentration packet: present, quality pass_with_warnings, warnings 1, failed 0
 - Concentration route payload-like field hits: 0
-- Smoke validation: passed, steps 108, failed 0
+- Smoke validation: passed, steps 110, failed 0
 
 ## Artifacts
 
@@ -265,6 +270,7 @@ Generated: 2026-06-01T10:06:35.291Z
 | selected source hub index | reports/workbench-usage-selected-source-hub-index.md | yes |
 | selected work hub index | reports/workbench-usage-selected-work-hub-index.md | yes |
 | selected focus neighbor index | reports/workbench-usage-selected-focus-neighbor-index.md | yes |
+| selected frame neighbor matrix | reports/workbench-usage-selected-frame-neighbor-matrix.md | yes |
 | selected focus/context audit | reports/workbench-usage-selected-focus-context-audit.md | yes |
 | selected frame summary | reports/workbench-usage-selected-frame-summary.md | yes |
 | selected work/frame matrix | reports/workbench-usage-selected-work-frame-matrix.md | yes |
@@ -358,6 +364,8 @@ Generated: 2026-06-01T10:06:35.291Z
 | validate_selected_work_hub_index | node scripts/validate_workbench_usage_selected_work_hub_index.mjs .local-cache/workbench-evidence/usage-selected-work-hub-index.json |
 | build_selected_focus_neighbor_index | node scripts/build_workbench_usage_selected_focus_neighbor_index.mjs --selected-occurrence-navigation-index=.local-cache/workbench-evidence/usage-selected-occurrence-navigation-index.json --output=.local-cache/workbench-evidence/usage-selected-focus-neighbor-index.json --report=reports/workbench-usage-selected-focus-neighbor-index.md |
 | validate_selected_focus_neighbor_index | node scripts/validate_workbench_usage_selected_focus_neighbor_index.mjs .local-cache/workbench-evidence/usage-selected-focus-neighbor-index.json |
+| build_selected_frame_neighbor_matrix | node scripts/build_workbench_usage_selected_frame_neighbor_matrix.mjs --selected-focus-neighbor-index=.local-cache/workbench-evidence/usage-selected-focus-neighbor-index.json --selected-frame-summary=.local-cache/workbench-evidence/usage-selected-frame-summary.json --output=.local-cache/workbench-evidence/usage-selected-frame-neighbor-matrix.json --report=reports/workbench-usage-selected-frame-neighbor-matrix.md |
+| validate_selected_frame_neighbor_matrix | node scripts/validate_workbench_usage_selected_frame_neighbor_matrix.mjs .local-cache/workbench-evidence/usage-selected-frame-neighbor-matrix.json |
 | build_selected_focus_context_audit | node scripts/build_workbench_usage_selected_focus_context_audit.mjs --selected-occurrence-cards=.local-cache/workbench-evidence/usage-selected-occurrence-cards.json --output=.local-cache/workbench-evidence/usage-selected-focus-context-audit.json --report=reports/workbench-usage-selected-focus-context-audit.md |
 | validate_selected_focus_context_audit | node scripts/validate_workbench_usage_selected_focus_context_audit.mjs .local-cache/workbench-evidence/usage-selected-focus-context-audit.json |
 | build_selected_frame_summary | node scripts/build_workbench_usage_selected_frame_summary.mjs --selected-occurrence-cards=.local-cache/workbench-evidence/usage-selected-occurrence-cards.json --selected-focus-context-audit=.local-cache/workbench-evidence/usage-selected-focus-context-audit.json --output=.local-cache/workbench-evidence/usage-selected-frame-summary.json --report=reports/workbench-usage-selected-frame-summary.md |
@@ -366,7 +374,7 @@ Generated: 2026-06-01T10:06:35.291Z
 | validate_selected_frame_provenance_matrix | node scripts/validate_workbench_usage_selected_frame_provenance_matrix.mjs .local-cache/workbench-evidence/usage-selected-frame-provenance-matrix.json |
 | build_selected_work_frame_matrix | node scripts/build_workbench_usage_selected_work_frame_matrix.mjs --selected-occurrence-cards=.local-cache/workbench-evidence/usage-selected-occurrence-cards.json --selected-frame-summary=.local-cache/workbench-evidence/usage-selected-frame-summary.json --output=.local-cache/workbench-evidence/usage-selected-work-frame-matrix.json --report=reports/workbench-usage-selected-work-frame-matrix.md |
 | validate_selected_work_frame_matrix | node scripts/validate_workbench_usage_selected_work_frame_matrix.mjs .local-cache/workbench-evidence/usage-selected-work-frame-matrix.json |
-| build_selected_qa_package | node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=.local-cache/workbench-evidence/usage-selected-occurrence-cards.json --selected-source-diversity=.local-cache/workbench-evidence/usage-selected-source-diversity.json --selected-provenance-matrix=.local-cache/workbench-evidence/usage-selected-provenance-matrix.json --selected-frame-provenance-matrix=.local-cache/workbench-evidence/usage-selected-frame-provenance-matrix.json --selected-collision-audit=.local-cache/workbench-evidence/usage-selected-collision-audit.json --selected-collision-provenance-audit=.local-cache/workbench-evidence/usage-selected-collision-provenance-audit.json --selected-signature-independence=.local-cache/workbench-evidence/usage-selected-signature-independence.json --selected-route-concentration-response=.local-cache/workbench-evidence/usage-selected-route-concentration-response.json --selected-route-resolution=.local-cache/workbench-evidence/usage-selected-route-resolution.json --selected-route-provenance-audit=.local-cache/workbench-evidence/usage-selected-route-provenance-audit.json --selected-occurrence-navigation-index=.local-cache/workbench-evidence/usage-selected-occurrence-navigation-index.json --selected-navigation-edge-index=.local-cache/workbench-evidence/usage-selected-navigation-edge-index.json --selected-frame-bridge-index=.local-cache/workbench-evidence/usage-selected-frame-bridge-index.json --selected-occurrence-adjacency-index=.local-cache/workbench-evidence/usage-selected-occurrence-adjacency-index.json --selected-source-hub-index=.local-cache/workbench-evidence/usage-selected-source-hub-index.json --selected-work-hub-index=.local-cache/workbench-evidence/usage-selected-work-hub-index.json --selected-focus-neighbor-index=.local-cache/workbench-evidence/usage-selected-focus-neighbor-index.json --selected-focus-context-audit=.local-cache/workbench-evidence/usage-selected-focus-context-audit.json --selected-frame-summary=.local-cache/workbench-evidence/usage-selected-frame-summary.json --selected-work-frame-matrix=.local-cache/workbench-evidence/usage-selected-work-frame-matrix.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --crossmatch-bridge-index=.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json --crossmatch-neighborhoods=.local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json --output=.local-cache/workbench-evidence/usage-selected-qa-package.json --report=reports/workbench-usage-selected-qa-package.md |
+| build_selected_qa_package | node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=.local-cache/workbench-evidence/usage-selected-occurrence-cards.json --selected-source-diversity=.local-cache/workbench-evidence/usage-selected-source-diversity.json --selected-provenance-matrix=.local-cache/workbench-evidence/usage-selected-provenance-matrix.json --selected-frame-provenance-matrix=.local-cache/workbench-evidence/usage-selected-frame-provenance-matrix.json --selected-collision-audit=.local-cache/workbench-evidence/usage-selected-collision-audit.json --selected-collision-provenance-audit=.local-cache/workbench-evidence/usage-selected-collision-provenance-audit.json --selected-signature-independence=.local-cache/workbench-evidence/usage-selected-signature-independence.json --selected-route-concentration-response=.local-cache/workbench-evidence/usage-selected-route-concentration-response.json --selected-route-resolution=.local-cache/workbench-evidence/usage-selected-route-resolution.json --selected-route-provenance-audit=.local-cache/workbench-evidence/usage-selected-route-provenance-audit.json --selected-occurrence-navigation-index=.local-cache/workbench-evidence/usage-selected-occurrence-navigation-index.json --selected-navigation-edge-index=.local-cache/workbench-evidence/usage-selected-navigation-edge-index.json --selected-frame-bridge-index=.local-cache/workbench-evidence/usage-selected-frame-bridge-index.json --selected-occurrence-adjacency-index=.local-cache/workbench-evidence/usage-selected-occurrence-adjacency-index.json --selected-source-hub-index=.local-cache/workbench-evidence/usage-selected-source-hub-index.json --selected-work-hub-index=.local-cache/workbench-evidence/usage-selected-work-hub-index.json --selected-focus-neighbor-index=.local-cache/workbench-evidence/usage-selected-focus-neighbor-index.json --selected-frame-neighbor-matrix=.local-cache/workbench-evidence/usage-selected-frame-neighbor-matrix.json --selected-focus-context-audit=.local-cache/workbench-evidence/usage-selected-focus-context-audit.json --selected-frame-summary=.local-cache/workbench-evidence/usage-selected-frame-summary.json --selected-work-frame-matrix=.local-cache/workbench-evidence/usage-selected-work-frame-matrix.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --crossmatch-bridge-index=.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json --crossmatch-neighborhoods=.local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json --output=.local-cache/workbench-evidence/usage-selected-qa-package.json --report=reports/workbench-usage-selected-qa-package.md |
 | validate_selected_qa_package | node scripts/validate_workbench_usage_selected_qa_package.mjs .local-cache/workbench-evidence/usage-selected-qa-package.json |
 | build_selected_occurrence_lookup | node scripts/build_workbench_usage_selected_occurrence_lookup.mjs --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --output=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --report=reports/workbench-usage-selected-occurrence-lookup.md --max-samples=5 |
 | validate_selected_occurrence_lookup | node scripts/validate_workbench_usage_selected_occurrence_lookup.mjs .local-cache/workbench-evidence/usage-selected-occurrence-lookup.json |

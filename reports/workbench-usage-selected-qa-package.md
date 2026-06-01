@@ -1,10 +1,10 @@
 # Workbench Usage Selected QA Package
 
-Generated: 2026-06-01T10:06:26.773Z
+Generated: 2026-06-01T10:23:42.874Z
 
 ## Summary
 
-- Package items: 24
+- Package items: 25
 - Selected rows: 49
 - Source refs: 38
 - Works: 20
@@ -125,6 +125,9 @@ Generated: 2026-06-01T10:06:26.773Z
 - Focus neighbor immediate observations: 90
 - Focus neighbor offsets / buckets / unique tokens: 6/209/182
 - Focus neighbor rows with focus/window/source/work/context/provenance: 49/49/49/49/49/49
+- Frame neighbor matrix: frames 2, cells 223, observations 256, immediate 90
+- Frame neighbor shared / frame-specific buckets: 14/195
+- Frame neighbor route/provenance/payload: 1/5/0
 - Focus context audit rows: 49
 - Focus marker rows: 49
 - Focus marker mismatch rows: 0
@@ -159,7 +162,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 
 | check | status | detail |
 |---|---|---|
-| package_items_present | passed | package items 24 |
+| package_items_present | passed | package items 25 |
 | selected_rows_consistent | passed | selected rows 49 |
 | selected_provenance_rows_complete | passed | provenance rows 49; selected rows 49 |
 | selected_provenance_license_metadata_complete | passed | license metadata rows 49; selected rows 49 |
@@ -229,6 +232,11 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_focus_neighbor_observations_present | passed | observations 256; immediate 90 |
 | selected_focus_neighbor_buckets_present | passed | offsets/buckets/tokens 6/209/182 |
 | selected_focus_neighbor_route_provenance_coverage | passed | route/provenance 1/5; expected 1/5 |
+| selected_frame_neighbor_frames_complete | passed | frame rows 2; frame summary 2 |
+| selected_frame_neighbor_observations_complete | passed | observations/immediate 256/90; expected 256/90 |
+| selected_frame_neighbor_contrast_visible | passed | shared/specific 14/195 |
+| selected_frame_neighbor_route_provenance_coverage | passed | route/provenance 1/5; expected 1/5 |
+| selected_frame_neighbor_not_reader_facing | passed | reader-facing/payload 0/0 |
 | selected_focus_context_complete | passed | focus context rows 49; selected rows 49 |
 | selected_focus_markers_complete | passed | focus marker rows 49; selected rows 49 |
 | selected_focus_marker_mismatch_zero | passed | focus marker mismatches 0 |
@@ -268,6 +276,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_source_hub_index | workbench_usage_selected_source_hub_index | .local-cache/workbench-evidence/usage-selected-source-hub-index.json | reports/workbench-usage-selected-source-hub-index.md | passed | 0 | 0 | 0 | 0 | hubs: 38<br>occurrence_rows: 49<br>target_links: 2352<br>source_refs: 38<br>works: 20<br>route_ids: 1<br>provenance_buckets: 5<br>duplicate_source_ref_hubs: 8 |
 | selected_work_hub_index | workbench_usage_selected_work_hub_index | .local-cache/workbench-evidence/usage-selected-work-hub-index.json | reports/workbench-usage-selected-work-hub-index.md | passed | 0 | 0 | 0 | 0 | hubs: 20<br>occurrence_rows: 49<br>source_refs: 38<br>target_links: 2352<br>works: 20<br>route_ids: 1<br>provenance_buckets: 5<br>target_work_samples: 160 |
 | selected_focus_neighbor_index | workbench_usage_selected_focus_neighbor_index | .local-cache/workbench-evidence/usage-selected-focus-neighbor-index.json | reports/workbench-usage-selected-focus-neighbor-index.md | passed | 0 | 0 | 0 | 0 | occurrence_rows: 49<br>neighbor_observations: 256<br>immediate_neighbor_observations: 90<br>offsets: 6<br>neighbor_buckets: 209<br>unique_neighbor_tokens: 182<br>route_ids: 1<br>provenance_buckets: 5 |
+| selected_frame_neighbor_matrix | workbench_usage_selected_frame_neighbor_matrix | .local-cache/workbench-evidence/usage-selected-frame-neighbor-matrix.json | reports/workbench-usage-selected-frame-neighbor-matrix.md | passed | 0 | 0 | 0 | 0 | frame_rows: 2<br>neighbor_cells: 223<br>neighbor_observations: 256<br>shared_neighbor_buckets: 14<br>frame_specific_neighbor_buckets: 195<br>route_ids: 1<br>provenance_buckets: 5 |
 | selected_focus_context_audit | workbench_usage_selected_focus_context_audit | .local-cache/workbench-evidence/usage-selected-focus-context-audit.json | reports/workbench-usage-selected-focus-context-audit.md | pass_with_warnings | 1 | 0 | 0 | 0 | rows: 49<br>focus_marker_rows: 49<br>focus_marker_mismatch_rows: 0<br>repeated_focus_context_rows: 8<br>missing_hebrew_context_rows: 0 |
 | selected_frame_summary | workbench_usage_selected_frame_summary | .local-cache/workbench-evidence/usage-selected-frame-summary.json | reports/workbench-usage-selected-frame-summary.md | passed | 0 | 0 | 0 | 0 | frames: 2<br>selected_rows: 49<br>repeated_focus_context_rows: 8<br>sample_occurrences: 16 |
 | selected_work_frame_matrix | workbench_usage_selected_work_frame_matrix | .local-cache/workbench-evidence/usage-selected-work-frame-matrix.json | reports/workbench-usage-selected-work-frame-matrix.md | passed | 0 | 0 | 0 | 0 | matrix_rows: 25<br>selected_rows: 49<br>works: 20<br>frames: 2<br>sample_occurrences: 48 |

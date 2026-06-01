@@ -66,7 +66,7 @@ console.log(`Validated usage selected QA package ${artifactPath}: items ${items.
 
 function validateCounts(packageItems) {
   if (Number(artifact.counts?.package_items || 0) !== packageItems.length) issues.push('package_items count must equal package_items length');
-  if (packageItems.length !== 24) issues.push('package must contain 24 selected artifact items');
+  if (packageItems.length !== 25) issues.push('package must contain 25 selected artifact items');
   if (Number(artifact.counts?.selected_rows || 0) <= 0) issues.push('selected_rows must be positive');
   if (Number(artifact.counts?.selected_source_refs || 0) <= 1) issues.push('selected_source_refs must show diversity');
   if (Number(artifact.counts?.selected_works || 0) <= 1) issues.push('selected_works must show diversity');
@@ -435,6 +435,36 @@ function validateCounts(packageItems) {
   }
   if (Number(artifact.counts?.selected_focus_neighbor_provenance_buckets || 0) !== Number(artifact.counts?.selected_provenance_buckets || 0)) {
     issues.push('selected_focus_neighbor_provenance_buckets must equal selected_provenance_buckets');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_frame_rows || 0) !== Number(artifact.counts?.selected_frame_summary_frames || 0)) {
+    issues.push('selected_frame_neighbor_frame_rows must equal selected_frame_summary_frames');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_neighbor_cells || 0) <= 0) {
+    issues.push('selected_frame_neighbor_neighbor_cells must be positive');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_neighbor_observations || 0) !== Number(artifact.counts?.selected_focus_neighbor_observations || 0)) {
+    issues.push('selected_frame_neighbor_neighbor_observations must equal selected_focus_neighbor_observations');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_immediate_observations || 0) !== Number(artifact.counts?.selected_focus_neighbor_immediate_observations || 0)) {
+    issues.push('selected_frame_neighbor_immediate_observations must equal selected_focus_neighbor_immediate_observations');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_shared_buckets || 0) <= 0) {
+    issues.push('selected_frame_neighbor_shared_buckets must be positive');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_specific_buckets || 0) <= 0) {
+    issues.push('selected_frame_neighbor_specific_buckets must be positive');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_route_ids || 0) !== Number(artifact.counts?.selected_route_ids || 0)) {
+    issues.push('selected_frame_neighbor_route_ids must equal selected_route_ids');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_provenance_buckets || 0) !== Number(artifact.counts?.selected_provenance_buckets || 0)) {
+    issues.push('selected_frame_neighbor_provenance_buckets must equal selected_provenance_buckets');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_frame_neighbor_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_frame_neighbor_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_frame_neighbor_route_payload_field_hits must be 0');
   }
   if (Number(artifact.counts?.selected_focus_context_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
     issues.push('selected_focus_context_rows must equal selected_rows');

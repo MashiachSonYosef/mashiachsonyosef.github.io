@@ -727,6 +727,20 @@ await runStep('validate_usage_selected_focus_neighbor_index', [
   usageSelectedFocusNeighborIndexJson,
 ]);
 
+const usageSelectedFrameNeighborMatrixJson = `${options.scratchDir}/usage-selected-frame-neighbor-matrix.json`;
+await runStep('build_usage_selected_frame_neighbor_matrix', [
+  'scripts/build_workbench_usage_selected_frame_neighbor_matrix.mjs',
+  `--selected-focus-neighbor-index=${usageSelectedFocusNeighborIndexJson}`,
+  `--selected-frame-summary=${usageSelectedFrameSummaryJson}`,
+  `--output=${usageSelectedFrameNeighborMatrixJson}`,
+  `--report=${options.scratchDir}/usage-selected-frame-neighbor-matrix.md`,
+]);
+
+await runStep('validate_usage_selected_frame_neighbor_matrix', [
+  'scripts/validate_workbench_usage_selected_frame_neighbor_matrix.mjs',
+  usageSelectedFrameNeighborMatrixJson,
+]);
+
 const usageSelectedQaPackageJson = `${options.scratchDir}/usage-selected-qa-package.json`;
 await runStep('build_usage_selected_qa_package', [
   'scripts/build_workbench_usage_selected_qa_package.mjs',
@@ -747,6 +761,7 @@ await runStep('build_usage_selected_qa_package', [
   `--selected-source-hub-index=${usageSelectedSourceHubIndexJson}`,
   `--selected-work-hub-index=${usageSelectedWorkHubIndexJson}`,
   `--selected-focus-neighbor-index=${usageSelectedFocusNeighborIndexJson}`,
+  `--selected-frame-neighbor-matrix=${usageSelectedFrameNeighborMatrixJson}`,
   `--selected-focus-context-audit=${usageSelectedFocusContextAuditJson}`,
   `--selected-frame-summary=${usageSelectedFrameSummaryJson}`,
   `--selected-work-frame-matrix=${usageSelectedWorkFrameMatrixJson}`,
@@ -812,6 +827,7 @@ await runStep('build_usage_handoff_index', [
   `--selected-source-hub-index=${usageSelectedSourceHubIndexJson}`,
   `--selected-work-hub-index=${usageSelectedWorkHubIndexJson}`,
   `--selected-focus-neighbor-index=${usageSelectedFocusNeighborIndexJson}`,
+  `--selected-frame-neighbor-matrix=${usageSelectedFrameNeighborMatrixJson}`,
   `--selected-focus-context-audit=${usageSelectedFocusContextAuditJson}`,
   `--selected-frame-summary=${usageSelectedFrameSummaryJson}`,
   `--selected-work-frame-matrix=${usageSelectedWorkFrameMatrixJson}`,
@@ -889,6 +905,7 @@ const usageSelectedOccurrenceAdjacencyIndex = readJsonIfExists(usageSelectedOccu
 const usageSelectedSourceHubIndex = readJsonIfExists(usageSelectedSourceHubIndexJson);
 const usageSelectedWorkHubIndex = readJsonIfExists(usageSelectedWorkHubIndexJson);
 const usageSelectedFocusNeighborIndex = readJsonIfExists(usageSelectedFocusNeighborIndexJson);
+const usageSelectedFrameNeighborMatrix = readJsonIfExists(usageSelectedFrameNeighborMatrixJson);
 const usageSelectedFocusContextAudit = readJsonIfExists(usageSelectedFocusContextAuditJson);
 const usageSelectedFrameSummary = readJsonIfExists(usageSelectedFrameSummaryJson);
 const usageSelectedFrameProvenanceMatrix = readJsonIfExists(usageSelectedFrameProvenanceMatrixJson);
@@ -1287,6 +1304,17 @@ const artifact = {
     usage_selected_focus_neighbor_rows_with_provenance: usageSelectedFocusNeighborIndex?.counts?.rows_with_provenance ?? null,
     usage_selected_focus_neighbor_reader_facing_rows: usageSelectedFocusNeighborIndex?.counts?.reader_facing_rows ?? null,
     usage_selected_focus_neighbor_route_payload_field_hits: usageSelectedFocusNeighborIndex?.counts?.route_payload_field_hits ?? null,
+    usage_selected_frame_neighbor_matrix_status: usageSelectedFrameNeighborMatrix?.artifact_type === 'workbench_usage_selected_frame_neighbor_matrix' ? 'present' : 'missing',
+    usage_selected_frame_neighbor_frame_rows: usageSelectedFrameNeighborMatrix?.counts?.frame_rows ?? null,
+    usage_selected_frame_neighbor_cells: usageSelectedFrameNeighborMatrix?.counts?.neighbor_cells ?? null,
+    usage_selected_frame_neighbor_observations: usageSelectedFrameNeighborMatrix?.counts?.neighbor_observations ?? null,
+    usage_selected_frame_neighbor_immediate_observations: usageSelectedFrameNeighborMatrix?.counts?.immediate_neighbor_observations ?? null,
+    usage_selected_frame_neighbor_shared_buckets: usageSelectedFrameNeighborMatrix?.counts?.shared_neighbor_buckets ?? null,
+    usage_selected_frame_neighbor_specific_buckets: usageSelectedFrameNeighborMatrix?.counts?.frame_specific_neighbor_buckets ?? null,
+    usage_selected_frame_neighbor_route_ids: usageSelectedFrameNeighborMatrix?.counts?.route_ids ?? null,
+    usage_selected_frame_neighbor_provenance_buckets: usageSelectedFrameNeighborMatrix?.counts?.provenance_buckets ?? null,
+    usage_selected_frame_neighbor_reader_facing_rows: usageSelectedFrameNeighborMatrix?.counts?.reader_facing_rows ?? null,
+    usage_selected_frame_neighbor_route_payload_field_hits: usageSelectedFrameNeighborMatrix?.counts?.route_payload_field_hits ?? null,
     usage_selected_focus_context_audit_status: usageSelectedFocusContextAudit?.artifact_type === 'workbench_usage_selected_focus_context_audit' ? 'present' : 'missing',
     usage_selected_focus_context_audit_rows: usageSelectedFocusContextAudit?.counts?.rows ?? null,
     usage_selected_focus_context_audit_focus_marker_rows: usageSelectedFocusContextAudit?.counts?.focus_marker_rows ?? null,
@@ -1543,6 +1571,8 @@ function writeReport(relativePath, artifact) {
     `- Usage selected work hub completeness: source links ${artifact.counts.usage_selected_work_hub_rows_with_source_links}, work anchors ${artifact.counts.usage_selected_work_hub_rows_with_work_anchors}, marked context ${artifact.counts.usage_selected_work_hub_rows_with_marked_context}, provenance ${artifact.counts.usage_selected_work_hub_rows_with_provenance}, target samples ${artifact.counts.usage_selected_work_hub_target_work_samples}, target sample links ${artifact.counts.usage_selected_work_hub_target_work_samples_with_links}, target sample context ${artifact.counts.usage_selected_work_hub_target_work_samples_with_context}`,
     `- Usage selected focus neighbor index: ${artifact.counts.usage_selected_focus_neighbor_index_status}, rows ${artifact.counts.usage_selected_focus_neighbor_rows}, observations ${artifact.counts.usage_selected_focus_neighbor_observations}, immediate ${artifact.counts.usage_selected_focus_neighbor_immediate_observations}, offsets ${artifact.counts.usage_selected_focus_neighbor_offsets}, buckets ${artifact.counts.usage_selected_focus_neighbor_buckets}, unique tokens ${artifact.counts.usage_selected_focus_neighbor_unique_tokens}, reader-facing rows ${artifact.counts.usage_selected_focus_neighbor_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_focus_neighbor_route_payload_field_hits}`,
     `- Usage selected focus neighbor completeness: focus markers ${artifact.counts.usage_selected_focus_neighbor_rows_with_focus_marker}, windows ${artifact.counts.usage_selected_focus_neighbor_rows_with_neighbor_window}, source links ${artifact.counts.usage_selected_focus_neighbor_rows_with_source_link}, work anchors ${artifact.counts.usage_selected_focus_neighbor_rows_with_work_anchor}, marked context ${artifact.counts.usage_selected_focus_neighbor_rows_with_marked_context}, provenance ${artifact.counts.usage_selected_focus_neighbor_rows_with_provenance}`,
+    `- Usage selected frame neighbor matrix: ${artifact.counts.usage_selected_frame_neighbor_matrix_status}, frames ${artifact.counts.usage_selected_frame_neighbor_frame_rows}, cells ${artifact.counts.usage_selected_frame_neighbor_cells}, observations ${artifact.counts.usage_selected_frame_neighbor_observations}, immediate ${artifact.counts.usage_selected_frame_neighbor_immediate_observations}, shared/specific ${artifact.counts.usage_selected_frame_neighbor_shared_buckets}/${artifact.counts.usage_selected_frame_neighbor_specific_buckets}, reader-facing rows ${artifact.counts.usage_selected_frame_neighbor_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_frame_neighbor_route_payload_field_hits}`,
+    `- Usage selected frame neighbor route/provenance: route IDs ${artifact.counts.usage_selected_frame_neighbor_route_ids}, provenance buckets ${artifact.counts.usage_selected_frame_neighbor_provenance_buckets}`,
     `- Usage selected focus/context audit: ${artifact.counts.usage_selected_focus_context_audit_status}, rows ${artifact.counts.usage_selected_focus_context_audit_rows}, focus marker rows ${artifact.counts.usage_selected_focus_context_audit_focus_marker_rows}, mismatches ${artifact.counts.usage_selected_focus_context_audit_mismatch_rows}, repeated-focus rows ${artifact.counts.usage_selected_focus_context_audit_repeated_focus_rows}, missing Hebrew context rows ${artifact.counts.usage_selected_focus_context_audit_missing_hebrew_rows}, reader-facing rows ${artifact.counts.usage_selected_focus_context_audit_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_focus_context_audit_route_payload_field_hits}`,
     `- Usage selected frame summary: ${artifact.counts.usage_selected_frame_summary_status}, frames ${artifact.counts.usage_selected_frame_summary_frames}, rows ${artifact.counts.usage_selected_frame_summary_rows}, repeated-focus rows ${artifact.counts.usage_selected_frame_summary_repeated_focus_rows}, samples ${artifact.counts.usage_selected_frame_summary_samples}, reader-facing rows ${artifact.counts.usage_selected_frame_summary_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_frame_summary_route_payload_field_hits}`,
     `- Usage selected frame/provenance matrix: ${artifact.counts.usage_selected_frame_provenance_matrix_status}, rows ${artifact.counts.usage_selected_frame_provenance_matrix_rows}, selected rows ${artifact.counts.usage_selected_frame_provenance_matrix_selected_rows}, frames ${artifact.counts.usage_selected_frame_provenance_matrix_frames}, provenance buckets ${artifact.counts.usage_selected_frame_provenance_matrix_buckets}, missing provenance rows ${artifact.counts.usage_selected_frame_provenance_matrix_missing_provenance_rows}, samples ${artifact.counts.usage_selected_frame_provenance_matrix_samples}, reader-facing rows ${artifact.counts.usage_selected_frame_provenance_matrix_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_frame_provenance_matrix_route_payload_field_hits}`,
