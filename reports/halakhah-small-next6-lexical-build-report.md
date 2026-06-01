@@ -7,8 +7,9 @@ Generated: 2026-05-29T14:32:42.237Z
 - Work scope: Targeted imported Hebrew works: kessef-mishneh-on-mishneh-torah-daily-offerings-and-additional-offerings, mishneh-torah-defilement-of-foods, har-hamoriyah-on-mishneh-torah-firstlings, avodat-hamelekh-on-mishneh-torah-human-dispositions, har-hamoriyah-on-mishneh-torah-trespass, migdal-oz-on-mishneh-torah-mourning, kessef-mishneh-on-mishneh-torah-immersion-pools, kessef-mishneh-on-mishneh-torah-oaths, har-hamoriyah-on-mishneh-torah-things-forbidden-on-the-altar, kessef-mishneh-on-mishneh-torah-slaves, maaseh-rokeach-on-ritual-slaughter, kessef-mishneh-on-mishneh-torah-murderer-and-the-preservation-of-life, yitzchak-yeranen-on-mishneh-torah-sabbath, migdal-oz-on-mishneh-torah-shofar-sukkah-and-lulav, mishneh-torah-robbery-and-lost-property, migdal-oz-on-mishneh-torah-testimony, maaseh-rokeach-on-blessings, mishneh-torah-ritual-slaughter, kessef-mishneh-on-mishneh-torah-paschal-offering, migdal-oz-on-mishneh-torah-damages-to-property
 - Hebrew source text changed: no
 - Translation overlays changed: no
-- Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
-- Sources not used: Kaikki, Wiktionary, copyrighted translations
+- Sources used: existing local lexical cache generated from separated source layers: Wikidata Lexemes, OpenScriptures morphHB/HebrewLexicon, project-authored rows, and any already-imported Kaikki/Wiktionary rows present in the local source layers
+- Sources not newly imported by this build: external web dictionaries, copyrighted translations
+- Kaikki/Wiktionary note: sampled rows labeled `(kaikki)` come from the separated local Kaikki/Wiktionary layer and retain CC BY-SA 4.0 / GFDL metadata; this build step does not fetch new Kaikki data
 - New parser: conservative prefix/suffix parser; accepts only when the remaining base is already present in the approved local lexical layer
 - Count source: generated HUD token index, which is the page-render source of truth
 - Payload: lexical details are externalized through data/lexical/<work-id>.manifest.json and data/lexical/<work-id>-chunks/

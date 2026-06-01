@@ -7,8 +7,9 @@ Generated: 2026-05-09T04:54:56.455Z
 - Work scope: all imported Hebrew works
 - Hebrew source text changed: no
 - Translation overlays changed: no
-- Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
-- Sources not used: Kaikki, Wiktionary, copyrighted translations
+- Sources used: existing local lexical cache generated from separated source layers: Wikidata Lexemes, OpenScriptures morphHB/HebrewLexicon, project-authored rows, and any already-imported Kaikki/Wiktionary rows present in the local source layers
+- Sources not newly imported by this build: external web dictionaries, copyrighted translations
+- Kaikki/Wiktionary note: sampled rows labeled `(kaikki)` come from the separated local Kaikki/Wiktionary layer and retain CC BY-SA 4.0 / GFDL metadata; this build step does not fetch new Kaikki data
 - New parser: conservative prefix/suffix parser; accepts only when the remaining base is already present in the approved local lexical layer
 - Count source: generated HUD token index, which is the page-render source of truth
 - Payload: lexical details are externalized through data/lexical/<work-id>.manifest.json and data/lexical/<work-id>-chunks/

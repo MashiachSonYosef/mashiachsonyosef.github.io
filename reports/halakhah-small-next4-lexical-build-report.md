@@ -7,8 +7,9 @@ Generated: 2026-05-29T12:35:08.888Z
 - Work scope: Targeted imported Hebrew works: migdal-oz-on-mishneh-torah-kings-and-wars, mishneh-torah-gifts-to-the-poor, maggid-mishneh-on-mishneh-torah-one-who-injures-a-person-or-property, maaseh-rokeach-on-heave-offerings, tzafnat-paneach-on-mishneh-torah-forbidden-intercourse, maaseh-rokeach-on-sacrifices-rendered-unfit, mishneh-torah-oaths, kessef-mishneh-on-mishneh-torah-torah-study, yekar-tiferet-on-mishneh-torah-slaves, mishneh-torah-damages-to-property, maaseh-rokeach-on-leavened-and-unleavened-bread, mishneh-torah-ownerless-property-and-gifts, tzafnat-paneach-on-mishneh-torah-forbidden-foods, mishneh-torah-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary, mishneh-torah-tithes, kiryat-sefer-on-mishneh-torah-sacrificial-procedure, maaseh-rokeach-on-eruvin, migdal-oz-on-mishneh-torah-oaths, kessef-mishneh-on-mishneh-torah-things-forbidden-on-the-altar, migdal-oz-on-mishneh-torah-hiring, maaseh-rokeach-on-forbidden-intercourse, maggid-mishneh-on-mishneh-torah-eruvin, mishneh-torah-sanctification-of-the-new-month, kovetz-al-yad-hachazakah-on-mishneh-torah-sabbath, kessef-mishneh-on-mishneh-torah-appraisals-and-devoted-property
 - Hebrew source text changed: no
 - Translation overlays changed: no
-- Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
-- Sources not used: Kaikki, Wiktionary, copyrighted translations
+- Sources used: existing local lexical cache generated from separated source layers: Wikidata Lexemes, OpenScriptures morphHB/HebrewLexicon, project-authored rows, and any already-imported Kaikki/Wiktionary rows present in the local source layers
+- Sources not newly imported by this build: external web dictionaries, copyrighted translations
+- Kaikki/Wiktionary note: sampled rows labeled `(kaikki)` come from the separated local Kaikki/Wiktionary layer and retain CC BY-SA 4.0 / GFDL metadata; this build step does not fetch new Kaikki data
 - New parser: conservative prefix/suffix parser; accepts only when the remaining base is already present in the approved local lexical layer
 - Count source: generated HUD token index, which is the page-render source of truth
 - Payload: lexical details are externalized through data/lexical/<work-id>.manifest.json and data/lexical/<work-id>-chunks/

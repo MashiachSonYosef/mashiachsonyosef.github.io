@@ -7,8 +7,9 @@ Generated: 2026-05-29T09:54:32.755Z
 - Work scope: Targeted imported Hebrew works: kovetz-al-yad-hachazakah-on-mishneh-torah-reading-the-shema, maasai-lamelekh-on-mishneh-torah-admission-into-the-sanctuary, maasai-lamelekh-on-mishneh-torah-things-forbidden-on-the-altar, maaseh-rokeach-on-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary, maaseh-rokeach-on-levirate-marriage-and-release, migdal-oz-on-mishneh-torah-human-dispositions, mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein, kiryat-sefer-on-mishneh-torah-defilement-by-a-corpse, mishneh-torah-immersion-pools, mishneh-torah-neighbors, kiryat-sefer-on-mishneh-torah-forbidden-intercourse, mishneh-torah-leavened-and-unleavened-bread
 - Hebrew source text changed: no
 - Translation overlays changed: no
-- Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
-- Sources not used: Kaikki, Wiktionary, copyrighted translations
+- Sources used: existing local lexical cache generated from separated source layers: Wikidata Lexemes, OpenScriptures morphHB/HebrewLexicon, project-authored rows, and any already-imported Kaikki/Wiktionary rows present in the local source layers
+- Sources not newly imported by this build: external web dictionaries, copyrighted translations
+- Kaikki/Wiktionary note: sampled rows labeled `(kaikki)` come from the separated local Kaikki/Wiktionary layer and retain CC BY-SA 4.0 / GFDL metadata; this build step does not fetch new Kaikki data
 - New parser: conservative prefix/suffix parser; accepts only when the remaining base is already present in the approved local lexical layer
 - Count source: generated HUD token index, which is the page-render source of truth
 - Payload: lexical details are externalized through data/lexical/<work-id>.manifest.json and data/lexical/<work-id>-chunks/

@@ -7,8 +7,9 @@ Generated: 2026-05-29T19:27:20.841Z
 - Work scope: Targeted imported Hebrew works: eshel-avraham-on-shulchan-arukh-orach-chayim, har-hamoriyah-on-mishneh-torah-daily-offerings-and-additional-offerings, kesher-gudal, maaseh-rokeach-on-prayer-and-the-priestly-blessing, kessef-mishneh-on-mishneh-torah-prayer-and-the-priestly-blessing, mishneh-torah-forbidden-intercourse, migdal-oz-on-mishneh-torah-sales, kessef-hakodashim-on-shulchan-arukh-choshen-mishpat, mishneh-torah-marriage, kessef-mishneh-on-mishneh-torah-other-sources-of-defilement
 - Hebrew source text changed: no
 - Translation overlays changed: no
-- Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
-- Sources not used: Kaikki, Wiktionary, copyrighted translations
+- Sources used: existing local lexical cache generated from separated source layers: Wikidata Lexemes, OpenScriptures morphHB/HebrewLexicon, project-authored rows, and any already-imported Kaikki/Wiktionary rows present in the local source layers
+- Sources not newly imported by this build: external web dictionaries, copyrighted translations
+- Kaikki/Wiktionary note: sampled rows labeled `(kaikki)` come from the separated local Kaikki/Wiktionary layer and retain CC BY-SA 4.0 / GFDL metadata; this build step does not fetch new Kaikki data
 - New parser: conservative prefix/suffix parser; accepts only when the remaining base is already present in the approved local lexical layer
 - Count source: generated HUD token index, which is the page-render source of truth
 - Payload: lexical details are externalized through data/lexical/<work-id>.manifest.json and data/lexical/<work-id>-chunks/

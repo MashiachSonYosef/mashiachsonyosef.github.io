@@ -7,8 +7,9 @@ Generated: 2026-05-29T15:30:39.732Z
 - Work scope: Targeted imported Hebrew works: migdal-oz-on-mishneh-torah-levirate-marriage-and-release, migdal-oz-on-mishneh-torah-plaintiff-and-defendant, migdal-oz-on-mishneh-torah-torah-study, har-hamoriyah-on-mishneh-torah-the-chosen-temple, maaseh-rokeach-on-forbidden-foods, maaseh-rokeach-on-divorce, mishneh-torah-creditor-and-debtor, kessef-mishneh-on-mishneh-torah-those-who-defile-bed-or-seat, maggid-mishneh-on-mishneh-torah-damages-to-property, avodat-hamelekh-on-mishneh-torah-foreign-worship-and-customs-of-the-nations, kessef-mishneh-on-mishneh-torah-testimony, migdal-oz-on-mishneh-torah-sanctification-of-the-new-month, kessef-mishneh-on-mishneh-torah-gifts-to-the-poor, maaseh-rokeach-on-tefillin-mezuzah-and-the-torah-scroll, maggid-mishneh-on-mishneh-torah-forbidden-foods, maaseh-rokeach-on-rest-on-a-holiday, mishneh-torah-heave-offerings, divrei-yirmiyahu-on-mishneh-torah-sabbath, kessef-mishneh-on-mishneh-torah-diverse-species, mishneh-torah-sacrificial-procedure
 - Hebrew source text changed: no
 - Translation overlays changed: no
-- Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
-- Sources not used: Kaikki, Wiktionary, copyrighted translations
+- Sources used: existing local lexical cache generated from separated source layers: Wikidata Lexemes, OpenScriptures morphHB/HebrewLexicon, project-authored rows, and any already-imported Kaikki/Wiktionary rows present in the local source layers
+- Sources not newly imported by this build: external web dictionaries, copyrighted translations
+- Kaikki/Wiktionary note: sampled rows labeled `(kaikki)` come from the separated local Kaikki/Wiktionary layer and retain CC BY-SA 4.0 / GFDL metadata; this build step does not fetch new Kaikki data
 - New parser: conservative prefix/suffix parser; accepts only when the remaining base is already present in the approved local lexical layer
 - Count source: generated HUD token index, which is the page-render source of truth
 - Payload: lexical details are externalized through data/lexical/<work-id>.manifest.json and data/lexical/<work-id>-chunks/

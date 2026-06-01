@@ -8,7 +8,7 @@ Generated: 2026-05-23T13:58:20.177Z
 - Hebrew source text changed: no
 - Translation overlays changed: no
 - Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
-- Sources not used: Kaikki, Wiktionary, copyrighted translations
+- legacy source-exclusion wording claimed Kaikki/Wiktionary were unused
 - New parser: conservative prefix/suffix parser; accepts only when the remaining base is already present in the approved local lexical layer
 - Count source: generated HUD token index, which is the page-render source of truth
 - Payload: lexical details are externalized through data/lexical/<work-id>.manifest.json and data/lexical/<work-id>-chunks/
