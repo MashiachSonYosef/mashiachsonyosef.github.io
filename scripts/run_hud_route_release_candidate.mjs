@@ -62,6 +62,11 @@ const steps = [
     '--manifest', publicManifest,
     '--report', 'reports/public-hud-route-card-scan.md',
   ]),
+  nodeStep('validate route publication boundary', 'scripts/validate_route_publication_boundary.mjs', [
+    '--manifest', publicManifest,
+    '--output', 'reports/route-publication-boundary-audit.json',
+    '--report', 'reports/route-publication-boundary-audit.md',
+  ]),
   nodeStep('audit public HUD normalized keys', 'scripts/validate_public_hud_normalized_keys.mjs', [
     '--manifest', publicManifest,
     '--report', 'reports/public-hud-normalized-key-audit.md',
