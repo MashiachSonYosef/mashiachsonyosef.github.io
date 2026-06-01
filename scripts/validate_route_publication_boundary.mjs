@@ -160,6 +160,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       forbidden_fields_used_entries: 0,
       reference_url_fields_checked: 0,
       invalid_reference_url_fields: 0,
+      source_url_compatibility_checks: 0,
+      invalid_source_url_compatibility: 0,
       license_url_compatibility_checks: 0,
       invalid_license_url_compatibility: 0,
       hud_safe_source_rows: 0,
@@ -528,6 +530,15 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
         addIssue(`${context}.source_rows[${rowIndex}]`, `unsafe ${field}: ${row[field]}`, target);
       }
     }
+    target.counts.source_url_compatibility_checks += 1;
+    if (!sourceUrlCompatible(row)) {
+      target.counts.invalid_source_url_compatibility += 1;
+      addIssue(
+        `${context}.source_rows[${rowIndex}]`,
+        `source_url is not compatible with source_family: ${row?.source_family || 'missing'} -> ${row?.source_url || 'missing'}`,
+        target,
+      );
+    }
     target.counts.license_url_compatibility_checks += 1;
     if (!licenseUrlCompatible(row)) {
       target.counts.invalid_license_url_compatibility += 1;
@@ -655,6 +666,18 @@ function safeReferenceUrl(value) {
   return /^(https:\/\/|local:)/i.test(String(value || '').trim());
 }
 
+function sourceUrlCompatible(row) {
+  const sourceFamily = String(row?.source_family || '').trim().toLowerCase();
+  const sourceUrl = String(row?.source_url || '').trim();
+  if (!sourceUrl) return false;
+  if (sourceFamily === 'hebrew_source_text') return /^https:\/\/www\.sefaria\.org\//i.test(sourceUrl);
+  if (sourceFamily === 'kaikki') return /^https:\/\/kaikki\.org\/dictionary\/Hebrew\/index\.html$/i.test(sourceUrl);
+  if (sourceFamily === 'openscriptures') return /^https:\/\/github\.com\/openscriptures\/(?:morphhb|HebrewLexicon)\//i.test(sourceUrl);
+  if (sourceFamily === 'wikidata') return /^https:\/\/www\.wikidata\.org\/wiki\/Lexeme:L\d+$/i.test(sourceUrl);
+  if (sourceFamily === 'workspace') return /^local:/i.test(sourceUrl);
+  return true;
+}
+
 function licenseUrlCompatible(row) {
   const license = String(row?.license || '').trim();
   const licenseUrl = String(row?.license_url || '').trim();
@@ -778,6 +801,8 @@ function writeReport(relativePath, data) {
     `- Forbidden fields_used entries: ${data.counts.forbidden_fields_used_entries}`,
     `- Reference URL fields checked: ${data.counts.reference_url_fields_checked}`,
     `- Invalid reference URL fields: ${data.counts.invalid_reference_url_fields}`,
+    `- Source URL compatibility checks: ${data.counts.source_url_compatibility_checks}`,
+    `- Invalid source URL compatibility rows: ${data.counts.invalid_source_url_compatibility}`,
     `- License URL compatibility checks: ${data.counts.license_url_compatibility_checks}`,
     `- Invalid license URL compatibility rows: ${data.counts.invalid_license_url_compatibility}`,
     `- HUD-unsafe source rows: ${data.counts.hud_unsafe_source_rows}`,

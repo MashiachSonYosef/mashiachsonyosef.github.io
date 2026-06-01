@@ -712,6 +712,48 @@
       ]
     },
     {
+      "label": "source-url-must-match-known-source-family",
+      "card": {
+        "card_id": "fixture-source-family-url-mismatch",
+        "normalized": "fixture",
+        "route_family": "fixture",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "display_label": "Fixture lemma",
+        "definition": "Fixture source-family URL mismatch.",
+        "answer_eligible": false,
+        "answer_role": "evidence",
+        "source_rows": [
+          {
+            "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+            "source_family": "kaikki",
+            "source_id": "fixture-kaikki-source-url-mismatch",
+            "source_url": "https://www.sefaria.org/Genesis.1.1",
+            "license": "CC BY-SA 4.0 / GFDL",
+            "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+            "fields_used": ["fixture source", "fixture license"],
+            "notes": "Fixture row for rejecting source family labels that point to unrelated source URLs."
+          }
+        ]
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 1,
+        "answer_eligible_cards": 0,
+        "answer_eligible_cards_with_source_rows": 0,
+        "source_url_compatibility_checks": 1,
+        "invalid_source_url_compatibility": 1,
+        "hud_unsafe_source_rows": 0,
+        "translation_output_unsafe_cards": 1,
+        "answer_eligible_translation_output_unsafe_source_rows": 0,
+        "answer_eligible_translation_output_unsafe_cards": 0,
+        "route_cards_with_publication_fields": 0
+      },
+      "expected_issue_substrings": [
+        "source_url is not compatible with source_family"
+      ]
+    },
+    {
       "label": "license-url-must-match-license-label",
       "card": {
         "card_id": "fixture-license-url-mismatch",
