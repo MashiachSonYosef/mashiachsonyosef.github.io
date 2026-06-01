@@ -82,6 +82,11 @@ function validateMetrics(metrics) {
     'selected_source_refs',
     'selected_works',
     'route_ids',
+    'occurrence_link_rows',
+    'occurrence_link_rows_with_complete_metadata',
+    'occurrence_link_reader_facing_rows',
+    'occurrence_link_route_payload_field_hits',
+    'occurrence_link_forbidden_authority_field_hits',
     'proof_occurrence_rows',
     'proof_rows_with_complete_metadata',
     'proof_rows_with_hebrew_context',
@@ -104,6 +109,15 @@ function validateMetrics(metrics) {
     issues.push('usage supported/candidate/weak rows must contain useful rows');
   }
   if (metrics.audit_only_ambiguous_rows <= 0) issues.push('audit_only_ambiguous_rows must be visible');
+  if (metrics.occurrence_link_rows <= 0) issues.push('occurrence_link_rows must be positive');
+  if (metrics.occurrence_link_rows_with_complete_metadata !== metrics.occurrence_link_rows) {
+    issues.push('occurrence link metadata must be complete');
+  }
+  if (metrics.occurrence_link_reader_facing_rows !== 0) issues.push('occurrence_link_reader_facing_rows must be 0');
+  if (metrics.occurrence_link_route_payload_field_hits !== 0) issues.push('occurrence_link_route_payload_field_hits must be 0');
+  if (metrics.occurrence_link_forbidden_authority_field_hits !== 0) {
+    issues.push('occurrence_link_forbidden_authority_field_hits must be 0');
+  }
   if (metrics.proof_occurrence_rows <= 0) issues.push('proof_occurrence_rows must be positive');
   if (metrics.proof_rows_with_complete_metadata !== metrics.proof_occurrence_rows) issues.push('proof metadata must be complete');
   if (metrics.proof_rows_with_hebrew_context !== metrics.proof_occurrence_rows) issues.push('proof Hebrew context rows must equal proof rows');
@@ -135,6 +149,11 @@ function validateCounts(counts) {
     'usage_candidate_rows',
     'usage_weak_rows',
     'audit_only_ambiguous_rows',
+    'occurrence_link_rows',
+    'occurrence_link_rows_with_complete_metadata',
+    'occurrence_link_reader_facing_rows',
+    'occurrence_link_route_payload_field_hits',
+    'occurrence_link_forbidden_authority_field_hits',
     'proof_occurrence_rows',
     'proof_rows_with_complete_metadata',
     'proof_rows_with_hebrew_context',
@@ -154,6 +173,15 @@ function validateCounts(counts) {
   if (counts.queue_mutations !== 0) issues.push('queue_mutations must be 0');
   if (counts.submitted_to_agent6 !== 0) issues.push('submitted_to_agent6 must be 0');
   if (counts.reader_facing_rows !== 0) issues.push('reader_facing_rows must be 0');
+  if (counts.occurrence_link_rows <= 0) issues.push('occurrence_link_rows must be positive');
+  if (counts.occurrence_link_rows_with_complete_metadata !== counts.occurrence_link_rows) {
+    issues.push('occurrence link metadata must be complete');
+  }
+  if (counts.occurrence_link_reader_facing_rows !== 0) issues.push('occurrence_link_reader_facing_rows must be 0');
+  if (counts.occurrence_link_route_payload_field_hits !== 0) issues.push('occurrence_link_route_payload_field_hits must be 0');
+  if (counts.occurrence_link_forbidden_authority_field_hits !== 0) {
+    issues.push('occurrence_link_forbidden_authority_field_hits must be 0');
+  }
   if (counts.route_payload_field_hits !== 0) issues.push('route_payload_field_hits must be 0');
   if (counts.forbidden_authority_field_hits !== 0) issues.push('forbidden_authority_field_hits must be 0');
   if (counts.smoke_failed_steps !== 0) issues.push('smoke_failed_steps must be 0');

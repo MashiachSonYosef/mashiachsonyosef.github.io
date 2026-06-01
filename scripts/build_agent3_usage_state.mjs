@@ -8,6 +8,7 @@ const defaults = {
   goalBoard: 'data/control/agent_goal_board.json',
   queueReadyPacket: 'data/definitions/definition-workbench-usage-queue-ready-packet.json',
   usageAgent6Packet: 'data/definitions/definition-workbench-usage-agent6-packet.json',
+  usageOccurrenceLinks: 'data/definitions/definition-workbench-usage-occurrence-links.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   usageConcordance: 'data/workbench-evidence/usage-concordance.json',
   usageHandoffIndex: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -20,6 +21,7 @@ const agentRegistry = readJson(options.agentRegistry);
 const goalBoard = readJson(options.goalBoard);
 const queueReadyPacket = readJson(options.queueReadyPacket);
 const usageAgent6Packet = readJson(options.usageAgent6Packet);
+const usageOccurrenceLinks = readJson(options.usageOccurrenceLinks);
 const smokeValidation = readJson(options.smokeValidation);
 const usageConcordance = readJson(options.usageConcordance);
 const usageHandoffIndex = readJson(options.usageHandoffIndex);
@@ -30,6 +32,9 @@ if (queueReadyPacket.artifact_type !== 'definition_workbench_usage_queue_ready_p
 if (usageAgent6Packet.artifact_type !== 'definition_workbench_usage_agent6_packet') {
   throw new Error(`${options.usageAgent6Packet} is not an Agent 6 usage packet`);
 }
+if (usageOccurrenceLinks.artifact_type !== 'definition_workbench_usage_occurrence_links') {
+  throw new Error(`${options.usageOccurrenceLinks} is not an occurrence-links packet`);
+}
 
 const agent = (agentRegistry.agents || []).find((entry) => entry.agent === 'Agent 3') || {};
 const goal = (goalBoard.goals || []).find((entry) => entry.id === 'agent3-definition-occurrence-links') || {};
@@ -38,6 +43,8 @@ const evidenceArtifacts = unique([
   'reports/definition-workbench-usage-queue-ready-packet.md',
   options.usageAgent6Packet,
   'reports/definition-workbench-usage-agent6-packet.md',
+  options.usageOccurrenceLinks,
+  'reports/definition-workbench-usage-occurrence-links.md',
   'data/definitions/definition-workbench-usage-link-packet.json',
   'reports/definition-workbench-usage-link-packet.md',
   'data/definitions/definition-workbench-usage-seed-queue.json',
@@ -50,6 +57,7 @@ const evidenceArtifacts = unique([
 const validators = unique([
   'scripts/validate_definition_workbench_usage_queue_ready_packet.mjs',
   'scripts/validate_definition_workbench_usage_agent6_packet.mjs',
+  'scripts/validate_definition_workbench_usage_occurrence_links.mjs',
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
   'scripts/validate_definition_workbench_usage_seed_queue.mjs',
   'scripts/validate_definition_workbench_usage_join_smoke.mjs',
@@ -106,6 +114,11 @@ const artifact = {
     selected_source_refs: Number(smokeValidation.counts?.usage_selected_source_diversity_unique_source_refs || 0),
     selected_works: Number(smokeValidation.counts?.usage_selected_source_diversity_unique_works || 0),
     route_ids: Number(usageAgent6Packet.counts?.route_ids || 0),
+    occurrence_link_rows: Number(usageOccurrenceLinks.counts?.occurrence_link_rows || 0),
+    occurrence_link_rows_with_complete_metadata: completeOccurrenceLinkRows(),
+    occurrence_link_reader_facing_rows: Number(usageOccurrenceLinks.counts?.reader_facing_rows || 0),
+    occurrence_link_route_payload_field_hits: Number(usageOccurrenceLinks.counts?.route_payload_field_hits || 0),
+    occurrence_link_forbidden_authority_field_hits: Number(usageOccurrenceLinks.counts?.forbidden_authority_field_hits || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -161,6 +174,11 @@ function buildCounts() {
     usage_candidate_rows: Number(usageConcordance.counts?.status_counts?.candidate || 0),
     usage_weak_rows: Number(usageConcordance.counts?.status_counts?.weak || 0),
     audit_only_ambiguous_rows: Number(usageConcordance.counts?.audit_only_counts?.ambiguous || 0),
+    occurrence_link_rows: Number(usageOccurrenceLinks.counts?.occurrence_link_rows || 0),
+    occurrence_link_rows_with_complete_metadata: completeOccurrenceLinkRows(),
+    occurrence_link_reader_facing_rows: Number(usageOccurrenceLinks.counts?.reader_facing_rows || 0),
+    occurrence_link_route_payload_field_hits: Number(usageOccurrenceLinks.counts?.route_payload_field_hits || 0),
+    occurrence_link_forbidden_authority_field_hits: Number(usageOccurrenceLinks.counts?.forbidden_authority_field_hits || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -182,6 +200,7 @@ function buildChecks(counts) {
     check('queue_ready_not_submitted', counts.queue_required_fields_present === counts.queue_required_fields && counts.queue_mutations === 0 && counts.submitted_to_agent6 === 0 ? 'passed' : 'failed', `fields ${counts.queue_required_fields_present}/${counts.queue_required_fields}; mutations ${counts.queue_mutations}; submitted ${counts.submitted_to_agent6}`),
     check('usage_counts_nonzero', counts.usage_supported_rows + counts.usage_candidate_rows + counts.usage_weak_rows > 0 ? 'passed' : 'failed', `supported/candidate/weak ${counts.usage_supported_rows}/${counts.usage_candidate_rows}/${counts.usage_weak_rows}`),
     check('ambiguous_audit_only_visible', counts.audit_only_ambiguous_rows > 0 && counts.reader_facing_rows === 0 ? 'passed' : 'failed', `ambiguous ${counts.audit_only_ambiguous_rows}; reader-facing ${counts.reader_facing_rows}`),
+    check('occurrence_links_complete', counts.occurrence_link_rows > 0 && counts.occurrence_link_rows_with_complete_metadata === counts.occurrence_link_rows && counts.occurrence_link_reader_facing_rows === 0 && counts.occurrence_link_route_payload_field_hits === 0 && counts.occurrence_link_forbidden_authority_field_hits === 0 ? 'passed' : 'failed', `rows/complete/reader-facing/payload/forbidden ${counts.occurrence_link_rows}/${counts.occurrence_link_rows_with_complete_metadata}/${counts.occurrence_link_reader_facing_rows}/${counts.occurrence_link_route_payload_field_hits}/${counts.occurrence_link_forbidden_authority_field_hits}`),
     check('proof_metadata_complete', counts.proof_occurrence_rows > 0 && counts.proof_rows_with_complete_metadata === counts.proof_occurrence_rows ? 'passed' : 'failed', `${counts.proof_rows_with_complete_metadata}/${counts.proof_occurrence_rows}`),
     check('hebrew_context_clean', counts.proof_rows_with_hebrew_context === counts.proof_occurrence_rows && counts.proof_mojibake_rows === 0 ? 'passed' : 'failed', `Hebrew context ${counts.proof_rows_with_hebrew_context}; mojibake ${counts.proof_mojibake_rows}`),
     check('no_authority_fields', counts.reader_facing_rows === 0 && counts.route_payload_field_hits === 0 && counts.forbidden_authority_field_hits === 0 ? 'passed' : 'failed', `reader-facing ${counts.reader_facing_rows}; route payload ${counts.route_payload_field_hits}; forbidden ${counts.forbidden_authority_field_hits}`),
@@ -211,6 +230,8 @@ function writeReport(relativePath, artifact) {
     `- Supported/candidate/weak rows: ${artifact.current_metrics.usage_supported_rows}/${artifact.current_metrics.usage_candidate_rows}/${artifact.current_metrics.usage_weak_rows}`,
     `- Audit-only ambiguous rows: ${artifact.current_metrics.audit_only_ambiguous_rows}`,
     `- Selected usage rows/source refs/works: ${artifact.current_metrics.selected_usage_rows}/${artifact.current_metrics.selected_source_refs}/${artifact.current_metrics.selected_works}`,
+    `- Occurrence link rows / complete metadata: ${artifact.current_metrics.occurrence_link_rows}/${artifact.current_metrics.occurrence_link_rows_with_complete_metadata}`,
+    `- Occurrence link reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.occurrence_link_reader_facing_rows}/${artifact.current_metrics.occurrence_link_route_payload_field_hits}/${artifact.current_metrics.occurrence_link_forbidden_authority_field_hits}`,
     `- Proof rows / complete metadata: ${artifact.current_metrics.proof_occurrence_rows}/${artifact.current_metrics.proof_rows_with_complete_metadata}`,
     `- Hebrew context / mojibake rows: ${artifact.current_metrics.proof_rows_with_hebrew_context}/${artifact.current_metrics.proof_mojibake_rows}`,
     `- Reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.reader_facing_rows}/${artifact.current_metrics.route_payload_field_hits}/${artifact.current_metrics.forbidden_authority_field_hits}`,
@@ -247,6 +268,17 @@ function completeProofRows(packet) {
   return Math.min(...required.map((key) => Number(packet.counts?.[key] || 0)));
 }
 
+function completeOccurrenceLinkRows() {
+  const required = [
+    'rows_with_source_link',
+    'rows_with_work_anchor',
+    'rows_with_license',
+    'rows_with_version',
+    'rows_with_route_ids',
+  ];
+  return Math.min(...required.map((key) => Number(usageOccurrenceLinks.counts?.[key] || 0)));
+}
+
 function check(id, status, detail) {
   return { id, status, detail };
 }
@@ -266,6 +298,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--goal-board=')) parsed.goalBoard = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--queue-ready-packet=')) parsed.queueReadyPacket = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-agent6-packet=')) parsed.usageAgent6Packet = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--usage-occurrence-links=')) parsed.usageOccurrenceLinks = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-concordance=')) parsed.usageConcordance = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-handoff-index=')) parsed.usageHandoffIndex = cleanRelativePath(valueAfterEquals(arg));

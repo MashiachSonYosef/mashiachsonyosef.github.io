@@ -1,6 +1,6 @@
 # Definition Workbench Usage Queue-Ready Packet
 
-Generated: 2026-06-01T14:23:12.990Z
+Generated: 2026-06-01T14:55:38.633Z
 
 ## Summary
 
@@ -8,9 +8,12 @@ Generated: 2026-06-01T14:23:12.990Z
 - Target gate: definition_workbench_gate
 - Intended submitter: Agent 5
 - Queue required fields present: 10/10
-- Evidence artifacts present: 9/9
-- Validator scripts present: 5/5
+- Evidence artifacts present: 11/11
+- Validator scripts present: 6/6
 - Source packet status: passed
+- Occurrence links packet status: passed
+- Occurrence link rows / complete metadata: 49/49
+- Occurrence Hebrew context/focus/mojibake rows: 49/49/0
 - Proof rows / complete metadata: 12/12
 - Hebrew token/context/focus/mojibake rows: 12/12/12/0
 - Current usage links / absent seed tokens / join rows: 0/1/1
@@ -31,8 +34,11 @@ Generated: 2026-06-01T14:23:12.990Z
 | queue_required_fields_present | passed | 10/10 |
 | draft_submitter_allowed | passed | draft submitter Agent 5 |
 | source_packet_passed | passed | source packet status passed |
-| evidence_artifacts_exist | passed | 9/9 |
-| validator_scripts_exist | passed | 5/5 |
+| occurrence_links_packet_passed | passed | occurrence links status passed |
+| evidence_artifacts_exist | passed | 11/11 |
+| validator_scripts_exist | passed | 6/6 |
+| occurrence_links_complete | passed | rows/complete/context/focus/mojibake 49/49/49/49/0 |
+| occurrence_links_usage_only | passed | reader-facing 0; payload 0; forbidden 0; ambiguous emitted 0 |
 | proof_metadata_complete | passed | 12/12 |
 | hebrew_context_guard | passed | token/context/focus/mojibake 12/12/12/0 |
 | usage_boundary_only | passed | reader-facing 0; route payload hits 0; forbidden authority hits 0 |
@@ -43,6 +49,8 @@ Generated: 2026-06-01T14:23:12.990Z
 
 - data/definitions/definition-workbench-usage-agent6-packet.json
 - reports/definition-workbench-usage-agent6-packet.md
+- data/definitions/definition-workbench-usage-occurrence-links.json
+- reports/definition-workbench-usage-occurrence-links.md
 - data/definitions/definition-workbench-usage-link-packet.json
 - reports/definition-workbench-usage-link-packet.md
 - data/definitions/definition-workbench-usage-seed-queue.json

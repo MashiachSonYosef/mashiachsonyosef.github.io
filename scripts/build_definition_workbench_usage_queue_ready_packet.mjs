@@ -5,6 +5,7 @@ import path from 'node:path';
 const root = process.cwd();
 const defaults = {
   usageAgent6Packet: 'data/definitions/definition-workbench-usage-agent6-packet.json',
+  usageOccurrenceLinks: 'data/definitions/definition-workbench-usage-occurrence-links.json',
   agent6Queue: 'data/control/agent6_validation_queue.json',
   goalBoard: 'data/control/agent_goal_board.json',
   output: 'data/definitions/definition-workbench-usage-queue-ready-packet.json',
@@ -13,11 +14,15 @@ const defaults = {
 
 const options = parseArgs(process.argv.slice(2));
 const usagePacket = readJson(options.usageAgent6Packet);
+const occurrenceLinks = readJson(options.usageOccurrenceLinks);
 const queue = readJson(options.agent6Queue);
 const goalBoard = readJson(options.goalBoard);
 
 if (usagePacket.artifact_type !== 'definition_workbench_usage_agent6_packet') {
   throw new Error(`${options.usageAgent6Packet} is not a Definition Workbench usage Agent 6 packet`);
+}
+if (occurrenceLinks.artifact_type !== 'definition_workbench_usage_occurrence_links') {
+  throw new Error(`${options.usageOccurrenceLinks} is not a Definition Workbench usage occurrence-links packet`);
 }
 if (queue.artifact_type !== 'agent6_validation_queue') {
   throw new Error(`${options.agent6Queue} is not an Agent 6 validation queue`);
@@ -29,6 +34,7 @@ const queueEntryDraft = buildQueueEntryDraft();
 const evidenceArtifacts = queueEntryDraft.evidence_artifacts;
 const validatorScripts = [
   ...usagePacket.validators,
+  'scripts/validate_definition_workbench_usage_occurrence_links.mjs',
   'scripts/validate_definition_workbench_usage_queue_ready_packet.mjs',
 ].filter(Boolean);
 const counts = buildCounts();
@@ -45,6 +51,7 @@ const artifact = {
   target_gate: 'definition_workbench_gate',
   target_queue: options.agent6Queue,
   source_packet: options.usageAgent6Packet,
+  occurrence_links_packet: options.usageOccurrenceLinks,
   submission_boundary: {
     queue_ready_only: true,
     control_queue_mutated: false,
@@ -90,6 +97,22 @@ const artifact = {
     route_payload_field_hits: usagePacket.counts?.route_payload_field_hits ?? null,
     forbidden_authority_field_hits: usagePacket.counts?.forbidden_authority_field_hits ?? null,
   },
+  occurrence_links_summary: {
+    status: occurrenceLinks.quality?.status || null,
+    occurrence_link_rows: occurrenceLinks.counts?.occurrence_link_rows ?? null,
+    rows_with_source_link: occurrenceLinks.counts?.rows_with_source_link ?? null,
+    rows_with_work_anchor: occurrenceLinks.counts?.rows_with_work_anchor ?? null,
+    rows_with_hebrew_context: occurrenceLinks.counts?.rows_with_hebrew_context ?? null,
+    rows_with_focus_marker: occurrenceLinks.counts?.rows_with_focus_marker ?? null,
+    rows_with_license: occurrenceLinks.counts?.rows_with_license ?? null,
+    rows_with_version: occurrenceLinks.counts?.rows_with_version ?? null,
+    rows_with_route_ids: occurrenceLinks.counts?.rows_with_route_ids ?? null,
+    audit_only_ambiguous_rows_available: occurrenceLinks.counts?.audit_only_ambiguous_rows_available ?? null,
+    audit_only_ambiguous_rows_emitted: occurrenceLinks.counts?.audit_only_ambiguous_rows_emitted ?? null,
+    reader_facing_rows: occurrenceLinks.counts?.reader_facing_rows ?? null,
+    route_payload_field_hits: occurrenceLinks.counts?.route_payload_field_hits ?? null,
+    forbidden_authority_field_hits: occurrenceLinks.counts?.forbidden_authority_field_hits ?? null,
+  },
   quality: {
     status: failed.length ? 'failed' : warnings.length ? 'pass_with_warnings' : 'passed',
     warning_count: warnings.length,
@@ -117,6 +140,8 @@ function buildQueueEntryDraft() {
     evidence_artifacts: [
       options.usageAgent6Packet,
       'reports/definition-workbench-usage-agent6-packet.md',
+      options.usageOccurrenceLinks,
+      'reports/definition-workbench-usage-occurrence-links.md',
       'data/definitions/definition-workbench-usage-link-packet.json',
       'reports/definition-workbench-usage-link-packet.md',
       'data/definitions/definition-workbench-usage-seed-queue.json',
@@ -135,7 +160,7 @@ function buildQueueEntryDraft() {
       'source/provenance acceptance outside cited occurrence rows remains blocked by the source-scope gate',
       'this artifact is queue-ready only; Agent 3 has not submitted to the Agent 6 queue',
     ],
-    what_changed_since_last_agent6_ruling: 'Agent 3 produced a bounded Definition Workbench usage-link packet chain: the link packet preserves usage-only boundaries, the seed queue identifies one selected token absent from the current 200-row sample, the join smoke projects a bounded 201-row sample with 2390 usage-link rows, and the Agent 6 packet validates 12 proof occurrence rows with complete source/work/context/license/version/route-ID metadata, 12 Hebrew token rows, 12 Hebrew context rows, 12 focus-marker rows, 0 mojibake rows, 0 reader-facing rows, 0 route payload field hits, and 0 forbidden authority field hits.',
+    what_changed_since_last_agent6_ruling: 'Agent 3 produced a bounded Definition Workbench usage-link packet chain: the link packet preserves usage-only boundaries, the selected occurrence-link packet exposes 49 source/work/context/license/version/route-ID rows for Workbench planning, the seed queue identifies one selected token absent from the current 200-row sample, the join smoke projects a bounded 201-row sample with 2390 usage-link rows, and the Agent 6 packet validates 12 proof occurrence rows with complete source/work/context/license/version/route-ID metadata, 12 Hebrew token rows, 12 Hebrew context rows, 12 focus-marker rows, 0 mojibake rows, 0 reader-facing rows, 0 route payload field hits, and 0 forbidden authority field hits.',
     what_must_not_be_accepted: [
       'usage rows as definitions',
       'reviewed lexical authority',
@@ -163,6 +188,17 @@ function buildCounts() {
     allowed_submitters: allowedSubmitters.length,
     draft_submitter_allowed: allowedSubmitters.includes(queueEntryDraft.submitted_by) ? 1 : 0,
     source_packet_status_passed: usagePacket.quality?.status === 'passed' ? 1 : 0,
+    occurrence_links_status_passed: occurrenceLinks.quality?.status === 'passed' ? 1 : 0,
+    occurrence_link_rows: Number(occurrenceLinks.counts?.occurrence_link_rows || 0),
+    occurrence_link_rows_with_complete_metadata: completeOccurrenceLinkRows(),
+    occurrence_link_rows_with_hebrew_context: Number(occurrenceLinks.counts?.rows_with_hebrew_context || 0),
+    occurrence_link_rows_with_focus_marker: Number(occurrenceLinks.counts?.rows_with_focus_marker || 0),
+    occurrence_link_mojibake_rows: Number(occurrenceLinks.counts?.mojibake_rows || 0),
+    occurrence_link_audit_only_ambiguous_rows_available: Number(occurrenceLinks.counts?.audit_only_ambiguous_rows_available || 0),
+    occurrence_link_audit_only_ambiguous_rows_emitted: Number(occurrenceLinks.counts?.audit_only_ambiguous_rows_emitted || 0),
+    occurrence_link_reader_facing_rows: Number(occurrenceLinks.counts?.reader_facing_rows || 0),
+    occurrence_link_route_payload_field_hits: Number(occurrenceLinks.counts?.route_payload_field_hits || 0),
+    occurrence_link_forbidden_authority_field_hits: Number(occurrenceLinks.counts?.forbidden_authority_field_hits || 0),
     proof_occurrence_rows: Number(usagePacket.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(),
     proof_rows_with_hebrew_token: Number(usagePacket.counts?.proof_rows_with_hebrew_token || 0),
@@ -188,8 +224,11 @@ function buildChecks(counts) {
     check('queue_required_fields_present', counts.required_queue_fields_present === counts.required_queue_fields ? 'passed' : 'failed', `${counts.required_queue_fields_present}/${counts.required_queue_fields}`),
     check('draft_submitter_allowed', counts.draft_submitter_allowed === 1 ? 'passed' : 'failed', `draft submitter ${queueEntryDraft.submitted_by}`),
     check('source_packet_passed', counts.source_packet_status_passed === 1 ? 'passed' : 'failed', `source packet status ${usagePacket.quality?.status || 'unknown'}`),
+    check('occurrence_links_packet_passed', counts.occurrence_links_status_passed === 1 ? 'passed' : 'failed', `occurrence links status ${occurrenceLinks.quality?.status || 'unknown'}`),
     check('evidence_artifacts_exist', counts.evidence_artifacts_exist === counts.evidence_artifacts ? 'passed' : 'failed', `${counts.evidence_artifacts_exist}/${counts.evidence_artifacts}`),
     check('validator_scripts_exist', counts.validator_scripts_exist === counts.validator_scripts ? 'passed' : 'failed', `${counts.validator_scripts_exist}/${counts.validator_scripts}`),
+    check('occurrence_links_complete', counts.occurrence_link_rows > 0 && counts.occurrence_link_rows_with_complete_metadata === counts.occurrence_link_rows && counts.occurrence_link_rows_with_hebrew_context === counts.occurrence_link_rows && counts.occurrence_link_rows_with_focus_marker === counts.occurrence_link_rows && counts.occurrence_link_mojibake_rows === 0 ? 'passed' : 'failed', `rows/complete/context/focus/mojibake ${counts.occurrence_link_rows}/${counts.occurrence_link_rows_with_complete_metadata}/${counts.occurrence_link_rows_with_hebrew_context}/${counts.occurrence_link_rows_with_focus_marker}/${counts.occurrence_link_mojibake_rows}`),
+    check('occurrence_links_usage_only', counts.occurrence_link_reader_facing_rows === 0 && counts.occurrence_link_route_payload_field_hits === 0 && counts.occurrence_link_forbidden_authority_field_hits === 0 && counts.occurrence_link_audit_only_ambiguous_rows_emitted === 0 ? 'passed' : 'failed', `reader-facing ${counts.occurrence_link_reader_facing_rows}; payload ${counts.occurrence_link_route_payload_field_hits}; forbidden ${counts.occurrence_link_forbidden_authority_field_hits}; ambiguous emitted ${counts.occurrence_link_audit_only_ambiguous_rows_emitted}`),
     check('proof_metadata_complete', counts.proof_occurrence_rows > 0 && counts.proof_rows_with_complete_metadata === counts.proof_occurrence_rows ? 'passed' : 'failed', `${counts.proof_rows_with_complete_metadata}/${counts.proof_occurrence_rows}`),
     check('hebrew_context_guard', counts.proof_rows_with_hebrew_token === counts.proof_occurrence_rows && counts.proof_rows_with_hebrew_context === counts.proof_occurrence_rows && counts.proof_rows_with_focus_marker === counts.proof_occurrence_rows && counts.proof_mojibake_rows === 0 ? 'passed' : 'failed', `token/context/focus/mojibake ${counts.proof_rows_with_hebrew_token}/${counts.proof_rows_with_hebrew_context}/${counts.proof_rows_with_focus_marker}/${counts.proof_mojibake_rows}`),
     check('usage_boundary_only', counts.reader_facing_rows === 0 && counts.route_payload_field_hits === 0 && counts.forbidden_authority_field_hits === 0 ? 'passed' : 'failed', `reader-facing ${counts.reader_facing_rows}; route payload hits ${counts.route_payload_field_hits}; forbidden authority hits ${counts.forbidden_authority_field_hits}`),
@@ -213,6 +252,9 @@ function writeReport(relativePath, artifact) {
     `- Evidence artifacts present: ${artifact.counts.evidence_artifacts_exist}/${artifact.counts.evidence_artifacts}`,
     `- Validator scripts present: ${artifact.counts.validator_scripts_exist}/${artifact.counts.validator_scripts}`,
     `- Source packet status: ${artifact.source_packet_summary.status}`,
+    `- Occurrence links packet status: ${artifact.occurrence_links_summary.status}`,
+    `- Occurrence link rows / complete metadata: ${artifact.counts.occurrence_link_rows}/${artifact.counts.occurrence_link_rows_with_complete_metadata}`,
+    `- Occurrence Hebrew context/focus/mojibake rows: ${artifact.counts.occurrence_link_rows_with_hebrew_context}/${artifact.counts.occurrence_link_rows_with_focus_marker}/${artifact.counts.occurrence_link_mojibake_rows}`,
     `- Proof rows / complete metadata: ${artifact.counts.proof_occurrence_rows}/${artifact.counts.proof_rows_with_complete_metadata}`,
     `- Hebrew token/context/focus/mojibake rows: ${artifact.counts.proof_rows_with_hebrew_token}/${artifact.counts.proof_rows_with_hebrew_context}/${artifact.counts.proof_rows_with_focus_marker}/${artifact.counts.proof_mojibake_rows}`,
     `- Current usage links / absent seed tokens / join rows: ${artifact.counts.current_sample_rows_with_usage_links}/${artifact.counts.usage_tokens_absent_from_current_sample}/${artifact.counts.join_rows}`,
@@ -258,6 +300,17 @@ function completeProofRows() {
   return Math.min(...required.map((key) => Number(usagePacket.counts?.[key] || 0)));
 }
 
+function completeOccurrenceLinkRows() {
+  const required = [
+    'rows_with_source_link',
+    'rows_with_work_anchor',
+    'rows_with_license',
+    'rows_with_version',
+    'rows_with_route_ids',
+  ];
+  return Math.min(...required.map((key) => Number(occurrenceLinks.counts?.[key] || 0)));
+}
+
 function getGoal(goalId) {
   return (goalBoard.goals || []).find((goal) => goal.id === goalId) || {};
 }
@@ -282,6 +335,7 @@ function parseArgs(args) {
   const parsed = { ...defaults };
   for (const arg of args) {
     if (arg.startsWith('--usage-agent6-packet=')) parsed.usageAgent6Packet = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--usage-occurrence-links=')) parsed.usageOccurrenceLinks = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--agent6-queue=')) parsed.agent6Queue = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--goal-board=')) parsed.goalBoard = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));

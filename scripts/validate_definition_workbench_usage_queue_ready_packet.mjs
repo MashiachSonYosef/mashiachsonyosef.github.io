@@ -33,6 +33,7 @@ validateQueueContract(packet.queue_contract_snapshot || {});
 validateGoalBoardSnapshot(packet.goal_board_snapshot || {});
 validateQueueDraft(packet.queue_entry_draft || {});
 validateSourcePacketSummary(packet.source_packet_summary || {});
+validateOccurrenceLinksSummary(packet.occurrence_links_summary || {});
 validateCounts(packet.counts || {});
 validateChecks(packet.checks || []);
 validateForbiddenAuthorityKeys(packet);
@@ -114,6 +115,12 @@ function validateQueueDraft(draft) {
   if (!Array.isArray(draft.evidence_artifacts) || draft.evidence_artifacts.length < 8) {
     issues.push('queue_entry_draft.evidence_artifacts must contain machine-readable packet chain paths');
   }
+  if (!draft.evidence_artifacts.includes('data/definitions/definition-workbench-usage-occurrence-links.json')) {
+    issues.push('queue_entry_draft.evidence_artifacts must include occurrence links packet');
+  }
+  if (!draft.evidence_artifacts.includes('reports/definition-workbench-usage-occurrence-links.md')) {
+    issues.push('queue_entry_draft.evidence_artifacts must include occurrence links report');
+  }
   if (!String(draft.claimed_boundary || '').includes('Usage-navigation occurrence-link planning evidence only')) {
     issues.push('queue_entry_draft.claimed_boundary must preserve usage-navigation-only boundary');
   }
@@ -146,6 +153,34 @@ function validateSourcePacketSummary(summary) {
   if (Number(summary.forbidden_authority_field_hits || 0) !== 0) issues.push('source_packet_summary.forbidden_authority_field_hits must be 0');
 }
 
+function validateOccurrenceLinksSummary(summary) {
+  if (summary.status !== 'passed') issues.push('occurrence_links_summary.status must be passed');
+  const rows = Number(summary.occurrence_link_rows || 0);
+  if (rows < 1) issues.push('occurrence_links_summary.occurrence_link_rows must be positive');
+  for (const key of [
+    'rows_with_source_link',
+    'rows_with_work_anchor',
+    'rows_with_hebrew_context',
+    'rows_with_focus_marker',
+    'rows_with_license',
+    'rows_with_version',
+    'rows_with_route_ids',
+  ]) {
+    if (Number(summary[key] || 0) !== rows) issues.push(`occurrence_links_summary.${key} must equal occurrence_link_rows`);
+  }
+  if (Number(summary.audit_only_ambiguous_rows_available || 0) <= 0) {
+    issues.push('occurrence_links_summary.audit_only_ambiguous_rows_available must be positive');
+  }
+  if (Number(summary.audit_only_ambiguous_rows_emitted || 0) !== 0) {
+    issues.push('occurrence_links_summary.audit_only_ambiguous_rows_emitted must be 0');
+  }
+  if (Number(summary.reader_facing_rows || 0) !== 0) issues.push('occurrence_links_summary.reader_facing_rows must be 0');
+  if (Number(summary.route_payload_field_hits || 0) !== 0) issues.push('occurrence_links_summary.route_payload_field_hits must be 0');
+  if (Number(summary.forbidden_authority_field_hits || 0) !== 0) {
+    issues.push('occurrence_links_summary.forbidden_authority_field_hits must be 0');
+  }
+}
+
 function validateCounts(counts) {
   const requiredIntegerCounts = [
     'required_queue_fields',
@@ -157,6 +192,17 @@ function validateCounts(counts) {
     'allowed_submitters',
     'draft_submitter_allowed',
     'source_packet_status_passed',
+    'occurrence_links_status_passed',
+    'occurrence_link_rows',
+    'occurrence_link_rows_with_complete_metadata',
+    'occurrence_link_rows_with_hebrew_context',
+    'occurrence_link_rows_with_focus_marker',
+    'occurrence_link_mojibake_rows',
+    'occurrence_link_audit_only_ambiguous_rows_available',
+    'occurrence_link_audit_only_ambiguous_rows_emitted',
+    'occurrence_link_reader_facing_rows',
+    'occurrence_link_route_payload_field_hits',
+    'occurrence_link_forbidden_authority_field_hits',
     'proof_occurrence_rows',
     'proof_rows_with_complete_metadata',
     'proof_rows_with_hebrew_token',
@@ -182,6 +228,31 @@ function validateCounts(counts) {
   if (counts.validator_scripts_exist !== counts.validator_scripts) issues.push('all validator scripts must exist');
   if (counts.draft_submitter_allowed !== 1) issues.push('draft_submitter_allowed must be 1');
   if (counts.source_packet_status_passed !== 1) issues.push('source_packet_status_passed must be 1');
+  if (counts.occurrence_links_status_passed !== 1) issues.push('occurrence_links_status_passed must be 1');
+  if (counts.occurrence_link_rows < 1) issues.push('occurrence_link_rows must be positive');
+  if (counts.occurrence_link_rows_with_complete_metadata !== counts.occurrence_link_rows) {
+    issues.push('occurrence link metadata must be complete');
+  }
+  if (counts.occurrence_link_rows_with_hebrew_context !== counts.occurrence_link_rows) {
+    issues.push('occurrence links must include Hebrew context');
+  }
+  if (counts.occurrence_link_rows_with_focus_marker !== counts.occurrence_link_rows) {
+    issues.push('occurrence links must include focus markers');
+  }
+  if (counts.occurrence_link_mojibake_rows !== 0) issues.push('occurrence_link_mojibake_rows must be 0');
+  if (counts.occurrence_link_audit_only_ambiguous_rows_available < 1) {
+    issues.push('occurrence_link_audit_only_ambiguous_rows_available must be positive');
+  }
+  if (counts.occurrence_link_audit_only_ambiguous_rows_emitted !== 0) {
+    issues.push('occurrence_link_audit_only_ambiguous_rows_emitted must be 0');
+  }
+  if (counts.occurrence_link_reader_facing_rows !== 0) issues.push('occurrence_link_reader_facing_rows must be 0');
+  if (counts.occurrence_link_route_payload_field_hits !== 0) {
+    issues.push('occurrence_link_route_payload_field_hits must be 0');
+  }
+  if (counts.occurrence_link_forbidden_authority_field_hits !== 0) {
+    issues.push('occurrence_link_forbidden_authority_field_hits must be 0');
+  }
   if (counts.proof_occurrence_rows < 1) issues.push('proof_occurrence_rows must be positive');
   if (counts.proof_rows_with_complete_metadata !== counts.proof_occurrence_rows) issues.push('proof metadata must be complete');
   if (counts.proof_rows_with_hebrew_token !== counts.proof_occurrence_rows) issues.push('all proof rows must include Hebrew token fields');
