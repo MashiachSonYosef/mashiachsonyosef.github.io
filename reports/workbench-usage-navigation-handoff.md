@@ -1,6 +1,6 @@
 # Workbench Usage Navigation Handoff
 
-Generated: 2026-06-01T02:27:34.320Z
+Generated: 2026-06-01T02:37:50.314Z
 
 ## Summary
 
@@ -50,6 +50,8 @@ Generated: 2026-06-01T02:27:34.320Z
 - Selected occurrence duplicate memberships: 1
 - Selected signature independence: rows 49, memberships 98, recurring memberships 28, cross-cluster memberships 10, rows with recurring 21, rows with cross-cluster 9, missing lookup rows 0, reader-facing rows 0
 - Selected signature independence route payload-like field hits: 0
+- Selected source diversity: rows 49, source refs 38, work anchors 38, works 20, categories 1, licenses 2, version sources 4, duplicate source-ref buckets 8, duplicate source-ref rows 19, missing signature rows 0, reader-facing rows 0
+- Selected source diversity route payload-like field hits: 0
 - Selected occurrence lookup buckets: works 20, clusters 2, statuses 3
 - Crossmatch links: occurrences 49, directed edges 2352, undirected pairs 1176
 - Crossmatch strengths: strong 1206, moderate 1146, weak 0
@@ -100,6 +102,8 @@ Generated: 2026-06-01T02:27:34.320Z
 - Selected occurrences: present, rows 49
 - Selected signature independence: present, rows 49, memberships 98, recurring memberships 28, cross-cluster memberships 10, rows with recurring 21, rows with cross-cluster 9, missing lookup rows 0, reader-facing rows 0, failed 0
 - Selected signature independence route payload-like field hits: 0
+- Selected source diversity: present, rows 49, source refs 38, work anchors 38, works 20, categories 1, licenses 2, version sources 4, duplicate source-ref buckets 8, duplicate source-ref rows 19, missing signature rows 0, reader-facing rows 0, failed 0
+- Selected source diversity route payload-like field hits: 0
 - Selected occurrence lookup: present, work buckets 20
 - Crossmatch links: present, occurrences 49, directed edges 2352, failed 0
 - Crossmatch route payload-like field hits: 0
@@ -110,7 +114,7 @@ Generated: 2026-06-01T02:27:34.320Z
 - Agent 6 boundary packet: present, checks 11, failed 0
 - Concentration packet: present, quality pass_with_warnings, warnings 1, failed 0
 - Concentration route payload-like field hits: 0
-- Smoke validation: passed, steps 66, failed 0
+- Smoke validation: passed, steps 68, failed 0
 
 ## Artifacts
 
@@ -141,6 +145,7 @@ Generated: 2026-06-01T02:27:34.320Z
 | selected slices index | reports/workbench-usage-selected-slices-index.md | yes |
 | selected occurrences | reports/workbench-usage-selected-occurrences.md | yes |
 | selected signature independence | reports/workbench-usage-selected-signature-independence.md | yes |
+| selected source diversity | reports/workbench-usage-selected-source-diversity.md | yes |
 | selected occurrence lookup | reports/workbench-usage-selected-occurrence-lookup.md | yes |
 | crossmatch links | reports/workbench-usage-crossmatch-links.md | yes |
 | crossmatch bridge index | reports/workbench-usage-crossmatch-bridge-index.md | yes |
@@ -200,6 +205,8 @@ Generated: 2026-06-01T02:27:34.320Z
 | validate_selected_occurrences | node scripts/validate_workbench_usage_selected_occurrences.mjs .local-cache/workbench-evidence/usage-selected-occurrences.json |
 | build_selected_signature_independence | node scripts/build_workbench_usage_selected_signature_independence.mjs --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --context-signature-lookup=.local-cache/workbench-evidence/usage-context-signature-lookup.json --output=.local-cache/workbench-evidence/usage-selected-signature-independence.json --report=reports/workbench-usage-selected-signature-independence.md |
 | validate_selected_signature_independence | node scripts/validate_workbench_usage_selected_signature_independence.mjs .local-cache/workbench-evidence/usage-selected-signature-independence.json |
+| build_selected_source_diversity | node scripts/build_workbench_usage_selected_source_diversity.mjs --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-signature-independence=.local-cache/workbench-evidence/usage-selected-signature-independence.json --output=.local-cache/workbench-evidence/usage-selected-source-diversity.json --report=reports/workbench-usage-selected-source-diversity.md |
+| validate_selected_source_diversity | node scripts/validate_workbench_usage_selected_source_diversity.mjs .local-cache/workbench-evidence/usage-selected-source-diversity.json |
 | build_selected_occurrence_lookup | node scripts/build_workbench_usage_selected_occurrence_lookup.mjs --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --output=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --report=reports/workbench-usage-selected-occurrence-lookup.md --max-samples=5 |
 | validate_selected_occurrence_lookup | node scripts/validate_workbench_usage_selected_occurrence_lookup.mjs .local-cache/workbench-evidence/usage-selected-occurrence-lookup.json |
 | build_crossmatch_links | node scripts/build_workbench_usage_crossmatch_links.mjs --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --output=.local-cache/workbench-evidence/usage-crossmatch-links.json --report=reports/workbench-usage-crossmatch-links.md |
@@ -212,7 +219,7 @@ Generated: 2026-06-01T02:27:34.320Z
 | validate_agent6_boundary_packet | node scripts/validate_workbench_usage_agent6_boundary_packet.mjs .local-cache/workbench-evidence/usage-agent6-boundary-packet.json |
 | build_concentration_packet | node scripts/build_workbench_usage_concentration_packet.mjs --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --output=.local-cache/workbench-evidence/usage-concentration-packet.json --report=reports/workbench-usage-concentration-packet.md |
 | validate_concentration_packet | node scripts/validate_workbench_usage_concentration_packet.mjs .local-cache/workbench-evidence/usage-concentration-packet.json |
-| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --sample-index=.local-cache/workbench-evidence/usage-sample-index.json --lookup-index=.local-cache/workbench-evidence/usage-lookup-index.json --work-frame-matrix=.local-cache/workbench-evidence/usage-work-frame-matrix.json --search-rows=.local-cache/workbench-evidence/usage-search-rows.json --provenance-index=.local-cache/workbench-evidence/usage-provenance-index.json --search-shard-index=.local-cache/workbench-evidence/usage-search-shard-index.json --refresh-priority-index=.local-cache/workbench-evidence/usage-refresh-priority-index.json --unit-density-index=.local-cache/workbench-evidence/usage-unit-density-index.json --phrase-recurrence-index=.local-cache/workbench-evidence/usage-phrase-recurrence-index.json --context-offset-index=.local-cache/workbench-evidence/usage-context-offset-index.json --context-signature-index=.local-cache/workbench-evidence/usage-context-signature-index.json --context-signature-lookup=.local-cache/workbench-evidence/usage-context-signature-lookup.json --context-signature-contrast=.local-cache/workbench-evidence/usage-context-signature-contrast.json --selected-slice=.local-cache/workbench-evidence/usage-slice-tanakh.json --selected-slices-index=.local-cache/workbench-evidence/usage-selected-slices-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-signature-independence=.local-cache/workbench-evidence/usage-selected-signature-independence.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --crossmatch-bridge-index=.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json --crossmatch-neighborhoods=.local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json --agent6-boundary-packet=.local-cache/workbench-evidence/usage-agent6-boundary-packet.json --concentration-packet=.local-cache/workbench-evidence/usage-concentration-packet.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
+| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --sample-index=.local-cache/workbench-evidence/usage-sample-index.json --lookup-index=.local-cache/workbench-evidence/usage-lookup-index.json --work-frame-matrix=.local-cache/workbench-evidence/usage-work-frame-matrix.json --search-rows=.local-cache/workbench-evidence/usage-search-rows.json --provenance-index=.local-cache/workbench-evidence/usage-provenance-index.json --search-shard-index=.local-cache/workbench-evidence/usage-search-shard-index.json --refresh-priority-index=.local-cache/workbench-evidence/usage-refresh-priority-index.json --unit-density-index=.local-cache/workbench-evidence/usage-unit-density-index.json --phrase-recurrence-index=.local-cache/workbench-evidence/usage-phrase-recurrence-index.json --context-offset-index=.local-cache/workbench-evidence/usage-context-offset-index.json --context-signature-index=.local-cache/workbench-evidence/usage-context-signature-index.json --context-signature-lookup=.local-cache/workbench-evidence/usage-context-signature-lookup.json --context-signature-contrast=.local-cache/workbench-evidence/usage-context-signature-contrast.json --selected-slice=.local-cache/workbench-evidence/usage-slice-tanakh.json --selected-slices-index=.local-cache/workbench-evidence/usage-selected-slices-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-signature-independence=.local-cache/workbench-evidence/usage-selected-signature-independence.json --selected-source-diversity=.local-cache/workbench-evidence/usage-selected-source-diversity.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --crossmatch-bridge-index=.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json --crossmatch-neighborhoods=.local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json --agent6-boundary-packet=.local-cache/workbench-evidence/usage-agent6-boundary-packet.json --concentration-packet=.local-cache/workbench-evidence/usage-concentration-packet.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
 | validate_handoff_index | node scripts/validate_workbench_usage_handoff_index.mjs .local-cache/workbench-evidence/usage-navigation-handoff-index.json |
 
 ## Boundary

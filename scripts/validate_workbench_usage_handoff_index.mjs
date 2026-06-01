@@ -167,6 +167,18 @@ function validateCounts() {
     'selected_signature_independence_missing_lookup_rows',
     'selected_signature_independence_reader_facing_rows',
     'selected_signature_independence_route_payload_field_hits',
+    'selected_source_diversity_rows',
+    'selected_source_diversity_unique_source_refs',
+    'selected_source_diversity_unique_work_anchors',
+    'selected_source_diversity_unique_works',
+    'selected_source_diversity_unique_categories',
+    'selected_source_diversity_unique_licenses',
+    'selected_source_diversity_unique_version_sources',
+    'selected_source_diversity_duplicate_source_ref_buckets',
+    'selected_source_diversity_duplicate_source_ref_rows',
+    'selected_source_diversity_missing_signature_rows',
+    'selected_source_diversity_reader_facing_rows',
+    'selected_source_diversity_route_payload_field_hits',
     'selected_occurrence_lookup_work_buckets',
     'selected_occurrence_lookup_cluster_buckets',
     'selected_occurrence_lookup_status_buckets',
@@ -247,6 +259,33 @@ function validateCounts() {
   }
   if (Number(artifact.counts?.selected_signature_independence_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_signature_independence_route_payload_field_hits must be 0');
+  }
+  if (Number(artifact.counts?.selected_source_diversity_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_source_diversity_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.counts?.selected_source_diversity_unique_source_refs || 0) <= 0) {
+    issues.push('selected_source_diversity_unique_source_refs must be positive');
+  }
+  if (Number(artifact.counts?.selected_source_diversity_unique_work_anchors || 0) !== Number(artifact.counts?.selected_source_diversity_unique_source_refs || 0)) {
+    issues.push('selected_source_diversity_unique_work_anchors must equal unique source refs for selected rows');
+  }
+  if (Number(artifact.counts?.selected_source_diversity_unique_works || 0) <= 0) {
+    issues.push('selected_source_diversity_unique_works must be positive');
+  }
+  if (Number(artifact.counts?.selected_source_diversity_unique_licenses || 0) <= 0) {
+    issues.push('selected_source_diversity_unique_licenses must be positive');
+  }
+  if (Number(artifact.counts?.selected_source_diversity_unique_version_sources || 0) <= 0) {
+    issues.push('selected_source_diversity_unique_version_sources must be positive');
+  }
+  if (Number(artifact.counts?.selected_source_diversity_missing_signature_rows || 0) !== 0) {
+    issues.push('selected_source_diversity_missing_signature_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_source_diversity_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_source_diversity_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_source_diversity_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_source_diversity_route_payload_field_hits must be 0');
   }
   if (Number(artifact.counts?.crossmatch_occurrence_refs || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('crossmatch_occurrence_refs must equal selected_occurrence_rows');
@@ -529,6 +568,7 @@ function validateArtifacts() {
     'selected_slices_index_report',
     'selected_occurrences_report',
     'selected_signature_independence_report',
+    'selected_source_diversity_report',
     'selected_occurrence_lookup_report',
     'crossmatch_links_report',
     'crossmatch_bridge_index_report',
@@ -591,6 +631,9 @@ function validateValidation() {
   if (artifact.validation?.selected_occurrences_status !== 'present') issues.push('validation.selected_occurrences_status must be present');
   if (artifact.validation?.selected_signature_independence_status !== 'present') {
     issues.push('validation.selected_signature_independence_status must be present');
+  }
+  if (artifact.validation?.selected_source_diversity_status !== 'present') {
+    issues.push('validation.selected_source_diversity_status must be present');
   }
   if (artifact.validation?.selected_occurrence_lookup_status !== 'present') {
     issues.push('validation.selected_occurrence_lookup_status must be present');
@@ -879,6 +922,45 @@ function validateValidation() {
   if (Number(artifact.validation?.selected_signature_independence_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_signature_independence_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.validation?.selected_source_diversity_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_source_diversity_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_unique_source_refs || 0) !== Number(artifact.counts?.selected_source_diversity_unique_source_refs || 0)) {
+    issues.push('validation.selected_source_diversity_unique_source_refs must equal count');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_unique_work_anchors || 0) !== Number(artifact.counts?.selected_source_diversity_unique_work_anchors || 0)) {
+    issues.push('validation.selected_source_diversity_unique_work_anchors must equal count');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_unique_works || 0) !== Number(artifact.counts?.selected_source_diversity_unique_works || 0)) {
+    issues.push('validation.selected_source_diversity_unique_works must equal count');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_unique_categories || 0) !== Number(artifact.counts?.selected_source_diversity_unique_categories || 0)) {
+    issues.push('validation.selected_source_diversity_unique_categories must equal count');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_unique_licenses || 0) !== Number(artifact.counts?.selected_source_diversity_unique_licenses || 0)) {
+    issues.push('validation.selected_source_diversity_unique_licenses must equal count');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_unique_version_sources || 0) !== Number(artifact.counts?.selected_source_diversity_unique_version_sources || 0)) {
+    issues.push('validation.selected_source_diversity_unique_version_sources must equal count');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_duplicate_source_ref_buckets || 0) !== Number(artifact.counts?.selected_source_diversity_duplicate_source_ref_buckets || 0)) {
+    issues.push('validation.selected_source_diversity_duplicate_source_ref_buckets must equal count');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_duplicate_source_ref_rows || 0) !== Number(artifact.counts?.selected_source_diversity_duplicate_source_ref_rows || 0)) {
+    issues.push('validation.selected_source_diversity_duplicate_source_ref_rows must equal count');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_missing_signature_rows || 0) !== 0) {
+    issues.push('selected_source_diversity_missing_signature_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_source_diversity_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_failed_checks || 0) !== 0) {
+    issues.push('selected_source_diversity_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.selected_source_diversity_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_source_diversity_route_payload_field_hits must be 0');
+  }
   if (Number(artifact.validation?.selected_occurrence_lookup_work_buckets || 0) <= 0) {
     issues.push('selected_occurrence_lookup_work_buckets must be positive');
   }
@@ -987,6 +1069,8 @@ function validateCommands() {
     validate_selected_occurrences: 'validate_workbench_usage_selected_occurrences.mjs',
     build_selected_signature_independence: 'build_workbench_usage_selected_signature_independence.mjs',
     validate_selected_signature_independence: 'validate_workbench_usage_selected_signature_independence.mjs',
+    build_selected_source_diversity: 'build_workbench_usage_selected_source_diversity.mjs',
+    validate_selected_source_diversity: 'validate_workbench_usage_selected_source_diversity.mjs',
     build_selected_occurrence_lookup: 'build_workbench_usage_selected_occurrence_lookup.mjs',
     validate_selected_occurrence_lookup: 'validate_workbench_usage_selected_occurrence_lookup.mjs',
     build_crossmatch_links: 'build_workbench_usage_crossmatch_links.mjs',
