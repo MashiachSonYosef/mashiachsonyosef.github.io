@@ -141,6 +141,8 @@ function runFixtureSelfTest(relativePath) {
         issues.push(`${testCase.label || `case ${index}`}: expected counts.${countName}=${expectedValue}, got ${actualValue}`);
       }
     }
+    assertFixtureSubstrings(issues, testCase, 'expected_issue_substrings', target.issues, index);
+    assertFixtureSubstrings(issues, testCase, 'expected_warning_substrings', target.warnings, index);
   }
   if (issues.length) {
     console.error(`Route publication boundary fixture self-test failed with ${issues.length} issue(s):`);
@@ -148,6 +150,16 @@ function runFixtureSelfTest(relativePath) {
     process.exit(1);
   }
   return (fixture.cases || []).length;
+}
+
+function assertFixtureSubstrings(issues, testCase, fieldName, rows, index) {
+  for (const expected of testCase[fieldName] || []) {
+    const needle = String(expected);
+    const found = rows.some((row) => `${row.context || ''} ${row.detail || ''}`.includes(needle));
+    if (!found) {
+      issues.push(`${testCase.label || `case ${index}`}: missing ${fieldName} match: ${needle}`);
+    }
+  }
 }
 
 function auditShard(shardEntry) {

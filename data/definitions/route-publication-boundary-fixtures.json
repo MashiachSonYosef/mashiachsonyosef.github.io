@@ -61,7 +61,10 @@
         "translation_output_unsafe_cards": 1,
         "answer_eligible_translation_output_unsafe_cards": 1,
         "route_cards_with_publication_fields": 0
-      }
+      },
+      "expected_warning_substrings": [
+        "not automatically safe as accepted translation-output support"
+      ]
     },
     {
       "label": "publication-readiness-field-is-forbidden-on-route-card",
@@ -92,7 +95,10 @@
         "translation_output_unsafe_cards": 0,
         "answer_eligible_translation_output_unsafe_cards": 0,
         "route_cards_with_publication_fields": 1
-      }
+      },
+      "expected_issue_substrings": [
+        "publication-readiness field"
+      ]
     },
     {
       "label": "answer-without-source-rows-is-forbidden",
@@ -113,7 +119,10 @@
         "translation_output_unsafe_cards": 0,
         "answer_eligible_translation_output_unsafe_cards": 0,
         "route_cards_with_publication_fields": 0
-      }
+      },
+      "expected_issue_substrings": [
+        "missing source_rows"
+      ]
     },
     {
       "label": "noncommercial-license-is-not-hud-safe",
@@ -143,7 +152,13 @@
         "translation_output_unsafe_cards": 1,
         "answer_eligible_translation_output_unsafe_cards": 0,
         "route_cards_with_publication_fields": 0
-      }
+      },
+      "expected_issue_substrings": [
+        "unsafe HUD source license profile"
+      ],
+      "expected_warning_substrings": [
+        "not automatically safe as accepted translation-output support"
+      ]
     }
   ]
 }
