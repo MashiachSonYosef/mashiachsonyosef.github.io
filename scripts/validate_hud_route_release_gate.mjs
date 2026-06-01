@@ -11,6 +11,7 @@ const defaults = {
   sample: 'data/definitions/hud-route-lookup-sample.json',
   boundaryReport: 'reports/route-publication-boundary-audit.json',
   report: '',
+  skipDriftCheck: false,
 };
 
 const options = parseArgs(process.argv.slice(2));
@@ -85,7 +86,11 @@ for (const field of ['answer_eligible', 'answer_role', 'source_rows', 'definitio
 
 validateSampleCards(sample, publicManifest, options.publicManifest);
 validateBoundaryReport(boundaryReport, currentReconciliation);
-await compareFrozenInputsToCurrentSources(stamp);
+if (options.skipDriftCheck) {
+  warnings.push('skipped current route source drift check');
+} else {
+  await compareFrozenInputsToCurrentSources(stamp);
+}
 
 const result = {
   schema_version: 1,
@@ -101,6 +106,8 @@ const result = {
     report: cleanPath(options.boundaryReport),
     issues: Number(boundaryReport.counts?.issue_count || 0),
     warnings: Number(boundaryReport.counts?.warning_count || 0),
+    fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
+    fixture_cases: Number(boundaryReport.inputs?.fixture_cases || 0),
     translation_output_unsafe_cards: Number(boundaryReport.counts?.translation_output_unsafe_cards || 0),
     answer_eligible_translation_output_unsafe_cards: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_cards || 0),
   },
@@ -137,6 +144,7 @@ function parseArgs(args) {
     else if (arg === '--sample') parsed.sample = args[++index];
     else if (arg === '--boundary-report') parsed.boundaryReport = args[++index];
     else if (arg === '--report') parsed.report = args[++index];
+    else if (arg === '--skip-drift-check') parsed.skipDriftCheck = true;
     else if (arg === '--help' || arg === '-h') parsed.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
@@ -152,6 +160,7 @@ function parseArgs(args) {
       '  --sample data/definitions/hud-route-lookup-sample.json',
       '  --boundary-report reports/route-publication-boundary-audit.json',
       '  --report reports/hud-route-release-gate.md',
+      '  --skip-drift-check',
     ].join('\n'));
     process.exit(0);
   }
@@ -248,6 +257,14 @@ function validateBoundaryReport(report, reconciliation) {
   }
   if (Number(report.counts?.issue_count || 0) !== 0) {
     issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
+  }
+  if (!report.inputs?.fixture) {
+    issues.push('route publication boundary report is missing fixture input path');
+  } else if (!fs.existsSync(path.join(root, cleanPath(report.inputs.fixture)))) {
+    issues.push(`route publication boundary fixture file is missing: ${report.inputs.fixture}`);
+  }
+  if (Number(report.inputs?.fixture_cases || 0) < 1) {
+    issues.push('route publication boundary report must include at least one fixture case');
   }
   if (Number(report.counts?.cards || 0) !== reconciliation.public_cards_written) {
     issues.push(`route publication boundary card count mismatch, report has ${report.counts?.cards}, public manifest has ${reconciliation.public_cards_written}`);
@@ -348,6 +365,8 @@ function writeReport(relativePath, result) {
     `- Report: \`${result.route_publication_boundary.report}\``,
     `- Boundary issues: ${result.route_publication_boundary.issues}`,
     `- Boundary warnings: ${result.route_publication_boundary.warnings}`,
+    `- Fixture: \`${result.route_publication_boundary.fixture}\``,
+    `- Fixture cases: ${result.route_publication_boundary.fixture_cases}`,
     `- Translation-output unsafe cards flagged: ${result.route_publication_boundary.translation_output_unsafe_cards}`,
     `- Answer-eligible translation-output unsafe cards flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_cards}`,
     '',
