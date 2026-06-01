@@ -83,6 +83,20 @@ const artifact = {
     selected_occurrence_lookup_work_buckets: selectedOccurrenceLookup.counts?.work_buckets ?? null,
     selected_occurrence_lookup_cluster_buckets: selectedOccurrenceLookup.counts?.cluster_buckets ?? null,
     selected_occurrence_lookup_status_buckets: selectedOccurrenceLookup.counts?.status_buckets ?? null,
+    selected_qa_package_items: handoff.validation?.selected_qa_package_items ?? null,
+    selected_source_hub_status: handoff.validation?.selected_source_hub_index_status ?? null,
+    selected_source_hub_rows: handoff.validation?.selected_source_hub_rows ?? null,
+    selected_source_hub_occurrence_rows: handoff.validation?.selected_source_hub_occurrence_rows ?? null,
+    selected_source_hub_target_links: handoff.validation?.selected_source_hub_target_links ?? null,
+    selected_source_hub_reader_facing_rows: handoff.validation?.selected_source_hub_reader_facing_rows ?? null,
+    selected_source_hub_route_payload_field_hits: handoff.validation?.selected_source_hub_route_payload_field_hits ?? null,
+    selected_work_hub_status: handoff.validation?.selected_work_hub_index_status ?? null,
+    selected_work_hub_rows: handoff.validation?.selected_work_hub_rows ?? null,
+    selected_work_hub_occurrence_rows: handoff.validation?.selected_work_hub_occurrence_rows ?? null,
+    selected_work_hub_target_links: handoff.validation?.selected_work_hub_target_links ?? null,
+    selected_work_hub_reader_facing_rows: handoff.validation?.selected_work_hub_reader_facing_rows ?? null,
+    selected_work_hub_route_payload_field_hits: handoff.validation?.selected_work_hub_route_payload_field_hits ?? null,
+    selected_occurrence_adjacency_target_links: handoff.validation?.selected_occurrence_adjacency_target_links ?? null,
     route_links_resolved: routeLinkCheck.counts?.route_links_resolved ?? null,
     route_links_unresolved: routeLinkCheck.counts?.route_links_unresolved ?? null,
     route_payload_field_hits: routePayloadHits.length,
@@ -98,6 +112,23 @@ const artifact = {
     unique_route_ids: routeLinkCheck.counts?.unique_route_ids ?? null,
     route_sources: routeLinkCheck.route_sources || [],
     route_payload_field_hits: routePayloadHits,
+  },
+  graph_boundary: {
+    selected_qa_package_items: handoff.validation?.selected_qa_package_items ?? null,
+    source_hub_present: handoff.validation?.selected_source_hub_index_status === 'present',
+    work_hub_present: handoff.validation?.selected_work_hub_index_status === 'present',
+    source_hub_complete: handoff.validation?.selected_source_hub_index_status === 'present'
+      && Number(handoff.validation?.selected_source_hub_occurrence_rows || 0) === rows.length
+      && Number(handoff.validation?.selected_source_hub_target_links || 0) === Number(handoff.validation?.selected_occurrence_adjacency_target_links || 0)
+      && Number(handoff.validation?.selected_source_hub_reader_facing_rows || 0) === 0
+      && Number(handoff.validation?.selected_source_hub_route_payload_field_hits || 0) === 0,
+    work_hub_complete: handoff.validation?.selected_work_hub_index_status === 'present'
+      && Number(handoff.validation?.selected_work_hub_occurrence_rows || 0) === rows.length
+      && Number(handoff.validation?.selected_work_hub_target_links || 0) === Number(handoff.validation?.selected_occurrence_adjacency_target_links || 0)
+      && Number(handoff.validation?.selected_work_hub_reader_facing_rows || 0) === 0
+      && Number(handoff.validation?.selected_work_hub_route_payload_field_hits || 0) === 0,
+    source_hub_reader_facing_rows: handoff.validation?.selected_source_hub_reader_facing_rows ?? null,
+    work_hub_reader_facing_rows: handoff.validation?.selected_work_hub_reader_facing_rows ?? null,
   },
   audit_boundary: {
     audit_review_reader_facing: auditReview.reader_facing_policy?.reader_facing ?? null,
@@ -129,6 +160,10 @@ function buildChecks() {
     check('route_ids_resolve', routeLinkCheck.quality?.status === 'passed' && Number(routeLinkCheck.counts?.route_links_unresolved || 0) === 0, `resolved ${routeLinkCheck.counts?.route_links_resolved}; unresolved ${routeLinkCheck.counts?.route_links_unresolved}`),
     check('ambiguous_rows_audit_only', auditReview.reader_facing_policy?.reader_facing === false && selectedAuditStatusRows.length === 0, `audit rows ${auditReview.counts?.rows}; selected audit-status rows ${selectedAuditStatusRows.length}`),
     check('handoff_not_authoritative', handoff.consumer_boundary?.ranks_routes === false && handoff.consumer_boundary?.selects_visible_result === false, 'handoff does not rank routes or select visible results'),
+    check('selected_qa_package_current', Number(handoff.validation?.selected_qa_package_items || 0) >= 23, `selected QA package items ${handoff.validation?.selected_qa_package_items}`),
+    check('source_hub_handoff_complete', handoff.validation?.selected_source_hub_index_status === 'present' && Number(handoff.validation?.selected_source_hub_occurrence_rows || 0) === rowCount && Number(handoff.validation?.selected_source_hub_route_payload_field_hits || 0) === 0, `source hub ${handoff.validation?.selected_source_hub_index_status}; rows ${handoff.validation?.selected_source_hub_occurrence_rows}; payload hits ${handoff.validation?.selected_source_hub_route_payload_field_hits}`),
+    check('work_hub_handoff_complete', handoff.validation?.selected_work_hub_index_status === 'present' && Number(handoff.validation?.selected_work_hub_occurrence_rows || 0) === rowCount && Number(handoff.validation?.selected_work_hub_route_payload_field_hits || 0) === 0, `work hub ${handoff.validation?.selected_work_hub_index_status}; rows ${handoff.validation?.selected_work_hub_occurrence_rows}; payload hits ${handoff.validation?.selected_work_hub_route_payload_field_hits}`),
+    check('source_work_hubs_not_reader_facing', Number(handoff.validation?.selected_source_hub_reader_facing_rows || 0) === 0 && Number(handoff.validation?.selected_work_hub_reader_facing_rows || 0) === 0, `source/work reader-facing rows ${handoff.validation?.selected_source_hub_reader_facing_rows}/${handoff.validation?.selected_work_hub_reader_facing_rows}`),
     check('smoke_passed', Number(smokeValidation.counts?.failed_steps || 0) === 0, `smoke steps ${smokeValidation.counts?.steps}; failed ${smokeValidation.counts?.failed_steps}`),
     check('no_forbidden_fields', forbiddenHits.length === 0, `forbidden field hits ${forbiddenHits.length}`),
   ];
@@ -190,6 +225,9 @@ function writeReport(relativePath, artifact) {
     `- Rows with marked context: ${artifact.counts.rows_with_context_focus_marked}`,
     `- Rows with route IDs: ${artifact.counts.rows_with_route_ids}`,
     `- Rows with license metadata: ${artifact.counts.rows_with_license}/${artifact.counts.rows_with_license_url}`,
+    `- Selected QA package items: ${artifact.counts.selected_qa_package_items}`,
+    `- Source hub: ${artifact.counts.selected_source_hub_status}, rows ${artifact.counts.selected_source_hub_occurrence_rows}, target links ${artifact.counts.selected_source_hub_target_links}, reader-facing ${artifact.counts.selected_source_hub_reader_facing_rows}, payload hits ${artifact.counts.selected_source_hub_route_payload_field_hits}`,
+    `- Work hub: ${artifact.counts.selected_work_hub_status}, rows ${artifact.counts.selected_work_hub_occurrence_rows}, target links ${artifact.counts.selected_work_hub_target_links}, reader-facing ${artifact.counts.selected_work_hub_reader_facing_rows}, payload hits ${artifact.counts.selected_work_hub_route_payload_field_hits}`,
     `- Route links resolved/unresolved: ${artifact.counts.route_links_resolved}/${artifact.counts.route_links_unresolved}`,
     `- Route payload field hits: ${artifact.counts.route_payload_field_hits}`,
     `- Forbidden field hits: ${artifact.counts.forbidden_field_hits}`,
@@ -211,6 +249,12 @@ function writeReport(relativePath, artifact) {
     `- Route IDs resolve: ${artifact.route_boundary.route_ids_resolve ? 'yes' : 'no'}`,
     `- Unique route IDs: ${artifact.route_boundary.unique_route_ids}`,
     `- Route sources: ${artifact.route_boundary.route_sources.map((source) => `${source.key} (${source.count})`).join(', ')}`,
+    '',
+    '## Graph Boundary',
+    '',
+    `- Source hub present/complete: ${artifact.graph_boundary.source_hub_present ? 'yes' : 'no'}/${artifact.graph_boundary.source_hub_complete ? 'yes' : 'no'}`,
+    `- Work hub present/complete: ${artifact.graph_boundary.work_hub_present ? 'yes' : 'no'}/${artifact.graph_boundary.work_hub_complete ? 'yes' : 'no'}`,
+    `- Source/work hub reader-facing rows: ${artifact.graph_boundary.source_hub_reader_facing_rows}/${artifact.graph_boundary.work_hub_reader_facing_rows}`,
     '',
     '## Audit Boundary',
     '',

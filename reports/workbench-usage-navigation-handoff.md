@@ -1,6 +1,6 @@
 # Workbench Usage Navigation Handoff
 
-Generated: 2026-06-01T09:38:18.094Z
+Generated: 2026-06-01T09:46:11.950Z
 
 ## Summary
 
@@ -108,7 +108,7 @@ Generated: 2026-06-01T09:38:18.094Z
 - Crossmatch bridge route payload-like field hits: 0
 - Crossmatch neighborhoods: 49, same-frame links 1192, bridge links 1160
 - Crossmatch neighborhood route payload-like field hits: 0
-- Agent 6 boundary checks: 11, failed 0
+- Agent 6 boundary checks: 15, failed 0
 - Concentration packet: pass_with_warnings, warnings 1, failed 0
 - Concentration buckets: routes 1, clusters 2
 - Concentration route payload-like field hits: 0
@@ -207,7 +207,7 @@ Generated: 2026-06-01T09:38:18.094Z
 - Crossmatch bridge route payload-like field hits: 0
 - Crossmatch neighborhoods: present, neighborhoods 49, same-frame links 1192, bridge links 1160, failed 0
 - Crossmatch neighborhood route payload-like field hits: 0
-- Agent 6 boundary packet: present, checks 11, failed 0
+- Agent 6 boundary packet: present, checks 15, failed 0
 - Concentration packet: present, quality pass_with_warnings, warnings 1, failed 0
 - Concentration route payload-like field hits: 0
 - Smoke validation: passed, steps 106, failed 0

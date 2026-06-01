@@ -35,6 +35,37 @@ if (Number(packet.counts?.route_links_unresolved || 0) !== 0) issues.push('route
 if (Number(packet.counts?.route_payload_field_hits || 0) !== 0) issues.push('route_payload_field_hits must be 0');
 if (Number(packet.counts?.forbidden_field_hits || 0) !== 0) issues.push('forbidden_field_hits must be 0');
 if (Number(packet.counts?.selected_audit_status_rows || 0) !== 0) issues.push('selected_audit_status_rows must be 0');
+if (Number(packet.counts?.selected_qa_package_items || 0) < 23) issues.push('selected_qa_package_items must be at least 23');
+if (packet.counts?.selected_source_hub_status !== 'present') issues.push('selected_source_hub_status must be present');
+if (packet.counts?.selected_work_hub_status !== 'present') issues.push('selected_work_hub_status must be present');
+if (Number(packet.counts?.selected_source_hub_occurrence_rows || 0) !== selectedRows) {
+  issues.push('selected_source_hub_occurrence_rows must equal selected_occurrence_rows');
+}
+if (Number(packet.counts?.selected_work_hub_occurrence_rows || 0) !== selectedRows) {
+  issues.push('selected_work_hub_occurrence_rows must equal selected_occurrence_rows');
+}
+if (Number(packet.counts?.selected_source_hub_target_links || 0) !== Number(packet.counts?.selected_occurrence_adjacency_target_links || 0)) {
+  issues.push('selected_source_hub_target_links must equal selected_occurrence_adjacency_target_links');
+}
+if (Number(packet.counts?.selected_work_hub_target_links || 0) !== Number(packet.counts?.selected_occurrence_adjacency_target_links || 0)) {
+  issues.push('selected_work_hub_target_links must equal selected_occurrence_adjacency_target_links');
+}
+if (Number(packet.counts?.selected_source_hub_reader_facing_rows || 0) !== 0) {
+  issues.push('selected_source_hub_reader_facing_rows must be 0');
+}
+if (Number(packet.counts?.selected_work_hub_reader_facing_rows || 0) !== 0) {
+  issues.push('selected_work_hub_reader_facing_rows must be 0');
+}
+if (Number(packet.counts?.selected_source_hub_route_payload_field_hits || 0) !== 0) {
+  issues.push('selected_source_hub_route_payload_field_hits must be 0');
+}
+if (Number(packet.counts?.selected_work_hub_route_payload_field_hits || 0) !== 0) {
+  issues.push('selected_work_hub_route_payload_field_hits must be 0');
+}
+if (packet.graph_boundary?.source_hub_present !== true) issues.push('graph_boundary.source_hub_present must be true');
+if (packet.graph_boundary?.work_hub_present !== true) issues.push('graph_boundary.work_hub_present must be true');
+if (packet.graph_boundary?.source_hub_complete !== true) issues.push('graph_boundary.source_hub_complete must be true');
+if (packet.graph_boundary?.work_hub_complete !== true) issues.push('graph_boundary.work_hub_complete must be true');
 if (packet.audit_boundary?.audit_review_reader_facing !== false) issues.push('audit_review_reader_facing must be false');
 if (Number(packet.counts?.smoke_failed_steps || 0) !== 0) issues.push('smoke_failed_steps must be 0');
 
