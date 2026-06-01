@@ -252,8 +252,18 @@ function validateBoundaryReport(report, reconciliation) {
   if (report.artifact_type !== 'route_publication_boundary_audit') {
     issues.push(`route publication boundary report artifact_type must be route_publication_boundary_audit, got ${report.artifact_type || 'missing'}`);
   }
+  const reportGeneratedAt = Date.parse(report.generated_at || '');
+  const publicPublishedAt = Date.parse(publicManifest.published_at || '');
+  if (!Number.isFinite(reportGeneratedAt)) {
+    issues.push('route publication boundary report generated_at is missing or invalid');
+  } else if (Number.isFinite(publicPublishedAt) && reportGeneratedAt < publicPublishedAt) {
+    issues.push('route publication boundary report is older than the public lookup manifest');
+  }
   if (cleanPath(report.inputs?.manifest) !== cleanPath(options.publicManifest)) {
     issues.push('route publication boundary report manifest does not match public manifest under validation');
+  }
+  if (cleanPath(report.inputs?.public_lookup) !== cleanPath(path.dirname(options.publicManifest))) {
+    issues.push('route publication boundary report public_lookup does not match public manifest directory');
   }
   if (Number(report.counts?.issue_count || 0) !== 0) {
     issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
