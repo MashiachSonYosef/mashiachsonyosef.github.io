@@ -212,6 +212,11 @@ function auditCard(card, context, target = audit) {
   }
 
   const sourceRows = Array.isArray(card?.source_rows) ? card.source_rows : [];
+  if (typeof card?.answer_eligible !== 'boolean') addIssue(context, 'missing boolean answer_eligible', target);
+  if (!card?.answer_role) addIssue(context, 'missing answer_role', target);
+  if (card?.answer_eligible !== true && Number.isFinite(card?.answer_score)) {
+    addIssue(context, 'non-answer card must not carry answer_score', target);
+  }
   if (card?.answer_eligible === true) {
     target.counts.answer_eligible_cards += 1;
     if (card.answer_role !== 'answer') addIssue(context, 'answer_eligible card must use answer_role=answer', target);
