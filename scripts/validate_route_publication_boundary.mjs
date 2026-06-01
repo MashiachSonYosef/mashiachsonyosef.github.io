@@ -355,10 +355,10 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
     addIssue(context, `unknown display_section: ${card.display_section}`, target);
   }
 
-  const publicationFields = publicationReadinessFields.filter((field) => Object.hasOwn(card || {}, field));
+  const publicationFields = findPublicationReadinessPaths(card);
   if (publicationFields.length) {
     target.counts.route_cards_with_publication_fields += 1;
-    addIssue(context, `route card carries publication-readiness field(s): ${publicationFields.join(', ')}`, target);
+    addIssue(context, `route card carries publication-readiness field(s): ${publicationFields.slice(0, 10).join(', ')}`, target);
   }
 
   const hasSourceRows = Array.isArray(card?.source_rows) && card.source_rows.length > 0;
@@ -474,6 +474,23 @@ function runtimeState(target) {
     auditRuntimeState.set(target, state);
   }
   return state;
+}
+
+function findPublicationReadinessPaths(value, prefix = '') {
+  if (!value || typeof value !== 'object') return [];
+  const paths = [];
+  if (Array.isArray(value)) {
+    for (const [index, item] of value.entries()) {
+      paths.push(...findPublicationReadinessPaths(item, `${prefix}[${index}]`));
+    }
+    return paths;
+  }
+  for (const [key, item] of Object.entries(value)) {
+    const currentPath = prefix ? `${prefix}.${key}` : key;
+    if (publicationReadinessFields.includes(key)) paths.push(currentPath);
+    paths.push(...findPublicationReadinessPaths(item, currentPath));
+  }
+  return paths;
 }
 
 function addAnswerEligibleUnsafeSample(context, card, rows, target = audit) {

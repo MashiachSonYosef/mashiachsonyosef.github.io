@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T06:19:42.524Z
+Generated: 2026-06-01T06:30:21.363Z
 
 ## Boundary
 
@@ -49,10 +49,10 @@ Generated: 2026-06-01T06:19:42.524Z
 - Issues: 0
 - Warnings: 335103
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
-- Validator SHA-256: `ce6e70861e37cc89056b10d22380c92b9d42e6fe2883a550c3f88a5d2b1ec3e1`
-- Fixture cases checked: 23
-- Fixture bytes: 36323
-- Fixture SHA-256: `1a713826b42d48c3d985a7a112ace90d9705136e05563ea3bd69e962e5e5d5e3`
+- Validator SHA-256: `b87cb41a54555cd6651d1c9017cf1c2f9fb793b7d80e1940be693fc985bf775a`
+- Fixture cases checked: 24
+- Fixture bytes: 37916
+- Fixture SHA-256: `25589edcd0859c4cc6f994dd86b0f5f84986a2d31732117501c4dbb7ba53f3d0`
 - HUD contract: `data/definitions/hud-route-contract.json`
 - Allowed display sections: answer, audit, biblical_paraphrase_evidence, citable_paraphrase_evidence, lemma, morphology, phrase_evidence, source_license, strict_aramaic, strict_hebrew, subphrase_evidence
 
