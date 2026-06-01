@@ -1,6 +1,6 @@
 # HUD Route Release Gate
 
-Generated: 2026-06-01T06:53:44.078Z
+Generated: 2026-06-01T06:57:56.258Z
 Status: pass
 Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 
@@ -16,15 +16,15 @@ Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 
 - Report: `reports/route-publication-boundary-audit.json`
 - Generator: `scripts/validate_route_publication_boundary.mjs`
-- Validator SHA-256: `b25df7ca0e509af8814b8592f6534e5ee1916f3c702bd0c05afd9e968520d711`
+- Validator SHA-256: `7c8288cad6f8f6c2845cc5188e53bedec8b14ffcb070575fcf66812759e261ae`
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
 - HUD contract: `data/definitions/hud-route-contract.json`
 - Allowed display sections: answer, audit, biblical_paraphrase_evidence, citable_paraphrase_evidence, lemma, morphology, phrase_evidence, source_license, strict_aramaic, strict_hebrew, subphrase_evidence
 - Boundary issues: 0
 - Boundary warnings: 335103
 - Fixture: `data/definitions/route-publication-boundary-fixtures.json`
-- Fixture cases: 29
-- Fixture SHA-256: `d388088baee5bd89e2dc1b496dea298b7ea56b0cc12815b2a661feebd4c7b549`
+- Fixture cases: 30
+- Fixture SHA-256: `eb7e6d59aadbac366ad8805da7a362c684d29116d56f094f2251e3af04a10e57`
 - Shard identity checks: 7990
 - Shard identity mismatches: 0
 - Shard count fields checked: 31960
@@ -47,6 +47,8 @@ Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 - Invalid source-row string fields: 0
 - Source-row fields_used entries checked: 3185347
 - Invalid source-row fields_used entries: 0
+- Fields_used exclusion entries checked: 3185347
+- Forbidden fields_used entries: 0
 - Reference URL fields checked: 1665584
 - Invalid reference URL fields: 0
 - License URL compatibility checks: 832792

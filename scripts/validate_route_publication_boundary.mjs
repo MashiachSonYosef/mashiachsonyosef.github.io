@@ -152,6 +152,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       invalid_source_row_string_fields: 0,
       source_row_fields_used_entries_checked: 0,
       invalid_source_row_fields_used_entries: 0,
+      fields_used_exclusion_entries_checked: 0,
+      forbidden_fields_used_entries: 0,
       reference_url_fields_checked: 0,
       invalid_reference_url_fields: 0,
       license_url_compatibility_checks: 0,
@@ -478,9 +480,13 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
     } else {
       for (const [fieldIndex, fieldUsed] of row.fields_used.entries()) {
         target.counts.source_row_fields_used_entries_checked += 1;
+        target.counts.fields_used_exclusion_entries_checked += 1;
         if (typeof fieldUsed !== 'string' || !fieldUsed.trim()) {
           target.counts.invalid_source_row_fields_used_entries += 1;
           addIssue(`${context}.source_rows[${rowIndex}].fields_used[${fieldIndex}]`, 'fields_used entry must be a non-empty string', target);
+        } else if (forbiddenFieldsUsedEntry(fieldUsed)) {
+          target.counts.forbidden_fields_used_entries += 1;
+          addIssue(`${context}.source_rows[${rowIndex}].fields_used[${fieldIndex}]`, `fields_used entry cites excluded translation/example/quotation material: ${fieldUsed}`, target);
         }
       }
     }
@@ -615,6 +621,11 @@ function licenseUrlCompatible(row) {
   return false;
 }
 
+function forbiddenFieldsUsedEntry(value) {
+  const text = String(value || '');
+  return /translation|quotation/i.test(text) || (/example/i.test(text) && !/without examples/i.test(text));
+}
+
 function validRouteScoreField(field, value) {
   if (!Number.isFinite(value)) return false;
   if (field === 'score_handicap') return value >= -100 && value <= 100;
@@ -701,6 +712,8 @@ function writeReport(relativePath, data) {
     `- Invalid source-row string fields: ${data.counts.invalid_source_row_string_fields}`,
     `- Source-row fields_used entries checked: ${data.counts.source_row_fields_used_entries_checked}`,
     `- Invalid source-row fields_used entries: ${data.counts.invalid_source_row_fields_used_entries}`,
+    `- Fields_used exclusion entries checked: ${data.counts.fields_used_exclusion_entries_checked}`,
+    `- Forbidden fields_used entries: ${data.counts.forbidden_fields_used_entries}`,
     `- Reference URL fields checked: ${data.counts.reference_url_fields_checked}`,
     `- Invalid reference URL fields: ${data.counts.invalid_reference_url_fields}`,
     `- License URL compatibility checks: ${data.counts.license_url_compatibility_checks}`,
