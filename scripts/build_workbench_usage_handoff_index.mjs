@@ -13,6 +13,7 @@ const defaults = {
   sampleIndex: '.local-cache/workbench-evidence/usage-sample-index.json',
   lookupIndex: '.local-cache/workbench-evidence/usage-lookup-index.json',
   workFrameMatrix: '.local-cache/workbench-evidence/usage-work-frame-matrix.json',
+  searchRows: '.local-cache/workbench-evidence/usage-search-rows.json',
   selectedSlice: '.local-cache/workbench-evidence/usage-slice-tanakh.json',
   selectedSlicesIndex: '.local-cache/workbench-evidence/usage-selected-slices-index.json',
   selectedOccurrences: '.local-cache/workbench-evidence/usage-selected-occurrences.json',
@@ -38,6 +39,7 @@ const routeCoverage = readJsonIfExists(options.routeCoverage);
 const sampleIndex = readJsonIfExists(options.sampleIndex);
 const lookupIndex = readJsonIfExists(options.lookupIndex);
 const workFrameMatrix = readJsonIfExists(options.workFrameMatrix);
+const searchRows = readJsonIfExists(options.searchRows);
 const selectedSlice = readJsonIfExists(options.selectedSlice);
 const selectedSlicesIndex = readJsonIfExists(options.selectedSlicesIndex);
 const selectedOccurrences = readJsonIfExists(options.selectedOccurrences);
@@ -69,6 +71,7 @@ const artifact = {
     sample_index: options.sampleIndex,
     lookup_index: options.lookupIndex,
     work_frame_matrix: options.workFrameMatrix,
+    search_rows: options.searchRows,
     selected_slice: options.selectedSlice,
     selected_slices_index: options.selectedSlicesIndex,
     selected_occurrences: options.selectedOccurrences,
@@ -94,6 +97,7 @@ const artifact = {
     sample_index_report: 'reports/workbench-usage-sample-index.md',
     lookup_index_report: 'reports/workbench-usage-lookup-index.md',
     work_frame_matrix_report: 'reports/workbench-usage-work-frame-matrix.md',
+    search_rows_report: 'reports/workbench-usage-search-rows.md',
     selected_slice_report: 'reports/workbench-usage-slice-tanakh.md',
     selected_slices_index_report: 'reports/workbench-usage-selected-slices-index.md',
     selected_occurrences_report: 'reports/workbench-usage-selected-occurrences.md',
@@ -126,6 +130,11 @@ const artifact = {
     work_frame_matrix_categories: workFrameMatrix?.counts?.categories ?? null,
     work_frame_matrix_clusters: workFrameMatrix?.counts?.clusters ?? null,
     work_frame_matrix_route_payload_field_hits: workFrameMatrix?.counts?.route_payload_field_hits ?? null,
+    search_rows: searchRows?.counts?.rows ?? null,
+    search_rows_works: searchRows?.counts?.works ?? null,
+    search_rows_categories: searchRows?.counts?.categories ?? null,
+    search_rows_clusters: searchRows?.counts?.clusters ?? null,
+    search_rows_route_payload_field_hits: searchRows?.counts?.route_payload_field_hits ?? null,
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
     selected_slice_works: selectedSlice?.counts?.works ?? null,
     selected_slices_index_slices: selectedSlicesIndex?.counts?.slices ?? null,
@@ -188,6 +197,12 @@ const artifact = {
     work_frame_matrix_categories: workFrameMatrix?.counts?.categories ?? null,
     work_frame_matrix_failed_checks: workFrameMatrix?.quality?.failed_count ?? null,
     work_frame_matrix_route_payload_field_hits: workFrameMatrix?.counts?.route_payload_field_hits ?? null,
+    search_rows_status: searchRows?.artifact_type === 'workbench_usage_navigation_search_rows' ? 'present' : 'not_run',
+    search_rows: searchRows?.counts?.rows ?? null,
+    search_rows_works: searchRows?.counts?.works ?? null,
+    search_rows_categories: searchRows?.counts?.categories ?? null,
+    search_rows_failed_checks: searchRows?.quality?.failed_count ?? null,
+    search_rows_route_payload_field_hits: searchRows?.counts?.route_payload_field_hits ?? null,
     selected_slice_status: selectedSlice?.artifact_type === 'workbench_usage_navigation_slice_index' ? 'present' : 'not_run',
     selected_slice_id: selectedSlice?.filter?.slice_id ?? null,
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
@@ -268,6 +283,8 @@ function writeReport(relativePath, artifact) {
     `- Lookup works: ${artifact.counts.lookup_works}`,
     `- Work/frame matrix: rows ${artifact.counts.work_frame_matrix_rows}, works ${artifact.counts.work_frame_matrix_works}, categories ${artifact.counts.work_frame_matrix_categories}, clusters ${artifact.counts.work_frame_matrix_clusters}`,
     `- Work/frame matrix route payload-like field hits: ${artifact.counts.work_frame_matrix_route_payload_field_hits}`,
+    `- Search rows: rows ${artifact.counts.search_rows}, works ${artifact.counts.search_rows_works}, categories ${artifact.counts.search_rows_categories}, clusters ${artifact.counts.search_rows_clusters}`,
+    `- Search rows route payload-like field hits: ${artifact.counts.search_rows_route_payload_field_hits}`,
     `- Selected slice rows: ${artifact.counts.selected_slice_rows}`,
     `- Selected slice works: ${artifact.counts.selected_slice_works}`,
     `- Selected slices index: ${artifact.counts.selected_slices_index_slices}`,
@@ -301,6 +318,8 @@ function writeReport(relativePath, artifact) {
     `- Lookup index: ${artifact.validation.lookup_index_status}, occurrence refs ${artifact.validation.lookup_index_occurrence_refs}`,
     `- Work/frame matrix: ${artifact.validation.work_frame_matrix_status}, rows ${artifact.validation.work_frame_matrix_rows}, works ${artifact.validation.work_frame_matrix_works}, categories ${artifact.validation.work_frame_matrix_categories}, failed ${artifact.validation.work_frame_matrix_failed_checks}`,
     `- Work/frame matrix route payload-like field hits: ${artifact.validation.work_frame_matrix_route_payload_field_hits}`,
+    `- Search rows: ${artifact.validation.search_rows_status}, rows ${artifact.validation.search_rows}, works ${artifact.validation.search_rows_works}, categories ${artifact.validation.search_rows_categories}, failed ${artifact.validation.search_rows_failed_checks}`,
+    `- Search rows route payload-like field hits: ${artifact.validation.search_rows_route_payload_field_hits}`,
     `- Selected slice: ${artifact.validation.selected_slice_status}, id ${artifact.validation.selected_slice_id}, rows ${artifact.validation.selected_slice_rows}`,
     `- Selected slices index: ${artifact.validation.selected_slices_index_status}, slices ${artifact.validation.selected_slices_index_slices}, unique occurrences ${artifact.validation.selected_slices_index_unique_occurrences}`,
     `- Selected occurrences: ${artifact.validation.selected_occurrences_status}, rows ${artifact.validation.selected_occurrence_rows}`,
@@ -331,6 +350,7 @@ function writeReport(relativePath, artifact) {
     `| sample index | ${mdCell(artifact.artifacts.sample_index_report)} | yes |`,
     `| lookup index | ${mdCell(artifact.artifacts.lookup_index_report)} | yes |`,
     `| work/frame matrix | ${mdCell(artifact.artifacts.work_frame_matrix_report)} | yes |`,
+    `| search rows | ${mdCell(artifact.artifacts.search_rows_report)} | yes |`,
     `| selected slice | ${mdCell(artifact.artifacts.selected_slice_report)} | yes |`,
     `| selected slices index | ${mdCell(artifact.artifacts.selected_slices_index_report)} | yes |`,
     `| selected occurrences | ${mdCell(artifact.artifacts.selected_occurrences_report)} | yes |`,
@@ -367,6 +387,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--sample-index=')) parsed.sampleIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--lookup-index=')) parsed.lookupIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--work-frame-matrix=')) parsed.workFrameMatrix = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--search-rows=')) parsed.searchRows = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slice=')) parsed.selectedSlice = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slices-index=')) parsed.selectedSlicesIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrences=')) parsed.selectedOccurrences = cleanRelativePath(valueAfterEquals(arg));
@@ -401,6 +422,8 @@ function buildCommands(options, manifest) {
   commands.validate_lookup_index = `node scripts/validate_workbench_usage_lookup_index.mjs ${options.lookupIndex}`;
   commands.build_work_frame_matrix = `node scripts/build_workbench_usage_work_frame_matrix.mjs --concordance=${concordancePath} --output=${options.workFrameMatrix} --report=reports/workbench-usage-work-frame-matrix.md`;
   commands.validate_work_frame_matrix = `node scripts/validate_workbench_usage_work_frame_matrix.mjs ${options.workFrameMatrix}`;
+  commands.build_search_rows = `node scripts/build_workbench_usage_search_rows.mjs --concordance=${concordancePath} --output=${options.searchRows} --report=reports/workbench-usage-search-rows.md`;
+  commands.validate_search_rows = `node scripts/validate_workbench_usage_search_rows.mjs ${options.searchRows}`;
   commands.build_selected_slice = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --work-prefix=tanakh/ --slice-id=tanakh-workbench-section --label="Tanakh workbench section" --output=${options.selectedSlice} --report=reports/workbench-usage-slice-tanakh.md --max-samples=30`;
   commands.validate_selected_slice = `node scripts/validate_workbench_usage_slice_index.mjs ${options.selectedSlice}`;
   commands.build_selected_slice_jeremiah = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --source-ref-prefix=Jeremiah --slice-id=jeremiah-workbench-section --label="Jeremiah workbench section" --output=${path.posix.dirname(options.selectedSlice)}/usage-slice-jeremiah.json --report=reports/workbench-usage-slice-jeremiah.md --max-samples=30`;
@@ -432,6 +455,7 @@ function buildCommands(options, manifest) {
     `--sample-index=${options.sampleIndex}`,
     `--lookup-index=${options.lookupIndex}`,
     `--work-frame-matrix=${options.workFrameMatrix}`,
+    `--search-rows=${options.searchRows}`,
     `--selected-slice=${options.selectedSlice}`,
     `--selected-slices-index=${options.selectedSlicesIndex}`,
     `--selected-occurrences=${options.selectedOccurrences}`,

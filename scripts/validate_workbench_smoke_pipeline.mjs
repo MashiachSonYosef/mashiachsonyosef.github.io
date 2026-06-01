@@ -165,6 +165,19 @@ await runStep('validate_usage_work_frame_matrix', [
   usageWorkFrameMatrixJson,
 ]);
 
+const usageSearchRowsJson = `${options.scratchDir}/usage-search-rows.json`;
+await runStep('build_usage_search_rows', [
+  'scripts/build_workbench_usage_search_rows.mjs',
+  `--concordance=${usageConcordanceJson}`,
+  `--output=${usageSearchRowsJson}`,
+  `--report=${options.scratchDir}/usage-search-rows.md`,
+]);
+
+await runStep('validate_usage_search_rows', [
+  'scripts/validate_workbench_usage_search_rows.mjs',
+  usageSearchRowsJson,
+]);
+
 const usageSelectedSliceJson = `${options.scratchDir}/usage-slice-tanakh.json`;
 await runStep('build_usage_selected_slice', [
   'scripts/build_workbench_usage_slice_index.mjs',
@@ -315,6 +328,7 @@ await runStep('build_usage_handoff_index', [
   `--sample-index=${usageSampleIndexJson}`,
   `--lookup-index=${usageLookupIndexJson}`,
   `--work-frame-matrix=${usageWorkFrameMatrixJson}`,
+  `--search-rows=${usageSearchRowsJson}`,
   `--selected-slice=${usageSelectedSliceJson}`,
   `--selected-slices-index=${usageSelectedSlicesIndexJson}`,
   `--selected-occurrences=${usageSelectedOccurrencesJson}`,
@@ -359,6 +373,7 @@ const usageRouteCoverage = readJsonIfExists(usageRouteCoverageJson);
 const usageSampleIndex = readJsonIfExists(usageSampleIndexJson);
 const usageLookupIndex = readJsonIfExists(usageLookupIndexJson);
 const usageWorkFrameMatrix = readJsonIfExists(usageWorkFrameMatrixJson);
+const usageSearchRows = readJsonIfExists(usageSearchRowsJson);
 const usageSelectedSlice = readJsonIfExists(usageSelectedSliceJson);
 const usageSelectedSlicesIndex = readJsonIfExists(usageSelectedSlicesIndexJson);
 const usageSelectedOccurrences = readJsonIfExists(usageSelectedOccurrencesJson);
@@ -448,6 +463,12 @@ const artifact = {
     usage_work_frame_matrix_categories: usageWorkFrameMatrix?.counts?.categories ?? null,
     usage_work_frame_matrix_clusters: usageWorkFrameMatrix?.counts?.clusters ?? null,
     usage_work_frame_matrix_route_payload_field_hits: usageWorkFrameMatrix?.counts?.route_payload_field_hits ?? null,
+    usage_search_rows_status: usageSearchRows?.artifact_type === 'workbench_usage_navigation_search_rows' ? 'present' : 'missing',
+    usage_search_rows: usageSearchRows?.counts?.rows ?? null,
+    usage_search_rows_works: usageSearchRows?.counts?.works ?? null,
+    usage_search_rows_categories: usageSearchRows?.counts?.categories ?? null,
+    usage_search_rows_clusters: usageSearchRows?.counts?.clusters ?? null,
+    usage_search_rows_route_payload_field_hits: usageSearchRows?.counts?.route_payload_field_hits ?? null,
     usage_selected_slice_status: usageSelectedSlice?.artifact_type === 'workbench_usage_navigation_slice_index' ? 'present' : 'missing',
     usage_selected_slice_id: usageSelectedSlice?.filter?.slice_id ?? null,
     usage_selected_slice_rows: usageSelectedSlice?.counts?.slice_rows ?? null,
@@ -640,6 +661,7 @@ function writeReport(relativePath, artifact) {
     `- Usage sample index: ${artifact.counts.usage_sample_index_status}, samples ${artifact.counts.usage_sample_index_samples}, clusters ${artifact.counts.usage_sample_index_clusters}`,
     `- Usage lookup index: ${artifact.counts.usage_lookup_index_status}, occurrence refs ${artifact.counts.usage_lookup_index_occurrence_refs}, works ${artifact.counts.usage_lookup_index_works}`,
     `- Usage work/frame matrix: ${artifact.counts.usage_work_frame_matrix_status}, rows ${artifact.counts.usage_work_frame_matrix_rows}, works ${artifact.counts.usage_work_frame_matrix_works}, categories ${artifact.counts.usage_work_frame_matrix_categories}, clusters ${artifact.counts.usage_work_frame_matrix_clusters}, route payload hits ${artifact.counts.usage_work_frame_matrix_route_payload_field_hits}`,
+    `- Usage search rows: ${artifact.counts.usage_search_rows_status}, rows ${artifact.counts.usage_search_rows}, works ${artifact.counts.usage_search_rows_works}, categories ${artifact.counts.usage_search_rows_categories}, clusters ${artifact.counts.usage_search_rows_clusters}, route payload hits ${artifact.counts.usage_search_rows_route_payload_field_hits}`,
     `- Usage selected slice: ${artifact.counts.usage_selected_slice_status}, id ${artifact.counts.usage_selected_slice_id}, rows ${artifact.counts.usage_selected_slice_rows}, works ${artifact.counts.usage_selected_slice_works}`,
     `- Usage selected slices index: ${artifact.counts.usage_selected_slices_index_status}, slices ${artifact.counts.usage_selected_slices_index_slices}, rows ${artifact.counts.usage_selected_slices_index_rows}, unique occurrences ${artifact.counts.usage_selected_slices_index_unique_occurrences}, duplicate rows ${artifact.counts.usage_selected_slices_index_duplicate_rows}`,
     `- Usage selected occurrences: ${artifact.counts.usage_selected_occurrences_status}, rows ${artifact.counts.usage_selected_occurrence_rows}, memberships ${artifact.counts.usage_selected_occurrence_memberships}, duplicate memberships ${artifact.counts.usage_selected_occurrence_duplicate_memberships}`,
