@@ -66,7 +66,7 @@ console.log(`Validated usage selected QA package ${artifactPath}: items ${items.
 
 function validateCounts(packageItems) {
   if (Number(artifact.counts?.package_items || 0) !== packageItems.length) issues.push('package_items count must equal package_items length');
-  if (packageItems.length !== 23) issues.push('package must contain 23 selected artifact items');
+  if (packageItems.length !== 24) issues.push('package must contain 24 selected artifact items');
   if (Number(artifact.counts?.selected_rows || 0) <= 0) issues.push('selected_rows must be positive');
   if (Number(artifact.counts?.selected_source_refs || 0) <= 1) issues.push('selected_source_refs must show diversity');
   if (Number(artifact.counts?.selected_works || 0) <= 1) issues.push('selected_works must show diversity');
@@ -393,6 +393,48 @@ function validateCounts(packageItems) {
   }
   if (Number(artifact.counts?.selected_work_hub_target_work_samples_with_context || 0) !== Number(artifact.counts?.selected_work_hub_target_work_samples || 0)) {
     issues.push('selected_work_hub_target_work_samples_with_context must equal selected_work_hub_target_work_samples');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_occurrence_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_focus_neighbor_occurrence_rows must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_rows_with_focus_marker || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_focus_neighbor_rows_with_focus_marker must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_rows_with_neighbor_window || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_focus_neighbor_rows_with_neighbor_window must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_rows_with_source_link || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_focus_neighbor_rows_with_source_link must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_rows_with_work_anchor || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_focus_neighbor_rows_with_work_anchor must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_rows_with_marked_context || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_focus_neighbor_rows_with_marked_context must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_rows_with_provenance || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_focus_neighbor_rows_with_provenance must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_observations || 0) <= 0) {
+    issues.push('selected_focus_neighbor_observations must be positive');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_immediate_observations || 0) <= 0) {
+    issues.push('selected_focus_neighbor_immediate_observations must be positive');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_offsets || 0) <= 0) {
+    issues.push('selected_focus_neighbor_offsets must be positive');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_buckets || 0) <= 0) {
+    issues.push('selected_focus_neighbor_buckets must be positive');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_unique_tokens || 0) <= 0) {
+    issues.push('selected_focus_neighbor_unique_tokens must be positive');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_route_ids || 0) !== Number(artifact.counts?.selected_route_ids || 0)) {
+    issues.push('selected_focus_neighbor_route_ids must equal selected_route_ids');
+  }
+  if (Number(artifact.counts?.selected_focus_neighbor_provenance_buckets || 0) !== Number(artifact.counts?.selected_provenance_buckets || 0)) {
+    issues.push('selected_focus_neighbor_provenance_buckets must equal selected_provenance_buckets');
   }
   if (Number(artifact.counts?.selected_focus_context_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
     issues.push('selected_focus_context_rows must equal selected_rows');

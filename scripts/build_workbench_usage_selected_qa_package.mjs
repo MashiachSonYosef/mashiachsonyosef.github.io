@@ -20,6 +20,7 @@ const defaults = {
   selectedOccurrenceAdjacencyIndex: '.local-cache/workbench-evidence/usage-selected-occurrence-adjacency-index.json',
   selectedSourceHubIndex: '.local-cache/workbench-evidence/usage-selected-source-hub-index.json',
   selectedWorkHubIndex: '.local-cache/workbench-evidence/usage-selected-work-hub-index.json',
+  selectedFocusNeighborIndex: '.local-cache/workbench-evidence/usage-selected-focus-neighbor-index.json',
   selectedFocusContextAudit: '.local-cache/workbench-evidence/usage-selected-focus-context-audit.json',
   selectedFrameSummary: '.local-cache/workbench-evidence/usage-selected-frame-summary.json',
   selectedWorkFrameMatrix: '.local-cache/workbench-evidence/usage-selected-work-frame-matrix.json',
@@ -49,6 +50,7 @@ const artifacts = {
   selectedOccurrenceAdjacencyIndex: readJson(options.selectedOccurrenceAdjacencyIndex),
   selectedSourceHubIndex: readJson(options.selectedSourceHubIndex),
   selectedWorkHubIndex: readJson(options.selectedWorkHubIndex),
+  selectedFocusNeighborIndex: readJson(options.selectedFocusNeighborIndex),
   selectedFocusContextAudit: readJson(options.selectedFocusContextAudit),
   selectedFrameSummary: readJson(options.selectedFrameSummary),
   selectedWorkFrameMatrix: readJson(options.selectedWorkFrameMatrix),
@@ -74,6 +76,7 @@ assertType(artifacts.selectedFrameBridgeIndex, 'workbench_usage_selected_frame_b
 assertType(artifacts.selectedOccurrenceAdjacencyIndex, 'workbench_usage_selected_occurrence_adjacency_index', options.selectedOccurrenceAdjacencyIndex);
 assertType(artifacts.selectedSourceHubIndex, 'workbench_usage_selected_source_hub_index', options.selectedSourceHubIndex);
 assertType(artifacts.selectedWorkHubIndex, 'workbench_usage_selected_work_hub_index', options.selectedWorkHubIndex);
+assertType(artifacts.selectedFocusNeighborIndex, 'workbench_usage_selected_focus_neighbor_index', options.selectedFocusNeighborIndex);
 assertType(artifacts.selectedFocusContextAudit, 'workbench_usage_selected_focus_context_audit', options.selectedFocusContextAudit);
 assertType(artifacts.selectedFrameSummary, 'workbench_usage_selected_frame_summary', options.selectedFrameSummary);
 assertType(artifacts.selectedWorkFrameMatrix, 'workbench_usage_selected_work_frame_matrix', options.selectedWorkFrameMatrix);
@@ -110,6 +113,7 @@ const artifact = {
     selected_occurrence_adjacency_index: options.selectedOccurrenceAdjacencyIndex,
     selected_source_hub_index: options.selectedSourceHubIndex,
     selected_work_hub_index: options.selectedWorkHubIndex,
+    selected_focus_neighbor_index: options.selectedFocusNeighborIndex,
     selected_focus_context_audit: options.selectedFocusContextAudit,
     selected_frame_summary: options.selectedFrameSummary,
     selected_work_frame_matrix: options.selectedWorkFrameMatrix,
@@ -271,6 +275,16 @@ function buildPackageItems() {
       route_ids: artifacts.selectedWorkHubIndex.counts?.unique_route_ids,
       provenance_buckets: artifacts.selectedWorkHubIndex.counts?.provenance_buckets,
       target_work_samples: artifacts.selectedWorkHubIndex.counts?.target_work_samples,
+    }),
+    item('selected_focus_neighbor_index', options.selectedFocusNeighborIndex, 'reports/workbench-usage-selected-focus-neighbor-index.md', artifacts.selectedFocusNeighborIndex, {
+      occurrence_rows: artifacts.selectedFocusNeighborIndex.counts?.occurrence_rows,
+      neighbor_observations: artifacts.selectedFocusNeighborIndex.counts?.neighbor_observations,
+      immediate_neighbor_observations: artifacts.selectedFocusNeighborIndex.counts?.immediate_neighbor_observations,
+      offsets: artifacts.selectedFocusNeighborIndex.counts?.offsets,
+      neighbor_buckets: artifacts.selectedFocusNeighborIndex.counts?.neighbor_buckets,
+      unique_neighbor_tokens: artifacts.selectedFocusNeighborIndex.counts?.unique_neighbor_tokens,
+      route_ids: artifacts.selectedFocusNeighborIndex.counts?.route_ids,
+      provenance_buckets: artifacts.selectedFocusNeighborIndex.counts?.provenance_buckets,
     }),
     item('selected_focus_context_audit', options.selectedFocusContextAudit, 'reports/workbench-usage-selected-focus-context-audit.md', artifacts.selectedFocusContextAudit, {
       rows: artifacts.selectedFocusContextAudit.counts?.rows,
@@ -479,6 +493,21 @@ function buildCounts(items) {
     selected_work_hub_target_work_samples: Number(artifacts.selectedWorkHubIndex.counts?.target_work_samples || 0),
     selected_work_hub_target_work_samples_with_links: Number(artifacts.selectedWorkHubIndex.counts?.target_work_samples_with_links || 0),
     selected_work_hub_target_work_samples_with_context: Number(artifacts.selectedWorkHubIndex.counts?.target_work_samples_with_context || 0),
+    selected_focus_neighbor_occurrence_rows: Number(artifacts.selectedFocusNeighborIndex.counts?.occurrence_rows || 0),
+    selected_focus_neighbor_rows_with_focus_marker: Number(artifacts.selectedFocusNeighborIndex.counts?.rows_with_focus_marker || 0),
+    selected_focus_neighbor_rows_with_neighbor_window: Number(artifacts.selectedFocusNeighborIndex.counts?.rows_with_neighbor_window || 0),
+    selected_focus_neighbor_rows_with_immediate_neighbor: Number(artifacts.selectedFocusNeighborIndex.counts?.rows_with_immediate_neighbor || 0),
+    selected_focus_neighbor_rows_with_source_link: Number(artifacts.selectedFocusNeighborIndex.counts?.rows_with_source_link || 0),
+    selected_focus_neighbor_rows_with_work_anchor: Number(artifacts.selectedFocusNeighborIndex.counts?.rows_with_work_anchor || 0),
+    selected_focus_neighbor_rows_with_marked_context: Number(artifacts.selectedFocusNeighborIndex.counts?.rows_with_marked_context || 0),
+    selected_focus_neighbor_rows_with_provenance: Number(artifacts.selectedFocusNeighborIndex.counts?.rows_with_provenance || 0),
+    selected_focus_neighbor_observations: Number(artifacts.selectedFocusNeighborIndex.counts?.neighbor_observations || 0),
+    selected_focus_neighbor_immediate_observations: Number(artifacts.selectedFocusNeighborIndex.counts?.immediate_neighbor_observations || 0),
+    selected_focus_neighbor_offsets: Number(artifacts.selectedFocusNeighborIndex.counts?.offsets || 0),
+    selected_focus_neighbor_buckets: Number(artifacts.selectedFocusNeighborIndex.counts?.neighbor_buckets || 0),
+    selected_focus_neighbor_unique_tokens: Number(artifacts.selectedFocusNeighborIndex.counts?.unique_neighbor_tokens || 0),
+    selected_focus_neighbor_route_ids: Number(artifacts.selectedFocusNeighborIndex.counts?.route_ids || 0),
+    selected_focus_neighbor_provenance_buckets: Number(artifacts.selectedFocusNeighborIndex.counts?.provenance_buckets || 0),
     selected_focus_context_rows: Number(artifacts.selectedFocusContextAudit.counts?.rows || 0),
     selected_focus_marker_rows: Number(artifacts.selectedFocusContextAudit.counts?.focus_marker_rows || 0),
     selected_focus_marker_mismatch_rows: Number(artifacts.selectedFocusContextAudit.counts?.focus_marker_mismatch_rows || 0),
@@ -509,7 +538,7 @@ function buildCounts(items) {
 
 function buildChecks(counts) {
   return [
-    check('package_items_present', counts.package_items === 23 ? 'passed' : 'failed', `package items ${counts.package_items}`),
+    check('package_items_present', counts.package_items === 24 ? 'passed' : 'failed', `package items ${counts.package_items}`),
     check('selected_rows_consistent', counts.selected_rows === Number(artifacts.selectedSourceDiversity.counts?.selected_occurrence_refs || 0) ? 'passed' : 'failed', `selected rows ${counts.selected_rows}`),
     check('selected_provenance_rows_complete', counts.selected_provenance_rows === counts.selected_rows ? 'passed' : 'failed', `provenance rows ${counts.selected_provenance_rows}; selected rows ${counts.selected_rows}`),
     check('selected_provenance_license_metadata_complete', counts.selected_provenance_rows_with_license_metadata === counts.selected_rows ? 'passed' : 'failed', `license metadata rows ${counts.selected_provenance_rows_with_license_metadata}; selected rows ${counts.selected_rows}`),
@@ -573,6 +602,12 @@ function buildChecks(counts) {
     check('selected_work_hub_source_frame_route_provenance_coverage', counts.selected_work_hub_source_refs === counts.selected_source_refs && counts.selected_work_hub_frames === counts.selected_frame_summary_frames && counts.selected_work_hub_route_ids === counts.selected_route_ids && counts.selected_work_hub_provenance_buckets === counts.selected_provenance_buckets ? 'passed' : 'failed', `source/frame/route/provenance ${counts.selected_work_hub_source_refs}/${counts.selected_work_hub_frames}/${counts.selected_work_hub_route_ids}/${counts.selected_work_hub_provenance_buckets}; expected ${counts.selected_source_refs}/${counts.selected_frame_summary_frames}/${counts.selected_route_ids}/${counts.selected_provenance_buckets}`),
     check('selected_work_hub_rows_complete', counts.selected_work_hub_rows_with_source_links === counts.selected_work_hub_rows && counts.selected_work_hub_rows_with_work_anchors === counts.selected_work_hub_rows && counts.selected_work_hub_rows_with_marked_context === counts.selected_work_hub_rows && counts.selected_work_hub_rows_with_provenance === counts.selected_work_hub_rows ? 'passed' : 'failed', `work hub link/work/context/provenance ${counts.selected_work_hub_rows_with_source_links}/${counts.selected_work_hub_rows_with_work_anchors}/${counts.selected_work_hub_rows_with_marked_context}/${counts.selected_work_hub_rows_with_provenance}; hubs ${counts.selected_work_hub_rows}`),
     check('selected_work_hub_target_work_samples_complete', counts.selected_work_hub_target_work_samples_with_links === counts.selected_work_hub_target_work_samples && counts.selected_work_hub_target_work_samples_with_context === counts.selected_work_hub_target_work_samples ? 'passed' : 'failed', `target work sample links/context ${counts.selected_work_hub_target_work_samples_with_links}/${counts.selected_work_hub_target_work_samples_with_context}; samples ${counts.selected_work_hub_target_work_samples}`),
+    check('selected_focus_neighbor_rows_complete', counts.selected_focus_neighbor_occurrence_rows === counts.selected_rows ? 'passed' : 'failed', `neighbor rows ${counts.selected_focus_neighbor_occurrence_rows}; selected rows ${counts.selected_rows}`),
+    check('selected_focus_neighbor_context_complete', counts.selected_focus_neighbor_rows_with_focus_marker === counts.selected_rows && counts.selected_focus_neighbor_rows_with_neighbor_window === counts.selected_rows && counts.selected_focus_neighbor_rows_with_marked_context === counts.selected_rows ? 'passed' : 'failed', `focus/window/context ${counts.selected_focus_neighbor_rows_with_focus_marker}/${counts.selected_focus_neighbor_rows_with_neighbor_window}/${counts.selected_focus_neighbor_rows_with_marked_context}; selected rows ${counts.selected_rows}`),
+    check('selected_focus_neighbor_links_complete', counts.selected_focus_neighbor_rows_with_source_link === counts.selected_rows && counts.selected_focus_neighbor_rows_with_work_anchor === counts.selected_rows && counts.selected_focus_neighbor_rows_with_provenance === counts.selected_rows ? 'passed' : 'failed', `source/work/provenance ${counts.selected_focus_neighbor_rows_with_source_link}/${counts.selected_focus_neighbor_rows_with_work_anchor}/${counts.selected_focus_neighbor_rows_with_provenance}; selected rows ${counts.selected_rows}`),
+    check('selected_focus_neighbor_observations_present', counts.selected_focus_neighbor_observations > 0 && counts.selected_focus_neighbor_immediate_observations > 0 ? 'passed' : 'failed', `observations ${counts.selected_focus_neighbor_observations}; immediate ${counts.selected_focus_neighbor_immediate_observations}`),
+    check('selected_focus_neighbor_buckets_present', counts.selected_focus_neighbor_offsets > 0 && counts.selected_focus_neighbor_buckets > 0 && counts.selected_focus_neighbor_unique_tokens > 0 ? 'passed' : 'failed', `offsets/buckets/tokens ${counts.selected_focus_neighbor_offsets}/${counts.selected_focus_neighbor_buckets}/${counts.selected_focus_neighbor_unique_tokens}`),
+    check('selected_focus_neighbor_route_provenance_coverage', counts.selected_focus_neighbor_route_ids === counts.selected_route_ids && counts.selected_focus_neighbor_provenance_buckets === counts.selected_provenance_buckets ? 'passed' : 'failed', `route/provenance ${counts.selected_focus_neighbor_route_ids}/${counts.selected_focus_neighbor_provenance_buckets}; expected ${counts.selected_route_ids}/${counts.selected_provenance_buckets}`),
     check('selected_focus_context_complete', counts.selected_focus_context_rows === counts.selected_rows ? 'passed' : 'failed', `focus context rows ${counts.selected_focus_context_rows}; selected rows ${counts.selected_rows}`),
     check('selected_focus_markers_complete', counts.selected_focus_marker_rows === counts.selected_rows ? 'passed' : 'failed', `focus marker rows ${counts.selected_focus_marker_rows}; selected rows ${counts.selected_rows}`),
     check('selected_focus_marker_mismatch_zero', counts.selected_focus_marker_mismatch_rows === 0 ? 'passed' : 'failed', `focus marker mismatches ${counts.selected_focus_marker_mismatch_rows}`),
@@ -717,6 +752,11 @@ function writeReport(relativePath, artifact) {
     `- Work hub frames / route IDs / provenance buckets: ${artifact.counts.selected_work_hub_frames}/${artifact.counts.selected_work_hub_route_ids}/${artifact.counts.selected_work_hub_provenance_buckets}`,
     `- Work hub rows with source links/work anchors/context/provenance: ${artifact.counts.selected_work_hub_rows_with_source_links}/${artifact.counts.selected_work_hub_rows_with_work_anchors}/${artifact.counts.selected_work_hub_rows_with_marked_context}/${artifact.counts.selected_work_hub_rows_with_provenance}`,
     `- Work hub target work samples with links/context: ${artifact.counts.selected_work_hub_target_work_samples_with_links}/${artifact.counts.selected_work_hub_target_work_samples_with_context}`,
+    `- Focus neighbor rows: ${artifact.counts.selected_focus_neighbor_occurrence_rows}`,
+    `- Focus neighbor observations: ${artifact.counts.selected_focus_neighbor_observations}`,
+    `- Focus neighbor immediate observations: ${artifact.counts.selected_focus_neighbor_immediate_observations}`,
+    `- Focus neighbor offsets / buckets / unique tokens: ${artifact.counts.selected_focus_neighbor_offsets}/${artifact.counts.selected_focus_neighbor_buckets}/${artifact.counts.selected_focus_neighbor_unique_tokens}`,
+    `- Focus neighbor rows with focus/window/source/work/context/provenance: ${artifact.counts.selected_focus_neighbor_rows_with_focus_marker}/${artifact.counts.selected_focus_neighbor_rows_with_neighbor_window}/${artifact.counts.selected_focus_neighbor_rows_with_source_link}/${artifact.counts.selected_focus_neighbor_rows_with_work_anchor}/${artifact.counts.selected_focus_neighbor_rows_with_marked_context}/${artifact.counts.selected_focus_neighbor_rows_with_provenance}`,
     `- Focus context audit rows: ${artifact.counts.selected_focus_context_rows}`,
     `- Focus marker rows: ${artifact.counts.selected_focus_marker_rows}`,
     `- Focus marker mismatch rows: ${artifact.counts.selected_focus_marker_mismatch_rows}`,
@@ -835,6 +875,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-occurrence-adjacency-index=')) parsed.selectedOccurrenceAdjacencyIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-source-hub-index=')) parsed.selectedSourceHubIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-work-hub-index=')) parsed.selectedWorkHubIndex = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-focus-neighbor-index=')) parsed.selectedFocusNeighborIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-focus-context-audit=')) parsed.selectedFocusContextAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-frame-summary=')) parsed.selectedFrameSummary = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-work-frame-matrix=')) parsed.selectedWorkFrameMatrix = cleanRelativePath(valueAfterEquals(arg));

@@ -35,7 +35,7 @@ if (Number(packet.counts?.route_links_unresolved || 0) !== 0) issues.push('route
 if (Number(packet.counts?.route_payload_field_hits || 0) !== 0) issues.push('route_payload_field_hits must be 0');
 if (Number(packet.counts?.forbidden_field_hits || 0) !== 0) issues.push('forbidden_field_hits must be 0');
 if (Number(packet.counts?.selected_audit_status_rows || 0) !== 0) issues.push('selected_audit_status_rows must be 0');
-if (Number(packet.counts?.selected_qa_package_items || 0) < 23) issues.push('selected_qa_package_items must be at least 23');
+if (Number(packet.counts?.selected_qa_package_items || 0) < 24) issues.push('selected_qa_package_items must be at least 24');
 if (packet.counts?.selected_source_hub_status !== 'present') issues.push('selected_source_hub_status must be present');
 if (packet.counts?.selected_work_hub_status !== 'present') issues.push('selected_work_hub_status must be present');
 if (Number(packet.counts?.selected_source_hub_occurrence_rows || 0) !== selectedRows) {
