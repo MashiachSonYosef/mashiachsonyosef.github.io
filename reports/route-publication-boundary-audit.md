@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T01:30:36.658Z
+Generated: 2026-06-01T01:32:29.519Z
 
 ## Boundary
 
@@ -33,6 +33,13 @@ These rows may still be valid HUD route evidence, but they are not automatically
 
 - CC BY-SA 4.0 / GFDL: 294549
 - CC BY 4.0: 88226
+
+## Answer-Eligible Unsafe For Accepted Translation Output
+
+These are answer-slot candidates whose source rows remain HUD-safe but require downstream attribution/license handling before use as accepted translation-output support.
+
+- CC BY-SA 4.0 / GFDL: 14206
+- CC BY 4.0: 6881
 
 ## Route Families
 

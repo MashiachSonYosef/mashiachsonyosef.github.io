@@ -120,6 +120,7 @@ function createAudit(manifestData = {}) {
     },
     licenses: {},
     unsafe_translation_output_licenses: {},
+    answer_eligible_unsafe_translation_output_licenses: {},
     route_families: {},
     route_types: {},
     issues: [],
@@ -217,6 +218,9 @@ function auditCard(card, context, target = audit) {
       target.counts.translation_output_unsafe_source_rows += 1;
       cardHasTranslationUnsafeRow = true;
       increment(target.unsafe_translation_output_licenses, license || 'missing');
+      if (card?.answer_eligible === true) {
+        increment(target.answer_eligible_unsafe_translation_output_licenses, license || 'missing');
+      }
     }
     for (const field of ['source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url']) {
       if (!row?.[field]) addIssue(`${context}.source_rows[${rowIndex}]`, `missing ${field}`, target);
@@ -298,6 +302,12 @@ function writeReport(relativePath, data) {
     'These rows may still be valid HUD route evidence, but they are not automatically safe as accepted translation-output support without downstream attribution/license handling.',
     '',
     ...topCounts(data.unsafe_translation_output_licenses, 20).map((row) => `- ${row.value}: ${row.count}`),
+    '',
+    '## Answer-Eligible Unsafe For Accepted Translation Output',
+    '',
+    'These are answer-slot candidates whose source rows remain HUD-safe but require downstream attribution/license handling before use as accepted translation-output support.',
+    '',
+    ...topCounts(data.answer_eligible_unsafe_translation_output_licenses, 20).map((row) => `- ${row.value}: ${row.count}`),
     '',
     '## Route Families',
     '',
