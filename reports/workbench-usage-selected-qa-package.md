@@ -1,10 +1,10 @@
 # Workbench Usage Selected QA Package
 
-Generated: 2026-06-01T07:34:44.030Z
+Generated: 2026-06-01T07:52:29.495Z
 
 ## Summary
 
-- Package items: 18
+- Package items: 19
 - Selected rows: 49
 - Source refs: 38
 - Works: 20
@@ -61,6 +61,22 @@ Generated: 2026-06-01T07:34:44.030Z
 - Occurrence navigation rows with provenance: 49
 - Occurrence navigation collision-member rows: 19
 - Occurrence navigation collision memberships: 38
+- Navigation edge rows: 2352
+- Navigation edge source occurrences: 49
+- Navigation edge target occurrences: 49
+- Navigation edge source refs: 38
+- Navigation edge works: 20
+- Navigation edge frames: 2
+- Navigation edge route IDs: 1
+- Navigation edge provenance buckets: 5
+- Navigation edge same-frame edges: 1192
+- Navigation edge bridge edges: 1160
+- Navigation edge source context rows: 2352
+- Navigation edge target context rows: 2352
+- Navigation edge source link rows: 2352
+- Navigation edge target link rows: 2352
+- Navigation edge source provenance rows: 2352
+- Navigation edge target provenance rows: 2352
 - Focus context audit rows: 49
 - Focus marker rows: 49
 - Focus marker mismatch rows: 0
@@ -95,7 +111,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 
 | check | status | detail |
 |---|---|---|
-| package_items_present | passed | package items 18 |
+| package_items_present | passed | package items 19 |
 | selected_rows_consistent | passed | selected rows 49 |
 | selected_provenance_rows_complete | passed | provenance rows 49; selected rows 49 |
 | selected_provenance_license_metadata_complete | passed | license metadata rows 49; selected rows 49 |
@@ -126,6 +142,12 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_occurrence_navigation_context_complete | passed | Hebrew context 49; focus markers 49; selected rows 49 |
 | selected_occurrence_navigation_provenance_complete | passed | navigation provenance rows 49; selected rows 49 |
 | selected_occurrence_navigation_collision_memberships_visible | passed | navigation collision memberships 38; collision rows 38 |
+| selected_navigation_edge_rows_complete | passed | edge rows 2352; directed edges 2352 |
+| selected_navigation_edge_occurrence_coverage | passed | source occurrences 49; target occurrences 49; selected rows 49 |
+| selected_navigation_edge_partition_complete | passed | same-frame 1192; bridge 1160; edges 2352 |
+| selected_navigation_edge_context_complete | passed | source context 2352; target context 2352; edges 2352 |
+| selected_navigation_edge_links_complete | passed | source links 2352; target links 2352; edges 2352 |
+| selected_navigation_edge_provenance_complete | passed | source provenance 2352; target provenance 2352; edges 2352 |
 | selected_focus_context_complete | passed | focus context rows 49; selected rows 49 |
 | selected_focus_markers_complete | passed | focus marker rows 49; selected rows 49 |
 | selected_focus_marker_mismatch_zero | passed | focus marker mismatches 0 |
@@ -159,6 +181,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_route_resolution | workbench_usage_selected_route_resolution | .local-cache/workbench-evidence/usage-selected-route-resolution.json | reports/workbench-usage-selected-route-resolution.md | passed | 0 | 0 | 0 | 0 | selected_route_links: 49<br>route_buckets: 1<br>unresolved_route_ids: 0 |
 | selected_route_provenance_audit | workbench_usage_selected_route_provenance_audit | .local-cache/workbench-evidence/usage-selected-route-provenance-audit.json | reports/workbench-usage-selected-route-provenance-audit.md | passed | 0 | 0 | 0 | 0 | route_rows: 1<br>selected_route_links: 49<br>provenance_buckets: 5<br>unresolved_route_rows: 0<br>missing_provenance_rows: 0<br>route_payload_copied_rows: 0<br>samples: 49 |
 | selected_occurrence_navigation_index | workbench_usage_selected_occurrence_navigation_index | .local-cache/workbench-evidence/usage-selected-occurrence-navigation-index.json | reports/workbench-usage-selected-occurrence-navigation-index.md | passed | 0 | 0 | 0 | 0 | rows: 49<br>source_refs: 38<br>works: 20<br>usage_frames: 2<br>provenance_buckets: 5<br>collision_member_rows: 19<br>collision_memberships: 38 |
+| selected_navigation_edge_index | workbench_usage_selected_navigation_edge_index | .local-cache/workbench-evidence/usage-selected-navigation-edge-index.json | reports/workbench-usage-selected-navigation-edge-index.md | passed | 0 | 0 | 0 | 0 | edges: 2352<br>source_occurrences: 49<br>target_occurrences: 49<br>same_frame_edges: 1192<br>bridge_edges: 1160<br>source_context_rows: 2352<br>target_context_rows: 2352 |
 | selected_focus_context_audit | workbench_usage_selected_focus_context_audit | .local-cache/workbench-evidence/usage-selected-focus-context-audit.json | reports/workbench-usage-selected-focus-context-audit.md | pass_with_warnings | 1 | 0 | 0 | 0 | rows: 49<br>focus_marker_rows: 49<br>focus_marker_mismatch_rows: 0<br>repeated_focus_context_rows: 8<br>missing_hebrew_context_rows: 0 |
 | selected_frame_summary | workbench_usage_selected_frame_summary | .local-cache/workbench-evidence/usage-selected-frame-summary.json | reports/workbench-usage-selected-frame-summary.md | passed | 0 | 0 | 0 | 0 | frames: 2<br>selected_rows: 49<br>repeated_focus_context_rows: 8<br>sample_occurrences: 16 |
 | selected_work_frame_matrix | workbench_usage_selected_work_frame_matrix | .local-cache/workbench-evidence/usage-selected-work-frame-matrix.json | reports/workbench-usage-selected-work-frame-matrix.md | passed | 0 | 0 | 0 | 0 | matrix_rows: 25<br>selected_rows: 49<br>works: 20<br>frames: 2<br>sample_occurrences: 48 |
