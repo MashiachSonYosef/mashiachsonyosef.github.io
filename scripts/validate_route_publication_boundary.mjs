@@ -127,6 +127,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       answer_role_answer_cards: 0,
       answer_role_answer_noneligible_cards: 0,
       source_rows: 0,
+      reference_url_fields_checked: 0,
+      invalid_reference_url_fields: 0,
       hud_safe_source_rows: 0,
       hud_unsafe_source_rows: 0,
       translation_output_safe_source_rows: 0,
@@ -300,6 +302,14 @@ function auditCard(card, context, target = audit) {
     for (const field of ['source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url']) {
       if (!row?.[field]) addIssue(`${context}.source_rows[${rowIndex}]`, `missing ${field}`, target);
     }
+    for (const field of ['source_url', 'license_url']) {
+      if (!row?.[field]) continue;
+      target.counts.reference_url_fields_checked += 1;
+      if (!safeReferenceUrl(row[field])) {
+        target.counts.invalid_reference_url_fields += 1;
+        addIssue(`${context}.source_rows[${rowIndex}]`, `unsafe ${field}: ${row[field]}`, target);
+      }
+    }
     if (!Array.isArray(row?.fields_used) || !row.fields_used.length) {
       addIssue(`${context}.source_rows[${rowIndex}]`, 'missing fields_used', target);
     }
@@ -323,6 +333,10 @@ function translationOutputSafe(row) {
   const license = String(row?.license || '').trim();
   if (!license || forbiddenLicenseRe.test(license)) return false;
   return translationOutputSafeLicensePatterns.some((pattern) => pattern.test(license));
+}
+
+function safeReferenceUrl(value) {
+  return /^(https:\/\/|local:)/i.test(String(value || '').trim());
 }
 
 function addIssue(context, detail, target = audit) {
@@ -367,6 +381,8 @@ function writeReport(relativePath, data) {
     `- Cards with answer role: ${data.counts.answer_role_answer_cards}`,
     `- Cards with answer role but not answer-eligible: ${data.counts.answer_role_answer_noneligible_cards}`,
     `- Source rows checked: ${data.counts.source_rows}`,
+    `- Reference URL fields checked: ${data.counts.reference_url_fields_checked}`,
+    `- Invalid reference URL fields: ${data.counts.invalid_reference_url_fields}`,
     `- HUD-unsafe source rows: ${data.counts.hud_unsafe_source_rows}`,
     `- Translation-output unsafe source rows flagged: ${data.counts.translation_output_unsafe_source_rows}`,
     `- Translation-output unsafe cards flagged: ${data.counts.translation_output_unsafe_cards}`,

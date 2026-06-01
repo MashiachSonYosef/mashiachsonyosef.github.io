@@ -116,6 +116,8 @@ const result = {
     fixture_sha256: boundaryReport.inputs?.fixture_file?.sha256 || '',
     route_cards_with_source_rows: Number(boundaryReport.counts?.route_cards_with_source_rows || 0),
     route_cards_missing_source_rows: Number(boundaryReport.counts?.route_cards_missing_source_rows || 0),
+    reference_url_fields_checked: Number(boundaryReport.counts?.reference_url_fields_checked || 0),
+    invalid_reference_url_fields: Number(boundaryReport.counts?.invalid_reference_url_fields || 0),
     answer_eligible_cards_with_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_with_answer_score || 0),
     answer_eligible_cards_missing_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_missing_answer_score || 0),
     answer_role_answer_cards: Number(boundaryReport.counts?.answer_role_answer_cards || 0),
@@ -316,6 +318,12 @@ async function validateBoundaryReport(report, reconciliation) {
   if (count('route_cards_missing_source_rows') !== 0) {
     issues.push(`route publication boundary report found ${count('route_cards_missing_source_rows')} route card(s) missing source_rows`);
   }
+  if (count('reference_url_fields_checked') !== count('source_rows') * 2) {
+    issues.push('route publication boundary report did not check both source_url and license_url for every source row');
+  }
+  if (count('invalid_reference_url_fields') !== 0) {
+    issues.push(`route publication boundary report found ${count('invalid_reference_url_fields')} invalid source/license URL field(s)`);
+  }
   if (count('answer_eligible_cards_with_source_rows') > count('answer_eligible_cards')) {
     issues.push('route publication boundary report has more answer-eligible source-row cards than answer-eligible cards');
   }
@@ -509,6 +517,8 @@ function writeReport(relativePath, result) {
     `- Fixture SHA-256: \`${result.route_publication_boundary.fixture_sha256 || 'missing'}\``,
     `- Cards with source rows: ${result.route_publication_boundary.route_cards_with_source_rows}`,
     `- Cards missing source rows: ${result.route_publication_boundary.route_cards_missing_source_rows}`,
+    `- Reference URL fields checked: ${result.route_publication_boundary.reference_url_fields_checked}`,
+    `- Invalid reference URL fields: ${result.route_publication_boundary.invalid_reference_url_fields}`,
     `- Answer-eligible cards with numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_with_answer_score}`,
     `- Answer-eligible cards missing numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_missing_answer_score}`,
     `- Cards with answer role: ${result.route_publication_boundary.answer_role_answer_cards}`,
