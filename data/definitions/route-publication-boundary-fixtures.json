@@ -7,8 +7,12 @@
       "label": "public-domain-answer-is-hud-and-translation-safe",
       "card": {
         "card_id": "fixture-public-domain-answer",
+        "normalized": "fixture",
         "route_family": "fixture",
         "route_type": "lemma",
+        "display_section": "lemma",
+        "display_label": "Fixture lemma",
+        "definition": "Fixture definition.",
         "answer_eligible": true,
         "answer_role": "answer",
         "source_rows": [
@@ -39,8 +43,12 @@
       "label": "cc-by-answer-is-hud-safe-not-translation-output-safe",
       "card": {
         "card_id": "fixture-cc-by-answer",
+        "normalized": "fixture",
         "route_family": "fixture",
         "route_type": "lemma",
+        "display_section": "lemma",
+        "display_label": "Fixture lemma",
+        "definition": "Fixture attribution-required definition.",
         "answer_eligible": true,
         "answer_role": "answer",
         "source_rows": [
@@ -83,8 +91,12 @@
       "label": "publication-readiness-field-is-forbidden-on-route-card",
       "card": {
         "card_id": "fixture-publication-field",
+        "normalized": "fixture",
         "route_family": "fixture",
         "route_type": "lemma",
+        "display_section": "lemma",
+        "display_label": "Fixture lemma",
+        "definition": "Fixture definition with forbidden publication field.",
         "answer_eligible": true,
         "answer_role": "answer",
         "publication_ready": true,
@@ -119,8 +131,12 @@
       "label": "answer-without-source-rows-is-forbidden",
       "card": {
         "card_id": "fixture-answer-missing-source",
+        "normalized": "fixture",
         "route_family": "fixture",
         "route_type": "lemma",
+        "display_section": "lemma",
+        "display_label": "Fixture lemma",
+        "definition": "Fixture answer missing source rows.",
         "answer_eligible": true,
         "answer_role": "answer",
         "source_rows": []
@@ -143,8 +159,12 @@
       "label": "noncommercial-license-is-not-hud-safe",
       "card": {
         "card_id": "fixture-nc-license",
+        "normalized": "fixture",
         "route_family": "fixture",
         "route_type": "lemma",
+        "display_section": "lemma",
+        "display_label": "Fixture lemma",
+        "definition": "Fixture noncommercial definition.",
         "answer_eligible": false,
         "answer_role": "evidence",
         "source_rows": [
@@ -190,7 +210,7 @@
       "label": "non-object-card-is-forbidden",
       "card": null,
       "expected_counts": {
-        "issue_count": 3,
+        "issue_count": 1,
         "warning_count": 0,
         "answer_eligible_cards": 0,
         "answer_eligible_cards_with_source_rows": 0,
@@ -205,11 +225,54 @@
       ]
     },
     {
+      "label": "missing-display-label-is-forbidden",
+      "card": {
+        "card_id": "fixture-missing-display-label",
+        "normalized": "fixture",
+        "route_family": "fixture",
+        "route_type": "phrase_evidence",
+        "display_section": "phrase_evidence",
+        "definition": "Usage context only; no meaning is forced by this phrase row.",
+        "answer_eligible": false,
+        "answer_role": "evidence",
+        "source_rows": [
+          {
+            "source_name": "Fixture Public Domain Source",
+            "source_family": "fixture",
+            "source_id": "fixture-pd-missing-display-label",
+            "source_url": "local:route-publication-boundary-fixtures",
+            "license": "Public Domain",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "fields_used": ["fixture source", "fixture license"],
+            "notes": "Fixture row for missing display_label rejection."
+          }
+        ]
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 0,
+        "answer_eligible_cards": 0,
+        "answer_eligible_cards_with_source_rows": 0,
+        "hud_unsafe_source_rows": 0,
+        "translation_output_unsafe_cards": 0,
+        "answer_eligible_translation_output_unsafe_source_rows": 0,
+        "answer_eligible_translation_output_unsafe_cards": 0,
+        "route_cards_with_publication_fields": 0
+      },
+      "expected_issue_substrings": [
+        "missing display_label"
+      ]
+    },
+    {
       "label": "missing-answer-role-is-forbidden",
       "card": {
         "card_id": "fixture-missing-answer-role",
+        "normalized": "fixture",
         "route_family": "fixture",
         "route_type": "phrase_evidence",
+        "display_section": "phrase_evidence",
+        "display_label": "Fixture phrase evidence",
+        "definition": "Usage context only; no meaning is forced by this phrase row.",
         "answer_eligible": false,
         "source_rows": [
           {
@@ -243,8 +306,12 @@
       "label": "non-answer-score-is-forbidden",
       "card": {
         "card_id": "fixture-non-answer-score",
+        "normalized": "fixture",
         "route_family": "fixture",
         "route_type": "phrase_evidence",
+        "display_section": "phrase_evidence",
+        "display_label": "Fixture phrase evidence",
+        "definition": "Usage context only; no meaning is forced by this phrase row.",
         "answer_eligible": false,
         "answer_role": "evidence",
         "answer_score": 90,
@@ -280,8 +347,12 @@
       "label": "unknown-answer-role-is-forbidden",
       "card": {
         "card_id": "fixture-unknown-answer-role",
+        "normalized": "fixture",
         "route_family": "fixture",
         "route_type": "phrase_evidence",
+        "display_section": "phrase_evidence",
+        "display_label": "Fixture phrase evidence",
+        "definition": "Usage context only; no meaning is forced by this phrase row.",
         "answer_eligible": false,
         "answer_role": "marketing",
         "source_rows": [

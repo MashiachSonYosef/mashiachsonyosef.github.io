@@ -200,13 +200,21 @@ function auditShard(shardEntry) {
 
 function auditCard(card, context, target = audit) {
   if (!card || typeof card !== 'object' || Array.isArray(card)) {
+    target.counts.cards += 1;
+    increment(target.route_families, 'missing');
+    increment(target.route_types, 'missing');
+    increment(target.answer_roles, 'missing');
     addIssue(context, 'route card is not an object', target);
-    card = {};
+    return;
   }
   target.counts.cards += 1;
   increment(target.route_families, card?.route_family || 'missing');
   increment(target.route_types, card?.route_type || 'missing');
   increment(target.answer_roles, card?.answer_role || 'missing');
+
+  for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label', 'definition']) {
+    if (!card?.[field]) addIssue(context, `missing ${field}`, target);
+  }
 
   const publicationFields = publicationReadinessFields.filter((field) => Object.hasOwn(card || {}, field));
   if (publicationFields.length) {
