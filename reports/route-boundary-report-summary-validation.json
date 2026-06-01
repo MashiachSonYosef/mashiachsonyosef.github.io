@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-01T14:08:31.149Z",
+  "artifact_type": "route_boundary_report_summary_validation",
+  "input": "reports/route-publication-boundary-audit.json",
+  "release_scope": "frozen_public_lookup_passes_current_route_inputs_unreconciled",
+  "input_freeze_drift": {
+    "path": "reports/hud-route-input-freeze-drift.md",
+    "status": "drift",
+    "drift_count": 2,
+    "drift": [
+      "source-phrase-evidence.jsonl: current source differs from frozen release input",
+      "source-citable-paraphrase-evidence.jsonl: current source differs from frozen release input"
+    ]
+  },
+  "verdict": "pass_with_warnings",
+  "counts": {
+    "shards": 7990,
+    "tokens": 175216,
+    "cards": 539661,
+    "answer_eligible_cards": 18683,
+    "route_cards_missing_source_rows": 0,
+    "answer_eligible_cards_missing_answer_score": 0,
+    "route_cards_with_publication_fields": 0,
+    "issue_count": 0,
+    "warning_count": 335103,
+    "translation_output_unsafe_cards": 335103,
+    "answer_eligible_translation_output_unsafe_cards": 17737
+  },
+  "issues": [],
+  "warnings": [
+    "current route input cache differs from frozen release inputs; do not claim current route inputs are public-release reconciled"
+  ]
+}
