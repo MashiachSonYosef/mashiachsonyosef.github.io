@@ -134,6 +134,12 @@ async function auditRouteFile(relativePath) {
 }
 
 function validateAnswerSafety(row, fileSummary, relativePath, lineNumber) {
+  if (typeof row.answer_eligible !== 'boolean') {
+    addIssue(fileSummary, relativePath, lineNumber, 'missing_or_invalid_answer_eligible', claimId(row));
+  }
+  if (!row.answer_role) {
+    addIssue(fileSummary, relativePath, lineNumber, 'missing_answer_role', claimId(row));
+  }
   const answerEligible = row.answer_eligible === true;
   if (answerEligible) {
     audit.counts.answer_eligible_rows += 1;
@@ -141,6 +147,9 @@ function validateAnswerSafety(row, fileSummary, relativePath, lineNumber) {
   } else {
     audit.counts.non_answer_rows += 1;
     fileSummary.non_answer_rows += 1;
+  }
+  if (answerEligible && row.answer_role !== 'answer') {
+    addIssue(fileSummary, relativePath, lineNumber, 'answer_eligible_without_answer_role', claimId(row));
   }
   if (row.answer_role === 'answer' && !answerEligible) {
     addIssue(fileSummary, relativePath, lineNumber, 'answer_role_without_eligibility', claimId(row));
@@ -150,6 +159,9 @@ function validateAnswerSafety(row, fileSummary, relativePath, lineNumber) {
   }
   if (row.route_type === 'form' && answerEligible) {
     addIssue(fileSummary, relativePath, lineNumber, 'form_route_answer_eligible', claimId(row));
+  }
+  if (row.route_type === 'form' && row.answer_role !== 'form_reference') {
+    addIssue(fileSummary, relativePath, lineNumber, 'form_route_without_form_reference_role', claimId(row));
   }
   if (row.meaning_quality === 'form_reference' && answerEligible) {
     addIssue(fileSummary, relativePath, lineNumber, 'form_reference_answer_eligible', claimId(row));

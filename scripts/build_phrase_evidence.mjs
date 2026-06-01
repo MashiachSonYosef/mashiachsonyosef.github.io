@@ -272,6 +272,8 @@ function makeEvidenceRow({ data, unit, relativePath, tokens, tokenIndex, focus, 
     evidence_id: stableId('phrase', payload),
     route_family: 'source_phrase_evidence',
     route_type: routeType,
+    answer_eligible: false,
+    answer_role: 'evidence',
     language: 'Hebrew/Aramaic',
     focus_surface: focus.surface,
     focus_normalized: focus.normalized,
@@ -318,9 +320,9 @@ function writeCsvHeader(stream) {
   ].join(',') + '\n');
 }
 
-function writeCsvRow(stream, row) {
+function csvRowLine(row) {
   const source = row.source_rows[0] || {};
-  stream.write([
+  return [
     row.evidence_id,
     row.focus_surface,
     row.focus_normalized,
@@ -333,7 +335,12 @@ function writeCsvRow(stream, row) {
     source.license,
     source.source_name,
     source.source_url,
-  ].map(csvEscape).join(',') + '\n');
+  ].map(csvEscape).join(',') + '\n';
+}
+
+async function writeChunk(stream, chunk) {
+  if (stream.write(chunk)) return;
+  await new Promise((resolve) => stream.once('drain', resolve));
 }
 
 function shouldEmit(normalized, emittedByToken) {
@@ -506,8 +513,8 @@ async function main() {
             routeType: 'phrase_evidence',
             license,
           });
-          jsonl.write(`${JSON.stringify(row)}\n`);
-          writeCsvRow(csv, row);
+          await writeChunk(jsonl, `${JSON.stringify(row)}\n`);
+          await writeChunk(csv, csvRowLine(row));
           noteEmission(token.normalized, emittedByToken);
           maybeCollectSample(row, samples);
           stats.evidence_rows += 1;
@@ -529,8 +536,8 @@ async function main() {
               routeType: 'subphrase_evidence',
               license,
             });
-            jsonl.write(`${JSON.stringify(row)}\n`);
-            writeCsvRow(csv, row);
+            await writeChunk(jsonl, `${JSON.stringify(row)}\n`);
+            await writeChunk(csv, csvRowLine(row));
             noteEmission(part.normalized, emittedByToken);
             maybeCollectSample(row, samples);
             stats.evidence_rows += 1;
