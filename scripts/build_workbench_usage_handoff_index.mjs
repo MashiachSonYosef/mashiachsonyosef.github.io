@@ -22,6 +22,7 @@ const defaults = {
   contextOffsetIndex: '.local-cache/workbench-evidence/usage-context-offset-index.json',
   contextSignatureIndex: '.local-cache/workbench-evidence/usage-context-signature-index.json',
   contextSignatureLookup: '.local-cache/workbench-evidence/usage-context-signature-lookup.json',
+  contextSignatureContrast: '.local-cache/workbench-evidence/usage-context-signature-contrast.json',
   selectedSlice: '.local-cache/workbench-evidence/usage-slice-tanakh.json',
   selectedSlicesIndex: '.local-cache/workbench-evidence/usage-selected-slices-index.json',
   selectedOccurrences: '.local-cache/workbench-evidence/usage-selected-occurrences.json',
@@ -56,6 +57,7 @@ const phraseRecurrenceIndex = readJsonIfExists(options.phraseRecurrenceIndex);
 const contextOffsetIndex = readJsonIfExists(options.contextOffsetIndex);
 const contextSignatureIndex = readJsonIfExists(options.contextSignatureIndex);
 const contextSignatureLookup = readJsonIfExists(options.contextSignatureLookup);
+const contextSignatureContrast = readJsonIfExists(options.contextSignatureContrast);
 const selectedSlice = readJsonIfExists(options.selectedSlice);
 const selectedSlicesIndex = readJsonIfExists(options.selectedSlicesIndex);
 const selectedOccurrences = readJsonIfExists(options.selectedOccurrences);
@@ -96,6 +98,7 @@ const artifact = {
     context_offset_index: options.contextOffsetIndex,
     context_signature_index: options.contextSignatureIndex,
     context_signature_lookup: options.contextSignatureLookup,
+    context_signature_contrast: options.contextSignatureContrast,
     selected_slice: options.selectedSlice,
     selected_slices_index: options.selectedSlicesIndex,
     selected_occurrences: options.selectedOccurrences,
@@ -130,6 +133,7 @@ const artifact = {
     context_offset_index_report: 'reports/workbench-usage-context-offset-index.md',
     context_signature_index_report: 'reports/workbench-usage-context-signature-index.md',
     context_signature_lookup_report: 'reports/workbench-usage-context-signature-lookup.md',
+    context_signature_contrast_report: 'reports/workbench-usage-context-signature-contrast.md',
     selected_slice_report: 'reports/workbench-usage-slice-tanakh.md',
     selected_slices_index_report: 'reports/workbench-usage-selected-slices-index.md',
     selected_occurrences_report: 'reports/workbench-usage-selected-occurrences.md',
@@ -229,6 +233,10 @@ const artifact = {
     context_signature_lookup_occurrences_with_cross_cluster: contextSignatureLookup?.counts?.occurrence_refs_with_cross_cluster_signatures ?? null,
     context_signature_lookup_unmatched_occurrence_ids: contextSignatureLookup?.counts?.unmatched_occurrence_ids ?? null,
     context_signature_lookup_route_payload_field_hits: contextSignatureLookup?.counts?.route_payload_field_hits ?? null,
+    context_signature_contrast_groups: contextSignatureContrast?.counts?.cross_cluster_signature_groups ?? null,
+    context_signature_contrast_occurrence_refs: contextSignatureContrast?.counts?.cross_cluster_occurrence_refs ?? null,
+    context_signature_contrast_reader_facing_rows: contextSignatureContrast?.counts?.reader_facing_rows ?? null,
+    context_signature_contrast_route_payload_field_hits: contextSignatureContrast?.counts?.route_payload_field_hits ?? null,
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
     selected_slice_works: selectedSlice?.counts?.works ?? null,
     selected_slices_index_slices: selectedSlicesIndex?.counts?.slices ?? null,
@@ -363,6 +371,12 @@ const artifact = {
     context_signature_lookup_unmatched_occurrence_ids: contextSignatureLookup?.counts?.unmatched_occurrence_ids ?? null,
     context_signature_lookup_failed_checks: contextSignatureLookup?.quality?.failed_count ?? null,
     context_signature_lookup_route_payload_field_hits: contextSignatureLookup?.counts?.route_payload_field_hits ?? null,
+    context_signature_contrast_status: contextSignatureContrast?.artifact_type === 'workbench_usage_context_signature_contrast' ? 'present' : 'not_run',
+    context_signature_contrast_groups: contextSignatureContrast?.counts?.cross_cluster_signature_groups ?? null,
+    context_signature_contrast_occurrence_refs: contextSignatureContrast?.counts?.cross_cluster_occurrence_refs ?? null,
+    context_signature_contrast_reader_facing_rows: contextSignatureContrast?.counts?.reader_facing_rows ?? null,
+    context_signature_contrast_failed_checks: contextSignatureContrast?.quality?.failed_count ?? null,
+    context_signature_contrast_route_payload_field_hits: contextSignatureContrast?.counts?.route_payload_field_hits ?? null,
     selected_slice_status: selectedSlice?.artifact_type === 'workbench_usage_navigation_slice_index' ? 'present' : 'not_run',
     selected_slice_id: selectedSlice?.filter?.slice_id ?? null,
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
@@ -463,6 +477,8 @@ function writeReport(relativePath, artifact) {
     `- Context signature route payload-like field hits: ${artifact.counts.context_signature_route_payload_field_hits}`,
     `- Context signature lookup: occurrences ${artifact.counts.context_signature_lookup_occurrence_refs}, memberships ${artifact.counts.context_signature_lookup_memberships}, recurring memberships ${artifact.counts.context_signature_lookup_recurring_memberships}, occurrences with recurring ${artifact.counts.context_signature_lookup_occurrences_with_recurring}, cross-cluster memberships ${artifact.counts.context_signature_lookup_cross_cluster_memberships}, occurrences with cross-cluster ${artifact.counts.context_signature_lookup_occurrences_with_cross_cluster}, unmatched occurrence IDs ${artifact.counts.context_signature_lookup_unmatched_occurrence_ids}`,
     `- Context signature lookup route payload-like field hits: ${artifact.counts.context_signature_lookup_route_payload_field_hits}`,
+    `- Context signature contrast: cross-cluster groups ${artifact.counts.context_signature_contrast_groups}, occurrence refs ${artifact.counts.context_signature_contrast_occurrence_refs}, reader-facing rows ${artifact.counts.context_signature_contrast_reader_facing_rows}`,
+    `- Context signature contrast route payload-like field hits: ${artifact.counts.context_signature_contrast_route_payload_field_hits}`,
     `- Selected slice rows: ${artifact.counts.selected_slice_rows}`,
     `- Selected slice works: ${artifact.counts.selected_slice_works}`,
     `- Selected slices index: ${artifact.counts.selected_slices_index_slices}`,
@@ -515,6 +531,8 @@ function writeReport(relativePath, artifact) {
     `- Context signature route payload-like field hits: ${artifact.validation.context_signature_route_payload_field_hits}`,
     `- Context signature lookup: ${artifact.validation.context_signature_lookup_status}, occurrences ${artifact.validation.context_signature_lookup_occurrence_refs}, memberships ${artifact.validation.context_signature_lookup_memberships}, recurring memberships ${artifact.validation.context_signature_lookup_recurring_memberships}, occurrences with recurring ${artifact.validation.context_signature_lookup_occurrences_with_recurring}, cross-cluster memberships ${artifact.validation.context_signature_lookup_cross_cluster_memberships}, occurrences with cross-cluster ${artifact.validation.context_signature_lookup_occurrences_with_cross_cluster}, unmatched occurrence IDs ${artifact.validation.context_signature_lookup_unmatched_occurrence_ids}, failed ${artifact.validation.context_signature_lookup_failed_checks}`,
     `- Context signature lookup route payload-like field hits: ${artifact.validation.context_signature_lookup_route_payload_field_hits}`,
+    `- Context signature contrast: ${artifact.validation.context_signature_contrast_status}, cross-cluster groups ${artifact.validation.context_signature_contrast_groups}, occurrence refs ${artifact.validation.context_signature_contrast_occurrence_refs}, reader-facing rows ${artifact.validation.context_signature_contrast_reader_facing_rows}, failed ${artifact.validation.context_signature_contrast_failed_checks}`,
+    `- Context signature contrast route payload-like field hits: ${artifact.validation.context_signature_contrast_route_payload_field_hits}`,
     `- Selected slice: ${artifact.validation.selected_slice_status}, id ${artifact.validation.selected_slice_id}, rows ${artifact.validation.selected_slice_rows}`,
     `- Selected slices index: ${artifact.validation.selected_slices_index_status}, slices ${artifact.validation.selected_slices_index_slices}, unique occurrences ${artifact.validation.selected_slices_index_unique_occurrences}`,
     `- Selected occurrences: ${artifact.validation.selected_occurrences_status}, rows ${artifact.validation.selected_occurrence_rows}`,
@@ -554,6 +572,7 @@ function writeReport(relativePath, artifact) {
     `| context offset index | ${mdCell(artifact.artifacts.context_offset_index_report)} | yes |`,
     `| context signature index | ${mdCell(artifact.artifacts.context_signature_index_report)} | yes |`,
     `| context signature lookup | ${mdCell(artifact.artifacts.context_signature_lookup_report)} | yes |`,
+    `| context signature contrast | ${mdCell(artifact.artifacts.context_signature_contrast_report)} | yes |`,
     `| selected slice | ${mdCell(artifact.artifacts.selected_slice_report)} | yes |`,
     `| selected slices index | ${mdCell(artifact.artifacts.selected_slices_index_report)} | yes |`,
     `| selected occurrences | ${mdCell(artifact.artifacts.selected_occurrences_report)} | yes |`,
@@ -599,6 +618,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--context-offset-index=')) parsed.contextOffsetIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--context-signature-index=')) parsed.contextSignatureIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--context-signature-lookup=')) parsed.contextSignatureLookup = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--context-signature-contrast=')) parsed.contextSignatureContrast = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slice=')) parsed.selectedSlice = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slices-index=')) parsed.selectedSlicesIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrences=')) parsed.selectedOccurrences = cleanRelativePath(valueAfterEquals(arg));
@@ -651,6 +671,8 @@ function buildCommands(options, manifest) {
   commands.validate_context_signature_index = `node scripts/validate_workbench_usage_context_signature_index.mjs ${options.contextSignatureIndex}`;
   commands.build_context_signature_lookup = `node scripts/build_workbench_usage_context_signature_lookup.mjs --search-rows=${options.searchRows} --context-signature-index=${options.contextSignatureIndex} --output=${options.contextSignatureLookup} --report=reports/workbench-usage-context-signature-lookup.md`;
   commands.validate_context_signature_lookup = `node scripts/validate_workbench_usage_context_signature_lookup.mjs ${options.contextSignatureLookup}`;
+  commands.build_context_signature_contrast = `node scripts/build_workbench_usage_context_signature_contrast.mjs --search-rows=${options.searchRows} --context-signature-index=${options.contextSignatureIndex} --output=${options.contextSignatureContrast} --report=reports/workbench-usage-context-signature-contrast.md`;
+  commands.validate_context_signature_contrast = `node scripts/validate_workbench_usage_context_signature_contrast.mjs ${options.contextSignatureContrast}`;
   commands.build_selected_slice = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --work-prefix=tanakh/ --slice-id=tanakh-workbench-section --label="Tanakh workbench section" --output=${options.selectedSlice} --report=reports/workbench-usage-slice-tanakh.md --max-samples=30`;
   commands.validate_selected_slice = `node scripts/validate_workbench_usage_slice_index.mjs ${options.selectedSlice}`;
   commands.build_selected_slice_jeremiah = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --source-ref-prefix=Jeremiah --slice-id=jeremiah-workbench-section --label="Jeremiah workbench section" --output=${path.posix.dirname(options.selectedSlice)}/usage-slice-jeremiah.json --report=reports/workbench-usage-slice-jeremiah.md --max-samples=30`;
@@ -691,6 +713,7 @@ function buildCommands(options, manifest) {
     `--context-offset-index=${options.contextOffsetIndex}`,
     `--context-signature-index=${options.contextSignatureIndex}`,
     `--context-signature-lookup=${options.contextSignatureLookup}`,
+    `--context-signature-contrast=${options.contextSignatureContrast}`,
     `--selected-slice=${options.selectedSlice}`,
     `--selected-slices-index=${options.selectedSlicesIndex}`,
     `--selected-occurrences=${options.selectedOccurrences}`,

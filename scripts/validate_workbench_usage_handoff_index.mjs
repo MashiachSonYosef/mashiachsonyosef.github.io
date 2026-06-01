@@ -145,6 +145,10 @@ function validateCounts() {
     'context_signature_lookup_occurrences_with_cross_cluster',
     'context_signature_lookup_unmatched_occurrence_ids',
     'context_signature_lookup_route_payload_field_hits',
+    'context_signature_contrast_groups',
+    'context_signature_contrast_occurrence_refs',
+    'context_signature_contrast_reader_facing_rows',
+    'context_signature_contrast_route_payload_field_hits',
     'selected_slice_rows',
     'selected_slice_works',
     'selected_slices_index_slices',
@@ -428,6 +432,18 @@ function validateCounts() {
   if (Number(artifact.counts?.context_signature_lookup_route_payload_field_hits || 0) !== 0) {
     issues.push('context_signature_lookup_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.counts?.context_signature_contrast_groups || 0) !== Number(artifact.counts?.context_signature_cross_cluster_groups || 0)) {
+    issues.push('context_signature_contrast_groups must equal context_signature_cross_cluster_groups');
+  }
+  if (Number(artifact.counts?.context_signature_contrast_occurrence_refs || 0) <= 0) {
+    issues.push('context_signature_contrast_occurrence_refs must be positive');
+  }
+  if (Number(artifact.counts?.context_signature_contrast_reader_facing_rows || 0) !== 0) {
+    issues.push('context_signature_contrast_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.counts?.context_signature_contrast_route_payload_field_hits || 0) !== 0) {
+    issues.push('context_signature_contrast_route_payload_field_hits must be 0');
+  }
   const expectedDirectedEdges = Number(artifact.counts?.crossmatch_occurrence_refs || 0)
     * Math.max(0, Number(artifact.counts?.crossmatch_occurrence_refs || 0) - 1);
   if (Number(artifact.counts?.crossmatch_directed_edges || 0) !== expectedDirectedEdges) {
@@ -481,6 +497,7 @@ function validateArtifacts() {
     'context_offset_index_report',
     'context_signature_index_report',
     'context_signature_lookup_report',
+    'context_signature_contrast_report',
     'selected_slice_report',
     'selected_slices_index_report',
     'selected_occurrences_report',
@@ -537,6 +554,9 @@ function validateValidation() {
   }
   if (artifact.validation?.context_signature_lookup_status !== 'present') {
     issues.push('validation.context_signature_lookup_status must be present');
+  }
+  if (artifact.validation?.context_signature_contrast_status !== 'present') {
+    issues.push('validation.context_signature_contrast_status must be present');
   }
   if (artifact.validation?.selected_slice_status !== 'present') issues.push('validation.selected_slice_status must be present');
   if (artifact.validation?.selected_slices_index_status !== 'present') issues.push('validation.selected_slices_index_status must be present');
@@ -772,6 +792,21 @@ function validateValidation() {
   if (Number(artifact.validation?.context_signature_lookup_route_payload_field_hits || 0) !== 0) {
     issues.push('context_signature_lookup_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.validation?.context_signature_contrast_groups || 0) !== Number(artifact.counts?.context_signature_contrast_groups || 0)) {
+    issues.push('validation.context_signature_contrast_groups must equal count');
+  }
+  if (Number(artifact.validation?.context_signature_contrast_occurrence_refs || 0) !== Number(artifact.counts?.context_signature_contrast_occurrence_refs || 0)) {
+    issues.push('validation.context_signature_contrast_occurrence_refs must equal count');
+  }
+  if (Number(artifact.validation?.context_signature_contrast_reader_facing_rows || 0) !== 0) {
+    issues.push('context_signature_contrast_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.validation?.context_signature_contrast_failed_checks || 0) !== 0) {
+    issues.push('context_signature_contrast_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.context_signature_contrast_route_payload_field_hits || 0) !== 0) {
+    issues.push('context_signature_contrast_route_payload_field_hits must be 0');
+  }
   if (!String(artifact.validation?.selected_slice_id || '').trim()) issues.push('selected_slice_id must be present');
   if (Number(artifact.validation?.selected_slice_rows || 0) <= 0) issues.push('selected_slice_rows must be positive');
   if (Number(artifact.validation?.selected_slices_index_slices || 0) <= 0) {
@@ -879,6 +914,8 @@ function validateCommands() {
     validate_context_signature_index: 'validate_workbench_usage_context_signature_index.mjs',
     build_context_signature_lookup: 'build_workbench_usage_context_signature_lookup.mjs',
     validate_context_signature_lookup: 'validate_workbench_usage_context_signature_lookup.mjs',
+    build_context_signature_contrast: 'build_workbench_usage_context_signature_contrast.mjs',
+    validate_context_signature_contrast: 'validate_workbench_usage_context_signature_contrast.mjs',
     build_selected_slice: 'build_workbench_usage_slice_index.mjs',
     validate_selected_slice: 'validate_workbench_usage_slice_index.mjs',
     build_selected_slice_jeremiah: 'build_workbench_usage_slice_index.mjs',

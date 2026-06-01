@@ -1,16 +1,16 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T01:58:40.636Z
+Generated: 2026-06-01T02:18:19.955Z
 
 ## Summary
 
-- Steps: 62
+- Steps: 64
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
 - Missing smoke artifacts: 0
 - Zero-useful smoke targets: 0
-- Source freshness: stale, count delta 76, modified after artifact 81
+- Source freshness: stale, count delta 77, modified after artifact 82
 - Reshit source coverage: 271/271, uncovered 0
 - Handoff coverage: 55 manifests, missing targets 0
 - Public handoff index: 55 selected, validation failed 0, eligible 2390, ambiguous count-only 2064, zero-useful 0, ambiguous reader-facing no
@@ -25,12 +25,13 @@ Generated: 2026-06-01T01:58:40.636Z
 - Usage search rows: present, rows 2390, works 271, categories 15, clusters 2, route payload hits 0
 - Usage provenance: present, rows 2390, licenses 4, version sources 185, license metadata 2390, source links 2390, version metadata 2390, unsafe license rows 0, route payload hits 0
 - Usage search shard index: present, shards 74, rows 2390, categories 15, clusters 2, statuses 3, route payload hits 0
-- Usage refresh priority: present, pending 81, known-use candidates 0, review-only 81, promoted 0, blocked broad refresh files 81, route payload hits 0
+- Usage refresh priority: present, pending 82, known-use candidates 0, review-only 82, promoted 0, blocked broad refresh files 82, route payload hits 0
 - Usage unit density: present, units 1673, rows 2390, multi-occurrence units 418, max occurrences per unit 11, works 271, route payload hits 0
 - Usage phrase recurrence: present, rows 2390, n-gram instances 32425, recurring groups 2244, rows with recurring groups 2303, skipped rows without focus 0, route payload hits 0
 - Usage context offset: present, rows 2390, rows with context 2390, token observations 36525, immediate neighbor observations 4731, offsets 16, token buckets 17103, skipped rows without focus 0, route payload hits 0
 - Usage context signature: present, rows 2390, rows with signatures 2390, windows 4780, groups 3642, recurring groups 394, rows with recurring signatures 1152, cross-cluster groups 76, skipped rows without focus 0, route payload hits 0
 - Usage context signature lookup: present, occurrences 2390, memberships 4780, recurring memberships 1532, occurrences with recurring 1152, cross-cluster memberships 491, occurrences with cross-cluster 429, unmatched occurrence IDs 0, route payload hits 0
+- Usage context signature contrast: present, cross-cluster groups 76, occurrence refs 429, reader-facing rows 0, route payload hits 0
 - Usage selected slice: present, id tanakh-workbench-section, rows 49, works 20
 - Usage selected slices index: present, slices 2, rows 50, unique occurrences 49, duplicate rows 1
 - Usage selected occurrences: present, rows 49, memberships 50, duplicate memberships 1
@@ -52,8 +53,8 @@ Generated: 2026-06-01T01:58:40.636Z
 | step | status | output |
 |---|---|---|
 | validate_smoke_queue | passed | Workbench smoke target validation passed. Targets: 55. |
-| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1268; scanned 1192; modified after artifact 81; created after artifact 76 |
-| validate_source_freshness | passed | Validated workbench source freshness .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json: status stale; pending 81 |
+| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1269; scanned 1192; modified after artifact 82; created after artifact 77 |
+| validate_source_freshness | passed | Validated workbench source freshness .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json: status stale; pending 82 |
 | report_reshit_smoke_coverage | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.md / Known nonzero source files 271; covered 271; uncovered 0; suggested gap targets 0 |
 | report_workbench_smoke_counts | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.md / Targets 55; supported 339; candidate 1351; weak 700; ambiguous 2064; missing 0; zero useful 0 |
 | build_complete_handoff_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.md / Target queue coverage: 55/55; missing 0 |
@@ -78,8 +79,8 @@ Generated: 2026-06-01T01:58:40.636Z
 | validate_usage_provenance_index | passed | Validated usage provenance index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-provenance-index.json: licenses 4; version sources 185; rows 2390 |
 | build_usage_search_shard_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.md / Usage search shard index shards 74; rows 2390 |
 | validate_usage_search_shard_index | passed | Validated usage search shard index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json: shards 74; rows 2390 |
-| build_usage_refresh_priority_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.md / Usage refresh priority pending 81; known-use candidates 0; promoted 0 |
-| validate_usage_refresh_priority_index | passed | Validated usage refresh priority index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json: pending 81; promoted 0 |
+| build_usage_refresh_priority_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.md / Usage refresh priority pending 82; known-use candidates 0; promoted 0 |
+| validate_usage_refresh_priority_index | passed | Validated usage refresh priority index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json: pending 82; promoted 0 |
 | build_usage_unit_density_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.md / Usage unit density units 1673; multi 418; rows 2390 |
 | validate_usage_unit_density_index | passed | Validated usage unit density index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.json: units 1673; rows 2390 |
 | build_usage_phrase_recurrence_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-phrase-recurrence-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-phrase-recurrence-index.md / Usage phrase recurrence groups 2244; instances 32425; rows 2390 |
@@ -90,6 +91,8 @@ Generated: 2026-06-01T01:58:40.636Z
 | validate_usage_context_signature_index | passed | Validated usage context signature index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-signature-index.json: groups 3642; recurring 394 |
 | build_usage_context_signature_lookup | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-signature-lookup.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-signature-lookup.md / Usage context signature lookup occurrences 2390; memberships 4780; recurring occurrences 1152 |
 | validate_usage_context_signature_lookup | passed | Validated usage context signature lookup .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-signature-lookup.json: occurrences 2390; memberships 4780 |
+| build_usage_context_signature_contrast | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-signature-contrast.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-signature-contrast.md / Usage context signature contrast groups 76; occurrences 429 |
+| validate_usage_context_signature_contrast | passed | Validated usage context signature contrast .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-signature-contrast.json: groups 76; occurrences 429 |
 | build_usage_selected_slice | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.md / Usage slice tanakh-workbench-section rows 49; works 20; clusters 2 |
 | validate_usage_selected_slice | passed | Workbench usage slice index validation passed. Slice rows: 49. Works: 20. |
 | build_usage_selected_slice_jeremiah | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-jeremiah.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-jeremiah.md / Usage slice jeremiah-workbench-section rows 1; works 1; clusters 1 |
