@@ -1,10 +1,10 @@
 # Workbench Usage Selected QA Package
 
-Generated: 2026-06-01T06:56:24.202Z
+Generated: 2026-06-01T07:15:20.759Z
 
 ## Summary
 
-- Package items: 16
+- Package items: 17
 - Selected rows: 49
 - Source refs: 38
 - Works: 20
@@ -30,6 +30,13 @@ Generated: 2026-06-01T06:56:24.202Z
 - Duplicate work-anchor rows: 19
 - Cross-frame collision buckets: 4
 - Cross-frame collision rows: 14
+- Collision/provenance buckets: 16
+- Collision/provenance occurrence rows: 38
+- Collision/provenance provenance buckets: 4
+- Collision/frame-provenance buckets: 7
+- Collision/provenance missing rows: 0
+- Collision/provenance missing frame rows: 0
+- Collision/provenance samples: 38
 - Route IDs: 1
 - Selected route links: 49
 - Unresolved route IDs: 0
@@ -74,7 +81,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 
 | check | status | detail |
 |---|---|---|
-| package_items_present | passed | package items 16 |
+| package_items_present | passed | package items 17 |
 | selected_rows_consistent | passed | selected rows 49 |
 | selected_provenance_rows_complete | passed | provenance rows 49; selected rows 49 |
 | selected_provenance_license_metadata_complete | passed | license metadata rows 49; selected rows 49 |
@@ -88,6 +95,9 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_frame_provenance_samples_complete | passed | frame/provenance samples 49; selected rows 49 |
 | selected_collision_counts_match | passed | collision source buckets 8; work anchor buckets 8 |
 | selected_cross_frame_collisions_visible | passed | cross-frame collision buckets 4 |
+| selected_collision_provenance_counts_match | passed | collision/provenance 16/38; collision audit 16/38 |
+| selected_collision_provenance_present | passed | missing provenance 0; missing frame/provenance 0 |
+| selected_collision_provenance_samples_complete | passed | collision/provenance samples 38; collision rows 38 |
 | selected_route_links_complete | passed | selected route links 49; selected rows 49 |
 | route_ids_resolved | passed | unresolved route IDs 0 |
 | selected_route_provenance_links_complete | passed | route/provenance links 49; selected route links 49 |
@@ -124,6 +134,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_provenance_matrix | workbench_usage_selected_provenance_matrix | .local-cache/workbench-evidence/usage-selected-provenance-matrix.json | reports/workbench-usage-selected-provenance-matrix.md | passed | 0 | 0 | 0 | 0 | provenance_buckets: 5<br>rows: 49<br>licenses: 2<br>version_sources: 4<br>rows_with_license_metadata: 49<br>rows_with_version_metadata: 49<br>missing_or_unrecognized_license_rows: 0<br>samples: 49 |
 | selected_frame_provenance_matrix | workbench_usage_selected_frame_provenance_matrix | .local-cache/workbench-evidence/usage-selected-frame-provenance-matrix.json | reports/workbench-usage-selected-frame-provenance-matrix.md | passed | 0 | 0 | 0 | 0 | matrix_rows: 10<br>selected_rows: 49<br>frames: 2<br>provenance_buckets: 5<br>missing_provenance_rows: 0<br>samples: 49 |
 | selected_collision_audit | workbench_usage_selected_collision_audit | .local-cache/workbench-evidence/usage-selected-collision-audit.json | reports/workbench-usage-selected-collision-audit.md | pass_with_warnings | 1 | 0 | 0 | 0 | collision_buckets: 16<br>collision_occurrence_rows: 38<br>duplicate_source_ref_buckets: 8<br>duplicate_work_anchor_buckets: 8<br>cross_frame_collision_buckets: 4 |
+| selected_collision_provenance_audit | workbench_usage_selected_collision_provenance_audit | .local-cache/workbench-evidence/usage-selected-collision-provenance-audit.json | reports/workbench-usage-selected-collision-provenance-audit.md | pass_with_warnings | 1 | 0 | 0 | 0 | collision_buckets: 16<br>collision_occurrence_rows: 38<br>provenance_buckets: 4<br>frame_provenance_buckets: 7<br>missing_provenance_rows: 0<br>missing_frame_provenance_rows: 0<br>samples: 38 |
 | selected_signature_independence | workbench_usage_selected_signature_independence | .local-cache/workbench-evidence/usage-selected-signature-independence.json | reports/workbench-usage-selected-signature-independence.md | passed | 0 | 0 | 0 | 0 | rows: 49<br>rows_with_recurring: 21<br>rows_with_cross_cluster: 9 |
 | selected_route_concentration_response | workbench_usage_selected_route_concentration_response | .local-cache/workbench-evidence/usage-selected-route-concentration-response.json | reports/workbench-usage-selected-route-concentration-response.md | pass_with_warnings | 1 | 0 | 0 | 0 | rows: 49<br>route_buckets: 1<br>warning_visible: 1 |
 | selected_route_resolution | workbench_usage_selected_route_resolution | .local-cache/workbench-evidence/usage-selected-route-resolution.json | reports/workbench-usage-selected-route-resolution.md | passed | 0 | 0 | 0 | 0 | selected_route_links: 49<br>route_buckets: 1<br>unresolved_route_ids: 0 |

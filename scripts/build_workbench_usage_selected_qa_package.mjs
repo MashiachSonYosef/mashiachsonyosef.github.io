@@ -9,6 +9,7 @@ const defaults = {
   selectedProvenanceMatrix: '.local-cache/workbench-evidence/usage-selected-provenance-matrix.json',
   selectedFrameProvenanceMatrix: '.local-cache/workbench-evidence/usage-selected-frame-provenance-matrix.json',
   selectedCollisionAudit: '.local-cache/workbench-evidence/usage-selected-collision-audit.json',
+  selectedCollisionProvenanceAudit: '.local-cache/workbench-evidence/usage-selected-collision-provenance-audit.json',
   selectedSignatureIndependence: '.local-cache/workbench-evidence/usage-selected-signature-independence.json',
   selectedRouteConcentrationResponse: '.local-cache/workbench-evidence/usage-selected-route-concentration-response.json',
   selectedRouteResolution: '.local-cache/workbench-evidence/usage-selected-route-resolution.json',
@@ -31,6 +32,7 @@ const artifacts = {
   selectedProvenanceMatrix: readJson(options.selectedProvenanceMatrix),
   selectedFrameProvenanceMatrix: readJson(options.selectedFrameProvenanceMatrix),
   selectedCollisionAudit: readJson(options.selectedCollisionAudit),
+  selectedCollisionProvenanceAudit: readJson(options.selectedCollisionProvenanceAudit),
   selectedSignatureIndependence: readJson(options.selectedSignatureIndependence),
   selectedRouteConcentrationResponse: readJson(options.selectedRouteConcentrationResponse),
   selectedRouteResolution: readJson(options.selectedRouteResolution),
@@ -49,6 +51,7 @@ assertType(artifacts.selectedSourceDiversity, 'workbench_usage_selected_source_d
 assertType(artifacts.selectedProvenanceMatrix, 'workbench_usage_selected_provenance_matrix', options.selectedProvenanceMatrix);
 assertType(artifacts.selectedFrameProvenanceMatrix, 'workbench_usage_selected_frame_provenance_matrix', options.selectedFrameProvenanceMatrix);
 assertType(artifacts.selectedCollisionAudit, 'workbench_usage_selected_collision_audit', options.selectedCollisionAudit);
+assertType(artifacts.selectedCollisionProvenanceAudit, 'workbench_usage_selected_collision_provenance_audit', options.selectedCollisionProvenanceAudit);
 assertType(artifacts.selectedSignatureIndependence, 'workbench_usage_selected_signature_independence', options.selectedSignatureIndependence);
 assertType(artifacts.selectedRouteConcentrationResponse, 'workbench_usage_selected_route_concentration_response', options.selectedRouteConcentrationResponse);
 assertType(artifacts.selectedRouteResolution, 'workbench_usage_selected_route_resolution', options.selectedRouteResolution);
@@ -78,6 +81,7 @@ const artifact = {
     selected_provenance_matrix: options.selectedProvenanceMatrix,
     selected_frame_provenance_matrix: options.selectedFrameProvenanceMatrix,
     selected_collision_audit: options.selectedCollisionAudit,
+    selected_collision_provenance_audit: options.selectedCollisionProvenanceAudit,
     selected_signature_independence: options.selectedSignatureIndependence,
     selected_route_concentration_response: options.selectedRouteConcentrationResponse,
     selected_route_resolution: options.selectedRouteResolution,
@@ -154,6 +158,15 @@ function buildPackageItems() {
       duplicate_source_ref_buckets: artifacts.selectedCollisionAudit.counts?.duplicate_source_ref_buckets,
       duplicate_work_anchor_buckets: artifacts.selectedCollisionAudit.counts?.duplicate_work_anchor_buckets,
       cross_frame_collision_buckets: artifacts.selectedCollisionAudit.counts?.cross_frame_collision_buckets,
+    }),
+    item('selected_collision_provenance_audit', options.selectedCollisionProvenanceAudit, 'reports/workbench-usage-selected-collision-provenance-audit.md', artifacts.selectedCollisionProvenanceAudit, {
+      collision_buckets: artifacts.selectedCollisionProvenanceAudit.counts?.collision_buckets,
+      collision_occurrence_rows: artifacts.selectedCollisionProvenanceAudit.counts?.collision_occurrence_rows,
+      provenance_buckets: artifacts.selectedCollisionProvenanceAudit.counts?.provenance_buckets,
+      frame_provenance_buckets: artifacts.selectedCollisionProvenanceAudit.counts?.frame_provenance_buckets,
+      missing_provenance_rows: artifacts.selectedCollisionProvenanceAudit.counts?.missing_provenance_rows,
+      missing_frame_provenance_rows: artifacts.selectedCollisionProvenanceAudit.counts?.missing_frame_provenance_rows,
+      samples: artifacts.selectedCollisionProvenanceAudit.counts?.sample_occurrences,
     }),
     item('selected_signature_independence', options.selectedSignatureIndependence, 'reports/workbench-usage-selected-signature-independence.md', artifacts.selectedSignatureIndependence, {
       rows: artifacts.selectedSignatureIndependence.counts?.selected_occurrence_refs,
@@ -267,6 +280,13 @@ function buildCounts(items) {
     selected_duplicate_work_anchor_rows: Number(artifacts.selectedCollisionAudit.counts?.duplicate_work_anchor_rows || 0),
     selected_cross_frame_collision_buckets: Number(artifacts.selectedCollisionAudit.counts?.cross_frame_collision_buckets || 0),
     selected_cross_frame_collision_rows: Number(artifacts.selectedCollisionAudit.counts?.cross_frame_collision_rows || 0),
+    selected_collision_provenance_buckets: Number(artifacts.selectedCollisionProvenanceAudit.counts?.collision_buckets || 0),
+    selected_collision_provenance_occurrence_rows: Number(artifacts.selectedCollisionProvenanceAudit.counts?.collision_occurrence_rows || 0),
+    selected_collision_provenance_buckets_seen: Number(artifacts.selectedCollisionProvenanceAudit.counts?.provenance_buckets || 0),
+    selected_collision_frame_provenance_buckets: Number(artifacts.selectedCollisionProvenanceAudit.counts?.frame_provenance_buckets || 0),
+    selected_collision_provenance_missing_rows: Number(artifacts.selectedCollisionProvenanceAudit.counts?.missing_provenance_rows || 0),
+    selected_collision_provenance_missing_frame_rows: Number(artifacts.selectedCollisionProvenanceAudit.counts?.missing_frame_provenance_rows || 0),
+    selected_collision_provenance_samples: Number(artifacts.selectedCollisionProvenanceAudit.counts?.sample_occurrences || 0),
     selected_route_ids: Number(artifacts.selectedRouteResolution.counts?.route_id_buckets || 0),
     selected_route_links: Number(artifacts.selectedRouteResolution.counts?.selected_route_links || 0),
     unresolved_route_ids: Number(artifacts.selectedRouteResolution.counts?.unresolved_route_ids || 0),
@@ -307,7 +327,7 @@ function buildCounts(items) {
 
 function buildChecks(counts) {
   return [
-    check('package_items_present', counts.package_items === 16 ? 'passed' : 'failed', `package items ${counts.package_items}`),
+    check('package_items_present', counts.package_items === 17 ? 'passed' : 'failed', `package items ${counts.package_items}`),
     check('selected_rows_consistent', counts.selected_rows === Number(artifacts.selectedSourceDiversity.counts?.selected_occurrence_refs || 0) ? 'passed' : 'failed', `selected rows ${counts.selected_rows}`),
     check('selected_provenance_rows_complete', counts.selected_provenance_rows === counts.selected_rows ? 'passed' : 'failed', `provenance rows ${counts.selected_provenance_rows}; selected rows ${counts.selected_rows}`),
     check('selected_provenance_license_metadata_complete', counts.selected_provenance_rows_with_license_metadata === counts.selected_rows ? 'passed' : 'failed', `license metadata rows ${counts.selected_provenance_rows_with_license_metadata}; selected rows ${counts.selected_rows}`),
@@ -321,6 +341,9 @@ function buildChecks(counts) {
     check('selected_frame_provenance_samples_complete', counts.selected_frame_provenance_matrix_samples === counts.selected_rows ? 'passed' : 'failed', `frame/provenance samples ${counts.selected_frame_provenance_matrix_samples}; selected rows ${counts.selected_rows}`),
     check('selected_collision_counts_match', counts.selected_duplicate_source_ref_buckets === Number(artifacts.selectedSourceDiversity.counts?.duplicate_source_ref_buckets || 0) && counts.selected_duplicate_work_anchor_buckets === Number(artifacts.selectedSourceDiversity.counts?.duplicate_work_anchor_buckets || 0) ? 'passed' : 'failed', `collision source buckets ${counts.selected_duplicate_source_ref_buckets}; work anchor buckets ${counts.selected_duplicate_work_anchor_buckets}`),
     check('selected_cross_frame_collisions_visible', counts.selected_cross_frame_collision_buckets > 0 ? 'passed' : 'failed', `cross-frame collision buckets ${counts.selected_cross_frame_collision_buckets}`),
+    check('selected_collision_provenance_counts_match', counts.selected_collision_provenance_buckets === counts.selected_collision_buckets && counts.selected_collision_provenance_occurrence_rows === counts.selected_collision_occurrence_rows ? 'passed' : 'failed', `collision/provenance ${counts.selected_collision_provenance_buckets}/${counts.selected_collision_provenance_occurrence_rows}; collision audit ${counts.selected_collision_buckets}/${counts.selected_collision_occurrence_rows}`),
+    check('selected_collision_provenance_present', counts.selected_collision_provenance_missing_rows === 0 && counts.selected_collision_provenance_missing_frame_rows === 0 ? 'passed' : 'failed', `missing provenance ${counts.selected_collision_provenance_missing_rows}; missing frame/provenance ${counts.selected_collision_provenance_missing_frame_rows}`),
+    check('selected_collision_provenance_samples_complete', counts.selected_collision_provenance_samples === counts.selected_collision_occurrence_rows ? 'passed' : 'failed', `collision/provenance samples ${counts.selected_collision_provenance_samples}; collision rows ${counts.selected_collision_occurrence_rows}`),
     check('selected_route_links_complete', counts.selected_route_links === counts.selected_rows ? 'passed' : 'failed', `selected route links ${counts.selected_route_links}; selected rows ${counts.selected_rows}`),
     check('route_ids_resolved', counts.unresolved_route_ids === 0 ? 'passed' : 'failed', `unresolved route IDs ${counts.unresolved_route_ids}`),
     check('selected_route_provenance_links_complete', counts.selected_route_provenance_links === counts.selected_route_links ? 'passed' : 'failed', `route/provenance links ${counts.selected_route_provenance_links}; selected route links ${counts.selected_route_links}`),
@@ -384,6 +407,13 @@ function writeReport(relativePath, artifact) {
     `- Duplicate work-anchor rows: ${artifact.counts.selected_duplicate_work_anchor_rows}`,
     `- Cross-frame collision buckets: ${artifact.counts.selected_cross_frame_collision_buckets}`,
     `- Cross-frame collision rows: ${artifact.counts.selected_cross_frame_collision_rows}`,
+    `- Collision/provenance buckets: ${artifact.counts.selected_collision_provenance_buckets}`,
+    `- Collision/provenance occurrence rows: ${artifact.counts.selected_collision_provenance_occurrence_rows}`,
+    `- Collision/provenance provenance buckets: ${artifact.counts.selected_collision_provenance_buckets_seen}`,
+    `- Collision/frame-provenance buckets: ${artifact.counts.selected_collision_frame_provenance_buckets}`,
+    `- Collision/provenance missing rows: ${artifact.counts.selected_collision_provenance_missing_rows}`,
+    `- Collision/provenance missing frame rows: ${artifact.counts.selected_collision_provenance_missing_frame_rows}`,
+    `- Collision/provenance samples: ${artifact.counts.selected_collision_provenance_samples}`,
     `- Route IDs: ${artifact.counts.selected_route_ids}`,
     `- Selected route links: ${artifact.counts.selected_route_links}`,
     `- Unresolved route IDs: ${artifact.counts.unresolved_route_ids}`,
@@ -501,6 +531,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-provenance-matrix=')) parsed.selectedProvenanceMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-frame-provenance-matrix=')) parsed.selectedFrameProvenanceMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-collision-audit=')) parsed.selectedCollisionAudit = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-collision-provenance-audit=')) parsed.selectedCollisionProvenanceAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-signature-independence=')) parsed.selectedSignatureIndependence = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-route-concentration-response=')) parsed.selectedRouteConcentrationResponse = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-route-resolution=')) parsed.selectedRouteResolution = cleanRelativePath(valueAfterEquals(arg));

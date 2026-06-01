@@ -66,7 +66,7 @@ console.log(`Validated usage selected QA package ${artifactPath}: items ${items.
 
 function validateCounts(packageItems) {
   if (Number(artifact.counts?.package_items || 0) !== packageItems.length) issues.push('package_items count must equal package_items length');
-  if (packageItems.length !== 16) issues.push('package must contain 16 selected artifact items');
+  if (packageItems.length !== 17) issues.push('package must contain 17 selected artifact items');
   if (Number(artifact.counts?.selected_rows || 0) <= 0) issues.push('selected_rows must be positive');
   if (Number(artifact.counts?.selected_source_refs || 0) <= 1) issues.push('selected_source_refs must show diversity');
   if (Number(artifact.counts?.selected_works || 0) <= 1) issues.push('selected_works must show diversity');
@@ -91,6 +91,27 @@ function validateCounts(packageItems) {
   }
   if (Number(artifact.counts?.selected_cross_frame_collision_rows || 0) <= 0) {
     issues.push('selected_cross_frame_collision_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_collision_provenance_buckets || 0) !== Number(artifact.counts?.selected_collision_buckets || 0)) {
+    issues.push('selected_collision_provenance_buckets must equal selected_collision_buckets');
+  }
+  if (Number(artifact.counts?.selected_collision_provenance_occurrence_rows || 0) !== Number(artifact.counts?.selected_collision_occurrence_rows || 0)) {
+    issues.push('selected_collision_provenance_occurrence_rows must equal selected_collision_occurrence_rows');
+  }
+  if (Number(artifact.counts?.selected_collision_provenance_buckets_seen || 0) <= 0) {
+    issues.push('selected_collision_provenance_buckets_seen must be positive');
+  }
+  if (Number(artifact.counts?.selected_collision_frame_provenance_buckets || 0) <= 0) {
+    issues.push('selected_collision_frame_provenance_buckets must be positive');
+  }
+  if (Number(artifact.counts?.selected_collision_provenance_missing_rows || 0) !== 0) {
+    issues.push('selected_collision_provenance_missing_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_collision_provenance_missing_frame_rows || 0) !== 0) {
+    issues.push('selected_collision_provenance_missing_frame_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_collision_provenance_samples || 0) !== Number(artifact.counts?.selected_collision_occurrence_rows || 0)) {
+    issues.push('selected_collision_provenance_samples must equal selected_collision_occurrence_rows');
   }
   if (Number(artifact.counts?.selected_route_ids || 0) <= 0) issues.push('selected_route_ids must be positive');
   if (Number(artifact.counts?.selected_route_links || 0) !== Number(artifact.counts?.selected_rows || 0)) {
