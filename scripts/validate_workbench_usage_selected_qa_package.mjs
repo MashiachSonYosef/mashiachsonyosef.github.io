@@ -66,7 +66,7 @@ console.log(`Validated usage selected QA package ${artifactPath}: items ${items.
 
 function validateCounts(packageItems) {
   if (Number(artifact.counts?.package_items || 0) !== packageItems.length) issues.push('package_items count must equal package_items length');
-  if (packageItems.length !== 9) issues.push('package must contain 9 selected artifact items');
+  if (packageItems.length !== 10) issues.push('package must contain 10 selected artifact items');
   if (Number(artifact.counts?.selected_rows || 0) <= 0) issues.push('selected_rows must be positive');
   if (Number(artifact.counts?.selected_source_refs || 0) <= 1) issues.push('selected_source_refs must show diversity');
   if (Number(artifact.counts?.selected_works || 0) <= 1) issues.push('selected_works must show diversity');
@@ -75,6 +75,21 @@ function validateCounts(packageItems) {
     issues.push('selected_route_links must equal selected_rows');
   }
   if (Number(artifact.counts?.unresolved_route_ids || 0) !== 0) issues.push('unresolved_route_ids must be 0');
+  if (Number(artifact.counts?.selected_focus_context_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_focus_context_rows must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_marker_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_focus_marker_rows must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_marker_mismatch_rows || 0) !== 0) {
+    issues.push('selected_focus_marker_mismatch_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_repeated_focus_context_rows || 0) <= 0) {
+    issues.push('selected_repeated_focus_context_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_missing_hebrew_context_rows || 0) !== 0) {
+    issues.push('selected_missing_hebrew_context_rows must be 0');
+  }
   if (Number(artifact.counts?.route_concentration_warning_visible || 0) !== 1) {
     issues.push('route_concentration_warning_visible must be 1');
   }

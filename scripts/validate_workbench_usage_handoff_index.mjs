@@ -205,6 +205,13 @@ function validateCounts() {
     'selected_route_resolution_reader_facing_rows',
     'selected_route_resolution_route_payload_copied_rows',
     'selected_route_resolution_route_payload_field_hits',
+    'selected_focus_context_audit_rows',
+    'selected_focus_context_audit_focus_marker_rows',
+    'selected_focus_context_audit_mismatch_rows',
+    'selected_focus_context_audit_repeated_focus_rows',
+    'selected_focus_context_audit_missing_hebrew_rows',
+    'selected_focus_context_audit_reader_facing_rows',
+    'selected_focus_context_audit_route_payload_field_hits',
     'selected_qa_package_items',
     'selected_qa_package_selected_rows',
     'selected_qa_package_route_ids',
@@ -401,8 +408,29 @@ function validateCounts() {
   if (Number(artifact.counts?.selected_route_resolution_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_route_resolution_route_payload_field_hits must be 0');
   }
-  if (Number(artifact.counts?.selected_qa_package_items || 0) !== 9) {
-    issues.push('selected_qa_package_items must be 9');
+  if (Number(artifact.counts?.selected_focus_context_audit_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_focus_context_audit_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_context_audit_focus_marker_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_focus_context_audit_focus_marker_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.counts?.selected_focus_context_audit_mismatch_rows || 0) !== 0) {
+    issues.push('selected_focus_context_audit_mismatch_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_focus_context_audit_repeated_focus_rows || 0) <= 0) {
+    issues.push('selected_focus_context_audit_repeated_focus_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_focus_context_audit_missing_hebrew_rows || 0) !== 0) {
+    issues.push('selected_focus_context_audit_missing_hebrew_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_focus_context_audit_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_focus_context_audit_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_focus_context_audit_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_focus_context_audit_route_payload_field_hits must be 0');
+  }
+  if (Number(artifact.counts?.selected_qa_package_items || 0) !== 10) {
+    issues.push('selected_qa_package_items must be 10');
   }
   if (Number(artifact.counts?.selected_qa_package_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('selected_qa_package_selected_rows must equal selected_occurrence_rows');
@@ -716,6 +744,7 @@ function validateArtifacts() {
     'selected_route_concentration_response_report',
     'selected_occurrence_cards_report',
     'selected_route_resolution_report',
+    'selected_focus_context_audit_report',
     'selected_qa_package_report',
     'selected_occurrence_lookup_report',
     'crossmatch_links_report',
@@ -791,6 +820,9 @@ function validateValidation() {
   }
   if (artifact.validation?.selected_route_resolution_status !== 'present') {
     issues.push('validation.selected_route_resolution_status must be present');
+  }
+  if (artifact.validation?.selected_focus_context_audit_status !== 'present') {
+    issues.push('validation.selected_focus_context_audit_status must be present');
   }
   if (artifact.validation?.selected_qa_package_status !== 'present') {
     issues.push('validation.selected_qa_package_status must be present');
@@ -1217,8 +1249,35 @@ function validateValidation() {
   if (Number(artifact.validation?.selected_route_resolution_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_route_resolution_route_payload_field_hits must be 0');
   }
-  if (Number(artifact.validation?.selected_qa_package_items || 0) !== 9) {
-    issues.push('selected_qa_package_items must be 9');
+  if (Number(artifact.validation?.selected_focus_context_audit_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_focus_context_audit_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.validation?.selected_focus_context_audit_focus_marker_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_focus_context_audit_focus_marker_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.validation?.selected_focus_context_audit_mismatch_rows || 0) !== 0) {
+    issues.push('selected_focus_context_audit_mismatch_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_focus_context_audit_repeated_focus_rows || 0) <= 0) {
+    issues.push('selected_focus_context_audit_repeated_focus_rows must be positive');
+  }
+  if (Number(artifact.validation?.selected_focus_context_audit_missing_hebrew_rows || 0) !== 0) {
+    issues.push('selected_focus_context_audit_missing_hebrew_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_focus_context_audit_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_focus_context_audit_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_focus_context_audit_failed_checks || 0) !== 0) {
+    issues.push('selected_focus_context_audit_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.selected_focus_context_audit_warning_count || 0) <= 0) {
+    issues.push('selected_focus_context_audit_warning_count must be positive');
+  }
+  if (Number(artifact.validation?.selected_focus_context_audit_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_focus_context_audit_route_payload_field_hits must be 0');
+  }
+  if (Number(artifact.validation?.selected_qa_package_items || 0) !== 10) {
+    issues.push('selected_qa_package_items must be 10');
   }
   if (Number(artifact.validation?.selected_qa_package_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('selected_qa_package_selected_rows must equal selected_occurrence_rows');
@@ -1366,6 +1425,8 @@ function validateCommands() {
     validate_selected_occurrence_cards: 'validate_workbench_usage_selected_occurrence_cards.mjs',
     build_selected_route_resolution: 'build_workbench_usage_selected_route_resolution.mjs',
     validate_selected_route_resolution: 'validate_workbench_usage_selected_route_resolution.mjs',
+    build_selected_focus_context_audit: 'build_workbench_usage_selected_focus_context_audit.mjs',
+    validate_selected_focus_context_audit: 'validate_workbench_usage_selected_focus_context_audit.mjs',
     build_selected_qa_package: 'build_workbench_usage_selected_qa_package.mjs',
     validate_selected_qa_package: 'validate_workbench_usage_selected_qa_package.mjs',
     build_selected_occurrence_lookup: 'build_workbench_usage_selected_occurrence_lookup.mjs',
