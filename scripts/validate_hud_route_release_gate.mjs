@@ -114,6 +114,8 @@ const result = {
     fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
     fixture_cases: Number(boundaryReport.inputs?.fixture_cases || 0),
     fixture_sha256: boundaryReport.inputs?.fixture_file?.sha256 || '',
+    route_cards_with_source_rows: Number(boundaryReport.counts?.route_cards_with_source_rows || 0),
+    route_cards_missing_source_rows: Number(boundaryReport.counts?.route_cards_missing_source_rows || 0),
     answer_eligible_cards_with_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_with_answer_score || 0),
     answer_eligible_cards_missing_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_missing_answer_score || 0),
     answer_role_answer_cards: Number(boundaryReport.counts?.answer_role_answer_cards || 0),
@@ -308,6 +310,12 @@ async function validateBoundaryReport(report, reconciliation) {
   if (Number(report.counts?.issue_count || 0) !== 0) {
     issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
   }
+  if (count('route_cards_with_source_rows') !== count('cards')) {
+    issues.push('route publication boundary report found route cards without source rows');
+  }
+  if (count('route_cards_missing_source_rows') !== 0) {
+    issues.push(`route publication boundary report found ${count('route_cards_missing_source_rows')} route card(s) missing source_rows`);
+  }
   if (count('answer_eligible_cards_with_source_rows') > count('answer_eligible_cards')) {
     issues.push('route publication boundary report has more answer-eligible source-row cards than answer-eligible cards');
   }
@@ -499,6 +507,8 @@ function writeReport(relativePath, result) {
     `- Fixture: \`${result.route_publication_boundary.fixture}\``,
     `- Fixture cases: ${result.route_publication_boundary.fixture_cases}`,
     `- Fixture SHA-256: \`${result.route_publication_boundary.fixture_sha256 || 'missing'}\``,
+    `- Cards with source rows: ${result.route_publication_boundary.route_cards_with_source_rows}`,
+    `- Cards missing source rows: ${result.route_publication_boundary.route_cards_missing_source_rows}`,
     `- Answer-eligible cards with numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_with_answer_score}`,
     `- Answer-eligible cards missing numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_missing_answer_score}`,
     `- Cards with answer role: ${result.route_publication_boundary.answer_role_answer_cards}`,

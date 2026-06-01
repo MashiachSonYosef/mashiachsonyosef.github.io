@@ -118,6 +118,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       shards: 0,
       tokens: 0,
       cards: 0,
+      route_cards_with_source_rows: 0,
+      route_cards_missing_source_rows: 0,
       answer_eligible_cards: 0,
       answer_eligible_cards_with_source_rows: 0,
       answer_eligible_cards_with_answer_score: 0,
@@ -240,7 +242,14 @@ function auditCard(card, context, target = audit) {
     addIssue(context, `route card carries publication-readiness field(s): ${publicationFields.join(', ')}`, target);
   }
 
-  const sourceRows = Array.isArray(card?.source_rows) ? card.source_rows : [];
+  const hasSourceRows = Array.isArray(card?.source_rows) && card.source_rows.length > 0;
+  const sourceRows = hasSourceRows ? card.source_rows : [];
+  if (hasSourceRows) {
+    target.counts.route_cards_with_source_rows += 1;
+  } else {
+    target.counts.route_cards_missing_source_rows += 1;
+    addIssue(context, 'missing source_rows', target);
+  }
   if (typeof card?.answer_eligible !== 'boolean') addIssue(context, 'missing boolean answer_eligible', target);
   if (!card?.answer_role) addIssue(context, 'missing answer_role', target);
   else if (!allowedAnswerRoles.has(card.answer_role)) addIssue(context, `unknown answer_role: ${card.answer_role}`, target);
@@ -263,8 +272,7 @@ function auditCard(card, context, target = audit) {
     } else {
       target.counts.answer_eligible_cards_with_answer_score += 1;
     }
-    if (!sourceRows.length) addIssue(context, 'answer_eligible card missing source_rows', target);
-    else target.counts.answer_eligible_cards_with_source_rows += 1;
+    if (hasSourceRows) target.counts.answer_eligible_cards_with_source_rows += 1;
   }
 
   let cardHasTranslationUnsafeRow = false;
@@ -350,6 +358,8 @@ function writeReport(relativePath, data) {
     `- Shards scanned: ${data.counts.shards}`,
     `- Tokens scanned: ${data.counts.tokens}`,
     `- Cards scanned: ${data.counts.cards}`,
+    `- Cards with source rows: ${data.counts.route_cards_with_source_rows}`,
+    `- Cards missing source rows: ${data.counts.route_cards_missing_source_rows}`,
     `- Answer-eligible cards: ${data.counts.answer_eligible_cards}`,
     `- Answer-eligible cards with source rows: ${data.counts.answer_eligible_cards_with_source_rows}`,
     `- Answer-eligible cards with numeric answer score: ${data.counts.answer_eligible_cards_with_answer_score}`,
