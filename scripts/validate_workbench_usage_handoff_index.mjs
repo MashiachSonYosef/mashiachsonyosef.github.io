@@ -189,6 +189,14 @@ function validateCounts() {
     'selected_provenance_matrix_samples',
     'selected_provenance_matrix_reader_facing_rows',
     'selected_provenance_matrix_route_payload_field_hits',
+    'selected_frame_provenance_matrix_rows',
+    'selected_frame_provenance_matrix_selected_rows',
+    'selected_frame_provenance_matrix_frames',
+    'selected_frame_provenance_matrix_buckets',
+    'selected_frame_provenance_matrix_missing_provenance_rows',
+    'selected_frame_provenance_matrix_samples',
+    'selected_frame_provenance_matrix_reader_facing_rows',
+    'selected_frame_provenance_matrix_route_payload_field_hits',
     'selected_collision_audit_buckets',
     'selected_collision_audit_occurrence_rows',
     'selected_collision_audit_duplicate_source_ref_buckets',
@@ -402,6 +410,30 @@ function validateCounts() {
   if (Number(artifact.counts?.selected_provenance_matrix_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_provenance_matrix_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.counts?.selected_frame_provenance_matrix_rows || 0) <= 0) {
+    issues.push('selected_frame_provenance_matrix_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_frame_provenance_matrix_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_frame_provenance_matrix_selected_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.counts?.selected_frame_provenance_matrix_frames || 0) !== Number(artifact.counts?.selected_frame_summary_frames || 0)) {
+    issues.push('selected_frame_provenance_matrix_frames must equal selected_frame_summary_frames');
+  }
+  if (Number(artifact.counts?.selected_frame_provenance_matrix_buckets || 0) !== Number(artifact.counts?.selected_provenance_matrix_buckets || 0)) {
+    issues.push('selected_frame_provenance_matrix_buckets must equal selected_provenance_matrix_buckets');
+  }
+  if (Number(artifact.counts?.selected_frame_provenance_matrix_missing_provenance_rows || 0) !== 0) {
+    issues.push('selected_frame_provenance_matrix_missing_provenance_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_frame_provenance_matrix_samples || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_frame_provenance_matrix_samples must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.counts?.selected_frame_provenance_matrix_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_frame_provenance_matrix_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_frame_provenance_matrix_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_frame_provenance_matrix_route_payload_field_hits must be 0');
+  }
   if (Number(artifact.counts?.selected_collision_audit_buckets || 0) <= 0) {
     issues.push('selected_collision_audit_buckets must be positive');
   }
@@ -597,8 +629,8 @@ function validateCounts() {
   if (Number(artifact.counts?.selected_work_frame_matrix_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_work_frame_matrix_route_payload_field_hits must be 0');
   }
-  if (Number(artifact.counts?.selected_qa_package_items || 0) !== 15) {
-    issues.push('selected_qa_package_items must be 15');
+  if (Number(artifact.counts?.selected_qa_package_items || 0) !== 16) {
+    issues.push('selected_qa_package_items must be 16');
   }
   if (Number(artifact.counts?.selected_qa_package_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('selected_qa_package_selected_rows must equal selected_occurrence_rows');
@@ -910,6 +942,7 @@ function validateArtifacts() {
     'selected_signature_independence_report',
     'selected_source_diversity_report',
     'selected_provenance_matrix_report',
+    'selected_frame_provenance_matrix_report',
     'selected_collision_audit_report',
     'selected_route_concentration_response_report',
     'selected_occurrence_cards_report',
@@ -987,6 +1020,9 @@ function validateValidation() {
   }
   if (artifact.validation?.selected_provenance_matrix_status !== 'present') {
     issues.push('validation.selected_provenance_matrix_status must be present');
+  }
+  if (artifact.validation?.selected_frame_provenance_matrix_status !== 'present') {
+    issues.push('validation.selected_frame_provenance_matrix_status must be present');
   }
   if (artifact.validation?.selected_collision_audit_status !== 'present') {
     issues.push('validation.selected_collision_audit_status must be present');
@@ -1377,6 +1413,36 @@ function validateValidation() {
   if (Number(artifact.validation?.selected_provenance_matrix_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_provenance_matrix_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_rows || 0) <= 0) {
+    issues.push('selected_frame_provenance_matrix_rows must be positive');
+  }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_frame_provenance_matrix_selected_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_frames || 0) !== Number(artifact.counts?.selected_frame_summary_frames || 0)) {
+    issues.push('selected_frame_provenance_matrix_frames must equal selected_frame_summary_frames');
+  }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_buckets || 0) !== Number(artifact.counts?.selected_provenance_matrix_buckets || 0)) {
+    issues.push('selected_frame_provenance_matrix_buckets must equal selected_provenance_matrix_buckets');
+  }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_missing_provenance_rows || 0) !== 0) {
+    issues.push('selected_frame_provenance_matrix_missing_provenance_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_samples || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_frame_provenance_matrix_samples must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_frame_provenance_matrix_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_failed_checks || 0) !== 0) {
+    issues.push('selected_frame_provenance_matrix_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_warning_count || 0) !== 0) {
+    issues.push('selected_frame_provenance_matrix_warning_count must be 0');
+  }
+  if (Number(artifact.validation?.selected_frame_provenance_matrix_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_frame_provenance_matrix_route_payload_field_hits must be 0');
+  }
   if (Number(artifact.validation?.selected_collision_audit_buckets || 0) <= 0) {
     issues.push('selected_collision_audit_buckets must be positive');
   }
@@ -1620,8 +1686,8 @@ function validateValidation() {
   if (Number(artifact.validation?.selected_work_frame_matrix_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_work_frame_matrix_route_payload_field_hits must be 0');
   }
-  if (Number(artifact.validation?.selected_qa_package_items || 0) !== 15) {
-    issues.push('selected_qa_package_items must be 15');
+  if (Number(artifact.validation?.selected_qa_package_items || 0) !== 16) {
+    issues.push('selected_qa_package_items must be 16');
   }
   if (Number(artifact.validation?.selected_qa_package_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('selected_qa_package_selected_rows must equal selected_occurrence_rows');
@@ -1765,6 +1831,8 @@ function validateCommands() {
     validate_selected_source_diversity: 'validate_workbench_usage_selected_source_diversity.mjs',
     build_selected_provenance_matrix: 'build_workbench_usage_selected_provenance_matrix.mjs',
     validate_selected_provenance_matrix: 'validate_workbench_usage_selected_provenance_matrix.mjs',
+    build_selected_frame_provenance_matrix: 'build_workbench_usage_selected_frame_provenance_matrix.mjs',
+    validate_selected_frame_provenance_matrix: 'validate_workbench_usage_selected_frame_provenance_matrix.mjs',
     build_selected_collision_audit: 'build_workbench_usage_selected_collision_audit.mjs',
     validate_selected_collision_audit: 'validate_workbench_usage_selected_collision_audit.mjs',
     build_selected_route_concentration_response: 'build_workbench_usage_selected_route_concentration_response.mjs',

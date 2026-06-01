@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T06:40:45.524Z
+Generated: 2026-06-01T06:57:04.625Z
 
 ## Summary
 
-- Steps: 90
+- Steps: 92
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -45,8 +45,9 @@ Generated: 2026-06-01T06:40:45.524Z
 - Usage selected route/provenance audit: present, rows 1, links 49, provenance buckets 5, unresolved route rows 0, missing provenance rows 0, copied payload rows 0, samples 49, reader-facing rows 0, route payload hits 0
 - Usage selected focus/context audit: present, rows 49, focus marker rows 49, mismatches 0, repeated-focus rows 8, missing Hebrew context rows 0, reader-facing rows 0, route payload hits 0
 - Usage selected frame summary: present, frames 2, rows 49, repeated-focus rows 8, samples 16, reader-facing rows 0, route payload hits 0
+- Usage selected frame/provenance matrix: present, rows 10, selected rows 49, frames 2, provenance buckets 5, missing provenance rows 0, samples 49, reader-facing rows 0, route payload hits 0
 - Usage selected work/frame matrix: present, rows 25, selected rows 49, works 20, frames 2, samples 48, reader-facing rows 0, route payload hits 0
-- Usage selected QA package: present, items 15, rows 49, route IDs 1, unresolved routes 0, route warning visible 1, directed edges 2352, bridge edges 1160, reader-facing rows 0, route payload hits 0
+- Usage selected QA package: present, items 16, rows 49, route IDs 1, unresolved routes 0, route warning visible 1, directed edges 2352, bridge edges 1160, reader-facing rows 0, route payload hits 0
 - Usage selected occurrence lookup: present, work buckets 20, cluster buckets 2, status buckets 3
 - Usage crossmatch links: present, occurrences 49, directed edges 2352, undirected pairs 1176, route payload hits 0
 - Usage crossmatch strengths: strong 1206, moderate 1146, weak 0
@@ -133,6 +134,8 @@ Generated: 2026-06-01T06:40:45.524Z
 | validate_usage_selected_focus_context_audit | passed | Validated usage selected focus context audit .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-focus-context-audit.json: rows 49; repeated focus rows 8 |
 | build_usage_selected_frame_summary | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-frame-summary.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-frame-summary.md / Selected frame summary frames 2; selected rows 49; route payload hits 0 |
 | validate_usage_selected_frame_summary | passed | Validated usage selected frame summary .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-frame-summary.json: frames 2; selected rows 49 |
+| build_usage_selected_frame_provenance_matrix | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-frame-provenance-matrix.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-frame-provenance-matrix.md / Selected frame/provenance matrix rows 10; selected rows 49; provenance buckets 5 |
+| validate_usage_selected_frame_provenance_matrix | passed | Validated usage selected frame/provenance matrix .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-frame-provenance-matrix.json: rows 10; selected rows 49 |
 | build_usage_selected_work_frame_matrix | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-work-frame-matrix.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-work-frame-matrix.md / Selected work/frame matrix rows 25; works 20; frames 2; route payload hits 0 |
 | validate_usage_selected_work_frame_matrix | passed | Validated usage selected work/frame matrix .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-work-frame-matrix.json: matrix rows 25; selected rows 49 |
 | build_usage_crossmatch_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-links.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-links.md / Usage crossmatch links occurrences 49; directed edges 2352 |
@@ -147,8 +150,8 @@ Generated: 2026-06-01T06:40:45.524Z
 | validate_usage_selected_route_resolution | passed | Validated usage selected route resolution .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-route-resolution.json: routes 1; selected links 49 |
 | build_usage_selected_route_provenance_audit | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-route-provenance-audit.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-route-provenance-audit.md / Selected route/provenance rows 1; route links 49; provenance buckets 5 |
 | validate_usage_selected_route_provenance_audit | passed | Validated usage selected route/provenance audit .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-route-provenance-audit.json: routes 1; route links 49 |
-| build_usage_selected_qa_package | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.md / Selected QA package items 15; selected rows 49; route payload hits 0 |
-| validate_usage_selected_qa_package | passed | Validated usage selected QA package .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.json: items 15; selected rows 49 |
+| build_usage_selected_qa_package | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.md / Selected QA package items 16; selected rows 49; route payload hits 0 |
+| validate_usage_selected_qa_package | passed | Validated usage selected QA package .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.json: items 16; selected rows 49 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |
 | build_usage_handoff_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-navigation-handoff-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-navigation-handoff-index.md / Usage handoff index rows 2390; occurrence links passed; route links passed; smoke skipped_self_reference |
 | validate_usage_handoff_index | passed | Workbench usage handoff index validation passed. Rows: 2390. Clusters: 2. |

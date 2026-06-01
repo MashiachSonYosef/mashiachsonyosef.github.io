@@ -7,6 +7,7 @@ const defaults = {
   selectedOccurrenceCards: '.local-cache/workbench-evidence/usage-selected-occurrence-cards.json',
   selectedSourceDiversity: '.local-cache/workbench-evidence/usage-selected-source-diversity.json',
   selectedProvenanceMatrix: '.local-cache/workbench-evidence/usage-selected-provenance-matrix.json',
+  selectedFrameProvenanceMatrix: '.local-cache/workbench-evidence/usage-selected-frame-provenance-matrix.json',
   selectedCollisionAudit: '.local-cache/workbench-evidence/usage-selected-collision-audit.json',
   selectedSignatureIndependence: '.local-cache/workbench-evidence/usage-selected-signature-independence.json',
   selectedRouteConcentrationResponse: '.local-cache/workbench-evidence/usage-selected-route-concentration-response.json',
@@ -28,6 +29,7 @@ const artifacts = {
   selectedOccurrenceCards: readJson(options.selectedOccurrenceCards),
   selectedSourceDiversity: readJson(options.selectedSourceDiversity),
   selectedProvenanceMatrix: readJson(options.selectedProvenanceMatrix),
+  selectedFrameProvenanceMatrix: readJson(options.selectedFrameProvenanceMatrix),
   selectedCollisionAudit: readJson(options.selectedCollisionAudit),
   selectedSignatureIndependence: readJson(options.selectedSignatureIndependence),
   selectedRouteConcentrationResponse: readJson(options.selectedRouteConcentrationResponse),
@@ -45,6 +47,7 @@ const artifacts = {
 assertType(artifacts.selectedOccurrenceCards, 'workbench_usage_selected_occurrence_cards', options.selectedOccurrenceCards);
 assertType(artifacts.selectedSourceDiversity, 'workbench_usage_selected_source_diversity', options.selectedSourceDiversity);
 assertType(artifacts.selectedProvenanceMatrix, 'workbench_usage_selected_provenance_matrix', options.selectedProvenanceMatrix);
+assertType(artifacts.selectedFrameProvenanceMatrix, 'workbench_usage_selected_frame_provenance_matrix', options.selectedFrameProvenanceMatrix);
 assertType(artifacts.selectedCollisionAudit, 'workbench_usage_selected_collision_audit', options.selectedCollisionAudit);
 assertType(artifacts.selectedSignatureIndependence, 'workbench_usage_selected_signature_independence', options.selectedSignatureIndependence);
 assertType(artifacts.selectedRouteConcentrationResponse, 'workbench_usage_selected_route_concentration_response', options.selectedRouteConcentrationResponse);
@@ -73,6 +76,7 @@ const artifact = {
     selected_occurrence_cards: options.selectedOccurrenceCards,
     selected_source_diversity: options.selectedSourceDiversity,
     selected_provenance_matrix: options.selectedProvenanceMatrix,
+    selected_frame_provenance_matrix: options.selectedFrameProvenanceMatrix,
     selected_collision_audit: options.selectedCollisionAudit,
     selected_signature_independence: options.selectedSignatureIndependence,
     selected_route_concentration_response: options.selectedRouteConcentrationResponse,
@@ -135,6 +139,14 @@ function buildPackageItems() {
       rows_with_version_metadata: artifacts.selectedProvenanceMatrix.counts?.rows_with_version_metadata,
       missing_or_unrecognized_license_rows: artifacts.selectedProvenanceMatrix.counts?.missing_or_unrecognized_license_rows,
       samples: artifacts.selectedProvenanceMatrix.counts?.sample_occurrences,
+    }),
+    item('selected_frame_provenance_matrix', options.selectedFrameProvenanceMatrix, 'reports/workbench-usage-selected-frame-provenance-matrix.md', artifacts.selectedFrameProvenanceMatrix, {
+      matrix_rows: artifacts.selectedFrameProvenanceMatrix.counts?.matrix_rows,
+      selected_rows: artifacts.selectedFrameProvenanceMatrix.counts?.selected_rows,
+      frames: artifacts.selectedFrameProvenanceMatrix.counts?.frames,
+      provenance_buckets: artifacts.selectedFrameProvenanceMatrix.counts?.provenance_buckets,
+      missing_provenance_rows: artifacts.selectedFrameProvenanceMatrix.counts?.missing_provenance_rows,
+      samples: artifacts.selectedFrameProvenanceMatrix.counts?.sample_occurrences,
     }),
     item('selected_collision_audit', options.selectedCollisionAudit, 'reports/workbench-usage-selected-collision-audit.md', artifacts.selectedCollisionAudit, {
       collision_buckets: artifacts.selectedCollisionAudit.counts?.collision_buckets,
@@ -241,6 +253,12 @@ function buildCounts(items) {
     selected_provenance_rows_with_version_metadata: Number(artifacts.selectedProvenanceMatrix.counts?.rows_with_version_metadata || 0),
     selected_provenance_missing_or_unrecognized_license_rows: Number(artifacts.selectedProvenanceMatrix.counts?.missing_or_unrecognized_license_rows || 0),
     selected_provenance_samples: Number(artifacts.selectedProvenanceMatrix.counts?.sample_occurrences || 0),
+    selected_frame_provenance_matrix_rows: Number(artifacts.selectedFrameProvenanceMatrix.counts?.matrix_rows || 0),
+    selected_frame_provenance_matrix_selected_rows: Number(artifacts.selectedFrameProvenanceMatrix.counts?.selected_rows || 0),
+    selected_frame_provenance_matrix_frames: Number(artifacts.selectedFrameProvenanceMatrix.counts?.frames || 0),
+    selected_frame_provenance_matrix_buckets: Number(artifacts.selectedFrameProvenanceMatrix.counts?.provenance_buckets || 0),
+    selected_frame_provenance_matrix_missing_provenance_rows: Number(artifacts.selectedFrameProvenanceMatrix.counts?.missing_provenance_rows || 0),
+    selected_frame_provenance_matrix_samples: Number(artifacts.selectedFrameProvenanceMatrix.counts?.sample_occurrences || 0),
     selected_collision_buckets: Number(artifacts.selectedCollisionAudit.counts?.collision_buckets || 0),
     selected_collision_occurrence_rows: Number(artifacts.selectedCollisionAudit.counts?.collision_occurrence_rows || 0),
     selected_duplicate_source_ref_buckets: Number(artifacts.selectedCollisionAudit.counts?.duplicate_source_ref_buckets || 0),
@@ -289,13 +307,18 @@ function buildCounts(items) {
 
 function buildChecks(counts) {
   return [
-    check('package_items_present', counts.package_items === 15 ? 'passed' : 'failed', `package items ${counts.package_items}`),
+    check('package_items_present', counts.package_items === 16 ? 'passed' : 'failed', `package items ${counts.package_items}`),
     check('selected_rows_consistent', counts.selected_rows === Number(artifacts.selectedSourceDiversity.counts?.selected_occurrence_refs || 0) ? 'passed' : 'failed', `selected rows ${counts.selected_rows}`),
     check('selected_provenance_rows_complete', counts.selected_provenance_rows === counts.selected_rows ? 'passed' : 'failed', `provenance rows ${counts.selected_provenance_rows}; selected rows ${counts.selected_rows}`),
     check('selected_provenance_license_metadata_complete', counts.selected_provenance_rows_with_license_metadata === counts.selected_rows ? 'passed' : 'failed', `license metadata rows ${counts.selected_provenance_rows_with_license_metadata}; selected rows ${counts.selected_rows}`),
     check('selected_provenance_version_metadata_complete', counts.selected_provenance_rows_with_version_metadata === counts.selected_rows ? 'passed' : 'failed', `version metadata rows ${counts.selected_provenance_rows_with_version_metadata}; selected rows ${counts.selected_rows}`),
     check('selected_provenance_missing_license_zero', counts.selected_provenance_missing_or_unrecognized_license_rows === 0 ? 'passed' : 'failed', `missing or unrecognized license rows ${counts.selected_provenance_missing_or_unrecognized_license_rows}`),
     check('selected_provenance_samples_complete', counts.selected_provenance_samples === counts.selected_rows ? 'passed' : 'failed', `provenance samples ${counts.selected_provenance_samples}; selected rows ${counts.selected_rows}`),
+    check('selected_frame_provenance_rows_complete', counts.selected_frame_provenance_matrix_selected_rows === counts.selected_rows ? 'passed' : 'failed', `frame/provenance rows ${counts.selected_frame_provenance_matrix_selected_rows}; selected rows ${counts.selected_rows}`),
+    check('selected_frame_provenance_frame_coverage', counts.selected_frame_provenance_matrix_frames === counts.selected_frame_summary_frames ? 'passed' : 'failed', `frame/provenance frames ${counts.selected_frame_provenance_matrix_frames}; frame summary frames ${counts.selected_frame_summary_frames}`),
+    check('selected_frame_provenance_bucket_coverage', counts.selected_frame_provenance_matrix_buckets === counts.selected_provenance_buckets ? 'passed' : 'failed', `frame/provenance buckets ${counts.selected_frame_provenance_matrix_buckets}; provenance buckets ${counts.selected_provenance_buckets}`),
+    check('selected_frame_provenance_present', counts.selected_frame_provenance_matrix_missing_provenance_rows === 0 ? 'passed' : 'failed', `missing frame/provenance rows ${counts.selected_frame_provenance_matrix_missing_provenance_rows}`),
+    check('selected_frame_provenance_samples_complete', counts.selected_frame_provenance_matrix_samples === counts.selected_rows ? 'passed' : 'failed', `frame/provenance samples ${counts.selected_frame_provenance_matrix_samples}; selected rows ${counts.selected_rows}`),
     check('selected_collision_counts_match', counts.selected_duplicate_source_ref_buckets === Number(artifacts.selectedSourceDiversity.counts?.duplicate_source_ref_buckets || 0) && counts.selected_duplicate_work_anchor_buckets === Number(artifacts.selectedSourceDiversity.counts?.duplicate_work_anchor_buckets || 0) ? 'passed' : 'failed', `collision source buckets ${counts.selected_duplicate_source_ref_buckets}; work anchor buckets ${counts.selected_duplicate_work_anchor_buckets}`),
     check('selected_cross_frame_collisions_visible', counts.selected_cross_frame_collision_buckets > 0 ? 'passed' : 'failed', `cross-frame collision buckets ${counts.selected_cross_frame_collision_buckets}`),
     check('selected_route_links_complete', counts.selected_route_links === counts.selected_rows ? 'passed' : 'failed', `selected route links ${counts.selected_route_links}; selected rows ${counts.selected_rows}`),
@@ -347,6 +370,12 @@ function writeReport(relativePath, artifact) {
     `- Provenance rows with version metadata: ${artifact.counts.selected_provenance_rows_with_version_metadata}`,
     `- Provenance missing or unrecognized license rows: ${artifact.counts.selected_provenance_missing_or_unrecognized_license_rows}`,
     `- Provenance samples: ${artifact.counts.selected_provenance_samples}`,
+    `- Frame/provenance matrix rows: ${artifact.counts.selected_frame_provenance_matrix_rows}`,
+    `- Frame/provenance selected rows: ${artifact.counts.selected_frame_provenance_matrix_selected_rows}`,
+    `- Frame/provenance frames: ${artifact.counts.selected_frame_provenance_matrix_frames}`,
+    `- Frame/provenance provenance buckets: ${artifact.counts.selected_frame_provenance_matrix_buckets}`,
+    `- Frame/provenance missing provenance rows: ${artifact.counts.selected_frame_provenance_matrix_missing_provenance_rows}`,
+    `- Frame/provenance samples: ${artifact.counts.selected_frame_provenance_matrix_samples}`,
     `- Collision buckets: ${artifact.counts.selected_collision_buckets}`,
     `- Collision occurrence rows: ${artifact.counts.selected_collision_occurrence_rows}`,
     `- Duplicate source-ref buckets: ${artifact.counts.selected_duplicate_source_ref_buckets}`,
@@ -470,6 +499,7 @@ function parseArgs(args) {
     if (arg.startsWith('--selected-occurrence-cards=')) parsed.selectedOccurrenceCards = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-source-diversity=')) parsed.selectedSourceDiversity = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-provenance-matrix=')) parsed.selectedProvenanceMatrix = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-frame-provenance-matrix=')) parsed.selectedFrameProvenanceMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-collision-audit=')) parsed.selectedCollisionAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-signature-independence=')) parsed.selectedSignatureIndependence = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-route-concentration-response=')) parsed.selectedRouteConcentrationResponse = cleanRelativePath(valueAfterEquals(arg));
