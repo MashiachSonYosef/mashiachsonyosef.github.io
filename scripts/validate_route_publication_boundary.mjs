@@ -10,6 +10,7 @@ const defaults = {
   report: 'reports/route-publication-boundary-audit.md',
   maxIssues: 100,
   maxWarnings: 25,
+  fixturesOnly: false,
 };
 
 const publicationReadinessFields = [
@@ -51,6 +52,10 @@ const forbiddenLicenseRe = /\bNC\b|Non-?Commercial|all rights reserved|copyright
 const options = parseArgs(process.argv.slice(2));
 let fixtureCaseCount = 0;
 fixtureCaseCount = runFixtureSelfTest(options.fixture);
+if (options.fixturesOnly) {
+  console.log(`Route publication boundary fixture self-test passed. Cases: ${fixtureCaseCount}.`);
+  process.exit(0);
+}
 const manifest = readJson(options.manifest);
 const audit = createAudit(manifest);
 
@@ -306,6 +311,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--max-issues=')) parsed.maxIssues = Number(valueAfterEquals(arg));
     else if (arg.startsWith('--max-warnings=')) parsed.maxWarnings = Number(valueAfterEquals(arg));
+    else if (arg === '--fixtures-only') parsed.fixturesOnly = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
   for (const key of ['maxIssues', 'maxWarnings']) {
