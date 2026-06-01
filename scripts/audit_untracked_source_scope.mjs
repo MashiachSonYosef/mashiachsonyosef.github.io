@@ -57,37 +57,146 @@ function renderedSourceLicenseEvidence(pagePath) {
   };
 }
 
-function untrackedSourceFiles(existingJsonPath) {
-  try {
-    const stdout = execFileSync(
-      'git',
-      ['ls-files', '--others', '--exclude-standard', '--', 'data/sources/*.json'],
-      {
-        cwd: root,
-        encoding: 'utf8',
-        stdio: ['ignore', 'pipe', 'pipe'],
-      },
-    );
-    return {
-      files: stdout.split(/\r?\n/).filter(Boolean).sort(),
-      source_discovery_method: 'git-ls-files-others',
-      source_discovery_warning: '',
-    };
-  } catch (error) {
-    const fallbackJsonPath = fs.existsSync(path.join(root, existingJsonPath))
-      ? existingJsonPath
-      : defaultJsonPath;
+function splitGitLines(stdout) {
+  return stdout
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => line.replace(/\\/g, '/'))
+    .sort();
+}
 
-    if (fs.existsSync(path.join(root, fallbackJsonPath))) {
-      const previous = readJson(fallbackJsonPath);
+function gitLsFilesOthers() {
+  const stdout = execFileSync(
+    'git',
+    ['ls-files', '--others', '--exclude-standard', '--', 'data/sources/*.json'],
+    {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    },
+  );
+  return splitGitLines(stdout);
+}
+
+function gitStatusOthers() {
+  const stdout = execFileSync(
+    'git',
+    ['status', '--short', '--', 'data/sources'],
+    {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    },
+  );
+  return stdout
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith('?? data/sources/') && line.endsWith('.json'))
+    .map((line) => line.slice(3).replace(/\\/g, '/'))
+    .sort();
+}
+
+function uniqueSorted(values) {
+  return [...new Set(values)].sort((a, b) => a.localeCompare(b));
+}
+
+function readUntrackedListFile(relativePath) {
+  const fullPath = path.join(root, relativePath);
+  const files = splitGitLines(fs.readFileSync(fullPath, 'utf8'))
+    .map((line) => line.replace(/^\?\?\s+/, ''))
+    .filter((line) => line.startsWith('data/sources/') && line.endsWith('.json'));
+
+  return {
+    files: uniqueSorted(files),
+    source_discovery_method: 'provided-untracked-list',
+    source_discovery_warning: `git child-process discovery bypassed with provided live list: ${relativePath}`,
+    source_discovery_authoritative: true,
+    source_discovery_counts: {
+      provided_untracked_list: files.length,
+      union: files.length,
+    },
+  };
+}
+
+function untrackedSourceFiles(existingJsonPath) {
+  const listPath = argValue('--untracked-list', '');
+  if (listPath) {
+    return readUntrackedListFile(listPath);
+  }
+
+  const discoveryErrors = [];
+  let lsFiles = null;
+  let statusFiles = null;
+
+  try {
+    lsFiles = gitLsFilesOthers();
+  } catch (error) {
+    discoveryErrors.push(`git ls-files failed (${error.code || error.message})`);
+  }
+
+  try {
+    statusFiles = gitStatusOthers();
+  } catch (error) {
+    discoveryErrors.push(`git status failed (${error.code || error.message})`);
+  }
+
+  if (lsFiles && statusFiles) {
+    const same = JSON.stringify(lsFiles) === JSON.stringify(statusFiles);
+    const files = same ? lsFiles : uniqueSorted([...lsFiles, ...statusFiles]);
+    return {
+      files,
+      source_discovery_method: same
+        ? 'git-ls-files-others-with-status-crosscheck'
+        : 'git-discovery-union-after-ls-files-status-mismatch',
+      source_discovery_warning: same
+        ? ''
+        : `git ls-files reported ${lsFiles.length}; git status reported ${statusFiles.length}; using union ${files.length} and keeping publication path blocked`,
+      source_discovery_authoritative: same,
+      source_discovery_counts: {
+        git_ls_files_others: lsFiles.length,
+        git_status_short_others: statusFiles.length,
+        union: files.length,
+      },
+    };
+  }
+
+  if (lsFiles || statusFiles) {
+    const method = lsFiles ? 'git-ls-files-others-status-crosscheck-failed' : 'git-status-short-others-ls-files-failed';
+    const files = lsFiles || statusFiles;
+    return {
+      files,
+      source_discovery_method: method,
+      source_discovery_warning: `${discoveryErrors.join('; ')}; using single successful git discovery path and keeping publication path blocked`,
+      source_discovery_authoritative: false,
+      source_discovery_counts: {
+        git_ls_files_others: lsFiles ? lsFiles.length : null,
+        git_status_short_others: statusFiles ? statusFiles.length : null,
+        union: files.length,
+      },
+    };
+  }
+
+  const fallbackJsonPath = fs.existsSync(path.join(root, existingJsonPath))
+    ? existingJsonPath
+    : defaultJsonPath;
+
+  if (fs.existsSync(path.join(root, fallbackJsonPath))) {
+    const previous = readJson(fallbackJsonPath);
       return {
         files: [...(previous.untracked_source_files || [])].sort(),
-        source_discovery_method: 'existing-json-fallback',
-        source_discovery_warning: `git child-process discovery failed (${error.code || error.message}); reused ${fallbackJsonPath} untracked_source_files as current prompted truth`,
+      source_discovery_method: 'existing-json-stale-fallback-non-authoritative',
+      source_discovery_warning: `${discoveryErrors.join('; ')}; reused ${fallbackJsonPath} only as stale fallback, not current truth`,
+      source_discovery_authoritative: false,
+      source_discovery_counts: {
+        git_ls_files_others: null,
+        git_status_short_others: null,
+        stale_fallback_files: previous.untracked_source_file_count || (previous.untracked_source_files || []).length,
+      },
       };
-    }
-    throw error;
   }
+
+  throw new Error(`Unable to discover untracked source files: ${discoveryErrors.join('; ')}`);
 }
 
 const reportPath = argValue('--report', defaultReportPath);
@@ -132,7 +241,9 @@ for (const sourcePath of files) {
 const artifact = {
   generated_at: new Date().toISOString(),
   artifact_type: 'untracked_source_scope_audit',
-  source_scope_state: files.length === 0
+  source_scope_state: sourceDiscovery.source_discovery_authoritative === false
+    ? 'blocked_for_source_provenance_acceptance_audit_discovery_not_authoritative'
+    : files.length === 0
     ? 'tracked_source_scope_complete'
     : 'blocked_for_source_provenance_acceptance_and_future_publication_path',
   current_public_workbench_state: files.length === 0
@@ -143,6 +254,8 @@ const artifact = {
   untracked_source_license_counts: sortedObject(licenseCounts),
   source_discovery_method: sourceDiscovery.source_discovery_method,
   source_discovery_warning: sourceDiscovery.source_discovery_warning,
+  source_discovery_authoritative: sourceDiscovery.source_discovery_authoritative !== false,
+  source_discovery_counts: sourceDiscovery.source_discovery_counts || {},
   rows,
 };
 
