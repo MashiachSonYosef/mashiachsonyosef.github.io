@@ -1,0 +1,31 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 1:1 | boaz-on-mishnah-kilayim-1-1 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:1 | boaz-on-mishnah-kilayim-2-1 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:2 | boaz-on-mishnah-kilayim-2-2 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:3 | boaz-on-mishnah-kilayim-2-3 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:4 | boaz-on-mishnah-kilayim-2-4 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:5 | boaz-on-mishnah-kilayim-2-5 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:6 | boaz-on-mishnah-kilayim-2-6 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:7 | boaz-on-mishnah-kilayim-2-7 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:8 | boaz-on-mishnah-kilayim-2-8 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:9 | boaz-on-mishnah-kilayim-2-9 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:10 | boaz-on-mishnah-kilayim-2-10 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 2:11 | boaz-on-mishnah-kilayim-2-11 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 3:1 | boaz-on-mishnah-kilayim-3-1 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 3:2 | boaz-on-mishnah-kilayim-3-2 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 4:1 | boaz-on-mishnah-kilayim-4-1 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 4:2 | boaz-on-mishnah-kilayim-4-2 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 4:3 | boaz-on-mishnah-kilayim-4-3 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 5:1 | boaz-on-mishnah-kilayim-5-1 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 5:2 | boaz-on-mishnah-kilayim-5-2 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 5:3 | boaz-on-mishnah-kilayim-5-3 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 6:1 | boaz-on-mishnah-kilayim-6-1 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 6:2 | boaz-on-mishnah-kilayim-6-2 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 6:3 | boaz-on-mishnah-kilayim-6-3 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 7:1 | boaz-on-mishnah-kilayim-7-1 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 7:2 | boaz-on-mishnah-kilayim-7-2 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 8:1 | boaz-on-mishnah-kilayim-8-1 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 9:1 | boaz-on-mishnah-kilayim-9-1 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 9:2 | boaz-on-mishnah-kilayim-9-2 |  |  | not_done |  |
+| boaz-on-mishnah-kilayim | Boaz on Mishnah Kilayim | Boaz on Mishnah Kilayim 9:3 | boaz-on-mishnah-kilayim-9-3 |  |  | not_done |  |

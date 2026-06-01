@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boaz on Mishnah Middot</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Boaz on Mishnah Middot<sup class="hero-ref">1</sup></h1>
+          <p class="hero-summary">
+            <span>22 source units</span>
+            <span>2468 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Mishnah, ed. Romm, Vilna 1913 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001741739">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Boaz on Mishnah Middot <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Boaz on Mishnah Middot <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-middot-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-1-1" title="Boaz on Mishnah Middot 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-1-2" title="Boaz on Mishnah Middot 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-1-3" title="Boaz on Mishnah Middot 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-1-4" title="Boaz on Mishnah Middot 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-1-5" title="Boaz on Mishnah Middot 1:5">1:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-middot-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-2-1" title="Boaz on Mishnah Middot 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-2-2" title="Boaz on Mishnah Middot 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-2-3" title="Boaz on Mishnah Middot 2:3">2:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-middot-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-3-1" title="Boaz on Mishnah Middot 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-3-2" title="Boaz on Mishnah Middot 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-3-3" title="Boaz on Mishnah Middot 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-3-4" title="Boaz on Mishnah Middot 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-3-5" title="Boaz on Mishnah Middot 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-3-6" title="Boaz on Mishnah Middot 3:6">3:6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-middot-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-4-1" title="Boaz on Mishnah Middot 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-4-2" title="Boaz on Mishnah Middot 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-4-3" title="Boaz on Mishnah Middot 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-4-4" title="Boaz on Mishnah Middot 4:4">4:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-middot-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-5-1" title="Boaz on Mishnah Middot 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-5-2" title="Boaz on Mishnah Middot 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-5-3" title="Boaz on Mishnah Middot 5:3">5:3</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-middot-5-4" title="Boaz on Mishnah Middot 5:4">5:4</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-boaz-on-mishnah-middot-text-1">Chapter 1</h4>
+          <section class="unit" id="boaz-on-mishnah-middot-1-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-1-1" data-source-ref="Boaz on Mishnah Middot 1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 1:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-1-1" aria-label="Copy link to Boaz on Mishnah Middot 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומה שנזכר כאן עניין השמירה בריש מסכת מדות שהיא רק ללמדינו תבנית כל חלקי הביהמ&quot;ק בבניינו, ומה שייך לזה עניין השמירה, שהוא כעין עבודה שם. נ&quot;ל דמשום דכל עיקר לימוד מסכת זו, הוא שנשמור בלבינו תבנית ואופן בניינו, למען דעת באיזה אופן יבנה לעתיד, (ואם שיהיה בו איזה שנויים, כפי אשר יורינו ה׳ אז). וכן כתב הרמב&quot;ם בהקדמה למסכת זו. ויש ראיה לדבריו מהכתוב ביחזקאל (מ&quot;ג פי&quot;א) דכתיב וישמרו את צורתו ואת כל חוקותיו ועשו אותו. ואע&quot;ג דבניין שלעתיד יבנה בידי שמים מאליו, (כרש&quot;י ר&quot;ה ד&quot;ל ע&quot;א, ובסוכה דמ&quot;א א׳, ובתוס׳ בסוכה שם ובשבועות דט&quot;ו ב׳). עכ&quot;פ לרמב&quot;ם הנ&quot;ל שכתב שהלימוד ממסכת זו הוא למען ידעו איך יבנוה (וכן כתב ג&quot;כ רש&quot;י עצמו ביחזקאל שם). ע&quot;כ צ&quot;ל דהך דתנחומא שהביא תוס׳ (שבועות דט&quot;ו ב) דלעתיד יבנה המקדש בידי שמים, דברי אגדה היא ואין למדין ממנה (כירושלמי פ&quot;ו דפיאה) אלא ר&quot;ל שהקב&quot;ה יסייעם בדרך נס שיבנוהו. והא דאמרי׳ בשבועות (שם) דאבני בלילה או דאבני ביו&quot;ט, ואין בניין ביהמ&quot;ק בלילה ולא ביו&quot;ט י&quot;ל דע&quot;פ הדיבור שאני. ובל&quot;ז לפע&quot;ד ל&quot;מ קושית רש&quot;י (ר&quot;ה ד&quot;ל ע&quot;א) מדאין בניין ביהמ&quot;ק דוחה יו&quot;ט אינה חזקה כל כך, די&quot;ל שיבנוה נכרים כענין שנאמר ועמדו זרים ורעו צאנכם וגו׳. ואי משום לא לכם ולנו לבנות בית אלהינו (כשקלים פ&quot;א מ&quot;ה). היינו בבונים משלהם. תדע דהרי שלמה המ&quot;ה. ביקש מחירם שישלח מעבדיו לסייעו בבניין הבית. ואע&quot;ג דנכרי אסור לכנוס אפילו לחיל, והוא מי׳ מעלות (כפ&quot;ק דכלים), והרי מעלות דאורייתא הן (כיומא דמ&quot;ד ב׳), ואף דהשתא חרב המקדש, הרי קדושת המקדש קדשה לע&quot;ל (כרמב&quot;ם פ&quot;ו מבחירה). ליתא דהרי להראב&quot;ד (בפ&quot;ז מבחירה) קדושת חיל שאין נכרי נכנס לשם הוא מדרבנן, וכן כתב רכ&quot;מ שם באין חולק. ועל כרחך הא דאמרי׳ ביומא הנ&quot;ל דמעלות מדאורייתא. ר&quot;ל יש מהן דאוריי׳. א&quot;כ כיון דרק מדרבנו הוא. לפיכך משום צורך גבוה לבנות המקדש, וודאי דחי דאורייתא לדרבנן. מיהו גם לרש&quot;י שבאמת יבנה ביהמ&quot;ק שלעתיד ע&quot;י שמים ממש. צריכים אנו לשמור תבנית הבית כדי שיראו שנבנה השתא בנס כפי שהגיד להם הנביא כמה אלפים שנה מקודם, ויכירו אז עי&quot;ז כי רוח ה׳ דבר בו, ואבותיהם אעפ&quot;כ לא שמעו בקול הנביא ההוא, ועי&quot;ז יכלמו מעונותיהם, וכמו שצוה יחזקאל הנביא ושמרו צורתו, ויכלמו מעונותיהם. ולפיכך מדנקט כל המסכת כדי שנשמור תבנית הבית, לכן מתחיל גם כן מהשומרים ששמרוהו בעת שהיה בנוי. וזהו שאמר הכתוב על חומותיך ירושלים הפקדתי שומרים כל היום (דהיינו בעת שהיה בנוי) וכל הלילה (דהיינו בעת שנחרב בעוונינו) תמיד לא יחשו שיבנה בב&quot;י:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-1-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-1-2" data-source-ref="Boaz on Mishnah Middot 1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 1:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-1-2" aria-label="Copy link to Boaz on Mishnah Middot 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[וכך כתב ג&quot;כ בש&quot;ג (פכ&quot;ה). וכך נמי משמעות הש&quot;ס (יומא די&quot;ט א׳ ודל&quot;א א׳). אולם רתוי&quot;ט בציור ביהמ&quot;ק שבמשניות, צייר (אות מ&quot;ה), שאבטינוס היה במזרח שער המים. ולפע&quot;ד מדקאמר בש&quot;ס (שם) על בית טבילה הנ&quot;ל, שבצד אבטינוס היתה, משמע טפי שבית הטבילה ואבטינוס שניהן ע&quot;ג השער היו. דאי אבטינוס מצד השער, הול&quot;ל &quot;היה&quot; ור&quot;ל שהשער היה בצד אבטינוס. מיהו אפשר דמשום דבית הטבילה הנ&quot;ל ובית אבטינוס, שניהן עליות היו, לפיכך היה אפשר שיהיו שניהן תכופין וסמוכין זל&quot;ז, אף שיהיה אבטינס בצד השער. רק דלא ידענו מנ&quot;ל. לכן אין לנו אלא דברי מאור עינינו הרמב&quot;ם ז&quot;ל. אולם המדפיסים בציור הביהמ&quot;ק שבש&quot;ס, אשר הוכחנו בפירושינו זה בס&quot;ד שנשתבשו בציור ההוא בכמה עניינים, כ&quot;כ נשתבשו בזה, שציירו (באות ס&quot;ג) כאילו היה בית אבטינוס משמאל לשער המים רחוק מהשער, וסמוך לבית החליפות, והוא נגד ש&quot;ס ערוך הנ&quot;ל. ואפ&quot;ה נ&quot;ל דאבטינס דקדוש טפי לעשות שם קטורת, היתה ממעל לכער לצד מערב ודלא כרתוי&quot;ט:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-1-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-1-3" data-source-ref="Boaz on Mishnah Middot 1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 1:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-1-3" aria-label="Copy link to Boaz on Mishnah Middot 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך משמע מסתימת לשון הרמב&quot;ם [פ&quot;ח מבחירה ה&quot;י], דגם על משמרות כהנים היה חוזר. ואע&quot;ג שמסיים המשנה והרמב&quot;ם, בן לוי לוקה, י&quot;ל דאו משום דגם כהן נקרא בן לוי [כתמיד דכ&quot;ז ע&quot;א], או משום דכהן שישן על משמרתו לא היה לוקה, רק נענש באופן אחר. וכן מסתבר שגם על משמרות הכהנים היה מחזר, דמ&quot;ש כהן מלוי. ואע&quot;ג דכהנים זריזין הן [כשבת ד&quot;כ ע&quot;א]. היכא דאיכא אונס שינה שאני. [כיומא כ&quot;ב א׳]. ולפ&quot;ז איש הר הבית אינו הממונה, דהרי הממונה לא היו בידו מפתחות לעזרה [כתמיד פ&quot;א מ&quot;ב], והרי הכהנים שומרים בעזרה. וזה דלא כרל&quot;ש שכ׳ שהממונה הוא הוא איש הר הבית שחוזר על המשמורות. אולם מלשון המפרש [תמיד סוף דכ&quot;ז ב׳] שכתב דרק מפתחות הר הבית היו בידו, משמע שלא היה מחזר רק על משמרות הלויים, דאל&quot;כ האיך יוכל לבא לבית המוקד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-1-4" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-1-4" data-source-ref="Boaz on Mishnah Middot 1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 1:4</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-1-4" aria-label="Copy link to Boaz on Mishnah Middot 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ונ&quot;ל דמלת קיטון הוא יוצא מלשון קוטן וקטנות. דמ&quot;ש רתוי&quot;ט שהוא יוצא ממלת קייטא וקיץ, ל&quot;מ לא נ&quot;ל, דאדרבה בקיץ אין רגילין לישב בחדרים קטנים משום הבלא. ואי נימא דלהכי נקראין החדרים ההם קטנות משום שלא היו דפנותיהן מגיעות לתקרה, ובאלה נאות לישב בקיץ משום אוירא. ליתא. דבסוכה (ד&quot;ג א׳) משמע דאפי׳ בדפנות מגיעות לתקרה נקראו קיטונות. ותו וכי מה שבח לבני אהרן שיהיו ישינים בבית המוקד. ובצדם לשכת הקרבן, ולא הי׳ מפסיק ביניהן לדיר הבהמות רק כותל שאינו מגיע לתקרה. אמנם הא דמצטרך תנא כלל להזכיר כקיטונות הפתוחות לטרקלין. היינו דלא תימא שהד׳ לשכות אף שהיו פתוחים לבית המוקד, עכ&quot;פ מבחוץ בולטות היו מזה ומזה מכותלי בית המוקד. להכי קאמר כקיטונות וכו׳ לומר שהיו כל הד׳ לשכות תחת תקרת בית המוקד הגדול:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-1-5" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-1-5" data-source-ref="Boaz on Mishnah Middot 1:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 1:5</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-1-5" aria-label="Copy link to Boaz on Mishnah Middot 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומ&quot;ש הר&quot;ב ורתוי&quot;ט שהיו ראשי הקורות יוצאות במקום החול ולא במקום הקודש, כדי שלא לעבור על לא תטע לך כל עץ וגו׳. תמהני הרי בכותלי מקדש גופי׳ הי׳ טורות ארזים (כר&quot;ה ד&quot;ד א׳). וכ&quot;כ בעמודי מטבחיים היו רביעיות של עץ על גביהן (כתמיד פ&quot;ג מ&quot;ה). וכמו כן בפתחה של עלייה שעל ההיכל. היו בנויים בו כלונסאות של ארז (כלקמן פ&quot;ד מ&quot;ה ועי׳ עוד פ&quot;ג מ&quot;ח). גם בל&quot;ז לא ידעתי מנ&quot;ל לרבותינו הנ&quot;ל שהפספסין של עץ היו אולי היו מאבן בולטות מהכתלים או מהרצפה, וכן משמע נמי מרמב&quot;ם בפירושו למדות שכתב שעושין אותן הפספסין מכל דבר. ובעיקר העניין ל&quot;מ הי׳ נ&quot;ל דדוקא בב׳ לריעותא שיהי׳ העץ מחובר בבניין. וגם יהי׳ ראש הקורה בולט מהבניין, אז לבד אסור משום לא תטע לך עץ. דאז הוה דומיא דנטיעה. מדמחוברת ובולטת. משא&quot;כ בעץ שבכותלי המקדש אף שהיו מחוברין ואחוזים בהבניין. עכ&quot;פ לא היו ראשי הקורות בולטין לאויר [דרק לא משוקעין בבניינא היו הקורות שבביהמ&quot;ק בבית שני (כר&quot;ה ד&quot;ד א׳), אלא היו הקורות ההם מגולין ונראות מבחוץ, אבל עכ&quot;פ לא היו בולטות ראשיהן לאויר. וכ&quot;כ בכלונסאות שבעליית ההיכל מאן יימר שהיו מחוברות בהבניין ושהיו ראשי הכלונסאות בולטות לאויר. וכ&quot;כ הרביעיות שעל עמודי הננסין אף שהיו בולטות לאויר, מאן יימר שהיו מחוברות בבניין. ולהכי שרי. ויש ראיה לזה דבעי תרתי לריעותא מרמב&quot;ם (פ&quot;א מבחירה ה&quot;ט), שכ׳ וז&quot;ל אין בונין בו עץ בולט וכו׳. דבונין היינו מחובר, וש&quot;מ דתרתי בעינן. בולט ומחובר. ואפשר עוד דכל שאין העץ מחובר בקרקע ממש, רק בחומה או בעמוד המחובר לקרקע, שרי. ואע&quot;ג דכל תלוש המחובר לקרקע הרי הוא כקרקע (כתוס׳ שבועות דמ&quot;ב ב׳) דבשאל בית ונשרף פטור משבועה דאורייתא מדהו&quot;ל כקרקע (ועי׳ מ&quot;ש שלהי שביעית בבועז אות ג׳). הכא שאני דלא תטע לך אמר רחמנא, ובעינן דומיא דנטיעה דמחובר לקרקע ממש, וכל שמחובר בדבר המחובר לקרקע. לא הו&quot;ל כנטיעה. ובזה יתורצו כל הקושיות שהקשו הראשונים איך הותרו הכלונסאות שמכותל היכל לכותל אולם, ומהכלונסאות שבעליית ההיכל, ומראשי פספסים דמשנתינו ושקבועות בעזרה בין עזרת ישראל לעזרת כהנים, וכ&quot;כ בעליית ההיכל. וכ&quot;כ לשכת כה&quot;ג שהיתה של עץ. ולפ&quot;ד מתורץ הכל ברחבה בס&quot;ד. וכן משמע קצת דעת המפרש (תמיד דכ&quot;ח ב׳ ד&quot;ה עמודים)</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-middot-text-2">Chapter 2</h4>
+          <section class="unit" id="boaz-on-mishnah-middot-2-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-2-1" data-source-ref="Boaz on Mishnah Middot 2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 2:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-2-1" aria-label="Copy link to Boaz on Mishnah Middot 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמנם מ&quot;ש הרמב&quot;ם [רפ&quot;ה מבחירה] הר הבית ת&quot;ק על ת&quot;ק אמה וכו׳ וכולו היה מקורה וכו׳. לכאורה משמע מדברי רבינו שכל הת&quot;ק על ת&quot;ק אמה מקורה היה, נמצא שכל העזרות של נשים וישראל וכהנים היה מקורין. וכן הבין הש&quot;ג [פ&quot;ב], ולכן הוסיף החכם ההוא על דברי הרמב&quot;ם וכתב חוץ ממזבח הנחושת שעמד תחת לב השמים, [כאבות פ&quot;ה מ&quot;ה]. עכ&quot;ל. ולפענ&quot;ד אע&quot;ג דשבחי׳ רתוי&quot;ט לחכם ההוא, וכן נראה מספרו, שיד כל בו, אפ&quot;ה בכאן במח&quot;כ שגה ברואה, דמלבד דמירושלמי הנ&quot;ל שהבאנו לא מוכח רק שהר הבית היה מקורה. ג&quot;כ ק׳ תו דהרי אפי׳ הד׳ לשכות שבעזרת נשים לא היו מקורות [כמדות פ&quot;ב מ&quot;ה] וכ&quot;ש העזרה שחוצה לה. ותו דאי נימא שגם העזרה הפנימית ששם המזבח בנוי, גם היא היתה מקורה, א&quot;כ למה הוצרכו אכסדראות תחת הקרוי בגובה כותלי העזרה סביב [כתמיד פ&quot;א מ&quot;ג]. וכן משמע מרש&quot;י [פסחים י&quot;ג ב׳, ותענית, וסוכה מ&quot;ב ב׳] דרק הר הבית שמחוץ לחומה הפנימית מקורה היה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-2-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-2-2" data-source-ref="Boaz on Mishnah Middot 2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 2:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-2-2" aria-label="Copy link to Boaz on Mishnah Middot 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואילה&quot;ק דא&quot;כ לא היה כל הרויח ההוא שבעזרת ישראל רק אלף ותפ&quot;ה אמות מרובעות, וינוכה מזה הרווח הגדול שהיה צריך ללשכת הגזית שהיתה שם כעין בסילקא גדולה [כיומא כ&quot;ה א׳], מלבד הרווח שהיה צריך ג&quot;כ לשאר הלשכות שהיו בעזרת ישראל. וא&quot;כ האיך הרווח המועט הנשאר אחר נכיון הלשכות הנ&quot;ל מספיק לכל ישראל בעלותם לרגל. ואי&quot;ל דדרך נס היה מועט מחזיק את המרובה. ליתא, דהרי באבות [פ&quot;ה מ&quot;ה] לא קחשיב נס בזה רק דאע&quot;ג דעומדין צפופין אפ&quot;ה משתחוים רווחים. ואם איתא הרי אפי׳ עמידתן כשהן צפופין לבד, ג&quot;כ נס לבדיי היה וא&quot;כ הו&quot;ל י&quot;א ניסים, ותנא לא קחשיב רק י׳ נסים. ונ&quot;ל דאע&quot;ג דמראשי פספסין ולהלן למערב, דשם הוא עזרת כהנים, אסור לישראל לכנס לשם שלא לצורך [ככלים פ&quot;א מ&quot;ח], עכ&quot;פ רשאין היו להמשך ולהתפשט ממקומן בעזרת ישראל לבין הננסין ולכותל צפון של עזרה שהיה ברחבו ח׳ אמות בכל אורך העזרה [כמדות פ&quot;ג מ&quot;ה]. וכ&quot;כ רשאין להתפשט ממקומן להרווח שבין כבש המזבח לכותל דרום של עזרה שהיה רחב י&quot;ב אמות ומחצה בכל אורך העזרה [כפ&quot;ה מ&quot;ב]. וכמו כן יכלו להתפשט מצפון ודרום כלעיל, גם לבין כותל העזרה ולחליפות, עד הרווח שמזה ומזה להיכל ולק&quot;ק ובי&quot;א אמה רוחב שאחורי ק&quot;ק באורך קל&quot;ה אמה [עי׳ יומא כ&quot;א א׳ ורש&quot;י שם]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-2-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-2-3" data-source-ref="Boaz on Mishnah Middot 2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 2:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-2-3" aria-label="Copy link to Boaz on Mishnah Middot 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך כ׳ הרב שהפספסין מן הצד היו. ונ&quot;ל דכוונתו דהיה די בהיכר זה מן הצד כעין לחי שבפתח מבוי בריש עירובין. אבל למטה ברצפה לא היה צריך היכר פספסין, דלא מבעי׳ לראב&quot;י פשיטא דא&quot;צ היכר ברצפה, דהרי כבר היה שם הפסק המעלה שגבוה אמה בין עזרת ישראל לעזרת כהנים, דנ&quot;ל דמה&quot;ט לא עשו מהך אמה ב׳ מדרגות של חצי חצי אמה ככל שאר המעלות, כדי שיהיה להיכר יפה. אלא אפי׳ לת&quot;ק דס&quot;ל שעזרת כהנים לא הגביה א&quot;ע כלל מעזרת ישראל, עכ&quot;פ גם לדידי׳ היה שם דוכן שיעמדו עליו הכהנים לברך העם, ומסתמא היה הדוכן בסוף עזרת כהנים כדי שיברכו העם, כמו שכתב המפרש כאן. רק דלת&quot;ק עמד הדוכן על קרקע ישרה בין עזרת ישראל לעזרת כהנים. א&quot;כ עכ&quot;פ גם לת&quot;ק היה עכ&quot;פ הדוכן עצמו היכר ברצפה. ואפשר זה כוונת רש&quot;י [יומא דט&quot;ז א׳ ד&quot;ה ר&quot;א היא] שכ׳ שאסקופת שער ההיכל גבוה מאסקופת שער המזרח לראב&quot;י כ׳ אמות וחצי, וזה תמוה דהרי משנתינו אמרה בסוף נמצא עזרת כהנים גבוה מעזרת ישראל ב׳ אמות ומחצה, א&quot;כ וודאי שנגד גובה אמה וחצי של דוכן, היה ההר ג&quot;כ מגביה א&quot;ע עוד אמה וחצי, וא&quot;כ יהיה רצפת ההיכל גבוה מרצפת שער המזרח כ&quot;ב אמה [וכמש&quot;ל סי׳ ל&quot;ו]. אע&quot;כ דלרש&quot;י ל&quot;ג בסיפא דמתני׳, נמצא עזרת כהנים וכו׳, ומ&quot;ש המשנה והדוכן נתון עליה וכו׳ ד&quot;ה הוא, ור&quot;ל דלכ&quot;ע היה הדוכן עם ג׳ מעלותיו עומד על קרקע ישרה. מיהו אע&quot;ג דהפספסין היו של עץ, אין איסור נטיעת עץ בעזרה רק מעזרת כהנים ולהלן. כך כתב הראב&quot;ד. ולרמב&quot;ם דבכל העזרה אסור לבנות עץ מחובר ובולט, וכמ&quot;ש בס&quot;ד לעיל [פ&quot;א סי׳ מ&quot;ה], נ&quot;ל דצ&quot;ל דהקורות הללו לא היו מחוברות בהבנין רק תחובין בחוריו שבחומה. או שהיה הפספסין אבנים הבולטין מהחומה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-middot-text-3">Chapter 3</h4>
+          <section class="unit" id="boaz-on-mishnah-middot-3-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-3-1" data-source-ref="Boaz on Mishnah Middot 3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 3:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-3-1" aria-label="Copy link to Boaz on Mishnah Middot 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמנם ק&quot;ל גם לבני בית ראשון גם לבני בית שני, דמאי נ&quot;מ אם המזבח בנוי ע&quot;ג מקום אטום או לא. הרי בל&quot;ז כל העזרה היתה חלולה מתחתיה בנוי כיפין ע&quot;ג כיפין (כמסכת פרה פ&quot;ג מ&quot;ג ומ&quot;ו. ורמב&quot;ם פ&quot;ה מבחירה ה&quot;א). ואת&quot;ל דאעפ&quot;כ רק מקום המזבח היה בנוי ע&quot;ג מקום אטום, וסביב לו היה המחילה. ליתא, דא&quot;כ מה הועילו חכמים בתקנתן לבנות העזרה ע&quot;ג כיפין מפני ספק קבר התהום, ואם ישאר מקום שתחת המזבח אטום, ישאר הספק בעצמו בגוף המזבח, וכאשר באמת מצאו בימי יחזקי׳ גלגולת של ארנון טמון תחת המזבח (כירושלמי פ&quot;ק דסנהדרין). ונ&quot;ל מדאמרינן בנדה (דס&quot;א) דכל מקום שהוחזק בטומאה בודק עד שמגיע לסלע או לקרקע בתולה, ואחר בדיקה כזאת המקום טהור. א&quot;כ ק׳ למה בנו כלל כיפין ע&quot;ג כיפין, היה להם לבדוק כלעיל, דמהני אפי׳ הוחזק שם טומאה ומכ&quot;ש בלא הוחזק. אע&quot;כ דבימי שלמה באמת בנו המקדש ע&quot;ג מקום אטום, ולא בדקו כלל מדלא הוחזק שם טומאה. רק אח&quot;כ בימי חזקי׳ כשמצאו הגולגולת, אז אף דמדאורייתא הוה סגי גם אז לבדוק עד הסלע ולהחזיר העפר אפי׳ אתחזיק, אפ&quot;ה מצד חומר׳ דביהמ&quot;ק, אחר שבדקו העפר שתחת העזרה כולה בנו תחת הרצפה כיפין ע&quot;ג כיפין. וכיון דרק חומרא בעלמא הוה, להכי תינח בכל העזרה דאפשר, אבל תחת המזבח דלא אפשר דהרי צריך שיהיה נבנה ע&quot;ג מקום אטום. סמכו על הבדיקה עד הסלע, כמו שסומכין על בדיקה זו בכל מקום (וכרמב&quot;ם פ&quot;ט מטו&quot;מ ה&quot;י), ולהכי אחר שבדקו החזירו העפר הבדוק למקומה ועליה נבנה המזבח. אחר איזה שנים שכתבתי זה, מצאתי שגם רמל&quot;מ (פ&quot;א מבחיר׳ הי&quot;ג) התעורר בזה, והלך בתרוצו בדרך אחר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-3-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-3-2" data-source-ref="Boaz on Mishnah Middot 3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 3:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-3-2" aria-label="Copy link to Boaz on Mishnah Middot 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והר&quot;ב כתב שיורדין משם לשיתין לנקותו מהנסכים. ואחמ&quot;כ רבינו, מלבד הדוחק בלשון, דלמה נקרא כאן שית, ובכל דוכתא נקרא שיתין. אבל מלבד זה דברי רבינו הם נגד גמ׳ ערוכה (סוכה דמ&quot;ט) דאמרי׳ שם בפירוש שלנקות מקום הנסכים היה מיוחד מקום אחר, דלול קטן היה בין כבש למזבח שלשם יורדין אחת לע׳ שנה ובאין לשיתין, ונוטלין משם היין הנקרש ברוב הימים, ומעלין ושורפין אותו ע&quot;ג המזבח. וגם לשון מנקין לא שייך על היין שנקרש ושמקריבין אותו על מזבח ד׳. אבל שייך טפי על לכלוך דמים שנקרשו שם. ובדברינו אלה יתורץ מה שלכאורה יש לתמוה במשנה, שהתנא הזכיר ב׳ נקבים אלו שביסוד שמיוחדין לשירי הדם, ולמה לא הזכיר לנו נמי ב׳ הנקבים שלמעלה בגג המזבח נגד אותו קרן, שמיוחדין לנסכים (כסוכה פ&quot;ד מ&quot;ט). אולם כל עיקר תכלית מסכת זו שמה יעיד עליה, שרצתה רק להודיענו מדת כל הבניינים הקדושים וכל הדברים הקבועין ברצפה. להודיענו מדת השטח שיתפסו ברצפה וגבהן. ורק בדרך אגב משמיעינו גם דברים אחרים לפעמים. אבל אין אמיתת כוונת המסכת להודיענו תואר כל בנין וכלי. ומה&quot;ט לא הוזכר בתמונת המזבח שום דבר מהקרנות שהיו חלולים (כזבחים נ&quot;ד ב׳). ורש&quot;י שם כתב כדי שיפלו שם דמי החטאות שניתן בקרנות. וזה תמוה כמו שכתבתי בחומר בקודש, [פ&quot;ה סי׳ ד׳ וע&quot;ש]. וגם לא הזכיר שהיה אויר בין כבש למזבח (כזבחים דס&quot;ב ב׳). וגם לא הודיענו מהתפוח שהיה גבשושית עגול בולט כתפוח בגובה אמה באמצע המזבח, כ&quot;ב אמה על כ&quot;ב אמה [לראב&quot;ד פ&quot;ב מתמידין], אבל הטעם בכל זה, משום שהשטח שתופסין כל אלו נכללו בשטח המזבח שכבר הודיענו התנא כל מדת שטחו [ואפ&quot;ה, לראב&quot;ד לקמן הודיענו התנא הרבובה, שהיה בכבש במערבו. משום שע&quot;י הרבובה נתקצר שם רוחב הכבש שהיה רחבו ט&quot;ז אמות]. ומה&quot;ט לא הודיענו התנא נמי מב׳ נקבים שבגג המזבח שמיוחדין לנסכים. משום ששטחן וגם שטח השיתין לנסכים שבתחתית המזבח שלשם שותתין הנסכים הכל כבר נתפס ונכלל בשטח המזבח שכבר נמנה. אבל הודיענו התנא מב׳ הנקבים שביסוד שמיוחדין לשירי הדם, מדרצה להודיענו מהטבלא של שיש שתופס אמה על אמה בשטח הרצפה, שדרך שם יורדין לשית לנקותו מהדמים. ועדיין לא הודיענו בשום מקום מחלל זה שלשם יורדין הדמים, להכי אגב זה צריך להזכיר נמי מב׳ הנקבים שביסוד, ושמדרך השית מנקין ופותחין הנקבים הללו, כך נ&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-3-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-3-3" data-source-ref="Boaz on Mishnah Middot 3:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 3:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-3-3" aria-label="Copy link to Boaz on Mishnah Middot 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמר הננס נושא הפנס. הן אמת דמשמע מרמב&quot;ם (פ&quot;ב מבחירה הי&quot;ד) ומהר&quot;ב ורתיו&quot;ט כאן שהגומא הזאת לא היתה בגג הכבש, רק בקומת הכבש לצד מערב. אולם לרש&quot;י (פסחים ל&quot;ד א׳ ד&quot;ה לול) הגומא הזאת היתה למטה ברצפת העזרה בצד מערב מהכבש, בהקרן זויות שבין הכבש למזבח. וכמדומה שטעמו של רש&quot;י דאי נימא שהגומא הזאת היה בכבש גופיה, איך נתנו לשם פסולי חטאת העוף שיפסלו בלינה, והרי אין לינה פוסלת בראש המזבח (כזבחים פ&quot;ז א׳), וכבש דינו כמזבח לכל דבר (כרתיו&quot;ט תמיד פ&quot;ב מ&quot;א ד&quot;ה סודרין). אולם לרמב&quot;ם ולראב&quot;ד שנזכיר להלן דעתם דתרוייהו ס&quot;ל שהרבובה בגוף הכבש היה, צ&quot;ל דס&quot;ל נמי דדוקא שטח השוה שברצפת הכבש היה דינו כמזבח. אבל לא גומא שהיא נמוכה מהשטח שלה ובדופן הכבש. ומה&quot;ט לא קדשו הגומא הזאת שתהיה כמזבח (ולזה עוררני בני הגאב&quot;ד מהרב&quot;י שליט&quot;א). ול&quot;מ היה נ&quot;ל דמדקאמר במתני׳ ורבובה היתה לו במערבו, ול&quot;ל לתנא ליחס הרבובה אל הכבש כמובן במלת לו, וכי לא סגי לי׳ להתנא לומר ורבובה היתה למטה במערבו. וכדקאמר לעיל למטה ברצפה באותו הקרן וכוי. ש&quot;מ טפי כרמב&quot;ם וראב&quot;ד. דהרבובה בכבש גופיה היתה. אמנם במ&quot;ש הרמב&quot;ם שם, וז&quot;ל וחלון היה במערבו של כבש וכו׳. כתב עליו הראב&quot;ד וז&quot;ל, לא כי, אלא חלון לבד ורבובה לבד, וכך שנוייה במשנה עכ&quot;ל. ונתקשה רכ&quot;מ בכוונת הראב&quot;ד מהו, והניח בצ&quot;ע. ולפענד&quot;נ דכוונת הראב&quot;ד, דמדנקט הרמב&quot;ם לשון חלון. משמע שהי׳ הגומא ההיא בקימת הכבש, ככל חלון שבש&quot;ס שהוא מקום משוקע שבכותל מהצד. דאף שאינו מפולש נקרא חלון (כרתוי&quot;ט רפ&quot;ו דמעילה). ולזה כתב הראב&quot;ד, לא כי, דמדלא נקט התנא לישנא דחלון רק מלת רבובה משמע טפי שנגזר ממלת ארובה, ונשמט האלף והוכפל הב׳ כדרך לישנא קלילא במשניות. וארובה היינו גומא או חור שבגג, ג&quot;כ בין מפולש או אינו מפולש. וה&quot;נ היה לדעת הראב&quot;ד הגומא ההיא בזוית ראש הכבש למעלה במערבה. וזהו כפירושנו הנ&quot;ל. וי&quot;א דרבובה לשון רבב ולכלוך, ע&quot;ש פסולי חטאת העוף שניתנין שם. ואפשר דלרמב&quot;ם מה&quot;ט קראוה רבובה ולא חלון:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-3-4" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-3-4" data-source-ref="Boaz on Mishnah Middot 3:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 3:4</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-3-4" aria-label="Copy link to Boaz on Mishnah Middot 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ונ&quot;ל דלהכי רק לחטאת העוף שנפסלה קבעו לה מקום לעיבור צורה. מפני שקרבנות יולדות שהן ב׳ עופות א׳ לעולה וא׳ לחטאת. מצויות ורבות בעזרה, ושכיח׳ נמי שהפיל׳ ואינה יודעת אם מין חיוב או מין פטור, שדינה נמי שתביא עולה וחטאת, והרי יש ספק שמא הפילה מין פטור. ויהיו קרבנותיה חולין בעזרה. להכי עולה תביא בתנאי, שאם פטורה יהי׳ לנדבה, אבל חטאת דלא שיך בו תנאי, הרי הוא בספק, אבל אינו נאכל, רק תעובר צורתו וישרף (ככריתות פ&quot;א מ&quot;ד). ולהכי מדחיישי׳ שיתערב זה קרבן הפסול בשאר קרבנות יולדות הכשרות שרבות בעזרה, להכי קבעו לה מקום שתהיה מונחת שם עד שיהיה נותר. ומפני שחטאת העוף נעשה למטה אצל קרן מערבית דרומית של מזבח (כזבחים פ&quot;ו מ&quot;ב), להכי קבעו לה מקום זה להניחה סמוך למקום מליקתה (לרש&quot;י פסחים ל&quot;ד א׳). ולאינך פוסקים דס&quot;ל שהניחה למעלה באותה קרן, נ&quot;ל דלהכי לא קבעו לה מקום במקום שנמלקה, כדי שלא יכשלו בה הכהנים לאכלה. אבל כשיניחוה למעלה לא יטעו בה לאכול מה שמונח בראש המזבח. וגם שיטעו בה להקריבה א&quot;א, מדמנכר שחטאת היא, דבעולה הראש מובדל מהגוף. ובחטאת נשאר מחובר מדכתיב בה לא יבדיל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-3-5" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-3-5" data-source-ref="Boaz on Mishnah Middot 3:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 3:5</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-3-5" aria-label="Copy link to Boaz on Mishnah Middot 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ולרכ&quot;מ שם הי&quot;ד וט&quot;ו. אבני היכל ועזרות אין פוסל בהו נגיעה בברזל אפי׳ כשנבנו כבר והם בפנים. רק לעשות בהן מלאכה שצריך ברזל, כגון לסתתן או להקיש עליהן בקורנס ברזל, אסור בפנים. ולפע&quot;ד לא משמע כן מרמב&quot;ם וממתני׳ דנן, מדקאמר לכל דבר, שדוחק לומר שכוונת התנא דאפי׳ נפגם שלא בברזל (כר&quot;ב). חדא דזה פשוט, וכי פגימה א&quot;א רק בברזל. ותו דאם שכך הוא האמת דפגימת המזבח טפח. ופגימת אבניו כתגירת צפורן. ואפי׳ נפגמו ביד [כחולין די&quot;ח ב׳], עכ&quot;פ אם כך היה כוונת התנא הול&quot;ל בכל דבר. וגם דוחק לומר דקאי רק אכבש, אע&quot;ג דלא כתיב ביה בהדיא לא תניף עליהן ברזל. אבל אילה&quot;ק לדברינו הרי על גג ההיכל היה כליא עורב של ברזל כלקמן (פ&quot;ד סי׳ נ&quot;ט). דנ&quot;ל דמדהי׳ התקרה והמעזיבה חוצצין, לא חשישו משום נגיעתן בהיכל, וכן מוכח דהרי לקמן אפי׳ במזבח קאמר דאין סדין בכפיס ברזל רק שמא יגע ויפסל, משמע דכשלא יגע רק בהפסק סיד נגיעה ע&quot;י דבר אחר לא שמה נגיעה [ועי׳ בי&quot;ד קכ&quot;ד לענין מגע עכומ&quot;ז ביין]. ומשום גג גופי׳ אין לחוש, דרק עליית ההיכל נתקדש ולא גגו [כפסחים דפ&quot;ו א׳]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-3-6" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-3-6" data-source-ref="Boaz on Mishnah Middot 3:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 3:6</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-3-6" aria-label="Copy link to Boaz on Mishnah Middot 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמנם הר&quot;ב פי׳ דלכ&quot;ע לא היה רק ג׳ סדרים, דהיינו סדר ראשון שלמטה היה ג׳ מעלות שכל אחת רחבה אמה, ואח&quot;כ רובד שרחב ג׳ אמות. ולסדר ב׳ היה רק ב׳ מדריגות, שכל אחת רחבה אמה, וסמוך להן למעלה רובד שרחב ג׳ אמות. ולסדר הג׳ היה ד׳ מדריגות. שכל א׳ רחבה אמה ואח&quot;כ לת&quot;ק היה רובד ד׳ אמות נמצא שיש בין הכל י&quot;ט אמות. ועוד היה ג׳ אמות מהמזבח עד המעלה הראשונה שהיא התחתונה. ויהיה אם כן כ&quot;ב אמות מהמזבח לאולם. ולר׳ יהודה לא היה מהמזבח עד המעלה התחתונה רק ב׳ אמות, לכן נגד זה היה הרובד העליון שסמוך לאולם, רחב ה׳ אמות. והרואה יראה שאחמ&quot;כ רבינו כמה זרות יש בדבריו. דכפי הנראה הבין הר&quot;ב ז&quot;ל דמ&quot;ש במתני׳ רום מעלה חצי אמה וכו׳, היינו המעלה הראשונה, ובתר הכי נקט תנא אמה אמה ורובד ג׳. היינו עוד ב׳ מעלות והרובד, וא&quot;כ היה למטה ג׳ מעלות ואח&quot;כ הרובד. אבל קשה דהיכן נזכר במשנה שהיה בסדר העליון ד׳ מעלות ורובד. ותו דוחק לפע&quot;ד מה שכתב הר&quot;ב דלת&quot;ק היה המדריגה התחתונה רחוק מהמזבח ג׳ אמות. ולר&quot;י היה המדריגה התחתונה רחוק מהמזבח ב׳ אמות. וגם זה לא נזכר כלל במשנה. בשלמא לפרושא דלן י&quot;ל דלת&quot;ק כיון דע&quot;כ היתה המדריגה התחתונה רחוקה קצת מהמזבח, דאל&quot;כ אין שם מעלה עליה וכמש&quot;ל, א&quot;כ י&quot;ל דסמך התנא א&quot;ע על רוחב שאר המעלות שהזכיר. שכך היה ג&quot;כ ריחוק זה דוגמתן וא&quot;צ לפרש. וכ&quot;כ לר׳ יהודה, הרי על כרחך היה המדריגה התחתונה סמוכה למזבח, מדהיה הרובד העליון רחב אמה יותר ממה דקאמר ת&quot;ק. אבל להר&quot;ב ק׳, דבשלמא לת&quot;ק שהיה הריחוק שבין מזרח למדריגה הראשונה ג׳ אמות, י&quot;ל דסמך תנא דמסת׳ היה רחב כל כך כמו שאר הרובדין. אף שזה ג&quot;כ קצת דוחק, דהרי הריחוק שבין מזבח להמדריג׳ הראשונה לאו רובד הוה, ותו הרי גם הרובד העליון הרי היה יותר מג׳ אמות. אעפ&quot;כ אפשר לן לדחוקי נפשן למימר הכי. אבל לר&quot;י דלר&quot;ב ס&quot;ל דלדידיה היה המדריגה התחתונה רחוקה מהמזבח ב׳ אמות, תמוה דלמה מריחוק זה שתיק מנה ר&quot;י ככפא דחייטא נגרא, והרי לא מצינו דוגמת ריחוק זה במתני׳. אמנם לדברינו הא דקאמר תנא רום מעלה חצי אמה וכו׳, אינה עולה לחשבון המעלות, רק רצה לאשמעי׳ דכל הי&quot;ב מעלות כך היה גבהן ורחבן. ומצינו דוגמת זה לעיל (פ&quot;ב מ&quot;ג). וכן הא דנקט תנא רק ג׳ סדרים, ולדברינו הרי יש ד׳ סדרים, דהיינו לכל רובד ב׳ מעלות תחתיו. י&quot;ל דלא נקט רק ב׳ סדרי קמאי לדוגמא להודיענו שכר היה סדרי המעלות כולן, וכדנקט בדוגמת זה לקמן (מ&quot;ז). שאע&quot;ג שהיו ה׳ אמלתרות מעל פתח האולם, לא נקט התנא רק ב׳ לדוגמא. ומדלג מלפרט האמלתרו׳ הממוצעים, ונקט רק היותר עליונה. ה&quot;נ לא נקט תנא רק ב׳ סדרי קמאי שברובדין, ומדלג על הב׳ מעלות והרובד השלישי, והזכיר רק הב׳ מעלות והרובד היותר עליון. וכבר רמז כן תנא שכך כוונתו, מדקאמר והעליונה, ולא נקט כלישנא דב׳ סדרי קדמאי, דהיינו אמה אמה ורובד ד׳. ש&quot;מ דרצה להשמיענו דדילג על סדר הג׳. ודברי הרמב&quot;ם (בפ&quot;ו מבחירה) בענין זה תמוהין מאד, ורכ&quot;מ שם הניחן בצ&quot;ע. ואני בעניי פירשתי המשנה כאשר חנני ה׳ ברחמיו ית׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-middot-text-4">Chapter 4</h4>
+          <section class="unit" id="boaz-on-mishnah-middot-4-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-4-1" data-source-ref="Boaz on Mishnah Middot 4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 4:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-4-1" aria-label="Copy link to Boaz on Mishnah Middot 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואילה&quot;ק הרי לקמן במשנה ז׳ אמרי׳ דרוחב כל תא היה ו׳ אמות. והרי ממשנתינו מוכח דרק י&quot;ג תאים שבדיוטא האמצעית היה רחבן כן. ותו דשם אמרינן דרוחב כל הבית מצפון לדרום ע׳ אמה, ומהן חשיב רוחב התא ו׳ אמה, ועובי כותל ההיכל ו׳ אמה, והרי הכא קאמר דרוחב חלל התאים התחתונים ה׳ אמה, ושהכותל של היכל מתמעטת והולכת בעוביה בכל דיוטא אמה אחת, א&quot;כ ע&quot;כ שכותל ההיכל, כנגד גובה דיוטא התחתונה של התאים, היה עוביה ז׳ אמות, וכנגד דיוטא האמצעית של התאים היה עוביה של כותל ההיכל ו׳ אמות, וכנגד דיוטא השלישית היה עובי כותל ההיכל ה׳ אמות, וממנה ולמעלה היה עוביה רק ד׳ אמות. נמצא שרוב גובה כותל ההיכל שהוא למעלה מהתאי׳, היה עוביה רק ד׳ אמות. והיכי קחשבי התם בכלל הע׳ אמה שכותל ההיכל היה עוביה ו׳ אמות, והרי רוב גובה הכותל היה עביה רק ד׳ אמות. ונ&quot;ל דמהא הוכיח הרמב&quot;ם דהדיוטא התחתונה של התאים נגד אוטם של כתלו של היכל היה, ולפיכך לא היה אפשר לכנוס ממנו להיכל, דהרי האוטם, היה לצד פנים כולו אטום בקרקע, כמו שנבאר בס&quot;ד לקמן במשנה ז׳. להכי כתב הרמב&quot;ם שמהתא שבדיוטא האמצעי שבקצה צפונית מזרחית היה נכנס להיכל [עי׳ שם פ&quot;ד מבחירה הי&quot;א]. א&quot;כ י&quot;ל דהאוטם היה עביו ז׳ אמות, ודיוניות האאים התחתוניים שבצדו סביב, היה רוחב של כל אחת רק ה׳ אמות. אבל דיוטת התאי׳ האמצעים שהיו נגד התחלת כותל ההיכל, היו רחבים ו׳ אמות, וגם כותל ההיכל שכנגד גובה דיוטת התאים האמצעיים היה עביה שם ו׳ אמות. וזהו רוחב התא ורוחב כותל ההיכל דחשב התנא לקמן במשנה ז׳ בכלל הע׳ אמה שמצפון לדרום, שהיה רוחב התא ו׳ אמות ועובי כותל ההיכל ו׳ אמות, ואע&quot;ג שהכותל של היכל שלמעלה ממנה מתמעט והולך עד שלמעלה מהדיוטא השלישית לא היה עביה רק ד׳ אמות. אפ&quot;ה לא חשב להו תנא, דלא רצה התנא לחשוב רק מה שתופס ההיכל וכותליו והתאים על שטח קרקע האטום ולא חייש מה שהכותל מתמעט והולך למעלהי עד עובי ד׳ אמות, דנגד זה נתרחב חלל התאים וגגן, ודו&quot;ק, ועי׳ היטב בציור זה ותבין בס&quot;ד דברינו<br>&lt;img src=&quot;https://textimages.sefaria.org/yachin_middot/boaz4.1.png&quot;&gt;:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-4-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-4-2" data-source-ref="Boaz on Mishnah Middot 4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 4:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-4-2" aria-label="Copy link to Boaz on Mishnah Middot 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך נ&quot;ל. ועי&quot;ז מובן כל העניין יפה בס&quot;ד, דמוכח לע&quot;ד כרתוי&quot;ט שגם האולם היה בנוי על האוטם. דחדא דלא מצינו שהיה מעלות בין אולם לפתח ההיכל. ותו דהרי התנא כלל האולם במדת האורך ורוחב ההיכל כלקמן, א&quot;כ על כרחך דמשום דהיה בניין האולם סמוך ומחובר אל ההיכל, וגם בנוי עם ההיכל על קרקע שוה. דאי לא עמדו שניהן יחד על קרקע שוה, לא הו&quot;ל לתנא למכלליה במלת ההיכל. כמו דלא כלל במלת היכל דיוטא תחתונה של התאים שהיה סביב להאוטם, מדאינן בנויין על האוטם (כלעיל סי׳ ל&quot;ב), שבאמת מה&quot;ט לא כללן התנא במלת היכל, דהרי הדיוטא התחתונה של התאים, היה רוחב חללן מצפון לדרום רק ה׳ אמות (כמשנה ד׳). והתנא חשיב רוחב חלל התאים ו׳ אמות (כמשנה ז׳). ועל כרחך דהא דקאמר שרוחב חלל התא ו׳, היינו דיוטא האמצעית של התאים. שהיתה בנוייה ממעל לעובי האוטם, ולהכי רק היא נכללת במלת היכל, מדבנוייה בקרקע שוה עם ההיכל. ולפיכך אולם נמי מדהיה בנוי בשוה עם קרקע ההיכל, להכי חשבי׳ תנא להיכל. ולפ&quot;ז שהאולם היה בנוי על האוטם, א&quot;כ סמוך להאוטם שבמזרח ההיכל, היו לפני האוטם הי&quot;ב מעלות שבין מזבח לאולם (כלעיל פ&quot;ג סי׳ ס&quot;א), שהי׳ גובהן יחד ו׳ אמות, והוא הוא כגובה האוטם, שכסוהו כמש&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-4-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-4-3" data-source-ref="Boaz on Mishnah Middot 4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 4:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-4-3" aria-label="Copy link to Boaz on Mishnah Middot 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך נ&quot;ל. ואע&quot;ג דלדברינו אלה לא התפשטו הכיור והבית דלפא על כל רוחב החלל של ההיכל, רק על הכותלים, עכ&quot;פ לפע&quot;ד מדת הגובה דחשיב תנא. אין כוונתו על גובה החלל. רק על גובה הכותלים, וממעל לגובה הכותלים היה האמה הכיור ואמתיים של בית דלפא. וראי׳ לדברינו דהתנא לא חשב גובה החלל של ההיכל רק גובה הכותלים, דהרי חשב בכלל הגובה, הו׳ אמות של גובה האוטם, והרי האוטם וודאי לא נכלל תוך גובה החלל, דהרי לא נראה כלל בפנים, רק בחוץ דהיינו תוך הט&quot;ו תאים התחתונים שסביב להיכל. ותו הרי חשיב מעקה וכליא עורב. אע&quot;כ דרק גובה הכותלים קחשיב תנא. מיהו אפשר עוד שהיה הכיור פטורי ציצים מוזהבים בכל שטח התקרה בפנים בולטים אמה לתוך החלל. וכ&quot;כ הקורות של בית דלפא היו לא לבד על הכותלים. כ&quot;א גם בכל שטח התקרה היו קורות מונחים תכופים יחד מצפון לדרום, וממזרח למערב, כדי לאגד כל הבניין יחד. והרמב&quot;ם (פ&quot;ד מבחירה) פי׳ דדלפא הוא לשון דלף, ור&quot;ל שהיה רווח פנוי גבוה ב׳ אמות מתפשט תחת כל תקרת ההיכל שמוזכר לקמן במתני׳, והיה הרווח ההוא כדי לקבל בתוכו הדלף. ול&quot;מ היה נ&quot;ל אחמכ&quot;ר שזה דוחק שיתקנו מקום לדלף, תחת ב׳ תקרות עבות ותחת ב׳ מעזיבות עבות, ובין ב׳ התקרות הי׳ רווח עליי׳ גבוה מ׳ אמה. וכבר הקשה עליו שם קושיות אחרות גם הראב&quot;ד. אולם אם נאמר דדלפא לשון דלף. נ&quot;ל שהיה כעין מסגרות [געזימס] סביב כדי להגן על הכיור המצוייר תחתיו כשפה סביב לכותלים שלא יוזק מהדלף שיורד מהכותלים ומהגג שלמעלה. וכעין זה פי׳ גם הראב&quot;ד שכתב שהיו מרזבות עמוקות ב׳ אמות בולטות סביב הכותלים. כדי לקלוט הדלף שיורד מגגי התאים סביב. ול&quot;מ גם זה דוחק אמחכ&quot;ר, דוכי אפשר שיהיו גגי התאים גבוהים יותר מהכיור שסביב להיכל, דא&quot;כ לא היה יופי הכיור נראה בחוץ כלל. ותו א&quot;כ לאיה היו חלונות ההיכל פונות, אם התאים סביב היו גבוהים יותר מכל חלל ההיכל. ותו וכי כל כך דלף מרובה היה שם מעין ישיתוהו. עד שצריך שתהיה המרזב סביב עמוק ב׳ אמות. ותו אפי׳ יהיה כך, למה חשב התנא עומק המרזבות שאינו מגוף הבניין, ולא גובה הכותלים שכנגדן. ותו, וכי לא היו יכולין להושיב המרזבות נגד גובה התקרה והמעזיבה, ולמה הוצרך להן רווח לבד בגובה הבניין. אלא וודאי כדאמרן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-4-4" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-4-4" data-source-ref="Boaz on Mishnah Middot 4:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 4:4</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-4-4" aria-label="Copy link to Boaz on Mishnah Middot 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך פירשתי על פי פי׳ רש&quot;י (בערכין ד&quot;ו ע&quot;א). רק דרש&quot;י שם לא חש להזכיר שראש הכותלי׳ ג&quot;כ הי׳ מחופה כך, והרי לדברינו (סי׳ נ&quot;ה) רק גובה הכותלים קחשיב תנא. רק דרש&quot;י שם לא מיירי התם מכותלים, ולהכי לא הזכירם רש&quot;י שם. ונ&quot;ל שעכ&quot;פ צ&quot;ל שהי׳ בהגג מקום פנוי להלוך בין היתדות שנצרך כשירצו לתקן בדק הבית או לילך לשם לשאר תשמיש (כפסחים פ&quot;ו א׳). או י&quot;ל שכשרצו להשתמש שם היו יכולין להוציא המסמרות, ואחר שהשתמשו חזרו ותחבום בהנקבים שבטבלאות. אמנם הרמב&quot;ם (בפ&quot;ד מבחירה) והר&quot;ב כאן פירשו. שהי׳ טס ברזל חד על המעקה סביב, גבהו אמה, וחדודו כלפי מעלה, כדי שלא ינוחו העורבי׳ על המעקה. ותמהני דעכ&quot;פ איך מתגרשים על ידו העורבים משטח הגג גופיה שבוודאי קדוש ביותר משפת הכותלים. ואת&quot;ל דבוודאי מודו רמב&quot;ם ור&quot;ב שגם על כל שטח הגג היו מסמרות כדברי רש&quot;י הנ&quot;ל, רק הכא לא חש להזכירו, מדלא רצה תנא אלא לאשמעינן גובה הכותלים ובהגובה לא היה ניכר הכליא עורב רק אותו שעל המעקה, אבל הכליא עורב שעל שטח הגג, הרי לא אפשר למכלל בגובה, דהרי שטח הגג הי׳ עמוק ג׳ אמות יותר מהמעקה סביב. עכ&quot;פ ק׳ למה הי׳ צריך להכליא עורב שעל שפת ראשי הכותלים טס ברזל חד רחב אמה, בפחות מזה נמי סגי. ואפי׳ נימא שהיה רחב כן כדי להשלים גובה ההיכל ק׳ אמה, עכ&quot;פ ק׳ דטס אפי׳ יהי׳ חד מאד. עוף דשרבוטי משרביט נפשי׳, יוכל לישב עליו שפיר. ומכ&quot;ש ברוב הימים כשיחלוד חדודו. ובמ&quot;ק (ד&quot;ט א׳) פי׳ רש&quot;י שהי׳ גג ההיכל מתקצר בשפוע ועולה מד׳ צדדיו כעין מגדל, עד שיהי׳ ארכו ורחבו של גג באמצע, אמה על אמה, ומחפין אותו שם בטס ברזל שתחובין בו מסמרות שחודן כלפי מעלה כדי שלא ישבו עליו העורבין, עכ&quot;ל. משמע מדבריו שעל שאר שטח הגג לא היו העורבין יכולין לישב, מדהי׳ משופע. וק&quot;ל הרי היו כלונסאות של ארז בפתח עליית ההיכל כדי שיעלו בני אדם על ידן להגג להשתמש שם, ואיך ישתמשו על השפוע. על כרחך דמשום שהיה שולי שפוע הגג מחובר לתחתית המעקה, א&quot;כ שם הי׳ אפשר להשתמש בין המעקה להגג. וא&quot;כ גם העורבים היו יכולין לישב או לנוח שם. ובמנחות (דק&quot;ז א׳) פי׳ רש&quot;י שהיו מסמרות חדין תחובין בראש גג ההיכל, עכ&quot;ל. משמע מדבריו שכל הגג מחופה במסמרות בגובה אמה. אמנם אע&quot;ג שלא הזכיר רש&quot;י כאן מהטבלאות, עכ&quot;פ צ&quot;ל דמודה שהיה טבלאות של ברזל שרחבן אמה על אמה, ובהן היו תחובין אותן המסמרות, כמ&quot;ש רש&quot;י בעצמו בפירוש בערכין, וכמש&quot;ל, דאל&quot;כ היכא אמרי׳ התם במנחות שהנודר ברזל לא יפחות מאמה על אמה כדחזי לכליא עורב, ואי כליא עורב אינו כ&quot;א יתדות לחודא. מה אמה על אמה שייך בהן. ובשבת (ד&quot;צ ע&quot;א) הוסיף רש&quot;י בדבריו שהיו הטבלאות חדודים כסכין בכל סביבותיהן. ומסמרות הי׳ בכל שטחן, ובאותן הטבלאית מחפין את ההיכל, עכ&quot;ל. ולא זכיתי להבין למה הי׳ צריך שיהיה הטבלאות חדין כסכין, דע&quot;י המסמרות לבד כבר נמנעו העורבים מלישב שם, וחדודי הטבלאות שהיו נוגעין להדדי בשטח הגג, לא הועילו כלל. ובערוך פי׳ שהיה שם על הגג כמה צורות משונות, כמו שעושין בגנות כדי להבריח העורבים מהגג שלא ישליכו דבר טמא לשם. עכ&quot;ל. ולפע&quot;ד גם לערוך צ&quot;ל שהצורות ההם היו מצויירות על טבלאות של ברזל שרחבות אמה על אמה, דאל&quot;כ צא ופרנס משנתינו במנחות הנ&quot;ל שהנודר ברזל יביא אמה על אמה כדחזיא לכליא עורב. אולם לכל הפירושים הנ&quot;ל אילה&quot;ק הרי עובר משום לא תניף עליהן ברזל, שלא יגע ברזל גם בבנין ההיכל (כלעיל פ&quot;ג סי׳ ל&quot;ה). די&quot;ל דדוקא בכותלי ההיכל גופי׳ אסור שיגע בהן ברזל, אבל הכא שמפסיקין התקרה והמעזיבה, לית לן בה ועי׳ מ&quot;ש שם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-middot-text-5">Chapter 5</h4>
+          <section class="unit" id="boaz-on-mishnah-middot-5-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-5-1" data-source-ref="Boaz on Mishnah Middot 5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 5:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-5-1" aria-label="Copy link to Boaz on Mishnah Middot 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמנם מ&quot;ש הר&quot;ב כאן שלחלל עם עובי הכותל קרוי אחורי בית הכפורת. לא זכיתי להולמו, דאי לעובי כותל התא ולרווח התא נתכוון. שהי׳ באמת יחד י&quot;א אמה. וקאמר הר&quot;ב שהן הי&quot;א אמה שאחורי ק&quot;ק, ליתא דהרי לעיל (פ&quot;ד מ&quot;ז) כדקחשיב אורך ההיכל ק׳ אמה ממזרח למערב כלל שם התנא רווח התא ועובי כותל המערבי של תא בכלל ק׳ אמה של ההיכל, והרי הכא קחשיב התנא י&quot;א אמה אחורי ק&quot;ק מלבד הק׳ של היכל. אע&quot;כ שכוונת רבינו הר&quot;ב שעובי כותל המערבי של עזרה נכלל בי&quot;א אמה שאחורי הכפרת. ומדכתב כן רק הכא ולא בכותל מזרח ובכותלי צפון ודרום של עזרה, משמע דבכל הנהו דוכתי מודה דאין עובי החומה נכללת בחשבון המדה דמני תנא. ותמהני דמ&quot;ש הכא. ותו דמי ומה הכריחו להר&quot;ב ז&quot;ל לומר הכא כן, ולא נימא כדקאמרי׳ במזרח העזרה שהיו י&quot;א אמה לדריסת רגלי ישראל רווח מלבד עובי החומה, דלא מסתבר שיהיה מדרס לכהנים המועטים, ושגם יכולים לילך בכל מקום בעזרה, י&quot;א אמה, ולכל ישראל רק ה׳ אמה. א&quot;כ ה&quot;נ י&quot;א אמה שאחורי הק&quot;ק, נחשבין מלבד עובי חומת המערבי של עזרה, שהרי גם הם היו מיוחדים לדריסת רגלי ישראל (כפ&quot;ק דיומא דכ&quot;א א׳), דנ&quot;ל דר&quot;ל דהיו נמשכין לשם ממזרח העזרה, דרך הח׳ אמות שבין ננסין לכותל, ומשם להרווח שבין בית החליפות לכותל העזרה, שהיה הרווח שם י&quot;ז אמות וחצי, דהרי העזרה היה רחבה קל&quot;ה אמה, והאולם שעמד באמצע העזרה, היה רחבו עם בית החליפות שמכאן ומכאן, ק׳ אמה מצפון לדרום, ואם תחלק הל&quot;ה אמה הנותרים לב׳ חלקים שוין, יגיע לכל צד רווח בין כותל בית חליפות לכותל עזרה י&quot;ז אמה וחצי. ודברי הר&quot;ב נשארין בתימה. ורש&quot;י ביומא (דט&quot;ז ב׳) כתב כדברינו הנ&quot;ל. וכך כ׳ גם הרמב&quot;ם (פ&quot;ה מבחירה הי&quot;ב):</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-5-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-5-2" data-source-ref="Boaz on Mishnah Middot 5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 5:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-5-2" aria-label="Copy link to Boaz on Mishnah Middot 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והא דלא חשיב נמי לשכת בית אבטינוס ששם מרקחין הקטורת, ובדרום העזרה היתה [כיומא די&quot;ט א׳ ודל&quot;א א׳]. י&quot;ל דכיון דעלייה היתה ע&quot;ג שער המים (וכלעיל פ&quot;א סי׳ ב׳), להכי לא שייך לומר שהיתה בעזרה. ומה&quot;ט לא קאמר נמי התנא שבית הטבילה שבגג פרווה היה בעזרה, רק חשיב פרווה גופה, מדעמדה על הרצפה. והא דלא חשיב ד׳ לשכות שבביהמ&quot;ק (כתמיד פ&quot;ג מ&quot;ג), והרי שער בית המוקד היה פתוח לעזרה (כמדות פ&quot;א מ&quot;ה). י&quot;ל דכיון דד׳ לשכות הללו לא היו פתוחים לעזרה להדיא, רק לתוך חלל שער ביהמ&quot;ק, להכי לא שייך גבייהו למימר שהיו בעזרה. אמנם ק&quot;ל למה לא חשיב תנא נמי לשכת פנחס המלביש ולשכת עושי חביתין שהיו במזרח העזרה מזה ומזה לשער נקנור. ואת&quot;ל דהנך ו׳ לשכות דקחשיב כולן בעזרת כהנים היו, אבל ב׳ לשכות הנ&quot;ל בעזרת ישראל היו, ולהכי לא חשיב להו. ליתא, דהרי הרמב&quot;ם (סוף פ&quot;ה מבחירה) כתב שכולן בעזרת ישראל היו, ובאמת חשיב הרמב&quot;ם ח׳ לשכות היו בעזרה, וא&quot;כ למה התנא נמי לא מני כה&quot;ג ח׳. והן אמת שמ&quot;ש הרמב&quot;ם שכולן היו בעזרת ישראל, לאו דוקא, דאיך אפשר שיהיו ג׳ לשכות (שבדרום)[שבצפון] שהיה לשכת הגזית ביניהן, ובצד לשכת הגזית לצד מערב היו עוד ב׳ לשכות, כאשר תראה בציור ביהמ&quot;ק לקמן, וכולן תוך רוחב י&quot;א אמות של רוחב עזרת ישראל. והרי לשכת הגזית לבד היה כבסילקי גדולה [יומא כ&quot;ה א׳] מחזקת ע&quot;ב סנהדרין וב׳ סופרים מזה ומזה, וג׳ שורות שכל א׳ לכה&quot;פ כ&quot;ג תלמידים, ובעלי דינים, ועדים, ועדי עדים, נמצא הבסילקי ההיא מחזקת כמעט ר׳ בני אדם, ובצדה למערב לשכה שלכה&quot;פ היה רחבה ד׳ אמות, מלבד עובי כותלים שמפסיק בין גזית לפלהדרין, ולכל זה יהיה סגי רוחב י&quot;א אמה. אלא ודאי מ&quot;ש הרמב&quot;ם בעזרת ישראל ר&quot;ל לפנים משער נקנור, שכולה עד ההיכל נקרא עזרת כל ישראל, משום דלא היה מחיצה מפסקת משם עד פתח ההיכל. ואותן ג׳ הלשכות היה מקצת מהן בעזרת ישראל, ומקצת מהן בעזרת כהנים. ויהיה איך שיהיה היה לכה&quot;פ קצת מג׳ לשכות ההן בעזרת ישראל. ולמה לא חשב התנא הב׳ לשכות הנ&quot;ל שמזה ומזה לשער, אף שהיו ג&quot;כ בעזרת ישראל. וכן הלשון דנקט התנא היה בעזרה כולל נמי עזרת ישראל, כריש פרקין דקאמר כל העזרה וכו׳ וחשיב נמי מקום דריסת ישראל. ואי&quot;ל שב׳ לשכות הנ&quot;ל משו&quot;ה לא חשבן התנא שהיו בעזרה, מדלא היו פתוחות לעזרת ישראל רק לתוך חלל שער נקטר. ליתא, דהרי לשכת חביתין ע&quot;כ קדושה בקדושת פנים, דהרי לישתן ועריכתן בפנים היה (כמנחות צ&quot;ו א׳, ועי׳ תוס׳ שם דצ&quot;ה ב׳ ד&quot;ה לישתו). ואי מיירי דפתוחין לתוך חלל שער נקנור, הרי לא נתקדש (כפסחים פ&quot;ה ב׳), ואיך יוקדשו הלשכות הפתוחית לו. ונ&quot;ל דלהכי לא מני תנא הנך ב׳ לשכות שהיה בעזרה, משום דבאמת היו תוך עובי חומת עזרת ישראל ואע&quot;ג שהיו פתוחות לעזרת ישראל, עכ&quot;פ מדהיה ריוח שלהן תוך עובי החומה, לא שייך גבייהו לומר שהן בעזרה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-5-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-5-3" data-source-ref="Boaz on Mishnah Middot 5:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 5:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-5-3" aria-label="Copy link to Boaz on Mishnah Middot 5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך נ&quot;ל לתרץ קו׳ רתוי&quot;ט, דהאיך יתכן שיעלה הכה&quot;ג לבית טבילתו דרך בית המדיחין, שמצוי שם לכלוך ורפש. והא דלא היה מסיבה זו עולה מעזרה להדיא לגג הפרווה. נ&quot;ל דה&quot;ט, משום דבית הטבילה זו היתה מיוחדת לכה&quot;ג ביו&quot;כ, ואז כל העינים צופות ומשוטטות עליו בכל תנועותיו, ולהכי משום צניעות לא רצו שיעלה לעיני כל לבית טבילתו. דאף שבלתי ספק היה בית טבילה זו שבגג מוקף מחיצות סביב גבוהות כקומת איש והוא הסדין בוץ שפרסו שם ביו&quot;כ, (ורק שלא היה מקורה, מדקרי ליה גג, ולא עלייה), אפ&quot;ה חששו אולי פעם א׳ יניף הרוח להפתח שבסדין, ויראוהו הכל ערום. להכי פתחו המסיבה לבית טבילתו בחדר לפנים מחדר, דהיינו ללשכת המדיחין. והא דלא פתחו מסיבה זו מפרווה גופה לגגה. נ&quot;ל שפרווה גופה, מדהיה בה ריח רע מהעורות לא היתה פתוחה לעזרה. והרי בית טבילה זו היתה צריכה להיות בקודש (כיומא דל&quot;א א׳). להכי פתחו בית הטבילה זו לבית המדיחין שפתוחה לקודש היתה, דאל&quot;כ היו נפסלין הקרביים למדיחין שם ביוצא. וא&quot;כ גם בית הטבילה שפתוחה לבית המדיחין. דינה כפתוחה לקודש שתוכה קודש. וקצת מזה כתבו רבעתו&quot;ס (ביומא שם ד&quot;ה וכולן). ומדבריהם למדתי שהיה בלשכת המדיחין מערה מקורה פתוחה להלשכה שע&quot;ג שנקראת לשכת מדיחין, ובהמערה היו מדיחין הקרביים. ובזה יתורץ קו׳ החכם בעל ש&quot;נ בספרו (פכ&quot;ג), דהאיך לא חשש. לרית רע שיצא מבית המדיחין להעזרה. דלפי דברינו הנ&quot;ל הוכרחו לפתוח בית המדיחין להעזרה כדי שלא יפסלו הקרביים, ולהכי משום חששת ריח רע, פתחוה לפנים מב׳ פתחים, דהיינו שמהמערה ללשכה שע&quot;ג, ושמהלשכה להעזרה. ועי&quot;ז לא התפשט ממנה הריח בעזרה כשסגרו ב׳ הפתחים. ובפרט שבלתי ספק הוציאו משם הרפש מיד דרך פתח שהיה מהמערה ג&quot;כ לחוץ. אמנם מה שנדחקו רבעתו&quot;ס שם לומר שגג הפרווה היה שוה לקרקע העזרה. דאל&quot;כ היאך טבל שם כה&quot;ג ביו&quot;כ בקודש. ועי&quot;ז הוצרכו להדחק נמי שגם לשכת המדיחין בעצמה מערה היתה שפתוחה היה לעזרה, דאי לשכת המדיחין בנוי היה ע&quot;ג קרקע העזרה, למה היה צריך מסיבה ממנה לגג הפרווה ששוה לקרקע העזרה. ואחמ&quot;כ רבותינו זה דוחק שנאמר שב׳ הלשכות של מדיחין ושל פרווה שניהן רק מערות היו. ולא היו בולטין לעזרה כלל, ובפרט לשכת הפרווה שגם פתחה לא היה להעזרה, ולא נראה ממנה שום רושם כלל בעזרה, ואפ&quot;ה יאמרו שהיה ב׳ הלשכות בעזרה. וטפי הו&quot;ל לתנא לומר שבית הטבילה היה בהעזרה ומערה מתחתיו למלוח שם העורות. דהרי כבר הוכחנו שע&quot;כ היו מחיצות סביב לבית הטבילה משום צניעות, והרי גם כשאינה מקורה, שם לשכה עליה כד׳ לשכות שבעזרת נשים [פ&quot;ב מ&quot;ה]. וא&quot;כ טפי נאות לה שם לשכה, ממה שנקרא שם לשכה להמערה שתחתיה. אבל לא זכיתי לדעת מה הכריחם לכל זה, ולא אמרו דלשכות מדיחין ופרווה שניהן היו בנויים על רצפת העזרה. ובית הטבילה היתה בגג הפרווה, דאף דגגין ועליות לא נתקדשו (כפסחים פ&quot;ה ב׳), אפ&quot;ה מדפתוח הבית הטבילה להמסיבה שעמדה בקודש, שעמדה בלשכת המדיחין שפתוח לקודש. להכי גם בית הטבילה קודש. והרי גם הם כתבו שם סברא זו, יע&quot;ש. ואילה&quot;ק לדברינו דעלייה שפתוחה לקודש תוכה קודש, א&quot;כ מה מקשה שם בפסחים (דפ&quot;ו א׳), דהא דאמרי׳ דעליות לא נתקדשו והרי עליית ק&quot;ק תנינן שהיתה קדושה. ומה קושיא הרי עליית ק&quot;ק פתחה היה פונה להעזרה (כפ&quot;ד מ&quot;ה). נ&quot;ל דמדלא עלו לשם בדרך כבושה רק דרך פיסוג על כלונסאות של ארז, וגם זה רק לפרקים רחוקים, להכי לא מחשבה כפתוחה לקודש. משא&quot;כ בית טבילה זו שעולה לה מהקודש בדרך ישר כמסיבה. להכי שפיר היא קודש ומעשיה קודש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-middot-5-4" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-middot-5-4" data-source-ref="Boaz on Mishnah Middot 5:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Middot 5:4</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-middot-5-4" aria-label="Copy link to Boaz on Mishnah Middot 5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ולפעד&quot;נ מדהיתה לשכה זאת בנוייה חציה בחול ופתוחה לשם, דאל&quot;כ היה אסור לכה&quot;ג לישב ולשכב שם (כיומא דכ&quot;ה א׳) [ובבאר שבע (דכ&quot;א א׳) הראה פנים דהכהנים בשעת אכילת קדשים היו מותרים לישב, יע&quot;ש], א&quot;כ י&quot;ל שאותה כותל שמהלשכה שהי׳ בחול, היא היתה באמת של עץ. וזה כדי להזכירו דברים הנ&quot;ל סמוך למקום ישיבתו ושכיבתו. וגם כדי שלא תזוח דעתו עליו. ורכ&quot;מ כתב דנקראת כך מדהניחו שם פ&quot;א עצים. וי&quot;א דשל עץ היתה כולה, רק מתטלטלת והכל רק כדי ליתן מוסר וענוה לכה&quot;ג. ועוד כתבו טעמים אחרים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-middot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/boaz-on-mishnah-middot.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/boaz-on-mishnah-middot.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"boaz-on-mishnah-middot","manifest_url":"../../data/lexical/boaz-on-mishnah-middot.manifest.json","occurrence_url":"../../data/lexical/occurrences/boaz-on-mishnah-middot.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

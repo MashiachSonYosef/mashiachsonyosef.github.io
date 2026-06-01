@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boaz on Pirkei Avot</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Boaz on Pirkei Avot<sup class="hero-ref">1</sup></h1>
+          <p class="hero-summary">
+            <span>10 source units</span>
+            <span>2775 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Mishnah, ed. Romm, Vilna 1913 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001741739">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Boaz on Pirkei Avot <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Boaz on Pirkei Avot <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-pirkei-avot-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-1-1" title="Boaz on Pirkei Avot 1:1">1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-pirkei-avot-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-2-1" title="Boaz on Pirkei Avot 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-2-2" title="Boaz on Pirkei Avot 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-2-3" title="Boaz on Pirkei Avot 2:3">2:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-pirkei-avot-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-3-1" title="Boaz on Pirkei Avot 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-3-2" title="Boaz on Pirkei Avot 3:2">3:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-pirkei-avot-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-4-1" title="Boaz on Pirkei Avot 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-4-2" title="Boaz on Pirkei Avot 4:2">4:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-pirkei-avot-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-5-1" title="Boaz on Pirkei Avot 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-pirkei-avot-5-2" title="Boaz on Pirkei Avot 5:2">5:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-boaz-on-pirkei-avot-text-1">Chapter 1</h4>
+          <section class="unit" id="boaz-on-pirkei-avot-1-1" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-1-1" data-source-ref="Boaz on Pirkei Avot 1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 1:1</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-1-1" aria-label="Copy link to Boaz on Pirkei Avot 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכלל בזה ה׳ כללים להצלחות תלמוד ולזכרון. והם (א) שלא תלמוד דרך עראי, בין עראי ועצלות הגוף דהיינו דרך שכיבה, או יושב פרקדון, ידא אפותא דרגא לשינתא [פסחים קי&quot;ב א׳] או לטמון ידו בצלחת בחורף. וקרו לי׳ בר מיחם תנורא [פסחים מ&quot;ט א׳], דכולן מיישנים המחשבות לבלי להבין הדבר יפה. וכ&quot;ש לבלי לאכול או להתעסק במלאכה בשעת הלימוד. ובין עראי של המחשבות, לחשוב בדברים אחרים בשעה שלומד. ואין לך דבר שמרטט ומבלה ההשגה והשכל והזכרון, כפיזור המחשבות. ולכן תקנה לזה שילמוד בקול, שעי&quot;ז יתפזרו שאר המחשבות. ומלבד זה, הלימוד בקול עושה רושם בנפש טפי ונשאר יותר בהזכרון, וה&quot;נ אמרינן [עירובין נ&quot;ד ב׳] בהאי תלמיד דהוה גרס בלחישא, לאחר ג׳ שנים שכח תלמודו. וביותר מזיק להזכרון מחשבת הדאגות, כמשחז&quot;ל [סנהדרין כ&quot;ו א׳] מחשבה מועלת לד&quot;ת, ופי׳ רש&quot;י דאגה משכחת הלימוד. וכן אמרי׳ נמי [מנחות ק&quot;ב ב] , דלא הוה ידע להשיבו על שאלתו מדהוה סמיך אפלטירא. ואמרו עוד [עירובין ס&quot;ה א], שמעתתא בעי צילותא. ולא די מחשבת יגון, אלא אפי׳ מחשבת שמחה יתירה ג&quot;כ מזיק לשכל ולזכרון מה שלומד אז. וכדאמרינן [ביצה כ&quot;א א] אני היום סמכוני באשישות ובעא מנאי מלתא דבעי טעמא. אולם השמחה בהדבר עצמו שלומד, הוא הוא המחזק כח השכל והזכרון, כמ&quot;ש בחוקותיך אשתעשע, ר&quot;ל כשיהיה לי למודי לשעשוע ונחת אז לא אשכח דבריך. ועל כל אלה אמר, עשה תורתך קבע ולא עראי. (ב) יש ג&quot;כ במשמעות מלת קבע, עניין מנוחה, ור&quot;ל מנוחת הנפש. שלא ילמוד במקום המולה ממדבריים רבים או קול דופק, או שאר עניין מרעיש, שכל אלו משביתים ההבנה והתפיסה והזכרון. רק יהי׳ לו מקום התבודדת והשקטה ללימודו, דזה מועיל מאד להבנה ולזכרון בעהש&quot;י. ולכן טוב שילמוד בחדר מרווח ויפה, עם רבוי חלונות. וגם בספר יפה. ודפוס נאה [כפסחים קי&quot;ב א׳], כי כל אלה, יתנו מנוחה ושמחה להנפש ומרחיבין דעת האדם [כברכות נ&quot;ז ב׳] להניח לו מעצבו, ועי&quot;ז ישתרשו בלבו הדברים היטב. (ג) יש ג&quot;כ במשמעות מלת קבע, עניין המשך, שלא יהא לימודו פסקי פסקי, ללמוד מעט ולהפסיק, ללמוד מעט ולהפסיק, כי ההפסקות הללו משמשות להשכיח הלימוד. ומה&quot;ט לא יהיה סדר לימודו בעניינים הרבה ליום, רק יהיה קבוע ומוחזק לכל היותר בג׳ עניינים, כמשחז&quot;ל [עירובין נ&quot;ד ב׳] העושה תורתו חבילות חבילות מתמעט. דע&quot;י שידלוג הרבה מעניין לעניין, לא יהיה תנאי למה שלמד להשתרש יפה בהנפש, שכל מחשבה דוחקת חבירתה, ונבערו שניהן יחדיו. ואפי׳ בעניין א׳ לא ישנה מדפוס לדפוס, ומחדר לחדר, או אפי׳ ממקום למקום באותו חדר. ואפי׳ רק מזמן לזמן לא ישנה אלא יהא רגיל לקבוע שעה מיוחד קבוע ללימוד זה, ושעה אחרת מיוחדת ללימוד האחר. כי כל סידור נאות יחזק כח הזכרון, וכל שנוי יחלישו. (ד) יש נמי במשמעות מלת קבע, עניין חוזק ובירור, שתעשה חיזוק ללימודך, ולא תזוז מהעניין עד שתרגיש שהוא קבוע בך כבמסמר, וגם בהיר לפניך בלי שום עימום וגמגום. ואז תחזור עליו כרגע יפה יפה בע&quot;פ, עד שיהי׳ שגור בפיך בלי עיון בספר. וכמ&quot;ש החכם חזור חזור ואל תצטרך לבלזור. ואחר שבועות שתים שוב תנסה א&quot;ע, אם עוד תזכור הכל או קצת מהעניין. וכשתצטרך, תשקיף שוב קצת בספר ותשוב לחזור בע&quot;פ. כי בחון ומנוסה שגם הזכרון מונח תחת ההרגל, וביותר מועיל ההרגל זה בימי הילדות, לכן טוב להרגיל הילד לחזור בע&quot;פ מה שלמד. ומ&quot;כ דאם ירצה אדם לדרוש ברבים וכדומה, יחזור על העניין בעיון היטב איזה פעמים בלילה תיכף וסמוך ללכתו לישן, דאז לא יהיה הדבר נדחק מעניין אחר שיחשוב אח&quot;כ. ושוב בבוקר תיכף ומיד לקומו שוב יחזור עליו איזה פעמים ויהיה ככותב על נייר חדש, שלא ימחק כ&quot;כ מהרה. וכולו האי ואולי, דלאוקמא גירסא סיעתא דשמיא [כמגילה ד&quot;ו ב׳]. (ה) ואפשר עוד דכלל תנא במלת קבע לשון חטיפה, כמו היקבע אדם אלהים [ר&quot;ה כ&quot;ו ב׳]. ור&quot;ל מדצרכי הגוף מרובים, לכן במורגל שכשישב ללמוד יזדמנו לפניו בטולים, לכן יחטף א&quot;ע בחזקה מבין המון טרדותיו וילך למקום צנוע שא&quot;א לבוא שם עליו בטולין. והבא לטהר מסייעין לו [יומא דל&quot;ח ב׳] [ועי׳ עוד לקמן פ&quot;ב סי׳ ל&quot;י ובסי׳ קכ&quot;ט]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-pirkei-avot-text-2">Chapter 2</h4>
+          <section class="unit" id="boaz-on-pirkei-avot-2-1" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-2-1" data-source-ref="Boaz on Pirkei Avot 2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 2:1</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-2-1" aria-label="Copy link to Boaz on Pirkei Avot 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ונקרא בכל מקום רבי סתם. מדהיה רבן של כל ישראל [כרשב&quot;ם ב&quot;ב ד&quot;נ א׳]. דמפני שינק מדד א׳ עם אנטונינוס פיאוס [כתוס׳ ע&quot;ז ד&quot;י ע&quot;ב], לכן אהבו זל&quot;ז מאד, ותמכו הקיסר לפרנסת החכמים מאוצרותיו [כע&quot;ז שם], גם בעצמו היה עשיר גדול יותר ממלך פרס [כב&quot;מ דפ&quot;ד א׳ וגיטין נ&quot;ט]. וע&quot;י כן היה ביכלתו לאסוף כל גדולי הדור וליתן פרנסתן [כר&quot;ש סוף תרומות ועירובין נ&quot;ג ב׳], ואמר כ&quot;א לפניו בבהמ&quot;ד מה ששמע מרבותיו, וסידר רבי דבריהן בששה סדרי משנה בכתב [כך כתב רמב&quot;ם בהקדמתו ליד החזקה]. ולולא שעשה כן, כבר נשתכחה תורה מישראל ח&quot;ו. [אולם מרש&quot;י [ב&quot;מ דל&quot;ג א׳] משמע שרבי לא סידר המשנה רק בע&quot;פ, שהרי רש&quot;י כתב שם שהמשנה והגמ׳ לא נכתבו עד דורות האחרונים]. ובתוס׳ [ב&quot;ק צ&quot;ד ב׳] כ׳ שהמשניות היו קודם רבי, רק שרבי סדרם. והא דאמרי׳ [ע&quot;ז ד&quot;ו ב׳] אין סדר למשנה היינו רק לענין סתם ואח&quot;כ מחלוקת דרבי הי׳ לומד עם תלמידיו כל מסכת שהיו חפצים. ולפעמים בחרו להקדים המאוחר בהסדר. אבל רבי לא סידר רק המסכתות זא&quot;ז, אבל כל מסכת סדורה הי׳ כבר, כסוף כלים]. ונקרא גם רבינו הקדוש, מדנהג בחסידות יתירה, שלא שלח ידו ערומה למטה מחגורו [כשבת קי&quot;ח]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-pirkei-avot-2-2" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-2-2" data-source-ref="Boaz on Pirkei Avot 2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 2:2</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-2-2" aria-label="Copy link to Boaz on Pirkei Avot 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואפשר עוד דלעניין חזרה על הלימוד קאמר. דחובה על כל הרוצה להצליח בלימודו, לחזור איזה פעמים על כל עניין שלומד, וכמאמר חז&quot;ל תנא מני׳ מ׳ זמנין ודמי לי׳ כמנח בכיסתיה [מגילה ד&quot;ז ע&quot;ב], דמלבד שע&quot;י החזרה הרבה פעמים, מבין הדבר יותר, וכמו שדרשו חז&quot;ל [ברכות ס&quot;ג ב׳] על הפסוק הסכת ושמע ישראל, דתורה נמשלה לבשר דכל מה שהאדם כוססו יותר, מוצא בו טעם יותר. [ובדרך זה פי׳ מ&quot;ש חז&quot;ל [פסחים מ&quot;ט ב׳] כל הלומד תורה בפני ע&quot;ה כאילו בועל ארוסתו בפניו, שנאמר תורה צוה לנו משה מורשה, א&quot;ת מורשה אלא מאורסה. דנ&quot;ל דמה&quot;ט נמשלה תורה לארוסה, דכמו ארוסה צנועה אין דרכה להראות פנימיות הוד יפיה, ולגלות מצפוני סודותיה לארוס שלה, עד שתהיה גיסה עמו טפי, וכל עוד שתבוא עמו יחד יותר, יאבד מראה נכריותו בעיניה אחת לאחת עד שלבסוף כשתהיה נשואה לו, אז תגלה לעיניו כל סתרי יפיה והיו שניהן ערומים יחד ולא יתבוששו, מה שאינו ראוי לעשות כן לעיני נכרי. כן דרך המשתדל פעם ראשונה להתעסק בענין מה בתה&quot;ק אז פעם ראשונה ושנייה היא מתראה בעיניו כנכרייה והיא מתנכרת ולא תניח לו עדיין להשקיף על יפיה הפנימי וסודותיה הנעלמים תחת מסך דביר משכבה, עד שיחזיר להתעסק עמה פעמים הרבה כל עוד יותר אחת לאחת, תיקרהו אהבתה ותגלה לעיניו סודות תעלומותיה והוד יפיה אשר עין לא ראתה. עד שלבסוף כאשר זכה שתקרא כבר תורתו [כע&quot;ז י&quot;ט א׳] אז מדבר אשה לאיש, ויפתחו עליו ארובות השמים ותחזינה עיניו כל מסתוריה יחד. ולכן יפה אמרו חז&quot;ל הלומד תורה בפני ע&quot;ה, אשר בקמטיה טמונים אגדות ומעשייות שח&quot;ו לומר שהם מובנים כפשוטם, וידוע שאין תוכן כברן וסודות קדושות טמונים בהן, והע&quot;ה אף שיקיים מצות התורה, הוא רק כארוס לה, והמראה לו מסתוריה דברים שכסה עתיק יומין, הרי זה כבועל ארוסתו בפניו, שמה שיהיה בין הנשואין בסתר לעונג וכבוד שיתראו זה לזה, יהיה בעיני נכרי הזה לבוז, שילגלג עליהן. וכמ&quot;ש החכם באזני כסיל לא תדבר חכמה וגו׳]. וגם מועיל יותר לזכרון, וכל לימוד בלי חזרה הוא כזרע בלי מטר. וביחוד דבר זה הוא חובה על כל מחבר ספר, לעשות מהדורא על החיבור. ולפשפש בסדקיו ובזויות העמומים והכהים. ומי לנו גדול מרז&quot;ל, והרי גם רב אשי עשה מהדורא על הש&quot;ס [כב&quot;ב קנ&quot;ז ב׳]. וכמדומה לי שמסכתות נדרים, נזיר, ערכין. כריתות, תמורה, מעילה, תמיד, נחטפה השעה ולא נעשה עליהן מהדורא, ולכן באמת לשון מסכתות הללו אינן כסגנון שאר הש&quot;ס [ועי׳ תוס׳ נדרים ד&quot;ז ע&quot;א]. ולכן הזהיר התנא שלא יתעצל אדם בחזרת לימודו לדחותו מיום ליום, והיינו דקאמר לכשאפנה אשנה, ר&quot;ל כמ&quot;ש שחייב לשנותה למגילה ביום דהיינו לחזרה [כמגילה ד&quot;ד א׳] ה&quot;נ יתעצל מלחזור לימוד עד שיהיה לו פנאי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-pirkei-avot-2-3" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-2-3" data-source-ref="Boaz on Pirkei Avot 2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 2:3</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-2-3" aria-label="Copy link to Boaz on Pirkei Avot 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלשול הנשיאים כך הוא. שמעון הצדיק היה הנשיא הראשון, ואחריו אנטיגנוס, יוסי בן יועזר. רבי יהושע בן פרחיה, רבי יהודה בן טבאי, שמעיה חבירו של אבטליון. אלו הששה נזכר שלשולם בפ&quot;ק דמכילתן ובחגיגה [פ&quot;ב מ&quot;ב]. אח&quot;כ נתמנו בנשיאות ר׳ יהודה בן בתירא ואחיו ר׳ יהושע בן בתירא, [וכמדומה שלא האריכו ימים בנשיאות, ולהכי לא נזכר נשיאותם במשנה]. וכשעלה הלל מבבל, שהיה תלמיד שמעיה ואבטליון, מחלו לו בני בתירא נשיאותם. ע&quot;י מעשה שהיה [כפסחים ס&quot;ו א׳]. ואחריו רבן שמעון בנו. ואחריו רבן גמליאל בנו, הוא רבן גמלאיל הזקן. ואחריו רשב&quot;ג בנו. אלו הג׳ מזרע הלל, ונהגו נשיאתן ק׳ שנים האחרונים קודם חורבן הבית [כשבת ט&quot;ו א׳] . ונהרג רשב&quot;ג זה ביבנה בזמן החורבן, והוא א׳ מעשרה הרוגי מלכות. ונתמנה רבן יוחנן זכאי תלמיד הלל [כסוכה דכ&quot;ח א׳] . ונ&quot;ל דלהכי לא מינו לנשיא את רבן גמליאל בן רשב&quot;ג הנהרג, מיד אחר שנהרג אביו. משום גזירת המלכות שהיה עדיין על כל בית אביו שנגזר על כולן הריגה, לולא שבקש רבן יוחנן בן זכאי מהקיסר להחיותם, ונעתר לו [כגיטין נ&quot;ו ב׳]. או משום שהיה רבן גמליאל בשעת הריגת אביו עדיין ילד רך [כמשמע מתוס׳ ביצה דכ&quot;ג א׳ ד&quot;ה תליסר] . ונהג רבן יוחנן נשיאותו מ׳ שנה, מן קודם חורבן עד לאחריו [כר&quot;ה ל&quot;א ב׳]. ולכל הפחות היה נוהג נשיאות שנה או שנתיים אחר החורבן [תוס׳ שבת נ&quot;ד ב׳ ד&quot;ה הוה]. [ואחמכ&quot;ר רוב שנות נשיאת ריב&quot;ז כמעט כולם היו אחר החורבן דהרי ק׳ שנים האחרונים של ביהמ&quot;ק היה הנשיאות להלל וזרעו [כשבת ט&quot;ו א׳]. ותו נ&quot;ל דבק׳ שנים הללו, נהג בהן הלל נשיאותו ס׳ שנה או יותר, דהרי ריב&quot;ז תלמיד הלל היה [כסוכה כ&quot;ב א׳] ולמד מ׳ שנה [כר&quot;ה ל&quot;א ב׳], ותיכף כשגמר מ׳ שנות לימודו, עלה לנשיאות ולימד מ׳ שנה, דא&quot;כ לכה&quot;פ שנה או שנתיים לפני הלל למד, ול&quot;ח או ל&quot;ט שנה הנשארים למד לפני שמעון וגמליאל, ושמעון מזרע הלל, וא&quot;כ את&quot;ל שהלל מת קודם מ׳ לפני החורבן, וא&quot;כ ריב&quot;ז התחיל ללמוד עוד איזה שנים קודם לזה לפני הלל, וא&quot;כ כלו ימי מ׳ שנות למודו כמה שנים קודם החורבן, ותיכף נהג נשיאותו בפני הבית, וא&quot;כ האיך אמרי׳ בשבת [ט&quot;ו א׳] דק׳ שנה האחרונים של ביהמ&quot;ק היו מיוחדים לנשיאות הלל וזרעו. אלא ע&quot;כ שהלל חי עד מ׳ לפני החורבן. וריב&quot;ז למד אצלו שנה או שנתים וכשכלו מ׳ שנות למודו שנה או שנתים קודם החורבן, אוקמוהו לנשיאות, ומדהיו ימי נשיאותו לפני הבית רק שנה א׳ או ב׳ להכי לא חשב להו בשבת בשנים האחרונים של ביהמ&quot;ק]. אחריו מינו את רבן גמליאל בן רשב&quot;ג הנהרג. הוא ר&quot;ג שהיה לו מחלוקת עם ר׳ יהושע בעניין תפלת ערבית [ברכות כ&quot;ז ב], הוא רבי יהושע בן חנניה שהיה לוי משורר בביהמ&quot;ק על הדוכן [כעירובין די&quot;א ב], הוא ר׳ יהושע שהי׳ אב&quot;ד בימי רבן גמליאל [כב&quot;ק דע&quot;ד ב׳], גם הוא סתם רבי יהושע שבש&quot;ס והיה תוכן גדול [כהוריות ד&quot;י א׳] ואפ&quot;ה היה עני גדול, ובעל מלאכה לעשות מחטין [ירושלמי ברכות די&quot;ד ב׳] והיה כבן בית אצל הקיסר [ברכות נ&quot;ו א׳ וחולין נ&quot;ט א׳, ותענית ד&quot;ז א׳ ובשאר דוכתי טובא]. והיה לו לרבן גמלואל ג&quot;כ מחלוקת עם גיסו ר&quot;א בן הורקנס [כב&quot;מ דנ&quot;ט ב׳], הוא ר&quot;א הגדול שנזכר בכל מקום במשנה סתם בשם ר&quot;א. ושניהן, ר&quot;א ור׳ יהושע היו תלמידי רבן יוחנן בן זכאי [גיטין דנ&quot;ו א׳]. והיה רבי יהושע תמיד באהבה בחברת ר&quot;ג [כמע&quot;ש פ&quot;ה מ&quot;ט. ועירובין פ&quot;ד מ&quot;א, וכריתות פ&quot;ג מ&quot;ז, וסוכה דמ&quot;א ב׳, והוריות ד&quot;י ע&quot;ב], עד האי מעשה שנחלקו בתפלת ערבית רשות, שנתהווה ביניהן מחלוקת גדולה, והושיבו לראב&quot;ע עמו בנשיאות [כברכות כ&quot;ז ב׳]. וכשנפטר רבן גמליאל זה, מנו בנשיאות את בנו, הוא רשב&quot;ג השני. הוא רשב&quot;ג שהיה לו מחלוקת עם ר&quot;מ ור׳ נתן תלמידי ר&quot;ע [הוריות י&quot;ג ב׳]. הוא רשב&quot;ג שהלכה כמותו בכל מקום [כב&quot;ב קע&quot;ד א׳] ורק הלכה כרבי בנו נגדו [כרש&quot;י סנהדרין כ&quot;ג ב׳ ורא&quot;ש אלו מגלחין סי׳ ע&quot;ט]. וכשנפטר רשב&quot;ג זה, מנו בנו ר׳ יהודה הנשיא תחתיו, הוא רבינו הקדוש. ואחריו נתמנה בנו רבן גמליאל [כתובות דק&quot;ג ע&quot;ב]. ומסופק הש&quot;ס אם היה ר&quot;ש אחיו נשיא אחריו [כגיטין דט&quot;ו א׳]. ואחריו נתמנה ר׳ יהודה נשיאה תלמיד רב אמי, והוא היה כבר בתחלת האמוראים [כע&quot;ז דל&quot;ג ב׳. ותוס׳ ר&quot;ה ד&quot;כ ע&quot;א]. ואחריו נתמנה הלל בנו. והוא היה כבר בסוף כל האמוראים אחר אביי ורבא. וכפי הנראה. ר&quot;י נשיאה אביו האריך ימים הרבה מתחלת האמוראים עד סופן. וגזרה המלכות גזירה בימי הלל הזה שכל הסומך יהרג. ולכן היה הוא הנשיא האחרון, עשירי להלל הראשון. וכשראה הנשיא הזה שיפוצו הגליות. להן כתב המסורה לתורה, ומסר להכל גם העברונות לחשבון המועדות, שעד ימיו היה בסוד להנשיא ובית דינו, והיו מקדשין ע&quot;פ ראייה, ובא הוא ומסר להכל החשבון. אבל אותו הלל שתקן הפרוזבל. הלל הראשון היה [כרש&quot;י גיטין דל&quot;ו א׳ ד&quot;ה בשביעית בזה&quot;ז]. ובכל זה שגה מהר&quot;מ קונץ בהקדמתו למשניות שנדפסו בהעתקה אשכנזית בווין שנת תקע&quot;ז] .</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-pirkei-avot-text-3">Chapter 3</h4>
+          <section class="unit" id="boaz-on-pirkei-avot-3-1" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-3-1" data-source-ref="Boaz on Pirkei Avot 3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 3:1</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-3-1" aria-label="Copy link to Boaz on Pirkei Avot 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמר המפרש ואגב דאתא לידן, נימא בה מלתא שמצוה לפרסמו, דמימי נתקשיתי במאמר זה של חז&quot;ל ביבמות [שם], דאמרי׳ התם אתם קרויין אדם ואין אה&quot;ע קרויין אדם. דק׳ וכי ס&quot;ד שחז&quot;ל יאמרו על עכו&quot;ם שיש לו צלם אלהים כפי שביררנו, שיהיה נחשב רק כבהמה. ותו, דא&quot;כ מה זה דקאמר קב&quot;ה והייתם לי סגולה מכל העמים. ואי כל העמים רק כבהמות הארץ המה, לא יהי׳ מאמר זה רק כאומר והייתם לי סגולה מכל הבהמות ומכל הקופים שדומין בתמונתם לאדם. ותו, דא&quot;כ יהיה כל מעשיהם מעשה בהמה. שאינו בעלת שכר ועונש, והרי דבר זה סותר למה דקיי&quot;ל חסידי אוה&quot;ע יש להן חלעה&quot;ב [כסנהדרין ק&quot;ה ורמב&quot;ם פ&quot;ח ממלכים]. והרי גם לולא פה קדוש של רז&quot;ל שאמרו לנו כן, כבר היינו יודעים דבר זה מצד השכל, דהרי צדיק ה׳ בכל דרכיו וחסיד בכל מעשיו. ואנחנו רואים כמה מחסידיהן שמלבד שמכירין יוצר בראשית. ומאמינין בתה&quot;ק שהיא אלהית, ועושין ג&quot;ח גם לישראל, וכמה מהן שהיטיבו ביותר לכל באי עולם, כהחסיד יענער שהמציא הפאקקענאימפפונג, שעל ידה ניצולים כמה רבבות בני אדם מחולי וממיתה וממומין, ודראקא שהביא הקארטאפפעל לאייראפא, שמעכב כמה פעמים הרעב. וגוטענבערג שהמציא את הדפוס. וכמה מהן שלא נשתלמו כלל בעה&quot;ז, כהחסיד רייכלין שהערה למות נפשו להציל שריפת השסי&quot;ן שנצטווה מהקיסר מאקסימיליאן בשנת רס&quot;ב ע&quot;י הסתת המומר פפעפפערקארן ש&quot;ט עם הכומרים קשר של רשעים שלו. ורייכלין הנ&quot;ל השליך נפשו מנגד, ובטענותיו הכריע לב הקיסר ליקח ציוויו הנ&quot;ל לחזרה, ועי&quot;ז רדפוהו רובו וימררוהו אייביו הכומרים ודחקוהו עד שמת בדוחקו ובשבירת לבו. וכי ס&quot;ד שכל המעשים הגדולים האלו לא ישולמו לעה&quot;ב לאחר הפרגוד ח&quot;ו והרי הקב&quot;ה אין מקפח שכר כל בריה. ואת&quot;ל דאף אלו החסידים הנ&quot;ל אע&quot;ג שקיימו הז׳ מצות של בני נח [כסנהדרין נ&quot;ו ב], אפ&quot;ה אין דינם כגרי תושב, מדלא קבלום בפני ג׳ חבירים [כע&quot;ז דס&quot;ד ב]. ובל&quot;ז ג&quot;כ אין מקבלין גרי תושב רק בזמן שהיובל נוהג [כערכין כ&quot;ט א]. אפ&quot;ה מדלא עשו מעשה עשו. יש להם חלעה&quot;ב [כע&quot;ז ד&quot;י]. עכ&quot;פ ק׳ דהרי זה פשוט שגם היותר חסיד שלהן אינו מטמא באוהל, מדלא נקרא אדם. וק׳ שפיר אמאי, הרי יש לו צלם אלהים, וגם צדיק וחסיד במעשיו היה, ויש לו ג&quot;כ חלעה&quot;ב. א&quot;כ למה לא יקרא אדם. אמנם עוד ק&quot;ל אמאי שכתבו תוס׳ הנ&quot;ל דעכ&quot;פ מקרי האדם. ותמוה דאם אינן בכלל אדם איך יהיה נאות להן שם האדם בהא הידיעה. וכ&quot;כ אמריי בש&quot;ס [בגיטין דמ&quot;ז ב], דבכלל והארץ נתן לבני אדם, נכללו ג&quot;כ עכו&quot;ם. ותמוה, דאם אבותיהן אינן בכלל אדם, איך יכללו הם בכלל בני אדם. אולם האיר ה׳ עיני, שדבר גדול אחז&quot;ל בזה. דכשנתבונן היטב מעמד ישראל עכשו, ומעמד שאר האומות עכשו. נראה שיש ביניהן ב׳ חילוקים גדולים. דהנה אז כשהיו ישראל במצרים. היו כל באי העולם כישראל כשאר אומות, כיתומים ואין אב, בחשיכה אפילה שכנו כולם יחד. ולא ידעו את ה׳. ולא פרעה בלבד אמר לא ידעתי את ה׳, אלא אפי׳ ישראל לא הכירו את אביהם שבשמים כלל, עד שהוצרך משרע&quot;ה לשאל להקב&quot;ה והיה כי יאמרו לי מה שמו מה אומר אליהם. ואפי׳ כשעברו אח&quot;כ בים סוף, עדיין היתה האמונה רפופה בידם, והיתה ע&quot;ז באותה שעה בחיקם. כמ&quot;ש [סנהדרין ק&quot;ג ב׳] על פסוק ועבר בים צרה, שפסל של מיכה עבר בים. מזה מוכח שהיו אז משוקעים בכל טינופי תועבות נמרצות כמצריים וכמנהגיהם, ולא ידעו כלל מחיוביהם לה׳ ולחביריהם, ולעצמן. וכ&quot;ש שהיו כן שאר האומות, שאפי׳ היותר נבונים מהם, כיוונים וכדומה. היו כל עבודתם תועבות נמרצות, לשור ולחמור יחדו, ולשאר חיתו יער ובהמות בהררי אלף, ומתפללים לצמחים ולאילנות לעץ ולאבן, להרים ונהרות, כאילו הם אלהות, גם בניהם ובנותיהם יזבחו לשדים וכל הרריהם העלו עשן מדם אדם. ויזכר אלהים את העולם כולו, ואת בריתו את אברהם עבדו, ויבחר בזרעו אחריו שיהיו הם ככהנים ומלמדין לשאר באי עולם. וירד ה׳ כ&quot;י מן השמים בתוככי מצרים, ארץ החכמה בזמן ההיא, בין העם הגואל ומגואל, ויפתח בצבת עיניהם האטומים, בהכותו את פרעה ואת ארצו במכות גדולות ונוראות לעיניהם. ובהיותו מונח תחת השבט, שמעו הם שצעקו אליו מן השמים, למען תדע כי אני ה׳ בקרב הארץ [השגחה]. בעבור תדע כי אין כמוני בכל הארץ [יכולת]. למען תדע כי לה׳ הארץ [שכר ועונש]. אז פתחו הבנים הסכלים עיניהם, וראו מי הוא המנהיג לבירה. ומה שחסר להם עוד בידיעת ה׳ ודרכיו, הציצו המשכיליים ביתר עוז בקריעת. ים סוף, אז הורו באצבע עליו, ואמרו זה אלי ואנוהו, ויאמינו בה׳ ובמשה עבדו. ועוד לא הי׳ די. עד שהתגלה עליהן בפומבי גדול במראה נפלאה ונוראה על סיני. ומבין להבות אש עד לב השמים חושך ענן וערפל השמיעם מצותיו חוקותיו ותורותיו, הכוללים כל חיובי האדם. גם למדם אח&quot;כ סדורי הנהגות ישרות, בחלוק המחנות, ובנקיות, ודגלים, וחצוצרות התרועה. וכלי הקודש וכדומה. באופן שכל סבת הצלחתם בזה ובבא לא נודע להם מכח סכלם, רק ע&quot;י הקב&quot;ה בכבודו ובעצמו. אבל לא כן שאר האומות. דאף דאז בכל הזמן ההוא שקרב הקב&quot;ה את ישראל להשלמתן, עדיין היו כל באי עולם הוזים שוכבים בתרדמת אולת ובתהום תועבות נוראות. עכ&quot;פ כל מה שהשיגו אח&quot;כ בסבות הצלחתם בזה ובבא, נתהווה להם ע&quot;י הם עצמן, באופן שנוכל לומר הן עשו את עצמן. דהרבה שאבו ולמדו מתורת ה׳ באר הישראלי, בזמן הרב מאז ועד עתה. והרבה מחיובי האדם ומדרך המדות והמוסר, למדו ע&quot;י אורך הזמן והטבע. ע&quot;י שבקע עליהן אור השכל מעט מעט כאור נוגה הולך ואור. עד שכשנסתכל היום על היותר גרוע שבאומות, אפ&quot;ה הוא מובחר יותר גם מהמוברר שבהן שלפני זה אלפים שנה שלא יגיע לקרסוליו. ורק בזמן רב, ובטרחה רבה עשו הן את עצמן. נמצא שיש לישראל ולהאומות האחרות, לכל א׳ מעלה לבדיית. המעלה לאומות על ישראל, שהן בבחירתם החפשית ובכח עצמן ממש עשו את עצמן, וזה וודאי יותר מעלה מאשר לישראל, שנמשכו בפאת ראשם בכח אלהים להשלמתן. ואין להם להחזיק טובה לעצמן, דמה שהפליא ה׳ להשלים אותן יד ה׳ היתה עמם בכל אלה, ורק בזכות אבותיהם. אמנם אעפ&quot;כ יש מעלה לבדיית ג&quot;כ לישראל דהאומות ע&quot;י שכל מה שהשיגו לא השיגו רק בכח שכלם, לכן יש מצות רבות בתורה שמרוממים מאד משכל האנושי, ככל חוקי התורה, עדיין לא יעשום כי לא יבינום [עד אחרית הימים כשישפוך ה׳ רוחו על כל בשר]. ועוד דמשום שכל מה שהשיגו, לא השיגו רק בשכל אנושי, לכן מי ומי מהם שהתרשל מלפתוח עיניו באורך הזמן. עדיין הוא שקוע בטנוף תועבות הראשונות. כרוב תושבי אפריקא, וגם באזיען ואמעריקא יש אומות רבות הולכות עדיין בחשכה ועובדים אלילים אלמים וזובחים בניהם לשדים כאבותיהם מעולם. כי לא ידעו את ה׳ ואת תורתו לא הכירו. לא כן ישראל, הם שומרים כל חוקי התורה אף אותן שלמעלה משכל האנושי. וגם כל העם מקטן ועד גדול באמונתו יחיו, כסכל כבער מנעוריו יינק שדי תורת ה׳, והיא תכריחו לפתוח עיניו לראות דרך החיים. וזהו שאמר הכתוב ע ם זו יצרתי לי. ר&quot;ל אני עשיתים, כמ&quot;ש הוא עשנו ולא אנחנו, לכן תהלתי יספרו, אותי נאה שישבחו. ולא שיתפארו את עצמן בזה. וכן הוא אומר ועמך כול ם צדיקים דאפי׳ הסכלים שבהם לעולם יירשו ארץ החיים. כירושה בלי יגיעה. וכל זה מפני שהם נצר מטעי, שאני בעצמי יצרתיו אף עשיתיו, ומעשה ידיהם להתפאר. לפ&quot;ז יש להם לישראל בעניין מעלתם והשלמתן, דוגמא לאדם הראשון. דכל אדם כשבא לעולם, הוא נברא חסר דעת, עד שהזמן והלימוד והשכל יתפתחו קמטיהם בו לעשותו איש. לא כן אדם הראשון בקומתו וצביונו נברא [ר&quot;ה י&quot;א א׳] , ותיכף כשנפחו בו רוח חיים, הוה לרוח ממללא בהשכל ודעת, יודע חיוביו כולם. וזה, מפני שג&quot;כ היה שוה במשפטיו עם ישראל, שהרי גם הוא היה יציר כפיו של הקב&quot;ה בעצמו כמוהם. והנה כל שמקרה הבן ומעשיו, דומין למקריות ומעשה אביו, יקראוהו בשם אביו, כמ&quot;ש בזאת יבוא אהרן אל הקודש, דר&quot;ל כל כה&quot;ג שמזרעו אחריו, וכ&quot;כ להיות בריתי את לוי [מלאכי ב׳ פ&quot;ד], דר&quot;ל כל זרעו אחריו. וכ&quot;כ ובקשו את ה׳ אלהיהם ודוד מלכם [הושע ג׳] , דר&quot;ל המלך שהוא מזרעו, וכ&quot;כ ועבדי דוד מלך עליהם [יחזקאל ל&quot;ז], שהכוונה על מלך המשיח שהוא מזרעו. וכ&quot;כ נקראת אומתינו הקדושה בשם ישראל על שם אביהם, לא בלבד מפני שכל מטתו שלימה, ולא יצא ממנו שום אומה אחרת. כ&quot;א גם מפני שכל מה שקרה לאבינו הזקן הזה. לסבול רדיפות ומרעין בישין מנעוריו עד ימי זקנתו. כ&quot;כ רבות צררוני מנעורי יאמר נא ישראל וגו׳. לכן נקראו על שמו. ולפ&quot;ז אין נכון לקרוא לכל באי עולם בשם אדם, דאדה&quot;ר היה נקרא כך מדנוצר מאדמה, אבל כל זרעו הרי מבשר ודם נוצרו. אבל רק ישראל נאות להם שם זה, לא בעבור כבודם, רק מדמקרותם והשלמתן השיגו מידי הקב&quot;ה בעצמו כמו אדה&quot;ר ולא מכח עצמן. ולפיכך כל מקום שנאמר בתורה אדם הכוונה רק על ישראל. כמו אדם כי יקריב, דמיירי רק בישראל, כדאמרי׳ [חולין די&quot;ג ב׳], מכם ולא כולכם. להוציא מומר. מכם, בכם חלקתי ולא באומות. ואצטרך בש&quot;ס קרא אחרינא, דאיש איש לקבל נדרים ונדבות גם מאומות. אבל שם אדם. אין נאות להן, דהם בטרחה רבה עשו את עצמן, ואין דומין כלל בזה לאדה&quot;ר. אבל כל מקום שכתוב בני אדם גם אומות העולם בכלל, שכולן בניו ונכדיו של אדה&quot;ר הן כמונו. וכ&quot;כ כל מקום שכתוב האדם בהא הידיעה וודאי זה אינו שם של אדה&quot;ר. בהיה שם עצם פרטי שלו אדם. דהרי כל שם עצם פרטי לא יבוא לעולם בהא הידיעה, כמו דלא נוכל לומר האברהם היצחק והישראל, כ&quot;כ לא נוכל לומר האדם על שם אדה&quot;ר. אלא וודאי דבכה&quot;ג פירושו [מענש] בל&quot;א. ונקרא בהשאלת הלשון אדם. ובכה&quot;ג וודאי גם האומות בכלל, שכולן הם בריאות שכליות עם צלם אלהים כמונו. היוצא מדברינו שמה שנקרא רק הישראלי אדם אינו להם שם של שבח כל כך, רק מעיד עליהם שלא הם בעצמן קלפו הקליפה הגסה מהלב האטום, אלא בעבור שהיו כחומר ביד היוצר ב&quot;ה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-pirkei-avot-3-2" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-3-2" data-source-ref="Boaz on Pirkei Avot 3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 3:2</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-3-2" aria-label="Copy link to Boaz on Pirkei Avot 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">זהו מדרש פלאי. והארכתי לפרשו בספרי הארוך למסכת זו [ראשי אבות] . וכאן לקצר אני צריך. ונאמר דידוע למשכילים כי כל העולם והברואים מהיותר קטן עד היותר גדול שבו, עם כל אבריהם ומעשיהם והרכבת יסודותיהם, עומדים קשורים ואחוזים יחד בסידור ושלשול נפלא [ועי׳ לעיל פ&quot;ב סי׳ י&quot;א] ראכפארט בל&quot;א, כולן מתאימות זו בזו כגלגלי [אוהרווערק], כל א׳ צריך לחבירו וחבירו לחבירו. וכולן אליו והוא אליהם, עמוק עמוק מאד הרבה יותר מהשגת האדם, עד שכמה דברים ידומה לעינינו שהיה יכולים להבראות באופן אחר יותר טוב, למשל שיהיה לאדם כנפים ככנפי החסידה, ולסוס יהיה מושב רך על גביו, וכדומה הרבה. אבל כל שאלות כאלה אין בהם תבונה, ונאותים רק לקוצר שכלינו, שאין לנו הבטה כללית סבובית על כלל בניין העולם והאיך משוער כל אבר נגד חבירו וכל ברי׳ נגד חברתה. אבל הקב&quot;ה ה׳ אלהים הוא יודע, שהוא עצמות החכמה. עשה כל אבר שבגוף. לפי יחוס שאר אברי הברי׳ שנברא בו האבר. ועשה כל ברייה לפי יחוס חביריו הברואים, והכל בכללן לפי הנאות לכל אחד שישיגו כולה הצלחתן בזה ובבא. ועל זה אמר דוד (תהלים ק&quot;ד כ&quot;ד) מה רבו מעשיך ה׳ כולם בחכמה עשית. ואיוב ביאר עמקה יותר. ואמר (איוב כ&quot;ח י&quot;ב) והחכמה מאין תמצא ואיה מקום בינה, אלהים הבין דרכה והוא ידע מקומה. וא&quot;כ כיון שסידור הברואים. ושלשולן והרכבתם ויחוסם יחד הכל נבנה באופן שיהיה נאות להאדם להשיג שלימות ההצלחה. ושלימות ההצלחה א&quot;א שישיג האדם רק ע&quot;י שמירת החיובים לה׳, ולחבירו. ולעצמו. ואלה החיובים הם הרשומים בתורת אלהים חי, לכל מין אדם לפי מדריגתה, כאנשים, נשים, כהנים, לויים, ישראלים ובלתי ישראלים, כל א׳ נרשמים בתורה מעשיו שעל ידן ישיג הצלחתו. א&quot;כ היה צריך הקב&quot;ה לסדר בחכמתו הנשגבה בניין כל בריה ובריה אבריו והרכבת יסודותיו, והכל יחד, כפי הנאות לאדם למעשיו שיעשה כפי התורה שרק על ידן ישיג הצלחתו שאמרנו, מדזה היא מטחוי הבורא בה בבריאת העולם. וזהו עומק כוונת המדרש הנ&quot;ל, בתורתו ראה, ר&quot;ל שהתבונן הקב&quot;ה עסק הפעולות שחייבתן התורה ועד כמה מחוייב ויכול האדם למלאות חיובו בהן. וברא את העולם. ר&quot;ל לפיהן הרבה את שלימות סידור הבריאה, כל א׳ בתמונתו תארו וטבעו, שיהיה כל א׳ סבה לחבירו, וחבירו לחבירו, עד למעלה למעלה מהשגתינו עד להפלא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-pirkei-avot-text-4">Chapter 4</h4>
+          <section class="unit" id="boaz-on-pirkei-avot-4-1" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-4-1" data-source-ref="Boaz on Pirkei Avot 4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 4:1</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-4-1" aria-label="Copy link to Boaz on Pirkei Avot 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אולם לפע&quot;ד אפשר דכלל נמי תנא בלימוד הזה שאמר איזהו חכם הלומד מכל אדם, ר&quot;ל דבכל אדם שיפגש ילמד ממנו, שיתבונן היטב על כל ענייניו, שאם הם בהשכל ובמוסר, יתמה על נוי שלהן וילמדם ממנו. ואם ימצא חטא סכלות וחסרון בדבריו ותנועותיו, מלבושיו או מעשיו, יראה איך נמבזה ונמאס העושה כן, ויהיה נזהר ונשמר לעצמו מלעשות כמוהו. וכן בכל מדה נכונה, כעס. וגאוה, קמצנות, וזוללות. ושכרות, ועצלות, וכדומה. ועליו אמר שהמע&quot;ה [משלי כ&quot;ד פ&quot;ל] על שדה איש עצל עברתי ועל כרס חסר לב. ר&quot;ל הצצתי על המתעצל מלהשלים נפשו בין בשעוסק בדברים שהן צרכיו, כחורש שדהו, ובין כשעוסק בתענוגיו, כנוטע כרמו, הצצתי הגידולין שנתהוו בעצלותו בשדהו ובכרמו, וארא והנה עלה כולו קמשונים וגו׳ ואחזה ואשית לבי וגו׳. וכ&quot;כ כשיפגע אדם באוהבו, וישבחהו בדבר מה. יתבונן היטב על עצמו, אם לא יטעה בו אוהבו לשבחו בדבר שאין בו, ויתעמל שיהיה השבח ההוא ראוי לו. אמנם ביותר יש לו להמשכיל להשגיח על דברי שונאו שמחרפו ומגדפו וירים בקולו. אז יעשה אזנו כאפרכסת להקשיב היטב ברוח שקט על כל גדוף קטן וגדול שיאמרו לו אלו המוכיחים הנאמנים. ועל זה אמרתי פ&quot;א בדרשותי, על הפסוקים כל גוים סבבוני וגו׳ סבוני גם סבבוני וגו׳ סבוני כדבורים וגו׳, הארכתי לפרש ג׳ מיני אויבים שיש לו לאדם. ופה נפרש רק כת אויבים השלישי, שהם כדבורים מביאים דבש לכוורתינו וקול רעש שיעשה בדעכם כאש קוצים בקול חרופיהם וגדופיהם סביב לנו, בזה היה אור במושבותינו דבזה ייטיבו לנו אויבינו יותר מאוהבינו. כי האוהבים שלנו. על כל פשעינו תכסה אהבתם. ולפיכך חסרונותינו הגדולים יראו כקטנים, ויתרונותינו הקטנים יראו כגדולים, כי עינם כהה מאור האהבה, והתבוננותם משוכר מיין ידידותם לנו. ועי&quot;ז יישנו על ברכיהם השתדלותינו להשלים א&quot;ע. אולם אלה שונאינו הם המלמדים הנאמנים, לא יקחו עלה זית על פיהם, וכל חסרונותינו בשפתם ברור מללו. לכן כי יפגשך אחי, אויב מר היורה זיקים חצים ומות סביבך. החרש. לא תתקוטט עמו, למען לא יתעכר בענן הכעס אספקלריא ההתבוננת אצלך. שמע, והקשב יפה על כל דבריו, הן אמת, יאמר לך כמה דברים שאינן בך. אבל מבינות לדבריו, תשמע ג&quot;כ עניינים אשר אם בעל נפש אתה. תאמר בפנימיותיך, בזה צדקו דבריו, זה החסרון ישנו בי. ואם כי כל נקודה קטנה שבחסרונותיך יגדילוהו כבזכוכית המגדיל. תשמח על זה, כדי שתדע איך שהבריות כבר ידעוהו, תתעמל להסירו מעליך. ובזה פירשתי הפסוק ותבט עיני בשורי, ר&quot;ל כשאבוא בין בנ&quot;א זרים שלא יכירוני עדיין, ועי&quot;ז הם מביטים על כל תנועותי ועל דברי, למען לשפוט עלי ועל מדותי, תבט גם עיני עליהם, איזה פרצוף פנים יעשה עלי, למען אדע לתקן את אשר חסר בי עדיין. אולם בקמים עלי מרעים מרעימים בגידופיהם, לא אענה אותם, אבל רק תשמענה אזני יפה לקול אלה המלמדים הגדולים. ועי&quot;ז צדיק כתמר יפרח, הפירות שלא גדלו בי עדיין. מעליא רזיא לאילנא, והיה דברי אלה המקניטים כגשם נדבות עלי. ויציץ נפשי ציץ ופרחים חדשים לכונן דרכי, ויגמול שקדי מדות יקרות, וכארז בלבנון ישגה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-pirkei-avot-4-2" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-4-2" data-source-ref="Boaz on Pirkei Avot 4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 4:2</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-4-2" aria-label="Copy link to Boaz on Pirkei Avot 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ולשון גולה, היינו שיעזוב אביו ואמו ומשפחתו וכל מחמדי רווח הצטרכותיו, וילך למקום שיחסרו לו כל אלה. ואף כי קשה הפרידה הזאת כמנתק תינוק משדי אמו, לטובתו היא. דדבר מסוגל הוא להצלחת האדם, דכמו שהעשב לא יצליח במקום שנזרע תחלה, רק הגנן יעקרו ממקום שנזרע תחלה ונטענו במקום אחר, כן האדם לא יצליח, הן במדות, הן בתורה [והן בכבודו], רק במקום שאינו מקום מולדתו. וזה לג׳ טעמים, א) דהרבה שעשוע ילדות וחבירים ששמחו נפשו בשחרית ימיו, מוכרח לעזבם ברצותו לעלות בסולם ההשכלה. ובביתו ההרגל יכריחו לבלי לפרוש מהם. ב) בבית אביו ישאר תמיד ילד, דבשבתו על חיק אבותיו. רחמי יולדיו ישכרוהו באהבתם, ויישנוהו על ברכי תפנוקיהם, וישכח גם הוא תכליתו להתחזק להיות איש. ג) הדבר ידוע שהאדם יתאמץ יותר לעשות טוב מתוך חפשיות. ממה שיעשה ע&quot;י הכרח מאחרי׳. אולם בעודו בבית אביו. לא תתאמץ נפש הבן המשכיל להשגיח על עצמו להתעלות בגרם המעלות, בידעו כי אבותיו ישגיחו עליו, וידריכוהו במתג ורסן תוכחותיהם, אולם אעפ&quot;כ יצר לב האדם רע מנעוריו, וכעיר פרא לפעמים לא אבה לעצתם, ותוכחת נאץ לבו. אבל בראותו את עצמו עזוב לעצמו מכל משגיח ומדריך ואין לו מי שיזרזנו למלאכתו, אם עיני שכל לו יפתחם ויזדרז למלאכתו ויט שכמו לסבול עול הזהב, להצליח א&quot;ע בעצמו. ויהו שאמר הכתוב [איוב ח׳ פי&quot;ח] , אם יבלענו ממקומו, וכיחש בו לא ראיתיך הן הוא משוש דרכו ומעפר אחר יצמחו. [אמר יצמחו לשון רבים, שלא כרישא דקרא המתחיל בלשון יחיד. אבל ר&quot;ל הרי רוב הגידולים יצמחו רק מעפר אחר, וכדברינו הנ&quot;ל]. *)מריחמים יפריח (ר&quot;ל כשלא יהיה לו מים ממש, שישפכו אבותיו על תלמי לבו יום יום, ולא ישאר לו רק ריח מים כאשר ירעב לדברי תוכחותיהם במכתבים שיכתבו לו אבותיו וגם אשר ישאר בזכרונו מדברי תוכחותיהם, מהזמן אשר היה תחת צל כנפיהם. ריח זכרון זה יפעל בו יותר מגוף המים, ויוציא עליו פרחי המדע) ועשה קציר כמו נטע (ר&quot;ל כאילן שיעקרוהו ויקצרוהו ממקומו ויושיבוהו במקום אחר. ושם יעשה פרי יותר). וכן מצינו באאע&quot;ה שאמר לו הקב&quot;ה לך לך וגו׳, וכן משרע&quot;ה הסיב הקב&quot;ה שיעזוב מקום מולדתו, ובארץ אחרת גדלו. וכן מצינו ברבותינו חכמי הש&quot;ס. דאף שהיו חכמים רבים במקומותם, אפ&quot;ה עזבום והלכו לבי רב (ככתובות דס&quot;ב ב). וזהו שאמר הכתוב. (אם) אבי ואמי יעזבוני (אז) וה׳ יאספני:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-pirkei-avot-text-5">Chapter 5</h4>
+          <section class="unit" id="boaz-on-pirkei-avot-5-1" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-5-1" data-source-ref="Boaz on Pirkei Avot 5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 5:1</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-5-1" aria-label="Copy link to Boaz on Pirkei Avot 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מיהו נ&quot;ל דהנ&quot;מ בדידעי ליה. אבל שרי ליה לצ&quot;מ לאודועי אנפשיה באתרא דלא ידעי ליה (כנדרים דס&quot;ב). ומה&quot;ט שדר ליה שמואל לר׳ יוחנן י&quot;ג גמלי ספק טריפתא [כחולין צ&quot;ה ב׳]. וכ&quot;כ רשאי הרב להטעות תלמידיו בתשובותיו (כברכות דל&quot;ג ב׳). אמנם הא דבעי רבא*) (חולין ד&quot;ע ע&quot;א) כרכו בסיב מהו וכו׳. בלעתו חולדה והוציאתו והכניסתו והקיאתו ויצא מאליו מהו. הדביק ב׳ רחמים ויצא מזל&quot;ז. וכדומה בש&quot;ס. נ&quot;ל דאף דממש אי אפשר שיקרה כך, אפ&quot;ה אין אלו שאלות של הבל ח&quot;ו, ולא דמי להך דמנחות (דל&quot;ז א׳) ששאל פלימי מרבי באדם שיש לו ב׳ ראשים באיזה יניח תפילין, דא&quot;ל או קום גלי או קבל עלך שמתא. וכ&quot;כ בר׳ ירמיה שהיה רגיל לשאול דברים שאינן במציאות (ר&quot;ה די&quot;ג א׳ וסוטה דט&quot;ז א׳) וכדומה, וכדבעי ברגלו א׳ תוך נ׳ אמה ורגלו א׳ חוץ לנ׳ אמה, ואפקוהו מבי מדרשא (כב&quot;ב דכ&quot;ג ב׳), ולא הדר עיילוהו עד שדבר בהכנעה יתירה, אני איני כדאי ששלחתם אלי (כב&quot;ב קס&quot;ה ב׳) . דכל הנהו אגב שיטפא שאלו שלא כהוגן אבל בעיי דרבא הנ&quot;ל, לא משום דרצה לידע הדין בהנך גוונא, רק רצה לידע טעם הדין בכל פטר רחם, אי תלה בשפת רחם, או בחלל, או באותו וולד או בגוונא אחריתא. וכ&quot;כ בהך דאמרינן (יבמות נ&quot;ד א׳) דבעי בנפל מהגג ונתקע ביבמתו. ונתפקרו בה המינים שבזמנינו. אבל לא הציצו אלה הרשעים אורה של תורה, דהרי חזינן מהש&quot;ס הנ&quot;ל דהוה מענשי מאד למאן דבעי דבר שאינו במציאות. רק גם התם לא רצה לידע הדין בהך גוונא, רק רצה לידע אם ביאה קונה ביבמה אפילו בלא התכוון לשום ביאה בעולם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-pirkei-avot-5-2" data-unit data-lexical-unit data-unit-id="boaz-on-pirkei-avot-5-2" data-source-ref="Boaz on Pirkei Avot 5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Pirkei Avot 5:2</h4></div>
+              <a class="anchor" href="#boaz-on-pirkei-avot-5-2" aria-label="Copy link to Boaz on Pirkei Avot 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והר&quot;ב כ׳ דה&quot;פ דכשפוסק הדין מסברא לא יאמר כך שמעתי מרבי׳ ונתקשה עליו רתוי&quot;ט, הרי בל&quot;ז אסור לשקר, מכ&quot;ש כשפוסק דין, הרי אפשר שיש סתירה לסברתו ונמצא מכשיל הרבים. עכ&quot;ל. ולפע&quot;ד ק׳ איפכא, דהרי התירו פרושים הדבר, ואדרבה יעצו לעשות כן, וכדאמרינן (פסחים קי&quot;ב א׳) אם תרצה להחנק, התלה באילן גדול. ואת&quot;ל התם ר&quot;ל שילמוד לפני רב גדול ויאמר שמועותיו משמו כמ&quot;ש רשב&quot;ם, התם. עכ&quot;פ ק&quot;ל הרי רב פפא אמר בשם רבא דהלכה כב&quot;ה, אף דידע שלא אמר כן (כברכות דמ&quot;ג ב׳). וא&quot;כ ק׳ לר&quot;ב שכתב שאין זה מדת חכם, וכ&quot;ש לרתוי&quot;ט שכתב דאיסורא נמי איכא. אמנם נ&quot;ל דבל&quot;ז ק&quot;ל היכא הוה רב פפא רשאי לעשוח כן, הרי אמרינן (ברכות כ&quot;ז ב׳) דכל האומר דבר בשם רבו מה שלא שמע ממנו, גורם לשכינה שתסתלק מישראל. ואת&quot;ל משום כיסופא שלא יתבייש על מה שעשה ולאו אדעתיה, שרי לעשות כן, דהרי גדול כבוד הבריות שדוחה ל&quot;ת שבתורה (כברכות די&quot;ט ב׳). עכ&quot;פ ק&quot;ל מהך דאפכוה ושדרוה קמיה דרב, ואמרו סברת קרנא כאילו אמרה שמואל (כקידושין דמ&quot;ד ב׳). ואת&quot;ל התם רק לשעה עשו כן כדי לבחון דעתו, ורצו להודיעו בתר הכי מאן אמרה. עכ&quot;פ ק&quot;ל משמואל דאמר מלתא דרבי בשם רבנן, מדהוה ס&quot;ל דבהא הלכה כרבי (פסחים כ&quot;ז א׳). ואת&quot;ל כיון דהזכיר שם רבנן, והרי רבי נמי בכלל רבנן, וכיון דקיי&quot;ל כוותיה שרי לכנותו כך*), כדאשכחנא כמה זמנין דנקיט רבי גופיה מלתא דיחיד בשם חכמים כי היכא דליקו כוותיה. עכ&quot;פ ק&quot;ל ממ&quot;ד (חולין קי&quot;א ב׳). דשמואל אמר לר&quot;א מלתא בשם רב, ורב לא אמרה (עי׳ מ&quot;ש עדיות פ&quot;ד סי׳ נ&quot;ד). ונ&quot;ל כיון דעיקר הטעם דאסור לומר כן, הוא משום דשמא יש לפקפק על דבר זה שאומר ונמצא מבזה רבו (כמ&quot;ש בדברי חמודות ברכות פ&quot;ד אות כ&quot;ד). א&quot;כ כשברור לו שהלכה כן, שרי לומר בשם רבו כדי ליתן חיזוק להדבר. וכ&quot;כ באומר בשם איש גדול שאינו רבו, ויש לו שום צורך בדבר, אפילו אין ברור לו שכן הלכה, שרי, דאע&quot;ג דעי&quot;ז אפשר שיפחת כבוד חבירו, והרי אסור להתכבד בקלון חבירו. אפ&quot;ה רק ספק גרמא בעלמא הוא ושרי. ודו&quot;ק]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-pirkei-avot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/boaz-on-pirkei-avot.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/boaz-on-pirkei-avot.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"boaz-on-pirkei-avot","manifest_url":"../../data/lexical/boaz-on-pirkei-avot.manifest.json","occurrence_url":"../../data/lexical/occurrences/boaz-on-pirkei-avot.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

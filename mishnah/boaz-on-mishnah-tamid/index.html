@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boaz on Mishnah Tamid</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Boaz on Mishnah Tamid<sup class="hero-ref">1</sup></h1>
+          <p class="hero-summary">
+            <span>13 source units</span>
+            <span>1769 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Mishnah, ed. Romm, Vilna 1913 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001741739">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Boaz on Mishnah Tamid <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Boaz on Mishnah Tamid <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-tamid-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-1-1" title="Boaz on Mishnah Tamid 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-1-2" title="Boaz on Mishnah Tamid 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-1-3" title="Boaz on Mishnah Tamid 1:3">1:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-tamid-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-3-1" title="Boaz on Mishnah Tamid 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-3-2" title="Boaz on Mishnah Tamid 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-3-3" title="Boaz on Mishnah Tamid 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-3-4" title="Boaz on Mishnah Tamid 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-3-5" title="Boaz on Mishnah Tamid 3:5">3:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-tamid-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-4-1" title="Boaz on Mishnah Tamid 4:1">4:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-tamid-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-5-1" title="Boaz on Mishnah Tamid 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-5-2" title="Boaz on Mishnah Tamid 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-5-3" title="Boaz on Mishnah Tamid 5:3">5:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-tamid-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-tamid-7-1" title="Boaz on Mishnah Tamid 7:1">7:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-boaz-on-mishnah-tamid-text-1">Chapter 1</h4>
+          <section class="unit" id="boaz-on-mishnah-tamid-1-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-1-1" data-source-ref="Boaz on Mishnah Tamid 1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 1:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-1-1" aria-label="Copy link to Boaz on Mishnah Tamid 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך כתב הרמב&quot;ם בפרק בתרא מבית הבחירה. ולפ&quot;ז צ&quot;ל לפענ&quot;ד דאעפ&quot;כ שומרים שם רק בלילה, וכדמשמע מסקנא דמתני׳. משום דביום א&quot;צ שישמרו לסימן כבוד. דבל&quot;ז ע&quot;י הליכת כהנים בעבודתם אנה ואנה, כבוד אומר כולו. אבל בלילה שאין בו עבודה ורוב הכהנים העובדים ישנים, צריך להראות כבוד וגדולה להבית הקדוש ע&quot;י המשמורות ששומרים לבוקר שומרים לבקר, לפתוח השערים ולהתחיל שוב אז בעבודת המלך. אמנם להמפרש מסכת תמיד כאן שומרים כל היום וכל הלילה. ולענ&quot;ד כן משמע קרא דהחונים (על) [לפני] המשכן דיליף מינה הש&quot;ס שמירה בביהמ&quot;ק, ושם לא נזכר לילה. ונ&quot;ל עוד דהנך משמורות היו מתחלפין, דאחר איזה שעות בא אחר לשמור, והן הן הג׳ או ד׳ משמורות בארעא דפליגי בהו ר&quot;א ורבנן (ברכות ד&quot;ג א׳). ר&quot;ל משמורות שבמקדש. דאי נימא דרק במשמורות מלאכים מיירי, בזה לא שייך פלוגתא. ומה&quot;ט נמי קאמרי׳ התם שהקב&quot;ה כ&quot;י מצטער על כל משמר ומשמר, על חורבן ביהמ&quot;ק, כמ&quot;ש שאוג ישאג על נוהו. מקדש מה שייכות יש לו עם כל משמור ומשמור כשיתחלף. אע&quot;כ כדאמרן. ובש&quot;ג (הי&quot;ז) כתב שבכל משמור של כהנים ולוים היה י׳ בנ&quot;א. ואפשר טעמו משום אין דבר שבקדושה פחות מעשרה [מגילה כ&quot;ג ב׳]. נמצא שהיה מספר הכהנים השומרים ל׳. ומספר הלוים השומרים ר&quot;מ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-tamid-1-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-1-2" data-source-ref="Boaz on Mishnah Tamid 1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 1:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-1-2" aria-label="Copy link to Boaz on Mishnah Tamid 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והר&quot;ב כתב שכל משמר מתחלק לשבע בתי אבות. ובמחכת&quot;ר זהו נגד ש&quot;ס ערוך [מנחות דק&quot;ז ב׳]. וכך כתב רש&quot;י שם וביבמות [דק&quot;א א׳], ובפסחים [דנ&quot;ז א׳] דרק ששה בתי אבות היו בכל משמור. אח&quot;כ מצאתי בכתבי קודש של אחי הגאון. מהו׳ אליעזר זצוק&quot;ל שהקשה עוד בזה דברי רש&quot;י אהדדי שרש&quot;י כ׳ בעצמו [תענית ט&quot;ו ב׳ ד&quot;ה אנשי בית אב], שהיו ז׳ בתי אבות בכל משמור וצ&quot;ע. אב&quot;י אולם גם ברמב&quot;ם [פ&quot;י מתמידין ה׳] מוכח דס&quot;ל דז׳ בתי אבות הי׳ בכל משמור של כהנים. וכ&quot;כ רכ&quot;מ (פ&quot;ג מכלי מקדש ה&quot;ט) שהיו ג&quot;כ בכל משמר לויי׳ ז׳ בתי אבות. ונ&quot;ל דצ&quot;ל לדידהו שלבית אב ששימש בשבת לא היה שופר, מדאין מטילין מעות לשופר בשבת. והשבתי לבני הגאב&quot;ד שליט&quot;א, הוכחתי שהיה רק ו׳ בתי אבות אינו כמו שחשבת. רק משום דפשטות לישנא דש&quot;ס מוכח כן. מדלא קאמר נגד ו׳ בתי אבות של חול. סתמא משמע וודאי טפי שלא היה שם רק ו׳ בתי אבות. ותו דאי כדבריך ל&quot;ל לש&quot;ס במנחות שם לומר כולהו כחזקי׳ לא אמרו, לאנצויי׳ לא חיישי׳. טפי היל&quot;ל דלהכי לא אמרו כחזקי׳ משום דאכתי אתו לאנצויי מי ישמש בשבת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-tamid-1-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-1-3" data-source-ref="Boaz on Mishnah Tamid 1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 1:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-1-3" aria-label="Copy link to Boaz on Mishnah Tamid 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מיהו נ&quot;ל דאיסור נגיעתו בכלי שרת קודם קידוש אינו אלא זהירות בעלמא, דלמא אגב חביבותי׳ ישכח ויעבוד בלי קידוש, דמה&quot;ט נמי לא הפיסו בבגדי חול (כיומא כ&quot;ד ב׳). דאי&quot;ל משום חשש טומאה, דהיינו שמא הוא או ידיו טמאים, ויהיו ידיו לחים, והרי המשקין שבהם. נעשו עי&quot;ז ראשון, ויטמאו לכלי (כרמב&quot;ם פ&quot;י מאהט&quot;ו). ליתא, דהרי לפני רגע טבל, וכל טבילה דמדרבנן א&quot;צ הע&quot;ש (כרש&quot;י ביצה די&quot;ח א׳). ואי&quot;ל דאפ&quot;ה משום חומר טהרת כלי קודש גזרו שלא יגע שום אדם בהן אפי׳ טהור בלי קידוש. גם הא ליתא, דהרי לשחיטת קרבן היה צריך לכה&quot;פ לכתחילה סכין כלי שרת [כזבחים צ&quot;ז ב, ורש&quot;י שם צ&quot;ה א׳ ד&quot;ה אלא, ורמב&quot;ם פ&quot;ד מקרבנות ה&quot;ז ודלא כתוס׳ חולין [ד&quot;י ע&quot;א ד&quot;ה כגון]. ורק בדיעבד כשר בשחט רק בצור. והרי שחיטה כשרה לכתחילה בזר. ולא מצינו בזר שיקדש, אף שנגע בסכין של שחיטה כששוחט. אלא וודאי כדאמרן דרק בכהן גזרו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-tamid-text-3">Chapter 3</h4>
+          <section class="unit" id="boaz-on-mishnah-tamid-3-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-3-1" data-source-ref="Boaz on Mishnah Tamid 3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 3:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-3-1" aria-label="Copy link to Boaz on Mishnah Tamid 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וכן פי׳ רש&quot;י ותוס׳ [מנחות ד&quot;ק ע&quot;א]. אולם לפי מה דאמרינן [בסנהדרין די&quot;ט. ורש&quot;י שם במתני׳, וביומא דט&quot;ו ב׳ ודכ&quot;ח א׳] דהסגן דהיינו המשנה לכה&quot;ג, הוא היה הממונה, נראה לי דצריך לומר דהסגן היה ממונה גם כן על הפייסות. והא דלא חשיב לה בירושלמי בהדי אינך דברים שהסגן משמש. וכקו׳ תוס׳ [יומא דט&quot;ו ב׳]. נ&quot;ל דתנא ושייר, דהרי שייר נמי, דסגן נותן הס&quot;ת לכה&quot;ג (כיומא דס&quot;ח ב׳). ועי׳ מ&quot;ש רפ&quot;ג דיומא. עוד נ&quot;ל דבכולה מכילתן לא אשכחן שצוה הממונה בשום פעולה או עבודה, רק בה׳ עניינים, (א) אצל הפייסות [פ&quot;א מ&quot;ב, ופ&quot;ג מ&quot;א. ופ&quot;ה מ&quot;ב], משום דכל פייס אינו ראוי לעשות בלי ציווי מפורש מהממונה, שיראה שלא יהיה שם ערמה. (ב) וכ&quot;כ בצאוור או אם הגיע זמן שחיטה [פ&quot;ג מ&quot;ב]. היה צריך ציווי הממונה שלא יטעו באור הלבנה (כיומא פ&quot;ג מ&quot;א). (ג) וכ&quot;כ בהבאת טלה התמיד [פ&quot;ג מ&quot;ג], שלא יביאו מטלאים שאינן מבוקרין. (ד) וכ&quot;כ בברכו ברכה א׳ (פ&quot;ה מ&quot;א) מדלא עלה השמש עדיין, והקדימו ג&quot;כ אהבה רבה ליוצר אור (כברכות די&quot;א ב׳) לכן אין ראוי לעשות כן בלי צוויו. (ה) וכ&quot;כ בהקטרת הקטורת (פ&quot;ו מ&quot;ג) מפני חשיבותא, שלא שנה בה אדם מעולם (כיומא כ&quot;ו א׳).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-tamid-3-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-3-2" data-source-ref="Boaz on Mishnah Tamid 3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 3:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-3-2" aria-label="Copy link to Boaz on Mishnah Tamid 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אולם בציור של בית המקדש שבסוף מדות בש&quot;ס. וכ&quot;כ בציור ביהמ&quot;ק של רתוי&quot;ט במשניות סוף מדות, נראה שהיה הבית מטבחיים מוקף מחיצות ושער, סביב להעמודי ננסין שתולין בהן, והטבעות שמכניסין בהן צואר הבהמה היה מבחוץ, בין הבית מטבחיים למזבח. והנה מה שציירו הטבעות מחוץ לבית המטבחיים. נ&quot;ל דיפה ציירו כן, דהרי בעינן ושחט אותו על ירך המזבח. ואם יהיה מחיצת בית המטבחיים מפסיק בין מקום השחיטה למזבח, א&quot;כ לא ישחטנה על ירך המזבח. כדקאמרינן כה&quot;ג בש&quot;ס (זבחי׳ דנ&quot;ט א׳), דמה&quot;ט משוך הכיור מבין המזבח לפתח ההיכל. ותו הרי מה&quot;ט אמרי׳ [זבחים נ&quot;ו א׳] דאין שוחטין קדשים קלין בלשכות הפתוחות לקודש, מדכתיב לפני אהל מועד, למעוטי צדי צדדים כמ&quot;ש רש&quot;י, א&quot;כ ה&quot;נ טבעות. ולהכי על כרחך צ&quot;ל שהטבעות לא היו תוך היקף מחיצה [ועמ&quot;ש מדות פ&quot;ג סי׳ נ&quot;ב]. מיהו תמהני דא&quot;כ למה יכניסו להתמיד קודם שחיטה לבית המטבחיים, והרי הטבעות לשחטו בהן בחוץ היו. ותו מנ&quot;ל הא שהיו שם כלל מחיצות. ואדרבה מש&quot;ס [יומא דט&quot;ז ב׳] דקחשיב כל רוחב העזרה לעומת המזבח. לא הזכיר המחיצות או רוחב בית המטבחיים בכלל. וגם במשנתינו אמרי׳ על המטבחיים, ועליו שמונה עמודים ננסין, ואי נימא שהיו מחיצות סביב לבית המטבחיים, הול&quot;ל והיו בתוכו שמונה וכו׳. לכן נ&quot;ל שלא היה שם מחיצות ושער כלל, רק כל אותו מקום שהיו עליו הטבעות והשולחנות והעמודים נקרא בית המטבחיים, כמו בית הפרס (פי&quot;ג דאהלות), ובית רובע (פאה פ&quot;ג). בית צואר (שבת דמ&quot;ח), בית כור (ב&quot;ב פ&quot;ז מ&quot;א), דבכולם פירושם מקום שיש שם אותו דבר שמזכיר. ובזה מתורץ קו׳ תוס׳ לרש&quot;י [סוכה דל&quot;ו ב׳ ד&quot;ה בשבת] דבעי לאכיחי דבית הכסא משמע דמוקף מחיצות, והרי קמן דכמה דברים וקראו בית אף שאינן מוקפין מחיצות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-tamid-3-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-3-3" data-source-ref="Boaz on Mishnah Tamid 3:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 3:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-3-3" aria-label="Copy link to Boaz on Mishnah Tamid 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך כתב רתוי&quot;ט בשם הראבי&quot;ה (מדות פ&quot;ג מ&quot;ה). והר&quot;ב כתב שהיו ג׳ סדרים אונקלות בכל רביעיות. זו למעלה מזו, כדי לתלות בהן בהמה גדולה או קטנה. וק&quot;ל כיון שכבר היו העמודים נמוכים פחות מקומת איש, כדי שתהיה נוח להפשיטה כלעיל סי׳ ל&quot;ה, א&quot;כ ל&quot;ל תו סדריי אונקלות התתתונות. הרי גם בסדר האונקלות העליונות היו יכולין לתלות גם בהמה קטנה. ותו גם בהמה גדולה היו יכולין לתלותה בסדר התחתון של האונקלות. ואפ&quot;ה לא תסרח על הארץ, מדהיו מניחין שולי הבהמה על השולחנות שבין הננסין [כתוס׳ יומא ט&quot;ז ב׳ ד&quot;ה מן]. ותו דהרי כבר כתב הרמב&quot;ם (פ&quot;ו ממעשה הקרבנות) דגסה לא תלו כלל. ודוחק לומר דר&quot;ל כבשגדול או קטן, וצ&quot;ע.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-tamid-3-4" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-3-4" data-source-ref="Boaz on Mishnah Tamid 3:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 3:4</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-3-4" aria-label="Copy link to Boaz on Mishnah Tamid 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותמה רתוי&quot;ט האיך שייך גבי תרקב שהוא מדה קבועה, מלת גדול. והרי מדתו קבוע. ולכן רצה למחוק מלת גדול. ולפענ&quot;ד א&quot;צ למחוק, דרגילין היו בב׳ תרקבין. א׳ שלא היה מחזיק רק ב׳ קבין, ורק מדגודשא תילתה הוה (ב&quot;ב דפ&quot;ט א׳). להכי כשיגדישוהו היה מחזיק עם הבירוץ ג׳ קבין, ולהכי קראוהו תרקב קטן. והב׳ היה מחזיק ג׳ קבין גם כשיהיה מחוק ובלי בירוץ. והוא הנקרא תרקב גדול, מדהיה תוך חללו גדול יותר מהאחר. והשתא אילו היו לוקחים התרקב הקטן להאפר של הקטורת שהיה קביין ומחצה, וכדמסיק התנא. היה צריך עכ&quot;פ להגדיש חצי קב מהאפר. וחוששים שיתפזר בלכתו. להכי בחרו טפי לעשותו דומה לתרקב גדול.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-tamid-3-5" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-3-5" data-source-ref="Boaz on Mishnah Tamid 3:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 3:5</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-3-5" aria-label="Copy link to Boaz on Mishnah Tamid 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואי&quot;ל ל&quot;ל קרא זה בשלמים, הרי ממילא פסולים מדשחטן קודם לתמיד, ואמרי׳ [פסחים נ&quot;ח ב׳] העולה עולה ראשונה. י&quot;ל דקרא דעולה ראשונה היינו שיקריב אברי התמיד קודם לשאר הקרבנות, וקרא דפתח אצטריך שיקדים גם שחיטת תמיד לשחיטת שאר הקרבנות, אף דשחיטה לאו עבודה דהרי כשרה בזר. עוד י&quot;ל דקרא דהעולה שתהיה ראשונה אפי׳ בשחיטה, והיינו לכתחילה, אבל בדיעבד כשר מדאו׳ בשחטן קודם לתמיד. ורק מדרבנן פסול [כמנחות מ&quot;ט ב׳] וכמו כן בשחטן אחר תמיד הערב. רק מדרבנן פסול. אבל בשחטן קודם שנפתח ההיכל פסול מדאורייתא [ועי׳ תוס׳ יומא דכ&quot;ט ב׳, דמתוספתא משמע דבשחטן קודם תמיד הבוקר. או אחר תמיד הערב פסול מדאורייתא. ועי׳ עוד תוס׳ פסחים דנ&quot;ח ב׳]. עוד י&quot;ל דקרא דפתח אוהל אצטריך לאפוקי היכא שסגר ההיכל ביום לשום צורך, ושחט שום קרבן שפסל (תוס׳ עירובין ד&quot;ב א׳) . אבל אי&quot;ל דאצטריך ב׳ קראי לפסלו בדיעבד, כשאין השער פתוח, דבקדשים בעינן שינה עליו הכתוב לעכב (כזבחים דמ&quot;ח ב׳). נ&quot;ל דהכא דאין העניינים שוין. דחד קרא מצריך שיהיה התמיד ראשון, ואידך קרא מצריך שיהיו דלתות ההיכל פתוחים. לא מחשב כשינה עליו הכתוב לעכב [ועי׳ עוד תוס׳ פסחים דנ&quot;א ב׳ הנ&quot;ל. דבמנחות (דמ&quot;ט ב׳) משמע דלא מעכבי, ועי׳ בחומר בקודש פ&quot;ד סימן ז׳ י׳] .</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-tamid-text-4">Chapter 4</h4>
+          <section class="unit" id="boaz-on-mishnah-tamid-4-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-4-1" data-source-ref="Boaz on Mishnah Tamid 4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 4:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-4-1" aria-label="Copy link to Boaz on Mishnah Tamid 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמר המפרש הרבה טעמים נאמרו בזה. רש&quot;י [יומא דס&quot;ב ב׳] כתב דלהכי שחטוהו בטבעת שנייה כדי שתהי׳ הראשונה מסייעתו להאחז בה רגלי הבהמה, עכ&quot;ל. כוונת רבינו דמן הראוי לשחטה על טבעת הראשונה שבאות ג׳, כדי לקרב מקום קבלת הדם למזבח כל מה דאפשר, כדי שלא להתעכב בין קבלת הדם לזריקתו, שלא יקרוש. ואפ&quot;ה ישחטוה על טבעת שניי׳ כדי לאחוז ידיה בטבעת שבאות ג׳ ורגליה בטבעת השלישי. אבל ק׳ הרי מקום הטבעות הי׳ כ&quot;ד אמות מצפון לדרום [כיומא ט&quot;ז ב׳], והטבעות היו מונחים בו׳ שורות, נמצא שיש בין השורות ה׳ מרחקים, ונמצא מגיע לכל מרחק ד׳ אמות בקירוב, והד׳ אמות הנותרי׳ יהי׳ למקום הטבעות בעצמן, א&quot;כ איך אפשר שכשיכניס צואר כבש התמיד בטבעת א׳, יאחיזו רגלי הכבש בטבעת שבשורה האחרת. ואת&quot;ל לפי מ&quot;ש תוס׳ [מנחות דפ&quot;ז א׳] בשם הבראשית רבה שכבשי התמיד היו גדולים כל כך שכשירכבום על הגמלים, היו רגליהם נגררים על הארץ. והרי לפי מ&quot;ש תוס׳ [יומא דט&quot;ז ב׳] על כרחך שאין זה גוזמא, יע&quot;ש. א&quot;כ וודאי אפשר שיאחזו צוארם בטבעת א׳, ויאחזו רגליו האחרונים בטבעת שבצדו הרחוק מטבעת הראשון ד׳ אמות. ואף את&quot;ל דהך דב&quot;ר שהביאו תוס׳ גוזמא היא, אפ&quot;ה היו יכולים לקשור רגלי הכבש בחבלי׳ ארוכים לטבעת הרחוק שבצדו. עכ&quot;פ ק&quot;ל הרי גם ידי הבהמה גם רגליה לא התפשטו כלל לפניה או לאחריה בשעת שחיטה, רק כל יד נעקד עם רגל שלאחריו נגד אמצעית בטן הבהמה, או כמו שכתב רש&quot;י בעצמו שנעקדים ידיה ורגליה של הבהמה לאחוריה, וכמ&quot;ש לעיל סי׳ ב׳. וא&quot;כ איך תאחז בידיה בטבעת שלפניה בדרום. והתוס׳ [יומא דס&quot;ב ב׳] כתבו דלהכי לא שחטוה על טבעת ראשונה שבקצה שורה א׳ באות ג. דשמא ירביץ גללים, ובעניי לא הבנתי דא&quot;כ מה&quot;ט הי׳ לנו להרחיק שחיטתו כל מה דאפשר מהמזבח והי׳ ראוי לנו לשחטו על קצה שורה האחרונה בטבעת המסומן באות ד׳. ואת&quot;ל כיון דטבעת א׳ מפסיק בין הגלל למזבח לית לן בה. עכ&quot;פ א&quot;כ בכל הקרבנות נמי ניחש הכי, והרי רק התמיד שוחטין על טבעת שניי׳, אבל כל קרבנות היום שוחטין כל משמור בטבעת הקבוע להם אפי׳ בטבעת הסמוך למזבח. וביומא [דל&quot;ו א׳] משמע דבמפסיק גוף הבהמה בין הגלל למזבח, תו לא חישיינן להטלת גלל. והכא גם בתמיד עבדינן הכי כלעיל סי׳ ג׳ ובהכי סגי. וא&quot;כ יכול לשחוט שפיר על טבעת הראשונה. והמפרש למסכתן והר&quot;ב כאן כתבו דלהכי שחטוהו בטבעת שניי׳. כדי שלא יאפיל על מקום השחיטה צל המזבח שגבוה ט׳ אמות. הנה מלבד מה שהקשה רתוי&quot;ט, שבבוקר שהצל מאריך, לא יספיק ריחוק זה שהוא י&quot;ב אמות לגובה המזבח שהוא ט׳ אמות. שצלו מאריך ביותר. מלבד זה ק&quot;ל הרי אמרי׳ [עירובין נ&quot;ו א׳] שביום היותר ארוך, חמה יוצאת בקרן צפונית מזרחית. א&quot;כ אז אי אפשר שיהי׳ צל המזבח מאפיל על כל מקום הטבעות, דצל המזבח יפול לקרן מערבית דרומית של מזבח, והטבעות היו כולן בצפון המזבח. וכן בכל השנה חמה יוצאת על פני המזרח, ואין צל המזבח נופל אלא למערב המזבח, ולא פגע ולא נגע צל המזבח במקום הטבעות. ודוחק לומר שמשום תקופת טבת שהימים קצרים, שהחמה יוצאת בקרן מזרחית דרומית, ואז באמת צל המזבח נופל בבוקר נגד מערבית צפונית של מזבח. ויכסה באמת טבעת הראשון המסומן באות ג׳, אבל היאך משו&quot;ה יתקנו שישחטו בכל עתותי השנה על טבעת שניי׳ מה&quot;ט. והרי ברוב בוקרי השנה אין המזבח מאפיל לשם. מלבד קו׳ רתוי&quot;ט הנ&quot;ל. ורבינו בעל המאור כתב רתוי&quot;ט משמו דלהכי שחטוהו על טבעת ב׳ דמשום דמעולם לא יצאה חמה בקרן מזרחית צפונית ולא שקעה בקרן מערבית צפונית [כעירובין נ&quot;ו א׳]. ולפיכך כשם שהחמה מופלגת קצת מהקרנות בזריחתה ובשקיעתה, כך מפליגין שחיטת התמיד מקרנות של צפון המזבח. עכ&quot;ל. הנה אם נתכוון רבינו בעל המאור לטבעות המסומני׳ באות א׳ וב׳, לא זכיתי להבין ד&quot;ק, דכי משום שהחמה מתקרבת בעלייתה ושקיעתה לדרום העולם, להכי מקרבין מקום שחיטת התמיד בבוקר ובערב לצפון העולם. אתמהה. אמנם לולא מסתאפינא מרבותינו הי׳ נ&quot;ל דטבעת שניי׳ דקאמר מתני׳ היינו מב׳ השורות שבצפון העזרה. וקרן צפונית מערבית וקרן מזרחית צפונית דנקט מתני׳ לאו בקרנות מזבח מיירי. רק בקרנות של רבוע מקום הטבעות מיירי, וכן משמע לשון הרמב&quot;ם [פ&quot;א תמידין הי&quot;א] שכתב וז&quot;ל נשחט על קרן צפונית מערבית של בית המטבחיים וכו׳. ואי כדברי רבותינו הנ&quot;ל הרי נשחט על קרן מערבית דרומית של בית המטבחיים. אלא ע&quot;כ שהרמב&quot;ם ס&quot;ל שבבוקר שחטו התמיד בטבעת המסומן באות ה׳. ובערב בטבעת שבאות ו׳, ומה&quot;ט שחטוהו על טבעת שניי׳ או מטעם שכ׳ רש&quot;י כלעיל, כדי לאחוז רגלי הבהמה האחרונים בחבלים בטבעת ראשון שבאות ד׳. או מטעם בעל המאור הנ&quot;ל שכשם שהחמה מתרחקת עצמה מקרנות צפון בעלייתה ובשקיעתה לצד דרום, כך מרחיקין מקום השחיטה מקרנות צפון של בית המטבחיים, ומתקרבין יותר לצד דרום ובזה הכל מיושב על נכון בס&quot;ד. אולם בציור השורות של הטבעות, יש ג&quot;כ מקום להאריך קצת דהנה במדות [פ&quot;ג מ&quot;ה] אמרינן הטבעות היו ו׳ סדרים של ד׳ ד׳, וי&quot;א ד׳ של ו׳ ו׳. ופשוט דקיי&quot;ל כסתמא דמתני׳ והיו ו׳ סדרים של ד׳ ד׳. אולם המדפיסים בציור המקדש שבש&quot;ס ציורו כזה. נראה שהבינו שכל שורה ושורה של ד׳ ד׳ מתארכת מצפון לדרום, וסדר השורות זה אחר זה היו ממזרח למערב. אבל בציור הנ&quot;ל שציירנו תראה איפכא. שכל שורה ושורה של ד׳ ד׳ מתארכת ממזרח למערב, וסדרי השורות זא&quot;ז היו מצפון לדרום. וזהו כהציור שיש בהמשניות לרתוי&quot;ט. והן אמת דאין להקשות לציור המדפיסים בש&quot;ס, מרש&quot;י יומא [דס&quot;ב ב׳ ד&quot;ה על טבעת שנייה] , שכתב וז&quot;ל, לא בטבעת שניי׳ שאצל המזבח וכו׳. ואי כציור המדפיסים בש&quot;ס, היכא ס&quot;ד שישחטו בא׳ מהטבעות שאצל המזבח, הרי אצל המזבח הוא קצה של כל שורה ושורה. ואיך יקרא א׳ מהטבעות שם בשם שניי׳. די&quot;ל דכוונת רש&quot;י דלא תימא דמלת שניי׳ אשורה קאי, רק אטבעת. ור&quot;ל דלא תימא טבעת שני׳ דקאמר הש&quot;ס, היינו טבעת הראשונה שבשורה שניי׳. אלא ר&quot;ל טבעת שניי׳ שבשורה ראשונה. ואעפ&quot;כ לא נראה לי כציור ההוא, רק כציור רתוי&quot;ט. וכדמוכח מתני׳ דמדות [שם] שהבאנו, דהרי מדרום לצפון קחשיב תנא שם המדה, א&quot;כ הו׳ סדרים דנקט, ג&quot;כ הם סדר אחר סדר מדרום לצפון, וכל שורה מתארכת ממזרח למערב. וגם מדברי המפרש בש&quot;ס [תמיד ד&quot;ל ע&quot;ב ד&quot;ה על טבעת שניי׳] שכתב וז&quot;ל, לאו בטבעת שניי׳ שבסדר ראשון שאצל המזבח, אלא בטבעת הראשונה של סדר השני המשוך לצד צפון, עכ&quot;ל. הרי מבואר באר היטיב, שסדרי השורות זא&quot;ז מדרום לצפון היו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-tamid-text-5">Chapter 5</h4>
+          <section class="unit" id="boaz-on-mishnah-tamid-5-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-5-1" data-source-ref="Boaz on Mishnah Tamid 5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 5:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-5-1" aria-label="Copy link to Boaz on Mishnah Tamid 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ונ&quot;ל דמה שלא נזכר במשנתינו זו לא ברכו ולא התפללו כלל (וזה כרש&quot;י ברכות די&quot;א ב׳, ד&quot;ה וברכת כהנים ודלא כר&quot;ב הכא). והרי אפי׳ מק&quot;ש היו פטורים, אע&quot;ג דכבר הגיע זמנה משיראה ויכיר חבירו בריחוק ד׳ אמות. ומכ&quot;ש בשעה שאמר הממונה ברכו ברכה א׳, שכבר האיר היום טפי. והרי בשעת הדחק אפי׳ לכתחילה קורין אותה משעלה עמוד השחר (כא&quot;ח נ&quot;ח ג׳). והרי אמירת הממונה זמן מה אחר שחיטת התמיד וזריקת דמו, ונתוח אבריו, והולכת אברים לכבש הוה, והמשך כל זה היה קרוב לשעה [כפסחים דנ&quot;ח א׳] נמצא שבוודאי אז הגיע זמנו. דהא דאמרי׳ [יומא דל&quot;ז ב׳] הקורא ק&quot;ש עם אנשי משמר לא יצא, היינו שלא יצא יד&quot;ח מצוה מהמובחר [אב&quot;י כ&quot;כ הרשב&quot;א בחידושיו, והובא בב&quot;י א&quot;ח נ&quot;ח ד&quot;ה מי שנאנס]. והטעם, מדראוי לקרותה לכתחילה סמוך וקודם לנץ החמה. כדי לסיים ברכה שלאחר הק&quot;ש עם נץ החמה ולהתפלל מיד, כדכתיב יראוך עם שמש. אבל וודאי דזמן ק&quot;ש כבר הגיע אז כשאמר להם הממונה. ואפ&quot;ה היו הכהנים פטורים ממנה, מדהיו טרודים בעסק הקרבנות פטורים אף מק&quot;ש דמדאורייתא. ולא עוד, אלא אפי׳ מתפילין פטורים היו אפי׳ ישראל שהיו אז במעמדן [כזבחים די&quot;ט א׳], וכ&quot;ש ק&quot;ש דאיכא למ&quot;ד דק&quot;ש אינו רק מדרבנן וקרא דובשכבך ובקומך בד&quot;ת הוא דכתיב (כברכות דכ&quot;א א׳). והן אמת דשעו עיני מני דעת להבין דברי הש&quot;ס הקדושים, דהיכא אפשר דנימא דקרא דובשכבך ובקומך, בכל דברי תורה מיירי, והרי האי בשכבך ובקומך בחדא מחתא מחתינהו בחד קרא עם וקשרתם לאות על ידך, וכי ס&quot;ד דוקשרתם נמי בכל ד&quot;ת מיירי. ולפענ&quot;ד אפשר זהו טעם של רוב הפוסקים שפסקו דק&quot;ש דאורייתא. דשאלו רבותינו דדלו דיילא מנ&quot;ל כן, ולפע&quot;ד י&quot;ל משום דהכי מסתבר מדלית לן סכינא חריפא למפסק הקרא מהדדי, לומר דובשכבך מיירי בכל ד&quot;ת. וקשרתם מיירי דווקא באותה פרשה [ועיין רפ&quot;ח בא&quot;ח סי׳ ס&quot;ז דפסק דב׳ פרשיות ראשונות דאורייתא. ובתשו׳ שאגת אריה (סי׳ ב׳) הוכיח דרק פרשה ראשונה דאורייתא. וע&quot;כ צ&quot;ל דאע&quot;ג דגם בפרשה שנייה כתיב בשכבך, עכ&quot;פ לא אורעה יחד כל כך עם וקשרתם ומצי שפיר למימר האי בד&quot;ת כתיב]. [אב&quot;י נ&quot;ל ע&quot;פ מ&quot;ד (מנחות צ&quot;ט ב׳) בשם רשב&quot;י, דאפי׳ לא קרא אדם אלא ק&quot;ש שחרית וערבית קיים לא ימוש. א&quot;כ י&quot;ל קו׳ ע&quot;ר שליט&quot;א, דה&quot;פ דש&quot;ס הכא אדקאמר האי בד&quot;ת, ה&quot;ק בשקורא ק&quot;ש כדי ללמוד תורה ג&quot;כ יצא יד&quot;ח מצות לא ימוש. וא&quot;כ וודאי בק&quot;ש משתעי קרא, וא&quot;צ סכינא חריפא למפסק סיפא דקרא דוקשרתם מרישא דקרא של ודברת בם. עכ&quot;ל בני הגאב&quot;ד שליט&quot;א]. ויהיה איך שיהיה אם מתפילין דוודאי הוה דאורייתא פטירי מכ&quot;ש מק&quot;ש, דאיכא חד מ&quot;ד דהוה דרבנן. וכ&quot;ש דפטורים מברכת ק&quot;ש ותפלת י&quot;ח שהן וודאי דרבנן. וכל זה משום דהעוסק במצוה פטור ממצוה אפילו בדאפשר לקיים שניהן. אם לא בשאפשר לקיים שניהן בנקלות מאד [כר&quot;ן סוכה דמ&quot;א ב׳ ועיין א&quot;ח סי׳ ל&quot;ח ס&quot;ח ורמו&quot;א שם סק&quot;ט וי׳] , והרי הכא וודאי טרודים טפי מחתן (כפ&quot;ב דברכות). דמחשבת הכהנים טרוד מאד בקרבנות שלא יקלקלו עבודתן, ופטורים להכי לגמרי משאר מצות. והא דאמרי׳ (ברכות י&quot;ב א׳) שקראו אח&quot;כ ברכת יוצר. היינו אם היה אפשר בנקלות. וגם בל&quot;ז צ&quot;ל דסוגיא דהתם אזלי לסברת תוס׳ [סוכה כ&quot;ה א׳ ד&quot;ה שלוחי] . דס&quot;ל דדוקא בשעה שעוסק במצוה פטור ממצוה אחרת בלא אפשר לקיים שניהן. אבל לבתר מעשה רב שהביא הר&quot;ן מרב חסדא ורב הונא שבשעה שישנים נמי אמרו שפטורים ממצות סוכה מדהלכו לקבל פני הנשיא. ש&quot;מ שפיר דאפי׳ בשעה שאינן טרודים פטורים ממצוה אחרת, דלא כתוס׳ הנ&quot;ל. והרי גם רמג&quot;א (א&quot;ח נ&quot;ח סק&quot;ה) כתב בשם הרשב&quot;א, דהא דמשני הש&quot;ס שקראו ברכת יוצר אח&quot;כ דחוי בעלמא הוא. ומכ&quot;ש שהיו הכהנים פטורים מתפלת השחר, שהיא במקום תמיד השחר (כברכות כ&quot;ז ב׳). והרי הם הקריבוהו בעצמו. מיהו אע&quot;פ שהיו פטורים מק&quot;ש. אפ&quot;ה קראוה השתא, מדרצו להתפלל תפלת עבודה קודם שיקריבו האברים, שתקובל עבודתן לרצון, וגם ברכת שים שלום רצו להתפלל, שלא יארע להן מחלוקת בעניין עבודתן. להכי אמרו ק&quot;ש מקודם, כדי לעמוד בתפלה מתוך ד&quot;ת (כברכות ל&quot;א א׳). ומדהוצרכו לומר ק&quot;ש, הוצרכו נמי לברך ברכת התורה מקודם. משו&quot;ה אמרו אהבה רבה שפוטרת ברכת התורה [כא&quot;ח מ&quot;ז ז׳]. ואע&quot;ג דעכ&quot;פ כשאמרוה בלא ברכת יוצר לפניה לא תהיה סמוכה לחבירתה, ולמה לא פתחוה בברוך. נ&quot;ל דמדנתקנה סמוכה. מותר לאמרה יחידית אף שלא תהיה פותחת בברוך [כרמג&quot;א סי׳ ס׳]. ואחר הק&quot;ש אמרו אמת ויציב. אף שהיו פטורים ממנה, אפ&quot;ה רצו לסמוך גאולה לתפלה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-tamid-5-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-5-2" data-source-ref="Boaz on Mishnah Tamid 5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 5:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-5-2" aria-label="Copy link to Boaz on Mishnah Tamid 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עוד נ&quot;ל דלהכי נקט בהנך ג׳ ברכות שברכום עם העם, ולא נקט הכי בהנך דלעיל. דבשלמא לעיל לא היה צ&quot;ל שלא שינו בסגנון גוף הברכה והקריאה, מדלא היה שם בל&quot;ז שום שנוי אפי׳ בהפסק הסדר, דאפי׳ למ&quot;ד (ברכות די&quot;א ב׳) דברכה ראשונה שברכו היינו יוצר אור, נמצא שהיה שנוי בהפסק שבין יוצר לקריאת הק&quot;ש, עכ&quot;פ בברכה האחת גופה שברכו לא היה הפסק ושנוי. משא&quot;כ הכא דבאותן ג׳ ברכות דנקט תנא בכולל, שינו בהפסק סדרן, דהרי בין אמת ויציב לרצה. שינו מאד הרבה שלא אמרו כל ברכות י&quot;ח עד רצה, וכמו כן הפסיקו בין רצה לשים שלום. שלא אמרו ברכת הודאה בינתיים, להכי קמ&quot;ל תנא דעכ&quot;פ בסיגנון גוף הברכות שברכו לא שינו. או נ&quot;ל דלהכי נקט הכא את העם ולא לעיל. דלעיל באמת ברכה ראשונה שברכוה, לא ברכוה בדמיון כמו שיברכוה העם, דהרי העם יברכו ברכת אהבה רבה סמוכה לחבירתה, ולהכי לא פתחוה בברוך, והרי העם כשמברכין ברכה שאינה סמוכה לחבירתה. יפתחוה בברוך, משא&quot;כ הכהנים לא אמרו ברכת יוצר. נמצא שלא היתה אצלם ברכת אהבה רבה סמוכה לחבירתה, ואפ&quot;ה לא פתחיה בברוך. או נ&quot;ל דרק משום סיפא נקט הכא את העם. דקמ&quot;ל דרק בחול ברכו כל הג׳ ברכות בסגנון כמו שמברכין העם. משא&quot;כ בשבת מוסיפין בסגנון שים שלום ברכה א׳ למשמר היוצא, כמ&quot;ש בסי׳ ט׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-tamid-5-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-5-3" data-source-ref="Boaz on Mishnah Tamid 5:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 5:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-5-3" aria-label="Copy link to Boaz on Mishnah Tamid 5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והקשה בבאר שבע. אף במצא השרץ במקום שאין חייבים כרת על הטומאה ל&quot;ל פסכתר, הרי כל המאוס לבני אדם, מותר להוציא, כהאי עכברתא דאשתכח בי אספרמקא דרב אשי. ואמר רב אשי נקטוה בצוצית׳ ואפקוה (כביצה דל&quot;ו ב׳). ודוחק לומר דזהו דווקא בדירת חול שמצויין שם בני אדם. ליתא. דהרי בעזרת נשים נמי וודאי מצויין שם כל הנכנסין דרך שער נקנור שהוא שער עזרת ישראל [עי׳ רפ&quot;ב דמדות]. ולכאורה הי׳ נ&quot;ל דשאני הכא דלא אפשר, דהיכי נעביד, אי יטלטל השרץ להדיא, יתטמא הכהן. ואי יטלטלו עם כלי, יתטמא הכלי. ואי עם פשוטי כלי עץ שאינו מקט&quot;ו, הרי עכ&quot;פ מבטל כלי מהיכנו, כבהמה שנפלה לאמת המים דאסור לשום כלים תחת רגליה רק משום צעב&quot;ח (כשבת קכ&quot;ח ב׳), וה&quot;נ כשמגיע עם השרץ במקום שאין רגלי בני אדם מצויין שם, מיד הו&quot;ל על השרץ דין מוקצה, ונעשה אותה הכלי שמונח עליו השרץ בסיס להמוקצה. וכל כי האי גוונא דוקא במקום שחייבים כרת על טומאתו לא גזרו אלא בחוץ משער עזרת ישראל. מאי אמרת הרי יכול להוציא השרץ ע&quot;י דבר שאינו כלי, כגון בבקעת עץ, איהו גופי׳ מוקצה הוא, וחוץ לשער עזרת ישראל לא שייך אין שבות במקדש. אולם כל זה ליתא. דהרי שפיר יכול להוציאו בפשוטי כלי עץ. ואין כאן ביטול כלי מהיכנו, דכל שיכול לנערו מעליו אמרי׳ דאין מוקצה לחצי שבת [ועי׳ רמג&quot;א רס&quot;ה סק&quot;ב, וש&quot;ה סקי&quot;א]. ורמ&quot;ל (פ&quot;ג ממקדש ה&quot;כ) רצה לתרץ, דלאו משום טלטול שרץ נגעו בה, רק משום הוצאה לכרמלית, דהיינו חוץ לחומת הר הבית, ומתני׳ מיירי קודם שנפרצו בה פרצות, ואז רק בנמצא במקום הקודש התירו. וחזר בעצמו ודחה גם תי׳ זה. ול&quot;מ נ&quot;ל, דבשלמא במקום הקודש לא הי׳ סגי לכפות עליו פסכתר, דשמא יגע פסכתר גופי׳ בהשרץ, והרי בהכניס כלי שנטמא בשרץ למקדש חייב ג&quot;כ כרת (כעירובין ק&quot;ד ב׳), וא&quot;כ מה עדיף פסכתר משרץ. אבל חוץ מעזרת ישראל למה יטלטל השרץ שלא לצורך כלל, דאי משום מיאוס הרי יכול לכפות עליו פסכתר. ולא דמי כלל לאספרמקי, דלא הוה סגי בשיכפה על השרץ כלי דעכ&quot;פ יתמאס האספרמקי עי&quot;ז בשיונח עליו השרץ עד הערב, וגם אפשר שהי׳ צריך לאספרמקי ביו&quot;ט. מיהו וודאי גם בגרף של רעי, אם אפשר לכפות עליו כלי עדיף טפי דהרי אף בחצר מותר כה&quot;ג (כא&quot;ח ש&quot;ח ל&quot;ד), רק דבבית צר יהי׳ שם מכשול לרגלי אדם, משא&quot;כ בעזרת נשים דרווח טובא, וודאי הכי עדיף טפי, ולא לטלטל השרץ שלא לצורך כלל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-tamid-text-7">Chapter 7</h4>
+          <section class="unit" id="boaz-on-mishnah-tamid-7-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-tamid-7-1" data-source-ref="Boaz on Mishnah Tamid 7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Tamid 7:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-tamid-7-1" aria-label="Copy link to Boaz on Mishnah Tamid 7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותמוהין דברי הרמב&quot;ם, דאיהו פסק [בפ&quot;ד ה&quot;ח מתמידין] כרבנן דמפיסין מי יעלה אברים מכבש למזבח. ובהל׳ כלי מקדש (פ&quot;ה הי&quot;ד) כתב שכל א׳ וא׳ נותן האברים שבידו לראשון וכו׳. ומאי ראשון ושני יש כאן, הרי כהן א׳ זכה ע&quot;פ פייס בכולם. ואי&quot;ל שכשרצה הכה&quot;ג להקריב לא הפיסו להעלאת האברים מכבש למזבח. ליתא, דא&quot;כ חסרו להו פייסות, שהן הלממ&quot;ס, כקו׳ הש&quot;ס (יומא כ&quot;ו א׳). ודוחק לומר דאף לרבנן שהפיסו להעלאת האברים מכבש למזבח, הפיסו לכל אבר ואבר בפני עצמו, וכמו שעשו בתחלה כשהעלו האברים מהמטבחיים לכבש. ולא תקשה דא&quot;כ פיישי להו פייסות טובא. די&quot;ל דה&quot;ק ד׳ פעמים נכנסין לפייס, וכמו שתי׳ הש&quot;ס (יומא דכ&quot;ה א׳). דעכ&quot;פ לישנא דמי מעלה אברים מכבש למזבח, משמע טפי דא׳ זוכה להעלות כולם. ובני הגאב&quot;ד מהו׳ רב&quot;י שליט&quot;א עוררני לכל זה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-tamid-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/boaz-on-mishnah-tamid.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/boaz-on-mishnah-tamid.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"boaz-on-mishnah-tamid","manifest_url":"../../data/lexical/boaz-on-mishnah-tamid.manifest.json","occurrence_url":"../../data/lexical/occurrences/boaz-on-mishnah-tamid.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

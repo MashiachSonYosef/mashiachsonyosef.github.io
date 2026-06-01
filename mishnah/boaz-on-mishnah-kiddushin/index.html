@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boaz on Mishnah Kiddushin</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Boaz on Mishnah Kiddushin<sup class="hero-ref">1</sup></h1>
+          <p class="hero-summary">
+            <span>8 source units</span>
+            <span>3022 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Mishnah, ed. Romm, Vilna 1913 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001741739">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Boaz on Mishnah Kiddushin <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Boaz on Mishnah Kiddushin <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-kiddushin-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-kiddushin-1-1" title="Boaz on Mishnah Kiddushin 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-kiddushin-1-2" title="Boaz on Mishnah Kiddushin 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-kiddushin-1-3" title="Boaz on Mishnah Kiddushin 1:3">1:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-kiddushin-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-kiddushin-2-1" title="Boaz on Mishnah Kiddushin 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-kiddushin-2-2" title="Boaz on Mishnah Kiddushin 2:2">2:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-kiddushin-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-kiddushin-3-1" title="Boaz on Mishnah Kiddushin 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-kiddushin-3-2" title="Boaz on Mishnah Kiddushin 3:2">3:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-kiddushin-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-kiddushin-4-1" title="Boaz on Mishnah Kiddushin 4:1">4:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-boaz-on-mishnah-kiddushin-text-1">Chapter 1</h4>
+          <section class="unit" id="boaz-on-mishnah-kiddushin-1-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-kiddushin-1-1" data-source-ref="Boaz on Mishnah Kiddushin 1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Kiddushin 1:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-kiddushin-1-1" aria-label="Copy link to Boaz on Mishnah Kiddushin 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והא דלא סגי למיתני רק שוה פרוטה [כקושית תוס׳]. נ&quot;ל לפמ&quot;ש [ב&quot;ש כ&quot;ז א׳ ול&quot;א ה׳] דלכתחילה אין לקדש במטבע, דדלמא דעתה אצורה וצורתה עבידי דבטלה. א&quot;כ קמ&quot;ל מתני׳ דאפ&quot;ה בדיעבד מקודשת. וי&quot;נ הרב המאה&quot;ג מהו׳ משה יצחק שליט&quot;א אבד&quot;ק קראטינגא, תי׳ לפי מה דפליגי לקמן [ד&quot;ז ב׳] בקדשה במטלטלים ואמר בכל דהו, דלרב יוסף אינה מקודשת, דשוה כסף ככסף מה כסף דקיץ אף ש&quot;כ דקיץ, א&quot;כ י&quot;ל דמה&quot;ט נקט נמי במתניתין גם בפרוטה, לאשמעינן דבשניהן צריך שיהיה דקיץ. ואף למאי דקיי&quot;ל כרבה התם, דבכה&quot;ג מקודשת, והא דתני׳ בכסף הוא נקנה ולא בתבואה וכלים, מיירי באין בהן ש&quot;פ, וקמ&quot;ל דאפילו תבואה וכלים דמקרב הנייתא אפ&quot;ה צריך ש&quot;פ. א&quot;כ י&quot;ל נמי דלהכי קמ&quot;ל במתניתין בפרוטה דקמ&quot;ל דאע&quot;ג דמטבע לא מקרב הנייתא סגי בפרוטה וא&quot;צ דינר. עכ&quot;ל. ואם כי ערבים עלי דפח&quot;ח, עכ&quot;פ צריך לדחוק נמי דלהכי נקט ב&quot;ש בדינר, דסד&quot;א דמדלא מקרב הנייתא צריך טפי מדינר. ולבני הרב המאה&quot;ג מהו׳ ברוך יצחק שליט&quot;א הגאבד&quot;ק לאנדסבערג, קמ&quot;ל דכמו בפרוטה א&quot;צ שומא, כ&quot;כ בשוה פרוטה, וכרבה בל&quot;ק שם. או קמ&quot;ל ל&quot;מ פרוטה דהוא פרוטה אצל כל אדם. אלא אפילו שוה פרוטה רק לדידה, ג&quot;כ מקודשת [וכקידושין די&quot;ב א׳. ואה&quot;ע ל&quot;א ג׳]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-kiddushin-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-kiddushin-1-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-kiddushin-1-2" data-source-ref="Boaz on Mishnah Kiddushin 1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Kiddushin 1:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-kiddushin-1-2" aria-label="Copy link to Boaz on Mishnah Kiddushin 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ובש&quot;ס יליף לה מדכתיב והפדה, מלמד שמגרעה בפדיונה ויוצאת. ופי׳ רש&quot;י אלמא בכסף נקנית, דאם לא, מאי מגרעה. ותמוה דלמא לעולם רק בשטר מקניא, ואמרה תורה שמגרעת במעות שנתן עבורה. אח&quot;כ מצאתי קו׳ זו בריטב&quot;א. ואפשר דכוונת רש&quot;י דאלמא במחזרת לו כסף קונה היא א&quot;ע, דאל&quot;כ מה מגרעה, והרי אף שתחזיר לו הכסף עדיין אינה נפדית, והאיך קאמר קרא והפדה. ולולא מסתאפינא נ&quot;ל דמדקאמר דוהפדה הוא לשון גרעון, והרי כל גרעון היינו שמבטל מקצת ומניח מקצת. והיינו במקניא בכסף, אז שפיר במחזרת מקצת הכסף, נשאר קצת בקנין ע&quot;י המעות שנשאר עדיין בידה. אבל אי נימא דרק בשטר מקניא, מה גרעון שייך כאן, הרי כשמקרע השטר נעקר כל המקח:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-kiddushin-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-kiddushin-1-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-kiddushin-1-3" data-source-ref="Boaz on Mishnah Kiddushin 1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Kiddushin 1:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-kiddushin-1-3" aria-label="Copy link to Boaz on Mishnah Kiddushin 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ונ&quot;ל דעכ&quot;פ כותב שטר אדמים של יתר השנים, דלמה יפסיד רבו, והרי נתאנה. ומה שהקשה לי חביבי המאה&quot;ג מהו׳ משה יצחק שליט&quot;א אבד&quot;ק קראטינגא דמ&quot;ש ממקדש את אחותו דאמרינן מדכל אדם יודע שאין קדושין תופסין בה יהיב המעות לשם מתנה [כקידושין מ&quot;ו ב׳]. במח&quot;כ ליתא, דיש חילוק בין אחותו לנכרי, והרי בהכיר בה שאינו שלו, קיי&quot;ל דמעות יש לו מה&quot;ט [כרא&quot;ש פ&quot;ק דב&quot;מ סל&quot;ט]. וגם בל&quot;ז לק&quot;מ, דדוקא בקדש אחותו, דברירא לכל אדם שאסורה לו, וכדאמרינן [שבת קמ&quot;ה] אם ברור לך הדבר כאחות תאמר. אבל בדבר שאינו ברור כל כך, א&quot;א שהמעות מתנה. והרי אפילו במוכר שדהו ביובל אמרינן שהמעות חוזרין, מדאין ידוע לכל שאין למכר ביובל [כתוס׳ ערכין ד&quot;ל ע&quot;א ד&quot;ה דלמא], מכ&quot;ש הכא, דאף דליכא למימר שלא ידע כמה שנים הוא ביובל, דבכה&quot;ג לא טעי אינש. כדמוכח מסנהדרין [כ&quot;ה מ&quot;ג ודו&quot;ק], עכ&quot;פ אפשר לומר יפה, כיון שקנהו באר היטב על כמה שנים, לא ידע שאעפ&quot;כ יצא ביובל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-kiddushin-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-kiddushin-text-2">Chapter 2</h4>
+          <section class="unit" id="boaz-on-mishnah-kiddushin-2-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-kiddushin-2-1" data-source-ref="Boaz on Mishnah Kiddushin 2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Kiddushin 2:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-kiddushin-2-1" aria-label="Copy link to Boaz on Mishnah Kiddushin 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואע&quot;ג דעכ&quot;פ נהנית על ידו, ומ&quot;ש מעל מנת שאדבר עליך אל השלטון [פ&quot;ג מ&quot;ו], דאע&quot;ג דלא נתן כלום מקודשת, דעכ&quot;פ היא נהנת. ואף דמסקינן התם בש&quot;ס דמיירי שמקדשה בפרוטה, ומתנה ע&quot;מ וכו׳. היינו רק משום דאל&quot;כ הרי ישנה לשכירות מתחלה ועד סוף, והו&quot;ל כאילו קדשה במלוה. הא לאו מלוה הוה מקודשת, והכא לאו מלוה איכא. י&quot;ל דשאני התם דיוכל ליטל שכר בשביל דבורו, והו&quot;ל כנתן לה פרוטה, משא&quot;כ הכא אינו שלו, ואינו יכול ליטל ממון עבור הנאה שעשה לה. כך נ&quot;ל פי׳ קו׳ התוס׳, ומתורץ קו׳ לחם אבירים לדבריהם ממסקנא דהתם, דמוקי לה במקדשה בפרוטה על תנאי. ומה שתירץ הוא, דלתוס׳ רק במקדשה בשכר שאעשה, צריך פרוטה ולא בשכר שאדבר. ובמח&quot;כ אשתמיטתיה, שבש&quot;ע [אה&quot;ע ל&quot;ח י&quot;ג] הובא דין זה בלי שום חולק. ובני המאה&quot;ג החרוץ מהו׳ ברוך יצחק שליט&quot;א משך בקשתו ואגרי ביה גירא בהרב לחם אבירים, ממאי שהביא הרא&quot;ש שם בסוגיא שאדבר עליך אל השלטון, שתוס׳ הוקשו למאי דמוקי לה ר&quot;ל למתניתין דמיירי בשנתן לה פרוטה, א&quot;כ מה קמ&quot;ל. ותרצו דסד&quot;א דתוכל לומר, דברים אלו שאמרת להשלטון לא ניחא לי בהן. אלמא דתוס׳ גופייהו ס&quot;ל דגם בשאדבר עליך מיירי בשנתן פרוטה. ומה יכריחנו לומר דתוס׳ דהתם פליגי אתוס׳ שבסוגיתינו. ותו לחם אבירים אכל אש, שהקשה קו׳ חזקה עליו. מדמקשינן התם [דס&quot;ג א׳] בש&quot;ס. מנ&quot;ל לר&quot;ל לאוקמי למתניתין בשקדשה בפרוטה. ותרצינן מדתני על מנת והרי כל עיקר על מנת דתני נקט ליה בהדיא גביה שאדבר עליך אל השלטון. הרי בפירוש דלא כהרב לחם אבירים עכ&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-kiddushin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-kiddushin-2-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-kiddushin-2-2" data-source-ref="Boaz on Mishnah Kiddushin 2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Kiddushin 2:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-kiddushin-2-2" aria-label="Copy link to Boaz on Mishnah Kiddushin 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אולם בהך סוגיא [קידושין דנ&quot;ח א׳] דקדקתי דמקשי הש&quot;ס למאי דאמרינן דע&quot;ז ושביעית הו&quot;ל ב׳ כתובים הבאים כאחד ואין מלמדין, ולמ&quot;ד מלמדין מאי איכא למימר. ומשני שאני הכא דמיעוטא כתיבי. וק&quot;ל ל&quot;ל מיעוטי, הרי לעיל [דל&quot;ה א׳] אמרינן דאף למ&quot;ד מב׳ כתובין מלמדין, עכ&quot;פ מג׳ כתובים הבאים כאחד לכ&quot;ע אין מלמדין. וא&quot;כ הרי הכא איכא נמי כתוב שלישי בהקדש, ופדה בערכך [כרש&quot;י ע&quot;ז דנ&quot;ד ב׳]. ואי&quot;ל כיון דשביעית והקדש ילפי מהדדי, להכי לא מחשבו תרווייהו רק ככתוב א׳. ליתא, דכיון דכל כח ב׳ או ג׳ כתובים הבאים כא׳ דלא נילף מנה, הוא רק דאי נימא נילף מנה, בחד קרא או בב׳ סגי. א&quot;כ ה&quot;נ אי ס&quot;ד נילף מנה, ג&quot;ש ל&quot;ל, והו&quot;ל שפיר ג׳ כתובים הבאים כא׳ אף דילפינן שביעית מהקדש מג&quot;ש. ולכאורה היה נ&quot;ל, דהרי בל&quot;ז ק׳ למה מייתי הכא ש&quot;ס שביעית דהו&quot;ל רק הלמד מהקדש, ולמה לא מייתי הקדש גופיה, דהו&quot;ל המלמד. אע&quot;כ דמשום קדשים לא מחשב ב׳ כתובים, דהרי לא הוי ילפינן שום דבר מהקדש, דחולין מקדשים לא גמרינן בבנין אב [כפסחים דמ&quot;ה א׳ ושבועות דכ&quot;ו ב׳]. א&quot;כ מה&quot;ט לא מחשב נמי משום קדשים ג׳ כתובים הבאים כא׳, דהרי אינך צריכי [ואף לבתר דאמרי׳ [פסחים כ&quot;ז ב׳] דר&quot;י יליף חמץ מנותר, דמדשניהן אסורים באכילה, שוו ג&quot;כ שיטענו שניהן שריפה, וא&quot;ל נבילה תוכיח. וק׳ ולמה לא פרכי ליה רבנן דחולין מקדשים לא גמרי׳. נ&quot;ל דדוקא היכא דאיכא דדמיא ליה בחולין, מדדמי ליה ילפינן. וכדאמרינן חולין [דפ&quot;ה א׳] דנין חולין מחולין ואין דנין חולין מקדשים. אבל בלא אשכחן דכוותיה בחולין, שפיר ילפינן גם חולין מקדשים. וא&quot;כ פרכי ליה רבנן הכי, נבילה תוכיח, דג&quot;כ אסור באכילה, א&quot;כ מדאשכחן דכוותיה בחולין לא ילפינן חולין מקדשים]. אבל באמת בזה לא יתיישב השיטה בקידושין. לפמ&quot;ש תוס׳ [קידושין דנ&quot;ח א׳ ד&quot;ה ושני] דבכל ב׳ כתובים הבאים כא׳, סגי בשיכול ללמוד מא׳ אף שאינו יכול ללמוד גם מהאחר, וכן מוכח לע&quot;ד משבועות [דכ&quot;ו ב׳] יע&quot;ש. א&quot;כ ה&quot;נ אף דלא מצינן למילף כולי מילי מהקדש, עכ&quot;פ מצינן למילף להו שפיר משביעית, והו&quot;ל שפיר מה&quot;ט כג׳ כתובים הבאים כא׳. ודוחק לחלק בין ב׳ לג׳ כתובים הבכ&quot;א. וצ&quot;ע. אמנם בל&quot;ז דברי תוס׳ שם תמוהין מאד, שכתבו דהוה מצי יליף ע&quot;ז משביעית, וק׳ הרי בזבחים [ד&quot;נ ע&quot;ב] סלקי בתיקו אי ילפינן במה מצינו דבר הלמד בג&quot;ש, וכן במנחות [דע&quot;ו א׳] מסתפק הש&quot;ס בהכי. וא&quot;כ כיון דילפינן שביעית מהקדש בג&quot;ש, הא תינח דילפינן ע&quot;ז משביעית בק&quot;ו. אבל היכא חשבינן לתרוויייהו ב׳ כתובים הבאים כא׳, הרי מע&quot;ז לא מצינן למילף בעלמא במה מצינו דבאיהו גופיה ילפינן בג&quot;ש, וא&quot;כ היכא הו&quot;ל ב׳ כתובים הבאין כאחת. בשלמא לש&quot;ס ל&quot;ק, די&quot;ל דאף דמשביעית ליכא למילף מדהו&quot;ל למד מלמד, עכ&quot;פ ילפינן בכל תורה כולה מע&quot;ז, ופרכא דתוס׳ דע&quot;ז שאני דאסור בהנאה. לא חשבינן ליה פרכא, מדלא תלי מידי בשיהיה תופס דמיו, ואדרבה מדאסור בהנאה, אין הדמים שקבל בעדו חליפי ע&quot;ז, וכמ&quot;ש הר&quot;ן [ע&quot;ז דשס&quot;א א׳] בשם הירושלמי, דלהכי במכרן לאסורי הנאה וקידש בדמיהן מקודשת, לפי שאין ממון זה דמי ערלה, רק מתנה הן, נמצא שאינו נהנה ע&quot;י הערלה ודו&quot;ק, [ועי׳ רמל&quot;מ פ&quot;ה מאישות ה&quot;ז]. אבל לתוס׳ הנ&quot;ל, דמע&quot;ז לא מצינן למילף, מדאסור בהנאה, והרי הוכחנו דגם משביעית לא מצינן למגמר מדהו&quot;ל למד מלמד, א&quot;כ היכא חשבי ליה הש&quot;ס ב׳ כתובים הבאים כא׳. וצ&quot;ע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-kiddushin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-kiddushin-text-3">Chapter 3</h4>
+          <section class="unit" id="boaz-on-mishnah-kiddushin-3-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-kiddushin-3-1" data-source-ref="Boaz on Mishnah Kiddushin 3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Kiddushin 3:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-kiddushin-3-1" aria-label="Copy link to Boaz on Mishnah Kiddushin 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואילה&quot;ק לרב יוסף בש&quot;ס [ד&quot;ז ב׳] בקדשה בשיראי ואמר דשוה נ׳, אע&quot;ג דשוה נ׳ אינה מקודשת, דאשה לא סמכה דעתה, מכ&quot;ש הכא שלא נתן לה עדיין הר׳, נימא נמי דלא סמכה דעתה שיתן. ואת&quot;ל דהתם שאני דקדשה בכל הנ׳, דדוקא בגוף הקידושין צריכה שתסמוך דעתה, משא&quot;כ הכא במעות של תנאי. עכ&quot;פ ק&quot;ל ממ&quot;ד בש&quot;ס [ד&quot;ח א׳] התקדשי לי במנה, ונתן לה דינר, הר&quot;ז מקודשת, וישלים. והכי קיי&quot;ל [אה&quot;ע כ&quot;ט ז], וק׳ מ&quot;ש משיראי הנ&quot;ל דקיי&quot;ל דאינה מקודשת [שם ל&quot;א ס&quot;ב], והרי בשניהן נתן הכל לשם קידושין. ואת&quot;ל דהתם מדלא נתן רק הדינר מיד, אמרינן דכוונתו דרק הדינר יהיה לשם קידושין. והשאר יהיה כתורת תנאי. משא&quot;כ הכא מדנתן לה הכל מיד, דיינינן שכוונתו שיהיה הכל בתורת קידושין, והרי היא לא סמכה דעתה דשוה נ׳ או כתירוץ בני החרוץ הרב המאה&quot;ג מהו׳ ברוך יצחק שליט&quot;א, דדוקא בדבר שתולה בבעלה, שיתן לה שאר המנה, סמכה דעתה שוודאי יקיים הבטחתו. משא&quot;כ בשיראי, דבשומא תליא, מימר אמרה דלמא טעה בעל, ולא סמכה עליה. עכ&quot;פ ק&quot;ל ממ&quot;ד בש&quot;ס [דמ&quot;ז ב׳] דבקדשה במלוה שביד אחרים במעמד שלשתן, דלר&quot;מ מקודשת, וכן פ׳ הרמב&quot;ם [פ&quot;ה מאישות הי&quot;ז]. וק׳ ומ&quot;ש משיראי הנ&quot;ל נימא דלא סמכה דעתה שישלם הלה. ונ&quot;ל דדוקא בשיראי שאמר לה שהוא בוודאי נ׳, אמרינן דלא סמכה דעתה, דסברה שמא אינו שוה כ&quot;כ כמו שאמר הוא דרך וודאי. וא&quot;כ באמת אם תלה דבריו בתנאי, הריני מקדשך בשיראי מעכשיו ע&quot;מ דשוה נ׳, ואשתכח דשוה נ׳, באמת מקודשת, מדהתרצית להכניס א&quot;ע בספק זה. ולפ&quot;ז בקדשה במלוה, וודאי פשוט שכוונתו אם ישלם הלוה, לפיכך הו&quot;ל נמי כאילו קדשה בתנאי אם ישלם, והרי התרצית להכניס א&quot;ע להספק, שאם יתברר לבסוף שישלם, יהיו קדושין למפרע, ולהכי מקודשת. הא למאי זה דומה כמקדשה בכיס מעות בין שיהיה הרבה או מעט, שכשימנו אח&quot;כ אותן ויהיו שוה פרוטה מקודשת למפרע [כאה&quot;ע כ&quot;ח ס&quot;ז], דאף שלא הזכיר התנאי הו&quot;ל כהזכירו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-kiddushin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-kiddushin-3-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-kiddushin-3-2" data-source-ref="Boaz on Mishnah Kiddushin 3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Kiddushin 3:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-kiddushin-3-2" aria-label="Copy link to Boaz on Mishnah Kiddushin 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמר המפרש, אגב דאתא לידי האי סוגיא, חוששני מחטאת אם לא אגלה לעיני אחי יונקי שדי אמי היא תה&quot;ק, את אשר הראה ד׳ לקטין חריך שקא, בר יומא בקא, משגש דרכה דאמיה עלאי מכילא כרכא. דבסוגיא זו החמורה הרבה נדחקו בה לפרשה רבותינו קמאי, אשר הפורש מהם כפורש מן החיים, המה רש&quot;י ותוס׳ וערוך. ואני בריה קלה כמות שהיא, אישות בלי עינים, וחפושית בלי קרסוליים, אנה אני בא כננס קטע היוצא בקב שלו בשדה המלחמה בין גבורים תופסי מגן וצנה, וחרב פיפיות בידם, ואנה אני בא במקלי ותרמילי בין אלה הזקיפים, ואנא חיי. אולם מה אעשה, ורוח בטני הצקתני, וזאת נחמתי בעניי, כי שליחותייהו דרבותינו קעבידנא. כי אנשי אמת הם. ודלי אמרי דלהון היא, תורתם ולימודם אשר נטעו בלבינו, ת&quot;ל כי הצליח וגם עשה פרי, דבכל אדם מתקנא חוץ מבנו ותלמידו. תלמידם אני, ומימיהם שתיתי ואשתה יום יום, שהמה ירווני לדלות ולהשקות מבאר חכמתם לבני גילי. ועתה אחי היושבים בגנים, הקשיבו חבירים לקול עלה נדף, אשר רוח ד׳ נשאתהו על הרי בשמים. תמן אמרינן [קידושין דס&quot;ב א׳] בשלמא לרחב&quot;ג דס&quot;ל דא&quot;צ תנאי כפול, היינו דכתיב אם לא שכב איש אותך. ואם לא שטית טומאה תחת אישך הנקי. אלא לר&quot;מ דמצריך תנאי כפול. חנקי מבע&quot;ל. א&quot;ר תנחום הנקי כתיב. ע&quot;כ לשון הגמ׳. ורבינו מאור עינינו רש&quot;י פי׳, דהקושיא הוא, דאף דכתיב אחריו ואת כי שטית וגו׳. זה אינו מכלל כפילות התנאי, רק אשבועה דאבתרה קאי, ולהכי מקשי שפיר לר&quot;מ שאין כאן בקרא תנאי כפול. ומתרץ הש&quot;ס הנקי כתיב, והאי הנקי הו&quot;ל כאילו כתוב חנקי וקאי אדבתרה, ור&quot;ל חנקי ואת כי שטית ורבעתוס׳ תמהו ארש&quot;י, דא&quot;כ הו&quot;ל מעשה קודם לתנאי. ותרצו דה&quot;פ, דהכהן היה כופל ומתנה ואת כי שטית חנקי, אף שלא נזכר בקרא. וכל אשר עינים לו יראה כי דחיקא מילתא טובא בין לרש&quot;י בין לתוס׳ לישב דבריהם בהקרא גופיה. ומכ&quot;ש שנאמר שזה כוונת התרצן שאמר הנקי כתיב, יהיה כוונתו חנקי כתיב, ובזה עדיין אין שום תירוץ לקושית המקשן אם לא שנאמר ונוסף בה דברים אי לרש&quot;י כדאית ליה אי לתוס׳ כדאית להו, והרי עיקר חסר מהספר. ורבינו בעל הערוך ריפא לנו קצת בשהניח המלה כדכתיבה, שכתב הנקי כתיב, ור&quot;ל תתנקה נפשך מגופך ור&quot;ל שתמות. אולם גם לערוך עדיין צריכים אנו להוסיף אי כרש&quot;י אי כתוספות דזולת זה אין שום כוונה בתירוצו של ר׳ תנחום. גם מלבד זה לא יתישב הלשון שהשיב ר׳ תנחום הנקי כתיב, וכי בקריאת המלה היה פליג עליה המקשן, הרי גם הוא מודה היה דהנקי כתיב, רק עיקר מה דחדית לן ר׳ תנחום, הוא לרש&quot;י דנימא דקאי אואת כי שטית, או כתוס׳ שהיה מתנה אף שלא נזכר בתורה. וזה עיקר תירוצו של ר׳ תנחום לפי דעת רבותינו, והוא לא אמר לנו גם אות א׳ מזה. מלבד מה דיש לדקדק במה דמקשה הש&quot;ס חנקי מבע&quot;ל. ולמה נקט מלת חנקי דוקא, ולא הקללה דכתיבה באורייתא דמשה, יתן ד׳ אותך וגו׳. ולפע&quot;ד העני בדעת נ&quot;ל להקדים ד׳ הקדמות: הקדמה א׳ דכל בניין הפעיל שהוא פעל יוצא לשלישי, אין חילוק בין שהפעולה היוצאה על אדם שלישי, או על המפעיל עצמו, כדחזינן במלת הכעיס וכדומה, דהמכעיס מסבב שהכועס יכעס על המכעיס. הקדמה ב׳ צריך שנדע החילוק בין הצווי בנפעל להצווי בהפעיל, דהרי צווי בנפעל א&quot;א שיצוו לאדם שיהיה נפעל. על כרחך דהצוויי בנפעל היינו שישתדל הנפעל שיעשה בו הפועל הפעולה ההיא. וק׳ דהרי זהו ממש הצווי בהפעיל ג&quot;כ, ואיזהו החילוק שביניהן. על כרחך צ&quot;ל דהצווי בנפעל היינו שיניח הנפעל שיעשה בו הפועל הפעולה ההיא, ולא ימנענו. משא&quot;כ הצווי בהפעיל היינו שישתדל ויתעסק גם האדם הנפעל שתחול עליו הפעולה שיעשה בו הפועל. הקדמה ג׳ שורש נקי מצאנוהו לרוב בתנ&quot;ך בכוונת נקיון, וזכוך, וחפשית, וזהו במורגל במאד. אולם מצאנוהו ג&quot;כ בלשון השבתה, כמו ונקתה לארץ תשב [ישעיה ג׳ כ&quot;ו], ויסרתיך למשפט ונקה לא אנקך [ירמיה ל׳ פי&quot;א] פי׳ רש&quot;י לשון טיאוט והשמד. הקדמה ד׳ כל כפילות תנאי אינו רק בהן ולאו בהדבר עצמו, ולא בהתחדשות דבר אחר. למשל באומר לאשה אם אדבר עליך אל השלטון הרי את מקודשת לי, ואם לא אדבר עליך אל השלטון, אתן לך ק׳ זוז, זה פשוט שאין זה תנאי כפול, דנתינת המנה לא נזכר באופן תנאי הראשון, ופנים חדשות בא לכאן שצריך תנאי כפול לבד. והמעיין היטב בסוגיא דלן לעיל. דאמרינן סד&quot;א לא קללה ולא ברכה. ימצא תוכן הכוונה כדברינו. ועתה נתהלכה ת&quot;ל ברחבה בסוגיא דלן, דהש&quot;ס מקשי שפיר לר&quot;מ דמצריך תנאי כפול, חנקי מבע&quot;ל, שהוא ההיפוך אמיתי מהינקי. שתשאר בחיים. על זה שייך לומר בהכפילות חנקי היינו שתמות, משא&quot;כ מה דכתיב ואם שכב וגו׳ יתן ד׳ בטנך צבה וירכך נופלת זהו עונש נורא ודבר חדש לגמרי, שלא נזכר בתחלה שיבריא בטנה ותתחזק יריכה. אמנם היה יכול הש&quot;ס לתרץ בפשיטות, מדאשכחן בל&quot;ז בקראי דסוטה כפילות דברים, אם לא שכב איש אותך, ואם לא שטית שזהו וודאי כפילות דברים ללא צורך, דהיא היא. ולמה לא נימא שהם התנאי כפול, וה&quot;ק קרא. אם לא שכב איש אותך, מוטב, כדאשכחן קראי טובא כה&quot;ג. וכדפירש רש&quot;י גבי אם תשא חטאתם [שמות ל&quot;ב פל&quot;ב]. ואם לא, רק שטית טומאה תתת אישך, הנקי. ור&quot;ל תשמד מהארץ. אולם א&quot;א לפרש כן, דהרי הסוטה תעשה השתדלות רב לההשמדה, מדתשתה מים המרים. וא&quot;כ לא היה לכתוב הנקי דהיינו הצווי בנפעל. רק הנקי דהיינו הצווי בהפעיל. דבשלמא אי פרשינן לשון נקיון מעונש שפיר. מדאינה עושה מעשה כלל. רק שהקב&quot;ה מנקה אותה מעונש, אבל לר&quot;מ ק׳. ומתרצינן הנקי כתיב. ר&quot;ל יש אם למסורת. דלא כתיב יו&quot;ד אחר הה&quot;א ויכולין לפ&quot;ז לפי המסורת לקרות שפיר הנקי, ור&quot;ל כדפרשינן לעיל השמדי מהעולם ע&quot;י שתשתה מים המרים, ולפ&quot;ז יש כאן שפיר תנאי כפול, ותנאי קודם למעשה ונתישבו כל הקושיות והדקדוקים בלי שום לחץ ת&quot;ל. ויתברך המשביר העליון, אשר בדברו כצוף, מעריב ערבים, ובחכמה פותח שערים, לדלים וריקים כנערים, משיח אלמים ומתיר אסורים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-kiddushin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-kiddushin-text-4">Chapter 4</h4>
+          <section class="unit" id="boaz-on-mishnah-kiddushin-4-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-kiddushin-4-1" data-source-ref="Boaz on Mishnah Kiddushin 4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Kiddushin 4:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-kiddushin-4-1" aria-label="Copy link to Boaz on Mishnah Kiddushin 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והנה רתוי&quot;ט הקשה על זה. דאם הכל תלוי במזל, א&quot;כ תפלה מה תועיל. ולכאורה נ&quot;ל לתרץ לפי דברי רבעתוס׳ ה&quot;ק מתניתין, דלולא תפלתו היה תלוי במזל. וכמ&quot;ש בנדרים [דל&quot;ב א׳] מה דעתך דקאי׳ צדק במערב, אנא מהדרנא ליה למזרח. אמנם מלבד דק&quot;ל א&quot;כ מה קמ&quot;ל תנא בזה, אם תולה עשרו או עניותו במזל או במקרה, די לו שיאמר, דכיון שבכל העוסקים במלאכה יש עניים ועשירים, לכן יתפלל להקב&quot;ה שיתן לו עשירות, ויהיה מניעת העשירות מאיזה טעם שיהיה. מלבד זה ק׳ קו׳ רתוי&quot;ט השניה. דאיך רצו לומר דזכותא היינו מזלא. והביאו ראיה מדאמרי׳ [מ&quot;ק כ&quot;ח א׳], בני חיי ומזוני לאו בזכותא תלי׳ מלתא אלא במזלא. והרי משם אדרבה מוכח דזכות ומזלא ב׳ הפכיים נינהו. ולפע&quot;ד גם זה יש לתרץ, דרבותינו בעלי תוס׳, הכריחו דזכות דנקט הכא אינו מלשון זך ונקי בצדקותיו. דעל כרחך הכא ליכא למימר הכי, דא&quot;כ מה איכא בין ר&quot;מ לר&quot;ש בן אליעזר, דקאמר נמי בסיפא &quot;אלא שהרעותי מעשי וכו׳&quot;. אע&quot;כ דזכות דקאמר ר&quot;מ היינו לשון קנין, וכרוב לשון זכות וזוכה שבש&quot;ס במשנה, כמו זה שהחזיק בה זכה בה [ב&quot;מ פ&quot;א מ&quot;ד] וכ&quot;כ הואיל וזכה באשה לא יזכה בנכסים [כתובות פ&quot;ח מ&quot;א]. ה&quot;נ לשון קנין הוא, ור&quot;ל מה שקנה ע&quot;י המזל. ולפ&quot;ז כוונת המשנה לפי פי׳ תוס׳, שגם אומנות נקייה וקלה, וגם התפלה, שניהן לא יועילו רק לפי מדת המזל. אולם כדי לפרש ענין זה יפה, נצטרך לבאר מלת מזל מהו. ובביאור זה יתורץ גם קושית העולם, על שראינו לפעמים צדיק ורע לו רשע וטוב לו. לכן נעתיק פה מאמר א׳ מדרשותינו הנקרא כוכב המזל וז&quot;ל שם: הנה אין דבר ופעולה בעולם שאין לו סבה או סבות שקדמו לה. ורק סבת כל הסבות שלא קדמה לה סבה. הוא האין סוף ב&quot;ה וב&quot;ש, שהוא ברצונו ית׳ המציא את הכל. ואין עת אל מציאותו. כי גם העת מעשה ידיו היא. אולם הסבות המסבבות שיתהוו על ידן דברים בעולם, הן ב׳ מינין, יש סבה שמכרחת התכלית, ויש עושה אותו רק אפשרי. ונבאר כוונתינו. סבה מכרחת. הוא שכשישתמש בסבה ההיא על כרחו ישיג התכלית. כמדליק נר, על כרחו שיאיר, וכאוכל, על כרחו שישבע, וכדומה. אמנם סבה אפשרית, הוא שאעפ&quot;י שישתמש בהסבה ההיא, אין עוד ברי שישיג התכלית. כזורע שאפשר שלא יצמיח, וכמבקש דבר, אפשר שלא ימצאנו, וכדומה. אולם תכלית מטחוי כל יגיעת האדם הוא, להשיג בעולמו שמחה, או כבוד, ויהיה גופני או רוחני. ולהשיג שני תכליתיות אלה, יש ג׳ סבות, והם נוי וכח הגוף. עושר וקנייני הממונות. חכמה ומדות טובות שבנפש. ולכן לאלה ובאלה יתיגע האדם תמיד, כדי שברבוים להאדם ישיג על ידן השמחה והכבוד שזכרנו. אמנם גם השגת כח הגוף. והעושר, ושלימות הנפש, תלוי שוב בד׳ סבות מנושאות. והם: (א) בטבע הכללי המושלת בעולם. (ב) בהשתדלות אדם. שיתעסק הוא או אחר. או שימנענו מלעשות דבר, לטובתו או לרעתו. (ג) בצדקת או רשעת של האדם בעצמו, או של אבותיו, או של מסבביו. (ד) או שתפגשהו דבר רעה או טובה ע&quot;י דבר שיכנוהו מזל. אשר ילווה האדם מרחם עד הקבר. אולם אם כי כל ד׳ אלו, הם סבות להצלחתו ולבלתי הצלחתו של אדם בעולם העובר, אעפ&quot;כ אין כח כולן שוה בהענין. דכח הטבע, יכול האדם לרוב לכבשה בכח הגוף והשכל. ולכל הפחות יכול לצמצם כחה לבלי תגע בו רעה. וכמו כן אם תהיה הוראת הטבע עליו לטובה. אפשר שאולת אדם תסלף דרכה, וימנע האדם בעצמו ממנו טובת הטבע שהיתה מועדת לו. וא&quot;צ להאריך בביאור זה. וכ&quot;ש שההשתדלות אינה סבה מוכרחת להצלחתו או בלתי הצלחתו של אדם. דידוע לכל, איך יקרה הרבה פעמים, שיהיה כל יגיעת אדם לריק והשתדלותו לתהו, ותחת חטה יצא חוח, ותחת טובה ימצא רעה. אולם יקרה גם להיפוך, פסחים בזזו בזו, ותמצא כקן ידם כל טובות הזמניות, אשר לא עמל בה ולא התיגע בהם. אבל גם צדקת או רשעת אדם אינן מכריחות טובות האדם או רעתו, דידענו היטב, שיש צדיק אובד בצדקו, ויש רשע מאריך ברשעתו, דאם כי גדול אדונינו ורב כח, וה׳ משמים השקיף על בני אדם, פני ד׳ בעושי רע, וכ&quot;ש על צדיק ההולך בדרכיו, וכמ&quot;ש עין ד׳ אל יראיו ואזניו אל שועתם (תהילים ל״ג:י״ח), כ&quot;ז לא יועיל רק להקל להן סבת טובתם, ולהפשיר ולצנן להם כוס צרתם. ואעפ&quot;כ אפשר שיפקד גם הצדיק בצרות מד׳ טעמים, א) או שינכו לו שום חטא קל שעשה [כתענית י&quot;א א ] כדדרשינן אל אמונה שהקב&quot;ה משלם לצדיק חטא קל ולרשע מצוה קלה שעשו בעוה&quot;ז. ב) או שהוא לנסיון כדרכו של קדר לבדוק קנקנים היפים. וגם הרשע יתנסה לפעמים בהטבות רבות משמים אולי ידע עול בושת. ג) או שיתגלגל ע&quot;י זה בסוף טובה ע&quot;י הרעה, ורעה ע&quot;י טובה. ולפעמים ירחק כל כך חוק ההטבה או הרעה שלבסוף, עד שאין עין האדם החלש יכול להשקיפה מדהיא אחר כמה דורות. ד) או שהטבת הצדיק ורעת הרשע הוא נגד הטנע, כי כן יסד המלך. והטבע הוא לשון מטבע עובר לסוחר, שאין המלך פוסלו רק מדוחק גדול. והוא הוא המלאך שרמזה עליו ת&quot;הק, שנאמר הנה אנכי שולח מלאך לפניך הוא הטבע [הנקרא בין המקובלים מטטרון נער [ועי׳ תוס׳ יבמות ט&quot;ז ב׳] מפני שהטבע מעשהו כנער בהרגל. ובמעשה נערות. והוא הנקרא בבחינת אחרת גם סנדלפון, שעומד אחורי מרכבה וקושר כתרי׳ לרבו דכל מעשי הטבע הם לכבוד לאל הכבוד. והדברים עתיקים]. כי כך רצה הקב&quot;ה, שאעפ&quot;י שיהיו עושי רצונו, ויעשה להם נסים כשאין ידם מגעת. אעפ&quot;כ כל עוד שיוכלו להעזר בכח הטבע. אין סומכין על הנס, ויהיו חגורי חרב עושי מלחמה, חורשים בזמן חרישה וקוצרים בזמן הקציר, כדרך שהעולם נוהג. ולכן אמר, השמר מפניו, אל תמר בו, לבלי לחטוא נגד הטבע. אע&quot;פי שצדיק גמור אתה, כי לא ישא לפשעכם, אם תחטא, ותפשע בעצמך נגד הטבע, תענש מידה. ולא ישגח על צדקתיך בזה, כי שמי בקרבו, דהטבע בגמטריא אלדים. וכחה כח אלדים. ולכן ג&quot;כ לא התפלל משר&quot;עה לבלי לשלחו, כמו שהתפלל אחר העגל, בשבשרוהו הנה מלאכי ילך לפניך. דהתם והכא הכוונה על הטבע, שידע משרע&quot;ה שלא ישנה הקב&quot;ה כחה כ&quot;א לעתים רחוקים בשא&quot;א זולתו. רק שאני התם שאמר הקב&quot;ה &quot;כי לא אעלה בקרבך&quot;, ע&quot;ז השיב הרועה הנאמן אם אין פניך הולכים אל תעלינו מזה. והארכנו בזה הרבה בדרשתינו. וכאן לקצר אני צריך. וכבר התרחקנו ממטחוי עניינינו הרבה. רק רצינו לבאר. כי גם לצדיק או לרשע לא ישנה הקב&quot;ה בעבורם כל כך בנקלות כח זרם הטבע בשחטאו נגדה, או בשתסכים עם טובתם. וכ&quot;כ יש עוד כמה מניעות לתשלומי שכר ועונש בעה&quot;ז לצדיק או לרשע מכח המזל, כדאמרינן [תענית דכ&quot;ה א׳] דא&quot;ל הקב&quot;ה לר&quot;א בן פדת ניחא לך דאהפכי לעלמא אפשר דמזדמנית במזלא דמזוני. בא וראה כמה קשה כח המזל, דהרי ר&quot;א בן פדת מבני פלטון של מלך היה, ואפ&quot;ה לא שינה הקב&quot;ה הטבע בעבורו. ואנן יתמי דיתמי מה נענה אבתרי׳. ולפי האמור. כל אלה סבות, דהיינו הטבע, וההשתדלות, וצדיק ורשע, כולן אינן סבות מכריחות לטובת או רעת האדם. אולם הם רק סבות אפשריות. אבל רק המזל הוא סבה מכרחת מעמד האדם לטוב או לרע. ונבאר מלת מזל מהו, שרשו נזל, ור&quot;ל כדבר הנוזל וניגר, שהוא מחובר יחד כטיפות מי נחל המוגרים במורד. שיבואו בשטף חזק בהכרח להעמק, ע&quot;י התאחדות הטפות בהמעין או המעינות שהם למעלה. כ&quot;כ מקריות האדם להרע או להטיב, יתקוממו לו ע&quot;י סבות מוכרחות שהתאחדו, שקשורים ואחוזים זב&quot;ז כנחל, והם יכינו באופן מוכרח מעמדו בין לטוב או לרע, בגוף, בממון ובמדת הנפש, ולפיכך הסבות המכריחות מעמדו של אדם יקראו מזל. אבל יש ב׳ מיני מזל. יש מזל הגלוי, ויש מזל הנעלם. מזל הגלוי הוא ששה מינים, והן סבות מכריחות: (א) ע&quot;י אב ואם, שהם הניחו הזרע הראשון לכל הוית הצלחתו או בלתי הצלחתו, בגוף, בקנין, ובנפש. דלאשר הוא חלק מעצמותם לכן כאשר ידמה להם בתואר הפנים. כך ידמה להם גם בנוי וכח הגוף, וגם בחכמה ומדות הנפש, אמנם גם מהונם וממונם וקנין יחלקו לו ומכחם ישחדו בעדו. וכן אמר שלמה בחכמתו [משלי י&quot;ט י&quot;ד] בית והון נחלת אבות. ואמרו חז&quot;ל [עדיות פ&quot;ב מ&quot;ט] האב זוכה לבנו, בנוי ובכח, בעושר. בחכמה ובשנים: (ב) סבה ב׳ ע&quot;י מחוז הארץ אקלים שנולד ודר בו האדם, גם זה יפעל על גופו, שיהיה עי&quot;ז חזק או חלש. יפה תואר ומראה או להיפך. וכהנראה, שאנשי צפון יותר יפים בתואר ובמראה וחייהם ארוכים יותר מאנשי דרום. ואנשי דרום יותר גבוהים בקומה וחזקים מאנשי צפון, וכמ&quot;ש הטבעיים. ובראשם הרופא המפורסם הופלאנד במאקראביאטיק שלו. וכ&quot;כ בחכמה ומדות הנפש, נבדלים יושבי ארץ אחת מיושבי ארץ אחרת. אלו חכמים ואלו סכלים, אלו זריזים ואלו עצלים, אלו בטבעם מחוממים ואלו מקוררים. וכ&quot;כ בקנינים, יש חלוק בין ארץ לארץ אחרת, יש ארץ זבת חלב ודבש, אבניה ברזל ומהרריה תחצוב נחושת. רגביה כסף תועפות, ועפרות זהב לה. לחוף ימים תשכון, ויושביה עשירים רוכלי הארץ. ויש אשר אדמתה כמדבר שממה. לא מילא כפו קוצר, ויד עמל לא תשבע לחם. עניים מכוסים בסחבות בוקים ומבוקים ומבולקים. וכן אמרו חז&quot;ל [רבה פרשת שלח לך] יש ארץ מגדלת גבורים, ויש מגדלת חלשים. ואמרינן [מכות ד&quot;ט ב׳] בגלעד שכיחי רוצחים, אלמא דגם מדות האדם יתכוננו לפי מקום גדולו. ואמרינן [ב&quot;ב קנ&quot;ח ב׳] אוירא דא&quot;י מחכים. ואמרי׳ [קדושין מ&quot;ט ב׳] י׳ קבין גבורה ירדו לעולם, ט׳ נטלה פרס וכו׳. י׳ קבין חכמה ירדו לעולם, ט׳ נטלה א&quot;י וכו׳. י׳ קבין יופי וכו׳. י׳ קבין עושר ירדו וכו׳. י׳ קבין עוני ירדו וכו׳. אלמא שטבע הארץ ג&quot;כ יפעל הרבה על אלו. (ג) הזמן גם הוא יפעל על ג׳ אלה באדם. כידוע לחכמי הטבע שכל בריאות הנולדים באביב, ויהיה אדם או בהמה או עוף, הוא גוף יפה בריא וחזק יותר מהנולדים בשאר עתות השנה. ואמרו שבאביב כל האדם והברואים הם חזקים יותר מבכל שאר עתות השנה, ולכן אז הזמן נאותה לרפואה, ואמציעותו של אביב הוא חודש מאיוס, הוא היותר מסוגל לזה, וכן אמרו חז&quot;ל [שבת קמ&quot;ז ב׳]. כולהו שקיינא מדבחא עד עצרתא, ר&quot;ל מפסח עד שבועות, מעלו. ואמרו הטבעיי׳ שבחורף האדם יפה מראה יותר מבשאר עתות השנה. ואולם בבציר יש שפע קנין ועושר וברכה בעולם יותר מבשאר עתות השנה, ומלאו הגרנות בר, והיקבים תירוש יפרוצו. אולם גם על הנפש, על מדותיה ומעלותיה, יפעל הזמן מאוד. הלילה נאותה יותר להתעמקות ולאוקמא גירסא בסייעתא דשמיא, דע&quot;י הדממה ששולטת אז, מתקשרים החושים טפי בהעניינים. וכמ&quot;ש חז&quot;ל [עירובין ס&quot;ה א׳ ], לא איברא סיהרא אלא לגירסא. ואמרי׳ [בי&quot;ד רמ&quot;ו סכ&quot;ג] הרוצה להצליח בלימודו לא יאבד לילה א׳ בשינה. אבל ע&quot;י השתמשות כלי החושים בלילה, אשר אז יותר נאותים למנוחה, ע&quot;י התיגעו אז בהן, יחליש הגוף ביותר. אבל עתות השחר מבהיקים כברקים, כי הם יותר מסוגלים להתעופף בחריצות כמ&quot;ש חז&quot;ל [בעירובין שם] נהירין שמעתתך, א&quot;ל דיממא נינהו, אולם גם הגוף בבוקר כארי יקום וכלביא יתנשא, וכמ&quot;ש חז&quot;ל [ב&quot;ב ט&quot;ז ב׳] אדלי יומא אדלי קצירא. וכ&quot;כ על ה מ ד ו ת יפעל הזמן. הקיץ יותר נועד לשמחה, והחורף יעורר נכאת רוח. בבוקר אדם מסוגל יותר לתת לאיש שאלתו בטוב עין. וכ&quot;כ עוד על דברים במדות, יפעלון היום והלילה, וחלקי עתות השנה הרבה. (ד) המאכלות והמשקות, גם הם יפעלו מאוד על ג׳ אלו. המאכלות הגסות יחזקו הגוף, אבל יעכרו השכל ויטמטמו לבו מכל מדה יקרה. והמאכלות הקלות והדקות, יזקקו השכל ויגבירוהו, אבל גם ידקדקו ויקילו כחות הגוף, וכ&quot;כ יש מאכלים יחממו טבעו במדות, ויש אשר יקררוהו. ואחז&quot;ל [כתובות נ&quot;ט ב׳] הרוצה שתלבין בתו ישקנה חלב. ואמרו [מ&quot;ק ד&quot;ט ב׳] בנתיה דרב ביבי דשתיין שכרא, בעיין טפלא. ואמרו [יומא ע&quot;ו ב׳] חמרי וריחני פקחן. ואמרו [הוריות די&quot;ג ב׳] כמה דברים שמטמטמין לבו של אדם, ואמרו [פסחים דמ&quot;ב ב׳] דבשר שמן [לאפוקי שומן עצמו] ויין ישן מעלי לכולה גופא. אולם כ&quot;ש שיפעול מזונו של אדם על קניינו ועשרו. שלמה אמר בחכמתו [משלי כ&quot;א י&quot;ז] אוהב יין ושמן אל יעשיר. ואחז&quot;ל [פסחים קי&quot;ד א] דאכיל אליתא טשי בעלייתא, דאכיל קיקלא. אקיקלא דמתא שכיב. (ה) הגידול, גם על איזה אופן נתגדל מהוריו, ובאיזה חברת אנשים ידור כשכבר נתגדל, ג&quot;כ יפעל מאד על ג׳ אלה. דאם יזרזו כחו מנעוריו, יתחזק הגוף. כמ&quot;ש טוב לגבר כי ישא עול בנעוריו. וביותר. אם רואה חברת מריעיו סביבו כולם מתחזקים ומתאמצים לכל מלאכה כבידה וגבורה, ילמד ממעשיהם. ויתחזק ויתגבר גם הוא. וכן הוא בכל חכמה ומדה. אם הדריכוהו מוריו על מי מנחות, בחכמה ובכל מדה נכונה, ההרגל תהיה לו לסוכנת ולמשענת לטבע שני. וביותר ילמד האדם ממעשה חברת שעשוע נעוריו. שלמה אמר [משלי י&quot;ג פ&quot;כ] הולך את חכמים יחכם. ואמר עוד [משלי כ&quot;ב כ&quot;ה] אל תתרע את בעל אף, פן תאלף אורחותיו. ואמרו [ב&quot;ב כ&quot;א] קנאת סופרים תרבה חכמה. ואמרו [פסחים קי&quot;ב ב׳] לא תדור בשכנציב משום דלצני הוו ומשכי לך בליצנותא. ואמרו עוד [באבות פ&quot;ב] איזה דרך שיבור לו האדם. והשיבו, שיהיה לו חבר טוב. ואמרו עוד [שם פ&quot;א] יהי ביתך בית ועד לחכמים והוה מתאבק בעפר רגליהם. עשה לך רב, וקנה לך חבר. וכן הוא אומר [תילים קי&quot;ט] חבר אני לכל אשר יראוך. וכן בכל מדה ומדה בין נדיבים תתנדב נפש האדם, ובין רעים תשחת נפשו בו. אולם גם בעושר גם בקניינים תולה הדבר בחברת האנשים אשר ידור ביניהם ויתעסק עמהם, כדכתיב ברבות הטובה רבו אוכליה [קהלת ה׳ פ&quot;י]. וכן אחז&quot;ל בתר מרי נכסי ציבי משוך [ב&quot;ק צ&quot;ג א׳]. ולכן הזהרנו חז&quot;ל [פסחים קי&quot;ב א׳] הוה משתדל עם מי שהשעה משחקת לו. וכן אמר החכם, שהעני בין העשירים הוא עשיר יותר מהעשיר בין העניים, שזה אינו מספיק להתעשר וזה אינו מספיק להתעני. וכן כתיב איש את רעהו יעזורו ולאחיו יאמר חזק [ישעיה מ&quot;א ז׳]. (ו) המלאכה והעסק או הפקודה [אמט בל&quot;א] אשר בה ישמש האדם בעולמי, גם הוא יפעל הרבה על ג׳ אלה. כל מלאכה כבידה וגסה, תשנס כח הגוף ותחזיקו, אבל תחליש ותדקדק גם כח הנפש. וכל עוד יותר שיתעסק אדם במושכלות וחדודים, כל עוד יותר יתחדד שכלו ויגבר, אבל ביותר יחליש גופו. וכמ&quot;ש חז&quot;ל [ב&quot;מ פ&quot;ד א׳] דלהכי נקראת תורה תושיה שמתשת כחו של אדם. וכן אמרינן [בר&quot;ה ט&quot;ו א׳] כמאן מצלינן האידנא אקצירי ומריעי, דהיינו ת&quot;ח. ולא די שבניין גופם רפוי, כ&quot;א גם במראה פניהן ניכרים עבדי המלך, מדנושאין העול הזהב על צוארם תמיד, לכן צפד עורם על בשרם, יבש היה כעץ. וכדאמרינן [תענית ד&quot;ז א׳], אי הוה סני הוה גמירי טפי. וה&quot;נ אמרינן [גיטין דמ&quot;א א׳] משום דאמי שפיר נאה הוא, אמר שמעתתא דלא שפירן. [וזה נ&quot;ל מה דאמרינן [ע&quot;ז דט&quot;ז ב׳] פתיא אוכמא מני ומנך תסתיים שמעתתא, וה&quot;נ אמרינן [מגילה י&quot;ד ב׳], לא כדי לגנותו בבדיחותו אמר הכי, רק לשבחו, מדאינך נאה בגוף להכי נאה נפשך בחכמה. וזהו שאמר הכתוב אל תראוני שאני שחרחורת [זהו מטעם] ששזפתני השמש של עולם, היא תה&quot;ק]. אולם אעפ&quot;כ, מדהם תמיד שמחים בעמלם, לכן הנשמה הבריאה והיפה אשר תקונן בגוף הרעוע והרפוף, תציץ מחרכיה ביפיה והדרה, ולכן פניהם צהובות תמיד. ומעיניהם ינוצץ ויברק שמחה כשלהבתיה. וכדאמרינן [נדרים מ&quot;ט כ׳] דר&quot;י היו פניו צהובות, ואמר למטרניתא, שהוא מדכתיב חכמת אדם תאיר פניו [ובהא מתורץ דלא תקשה סוגיא דתענית ונדרים אהדדי]. אולם לא לבד בתורה הוא כך, כ&quot;א בכל מתעסקי בחכמה, בכולן הגוף מתרופף והנפש מתחזקת, בזמן שמלאה זו חריבה זו. וביותר ניכר זה בהשקדנים, שאין מתנועעים במלאכתם ועסקם אנה ואנה. בכל עסק ועסק של אדם יתפעל הגוף וגם הנפש, בחיזוק או ברפיון, הכל לפי המלאכה, והכל לפי העסק. ואפילו על המדות יפעל עסקו של אדם. כנראה בכל העוסק במלאכה דקה ונקייה, יהיה גם הרגשתו דקה, כמנגן וצייר וכדומה, טבעו רך ורחמני, וכדאשכחן באלישע הנביא שאמר קחו לי מנגן [מלכים ב׳ ג׳ פט&quot;ו]. שע&quot;י הניגון נחה רוחו. משא&quot;כ טבח, ציד, ואיש מלחמה, טבעם אכזרי מדעוסקים במלאכת אכזרי, וכדאמרינן [במשנתינו] רוב טבחים שותפו של עמלק, ר&quot;ל אכזריים. ורוב ספנים חסידים. וכן כל עוסקי בעבודה גסה ועבה. תתגשם ותתעבה הרגשתו ושכלו וכל כחות נפשו. אלה הם ששה הסבות הגלויות המכריחות, אשר על פיהן יסתובב מעמד האדם בגופו ובממונו ובנפשו להרע או להטיב, לפי רבוי הסבות אלה ולפי התחלפתן זו מזו. דלפעמים ילחמו הסבות אלה נגד אלה, יוכרע הדבר אחר רבים להטות. וכל זה נקרא מזל הגלוי. ועדיין יש לשאל, למה נברא נפש אדם זה מאבות אלה ועם סבות אלה שיועילו לטובתו. ונפש אדם אחר עם סבות הפוכות מאלה. גם לזה יש סבה, אבל נעלמה מעין כל חי, בלתי לד׳ לבדו. וכמו שאמרו חז&quot;ל בנדה [דט&quot;ו ב׳], שהקב&quot;ה גוזר על הטפה מה יהא עליה גבור או חלוש, חכם או טפש, עשיר או עני. והוא הנקרא [בעשטיממונג], שהוחלט על האדם קודם יצירתו, מעמדו באלה מטעם כמוס ונעלם, וכמ&quot;ד [ברכות דל&quot;ג.] הכל בידי שמים חוץ מיראת שמים. וכמו שאין לשאל להבורא ב&quot;ה למה ברא לזה כהן ולזה לוי. לזה איש ולזה אשה, לזה ישראל ולזה נכרי עכו&quot;ם, לזה פיל וארי חזק, ולזה זבוב ותולעת חלש ודל, כ&quot;כ לא נוכל לשאל אותו למה ברא זה עם סבות לטובתו וזה עם סבות לרעתו. בלתי ספק הכל בתבונה ודעת כדי שישיג השלמתו, זה באופן זה וזה באופן זה, אשר בלתי ספק כך מחוייב ומוכרח היה שיהיה נברא כך, רק שלפי קט שכלינו לא נסיג הטעם. והוא הנקרא מזל הנעלם. אמנם יש אשר רצו להכניס בין מזל הגלוי למזל הנעלם שזכרנו, עוד דבר אחר ממוצע. ורצו להשיב על שאלתינו הנ&quot;ל. למה נברא אדם זה עם סבות אלה, והאחר עם הפוכן. וישיבו אותנו דבר, שעל כרחך יהיה כך, מפני שאדם זה נולד בשעה ששבתאי או מאדים או צורה כוכבית אחר עולה, שמורה השחתה ובלייה. והאחר נולד בשעה שנוגה או צדק או צורה כוכבית אחר עולה, שמורים על הצלחה ושמחה. ולפי דעת זו, כל מקריותינו תולים, בכוכבים ובמעמדם. איך שהשליכו לנו קרני אורם מבטן ולידה ומהריון. וגם כל התחלת מלאכה ועסק, היצלח או לא, רצו בעלי דעת זו לתלות בבלוי סחבות אלה. וכל זה הבל תעתועים אין בו ממש כלל, רק כריר חלמות שטף ההמון, שחפצים תמיד בדבר שאין השכל תופסו. וקרא צווח לא תעוננו [עי׳ סנהדרין ס&quot;ו א׳] תמים תהיה עם ד׳ אלקיך. והן אמת שכבר נראה לפי השקפה הראשונה, שקצת דברי חז&quot;ל נוטים לדעת זה, כדאמרינן [נדרים דל&quot;ב א׳] מה דעתך דקאים צדק במערב. אנא מהדרנא לי׳ ומוקמינא לי׳ במזרח. וכן אמרו [שבת קנ&quot;ו א׳] מזל יום גורם, מזל שעה גורם, האי מאן דבצדק, האי מאן דבמאדים, וזה הכריע לב כמה גדולי ישראל תופסי התורה, לחשוב הדברים כפשוטן. אבל ח&quot;ו שנתפוס דברי רבותינו בזה כפשוטן, דאחר אשר קדשנו הקב&quot;ה במצותיו וצונו לא תעוננו, לומר עונה זו יפה לזה ועונה זו יפה לזו ורעה לזו [כסנהדרין ס&quot;ה א׳], על כרחך שאין אנו תלויין לא בזמן ולא בכוכב ולא בשום דבר, רק ברצון אבינו שבשמים לבדו. וגם למה נדחוק את עצמינו להוציא הך מלתא דסנהדרין הנ&quot;ל מפשטותא והיא שמעתתא, ולא נימא דהך אגדתות [דשבת ונדרים הנ&quot;ל] אינן כפשוטן רק כשאר אגדות קדושות שבש&quot;ס, מלובש בהן בחכמת אלעגארי סודות קדושות ותעלומות חכמה [וכבר ידעת מ&quot;ש הראב&quot;ן בספרו מאמר השכל [דט&quot;ז בד&quot;ה וראיתי להזהירך באזהרה גדולה וכו׳] שמי שיאמין שהאגדות שבש&quot;ס הן כפשוטן הוא סכל גמור ואטום השכל]. גם בלא זה לא הועילו כלום בתשובתם הנ&quot;ל, דעדין יש לשאל, ולמה נברא אדם זה בעת עלות כוכב זה, וזה בעת רדתו. ועל כרחך ישיבו כמונו כי כך עלה במחשבה לפניו יתברך, כמו שהשיב הקב&quot;ה למשרע&quot;ה כשראה מיתת ר&quot;ע [מנחות דכ&quot;ט ב׳]. ואם כן מה ולמה לנו להכניס ממשלת עבד מעבדיו ית׳ בינינו לבין השגחת אלהינו עלינו ועל כל ברואיו. ומה לנו לצמצם כחו של יוצר בראשית, לומר שבשעה זאת לא יברא רק גבורים עשירים וחכמים ומוצלחים, ובשעה זאת יברא רק אינן מוצלחים. כל זה הוא דבר שאין בו טעם וריח, ויש בזה ג&quot;כ אביזרא דע&quot;ז, דע&quot;י מחשבה זו הקטירו האומות הראשונות להכוכבים והצורות, בחשבם עוד יותר שהם בעלי רצון להשפיע ולמנוע השפעתם מבני אדם. אבל אנחנו יונקי שדי התורה אשר עליה הורגנו כל היום, אם יקרה ג&quot;כ דבר בעולם שלוחם נגד סבות הגלויות שזכרנו, כשלא נשיג איך הסתובב להיות כך וכך, לא נתלהו לא בקרני פרה, ולא בזנב כסיל וכימה, רק נניח לכסיל להתלות בכסיל, ואנו ליה עינינו ועינינו ליה, המנהיג העליון יתש&quot;וי. ואחר איזה שנים שכתבתי זה. מצאתי דאתי לידי ספר אגרת הרמב&quot;ם, וראיתי בתשובה שהשיב שם בסוף הספר לחכמי מרסעליא ששאלוהו בדבר זה, והשיב כדעתינו באריכות. וע&quot;ש במ&quot;ש בד&quot;ה ואני יודע שתחפשו ותמצאו וכו׳ מחכמי אמת רבותינו נ&quot;ע בתלמוד ובמשנה שדבריהם מראין וכו׳ אל יקשה זה בעיניכם וכו׳. יע&quot;ש. ולפע&quot;ד באו בני אדם למחשבה נפסדה זאת, ע&quot;י שראו שהחמה והלבנה [ואולי גם שאר כוכבי לכת שקשורים יחד בתקופת חמה שלנו, הוא הנקרא [זאננען זיסטעם] יפעלו הרבה על הארץ אם לזול אם ליוקר, לשובע ולרזון, לבריאות ולחולי. אשר זה אמת מוחלט, שבעבור קורבתם אלינו יפעלו הרבה על אוירינו, בחמימות ובקרירות יבשות ורטיבות, אשר הם סבות באמת לשובע ולבריאות ולהפוכן. והן הן סבה א׳ או ב׳ מסבות הגלויות שזכרנו למעלה. [אב&quot;י עי׳ כוזרי מ&quot;א סי׳ ע&quot;ז שכתב ממש כע&quot;ר אאמ&quot;ו שליט&quot;א] אולם אלה חשבו ויעשו גם הם בחרטומם ככל הגוים הקודמין, באמרם כי רם ונשגב ד׳ מהביט על האדם החלש והדל השוכן בעמק. לכן העמידו לנו את הכוכבים במשמרותם ופקודתם, שהם ישגיחו עלינו כשהן בעלייתם ייטיבו לנו, וכשהן בירידתם יריעו ולא ייטיבו. אולם כל זה אין לו מציאות כלל וכלל רק בכח המדמה התולה על בלי מה בקורי עכביש הבל הבלים, כי לד׳ הארץ ומלואה תבל ויושבי בה. ואולם רק באויר [האטמאספערע] יש יחוס להארץ עם [הפלאנעטען] הסמוכים לה. אבל במקריות יחידיות של אדם, בחכמה ועושר וחוזק וכדומה, שאין להם יחוס כלל עם האויר, אין לאלה משרתי העולם שום כח ואומץ עלינו. כי רק ה׳ יתן חכמה מפיו דעת ותבונה [משלי ב׳ ו׳]. ורק ברכת ה׳ תעשיר [משלי י׳ כ&quot;ב]. ורק ה׳ יתן כח לעשות חיל [דברים ח׳ י&quot;ח]. זהו דעתינו בענין המזל, שתוכן כוונתו סבה או סבות. אולם לפעמים ילחמו הסבות זו כנגד זו, דלמשל מחמת סבת אבותיו יחוייב שיהיה חלש ובלתי מוצלח, ומחמת טבע האקלים או הזמן או משאר הסבות יחויב להיפך, אז כל דאלים גבר. רק ביד האדם לזרז כוחותיו בהשתדלות לכבוש הסבות המניעות, וביותר בשיש סבה שתסייעו כמו שאמרו חז&quot;ל [ילקוט ראה], כי יברכך ה׳, יכול יהא יושב ובטל, ת&quot;ל בכל אשר תעשה. ואעפ&quot;כ בכל אלה לה׳ הארץ, ועיניו משוטטות בכל הארץ, וכשהאדם הולך בצדקו, בידו להכריע הכף בהשגחתו ית׳, אם שיהיה האדם מוצלח חכם ובעל מדות או לא, וכמ&quot;ש חז&quot;ל [מגילה ו׳ ב׳] אבל לאוקמא גרסא סיעתא דשמיא. וכן בחוזק הגוף וכן בעושר, ואפי׳ שיהיה השתדלותו לטובתו מועט, מלאכתו נעשית ע&quot;י אחרים, כדאמרינן [ברכות דל&quot;ה ב׳] וכן כתוב הדר הוא, כן יתן לידידו שנה. ואולם הכרעה זאת מדודה לפי המניעות ורבויים. כמו שהבאנו לעיל מתשובה שהשיב הקב&quot;ה לר&quot;א בן פדת תענית [כ&quot;ה א׳]. כי כל סבות האלו שזכרנו. הם באמיתיות כחות הטבע, והטבע הוא מטבע של מלך מהמהקב&quot;ה, ולא כל כך בנקלות יפסל המלך המטבע שקבע הוא בעצמו שתהיה עובר לסוחר. אבל תועיל התפלה והבקשה מלפניו ית׳, לעשות לפעמים מהחמין פושרין, וכמ&quot;ש חז&quot;ל [ספרי, דברים ט׳ פ&quot;כ] ואתפלל גם בעד אהרן וישמע ד׳ אלי, מכאן לתפלה עושה מחצה. ולפעמים לפי מעמד צדקת האדם כי רבה היא, יעשו לו נסים, ויסולקו מלפניו המניעות מכל וכל, והכל לפי רוב המעשה, ולפי רוב המניעות. ואם נשקול בפלס יפה כל הדברים הנאמרים פה בזה. לא ישאר שום רושם קושיא אם נראה צדיק ור&quot;ל רשע וט&quot;ל. מלבד מה שנוכל לתרץ כשנראה צדיק ור&quot;ל, שהוא לו לנסיון, כמ&quot;ש ד׳ צדיק יבחן. או שיגולגל לו טובה עי&quot;ז, או שינצל ע&quot;י זאת הצרה מרעה גדולה יותר מזאת. ומלבד כל אלה נוכל לתרץ ג&quot;כ הקושיא כשנראה רשע וט&quot;ל וצדיק ור&quot;ל, שהוא לפי המזלות הנ&quot;ל כמו שביארנום שאין צדקתו כל כך גדולה שתכריע כל הסבות שהם כנגדו. ודו&quot;ק היטב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-kiddushin-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/boaz-on-mishnah-kiddushin.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/boaz-on-mishnah-kiddushin.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"boaz-on-mishnah-kiddushin","manifest_url":"../../data/lexical/boaz-on-mishnah-kiddushin.manifest.json","occurrence_url":"../../data/lexical/occurrences/boaz-on-mishnah-kiddushin.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

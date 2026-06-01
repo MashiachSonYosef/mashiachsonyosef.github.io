@@ -1,0 +1,19 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 1:1 | boaz-on-mishnah-sheviit-1-1 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 1:2 | boaz-on-mishnah-sheviit-1-2 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 1:3 | boaz-on-mishnah-sheviit-1-3 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 2:1 | boaz-on-mishnah-sheviit-2-1 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 2:2 | boaz-on-mishnah-sheviit-2-2 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 2:3 | boaz-on-mishnah-sheviit-2-3 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 3:1 | boaz-on-mishnah-sheviit-3-1 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 3:2 | boaz-on-mishnah-sheviit-3-2 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 5:1 | boaz-on-mishnah-sheviit-5-1 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 7:1 | boaz-on-mishnah-sheviit-7-1 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 7:2 | boaz-on-mishnah-sheviit-7-2 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 8:1 | boaz-on-mishnah-sheviit-8-1 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 8:2 | boaz-on-mishnah-sheviit-8-2 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 8:3 | boaz-on-mishnah-sheviit-8-3 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 10:1 | boaz-on-mishnah-sheviit-10-1 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 10:2 | boaz-on-mishnah-sheviit-10-2 |  |  | not_done |  |
+| boaz-on-mishnah-sheviit | Boaz on Mishnah Sheviit | Boaz on Mishnah Sheviit 10:3 | boaz-on-mishnah-sheviit-10-3 |  |  | not_done |  |

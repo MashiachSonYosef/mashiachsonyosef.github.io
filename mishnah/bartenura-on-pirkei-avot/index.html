@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartenura on Pirkei Avot</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Bartenura on Pirkei Avot<sup class="hero-ref">1</sup></h1>
+          <p class="hero-summary">
+            <span>26 source units</span>
+            <span>616 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: ToratEmet | Version source: <a href="http://www.toratemetfreeware.com/online/f_01313.html">www.toratemetfreeware.com</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Bartenura on Pirkei Avot <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Bartenura on Pirkei Avot <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-bartenura-on-pirkei-avot-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-1-1-1" title="Bartenura on Pirkei Avot 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-1-1-2" title="Bartenura on Pirkei Avot 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-1-1-3" title="Bartenura on Pirkei Avot 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-1-1-4" title="Bartenura on Pirkei Avot 1:1:4">1:1:4</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-1-1-5" title="Bartenura on Pirkei Avot 1:1:5">1:1:5</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-1-1-6" title="Bartenura on Pirkei Avot 1:1:6">1:1:6</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-1-1-7" title="Bartenura on Pirkei Avot 1:1:7">1:1:7</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-1-1-8" title="Bartenura on Pirkei Avot 1:1:8">1:1:8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-bartenura-on-pirkei-avot-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-2-1-1" title="Bartenura on Pirkei Avot 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-2-1-2" title="Bartenura on Pirkei Avot 2:1:2">2:1:2</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-2-1-3" title="Bartenura on Pirkei Avot 2:1:3">2:1:3</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-2-1-4" title="Bartenura on Pirkei Avot 2:1:4">2:1:4</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-2-1-5" title="Bartenura on Pirkei Avot 2:1:5">2:1:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-bartenura-on-pirkei-avot-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-3-1-1" title="Bartenura on Pirkei Avot 3:1:1">3:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-bartenura-on-pirkei-avot-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-4-1-1" title="Bartenura on Pirkei Avot 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-4-1-2" title="Bartenura on Pirkei Avot 4:1:2">4:1:2</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-4-1-3" title="Bartenura on Pirkei Avot 4:1:3">4:1:3</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-4-1-4" title="Bartenura on Pirkei Avot 4:1:4">4:1:4</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-4-1-5" title="Bartenura on Pirkei Avot 4:1:5">4:1:5</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-4-1-6" title="Bartenura on Pirkei Avot 4:1:6">4:1:6</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-4-1-7" title="Bartenura on Pirkei Avot 4:1:7">4:1:7</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-4-1-8" title="Bartenura on Pirkei Avot 4:1:8">4:1:8</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-4-1-9" title="Bartenura on Pirkei Avot 4:1:9">4:1:9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-bartenura-on-pirkei-avot-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-5-1-1" title="Bartenura on Pirkei Avot 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-5-1-2" title="Bartenura on Pirkei Avot 5:1:2">5:1:2</a></li>
+                    <li><a class="toc-unit" href="#bartenura-on-pirkei-avot-5-1-3" title="Bartenura on Pirkei Avot 5:1:3">5:1:3</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-bartenura-on-pirkei-avot-text-1">Chapter 1</h4>
+          <section class="unit" id="bartenura-on-pirkei-avot-1-1-1" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-1-1-1" data-source-ref="Bartenura on Pirkei Avot 1:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 1:1:1</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-1-1-1" aria-label="Copy link to Bartenura on Pirkei Avot 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מֹשֶׁה קִבֵּל תּוֹרָה מִסִּינַי.</strong> אוֹמֵר אֲנִי, לְפִי שֶׁמַּסֶּכֶת זוֹ אֵינָהּ מְיֻסֶּדֶת עַל פֵּרוּשׁ מִצְוָה מִמִּצְוֹת הַתּוֹרָה כִּשְׁאָר מַסֶּכְתּוֹת שֶׁבַּמִּשְׁנָה, אֶלָּא כֻּלָּהּ מוּסָרִים וּמִדּוֹת, וְחַכְמֵי אֻמּוֹת הָעוֹלָם גַּם כֵּן חִבְּרוּ סְפָרִים כְּמוֹ שֶׁבָּדוּ מִלִּבָּם בְּדַרְכֵי הַמּוּסָר כֵּיצַד יִתְנַהֵג הָאָדָם עִם חֲבֵרוֹ, לְפִיכָךְ הִתְחִיל הַתַּנָּא בְּמַסֶּכֶת זוֹ מֹשֶׁה קִבֵּל תּוֹרָה מִסִּינַי, לוֹמַר לְךָ שֶׁהַמִּדּוֹת וְהַמּוּסָרִים שֶׁבְּזוֹ הַמַּסֶּכְתָּא לֹא בָּדוּ אוֹתָם חַכְמֵי הַמִּשְׁנָה מִלִּבָּם, אֶלָּא אַף אֵלּוּ נֶאֶמְרוּ בְּסִינַי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-1-1-2" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-1-1-2" data-source-ref="Bartenura on Pirkei Avot 1:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 1:1:2</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-1-1-2" aria-label="Copy link to Bartenura on Pirkei Avot 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מִסִּינַי.</strong> מִמִּי שֶׁנִּגְלָה בְּסִינַי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-1-1-3" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-1-1-3" data-source-ref="Bartenura on Pirkei Avot 1:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 1:1:3</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-1-1-3" aria-label="Copy link to Bartenura on Pirkei Avot 1:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לִזְקֵנִים.</strong> שֶׁהֶאֱרִיכוּ יָמִים אַחֲרֵי יְהוֹשֻׁעַ. וְאוֹתָם הַזְּקֵנִים לִזְקֵנִים אֲחֵרִים עַד שֶׁהִגִּיעוּ לִתְחִלָּתָם שֶׁל נְבִיאִים שֶׁהֵן עֵלִי הַכֹּהֵן וּשְׁמוּאֵל הָרָמָתִי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-1-1-4" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-1-1-4" data-source-ref="Bartenura on Pirkei Avot 1:1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 1:1:4</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-1-1-4" aria-label="Copy link to Bartenura on Pirkei Avot 1:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לְאַנְשֵׁי כְנֶסֶת הַגְּדוֹלָה.</strong> מֵאָה וְעֶשְׂרִים זְקֵנִים הָיוּ. זְרֻבָּבֶל שְׂרָיָה רְעֵלָיָה מָרְדְּכַי בִּלְשָׁן, שֶׁהָיוּ בִּימֵי עֶזְרָא כְשֶׁעָלוּ מִן הַגּוֹלָה בְּבַיִת שֵׁנִי. וּמִכְּלָלָם, חַגַּי זְכַרְיָה וּמַלְאָכִי וּנְחֶמְיָה בֶּן חֲכַלְיָה וְחַבְרֵיהֶם. וְנִקְרְאוּ כְּנֶסֶת הַגְּדוֹלָה לְפִי שֶׁהֶחֱזִירוּ הָעֲטָרָה לְיָשְׁנָהּ (יומא סט:) שֶׁמֹּשֶׁה אָמַר (דברים י) הָאֵל הַגָּדוֹל הַגִּבּוֹר וְהַנּוֹרָא, בָּאוּ יִרְמְיָה וְדָנִיֵּאל וְלֹא אָמְרוּ גִּבּוֹר וְנוֹרָא, וְהֵם הֶחֱזִירוּם כְּבַתְּחִלָּה, לְפִי שֶׁאָמְרוּ הֵן הֵן גְּבוּרוֹתָיו הֵן הֵן נוֹרְאוֹתָיו, שֶׁאִלְמָלֵא כֵן הֵיאַךְ אֻמָּה כָּזוֹ יְכוֹלָה לְהִתְקַיֵּם בִּפְנֵי כַּמָּה אֻמּוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-1-1-5" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-1-1-5" data-source-ref="Bartenura on Pirkei Avot 1:1:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 1:1:5</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-1-1-5" aria-label="Copy link to Bartenura on Pirkei Avot 1:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הֵם אָמְרוּ שְׁלֹשָׁה דְבָרִים.</strong> הַרְבֵּה דְּבָרִים אָמְרוּ, אֶלָּא שְׁלֹשָׁה דְּבָרִים הַלָּלוּ אָמְרוּ [הֵן] שֶׁיֵּשׁ בָּהֶם קִיּוּם הַתּוֹרָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-1-1-6" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-1-1-6" data-source-ref="Bartenura on Pirkei Avot 1:1:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 1:1:6</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-1-1-6" aria-label="Copy link to Bartenura on Pirkei Avot 1:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הֱווּ מְתוּנִים בַּדִּין.</strong> שֶׁאִם בָּא דִּין לְפָנֶיךָ פַּעַם וּשְׁתַּיִם וְשָׁלֹשׁ, לֹא תֹאמַר דִּין זֶה כְּבָר בָּא לְפָנַי וְשָׁנִיתִי וְשִׁלַּשְׁתִּי בּוֹ, אֶלָּא הֱווּ מְתוּנִים, כְּלוֹמַר מַמְתִּינִים קֹדֶם שֶׁתִּפְסְקוּ הַדִּין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-1-1-7" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-1-1-7" data-source-ref="Bartenura on Pirkei Avot 1:1:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 1:1:7</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-1-1-7" aria-label="Copy link to Bartenura on Pirkei Avot 1:1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וְהַעֲמִידוּ תַלְמִידִים הַרְבֵּה.</strong> לַאֲפוֹקֵי מֵרַבָּן גַּמְלִיאֵל דְּאָמַר (ברכות כח.) כָּל תַּלְמִיד שֶׁאֵין תּוֹכוֹ כְּבָרוֹ אַל יִכָּנֵס לְבֵית הַמִּדְרָשׁ, קָא מַשְׁמַע לָן שֶׁמְּלַמְּדִין תּוֹרָה לְכָל אָדָם וְאֵין צָרִיךְ לִבְדֹּק אַחֲרָיו, וּבִלְבַד שֶׁלֹּא יִהְיֶה יָדוּעַ מֵעִנְיָנוֹ שֶׁמַּעֲשָׂיו מְקֻלְקָלִים וְסָאנֵי שׁוּמְעָנֵיהּ. אִי נַמִּי אַשְׁמוֹעִינַן (יבמות סב:) שֶׁאִם הֶעֱמִיד תַּלְמִידִים בְּבַחֲרוּתוֹ יַעֲמִיד תַּלְמִידִים בְּזִקְנוּתוֹ, דִּכְתִיב (קהלת יא) בַּבֹּקֶר זְרַע זַרְעֶךָ וְלָעֶרֶב אַל תַּנַּח יָדֶךָ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-1-1-8" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-1-1-8" data-source-ref="Bartenura on Pirkei Avot 1:1:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 1:1:8</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-1-1-8" aria-label="Copy link to Bartenura on Pirkei Avot 1:1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וַעֲשׂוּ סְיָג לַתּוֹרָה.</strong> גָּדֵר שֶׁלֹּא יָבֹא לִגַּע בְּאִסּוּר תּוֹרָה, כְּגוֹן שְׁנִיּוֹת לָעֲרָיוֹת, וּשְׁבוּת לְשַׁבָּת. דִּכְתִיב (ויקרא יח) וּשְׁמַרְתֶּם אֶת מִשְׁמַרְתִּי, עֲשׂוּ מִשְׁמֶרֶת לְמִשְׁמַרְתִּי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bartenura-on-pirkei-avot-text-2">Chapter 2</h4>
+          <section class="unit" id="bartenura-on-pirkei-avot-2-1-1" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-2-1-1" data-source-ref="Bartenura on Pirkei Avot 2:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 2:1:1</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-2-1-1" aria-label="Copy link to Bartenura on Pirkei Avot 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רַבִּי אוֹמֵר.</strong> שֶׁיָּבֹר. שֶׁיִּבְרֹר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-2-1-2" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-2-1-2" data-source-ref="Bartenura on Pirkei Avot 2:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 2:1:2</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-2-1-2" aria-label="Copy link to Bartenura on Pirkei Avot 2:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כָּל שֶׁהִיא תִפְאֶרֶת לְעוֹשֶׂיהָ וְתִפְאֶרֶת לוֹ מִן הָאָדָם.</strong> שֶׁיְּהֵא נוֹחַ לוֹ, וְיִהְיוּ נוֹחִין בְּנֵי אָדָם מִמֶּנּוּ. וְזֶה יִהְיֶה, כְּשֶׁיֵּלֵךְ בְּכָל הַמִּדּוֹת בַּדֶּרֶךְ הָאֶמְצָעִי וְלֹא יִטֶּה לְאֶחָד מִשְּׁנֵי הַקְּצָווֹת. שֶׁאִם הוּא כִּילַי בְּיוֹתֵר, יֵשׁ תִּפְאֶרֶת לוֹ, שֶׁאוֹסֵף מָמוֹן הַרְבֵּה, אֲבָל אֵין בְּנֵי אָדָם מְפָאֲרִין אוֹתוֹ בְּמִדָּה זוֹ. וְאִם הוּא מְפַזֵּר יוֹתֵר מִן הָרָאוּי, בְּנֵי אָדָם הַמְקַבְּלִים מִמֶּנּוּ מְפָאֲרִים אוֹתוֹ, אֲבָל אֵינוֹ תִפְאֶרֶת לְעוֹשֶׂיהָ וְאֵינוֹ נוֹחַ לוֹ, שֶׁהוּא בָּא לִידֵי עֲנִיּוּת בִּשְׁבִיל כָּךְ. אֲבָל מִדַּת הַנְּדִיבוּת שֶׁהִיא אֶמְצָעִית בֵּין הַכִּילוּת וְהַפִּזּוּר, הִיא תִּפְאֶרֶת לְעוֹשֶׂיהָ, שֶׁשּׁוֹמֵר אֶת מָמוֹנוֹ וְאֵינוֹ מְפַזֵּר יוֹתֵר מִן הָרָאוּי. וְתִפְאֶרֶת לוֹ מִן הָאָדָם, שֶׁבְּנֵי אָדָם מְפָאֲרִים אוֹתוֹ, שֶׁנּוֹתֵן כְּמוֹ שֶׁרָאוּי לוֹ לִתֵּן. וְכֵן הַדִּין בְּכָל שְׁאָר הַמִּדּוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-2-1-3" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-2-1-3" data-source-ref="Bartenura on Pirkei Avot 2:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 2:1:3</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-2-1-3" aria-label="Copy link to Bartenura on Pirkei Avot 2:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שֶׁאֵין אַתָּה יוֹדֵעַ מַתַּן שְׂכָרָן שֶׁל מִצְוֹת.</strong> לֹא נִתְפָּרֵשׁ בַּתּוֹרָה שְׂכַר הַמְקַיֵּם מִצְוֹת עֲשֵׂה, וְלֹא עֹנֶשׁ הַמְבַטֵּל מֵעֲשׂוֹתָן. דְּאִלּוּ עָנְשָׁן שֶׁל מִצְוֹת לֹא תַּעֲשֶׂה מְפֹרָשִׁין הֵן, סְקִילָה, שְׂרֵפָה, הֶרֶג, וְחֶנֶק, כָּרֵת, וּמִיתָה בִּידֵי שָׁמַיִם, וּמַלְקוֹת. הָעֹנֶשׁ הַקַּל לַעֲבֵרָה קַלָּה וְהֶחָמוּר לַחֲמוּרָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-2-1-4" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-2-1-4" data-source-ref="Bartenura on Pirkei Avot 2:1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 2:1:4</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-2-1-4" aria-label="Copy link to Bartenura on Pirkei Avot 2:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וֶהֱוֵי מְחַשֵּׁב הֶפְסֵד מִצְוָה.</strong> מַה שֶּׁאַתָּה מַפְסִיד מִסְּחוֹרָתְךָ וּמָמוֹנְךָ מִפְּנֵי עֵסֶק הַמִּצְוָה, כְּנֶגֶד הַשָּׂכָר שֶׁיַּעֲלֶה לְךָ מִמֶּנָּהּ בָּעוֹלָם הַזֶּה אוֹ בָּעוֹלָם הַבָּא, שֶׁיִּהְיֶה יוֹתֵר מֵאוֹתוֹ הֶפְסֵד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-2-1-5" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-2-1-5" data-source-ref="Bartenura on Pirkei Avot 2:1:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 2:1:5</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-2-1-5" aria-label="Copy link to Bartenura on Pirkei Avot 2:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וּשְׂכַר עֲבֵרָה.</strong> הֲנָאָה שֶׁאַתָּה נֶהֱנֶה בָּעֲבֵרָה, כְּנֶגֶד הֶפְסֵד שֶׁעָתִיד לָבֹא לְךָ מִמֶּנָּהּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bartenura-on-pirkei-avot-text-3">Chapter 3</h4>
+          <section class="unit" id="bartenura-on-pirkei-avot-3-1-1" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-3-1-1" data-source-ref="Bartenura on Pirkei Avot 3:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 3:1:1</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-3-1-1" aria-label="Copy link to Bartenura on Pirkei Avot 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עֲקַבְיָא.</strong> מִטִּפָּה סְרוּחָה. טִפַּת שִׁכְבַת זֶרַע. וְאַף עַל פִּי שֶׁבִּשְׁעַת הָעִבּוּר אֵינָהּ סְרוּחָה, שֶׁאֵינָהּ מַסְרַחַת בְּרֶחֶם הָאִשָּׁה עַד לְאַחַר שְׁלֹשָׁה יָמִים וּכְשֶׁתַּסְרִיחַ אֵינָהּ רְאוּיָה לְהַזְרִיעַ, מִכָּל מָקוֹם קָרֵי לָהּ טִפָּה סְרוּחָה מִפְּנֵי שֶׁהִיא קְרוֹבָה לְהַסְרִיחַ מִיָּד כְּשֶׁהִיא חוּץ לִמְעֵי הָאִשָּׁה. וְהַמִּסְתַּכֵּל שֶׁבָּא מִטִּפָּה סְרוּחָה, נִצּוֹל מִן הַגַּאֲוָה. וְהַמִּסְתַּכֵּל שֶׁעָתִיד לֵילֵךְ לִמְקוֹם עָפָר רִמָּה וְתוֹלֵעָה, נִצּוֹל מִן הַתַּאֲוָה וְהַחֶמְדָּה אֶל הַמָּמוֹן. וְהַמִּסְתַּכֵּל שֶׁעָתִיד לִתֵּן דִּין וְחֶשְׁבּוֹן, פּוֹרֵשׁ מִן הַחֵטְא וְאֵינוֹ נִכְשָׁל בָּעֲבֵרָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bartenura-on-pirkei-avot-text-4">Chapter 4</h4>
+          <section class="unit" id="bartenura-on-pirkei-avot-4-1-1" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-4-1-1" data-source-ref="Bartenura on Pirkei Avot 4:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 4:1:1</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-4-1-1" aria-label="Copy link to Bartenura on Pirkei Avot 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בֶּן זוֹמָא.</strong> לְפִי שֶׁלֹּא הֶאֱרִיךְ יָמִים וְלֹא נִסְמַךְ שֶׁיִּקָּרֵא רַבִּי, הָיוּ קוֹרִין אוֹתוֹ עַל שֵׁם אָבִיו. וְכֵן בֶּן עַזַּאי. וּשְׁנֵיהֶם שְׁמָם שִׁמְעוֹן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-4-1-2" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-4-1-2" data-source-ref="Bartenura on Pirkei Avot 4:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 4:1:2</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-4-1-2" aria-label="Copy link to Bartenura on Pirkei Avot 4:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אֵיזֶהוּ חָכָם.</strong> הָכִי קָאָמַר, אֵיזֶהוּ חָכָם שֶׁרָאוּי שֶׁיִּתְהַלֵּל בְּחָכְמָתוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-4-1-3" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-4-1-3" data-source-ref="Bartenura on Pirkei Avot 4:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 4:1:3</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-4-1-3" aria-label="Copy link to Bartenura on Pirkei Avot 4:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הַלּוֹמֵד מִכָּל אָדָם.</strong> וְאַף עַל פִּי שֶׁהוּא קָטָן מִמֶּנּוּ. שֶׁכֵּיוָן שֶׁאֵינוֹ חָס עַל כְּבוֹדוֹ וְלוֹמֵד מִן הַקְּטַנִּים, נִכָּרִים הַדְּבָרִים שֶׁחָכְמָתוֹ הוּא לְשֵׁם שָׁמַיִם וְלֹא לְהִתְיַהֵר וּלְהִתְפָּאֵר בָּהּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-4-1-4" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-4-1-4" data-source-ref="Bartenura on Pirkei Avot 4:1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 4:1:4</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-4-1-4" aria-label="Copy link to Bartenura on Pirkei Avot 4:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שֶׁנֶּאֱמַר מִכָּל מְלַמְּדַי הִשְׂכַּלְתִּי.</strong> וְסֵיפָא דִּקְרָא כִּי עֵדְוֹתֶיךָ שִׂיחָה לִי, כְּלוֹמַר הָיִיתִי לוֹמֵד תּוֹרָה מִכָּל מְלַמְּדַי וַאֲפִלּוּ מִן הַקְּטַנִּים מִמֶּנִּי וְלֹא הָיִיתִי חוֹשֵׁשׁ לִכְבוֹדִי, כִּי עֵדְוֹתֶיךָ שִׂיחָה לִי, שֶׁכָּל כַּוָּנָתִי הָיְתָה לַשָּׁמַיִם בִּלְבַד. וְכֵן אֵיזֶהוּ גִּבּוֹר שֶׁרָאוּי שֶׁיִּתְהַלֵּל בִּגְבוּרָתוֹ, הַכּוֹבֵשׁ אֶת יִצְרוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-4-1-5" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-4-1-5" data-source-ref="Bartenura on Pirkei Avot 4:1:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 4:1:5</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-4-1-5" aria-label="Copy link to Bartenura on Pirkei Avot 4:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שֶׁנֶּאֱמַר טוֹב אֶרֶךְ אַפַּיִם מִגִּבּוֹר.</strong> הָכִי הֲוֵי פֵּרוּשָׁא דִּקְרָא, טוֹב אֶרֶךְ אַפַּיִם הַבָּא מִצַּד הַגְּבוּרָה שֶׁל כִּבּוּשׁ הַיֵּצֶר, לֹא מִצַּד רַכּוּת הַטֶּבַע. וְכֵן מוֹשֵׁל בְּרוּחוֹ כְּשֶׁבָּא מִלּוֹכֵד עִיר, מִן הַמֶּלֶךְ שֶׁלְּאַחַר שֶׁכָּבַשׁ אֶת הָעִיר וּבָאוּ לְיָדוֹ הָאֲנָשִׁים הַמּוֹרְדִים בּוֹ, מוֹשֵׁל בְּרוּחוֹ וְאֵינוֹ הוֹרְגָן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-4-1-6" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-4-1-6" data-source-ref="Bartenura on Pirkei Avot 4:1:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 4:1:6</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-4-1-6" aria-label="Copy link to Bartenura on Pirkei Avot 4:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אֵיזֶהוּ עָשִׁיר.</strong> הָרָאוּי לוֹ לְהִתְהַלֵּל בְּעָשְׁרוֹ, הַשָּׂמֵחַ בְּחֶלְקוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-4-1-7" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-4-1-7" data-source-ref="Bartenura on Pirkei Avot 4:1:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 4:1:7</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-4-1-7" aria-label="Copy link to Bartenura on Pirkei Avot 4:1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אֵיזֶהוּ מְכֻבָּד.</strong> לְפִי שֶׁשְּׁלֹשָׁה דְּבָרִים טוֹבִים הַלָּלוּ שֶׁנִּזְכְּרוּ לְעֵיל, שֶׁהֵם הַחָכְמָה וְהַגְּבוּרָה וְהָעֹשֶׁר, הַזּוֹכֶה בָּהֶם הוּא נִכְבָּד מֵעַצְמוֹ בְּעֵינֵי אֱלֹהִים וְאָדָם, וְאַף אִם הַבְּרִיּוֹת לֹא יְכַבְּדוּהוּ בַּעֲבוּרָם, לְכָךְ חִבֵּר הַתַּנָּא לְזֶה וְאָמַר מִי שֶׁיֵּשׁ בּוֹ הַמִּדּוֹת הַלָּלוּ וְהוּא נִכְבָּד בְּעַצְמוֹ, מַה יַּעֲשֶׂה וְיִהְיֶה מְכֻבָּד מֵאֲחֵרִים, יְכַבֵּד אֶת הַבְּרִיּוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-4-1-8" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-4-1-8" data-source-ref="Bartenura on Pirkei Avot 4:1:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 4:1:8</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-4-1-8" aria-label="Copy link to Bartenura on Pirkei Avot 4:1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כִּי מְכַבְּדַי אֲכַבֵּד.</strong> וְהַדְּבָרִים קַל וָחֹמֶר, וּמַה הַקָּדוֹשׁ בָּרוּךְ הוּא שֶׁהוּא מֶלֶךְ הַכָּבוֹד וְכָל מַה שֶּׁבָּרָא בְּעוֹלָמוֹ לֹא בָּרָא אֶלָּא לִכְבוֹדוֹ, מְכַבֵּד אֶת מְכַבְּדָיו, קַל וָחֹמֶר לְבָשָׂר וָדָם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-4-1-9" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-4-1-9" data-source-ref="Bartenura on Pirkei Avot 4:1:9">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 4:1:9</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-4-1-9" aria-label="Copy link to Bartenura on Pirkei Avot 4:1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וּבֹזַי יֵקָלּוּ.</strong> לָמַדְנוּ עַנְוְתָנוּתוֹ שֶׁל הַקָּדוֹשׁ בָּרוּךְ הוּא. לֹא אָמַר וּבֹזַי אֲקַלֵּל, אֶלָּא יֵקַלּוּ מֵעַצְמָם. וּבִכְבוֹד הַצַּדִּיקִים הִקְפִּיד יוֹתֵר, שֶׁנֶּאֱמַר (בראשית יב) וּמְקַלֶּלְךָ אָאֹר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bartenura-on-pirkei-avot-text-5">Chapter 5</h4>
+          <section class="unit" id="bartenura-on-pirkei-avot-5-1-1" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-5-1-1" data-source-ref="Bartenura on Pirkei Avot 5:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 5:1:1</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-5-1-1" aria-label="Copy link to Bartenura on Pirkei Avot 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בַּעֲשָׂרָה מַאֲמָרוֹת.</strong> תִּשְׁעָה וַיֹּאמֶר, וּבְרֵאשִׁית נַמִּי מַאֲמָר הוּא, דִּכְתִיב (תהלים לג) בִּדְבַר ה׳ שָׁמַיִם נַעֲשׂוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-5-1-2" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-5-1-2" data-source-ref="Bartenura on Pirkei Avot 5:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 5:1:2</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-5-1-2" aria-label="Copy link to Bartenura on Pirkei Avot 5:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שֶׁמְּאַבְּדִים אֶת הָעוֹלָם.</strong> שֶׁכָּל הַמְאַבֵּד נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל כְּאִלּוּ אִבֵּד עוֹלָם מָלֵא, וְהָרְשָׁעִים שֶׁבַּעֲוֹנָם מְאַבְּדִים אֶת נַפְשָׁם כְּאִלּוּ מְאַבְּדִים אֶת הָעוֹלָם. כָּךְ מָצָאתִי. וְלִי נִרְאֶה, שֶׁמְּאַבְּדִין אֶת הָעוֹלָם מַמָּשׁ, שֶׁמַּכְרִיעִים אֶת כָּל הָעוֹלָם כֻּלּוֹ לְכַף חוֹבָה, וְנִמְצָא הָעוֹלָם אָבֵד בִּשְׁבִילָם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="bartenura-on-pirkei-avot-5-1-3" data-unit data-lexical-unit data-unit-id="bartenura-on-pirkei-avot-5-1-3" data-source-ref="Bartenura on Pirkei Avot 5:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bartenura on Pirkei Avot 5:1:3</h4></div>
+              <a class="anchor" href="#bartenura-on-pirkei-avot-5-1-3" aria-label="Copy link to Bartenura on Pirkei Avot 5:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שֶׁנִּבְרָא בַעֲשָׂרָה מַאֲמָרוֹת.</strong> וְאֵינוֹ דּוֹמֶה הַמְאַבֵּד מְלָאכָה שֶׁהִיא נַעֲשֵׂית בְּיוֹם אֶחָד לִמְלָאכָה שֶׁהִיא נַעֲשֵׂית בְּהַרְבֵּה יָמִים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bartenura-on-pirkei-avot-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/bartenura-on-pirkei-avot.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/bartenura-on-pirkei-avot.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"bartenura-on-pirkei-avot","manifest_url":"../../data/lexical/bartenura-on-pirkei-avot.manifest.json","occurrence_url":"../../data/lexical/occurrences/bartenura-on-pirkei-avot.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

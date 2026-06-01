@@ -1,0 +1,14 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 1:1 | boaz-on-mishnah-makkot-1-1 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 2:1 | boaz-on-mishnah-makkot-2-1 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 2:2 | boaz-on-mishnah-makkot-2-2 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 3:1 | boaz-on-mishnah-makkot-3-1 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 3:2 | boaz-on-mishnah-makkot-3-2 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 3:3 | boaz-on-mishnah-makkot-3-3 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 3:4 | boaz-on-mishnah-makkot-3-4 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 3:5 | boaz-on-mishnah-makkot-3-5 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 3:6 | boaz-on-mishnah-makkot-3-6 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 3:7 | boaz-on-mishnah-makkot-3-7 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 3:8 | boaz-on-mishnah-makkot-3-8 |  |  | not_done |  |
+| boaz-on-mishnah-makkot | Boaz on Mishnah Makkot | Boaz on Mishnah Makkot 3:9 | boaz-on-mishnah-makkot-3-9 |  |  | not_done |  |

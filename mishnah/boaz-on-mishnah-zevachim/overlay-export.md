@@ -1,0 +1,13 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 1:1 | boaz-on-mishnah-zevachim-1-1 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 2:1 | boaz-on-mishnah-zevachim-2-1 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 3:1 | boaz-on-mishnah-zevachim-3-1 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 6:1 | boaz-on-mishnah-zevachim-6-1 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 8:1 | boaz-on-mishnah-zevachim-8-1 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 8:2 | boaz-on-mishnah-zevachim-8-2 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 8:3 | boaz-on-mishnah-zevachim-8-3 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 10:1 | boaz-on-mishnah-zevachim-10-1 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 11:1 | boaz-on-mishnah-zevachim-11-1 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 13:1 | boaz-on-mishnah-zevachim-13-1 |  |  | not_done |  |
+| boaz-on-mishnah-zevachim | Boaz on Mishnah Zevachim | Boaz on Mishnah Zevachim 14:1 | boaz-on-mishnah-zevachim-14-1 |  |  | not_done |  |

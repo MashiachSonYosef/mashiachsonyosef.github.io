@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boaz on Mishnah Meilah</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Boaz on Mishnah Meilah<sup class="hero-ref">1</sup></h1>
+          <p class="hero-summary">
+            <span>24 source units</span>
+            <span>3275 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Mishnah, ed. Romm, Vilna 1913 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001741739">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Boaz on Mishnah Meilah <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Boaz on Mishnah Meilah <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-meilah-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-1-1" title="Boaz on Mishnah Meilah 1:1">1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-meilah-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-2-1" title="Boaz on Mishnah Meilah 2:1">2:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-meilah-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-3-1" title="Boaz on Mishnah Meilah 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-3-2" title="Boaz on Mishnah Meilah 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-3-3" title="Boaz on Mishnah Meilah 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-3-4" title="Boaz on Mishnah Meilah 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-3-5" title="Boaz on Mishnah Meilah 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-3-6" title="Boaz on Mishnah Meilah 3:6">3:6</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-3-7" title="Boaz on Mishnah Meilah 3:7">3:7</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-3-8" title="Boaz on Mishnah Meilah 3:8">3:8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-meilah-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-4-1" title="Boaz on Mishnah Meilah 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-4-2" title="Boaz on Mishnah Meilah 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-4-3" title="Boaz on Mishnah Meilah 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-4-4" title="Boaz on Mishnah Meilah 4:4">4:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-meilah-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-5-1" title="Boaz on Mishnah Meilah 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-5-2" title="Boaz on Mishnah Meilah 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-5-3" title="Boaz on Mishnah Meilah 5:3">5:3</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-5-4" title="Boaz on Mishnah Meilah 5:4">5:4</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-5-5" title="Boaz on Mishnah Meilah 5:5">5:5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-boaz-on-mishnah-meilah-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-6-1" title="Boaz on Mishnah Meilah 6:1">6:1</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-6-2" title="Boaz on Mishnah Meilah 6:2">6:2</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-6-3" title="Boaz on Mishnah Meilah 6:3">6:3</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-6-4" title="Boaz on Mishnah Meilah 6:4">6:4</a></li>
+                    <li><a class="toc-unit" href="#boaz-on-mishnah-meilah-6-5" title="Boaz on Mishnah Meilah 6:5">6:5</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-boaz-on-mishnah-meilah-text-1">Chapter 1</h4>
+          <section class="unit" id="boaz-on-mishnah-meilah-1-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-1-1" data-source-ref="Boaz on Mishnah Meilah 1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 1:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-1-1" aria-label="Copy link to Boaz on Mishnah Meilah 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אבל ק&quot;ל בשלמא פיגול שפיר מצי חייל איוצא משום דפיגול הו&quot;ל איסור כולל גם על מה שנשאר בפנים וגם טמא שפיר חייל בשנטמא הגוף דהו&quot;ל כולל דנאסר. גם בבשר קדש טהור, אבל נותר איוצא היכא מצי חייל, הרי אין כאן לא כולל ולא מוסיף ולא בת אחת והרי רק בג׳ אופנים אלו איסור חל על איסור [כרמב&quot;ם שגגות פ&quot;ג ה&quot;ג]. ואת&quot;ל ע&quot;פ מה דאמרי׳ [קידושין ע&quot;ז ב׳] דאיסור זונה חייל על איסור גרושה וחלל, אע&quot;ג דאינו כולל או מוסיף או בת אחת, אפ&quot;ה הואיל ושם זנות פוסל בא&quot;א שזנתה שנאסרה לבעלה ישראל, אלמא דאע&quot;ג דבהך זונה אין אופן שיחול אפ&quot;ה כיון שבשם זונה משכח&quot;ל כולל, חייל נמי בהך. מכ&quot;ש דיש לומר דהואיל דשם נותר משכת&quot;ל גבי כולל, לאסור גם אם הותיר בפנים. לפיכך גם בנותר זה שאין בו כולל על יוצא נמי חייל. ליתא, דהרי הרמב&quot;ם הנ&quot;ל כ׳ בפירוש דכל כולל או מוסיף צריך שיהיה בפועל. ונ&quot;ל דהרמב&quot;ם הוכיח כן מש&quot;ס [כריתות י&quot;ד ב׳] דקאמר כגון דאיכא ברא לסבא, דק׳ בל&quot;ז ל&quot;ל מש&quot;ס לומר דאיכא ברא, הרי אפי׳ ליכא ברא נוחל איסור אשת אב מדהיה אפשר שיהיה מוסיף היכא דהוה ברא לסבא. אע&quot;כ צ&quot;ל דוקא באיסור זונה. שבהשם עצמו אפשר כולל דהיינו בא&quot;א שזנתה, לפיכך שם זונה זו שלכהן אף שבה אין כאן כולל, אפ&quot;ה מחשבו כולל, אבל באשת אב שאין בהשם עצמו משמעות כולל, רק שאפשר שיהיה כולל. דהיינו באית ליה ברא להסבא צריך שיהיה לו ממש בן. וא&quot;כ ה&quot;ה בנותר הכא, הרי בנותר זה ליכא כולל, שכבר אסור היה. גם אי&quot;ל דלהכי מחשב נותר כולל, דאי הוה רק יוצא, והוה אכל תצי זית ממנה ותצי זית מנותר יתד היה פטור מדהו&quot;ל ב׳ שמות שאין מצטרפים [כמעילה פ&quot;ד מ&quot;ב] והשתא דהו&quot;ל נותר כל חצי זית שבה מצטרף עם חצי זית נותר דעלמא. ליתא, למה טרח הש&quot;ס [כריתות י&quot;ד א׳] למצוא כולל או מוסיף בחלב נותר ממוקדשים בכמה גונא, ולא כדברינו בחצי זית מאותו איסור. אלא ודאי אע&quot;ג דקיי&quot;ל חצי שיעור אסור מה&quot;ת. עכ&quot;פ אין בו איסור מלקות ולא מחשב מה&quot;ט כולל, מלבד שי&quot;ל דמאן יימר שיחול איסור נותר על חתיכה זו עד שיצטרף חצי זית ממנה לחצי זית נותר אחר. והיינו כנקודה נפלאה שהביא הרמב&quot;ם בפי׳ המשנה [כריתות פ&quot;ג מ&quot;ד] שהקשה למה לא יחול איסור בשר בחלב בשבישל חלב בחלב מדאתוסף בה איסור הנאה. ותירץ דמאן יימר שנתהוה בשר בחלב כ&quot;כ נימא הכא מאן יימר שחל על חתיכה זו איסור נותר עד שיצטרף. חצי זית ממנו לחצי זית נותר אחר. אלא צ&quot;ל דמיירי שיש עוד בשר בפנים מקרבן זה ונעשה גם הוא נותר. ואע&quot;ג דלא דמי כלל לשאר כולל, שע&quot;י שנאסר המותר, ע&quot;י זה עצמה נאסר גם האסור כבר, למשל פיגול, ע&quot;י שנתפגל הפנימי עי&quot;ז עצמו נתפגל גם החצון, דכל הבהמה נתפגלה כאחת וכ&quot;כ בעריות ע&quot;י שקדש זו נאסרו כל האחיות המותרות והאסורות. אבל בנותר וכי משום שנותרה זו תאסר גם האחרת, אלא האחרת נאסרה לעצמה משום שגם בה אירע מה שאירע בזו. ודמי לחתיכה שנתחלקה, ובישל כל אחד מהן בחלב, דלא ס&quot;ד שיחשב משום זה ככולל בשאירע זה בחתיכה שנדר ממנה מקודם. ודוק. אפ&quot;ה חשבינן לה בנותר כולל, משום שב׳ החתיכות נאסרו מכח שעה א׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-meilah-text-2">Chapter 2</h4>
+          <section class="unit" id="boaz-on-mishnah-meilah-2-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-2-1" data-source-ref="Boaz on Mishnah Meilah 2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 2:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-2-1" aria-label="Copy link to Boaz on Mishnah Meilah 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך כתבו תוס׳ (שבועות די&quot;א א׳ ד&quot;ה אלא), וכך כ׳ רתוי&quot;ט הכא. אמנם ל&quot;מ נלפע&quot;ד, אף לבתר דאמרי׳ (מנחות ע&quot;ה א׳) דכל מנחה צריך לקדשה בכלי קודם קמיצה. וכ&quot;כ הרמב&quot;ם (בפי&quot;ג מקרבנות ה&quot;ה) עכ&quot;פ אם לא קדשה לא מפסלה הקמיצה שאח&quot;כ בהכי. תדע מדאמרינן (מנחות ד&quot;ט א׳) דבבללה בחוץ לר׳ יוחנן פסולה, משום דבלילה בכלי, נהי דכהונה לא בעי פנים מיהו בעי, עכלה&quot;ג. והרי כשבללה בחוץ, וודאי בלל בכלי חול, דהרי לא הוציאו כלי שרת לחוץ משום גנאי (כתוס׳ מנחות צ&quot;ה ב׳ ד&quot;ה לישתו). ודוחק לומר דמיירי שהוציא הכלי שרת, דכיון שאינו רשאי היה צריך להזכיר דמיירי בהכי, וזה כל קו׳ הש&quot;ס במנחות בסוגיא הנ&quot;ל (דצ&quot;ה ב׳). וא&quot;כ אי נימא דכשנעשת בכלי חול נפסלה המנחה, למה נקט ר׳ יוחנן שנעשת בחוץ, הרי אפילו נבללה בפנים בכלי חול נפסלה. אלא ש&quot;מ דאין צריך לקדש המנחה בכלי שרת רק לכתחילה. וכן נראה מדאמרינן (מנחות נ&quot;ז ב׳), בשלמא ביסא לא אמר רחמנא דלעביד בביסא, כי לש ע&quot;ג קטבלא לית לן בה, אלא עשרון, דאמרה רחמנא שימדדו בעשרון, שביק עשרון דקודש וכייל בעשרון דחול בתמיה. מכל זה מוכח להדיא, דביסא וודאי לא צריך להמנחה, וגם מדת העשרון א&quot;צ שיהיה קודש רק לכתחילה, רק דמסתמא לוקח כלי שרת. א&quot;כ מצי שפיר קאי האי קדשו בכלי דנקט תנא, גם אקומץ, וכגון שלא הוקדשה כל מנתה בכלי שרת, רק הקומץ. [אב&quot;י כדברי ע&quot;ר שליט&quot;א משמע נמי מרש&quot;י (יומא דכ&quot;ט ב׳)]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-meilah-text-3">Chapter 3</h4>
+          <section class="unit" id="boaz-on-mishnah-meilah-3-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-3-1" data-source-ref="Boaz on Mishnah Meilah 3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 3:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-3-1" aria-label="Copy link to Boaz on Mishnah Meilah 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מיהו ק&quot;ל למה לא נמעול בהן מדרבנן כבדם. ונ&quot;ל כיון שרק אחת לע׳ שנה ידי אדם ממשמשין בו (כסוכה דמ&quot;ט א), וגם אז רק הכהנים לקחו היין הקרוש ההוא ושרפוהו ע&quot;ג מזבח [שם], הוה תרתי מלתא דלא שכיחא דל&quot;ג בה רבנן (כביצה י&quot;ח א׳), וגם כהנים זריזין הן (כשבת ד&quot;כ ע&quot;א). משא&quot;כ דם, מדמקלח ויוצא חוץ לירושלים [כפסחים כ&quot;ב א׳], ושם מצוי לכל אדם, חששו רבנן שיהנו נמי בהקדש אחר. עוד נ&quot;ל דיש חילוק בין היכא שנזכר במשנה ומועלין בה, והיינו מדרבנן, ובין היכא דקאמר תנא לא נהנין ולא מועלין. דאפשר דהיכא דקאמר מועלין, צריך עכ&quot;פ לשלם הקרן (וערש&quot;י ד&quot;ב ב ד&quot;ה מעילה מדרבנן. מיהו הרמב&quot;ם כתב פ&quot;א דמעילה, דבכל מעילה דרבנן צריך עכ&quot;פ לשלם הקרן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-3-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-3-2" data-source-ref="Boaz on Mishnah Meilah 3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 3:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-3-2" aria-label="Copy link to Boaz on Mishnah Meilah 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותפתח הארץ את פיה, כך פירשתי ע&quot;פ דעת הר&quot;ב. אמנם הרואה יראה במת&quot;כ רבינו, כמה דחיק לן עלמא בשנפרש משנתינו כן, דהרי במשנתינו לא נזכר שהקדיש דמי דשן, ושהנהנה החסיר מהאפר, ושהחסירו קודם ששמוהו כמה שוה, ושלא ידעינן כמה החסיר, והרי לפי דברי הר&quot;ב ע&quot;כ בכל הני גוונא איירי מתני׳. [עי׳ לקמן רפ&quot;ה] וכולן חסרי׳ במשנתינו. ותו דלמה צריך לאשמעינן הך דינא בדישון, בכל מילי נמי בהקדיש דמיו ובא אחר והחסירו קודם ששמוהו ימעול בו מה&quot;ט. ותו לפי דברי הר&quot;ב למה צריך שהקדישו בתחלה קודם שהוציאו, הרי גם בהוציאו ואח&quot;כ הקדישו או הקדיש דמיו, ובא זה ונהנה ולא ידעינן כמה החסיר, מעל, מדא&quot;א לשער כמה שוה. ותו ק&quot;ל דכפי הנראה נדחק הר&quot;ב לפרש דמיירי שאמר דמי דישון עלי, דאי בדישון גופי׳, וקודם שהוציאו, הרי קדוש ועומד, גם אינו שלו, ואין אדם מקדיש דבר שאינו שלו. ועכ&quot;פ ק׳ לפי שיטתו. דשפיר הוה מצי למימר שהקדיש הדישון גופי׳ וקודם שהוציאו, ואפ&quot;ה בהקדישו קדש הקדש עלוי, דלא גרע מהקדיש קדשי מזבח, דקיי&quot;ל דקדשי הקדש עלוי [כתמורה פ&quot;ז מ&quot;ג ורמב&quot;ם פ&quot;ו מערכין ה&quot;ח]. ואת&quot;ל דהכא דלא שייך לא חיוב אחריות ולא דורן. לא שייך נמי למימר שהקדישו הקדש עלוי כמה שוה. עכ&quot;פ ק&quot;ל האיך יכול להקדיש דמיו קודם שהוציאו, הרי אז אסור בהנאה ואינו שוה כלום, דמדאסור בהנאה אינו בר דמים, ודמי למקדיש דמי חמץ בפסח דלא קדיש [כפסחים דכ&quot;ט]. ואע&quot;ג דבנהנה מקדושת הגוף אף שאסור בהנאה חייב קרבן מעילה. כתוס׳ ישנים [כריתות די&quot;ג ב ד&quot;ה ואשם אחד] והכי מסתבר דאל&quot;כ מעילה היכא משכח&quot;ל. עכ&quot;פ הכא שאמר דמי דישון זה עלי, וודאי פטור, דהרי אינו בר דמים כלל, ולא הקדיש כלום. והרי אפי׳ המוכר עולתו ושלמיו לא עשה ולא כלום, (כפסחים פ&quot;ט ב). ואת&quot;ל דכוונת הר&quot;ב שהקדישו בתחלה שלכשיוציאו יתן דמיו כמה שוה אז, וקמ&quot;ל לפ&quot;ז שפיר רבותא אף שהקדישו בתחלה כשעדיין קדוש, לא אמרי׳ דמדאינו אז בר דמים, הו&quot;ל כמקדיש דבר שלבלע&quot;ו בשעת נדרו, דאפ&quot;ה עכ&quot;פ חייב משום נדר (כרמב&quot;ם פ&quot;ו מערכין הל&quot;א). וקמ&quot;ל נמי דאף דגם אח&quot;כ יהיה עכ&quot;פ אסור ליהנות מהאפר מדרבנן, אפ&quot;ה כיק מדאורייתא לכשיוציאו יהיה בר דמים, לשיכך יכול להקדיש דמיו ששוה אז. עכ&quot;פ ק&quot;ל האיך יתחייב קרבן מעילה מדהפסיד להקדש, מדאי אפשר תו לשער דמיו, הרי אינו רק כדבר הגורם לממון, דלאו כממון דמי [כרמב&quot;ם רפ&quot;ב מגניבה], וא&quot;כ האיך יביא המועל חולין בעזרה. ואת&quot;ל דהא דקיי&quot;ל דהגורם לממון לאו כממון דמי, היינו דלא מחשב מה&quot;ט כשלו, ומשו&quot;ה. בגנב קדשים שחייבים באחריותן פטור מד׳ וה׳ [כב&quot;ק דע&quot;א א]. אבל דלחשב ממון. דבר הגורם לממון כממון דמי, דהרי השורף שטרותיו של חבירו קיי&quot;ל דחייב לשלם [כרמב&quot;ם פייז מחובל] וע&quot;כ מדה&quot;ל כשורף ממון ממש. עכ&quot;פ הכא מה שהפסיד הוא רק מדא&quot;א לשומו ובוודאי רק גרמא בעלמא הוא, דקיי&quot;ל דפטור עלה [כח&quot;מ שפ&quot;ו]. ויהי׳ איך שיהיה אינו רק מזיק את ההקדש ולא נהנה מההקדש שאינו חייב קרבן מעילה, ופטור גם מקרן [כמעילה די&quot;ט א, ורמב&quot;ם פ&quot;ח מנזקי ממון ה&quot;א]. ודוחק לומר כיון שנהנה מהנזק אף שלא נהנה מגוף ההקדש, יהיה חייב מעילה. ליתא, דהרי איש כי יאכל כתיב, וזה לא נהנה מהקודש. ואף את&quot;ל דאע&quot;ג דלא מעל מדאורייתא, עכ&quot;פ מעל מדרבנן. אי אפשר לומר כן, דמדקאמר ברישא ולא מועלין דהיינו מדאוריי׳ ש&quot;מ דמועלין דסיפא היינו נמי מדאורייתא. ולרתוי&quot;ט חזיתי לדעתי׳ דר&quot;ל דלרמב&quot;ם משנתינו מיירי שהקדיש אפר כירה בעלמא. ולפע&quot;ד אחמכ&quot;ר גם זה דוחק מאוד, דחדא מה בתחלה דקאמר מתני׳. ואת&quot;ל דקמ&quot;ל אף שהקדישו להאפר בעודו עץ לא הוה כמקדיש דבשלבלע&quot;ו, דשאני הכא דהו&quot;ל כמקדיש דקל לפירותיו, דמדעבידי דאתי קדיש [כב&quot;מ ל&quot;ג ב]. והו&quot;ל נמי כמקדיש מעשה ידי אשתו דקדיש, משום דידים איתנהו בעולם [ככתובות נ&quot;ח ב׳ ורמב&quot;ם פ&quot;ו מערכין]. עכ&quot;פ ק׳ קושית התוס׳ הכא, דמאי קמ&quot;ל הך דינא באפר, הרי אפי׳ הקדיש זבל אשפתו נמי [כמ&quot;ו] ותו ק&quot;ל דלא מצינו בשום מקום גם במקרא גם בש&quot;ס שיהי׳ נקרא אפר בעלמא בשם דשן, ורק אפר הקרבנות שהוקרבו במזבח נקראו כך. והנה לתוס׳ יומא (דנ&quot;ט ב׳ ד&quot;ה והרי), מיירי הכא שהקדיש הדשן אחר שהוציאו חוץ לג׳ מחנות, ע&quot;ש. ונ&quot;ל דכוונתם דהיא גופא קמ&quot;ל דאחר שהוציא הדשן לשם אף דעדיין אסור מדרבנן, יכול להקדישו. אמנם לא ידענא עכ&quot;פ מה בתחלה דקאמר מתני׳. אולם ל&quot;מ מרבותינו היה נלפע&quot;ד ע&quot;פ מ&quot;ש תוס׳ והרא&quot;ש [נדרים ל&quot;ד ב] דאע&quot;ג דאין אדם מקדיש דבר שאינו ברשותו, אפ&quot;ה אם היה מונח דבר הפקר, ואין אדם סמוך לו רק הזוכה, יכול אותו אדם להקדישו אף קודם שבא לידו. וא&quot;כ אפשר לומר נמי דמיירי הכא בהקדיש דישון מזבח פנימי ומנורה, ולרבותא נקט שהקדישו בתחלה דהיינו שהקדישן קודם שהוציאן מההיכל. וקמ&quot;ל מתני׳ תרתי. חדא, אף דגם אחר שיוציא הדשן יהיה אסור ליהנות ממנו, אפ&quot;ה משום דמדאורייתא מותר ליהנות ממנו אז, דאין לך דבר שנעשת מצותו ומועלין בה [כפסחים כ&quot;ו א], ורק מדרבנן אסור גם אז בהנאה. משו&quot;ה יכול להקדישו. ותו קמ&quot;ל, אף דהשתא שעדיין הדשן בהיכל, וודאי אינו ברשותו ואיך יקדישו, עכ&quot;פ כיון שבידו להוציאו, וגם לכשיוציאנו יהיה כל אדם אסור ליהנות מהאפר עכ&quot;פ מדרבנן, לפיכך כל אדם מרוחק מהאפר ההוא מלזכות בו, ורק אותו המקדיש הוא שרצה לזכות בהאפר כדי להקדישו, דסבור מצוה קעביד, להכי אף שאינו ברשותו, הו&quot;ל כאלו בא ברשותו, וכתוס׳ ורא&quot;ש הנ&quot;ל. או נ&quot;ל דהאי בתחלה דקאמר מתני׳ דוקא הוא, ור&quot;ל דווקא שהקדיש האפר בעודו עצים וקטורת ופתילות, קודם שהקדישו לעבודתו. ואמר שלכשיעשו דשן יוקדשו, דהוו&quot;ל כמקדיש דבר שברשותו שכשימכור ויחזור ויקנה תקדש, דקדשה. ומה&quot;ט נמי לא הזכיר הרמב&quot;ם בהלכותיו הך בבא דמתני׳ מדכבר הזכיר הך דינא במקום אחר [בפ&quot;ו דערכין] אבל בהקדיש הדשן בשכבר נעשה דשן, לא קדש, משום דאז אסור עכ&quot;פ מדרבנן, ליהנות מהדשן, הו&quot;ל כמקדיש דבר שאינו שלו, וכמקדש אשה בחמץ דרבנן או בשעות דרבנן [כפסחים ד&quot;ז א]. והקב&quot;ה ברוב רחמיו יראינו מתורתו נפלאות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-3-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-3-3" data-source-ref="Boaz on Mishnah Meilah 3:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 3:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-3-3" aria-label="Copy link to Boaz on Mishnah Meilah 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמנם יש לדקדק במתני׳, למה הדר ונקט תנא ב׳ גוונא שכבר נקט דוגמתן, דפירות אילן שראוי למזבח ולא לבדה&quot;ב, כבר תנא דוגמתן ביוני שובך. ושדה עשבים, כבר תנא דוגמתו בזבל אשפה, ואטו תנא כי רוכלא לחשוב וליזל. ותו דעכ&quot;פ דכמו דהסמיך הדומין בפירות אילן ליוני שובך. כ&quot;כ הו&quot;ל להסמיך שדה עשבים לזבל אשפה, שהן ג&quot;כ דומין זל&quot;ז. ואת&quot;ל דלהכי הדר תנא הנך תרתי דסיפא גבי הדדי, מדפליג בהו ר&quot;ש בסיפא, משום דמיני׳ קרבו, אבל ביוני וזבל גם ר&quot;ש מודה. ומה&quot;ט נמי נקט הנך תרתי, אע&quot;ג דדמו להנך דלעיל, ותרווייהו נמי מניה קרבו, והוה סגי לאשמעינן מלתא דר&quot;ש בחד מנייהו. די&quot;ל דקמ&quot;ל אילן פירות לרבותא דת&quot;ק, אע&quot;ג דחזו גופייהו למזבח, אפ&quot;ה כשגדלו אח&quot;כ לא קדשי. ונקט שדה עשבים לרבותא דר&quot;ש, אע&quot;ג דלא חזו למזבח ולבדה&quot;ב, אפ&quot;ה לר&quot;ש קדשי. עכ&quot;פ יש לדקדק דלמה נקט להו תנא להנך דוגמאות שלא כהסדר דנקט להו בהרישא. דברישא פתח ותנא בראוי למזבח, ובתר הכי נקט ראוי לבדה&quot;ב, ובתר הכי נקט שאינו ראוי לזה ולזה, וא&quot;כ בהדוגמאות שהביא התנא הו&quot;ל נמי למנקט תחלה יוני שובך, ולבתר בור מים, ולבתר זבל אשפה. ואם כי דרך התנא דפתח לפעמים לפרושי במה שהתחיל, ולפעמים במאי דסליק [כמ&quot;ש תוס׳ רפ&quot;ה דשבת], אבל הא דנקט התנא הכא דוגמת הבבי דרישא בסיפא בסירוסין, ר&quot;ל תחלה האמצעי, ואח&quot;כ הבתרא, ואח&quot;כ הקמא, זהו וודאי צריך טעם. ועי׳ דוגמתו כתובות פ&quot;א מ&quot;ד, דנקט גיורת שבוייה שפחה, שנפדו ושנתגיירו ושנשתחררו. [ועי׳ רתוי&quot;ט שם] וה&quot;נ נקט להו בהך סדר שם פ&quot;ג מ&quot;א. ונ&quot;ל דהתם נקט להו בב׳ המשנות שזכרנו. ברישא בדרך לא זו אף זו, דלא מבעיי׳ בגיורת דאיכא תרתי לטיבותא, דאע&quot;ג דזרמת סוסים זרמתם גם בעכומייז [כיבמות דצ&quot;ח א׳] עכ&quot;פ אינה שטופה בזנות גם בעודה בגיותה דלא כשפחה [ככתובות די&quot;א א], ומה&quot;ט נמי עכומ&quot;ז אית להו חייס עפי מעבדים [יבמות דכ&quot;ג א], הא חדא לטיבותא. ותו דגם אין רשות אחרים עליה., הרי ב׳ לטיבותא. והדר נקט שבויי׳ דאיכא עכ&quot;פ חדא לטיבותא, דאע&quot;ג דרשות אחרים עליה, עכ&quot;פ מנוולא נפשה גבי שבאי [קידושין די&quot;ב ב]. והדר נקט שפחה דאיכא גבה תרתי לריעותא, דרשות אחרים עליה וגם להוטה טפי לזנות, דזילא לי׳ פריצה לי׳ שכיחא ליה [כגיטין י&quot;ג א]. אפ&quot;ה בכולהו בפחותה מבת ג׳ שנים במזקת בתולה הן. אבל בסיפא בכל משנה דהתם, בדנקט פעולת כל אחת ואחת בדרך דוגמא, נקט המצוי מצוי קודם. שיותר מצוי שתפדה השבויה משתתגייר הנכרית. וגם גיורת מצוי טפי משתשתחרר השפחה, שתולה בדעת אחרים, ושיפסיד בעליה מעותיו. וגם הכא נ&quot;ל כה&quot;ג. דברישא נקט להו בסדר דרך לא זו אף זו., דלא מבעיי׳ ראוי למזבח ולא לבדה&quot;ב, אפ&quot;ה בכולהו מעל בהן ובמה שבתוכן. אבל בסיפא מדבעי למנקט בהקדישן ריקנין ונתמלאו דלא מעל, שני תנא מסדרא דנקט תתלה, כדי למנקט להו נמי בדרך לא זו אף זו, לא מבעייא בור דלא קדשי מיא דאתו לתוכו לאחר מכן, דמאן יימר בשעה שהקדיש שאח&quot;כ ירדו גשמים להבור, ואפי׳ לגוונא דמוקי לה הש&quot;ס [ב&quot;ב ע&quot;ט ב] במים הבאים דרך חצירו. ר&quot;ל שאין יד אחר מעכב על ידו שלא ירדו לשם דרך המדרון, היינו לראב&quot;ש דס&quot;ל כר&quot;מ דקדשי. אבל למשנתינו דס&quot;ל דאף בכה&quot;ג לא קדשי, י&quot;ל דקמ&quot;ל דאמרי׳ מאן יימר שירדו לשם ובשפע רב עד שלא יבלעו בבור ועי׳ תוס׳ שם ד&quot;ה אימר, ודו&quot;ק]. והדר נקע לרבותא טפי אשפה, אע&quot;ג דאורחא הוא לפנות זבלו לאשפה, וסד&quot;א דהו&quot;ל כפירות אילן וקדשי לכה&quot;פ לר&quot;ש, קמ&quot;ל. והדר נקט שובך לרבותא טפי וטפי, דלא מבעייא אשפה, דאיכא למימר דאע&quot;ג דאורחא הכי לפנות זבלו לשם, עכ&quot;פ כיון דברצונו תליא. אולי ממלך ולא יפנה זבלו לשם, אלא אפי׳ שובך, דדרך יונים לבקש להן מנוח ולקנן במקום שימצאו שובך, וסד&quot;א דעדיף מה&quot;ט ממי גשמים ומזבל אשפה, והו&quot;ל כפירות דקל דעבידי דאתו, ומשו&quot;ה נימא דאף שלא קננו שם רק אח&quot;כ נמי נקדשו, ולמעול בהן קמ&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-3-4" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-3-4" data-source-ref="Boaz on Mishnah Meilah 3:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 3:4</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-3-4" aria-label="Copy link to Boaz on Mishnah Meilah 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וקשה תקנה חצר להקדש, כמו דקונה להדיוט [כב&quot;מ פ&quot;א מ&quot;ד], ולא יהא כח הדיוט חמור מהקדש (כגיטין נ&quot;ב א). ואי&quot;ל דבהדיוע ה&quot;ט דמשום דחצר מיד אתרבאי, מאם המצא תמצא בידו הגניבה, ולא מצינו יד להקדש. ליתא, מדאמרינן [ב&quot;מ ד&quot;י ע&quot;ב]. דאע&quot;ג דמשום יד אתרבאי לא גרע משליחות, והרי יש שליחות להקדש, ככהנים דשלוחי שמים נינהו [כרמב&quot;ם פ&quot;ו מנדרים], וא&quot;כ כשהגזבר עומד בצד החצר, דהו&quot;ל חצר המשתמרת, תקני ליה. ורתוי&quot;ט הביא קו׳ זו בצ&quot;ע. ולפענ&quot;ד נראה כיון דהרי עכ&quot;פ גם בכה&quot;ג צריך שיאמר הזוכה ג&quot;כ זכתה לי שדי [כח&quot;מ רס&quot;ח ס&quot;ג], והכא הרי ההקדש או הגזבר לא קאמרי הכי. ואפי׳ לי&quot;א דבעומד בצד שדהו לחוד סגי, עכ&quot;פ הרי כתבו תוס׳ [ב&quot;ב דנ&quot;ד א׳ ד&quot;ה אדעתא], דהא דחצירו קונה שלא מדעתו. היינו בלא ידע כלל, אבל בידע ומתכוון שלא לקנות לא קני. וא&quot;כ הכא כיון דאין הגזבר מתוייב לעמוד בצד החצר ולומר שתקנה השדה לההקדש, הו&quot;ל כאילו התכוון ההקדש שלא לקנות, וגזבר דעביד אדעתי׳ דנפשי׳ קעבד., דהרי לא נעשה שליח לדבר זה. אמנם אילה&quot;ק מ&quot;ש הכא מחלב וביצים לעיל [מ&quot;ה] דאמרינן דמעל בהן, אף שבאו לאחר שהוקדש. נ&quot;ל דלא דמי, דהתם מנה קרבו, דהיינו מגוף ההקדש עצמו שהקדיש, משא&quot;כ הנהו מעלמא קאתו. ואפי׳ אילן ועשבים לא דמי לחלב וביצים, דהתם גם קודם שיצאו לאויר העולם כבר הוה מפקד פקידי בגוף ההקדש, וכשהופרשו ויצאו, רק אוכלא דאפרת מהקדש הם, דדינם כבתחלה כשהיו מחוברים בגוף ההקדש. משא&quot;כ פירות ועשבים לא היו עומדים מופרשים בגוף ההקדש קודם שצמחו ויצאו לחוץ. כך נ&quot;ל. אבל רתוי&quot;ט כתב משום קו׳ זו דמתני׳ דהכא ר׳ יודא היא דפליג אהך מתני׳ דלעיל, יע&quot;ש. [אב&quot;י אמנם ק&quot;ל דמדקאמר אין מועלין בה, משמע דאבל איסורא איכא, והרי בכריתות [פ&quot;ו מ&quot;ו סי׳ ל&quot;ה] אמרי׳, דאדם מתכפר בשבח הקדש, וק׳ הרי מדמפטר עי&quot;ז מממון לא שייך לומר מצות לאו ליהנות נתנו כלקמן סי׳ ס&quot;ט. ותרצתי לבני הרב שליט&quot;א, התם בכריתות כיון שכבר נתן הב׳ סלעים שחייב לאשם, לא מחשב הרווחה מה שהשני ירעה עד שיסתאב ויקריבנו עולה]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-3-5" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-3-5" data-source-ref="Boaz on Mishnah Meilah 3:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 3:5</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-3-5" aria-label="Copy link to Boaz on Mishnah Meilah 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואילה&quot;ק דאף דמצינו שיכול אדם להקדיש בהמה בתנאי על מנת שהגיזה והכחשה שלו [כחולין פי&quot;א מ&quot;א], היינו בהקדש שאינו מחוייב בו, אבל הכא כיון דמחוייב להקדיש היוצא עשירי, ומצד הדין קדש החלב ממילא, מדהוקש לבכור. וכדקאמר בש&quot;ס, א&quot;כ האיך יכול להתנות שיהיה החלב חולין. ונ&quot;ל כיון דאי בעי שדי מומא בכולה עדרי׳ [כבכורות נ&quot;ג ב׳], וגם יכול לשחוט ולאכול מעדרים קודם שהגיע הגורן, מבלי שיעשר [בכורות פ&quot;ט סוף מ&quot;ו], להכי כהקדש שאינו מחוייב בו דמי. והרמב&quot;ם מפרש דה&quot;ק, שאחרים מתנדבים להניק הולד מנקיבה שבעדרם, כשאין לבעה&quot;ב נקיבה אחרת בעדרו. ותמהני א&quot;כ מה קמ&quot;ל מתני׳. ורתוי&quot;ט הקשה מה נדבה היא זו שאין ההקדש מרוויח עי&quot;ז כלום. ותוס׳ הכא פי׳, דמתני׳ מיירי בולד שילדה בהמת מעשר אחר שנעשת מעשר דאע&quot;ג שהוא קדוש כמותה, ואפ&quot;ה לא יינק ממנה, מדמכחישה. וא&quot;כ קמ&quot;ל מתני׳ טובא, דאע&quot;ג דהולד קדוש כהאם, אפ&quot;ה לא יינק מהאם. רק ישתדל ממקום אחר לבלי להכחיש הולד הקדוש. ושייך נמי שפיר שאחרים מתנדבים להניק הולד מחולין, וכן בולד קדשים לקמן במתני׳, לפי דברי תוס׳ הנ&quot;ל נמי מיירי בולד שילדה אחר שהוקדשה. ואילה&quot;ק דהרי היה מותר להדליק במנורה מנר לנר, אע&quot;ג דהוה אכחושי קדושה [כשבת דכ&quot;ב ב׳]. נ&quot;ל דיניקת החלב שמכחישה טפי, כ&quot;ע מודו דאסור:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-3-6" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-3-6" data-source-ref="Boaz on Mishnah Meilah 3:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 3:6</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-3-6" aria-label="Copy link to Boaz on Mishnah Meilah 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אב&quot;י ק&quot;ל לרש&quot;י דעכ&quot;פ אי מיירי קודם שזקפן הרי קיי&quot;ל הזמנה לאו מילתא היא [כסנהדרין מ&quot;ז ב׳]. ונ&quot;ל דכיון דקודם זקיפה הקיפו בו כבר, הו&quot;ל ככבר עשו בו מעשה, וככיס תפילין דצר ביה חד זמנא, דנאסר [כברכות כ&quot;ג, וא&quot;ח סי׳ מ&quot;ב] ה&quot;נ ההקפה היה קצת מהמעשה שעל ידו מחשב כהקדש, רק שלא נגמר עד אחר שזקפן. וטפי ק&quot;ל לרמב&quot;ם דס&quot;ל דמתני׳ מיירי בערבות שגדלין בשדה הקדש, וכ׳ עליו הראב&quot;ד ושיבוש הוא, ותמה עליו רכ&quot;מ למה קרא לפי׳ הרמב&quot;ם שיבוש, בלי שום טעם. ולפע&quot;ד כוונת הראב&quot;ד דא&quot;כ למה קאמר תנא דאין מועלין בה, דמשמע וודאי אף בנהנה שלא במקום מצוה, וה&quot;נ כתב שם גם הרמב&quot;ם בעצמו מפורש. וזהו באמת תמיה רבתא לרמב&quot;ם, דהרי הוא בעצמו כ׳ לעיל מנה בסמוך דמועלין בגדולי הקדש, וצ&quot;ע. והשבתי לבני הגאב&quot;ד דק&quot;ק לאנדסבערג שליט&quot;א, קושיתך לרש&quot;י מהזמנה לאו מילתא. גם בלי תרוצך לק&quot;מ לפע&quot;ד. דכיון דמדמינן ערבה דחג לקדשי בדה&quot;ב הרי בקדשי בדה&quot;ב וודאי הזמנה מלתא היא. תדע דהרי באומר דבר זה יהיה קודש לבה&quot;ב וודאי רק הזמנה בעלמא הוא [וע&quot;ש ברש&quot;י בסנהדרין דמ&quot;ז סע&quot;ב], ואפ&quot;ה וודאי מאז הוקדש, וכל היכא דאיתא בי גזא דרחמנא איתא [ר&quot;ה ד&quot;ו ע&quot;א], הרי הזמנה גבה מלתא היא. וקושיתך לרמב&quot;ם דמוקי למתני׳ בערבה שבשדה הקדש, שכתבת שסותר תכ&quot;ד דברי עצמו. נ&quot;ל דרמב&quot;כ. דייק מדנקט תנא סתמא ערבה, ולא פי׳ ערבה של מזבח, כדפי׳ לעיל מנה מים שבכד של זהב, ש&quot;מ דלאו דוקא בערבה של מזבח, אלא בערבה שגדילה בשדה הקדש אין מועלין בה. ומטעם דממיא ואוירא קרבי. דוגמת שרשי אילן הקדש חוץ מט&quot;ז אמה, דאין נהנין מדמחוברין באילן, ואפ&quot;ה אין מועלין מדרוב יניקתן רק מהארץ ולא מהאילן, ה&quot;נ הכא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-3-7" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-3-7" data-source-ref="Boaz on Mishnah Meilah 3:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 3:7</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-3-7" aria-label="Copy link to Boaz on Mishnah Meilah 3:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואילה&quot;ק עכ&quot;פ האיך יכלו הזקנים ליטל משם ערבה, הרי אסור לישראל לבוא לשם רק לצורך סמיכה שחיטה תנופה [כפ&quot;א דכלים]. ואע&quot;ג דהנהו ג׳ ל&quot;ד, דה&quot;ה לצורך אחר רשאין לכנוס, כלקמן [מדות פ&quot;ב סי׳ נ&quot;ט]. עכ&quot;פ הכא לא מחשב צורך מצוה כ&quot;כ שיבוא בעצמו גופו לשם כסמיכה וכו׳, שא&quot;א שתעשה המצוה אם לא יבוא בעצמו לשם. י&quot;ל דהכא נמי מיירי במי מהזקנים שהיה כהן. או שבאמת בקשו מכהן להביאן להן משם. ולרש&quot;י דמיירי קודם שזקפום, ניחא טפי. תו נ&quot;ל דהא דנקט זקנים, ר&quot;ל ת&quot;ח, כדתנינן מעשה בר&quot;ג וזקנים [ב&quot;מ די&quot;א א׳] וכדומה הרבה בש&quot;ס. וה&quot;נ מייתי ראיה מגדולי הדור שעשו כן. ורתוי&quot;ט פי׳ דנקט זקנים דמדהן חלשי׳ לחפש אחר אחרת, התירו להן כן, עכ&quot;ל. ותמהני דא&quot;כ קושית רתוי&quot;ט לרמב&quot;ם גם לדידי׳ חוזר וניער, שהקשה להרמב&quot;ם על שדחה דברי ראב&quot;צ מההלכה, והרי קיי&quot;ל מצות לאו ליהנות נתנו. והרי גם לדידי׳ ק׳ קושי׳ זאת, דאי נמי קיי&quot;ל כראב&quot;צ, הרי עכ&quot;פ מדקיי&quot;ל מצות לאו ליהנות נתנו, יהיה מותר לכל אדם לעשות כן, ולמה התירו דוקא לחלשים. והן אמת שכל עיקר קושית רתוי&quot;ט גם לרמב&quot;ם אחמכ&quot;ר ל&quot;ק מידי, די&quot;ל דאע&quot;ג דהנאת המצוה לא מתשב הנאה, עכ&quot;פ מה שא&quot;צ לקנות אחרת מחשב שפיר הנאה, כדצרכינן למימר נמי הו&quot;ט במביא חטאתו ואשמו ממעות הקדש דמעל [כמעילה די&quot;ט א׳ ]. ובדוגמת זה כ׳ רתוי&quot;ט גופיה [שקלים פ&quot;ב מ&quot;ב, ד&quot;ה מעל ע&quot;ש]. רק הכא מדלא היה הערבה באמת הקדש, רק דדמי להקדש כלעיל סי׳ ס&quot;ז, להכי לרבנן דפליגי אראב&quot;צ עכ&quot;פ אסורא איכא, ואילה&quot;ק א&quot;כ הנודר הנאה משופר, או התוקע בשופר של קדשים דיצא. משום מצות לאו ליהנות נתנו [כר&quot;ה כ&quot;ח א׳], ועל כרחך דמה&quot;ט נמי לא מעל [ע&quot;ש], ואמאי, הרי עכ&quot;פ מה שא&quot;צ להדר אחר אחר מחשב הנאה. י&quot;ל התם א&quot;צ לגוף השופר רק לשמוע הקול, אפי׳ בשיתקעו לאחרי׳ ושמע גם הוא יצא, משא&quot;כ הכא דצריך לגוף הערבה, וודאי אם לא תמצא לו זו יצטרך לקנות אתרת, וזה שפיר מחשב הנאה. אב&quot;י ל&quot;מ נ&quot;ל לתרץ קו׳ רתוי&quot;ט על שדחה דברי ראב&quot;צ מההלכה. ע&quot;פ מ&quot;ש תוס׳ [סוכה מ&quot;ג ב׳] דלת&quot;ק דערבה היא הלממ&quot;ס, א&quot;כ א&quot;צ בערבה של הקיף לכם, משא&quot;כ לאבא שאול דיליף לה מערבי שתים, א&quot;כ גם בערבה של הקפה בעי לכם כמו בד׳ מינין. א&quot;כ י&quot;ל דלרמב&quot;ם ת&quot;ק דהכא וראב&quot;צ בהא פליגי, דת&quot;ק דהכא ס&quot;ל כחכמים דהתם, וכדקיי&quot;ל דערבה הלממ&quot;ס, ולא בעי לכם, א&quot;כ אין ללמוד מהך מעשה שיהיה ערבה של הקדש מותר גם בשאר הנאות, די&quot;ל ערבה דמצוה שאני דמצות לאו ליהנות נתנו, משא&quot;כ שאר הנאות באמת אסירי, וכדקאמר באמת לא נהנין ולא מועלין, וראב&quot;צ ס&quot;ל כאבא שאול התם דיליף לה מערבי. ובעינן גם בערבה של הקפה לכם, ומייתי שפיר ראיה מהך מעשה דגם שאר הנאות מותר בערבה של הקדש, דאי&quot;ל דהך דזקנים שאני דמצות לאו ליהנות נתנו. דליתא, דאף דאין שם הנאה ליתסר, מדבעינן גם בערבה של הקפה לכם, וכשנטלוה הזקנים לצאת בה, הרי הוציאוה לרשות תולין, והרי המוציא מעות הקדש לרשות תולין, אף שלא נהנה מעל ורק בגזבר לא מעל בכה&quot;ג עד שיעשה בה מעשה הדיוט [כלקמן פ&quot;ה מ&quot;ד]. א&quot;כ מדקיי&quot;ל דערבה הלממ&quot;ס ולא בעי גבה לכם, להכי יפה דחה הרמב&quot;ם הך דראב&quot;צ מההלכה. עכ&quot;ל בני הרב הגאב&quot;ד שליט&quot;א. והשבתי לו, הן אמת שדבר זה חריף ומפולפל, ואפ&quot;ה א&quot;א לומר כן, דהרי שכחת בני שליט&quot;א דהרמב&quot;ם לא מוקי לה הכא בערבה שמקיפין בה המזבת אלא בערבה שגדילה בשדה הקדש מיירי, וגם אבא שאול היו נותנין בלולביהן קאמר, והרי ערבה שבלולב לכ&quot;ע בעינן לכם, וא&quot;כ אין אפשר לומר דפליגי הכא בלכם. ובאמת עוררתני בני שליט&quot;א לומר, דהרי גם לרש&quot;י דמיירי בערבה של הקפה, גם לרמב&quot;ם דמיירי בערבה שגדל בשדה הקדש, עכ&quot;פ צריך טעם, האיך הותרו הזקנים לתת ממנה בלולביהן. הרי בערבה שבלולב לכ&quot;ע בעינן לכם, וא&quot;כ אף דמצות לאו ליהנות נתנו, ואין כאן הנאה, עכ&quot;פ בשנתנוה בלולביהן, הוציאו הערבה מרשות הקדש לרשות הדיוט, ואף דלא נמעול מטעם דאין הערבה ממש של הקדש, לרש&quot;י כדאית ליה ולרמב&quot;ם כדאית ליה, עכ&quot;פ הול&quot;ל כברישא דלא נהנין ולא מועלין. וע&quot;כ צ&quot;ל דס&quot;ל לראב&quot;צ דכיון דאינה הקדש ממש, וגם רק למצוה הביאוה לרשותם, לא גזרו בה רבנן לדקדק בה כולה האי. וא&quot;כ י&quot;ל דלרמב&quot;ם בחבורו בהא פליגי חכמים וראב&quot;צ, ויפה פסק כחכמים, דבכל גוונא אסורה ערבה של הקדש, אפילו בדבעי לה למצוה. ומתורץ קו׳ רתוי&quot;ט לרמב&quot;ם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-3-8" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-3-8" data-source-ref="Boaz on Mishnah Meilah 3:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 3:8</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-3-8" aria-label="Copy link to Boaz on Mishnah Meilah 3:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמר המפרש מאחר שלכאורה אין פירושי זה מסכים עם סוגית הש&quot;ס כאן [די&quot;א א׳], וגם בל&quot;ז פי׳ הסוגיא בעצמה עמום מכוסה, ככלה חדשה מעולפת בספירי צעיף, ודברי רבותינו רש&quot;י ותוס׳., אשר רק משדיהן הורגלנו לינק, חלבמו סגרו, ואינן מספיקין לגרונינו צחה צמא. לכן קמתי אני בריה קלה בקא בר יימא, וכתולדה הדרה בעקרי הבתים, וכאישות בלי עינים בחתחתים, ואמינא ברק ברקאי דכוביתא בעלמא קא חזינא, לפרש סוגיתן כפי המסכים עם סוגיא דש&quot;ס ע&quot;ז [מ&quot;ב ב׳ ]. דהכא אותבה ר&quot;ל לר׳ יוחנן דקאמר דע&quot;ז שנשברה מאליה אסורה, והרי במתני׳ קאמר זקן שבאשירה יתיז בקנה ומותרת. וקס&quot;ד דמדקתני סתמא ש&quot;מ דמיירי נמי בשנעשה הקן מהעצים ששבר ותלש העוף מהאשירה, אלמא דאף שלא שברם הנכרי בעצמו, אפ&quot;ה מותר. ומתרץ ר׳ יוחנן לא, מתניתין מיירי כשהקן נעשה מהעצים שהביא מעלמא. והא דקאמר הש&quot;ס תו, אי הכי אמאי בשל הקדש אין נהנין ואין מועלין. נ&quot;ל דמסקנת דברי ר׳ יוחנן היא דקאמר לר&quot;ל, וה&quot;ק, אי כדקאמרת דמיירי דהעצים שבקן הוא ממה שהביא העוף מאותו אילן, א&quot;כ ברישא בשל הקדש אמאי אין מועלין. [וזה שלא כדברי רבעתו&quot;ס, דאמאי דתני בשל הקדש אין נהנין פריך]. וקאמר תו בש&quot;ס, אלא בגדולין הבאין לאחר מכאן, וס&quot;ל אין מעילה בגידולין. נ&quot;ל דמלת אלא ט&quot;ס, וצ&quot;ל א&quot;ל. ור&quot;ל ומהדר ליה ר&quot;ל לר׳ יוחנן, לעולם דמיירי דאיתבר עצי הקן מהאילן גופה. ואפ&quot;ה בהקדש אין מועלין, דמיירי שנעשה הקן מהגדולין שגדלו בהאילן אחר שהוקדש, וס&quot;ל אין מעילה בגדולין. ומסיק תו, הכי נמי מסתברא, דאי ס&quot;ד דמיירי בדאייתא מעלמא אמאי יתיז בקנה לשקליה משקל. נ&quot;ל דה&quot;פ וה&quot;ק ליה ר&quot;ל לר׳ יוחנן, בשלמא אי נימא דמיירי בדאתבר מגופה, להכי שפיר באשירה יתיז בקנה, ולא יטול הקן בידו מהאשירה, דגזרינן דאתא לאחלופי בהענפים המחוברין עדיין בהאשירה. ורק כשיתיז בקנה א&quot;א תו למגזר כה&quot;ג, דהרי הענפים המחוברים עדיין בהאשירה לא יפלו למטה ע&quot;י נענוע קל של הקנה. אבל אי נימא דמתני׳ מיירי דאייתי עצי הקן מעלמא, א&quot;כ אמאי יתיז בקנה, לשקלה משקל הקן בידיו מהאילן, דהרי לא שייך למגזר אטו מחוברין של אותו אילן, מדהוה גזירה לגזירה, דהרי התלושין של האשירה ג&quot;כ לא אסירי רק משום גזירת המחוברין בו, והאיך נגזר תלושין שמעלמא אטו תלושין שמגוף האילן. ואמר ר׳ אבוה אר&quot;י, לעולם דאייתי מעלמא, ומאי יתיז, יתיז באפרוחין. ר&quot;ל אע&quot;ג דאפרוחין כעצים תלושין דאתו מעלמא דמו, אפ&quot;ה כשצריכין לאילן יש לאסרינהו, מדדמו עי&quot;ז טפי לענפים המחוברין בהאילן, להכי אסור למשקלינהו בידים מהקן, רק יתיזן בקנה, ויראה שכשיפרחו קצת, אז א&quot;צ לאילן ויהיו מותרין. והדר תו קאמר הש&quot;ס, א&quot;ל ר׳ יעקב לר׳ ירמיה אפרוחין וכו׳, ביצים וכו׳. ר&quot;ל דר׳ יעקב השיב על הך דלעיל דהאי יתיז דמתני׳ ר&quot;ל באפרוחין, אי באפרוחין מיירי, מ&quot;ש אשירה מהקדש, דבאינן מופרחין גם בהקדש אסורי כמו ביצים, ובמופרחין גם באשירה מותרין, ואמאי רק באשירה נקט יתיז בקנה. כך הוא פי׳ הסוגיא לפע&quot;ד, כדי להשוותה ולהסכימה עם הסוגיא דע&quot;ז הנ&quot;ל רק דלתו׳ הנ&quot;ל באינן מופרחין אפי׳ דרך התזה אסור. מדחייס עלייהו מלהשליכן, חיישי׳ דמה&quot;ט יעלה באילן האשירה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-meilah-text-4">Chapter 4</h4>
+          <section class="unit" id="boaz-on-mishnah-meilah-4-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-4-1" data-source-ref="Boaz on Mishnah Meilah 4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 4:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-4-1" aria-label="Copy link to Boaz on Mishnah Meilah 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והא דנקט עולה, ולא חטאת ואשם. ה&quot;ט משום דאי לאשמעינן דבשר וחלב שלהן מצטרף, כבר שמעינן מרישא. ואי דלצטרפי נסכין שבהן בהדי בשר. הרי נסכים רק בקרבנות שבאין בנדבה כתיבי, וחטאת ואשם אינן באין בנדבה. ואע&quot;ג דחטאת מצורע מפורש בו נסכים אף שאינו בא בנדבה. אפ&quot;ה משום חטאת מצורע לחודא לא בעי תנא למנקט במתני׳ סתם חטאת. ואילה&quot;ק דעכ&quot;פ הו&quot;ל למנקט נמי שלמים שיש בהן נסכים. י&quot;ל דאפ&quot;ה לא נקטי׳ תנא מדלא שייך בהו צירף למעילה בבשרן, מדאין מעילה בבשר שלמים אפי׳ קודם זריקה, משא&quot;כ ק&quot;ק. וכ&quot;ש דלא מצי למנקט בכור ומעשר ופסח מה&quot;ט, דג&quot;כ אין מעילה בבשרן, וגם אין בהן נסכים, מדאין באין בנדר ובנדבה. להכי ניחא ליה למנקט עולה, דאית בה תרתי. דשייך בה צירף למעילה בבשרה, וגם שייך בה צירף לבשר עם נסכים. והא דנקט תודה אף דלא שייך גבה צירף למעילה בבשרה, דהרי אין מועלין בבשר של קדשים קלים. ה&quot;ט מדרצה לאשמעי׳ דלחם שבה אף שאינו מין קרבן אפ&quot;ה מצטרף עכ&quot;פ לעניין אכילת פגול נותר וטמא. וא&quot;כ שפיר נקט נמי גבה בשר התודה, דאע&quot;ג דלא שייך גבי׳ צירוף למעילה, עכ&quot;פ שייך גבה צירוף לפגול נותר וטמא. וה&quot;ה דהוה מצי למנקט בשלמי נזיר דנמי מביא כ׳ לחמין [ועי׳ בחומר בקדש פ&quot;ב סי׳ ט&quot;ז]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-4-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-4-2" data-source-ref="Boaz on Mishnah Meilah 4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 4:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-4-2" aria-label="Copy link to Boaz on Mishnah Meilah 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותמהני שלא הביא הרמב&quot;ם [פ&quot;ד מאהט&quot;ו ה&quot;ז] מסקנא דש&quot;ס דמוקמינן הא בכולה הא במקצת, ופי׳ רש&quot;י ותוס׳ הכא, הא בכולו, ר&quot;ל שפירשו ב׳ חצאי שיעור בשר ודם משיעור שלם, אז אפי׳ אין הדם במקום תולדתו מצטרף, הא במקצתו, ר&quot;ל שפירשו מחצי שיעור. ונ&quot;ל דרמב&quot;ם ס&quot;ל כהר&quot;ש [אהלות פ&quot;ג מ&quot;ג] שפירש, הא בכולה, ר&quot;ל שנגע בב׳ חצאי השיעור, אז מצטרפי לטמא הנוגע, הא במקצתו, שנגע רק בא׳ מהן, אע&quot;ג שמונחין יחד, אפ&quot;ה אמ&quot;צ לטמא רק כשהדם במקום תולדתו. א&quot;כ הרמב&quot;ם לשטתי׳ יפה עשה שלא הביא הך סוגיא שהיא דלא כהלכתא, דהרי איהו פסק [פ&quot;א מאה&quot;ט הי&quot;ב] דמגע ומגע אמ&quot;צ אע&quot;ג שנגע בשניהן. ועי׳ לעיל [חולין. פ&quot;ט מ&quot;ד] שהארכנו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-4-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-4-3" data-source-ref="Boaz on Mishnah Meilah 4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 4:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-4-3" aria-label="Copy link to Boaz on Mishnah Meilah 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ותמוהין כאן דברי הר&quot;ב, שכ׳ דערלה וכלאי כרם מצטרפי לאסור ביבש במאתים ובלח בס׳, וכך כתב ג&quot;כ בערלה (פ&quot;ב מ&quot;א). ולכאורה משמע דבמין במינו קאמר. דהרי במין במינו איירינן במשנה, אבל א&quot;א לומר כן, דהרי ליכא לשום מ&quot;ד דס&quot;ל לחלק במב&quot;מ בין לח ליבש [ועי׳ רמב&quot;ם פי&quot;ג מתרומות ה&quot;ב וד׳ וח׳ וט׳, ובהל׳ מאכלות פט&quot;ו הי&quot;ד, ותוס׳ ע&quot;ז דס&quot;ח ב ד&quot;ה ר&quot;ש], דבכולהו דוכתי אמרי׳ דבמב&quot;מ אפי׳ לח בלח לא סגי בס׳ בתרומה, וה&quot;ה בערלה וכלאי כרם. אע&quot;כ דהר&quot;ב שמחלק בין לח ליבש היינו בנתערב בהיתר מין בשא&quot;מ. אולם גם בזה לכאורה לא ידעתי מנ&quot;ל דבערלה וכ&quot;כ בשא&quot;מ ביבש יאסר במאתים. ואפשר ע&quot;פ מה דפליגי רש&quot;י ותוס׳ (חולין דצ&quot;ט א׳), דלרש&quot;י שם (ד&quot;ה אין בהן בנ&quot;ט), דוקא במין במינו שנתבשל יחד דטעם האיסור ניכר תמיד. להכי אפי׳ הסיר ממשות האיסור מהתערובות שנתבשל, אפ&quot;ה צריך בתרומה ק&quot;א לבטלו. וכ&quot;כ במין בשא&quot;מ, ונשאר בהתערובות ממשות האיסור. ג&quot;כ צריך ק&quot;א לבטלו. אבל בנתערב תרומה בהיתר מין בשאינו מינו, ולא נשאר שם ממשות האיסור, רק הטעם, להכי בנתבטל הטעם מותר אפי׳ אין שם ק&quot;א. ובלא נתבטל הטעם אפי׳ יש שם ק&quot;א אסור. ולתוס׳ שם אין שום חילוק בין יש שם ממשות האיסור או לא, דבכולהו גוונא, במין במינו צריך ק&quot;א. ובמין בשא&quot;מ סגי בשיתבטל הטעם, כבכל איסורים. א&quot;כ י&quot;ל דר&quot;ב הכא ובערלה. בתרווייהו הנך דוכתי מיירי במין בשא&quot;מ וכדאמרן, וס&quot;ל כרש&quot;י הנ&quot;ל, והא דכ׳ הר&quot;ב דביבש ביבש צריך ק&quot;א, ר&quot;ל שכיון שנתערב יבש ביבש, יש שם ממשות האיסור, [ואינו מכירו], להכי כ׳ דצריך ק&quot;א לבטלו, אף במין בשא&quot;מ. אולם הרמב&quot;ם בכולהו דוכתא בהל׳ תרומות ובהל׳ מאכלות לא חילק במין בשא&quot;מ בין לח ליבש, דבכולהו גוונא באינו נ&quot;ט שרי. אמנם גם דברי הרט&quot;ז (י&quot;ד שכ&quot;ג סק&quot;א), לא זכיתי להבין, דמשמע מדבריו שם דלתוס׳ הנ&quot;ל אם נתערב מב&quot;מ והסיר האיסור, אז א&quot;צ ק&quot;א. ואני בעניי לא מצאתי גלוי לזה בדבריהם, ואדרבה משם לכאורה נראה איפכא, דבמב&quot;מ בין לרש&quot;י בין לתוס׳ אפי׳ הסיר האיסור צריך ק&quot;א. דאפי׳ לרש&quot;י עכ&quot;פ מדהוא מב&quot;מ, תמיד נשאר טעם האיסור, והו&quot;ל כיש האיסור בעין, ורק בנתערב באינו מינו ונשאר שם ממשות האיסור פליגי, דלרש&quot;י בכה&quot;ג צריך ק&quot;א, ולתוס׳ סגי בנתבטל הטעם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-4-4" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-4-4" data-source-ref="Boaz on Mishnah Meilah 4:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 4:4</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-4-4" aria-label="Copy link to Boaz on Mishnah Meilah 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועי׳ רש&quot;י סוכה י&quot;ז ב׳ שפירש בענין אחר. אב&quot;י ורתוי&quot;ט תמה על זה, דהרי לעיל במ&quot;ג ג&quot;כ שוו בד&quot;א בשיעור או בטומאה, ואפ&quot;ה אין מצטרפין. ובמח&quot;כ הגדול הכא שאני דבאותו שיעור דשוו ביה, שוו ביה נמי בטומאתו, דשניהן טמאין מדרס בהך שיעורא. והרמב&quot;ם חילק, דלעיל אמ&quot;צ במטמאין, משא&quot;כ הכא רק במתטמאין מצטרפו. וגם בזה תמה רתוי&quot;ט בהבנתו. ולפעד&quot;נ דכוונת הרמב&quot;ם, דטפי מסתבר לומר הכא במתטמאין דמצטרף, מדעכ&quot;פ המטמא שממנו יוצא הטומאה אינו מדבר המורכב, ממאי דנימא שיצטרף המטמא שהוא המת שרץ נבילה, דהרי עיקר הטומאה שממנו יוצא הטומאה הוא מדבר המורכב מב׳ מינין שאינן שוין. עכ&quot;ל בני הרב שליט&quot;א:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-meilah-text-5">Chapter 5</h4>
+          <section class="unit" id="boaz-on-mishnah-meilah-5-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-5-1" data-source-ref="Boaz on Mishnah Meilah 5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 5:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-5-1" aria-label="Copy link to Boaz on Mishnah Meilah 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ואילה&quot;ק הרי הוה הכא מחלוקת ואח&quot;כ סתם כר&quot;ע, כדמשמע מדיוקא דסיפא, דדוקא במלבוש תחתון ועליון, הא מציעאה מעל לאלתר, והיינו כר&quot;ע ברישא, והרי לא קיי&quot;ל כר&quot;ע מחביריו [כעירובין מ&quot;ו ב]. וכן הרמב&quot;ם [פ&quot;ו ממעילה] לא חילק בין בגד לבגד, דבכולן מעל רק כשיפגום, והיינו כרבנן. נ&quot;ל דשאני הכא, דהרי בל&quot;ז ק׳ דסתרי אהדדי דיוקא דרישא וסיפא, במשנתינו, דבסיפא הרי משמע דקיי&quot;ל כר&quot;ע, וכדאמרן. ובסיפא דרישא נקט תכשיטי זהב שאינן נפגמין כלל ע&quot;י תשמישן, הא לבוש מציעא׳ שנפגם עכ&quot;פ לאחר זמן, אינו מועל עד שיפגום, והיינו כרבנן. ואפי׳ לאידך תי׳ דר׳ זביד [ש&quot;ס די&quot;ט א], דקאמר על תכשיטי זהב, לעולם מי לא פגמה. היינו לזמן מרובה מאוד, ועכ&quot;פ מלבוש מציעא׳ א&quot;צ כל כך זמן מרובה שיפגום. ומדלא נקט ברישא רבותא, ש&quot;מ כרבנן. אע&quot;כ דהכא לא הוה כמחלוקת ואח&quot;כ סתם, דאיכא סתמ׳ הכי וסתמ׳ הכי, רק בעי למנקט כיצד אליבא דכ&quot;ע. אמנם עי׳ תוס׳ [די&quot;ח א ד&quot;ה במאי], שפירשו דלבוש מציעאה נמי נפגם לאלתר, רק שאין ניכר פגומו, ובהא פליגי ר&quot;ע ורבנן. ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-5-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-5-2" data-source-ref="Boaz on Mishnah Meilah 5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 5:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-5-2" aria-label="Copy link to Boaz on Mishnah Meilah 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ונ&quot;ל דנקט תלש ולא גזז, משום דבגוזז חייב מלקות, דאע&quot;ג דבחטאת בעלת מום מיירי וכסי׳ י׳, אעפ&quot;כ מדאיירי שקדם הקדישה למומה, וכמבואר שם. והרי בקדשי׳ שהוממו אח&quot;כ חייב מלקות כשגזזה [כבכורות דט&quot;ו ב], דאע&quot;ג דאינו אסור כשתומם רק משום תזבח ולא גיזה [כבכורות דט&quot;ו א] וה&quot;ל לאו הבא מכלל עשה שאין לוקין. ה&quot;ט דהכא לקי מדאהדרי׳ לאסור׳ קמא [כתוס׳ חולין דצ&quot;ט רע&quot;א], ומדחייב מלקות אינו משלם משום מעילה, דאין אדם לוקה ומשלם [ככתובות דל&quot;ב ב]. ואע&quot;ג דעכ&quot;פ עדיין הוה מצי למנקט כשהיה שוגג אגיזת קדשים. דהרי חייבי מלקות שוגגין חייבים בתשלומין [כרמב&quot;ם רפ&quot;ג מגניבה] או הוה מצי להנקט כשגזז, רק שהיה פחות מאורך הסיט והגיזה שוה פרוטה, וחיוב גיזת קדשים אינו בא רק כשגזז מלא סיט [כרמב&quot;ם פ&quot;א ה&quot;ז ממעילה]. עכ&quot;פ אילו נקט גזז היה צריך תנא להאריך דמיירי בכהנך גוונא, להכי ניחא ליה טפי למנקט תולש, דבכל גוונא אינו חייב עלה בקדשים, דתולש אינו כגוזז [כבכורות דכ&quot;ה א]. ורק בעוף מחייבינן התם בתולש נוצה משום גוזז, מדאורחא הכי וכדקאמרי׳ התם. אולם במשנה שבש&quot;ס גרסי׳ הנהנה מחטאת וכו׳. אבל ברמב&quot;ם [פ&quot;ו ה&quot;ב ממעילה] גרסינן כגרסת הספר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-5-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-5-3" data-source-ref="Boaz on Mishnah Meilah 5:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 5:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-5-3" aria-label="Copy link to Boaz on Mishnah Meilah 5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אב&quot;י אמנם ק&quot;ל גם בתמימ׳ הול&quot;ל בגיזתה דלא נהנין ולא מועלין, וכדאמרי׳ לעיל [פ&quot;ג מ&quot;ה] בחלב המוקדשין דלא נהנין ולא מועלין, וכ׳ שם הר&quot;ב ורתוי&quot;ט דטעמא משום דאפי׳ בקדשי מזבח כל שאינו ראוי ממנה להקרבה לא מקרי קדשי ה׳. א&quot;כ ה&quot;נ נימא בגיזתה, ותרצתי לבני הרב הגאב&quot;ד שליט&quot;א, דגיזה שאני, דמחמם לגוף הבהמה, וגם מכחישה כשיגזזה [כחולין קל&quot;ה ב], להכי מחשב שפיר גם גיזה קדשי ה׳, משא&quot;כ חלב מפקיד פקיד בהכחל, ואינו מכחיש להגוף כשיחליב׳ אלא אדרב׳ מקיל צער הבהמה, להכי אין לה שום שייכות עם הקרבה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-5-4" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-5-4" data-source-ref="Boaz on Mishnah Meilah 5:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 5:4</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-5-4" aria-label="Copy link to Boaz on Mishnah Meilah 5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אבל בבגדי כהונה הדין הוא איפכא, דקודם שבלו אין מועלין בהן, מדניתנו ליהנות בהן, מדלא נתנה תורה למלאכי שרת, לפיכך אין מעילה בשגגתן, אבל כשבלו מועלין בהן [כקידושין דנ&quot;ד א]. ונ&quot;ל דלא דמו לקדשי׳ שמתו, דלא חזו למידי, ולא מקרי תו קדשי ה׳. אבל בגדי כהונה שבלו עדיין חזו בפנים לפקוע פתילות למנורה, ולשמחת בית השואבה [כסוכה דנ&quot;א], וכצורך קרבן דמי [כתוס׳ שבת דכ&quot;א א ד&quot;ה שמחת]. ובזה מתורץ ג&quot;כ קושית רמל&quot;מ [פ&quot;ה ממעילה הי&quot;ד]. שהקשה הרי קיי&quot;ל אין לך דבר שנעשה מצותו ומועלין בו, (כפסחים דכ&quot;ו), וה&quot;נ בגדי כהונה שהקדישן להשתמש בהן עד שיבלו. וכיון שבלו הרי נעשית מצוותן, ואמאי ימעול בהן. ולפענ&quot;ד נראה, כיון דאדעתא דהכי הקדישום מעיקרא, שכשיבלו יעשה מהן הפתילות הנ&quot;ל. להכי אף אחר שבלו אכתי בקדושתייהו קיימו. ותמהתי מאד על רמל&quot;מ אשר לבו לב האריה דבי עלאי ועינו כעין הבדולח, והוא הביא כל המקומות הנ&quot;ל בש&quot;ס שהבאנו ונשמטה מלפניו הסברא זו לחלק בכך. מיהו גם בל&quot;ז יש לתרץ קו׳ רמל&quot;מ הנ&quot;ל, דהא דאמרי אין לך דבר וכו׳, היינו במיוחד למצוה מיוחדת, כדם לזרקו על המזבח. ובגד לבן של כוה&quot;ג ליכנס בהן לפני ולפנים ולגנזם אח&quot;כ. לפיכך מדנעשת מצותו לא היה מועלין בו, לולא שהוא גזירת הכתוב [כפסחים דכ&quot;ו א]. משא&quot;כ שאר בגדי כהונה שבלו, אף דלא ילפינן מבגדי לבן של פה&quot;ג. מדהו&quot;ל ב׳ כתובים הבאים כא׳ [כפסחים שם]. עכ&quot;פ כיון שאין זמן קבוע לתשמישן. והרי לולא שבלו, היה משתמש בהן בפנים והולך, לפיכך לא מחשב גמר מצותו עדיין. אמנם כלי שרת שניקב. שאפשר להתיכו לתקנו שוב. גם בו מסתפק רמל&quot;מ שם אם יש בו מעילה. ואני בעניי לא זכיתי להבין ספיקת רבינו, דמ&quot;ש מקרבן שנפל בו מום, דמדעומד לפדות מועלין בו. א&quot;כ מכ&quot;ש כלי שניקב שאפשר בו תקנה בעצמו, כשיתיכנו. וצ&quot;ע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-5-5" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-5-5" data-source-ref="Boaz on Mishnah Meilah 5:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 5:5</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-5-5" aria-label="Copy link to Boaz on Mishnah Meilah 5:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך נ&quot;ל כוונת שיטת הרמב&quot;ם [פ&quot;ו דמעילה]. ומ&quot;ש הרמב&quot;ם. כלישנא דמתני׳ אין מועל אחמ&quot;ו וכו׳ אלא בבהמה, ושינה ונקט וכלי תשמיש, תחת כלי שרת דנקט תנא. נ&quot;ל דלא התכוון רבינו להעתיק לשון המשנה ולפרשה כך, שיהיה בהמה דנקט תנא, ר&quot;ל חמור, וכמ&quot;ש הרמב&quot;ם, וכלי שרת היינו כלי תשמיש. ליתא, דא&quot;כ מה דקאמר תנא אין מועל אחמ&quot;ו וכו׳, במה איירי, הרי גם בחמור וכלי תשמיש שהן קדשי בדה&quot;ב יש מועל אחר מועל. אלא גם לרמב&quot;ם מתני׳ לא איירי רק ובהתכוון להוציא החפץ מרשות לרשות, ובכה&quot;ג וודאי אין מיאחמ&quot;ו רק בבהמת קרבן ובכלי שרת ממש. ורמב&quot;ם נקט נמי להך דינא [שם ה&quot;ה]. משא&quot;כ בהלכה ד׳, דבעי הרמב&quot;ם למנקט דינא דתוספתא הנ&quot;ל, דהיינו שהתכוון רק ליהנות מהחפץ ולא להוציאו מרשות לרשות, ובכה&quot;ג אפי׳ בחמור וקרדום של בדה&quot;ב יש מואחמ&quot;ו נקט הרמב&quot;ם שפיר אין מואחמ&quot;ו במוקדשים רק בבהמה, דהיינו אפי׳ חמור וכדמפרש ואזיל, ובכלי תשמיש, דר&quot;ל קרדום וכדומה. וכוונת רבינו לומר דרק בהנך תרתי אפשר שיהנה ויבא אחר ויהנה אחריו, להכי אפשר גבייהו מואחמ&quot;ו. אבל במעות א׳ במילי דמיכל לא אפשר מואחמ&quot;ו, דבמעות א&quot;א בו הנאה מגופו רק בהוציאו מרשותו, והרי בכה&quot;ג לא איירי תוספתא. ובמילי דמיכל הרי זר שבלע שזפין של קודש והקיאן ואכלן אחר. וודאי השני פטור ממעילה [כיומא דפ&quot;א א]. ועי׳ רמל&quot;מ ורכ&quot;מ בפ&quot;ו דמעילה שהאריכו הרבה בפירוש דברי הרמב&quot;ם. ויקריב לשיטת הרמב&quot;ם הנ&quot;ל הם ג&quot;כ דברי רבעתו&quot;ס [קידושין נ&quot;ה א, וב&quot;מ צ&quot;ט ד&quot;ה וחבירו], כולם עונים ואומרים כרמב&quot;ם דכוונת התוספתא היינו בשלא התכוון להוציא החפץ מרשות לרשות, ולא פליג התוספתא על המשנה, דבגוונא דתוספתא לא איירי מתני׳. אמנם הראב&quot;ד דחה להך תוספתא בב׳ ידים מההלכה, ומשמע עוד מדבריו דבהמה וכלי שרת דנקט מתני׳ דוקא הוא. וכן משמע נמי לפי השקפה הראשונה לישנא דגמרא בפלוגתא דת&quot;ק ור׳ נחמי׳, וע&quot;ש. וס&quot;ל להראב&quot;ד דכוונת המשנה דבכל הקדשים בין בקדשי בדה&quot;ב או עופות מנחה ונסכים, בכולן אין מואחמ&quot;ו אפי׳ לא התכוון להוציאו מרשות לרשות. רק בבהמת קרבן וכלי שרת ממש יש בהם מואחמ&quot;ו אפי׳ התכוון להוציאו מרשות לרשות. ולכאורה נוטין דברי המשנה טפי כהראב&quot;ד, דבשלמא לדידיה שפיר נקט במתני׳ אלא בהמה וכלי שרת. דלא הוה מצי למנקט בקיצור אלא בקדשי מזבח, דהרי בקדשי מזבח גופה עופות מנחות ונסכים לראב&quot;ד אין בהן מואחמ&quot;ו. אלא לרמב&quot;ם ק׳, דנהי דבגוונא דתוספתא לא איירי תנא, עכ&quot;פ כיון דבכל קדשי מזבח לרמב&quot;ם יש בהן מועאחמ&quot;ו, א&quot;כ מ&quot;ש בהמה וכ&quot;ש דנקט תנא, וטפי הו&quot;ל למנקט בקיצור אלא בקדשי מזבח. אלא די&quot;ל דלרמב&quot;ם בהמה וכש&quot;ר דנקט תנא, רק לסימנא בעלמא נקט לגלויי׳ טעמא דמ&quot;ש קדשי מזבח. והיינו משום דבהמה הא רביי׳ קרא באיל האשם, וכ&quot;ש, מדילפינן ק&quot;ו, וכדקאמרי׳ בש&quot;ס, מיהו מדידעינן דיש מאחמ&quot;ו בהנך ב׳ מיני קדשי מזבח, דהיינו בהמה שהיא עצמה נקרבת, וכלי שרת שמיוחד להקריב מה שבתוכו. א&quot;כ ה&quot;ה נמי כל קדשי מזבח דדמו להנך תרתי. ואפשר לי עוד דגם לת&quot;ק דר׳ נחמי׳ בש&quot;ס דס&quot;ל דבכש&quot;ר אין מואחמ&quot;ו, עכ&quot;פ מדמודה בבהמה. היינו בהמה וכל דדמי לה. שקרב הוא עצמו למזבח אינו מתחלל בשיהנה ממנו מדאלים קדושתו, ויש בו מואחמ&quot;ו, משא&quot;כ כש&quot;ר שאינו קרב למזבח רק מה שבתוכו אין בו מואחמ&quot;ו. ונלפע&quot;ד ראיי׳ לרמב&quot;ם, דעל כרחך הא דנקט תנא בהמה וכש&quot;ר רק לדוגמא נקט׳. דאלת&quot;ה, א&quot;כ מה דמסיק בש&quot;ס מה איכא בין ת&quot;ק לרבי דקאמר כל שאין לו פדיון יש בו מואחמ&quot;ו, ודחיק לומר דנ&quot;מ בנהנה מעצים. או בנהנה מבהמה שהוממה ונשחט׳ קודם פדיי׳, טפי הול&quot;ל דנ&quot;מ עופות מנחות ונסכים. אלא לאו ש&quot;מ דגם בהנך ס&quot;ל לתנא דיש בה מועאחמ&quot;ו, ובהמה וכש&quot;ר דנקט, היינו וכל דדמו להו. וברוך אל ההודאות ורוב הודאות אלהי ישעי כי חנני אלהים לברר כל זה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-boaz-on-mishnah-meilah-text-6">Chapter 6</h4>
+          <section class="unit" id="boaz-on-mishnah-meilah-6-1" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-6-1" data-source-ref="Boaz on Mishnah Meilah 6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 6:1</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-6-1" aria-label="Copy link to Boaz on Mishnah Meilah 6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועי׳ תוס׳ ב&quot;מ ד&quot;י ע&quot;א, ותוס׳ ב&quot;ק דע&quot;ט א׳, ובקידושין דמ&quot;ב ב׳, שכתבו דבשאר דוכתי כשהשליח שוגג לא אמרי׳ דברי הרב וכו׳. וכן כתב ג&quot;כ הסמ&quot;ע ח&quot;מ רסי׳ קפ&quot;ב. א&quot;כ לכאורה ק׳ לפ&quot;ז למה צריך במעילה ג&quot;ש דחטא חטא מתרומה [ור&quot;ל אף שבתרומה נמי אפשר שהיה שליח לעבירה, כגון להקדים מעשר לתרומה, ודו&quot;ק], דכמו בתרומה מהני שליחות אפי׳ לעבירה, כ&quot;כ במעילה יש שליח לדבר עבירה, ול&quot;ל, והרי בל&quot;ז לא גרע מעילה משאר דוכתא, דבכל ששגג השליח וא&quot;א לומר גביה דברי הרב וכו׳ אמרי׳ יש שליח לד&quot;ע. עי׳ מה שתרצו על זה תוס׳ קידושין [דמ&quot;ב ב׳ ד&quot;ה אמאי]. ול&quot;מ נ&quot;ל דהרי ידוע דגם שוגג צריך כפרה, והיינו מדהיה לו לדקדק שמא עושה דבר עבירה. א&quot;כ בשליח דמעילה נמי, אף ששוגג היה גם הוא גם משלחו, עכ&quot;פ היה לו לדקדק במעשיו, שמא יעשה דבר נגד רצון שמים משא&quot;כ בשגג בשכחה [עי׳ מכות ד&quot;ט ב׳]. [אב&quot;י עוד נ&quot;ל, די&quot;ל דצריך הג&quot;ש מתרומה שיצטרך הנאה ופגם כאחת, וכמ&quot;ש ע&quot;ר נ&quot;י לעיל פ&quot;ה סי׳ ט&quot;ו]:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-6-2" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-6-2" data-source-ref="Boaz on Mishnah Meilah 6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 6:2</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-6-2" aria-label="Copy link to Boaz on Mishnah Meilah 6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ובש&quot;ס אמרי׳ אהך בבא, ש&quot;מ מוסיף על דבריו הוה. ר&quot;ל דבש&quot;ס כתובות [דצ&quot;ח ב׳] מסתפקינן באמר לשליח שימכור א׳ משדותיו. והלך השליח ומכר יותר ממה שצוהו, מי אמרינן שהשליח שמכר יותר ממה שנצטווה. מוסיף על דברי משלחו הוה, ולהכי אף שאותן שמכר יותר ממה שנצטוה אינן מכורין, עכ&quot;פ האחת שהרשהו הב&quot;ב למכור, מכור הוא, אם ירצה הלוקח. או נימא דמעביר על דבריו של בעה&quot;ב הוה, וה&quot;ל כאילו עקר כל השליחות, ואפי׳ אותו א׳ שמכר כפי רצון המצווה, נמי אינו מכור, אם ירצה המצווה. וקאמר הכא, דבשלמא אי נימא דכשהוסיף השליח בין במתנה בין במכר, מוסיף על דברי המצוה הוה. שפיר י&quot;ל במתני׳ דגם בעה&quot;ב מעל, דהרי נתקיים גם שליחותיה. אלא אי נימא. דכל שהוסיף השליח יותר ממה שנצטווה, אז הוה כמעביר על דברי בעה&quot;ב, אמאי אמרי׳ במתני׳ דבה&quot;ב נמי מעל, ואמאי, הרי נעקר שליחותי׳ לגמרי. ונ&quot;ל דרק אמאי דאמרי׳ במתני׳ דגם בה&quot;ב מעל מקשי. אבל שליח, וודאי אפי׳ נימא דכל שהוסיף בשליחותי׳ מעביר ע&quot;ד הוה, והרי האורחין נמי הוסיפו על דברי השליח, אפ&quot;ה מעל שליח ג&quot;כ. דבשלמא בבעה&quot;ב, כשהוסיף שליח אמרי׳ דנעקר שליחותי׳ דב&quot;ב לגמרי, ולא מעל. משום שהאורחין המוציאין לחולין סבורין שעושה השליח הכל מדעת הב&quot;ב, והרי באמת זה טעות. דהרי בשהוסיף יותר ממה שנצטוו. עקר דעת בה&quot;ב לגמרי. לפיכך כל שנימא מעביר על דבריו הוה. לא מעל הבה&quot;ב. אבל שליח, וודאי מעל. אף שגם הם הוסיפו על דברי השליח. עכ&quot;פ הם המוציאין לחולין. יודעין שב׳ לוקחין ע&quot;ד השליח וא׳ לדעתן, ולא עקרו שוב שליחותי׳ דשליח. ומתרץ הש&quot;ס. א&quot;ר ששת, הכא במאי עסקינן. דא&quot;ל השליח עלו א׳ מדעת בה&quot;ב. וא׳ מדעתי. כלומר, לעולם כל המוסיף על שליחותי׳. עקר שליחות המשלח לגמרי. ואפ&quot;ה תנא הכא דמעל בעה&quot;ב. מדפירש בהדיא שיטלו א׳ לדעתו של בעה&quot;ב, וגלי דעתי׳ שאינו רוצה לעקור השליחות לגמרי, רק להוסיף עליו. והא דנקט הש&quot;ס שאמר השליח וא׳ לדעתי. וודאי לאו דוקא, דאפי׳ לא אמר על הא׳ שהוסיף מלת לדעתי, וכגון שאמר טלו א׳ מדעת ב&quot;ב. ועוד א׳, או טלו ב׳, ורק א׳ מהן לדעת ב&quot;ב, וודאי שליח מעל, שהרי הוא בעצמו יודע שהוא הוסיף הא׳. אלא איידי דנקט א׳ לדעת ב&quot;ב, וודאי משתמע שהשנית הוא לדעת השליח. וכך כתב נמי תוספ׳ הכא ובסוגיא דכתובות [שם]. דאבל האורחין א&quot;צ שיאמרו הרי אנו נוטלין א׳ יתירה מדעתינו, דדוקא שליח צריך שיאמר כן שלא יסברו אורחין שלדעת בה&quot;ב עושה, ולא יחזיקו כלל טובה לשליח, דאל&quot;כ למה ימעל השליח, הרי לא יהנה. אבל האורחין הרי יודעין שלוקחין א׳ יותר ממה שאמר השליח, עד כאן הצעת הש&quot;ס ופירושו. והנה למאי דקיי&quot;ל [רמב&quot;ם פ&quot;א משליחות. וח&quot;מ קפ&quot;ב ס&quot;ח] לעניין מכר דמוסיף על דבריו הוה. ואותו א׳ שמכר כפי שצווהו הבע&quot;ב, עכ&quot;פ הוה מכור אם ירצה הלוקח. א&quot;כ ה&quot;נ במתני׳ לעניין מעילה א&quot;צ לאוקמא שפירש השליח בדבריו שיקחו א׳ על דעת ב&quot;ב וא׳ מדעתו, אלא אפי׳ בסתמא, שאמר להאורחין שיטלו ב׳, אפ&quot;ה מעל בה&quot;ב, דהרי גם בלא פירש, אמר הש&quot;ס דבדאמרי׳ מוסיף ע&quot;ד הוה. שפיר מעל בעה&quot;ב. ולפיכך יש לתמוה על הרמב&quot;ם [פ&quot;ז ממעילה] שכ׳ דבאמר שליח סתם טלו שתים, לא מעל שליח. ורק באמר טלו שתים מדעתי, והן לקחו ג׳, אז כולן מעלו. עכת&quot;ד. וזה תמוה בתרתי. חדא, בסתמא אמאי לא מעל שליח. הרי מתני׳ סתמא קתני, ואפ&quot;ה קאמר הש&quot;ס דאי נימא מוסיף על דבריו הוה, שפיר קאמר במתני׳ דמעלו כולן. ותו דקאמר הרמב&quot;ם עוד, דבשאמר שליח טלו ב׳ מדעתי אז מעלו כולן. ואמאי, הרי אופן זה לא נזכר כלל בש&quot;ס. לא למ&quot;ד מוסיף ולא למ&quot;ד מעביר, והסברא נותנת דכמו דלמ&quot;ד מעביר על דבריו הוה. אפ&quot;ה בשגלה דעתו שנותן הא׳ לדעת בעה&quot;ב. הו&quot;ל כאילו קיים השליחות באותו א׳, כ&quot;כ יש לנו לומר למ&quot;ד מוסיף על דבריו הוה. היינו דוקא בשאומר סתם טלו שתים. אבל בשפירש ואמר טלו שתים לדעתי, הרי אומר בפירוש שעוקר שליחות המשלח לגמרי, ורק לדעתו הוא נותן להן הב׳. ומעביר על דברי בה&quot;ב הוה. ואמאי מעל בעה&quot;ב. ונ&quot;ל דהרמב&quot;ם הוכיח דבקאמר שליח סתמא טלו שתים, בין למ&quot;ד מוסיף בין למ&quot;ד מעביר על דבריו, וודאי לא מעל השליח, דאמאי ימעל, הרי לא יחזיקו לו טובה, שיסברו שכך צוהו המשלח, וכמ&quot;ש לעיל בשם התוס׳. וכן מוכח קצת מלישנא דש&quot;ס דקאמר אפי׳ למ&quot;ד מעביר על דבריו, דקאמר להו השליח טלו א׳ לדעתי. והרי למ&quot;ד מעביר על דבריו. א&quot;צ לתרוצי רק למה ימעל הבה&quot;ב. והוה א&quot;כ סגי בשיאמר, הכא במה עסקינן בשאמר טלו א׳ מדעת בעה&quot;ב. אלא לאו ש&quot;מ דלכ&quot;ע לא אפשר שימעול השליח רק בשיאמר להם עכ&quot;פ שיקחו א׳ על דעתו. ויחזיקו לו טובה עי&quot;ז. ובוודאי בהכי איירי מתני׳ דקאמר שמעל שליח, וזה לא תלוי כלל בפלוגתא דמוסיף או מעביר ע&quot;ד. אלא דס&quot;ד דמקשה, דמדתני מתני׳ סתמא, וודאי כולה משמע בחדא גוונא. ומדאותה שהוסיף השליח וודאי מיירי בשאמר השליח שיטלוהו על דעתו של שליח. וכדאמרן, א&quot;כ ה&quot;נ אותה האחרת שנתן כדעת בה&quot;ב נמי מיירי בשא&quot;ל השליח שיטלוה על דעתי׳ דשליח, ואפ&quot;ה מעל בה&quot;ב. ואע&quot;ג דגלי שליח דעתי׳ שעוקר גם באותה חתיכה שליחותי׳ אין זה בכחו של שליח, דדוקא למ&quot;ד מעביר על דבריו הוה אמרי׳ דבשפירש ואמר קחו (א׳) [ב׳] מדעתי, גלי דעתי׳ (דלקיים) [דלא לקיים] שליחות המשלח קבעי, משא&quot;כ למ&quot;ד מוסיף על דבריו כל מה שעושה כפי מה שצווהו המשלח, אעפ&quot;י שאומר בפירוש שעושה כן לדעת עצמו, לא מהני, שעל כרחו מחשב כמקיים בזה שליחות המשלח. וה&quot;נ אמרינן [ב&quot;ק דק&quot;ב ב׳] דבנתן לשלוחו מעות לקנות חיטין וקנה חיטין, דלכ&quot;ע שליחותי׳ קעביד, וכבעה&quot;ב דמי. ופסקו הרי&quot;ף והרמב&quot;ם שם, וה&quot;נ בח&quot;מ [קפ&quot;ג ס&quot;ג] דבחיטין וקנה חיטין, אפי׳ אמר בפני עדים שקונה לעצמו, אפ&quot;ה אמרי׳ כיון שעשה כפי שצווהו שליחותי׳ קעבד, וקנה המשלח [ודלא כי&quot;א שם]. ואילה&quot;ק לדבריהם מרואה את המציאה ואמר לחבירו זכה לי, והגבהו חבירו, ואפ&quot;ה דוקא בשהגביה סתם לא מצ&quot;ל לעצמי הגבהתיה, אבל בשאמר בפירוש קודם הגבהה שלעצמו מגביה אותה, קנה השליח. [כח&quot;מ רס&quot;ט ס&quot;ז]. נ&quot;ל דזה דוקא במציאה, שהיא של הפקר. אבל בחיטין וחיטין הנ&quot;ל, כיון שקנה ממעות המשלח וכפי שצוהו, אפי׳ אמר בפירוש מקודם שעושה לדעת עצמו לא מהני. ולהכי ה&quot;נ הכא לענין מעילה, כיון שהחתיכות ביד המשלח והוא שלחו ליתן א׳ מהן לאורחין. אע&quot;ג שאומר השליח שגם אותה חתיכה נותן רק לדעת השליח. אפ&quot;ה לא עקר בזה שליחותי׳ ושפיר קאמר במתני׳ שמעל הבעה&quot;ב עבור אותה חתיכה שנתן. מיהו הא תינח למ&quot;ד שכל המוסיף על שליחות המשלח מוסיף על דברי המשלח הוה, ולא עקר בזה בהדבר ששלחו, שפיר מצינן למימר דאע&quot;ג שאמר שנותן שניהן ע&quot;ד השליח, לא חיישי׳ לדבוריה. אלא כל מה שעשה כפי ששלחו המשלח. שליחותי׳ קעביד, ולהכי שפיר אמרי׳ במתני׳ דמעל גם המשלח. אלא אי נימא דמעביר על דבריו הוה, הרי אפי׳ עושה סתם, כל שהוסיף על מה שצוהו, נעקר כל השליחות ממקומו, א&quot;כ כ&quot;ש בשאמר השליח בפירוש שגם אותה חתיכה שצוהו הבה&quot;ב ג&quot;כ אינו נותן אלא לדעת השליח, ק׳ שפיר אמאי קתני במתני׳ שגם הבע&quot;ב מעל. ומשני רב ששת דמתני׳ לצדדין קתני, דהיינו שאמר שליח טלו א׳ מדעתו וא׳ מדעתי, ולהכי אף למ&quot;ד מעביר, כיון דגלי דעתי׳ שאינו רוצה בזה לעבור על דעתי׳, מהני, ומעל גם הבה&quot;ב. וא&quot;כ לדידן דקיי&quot;ל מוסיף על דבריו הוה, א&quot;צ לאוקמי מתני׳ לצדדין, אלא אפי׳ אמר טלו ב׳ מדעתי, מעלו שניהן וכדאוקימנא למתני׳ תחלה, וצדקו דברי הרמב&quot;ם [וערכ&quot;מ שפי׳ בשם הר&quot;י קורקס באופן אחר]. עוד נ&quot;ל דאע&quot;ג דבאמת יש בכאן ד׳ אופנים למ&quot;ד מוסיף על דבריו, דהיינו (א) בשאמר השליח סתמא טלו ב׳: (ב) בשפירש שיקחו ב׳ לדעת בעה&quot;ב. (ג) בשפירש שיקחו ב׳ לדעת שליח. (ד) בשפירש שיקחו א׳ לדעת בעה&quot;ב וא׳ לדעת שליח. אפ&quot;ה לא נקט הרמב&quot;ם רק ב׳ אופנים, דהיינו, סתמא, ושיקחו ב׳ לדעת שליח. ה&quot;ט מדבעי למנקט בכל חד רבותא. ברישא נקט רבותא, דאפי׳ באמר סתם אמרי׳ דרק בעה&quot;ב מעל. וכ&quot;ש בשפירש שיקחו שניהן לדעת הבעה&quot;ב. ובסיפא נקט נמי רבותא. דאפי׳ בשפירש שיקחו שניהן לדעת שליח, אפ&quot;ה מעל בעה&quot;ב. וכ&quot;ש בשאמר שיקחו א׳ לדעת בעה&quot;ב וא׳ לדעת שליח. וכ&quot;ה שחנני לברר כל העניין הזה בטוב טעם ודעת להצדיק צדיק מעיקרא רבינו הרמב&quot;ם זצוק&quot;ל וזיולו&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-6-3" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-6-3" data-source-ref="Boaz on Mishnah Meilah 6:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 6:3</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-6-3" aria-label="Copy link to Boaz on Mishnah Meilah 6:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך פירשתי בס&quot;ד ע&quot;פ דעת הרמב&quot;ם [בפ&quot;ז דמעילה] . מיהו תוספת כתבו דמיירי שהיה שם הרבה חלונות בכותל. ואמר שהתכוון על חלון אחר. וגם בכה&quot;ג אמרי׳ דברים שבלב אינן דברים. וכן משמע נמי מרש&quot;י. ותמהני הרי כל שאין הכוונה שבלב סותר לדבריו שבפה, רק (שהפה) [שהלב] מפרש יותר הכוונה (שבלב) [שבפה] אז קיי&quot;ל דאפי׳ הוציא בשפתיו סתם, אמרי׳ דדברים שבלב הוו דברים [כי&quot;ד שם]. ודוחק לומר דלרש&quot;י ותוס׳ מיירי הכא שבכוונה אמר חלון סתם כי היכא דלשתמע מיני׳ ששוה בעיניו גם אם יביא מחלון האחר שלא התכוון אליו דבכה&quot;ג קיי&quot;ל דדברים שבלב לא הוה דברים רק לגבי אנס [וכש&quot;ך ר&quot;י סק&quot;ב, וסי׳ רל&quot;ב]. אב&quot;י ולדעתי הצעירה, י&quot;ל דדוקא בנדרים אמרי׳ דהיכא דאין מחשבתו שבלב סותרת דבריו שבפיו. אמרי׳ דדברים שבלב הוו דברים, כיון דרק לעצמו ועל עצמו נדר. אבל הכא במעילה, וודאי באמר לשליח דבריו סתם איך יהי׳ השליח נביא לידע מה שבלבו של משלח, אלא וודאי הכוונה על כל חלון שירצה השליח. תדע דאל&quot;כ א&quot;כ היה צריך שליח לאמלוכי בי׳ לאיזה חלון מתכוון, וא&quot;כ לא היה המשלח מעל כלל, וכדאמרינן בנדרים [דנ&quot;ד ע&quot;א] על רישא דמתני׳, באמר תן בשר לאורחים ונתן כבד, דלא מעל משלח אפי׳ לר&quot;ע דאמר דכל מידי דממלך עלי׳ שליח, מקרי מינו לעניין נדרים, אבל הכא רק השליח ולא המשלח מעל מדעכ&quot;פ בעי לאמלוכי ולא אמלך. והשבתי לבני הגאב&quot;ד שליט&quot;א, ברוך אתה וברוך טעמך, ושלימה משנתך ונואמך. דנ&quot;ל ראי׳ לדבריך מהאי דזבין ארעא אדעתא למיסק לא&quot;י, ולא סליק [קידושין דמ&quot;ט ב׳]. דאמרי׳ דברים שבלב אינן דברים. והרי גם התם אין מחשבה זאת שבלבו סותר דבריו שאמר בשעת מכירה הנני מוכר לך חפץ זה, אלא שבלבו חשב העניין מבורר יפה, ואפ&quot;ה אמרי׳ גבי׳ דברים שבלב אינן דברים. ואת&quot;ל התם מדהו&quot;ל תנאי, וכל תנאי מלתא אחריתא הוא נגד דבור סתם. וה&quot;ל שפיר כסוחר דבריו. תדע, דא&quot;כ מאי ראיה מייתי התם מקרבן דאמרי׳ דכופין אותו להביאו ויאמר רוצה אני, אעפ&quot;י שאינו מרוצה בלב. ומה זו ראיה, התם ודאי מיאון שבלבו סותר רצוי שבפיו, משא&quot;כ הכא אין מחשבתו שבלב סותר לדבריו שבפה. אע&quot;כ דמדהוי בלבו תנאי, הו&quot;ל נגד סתם דיבורו כסותר זא&quot;ז. עכ&quot;פ הרי לעיל מנה שם בקידושין אמרי׳ במקדש אשה ואמר ע&quot;מ שאני גבור, אין אומרים כיואב ואבנר, אלא כל שחביריו מתיראין מגבורתו. הרי דאף דבאמר כוונתי היה כיואב לא היה סותר למאי שהוציא בפיו כלל, ורק שבלבו בירר הדבר טפי, אפ&quot;ה מדעכ&quot;פ בלשון בנ&quot;א אין סתימת לשונו משמע כפירושו דוקא, והוא מדבר עם האשה שתתרצה להתקדש לו. אמרי׳ וכי חולדה נביאה היא לידע מה שבלבו יותר מהמובן בלשון בנ&quot;א. ואילו בנדר בחרם ואמר לא נדרתי אלא בחרמו של ים, הרי עצמי קרבן אם אוכל לך, ואמר לא התכוונתי אלא לעצם שיש לי בביתי, מהימן (כנדרים די&quot;ח ב). והרי גם זה פשטות לשון בנ&quot;א לא משמע חרם ים או עצם מעצמיו, אפ&quot;ה אמרי׳ דבריו שבלב הוה דברים. דאע&quot;ג דבנדרים הולכין אחר לשון בנ&quot;א. היינו בנדר סתם, ואומר שהתכוון כפי שיפרשו חכמים לשונו. אבל באומר שהתכוון שלא כפשטות לשון בנ&quot;א מהני [ודו&quot;ק בלשון הש&quot;ך י&quot;ד סי׳ ר&quot;ח סק&quot;ה]. וא&quot;כ ק׳ מ&quot;ש קידושין מנדר, ולמה לא נימא נמי בקידושין, דבאמר שלכך נתכוון אף שהוא נגד פשטות לשון בנ&quot;א, עכ&quot;פ כל שאינו סותר להדיא מחשבתו לדבור פיו מהני. אע&quot;כ כסברתך בני שליט&quot;א, דשאני קידושין מנדר, שנדר לעצמו ועל עצמו, כל שאינו סותר לדבור פיו, מצ&quot;ל לכך נתכוונתי. משא&quot;כ בקידושין הרי הוא עם האשה מדבר שתתרצה להתקדש לו ע&quot;פ מה שתבין מדבריו, אין לה להבין מדבריו רק כפי המובן בפשטות לשון בנ&quot;א:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-6-4" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-6-4" data-source-ref="Boaz on Mishnah Meilah 6:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 6:4</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-6-4" aria-label="Copy link to Boaz on Mishnah Meilah 6:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כך כתב הרב וכן הרמב&quot;ם בפ&quot;ז ממעילה, וכבר תמהו עליו ר&quot;י קורקס ורכ&quot;מ שם, דהרי בב&quot;מ (דמ&quot;ג א׳) מפורש דמעל הגזבר. ול&quot;מ נ&quot;ל דלא לחנם נקט הרמב&quot;ם, שאינן קשורין קשר משונה ואינן חתומין, דלפע&quot;ד דוקא נקט הכי, דמיירי דעכ&quot;פ קשורין קצת, דאע&quot;ג דאינה הוכחה דלא ניחא ליה שישתמש בהן, וכדקאמר שם בב&quot;מ, משום דקשורין לא ישתמש בהן. עכ&quot;פ אין ג&quot;כ הוכחה דניחא ליה שישתמש בהן, ובמעילה אע&quot;ג דא&quot;צ שליחות ממש, וכלעיל סי׳ י&quot;ג, עכ&quot;פ גלוי דעת בעינן. משא&quot;כ סוגי׳ דהמפקיד דנקט מותרין, משמע דמיירי במותרין ממש, אז שפיר הוה גלוי דעת והוכח׳ גמורה דניחא ליה שישתמש בהן, לפיכך מעל הגזבר. ולהר&quot;ב ק׳ קצת. ודו&quot;ק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="boaz-on-mishnah-meilah-6-5" data-unit data-lexical-unit data-unit-id="boaz-on-mishnah-meilah-6-5" data-source-ref="Boaz on Mishnah Meilah 6:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Boaz on Mishnah Meilah 6:5</h4></div>
+              <a class="anchor" href="#boaz-on-mishnah-meilah-6-5" aria-label="Copy link to Boaz on Mishnah Meilah 6:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[כך כתבו תוס׳, ונל&quot;פ דכוונת דבריהם, אליבא דר&quot;ט שיביא מיד מעילה וחומשה והאשם ויתנה, שהרי מודה ר&quot;ע לר&quot;ט במעילה מועטת, וכמבואר שם [מ&quot;ג], והכא מעילה מועטת היא. שאינה אלא פרוטה. ותו נ&quot;ל דאפי׳ בבבא דפרוטה בכיס זה הקדש, נמי צ&quot;ל דר&quot;ע לטעמי׳, דאף דבדאו׳ אין ברירה, עכ&quot;פ כשהוציא הפרוטה מהכיס אינה רק ספק הקדש, לרכ&quot;מ [פ&quot;ג מגירושין ה&quot;א] דס&quot;ל דהא דבדאורייתא אין ברירה היינו משום דספק דאוריי׳ לחומרא [ועי׳ מ&quot;ש בס&quot;ד ביצה פ&quot;ד סי׳ נ&quot;ט בד&quot;ה ותמהני, וע&quot;ש]. אמנם הקשו עוד בנפל פרוטת הקדש לכיס, אמאי כשהוציא ראשונה מעל, תבטל פרוטת הקדש ברובה. ואי&quot;ל מדהו&quot;ל הקדש דבר שיל&quot;מ (כלעיל סי׳ י&quot;ז), ליתא דהרי דשיל&quot;מ רק מדרבנן לא בטל, והרי הכא מעל קתני. ותרצו משום דמטבע דבר חשוב. מדהו&quot;ל דבר שבמניין, אולם דבריהן תמוהין מאד דהרי גם דבר חשוב רק מדרבנן לא בטל, ולכאורה היה נ&quot;ל דמעל דמתני׳ מדרבנן, וכדאשכחן רפ&quot;ה בתלש מחטאת מתה דתנא מעל והיינו מדרבנן. וכן בכמה דוכתא במכילתן. אולם כדדייקינן בסוגין, א&quot;א לומר כן, מדמקשי לרבין בסוגין כיסין אשוורי׳, ולרב פפא מקשי כיסין אלוגין, דבכיסין מודה ר&quot;ע בסיפא דיש ברירה.. ובשוורין ובלוגין אמרי׳ אין ברירה. וק׳ ל&quot;ל לרבין ורב פפא לאקשויי מכיסין דסיפא אשוורין ולוגין, טפי הו&quot;ל לאקשויי רישא וסיפא דמתני׳ דידן גופה אהדדי וכדמקשי באמת רב דימי. ותו אדמקשי משוורי׳ ולוגין לר&quot;ע דסיפא דהוא יחידאה, טפי הו&quot;ל לאקשויי משוורי׳ ולוגין לרבנן דרישא דהכא. אע&quot;ב דלרבנן ל&quot;ק מידי, דדלמ׳ אינהו ס&quot;ל כמ&quot;ד יש ברירה. וכ&quot;כ לר&quot;ע לא ק׳ רישא וסיפא אהדדי די&quot;ל דסיפא שאני שפירש קצת ואמר מן כיס זה, להכי אמרי׳ יש ברירה. אבל מקשי לר&quot;ע דס&quot;ל ברישא אין ברירה, ואפ&quot;ה ס&quot;ל דכשפירש ואמר מן כיס זה, אמרינן יש ברירה ומ&quot;ש מן כיס זה מאומר אחד משיורי הקדש, או ב׳ לוגין שאני עתיד להפריש. דאמרי׳ גבייהו דלמ&quot;ד אין ברירה, אפי׳ פירש ואמר כה&quot;ג אפ&quot;ה אמרי׳ אין ברירה. ומשני דסיפא מיירי שאמר לא יפטור כיס זה מההקדש וכו׳, והך לישנא עדיף טפי וטפי מא׳ משוורי, וגם מב׳ לוגין שאני עתיד להפריש, מדפירש יפה דעל האחרונה מתכוון, וכמ&quot;ש תוס׳ [ד&quot;ה אמר]. כך נ&quot;ל פי׳ הסוגיא. ועכ&quot;פ ק׳ דאי מעל דמתני׳ היינו מדרבנן, א&quot;כ ל&quot;ל לדחוקי ולשבושי לישנא דמתני׳ כשהקשה מב׳ לוגין, לשני ליה, דהרי בל&quot;ז ק׳ בב׳ לוגין לבטלי אח&quot;כ ברובא. ואי&quot;ל מדהו&quot;ל דשיל&quot;מ להפריש מיד, הרי אין לו פנאי או אין לו כלים (כרש&quot;י הכא וגיטין כ&quot;ה א׳). גם אי&quot;ל מדאי בעי מתשל עלה, ג&quot;כ ליתא דה&quot;ת בתרומה שנפלה לחולין גמורים, אבל הכא אי מתשיל עלה הדרא לטבלא כל היין. אע&quot;כ דר&quot;י לטעמיה דס&quot;ל [מנחות דכ&quot;ב ב׳] לח בלח לא בטיל מדאורייתא וילפינן מדם פר ושעיר, ור׳ יוסי ור&quot;ש כוותיה דר&quot;י ס&quot;ל בהא, ולפיכך אין התערובות מותר כשיפריש, רק מטעם ברירה. והרי בדאורייתא אין ברירה. וא&quot;כ בפרוטה מן כיס זה הקדש, דהו&quot;ל יבש ביבש. דגם לר&quot;י בטל (כתוס׳ זבחים דע&quot;ג א׳), ורק מדרבנן לא בטל. מדהו&quot;ל דשיל&quot;מ או דבר שבמנין, ובדרבנן יש ברירה, בפירש רק קצת ואמר מן כיס זה. סגי [משא&quot;כ ברישא דלא פירש כלל, וכלעיל אפילו בדרבנן ס&quot;ל לר&quot;ע אין ברירה]. ומדלא תירץ הכי, ש&quot;מ דדחיקא ליה לאוקמא מעל דרישא דר&quot;ל מעל מדרבנן, משום דכולה בבא דמתניתין דלעיל מנה במפקיד מעות אצל שולחני וחנוני, דכולה איירי דמעל מדאורייתא, והאיך נימא דמעל דר&quot;ע בפרוטה בכיס היינו מדרבנן. וא&quot;כ הדרא קושיא לדוכתא אמאי באמת מעל מדאורייתא. תבטיל פרוטה של הקדש ברובה. ומה שתרצו דבעתוס׳ עוד דמיירי שלא היה בהכיס רק עוד פרוטה אחת מלבד הפרוטה של הקדש. אחמכ&quot;ר זה ג&quot;כ דוחק, דלישנא דמוציא והולך עד שיוציא כל הכיס, לא משמע הכי אולם עי׳ מ&quot;ש בס&quot;ד בפירושינו במס׳ חגיגה (פ&quot;ג בועז אות א׳) בד&quot;ה ובהא, כי תרצנו קו׳ התוס׳ ת&quot;ל על נכון:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-boaz-on-mishnah-meilah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/boaz-on-mishnah-meilah.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/boaz-on-mishnah-meilah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"boaz-on-mishnah-meilah","manifest_url":"../../data/lexical/boaz-on-mishnah-meilah.manifest.json","occurrence_url":"../../data/lexical/occurrences/boaz-on-mishnah-meilah.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>
