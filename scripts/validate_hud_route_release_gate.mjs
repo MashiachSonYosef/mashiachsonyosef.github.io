@@ -386,6 +386,18 @@ async function validateBoundaryReport(report, reconciliation) {
   if (sumMap(report.answer_roles) !== count('cards')) {
     issues.push('route publication boundary answer_roles total does not equal cards');
   }
+  if (sumMap(report.answer_eligible_route_families) !== count('answer_eligible_cards')) {
+    issues.push('route publication boundary answer_eligible_route_families total does not equal answer_eligible_cards');
+  }
+  if (sumMap(report.answer_eligible_route_types) !== count('answer_eligible_cards')) {
+    issues.push('route publication boundary answer_eligible_route_types total does not equal answer_eligible_cards');
+  }
+  if (sumMap(report.answer_eligible_display_sections) !== count('answer_eligible_cards')) {
+    issues.push('route publication boundary answer_eligible_display_sections total does not equal answer_eligible_cards');
+  }
+  if (sumMap(report.answer_eligible_match_types) !== count('answer_eligible_cards')) {
+    issues.push('route publication boundary answer_eligible_match_types total does not equal answer_eligible_cards');
+  }
   if (count('answer_eligible_translation_output_unsafe_source_rows') < count('answer_eligible_translation_output_unsafe_cards')) {
     issues.push('route publication boundary answer-eligible unsafe source-row count is lower than answer-eligible unsafe card count');
   }

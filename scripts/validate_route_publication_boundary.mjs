@@ -147,6 +147,10 @@ function createAudit(manifestData = {}, contractData = contract) {
     route_types: {},
     display_sections: {},
     answer_roles: {},
+    answer_eligible_route_families: {},
+    answer_eligible_route_types: {},
+    answer_eligible_display_sections: {},
+    answer_eligible_match_types: {},
     samples: {
       answer_eligible_translation_output_unsafe_cards: [],
     },
@@ -268,6 +272,10 @@ function auditCard(card, context, target = audit) {
   }
   if (card?.answer_eligible === true) {
     target.counts.answer_eligible_cards += 1;
+    increment(target.answer_eligible_route_families, card?.route_family || 'missing');
+    increment(target.answer_eligible_route_types, card?.route_type || 'missing');
+    increment(target.answer_eligible_display_sections, card?.display_section || 'missing');
+    increment(target.answer_eligible_match_types, card?.match_type || 'missing');
     if (card.answer_role !== 'answer') addIssue(context, 'answer_eligible card must use answer_role=answer', target);
     if (!Number.isFinite(card.answer_score)) {
       target.counts.answer_eligible_cards_missing_answer_score += 1;
@@ -458,6 +466,22 @@ function writeReport(relativePath, data) {
     '## Answer Roles',
     '',
     ...topCounts(data.answer_roles, 20).map((row) => `- ${row.value}: ${row.count}`),
+    '',
+    '## Answer-Eligible Route Families',
+    '',
+    ...topCounts(data.answer_eligible_route_families, 20).map((row) => `- ${row.value}: ${row.count}`),
+    '',
+    '## Answer-Eligible Route Types',
+    '',
+    ...topCounts(data.answer_eligible_route_types, 20).map((row) => `- ${row.value}: ${row.count}`),
+    '',
+    '## Answer-Eligible Display Sections',
+    '',
+    ...topCounts(data.answer_eligible_display_sections, 20).map((row) => `- ${row.value}: ${row.count}`),
+    '',
+    '## Answer-Eligible Match Types',
+    '',
+    ...topCounts(data.answer_eligible_match_types, 20).map((row) => `- ${row.value}: ${row.count}`),
     '',
     '## Issues',
     '',
