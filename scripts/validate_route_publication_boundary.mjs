@@ -141,6 +141,10 @@ function createAudit(manifestData = {}, contractData = contract) {
       answer_eligible_cards_missing_answer_score: 0,
       answer_role_answer_cards: 0,
       answer_role_answer_noneligible_cards: 0,
+      form_reference_cards: 0,
+      invalid_form_reference_cards: 0,
+      form_reference_tag_entries_checked: 0,
+      invalid_form_reference_tag_entries: 0,
       source_rows: 0,
       source_row_string_fields_checked: 0,
       invalid_source_row_string_fields: 0,
@@ -383,6 +387,7 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
   if (card?.answer_eligible !== true && Number.isFinite(card?.answer_score)) {
     addIssue(context, 'non-answer card must not carry answer_score', target);
   }
+  if (card?.answer_role === 'form_reference') validateFormReferenceCard(card, context, target);
   if (card?.answer_eligible === true) {
     target.counts.answer_eligible_cards += 1;
     increment(target.answer_eligible_route_families, card?.route_family || 'missing');
@@ -477,6 +482,43 @@ function runtimeState(target) {
     auditRuntimeState.set(target, state);
   }
   return state;
+}
+
+function validateFormReferenceCard(card, context, target = audit) {
+  target.counts.form_reference_cards += 1;
+  let invalid = false;
+  const markInvalid = (detail) => {
+    invalid = true;
+    addIssue(context, detail, target);
+  };
+  if (card.answer_eligible !== false) markInvalid('form_reference must not be answer_eligible');
+  if (Number.isFinite(card.answer_score)) markInvalid('form_reference must not carry answer_score');
+  if (!/^form of\b/i.test(String(card.definition || ''))) {
+    markInvalid('form_reference definition must display as "form of [lemma]"');
+  }
+  const formOf = card.form_of;
+  if (
+    !formOf
+    || typeof formOf !== 'object'
+    || Array.isArray(formOf)
+    || typeof formOf.lemma !== 'string'
+    || !formOf.lemma.trim()
+    || typeof formOf.normalized_lemma !== 'string'
+    || !formOf.normalized_lemma.trim()
+    || !Array.isArray(formOf.tags)
+    || formOf.tags.length < 1
+  ) {
+    markInvalid('form_reference requires form_of.lemma, form_of.normalized_lemma, and non-empty form_of.tags');
+  } else {
+    for (const [tagIndex, tag] of formOf.tags.entries()) {
+      target.counts.form_reference_tag_entries_checked += 1;
+      if (typeof tag !== 'string' || !tag.trim()) {
+        target.counts.invalid_form_reference_tag_entries += 1;
+        markInvalid(`form_reference form_of.tags[${tagIndex}] must be a non-empty string`);
+      }
+    }
+  }
+  if (invalid) target.counts.invalid_form_reference_cards += 1;
 }
 
 function findPublicationReadinessPaths(value, prefix = '') {
@@ -602,6 +644,10 @@ function writeReport(relativePath, data) {
     `- Answer-eligible cards missing numeric answer score: ${data.counts.answer_eligible_cards_missing_answer_score}`,
     `- Cards with answer role: ${data.counts.answer_role_answer_cards}`,
     `- Cards with answer role but not answer-eligible: ${data.counts.answer_role_answer_noneligible_cards}`,
+    `- Form-reference cards: ${data.counts.form_reference_cards}`,
+    `- Invalid form-reference cards: ${data.counts.invalid_form_reference_cards}`,
+    `- Form-reference tag entries checked: ${data.counts.form_reference_tag_entries_checked}`,
+    `- Invalid form-reference tag entries: ${data.counts.invalid_form_reference_tag_entries}`,
     `- Source rows checked: ${data.counts.source_rows}`,
     `- Source-row string fields checked: ${data.counts.source_row_string_fields_checked}`,
     `- Invalid source-row string fields: ${data.counts.invalid_source_row_string_fields}`,

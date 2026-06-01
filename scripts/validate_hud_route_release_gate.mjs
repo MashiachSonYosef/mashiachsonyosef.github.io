@@ -158,6 +158,10 @@ const result = {
     answer_eligible_cards_missing_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_missing_answer_score || 0),
     answer_role_answer_cards: Number(boundaryReport.counts?.answer_role_answer_cards || 0),
     answer_role_answer_noneligible_cards: Number(boundaryReport.counts?.answer_role_answer_noneligible_cards || 0),
+    form_reference_cards: Number(boundaryReport.counts?.form_reference_cards || 0),
+    invalid_form_reference_cards: Number(boundaryReport.counts?.invalid_form_reference_cards || 0),
+    form_reference_tag_entries_checked: Number(boundaryReport.counts?.form_reference_tag_entries_checked || 0),
+    invalid_form_reference_tag_entries: Number(boundaryReport.counts?.invalid_form_reference_tag_entries || 0),
     answer_eligible_translation_output_unsafe_samples: Array.isArray(boundaryReport.samples?.answer_eligible_translation_output_unsafe_cards)
       ? boundaryReport.samples.answer_eligible_translation_output_unsafe_cards.length
       : 0,
@@ -432,6 +436,18 @@ async function validateBoundaryReport(report, reconciliation) {
   if (count('answer_role_answer_noneligible_cards') !== 0) {
     issues.push(`route publication boundary report found ${count('answer_role_answer_noneligible_cards')} non-answer-eligible card(s) with answer role`);
   }
+  if (count('form_reference_cards') !== Number(report.answer_roles?.form_reference || 0)) {
+    issues.push('route publication boundary form-reference count does not match answer_roles.form_reference');
+  }
+  if (count('invalid_form_reference_cards') !== 0) {
+    issues.push(`route publication boundary report found ${count('invalid_form_reference_cards')} invalid form-reference card(s)`);
+  }
+  if (count('form_reference_cards') > 0 && count('form_reference_tag_entries_checked') < count('form_reference_cards')) {
+    issues.push('route publication boundary checked fewer form-reference tag entries than form-reference cards');
+  }
+  if (count('invalid_form_reference_tag_entries') !== 0) {
+    issues.push(`route publication boundary report found ${count('invalid_form_reference_tag_entries')} invalid form-reference tag entrie(s)`);
+  }
   if (count('answer_eligible_translation_output_unsafe_cards') > count('answer_eligible_cards')) {
     issues.push('route publication boundary report has more answer-eligible unsafe cards than answer-eligible cards');
   }
@@ -439,6 +455,15 @@ async function validateBoundaryReport(report, reconciliation) {
     const unsafeSamples = report.samples?.answer_eligible_translation_output_unsafe_cards;
     if (!Array.isArray(unsafeSamples) || unsafeSamples.length < 1) {
       issues.push('route publication boundary report is missing answer-eligible unsafe sample cards');
+    }
+    const expectedSampleCount = Math.min(
+      Number(report.inputs?.max_warnings || 0),
+      count('answer_eligible_translation_output_unsafe_cards'),
+    );
+    if (expectedSampleCount < 1) {
+      issues.push('route publication boundary report cannot prove unsafe answer samples because max_warnings is below 1');
+    } else if (Array.isArray(unsafeSamples) && unsafeSamples.length !== expectedSampleCount) {
+      issues.push(`route publication boundary unsafe answer sample count mismatch, expected ${expectedSampleCount}, got ${unsafeSamples.length}`);
     }
   }
   validateUnsafeAnswerSamples(report);
@@ -686,6 +711,10 @@ function writeReport(relativePath, result) {
     `- Answer-eligible cards missing numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_missing_answer_score}`,
     `- Cards with answer role: ${result.route_publication_boundary.answer_role_answer_cards}`,
     `- Cards with answer role but not answer-eligible: ${result.route_publication_boundary.answer_role_answer_noneligible_cards}`,
+    `- Form-reference cards: ${result.route_publication_boundary.form_reference_cards}`,
+    `- Invalid form-reference cards: ${result.route_publication_boundary.invalid_form_reference_cards}`,
+    `- Form-reference tag entries checked: ${result.route_publication_boundary.form_reference_tag_entries_checked}`,
+    `- Invalid form-reference tag entries: ${result.route_publication_boundary.invalid_form_reference_tag_entries}`,
     `- Answer-eligible unsafe sample cards: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_samples}`,
     `- Translation-output unsafe cards flagged: ${result.route_publication_boundary.translation_output_unsafe_cards}`,
     `- Answer-eligible translation-output unsafe source rows flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_source_rows}`,
