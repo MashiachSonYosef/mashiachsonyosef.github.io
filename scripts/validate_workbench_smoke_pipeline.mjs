@@ -450,6 +450,19 @@ await runStep('validate_usage_selected_occurrence_cards', [
   usageSelectedOccurrenceCardsJson,
 ]);
 
+const usageSelectedProvenanceMatrixJson = `${options.scratchDir}/usage-selected-provenance-matrix.json`;
+await runStep('build_usage_selected_provenance_matrix', [
+  'scripts/build_workbench_usage_selected_provenance_matrix.mjs',
+  `--selected-occurrence-cards=${usageSelectedOccurrenceCardsJson}`,
+  `--output=${usageSelectedProvenanceMatrixJson}`,
+  `--report=${options.scratchDir}/usage-selected-provenance-matrix.md`,
+]);
+
+await runStep('validate_usage_selected_provenance_matrix', [
+  'scripts/validate_workbench_usage_selected_provenance_matrix.mjs',
+  usageSelectedProvenanceMatrixJson,
+]);
+
 const usageSelectedCollisionAuditJson = `${options.scratchDir}/usage-selected-collision-audit.json`;
 await runStep('build_usage_selected_collision_audit', [
   'scripts/build_workbench_usage_selected_collision_audit.mjs',
@@ -580,6 +593,7 @@ await runStep('build_usage_selected_qa_package', [
   'scripts/build_workbench_usage_selected_qa_package.mjs',
   `--selected-occurrence-cards=${usageSelectedOccurrenceCardsJson}`,
   `--selected-source-diversity=${usageSelectedSourceDiversityJson}`,
+  `--selected-provenance-matrix=${usageSelectedProvenanceMatrixJson}`,
   `--selected-collision-audit=${usageSelectedCollisionAuditJson}`,
   `--selected-signature-independence=${usageSelectedSignatureIndependenceJson}`,
   `--selected-route-concentration-response=${usageSelectedRouteConcentrationResponseJson}`,
@@ -643,6 +657,7 @@ await runStep('build_usage_handoff_index', [
   `--selected-focus-context-audit=${usageSelectedFocusContextAuditJson}`,
   `--selected-frame-summary=${usageSelectedFrameSummaryJson}`,
   `--selected-work-frame-matrix=${usageSelectedWorkFrameMatrixJson}`,
+  `--selected-provenance-matrix=${usageSelectedProvenanceMatrixJson}`,
   `--selected-qa-package=${usageSelectedQaPackageJson}`,
   `--selected-occurrence-lookup=${usageSelectedOccurrenceLookupJson}`,
   `--crossmatch-links=${usageCrossmatchLinksJson}`,
@@ -701,6 +716,7 @@ const usageSelectedSlicesIndex = readJsonIfExists(usageSelectedSlicesIndexJson);
 const usageSelectedOccurrences = readJsonIfExists(usageSelectedOccurrencesJson);
 const usageSelectedSignatureIndependence = readJsonIfExists(usageSelectedSignatureIndependenceJson);
 const usageSelectedSourceDiversity = readJsonIfExists(usageSelectedSourceDiversityJson);
+const usageSelectedProvenanceMatrix = readJsonIfExists(usageSelectedProvenanceMatrixJson);
 const usageSelectedCollisionAudit = readJsonIfExists(usageSelectedCollisionAuditJson);
 const usageSelectedRouteConcentrationResponse = readJsonIfExists(usageSelectedRouteConcentrationResponseJson);
 const usageSelectedOccurrenceCards = readJsonIfExists(usageSelectedOccurrenceCardsJson);
@@ -908,6 +924,17 @@ const artifact = {
     usage_selected_source_diversity_missing_signature_rows: usageSelectedSourceDiversity?.counts?.missing_signature_independence_rows ?? null,
     usage_selected_source_diversity_reader_facing_rows: usageSelectedSourceDiversity?.counts?.reader_facing_rows ?? null,
     usage_selected_source_diversity_route_payload_field_hits: usageSelectedSourceDiversity?.counts?.route_payload_field_hits ?? null,
+    usage_selected_provenance_matrix_status: usageSelectedProvenanceMatrix?.artifact_type === 'workbench_usage_selected_provenance_matrix' ? 'present' : 'missing',
+    usage_selected_provenance_matrix_buckets: usageSelectedProvenanceMatrix?.counts?.provenance_buckets ?? null,
+    usage_selected_provenance_matrix_rows: usageSelectedProvenanceMatrix?.counts?.selected_rows ?? null,
+    usage_selected_provenance_matrix_licenses: usageSelectedProvenanceMatrix?.counts?.unique_licenses ?? null,
+    usage_selected_provenance_matrix_version_sources: usageSelectedProvenanceMatrix?.counts?.unique_version_sources ?? null,
+    usage_selected_provenance_matrix_rows_with_license_metadata: usageSelectedProvenanceMatrix?.counts?.rows_with_license_metadata ?? null,
+    usage_selected_provenance_matrix_rows_with_version_metadata: usageSelectedProvenanceMatrix?.counts?.rows_with_version_metadata ?? null,
+    usage_selected_provenance_matrix_missing_or_unrecognized_license_rows: usageSelectedProvenanceMatrix?.counts?.missing_or_unrecognized_license_rows ?? null,
+    usage_selected_provenance_matrix_samples: usageSelectedProvenanceMatrix?.counts?.sample_occurrences ?? null,
+    usage_selected_provenance_matrix_reader_facing_rows: usageSelectedProvenanceMatrix?.counts?.reader_facing_rows ?? null,
+    usage_selected_provenance_matrix_route_payload_field_hits: usageSelectedProvenanceMatrix?.counts?.route_payload_field_hits ?? null,
     usage_selected_collision_audit_status: usageSelectedCollisionAudit?.artifact_type === 'workbench_usage_selected_collision_audit' ? 'present' : 'missing',
     usage_selected_collision_audit_buckets: usageSelectedCollisionAudit?.counts?.collision_buckets ?? null,
     usage_selected_collision_audit_occurrence_rows: usageSelectedCollisionAudit?.counts?.collision_occurrence_rows ?? null,
@@ -1175,6 +1202,7 @@ function writeReport(relativePath, artifact) {
     `- Usage selected occurrences: ${artifact.counts.usage_selected_occurrences_status}, rows ${artifact.counts.usage_selected_occurrence_rows}, memberships ${artifact.counts.usage_selected_occurrence_memberships}, duplicate memberships ${artifact.counts.usage_selected_occurrence_duplicate_memberships}`,
     `- Usage selected signature independence: ${artifact.counts.usage_selected_signature_independence_status}, rows ${artifact.counts.usage_selected_signature_independence_rows}, memberships ${artifact.counts.usage_selected_signature_independence_memberships}, recurring memberships ${artifact.counts.usage_selected_signature_independence_recurring_memberships}, cross-cluster memberships ${artifact.counts.usage_selected_signature_independence_cross_cluster_memberships}, rows with recurring ${artifact.counts.usage_selected_signature_independence_rows_with_recurring}, rows with cross-cluster ${artifact.counts.usage_selected_signature_independence_rows_with_cross_cluster}, missing lookup rows ${artifact.counts.usage_selected_signature_independence_missing_lookup_rows}, reader-facing rows ${artifact.counts.usage_selected_signature_independence_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_signature_independence_route_payload_field_hits}`,
     `- Usage selected source diversity: ${artifact.counts.usage_selected_source_diversity_status}, rows ${artifact.counts.usage_selected_source_diversity_rows}, source refs ${artifact.counts.usage_selected_source_diversity_unique_source_refs}, work anchors ${artifact.counts.usage_selected_source_diversity_unique_work_anchors}, works ${artifact.counts.usage_selected_source_diversity_unique_works}, categories ${artifact.counts.usage_selected_source_diversity_unique_categories}, licenses ${artifact.counts.usage_selected_source_diversity_unique_licenses}, version sources ${artifact.counts.usage_selected_source_diversity_unique_version_sources}, duplicate source-ref buckets ${artifact.counts.usage_selected_source_diversity_duplicate_source_ref_buckets}, duplicate source-ref rows ${artifact.counts.usage_selected_source_diversity_duplicate_source_ref_rows}, missing signature rows ${artifact.counts.usage_selected_source_diversity_missing_signature_rows}, reader-facing rows ${artifact.counts.usage_selected_source_diversity_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_source_diversity_route_payload_field_hits}`,
+    `- Usage selected provenance matrix: ${artifact.counts.usage_selected_provenance_matrix_status}, buckets ${artifact.counts.usage_selected_provenance_matrix_buckets}, rows ${artifact.counts.usage_selected_provenance_matrix_rows}, licenses ${artifact.counts.usage_selected_provenance_matrix_licenses}, version sources ${artifact.counts.usage_selected_provenance_matrix_version_sources}, license metadata rows ${artifact.counts.usage_selected_provenance_matrix_rows_with_license_metadata}, version metadata rows ${artifact.counts.usage_selected_provenance_matrix_rows_with_version_metadata}, missing or unrecognized license rows ${artifact.counts.usage_selected_provenance_matrix_missing_or_unrecognized_license_rows}, samples ${artifact.counts.usage_selected_provenance_matrix_samples}, reader-facing rows ${artifact.counts.usage_selected_provenance_matrix_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_provenance_matrix_route_payload_field_hits}`,
     `- Usage selected collision audit: ${artifact.counts.usage_selected_collision_audit_status}, buckets ${artifact.counts.usage_selected_collision_audit_buckets}, occurrence rows ${artifact.counts.usage_selected_collision_audit_occurrence_rows}, duplicate source-ref buckets ${artifact.counts.usage_selected_collision_audit_duplicate_source_ref_buckets}, duplicate work-anchor buckets ${artifact.counts.usage_selected_collision_audit_duplicate_work_anchor_buckets}, cross-frame buckets ${artifact.counts.usage_selected_collision_audit_cross_frame_buckets}, cross-frame rows ${artifact.counts.usage_selected_collision_audit_cross_frame_rows}, reader-facing rows ${artifact.counts.usage_selected_collision_audit_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_collision_audit_route_payload_field_hits}`,
     `- Usage selected route concentration response: ${artifact.counts.usage_selected_route_concentration_response_status}, rows ${artifact.counts.usage_selected_route_concentration_response_rows}, route buckets ${artifact.counts.usage_selected_route_concentration_response_route_buckets}, warning visible ${artifact.counts.usage_selected_route_concentration_response_warning_visible}, source refs ${artifact.counts.usage_selected_route_concentration_response_unique_source_refs}, works ${artifact.counts.usage_selected_route_concentration_response_unique_works}, rows with recurring ${artifact.counts.usage_selected_route_concentration_response_rows_with_recurring}, rows with cross-cluster ${artifact.counts.usage_selected_route_concentration_response_rows_with_cross_cluster}, warnings ${artifact.counts.usage_selected_route_concentration_response_warning_count}, reader-facing rows ${artifact.counts.usage_selected_route_concentration_response_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_route_concentration_response_route_payload_field_hits}`,
     `- Usage selected occurrence cards: ${artifact.counts.usage_selected_occurrence_cards_status}, rows ${artifact.counts.usage_selected_occurrence_cards_rows}, context ${artifact.counts.usage_selected_occurrence_cards_with_context}, focus markers ${artifact.counts.usage_selected_occurrence_cards_with_focus_marker}, related signature rows ${artifact.counts.usage_selected_occurrence_cards_with_related_signatures}, cross-cluster rows ${artifact.counts.usage_selected_occurrence_cards_with_cross_cluster_signatures}, related samples ${artifact.counts.usage_selected_occurrence_cards_related_occurrence_samples}, route warning visible ${artifact.counts.usage_selected_occurrence_cards_route_concentration_warning_visible}, mojibake rows ${artifact.counts.usage_selected_occurrence_cards_mojibake_rows}, reader-facing rows ${artifact.counts.usage_selected_occurrence_cards_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_occurrence_cards_route_payload_field_hits}`,

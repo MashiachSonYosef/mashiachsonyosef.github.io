@@ -66,7 +66,7 @@ console.log(`Validated usage selected QA package ${artifactPath}: items ${items.
 
 function validateCounts(packageItems) {
   if (Number(artifact.counts?.package_items || 0) !== packageItems.length) issues.push('package_items count must equal package_items length');
-  if (packageItems.length !== 13) issues.push('package must contain 13 selected artifact items');
+  if (packageItems.length !== 14) issues.push('package must contain 14 selected artifact items');
   if (Number(artifact.counts?.selected_rows || 0) <= 0) issues.push('selected_rows must be positive');
   if (Number(artifact.counts?.selected_source_refs || 0) <= 1) issues.push('selected_source_refs must show diversity');
   if (Number(artifact.counts?.selected_works || 0) <= 1) issues.push('selected_works must show diversity');
@@ -138,6 +138,30 @@ function validateCounts(packageItems) {
   }
   if (Number(artifact.counts?.selected_work_frame_matrix_samples || 0) < Number(artifact.counts?.selected_work_frame_matrix_rows || 0)) {
     issues.push('selected_work_frame_matrix_samples must cover every matrix row');
+  }
+  if (Number(artifact.counts?.selected_provenance_buckets || 0) <= 0) {
+    issues.push('selected_provenance_buckets must be positive');
+  }
+  if (Number(artifact.counts?.selected_provenance_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_provenance_rows must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_provenance_licenses || 0) <= 0) {
+    issues.push('selected_provenance_licenses must be positive');
+  }
+  if (Number(artifact.counts?.selected_provenance_version_sources || 0) <= 0) {
+    issues.push('selected_provenance_version_sources must be positive');
+  }
+  if (Number(artifact.counts?.selected_provenance_rows_with_license_metadata || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_provenance_rows_with_license_metadata must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_provenance_rows_with_version_metadata || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_provenance_rows_with_version_metadata must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_provenance_missing_or_unrecognized_license_rows || 0) !== 0) {
+    issues.push('selected_provenance_missing_or_unrecognized_license_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_provenance_samples || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_provenance_samples must equal selected_rows');
   }
   if (Number(artifact.counts?.route_concentration_warning_visible || 0) !== 1) {
     issues.push('route_concentration_warning_visible must be 1');
