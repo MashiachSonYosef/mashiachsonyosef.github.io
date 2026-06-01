@@ -114,6 +114,8 @@ const result = {
     fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
     fixture_cases: Number(boundaryReport.inputs?.fixture_cases || 0),
     fixture_sha256: boundaryReport.inputs?.fixture_file?.sha256 || '',
+    card_ids_checked: Number(boundaryReport.counts?.card_ids_checked || 0),
+    duplicate_card_ids: Number(boundaryReport.counts?.duplicate_card_ids || 0),
     normalized_lookup_key_checks: Number(boundaryReport.counts?.normalized_lookup_key_checks || 0),
     normalized_lookup_key_mismatches: Number(boundaryReport.counts?.normalized_lookup_key_mismatches || 0),
     route_card_string_fields_checked: Number(boundaryReport.counts?.route_card_string_fields_checked || 0),
@@ -324,6 +326,12 @@ async function validateBoundaryReport(report, reconciliation) {
   }
   if (Number(report.counts?.issue_count || 0) !== 0) {
     issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
+  }
+  if (count('card_ids_checked') !== count('cards')) {
+    issues.push('route publication boundary report did not check every card_id');
+  }
+  if (count('duplicate_card_ids') !== 0) {
+    issues.push(`route publication boundary report found ${count('duplicate_card_ids')} duplicate card_id value(s)`);
   }
   if (count('normalized_lookup_key_checks') !== count('cards')) {
     issues.push('route publication boundary report did not check every card normalized value against its lookup key');
@@ -576,6 +584,8 @@ function writeReport(relativePath, result) {
     `- Fixture: \`${result.route_publication_boundary.fixture}\``,
     `- Fixture cases: ${result.route_publication_boundary.fixture_cases}`,
     `- Fixture SHA-256: \`${result.route_publication_boundary.fixture_sha256 || 'missing'}\``,
+    `- Card IDs checked: ${result.route_publication_boundary.card_ids_checked}`,
+    `- Duplicate card IDs: ${result.route_publication_boundary.duplicate_card_ids}`,
     `- Normalized lookup key checks: ${result.route_publication_boundary.normalized_lookup_key_checks}`,
     `- Normalized lookup key mismatches: ${result.route_publication_boundary.normalized_lookup_key_mismatches}`,
     `- Route-card string fields checked: ${result.route_publication_boundary.route_card_string_fields_checked}`,

@@ -59,6 +59,7 @@ const routeScoreFields = ['confidence_percent', 'raw_score', 'score_handicap', '
 
 const options = parseArgs(process.argv.slice(2));
 const contract = readJson(options.contract);
+const auditRuntimeState = new WeakMap();
 let fixtureCaseCount = 0;
 fixtureCaseCount = runFixtureSelfTest(options.fixture, contract);
 if (options.fixturesOnly) {
@@ -121,6 +122,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       shards: 0,
       tokens: 0,
       cards: 0,
+      card_ids_checked: 0,
+      duplicate_card_ids: 0,
       normalized_lookup_key_checks: 0,
       normalized_lookup_key_mismatches: 0,
       route_card_string_fields_checked: 0,
@@ -182,7 +185,10 @@ function runFixtureSelfTest(relativePath, contractData) {
   for (const [index, testCase] of (fixture.cases || []).entries()) {
     const target = createAudit({ public_lookup: 'fixture', include_input_file_summaries: false }, contractData);
     const expectedNormalized = testCase.lookup_normalized === undefined ? null : String(testCase.lookup_normalized);
-    auditCard(prepareFixtureCard(testCase.card), `fixture:${testCase.label || index}`, target, expectedNormalized);
+    const fixtureCards = Array.isArray(testCase.cards) ? testCase.cards : [testCase.card];
+    for (const [cardIndex, fixtureCard] of fixtureCards.entries()) {
+      auditCard(prepareFixtureCard(fixtureCard), `fixture:${testCase.label || index}[${cardIndex}]`, target, expectedNormalized);
+    }
     for (const [countName, expectedValue] of Object.entries(testCase.expected_counts || {})) {
       const actualValue = Number(target.counts[countName] || 0);
       if (actualValue !== expectedValue) {
@@ -261,6 +267,16 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
     return;
   }
   target.counts.cards += 1;
+  if (typeof card?.card_id === 'string' && card.card_id.trim()) {
+    target.counts.card_ids_checked += 1;
+    const state = runtimeState(target);
+    if (state.seenCardIds.has(card.card_id)) {
+      target.counts.duplicate_card_ids += 1;
+      addIssue(context, `duplicate card_id: ${card.card_id}`, target);
+    } else {
+      state.seenCardIds.add(card.card_id);
+    }
+  }
   if (expectedNormalized !== null) {
     target.counts.normalized_lookup_key_checks += 1;
     if (card?.normalized !== expectedNormalized) {
@@ -403,6 +419,15 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
   }
 }
 
+function runtimeState(target) {
+  let state = auditRuntimeState.get(target);
+  if (!state) {
+    state = { seenCardIds: new Set() };
+    auditRuntimeState.set(target, state);
+  }
+  return state;
+}
+
 function addAnswerEligibleUnsafeSample(context, card, rows, target = audit) {
   const samples = target.samples.answer_eligible_translation_output_unsafe_cards;
   if (samples.length >= options.maxWarnings) return;
@@ -473,6 +498,8 @@ function writeReport(relativePath, data) {
     `- Shards scanned: ${data.counts.shards}`,
     `- Tokens scanned: ${data.counts.tokens}`,
     `- Cards scanned: ${data.counts.cards}`,
+    `- Card IDs checked: ${data.counts.card_ids_checked}`,
+    `- Duplicate card IDs: ${data.counts.duplicate_card_ids}`,
     `- Normalized lookup key checks: ${data.counts.normalized_lookup_key_checks}`,
     `- Normalized lookup key mismatches: ${data.counts.normalized_lookup_key_mismatches}`,
     `- Route-card string fields checked: ${data.counts.route_card_string_fields_checked}`,
