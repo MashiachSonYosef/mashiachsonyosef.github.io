@@ -398,6 +398,13 @@ function validateCard(card, context) {
   if (card.answer_eligible === true && card.answer_role !== 'answer') {
     issues.push(`${context}: answer_eligible card must use answer_role=answer`);
   }
+  if (card.answer_eligible === true) {
+    if (!Number.isFinite(card.answer_score)) {
+      issues.push(`${context}: answer_eligible card missing numeric answer_score`);
+    } else if (card.answer_score < 0 || card.answer_score > 100) {
+      issues.push(`${context}: answer_eligible card answer_score must be between 0 and 100`);
+    }
+  }
   if (card.answer_eligible !== true && Number.isFinite(card.answer_score)) {
     issues.push(`${context}: non-answer card must not carry answer_score`);
   }

@@ -249,6 +249,11 @@ function auditCard(card, context, target = audit) {
   if (card?.answer_eligible === true) {
     target.counts.answer_eligible_cards += 1;
     if (card.answer_role !== 'answer') addIssue(context, 'answer_eligible card must use answer_role=answer', target);
+    if (!Number.isFinite(card.answer_score)) {
+      addIssue(context, 'answer_eligible card missing numeric answer_score', target);
+    } else if (card.answer_score < 0 || card.answer_score > 100) {
+      addIssue(context, 'answer_eligible card answer_score must be between 0 and 100', target);
+    }
     if (!sourceRows.length) addIssue(context, 'answer_eligible card missing source_rows', target);
     else target.counts.answer_eligible_cards_with_source_rows += 1;
   }
