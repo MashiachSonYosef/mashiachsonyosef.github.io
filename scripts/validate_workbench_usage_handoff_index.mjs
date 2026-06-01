@@ -137,6 +137,14 @@ function validateCounts() {
     'context_signature_cross_cluster_groups',
     'context_signature_skipped_rows_without_focus',
     'context_signature_route_payload_field_hits',
+    'context_signature_lookup_occurrence_refs',
+    'context_signature_lookup_memberships',
+    'context_signature_lookup_recurring_memberships',
+    'context_signature_lookup_occurrences_with_recurring',
+    'context_signature_lookup_cross_cluster_memberships',
+    'context_signature_lookup_occurrences_with_cross_cluster',
+    'context_signature_lookup_unmatched_occurrence_ids',
+    'context_signature_lookup_route_payload_field_hits',
     'selected_slice_rows',
     'selected_slice_works',
     'selected_slices_index_slices',
@@ -402,6 +410,24 @@ function validateCounts() {
   if (Number(artifact.counts?.context_signature_route_payload_field_hits || 0) !== 0) {
     issues.push('context_signature_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.counts?.context_signature_lookup_occurrence_refs || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('context_signature_lookup_occurrence_refs must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.context_signature_lookup_memberships || 0) !== Number(artifact.counts?.context_signature_windows || 0)) {
+    issues.push('context_signature_lookup_memberships must equal context_signature_windows');
+  }
+  if (Number(artifact.counts?.context_signature_lookup_recurring_memberships || 0) <= 0) {
+    issues.push('context_signature_lookup_recurring_memberships must be positive');
+  }
+  if (Number(artifact.counts?.context_signature_lookup_occurrences_with_recurring || 0) !== Number(artifact.counts?.context_signature_rows_with_recurring_signatures || 0)) {
+    issues.push('context_signature_lookup_occurrences_with_recurring must equal context_signature_rows_with_recurring_signatures');
+  }
+  if (Number(artifact.counts?.context_signature_lookup_unmatched_occurrence_ids || 0) !== 0) {
+    issues.push('context_signature_lookup_unmatched_occurrence_ids must be 0');
+  }
+  if (Number(artifact.counts?.context_signature_lookup_route_payload_field_hits || 0) !== 0) {
+    issues.push('context_signature_lookup_route_payload_field_hits must be 0');
+  }
   const expectedDirectedEdges = Number(artifact.counts?.crossmatch_occurrence_refs || 0)
     * Math.max(0, Number(artifact.counts?.crossmatch_occurrence_refs || 0) - 1);
   if (Number(artifact.counts?.crossmatch_directed_edges || 0) !== expectedDirectedEdges) {
@@ -454,6 +480,7 @@ function validateArtifacts() {
     'phrase_recurrence_index_report',
     'context_offset_index_report',
     'context_signature_index_report',
+    'context_signature_lookup_report',
     'selected_slice_report',
     'selected_slices_index_report',
     'selected_occurrences_report',
@@ -507,6 +534,9 @@ function validateValidation() {
   }
   if (artifact.validation?.context_signature_index_status !== 'present') {
     issues.push('validation.context_signature_index_status must be present');
+  }
+  if (artifact.validation?.context_signature_lookup_status !== 'present') {
+    issues.push('validation.context_signature_lookup_status must be present');
   }
   if (artifact.validation?.selected_slice_status !== 'present') issues.push('validation.selected_slice_status must be present');
   if (artifact.validation?.selected_slices_index_status !== 'present') issues.push('validation.selected_slices_index_status must be present');
@@ -715,6 +745,33 @@ function validateValidation() {
   if (Number(artifact.validation?.context_signature_route_payload_field_hits || 0) !== 0) {
     issues.push('context_signature_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.validation?.context_signature_lookup_occurrence_refs || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('context_signature_lookup_occurrence_refs must equal concordance_rows');
+  }
+  if (Number(artifact.validation?.context_signature_lookup_memberships || 0) !== Number(artifact.counts?.context_signature_windows || 0)) {
+    issues.push('context_signature_lookup_memberships must equal context_signature_windows');
+  }
+  if (Number(artifact.validation?.context_signature_lookup_recurring_memberships || 0) !== Number(artifact.counts?.context_signature_lookup_recurring_memberships || 0)) {
+    issues.push('validation.context_signature_lookup_recurring_memberships must equal count');
+  }
+  if (Number(artifact.validation?.context_signature_lookup_occurrences_with_recurring || 0) !== Number(artifact.counts?.context_signature_rows_with_recurring_signatures || 0)) {
+    issues.push('context_signature_lookup_occurrences_with_recurring must equal context_signature_rows_with_recurring_signatures');
+  }
+  if (Number(artifact.validation?.context_signature_lookup_cross_cluster_memberships || 0) !== Number(artifact.counts?.context_signature_lookup_cross_cluster_memberships || 0)) {
+    issues.push('validation.context_signature_lookup_cross_cluster_memberships must equal count');
+  }
+  if (Number(artifact.validation?.context_signature_lookup_occurrences_with_cross_cluster || 0) !== Number(artifact.counts?.context_signature_lookup_occurrences_with_cross_cluster || 0)) {
+    issues.push('validation.context_signature_lookup_occurrences_with_cross_cluster must equal count');
+  }
+  if (Number(artifact.validation?.context_signature_lookup_unmatched_occurrence_ids || 0) !== 0) {
+    issues.push('context_signature_lookup_unmatched_occurrence_ids must be 0');
+  }
+  if (Number(artifact.validation?.context_signature_lookup_failed_checks || 0) !== 0) {
+    issues.push('context_signature_lookup_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.context_signature_lookup_route_payload_field_hits || 0) !== 0) {
+    issues.push('context_signature_lookup_route_payload_field_hits must be 0');
+  }
   if (!String(artifact.validation?.selected_slice_id || '').trim()) issues.push('selected_slice_id must be present');
   if (Number(artifact.validation?.selected_slice_rows || 0) <= 0) issues.push('selected_slice_rows must be positive');
   if (Number(artifact.validation?.selected_slices_index_slices || 0) <= 0) {
@@ -820,6 +877,8 @@ function validateCommands() {
     validate_context_offset_index: 'validate_workbench_usage_context_offset_index.mjs',
     build_context_signature_index: 'build_workbench_usage_context_signature_index.mjs',
     validate_context_signature_index: 'validate_workbench_usage_context_signature_index.mjs',
+    build_context_signature_lookup: 'build_workbench_usage_context_signature_lookup.mjs',
+    validate_context_signature_lookup: 'validate_workbench_usage_context_signature_lookup.mjs',
     build_selected_slice: 'build_workbench_usage_slice_index.mjs',
     validate_selected_slice: 'validate_workbench_usage_slice_index.mjs',
     build_selected_slice_jeremiah: 'build_workbench_usage_slice_index.mjs',
