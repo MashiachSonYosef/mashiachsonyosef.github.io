@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brief Commentary on Bikkurim</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Brief Commentary on Bikkurim<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Bikkurim</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Bikkurim</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
+          </section>
+        </div>
+          <p class="hero-summary">
+            <span>51 source units</span>
+            <span>382 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: The Tosefta according to to codex Vienna. Third Augmented Edition, JTS 2001 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001234517/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: CC-BY</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Brief Commentary on Bikkurim <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Brief Commentary on Bikkurim <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-bikkurim-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-1-1" title="Brief Commentary on Bikkurim 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-2-1" title="Brief Commentary on Bikkurim 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-2-2" title="Brief Commentary on Bikkurim 1:2:2">1:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-2-3" title="Brief Commentary on Bikkurim 1:2:3">1:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-4-1" title="Brief Commentary on Bikkurim 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-4-2" title="Brief Commentary on Bikkurim 1:4:2">1:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-5-1" title="Brief Commentary on Bikkurim 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-5-2" title="Brief Commentary on Bikkurim 1:5:2">1:5:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-5-3" title="Brief Commentary on Bikkurim 1:5:3">1:5:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-1" title="Brief Commentary on Bikkurim 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-2" title="Brief Commentary on Bikkurim 1:6:2">1:6:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-3" title="Brief Commentary on Bikkurim 1:6:3">1:6:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-4" title="Brief Commentary on Bikkurim 1:6:4">1:6:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-5" title="Brief Commentary on Bikkurim 1:6:5">1:6:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-6" title="Brief Commentary on Bikkurim 1:6:6">1:6:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-7" title="Brief Commentary on Bikkurim 1:6:7">1:6:7</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-8" title="Brief Commentary on Bikkurim 1:6:8">1:6:8</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-9" title="Brief Commentary on Bikkurim 1:6:9">1:6:9</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-6-10" title="Brief Commentary on Bikkurim 1:6:10">1:6:10</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-7-1" title="Brief Commentary on Bikkurim 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-7-2" title="Brief Commentary on Bikkurim 1:7:2">1:7:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-7-3" title="Brief Commentary on Bikkurim 1:7:3">1:7:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-7-4" title="Brief Commentary on Bikkurim 1:7:4">1:7:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-7-5" title="Brief Commentary on Bikkurim 1:7:5">1:7:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-7-6" title="Brief Commentary on Bikkurim 1:7:6">1:7:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-7-7" title="Brief Commentary on Bikkurim 1:7:7">1:7:7</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-7-8" title="Brief Commentary on Bikkurim 1:7:8">1:7:8</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-1-7-9" title="Brief Commentary on Bikkurim 1:7:9">1:7:9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-bikkurim-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-1-1" title="Brief Commentary on Bikkurim 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-2-1" title="Brief Commentary on Bikkurim 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-3-1" title="Brief Commentary on Bikkurim 2:3:1">2:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-4-1" title="Brief Commentary on Bikkurim 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-4-2" title="Brief Commentary on Bikkurim 2:4:2">2:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-4-3" title="Brief Commentary on Bikkurim 2:4:3">2:4:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-4-4" title="Brief Commentary on Bikkurim 2:4:4">2:4:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-4-5" title="Brief Commentary on Bikkurim 2:4:5">2:4:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-5-1" title="Brief Commentary on Bikkurim 2:5:1">2:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-5-2" title="Brief Commentary on Bikkurim 2:5:2">2:5:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-5-3" title="Brief Commentary on Bikkurim 2:5:3">2:5:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-6-1" title="Brief Commentary on Bikkurim 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-7-1" title="Brief Commentary on Bikkurim 2:7:1">2:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-7-2" title="Brief Commentary on Bikkurim 2:7:2">2:7:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-7-3" title="Brief Commentary on Bikkurim 2:7:3">2:7:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-7-4" title="Brief Commentary on Bikkurim 2:7:4">2:7:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-9-1" title="Brief Commentary on Bikkurim 2:9:1">2:9:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-11-1" title="Brief Commentary on Bikkurim 2:11:1">2:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-14-1" title="Brief Commentary on Bikkurim 2:14:1">2:14:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-14-2" title="Brief Commentary on Bikkurim 2:14:2">2:14:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-14-3" title="Brief Commentary on Bikkurim 2:14:3">2:14:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-15-1" title="Brief Commentary on Bikkurim 2:15:1">2:15:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-bikkurim-2-16-1" title="Brief Commentary on Bikkurim 2:16:1">2:16:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-brief-commentary-on-bikkurim-text-1">Chapter 1</h4>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-1-1" data-source-ref="Brief Commentary on Bikkurim 1:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-1-1" aria-label="Copy link to Brief Commentary on Bikkurim 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ימתין וכו׳.</strong> כלומר, יניחם בעזרה. (הר&quot;מ).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-2-1" data-source-ref="Brief Commentary on Bikkurim 1:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-2-1" aria-label="Copy link to Brief Commentary on Bikkurim 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלא קנה וכו׳.</strong> כלומר, שלא קנה קרקע מספק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-2-2" data-source-ref="Brief Commentary on Bikkurim 1:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-2-2" aria-label="Copy link to Brief Commentary on Bikkurim 1:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תלך עמנו וכו׳.</strong> כלומר, והטבנו לך, שהפרישו לו דושנה של יריחו. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-2-3" data-source-ref="Brief Commentary on Bikkurim 1:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-2-3" aria-label="Copy link to Brief Commentary on Bikkurim 1:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נטלו כהנים וכו׳.</strong> כלומר, בערי הלויים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-4-1" data-source-ref="Brief Commentary on Bikkurim 1:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-4-1" aria-label="Copy link to Brief Commentary on Bikkurim 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מחמשת וכו׳.</strong> צ&quot;ל: מששת, כלומר, מלבד המין שהביא. ועיין בשנו&quot;ס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-4-2" data-source-ref="Brief Commentary on Bikkurim 1:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-4-2" aria-label="Copy link to Brief Commentary on Bikkurim 1:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מאותו המין וכו׳.</strong> כלומר, ויש בידו עכשיו כל שבעת המינים. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-5-1" data-source-ref="Brief Commentary on Bikkurim 1:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-5-1" aria-label="Copy link to Brief Commentary on Bikkurim 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באר הגולה וכו׳.</strong> כנראה שהיתה על גבול העזרה של קודש. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-5-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-5-2" data-source-ref="Brief Commentary on Bikkurim 1:5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:5:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-5-2" aria-label="Copy link to Brief Commentary on Bikkurim 1:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנים וכו׳.</strong> כלומר. אם אבדו הבכורים כל זמן שהוא חייב באחריותם, והפריש שניים תחתיהם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-5-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-5-3" data-source-ref="Brief Commentary on Bikkurim 1:5:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:5:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-5-3" aria-label="Copy link to Brief Commentary on Bikkurim 1:5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכותבות וכו׳.</strong> כלומר, על הכותבות שביריחו, שהן התמרים המשובחים ביותר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-1" data-source-ref="Brief Commentary on Bikkurim 1:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-1" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובמעשר שני שאין בתרומה.</strong> צ&quot;ל: ובמעשר שני וביכורים שאין בתרומה, כגי׳ כי&quot;ע. והברייתא מונה להלן כמה דברים שנוהגים בתרומה ולא במע&quot;ש, ומהם שנוהגים בתרומה ולא בבכורים. ומפרש מתחילה חומרי תרומה שאינם במע&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-2" data-source-ref="Brief Commentary on Bikkurim 1:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-2" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן הגמור.</strong> כלומר, שאינו מפריש תרומה מדבר שלא נגמרה מלאכתו, מה שאין כן במע&quot;ש (אם עבר והפריש תרומה ומעשר ראשון), מותר לו להפריש, שהרי לעצמו הוא מפריש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-3" data-source-ref="Brief Commentary on Bikkurim 1:6:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-3" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומדמעת וחייבין וכו׳.</strong> מה שאין כן מע&quot;ש שאם אין לו פדיון (כגון פחות משוה פרוטה) בטל ברוב, וכן אין חייבין חומש על אכילתו. ועד כאן הם חומרי תרומה שאינם במע&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-4" data-source-ref="Brief Commentary on Bikkurim 1:6:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-4" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכל הפירות וכו׳.</strong> מה שאין כן בבכורים שאין נוהגים אלא בשבעה מינים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-5" data-source-ref="Brief Commentary on Bikkurim 1:6:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-5" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בשאר שנים וכו׳.</strong> מה שאין כן במע&quot;ש, שאינו נוהג בשנה שלישית ושנה ששית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-6" data-source-ref="Brief Commentary on Bikkurim 1:6:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-6" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קונה וכו׳.</strong> כלומר, אם קרא שם מע&quot;ש על קנקן סתום של יין, קנה מעשר, וחייב לאכול אף כנגד הקנקן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-7" data-source-ref="Brief Commentary on Bikkurim 1:6:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-7" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואוסר דמיו וכו׳.</strong> כלומר, מע&quot;ש מתחלל על הדמים, וכן אוסר את עירוביו וספק עירוביו אם יש לו פדיון, מפני שהוא דבר שיש לו מתירין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-8" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-8" data-source-ref="Brief Commentary on Bikkurim 1:6:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:8</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-8" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חומש.</strong> כלומר, כשפודהו, אבל לתרומה אין פדיון ואין חומש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-9" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-9" data-source-ref="Brief Commentary on Bikkurim 1:6:9">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:9</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-9" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ודוי.</strong> כלומר, אפילו אין לו אלא מע&quot;ש בלבד מתודה, מה שאין כן בתרומה. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-6-10" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-6-10" data-source-ref="Brief Commentary on Bikkurim 1:6:10">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:6:10</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-6-10" aria-label="Copy link to Brief Commentary on Bikkurim 1:6:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלא בפדיון.</strong> כלומר, מחוץ לירושלים, מה שאין כן תרומה שהיא מותרת לכהנים מיד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-7-1" data-source-ref="Brief Commentary on Bikkurim 1:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-7-1" aria-label="Copy link to Brief Commentary on Bikkurim 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבאת מקום.</strong> כלומר, לירושלים, ואסורים מלאכול חוצה לה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-7-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-7-2" data-source-ref="Brief Commentary on Bikkurim 1:7:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:7:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-7-2" aria-label="Copy link to Brief Commentary on Bikkurim 1:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחייבין בביעור.</strong> מה שאין כן תרומה ביד כהן שאינה חייבת בבעור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-7-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-7-3" data-source-ref="Brief Commentary on Bikkurim 1:7:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:7:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-7-3" aria-label="Copy link to Brief Commentary on Bikkurim 1:7:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין דמיהן וכו׳.</strong> שהרי בכורים אין תופסים את הדמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-7-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-7-4" data-source-ref="Brief Commentary on Bikkurim 1:7:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:7:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-7-4" aria-label="Copy link to Brief Commentary on Bikkurim 1:7:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא אסרו וכו׳.</strong> כלומר, אם זרע בכורים כבר בטלו, ולא אסרו אותם שיאכלו בירושלים דוקא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-7-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-7-5" data-source-ref="Brief Commentary on Bikkurim 1:7:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:7:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-7-5" aria-label="Copy link to Brief Commentary on Bikkurim 1:7:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעשר.</strong> מלה זו היא פיסקא ממשנתנו (פ&quot;ב מ&quot;ב): יש במעשר ובכורים וכו׳ וגדוליהן אסורין וכו׳ ור&quot;ש מתיר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-7-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-7-6" data-source-ref="Brief Commentary on Bikkurim 1:7:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:7:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-7-6" aria-label="Copy link to Brief Commentary on Bikkurim 1:7:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באי זה מעשר אמרו וכו׳.</strong> כלומר, באיזה מעשר התירו החכמים הראשונים (שאני הולך בשיטתם) את גידוליהם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-7-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-7-7" data-source-ref="Brief Commentary on Bikkurim 1:7:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:7:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-7-7" aria-label="Copy link to Brief Commentary on Bikkurim 1:7:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נכנס לירושלם ויוצא.</strong> כלומר, שנכנס לירושלים ויצא (כצ&quot;ל) שאין לו פדיון (עיין בבה&quot;א), ולא הטריחוהו החכמים להעלותו לירושלים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-7-8" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-7-8" data-source-ref="Brief Commentary on Bikkurim 1:7:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:7:8</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-7-8" aria-label="Copy link to Brief Commentary on Bikkurim 1:7:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בשאין בו שוה פרוטה.</strong> כלומר, או בשאין בו שוה פרוטה, ואפילו לא נכנס לירושלים, שהרי אי אפשר לפדותו, שאינו תופס את פדיונו, כמבואר להלן. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-1-7-9" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-1-7-9" data-source-ref="Brief Commentary on Bikkurim 1:7:9">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 1:7:9</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-1-7-9" aria-label="Copy link to Brief Commentary on Bikkurim 1:7:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובשאין לו וכו׳.</strong> שמא צ&quot;ל: שאין לו, כלומר, מפני שאין לו (למעשר בפחות משוה פרוטה) פדיון. ועיין מ&quot;ש בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-bikkurim-text-2">Chapter 2</h4>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-1-1" data-source-ref="Brief Commentary on Bikkurim 2:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-1-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כוי וכו׳.</strong> עיין מ&quot;ש לעיל כלאים פ&quot;ה, שו׳ 7.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-2-1" data-source-ref="Brief Commentary on Bikkurim 2:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-2-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפשיט בו וכו׳.</strong> כמשנת חולין (פ&quot;ט מ&quot;ג): המפשיט בבהמה ובחיה וכו׳, לשטיח כדי אחיזה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-3-1" data-source-ref="Brief Commentary on Bikkurim 2:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-3-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אנדרוגינוס.</strong> כלומר, אם יש בו סימני זכרות ונקבות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-4-1" data-source-ref="Brief Commentary on Bikkurim 2:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-4-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מיטמא בלובן וכו׳.</strong> כלומר, כשזב ממנו נוזל לבן כמי בצק של שעורים, נעשה זב. אבל אשה אינה נעשית זבה בלובן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-4-2" data-source-ref="Brief Commentary on Bikkurim 2:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-4-2" aria-label="Copy link to Brief Commentary on Bikkurim 2:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא נישא וכו׳.</strong> כלומר, שאין קידושין תופסין בו, אם נתקדש כאשה. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-4-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-4-3" data-source-ref="Brief Commentary on Bikkurim 2:4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:4:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-4-3" aria-label="Copy link to Brief Commentary on Bikkurim 2:4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין נזון וכו׳.</strong> כלומר, בנכסים ממועטים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-4-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-4-4" data-source-ref="Brief Commentary on Bikkurim 2:4:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:4:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-4-4" aria-label="Copy link to Brief Commentary on Bikkurim 2:4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין נעטף וכו׳.</strong> כלומר, אינו נעטף כעטיפת אשה ולא מסתפר בתספורת אשה, אלא נוהג כאנשים. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-4-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-4-5" data-source-ref="Brief Commentary on Bikkurim 2:4:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:4:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-4-5" aria-label="Copy link to Brief Commentary on Bikkurim 2:4:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכל מצות וכו׳.</strong> כלומר, אפילו במצות עשה שהזמן גרמא. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-5-1" data-source-ref="Brief Commentary on Bikkurim 2:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-5-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באודם וכו׳.</strong> כלומר, בדם, ונעשה נדה או זבה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-5-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-5-2" data-source-ref="Brief Commentary on Bikkurim 2:5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:5:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-5-2" aria-label="Copy link to Brief Commentary on Bikkurim 2:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין חולק וכו׳.</strong> כלומר, אינו יורש בנכסים מרובים, אם יש לו אחים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-5-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-5-3" data-source-ref="Brief Commentary on Bikkurim 2:5:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:5:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-5-3" aria-label="Copy link to Brief Commentary on Bikkurim 2:5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן הכהונה וכו׳.</strong> כלומר, מן התרומה, אם הוא כהן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-6-1" data-source-ref="Brief Commentary on Bikkurim 2:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-6-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונוחל וכו׳.</strong> כלומר, אם אין לו אחים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-7-1" data-source-ref="Brief Commentary on Bikkurim 2:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-7-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על חטאתו.</strong> צ&quot;ל: טומאתו, כגי׳ כי&quot;ע וראשונים, ופירושו שאין אחרים חייבים על ביאת המקדש אפילו אם נגעו בלובן ואודם שלו כאחת. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-7-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-7-2" data-source-ref="Brief Commentary on Bikkurim 2:7:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:7:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-7-2" aria-label="Copy link to Brief Commentary on Bikkurim 2:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין שורפין וכו׳.</strong> כלומר, אין שורפין את התרומה, אם נגעה באודם שלו, או בלובן שלו. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-7-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-7-3" data-source-ref="Brief Commentary on Bikkurim 2:7:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:7:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-7-3" aria-label="Copy link to Brief Commentary on Bikkurim 2:7:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין זה איש וכו׳.</strong> כלומר, אם אמר שאם אינו איש (או אשה), הרי הוא מקבל עליו נזירות, הרי הוא נזיר. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-7-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-7-4" data-source-ref="Brief Commentary on Bikkurim 2:7:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:7:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-7-4" aria-label="Copy link to Brief Commentary on Bikkurim 2:7:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טומטום.</strong> כלומר, שאין בו לא סימני זכרות ולא סימני נקבות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-9-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-9-1" data-source-ref="Brief Commentary on Bikkurim 2:9:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:9:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-9-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בתשעה.</strong> צ&quot;ל: בתשעה באב, כגי׳ ד. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-11-1" data-source-ref="Brief Commentary on Bikkurim 2:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-11-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומה שבידן וכו׳.</strong> כלומר, הגוזלות שבידיהם. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-14-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-14-1" data-source-ref="Brief Commentary on Bikkurim 2:14:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:14:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-14-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ממין על מינו וכו׳.</strong> כלומר, אם העיטור הוא ממין על מינו ומדבר שחייב וכו׳, הרי העיטור כתוספת בכורים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-14-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-14-2" data-source-ref="Brief Commentary on Bikkurim 2:14:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:14:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-14-2" aria-label="Copy link to Brief Commentary on Bikkurim 2:14:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיטור הבכורין וכו׳.</strong> כנראה שצ&quot;ל: תוספת הבכורין וכו׳, כלומר, אם תוספת הבכורים היא ממין בשאינו מינו, או דבר שאין חייב בבכורים (כגון תמרים שבהרים ופירות שבעמקים) אפילו מין במינו, הרי דינה כעיטור הבכורים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-14-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-14-3" data-source-ref="Brief Commentary on Bikkurim 2:14:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:14:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-14-3" aria-label="Copy link to Brief Commentary on Bikkurim 2:14:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין חייב וכו׳.</strong> כלומר, חוץ משבעת המינים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-15-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-15-1" data-source-ref="Brief Commentary on Bikkurim 2:15:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:15:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-15-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל העסוקין וכו׳.</strong> כלומר, מפני שקשה לדקדק כראוי בדברים הללו. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-bikkurim-2-16-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-bikkurim-2-16-1" data-source-ref="Brief Commentary on Bikkurim 2:16:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Bikkurim 2:16:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-bikkurim-2-16-1" aria-label="Copy link to Brief Commentary on Bikkurim 2:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תגרי סמטה וכו׳.</strong> כלומר, שמוכרים במקומות גלויים (בסימטאות הקרובות לר&quot;ה), ושולטת בהם עין רעה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-bikkurim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/brief-commentary-on-bikkurim.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/brief-commentary-on-bikkurim.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"brief-commentary-on-bikkurim","manifest_url":"../../data/lexical/brief-commentary-on-bikkurim.manifest.json","occurrence_url":"../../data/lexical/occurrences/brief-commentary-on-bikkurim.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

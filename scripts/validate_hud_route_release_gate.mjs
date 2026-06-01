@@ -12,6 +12,7 @@ const defaults = {
   boundaryReport: 'reports/route-publication-boundary-audit.json',
   driftReport: 'reports/hud-route-input-freeze-drift.md',
   report: '',
+  json: '',
   skipDriftCheck: false,
 };
 
@@ -213,6 +214,7 @@ const result = {
 };
 
 if (options.report) writeReport(options.report, result);
+if (options.json) writeJson(options.json, result);
 
 if (issues.length) {
   console.error(`HUD route release gate failed with ${issues.length} issue(s):`);
@@ -241,6 +243,7 @@ function parseArgs(args) {
     else if (arg === '--boundary-report') parsed.boundaryReport = args[++index];
     else if (arg === '--drift-report') parsed.driftReport = args[++index];
     else if (arg === '--report') parsed.report = args[++index];
+    else if (arg === '--json') parsed.json = args[++index];
     else if (arg === '--skip-drift-check') parsed.skipDriftCheck = true;
     else if (arg === '--help' || arg === '-h') parsed.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
@@ -258,6 +261,7 @@ function parseArgs(args) {
       '  --boundary-report reports/route-publication-boundary-audit.json',
       '  --drift-report reports/hud-route-input-freeze-drift.md',
       '  --report reports/hud-route-release-gate.md',
+      '  --json reports/hud-route-release-gate.json',
       '  --skip-drift-check',
     ].join('\n'));
     process.exit(0);
@@ -945,6 +949,12 @@ function writeReport(relativePath, result) {
     ...(result.warnings.length ? result.warnings.map((warning) => `- ${warning}`) : ['- None']),
   ];
   fs.writeFileSync(filePath, `${lines.join('\n')}\n`, 'utf8');
+}
+
+function writeJson(relativePath, result) {
+  const filePath = path.join(root, cleanPath(relativePath));
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(result, null, 2)}\n`, 'utf8');
 }
 
 function cleanPath(value) {

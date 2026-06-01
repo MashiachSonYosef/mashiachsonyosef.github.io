@@ -1,6 +1,6 @@
 # HUD Route Release Gate
 
-Generated: 2026-06-01T14:22:59.591Z
+Generated: 2026-06-01T14:28:49.380Z
 Status: pass_with_warnings
 Release scope: public_lookup_integrity_passed_current_route_source_reconciliation_unproven
 Release ID: hud-route-rc-2026-05-31T16-55-29-957Z

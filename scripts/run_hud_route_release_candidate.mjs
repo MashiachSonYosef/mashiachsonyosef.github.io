@@ -13,6 +13,7 @@ const defaults = {
   releaseStamp: 'data/definitions/hud-route-release-stamp.json',
   releaseReport: 'reports/hud-route-release-stamp.md',
   gateReport: 'reports/hud-route-release-gate.md',
+  gateJson: 'reports/hud-route-release-gate.json',
   dryRun: false,
 };
 
@@ -93,6 +94,7 @@ const steps = [
   ]),
   nodeStep('validate HUD route release gate', 'scripts/validate_hud_route_release_gate.mjs', [
     '--report', options.gateReport,
+    '--json', options.gateJson,
   ]),
 ];
 
@@ -115,6 +117,7 @@ function parseArgs(args) {
     else if (arg === '--release-stamp') parsed.releaseStamp = cleanPath(args[++index]);
     else if (arg === '--release-report') parsed.releaseReport = cleanPath(args[++index]);
     else if (arg === '--gate-report') parsed.gateReport = cleanPath(args[++index]);
+    else if (arg === '--gate-json') parsed.gateJson = cleanPath(args[++index]);
     else if (arg === '--dry-run') parsed.dryRun = true;
     else if (arg === '--help' || arg === '-h') parsed.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
@@ -135,6 +138,7 @@ function parseArgs(args) {
       '  --release-stamp data/definitions/hud-route-release-stamp.json',
       '  --release-report reports/hud-route-release-stamp.md',
       '  --gate-report reports/hud-route-release-gate.md',
+      '  --gate-json reports/hud-route-release-gate.json',
       '  --dry-run',
     ].join('\n'));
     process.exit(0);
