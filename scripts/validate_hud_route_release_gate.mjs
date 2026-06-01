@@ -9,6 +9,7 @@ const defaults = {
   publicManifest: 'data/definitions/hud-route-lookup/manifest.json',
   contract: 'data/definitions/hud-route-contract.json',
   sample: 'data/definitions/hud-route-lookup-sample.json',
+  boundaryReport: 'reports/route-publication-boundary-audit.json',
   report: '',
 };
 
@@ -20,6 +21,7 @@ const stamp = readJson(options.stamp, 'release stamp');
 const publicManifest = readJson(options.publicManifest, 'public lookup manifest');
 const contract = readJson(options.contract, 'HUD route contract');
 const sample = readJson(options.sample, 'HUD route lookup sample');
+const boundaryReport = readJson(options.boundaryReport, 'route publication boundary audit');
 
 if (stamp.schema_version !== 1) issues.push('release stamp schema_version must be 1');
 if (stamp.artifact_type !== 'hud_route_release_stamp') issues.push('release stamp artifact_type must be hud_route_release_stamp');
@@ -82,6 +84,7 @@ for (const field of ['answer_eligible', 'answer_role', 'source_rows', 'definitio
 }
 
 validateSampleCards(sample, publicManifest, options.publicManifest);
+validateBoundaryReport(boundaryReport, currentReconciliation);
 await compareFrozenInputsToCurrentSources(stamp);
 
 const result = {
@@ -94,6 +97,13 @@ const result = {
   public_cards_written: currentReconciliation.public_cards_written,
   public_distinct_normalized_tokens: currentReconciliation.public_distinct_normalized_tokens,
   public_shard_count: currentReconciliation.public_shard_count,
+  route_publication_boundary: {
+    report: cleanPath(options.boundaryReport),
+    issues: Number(boundaryReport.counts?.issue_count || 0),
+    warnings: Number(boundaryReport.counts?.warning_count || 0),
+    translation_output_unsafe_cards: Number(boundaryReport.counts?.translation_output_unsafe_cards || 0),
+    answer_eligible_translation_output_unsafe_cards: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_cards || 0),
+  },
   checked_sample_tokens: Array.isArray(sample.sample_tokens) ? sample.sample_tokens.length : 0,
   issues,
   warnings,
@@ -125,6 +135,7 @@ function parseArgs(args) {
     else if (arg === '--public-manifest') parsed.publicManifest = args[++index];
     else if (arg === '--contract') parsed.contract = args[++index];
     else if (arg === '--sample') parsed.sample = args[++index];
+    else if (arg === '--boundary-report') parsed.boundaryReport = args[++index];
     else if (arg === '--report') parsed.report = args[++index];
     else if (arg === '--help' || arg === '-h') parsed.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
@@ -139,6 +150,7 @@ function parseArgs(args) {
       '  --public-manifest data/definitions/hud-route-lookup/manifest.json',
       '  --contract data/definitions/hud-route-contract.json',
       '  --sample data/definitions/hud-route-lookup-sample.json',
+      '  --boundary-report reports/route-publication-boundary-audit.json',
       '  --report reports/hud-route-release-gate.md',
     ].join('\n'));
     process.exit(0);
@@ -226,6 +238,37 @@ function validateSampleCards(routeSample, manifest, manifestPath) {
   }
 }
 
+function validateBoundaryReport(report, reconciliation) {
+  if (report.schema_version !== 1) issues.push('route publication boundary report schema_version must be 1');
+  if (report.artifact_type !== 'route_publication_boundary_audit') {
+    issues.push(`route publication boundary report artifact_type must be route_publication_boundary_audit, got ${report.artifact_type || 'missing'}`);
+  }
+  if (cleanPath(report.inputs?.manifest) !== cleanPath(options.publicManifest)) {
+    issues.push('route publication boundary report manifest does not match public manifest under validation');
+  }
+  if (Number(report.counts?.issue_count || 0) !== 0) {
+    issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
+  }
+  if (Number(report.counts?.cards || 0) !== reconciliation.public_cards_written) {
+    issues.push(`route publication boundary card count mismatch, report has ${report.counts?.cards}, public manifest has ${reconciliation.public_cards_written}`);
+  }
+  if (Number(report.counts?.tokens || 0) !== reconciliation.public_distinct_normalized_tokens) {
+    issues.push(`route publication boundary token count mismatch, report has ${report.counts?.tokens}, public manifest has ${reconciliation.public_distinct_normalized_tokens}`);
+  }
+  if (Number(report.counts?.shards || 0) !== reconciliation.public_shard_count) {
+    issues.push(`route publication boundary shard count mismatch, report has ${report.counts?.shards}, public manifest has ${reconciliation.public_shard_count}`);
+  }
+  if (Number(report.counts?.answer_eligible_cards || 0) !== Number(report.counts?.answer_eligible_cards_with_source_rows || 0)) {
+    issues.push('route publication boundary report found answer-eligible cards without source rows');
+  }
+  if (Number(report.counts?.hud_unsafe_source_rows || 0) !== 0) {
+    issues.push(`route publication boundary report found ${report.counts.hud_unsafe_source_rows} HUD-unsafe source row(s)`);
+  }
+  if (Number(report.counts?.route_cards_with_publication_fields || 0) !== 0) {
+    issues.push(`route publication boundary report found ${report.counts.route_cards_with_publication_fields} route card(s) with publication-readiness fields`);
+  }
+}
+
 function validateCard(card, context) {
   for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label']) {
     if (!card?.[field]) issues.push(`${context}: missing ${field}`);
@@ -299,6 +342,14 @@ function writeReport(relativePath, result) {
     `- Normalized tokens: ${result.public_distinct_normalized_tokens}`,
     `- Shards: ${result.public_shard_count}`,
     `- Sample tokens checked: ${result.checked_sample_tokens}`,
+    '',
+    '## Route Publication Boundary',
+    '',
+    `- Report: \`${result.route_publication_boundary.report}\``,
+    `- Boundary issues: ${result.route_publication_boundary.issues}`,
+    `- Boundary warnings: ${result.route_publication_boundary.warnings}`,
+    `- Translation-output unsafe cards flagged: ${result.route_publication_boundary.translation_output_unsafe_cards}`,
+    `- Answer-eligible translation-output unsafe cards flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_cards}`,
     '',
     '## Issues',
     '',
