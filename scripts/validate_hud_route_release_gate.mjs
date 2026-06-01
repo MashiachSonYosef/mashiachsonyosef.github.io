@@ -10,6 +10,7 @@ const defaults = {
   contract: 'data/definitions/hud-route-contract.json',
   sample: 'data/definitions/hud-route-lookup-sample.json',
   boundaryReport: 'reports/route-publication-boundary-audit.json',
+  driftReport: 'reports/hud-route-input-freeze-drift.md',
   report: '',
   skipDriftCheck: false,
 };
@@ -41,6 +42,7 @@ const publicManifest = readJson(options.publicManifest, 'public lookup manifest'
 const contract = readJson(options.contract, 'HUD route contract');
 const sample = readJson(options.sample, 'HUD route lookup sample');
 const boundaryReport = readJson(options.boundaryReport, 'route publication boundary audit');
+const inputFreezeDrift = parseInputFreezeDrift(options.driftReport);
 const allowedSections = new Set((contract.route_sections || []).map((section) => section.section_id).filter(Boolean));
 
 if (stamp.schema_version !== 1) issues.push('release stamp schema_version must be 1');
@@ -111,16 +113,28 @@ for (const field of ['answer_eligible', 'answer_role', 'source_rows', 'definitio
 validateSampleCards(sample, publicManifest, options.publicManifest);
 await validateBoundaryReport(boundaryReport, currentReconciliation);
 if (options.skipDriftCheck) {
-  warnings.push('skipped current route source drift check');
+  warnings.push('skipped live current route source drift hash check; using the drift report snapshot only');
 } else {
   await compareFrozenInputsToCurrentSources(stamp);
+}
+if (inputFreezeDrift.status === 'missing') {
+  warnings.push('route input freeze drift report is missing; current route input reconciliation is unverified');
+} else if (inputFreezeDrift.status === 'unknown') {
+  warnings.push('route input freeze drift report has no parseable status; current route input reconciliation is unverified');
+} else if (inputFreezeDrift.status === 'drift') {
+  warnings.push('route input freeze drift report shows current route inputs differ from the frozen release inputs');
+} else if (inputFreezeDrift.status !== 'pass') {
+  issues.push(`route input freeze drift status is ${inputFreezeDrift.status}, expected pass or drift`);
 }
 
 const result = {
   schema_version: 1,
   artifact_type: 'hud_route_release_gate_report',
   generated_at: new Date().toISOString(),
-  status: issues.length ? 'fail' : 'pass',
+  status: issues.length ? 'fail' : (warnings.length ? 'pass_with_warnings' : 'pass'),
+  release_scope: warnings.length
+    ? 'public_lookup_integrity_passed_current_route_source_reconciliation_unproven'
+    : 'public_lookup_integrity_passed_current_route_sources_reconciled',
   release_id: stamp.release_id || '',
   public_manifest: cleanPath(options.publicManifest),
   public_cards_written: currentReconciliation.public_cards_written,
@@ -192,6 +206,7 @@ const result = {
     answer_eligible_translation_output_unsafe_source_rows: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_source_rows || 0),
     answer_eligible_translation_output_unsafe_cards: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_cards || 0),
   },
+  route_input_freeze_drift: inputFreezeDrift,
   checked_sample_tokens: Array.isArray(sample.sample_tokens) ? sample.sample_tokens.length : 0,
   issues,
   warnings,
@@ -209,7 +224,7 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log(`HUD route release gate passed: ${result.release_id}; public cards ${result.public_cards_written}; public shards ${result.public_shard_count}.`);
+console.log(`HUD route release gate ${result.status}: ${result.release_id}; public cards ${result.public_cards_written}; public shards ${result.public_shard_count}.`);
 if (warnings.length) {
   console.log(`Warnings: ${warnings.length}`);
   for (const warning of warnings) console.log(`- ${warning}`);
@@ -224,6 +239,7 @@ function parseArgs(args) {
     else if (arg === '--contract') parsed.contract = args[++index];
     else if (arg === '--sample') parsed.sample = args[++index];
     else if (arg === '--boundary-report') parsed.boundaryReport = args[++index];
+    else if (arg === '--drift-report') parsed.driftReport = args[++index];
     else if (arg === '--report') parsed.report = args[++index];
     else if (arg === '--skip-drift-check') parsed.skipDriftCheck = true;
     else if (arg === '--help' || arg === '-h') parsed.help = true;
@@ -240,6 +256,7 @@ function parseArgs(args) {
       '  --contract data/definitions/hud-route-contract.json',
       '  --sample data/definitions/hud-route-lookup-sample.json',
       '  --boundary-report reports/route-publication-boundary-audit.json',
+      '  --drift-report reports/hud-route-input-freeze-drift.md',
       '  --report reports/hud-route-release-gate.md',
       '  --skip-drift-check',
     ].join('\n'));
@@ -272,6 +289,43 @@ function compareSummary(current, stamped, label) {
     issues.push(`${label}: byte_length mismatch, stamp has ${stamped.byte_length}, current value is ${current.byte_length}`);
   }
   if (current.sha256 !== stamped.sha256) issues.push(`${label}: sha256 mismatch`);
+}
+
+function parseInputFreezeDrift(relativePath) {
+  const cleanRelativePath = cleanPath(relativePath);
+  const filePath = path.join(root, cleanRelativePath);
+  if (!fs.existsSync(filePath)) {
+    return {
+      path: cleanRelativePath,
+      status: 'missing',
+      drift_count: 0,
+      drift: [],
+    };
+  }
+
+  const text = fs.readFileSync(filePath, 'utf8');
+  const statusMatch = text.match(/^Status:\s*(.+)$/m);
+  const status = statusMatch ? statusMatch[1].trim() : 'unknown';
+  const drift = [];
+  let inDriftSection = false;
+  for (const line of text.split(/\r?\n/)) {
+    if (line === '## Drift') {
+      inDriftSection = true;
+      continue;
+    }
+    if (inDriftSection && line.startsWith('## ')) break;
+    if (!inDriftSection || !line.startsWith('- ')) continue;
+
+    const item = line.slice(2).trim();
+    if (item && item !== 'None') drift.push(item);
+  }
+
+  return {
+    path: cleanRelativePath,
+    status,
+    drift_count: drift.length,
+    drift,
+  };
 }
 
 function summarizePublicShards(manifest, manifestPath) {
@@ -787,6 +841,7 @@ function writeReport(relativePath, result) {
     '',
     `Generated: ${result.generated_at}`,
     `Status: ${result.status}`,
+    `Release scope: ${result.release_scope}`,
     `Release ID: ${result.release_id}`,
     '',
     '## Public Lookup',
@@ -864,6 +919,22 @@ function writeReport(relativePath, result) {
     `- Translation-output unsafe cards flagged: ${result.route_publication_boundary.translation_output_unsafe_cards}`,
     `- Answer-eligible translation-output unsafe source rows flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_source_rows}`,
     `- Answer-eligible translation-output unsafe cards flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_cards}`,
+    '',
+    '## Route Input Freeze Drift',
+    '',
+    `- Report: \`${result.route_input_freeze_drift.path}\``,
+    `- Status: ${result.route_input_freeze_drift.status}`,
+    `- Drift items: ${result.route_input_freeze_drift.drift_count}`,
+    ...(result.route_input_freeze_drift.drift.length
+      ? result.route_input_freeze_drift.drift.map((item) => `- ${item}`)
+      : ['- None']),
+    '',
+    '## Boundary',
+    '',
+    '- This gate validates HUD route lookup integrity and the route-card/publication boundary only.',
+    '- It does not clear translation output, source publication, public lexical export reuse, or accepted definition authority.',
+    '- A warning status means current route-source reconciliation is not proven for the frozen public lookup release.',
+    '- Publication remains blocked_no_render.',
     '',
     '## Issues',
     '',

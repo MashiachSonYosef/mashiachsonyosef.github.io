@@ -1,7 +1,8 @@
 # HUD Route Release Gate
 
-Generated: 2026-06-01T08:24:20.754Z
-Status: pass
+Generated: 2026-06-01T14:22:59.591Z
+Status: pass_with_warnings
+Release scope: public_lookup_integrity_passed_current_route_source_reconciliation_unproven
 Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 
 ## Public Lookup
@@ -80,10 +81,26 @@ Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 - Answer-eligible translation-output unsafe source rows flagged: 21087
 - Answer-eligible translation-output unsafe cards flagged: 17737
 
+## Route Input Freeze Drift
+
+- Report: `reports/hud-route-input-freeze-drift.md`
+- Status: drift
+- Drift items: 2
+- source-phrase-evidence.jsonl: current source differs from frozen release input
+- source-citable-paraphrase-evidence.jsonl: current source differs from frozen release input
+
+## Boundary
+
+- This gate validates HUD route lookup integrity and the route-card/publication boundary only.
+- It does not clear translation output, source publication, public lexical export reuse, or accepted definition authority.
+- A warning status means current route-source reconciliation is not proven for the frozen public lookup release.
+- Publication remains blocked_no_render.
+
 ## Issues
 
 - None
 
 ## Warnings
 
-- skipped current route source drift check
+- skipped live current route source drift hash check; using the drift report snapshot only
+- route input freeze drift report shows current route inputs differ from the frozen release inputs
