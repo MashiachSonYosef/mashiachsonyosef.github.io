@@ -249,6 +249,19 @@ await runStep('validate_usage_phrase_recurrence_index', [
   usagePhraseRecurrenceIndexJson,
 ]);
 
+const usageContextOffsetIndexJson = `${options.scratchDir}/usage-context-offset-index.json`;
+await runStep('build_usage_context_offset_index', [
+  'scripts/build_workbench_usage_context_offset_index.mjs',
+  `--search-rows=${usageSearchRowsJson}`,
+  `--output=${usageContextOffsetIndexJson}`,
+  `--report=${options.scratchDir}/usage-context-offset-index.md`,
+]);
+
+await runStep('validate_usage_context_offset_index', [
+  'scripts/validate_workbench_usage_context_offset_index.mjs',
+  usageContextOffsetIndexJson,
+]);
+
 const usageSelectedSliceJson = `${options.scratchDir}/usage-slice-tanakh.json`;
 await runStep('build_usage_selected_slice', [
   'scripts/build_workbench_usage_slice_index.mjs',
@@ -405,6 +418,7 @@ await runStep('build_usage_handoff_index', [
   `--refresh-priority-index=${usageRefreshPriorityIndexJson}`,
   `--unit-density-index=${usageUnitDensityIndexJson}`,
   `--phrase-recurrence-index=${usagePhraseRecurrenceIndexJson}`,
+  `--context-offset-index=${usageContextOffsetIndexJson}`,
   `--selected-slice=${usageSelectedSliceJson}`,
   `--selected-slices-index=${usageSelectedSlicesIndexJson}`,
   `--selected-occurrences=${usageSelectedOccurrencesJson}`,
@@ -455,6 +469,7 @@ const usageSearchShardIndex = readJsonIfExists(usageSearchShardIndexJson);
 const usageRefreshPriorityIndex = readJsonIfExists(usageRefreshPriorityIndexJson);
 const usageUnitDensityIndex = readJsonIfExists(usageUnitDensityIndexJson);
 const usagePhraseRecurrenceIndex = readJsonIfExists(usagePhraseRecurrenceIndexJson);
+const usageContextOffsetIndex = readJsonIfExists(usageContextOffsetIndexJson);
 const usageSelectedSlice = readJsonIfExists(usageSelectedSliceJson);
 const usageSelectedSlicesIndex = readJsonIfExists(usageSelectedSlicesIndexJson);
 const usageSelectedOccurrences = readJsonIfExists(usageSelectedOccurrencesJson);
@@ -588,6 +603,15 @@ const artifact = {
     usage_phrase_recurrence_rows_with_recurring_groups: usagePhraseRecurrenceIndex?.counts?.rows_with_recurring_phrase_groups ?? null,
     usage_phrase_recurrence_skipped_rows_without_focus: usagePhraseRecurrenceIndex?.counts?.skipped_rows_without_focus ?? null,
     usage_phrase_recurrence_route_payload_field_hits: usagePhraseRecurrenceIndex?.counts?.route_payload_field_hits ?? null,
+    usage_context_offset_index_status: usageContextOffsetIndex?.artifact_type === 'workbench_usage_context_offset_index' ? 'present' : 'missing',
+    usage_context_offset_rows: usageContextOffsetIndex?.counts?.rows ?? null,
+    usage_context_offset_rows_with_context: usageContextOffsetIndex?.counts?.rows_with_context ?? null,
+    usage_context_offset_token_observations: usageContextOffsetIndex?.counts?.token_observations ?? null,
+    usage_context_offset_immediate_neighbor_observations: usageContextOffsetIndex?.counts?.immediate_neighbor_observations ?? null,
+    usage_context_offset_offsets: usageContextOffsetIndex?.counts?.offsets ?? null,
+    usage_context_offset_token_buckets: usageContextOffsetIndex?.counts?.token_buckets ?? null,
+    usage_context_offset_skipped_rows_without_focus: usageContextOffsetIndex?.counts?.skipped_rows_without_focus ?? null,
+    usage_context_offset_route_payload_field_hits: usageContextOffsetIndex?.counts?.route_payload_field_hits ?? null,
     usage_selected_slice_status: usageSelectedSlice?.artifact_type === 'workbench_usage_navigation_slice_index' ? 'present' : 'missing',
     usage_selected_slice_id: usageSelectedSlice?.filter?.slice_id ?? null,
     usage_selected_slice_rows: usageSelectedSlice?.counts?.slice_rows ?? null,
@@ -786,6 +810,7 @@ function writeReport(relativePath, artifact) {
     `- Usage refresh priority: ${artifact.counts.usage_refresh_priority_index_status}, pending ${artifact.counts.usage_refresh_priority_pending_files}, known-use candidates ${artifact.counts.usage_refresh_priority_known_usage_candidates}, review-only ${artifact.counts.usage_refresh_priority_review_only_not_promoted}, promoted ${artifact.counts.usage_refresh_priority_promoted_run_targets}, blocked broad refresh files ${artifact.counts.usage_refresh_priority_blocked_broad_refresh_files}, route payload hits ${artifact.counts.usage_refresh_priority_route_payload_field_hits}`,
     `- Usage unit density: ${artifact.counts.usage_unit_density_index_status}, units ${artifact.counts.usage_unit_density_units}, rows ${artifact.counts.usage_unit_density_rows}, multi-occurrence units ${artifact.counts.usage_unit_density_multi_occurrence_units}, max occurrences per unit ${artifact.counts.usage_unit_density_max_occurrences_per_unit}, works ${artifact.counts.usage_unit_density_works}, route payload hits ${artifact.counts.usage_unit_density_route_payload_field_hits}`,
     `- Usage phrase recurrence: ${artifact.counts.usage_phrase_recurrence_index_status}, rows ${artifact.counts.usage_phrase_recurrence_rows}, n-gram instances ${artifact.counts.usage_phrase_recurrence_ngram_instances}, recurring groups ${artifact.counts.usage_phrase_recurrence_recurring_groups}, rows with recurring groups ${artifact.counts.usage_phrase_recurrence_rows_with_recurring_groups}, skipped rows without focus ${artifact.counts.usage_phrase_recurrence_skipped_rows_without_focus}, route payload hits ${artifact.counts.usage_phrase_recurrence_route_payload_field_hits}`,
+    `- Usage context offset: ${artifact.counts.usage_context_offset_index_status}, rows ${artifact.counts.usage_context_offset_rows}, rows with context ${artifact.counts.usage_context_offset_rows_with_context}, token observations ${artifact.counts.usage_context_offset_token_observations}, immediate neighbor observations ${artifact.counts.usage_context_offset_immediate_neighbor_observations}, offsets ${artifact.counts.usage_context_offset_offsets}, token buckets ${artifact.counts.usage_context_offset_token_buckets}, skipped rows without focus ${artifact.counts.usage_context_offset_skipped_rows_without_focus}, route payload hits ${artifact.counts.usage_context_offset_route_payload_field_hits}`,
     `- Usage selected slice: ${artifact.counts.usage_selected_slice_status}, id ${artifact.counts.usage_selected_slice_id}, rows ${artifact.counts.usage_selected_slice_rows}, works ${artifact.counts.usage_selected_slice_works}`,
     `- Usage selected slices index: ${artifact.counts.usage_selected_slices_index_status}, slices ${artifact.counts.usage_selected_slices_index_slices}, rows ${artifact.counts.usage_selected_slices_index_rows}, unique occurrences ${artifact.counts.usage_selected_slices_index_unique_occurrences}, duplicate rows ${artifact.counts.usage_selected_slices_index_duplicate_rows}`,
     `- Usage selected occurrences: ${artifact.counts.usage_selected_occurrences_status}, rows ${artifact.counts.usage_selected_occurrence_rows}, memberships ${artifact.counts.usage_selected_occurrence_memberships}, duplicate memberships ${artifact.counts.usage_selected_occurrence_duplicate_memberships}`,

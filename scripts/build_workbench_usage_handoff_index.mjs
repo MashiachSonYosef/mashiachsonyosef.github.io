@@ -19,6 +19,7 @@ const defaults = {
   refreshPriorityIndex: '.local-cache/workbench-evidence/usage-refresh-priority-index.json',
   unitDensityIndex: '.local-cache/workbench-evidence/usage-unit-density-index.json',
   phraseRecurrenceIndex: '.local-cache/workbench-evidence/usage-phrase-recurrence-index.json',
+  contextOffsetIndex: '.local-cache/workbench-evidence/usage-context-offset-index.json',
   selectedSlice: '.local-cache/workbench-evidence/usage-slice-tanakh.json',
   selectedSlicesIndex: '.local-cache/workbench-evidence/usage-selected-slices-index.json',
   selectedOccurrences: '.local-cache/workbench-evidence/usage-selected-occurrences.json',
@@ -50,6 +51,7 @@ const searchShardIndex = readJsonIfExists(options.searchShardIndex);
 const refreshPriorityIndex = readJsonIfExists(options.refreshPriorityIndex);
 const unitDensityIndex = readJsonIfExists(options.unitDensityIndex);
 const phraseRecurrenceIndex = readJsonIfExists(options.phraseRecurrenceIndex);
+const contextOffsetIndex = readJsonIfExists(options.contextOffsetIndex);
 const selectedSlice = readJsonIfExists(options.selectedSlice);
 const selectedSlicesIndex = readJsonIfExists(options.selectedSlicesIndex);
 const selectedOccurrences = readJsonIfExists(options.selectedOccurrences);
@@ -87,6 +89,7 @@ const artifact = {
     refresh_priority_index: options.refreshPriorityIndex,
     unit_density_index: options.unitDensityIndex,
     phrase_recurrence_index: options.phraseRecurrenceIndex,
+    context_offset_index: options.contextOffsetIndex,
     selected_slice: options.selectedSlice,
     selected_slices_index: options.selectedSlicesIndex,
     selected_occurrences: options.selectedOccurrences,
@@ -118,6 +121,7 @@ const artifact = {
     refresh_priority_index_report: 'reports/workbench-usage-refresh-priority-index.md',
     unit_density_index_report: 'reports/workbench-usage-unit-density-index.md',
     phrase_recurrence_index_report: 'reports/workbench-usage-phrase-recurrence-index.md',
+    context_offset_index_report: 'reports/workbench-usage-context-offset-index.md',
     selected_slice_report: 'reports/workbench-usage-slice-tanakh.md',
     selected_slices_index_report: 'reports/workbench-usage-selected-slices-index.md',
     selected_occurrences_report: 'reports/workbench-usage-selected-occurrences.md',
@@ -191,6 +195,15 @@ const artifact = {
     phrase_recurrence_max_occurrences_per_group: phraseRecurrenceIndex?.counts?.max_occurrences_per_phrase_group ?? null,
     phrase_recurrence_skipped_rows_without_focus: phraseRecurrenceIndex?.counts?.skipped_rows_without_focus ?? null,
     phrase_recurrence_route_payload_field_hits: phraseRecurrenceIndex?.counts?.route_payload_field_hits ?? null,
+    context_offset_rows: contextOffsetIndex?.counts?.rows ?? null,
+    context_offset_rows_with_context: contextOffsetIndex?.counts?.rows_with_context ?? null,
+    context_offset_rows_with_context_tokens: contextOffsetIndex?.counts?.rows_with_context_tokens ?? null,
+    context_offset_token_observations: contextOffsetIndex?.counts?.token_observations ?? null,
+    context_offset_immediate_neighbor_observations: contextOffsetIndex?.counts?.immediate_neighbor_observations ?? null,
+    context_offset_offsets: contextOffsetIndex?.counts?.offsets ?? null,
+    context_offset_token_buckets: contextOffsetIndex?.counts?.token_buckets ?? null,
+    context_offset_skipped_rows_without_focus: contextOffsetIndex?.counts?.skipped_rows_without_focus ?? null,
+    context_offset_route_payload_field_hits: contextOffsetIndex?.counts?.route_payload_field_hits ?? null,
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
     selected_slice_works: selectedSlice?.counts?.works ?? null,
     selected_slices_index_slices: selectedSlicesIndex?.counts?.slices ?? null,
@@ -294,6 +307,16 @@ const artifact = {
     phrase_recurrence_skipped_rows_without_focus: phraseRecurrenceIndex?.counts?.skipped_rows_without_focus ?? null,
     phrase_recurrence_failed_checks: phraseRecurrenceIndex?.quality?.failed_count ?? null,
     phrase_recurrence_route_payload_field_hits: phraseRecurrenceIndex?.counts?.route_payload_field_hits ?? null,
+    context_offset_index_status: contextOffsetIndex?.artifact_type === 'workbench_usage_context_offset_index' ? 'present' : 'not_run',
+    context_offset_rows: contextOffsetIndex?.counts?.rows ?? null,
+    context_offset_rows_with_context: contextOffsetIndex?.counts?.rows_with_context ?? null,
+    context_offset_token_observations: contextOffsetIndex?.counts?.token_observations ?? null,
+    context_offset_immediate_neighbor_observations: contextOffsetIndex?.counts?.immediate_neighbor_observations ?? null,
+    context_offset_offsets: contextOffsetIndex?.counts?.offsets ?? null,
+    context_offset_token_buckets: contextOffsetIndex?.counts?.token_buckets ?? null,
+    context_offset_skipped_rows_without_focus: contextOffsetIndex?.counts?.skipped_rows_without_focus ?? null,
+    context_offset_failed_checks: contextOffsetIndex?.quality?.failed_count ?? null,
+    context_offset_route_payload_field_hits: contextOffsetIndex?.counts?.route_payload_field_hits ?? null,
     selected_slice_status: selectedSlice?.artifact_type === 'workbench_usage_navigation_slice_index' ? 'present' : 'not_run',
     selected_slice_id: selectedSlice?.filter?.slice_id ?? null,
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
@@ -388,6 +411,8 @@ function writeReport(relativePath, artifact) {
     `- Unit density route payload-like field hits: ${artifact.counts.unit_density_route_payload_field_hits}`,
     `- Phrase recurrence: rows ${artifact.counts.phrase_recurrence_rows}, n-gram instances ${artifact.counts.phrase_recurrence_ngram_instances}, recurring groups ${artifact.counts.phrase_recurrence_recurring_groups}, rows with recurring groups ${artifact.counts.phrase_recurrence_rows_with_recurring_groups}, max group occurrences ${artifact.counts.phrase_recurrence_max_occurrences_per_group}, skipped rows without focus ${artifact.counts.phrase_recurrence_skipped_rows_without_focus}`,
     `- Phrase recurrence route payload-like field hits: ${artifact.counts.phrase_recurrence_route_payload_field_hits}`,
+    `- Context offset index: rows ${artifact.counts.context_offset_rows}, rows with context ${artifact.counts.context_offset_rows_with_context}, token observations ${artifact.counts.context_offset_token_observations}, immediate neighbor observations ${artifact.counts.context_offset_immediate_neighbor_observations}, offsets ${artifact.counts.context_offset_offsets}, token buckets ${artifact.counts.context_offset_token_buckets}, skipped rows without focus ${artifact.counts.context_offset_skipped_rows_without_focus}`,
+    `- Context offset route payload-like field hits: ${artifact.counts.context_offset_route_payload_field_hits}`,
     `- Selected slice rows: ${artifact.counts.selected_slice_rows}`,
     `- Selected slice works: ${artifact.counts.selected_slice_works}`,
     `- Selected slices index: ${artifact.counts.selected_slices_index_slices}`,
@@ -434,6 +459,8 @@ function writeReport(relativePath, artifact) {
     `- Unit density route payload-like field hits: ${artifact.validation.unit_density_route_payload_field_hits}`,
     `- Phrase recurrence: ${artifact.validation.phrase_recurrence_index_status}, rows ${artifact.validation.phrase_recurrence_rows}, n-gram instances ${artifact.validation.phrase_recurrence_ngram_instances}, recurring groups ${artifact.validation.phrase_recurrence_recurring_groups}, rows with recurring groups ${artifact.validation.phrase_recurrence_rows_with_recurring_groups}, skipped rows without focus ${artifact.validation.phrase_recurrence_skipped_rows_without_focus}, failed ${artifact.validation.phrase_recurrence_failed_checks}`,
     `- Phrase recurrence route payload-like field hits: ${artifact.validation.phrase_recurrence_route_payload_field_hits}`,
+    `- Context offset index: ${artifact.validation.context_offset_index_status}, rows ${artifact.validation.context_offset_rows}, rows with context ${artifact.validation.context_offset_rows_with_context}, token observations ${artifact.validation.context_offset_token_observations}, immediate neighbor observations ${artifact.validation.context_offset_immediate_neighbor_observations}, offsets ${artifact.validation.context_offset_offsets}, token buckets ${artifact.validation.context_offset_token_buckets}, skipped rows without focus ${artifact.validation.context_offset_skipped_rows_without_focus}, failed ${artifact.validation.context_offset_failed_checks}`,
+    `- Context offset route payload-like field hits: ${artifact.validation.context_offset_route_payload_field_hits}`,
     `- Selected slice: ${artifact.validation.selected_slice_status}, id ${artifact.validation.selected_slice_id}, rows ${artifact.validation.selected_slice_rows}`,
     `- Selected slices index: ${artifact.validation.selected_slices_index_status}, slices ${artifact.validation.selected_slices_index_slices}, unique occurrences ${artifact.validation.selected_slices_index_unique_occurrences}`,
     `- Selected occurrences: ${artifact.validation.selected_occurrences_status}, rows ${artifact.validation.selected_occurrence_rows}`,
@@ -470,6 +497,7 @@ function writeReport(relativePath, artifact) {
     `| refresh priority index | ${mdCell(artifact.artifacts.refresh_priority_index_report)} | yes |`,
     `| unit density index | ${mdCell(artifact.artifacts.unit_density_index_report)} | yes |`,
     `| phrase recurrence index | ${mdCell(artifact.artifacts.phrase_recurrence_index_report)} | yes |`,
+    `| context offset index | ${mdCell(artifact.artifacts.context_offset_index_report)} | yes |`,
     `| selected slice | ${mdCell(artifact.artifacts.selected_slice_report)} | yes |`,
     `| selected slices index | ${mdCell(artifact.artifacts.selected_slices_index_report)} | yes |`,
     `| selected occurrences | ${mdCell(artifact.artifacts.selected_occurrences_report)} | yes |`,
@@ -512,6 +540,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--refresh-priority-index=')) parsed.refreshPriorityIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--unit-density-index=')) parsed.unitDensityIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--phrase-recurrence-index=')) parsed.phraseRecurrenceIndex = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--context-offset-index=')) parsed.contextOffsetIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slice=')) parsed.selectedSlice = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slices-index=')) parsed.selectedSlicesIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrences=')) parsed.selectedOccurrences = cleanRelativePath(valueAfterEquals(arg));
@@ -558,6 +587,8 @@ function buildCommands(options, manifest) {
   commands.validate_unit_density_index = `node scripts/validate_workbench_usage_unit_density_index.mjs ${options.unitDensityIndex}`;
   commands.build_phrase_recurrence_index = `node scripts/build_workbench_usage_phrase_recurrence_index.mjs --search-rows=${options.searchRows} --output=${options.phraseRecurrenceIndex} --report=reports/workbench-usage-phrase-recurrence-index.md`;
   commands.validate_phrase_recurrence_index = `node scripts/validate_workbench_usage_phrase_recurrence_index.mjs ${options.phraseRecurrenceIndex}`;
+  commands.build_context_offset_index = `node scripts/build_workbench_usage_context_offset_index.mjs --search-rows=${options.searchRows} --output=${options.contextOffsetIndex} --report=reports/workbench-usage-context-offset-index.md`;
+  commands.validate_context_offset_index = `node scripts/validate_workbench_usage_context_offset_index.mjs ${options.contextOffsetIndex}`;
   commands.build_selected_slice = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --work-prefix=tanakh/ --slice-id=tanakh-workbench-section --label="Tanakh workbench section" --output=${options.selectedSlice} --report=reports/workbench-usage-slice-tanakh.md --max-samples=30`;
   commands.validate_selected_slice = `node scripts/validate_workbench_usage_slice_index.mjs ${options.selectedSlice}`;
   commands.build_selected_slice_jeremiah = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --source-ref-prefix=Jeremiah --slice-id=jeremiah-workbench-section --label="Jeremiah workbench section" --output=${path.posix.dirname(options.selectedSlice)}/usage-slice-jeremiah.json --report=reports/workbench-usage-slice-jeremiah.md --max-samples=30`;
@@ -595,6 +626,7 @@ function buildCommands(options, manifest) {
     `--refresh-priority-index=${options.refreshPriorityIndex}`,
     `--unit-density-index=${options.unitDensityIndex}`,
     `--phrase-recurrence-index=${options.phraseRecurrenceIndex}`,
+    `--context-offset-index=${options.contextOffsetIndex}`,
     `--selected-slice=${options.selectedSlice}`,
     `--selected-slices-index=${options.selectedSlicesIndex}`,
     `--selected-occurrences=${options.selectedOccurrences}`,

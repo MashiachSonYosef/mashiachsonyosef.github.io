@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T01:22:17.399Z
+Generated: 2026-06-01T01:33:43.293Z
 
 ## Summary
 
-- Steps: 56
+- Steps: 58
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -28,6 +28,7 @@ Generated: 2026-06-01T01:22:17.399Z
 - Usage refresh priority: present, pending 80, known-use candidates 0, review-only 80, promoted 0, blocked broad refresh files 80, route payload hits 0
 - Usage unit density: present, units 1673, rows 2390, multi-occurrence units 418, max occurrences per unit 11, works 271, route payload hits 0
 - Usage phrase recurrence: present, rows 2390, n-gram instances 32425, recurring groups 2244, rows with recurring groups 2303, skipped rows without focus 0, route payload hits 0
+- Usage context offset: present, rows 2390, rows with context 2390, token observations 36525, immediate neighbor observations 4731, offsets 16, token buckets 17103, skipped rows without focus 0, route payload hits 0
 - Usage selected slice: present, id tanakh-workbench-section, rows 49, works 20
 - Usage selected slices index: present, slices 2, rows 50, unique occurrences 49, duplicate rows 1
 - Usage selected occurrences: present, rows 49, memberships 50, duplicate memberships 1
@@ -81,6 +82,8 @@ Generated: 2026-06-01T01:22:17.399Z
 | validate_usage_unit_density_index | passed | Validated usage unit density index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.json: units 1673; rows 2390 |
 | build_usage_phrase_recurrence_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-phrase-recurrence-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-phrase-recurrence-index.md / Usage phrase recurrence groups 2244; instances 32425; rows 2390 |
 | validate_usage_phrase_recurrence_index | passed | Validated usage phrase recurrence index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-phrase-recurrence-index.json: groups 2244; rows 2390 |
+| build_usage_context_offset_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-offset-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-offset-index.md / Usage context offsets 16; token buckets 17103; observations 36525 |
+| validate_usage_context_offset_index | passed | Validated usage context offset index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-context-offset-index.json: offsets 16; observations 36525 |
 | build_usage_selected_slice | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.md / Usage slice tanakh-workbench-section rows 49; works 20; clusters 2 |
 | validate_usage_selected_slice | passed | Workbench usage slice index validation passed. Slice rows: 49. Works: 20. |
 | build_usage_selected_slice_jeremiah | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-jeremiah.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-jeremiah.md / Usage slice jeremiah-workbench-section rows 1; works 1; clusters 1 |

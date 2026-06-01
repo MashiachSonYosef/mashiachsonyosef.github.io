@@ -119,6 +119,15 @@ function validateCounts() {
     'phrase_recurrence_max_occurrences_per_group',
     'phrase_recurrence_skipped_rows_without_focus',
     'phrase_recurrence_route_payload_field_hits',
+    'context_offset_rows',
+    'context_offset_rows_with_context',
+    'context_offset_rows_with_context_tokens',
+    'context_offset_token_observations',
+    'context_offset_immediate_neighbor_observations',
+    'context_offset_offsets',
+    'context_offset_token_buckets',
+    'context_offset_skipped_rows_without_focus',
+    'context_offset_route_payload_field_hits',
     'selected_slice_rows',
     'selected_slice_works',
     'selected_slices_index_slices',
@@ -330,6 +339,33 @@ function validateCounts() {
   if (Number(artifact.counts?.phrase_recurrence_route_payload_field_hits || 0) !== 0) {
     issues.push('phrase_recurrence_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.counts?.context_offset_rows || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('context_offset_rows must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.context_offset_rows_with_context || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('context_offset_rows_with_context must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.context_offset_rows_with_context_tokens || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('context_offset_rows_with_context_tokens must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.context_offset_token_observations || 0) <= Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('context_offset_token_observations must exceed concordance_rows');
+  }
+  if (Number(artifact.counts?.context_offset_immediate_neighbor_observations || 0) <= 0) {
+    issues.push('context_offset_immediate_neighbor_observations must be positive');
+  }
+  if (Number(artifact.counts?.context_offset_offsets || 0) <= 0) {
+    issues.push('context_offset_offsets must be positive');
+  }
+  if (Number(artifact.counts?.context_offset_token_buckets || 0) <= 0) {
+    issues.push('context_offset_token_buckets must be positive');
+  }
+  if (Number(artifact.counts?.context_offset_skipped_rows_without_focus || 0) !== 0) {
+    issues.push('context_offset_skipped_rows_without_focus must be 0');
+  }
+  if (Number(artifact.counts?.context_offset_route_payload_field_hits || 0) !== 0) {
+    issues.push('context_offset_route_payload_field_hits must be 0');
+  }
   const expectedDirectedEdges = Number(artifact.counts?.crossmatch_occurrence_refs || 0)
     * Math.max(0, Number(artifact.counts?.crossmatch_occurrence_refs || 0) - 1);
   if (Number(artifact.counts?.crossmatch_directed_edges || 0) !== expectedDirectedEdges) {
@@ -380,6 +416,7 @@ function validateArtifacts() {
     'refresh_priority_index_report',
     'unit_density_index_report',
     'phrase_recurrence_index_report',
+    'context_offset_index_report',
     'selected_slice_report',
     'selected_slices_index_report',
     'selected_occurrences_report',
@@ -427,6 +464,9 @@ function validateValidation() {
   }
   if (artifact.validation?.phrase_recurrence_index_status !== 'present') {
     issues.push('validation.phrase_recurrence_index_status must be present');
+  }
+  if (artifact.validation?.context_offset_index_status !== 'present') {
+    issues.push('validation.context_offset_index_status must be present');
   }
   if (artifact.validation?.selected_slice_status !== 'present') issues.push('validation.selected_slice_status must be present');
   if (artifact.validation?.selected_slices_index_status !== 'present') issues.push('validation.selected_slices_index_status must be present');
@@ -578,6 +618,33 @@ function validateValidation() {
   if (Number(artifact.validation?.phrase_recurrence_route_payload_field_hits || 0) !== 0) {
     issues.push('phrase_recurrence_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.validation?.context_offset_rows || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('context_offset_rows must equal concordance_rows');
+  }
+  if (Number(artifact.validation?.context_offset_rows_with_context || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('context_offset_rows_with_context must equal concordance_rows');
+  }
+  if (Number(artifact.validation?.context_offset_token_observations || 0) !== Number(artifact.counts?.context_offset_token_observations || 0)) {
+    issues.push('validation.context_offset_token_observations must equal counts.context_offset_token_observations');
+  }
+  if (Number(artifact.validation?.context_offset_immediate_neighbor_observations || 0) !== Number(artifact.counts?.context_offset_immediate_neighbor_observations || 0)) {
+    issues.push('validation.context_offset_immediate_neighbor_observations must equal counts.context_offset_immediate_neighbor_observations');
+  }
+  if (Number(artifact.validation?.context_offset_offsets || 0) !== Number(artifact.counts?.context_offset_offsets || 0)) {
+    issues.push('validation.context_offset_offsets must equal counts.context_offset_offsets');
+  }
+  if (Number(artifact.validation?.context_offset_token_buckets || 0) !== Number(artifact.counts?.context_offset_token_buckets || 0)) {
+    issues.push('validation.context_offset_token_buckets must equal counts.context_offset_token_buckets');
+  }
+  if (Number(artifact.validation?.context_offset_skipped_rows_without_focus || 0) !== 0) {
+    issues.push('context_offset_skipped_rows_without_focus must be 0');
+  }
+  if (Number(artifact.validation?.context_offset_failed_checks || 0) !== 0) {
+    issues.push('context_offset_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.context_offset_route_payload_field_hits || 0) !== 0) {
+    issues.push('context_offset_route_payload_field_hits must be 0');
+  }
   if (!String(artifact.validation?.selected_slice_id || '').trim()) issues.push('selected_slice_id must be present');
   if (Number(artifact.validation?.selected_slice_rows || 0) <= 0) issues.push('selected_slice_rows must be positive');
   if (Number(artifact.validation?.selected_slices_index_slices || 0) <= 0) {
@@ -679,6 +746,8 @@ function validateCommands() {
     validate_unit_density_index: 'validate_workbench_usage_unit_density_index.mjs',
     build_phrase_recurrence_index: 'build_workbench_usage_phrase_recurrence_index.mjs',
     validate_phrase_recurrence_index: 'validate_workbench_usage_phrase_recurrence_index.mjs',
+    build_context_offset_index: 'build_workbench_usage_context_offset_index.mjs',
+    validate_context_offset_index: 'validate_workbench_usage_context_offset_index.mjs',
     build_selected_slice: 'build_workbench_usage_slice_index.mjs',
     validate_selected_slice: 'validate_workbench_usage_slice_index.mjs',
     build_selected_slice_jeremiah: 'build_workbench_usage_slice_index.mjs',
