@@ -51,6 +51,7 @@ const translationOutputSafeLicensePatterns = [
   /^N\/A - project-authored lexical rules$/i,
 ];
 const forbiddenLicenseRe = /\bNC\b|Non-?Commercial|all rights reserved|copyright unclear|unknown|unverified|permission only/i;
+const allowedAnswerRoles = new Set(['answer', 'evidence', 'form_reference']);
 
 const options = parseArgs(process.argv.slice(2));
 let fixtureCaseCount = 0;
@@ -128,6 +129,7 @@ function createAudit(manifestData = {}) {
     answer_eligible_unsafe_translation_output_licenses: {},
     route_families: {},
     route_types: {},
+    answer_roles: {},
     issues: [],
     warnings: [],
   };
@@ -204,6 +206,7 @@ function auditCard(card, context, target = audit) {
   target.counts.cards += 1;
   increment(target.route_families, card?.route_family || 'missing');
   increment(target.route_types, card?.route_type || 'missing');
+  increment(target.answer_roles, card?.answer_role || 'missing');
 
   const publicationFields = publicationReadinessFields.filter((field) => Object.hasOwn(card || {}, field));
   if (publicationFields.length) {
@@ -214,6 +217,7 @@ function auditCard(card, context, target = audit) {
   const sourceRows = Array.isArray(card?.source_rows) ? card.source_rows : [];
   if (typeof card?.answer_eligible !== 'boolean') addIssue(context, 'missing boolean answer_eligible', target);
   if (!card?.answer_role) addIssue(context, 'missing answer_role', target);
+  else if (!allowedAnswerRoles.has(card.answer_role)) addIssue(context, `unknown answer_role: ${card.answer_role}`, target);
   if (card?.answer_eligible !== true && Number.isFinite(card?.answer_score)) {
     addIssue(context, 'non-answer card must not carry answer_score', target);
   }
@@ -339,6 +343,10 @@ function writeReport(relativePath, data) {
     '## Route Families',
     '',
     ...topCounts(data.route_families, 20).map((row) => `- ${row.value}: ${row.count}`),
+    '',
+    '## Answer Roles',
+    '',
+    ...topCounts(data.answer_roles, 20).map((row) => `- ${row.value}: ${row.count}`),
     '',
     '## Issues',
     '',

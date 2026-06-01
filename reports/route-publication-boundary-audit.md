@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T04:56:25.786Z
+Generated: 2026-06-01T04:59:52.305Z
 
 ## Boundary
 
@@ -25,10 +25,10 @@ Generated: 2026-06-01T04:56:25.786Z
 - Issues: 0
 - Warnings: 335103
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
-- Validator SHA-256: `44968658aa4f186e2ecffdf63b87d14b7b6a612f258db3d86cdcf959be20274d`
-- Fixture cases checked: 8
-- Fixture bytes: 10089
-- Fixture SHA-256: `ecddc5ad7c0dd6091ed266cd09f911166f01252c8fd7d24b541a2026d2d2e6b2`
+- Validator SHA-256: `381ae5a1372806279d9d31f16625426a9159a4cf159d8df40b79f33c2888f834`
+- Fixture cases checked: 9
+- Fixture bytes: 11435
+- Fixture SHA-256: `803235b8d7240215a8d25fe9104a9cadd682bedb9b018631b56602f97ea4f60e`
 
 ## Unsafe For Accepted Translation Output
 
@@ -52,6 +52,12 @@ These are answer-slot candidates whose source rows remain HUD-safe but require d
 - openscriptures_definition: 3531
 - wikidata_definition: 771
 - project_lexical: 175
+
+## Answer Roles
+
+- evidence: 402802
+- form_reference: 118176
+- answer: 18683
 
 ## Issues
 

@@ -318,6 +318,9 @@ async function validateBoundaryReport(report, reconciliation) {
   if (sumMap(report.route_types) !== count('cards')) {
     issues.push('route publication boundary route_types total does not equal cards');
   }
+  if (sumMap(report.answer_roles) !== count('cards')) {
+    issues.push('route publication boundary answer_roles total does not equal cards');
+  }
   if (count('answer_eligible_translation_output_unsafe_source_rows') < count('answer_eligible_translation_output_unsafe_cards')) {
     issues.push('route publication boundary answer-eligible unsafe source-row count is lower than answer-eligible unsafe card count');
   }
