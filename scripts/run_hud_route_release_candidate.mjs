@@ -96,6 +96,10 @@ const steps = [
     '--report', options.gateReport,
     '--json', options.gateJson,
   ]),
+  nodeStep('validate HUD route release gate report', 'scripts/validate_hud_route_release_gate_report.mjs', [
+    '--gate-report', options.gateReport,
+    '--gate-json', options.gateJson,
+  ]),
 ];
 
 for (const step of steps) runStep(step);
