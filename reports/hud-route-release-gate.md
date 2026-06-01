@@ -1,6 +1,6 @@
 # HUD Route Release Gate
 
-Generated: 2026-06-01T14:28:49.380Z
+Generated: 2026-06-01T14:58:10.973Z
 Status: pass_with_warnings
 Release scope: public_lookup_integrity_passed_current_route_source_reconciliation_unproven
 Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
@@ -91,6 +91,12 @@ Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 
 ## Boundary
 
+- Publication status: `blocked_no_render`
+- Validates: hud_route_lookup_integrity, route_card_publication_boundary
+- Does not clear: translation_output, source_publication, public_lexical_export_reuse, accepted_definition_authority
+- Answer eligibility scope: hud_answer_slot_only_not_translation_or_publication_readiness
+- Warning status blocks publication claim: true
+- Current route sources reconciled: false
 - This gate validates HUD route lookup integrity and the route-card/publication boundary only.
 - It does not clear translation output, source publication, public lexical export reuse, or accepted definition authority.
 - A warning status means current route-source reconciliation is not proven for the frozen public lookup release.

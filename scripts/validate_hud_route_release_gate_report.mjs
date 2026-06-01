@@ -67,6 +67,7 @@ const boundaryTextChecks = [
 
 validateTopLevel();
 validatePublicLookup();
+validatePublicationBoundary();
 validateBoundary();
 validateFreezeDrift();
 validateMarkdownBoundary();
@@ -84,6 +85,7 @@ const result = {
   release_id: gate.release_id || '',
   gate_status: gate.status || '',
   release_scope: gate.release_scope || '',
+  publication_boundary: gate.publication_boundary || {},
   counts: {
     public_cards_written: numberAt(gate, 'public_cards_written'),
     public_distinct_normalized_tokens: numberAt(gate, 'public_distinct_normalized_tokens'),
@@ -163,6 +165,33 @@ function validatePublicLookup() {
   }
   for (const field of ['invalid_shard_paths', 'duplicate_shard_paths', 'duplicate_shard_ids']) {
     if (numberAt(manifest, field) !== 0) issues.push(`public_lookup_manifest.${field} must be 0`);
+  }
+}
+
+function validatePublicationBoundary() {
+  const boundary = gate.publication_boundary || {};
+  if (!boundary || typeof boundary !== 'object' || Array.isArray(boundary)) {
+    issues.push('publication_boundary object is required');
+    return;
+  }
+  if (boundary.publication_status !== 'blocked_no_render') {
+    issues.push(`publication_boundary.publication_status must be blocked_no_render, got ${boundary.publication_status || 'missing'}`);
+  }
+  if (!Array.isArray(boundary.validates) || !boundary.validates.includes('hud_route_lookup_integrity') || !boundary.validates.includes('route_card_publication_boundary')) {
+    issues.push('publication_boundary.validates must include HUD route lookup integrity and route-card publication boundary');
+  }
+  const doesNotClear = new Set(Array.isArray(boundary.does_not_clear) ? boundary.does_not_clear : []);
+  for (const item of ['translation_output', 'source_publication', 'public_lexical_export_reuse', 'accepted_definition_authority']) {
+    if (!doesNotClear.has(item)) issues.push(`publication_boundary.does_not_clear missing ${item}`);
+  }
+  if (boundary.answer_eligible_scope !== 'hud_answer_slot_only_not_translation_or_publication_readiness') {
+    issues.push('publication_boundary.answer_eligible_scope must block translation/publication readiness overclaim');
+  }
+  if (gate.status === 'pass_with_warnings' && boundary.warning_status_blocks_publication_claim !== true) {
+    issues.push('publication_boundary.warning_status_blocks_publication_claim must be true for warning gate status');
+  }
+  if (gate.route_input_freeze_drift?.status !== 'pass' && boundary.current_route_sources_reconciled !== false) {
+    issues.push('publication_boundary.current_route_sources_reconciled must be false when freeze drift is not pass');
   }
 }
 
@@ -298,6 +327,15 @@ function writeMarkdown(relativePath, result) {
     `Gate status: ${result.gate_status}`,
     `Release scope: ${result.release_scope}`,
     `Release ID: ${result.release_id}`,
+    '',
+    '## Publication Boundary',
+    '',
+    `- Publication status: ${result.publication_boundary.publication_status || 'missing'}`,
+    `- Validates: ${(result.publication_boundary.validates || []).join(', ') || 'missing'}`,
+    `- Does not clear: ${(result.publication_boundary.does_not_clear || []).join(', ') || 'missing'}`,
+    `- Answer eligibility scope: ${result.publication_boundary.answer_eligible_scope || 'missing'}`,
+    `- Warning status blocks publication claim: ${result.publication_boundary.warning_status_blocks_publication_claim}`,
+    `- Current route sources reconciled: ${result.publication_boundary.current_route_sources_reconciled}`,
     '',
     '## Counts',
     '',

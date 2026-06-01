@@ -128,15 +128,35 @@ if (inputFreezeDrift.status === 'missing') {
   issues.push(`route input freeze drift status is ${inputFreezeDrift.status}, expected pass or drift`);
 }
 
+const gateStatus = issues.length ? 'fail' : (warnings.length ? 'pass_with_warnings' : 'pass');
+const releaseScope = warnings.length
+  ? 'public_lookup_integrity_passed_current_route_source_reconciliation_unproven'
+  : 'public_lookup_integrity_passed_current_route_sources_reconciled';
+const publicationBoundary = {
+  publication_status: 'blocked_no_render',
+  validates: [
+    'hud_route_lookup_integrity',
+    'route_card_publication_boundary',
+  ],
+  does_not_clear: [
+    'translation_output',
+    'source_publication',
+    'public_lexical_export_reuse',
+    'accepted_definition_authority',
+  ],
+  answer_eligible_scope: 'hud_answer_slot_only_not_translation_or_publication_readiness',
+  warning_status_blocks_publication_claim: gateStatus === 'pass_with_warnings',
+  current_route_sources_reconciled: inputFreezeDrift.status === 'pass' && !warnings.length,
+};
+
 const result = {
   schema_version: 1,
   artifact_type: 'hud_route_release_gate_report',
   generated_at: new Date().toISOString(),
-  status: issues.length ? 'fail' : (warnings.length ? 'pass_with_warnings' : 'pass'),
-  release_scope: warnings.length
-    ? 'public_lookup_integrity_passed_current_route_source_reconciliation_unproven'
-    : 'public_lookup_integrity_passed_current_route_sources_reconciled',
+  status: gateStatus,
+  release_scope: releaseScope,
   release_id: stamp.release_id || '',
+  publication_boundary: publicationBoundary,
   public_manifest: cleanPath(options.publicManifest),
   public_cards_written: currentReconciliation.public_cards_written,
   public_distinct_normalized_tokens: currentReconciliation.public_distinct_normalized_tokens,
@@ -935,6 +955,12 @@ function writeReport(relativePath, result) {
     '',
     '## Boundary',
     '',
+    `- Publication status: \`${result.publication_boundary.publication_status}\``,
+    `- Validates: ${result.publication_boundary.validates.join(', ')}`,
+    `- Does not clear: ${result.publication_boundary.does_not_clear.join(', ')}`,
+    `- Answer eligibility scope: ${result.publication_boundary.answer_eligible_scope}`,
+    `- Warning status blocks publication claim: ${result.publication_boundary.warning_status_blocks_publication_claim}`,
+    `- Current route sources reconciled: ${result.publication_boundary.current_route_sources_reconciled}`,
     '- This gate validates HUD route lookup integrity and the route-card/publication boundary only.',
     '- It does not clear translation output, source publication, public lexical export reuse, or accepted definition authority.',
     '- A warning status means current route-source reconciliation is not proven for the frozen public lookup release.',
