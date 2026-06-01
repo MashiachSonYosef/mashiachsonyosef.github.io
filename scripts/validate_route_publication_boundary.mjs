@@ -53,6 +53,7 @@ const translationOutputSafeLicensePatterns = [
 ];
 const forbiddenLicenseRe = /\bNC\b|Non-?Commercial|all rights reserved|copyright unclear|unknown|unverified|permission only/i;
 const allowedAnswerRoles = new Set(['answer', 'evidence', 'form_reference']);
+const requiredSourceRowStringFields = ['source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url', 'notes'];
 
 const options = parseArgs(process.argv.slice(2));
 const contract = readJson(options.contract);
@@ -127,6 +128,10 @@ function createAudit(manifestData = {}, contractData = contract) {
       answer_role_answer_cards: 0,
       answer_role_answer_noneligible_cards: 0,
       source_rows: 0,
+      source_row_string_fields_checked: 0,
+      invalid_source_row_string_fields: 0,
+      source_row_fields_used_entries_checked: 0,
+      invalid_source_row_fields_used_entries: 0,
       reference_url_fields_checked: 0,
       invalid_reference_url_fields: 0,
       hud_safe_source_rows: 0,
@@ -319,8 +324,12 @@ function auditCard(card, context, target = audit) {
         increment(target.answer_eligible_unsafe_translation_output_licenses, license || 'missing');
       }
     }
-    for (const field of ['source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url']) {
-      if (!row?.[field]) addIssue(`${context}.source_rows[${rowIndex}]`, `missing ${field}`, target);
+    for (const field of requiredSourceRowStringFields) {
+      target.counts.source_row_string_fields_checked += 1;
+      if (typeof row?.[field] !== 'string' || !row[field].trim()) {
+        target.counts.invalid_source_row_string_fields += 1;
+        addIssue(`${context}.source_rows[${rowIndex}]`, `missing non-empty string ${field}`, target);
+      }
     }
     for (const field of ['source_url', 'license_url']) {
       if (!row?.[field]) continue;
@@ -332,8 +341,15 @@ function auditCard(card, context, target = audit) {
     }
     if (!Array.isArray(row?.fields_used) || !row.fields_used.length) {
       addIssue(`${context}.source_rows[${rowIndex}]`, 'missing fields_used', target);
+    } else {
+      for (const [fieldIndex, fieldUsed] of row.fields_used.entries()) {
+        target.counts.source_row_fields_used_entries_checked += 1;
+        if (typeof fieldUsed !== 'string' || !fieldUsed.trim()) {
+          target.counts.invalid_source_row_fields_used_entries += 1;
+          addIssue(`${context}.source_rows[${rowIndex}].fields_used[${fieldIndex}]`, 'fields_used entry must be a non-empty string', target);
+        }
+      }
     }
-    if (!row?.notes) addIssue(`${context}.source_rows[${rowIndex}]`, 'missing notes', target);
   }
 
   if (cardHasTranslationUnsafeRow) {
@@ -419,6 +435,10 @@ function writeReport(relativePath, data) {
     `- Cards with answer role: ${data.counts.answer_role_answer_cards}`,
     `- Cards with answer role but not answer-eligible: ${data.counts.answer_role_answer_noneligible_cards}`,
     `- Source rows checked: ${data.counts.source_rows}`,
+    `- Source-row string fields checked: ${data.counts.source_row_string_fields_checked}`,
+    `- Invalid source-row string fields: ${data.counts.invalid_source_row_string_fields}`,
+    `- Source-row fields_used entries checked: ${data.counts.source_row_fields_used_entries_checked}`,
+    `- Invalid source-row fields_used entries: ${data.counts.invalid_source_row_fields_used_entries}`,
     `- Reference URL fields checked: ${data.counts.reference_url_fields_checked}`,
     `- Invalid reference URL fields: ${data.counts.invalid_reference_url_fields}`,
     `- HUD-unsafe source rows: ${data.counts.hud_unsafe_source_rows}`,
