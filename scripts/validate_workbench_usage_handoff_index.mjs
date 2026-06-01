@@ -111,6 +111,14 @@ function validateCounts() {
     'unit_density_max_occurrences_per_unit',
     'unit_density_works',
     'unit_density_route_payload_field_hits',
+    'phrase_recurrence_rows',
+    'phrase_recurrence_ngram_instances',
+    'phrase_recurrence_groups_all',
+    'phrase_recurrence_recurring_groups',
+    'phrase_recurrence_rows_with_recurring_groups',
+    'phrase_recurrence_max_occurrences_per_group',
+    'phrase_recurrence_skipped_rows_without_focus',
+    'phrase_recurrence_route_payload_field_hits',
     'selected_slice_rows',
     'selected_slice_works',
     'selected_slices_index_slices',
@@ -298,6 +306,30 @@ function validateCounts() {
   if (Number(artifact.counts?.unit_density_route_payload_field_hits || 0) !== 0) {
     issues.push('unit_density_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.counts?.phrase_recurrence_rows || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('phrase_recurrence_rows must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.phrase_recurrence_ngram_instances || 0) <= Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('phrase_recurrence_ngram_instances must exceed concordance_rows');
+  }
+  if (Number(artifact.counts?.phrase_recurrence_groups_all || 0) < Number(artifact.counts?.phrase_recurrence_recurring_groups || 0)) {
+    issues.push('phrase_recurrence_groups_all must be >= recurring groups');
+  }
+  if (Number(artifact.counts?.phrase_recurrence_recurring_groups || 0) <= 0) {
+    issues.push('phrase_recurrence_recurring_groups must be positive');
+  }
+  if (Number(artifact.counts?.phrase_recurrence_rows_with_recurring_groups || 0) <= 0) {
+    issues.push('phrase_recurrence_rows_with_recurring_groups must be positive');
+  }
+  if (Number(artifact.counts?.phrase_recurrence_max_occurrences_per_group || 0) < 2) {
+    issues.push('phrase_recurrence_max_occurrences_per_group must be >= 2');
+  }
+  if (Number(artifact.counts?.phrase_recurrence_skipped_rows_without_focus || 0) !== 0) {
+    issues.push('phrase_recurrence_skipped_rows_without_focus must be 0');
+  }
+  if (Number(artifact.counts?.phrase_recurrence_route_payload_field_hits || 0) !== 0) {
+    issues.push('phrase_recurrence_route_payload_field_hits must be 0');
+  }
   const expectedDirectedEdges = Number(artifact.counts?.crossmatch_occurrence_refs || 0)
     * Math.max(0, Number(artifact.counts?.crossmatch_occurrence_refs || 0) - 1);
   if (Number(artifact.counts?.crossmatch_directed_edges || 0) !== expectedDirectedEdges) {
@@ -347,6 +379,7 @@ function validateArtifacts() {
     'search_shard_index_report',
     'refresh_priority_index_report',
     'unit_density_index_report',
+    'phrase_recurrence_index_report',
     'selected_slice_report',
     'selected_slices_index_report',
     'selected_occurrences_report',
@@ -391,6 +424,9 @@ function validateValidation() {
   }
   if (artifact.validation?.unit_density_index_status !== 'present') {
     issues.push('validation.unit_density_index_status must be present');
+  }
+  if (artifact.validation?.phrase_recurrence_index_status !== 'present') {
+    issues.push('validation.phrase_recurrence_index_status must be present');
   }
   if (artifact.validation?.selected_slice_status !== 'present') issues.push('validation.selected_slice_status must be present');
   if (artifact.validation?.selected_slices_index_status !== 'present') issues.push('validation.selected_slices_index_status must be present');
@@ -521,6 +557,27 @@ function validateValidation() {
   if (Number(artifact.validation?.unit_density_route_payload_field_hits || 0) !== 0) {
     issues.push('unit_density_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.validation?.phrase_recurrence_rows || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('phrase_recurrence_rows must equal concordance_rows');
+  }
+  if (Number(artifact.validation?.phrase_recurrence_ngram_instances || 0) !== Number(artifact.counts?.phrase_recurrence_ngram_instances || 0)) {
+    issues.push('validation.phrase_recurrence_ngram_instances must equal counts.phrase_recurrence_ngram_instances');
+  }
+  if (Number(artifact.validation?.phrase_recurrence_recurring_groups || 0) !== Number(artifact.counts?.phrase_recurrence_recurring_groups || 0)) {
+    issues.push('validation.phrase_recurrence_recurring_groups must equal counts.phrase_recurrence_recurring_groups');
+  }
+  if (Number(artifact.validation?.phrase_recurrence_rows_with_recurring_groups || 0) !== Number(artifact.counts?.phrase_recurrence_rows_with_recurring_groups || 0)) {
+    issues.push('validation.phrase_recurrence_rows_with_recurring_groups must equal counts.phrase_recurrence_rows_with_recurring_groups');
+  }
+  if (Number(artifact.validation?.phrase_recurrence_skipped_rows_without_focus || 0) !== 0) {
+    issues.push('phrase_recurrence_skipped_rows_without_focus must be 0');
+  }
+  if (Number(artifact.validation?.phrase_recurrence_failed_checks || 0) !== 0) {
+    issues.push('phrase_recurrence_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.phrase_recurrence_route_payload_field_hits || 0) !== 0) {
+    issues.push('phrase_recurrence_route_payload_field_hits must be 0');
+  }
   if (!String(artifact.validation?.selected_slice_id || '').trim()) issues.push('selected_slice_id must be present');
   if (Number(artifact.validation?.selected_slice_rows || 0) <= 0) issues.push('selected_slice_rows must be positive');
   if (Number(artifact.validation?.selected_slices_index_slices || 0) <= 0) {
@@ -620,6 +677,8 @@ function validateCommands() {
     validate_refresh_priority_index: 'validate_workbench_usage_refresh_priority_index.mjs',
     build_unit_density_index: 'build_workbench_usage_unit_density_index.mjs',
     validate_unit_density_index: 'validate_workbench_usage_unit_density_index.mjs',
+    build_phrase_recurrence_index: 'build_workbench_usage_phrase_recurrence_index.mjs',
+    validate_phrase_recurrence_index: 'validate_workbench_usage_phrase_recurrence_index.mjs',
     build_selected_slice: 'build_workbench_usage_slice_index.mjs',
     validate_selected_slice: 'validate_workbench_usage_slice_index.mjs',
     build_selected_slice_jeremiah: 'build_workbench_usage_slice_index.mjs',

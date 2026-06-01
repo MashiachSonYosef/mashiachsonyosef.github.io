@@ -236,6 +236,19 @@ await runStep('validate_usage_unit_density_index', [
   usageUnitDensityIndexJson,
 ]);
 
+const usagePhraseRecurrenceIndexJson = `${options.scratchDir}/usage-phrase-recurrence-index.json`;
+await runStep('build_usage_phrase_recurrence_index', [
+  'scripts/build_workbench_usage_phrase_recurrence_index.mjs',
+  `--search-rows=${usageSearchRowsJson}`,
+  `--output=${usagePhraseRecurrenceIndexJson}`,
+  `--report=${options.scratchDir}/usage-phrase-recurrence-index.md`,
+]);
+
+await runStep('validate_usage_phrase_recurrence_index', [
+  'scripts/validate_workbench_usage_phrase_recurrence_index.mjs',
+  usagePhraseRecurrenceIndexJson,
+]);
+
 const usageSelectedSliceJson = `${options.scratchDir}/usage-slice-tanakh.json`;
 await runStep('build_usage_selected_slice', [
   'scripts/build_workbench_usage_slice_index.mjs',
@@ -391,6 +404,7 @@ await runStep('build_usage_handoff_index', [
   `--search-shard-index=${usageSearchShardIndexJson}`,
   `--refresh-priority-index=${usageRefreshPriorityIndexJson}`,
   `--unit-density-index=${usageUnitDensityIndexJson}`,
+  `--phrase-recurrence-index=${usagePhraseRecurrenceIndexJson}`,
   `--selected-slice=${usageSelectedSliceJson}`,
   `--selected-slices-index=${usageSelectedSlicesIndexJson}`,
   `--selected-occurrences=${usageSelectedOccurrencesJson}`,
@@ -440,6 +454,7 @@ const usageProvenanceIndex = readJsonIfExists(usageProvenanceIndexJson);
 const usageSearchShardIndex = readJsonIfExists(usageSearchShardIndexJson);
 const usageRefreshPriorityIndex = readJsonIfExists(usageRefreshPriorityIndexJson);
 const usageUnitDensityIndex = readJsonIfExists(usageUnitDensityIndexJson);
+const usagePhraseRecurrenceIndex = readJsonIfExists(usagePhraseRecurrenceIndexJson);
 const usageSelectedSlice = readJsonIfExists(usageSelectedSliceJson);
 const usageSelectedSlicesIndex = readJsonIfExists(usageSelectedSlicesIndexJson);
 const usageSelectedOccurrences = readJsonIfExists(usageSelectedOccurrencesJson);
@@ -565,6 +580,14 @@ const artifact = {
     usage_unit_density_max_occurrences_per_unit: usageUnitDensityIndex?.counts?.max_occurrences_per_unit ?? null,
     usage_unit_density_works: usageUnitDensityIndex?.counts?.works ?? null,
     usage_unit_density_route_payload_field_hits: usageUnitDensityIndex?.counts?.route_payload_field_hits ?? null,
+    usage_phrase_recurrence_index_status: usagePhraseRecurrenceIndex?.artifact_type === 'workbench_usage_phrase_recurrence_index' ? 'present' : 'missing',
+    usage_phrase_recurrence_rows: usagePhraseRecurrenceIndex?.counts?.rows ?? null,
+    usage_phrase_recurrence_ngram_instances: usagePhraseRecurrenceIndex?.counts?.ngram_instances ?? null,
+    usage_phrase_recurrence_groups_all: usagePhraseRecurrenceIndex?.counts?.phrase_groups_all ?? null,
+    usage_phrase_recurrence_recurring_groups: usagePhraseRecurrenceIndex?.counts?.recurring_phrase_groups ?? null,
+    usage_phrase_recurrence_rows_with_recurring_groups: usagePhraseRecurrenceIndex?.counts?.rows_with_recurring_phrase_groups ?? null,
+    usage_phrase_recurrence_skipped_rows_without_focus: usagePhraseRecurrenceIndex?.counts?.skipped_rows_without_focus ?? null,
+    usage_phrase_recurrence_route_payload_field_hits: usagePhraseRecurrenceIndex?.counts?.route_payload_field_hits ?? null,
     usage_selected_slice_status: usageSelectedSlice?.artifact_type === 'workbench_usage_navigation_slice_index' ? 'present' : 'missing',
     usage_selected_slice_id: usageSelectedSlice?.filter?.slice_id ?? null,
     usage_selected_slice_rows: usageSelectedSlice?.counts?.slice_rows ?? null,
@@ -762,6 +785,7 @@ function writeReport(relativePath, artifact) {
     `- Usage search shard index: ${artifact.counts.usage_search_shard_index_status}, shards ${artifact.counts.usage_search_shard_index_shards}, rows ${artifact.counts.usage_search_shard_index_rows}, categories ${artifact.counts.usage_search_shard_index_categories}, clusters ${artifact.counts.usage_search_shard_index_clusters}, statuses ${artifact.counts.usage_search_shard_index_statuses}, route payload hits ${artifact.counts.usage_search_shard_index_route_payload_field_hits}`,
     `- Usage refresh priority: ${artifact.counts.usage_refresh_priority_index_status}, pending ${artifact.counts.usage_refresh_priority_pending_files}, known-use candidates ${artifact.counts.usage_refresh_priority_known_usage_candidates}, review-only ${artifact.counts.usage_refresh_priority_review_only_not_promoted}, promoted ${artifact.counts.usage_refresh_priority_promoted_run_targets}, blocked broad refresh files ${artifact.counts.usage_refresh_priority_blocked_broad_refresh_files}, route payload hits ${artifact.counts.usage_refresh_priority_route_payload_field_hits}`,
     `- Usage unit density: ${artifact.counts.usage_unit_density_index_status}, units ${artifact.counts.usage_unit_density_units}, rows ${artifact.counts.usage_unit_density_rows}, multi-occurrence units ${artifact.counts.usage_unit_density_multi_occurrence_units}, max occurrences per unit ${artifact.counts.usage_unit_density_max_occurrences_per_unit}, works ${artifact.counts.usage_unit_density_works}, route payload hits ${artifact.counts.usage_unit_density_route_payload_field_hits}`,
+    `- Usage phrase recurrence: ${artifact.counts.usage_phrase_recurrence_index_status}, rows ${artifact.counts.usage_phrase_recurrence_rows}, n-gram instances ${artifact.counts.usage_phrase_recurrence_ngram_instances}, recurring groups ${artifact.counts.usage_phrase_recurrence_recurring_groups}, rows with recurring groups ${artifact.counts.usage_phrase_recurrence_rows_with_recurring_groups}, skipped rows without focus ${artifact.counts.usage_phrase_recurrence_skipped_rows_without_focus}, route payload hits ${artifact.counts.usage_phrase_recurrence_route_payload_field_hits}`,
     `- Usage selected slice: ${artifact.counts.usage_selected_slice_status}, id ${artifact.counts.usage_selected_slice_id}, rows ${artifact.counts.usage_selected_slice_rows}, works ${artifact.counts.usage_selected_slice_works}`,
     `- Usage selected slices index: ${artifact.counts.usage_selected_slices_index_status}, slices ${artifact.counts.usage_selected_slices_index_slices}, rows ${artifact.counts.usage_selected_slices_index_rows}, unique occurrences ${artifact.counts.usage_selected_slices_index_unique_occurrences}, duplicate rows ${artifact.counts.usage_selected_slices_index_duplicate_rows}`,
     `- Usage selected occurrences: ${artifact.counts.usage_selected_occurrences_status}, rows ${artifact.counts.usage_selected_occurrence_rows}, memberships ${artifact.counts.usage_selected_occurrence_memberships}, duplicate memberships ${artifact.counts.usage_selected_occurrence_duplicate_memberships}`,
