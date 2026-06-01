@@ -16,6 +16,7 @@ const defaults = {
   searchRows: '.local-cache/workbench-evidence/usage-search-rows.json',
   searchShardIndex: '.local-cache/workbench-evidence/usage-search-shard-index.json',
   refreshPriorityIndex: '.local-cache/workbench-evidence/usage-refresh-priority-index.json',
+  unitDensityIndex: '.local-cache/workbench-evidence/usage-unit-density-index.json',
   selectedSlice: '.local-cache/workbench-evidence/usage-slice-tanakh.json',
   selectedSlicesIndex: '.local-cache/workbench-evidence/usage-selected-slices-index.json',
   selectedOccurrences: '.local-cache/workbench-evidence/usage-selected-occurrences.json',
@@ -44,6 +45,7 @@ const workFrameMatrix = readJsonIfExists(options.workFrameMatrix);
 const searchRows = readJsonIfExists(options.searchRows);
 const searchShardIndex = readJsonIfExists(options.searchShardIndex);
 const refreshPriorityIndex = readJsonIfExists(options.refreshPriorityIndex);
+const unitDensityIndex = readJsonIfExists(options.unitDensityIndex);
 const selectedSlice = readJsonIfExists(options.selectedSlice);
 const selectedSlicesIndex = readJsonIfExists(options.selectedSlicesIndex);
 const selectedOccurrences = readJsonIfExists(options.selectedOccurrences);
@@ -78,6 +80,7 @@ const artifact = {
     search_rows: options.searchRows,
     search_shard_index: options.searchShardIndex,
     refresh_priority_index: options.refreshPriorityIndex,
+    unit_density_index: options.unitDensityIndex,
     selected_slice: options.selectedSlice,
     selected_slices_index: options.selectedSlicesIndex,
     selected_occurrences: options.selectedOccurrences,
@@ -106,6 +109,7 @@ const artifact = {
     search_rows_report: 'reports/workbench-usage-search-rows.md',
     search_shard_index_report: 'reports/workbench-usage-search-shard-index.md',
     refresh_priority_index_report: 'reports/workbench-usage-refresh-priority-index.md',
+    unit_density_index_report: 'reports/workbench-usage-unit-density-index.md',
     selected_slice_report: 'reports/workbench-usage-slice-tanakh.md',
     selected_slices_index_report: 'reports/workbench-usage-selected-slices-index.md',
     selected_occurrences_report: 'reports/workbench-usage-selected-occurrences.md',
@@ -155,6 +159,12 @@ const artifact = {
     refresh_priority_promoted_run_targets: refreshPriorityIndex?.counts?.promoted_run_targets ?? null,
     refresh_priority_blocked_broad_refresh_files: refreshPriorityIndex?.counts?.blocked_broad_refresh_files ?? null,
     refresh_priority_route_payload_field_hits: refreshPriorityIndex?.counts?.route_payload_field_hits ?? null,
+    unit_density_units: unitDensityIndex?.counts?.units ?? null,
+    unit_density_rows: unitDensityIndex?.counts?.rows ?? null,
+    unit_density_multi_occurrence_units: unitDensityIndex?.counts?.multi_occurrence_units ?? null,
+    unit_density_max_occurrences_per_unit: unitDensityIndex?.counts?.max_occurrences_per_unit ?? null,
+    unit_density_works: unitDensityIndex?.counts?.works ?? null,
+    unit_density_route_payload_field_hits: unitDensityIndex?.counts?.route_payload_field_hits ?? null,
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
     selected_slice_works: selectedSlice?.counts?.works ?? null,
     selected_slices_index_slices: selectedSlicesIndex?.counts?.slices ?? null,
@@ -234,6 +244,12 @@ const artifact = {
     refresh_priority_promoted_run_targets: refreshPriorityIndex?.counts?.promoted_run_targets ?? null,
     refresh_priority_failed_checks: refreshPriorityIndex?.quality?.failed_count ?? null,
     refresh_priority_route_payload_field_hits: refreshPriorityIndex?.counts?.route_payload_field_hits ?? null,
+    unit_density_index_status: unitDensityIndex?.artifact_type === 'workbench_usage_navigation_unit_density_index' ? 'present' : 'not_run',
+    unit_density_units: unitDensityIndex?.counts?.units ?? null,
+    unit_density_rows: unitDensityIndex?.counts?.rows ?? null,
+    unit_density_multi_occurrence_units: unitDensityIndex?.counts?.multi_occurrence_units ?? null,
+    unit_density_failed_checks: unitDensityIndex?.quality?.failed_count ?? null,
+    unit_density_route_payload_field_hits: unitDensityIndex?.counts?.route_payload_field_hits ?? null,
     selected_slice_status: selectedSlice?.artifact_type === 'workbench_usage_navigation_slice_index' ? 'present' : 'not_run',
     selected_slice_id: selectedSlice?.filter?.slice_id ?? null,
     selected_slice_rows: selectedSlice?.counts?.slice_rows ?? null,
@@ -321,6 +337,8 @@ function writeReport(relativePath, artifact) {
     `- Refresh priority: pending ${artifact.counts.refresh_priority_pending_files}, known-use candidates ${artifact.counts.refresh_priority_known_usage_candidates}, review-only ${artifact.counts.refresh_priority_review_only_not_promoted}, promoted ${artifact.counts.refresh_priority_promoted_run_targets}`,
     `- Refresh priority blocked broad refresh files: ${artifact.counts.refresh_priority_blocked_broad_refresh_files}`,
     `- Refresh priority route payload-like field hits: ${artifact.counts.refresh_priority_route_payload_field_hits}`,
+    `- Unit density: units ${artifact.counts.unit_density_units}, rows ${artifact.counts.unit_density_rows}, multi-occurrence units ${artifact.counts.unit_density_multi_occurrence_units}, max occurrences per unit ${artifact.counts.unit_density_max_occurrences_per_unit}, works ${artifact.counts.unit_density_works}`,
+    `- Unit density route payload-like field hits: ${artifact.counts.unit_density_route_payload_field_hits}`,
     `- Selected slice rows: ${artifact.counts.selected_slice_rows}`,
     `- Selected slice works: ${artifact.counts.selected_slice_works}`,
     `- Selected slices index: ${artifact.counts.selected_slices_index_slices}`,
@@ -360,6 +378,8 @@ function writeReport(relativePath, artifact) {
     `- Search shard index route payload-like field hits: ${artifact.validation.search_shard_index_route_payload_field_hits}`,
     `- Refresh priority: ${artifact.validation.refresh_priority_index_status}, pending ${artifact.validation.refresh_priority_pending_files}, known-use candidates ${artifact.validation.refresh_priority_known_usage_candidates}, promoted ${artifact.validation.refresh_priority_promoted_run_targets}, failed ${artifact.validation.refresh_priority_failed_checks}`,
     `- Refresh priority route payload-like field hits: ${artifact.validation.refresh_priority_route_payload_field_hits}`,
+    `- Unit density: ${artifact.validation.unit_density_index_status}, units ${artifact.validation.unit_density_units}, rows ${artifact.validation.unit_density_rows}, multi-occurrence units ${artifact.validation.unit_density_multi_occurrence_units}, failed ${artifact.validation.unit_density_failed_checks}`,
+    `- Unit density route payload-like field hits: ${artifact.validation.unit_density_route_payload_field_hits}`,
     `- Selected slice: ${artifact.validation.selected_slice_status}, id ${artifact.validation.selected_slice_id}, rows ${artifact.validation.selected_slice_rows}`,
     `- Selected slices index: ${artifact.validation.selected_slices_index_status}, slices ${artifact.validation.selected_slices_index_slices}, unique occurrences ${artifact.validation.selected_slices_index_unique_occurrences}`,
     `- Selected occurrences: ${artifact.validation.selected_occurrences_status}, rows ${artifact.validation.selected_occurrence_rows}`,
@@ -393,6 +413,7 @@ function writeReport(relativePath, artifact) {
     `| search rows | ${mdCell(artifact.artifacts.search_rows_report)} | yes |`,
     `| search shard index | ${mdCell(artifact.artifacts.search_shard_index_report)} | yes |`,
     `| refresh priority index | ${mdCell(artifact.artifacts.refresh_priority_index_report)} | yes |`,
+    `| unit density index | ${mdCell(artifact.artifacts.unit_density_index_report)} | yes |`,
     `| selected slice | ${mdCell(artifact.artifacts.selected_slice_report)} | yes |`,
     `| selected slices index | ${mdCell(artifact.artifacts.selected_slices_index_report)} | yes |`,
     `| selected occurrences | ${mdCell(artifact.artifacts.selected_occurrences_report)} | yes |`,
@@ -432,6 +453,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--search-rows=')) parsed.searchRows = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--search-shard-index=')) parsed.searchShardIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--refresh-priority-index=')) parsed.refreshPriorityIndex = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--unit-density-index=')) parsed.unitDensityIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slice=')) parsed.selectedSlice = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slices-index=')) parsed.selectedSlicesIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrences=')) parsed.selectedOccurrences = cleanRelativePath(valueAfterEquals(arg));
@@ -472,6 +494,8 @@ function buildCommands(options, manifest) {
   commands.validate_search_shard_index = `node scripts/validate_workbench_usage_search_shard_index.mjs ${options.searchShardIndex}`;
   commands.build_refresh_priority_index = `node scripts/build_workbench_usage_refresh_priority_index.mjs --source-freshness=.local-cache/workbench-evidence/source-freshness.json --search-rows=${options.searchRows} --output=${options.refreshPriorityIndex} --report=reports/workbench-usage-refresh-priority-index.md`;
   commands.validate_refresh_priority_index = `node scripts/validate_workbench_usage_refresh_priority_index.mjs ${options.refreshPriorityIndex}`;
+  commands.build_unit_density_index = `node scripts/build_workbench_usage_unit_density_index.mjs --search-rows=${options.searchRows} --output=${options.unitDensityIndex} --report=reports/workbench-usage-unit-density-index.md`;
+  commands.validate_unit_density_index = `node scripts/validate_workbench_usage_unit_density_index.mjs ${options.unitDensityIndex}`;
   commands.build_selected_slice = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --work-prefix=tanakh/ --slice-id=tanakh-workbench-section --label="Tanakh workbench section" --output=${options.selectedSlice} --report=reports/workbench-usage-slice-tanakh.md --max-samples=30`;
   commands.validate_selected_slice = `node scripts/validate_workbench_usage_slice_index.mjs ${options.selectedSlice}`;
   commands.build_selected_slice_jeremiah = `node scripts/build_workbench_usage_slice_index.mjs --concordance=${concordancePath} --source-ref-prefix=Jeremiah --slice-id=jeremiah-workbench-section --label="Jeremiah workbench section" --output=${path.posix.dirname(options.selectedSlice)}/usage-slice-jeremiah.json --report=reports/workbench-usage-slice-jeremiah.md --max-samples=30`;
@@ -506,6 +530,7 @@ function buildCommands(options, manifest) {
     `--search-rows=${options.searchRows}`,
     `--search-shard-index=${options.searchShardIndex}`,
     `--refresh-priority-index=${options.refreshPriorityIndex}`,
+    `--unit-density-index=${options.unitDensityIndex}`,
     `--selected-slice=${options.selectedSlice}`,
     `--selected-slices-index=${options.selectedSlicesIndex}`,
     `--selected-occurrences=${options.selectedOccurrences}`,
