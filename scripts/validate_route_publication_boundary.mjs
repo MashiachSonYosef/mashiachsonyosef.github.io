@@ -197,6 +197,10 @@ function auditShard(shardEntry) {
 }
 
 function auditCard(card, context, target = audit) {
+  if (!card || typeof card !== 'object' || Array.isArray(card)) {
+    addIssue(context, 'route card is not an object', target);
+    card = {};
+  }
   target.counts.cards += 1;
   increment(target.route_families, card?.route_family || 'missing');
   increment(target.route_types, card?.route_type || 'missing');
