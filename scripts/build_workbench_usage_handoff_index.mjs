@@ -28,6 +28,7 @@ const defaults = {
   selectedOccurrences: '.local-cache/workbench-evidence/usage-selected-occurrences.json',
   selectedSignatureIndependence: '.local-cache/workbench-evidence/usage-selected-signature-independence.json',
   selectedSourceDiversity: '.local-cache/workbench-evidence/usage-selected-source-diversity.json',
+  selectedCollisionAudit: '.local-cache/workbench-evidence/usage-selected-collision-audit.json',
   selectedRouteConcentrationResponse: '.local-cache/workbench-evidence/usage-selected-route-concentration-response.json',
   selectedOccurrenceCards: '.local-cache/workbench-evidence/usage-selected-occurrence-cards.json',
   selectedRouteResolution: '.local-cache/workbench-evidence/usage-selected-route-resolution.json',
@@ -72,6 +73,7 @@ const selectedSlicesIndex = readJsonIfExists(options.selectedSlicesIndex);
 const selectedOccurrences = readJsonIfExists(options.selectedOccurrences);
 const selectedSignatureIndependence = readJsonIfExists(options.selectedSignatureIndependence);
 const selectedSourceDiversity = readJsonIfExists(options.selectedSourceDiversity);
+const selectedCollisionAudit = readJsonIfExists(options.selectedCollisionAudit);
 const selectedRouteConcentrationResponse = readJsonIfExists(options.selectedRouteConcentrationResponse);
 const selectedOccurrenceCards = readJsonIfExists(options.selectedOccurrenceCards);
 const selectedRouteResolution = readJsonIfExists(options.selectedRouteResolution);
@@ -122,6 +124,7 @@ const artifact = {
     selected_occurrences: options.selectedOccurrences,
     selected_signature_independence: options.selectedSignatureIndependence,
     selected_source_diversity: options.selectedSourceDiversity,
+    selected_collision_audit: options.selectedCollisionAudit,
     selected_route_concentration_response: options.selectedRouteConcentrationResponse,
     selected_occurrence_cards: options.selectedOccurrenceCards,
     selected_route_resolution: options.selectedRouteResolution,
@@ -166,6 +169,7 @@ const artifact = {
     selected_occurrences_report: 'reports/workbench-usage-selected-occurrences.md',
     selected_signature_independence_report: 'reports/workbench-usage-selected-signature-independence.md',
     selected_source_diversity_report: 'reports/workbench-usage-selected-source-diversity.md',
+    selected_collision_audit_report: 'reports/workbench-usage-selected-collision-audit.md',
     selected_route_concentration_response_report: 'reports/workbench-usage-selected-route-concentration-response.md',
     selected_occurrence_cards_report: 'reports/workbench-usage-selected-occurrence-cards.md',
     selected_route_resolution_report: 'reports/workbench-usage-selected-route-resolution.md',
@@ -303,6 +307,16 @@ const artifact = {
     selected_source_diversity_missing_signature_rows: selectedSourceDiversity?.counts?.missing_signature_independence_rows ?? null,
     selected_source_diversity_reader_facing_rows: selectedSourceDiversity?.counts?.reader_facing_rows ?? null,
     selected_source_diversity_route_payload_field_hits: selectedSourceDiversity?.counts?.route_payload_field_hits ?? null,
+    selected_collision_audit_buckets: selectedCollisionAudit?.counts?.collision_buckets ?? null,
+    selected_collision_audit_occurrence_rows: selectedCollisionAudit?.counts?.collision_occurrence_rows ?? null,
+    selected_collision_audit_duplicate_source_ref_buckets: selectedCollisionAudit?.counts?.duplicate_source_ref_buckets ?? null,
+    selected_collision_audit_duplicate_source_ref_rows: selectedCollisionAudit?.counts?.duplicate_source_ref_rows ?? null,
+    selected_collision_audit_duplicate_work_anchor_buckets: selectedCollisionAudit?.counts?.duplicate_work_anchor_buckets ?? null,
+    selected_collision_audit_duplicate_work_anchor_rows: selectedCollisionAudit?.counts?.duplicate_work_anchor_rows ?? null,
+    selected_collision_audit_cross_frame_buckets: selectedCollisionAudit?.counts?.cross_frame_collision_buckets ?? null,
+    selected_collision_audit_cross_frame_rows: selectedCollisionAudit?.counts?.cross_frame_collision_rows ?? null,
+    selected_collision_audit_reader_facing_rows: selectedCollisionAudit?.counts?.reader_facing_rows ?? null,
+    selected_collision_audit_route_payload_field_hits: selectedCollisionAudit?.counts?.route_payload_field_hits ?? null,
     selected_route_concentration_response_rows: selectedRouteConcentrationResponse?.counts?.selected_occurrence_refs ?? null,
     selected_route_concentration_response_route_buckets: selectedRouteConcentrationResponse?.counts?.route_id_buckets ?? null,
     selected_route_concentration_response_warning_visible: selectedRouteConcentrationResponse?.counts?.route_concentration_warning_visible ?? null,
@@ -524,6 +538,19 @@ const artifact = {
     selected_source_diversity_reader_facing_rows: selectedSourceDiversity?.counts?.reader_facing_rows ?? null,
     selected_source_diversity_failed_checks: selectedSourceDiversity?.quality?.failed_count ?? null,
     selected_source_diversity_route_payload_field_hits: selectedSourceDiversity?.counts?.route_payload_field_hits ?? null,
+    selected_collision_audit_status: selectedCollisionAudit?.artifact_type === 'workbench_usage_selected_collision_audit' ? 'present' : 'not_run',
+    selected_collision_audit_buckets: selectedCollisionAudit?.counts?.collision_buckets ?? null,
+    selected_collision_audit_occurrence_rows: selectedCollisionAudit?.counts?.collision_occurrence_rows ?? null,
+    selected_collision_audit_duplicate_source_ref_buckets: selectedCollisionAudit?.counts?.duplicate_source_ref_buckets ?? null,
+    selected_collision_audit_duplicate_source_ref_rows: selectedCollisionAudit?.counts?.duplicate_source_ref_rows ?? null,
+    selected_collision_audit_duplicate_work_anchor_buckets: selectedCollisionAudit?.counts?.duplicate_work_anchor_buckets ?? null,
+    selected_collision_audit_duplicate_work_anchor_rows: selectedCollisionAudit?.counts?.duplicate_work_anchor_rows ?? null,
+    selected_collision_audit_cross_frame_buckets: selectedCollisionAudit?.counts?.cross_frame_collision_buckets ?? null,
+    selected_collision_audit_cross_frame_rows: selectedCollisionAudit?.counts?.cross_frame_collision_rows ?? null,
+    selected_collision_audit_reader_facing_rows: selectedCollisionAudit?.counts?.reader_facing_rows ?? null,
+    selected_collision_audit_failed_checks: selectedCollisionAudit?.quality?.failed_count ?? null,
+    selected_collision_audit_warning_count: selectedCollisionAudit?.quality?.warning_count ?? null,
+    selected_collision_audit_route_payload_field_hits: selectedCollisionAudit?.counts?.route_payload_field_hits ?? null,
     selected_route_concentration_response_status: selectedRouteConcentrationResponse?.artifact_type === 'workbench_usage_selected_route_concentration_response' ? 'present' : 'not_run',
     selected_route_concentration_response_rows: selectedRouteConcentrationResponse?.counts?.selected_occurrence_refs ?? null,
     selected_route_concentration_response_route_buckets: selectedRouteConcentrationResponse?.counts?.route_id_buckets ?? null,
@@ -708,6 +735,8 @@ function writeReport(relativePath, artifact) {
     `- Selected signature independence route payload-like field hits: ${artifact.counts.selected_signature_independence_route_payload_field_hits}`,
     `- Selected source diversity: rows ${artifact.counts.selected_source_diversity_rows}, source refs ${artifact.counts.selected_source_diversity_unique_source_refs}, work anchors ${artifact.counts.selected_source_diversity_unique_work_anchors}, works ${artifact.counts.selected_source_diversity_unique_works}, categories ${artifact.counts.selected_source_diversity_unique_categories}, licenses ${artifact.counts.selected_source_diversity_unique_licenses}, version sources ${artifact.counts.selected_source_diversity_unique_version_sources}, duplicate source-ref buckets ${artifact.counts.selected_source_diversity_duplicate_source_ref_buckets}, duplicate source-ref rows ${artifact.counts.selected_source_diversity_duplicate_source_ref_rows}, missing signature rows ${artifact.counts.selected_source_diversity_missing_signature_rows}, reader-facing rows ${artifact.counts.selected_source_diversity_reader_facing_rows}`,
     `- Selected source diversity route payload-like field hits: ${artifact.counts.selected_source_diversity_route_payload_field_hits}`,
+    `- Selected collision audit: buckets ${artifact.counts.selected_collision_audit_buckets}, occurrence rows ${artifact.counts.selected_collision_audit_occurrence_rows}, duplicate source-ref buckets ${artifact.counts.selected_collision_audit_duplicate_source_ref_buckets}, duplicate work-anchor buckets ${artifact.counts.selected_collision_audit_duplicate_work_anchor_buckets}, cross-frame buckets ${artifact.counts.selected_collision_audit_cross_frame_buckets}, cross-frame rows ${artifact.counts.selected_collision_audit_cross_frame_rows}, reader-facing rows ${artifact.counts.selected_collision_audit_reader_facing_rows}`,
+    `- Selected collision audit route payload-like field hits: ${artifact.counts.selected_collision_audit_route_payload_field_hits}`,
     `- Selected route concentration response: rows ${artifact.counts.selected_route_concentration_response_rows}, route buckets ${artifact.counts.selected_route_concentration_response_route_buckets}, warning visible ${artifact.counts.selected_route_concentration_response_warning_visible}, source refs ${artifact.counts.selected_route_concentration_response_unique_source_refs}, works ${artifact.counts.selected_route_concentration_response_unique_works}, rows with recurring ${artifact.counts.selected_route_concentration_response_rows_with_recurring}, rows with cross-cluster ${artifact.counts.selected_route_concentration_response_rows_with_cross_cluster}, reader-facing rows ${artifact.counts.selected_route_concentration_response_reader_facing_rows}`,
     `- Selected route concentration response route payload-like field hits: ${artifact.counts.selected_route_concentration_response_route_payload_field_hits}`,
     `- Selected occurrence cards: rows ${artifact.counts.selected_occurrence_cards_rows}, context ${artifact.counts.selected_occurrence_cards_with_context}, focus markers ${artifact.counts.selected_occurrence_cards_with_focus_marker}, related signature rows ${artifact.counts.selected_occurrence_cards_with_related_signatures}, cross-cluster rows ${artifact.counts.selected_occurrence_cards_with_cross_cluster_signatures}, related samples ${artifact.counts.selected_occurrence_cards_related_occurrence_samples}, route warning visible ${artifact.counts.selected_occurrence_cards_route_concentration_warning_visible}, mojibake rows ${artifact.counts.selected_occurrence_cards_mojibake_rows}, reader-facing rows ${artifact.counts.selected_occurrence_cards_reader_facing_rows}`,
@@ -774,6 +803,8 @@ function writeReport(relativePath, artifact) {
     `- Selected signature independence route payload-like field hits: ${artifact.validation.selected_signature_independence_route_payload_field_hits}`,
     `- Selected source diversity: ${artifact.validation.selected_source_diversity_status}, rows ${artifact.validation.selected_source_diversity_rows}, source refs ${artifact.validation.selected_source_diversity_unique_source_refs}, work anchors ${artifact.validation.selected_source_diversity_unique_work_anchors}, works ${artifact.validation.selected_source_diversity_unique_works}, categories ${artifact.validation.selected_source_diversity_unique_categories}, licenses ${artifact.validation.selected_source_diversity_unique_licenses}, version sources ${artifact.validation.selected_source_diversity_unique_version_sources}, duplicate source-ref buckets ${artifact.validation.selected_source_diversity_duplicate_source_ref_buckets}, duplicate source-ref rows ${artifact.validation.selected_source_diversity_duplicate_source_ref_rows}, missing signature rows ${artifact.validation.selected_source_diversity_missing_signature_rows}, reader-facing rows ${artifact.validation.selected_source_diversity_reader_facing_rows}, failed ${artifact.validation.selected_source_diversity_failed_checks}`,
     `- Selected source diversity route payload-like field hits: ${artifact.validation.selected_source_diversity_route_payload_field_hits}`,
+    `- Selected collision audit: ${artifact.validation.selected_collision_audit_status}, buckets ${artifact.validation.selected_collision_audit_buckets}, occurrence rows ${artifact.validation.selected_collision_audit_occurrence_rows}, duplicate source-ref buckets ${artifact.validation.selected_collision_audit_duplicate_source_ref_buckets}, duplicate work-anchor buckets ${artifact.validation.selected_collision_audit_duplicate_work_anchor_buckets}, cross-frame buckets ${artifact.validation.selected_collision_audit_cross_frame_buckets}, cross-frame rows ${artifact.validation.selected_collision_audit_cross_frame_rows}, reader-facing rows ${artifact.validation.selected_collision_audit_reader_facing_rows}, warnings ${artifact.validation.selected_collision_audit_warning_count}, failed ${artifact.validation.selected_collision_audit_failed_checks}`,
+    `- Selected collision audit route payload-like field hits: ${artifact.validation.selected_collision_audit_route_payload_field_hits}`,
     `- Selected route concentration response: ${artifact.validation.selected_route_concentration_response_status}, rows ${artifact.validation.selected_route_concentration_response_rows}, route buckets ${artifact.validation.selected_route_concentration_response_route_buckets}, warning visible ${artifact.validation.selected_route_concentration_response_warning_visible}, source refs ${artifact.validation.selected_route_concentration_response_unique_source_refs}, works ${artifact.validation.selected_route_concentration_response_unique_works}, rows with recurring ${artifact.validation.selected_route_concentration_response_rows_with_recurring}, rows with cross-cluster ${artifact.validation.selected_route_concentration_response_rows_with_cross_cluster}, reader-facing rows ${artifact.validation.selected_route_concentration_response_reader_facing_rows}, warnings ${artifact.validation.selected_route_concentration_response_warning_count}, failed ${artifact.validation.selected_route_concentration_response_failed_checks}`,
     `- Selected route concentration response route payload-like field hits: ${artifact.validation.selected_route_concentration_response_route_payload_field_hits}`,
     `- Selected occurrence cards: ${artifact.validation.selected_occurrence_cards_status}, rows ${artifact.validation.selected_occurrence_cards_rows}, context ${artifact.validation.selected_occurrence_cards_with_context}, focus markers ${artifact.validation.selected_occurrence_cards_with_focus_marker}, related signature rows ${artifact.validation.selected_occurrence_cards_with_related_signatures}, cross-cluster rows ${artifact.validation.selected_occurrence_cards_with_cross_cluster_signatures}, related samples ${artifact.validation.selected_occurrence_cards_related_occurrence_samples}, route warning visible ${artifact.validation.selected_occurrence_cards_route_concentration_warning_visible}, mojibake rows ${artifact.validation.selected_occurrence_cards_mojibake_rows}, reader-facing rows ${artifact.validation.selected_occurrence_cards_reader_facing_rows}, warnings ${artifact.validation.selected_occurrence_cards_warning_count}, failed ${artifact.validation.selected_occurrence_cards_failed_checks}`,
@@ -830,6 +861,7 @@ function writeReport(relativePath, artifact) {
     `| selected occurrences | ${mdCell(artifact.artifacts.selected_occurrences_report)} | yes |`,
     `| selected signature independence | ${mdCell(artifact.artifacts.selected_signature_independence_report)} | yes |`,
     `| selected source diversity | ${mdCell(artifact.artifacts.selected_source_diversity_report)} | yes |`,
+    `| selected collision audit | ${mdCell(artifact.artifacts.selected_collision_audit_report)} | yes |`,
     `| selected route concentration response | ${mdCell(artifact.artifacts.selected_route_concentration_response_report)} | yes |`,
     `| selected occurrence cards | ${mdCell(artifact.artifacts.selected_occurrence_cards_report)} | yes |`,
     `| selected route resolution | ${mdCell(artifact.artifacts.selected_route_resolution_report)} | yes |`,
@@ -885,6 +917,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-occurrences=')) parsed.selectedOccurrences = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-signature-independence=')) parsed.selectedSignatureIndependence = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-source-diversity=')) parsed.selectedSourceDiversity = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-collision-audit=')) parsed.selectedCollisionAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-route-concentration-response=')) parsed.selectedRouteConcentrationResponse = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-cards=')) parsed.selectedOccurrenceCards = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-route-resolution=')) parsed.selectedRouteResolution = cleanRelativePath(valueAfterEquals(arg));
@@ -959,6 +992,8 @@ function buildCommands(options, manifest) {
   commands.validate_selected_route_concentration_response = `node scripts/validate_workbench_usage_selected_route_concentration_response.mjs ${options.selectedRouteConcentrationResponse}`;
   commands.build_selected_occurrence_cards = `node scripts/build_workbench_usage_selected_occurrence_cards.mjs --selected-occurrences=${options.selectedOccurrences} --selected-source-diversity=${options.selectedSourceDiversity} --selected-signature-independence=${options.selectedSignatureIndependence} --selected-route-concentration-response=${options.selectedRouteConcentrationResponse} --output=${options.selectedOccurrenceCards} --report=reports/workbench-usage-selected-occurrence-cards.md`;
   commands.validate_selected_occurrence_cards = `node scripts/validate_workbench_usage_selected_occurrence_cards.mjs ${options.selectedOccurrenceCards}`;
+  commands.build_selected_collision_audit = `node scripts/build_workbench_usage_selected_collision_audit.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-source-diversity=${options.selectedSourceDiversity} --output=${options.selectedCollisionAudit} --report=reports/workbench-usage-selected-collision-audit.md`;
+  commands.validate_selected_collision_audit = `node scripts/validate_workbench_usage_selected_collision_audit.mjs ${options.selectedCollisionAudit}`;
   commands.build_selected_route_resolution = `node scripts/build_workbench_usage_selected_route_resolution.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --route-coverage=${options.routeCoverage} --route-link-check=${options.routeLinkCheck} --output=${options.selectedRouteResolution} --report=reports/workbench-usage-selected-route-resolution.md`;
   commands.validate_selected_route_resolution = `node scripts/validate_workbench_usage_selected_route_resolution.mjs ${options.selectedRouteResolution}`;
   commands.build_selected_focus_context_audit = `node scripts/build_workbench_usage_selected_focus_context_audit.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --output=${options.selectedFocusContextAudit} --report=reports/workbench-usage-selected-focus-context-audit.md`;
@@ -967,7 +1002,7 @@ function buildCommands(options, manifest) {
   commands.validate_selected_frame_summary = `node scripts/validate_workbench_usage_selected_frame_summary.mjs ${options.selectedFrameSummary}`;
   commands.build_selected_work_frame_matrix = `node scripts/build_workbench_usage_selected_work_frame_matrix.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-frame-summary=${options.selectedFrameSummary} --output=${options.selectedWorkFrameMatrix} --report=reports/workbench-usage-selected-work-frame-matrix.md`;
   commands.validate_selected_work_frame_matrix = `node scripts/validate_workbench_usage_selected_work_frame_matrix.mjs ${options.selectedWorkFrameMatrix}`;
-  commands.build_selected_qa_package = `node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-source-diversity=${options.selectedSourceDiversity} --selected-signature-independence=${options.selectedSignatureIndependence} --selected-route-concentration-response=${options.selectedRouteConcentrationResponse} --selected-route-resolution=${options.selectedRouteResolution} --selected-focus-context-audit=${options.selectedFocusContextAudit} --selected-frame-summary=${options.selectedFrameSummary} --selected-work-frame-matrix=${options.selectedWorkFrameMatrix} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --crossmatch-links=${options.crossmatchLinks} --crossmatch-bridge-index=${options.crossmatchBridgeIndex} --crossmatch-neighborhoods=${options.crossmatchNeighborhoods} --output=${options.selectedQaPackage} --report=reports/workbench-usage-selected-qa-package.md`;
+  commands.build_selected_qa_package = `node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-source-diversity=${options.selectedSourceDiversity} --selected-collision-audit=${options.selectedCollisionAudit} --selected-signature-independence=${options.selectedSignatureIndependence} --selected-route-concentration-response=${options.selectedRouteConcentrationResponse} --selected-route-resolution=${options.selectedRouteResolution} --selected-focus-context-audit=${options.selectedFocusContextAudit} --selected-frame-summary=${options.selectedFrameSummary} --selected-work-frame-matrix=${options.selectedWorkFrameMatrix} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --crossmatch-links=${options.crossmatchLinks} --crossmatch-bridge-index=${options.crossmatchBridgeIndex} --crossmatch-neighborhoods=${options.crossmatchNeighborhoods} --output=${options.selectedQaPackage} --report=reports/workbench-usage-selected-qa-package.md`;
   commands.validate_selected_qa_package = `node scripts/validate_workbench_usage_selected_qa_package.mjs ${options.selectedQaPackage}`;
   commands.build_selected_occurrence_lookup = `node scripts/build_workbench_usage_selected_occurrence_lookup.mjs --selected-occurrences=${options.selectedOccurrences} --output=${options.selectedOccurrenceLookup} --report=reports/workbench-usage-selected-occurrence-lookup.md --max-samples=5`;
   commands.validate_selected_occurrence_lookup = `node scripts/validate_workbench_usage_selected_occurrence_lookup.mjs ${options.selectedOccurrenceLookup}`;
@@ -1007,6 +1042,7 @@ function buildCommands(options, manifest) {
     `--selected-occurrences=${options.selectedOccurrences}`,
     `--selected-signature-independence=${options.selectedSignatureIndependence}`,
     `--selected-source-diversity=${options.selectedSourceDiversity}`,
+    `--selected-collision-audit=${options.selectedCollisionAudit}`,
     `--selected-route-concentration-response=${options.selectedRouteConcentrationResponse}`,
     `--selected-occurrence-cards=${options.selectedOccurrenceCards}`,
     `--selected-route-resolution=${options.selectedRouteResolution}`,

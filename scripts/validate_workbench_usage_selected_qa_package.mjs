@@ -66,10 +66,32 @@ console.log(`Validated usage selected QA package ${artifactPath}: items ${items.
 
 function validateCounts(packageItems) {
   if (Number(artifact.counts?.package_items || 0) !== packageItems.length) issues.push('package_items count must equal package_items length');
-  if (packageItems.length !== 12) issues.push('package must contain 12 selected artifact items');
+  if (packageItems.length !== 13) issues.push('package must contain 13 selected artifact items');
   if (Number(artifact.counts?.selected_rows || 0) <= 0) issues.push('selected_rows must be positive');
   if (Number(artifact.counts?.selected_source_refs || 0) <= 1) issues.push('selected_source_refs must show diversity');
   if (Number(artifact.counts?.selected_works || 0) <= 1) issues.push('selected_works must show diversity');
+  if (Number(artifact.counts?.selected_collision_buckets || 0) <= 0) issues.push('selected_collision_buckets must be positive');
+  if (Number(artifact.counts?.selected_collision_occurrence_rows || 0) <= 0) {
+    issues.push('selected_collision_occurrence_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_duplicate_source_ref_buckets || 0) <= 0) {
+    issues.push('selected_duplicate_source_ref_buckets must be positive');
+  }
+  if (Number(artifact.counts?.selected_duplicate_source_ref_rows || 0) <= 0) {
+    issues.push('selected_duplicate_source_ref_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_duplicate_work_anchor_buckets || 0) <= 0) {
+    issues.push('selected_duplicate_work_anchor_buckets must be positive');
+  }
+  if (Number(artifact.counts?.selected_duplicate_work_anchor_rows || 0) <= 0) {
+    issues.push('selected_duplicate_work_anchor_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_cross_frame_collision_buckets || 0) <= 0) {
+    issues.push('selected_cross_frame_collision_buckets must be positive');
+  }
+  if (Number(artifact.counts?.selected_cross_frame_collision_rows || 0) <= 0) {
+    issues.push('selected_cross_frame_collision_rows must be positive');
+  }
   if (Number(artifact.counts?.selected_route_ids || 0) <= 0) issues.push('selected_route_ids must be positive');
   if (Number(artifact.counts?.selected_route_links || 0) !== Number(artifact.counts?.selected_rows || 0)) {
     issues.push('selected_route_links must equal selected_rows');

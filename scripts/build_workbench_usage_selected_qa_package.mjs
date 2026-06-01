@@ -6,6 +6,7 @@ const root = process.cwd();
 const defaults = {
   selectedOccurrenceCards: '.local-cache/workbench-evidence/usage-selected-occurrence-cards.json',
   selectedSourceDiversity: '.local-cache/workbench-evidence/usage-selected-source-diversity.json',
+  selectedCollisionAudit: '.local-cache/workbench-evidence/usage-selected-collision-audit.json',
   selectedSignatureIndependence: '.local-cache/workbench-evidence/usage-selected-signature-independence.json',
   selectedRouteConcentrationResponse: '.local-cache/workbench-evidence/usage-selected-route-concentration-response.json',
   selectedRouteResolution: '.local-cache/workbench-evidence/usage-selected-route-resolution.json',
@@ -24,6 +25,7 @@ const options = parseArgs(process.argv.slice(2));
 const artifacts = {
   selectedOccurrenceCards: readJson(options.selectedOccurrenceCards),
   selectedSourceDiversity: readJson(options.selectedSourceDiversity),
+  selectedCollisionAudit: readJson(options.selectedCollisionAudit),
   selectedSignatureIndependence: readJson(options.selectedSignatureIndependence),
   selectedRouteConcentrationResponse: readJson(options.selectedRouteConcentrationResponse),
   selectedRouteResolution: readJson(options.selectedRouteResolution),
@@ -38,6 +40,7 @@ const artifacts = {
 
 assertType(artifacts.selectedOccurrenceCards, 'workbench_usage_selected_occurrence_cards', options.selectedOccurrenceCards);
 assertType(artifacts.selectedSourceDiversity, 'workbench_usage_selected_source_diversity', options.selectedSourceDiversity);
+assertType(artifacts.selectedCollisionAudit, 'workbench_usage_selected_collision_audit', options.selectedCollisionAudit);
 assertType(artifacts.selectedSignatureIndependence, 'workbench_usage_selected_signature_independence', options.selectedSignatureIndependence);
 assertType(artifacts.selectedRouteConcentrationResponse, 'workbench_usage_selected_route_concentration_response', options.selectedRouteConcentrationResponse);
 assertType(artifacts.selectedRouteResolution, 'workbench_usage_selected_route_resolution', options.selectedRouteResolution);
@@ -63,6 +66,7 @@ const artifact = {
   inputs: {
     selected_occurrence_cards: options.selectedOccurrenceCards,
     selected_source_diversity: options.selectedSourceDiversity,
+    selected_collision_audit: options.selectedCollisionAudit,
     selected_signature_independence: options.selectedSignatureIndependence,
     selected_route_concentration_response: options.selectedRouteConcentrationResponse,
     selected_route_resolution: options.selectedRouteResolution,
@@ -113,6 +117,13 @@ function buildPackageItems() {
       source_refs: artifacts.selectedSourceDiversity.counts?.unique_source_refs,
       works: artifacts.selectedSourceDiversity.counts?.unique_works,
       licenses: artifacts.selectedSourceDiversity.counts?.unique_licenses,
+    }),
+    item('selected_collision_audit', options.selectedCollisionAudit, 'reports/workbench-usage-selected-collision-audit.md', artifacts.selectedCollisionAudit, {
+      collision_buckets: artifacts.selectedCollisionAudit.counts?.collision_buckets,
+      collision_occurrence_rows: artifacts.selectedCollisionAudit.counts?.collision_occurrence_rows,
+      duplicate_source_ref_buckets: artifacts.selectedCollisionAudit.counts?.duplicate_source_ref_buckets,
+      duplicate_work_anchor_buckets: artifacts.selectedCollisionAudit.counts?.duplicate_work_anchor_buckets,
+      cross_frame_collision_buckets: artifacts.selectedCollisionAudit.counts?.cross_frame_collision_buckets,
     }),
     item('selected_signature_independence', options.selectedSignatureIndependence, 'reports/workbench-usage-selected-signature-independence.md', artifacts.selectedSignatureIndependence, {
       rows: artifacts.selectedSignatureIndependence.counts?.selected_occurrence_refs,
@@ -195,6 +206,14 @@ function buildCounts(items) {
     selected_rows: selectedRows,
     selected_source_refs: Number(artifacts.selectedSourceDiversity.counts?.unique_source_refs || 0),
     selected_works: Number(artifacts.selectedSourceDiversity.counts?.unique_works || 0),
+    selected_collision_buckets: Number(artifacts.selectedCollisionAudit.counts?.collision_buckets || 0),
+    selected_collision_occurrence_rows: Number(artifacts.selectedCollisionAudit.counts?.collision_occurrence_rows || 0),
+    selected_duplicate_source_ref_buckets: Number(artifacts.selectedCollisionAudit.counts?.duplicate_source_ref_buckets || 0),
+    selected_duplicate_source_ref_rows: Number(artifacts.selectedCollisionAudit.counts?.duplicate_source_ref_rows || 0),
+    selected_duplicate_work_anchor_buckets: Number(artifacts.selectedCollisionAudit.counts?.duplicate_work_anchor_buckets || 0),
+    selected_duplicate_work_anchor_rows: Number(artifacts.selectedCollisionAudit.counts?.duplicate_work_anchor_rows || 0),
+    selected_cross_frame_collision_buckets: Number(artifacts.selectedCollisionAudit.counts?.cross_frame_collision_buckets || 0),
+    selected_cross_frame_collision_rows: Number(artifacts.selectedCollisionAudit.counts?.cross_frame_collision_rows || 0),
     selected_route_ids: Number(artifacts.selectedRouteResolution.counts?.route_id_buckets || 0),
     selected_route_links: Number(artifacts.selectedRouteResolution.counts?.selected_route_links || 0),
     unresolved_route_ids: Number(artifacts.selectedRouteResolution.counts?.unresolved_route_ids || 0),
@@ -228,8 +247,10 @@ function buildCounts(items) {
 
 function buildChecks(counts) {
   return [
-    check('package_items_present', counts.package_items === 12 ? 'passed' : 'failed', `package items ${counts.package_items}`),
+    check('package_items_present', counts.package_items === 13 ? 'passed' : 'failed', `package items ${counts.package_items}`),
     check('selected_rows_consistent', counts.selected_rows === Number(artifacts.selectedSourceDiversity.counts?.selected_occurrence_refs || 0) ? 'passed' : 'failed', `selected rows ${counts.selected_rows}`),
+    check('selected_collision_counts_match', counts.selected_duplicate_source_ref_buckets === Number(artifacts.selectedSourceDiversity.counts?.duplicate_source_ref_buckets || 0) && counts.selected_duplicate_work_anchor_buckets === Number(artifacts.selectedSourceDiversity.counts?.duplicate_work_anchor_buckets || 0) ? 'passed' : 'failed', `collision source buckets ${counts.selected_duplicate_source_ref_buckets}; work anchor buckets ${counts.selected_duplicate_work_anchor_buckets}`),
+    check('selected_cross_frame_collisions_visible', counts.selected_cross_frame_collision_buckets > 0 ? 'passed' : 'failed', `cross-frame collision buckets ${counts.selected_cross_frame_collision_buckets}`),
     check('selected_route_links_complete', counts.selected_route_links === counts.selected_rows ? 'passed' : 'failed', `selected route links ${counts.selected_route_links}; selected rows ${counts.selected_rows}`),
     check('route_ids_resolved', counts.unresolved_route_ids === 0 ? 'passed' : 'failed', `unresolved route IDs ${counts.unresolved_route_ids}`),
     check('selected_focus_context_complete', counts.selected_focus_context_rows === counts.selected_rows ? 'passed' : 'failed', `focus context rows ${counts.selected_focus_context_rows}; selected rows ${counts.selected_rows}`),
@@ -264,6 +285,14 @@ function writeReport(relativePath, artifact) {
     `- Selected rows: ${artifact.counts.selected_rows}`,
     `- Source refs: ${artifact.counts.selected_source_refs}`,
     `- Works: ${artifact.counts.selected_works}`,
+    `- Collision buckets: ${artifact.counts.selected_collision_buckets}`,
+    `- Collision occurrence rows: ${artifact.counts.selected_collision_occurrence_rows}`,
+    `- Duplicate source-ref buckets: ${artifact.counts.selected_duplicate_source_ref_buckets}`,
+    `- Duplicate source-ref rows: ${artifact.counts.selected_duplicate_source_ref_rows}`,
+    `- Duplicate work-anchor buckets: ${artifact.counts.selected_duplicate_work_anchor_buckets}`,
+    `- Duplicate work-anchor rows: ${artifact.counts.selected_duplicate_work_anchor_rows}`,
+    `- Cross-frame collision buckets: ${artifact.counts.selected_cross_frame_collision_buckets}`,
+    `- Cross-frame collision rows: ${artifact.counts.selected_cross_frame_collision_rows}`,
     `- Route IDs: ${artifact.counts.selected_route_ids}`,
     `- Selected route links: ${artifact.counts.selected_route_links}`,
     `- Unresolved route IDs: ${artifact.counts.unresolved_route_ids}`,
@@ -371,6 +400,7 @@ function parseArgs(args) {
   for (const arg of args) {
     if (arg.startsWith('--selected-occurrence-cards=')) parsed.selectedOccurrenceCards = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-source-diversity=')) parsed.selectedSourceDiversity = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-collision-audit=')) parsed.selectedCollisionAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-signature-independence=')) parsed.selectedSignatureIndependence = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-route-concentration-response=')) parsed.selectedRouteConcentrationResponse = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-route-resolution=')) parsed.selectedRouteResolution = cleanRelativePath(valueAfterEquals(arg));

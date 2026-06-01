@@ -1,13 +1,21 @@
 # Workbench Usage Selected QA Package
 
-Generated: 2026-06-01T05:43:21.921Z
+Generated: 2026-06-01T06:01:02.776Z
 
 ## Summary
 
-- Package items: 12
+- Package items: 13
 - Selected rows: 49
 - Source refs: 38
 - Works: 20
+- Collision buckets: 16
+- Collision occurrence rows: 38
+- Duplicate source-ref buckets: 8
+- Duplicate source-ref rows: 19
+- Duplicate work-anchor buckets: 8
+- Duplicate work-anchor rows: 19
+- Cross-frame collision buckets: 4
+- Cross-frame collision rows: 14
 - Route IDs: 1
 - Selected route links: 49
 - Unresolved route IDs: 0
@@ -45,8 +53,10 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 
 | check | status | detail |
 |---|---|---|
-| package_items_present | passed | package items 12 |
+| package_items_present | passed | package items 13 |
 | selected_rows_consistent | passed | selected rows 49 |
+| selected_collision_counts_match | passed | collision source buckets 8; work anchor buckets 8 |
+| selected_cross_frame_collisions_visible | passed | cross-frame collision buckets 4 |
 | selected_route_links_complete | passed | selected route links 49; selected rows 49 |
 | route_ids_resolved | passed | unresolved route IDs 0 |
 | selected_focus_context_complete | passed | focus context rows 49; selected rows 49 |
@@ -73,6 +83,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 |---|---|---|---|---|---:|---:|---:|---:|---|
 | selected_occurrence_cards | workbench_usage_selected_occurrence_cards | .local-cache/workbench-evidence/usage-selected-occurrence-cards.json | reports/workbench-usage-selected-occurrence-cards.md | pass_with_warnings | 1 | 0 | 0 | 0 | rows: 49<br>source_refs: 38<br>works: 20<br>route_ids: 1<br>mojibake_rows: 0 |
 | selected_source_diversity | workbench_usage_selected_source_diversity | .local-cache/workbench-evidence/usage-selected-source-diversity.json | reports/workbench-usage-selected-source-diversity.md | passed | 0 | 0 | 0 | 0 | rows: 49<br>source_refs: 38<br>works: 20<br>licenses: 2 |
+| selected_collision_audit | workbench_usage_selected_collision_audit | .local-cache/workbench-evidence/usage-selected-collision-audit.json | reports/workbench-usage-selected-collision-audit.md | pass_with_warnings | 1 | 0 | 0 | 0 | collision_buckets: 16<br>collision_occurrence_rows: 38<br>duplicate_source_ref_buckets: 8<br>duplicate_work_anchor_buckets: 8<br>cross_frame_collision_buckets: 4 |
 | selected_signature_independence | workbench_usage_selected_signature_independence | .local-cache/workbench-evidence/usage-selected-signature-independence.json | reports/workbench-usage-selected-signature-independence.md | passed | 0 | 0 | 0 | 0 | rows: 49<br>rows_with_recurring: 21<br>rows_with_cross_cluster: 9 |
 | selected_route_concentration_response | workbench_usage_selected_route_concentration_response | .local-cache/workbench-evidence/usage-selected-route-concentration-response.json | reports/workbench-usage-selected-route-concentration-response.md | pass_with_warnings | 1 | 0 | 0 | 0 | rows: 49<br>route_buckets: 1<br>warning_visible: 1 |
 | selected_route_resolution | workbench_usage_selected_route_resolution | .local-cache/workbench-evidence/usage-selected-route-resolution.json | reports/workbench-usage-selected-route-resolution.md | passed | 0 | 0 | 0 | 0 | selected_route_links: 49<br>route_buckets: 1<br>unresolved_route_ids: 0 |
