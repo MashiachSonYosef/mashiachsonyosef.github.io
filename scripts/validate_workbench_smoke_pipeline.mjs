@@ -252,6 +252,19 @@ await runStep('validate_usage_crossmatch_bridge_index', [
   usageCrossmatchBridgeIndexJson,
 ]);
 
+const usageCrossmatchNeighborhoodsJson = `${options.scratchDir}/usage-crossmatch-neighborhoods.json`;
+await runStep('build_usage_crossmatch_neighborhoods', [
+  'scripts/build_workbench_usage_crossmatch_neighborhoods.mjs',
+  `--crossmatch-links=${usageCrossmatchLinksJson}`,
+  `--output=${usageCrossmatchNeighborhoodsJson}`,
+  `--report=${options.scratchDir}/usage-crossmatch-neighborhoods.md`,
+]);
+
+await runStep('validate_usage_crossmatch_neighborhoods', [
+  'scripts/validate_workbench_usage_crossmatch_neighborhoods.mjs',
+  usageCrossmatchNeighborhoodsJson,
+]);
+
 const usageConcordanceLinkCheckJson = `${options.scratchDir}/usage-concordance-link-check.json`;
 await runStep('check_usage_concordance_links', [
   'scripts/check_workbench_usage_concordance_links.mjs',
@@ -294,6 +307,7 @@ await runStep('build_usage_handoff_index', [
   `--selected-occurrence-lookup=${usageSelectedOccurrenceLookupJson}`,
   `--crossmatch-links=${usageCrossmatchLinksJson}`,
   `--crossmatch-bridge-index=${usageCrossmatchBridgeIndexJson}`,
+  `--crossmatch-neighborhoods=${usageCrossmatchNeighborhoodsJson}`,
   '--no-smoke-validation',
   `--output=${usageHandoffIndexJson}`,
   `--report=${options.scratchDir}/usage-navigation-handoff-index.md`,
@@ -336,6 +350,7 @@ const usageSelectedOccurrences = readJsonIfExists(usageSelectedOccurrencesJson);
 const usageSelectedOccurrenceLookup = readJsonIfExists(usageSelectedOccurrenceLookupJson);
 const usageCrossmatchLinks = readJsonIfExists(usageCrossmatchLinksJson);
 const usageCrossmatchBridgeIndex = readJsonIfExists(usageCrossmatchBridgeIndexJson);
+const usageCrossmatchNeighborhoods = readJsonIfExists(usageCrossmatchNeighborhoodsJson);
 const usageConcordanceLinkCheck = readJsonIfExists(usageConcordanceLinkCheckJson);
 const usageRouteLinkCheck = readJsonIfExists(usageRouteLinkCheckJson);
 const usageAuditReview = readJsonIfExists(usageAuditReviewJson);
@@ -442,6 +457,11 @@ const artifact = {
     usage_crossmatch_same_frame_edges: usageCrossmatchBridgeIndex?.counts?.same_frame_edges ?? null,
     usage_crossmatch_bridge_buckets: usageCrossmatchBridgeIndex?.counts?.bridge_buckets ?? null,
     usage_crossmatch_bridge_route_payload_field_hits: usageCrossmatchBridgeIndex?.counts?.route_payload_field_hits ?? null,
+    usage_crossmatch_neighborhoods_status: usageCrossmatchNeighborhoods?.artifact_type === 'workbench_usage_navigation_crossmatch_neighborhoods' ? 'present' : 'missing',
+    usage_crossmatch_neighborhoods: usageCrossmatchNeighborhoods?.counts?.neighborhoods ?? null,
+    usage_crossmatch_neighborhood_same_frame_links: usageCrossmatchNeighborhoods?.counts?.same_frame_neighbor_links ?? null,
+    usage_crossmatch_neighborhood_bridge_links: usageCrossmatchNeighborhoods?.counts?.bridge_neighbor_links ?? null,
+    usage_crossmatch_neighborhood_route_payload_field_hits: usageCrossmatchNeighborhoods?.counts?.route_payload_field_hits ?? null,
     usage_concordance_link_check_status: usageConcordanceLinkCheck?.quality?.status ?? null,
     usage_concordance_link_check_source_url_bad: usageConcordanceLinkCheck?.counts?.source_url_bad ?? null,
     usage_concordance_link_check_work_anchor_bad: usageConcordanceLinkCheck?.counts?.work_anchor_bad ?? null,
@@ -605,6 +625,7 @@ function writeReport(relativePath, artifact) {
     `- Usage crossmatch links: ${artifact.counts.usage_crossmatch_links_status}, occurrences ${artifact.counts.usage_crossmatch_occurrences}, directed edges ${artifact.counts.usage_crossmatch_directed_edges}, undirected pairs ${artifact.counts.usage_crossmatch_undirected_pairs}, route payload hits ${artifact.counts.usage_crossmatch_route_payload_field_hits}`,
     `- Usage crossmatch strengths: strong ${artifact.counts.usage_crossmatch_strong_edges}, moderate ${artifact.counts.usage_crossmatch_moderate_edges}, weak ${artifact.counts.usage_crossmatch_weak_edges}`,
     `- Usage crossmatch bridge index: ${artifact.counts.usage_crossmatch_bridge_index_status}, bridge edges ${artifact.counts.usage_crossmatch_bridge_edges}, same-frame edges ${artifact.counts.usage_crossmatch_same_frame_edges}, bridge buckets ${artifact.counts.usage_crossmatch_bridge_buckets}, route payload hits ${artifact.counts.usage_crossmatch_bridge_route_payload_field_hits}`,
+    `- Usage crossmatch neighborhoods: ${artifact.counts.usage_crossmatch_neighborhoods_status}, neighborhoods ${artifact.counts.usage_crossmatch_neighborhoods}, same-frame links ${artifact.counts.usage_crossmatch_neighborhood_same_frame_links}, bridge links ${artifact.counts.usage_crossmatch_neighborhood_bridge_links}, route payload hits ${artifact.counts.usage_crossmatch_neighborhood_route_payload_field_hits}`,
     `- Usage concordance link check: ${artifact.counts.usage_concordance_link_check_status}, source URL bad ${artifact.counts.usage_concordance_link_check_source_url_bad}, work anchor bad ${artifact.counts.usage_concordance_link_check_work_anchor_bad}, issues ${artifact.counts.usage_concordance_link_check_issue_count}`,
     `- Usage route link check: ${artifact.counts.usage_route_link_check_status}, links ${artifact.counts.usage_route_link_check_links}, resolved ${artifact.counts.usage_route_link_check_resolved}, unresolved ${artifact.counts.usage_route_link_check_unresolved}, metadata mismatches ${artifact.counts.usage_route_link_check_metadata_mismatches}, unique route IDs ${artifact.counts.usage_route_link_check_unique_route_ids}`,
     `- Usage audit-only review: rows ${artifact.counts.usage_audit_review_rows}, ambiguous ${artifact.counts.usage_audit_review_ambiguous}, blocked ${artifact.counts.usage_audit_review_blocked}, reader-facing ${artifact.counts.usage_audit_review_reader_facing ? 'yes' : 'no'}`,

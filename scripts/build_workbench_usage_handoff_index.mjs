@@ -18,6 +18,7 @@ const defaults = {
   selectedOccurrenceLookup: '.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json',
   crossmatchLinks: '.local-cache/workbench-evidence/usage-crossmatch-links.json',
   crossmatchBridgeIndex: '.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json',
+  crossmatchNeighborhoods: '.local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json',
   agent6BoundaryPacket: '.local-cache/workbench-evidence/usage-agent6-boundary-packet.json',
   concentrationPacket: '.local-cache/workbench-evidence/usage-concentration-packet.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
@@ -41,6 +42,7 @@ const selectedOccurrences = readJsonIfExists(options.selectedOccurrences);
 const selectedOccurrenceLookup = readJsonIfExists(options.selectedOccurrenceLookup);
 const crossmatchLinks = readJsonIfExists(options.crossmatchLinks);
 const crossmatchBridgeIndex = readJsonIfExists(options.crossmatchBridgeIndex);
+const crossmatchNeighborhoods = readJsonIfExists(options.crossmatchNeighborhoods);
 const agent6BoundaryPacket = readJsonIfExists(options.agent6BoundaryPacket);
 const concentrationPacket = readJsonIfExists(options.concentrationPacket);
 const smokeValidation = options.smokeValidation ? readJsonIfExists(options.smokeValidation) : null;
@@ -70,6 +72,7 @@ const artifact = {
     selected_occurrence_lookup: options.selectedOccurrenceLookup,
     crossmatch_links: options.crossmatchLinks,
     crossmatch_bridge_index: options.crossmatchBridgeIndex,
+    crossmatch_neighborhoods: options.crossmatchNeighborhoods,
     agent6_boundary_packet: options.agent6BoundaryPacket,
     concentration_packet: options.concentrationPacket,
     smoke_validation: options.smokeValidation || null,
@@ -93,6 +96,7 @@ const artifact = {
     selected_occurrence_lookup_report: 'reports/workbench-usage-selected-occurrence-lookup.md',
     crossmatch_links_report: 'reports/workbench-usage-crossmatch-links.md',
     crossmatch_bridge_index_report: 'reports/workbench-usage-crossmatch-bridge-index.md',
+    crossmatch_neighborhoods_report: 'reports/workbench-usage-crossmatch-neighborhoods.md',
     agent6_boundary_packet_report: 'reports/workbench-usage-agent6-boundary-packet.md',
     concentration_packet_report: 'reports/workbench-usage-concentration-packet.md',
     smoke_validation_report: 'reports/workbench-smoke-pipeline-validation.md',
@@ -136,6 +140,10 @@ const artifact = {
     crossmatch_same_frame_edges: crossmatchBridgeIndex?.counts?.same_frame_edges ?? null,
     crossmatch_bridge_buckets: crossmatchBridgeIndex?.counts?.bridge_buckets ?? null,
     crossmatch_bridge_route_payload_field_hits: crossmatchBridgeIndex?.counts?.route_payload_field_hits ?? null,
+    crossmatch_neighborhoods: crossmatchNeighborhoods?.counts?.neighborhoods ?? null,
+    crossmatch_neighborhood_same_frame_links: crossmatchNeighborhoods?.counts?.same_frame_neighbor_links ?? null,
+    crossmatch_neighborhood_bridge_links: crossmatchNeighborhoods?.counts?.bridge_neighbor_links ?? null,
+    crossmatch_neighborhood_route_payload_field_hits: crossmatchNeighborhoods?.counts?.route_payload_field_hits ?? null,
     agent6_boundary_checks: Array.isArray(agent6BoundaryPacket?.checks) ? agent6BoundaryPacket.checks.length : null,
     agent6_boundary_failed_checks: Array.isArray(agent6BoundaryPacket?.checks)
       ? agent6BoundaryPacket.checks.filter((check) => check.status !== 'passed').length
@@ -187,6 +195,12 @@ const artifact = {
     crossmatch_bridge_buckets: crossmatchBridgeIndex?.counts?.bridge_buckets ?? null,
     crossmatch_bridge_failed_checks: crossmatchBridgeIndex?.quality?.failed_count ?? null,
     crossmatch_bridge_route_payload_field_hits: crossmatchBridgeIndex?.counts?.route_payload_field_hits ?? null,
+    crossmatch_neighborhoods_status: crossmatchNeighborhoods?.artifact_type === 'workbench_usage_navigation_crossmatch_neighborhoods' ? 'present' : 'not_run',
+    crossmatch_neighborhoods: crossmatchNeighborhoods?.counts?.neighborhoods ?? null,
+    crossmatch_neighborhood_same_frame_links: crossmatchNeighborhoods?.counts?.same_frame_neighbor_links ?? null,
+    crossmatch_neighborhood_bridge_links: crossmatchNeighborhoods?.counts?.bridge_neighbor_links ?? null,
+    crossmatch_neighborhood_failed_checks: crossmatchNeighborhoods?.quality?.failed_count ?? null,
+    crossmatch_neighborhood_route_payload_field_hits: crossmatchNeighborhoods?.counts?.route_payload_field_hits ?? null,
     agent6_boundary_packet_status: agent6BoundaryPacket?.artifact_type === 'workbench_usage_agent6_boundary_packet' ? 'present' : 'not_run',
     agent6_boundary_checks: Array.isArray(agent6BoundaryPacket?.checks) ? agent6BoundaryPacket.checks.length : null,
     agent6_boundary_failed_checks: Array.isArray(agent6BoundaryPacket?.checks)
@@ -252,6 +266,8 @@ function writeReport(relativePath, artifact) {
     `- Crossmatch route payload-like field hits: ${artifact.counts.crossmatch_route_payload_field_hits}`,
     `- Crossmatch bridge edges: ${artifact.counts.crossmatch_bridge_edges}, same-frame edges ${artifact.counts.crossmatch_same_frame_edges}, bridge buckets ${artifact.counts.crossmatch_bridge_buckets}`,
     `- Crossmatch bridge route payload-like field hits: ${artifact.counts.crossmatch_bridge_route_payload_field_hits}`,
+    `- Crossmatch neighborhoods: ${artifact.counts.crossmatch_neighborhoods}, same-frame links ${artifact.counts.crossmatch_neighborhood_same_frame_links}, bridge links ${artifact.counts.crossmatch_neighborhood_bridge_links}`,
+    `- Crossmatch neighborhood route payload-like field hits: ${artifact.counts.crossmatch_neighborhood_route_payload_field_hits}`,
     `- Agent 6 boundary checks: ${artifact.counts.agent6_boundary_checks}, failed ${artifact.counts.agent6_boundary_failed_checks}`,
     `- Concentration packet: ${artifact.counts.concentration_status}, warnings ${artifact.counts.concentration_warnings}, failed ${artifact.counts.concentration_failed_checks}`,
     `- Concentration buckets: routes ${artifact.counts.concentration_route_id_buckets}, clusters ${artifact.counts.concentration_cluster_buckets}`,
@@ -274,6 +290,8 @@ function writeReport(relativePath, artifact) {
     `- Crossmatch route payload-like field hits: ${artifact.validation.crossmatch_route_payload_field_hits}`,
     `- Crossmatch bridge index: ${artifact.validation.crossmatch_bridge_index_status}, bridge edges ${artifact.validation.crossmatch_bridge_edges}, bridge buckets ${artifact.validation.crossmatch_bridge_buckets}, failed ${artifact.validation.crossmatch_bridge_failed_checks}`,
     `- Crossmatch bridge route payload-like field hits: ${artifact.validation.crossmatch_bridge_route_payload_field_hits}`,
+    `- Crossmatch neighborhoods: ${artifact.validation.crossmatch_neighborhoods_status}, neighborhoods ${artifact.validation.crossmatch_neighborhoods}, same-frame links ${artifact.validation.crossmatch_neighborhood_same_frame_links}, bridge links ${artifact.validation.crossmatch_neighborhood_bridge_links}, failed ${artifact.validation.crossmatch_neighborhood_failed_checks}`,
+    `- Crossmatch neighborhood route payload-like field hits: ${artifact.validation.crossmatch_neighborhood_route_payload_field_hits}`,
     `- Agent 6 boundary packet: ${artifact.validation.agent6_boundary_packet_status}, checks ${artifact.validation.agent6_boundary_checks}, failed ${artifact.validation.agent6_boundary_failed_checks}`,
     `- Concentration packet: ${artifact.validation.concentration_packet_status}, quality ${artifact.validation.concentration_quality_status}, warnings ${artifact.validation.concentration_warnings}, failed ${artifact.validation.concentration_failed_checks}`,
     `- Concentration route payload-like field hits: ${artifact.validation.concentration_route_payload_field_hits}`,
@@ -299,6 +317,7 @@ function writeReport(relativePath, artifact) {
     `| selected occurrence lookup | ${mdCell(artifact.artifacts.selected_occurrence_lookup_report)} | yes |`,
     `| crossmatch links | ${mdCell(artifact.artifacts.crossmatch_links_report)} | yes |`,
     `| crossmatch bridge index | ${mdCell(artifact.artifacts.crossmatch_bridge_index_report)} | yes |`,
+    `| crossmatch neighborhoods | ${mdCell(artifact.artifacts.crossmatch_neighborhoods_report)} | yes |`,
     `| Agent 6 boundary packet | ${mdCell(artifact.artifacts.agent6_boundary_packet_report)} | yes |`,
     `| concentration packet | ${mdCell(artifact.artifacts.concentration_packet_report)} | yes |`,
     `| smoke validation | ${mdCell(artifact.artifacts.smoke_validation_report)} | yes |`,
@@ -333,6 +352,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-occurrence-lookup=')) parsed.selectedOccurrenceLookup = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--crossmatch-links=')) parsed.crossmatchLinks = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--crossmatch-bridge-index=')) parsed.crossmatchBridgeIndex = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--crossmatch-neighborhoods=')) parsed.crossmatchNeighborhoods = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--agent6-boundary-packet=')) parsed.agent6BoundaryPacket = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--concentration-packet=')) parsed.concentrationPacket = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
@@ -372,6 +392,8 @@ function buildCommands(options, manifest) {
   commands.validate_crossmatch_links = `node scripts/validate_workbench_usage_crossmatch_links.mjs ${options.crossmatchLinks}`;
   commands.build_crossmatch_bridge_index = `node scripts/build_workbench_usage_crossmatch_bridge_index.mjs --crossmatch-links=${options.crossmatchLinks} --output=${options.crossmatchBridgeIndex} --report=reports/workbench-usage-crossmatch-bridge-index.md`;
   commands.validate_crossmatch_bridge_index = `node scripts/validate_workbench_usage_crossmatch_bridge_index.mjs ${options.crossmatchBridgeIndex}`;
+  commands.build_crossmatch_neighborhoods = `node scripts/build_workbench_usage_crossmatch_neighborhoods.mjs --crossmatch-links=${options.crossmatchLinks} --output=${options.crossmatchNeighborhoods} --report=reports/workbench-usage-crossmatch-neighborhoods.md`;
+  commands.validate_crossmatch_neighborhoods = `node scripts/validate_workbench_usage_crossmatch_neighborhoods.mjs ${options.crossmatchNeighborhoods}`;
   commands.build_agent6_boundary_packet = `node scripts/build_workbench_usage_agent6_boundary_packet.mjs --handoff=${options.output} --selected-occurrences=${options.selectedOccurrences} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --route-link-check=${options.routeLinkCheck} --audit-review=${options.auditReview} --smoke-validation=${options.smokeValidation || '.local-cache/workbench-evidence/smoke-pipeline-validation.json'} --output=${options.agent6BoundaryPacket} --report=reports/workbench-usage-agent6-boundary-packet.md`;
   commands.validate_agent6_boundary_packet = `node scripts/validate_workbench_usage_agent6_boundary_packet.mjs ${options.agent6BoundaryPacket}`;
   commands.build_concentration_packet = `node scripts/build_workbench_usage_concentration_packet.mjs --selected-occurrences=${options.selectedOccurrences} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --output=${options.concentrationPacket} --report=reports/workbench-usage-concentration-packet.md`;
@@ -392,6 +414,7 @@ function buildCommands(options, manifest) {
     `--selected-occurrence-lookup=${options.selectedOccurrenceLookup}`,
     `--crossmatch-links=${options.crossmatchLinks}`,
     `--crossmatch-bridge-index=${options.crossmatchBridgeIndex}`,
+    `--crossmatch-neighborhoods=${options.crossmatchNeighborhoods}`,
     `--agent6-boundary-packet=${options.agent6BoundaryPacket}`,
     `--concentration-packet=${options.concentrationPacket}`,
     options.smokeValidation ? `--smoke-validation=${options.smokeValidation}` : '--no-smoke-validation',

@@ -1,6 +1,6 @@
 # Workbench Usage Navigation Handoff
 
-Generated: 2026-05-31T23:52:01.219Z
+Generated: 2026-06-01T00:02:35.678Z
 
 ## Summary
 
@@ -30,6 +30,8 @@ Generated: 2026-05-31T23:52:01.219Z
 - Crossmatch route payload-like field hits: 0
 - Crossmatch bridge edges: 1160, same-frame edges 1192, bridge buckets 2
 - Crossmatch bridge route payload-like field hits: 0
+- Crossmatch neighborhoods: 49, same-frame links 1192, bridge links 1160
+- Crossmatch neighborhood route payload-like field hits: 0
 - Agent 6 boundary checks: 11, failed 0
 - Concentration packet: pass_with_warnings, warnings 1, failed 0
 - Concentration buckets: routes 1, clusters 2
@@ -52,10 +54,12 @@ Generated: 2026-05-31T23:52:01.219Z
 - Crossmatch route payload-like field hits: 0
 - Crossmatch bridge index: present, bridge edges 1160, bridge buckets 2, failed 0
 - Crossmatch bridge route payload-like field hits: 0
+- Crossmatch neighborhoods: present, neighborhoods 49, same-frame links 1192, bridge links 1160, failed 0
+- Crossmatch neighborhood route payload-like field hits: 0
 - Agent 6 boundary packet: present, checks 11, failed 0
 - Concentration packet: present, quality pass_with_warnings, warnings 1, failed 0
 - Concentration route payload-like field hits: 0
-- Smoke validation: passed, steps 35, failed 0
+- Smoke validation: passed, steps 41, failed 0
 
 ## Artifacts
 
@@ -77,6 +81,7 @@ Generated: 2026-05-31T23:52:01.219Z
 | selected occurrence lookup | reports/workbench-usage-selected-occurrence-lookup.md | yes |
 | crossmatch links | reports/workbench-usage-crossmatch-links.md | yes |
 | crossmatch bridge index | reports/workbench-usage-crossmatch-bridge-index.md | yes |
+| crossmatch neighborhoods | reports/workbench-usage-crossmatch-neighborhoods.md | yes |
 | Agent 6 boundary packet | reports/workbench-usage-agent6-boundary-packet.md | yes |
 | concentration packet | reports/workbench-usage-concentration-packet.md | yes |
 | smoke validation | reports/workbench-smoke-pipeline-validation.md | yes |
@@ -114,11 +119,13 @@ Generated: 2026-05-31T23:52:01.219Z
 | validate_crossmatch_links | node scripts/validate_workbench_usage_crossmatch_links.mjs .local-cache/workbench-evidence/usage-crossmatch-links.json |
 | build_crossmatch_bridge_index | node scripts/build_workbench_usage_crossmatch_bridge_index.mjs --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --output=.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json --report=reports/workbench-usage-crossmatch-bridge-index.md |
 | validate_crossmatch_bridge_index | node scripts/validate_workbench_usage_crossmatch_bridge_index.mjs .local-cache/workbench-evidence/usage-crossmatch-bridge-index.json |
+| build_crossmatch_neighborhoods | node scripts/build_workbench_usage_crossmatch_neighborhoods.mjs --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --output=.local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json --report=reports/workbench-usage-crossmatch-neighborhoods.md |
+| validate_crossmatch_neighborhoods | node scripts/validate_workbench_usage_crossmatch_neighborhoods.mjs .local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json |
 | build_agent6_boundary_packet | node scripts/build_workbench_usage_agent6_boundary_packet.mjs --handoff=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-agent6-boundary-packet.json --report=reports/workbench-usage-agent6-boundary-packet.md |
 | validate_agent6_boundary_packet | node scripts/validate_workbench_usage_agent6_boundary_packet.mjs .local-cache/workbench-evidence/usage-agent6-boundary-packet.json |
 | build_concentration_packet | node scripts/build_workbench_usage_concentration_packet.mjs --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --output=.local-cache/workbench-evidence/usage-concentration-packet.json --report=reports/workbench-usage-concentration-packet.md |
 | validate_concentration_packet | node scripts/validate_workbench_usage_concentration_packet.mjs .local-cache/workbench-evidence/usage-concentration-packet.json |
-| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --sample-index=.local-cache/workbench-evidence/usage-sample-index.json --lookup-index=.local-cache/workbench-evidence/usage-lookup-index.json --selected-slice=.local-cache/workbench-evidence/usage-slice-tanakh.json --selected-slices-index=.local-cache/workbench-evidence/usage-selected-slices-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --crossmatch-bridge-index=.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json --agent6-boundary-packet=.local-cache/workbench-evidence/usage-agent6-boundary-packet.json --concentration-packet=.local-cache/workbench-evidence/usage-concentration-packet.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
+| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --sample-index=.local-cache/workbench-evidence/usage-sample-index.json --lookup-index=.local-cache/workbench-evidence/usage-lookup-index.json --selected-slice=.local-cache/workbench-evidence/usage-slice-tanakh.json --selected-slices-index=.local-cache/workbench-evidence/usage-selected-slices-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --crossmatch-bridge-index=.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json --crossmatch-neighborhoods=.local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json --agent6-boundary-packet=.local-cache/workbench-evidence/usage-agent6-boundary-packet.json --concentration-packet=.local-cache/workbench-evidence/usage-concentration-packet.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
 | validate_handoff_index | node scripts/validate_workbench_usage_handoff_index.mjs .local-cache/workbench-evidence/usage-navigation-handoff-index.json |
 
 ## Boundary

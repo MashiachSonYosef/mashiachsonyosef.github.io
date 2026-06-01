@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-05-31T23:54:56.394Z
+Generated: 2026-06-01T00:00:55.619Z
 
 ## Summary
 
-- Steps: 39
+- Steps: 41
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -28,6 +28,7 @@ Generated: 2026-05-31T23:54:56.394Z
 - Usage crossmatch links: present, occurrences 49, directed edges 2352, undirected pairs 1176, route payload hits 0
 - Usage crossmatch strengths: strong 1206, moderate 1146, weak 0
 - Usage crossmatch bridge index: present, bridge edges 1160, same-frame edges 1192, bridge buckets 2, route payload hits 0
+- Usage crossmatch neighborhoods: present, neighborhoods 49, same-frame links 1192, bridge links 1160, route payload hits 0
 - Usage concordance link check: passed, source URL bad 0, work anchor bad 0, issues 0
 - Usage route link check: passed, links 2390, resolved 2390, unresolved 0, metadata mismatches 0, unique route IDs 1
 - Usage audit-only review: rows 2064, ambiguous 2064, blocked 0, reader-facing no
@@ -72,6 +73,8 @@ Generated: 2026-05-31T23:54:56.394Z
 | validate_usage_crossmatch_links | passed | Validated usage crossmatch links .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-links.json: occurrences 49; edges 2352 |
 | build_usage_crossmatch_bridge_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-bridge-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-bridge-index.md / Usage crossmatch bridge index bridges 2; bridge edges 1160 |
 | validate_usage_crossmatch_bridge_index | passed | Validated usage crossmatch bridge index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-bridge-index.json: bridges 2; bridge edges 1160 |
+| build_usage_crossmatch_neighborhoods | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-neighborhoods.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-neighborhoods.md / Usage crossmatch neighborhoods occurrences 49; same-frame links 1192; bridge links 1160 |
+| validate_usage_crossmatch_neighborhoods | passed | Validated usage crossmatch neighborhoods .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-neighborhoods.json: neighborhoods 49; bridge links 1160 |
 | check_usage_concordance_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.md / Usage concordance link check passed; rows 2390; source URL bad 0; work anchors bad 0 |
 | check_usage_route_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.md / Usage route link check passed; rows 2390; links 2390; unresolved 0; metadata mismatches 0 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |
