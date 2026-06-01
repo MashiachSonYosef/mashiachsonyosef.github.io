@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "artifact_type": "definition_workbench_status_contract_validation",
+  "generated_at": "2026-06-01T15:09:22.164Z",
+  "generator": "scripts/validate_definition_workbench_status_contract.mjs",
+  "status": "pass_with_warnings",
+  "validates": [
+    "machine_status_not_review_authority",
+    "review_status_verified_reserved",
+    "answer_role_counts_preserved",
+    "source_license_completeness_visible",
+    "multi_answer_warnings_visible",
+    "no_ui_assignment_or_publication_claim"
+  ],
+  "inputs": {
+    "definition_workbench_sample": "data/definitions/definition-workbench-sample.json",
+    "definition_workbench_usage_link_packet": "data/definitions/definition-workbench-usage-link-packet.json",
+    "definition_workbench_usage_join_smoke": "data/definitions/definition-workbench-usage-join-smoke.json",
+    "definition_workbench_usage_agent6_packet": "data/definitions/definition-workbench-usage-agent6-packet.json"
+  },
+  "contract": {
+    "machine_shape_status_axis": "machine_route_shape_status_not_review_authority",
+    "review_status_axis": "lexical_authority_review_status",
+    "verified_reserved_for_reviewed_lexical_authority": true,
+    "allowed_machine_statuses": [
+      "conflicting",
+      "low_confidence",
+      "missing",
+      "proposed_only",
+      "single_answer_source_complete",
+      "unreviewed"
+    ],
+    "allowed_machine_review_statuses": [
+      "unreviewed_machine_sample"
+    ],
+    "publication_boundary": "Definition Workbench machine contract only; no UI assignment, accepted translation, source publication, or publication readiness claim."
+  },
+  "counts": {
+    "sample_rows": 200,
+    "machine_verified_rows": 0,
+    "status_counts": {
+      "conflicting": 96,
+      "proposed_only": 49,
+      "single_answer_source_complete": 55
+    },
+    "review_status_counts": {
+      "unreviewed_machine_sample": 200
+    },
+    "complete_source_license_rows": 200,
+    "answer_role_ready_rows": 151,
+    "multi_answer_rows": 96,
+    "link_packet_sample_review_verified_rows": 0,
+    "join_smoke_sample_review_verified_rows": 0,
+    "agent6_packet_current_sample_review_verified_rows": 0,
+    "publication_claim_artifacts": 0
+  },
+  "issues": [],
+  "warnings": [
+    "link packet carries 1 warning(s); keep visible to Agent 5/6"
+  ]
+}
