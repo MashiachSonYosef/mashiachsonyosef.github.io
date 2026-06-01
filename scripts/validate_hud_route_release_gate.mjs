@@ -122,6 +122,9 @@ const result = {
     answer_eligible_cards_missing_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_missing_answer_score || 0),
     answer_role_answer_cards: Number(boundaryReport.counts?.answer_role_answer_cards || 0),
     answer_role_answer_noneligible_cards: Number(boundaryReport.counts?.answer_role_answer_noneligible_cards || 0),
+    answer_eligible_translation_output_unsafe_samples: Array.isArray(boundaryReport.samples?.answer_eligible_translation_output_unsafe_cards)
+      ? boundaryReport.samples.answer_eligible_translation_output_unsafe_cards.length
+      : 0,
     translation_output_unsafe_cards: Number(boundaryReport.counts?.translation_output_unsafe_cards || 0),
     answer_eligible_translation_output_unsafe_source_rows: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_source_rows || 0),
     answer_eligible_translation_output_unsafe_cards: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_cards || 0),
@@ -342,6 +345,12 @@ async function validateBoundaryReport(report, reconciliation) {
   if (count('answer_eligible_translation_output_unsafe_cards') > count('answer_eligible_cards')) {
     issues.push('route publication boundary report has more answer-eligible unsafe cards than answer-eligible cards');
   }
+  if (count('answer_eligible_translation_output_unsafe_cards') > 0) {
+    const unsafeSamples = report.samples?.answer_eligible_translation_output_unsafe_cards;
+    if (!Array.isArray(unsafeSamples) || unsafeSamples.length < 1) {
+      issues.push('route publication boundary report is missing answer-eligible unsafe sample cards');
+    }
+  }
   if (count('translation_output_unsafe_cards') > count('cards')) {
     issues.push('route publication boundary report has more translation-output unsafe cards than cards');
   }
@@ -523,6 +532,7 @@ function writeReport(relativePath, result) {
     `- Answer-eligible cards missing numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_missing_answer_score}`,
     `- Cards with answer role: ${result.route_publication_boundary.answer_role_answer_cards}`,
     `- Cards with answer role but not answer-eligible: ${result.route_publication_boundary.answer_role_answer_noneligible_cards}`,
+    `- Answer-eligible unsafe sample cards: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_samples}`,
     `- Translation-output unsafe cards flagged: ${result.route_publication_boundary.translation_output_unsafe_cards}`,
     `- Answer-eligible translation-output unsafe source rows flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_source_rows}`,
     `- Answer-eligible translation-output unsafe cards flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_cards}`,

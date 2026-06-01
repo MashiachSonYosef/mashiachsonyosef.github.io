@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T05:42:24.729Z
+Generated: 2026-06-01T05:46:13.811Z
 
 ## Boundary
 
@@ -33,7 +33,7 @@ Generated: 2026-06-01T05:42:24.729Z
 - Issues: 0
 - Warnings: 335103
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
-- Validator SHA-256: `de2ecde6ea528cfc57ba0f43b47635e9dde6240cf0ba78a5d21a2eb9d9584111`
+- Validator SHA-256: `66e03854e6dffed79fef98b9efe3520acfef84ae3be06bde8f222e40cf88a351`
 - Fixture cases checked: 15
 - Fixture bytes: 21905
 - Fixture SHA-256: `bdae0d92ac5638f660b5b7bc81f46027a92bb9c3453d7333c55f3a17a6d18e6f`
@@ -53,6 +53,10 @@ These are answer-slot candidates whose source rows remain HUD-safe but require d
 
 - CC BY-SA 4.0 / GFDL: 14206
 - CC BY 4.0: 6881
+
+## Answer-Eligible Unsafe Samples
+
+Stored in reports/route-publication-boundary-audit.json with 25 capped sample card(s).
 
 ## Route Families
 

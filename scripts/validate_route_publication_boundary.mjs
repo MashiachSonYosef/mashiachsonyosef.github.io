@@ -147,6 +147,9 @@ function createAudit(manifestData = {}, contractData = contract) {
     route_types: {},
     display_sections: {},
     answer_roles: {},
+    samples: {
+      answer_eligible_translation_output_unsafe_cards: [],
+    },
     issues: [],
     warnings: [],
   };
@@ -278,6 +281,7 @@ function auditCard(card, context, target = audit) {
   }
 
   let cardHasTranslationUnsafeRow = false;
+  const cardTranslationUnsafeRows = [];
   for (const [rowIndex, row] of sourceRows.entries()) {
     target.counts.source_rows += 1;
     const license = String(row?.license || '').trim();
@@ -294,6 +298,14 @@ function auditCard(card, context, target = audit) {
       target.counts.translation_output_unsafe_source_rows += 1;
       cardHasTranslationUnsafeRow = true;
       increment(target.unsafe_translation_output_licenses, license || 'missing');
+      cardTranslationUnsafeRows.push({
+        row_index: rowIndex,
+        source_name: row?.source_name || '',
+        source_family: row?.source_family || '',
+        source_id: row?.source_id || '',
+        license: license || 'missing',
+        license_url: row?.license_url || '',
+      });
       if (card?.answer_eligible === true) {
         target.counts.answer_eligible_translation_output_unsafe_source_rows += 1;
         increment(target.answer_eligible_unsafe_translation_output_licenses, license || 'missing');
@@ -318,9 +330,27 @@ function auditCard(card, context, target = audit) {
 
   if (cardHasTranslationUnsafeRow) {
     target.counts.translation_output_unsafe_cards += 1;
-    if (card?.answer_eligible === true) target.counts.answer_eligible_translation_output_unsafe_cards += 1;
+    if (card?.answer_eligible === true) {
+      target.counts.answer_eligible_translation_output_unsafe_cards += 1;
+      addAnswerEligibleUnsafeSample(context, card, cardTranslationUnsafeRows, target);
+    }
     addWarning(context, 'card is HUD-route usable but not automatically safe as accepted translation-output support without downstream license handling', target);
   }
+}
+
+function addAnswerEligibleUnsafeSample(context, card, rows, target = audit) {
+  const samples = target.samples.answer_eligible_translation_output_unsafe_cards;
+  if (samples.length >= options.maxWarnings) return;
+  samples.push({
+    context,
+    card_id: card?.card_id || '',
+    normalized: card?.normalized || '',
+    route_family: card?.route_family || '',
+    route_type: card?.route_type || '',
+    display_section: card?.display_section || '',
+    answer_score: Number.isFinite(card?.answer_score) ? card.answer_score : null,
+    unsafe_source_rows: rows.slice(0, 5),
+  });
 }
 
 function hudSafe(row) {
@@ -410,6 +440,12 @@ function writeReport(relativePath, data) {
     'These are answer-slot candidates whose source rows remain HUD-safe but require downstream attribution/license handling before use as accepted translation-output support.',
     '',
     ...topCounts(data.answer_eligible_unsafe_translation_output_licenses, 20).map((row) => `- ${row.value}: ${row.count}`),
+    '',
+    '## Answer-Eligible Unsafe Samples',
+    '',
+    data.samples.answer_eligible_translation_output_unsafe_cards.length
+      ? `Stored in ${options.output} with ${data.samples.answer_eligible_translation_output_unsafe_cards.length} capped sample card(s).`
+      : 'None.',
     '',
     '## Route Families',
     '',
