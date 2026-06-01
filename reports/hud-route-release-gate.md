@@ -1,6 +1,6 @@
 # HUD Route Release Gate
 
-Generated: 2026-06-01T06:31:16.781Z
+Generated: 2026-06-01T06:32:37.802Z
 Status: pass
 Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 

@@ -17,6 +17,24 @@ const defaults = {
 const options = parseArgs(process.argv.slice(2));
 const issues = [];
 const warnings = [];
+const unsafeAnswerSampleFields = new Set([
+  'context',
+  'card_id',
+  'normalized',
+  'route_family',
+  'route_type',
+  'display_section',
+  'answer_score',
+  'unsafe_source_rows',
+]);
+const unsafeAnswerSampleRowFields = new Set([
+  'row_index',
+  'source_name',
+  'source_family',
+  'source_id',
+  'license',
+  'license_url',
+]);
 
 const stamp = readJson(options.stamp, 'release stamp');
 const publicManifest = readJson(options.publicManifest, 'public lookup manifest');
@@ -415,6 +433,7 @@ async function validateBoundaryReport(report, reconciliation) {
       issues.push('route publication boundary report is missing answer-eligible unsafe sample cards');
     }
   }
+  validateUnsafeAnswerSamples(report);
   if (count('translation_output_unsafe_cards') > count('cards')) {
     issues.push('route publication boundary report has more translation-output unsafe cards than cards');
   }
@@ -544,6 +563,39 @@ function validateCard(card, context) {
     }
     if (card.boundary_safe === false && card.answer_eligible === true) {
       issues.push(`${context}: boundary-unsafe paraphrase must not be answer_eligible`);
+    }
+  }
+}
+
+function validateUnsafeAnswerSamples(report) {
+  const samples = report.samples?.answer_eligible_translation_output_unsafe_cards;
+  if (!Array.isArray(samples)) return;
+  for (const [sampleIndex, sample] of samples.entries()) {
+    const context = `route publication boundary unsafe sample ${sampleIndex}`;
+    if (!sample || typeof sample !== 'object' || Array.isArray(sample)) {
+      issues.push(`${context}: sample must be an object`);
+      continue;
+    }
+    for (const key of Object.keys(sample)) {
+      if (!unsafeAnswerSampleFields.has(key)) {
+        issues.push(`${context}: disallowed sample field ${key}`);
+      }
+    }
+    if (!Array.isArray(sample.unsafe_source_rows) || !sample.unsafe_source_rows.length) {
+      issues.push(`${context}: missing unsafe_source_rows`);
+      continue;
+    }
+    for (const [rowIndex, row] of sample.unsafe_source_rows.entries()) {
+      const rowContext = `${context}.unsafe_source_rows[${rowIndex}]`;
+      if (!row || typeof row !== 'object' || Array.isArray(row)) {
+        issues.push(`${rowContext}: row must be an object`);
+        continue;
+      }
+      for (const key of Object.keys(row)) {
+        if (!unsafeAnswerSampleRowFields.has(key)) {
+          issues.push(`${rowContext}: disallowed row field ${key}`);
+        }
+      }
     }
   }
 }
