@@ -520,6 +520,27 @@ await runStep('validate_usage_selected_route_resolution', [
   usageSelectedRouteResolutionJson,
 ]);
 
+const usageSelectedQaPackageJson = `${options.scratchDir}/usage-selected-qa-package.json`;
+await runStep('build_usage_selected_qa_package', [
+  'scripts/build_workbench_usage_selected_qa_package.mjs',
+  `--selected-occurrence-cards=${usageSelectedOccurrenceCardsJson}`,
+  `--selected-source-diversity=${usageSelectedSourceDiversityJson}`,
+  `--selected-signature-independence=${usageSelectedSignatureIndependenceJson}`,
+  `--selected-route-concentration-response=${usageSelectedRouteConcentrationResponseJson}`,
+  `--selected-route-resolution=${usageSelectedRouteResolutionJson}`,
+  `--selected-occurrence-lookup=${usageSelectedOccurrenceLookupJson}`,
+  `--crossmatch-links=${usageCrossmatchLinksJson}`,
+  `--crossmatch-bridge-index=${usageCrossmatchBridgeIndexJson}`,
+  `--crossmatch-neighborhoods=${usageCrossmatchNeighborhoodsJson}`,
+  `--output=${usageSelectedQaPackageJson}`,
+  `--report=${options.scratchDir}/usage-selected-qa-package.md`,
+]);
+
+await runStep('validate_usage_selected_qa_package', [
+  'scripts/validate_workbench_usage_selected_qa_package.mjs',
+  usageSelectedQaPackageJson,
+]);
+
 const usageAuditReviewJson = `${options.scratchDir}/usage-audit-only-review.json`;
 await runStep('build_usage_audit_review', [
   'scripts/build_workbench_usage_audit_review.mjs',
@@ -559,6 +580,7 @@ await runStep('build_usage_handoff_index', [
   `--selected-route-concentration-response=${usageSelectedRouteConcentrationResponseJson}`,
   `--selected-occurrence-cards=${usageSelectedOccurrenceCardsJson}`,
   `--selected-route-resolution=${usageSelectedRouteResolutionJson}`,
+  `--selected-qa-package=${usageSelectedQaPackageJson}`,
   `--selected-occurrence-lookup=${usageSelectedOccurrenceLookupJson}`,
   `--crossmatch-links=${usageCrossmatchLinksJson}`,
   `--crossmatch-bridge-index=${usageCrossmatchBridgeIndexJson}`,
@@ -619,6 +641,7 @@ const usageSelectedSourceDiversity = readJsonIfExists(usageSelectedSourceDiversi
 const usageSelectedRouteConcentrationResponse = readJsonIfExists(usageSelectedRouteConcentrationResponseJson);
 const usageSelectedOccurrenceCards = readJsonIfExists(usageSelectedOccurrenceCardsJson);
 const usageSelectedRouteResolution = readJsonIfExists(usageSelectedRouteResolutionJson);
+const usageSelectedQaPackage = readJsonIfExists(usageSelectedQaPackageJson);
 const usageSelectedOccurrenceLookup = readJsonIfExists(usageSelectedOccurrenceLookupJson);
 const usageCrossmatchLinks = readJsonIfExists(usageCrossmatchLinksJson);
 const usageCrossmatchBridgeIndex = readJsonIfExists(usageCrossmatchBridgeIndexJson);
@@ -849,6 +872,16 @@ const artifact = {
     usage_selected_route_resolution_reader_facing_rows: usageSelectedRouteResolution?.counts?.reader_facing_rows ?? null,
     usage_selected_route_resolution_route_payload_copied_rows: usageSelectedRouteResolution?.counts?.route_payload_copied_rows ?? null,
     usage_selected_route_resolution_route_payload_field_hits: usageSelectedRouteResolution?.counts?.route_payload_field_hits ?? null,
+    usage_selected_qa_package_status: usageSelectedQaPackage?.artifact_type === 'workbench_usage_selected_qa_package' ? 'present' : 'missing',
+    usage_selected_qa_package_items: usageSelectedQaPackage?.counts?.package_items ?? null,
+    usage_selected_qa_package_selected_rows: usageSelectedQaPackage?.counts?.selected_rows ?? null,
+    usage_selected_qa_package_route_ids: usageSelectedQaPackage?.counts?.selected_route_ids ?? null,
+    usage_selected_qa_package_unresolved_route_ids: usageSelectedQaPackage?.counts?.unresolved_route_ids ?? null,
+    usage_selected_qa_package_route_concentration_warning_visible: usageSelectedQaPackage?.counts?.route_concentration_warning_visible ?? null,
+    usage_selected_qa_package_crossmatch_directed_edges: usageSelectedQaPackage?.counts?.crossmatch_directed_edges ?? null,
+    usage_selected_qa_package_crossmatch_bridge_edges: usageSelectedQaPackage?.counts?.crossmatch_bridge_edges ?? null,
+    usage_selected_qa_package_reader_facing_rows: usageSelectedQaPackage?.counts?.reader_facing_rows ?? null,
+    usage_selected_qa_package_route_payload_field_hits: usageSelectedQaPackage?.counts?.route_payload_field_hits ?? null,
     usage_selected_occurrence_lookup_status: usageSelectedOccurrenceLookup?.artifact_type === 'workbench_usage_navigation_selected_occurrence_lookup' ? 'present' : 'missing',
     usage_selected_occurrence_lookup_work_buckets: usageSelectedOccurrenceLookup?.counts?.work_buckets ?? null,
     usage_selected_occurrence_lookup_cluster_buckets: usageSelectedOccurrenceLookup?.counts?.cluster_buckets ?? null,
@@ -1046,6 +1079,7 @@ function writeReport(relativePath, artifact) {
     `- Usage selected route concentration response: ${artifact.counts.usage_selected_route_concentration_response_status}, rows ${artifact.counts.usage_selected_route_concentration_response_rows}, route buckets ${artifact.counts.usage_selected_route_concentration_response_route_buckets}, warning visible ${artifact.counts.usage_selected_route_concentration_response_warning_visible}, source refs ${artifact.counts.usage_selected_route_concentration_response_unique_source_refs}, works ${artifact.counts.usage_selected_route_concentration_response_unique_works}, rows with recurring ${artifact.counts.usage_selected_route_concentration_response_rows_with_recurring}, rows with cross-cluster ${artifact.counts.usage_selected_route_concentration_response_rows_with_cross_cluster}, warnings ${artifact.counts.usage_selected_route_concentration_response_warning_count}, reader-facing rows ${artifact.counts.usage_selected_route_concentration_response_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_route_concentration_response_route_payload_field_hits}`,
     `- Usage selected occurrence cards: ${artifact.counts.usage_selected_occurrence_cards_status}, rows ${artifact.counts.usage_selected_occurrence_cards_rows}, context ${artifact.counts.usage_selected_occurrence_cards_with_context}, focus markers ${artifact.counts.usage_selected_occurrence_cards_with_focus_marker}, related signature rows ${artifact.counts.usage_selected_occurrence_cards_with_related_signatures}, cross-cluster rows ${artifact.counts.usage_selected_occurrence_cards_with_cross_cluster_signatures}, related samples ${artifact.counts.usage_selected_occurrence_cards_related_occurrence_samples}, route warning visible ${artifact.counts.usage_selected_occurrence_cards_route_concentration_warning_visible}, mojibake rows ${artifact.counts.usage_selected_occurrence_cards_mojibake_rows}, reader-facing rows ${artifact.counts.usage_selected_occurrence_cards_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_occurrence_cards_route_payload_field_hits}`,
     `- Usage selected route resolution: ${artifact.counts.usage_selected_route_resolution_status}, route IDs ${artifact.counts.usage_selected_route_resolution_route_id_buckets}, selected links ${artifact.counts.usage_selected_route_resolution_selected_route_links}, resolved ${artifact.counts.usage_selected_route_resolution_resolved_route_ids}, unresolved ${artifact.counts.usage_selected_route_resolution_unresolved_route_ids}, route-link check ${artifact.counts.usage_selected_route_resolution_route_link_check_status}, reader-facing rows ${artifact.counts.usage_selected_route_resolution_reader_facing_rows}, copied payload rows ${artifact.counts.usage_selected_route_resolution_route_payload_copied_rows}, route payload hits ${artifact.counts.usage_selected_route_resolution_route_payload_field_hits}`,
+    `- Usage selected QA package: ${artifact.counts.usage_selected_qa_package_status}, items ${artifact.counts.usage_selected_qa_package_items}, rows ${artifact.counts.usage_selected_qa_package_selected_rows}, route IDs ${artifact.counts.usage_selected_qa_package_route_ids}, unresolved routes ${artifact.counts.usage_selected_qa_package_unresolved_route_ids}, route warning visible ${artifact.counts.usage_selected_qa_package_route_concentration_warning_visible}, directed edges ${artifact.counts.usage_selected_qa_package_crossmatch_directed_edges}, bridge edges ${artifact.counts.usage_selected_qa_package_crossmatch_bridge_edges}, reader-facing rows ${artifact.counts.usage_selected_qa_package_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_qa_package_route_payload_field_hits}`,
     `- Usage selected occurrence lookup: ${artifact.counts.usage_selected_occurrence_lookup_status}, work buckets ${artifact.counts.usage_selected_occurrence_lookup_work_buckets}, cluster buckets ${artifact.counts.usage_selected_occurrence_lookup_cluster_buckets}, status buckets ${artifact.counts.usage_selected_occurrence_lookup_status_buckets}`,
     `- Usage crossmatch links: ${artifact.counts.usage_crossmatch_links_status}, occurrences ${artifact.counts.usage_crossmatch_occurrences}, directed edges ${artifact.counts.usage_crossmatch_directed_edges}, undirected pairs ${artifact.counts.usage_crossmatch_undirected_pairs}, route payload hits ${artifact.counts.usage_crossmatch_route_payload_field_hits}`,
     `- Usage crossmatch strengths: strong ${artifact.counts.usage_crossmatch_strong_edges}, moderate ${artifact.counts.usage_crossmatch_moderate_edges}, weak ${artifact.counts.usage_crossmatch_weak_edges}`,
