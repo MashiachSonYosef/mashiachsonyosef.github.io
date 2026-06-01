@@ -1,16 +1,16 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T03:04:55.060Z
+Generated: 2026-06-01T03:15:15.106Z
 
 ## Summary
 
-- Steps: 74
+- Steps: 76
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
 - Missing smoke artifacts: 0
 - Zero-useful smoke targets: 0
-- Source freshness: stale, count delta 86, modified after artifact 91
+- Source freshness: stale, count delta 87, modified after artifact 92
 - Reshit source coverage: 271/271, uncovered 0
 - Handoff coverage: 55 manifests, missing targets 0
 - Public handoff index: 55 selected, validation failed 0, eligible 2390, ambiguous count-only 2064, zero-useful 0, ambiguous reader-facing no
@@ -25,7 +25,7 @@ Generated: 2026-06-01T03:04:55.060Z
 - Usage search rows: present, rows 2390, works 271, categories 15, clusters 2, route payload hits 0
 - Usage provenance: present, rows 2390, licenses 4, version sources 185, license metadata 2390, source links 2390, version metadata 2390, unsafe license rows 0, route payload hits 0
 - Usage search shard index: present, shards 74, rows 2390, categories 15, clusters 2, statuses 3, route payload hits 0
-- Usage refresh priority: present, pending 91, known-use candidates 0, review-only 91, promoted 0, blocked broad refresh files 91, route payload hits 0
+- Usage refresh priority: present, pending 92, known-use candidates 0, review-only 92, promoted 0, blocked broad refresh files 92, route payload hits 0
 - Usage unit density: present, units 1673, rows 2390, multi-occurrence units 418, max occurrences per unit 11, works 271, route payload hits 0
 - Usage phrase recurrence: present, rows 2390, n-gram instances 32425, recurring groups 2244, rows with recurring groups 2303, skipped rows without focus 0, route payload hits 0
 - Usage context offset: present, rows 2390, rows with context 2390, token observations 36525, immediate neighbor observations 4731, offsets 16, token buckets 17103, skipped rows without focus 0, route payload hits 0
@@ -39,6 +39,7 @@ Generated: 2026-06-01T03:04:55.060Z
 - Usage selected source diversity: present, rows 49, source refs 38, work anchors 38, works 20, categories 1, licenses 2, version sources 4, duplicate source-ref buckets 8, duplicate source-ref rows 19, missing signature rows 0, reader-facing rows 0, route payload hits 0
 - Usage selected route concentration response: present, rows 49, route buckets 1, warning visible 1, source refs 38, works 20, rows with recurring 21, rows with cross-cluster 9, warnings 1, reader-facing rows 0, route payload hits 0
 - Usage selected occurrence cards: present, rows 49, context 49, focus markers 49, related signature rows 21, cross-cluster rows 9, related samples 63, route warning visible 1, mojibake rows 0, reader-facing rows 0, route payload hits 0
+- Usage selected route resolution: present, route IDs 1, selected links 49, resolved 1, unresolved 0, route-link check passed, reader-facing rows 0, copied payload rows 0, route payload hits 0
 - Usage selected occurrence lookup: present, work buckets 20, cluster buckets 2, status buckets 3
 - Usage crossmatch links: present, occurrences 49, directed edges 2352, undirected pairs 1176, route payload hits 0
 - Usage crossmatch strengths: strong 1206, moderate 1146, weak 0
@@ -57,8 +58,8 @@ Generated: 2026-06-01T03:04:55.060Z
 | step | status | output |
 |---|---|---|
 | validate_smoke_queue | passed | Workbench smoke target validation passed. Targets: 55. |
-| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1278; scanned 1192; modified after artifact 91; created after artifact 86 |
-| validate_source_freshness | passed | Validated workbench source freshness .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json: status stale; pending 91 |
+| report_source_freshness | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.md / Source freshness stale; current 1279; scanned 1192; modified after artifact 92; created after artifact 87 |
+| validate_source_freshness | passed | Validated workbench source freshness .local-cache/workbench-evidence/smoke-pipeline-validation/source-freshness.json: status stale; pending 92 |
 | report_reshit_smoke_coverage | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-coverage.md / Known nonzero source files 271; covered 271; uncovered 0; suggested gap targets 0 |
 | report_workbench_smoke_counts | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/reshit-smoke-counts.md / Targets 55; supported 339; candidate 1351; weak 700; ambiguous 2064; missing 0; zero useful 0 |
 | build_complete_handoff_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/handoff-index-smoke-complete.md / Target queue coverage: 55/55; missing 0 |
@@ -83,8 +84,8 @@ Generated: 2026-06-01T03:04:55.060Z
 | validate_usage_provenance_index | passed | Validated usage provenance index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-provenance-index.json: licenses 4; version sources 185; rows 2390 |
 | build_usage_search_shard_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.md / Usage search shard index shards 74; rows 2390 |
 | validate_usage_search_shard_index | passed | Validated usage search shard index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json: shards 74; rows 2390 |
-| build_usage_refresh_priority_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.md / Usage refresh priority pending 91; known-use candidates 0; promoted 0 |
-| validate_usage_refresh_priority_index | passed | Validated usage refresh priority index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json: pending 91; promoted 0 |
+| build_usage_refresh_priority_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.md / Usage refresh priority pending 92; known-use candidates 0; promoted 0 |
+| validate_usage_refresh_priority_index | passed | Validated usage refresh priority index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json: pending 92; promoted 0 |
 | build_usage_unit_density_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.md / Usage unit density units 1673; multi 418; rows 2390 |
 | validate_usage_unit_density_index | passed | Validated usage unit density index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-unit-density-index.json: units 1673; rows 2390 |
 | build_usage_phrase_recurrence_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-phrase-recurrence-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-phrase-recurrence-index.md / Usage phrase recurrence groups 2244; instances 32425; rows 2390 |
@@ -125,6 +126,8 @@ Generated: 2026-06-01T03:04:55.060Z
 | validate_usage_crossmatch_neighborhoods | passed | Validated usage crossmatch neighborhoods .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-neighborhoods.json: neighborhoods 49; bridge links 1160 |
 | check_usage_concordance_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-concordance-link-check.md / Usage concordance link check passed; rows 2390; source URL bad 0; work anchors bad 0 |
 | check_usage_route_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-route-link-check.md / Usage route link check passed; rows 2390; links 2390; unresolved 0; metadata mismatches 0 |
+| build_usage_selected_route_resolution | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-route-resolution.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-route-resolution.md / Selected route resolution routes 1; resolved 1; selected cards 49 |
+| validate_usage_selected_route_resolution | passed | Validated usage selected route resolution .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-route-resolution.json: routes 1; selected links 49 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |
 | build_usage_handoff_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-navigation-handoff-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-navigation-handoff-index.md / Usage handoff index rows 2390; occurrence links passed; route links passed; smoke skipped_self_reference |
 | validate_usage_handoff_index | passed | Workbench usage handoff index validation passed. Rows: 2390. Clusters: 2. |

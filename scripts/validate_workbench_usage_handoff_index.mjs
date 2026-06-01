@@ -198,6 +198,13 @@ function validateCounts() {
     'selected_occurrence_cards_mojibake_rows',
     'selected_occurrence_cards_reader_facing_rows',
     'selected_occurrence_cards_route_payload_field_hits',
+    'selected_route_resolution_route_id_buckets',
+    'selected_route_resolution_selected_route_links',
+    'selected_route_resolution_resolved_route_ids',
+    'selected_route_resolution_unresolved_route_ids',
+    'selected_route_resolution_reader_facing_rows',
+    'selected_route_resolution_route_payload_copied_rows',
+    'selected_route_resolution_route_payload_field_hits',
     'selected_occurrence_lookup_work_buckets',
     'selected_occurrence_lookup_cluster_buckets',
     'selected_occurrence_lookup_status_buckets',
@@ -359,6 +366,30 @@ function validateCounts() {
   }
   if (Number(artifact.counts?.selected_occurrence_cards_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_occurrence_cards_route_payload_field_hits must be 0');
+  }
+  if (Number(artifact.counts?.selected_route_resolution_route_id_buckets || 0) !== Number(artifact.counts?.unique_route_ids || 0)) {
+    issues.push('selected_route_resolution_route_id_buckets must equal unique_route_ids');
+  }
+  if (Number(artifact.counts?.selected_route_resolution_selected_route_links || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_route_resolution_selected_route_links must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.counts?.selected_route_resolution_resolved_route_ids || 0) !== Number(artifact.counts?.selected_route_resolution_route_id_buckets || 0)) {
+    issues.push('selected_route_resolution_resolved_route_ids must equal route_id_buckets');
+  }
+  if (Number(artifact.counts?.selected_route_resolution_unresolved_route_ids || 0) !== 0) {
+    issues.push('selected_route_resolution_unresolved_route_ids must be 0');
+  }
+  if (artifact.counts?.selected_route_resolution_route_link_check_status !== 'passed') {
+    issues.push('selected_route_resolution_route_link_check_status must be passed');
+  }
+  if (Number(artifact.counts?.selected_route_resolution_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_route_resolution_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_route_resolution_route_payload_copied_rows || 0) !== 0) {
+    issues.push('selected_route_resolution_route_payload_copied_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_route_resolution_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_route_resolution_route_payload_field_hits must be 0');
   }
   if (Number(artifact.counts?.crossmatch_occurrence_refs || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('crossmatch_occurrence_refs must equal selected_occurrence_rows');
@@ -644,6 +675,7 @@ function validateArtifacts() {
     'selected_source_diversity_report',
     'selected_route_concentration_response_report',
     'selected_occurrence_cards_report',
+    'selected_route_resolution_report',
     'selected_occurrence_lookup_report',
     'crossmatch_links_report',
     'crossmatch_bridge_index_report',
@@ -715,6 +747,9 @@ function validateValidation() {
   }
   if (artifact.validation?.selected_occurrence_cards_status !== 'present') {
     issues.push('validation.selected_occurrence_cards_status must be present');
+  }
+  if (artifact.validation?.selected_route_resolution_status !== 'present') {
+    issues.push('validation.selected_route_resolution_status must be present');
   }
   if (artifact.validation?.selected_occurrence_lookup_status !== 'present') {
     issues.push('validation.selected_occurrence_lookup_status must be present');
@@ -1108,6 +1143,36 @@ function validateValidation() {
   if (Number(artifact.validation?.selected_occurrence_cards_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_occurrence_cards_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.validation?.selected_route_resolution_route_id_buckets || 0) !== Number(artifact.counts?.unique_route_ids || 0)) {
+    issues.push('selected_route_resolution_route_id_buckets must equal unique_route_ids');
+  }
+  if (Number(artifact.validation?.selected_route_resolution_selected_route_links || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_route_resolution_selected_route_links must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.validation?.selected_route_resolution_resolved_route_ids || 0) !== Number(artifact.validation?.selected_route_resolution_route_id_buckets || 0)) {
+    issues.push('selected_route_resolution_resolved_route_ids must equal route_id_buckets');
+  }
+  if (Number(artifact.validation?.selected_route_resolution_unresolved_route_ids || 0) !== 0) {
+    issues.push('selected_route_resolution_unresolved_route_ids must be 0');
+  }
+  if (artifact.validation?.selected_route_resolution_route_link_check_status !== 'passed') {
+    issues.push('selected_route_resolution_route_link_check_status must be passed');
+  }
+  if (Number(artifact.validation?.selected_route_resolution_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_route_resolution_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_route_resolution_failed_checks || 0) !== 0) {
+    issues.push('selected_route_resolution_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.selected_route_resolution_warning_count || 0) !== 0) {
+    issues.push('selected_route_resolution_warning_count must be 0');
+  }
+  if (Number(artifact.validation?.selected_route_resolution_route_payload_copied_rows || 0) !== 0) {
+    issues.push('selected_route_resolution_route_payload_copied_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_route_resolution_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_route_resolution_route_payload_field_hits must be 0');
+  }
   if (Number(artifact.validation?.selected_occurrence_lookup_work_buckets || 0) <= 0) {
     issues.push('selected_occurrence_lookup_work_buckets must be positive');
   }
@@ -1222,6 +1287,8 @@ function validateCommands() {
     validate_selected_route_concentration_response: 'validate_workbench_usage_selected_route_concentration_response.mjs',
     build_selected_occurrence_cards: 'build_workbench_usage_selected_occurrence_cards.mjs',
     validate_selected_occurrence_cards: 'validate_workbench_usage_selected_occurrence_cards.mjs',
+    build_selected_route_resolution: 'build_workbench_usage_selected_route_resolution.mjs',
+    validate_selected_route_resolution: 'validate_workbench_usage_selected_route_resolution.mjs',
     build_selected_occurrence_lookup: 'build_workbench_usage_selected_occurrence_lookup.mjs',
     validate_selected_occurrence_lookup: 'validate_workbench_usage_selected_occurrence_lookup.mjs',
     build_crossmatch_links: 'build_workbench_usage_crossmatch_links.mjs',

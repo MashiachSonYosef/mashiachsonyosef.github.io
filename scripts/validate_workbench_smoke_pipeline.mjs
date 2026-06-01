@@ -505,6 +505,21 @@ await runStep('check_usage_route_links', [
   `--report=${options.scratchDir}/usage-route-link-check.md`,
 ]);
 
+const usageSelectedRouteResolutionJson = `${options.scratchDir}/usage-selected-route-resolution.json`;
+await runStep('build_usage_selected_route_resolution', [
+  'scripts/build_workbench_usage_selected_route_resolution.mjs',
+  `--selected-occurrence-cards=${usageSelectedOccurrenceCardsJson}`,
+  `--route-coverage=${usageRouteCoverageJson}`,
+  `--route-link-check=${usageRouteLinkCheckJson}`,
+  `--output=${usageSelectedRouteResolutionJson}`,
+  `--report=${options.scratchDir}/usage-selected-route-resolution.md`,
+]);
+
+await runStep('validate_usage_selected_route_resolution', [
+  'scripts/validate_workbench_usage_selected_route_resolution.mjs',
+  usageSelectedRouteResolutionJson,
+]);
+
 const usageAuditReviewJson = `${options.scratchDir}/usage-audit-only-review.json`;
 await runStep('build_usage_audit_review', [
   'scripts/build_workbench_usage_audit_review.mjs',
@@ -543,6 +558,7 @@ await runStep('build_usage_handoff_index', [
   `--selected-source-diversity=${usageSelectedSourceDiversityJson}`,
   `--selected-route-concentration-response=${usageSelectedRouteConcentrationResponseJson}`,
   `--selected-occurrence-cards=${usageSelectedOccurrenceCardsJson}`,
+  `--selected-route-resolution=${usageSelectedRouteResolutionJson}`,
   `--selected-occurrence-lookup=${usageSelectedOccurrenceLookupJson}`,
   `--crossmatch-links=${usageCrossmatchLinksJson}`,
   `--crossmatch-bridge-index=${usageCrossmatchBridgeIndexJson}`,
@@ -602,6 +618,7 @@ const usageSelectedSignatureIndependence = readJsonIfExists(usageSelectedSignatu
 const usageSelectedSourceDiversity = readJsonIfExists(usageSelectedSourceDiversityJson);
 const usageSelectedRouteConcentrationResponse = readJsonIfExists(usageSelectedRouteConcentrationResponseJson);
 const usageSelectedOccurrenceCards = readJsonIfExists(usageSelectedOccurrenceCardsJson);
+const usageSelectedRouteResolution = readJsonIfExists(usageSelectedRouteResolutionJson);
 const usageSelectedOccurrenceLookup = readJsonIfExists(usageSelectedOccurrenceLookupJson);
 const usageCrossmatchLinks = readJsonIfExists(usageCrossmatchLinksJson);
 const usageCrossmatchBridgeIndex = readJsonIfExists(usageCrossmatchBridgeIndexJson);
@@ -823,6 +840,15 @@ const artifact = {
     usage_selected_occurrence_cards_mojibake_rows: usageSelectedOccurrenceCards?.counts?.mojibake_token_or_context_rows ?? null,
     usage_selected_occurrence_cards_reader_facing_rows: usageSelectedOccurrenceCards?.counts?.reader_facing_rows ?? null,
     usage_selected_occurrence_cards_route_payload_field_hits: usageSelectedOccurrenceCards?.counts?.route_payload_field_hits ?? null,
+    usage_selected_route_resolution_status: usageSelectedRouteResolution?.artifact_type === 'workbench_usage_selected_route_resolution' ? 'present' : 'missing',
+    usage_selected_route_resolution_route_id_buckets: usageSelectedRouteResolution?.counts?.route_id_buckets ?? null,
+    usage_selected_route_resolution_selected_route_links: usageSelectedRouteResolution?.counts?.selected_route_links ?? null,
+    usage_selected_route_resolution_resolved_route_ids: usageSelectedRouteResolution?.counts?.resolved_route_ids ?? null,
+    usage_selected_route_resolution_unresolved_route_ids: usageSelectedRouteResolution?.counts?.unresolved_route_ids ?? null,
+    usage_selected_route_resolution_route_link_check_status: usageSelectedRouteResolution?.counts?.route_link_check_status ?? null,
+    usage_selected_route_resolution_reader_facing_rows: usageSelectedRouteResolution?.counts?.reader_facing_rows ?? null,
+    usage_selected_route_resolution_route_payload_copied_rows: usageSelectedRouteResolution?.counts?.route_payload_copied_rows ?? null,
+    usage_selected_route_resolution_route_payload_field_hits: usageSelectedRouteResolution?.counts?.route_payload_field_hits ?? null,
     usage_selected_occurrence_lookup_status: usageSelectedOccurrenceLookup?.artifact_type === 'workbench_usage_navigation_selected_occurrence_lookup' ? 'present' : 'missing',
     usage_selected_occurrence_lookup_work_buckets: usageSelectedOccurrenceLookup?.counts?.work_buckets ?? null,
     usage_selected_occurrence_lookup_cluster_buckets: usageSelectedOccurrenceLookup?.counts?.cluster_buckets ?? null,
@@ -1019,6 +1045,7 @@ function writeReport(relativePath, artifact) {
     `- Usage selected source diversity: ${artifact.counts.usage_selected_source_diversity_status}, rows ${artifact.counts.usage_selected_source_diversity_rows}, source refs ${artifact.counts.usage_selected_source_diversity_unique_source_refs}, work anchors ${artifact.counts.usage_selected_source_diversity_unique_work_anchors}, works ${artifact.counts.usage_selected_source_diversity_unique_works}, categories ${artifact.counts.usage_selected_source_diversity_unique_categories}, licenses ${artifact.counts.usage_selected_source_diversity_unique_licenses}, version sources ${artifact.counts.usage_selected_source_diversity_unique_version_sources}, duplicate source-ref buckets ${artifact.counts.usage_selected_source_diversity_duplicate_source_ref_buckets}, duplicate source-ref rows ${artifact.counts.usage_selected_source_diversity_duplicate_source_ref_rows}, missing signature rows ${artifact.counts.usage_selected_source_diversity_missing_signature_rows}, reader-facing rows ${artifact.counts.usage_selected_source_diversity_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_source_diversity_route_payload_field_hits}`,
     `- Usage selected route concentration response: ${artifact.counts.usage_selected_route_concentration_response_status}, rows ${artifact.counts.usage_selected_route_concentration_response_rows}, route buckets ${artifact.counts.usage_selected_route_concentration_response_route_buckets}, warning visible ${artifact.counts.usage_selected_route_concentration_response_warning_visible}, source refs ${artifact.counts.usage_selected_route_concentration_response_unique_source_refs}, works ${artifact.counts.usage_selected_route_concentration_response_unique_works}, rows with recurring ${artifact.counts.usage_selected_route_concentration_response_rows_with_recurring}, rows with cross-cluster ${artifact.counts.usage_selected_route_concentration_response_rows_with_cross_cluster}, warnings ${artifact.counts.usage_selected_route_concentration_response_warning_count}, reader-facing rows ${artifact.counts.usage_selected_route_concentration_response_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_route_concentration_response_route_payload_field_hits}`,
     `- Usage selected occurrence cards: ${artifact.counts.usage_selected_occurrence_cards_status}, rows ${artifact.counts.usage_selected_occurrence_cards_rows}, context ${artifact.counts.usage_selected_occurrence_cards_with_context}, focus markers ${artifact.counts.usage_selected_occurrence_cards_with_focus_marker}, related signature rows ${artifact.counts.usage_selected_occurrence_cards_with_related_signatures}, cross-cluster rows ${artifact.counts.usage_selected_occurrence_cards_with_cross_cluster_signatures}, related samples ${artifact.counts.usage_selected_occurrence_cards_related_occurrence_samples}, route warning visible ${artifact.counts.usage_selected_occurrence_cards_route_concentration_warning_visible}, mojibake rows ${artifact.counts.usage_selected_occurrence_cards_mojibake_rows}, reader-facing rows ${artifact.counts.usage_selected_occurrence_cards_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_occurrence_cards_route_payload_field_hits}`,
+    `- Usage selected route resolution: ${artifact.counts.usage_selected_route_resolution_status}, route IDs ${artifact.counts.usage_selected_route_resolution_route_id_buckets}, selected links ${artifact.counts.usage_selected_route_resolution_selected_route_links}, resolved ${artifact.counts.usage_selected_route_resolution_resolved_route_ids}, unresolved ${artifact.counts.usage_selected_route_resolution_unresolved_route_ids}, route-link check ${artifact.counts.usage_selected_route_resolution_route_link_check_status}, reader-facing rows ${artifact.counts.usage_selected_route_resolution_reader_facing_rows}, copied payload rows ${artifact.counts.usage_selected_route_resolution_route_payload_copied_rows}, route payload hits ${artifact.counts.usage_selected_route_resolution_route_payload_field_hits}`,
     `- Usage selected occurrence lookup: ${artifact.counts.usage_selected_occurrence_lookup_status}, work buckets ${artifact.counts.usage_selected_occurrence_lookup_work_buckets}, cluster buckets ${artifact.counts.usage_selected_occurrence_lookup_cluster_buckets}, status buckets ${artifact.counts.usage_selected_occurrence_lookup_status_buckets}`,
     `- Usage crossmatch links: ${artifact.counts.usage_crossmatch_links_status}, occurrences ${artifact.counts.usage_crossmatch_occurrences}, directed edges ${artifact.counts.usage_crossmatch_directed_edges}, undirected pairs ${artifact.counts.usage_crossmatch_undirected_pairs}, route payload hits ${artifact.counts.usage_crossmatch_route_payload_field_hits}`,
     `- Usage crossmatch strengths: strong ${artifact.counts.usage_crossmatch_strong_edges}, moderate ${artifact.counts.usage_crossmatch_moderate_edges}, weak ${artifact.counts.usage_crossmatch_weak_edges}`,
