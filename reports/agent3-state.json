@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_usage_navigation_state",
+  "generated_at": "2026-06-01T14:30:53.035Z",
+  "generator": "scripts/build_agent3_usage_state.mjs",
+  "agent": "Agent 3",
+  "lane": "workbench_usage_navigation",
+  "state_file": "reports/agent3-state.md",
+  "worker_state": "evidence-ready",
+  "qa_acceptance_state": "not_agent6_accepted",
+  "goal_id": "agent3-definition-occurrence-links",
+  "goal_board_status": "active",
+  "manager": "Agent 5",
+  "acceptance_owner": "Agent 6",
+  "authority_boundary": {
+    "usage_navigation_only": true,
+    "occurrence_link_packet_only": true,
+    "route_ids_only": true,
+    "definition_authority": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "hud_or_workbench_ui_acceptance": false,
+    "publication_support": false,
+    "accepted_translation_text": false,
+    "agent6_accepted": false
+  },
+  "handoff_state": {
+    "queue_ready_packet": "data/definitions/definition-workbench-usage-queue-ready-packet.json",
+    "intended_submitter": "Agent 5",
+    "control_queue_mutated": false,
+    "submitted_to_agent6": false
+  },
+  "evidence_artifacts": [
+    "data/definitions/definition-workbench-usage-queue-ready-packet.json",
+    "reports/definition-workbench-usage-queue-ready-packet.md",
+    "data/definitions/definition-workbench-usage-agent6-packet.json",
+    "reports/definition-workbench-usage-agent6-packet.md",
+    "data/definitions/definition-workbench-usage-link-packet.json",
+    "reports/definition-workbench-usage-link-packet.md",
+    "data/definitions/definition-workbench-usage-seed-queue.json",
+    "reports/definition-workbench-usage-seed-queue.md",
+    "data/definitions/definition-workbench-usage-join-smoke.json",
+    "reports/definition-workbench-usage-join-smoke.md",
+    "reports/workbench-smoke-pipeline-validation.md",
+    "data/workbench-evidence/usage-concordance.json"
+  ],
+  "validators": [
+    "scripts/validate_definition_workbench_usage_queue_ready_packet.mjs",
+    "scripts/validate_definition_workbench_usage_agent6_packet.mjs",
+    "scripts/validate_definition_workbench_usage_link_packet.mjs",
+    "scripts/validate_definition_workbench_usage_seed_queue.mjs",
+    "scripts/validate_definition_workbench_usage_join_smoke.mjs",
+    "scripts/validate_workbench_smoke_pipeline.mjs",
+    "scripts/validate_agent3_usage_state.mjs"
+  ],
+  "current_metrics": {
+    "usage_concordance_rows": 2390,
+    "usage_supported_rows": 339,
+    "usage_candidate_rows": 1351,
+    "usage_weak_rows": 700,
+    "audit_only_ambiguous_rows": 2064,
+    "usage_clusters": 2,
+    "selected_usage_rows": 49,
+    "selected_source_refs": 38,
+    "selected_works": 20,
+    "route_ids": 1,
+    "proof_occurrence_rows": 12,
+    "proof_rows_with_complete_metadata": 12,
+    "proof_rows_with_hebrew_context": 12,
+    "proof_mojibake_rows": 0,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "queue_required_fields_present": 10,
+    "queue_required_fields": 10,
+    "queue_evidence_artifacts_exist": 9,
+    "queue_evidence_artifacts": 9,
+    "smoke_steps": 115,
+    "smoke_failed_steps": 0,
+    "smoke_source_freshness_status": "stale",
+    "smoke_source_freshness_pending_files": 153
+  },
+  "known_risks": [
+    "Definition Workbench current 200-row sample still has 0 current usage links for the selected Agent 3 usage token scope.",
+    "Selected usage evidence is concentrated on one route ID; it is usage navigation, not independent semantic confirmation.",
+    "Usage coverage is selected seeded scope, not broad corpus completion.",
+    "Ambiguous rows remain audit-only and are not reader-facing.",
+    "Smoke source freshness is stale with 153 pending refresh files.",
+    "Agent 3 did not mutate Agent 6 queue state; Agent 5 remains the intended submitter."
+  ],
+  "quality": {
+    "status": "passed",
+    "warning_count": 0,
+    "failed_count": 0
+  },
+  "counts": {
+    "evidence_artifacts": 12,
+    "evidence_artifacts_exist": 12,
+    "validator_scripts": 7,
+    "validator_scripts_exist": 7,
+    "queue_required_fields_present": 10,
+    "queue_required_fields": 10,
+    "queue_mutations": 0,
+    "submitted_to_agent6": 0,
+    "usage_concordance_rows": 2390,
+    "usage_supported_rows": 339,
+    "usage_candidate_rows": 1351,
+    "usage_weak_rows": 700,
+    "audit_only_ambiguous_rows": 2064,
+    "proof_occurrence_rows": 12,
+    "proof_rows_with_complete_metadata": 12,
+    "proof_rows_with_hebrew_context": 12,
+    "proof_mojibake_rows": 0,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "smoke_steps": 115,
+    "smoke_failed_steps": 0
+  },
+  "checks": [
+    {
+      "id": "registry_state_file_present",
+      "status": "passed",
+      "detail": "registry reports/agent3-state.md; report reports/agent3-state.md"
+    },
+    {
+      "id": "goal_boundary_loaded",
+      "status": "passed",
+      "detail": "goal agent3-definition-occurrence-links; acceptance Agent 6"
+    },
+    {
+      "id": "evidence_artifacts_exist",
+      "status": "passed",
+      "detail": "12/12"
+    },
+    {
+      "id": "validator_scripts_exist",
+      "status": "passed",
+      "detail": "7/7"
+    },
+    {
+      "id": "queue_ready_not_submitted",
+      "status": "passed",
+      "detail": "fields 10/10; mutations 0; submitted 0"
+    },
+    {
+      "id": "usage_counts_nonzero",
+      "status": "passed",
+      "detail": "supported/candidate/weak 339/1351/700"
+    },
+    {
+      "id": "ambiguous_audit_only_visible",
+      "status": "passed",
+      "detail": "ambiguous 2064; reader-facing 0"
+    },
+    {
+      "id": "proof_metadata_complete",
+      "status": "passed",
+      "detail": "12/12"
+    },
+    {
+      "id": "hebrew_context_clean",
+      "status": "passed",
+      "detail": "Hebrew context 12; mojibake 0"
+    },
+    {
+      "id": "no_authority_fields",
+      "status": "passed",
+      "detail": "reader-facing 0; route payload 0; forbidden 0"
+    },
+    {
+      "id": "smoke_validation_passed",
+      "status": "passed",
+      "detail": "steps 115; failed 0"
+    }
+  ]
+}
