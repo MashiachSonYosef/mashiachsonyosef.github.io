@@ -54,6 +54,7 @@ const translationOutputSafeLicensePatterns = [
 const forbiddenLicenseRe = /\bNC\b|Non-?Commercial|all rights reserved|copyright unclear|unknown|unverified|permission only/i;
 const allowedAnswerRoles = new Set(['answer', 'evidence', 'form_reference']);
 const requiredSourceRowStringFields = ['source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url', 'notes'];
+const routeScoreFields = ['confidence_percent', 'raw_score', 'score_handicap', 'adjusted_score'];
 
 const options = parseArgs(process.argv.slice(2));
 const contract = readJson(options.contract);
@@ -119,6 +120,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       shards: 0,
       tokens: 0,
       cards: 0,
+      route_score_fields_checked: 0,
+      invalid_route_score_fields: 0,
       route_cards_with_source_rows: 0,
       route_cards_missing_source_rows: 0,
       answer_eligible_cards: 0,
@@ -173,7 +176,7 @@ function runFixtureSelfTest(relativePath, contractData) {
   }
   for (const [index, testCase] of (fixture.cases || []).entries()) {
     const target = createAudit({ public_lookup: 'fixture', include_input_file_summaries: false }, contractData);
-    auditCard(testCase.card, `fixture:${testCase.label || index}`, target);
+    auditCard(prepareFixtureCard(testCase.card), `fixture:${testCase.label || index}`, target);
     for (const [countName, expectedValue] of Object.entries(testCase.expected_counts || {})) {
       const actualValue = Number(target.counts[countName] || 0);
       if (actualValue !== expectedValue) {
@@ -198,6 +201,17 @@ function runFixtureSelfTest(relativePath, contractData) {
     process.exit(1);
   }
   return (fixture.cases || []).length;
+}
+
+function prepareFixtureCard(card) {
+  if (!card || typeof card !== 'object' || Array.isArray(card)) return card;
+  return {
+    confidence_percent: 100,
+    raw_score: 100,
+    score_handicap: 0,
+    adjusted_score: 100,
+    ...card,
+  };
 }
 
 function assertFixtureSubstrings(issues, testCase, fieldName, rows, index) {
@@ -245,6 +259,13 @@ function auditCard(card, context, target = audit) {
 
   for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label', 'definition']) {
     if (!card?.[field]) addIssue(context, `missing ${field}`, target);
+  }
+  for (const field of routeScoreFields) {
+    target.counts.route_score_fields_checked += 1;
+    if (!validRouteScoreField(field, card?.[field])) {
+      target.counts.invalid_route_score_fields += 1;
+      addIssue(context, `invalid numeric ${field}`, target);
+    }
   }
   if (card?.display_section && !target.contract.allowed_display_sections.includes(card.display_section)) {
     addIssue(context, `unknown display_section: ${card.display_section}`, target);
@@ -393,6 +414,12 @@ function safeReferenceUrl(value) {
   return /^(https:\/\/|local:)/i.test(String(value || '').trim());
 }
 
+function validRouteScoreField(field, value) {
+  if (!Number.isFinite(value)) return false;
+  if (field === 'score_handicap') return value >= -100 && value <= 100;
+  return value >= 0 && value <= 100;
+}
+
 function addIssue(context, detail, target = audit) {
   target.counts.issue_count += 1;
   if (target.issues.length >= options.maxIssues) return;
@@ -426,6 +453,8 @@ function writeReport(relativePath, data) {
     `- Shards scanned: ${data.counts.shards}`,
     `- Tokens scanned: ${data.counts.tokens}`,
     `- Cards scanned: ${data.counts.cards}`,
+    `- Route score fields checked: ${data.counts.route_score_fields_checked}`,
+    `- Invalid route score fields: ${data.counts.invalid_route_score_fields}`,
     `- Cards with source rows: ${data.counts.route_cards_with_source_rows}`,
     `- Cards missing source rows: ${data.counts.route_cards_missing_source_rows}`,
     `- Answer-eligible cards: ${data.counts.answer_eligible_cards}`,

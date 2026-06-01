@@ -655,6 +655,47 @@
       "expected_issue_substrings": [
         "fields_used entry must be a non-empty string"
       ]
+    },
+    {
+      "label": "out-of-range-route-score-is-forbidden",
+      "card": {
+        "card_id": "fixture-out-of-range-route-score",
+        "normalized": "fixture",
+        "route_family": "fixture",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "display_label": "Fixture lemma",
+        "definition": "Fixture out-of-range route score.",
+        "confidence_percent": 101,
+        "answer_eligible": false,
+        "answer_role": "evidence",
+        "source_rows": [
+          {
+            "source_name": "Fixture Public Domain Source",
+            "source_family": "fixture",
+            "source_id": "fixture-pd-out-of-range-route-score",
+            "source_url": "local:route-publication-boundary-fixtures",
+            "license": "Public Domain",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "fields_used": ["fixture source", "fixture license"],
+            "notes": "Fixture row for rejecting malformed route score fields."
+          }
+        ]
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 0,
+        "answer_eligible_cards": 0,
+        "answer_eligible_cards_with_source_rows": 0,
+        "hud_unsafe_source_rows": 0,
+        "translation_output_unsafe_cards": 0,
+        "answer_eligible_translation_output_unsafe_source_rows": 0,
+        "answer_eligible_translation_output_unsafe_cards": 0,
+        "route_cards_with_publication_fields": 0
+      },
+      "expected_issue_substrings": [
+        "invalid numeric confidence_percent"
+      ]
     }
   ]
 }
