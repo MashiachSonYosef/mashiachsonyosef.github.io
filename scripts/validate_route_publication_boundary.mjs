@@ -121,6 +121,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       shards: 0,
       tokens: 0,
       cards: 0,
+      normalized_lookup_key_checks: 0,
+      normalized_lookup_key_mismatches: 0,
       route_card_string_fields_checked: 0,
       invalid_route_card_string_fields: 0,
       route_score_fields_checked: 0,
@@ -179,7 +181,8 @@ function runFixtureSelfTest(relativePath, contractData) {
   }
   for (const [index, testCase] of (fixture.cases || []).entries()) {
     const target = createAudit({ public_lookup: 'fixture', include_input_file_summaries: false }, contractData);
-    auditCard(prepareFixtureCard(testCase.card), `fixture:${testCase.label || index}`, target);
+    const expectedNormalized = testCase.lookup_normalized === undefined ? null : String(testCase.lookup_normalized);
+    auditCard(prepareFixtureCard(testCase.card), `fixture:${testCase.label || index}`, target, expectedNormalized);
     for (const [countName, expectedValue] of Object.entries(testCase.expected_counts || {})) {
       const actualValue = Number(target.counts[countName] || 0);
       if (actualValue !== expectedValue) {
@@ -242,12 +245,12 @@ function auditShard(shardEntry) {
       continue;
     }
     for (const [index, card] of cards.entries()) {
-      auditCard(card, `${shardPath}:${normalized}[${index}]`);
+      auditCard(card, `${shardPath}:${normalized}[${index}]`, audit, normalized);
     }
   }
 }
 
-function auditCard(card, context, target = audit) {
+function auditCard(card, context, target = audit, expectedNormalized = null) {
   if (!card || typeof card !== 'object' || Array.isArray(card)) {
     target.counts.cards += 1;
     increment(target.route_families, 'missing');
@@ -258,6 +261,13 @@ function auditCard(card, context, target = audit) {
     return;
   }
   target.counts.cards += 1;
+  if (expectedNormalized !== null) {
+    target.counts.normalized_lookup_key_checks += 1;
+    if (card?.normalized !== expectedNormalized) {
+      target.counts.normalized_lookup_key_mismatches += 1;
+      addIssue(context, `normalized lookup key mismatch: bucket=${expectedNormalized}, card=${card?.normalized || 'missing'}`, target);
+    }
+  }
   increment(target.route_families, card?.route_family || 'missing');
   increment(target.route_types, card?.route_type || 'missing');
   increment(target.display_sections, card?.display_section || 'missing');
@@ -463,6 +473,8 @@ function writeReport(relativePath, data) {
     `- Shards scanned: ${data.counts.shards}`,
     `- Tokens scanned: ${data.counts.tokens}`,
     `- Cards scanned: ${data.counts.cards}`,
+    `- Normalized lookup key checks: ${data.counts.normalized_lookup_key_checks}`,
+    `- Normalized lookup key mismatches: ${data.counts.normalized_lookup_key_mismatches}`,
     `- Route-card string fields checked: ${data.counts.route_card_string_fields_checked}`,
     `- Invalid route-card string fields: ${data.counts.invalid_route_card_string_fields}`,
     `- Route score fields checked: ${data.counts.route_score_fields_checked}`,

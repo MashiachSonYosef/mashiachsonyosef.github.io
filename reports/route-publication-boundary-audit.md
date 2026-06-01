@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T06:04:46.929Z
+Generated: 2026-06-01T06:07:55.126Z
 
 ## Boundary
 
@@ -13,6 +13,8 @@ Generated: 2026-06-01T06:04:46.929Z
 - Shards scanned: 7990
 - Tokens scanned: 175216
 - Cards scanned: 539661
+- Normalized lookup key checks: 539661
+- Normalized lookup key mismatches: 0
 - Route-card string fields checked: 5396610
 - Invalid route-card string fields: 0
 - Route score fields checked: 2158644
@@ -41,10 +43,10 @@ Generated: 2026-06-01T06:04:46.929Z
 - Issues: 0
 - Warnings: 335103
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
-- Validator SHA-256: `260a5e92b497a734a12cbf4d70e23b13cbb1b0b6c397fdf872302624b5ef4d87`
-- Fixture cases checked: 19
-- Fixture bytes: 28076
-- Fixture SHA-256: `349d60f44251cc8bbcc82ed0bedc0e005ff35bf5c80628d8a670de1c37d16839`
+- Validator SHA-256: `94f39f99bb22b2fca565bf92cd871997d73b5ce0a559505d0e53e1b44e12ca7d`
+- Fixture cases checked: 20
+- Fixture bytes: 29709
+- Fixture SHA-256: `15d8a9645ffa20767ca3f916fc48ef197cb0e69edc8f6db50dc4ca35dfcd7047`
 - HUD contract: `data/definitions/hud-route-contract.json`
 - Allowed display sections: answer, audit, biblical_paraphrase_evidence, citable_paraphrase_evidence, lemma, morphology, phrase_evidence, source_license, strict_aramaic, strict_hebrew, subphrase_evidence
 
