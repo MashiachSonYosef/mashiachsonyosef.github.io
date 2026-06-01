@@ -26,6 +26,7 @@ const defaults = {
   selectedSlice: '.local-cache/workbench-evidence/usage-slice-tanakh.json',
   selectedSlicesIndex: '.local-cache/workbench-evidence/usage-selected-slices-index.json',
   selectedOccurrences: '.local-cache/workbench-evidence/usage-selected-occurrences.json',
+  selectedSignatureIndependence: '.local-cache/workbench-evidence/usage-selected-signature-independence.json',
   selectedOccurrenceLookup: '.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json',
   crossmatchLinks: '.local-cache/workbench-evidence/usage-crossmatch-links.json',
   crossmatchBridgeIndex: '.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json',
@@ -61,6 +62,7 @@ const contextSignatureContrast = readJsonIfExists(options.contextSignatureContra
 const selectedSlice = readJsonIfExists(options.selectedSlice);
 const selectedSlicesIndex = readJsonIfExists(options.selectedSlicesIndex);
 const selectedOccurrences = readJsonIfExists(options.selectedOccurrences);
+const selectedSignatureIndependence = readJsonIfExists(options.selectedSignatureIndependence);
 const selectedOccurrenceLookup = readJsonIfExists(options.selectedOccurrenceLookup);
 const crossmatchLinks = readJsonIfExists(options.crossmatchLinks);
 const crossmatchBridgeIndex = readJsonIfExists(options.crossmatchBridgeIndex);
@@ -102,6 +104,7 @@ const artifact = {
     selected_slice: options.selectedSlice,
     selected_slices_index: options.selectedSlicesIndex,
     selected_occurrences: options.selectedOccurrences,
+    selected_signature_independence: options.selectedSignatureIndependence,
     selected_occurrence_lookup: options.selectedOccurrenceLookup,
     crossmatch_links: options.crossmatchLinks,
     crossmatch_bridge_index: options.crossmatchBridgeIndex,
@@ -137,6 +140,7 @@ const artifact = {
     selected_slice_report: 'reports/workbench-usage-slice-tanakh.md',
     selected_slices_index_report: 'reports/workbench-usage-selected-slices-index.md',
     selected_occurrences_report: 'reports/workbench-usage-selected-occurrences.md',
+    selected_signature_independence_report: 'reports/workbench-usage-selected-signature-independence.md',
     selected_occurrence_lookup_report: 'reports/workbench-usage-selected-occurrence-lookup.md',
     crossmatch_links_report: 'reports/workbench-usage-crossmatch-links.md',
     crossmatch_bridge_index_report: 'reports/workbench-usage-crossmatch-bridge-index.md',
@@ -246,6 +250,15 @@ const artifact = {
     selected_occurrence_rows: selectedOccurrences?.counts?.occurrence_refs ?? null,
     selected_occurrence_memberships: selectedOccurrences?.counts?.slice_memberships ?? null,
     selected_occurrence_duplicate_memberships: selectedOccurrences?.counts?.duplicate_slice_memberships ?? null,
+    selected_signature_independence_rows: selectedSignatureIndependence?.counts?.selected_occurrence_refs ?? null,
+    selected_signature_independence_memberships: selectedSignatureIndependence?.counts?.signature_memberships ?? null,
+    selected_signature_independence_recurring_memberships: selectedSignatureIndependence?.counts?.recurring_signature_memberships ?? null,
+    selected_signature_independence_cross_cluster_memberships: selectedSignatureIndependence?.counts?.cross_cluster_signature_memberships ?? null,
+    selected_signature_independence_rows_with_recurring: selectedSignatureIndependence?.counts?.occurrence_refs_with_recurring_signatures ?? null,
+    selected_signature_independence_rows_with_cross_cluster: selectedSignatureIndependence?.counts?.occurrence_refs_with_cross_cluster_signatures ?? null,
+    selected_signature_independence_missing_lookup_rows: selectedSignatureIndependence?.counts?.missing_lookup_rows ?? null,
+    selected_signature_independence_reader_facing_rows: selectedSignatureIndependence?.counts?.reader_facing_rows ?? null,
+    selected_signature_independence_route_payload_field_hits: selectedSignatureIndependence?.counts?.route_payload_field_hits ?? null,
     selected_occurrence_lookup_work_buckets: selectedOccurrenceLookup?.counts?.work_buckets ?? null,
     selected_occurrence_lookup_cluster_buckets: selectedOccurrenceLookup?.counts?.cluster_buckets ?? null,
     selected_occurrence_lookup_status_buckets: selectedOccurrenceLookup?.counts?.status_buckets ?? null,
@@ -385,6 +398,17 @@ const artifact = {
     selected_slices_index_unique_occurrences: selectedSlicesIndex?.deduped_counts?.occurrence_refs ?? null,
     selected_occurrences_status: selectedOccurrences?.artifact_type === 'workbench_usage_navigation_selected_occurrences' ? 'present' : 'not_run',
     selected_occurrence_rows: selectedOccurrences?.counts?.occurrence_refs ?? null,
+    selected_signature_independence_status: selectedSignatureIndependence?.artifact_type === 'workbench_usage_selected_signature_independence' ? 'present' : 'not_run',
+    selected_signature_independence_rows: selectedSignatureIndependence?.counts?.selected_occurrence_refs ?? null,
+    selected_signature_independence_memberships: selectedSignatureIndependence?.counts?.signature_memberships ?? null,
+    selected_signature_independence_recurring_memberships: selectedSignatureIndependence?.counts?.recurring_signature_memberships ?? null,
+    selected_signature_independence_cross_cluster_memberships: selectedSignatureIndependence?.counts?.cross_cluster_signature_memberships ?? null,
+    selected_signature_independence_rows_with_recurring: selectedSignatureIndependence?.counts?.occurrence_refs_with_recurring_signatures ?? null,
+    selected_signature_independence_rows_with_cross_cluster: selectedSignatureIndependence?.counts?.occurrence_refs_with_cross_cluster_signatures ?? null,
+    selected_signature_independence_missing_lookup_rows: selectedSignatureIndependence?.counts?.missing_lookup_rows ?? null,
+    selected_signature_independence_reader_facing_rows: selectedSignatureIndependence?.counts?.reader_facing_rows ?? null,
+    selected_signature_independence_failed_checks: selectedSignatureIndependence?.quality?.failed_count ?? null,
+    selected_signature_independence_route_payload_field_hits: selectedSignatureIndependence?.counts?.route_payload_field_hits ?? null,
     selected_occurrence_lookup_status: selectedOccurrenceLookup?.artifact_type === 'workbench_usage_navigation_selected_occurrence_lookup' ? 'present' : 'not_run',
     selected_occurrence_lookup_work_buckets: selectedOccurrenceLookup?.counts?.work_buckets ?? null,
     crossmatch_links_status: crossmatchLinks?.artifact_type === 'workbench_usage_navigation_crossmatch_links' ? 'present' : 'not_run',
@@ -488,6 +512,8 @@ function writeReport(relativePath, artifact) {
     `- Selected occurrence rows: ${artifact.counts.selected_occurrence_rows}`,
     `- Selected occurrence memberships: ${artifact.counts.selected_occurrence_memberships}`,
     `- Selected occurrence duplicate memberships: ${artifact.counts.selected_occurrence_duplicate_memberships}`,
+    `- Selected signature independence: rows ${artifact.counts.selected_signature_independence_rows}, memberships ${artifact.counts.selected_signature_independence_memberships}, recurring memberships ${artifact.counts.selected_signature_independence_recurring_memberships}, cross-cluster memberships ${artifact.counts.selected_signature_independence_cross_cluster_memberships}, rows with recurring ${artifact.counts.selected_signature_independence_rows_with_recurring}, rows with cross-cluster ${artifact.counts.selected_signature_independence_rows_with_cross_cluster}, missing lookup rows ${artifact.counts.selected_signature_independence_missing_lookup_rows}, reader-facing rows ${artifact.counts.selected_signature_independence_reader_facing_rows}`,
+    `- Selected signature independence route payload-like field hits: ${artifact.counts.selected_signature_independence_route_payload_field_hits}`,
     `- Selected occurrence lookup buckets: works ${artifact.counts.selected_occurrence_lookup_work_buckets}, clusters ${artifact.counts.selected_occurrence_lookup_cluster_buckets}, statuses ${artifact.counts.selected_occurrence_lookup_status_buckets}`,
     `- Crossmatch links: occurrences ${artifact.counts.crossmatch_occurrence_refs}, directed edges ${artifact.counts.crossmatch_directed_edges}, undirected pairs ${artifact.counts.crossmatch_undirected_pairs}`,
     `- Crossmatch strengths: strong ${artifact.counts.crossmatch_strong_edges}, moderate ${artifact.counts.crossmatch_moderate_edges}, weak ${artifact.counts.crossmatch_weak_edges}`,
@@ -536,6 +562,8 @@ function writeReport(relativePath, artifact) {
     `- Selected slice: ${artifact.validation.selected_slice_status}, id ${artifact.validation.selected_slice_id}, rows ${artifact.validation.selected_slice_rows}`,
     `- Selected slices index: ${artifact.validation.selected_slices_index_status}, slices ${artifact.validation.selected_slices_index_slices}, unique occurrences ${artifact.validation.selected_slices_index_unique_occurrences}`,
     `- Selected occurrences: ${artifact.validation.selected_occurrences_status}, rows ${artifact.validation.selected_occurrence_rows}`,
+    `- Selected signature independence: ${artifact.validation.selected_signature_independence_status}, rows ${artifact.validation.selected_signature_independence_rows}, memberships ${artifact.validation.selected_signature_independence_memberships}, recurring memberships ${artifact.validation.selected_signature_independence_recurring_memberships}, cross-cluster memberships ${artifact.validation.selected_signature_independence_cross_cluster_memberships}, rows with recurring ${artifact.validation.selected_signature_independence_rows_with_recurring}, rows with cross-cluster ${artifact.validation.selected_signature_independence_rows_with_cross_cluster}, missing lookup rows ${artifact.validation.selected_signature_independence_missing_lookup_rows}, reader-facing rows ${artifact.validation.selected_signature_independence_reader_facing_rows}, failed ${artifact.validation.selected_signature_independence_failed_checks}`,
+    `- Selected signature independence route payload-like field hits: ${artifact.validation.selected_signature_independence_route_payload_field_hits}`,
     `- Selected occurrence lookup: ${artifact.validation.selected_occurrence_lookup_status}, work buckets ${artifact.validation.selected_occurrence_lookup_work_buckets}`,
     `- Crossmatch links: ${artifact.validation.crossmatch_links_status}, occurrences ${artifact.validation.crossmatch_occurrence_refs}, directed edges ${artifact.validation.crossmatch_directed_edges}, failed ${artifact.validation.crossmatch_failed_checks}`,
     `- Crossmatch route payload-like field hits: ${artifact.validation.crossmatch_route_payload_field_hits}`,
@@ -576,6 +604,7 @@ function writeReport(relativePath, artifact) {
     `| selected slice | ${mdCell(artifact.artifacts.selected_slice_report)} | yes |`,
     `| selected slices index | ${mdCell(artifact.artifacts.selected_slices_index_report)} | yes |`,
     `| selected occurrences | ${mdCell(artifact.artifacts.selected_occurrences_report)} | yes |`,
+    `| selected signature independence | ${mdCell(artifact.artifacts.selected_signature_independence_report)} | yes |`,
     `| selected occurrence lookup | ${mdCell(artifact.artifacts.selected_occurrence_lookup_report)} | yes |`,
     `| crossmatch links | ${mdCell(artifact.artifacts.crossmatch_links_report)} | yes |`,
     `| crossmatch bridge index | ${mdCell(artifact.artifacts.crossmatch_bridge_index_report)} | yes |`,
@@ -622,6 +651,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-slice=')) parsed.selectedSlice = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-slices-index=')) parsed.selectedSlicesIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrences=')) parsed.selectedOccurrences = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-signature-independence=')) parsed.selectedSignatureIndependence = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-lookup=')) parsed.selectedOccurrenceLookup = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--crossmatch-links=')) parsed.crossmatchLinks = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--crossmatch-bridge-index=')) parsed.crossmatchBridgeIndex = cleanRelativePath(valueAfterEquals(arg));
@@ -681,6 +711,8 @@ function buildCommands(options, manifest) {
   commands.validate_selected_slices_index = `node scripts/validate_workbench_usage_selected_slices_index.mjs ${options.selectedSlicesIndex}`;
   commands.build_selected_occurrences = `node scripts/build_workbench_usage_selected_occurrences.mjs --selected-slices-index=${options.selectedSlicesIndex} --output=${options.selectedOccurrences} --report=reports/workbench-usage-selected-occurrences.md`;
   commands.validate_selected_occurrences = `node scripts/validate_workbench_usage_selected_occurrences.mjs ${options.selectedOccurrences}`;
+  commands.build_selected_signature_independence = `node scripts/build_workbench_usage_selected_signature_independence.mjs --selected-occurrences=${options.selectedOccurrences} --context-signature-lookup=${options.contextSignatureLookup} --output=${options.selectedSignatureIndependence} --report=reports/workbench-usage-selected-signature-independence.md`;
+  commands.validate_selected_signature_independence = `node scripts/validate_workbench_usage_selected_signature_independence.mjs ${options.selectedSignatureIndependence}`;
   commands.build_selected_occurrence_lookup = `node scripts/build_workbench_usage_selected_occurrence_lookup.mjs --selected-occurrences=${options.selectedOccurrences} --output=${options.selectedOccurrenceLookup} --report=reports/workbench-usage-selected-occurrence-lookup.md --max-samples=5`;
   commands.validate_selected_occurrence_lookup = `node scripts/validate_workbench_usage_selected_occurrence_lookup.mjs ${options.selectedOccurrenceLookup}`;
   commands.build_crossmatch_links = `node scripts/build_workbench_usage_crossmatch_links.mjs --selected-occurrences=${options.selectedOccurrences} --output=${options.crossmatchLinks} --report=reports/workbench-usage-crossmatch-links.md`;
@@ -717,6 +749,7 @@ function buildCommands(options, manifest) {
     `--selected-slice=${options.selectedSlice}`,
     `--selected-slices-index=${options.selectedSlicesIndex}`,
     `--selected-occurrences=${options.selectedOccurrences}`,
+    `--selected-signature-independence=${options.selectedSignatureIndependence}`,
     `--selected-occurrence-lookup=${options.selectedOccurrenceLookup}`,
     `--crossmatch-links=${options.crossmatchLinks}`,
     `--crossmatch-bridge-index=${options.crossmatchBridgeIndex}`,

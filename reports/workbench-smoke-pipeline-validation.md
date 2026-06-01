@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T02:18:19.955Z
+Generated: 2026-06-01T02:26:33.734Z
 
 ## Summary
 
-- Steps: 64
+- Steps: 66
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -35,6 +35,7 @@ Generated: 2026-06-01T02:18:19.955Z
 - Usage selected slice: present, id tanakh-workbench-section, rows 49, works 20
 - Usage selected slices index: present, slices 2, rows 50, unique occurrences 49, duplicate rows 1
 - Usage selected occurrences: present, rows 49, memberships 50, duplicate memberships 1
+- Usage selected signature independence: present, rows 49, memberships 98, recurring memberships 28, cross-cluster memberships 10, rows with recurring 21, rows with cross-cluster 9, missing lookup rows 0, reader-facing rows 0, route payload hits 0
 - Usage selected occurrence lookup: present, work buckets 20, cluster buckets 2, status buckets 3
 - Usage crossmatch links: present, occurrences 49, directed edges 2352, undirected pairs 1176, route payload hits 0
 - Usage crossmatch strengths: strong 1206, moderate 1146, weak 0
@@ -101,6 +102,8 @@ Generated: 2026-06-01T02:18:19.955Z
 | validate_usage_selected_slices_index | passed | Validated usage selected slices index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-slices-index.json: slices 2; rows 50; unique occurrences 49 |
 | build_usage_selected_occurrences | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrences.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrences.md / Usage selected occurrences rows 49; memberships 50 |
 | validate_usage_selected_occurrences | passed | Validated usage selected occurrences .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrences.json: rows 49; memberships 50 |
+| build_usage_selected_signature_independence | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-signature-independence.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-signature-independence.md / Selected signature independence rows 49; recurring 21; cross-cluster 9 |
+| validate_usage_selected_signature_independence | passed | Validated usage selected signature independence .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-signature-independence.json: rows 49; recurring 21 |
 | build_usage_selected_occurrence_lookup | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-lookup.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-lookup.md / Usage selected occurrence lookup occurrences 49; works 20 |
 | validate_usage_selected_occurrence_lookup | passed | Validated selected occurrence lookup .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-lookup.json: occurrences 49; works 20 |
 | build_usage_crossmatch_links | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-links.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-crossmatch-links.md / Usage crossmatch links occurrences 49; directed edges 2352 |
