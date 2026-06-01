@@ -53,6 +53,7 @@ const translationOutputSafeLicensePatterns = [
 ];
 const forbiddenLicenseRe = /\bNC\b|Non-?Commercial|all rights reserved|copyright unclear|unknown|unverified|permission only/i;
 const allowedAnswerRoles = new Set(['answer', 'evidence', 'form_reference']);
+const requiredRouteCardStringFields = ['card_id', 'normalized', 'surface', 'route_family', 'route_type', 'display_section', 'display_label', 'language', 'match_type', 'definition'];
 const requiredSourceRowStringFields = ['source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url', 'notes'];
 const routeScoreFields = ['confidence_percent', 'raw_score', 'score_handicap', 'adjusted_score'];
 
@@ -120,6 +121,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       shards: 0,
       tokens: 0,
       cards: 0,
+      route_card_string_fields_checked: 0,
+      invalid_route_card_string_fields: 0,
       route_score_fields_checked: 0,
       invalid_route_score_fields: 0,
       route_cards_with_source_rows: 0,
@@ -210,6 +213,9 @@ function prepareFixtureCard(card) {
     raw_score: 100,
     score_handicap: 0,
     adjusted_score: 100,
+    surface: 'fixture',
+    language: 'Fixture Hebrew',
+    match_type: 'fixture',
     ...card,
   };
 }
@@ -257,8 +263,12 @@ function auditCard(card, context, target = audit) {
   increment(target.display_sections, card?.display_section || 'missing');
   increment(target.answer_roles, card?.answer_role || 'missing');
 
-  for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label', 'definition']) {
-    if (!card?.[field]) addIssue(context, `missing ${field}`, target);
+  for (const field of requiredRouteCardStringFields) {
+    target.counts.route_card_string_fields_checked += 1;
+    if (typeof card?.[field] !== 'string' || !card[field].trim()) {
+      target.counts.invalid_route_card_string_fields += 1;
+      addIssue(context, `missing non-empty string ${field}`, target);
+    }
   }
   for (const field of routeScoreFields) {
     target.counts.route_score_fields_checked += 1;
@@ -453,6 +463,8 @@ function writeReport(relativePath, data) {
     `- Shards scanned: ${data.counts.shards}`,
     `- Tokens scanned: ${data.counts.tokens}`,
     `- Cards scanned: ${data.counts.cards}`,
+    `- Route-card string fields checked: ${data.counts.route_card_string_fields_checked}`,
+    `- Invalid route-card string fields: ${data.counts.invalid_route_card_string_fields}`,
     `- Route score fields checked: ${data.counts.route_score_fields_checked}`,
     `- Invalid route score fields: ${data.counts.invalid_route_score_fields}`,
     `- Cards with source rows: ${data.counts.route_cards_with_source_rows}`,

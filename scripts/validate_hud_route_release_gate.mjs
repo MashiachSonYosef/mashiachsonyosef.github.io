@@ -114,6 +114,8 @@ const result = {
     fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
     fixture_cases: Number(boundaryReport.inputs?.fixture_cases || 0),
     fixture_sha256: boundaryReport.inputs?.fixture_file?.sha256 || '',
+    route_card_string_fields_checked: Number(boundaryReport.counts?.route_card_string_fields_checked || 0),
+    invalid_route_card_string_fields: Number(boundaryReport.counts?.invalid_route_card_string_fields || 0),
     route_score_fields_checked: Number(boundaryReport.counts?.route_score_fields_checked || 0),
     invalid_route_score_fields: Number(boundaryReport.counts?.invalid_route_score_fields || 0),
     route_cards_with_source_rows: Number(boundaryReport.counts?.route_cards_with_source_rows || 0),
@@ -320,6 +322,12 @@ async function validateBoundaryReport(report, reconciliation) {
   }
   if (Number(report.counts?.issue_count || 0) !== 0) {
     issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
+  }
+  if (count('route_card_string_fields_checked') !== count('cards') * 10) {
+    issues.push('route publication boundary report did not check every required route-card string field');
+  }
+  if (count('invalid_route_card_string_fields') !== 0) {
+    issues.push(`route publication boundary report found ${count('invalid_route_card_string_fields')} invalid route-card string field(s)`);
   }
   if (count('route_score_fields_checked') !== count('cards') * 4) {
     issues.push('route publication boundary report did not check every route score field');
@@ -560,6 +568,8 @@ function writeReport(relativePath, result) {
     `- Fixture: \`${result.route_publication_boundary.fixture}\``,
     `- Fixture cases: ${result.route_publication_boundary.fixture_cases}`,
     `- Fixture SHA-256: \`${result.route_publication_boundary.fixture_sha256 || 'missing'}\``,
+    `- Route-card string fields checked: ${result.route_publication_boundary.route_card_string_fields_checked}`,
+    `- Invalid route-card string fields: ${result.route_publication_boundary.invalid_route_card_string_fields}`,
     `- Route score fields checked: ${result.route_publication_boundary.route_score_fields_checked}`,
     `- Invalid route score fields: ${result.route_publication_boundary.invalid_route_score_fields}`,
     `- Cards with source rows: ${result.route_publication_boundary.route_cards_with_source_rows}`,
