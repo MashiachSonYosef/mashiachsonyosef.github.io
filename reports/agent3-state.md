@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-01T14:30:53.035Z
+Generated: 2026-06-01T14:42:41.627Z
 
 ## State
 
@@ -22,8 +22,8 @@ Generated: 2026-06-01T14:30:53.035Z
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
 - Queue required fields: 10/10
-- Smoke steps / failed: 115/0
-- Source freshness: stale, pending 153
+- Smoke steps / failed: 116/0
+- Source freshness: stale, pending 161
 
 ## Checks
 
@@ -39,7 +39,7 @@ Generated: 2026-06-01T14:30:53.035Z
 | proof_metadata_complete | passed | 12/12 |
 | hebrew_context_clean | passed | Hebrew context 12; mojibake 0 |
 | no_authority_fields | passed | reader-facing 0; route payload 0; forbidden 0 |
-| smoke_validation_passed | passed | steps 115; failed 0 |
+| smoke_validation_passed | passed | steps 116; failed 0 |
 
 ## Known Risks
 
@@ -47,7 +47,7 @@ Generated: 2026-06-01T14:30:53.035Z
 - Selected usage evidence is concentrated on one route ID; it is usage navigation, not independent semantic confirmation.
 - Usage coverage is selected seeded scope, not broad corpus completion.
 - Ambiguous rows remain audit-only and are not reader-facing.
-- Smoke source freshness is stale with 153 pending refresh files.
+- Smoke source freshness is stale with 161 pending refresh files.
 - Agent 3 did not mutate Agent 6 queue state; Agent 5 remains the intended submitter.
 
 ## Boundary

@@ -871,6 +871,7 @@ const definitionWorkbenchUsageSeedQueueJson = 'data/definitions/definition-workb
 const definitionWorkbenchUsageJoinSmokeJson = 'data/definitions/definition-workbench-usage-join-smoke.json';
 const definitionWorkbenchUsageAgent6PacketJson = 'data/definitions/definition-workbench-usage-agent6-packet.json';
 const definitionWorkbenchUsageQueueReadyPacketJson = 'data/definitions/definition-workbench-usage-queue-ready-packet.json';
+const agent3UsageStateJson = 'reports/agent3-state.json';
 
 await runStep('validate_definition_workbench_usage_link_packet', [
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
@@ -895,6 +896,11 @@ await runStep('validate_definition_workbench_usage_agent6_packet', [
 await runStep('validate_definition_workbench_usage_queue_ready_packet', [
   'scripts/validate_definition_workbench_usage_queue_ready_packet.mjs',
   definitionWorkbenchUsageQueueReadyPacketJson,
+]);
+
+await runStep('validate_agent3_usage_state', [
+  'scripts/validate_agent3_usage_state.mjs',
+  agent3UsageStateJson,
 ]);
 
 const coverage = readJsonIfExists(coverageJson);
@@ -958,6 +964,7 @@ const definitionWorkbenchUsageSeedQueue = readJsonIfExists(definitionWorkbenchUs
 const definitionWorkbenchUsageJoinSmoke = readJsonIfExists(definitionWorkbenchUsageJoinSmokeJson);
 const definitionWorkbenchUsageAgent6Packet = readJsonIfExists(definitionWorkbenchUsageAgent6PacketJson);
 const definitionWorkbenchUsageQueueReadyPacket = readJsonIfExists(definitionWorkbenchUsageQueueReadyPacketJson);
+const agent3UsageState = readJsonIfExists(agent3UsageStateJson);
 const failedSteps = steps.filter((step) => step.status !== 'passed');
 const sourceFreshness = readJsonIfExists(sourceFreshnessJson);
 
@@ -978,6 +985,7 @@ const artifact = {
     definition_workbench_usage_join_smoke: definitionWorkbenchUsageJoinSmokeJson,
     definition_workbench_usage_agent6_packet: definitionWorkbenchUsageAgent6PacketJson,
     definition_workbench_usage_queue_ready_packet: definitionWorkbenchUsageQueueReadyPacketJson,
+    agent3_usage_state: agent3UsageStateJson,
   },
   counts: {
     steps: steps.length,
@@ -1490,6 +1498,17 @@ const artifact = {
     definition_workbench_usage_queue_validator_scripts: definitionWorkbenchUsageQueueReadyPacket?.counts?.validator_scripts ?? null,
     definition_workbench_usage_queue_submitted_to_agent6: definitionWorkbenchUsageQueueReadyPacket?.counts?.submitted_to_agent6 ?? null,
     definition_workbench_usage_queue_mutations: definitionWorkbenchUsageQueueReadyPacket?.counts?.queue_mutations ?? null,
+    agent3_state_quality_status: agent3UsageState?.quality?.status ?? null,
+    agent3_state_worker_state: agent3UsageState?.worker_state ?? null,
+    agent3_state_qa_acceptance_state: agent3UsageState?.qa_acceptance_state ?? null,
+    agent3_state_evidence_artifacts_exist: agent3UsageState?.counts?.evidence_artifacts_exist ?? null,
+    agent3_state_evidence_artifacts: agent3UsageState?.counts?.evidence_artifacts ?? null,
+    agent3_state_validator_scripts_exist: agent3UsageState?.counts?.validator_scripts_exist ?? null,
+    agent3_state_validator_scripts: agent3UsageState?.counts?.validator_scripts ?? null,
+    agent3_state_queue_mutations: agent3UsageState?.counts?.queue_mutations ?? null,
+    agent3_state_submitted_to_agent6: agent3UsageState?.counts?.submitted_to_agent6 ?? null,
+    agent3_state_smoke_steps: agent3UsageState?.counts?.smoke_steps ?? null,
+    agent3_state_smoke_failed_steps: agent3UsageState?.counts?.smoke_failed_steps ?? null,
   },
   steps,
 };
@@ -1679,6 +1698,7 @@ function writeReport(relativePath, artifact) {
     `- Definition Workbench usage Agent 6 packet: ${artifact.counts.definition_workbench_usage_agent6_packet_status}, proof rows ${artifact.counts.definition_workbench_usage_agent6_proof_rows}, supported ${artifact.counts.definition_workbench_usage_agent6_supported_rows}, candidate ${artifact.counts.definition_workbench_usage_agent6_candidate_rows}, weak ${artifact.counts.definition_workbench_usage_agent6_weak_rows}, route IDs ${artifact.counts.definition_workbench_usage_agent6_route_ids}, frames ${artifact.counts.definition_workbench_usage_agent6_usage_frames}, reader-facing ${artifact.counts.definition_workbench_usage_agent6_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_agent6_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_agent6_forbidden_authority_field_hits}`,
     `- Definition Workbench usage Hebrew/context guard: Hebrew token rows ${artifact.counts.definition_workbench_usage_agent6_hebrew_token_rows}, Hebrew context rows ${artifact.counts.definition_workbench_usage_agent6_hebrew_context_rows}, focus marker rows ${artifact.counts.definition_workbench_usage_agent6_focus_marker_rows}, mojibake rows ${artifact.counts.definition_workbench_usage_agent6_mojibake_rows}`,
     `- Definition Workbench usage queue-ready packet: ${artifact.counts.definition_workbench_usage_queue_ready_status}, required fields ${artifact.counts.definition_workbench_usage_queue_required_fields_present}/${artifact.counts.definition_workbench_usage_queue_required_fields}, evidence artifacts ${artifact.counts.definition_workbench_usage_queue_evidence_artifacts_exist}/${artifact.counts.definition_workbench_usage_queue_evidence_artifacts}, validators ${artifact.counts.definition_workbench_usage_queue_validator_scripts_exist}/${artifact.counts.definition_workbench_usage_queue_validator_scripts}, queue mutations ${artifact.counts.definition_workbench_usage_queue_mutations}, submitted ${artifact.counts.definition_workbench_usage_queue_submitted_to_agent6}`,
+    `- Agent 3 usage state packet: ${artifact.counts.agent3_state_quality_status}, worker ${artifact.counts.agent3_state_worker_state}, QA ${artifact.counts.agent3_state_qa_acceptance_state}, evidence artifacts ${artifact.counts.agent3_state_evidence_artifacts_exist}/${artifact.counts.agent3_state_evidence_artifacts}, validators ${artifact.counts.agent3_state_validator_scripts_exist}/${artifact.counts.agent3_state_validator_scripts}, queue mutations ${artifact.counts.agent3_state_queue_mutations}, submitted ${artifact.counts.agent3_state_submitted_to_agent6}, state smoke ${artifact.counts.agent3_state_smoke_steps}/${artifact.counts.agent3_state_smoke_failed_steps}`,
     '',
     '## Steps',
     '',
@@ -1688,7 +1708,7 @@ function writeReport(relativePath, artifact) {
     '',
     '## Boundary',
     '',
-    'This wrapper validates smoke-only workbench evidence, the public handoff index contract, the usage-navigation concordance, and the Definition Workbench usage-link packet chain. It does not run broad target selection, expand prefix families, import source text, rank routes, make ambiguous rows reader-facing, or choose HUD winners.',
+    'This wrapper validates smoke-only workbench evidence, the public handoff index contract, the usage-navigation concordance, the Definition Workbench usage-link packet chain, and the Agent 3 usage state packet. It does not run broad target selection, expand prefix families, import source text, rank routes, make ambiguous rows reader-facing, mutate validation queues, or choose HUD winners.',
   ];
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });
