@@ -11,6 +11,7 @@ const defaults = {
   maxIssues: 100,
   maxWarnings: 25,
   fixturesOnly: false,
+  help: false,
 };
 
 const publicationReadinessFields = [
@@ -312,7 +313,25 @@ function parseArgs(args) {
     else if (arg.startsWith('--max-issues=')) parsed.maxIssues = Number(valueAfterEquals(arg));
     else if (arg.startsWith('--max-warnings=')) parsed.maxWarnings = Number(valueAfterEquals(arg));
     else if (arg === '--fixtures-only') parsed.fixturesOnly = true;
+    else if (arg === '--help' || arg === '-h') parsed.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
+  }
+  if (parsed.help) {
+    console.log([
+      'Usage:',
+      '  node scripts/validate_route_publication_boundary.mjs',
+      '',
+      'Options:',
+      '  --manifest=data/definitions/hud-route-lookup/manifest.json',
+      '  --fixture=data/definitions/route-publication-boundary-fixtures.json',
+      '  --output=reports/route-publication-boundary-audit.json',
+      '  --report=reports/route-publication-boundary-audit.md',
+      '  --max-issues=100',
+      '  --max-warnings=25',
+      '  --fixtures-only',
+      '  --help',
+    ].join('\n'));
+    process.exit(0);
   }
   for (const key of ['maxIssues', 'maxWarnings']) {
     if (!Number.isInteger(parsed[key]) || parsed[key] < 0) throw new Error(`--${key} must be a non-negative integer`);
