@@ -74,12 +74,16 @@ function untrackedSourceFiles(existingJsonPath) {
       source_discovery_warning: '',
     };
   } catch (error) {
-    if (fs.existsSync(path.join(root, existingJsonPath))) {
-      const previous = readJson(existingJsonPath);
+    const fallbackJsonPath = fs.existsSync(path.join(root, existingJsonPath))
+      ? existingJsonPath
+      : defaultJsonPath;
+
+    if (fs.existsSync(path.join(root, fallbackJsonPath))) {
+      const previous = readJson(fallbackJsonPath);
       return {
         files: [...(previous.untracked_source_files || [])].sort(),
         source_discovery_method: 'existing-json-fallback',
-        source_discovery_warning: `git child-process discovery failed (${error.code || error.message}); reused ${existingJsonPath} untracked_source_files as current prompted truth`,
+        source_discovery_warning: `git child-process discovery failed (${error.code || error.message}); reused ${fallbackJsonPath} untracked_source_files as current prompted truth`,
       };
     }
     throw error;
