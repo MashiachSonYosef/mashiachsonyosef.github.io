@@ -219,6 +219,10 @@ function auditCard(card, context, target = audit) {
     for (const field of ['source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url']) {
       if (!row?.[field]) addIssue(`${context}.source_rows[${rowIndex}]`, `missing ${field}`, target);
     }
+    if (!Array.isArray(row?.fields_used) || !row.fields_used.length) {
+      addIssue(`${context}.source_rows[${rowIndex}]`, 'missing fields_used', target);
+    }
+    if (!row?.notes) addIssue(`${context}.source_rows[${rowIndex}]`, 'missing notes', target);
   }
 
   if (cardHasTranslationUnsafeRow) {
