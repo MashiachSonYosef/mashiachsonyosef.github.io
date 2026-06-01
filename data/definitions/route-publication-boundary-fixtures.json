@@ -843,6 +843,124 @@
       "expected_issue_substrings": [
         "duplicate card_id"
       ]
+    },
+    {
+      "label": "public-shard-identity-mismatch-is-forbidden",
+      "shard_entry": {
+        "shard": "manifest-fixture",
+        "path": "fixture.json",
+        "token_count": 1,
+        "card_count": 1
+      },
+      "shard": {
+        "schema_version": 1,
+        "shard": "fixture",
+        "token_count": 1,
+        "card_count": 1,
+        "routes_by_normalized": {
+          "fixture": [
+            {
+              "card_id": "fixture-shard-identity-mismatch",
+              "normalized": "fixture",
+              "route_family": "fixture",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "display_label": "Fixture lemma",
+              "definition": "Fixture public shard identity mismatch.",
+              "answer_eligible": false,
+              "answer_role": "evidence",
+              "source_rows": [
+                {
+                  "source_name": "Fixture Public Domain Source",
+                  "source_family": "fixture",
+                  "source_id": "fixture-pd-shard-identity-mismatch",
+                  "source_url": "local:route-publication-boundary-fixtures",
+                  "license": "Public Domain",
+                  "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+                  "fields_used": ["fixture source", "fixture license"],
+                  "notes": "Fixture row for rejecting public shard identity drift from manifest metadata."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 0,
+        "shards": 1,
+        "shard_identity_checks": 1,
+        "shard_identity_mismatches": 1,
+        "shard_count_fields_checked": 4,
+        "shard_count_field_mismatches": 0,
+        "tokens": 1,
+        "cards": 1,
+        "answer_eligible_cards": 0,
+        "hud_unsafe_source_rows": 0,
+        "route_cards_with_publication_fields": 0
+      },
+      "expected_issue_substrings": [
+        "shard identity mismatch"
+      ]
+    },
+    {
+      "label": "public-shard-count-mismatch-is-forbidden",
+      "shard_entry": {
+        "shard": "fixture",
+        "path": "fixture.json",
+        "token_count": 2,
+        "card_count": 1
+      },
+      "shard": {
+        "schema_version": 1,
+        "shard": "fixture",
+        "token_count": 1,
+        "card_count": 2,
+        "routes_by_normalized": {
+          "fixture": [
+            {
+              "card_id": "fixture-shard-count-mismatch",
+              "normalized": "fixture",
+              "route_family": "fixture",
+              "route_type": "lemma",
+              "display_section": "lemma",
+              "display_label": "Fixture lemma",
+              "definition": "Fixture public shard count mismatch.",
+              "answer_eligible": false,
+              "answer_role": "evidence",
+              "source_rows": [
+                {
+                  "source_name": "Fixture Public Domain Source",
+                  "source_family": "fixture",
+                  "source_id": "fixture-pd-shard-count-mismatch",
+                  "source_url": "local:route-publication-boundary-fixtures",
+                  "license": "Public Domain",
+                  "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+                  "fields_used": ["fixture source", "fixture license"],
+                  "notes": "Fixture row for rejecting public shard count drift from actual route contents."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expected_counts": {
+        "issue_count": 2,
+        "warning_count": 0,
+        "shards": 1,
+        "shard_identity_checks": 1,
+        "shard_identity_mismatches": 0,
+        "shard_count_fields_checked": 4,
+        "shard_count_field_mismatches": 2,
+        "tokens": 1,
+        "cards": 1,
+        "answer_eligible_cards": 0,
+        "hud_unsafe_source_rows": 0,
+        "route_cards_with_publication_fields": 0
+      },
+      "expected_issue_substrings": [
+        "shard count mismatch"
+      ]
     }
   ]
 }

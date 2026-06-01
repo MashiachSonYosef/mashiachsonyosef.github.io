@@ -114,6 +114,10 @@ const result = {
     fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
     fixture_cases: Number(boundaryReport.inputs?.fixture_cases || 0),
     fixture_sha256: boundaryReport.inputs?.fixture_file?.sha256 || '',
+    shard_identity_checks: Number(boundaryReport.counts?.shard_identity_checks || 0),
+    shard_identity_mismatches: Number(boundaryReport.counts?.shard_identity_mismatches || 0),
+    shard_count_fields_checked: Number(boundaryReport.counts?.shard_count_fields_checked || 0),
+    shard_count_field_mismatches: Number(boundaryReport.counts?.shard_count_field_mismatches || 0),
     card_ids_checked: Number(boundaryReport.counts?.card_ids_checked || 0),
     duplicate_card_ids: Number(boundaryReport.counts?.duplicate_card_ids || 0),
     normalized_lookup_key_checks: Number(boundaryReport.counts?.normalized_lookup_key_checks || 0),
@@ -326,6 +330,18 @@ async function validateBoundaryReport(report, reconciliation) {
   }
   if (Number(report.counts?.issue_count || 0) !== 0) {
     issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
+  }
+  if (count('shard_identity_checks') !== count('shards')) {
+    issues.push('route publication boundary report did not check every public shard identity');
+  }
+  if (count('shard_identity_mismatches') !== 0) {
+    issues.push(`route publication boundary report found ${count('shard_identity_mismatches')} public shard identity mismatch(es)`);
+  }
+  if (count('shard_count_fields_checked') !== count('shards') * 4) {
+    issues.push('route publication boundary report did not check every public shard manifest/self count field');
+  }
+  if (count('shard_count_field_mismatches') !== 0) {
+    issues.push(`route publication boundary report found ${count('shard_count_field_mismatches')} public shard count mismatch(es)`);
   }
   if (count('card_ids_checked') !== count('cards')) {
     issues.push('route publication boundary report did not check every card_id');
@@ -584,6 +600,10 @@ function writeReport(relativePath, result) {
     `- Fixture: \`${result.route_publication_boundary.fixture}\``,
     `- Fixture cases: ${result.route_publication_boundary.fixture_cases}`,
     `- Fixture SHA-256: \`${result.route_publication_boundary.fixture_sha256 || 'missing'}\``,
+    `- Shard identity checks: ${result.route_publication_boundary.shard_identity_checks}`,
+    `- Shard identity mismatches: ${result.route_publication_boundary.shard_identity_mismatches}`,
+    `- Shard count fields checked: ${result.route_publication_boundary.shard_count_fields_checked}`,
+    `- Shard count field mismatches: ${result.route_publication_boundary.shard_count_field_mismatches}`,
     `- Card IDs checked: ${result.route_publication_boundary.card_ids_checked}`,
     `- Duplicate card IDs: ${result.route_publication_boundary.duplicate_card_ids}`,
     `- Normalized lookup key checks: ${result.route_publication_boundary.normalized_lookup_key_checks}`,

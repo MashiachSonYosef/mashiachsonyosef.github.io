@@ -69,10 +69,7 @@ if (options.fixturesOnly) {
 const manifest = readJson(options.manifest);
 const audit = createAudit(manifest, contract);
 
-for (const shard of manifest.shards || []) {
-  audit.counts.shards += 1;
-  auditShard(shard);
-}
+for (const shard of manifest.shards || []) auditShard(shard);
 
 writeJson(options.output, audit);
 writeReport(options.report, audit);
@@ -120,6 +117,10 @@ function createAudit(manifestData = {}, contractData = contract) {
     },
     counts: {
       shards: 0,
+      shard_identity_checks: 0,
+      shard_identity_mismatches: 0,
+      shard_count_fields_checked: 0,
+      shard_count_field_mismatches: 0,
       tokens: 0,
       cards: 0,
       card_ids_checked: 0,
@@ -184,10 +185,19 @@ function runFixtureSelfTest(relativePath, contractData) {
   }
   for (const [index, testCase] of (fixture.cases || []).entries()) {
     const target = createAudit({ public_lookup: 'fixture', include_input_file_summaries: false }, contractData);
-    const expectedNormalized = testCase.lookup_normalized === undefined ? null : String(testCase.lookup_normalized);
-    const fixtureCards = Array.isArray(testCase.cards) ? testCase.cards : [testCase.card];
-    for (const [cardIndex, fixtureCard] of fixtureCards.entries()) {
-      auditCard(prepareFixtureCard(fixtureCard), `fixture:${testCase.label || index}[${cardIndex}]`, target, expectedNormalized);
+    if (testCase.shard) {
+      auditShardRecord(
+        testCase.shard_entry || { shard: 'fixture', path: 'fixture.json' },
+        prepareFixtureShard(testCase.shard),
+        `fixture:${testCase.label || index}.shard`,
+        target,
+      );
+    } else {
+      const expectedNormalized = testCase.lookup_normalized === undefined ? null : String(testCase.lookup_normalized);
+      const fixtureCards = Array.isArray(testCase.cards) ? testCase.cards : [testCase.card];
+      for (const [cardIndex, fixtureCard] of fixtureCards.entries()) {
+        auditCard(prepareFixtureCard(fixtureCard), `fixture:${testCase.label || index}[${cardIndex}]`, target, expectedNormalized);
+      }
     }
     for (const [countName, expectedValue] of Object.entries(testCase.expected_counts || {})) {
       const actualValue = Number(target.counts[countName] || 0);
@@ -229,6 +239,15 @@ function prepareFixtureCard(card) {
   };
 }
 
+function prepareFixtureShard(shard) {
+  if (!shard || typeof shard !== 'object' || Array.isArray(shard)) return shard;
+  const routes = {};
+  for (const [normalized, cards] of Object.entries(shard.routes_by_normalized || {})) {
+    routes[normalized] = Array.isArray(cards) ? cards.map((card) => prepareFixtureCard(card)) : cards;
+  }
+  return { ...shard, routes_by_normalized: routes };
+}
+
 function assertFixtureSubstrings(issues, testCase, fieldName, rows, index) {
   for (const expected of testCase[fieldName] || []) {
     const needle = String(expected);
@@ -243,16 +262,45 @@ function auditShard(shardEntry) {
   const lookupRoot = cleanRelativePath(manifest.public_lookup || 'data/definitions/hud-route-lookup');
   const shardPath = cleanRelativePath(`${lookupRoot}/${shardEntry.path}`);
   const shard = readJson(shardPath);
+  auditShardRecord(shardEntry, shard, shardPath, audit);
+}
+
+function auditShardRecord(shardEntry, shard, shardPath, target = audit) {
+  target.counts.shards += 1;
   const byToken = shard.routes_by_normalized || {};
-  for (const [normalized, cards] of Object.entries(byToken)) {
-    audit.counts.tokens += 1;
+  const tokenEntries = Object.entries(byToken);
+  const actualTokenCount = tokenEntries.length;
+  const actualCardCount = tokenEntries.reduce((sum, [, cards]) => sum + (Array.isArray(cards) ? cards.length : 0), 0);
+  checkShardIdentity(shardEntry, shard, shardPath, target);
+  checkShardCountField(`${shardPath}:manifest.token_count`, shardEntry?.token_count, actualTokenCount, target);
+  checkShardCountField(`${shardPath}:manifest.card_count`, shardEntry?.card_count, actualCardCount, target);
+  checkShardCountField(`${shardPath}:shard.token_count`, shard?.token_count, actualTokenCount, target);
+  checkShardCountField(`${shardPath}:shard.card_count`, shard?.card_count, actualCardCount, target);
+  for (const [normalized, cards] of tokenEntries) {
+    target.counts.tokens += 1;
     if (!Array.isArray(cards)) {
-      addIssue(`${shardPath}:${normalized}`, 'routes_by_normalized value is not an array');
+      addIssue(`${shardPath}:${normalized}`, 'routes_by_normalized value is not an array', target);
       continue;
     }
     for (const [index, card] of cards.entries()) {
-      auditCard(card, `${shardPath}:${normalized}[${index}]`, audit, normalized);
+      auditCard(card, `${shardPath}:${normalized}[${index}]`, target, normalized);
     }
+  }
+}
+
+function checkShardIdentity(shardEntry, shard, context, target = audit) {
+  target.counts.shard_identity_checks += 1;
+  if (!shardEntry?.shard || !shard?.shard || shardEntry.shard !== shard.shard) {
+    target.counts.shard_identity_mismatches += 1;
+    addIssue(context, `shard identity mismatch: manifest=${shardEntry?.shard || 'missing'}, shard=${shard?.shard || 'missing'}`, target);
+  }
+}
+
+function checkShardCountField(context, value, expectedValue, target = audit) {
+  target.counts.shard_count_fields_checked += 1;
+  if (!Number.isInteger(value) || value !== expectedValue) {
+    target.counts.shard_count_field_mismatches += 1;
+    addIssue(context, `shard count mismatch: expected ${expectedValue}, got ${value ?? 'missing'}`, target);
   }
 }
 
@@ -496,6 +544,10 @@ function writeReport(relativePath, data) {
     '## Counts',
     '',
     `- Shards scanned: ${data.counts.shards}`,
+    `- Shard identity checks: ${data.counts.shard_identity_checks}`,
+    `- Shard identity mismatches: ${data.counts.shard_identity_mismatches}`,
+    `- Shard count fields checked: ${data.counts.shard_count_fields_checked}`,
+    `- Shard count field mismatches: ${data.counts.shard_count_field_mismatches}`,
     `- Tokens scanned: ${data.counts.tokens}`,
     `- Cards scanned: ${data.counts.cards}`,
     `- Card IDs checked: ${data.counts.card_ids_checked}`,
