@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T00:20:53.446Z
+Generated: 2026-06-01T00:27:42.531Z
 
 ## Summary
 
-- Steps: 45
+- Steps: 47
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -23,6 +23,7 @@ Generated: 2026-06-01T00:20:53.446Z
 - Usage lookup index: present, occurrence refs 2390, works 271
 - Usage work/frame matrix: present, rows 2390, works 271, categories 15, clusters 2, route payload hits 0
 - Usage search rows: present, rows 2390, works 271, categories 15, clusters 2, route payload hits 0
+- Usage search shard index: present, shards 74, rows 2390, categories 15, clusters 2, statuses 3, route payload hits 0
 - Usage selected slice: present, id tanakh-workbench-section, rows 49, works 20
 - Usage selected slices index: present, slices 2, rows 50, unique occurrences 49, duplicate rows 1
 - Usage selected occurrences: present, rows 49, memberships 50, duplicate memberships 1
@@ -65,6 +66,8 @@ Generated: 2026-06-01T00:20:53.446Z
 | validate_usage_work_frame_matrix | passed | Validated usage work-frame matrix .local-cache/workbench-evidence/smoke-pipeline-validation/usage-work-frame-matrix.json: works 271; rows 2390 |
 | build_usage_search_rows | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-rows.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-rows.md / Usage search rows 2390; works 271; categories 15 |
 | validate_usage_search_rows | passed | Validated usage search rows .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-rows.json: rows 2390; works 271 |
+| build_usage_search_shard_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.md / Usage search shard index shards 74; rows 2390 |
+| validate_usage_search_shard_index | passed | Validated usage search shard index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json: shards 74; rows 2390 |
 | build_usage_selected_slice | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-tanakh.md / Usage slice tanakh-workbench-section rows 49; works 20; clusters 2 |
 | validate_usage_selected_slice | passed | Workbench usage slice index validation passed. Slice rows: 49. Works: 20. |
 | build_usage_selected_slice_jeremiah | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-jeremiah.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-slice-jeremiah.md / Usage slice jeremiah-workbench-section rows 1; works 1; clusters 1 |
