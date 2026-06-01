@@ -53,6 +53,7 @@ const translationOutputSafeLicensePatterns = [
 ];
 const forbiddenLicenseRe = /\bNC\b|Non-?Commercial|all rights reserved|copyright unclear|unknown|unverified|permission only/i;
 const allowedAnswerRoles = new Set(['answer', 'evidence', 'form_reference']);
+const allowedSourceFamilies = new Set(['fixture', 'hebrew_source_text', 'kaikki', 'openscriptures', 'wikidata', 'workspace']);
 const requiredRouteCardStringFields = ['card_id', 'normalized', 'surface', 'route_family', 'route_type', 'display_section', 'display_label', 'language', 'match_type', 'definition'];
 const requiredSourceRowStringFields = ['source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url', 'notes'];
 const routeScoreFields = ['confidence_percent', 'raw_score', 'score_handicap', 'adjusted_score'];
@@ -158,6 +159,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       invalid_source_row_fields_used_entries: 0,
       fields_used_exclusion_entries_checked: 0,
       forbidden_fields_used_entries: 0,
+      source_family_checks: 0,
+      invalid_source_family_values: 0,
       reference_url_fields_checked: 0,
       invalid_reference_url_fields: 0,
       source_url_compatibility_checks: 0,
@@ -522,6 +525,11 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
         addIssue(`${context}.source_rows[${rowIndex}]`, `missing non-empty string ${field}`, target);
       }
     }
+    target.counts.source_family_checks += 1;
+    if (!sourceFamilyRecognized(row)) {
+      target.counts.invalid_source_family_values += 1;
+      addIssue(`${context}.source_rows[${rowIndex}]`, `unknown source_family: ${row?.source_family || 'missing'}`, target);
+    }
     for (const field of ['source_url', 'license_url']) {
       if (!row?.[field]) continue;
       target.counts.reference_url_fields_checked += 1;
@@ -670,12 +678,17 @@ function sourceUrlCompatible(row) {
   const sourceFamily = String(row?.source_family || '').trim().toLowerCase();
   const sourceUrl = String(row?.source_url || '').trim();
   if (!sourceUrl) return false;
+  if (!sourceFamilyRecognized(row)) return true;
   if (sourceFamily === 'hebrew_source_text') return /^https:\/\/www\.sefaria\.org\//i.test(sourceUrl);
   if (sourceFamily === 'kaikki') return /^https:\/\/kaikki\.org\/dictionary\/Hebrew\/index\.html$/i.test(sourceUrl);
   if (sourceFamily === 'openscriptures') return /^https:\/\/github\.com\/openscriptures\/(?:morphhb|HebrewLexicon)\//i.test(sourceUrl);
   if (sourceFamily === 'wikidata') return /^https:\/\/www\.wikidata\.org\/wiki\/Lexeme:L\d+$/i.test(sourceUrl);
   if (sourceFamily === 'workspace') return /^local:/i.test(sourceUrl);
   return true;
+}
+
+function sourceFamilyRecognized(row) {
+  return allowedSourceFamilies.has(String(row?.source_family || '').trim().toLowerCase());
 }
 
 function licenseUrlCompatible(row) {
@@ -799,6 +812,8 @@ function writeReport(relativePath, data) {
     `- Invalid source-row fields_used entries: ${data.counts.invalid_source_row_fields_used_entries}`,
     `- Fields_used exclusion entries checked: ${data.counts.fields_used_exclusion_entries_checked}`,
     `- Forbidden fields_used entries: ${data.counts.forbidden_fields_used_entries}`,
+    `- Source family checks: ${data.counts.source_family_checks}`,
+    `- Invalid source family values: ${data.counts.invalid_source_family_values}`,
     `- Reference URL fields checked: ${data.counts.reference_url_fields_checked}`,
     `- Invalid reference URL fields: ${data.counts.invalid_reference_url_fields}`,
     `- Source URL compatibility checks: ${data.counts.source_url_compatibility_checks}`,

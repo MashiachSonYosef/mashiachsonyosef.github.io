@@ -167,6 +167,8 @@ const result = {
     invalid_source_row_fields_used_entries: Number(boundaryReport.counts?.invalid_source_row_fields_used_entries || 0),
     fields_used_exclusion_entries_checked: Number(boundaryReport.counts?.fields_used_exclusion_entries_checked || 0),
     forbidden_fields_used_entries: Number(boundaryReport.counts?.forbidden_fields_used_entries || 0),
+    source_family_checks: Number(boundaryReport.counts?.source_family_checks || 0),
+    invalid_source_family_values: Number(boundaryReport.counts?.invalid_source_family_values || 0),
     reference_url_fields_checked: Number(boundaryReport.counts?.reference_url_fields_checked || 0),
     invalid_reference_url_fields: Number(boundaryReport.counts?.invalid_reference_url_fields || 0),
     source_url_compatibility_checks: Number(boundaryReport.counts?.source_url_compatibility_checks || 0),
@@ -512,6 +514,12 @@ async function validateBoundaryReport(report, reconciliation) {
   if (count('forbidden_fields_used_entries') !== 0) {
     issues.push(`route publication boundary report found ${count('forbidden_fields_used_entries')} fields_used entrie(s) citing excluded translation/example/quotation material`);
   }
+  if (count('source_family_checks') !== count('source_rows')) {
+    issues.push('route publication boundary report did not check every source_family value');
+  }
+  if (count('invalid_source_family_values') !== 0) {
+    issues.push(`route publication boundary report found ${count('invalid_source_family_values')} unknown source_family value(s)`);
+  }
   if (count('reference_url_fields_checked') !== count('source_rows') * 2) {
     issues.push('route publication boundary report did not check both source_url and license_url for every source row');
   }
@@ -826,6 +834,8 @@ function writeReport(relativePath, result) {
     `- Invalid source-row fields_used entries: ${result.route_publication_boundary.invalid_source_row_fields_used_entries}`,
     `- Fields_used exclusion entries checked: ${result.route_publication_boundary.fields_used_exclusion_entries_checked}`,
     `- Forbidden fields_used entries: ${result.route_publication_boundary.forbidden_fields_used_entries}`,
+    `- Source family checks: ${result.route_publication_boundary.source_family_checks}`,
+    `- Invalid source family values: ${result.route_publication_boundary.invalid_source_family_values}`,
     `- Reference URL fields checked: ${result.route_publication_boundary.reference_url_fields_checked}`,
     `- Invalid reference URL fields: ${result.route_publication_boundary.invalid_reference_url_fields}`,
     `- Source URL compatibility checks: ${result.route_publication_boundary.source_url_compatibility_checks}`,
