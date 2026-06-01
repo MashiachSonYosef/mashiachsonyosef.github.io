@@ -38,6 +38,7 @@ const defaults = {
   selectedRouteProvenanceAudit: '.local-cache/workbench-evidence/usage-selected-route-provenance-audit.json',
   selectedOccurrenceNavigationIndex: '.local-cache/workbench-evidence/usage-selected-occurrence-navigation-index.json',
   selectedNavigationEdgeIndex: '.local-cache/workbench-evidence/usage-selected-navigation-edge-index.json',
+  selectedFrameBridgeIndex: '.local-cache/workbench-evidence/usage-selected-frame-bridge-index.json',
   selectedOccurrenceAdjacencyIndex: '.local-cache/workbench-evidence/usage-selected-occurrence-adjacency-index.json',
   selectedFocusContextAudit: '.local-cache/workbench-evidence/usage-selected-focus-context-audit.json',
   selectedFrameSummary: '.local-cache/workbench-evidence/usage-selected-frame-summary.json',
@@ -90,6 +91,7 @@ const selectedRouteResolution = readJsonIfExists(options.selectedRouteResolution
 const selectedRouteProvenanceAudit = readJsonIfExists(options.selectedRouteProvenanceAudit);
 const selectedOccurrenceNavigationIndex = readJsonIfExists(options.selectedOccurrenceNavigationIndex);
 const selectedNavigationEdgeIndex = readJsonIfExists(options.selectedNavigationEdgeIndex);
+const selectedFrameBridgeIndex = readJsonIfExists(options.selectedFrameBridgeIndex);
 const selectedOccurrenceAdjacencyIndex = readJsonIfExists(options.selectedOccurrenceAdjacencyIndex);
 const selectedFocusContextAudit = readJsonIfExists(options.selectedFocusContextAudit);
 const selectedFrameSummary = readJsonIfExists(options.selectedFrameSummary);
@@ -148,6 +150,7 @@ const artifact = {
     selected_route_provenance_audit: options.selectedRouteProvenanceAudit,
     selected_occurrence_navigation_index: options.selectedOccurrenceNavigationIndex,
     selected_navigation_edge_index: options.selectedNavigationEdgeIndex,
+    selected_frame_bridge_index: options.selectedFrameBridgeIndex,
     selected_occurrence_adjacency_index: options.selectedOccurrenceAdjacencyIndex,
     selected_focus_context_audit: options.selectedFocusContextAudit,
     selected_frame_summary: options.selectedFrameSummary,
@@ -200,6 +203,7 @@ const artifact = {
     selected_route_provenance_audit_report: 'reports/workbench-usage-selected-route-provenance-audit.md',
     selected_occurrence_navigation_index_report: 'reports/workbench-usage-selected-occurrence-navigation-index.md',
     selected_navigation_edge_index_report: 'reports/workbench-usage-selected-navigation-edge-index.md',
+    selected_frame_bridge_index_report: 'reports/workbench-usage-selected-frame-bridge-index.md',
     selected_occurrence_adjacency_index_report: 'reports/workbench-usage-selected-occurrence-adjacency-index.md',
     selected_focus_context_audit_report: 'reports/workbench-usage-selected-focus-context-audit.md',
     selected_frame_summary_report: 'reports/workbench-usage-selected-frame-summary.md',
@@ -443,6 +447,19 @@ const artifact = {
     selected_navigation_edge_rows_with_target_provenance: selectedNavigationEdgeIndex?.counts?.rows_with_target_provenance ?? null,
     selected_navigation_edge_reader_facing_rows: selectedNavigationEdgeIndex?.counts?.reader_facing_rows ?? null,
     selected_navigation_edge_route_payload_field_hits: selectedNavigationEdgeIndex?.counts?.route_payload_field_hits ?? null,
+    selected_frame_bridge_rows: selectedFrameBridgeIndex?.counts?.rows ?? null,
+    selected_frame_bridge_edge_memberships: selectedFrameBridgeIndex?.counts?.edge_memberships ?? null,
+    selected_frame_bridge_same_frame_rows: selectedFrameBridgeIndex?.counts?.same_frame_rows ?? null,
+    selected_frame_bridge_bridge_frame_rows: selectedFrameBridgeIndex?.counts?.bridge_frame_rows ?? null,
+    selected_frame_bridge_same_frame_edges: selectedFrameBridgeIndex?.counts?.same_frame_edges ?? null,
+    selected_frame_bridge_bridge_frame_edges: selectedFrameBridgeIndex?.counts?.bridge_frame_edges ?? null,
+    selected_frame_bridge_route_ids: selectedFrameBridgeIndex?.counts?.unique_route_ids ?? null,
+    selected_frame_bridge_provenance_buckets: selectedFrameBridgeIndex?.counts?.provenance_buckets ?? null,
+    selected_frame_bridge_sample_rows: selectedFrameBridgeIndex?.counts?.sample_rows ?? null,
+    selected_frame_bridge_sample_rows_with_links: selectedFrameBridgeIndex?.counts?.sample_rows_with_links ?? null,
+    selected_frame_bridge_sample_rows_with_context: selectedFrameBridgeIndex?.counts?.sample_rows_with_context ?? null,
+    selected_frame_bridge_reader_facing_rows: selectedFrameBridgeIndex?.counts?.reader_facing_rows ?? null,
+    selected_frame_bridge_route_payload_field_hits: selectedFrameBridgeIndex?.counts?.route_payload_field_hits ?? null,
     selected_occurrence_adjacency_rows: selectedOccurrenceAdjacencyIndex?.counts?.rows ?? null,
     selected_occurrence_adjacency_target_links: selectedOccurrenceAdjacencyIndex?.counts?.target_links ?? null,
     selected_occurrence_adjacency_source_refs: selectedOccurrenceAdjacencyIndex?.counts?.unique_source_refs ?? null,
@@ -793,6 +810,22 @@ const artifact = {
     selected_navigation_edge_failed_checks: selectedNavigationEdgeIndex?.quality?.failed_count ?? null,
     selected_navigation_edge_warning_count: selectedNavigationEdgeIndex?.quality?.warning_count ?? null,
     selected_navigation_edge_route_payload_field_hits: selectedNavigationEdgeIndex?.counts?.route_payload_field_hits ?? null,
+    selected_frame_bridge_index_status: selectedFrameBridgeIndex?.artifact_type === 'workbench_usage_selected_frame_bridge_index' ? 'present' : 'not_run',
+    selected_frame_bridge_rows: selectedFrameBridgeIndex?.counts?.rows ?? null,
+    selected_frame_bridge_edge_memberships: selectedFrameBridgeIndex?.counts?.edge_memberships ?? null,
+    selected_frame_bridge_same_frame_rows: selectedFrameBridgeIndex?.counts?.same_frame_rows ?? null,
+    selected_frame_bridge_bridge_frame_rows: selectedFrameBridgeIndex?.counts?.bridge_frame_rows ?? null,
+    selected_frame_bridge_same_frame_edges: selectedFrameBridgeIndex?.counts?.same_frame_edges ?? null,
+    selected_frame_bridge_bridge_frame_edges: selectedFrameBridgeIndex?.counts?.bridge_frame_edges ?? null,
+    selected_frame_bridge_route_ids: selectedFrameBridgeIndex?.counts?.unique_route_ids ?? null,
+    selected_frame_bridge_provenance_buckets: selectedFrameBridgeIndex?.counts?.provenance_buckets ?? null,
+    selected_frame_bridge_sample_rows: selectedFrameBridgeIndex?.counts?.sample_rows ?? null,
+    selected_frame_bridge_sample_rows_with_links: selectedFrameBridgeIndex?.counts?.sample_rows_with_links ?? null,
+    selected_frame_bridge_sample_rows_with_context: selectedFrameBridgeIndex?.counts?.sample_rows_with_context ?? null,
+    selected_frame_bridge_reader_facing_rows: selectedFrameBridgeIndex?.counts?.reader_facing_rows ?? null,
+    selected_frame_bridge_failed_checks: selectedFrameBridgeIndex?.quality?.failed_count ?? null,
+    selected_frame_bridge_warning_count: selectedFrameBridgeIndex?.quality?.warning_count ?? null,
+    selected_frame_bridge_route_payload_field_hits: selectedFrameBridgeIndex?.counts?.route_payload_field_hits ?? null,
     selected_occurrence_adjacency_index_status: selectedOccurrenceAdjacencyIndex?.artifact_type === 'workbench_usage_selected_occurrence_adjacency_index' ? 'present' : 'not_run',
     selected_occurrence_adjacency_rows: selectedOccurrenceAdjacencyIndex?.counts?.rows ?? null,
     selected_occurrence_adjacency_target_links: selectedOccurrenceAdjacencyIndex?.counts?.target_links ?? null,
@@ -986,6 +1019,9 @@ function writeReport(relativePath, artifact) {
     `- Selected navigation edge partition: same-frame ${artifact.counts.selected_navigation_edge_same_frame_edges}, bridge ${artifact.counts.selected_navigation_edge_bridge_edges}`,
     `- Selected navigation edge completeness: source context ${artifact.counts.selected_navigation_edge_rows_with_source_context}, target context ${artifact.counts.selected_navigation_edge_rows_with_target_context}, source links ${artifact.counts.selected_navigation_edge_rows_with_source_link}, target links ${artifact.counts.selected_navigation_edge_rows_with_target_link}, source provenance ${artifact.counts.selected_navigation_edge_rows_with_source_provenance}, target provenance ${artifact.counts.selected_navigation_edge_rows_with_target_provenance}`,
     `- Selected navigation edge route payload-like field hits: ${artifact.counts.selected_navigation_edge_route_payload_field_hits}`,
+    `- Selected frame bridge index: rows ${artifact.counts.selected_frame_bridge_rows}, edge memberships ${artifact.counts.selected_frame_bridge_edge_memberships}, same-frame rows ${artifact.counts.selected_frame_bridge_same_frame_rows}, bridge rows ${artifact.counts.selected_frame_bridge_bridge_frame_rows}, same-frame edges ${artifact.counts.selected_frame_bridge_same_frame_edges}, bridge edges ${artifact.counts.selected_frame_bridge_bridge_frame_edges}, route IDs ${artifact.counts.selected_frame_bridge_route_ids}, provenance buckets ${artifact.counts.selected_frame_bridge_provenance_buckets}`,
+    `- Selected frame bridge samples: samples ${artifact.counts.selected_frame_bridge_sample_rows}, with links ${artifact.counts.selected_frame_bridge_sample_rows_with_links}, with context ${artifact.counts.selected_frame_bridge_sample_rows_with_context}`,
+    `- Selected frame bridge route payload-like field hits: ${artifact.counts.selected_frame_bridge_route_payload_field_hits}`,
     `- Selected occurrence adjacency index: rows ${artifact.counts.selected_occurrence_adjacency_rows}, target links ${artifact.counts.selected_occurrence_adjacency_target_links}, source refs ${artifact.counts.selected_occurrence_adjacency_source_refs}, works ${artifact.counts.selected_occurrence_adjacency_works}, frames ${artifact.counts.selected_occurrence_adjacency_frames}, route IDs ${artifact.counts.selected_occurrence_adjacency_route_ids}, provenance buckets ${artifact.counts.selected_occurrence_adjacency_provenance_buckets}`,
     `- Selected occurrence adjacency partition: same-frame ${artifact.counts.selected_occurrence_adjacency_same_frame_links}, bridge ${artifact.counts.selected_occurrence_adjacency_bridge_frame_links}`,
     `- Selected occurrence adjacency completeness: source context ${artifact.counts.selected_occurrence_adjacency_rows_with_source_context}, source links ${artifact.counts.selected_occurrence_adjacency_rows_with_source_link}, source provenance ${artifact.counts.selected_occurrence_adjacency_rows_with_source_provenance}, complete target rows ${artifact.counts.selected_occurrence_adjacency_rows_with_complete_targets}, target context ${artifact.counts.selected_occurrence_adjacency_target_links_with_context}, target links ${artifact.counts.selected_occurrence_adjacency_target_links_with_source_link}, target provenance ${artifact.counts.selected_occurrence_adjacency_target_links_with_provenance}`,
@@ -1074,6 +1110,9 @@ function writeReport(relativePath, artifact) {
     `- Selected navigation edge partition: same-frame ${artifact.validation.selected_navigation_edge_same_frame_edges}, bridge ${artifact.validation.selected_navigation_edge_bridge_edges}`,
     `- Selected navigation edge completeness: source context ${artifact.validation.selected_navigation_edge_rows_with_source_context}, target context ${artifact.validation.selected_navigation_edge_rows_with_target_context}, source links ${artifact.validation.selected_navigation_edge_rows_with_source_link}, target links ${artifact.validation.selected_navigation_edge_rows_with_target_link}, source provenance ${artifact.validation.selected_navigation_edge_rows_with_source_provenance}, target provenance ${artifact.validation.selected_navigation_edge_rows_with_target_provenance}`,
     `- Selected navigation edge route payload-like field hits: ${artifact.validation.selected_navigation_edge_route_payload_field_hits}`,
+    `- Selected frame bridge index: ${artifact.validation.selected_frame_bridge_index_status}, rows ${artifact.validation.selected_frame_bridge_rows}, edge memberships ${artifact.validation.selected_frame_bridge_edge_memberships}, same-frame rows ${artifact.validation.selected_frame_bridge_same_frame_rows}, bridge rows ${artifact.validation.selected_frame_bridge_bridge_frame_rows}, same-frame edges ${artifact.validation.selected_frame_bridge_same_frame_edges}, bridge edges ${artifact.validation.selected_frame_bridge_bridge_frame_edges}, route IDs ${artifact.validation.selected_frame_bridge_route_ids}, provenance buckets ${artifact.validation.selected_frame_bridge_provenance_buckets}, warnings ${artifact.validation.selected_frame_bridge_warning_count}, failed ${artifact.validation.selected_frame_bridge_failed_checks}`,
+    `- Selected frame bridge samples: samples ${artifact.validation.selected_frame_bridge_sample_rows}, with links ${artifact.validation.selected_frame_bridge_sample_rows_with_links}, with context ${artifact.validation.selected_frame_bridge_sample_rows_with_context}`,
+    `- Selected frame bridge route payload-like field hits: ${artifact.validation.selected_frame_bridge_route_payload_field_hits}`,
     `- Selected occurrence adjacency index: ${artifact.validation.selected_occurrence_adjacency_index_status}, rows ${artifact.validation.selected_occurrence_adjacency_rows}, target links ${artifact.validation.selected_occurrence_adjacency_target_links}, source refs ${artifact.validation.selected_occurrence_adjacency_source_refs}, works ${artifact.validation.selected_occurrence_adjacency_works}, frames ${artifact.validation.selected_occurrence_adjacency_frames}, route IDs ${artifact.validation.selected_occurrence_adjacency_route_ids}, provenance buckets ${artifact.validation.selected_occurrence_adjacency_provenance_buckets}, warnings ${artifact.validation.selected_occurrence_adjacency_warning_count}, failed ${artifact.validation.selected_occurrence_adjacency_failed_checks}`,
     `- Selected occurrence adjacency partition: same-frame ${artifact.validation.selected_occurrence_adjacency_same_frame_links}, bridge ${artifact.validation.selected_occurrence_adjacency_bridge_frame_links}`,
     `- Selected occurrence adjacency completeness: source context ${artifact.validation.selected_occurrence_adjacency_rows_with_source_context}, source links ${artifact.validation.selected_occurrence_adjacency_rows_with_source_link}, source provenance ${artifact.validation.selected_occurrence_adjacency_rows_with_source_provenance}, complete target rows ${artifact.validation.selected_occurrence_adjacency_rows_with_complete_targets}, target context ${artifact.validation.selected_occurrence_adjacency_target_links_with_context}, target links ${artifact.validation.selected_occurrence_adjacency_target_links_with_source_link}, target provenance ${artifact.validation.selected_occurrence_adjacency_target_links_with_provenance}`,
@@ -1138,6 +1177,7 @@ function writeReport(relativePath, artifact) {
     `| selected route/provenance audit | ${mdCell(artifact.artifacts.selected_route_provenance_audit_report)} | yes |`,
     `| selected occurrence navigation index | ${mdCell(artifact.artifacts.selected_occurrence_navigation_index_report)} | yes |`,
     `| selected navigation edge index | ${mdCell(artifact.artifacts.selected_navigation_edge_index_report)} | yes |`,
+    `| selected frame bridge index | ${mdCell(artifact.artifacts.selected_frame_bridge_index_report)} | yes |`,
     `| selected occurrence adjacency index | ${mdCell(artifact.artifacts.selected_occurrence_adjacency_index_report)} | yes |`,
     `| selected focus/context audit | ${mdCell(artifact.artifacts.selected_focus_context_audit_report)} | yes |`,
     `| selected frame summary | ${mdCell(artifact.artifacts.selected_frame_summary_report)} | yes |`,
@@ -1201,6 +1241,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-route-provenance-audit=')) parsed.selectedRouteProvenanceAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-navigation-index=')) parsed.selectedOccurrenceNavigationIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-navigation-edge-index=')) parsed.selectedNavigationEdgeIndex = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-frame-bridge-index=')) parsed.selectedFrameBridgeIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-adjacency-index=')) parsed.selectedOccurrenceAdjacencyIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-focus-context-audit=')) parsed.selectedFocusContextAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-frame-summary=')) parsed.selectedFrameSummary = cleanRelativePath(valueAfterEquals(arg));
@@ -1287,6 +1328,8 @@ function buildCommands(options, manifest) {
   commands.validate_selected_occurrence_navigation_index = `node scripts/validate_workbench_usage_selected_occurrence_navigation_index.mjs ${options.selectedOccurrenceNavigationIndex}`;
   commands.build_selected_navigation_edge_index = `node scripts/build_workbench_usage_selected_navigation_edge_index.mjs --selected-occurrence-navigation-index=${options.selectedOccurrenceNavigationIndex} --crossmatch-links=${options.crossmatchLinks} --output=${options.selectedNavigationEdgeIndex} --report=reports/workbench-usage-selected-navigation-edge-index.md`;
   commands.validate_selected_navigation_edge_index = `node scripts/validate_workbench_usage_selected_navigation_edge_index.mjs ${options.selectedNavigationEdgeIndex}`;
+  commands.build_selected_frame_bridge_index = `node scripts/build_workbench_usage_selected_frame_bridge_index.mjs --selected-navigation-edge-index=${options.selectedNavigationEdgeIndex} --output=${options.selectedFrameBridgeIndex} --report=reports/workbench-usage-selected-frame-bridge-index.md`;
+  commands.validate_selected_frame_bridge_index = `node scripts/validate_workbench_usage_selected_frame_bridge_index.mjs ${options.selectedFrameBridgeIndex}`;
   commands.build_selected_occurrence_adjacency_index = `node scripts/build_workbench_usage_selected_occurrence_adjacency_index.mjs --selected-navigation-edge-index=${options.selectedNavigationEdgeIndex} --output=${options.selectedOccurrenceAdjacencyIndex} --report=reports/workbench-usage-selected-occurrence-adjacency-index.md`;
   commands.validate_selected_occurrence_adjacency_index = `node scripts/validate_workbench_usage_selected_occurrence_adjacency_index.mjs ${options.selectedOccurrenceAdjacencyIndex}`;
   commands.build_selected_focus_context_audit = `node scripts/build_workbench_usage_selected_focus_context_audit.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --output=${options.selectedFocusContextAudit} --report=reports/workbench-usage-selected-focus-context-audit.md`;
@@ -1297,7 +1340,7 @@ function buildCommands(options, manifest) {
   commands.validate_selected_frame_provenance_matrix = `node scripts/validate_workbench_usage_selected_frame_provenance_matrix.mjs ${options.selectedFrameProvenanceMatrix}`;
   commands.build_selected_work_frame_matrix = `node scripts/build_workbench_usage_selected_work_frame_matrix.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-frame-summary=${options.selectedFrameSummary} --output=${options.selectedWorkFrameMatrix} --report=reports/workbench-usage-selected-work-frame-matrix.md`;
   commands.validate_selected_work_frame_matrix = `node scripts/validate_workbench_usage_selected_work_frame_matrix.mjs ${options.selectedWorkFrameMatrix}`;
-  commands.build_selected_qa_package = `node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-source-diversity=${options.selectedSourceDiversity} --selected-provenance-matrix=${options.selectedProvenanceMatrix} --selected-frame-provenance-matrix=${options.selectedFrameProvenanceMatrix} --selected-collision-audit=${options.selectedCollisionAudit} --selected-collision-provenance-audit=${options.selectedCollisionProvenanceAudit} --selected-signature-independence=${options.selectedSignatureIndependence} --selected-route-concentration-response=${options.selectedRouteConcentrationResponse} --selected-route-resolution=${options.selectedRouteResolution} --selected-route-provenance-audit=${options.selectedRouteProvenanceAudit} --selected-occurrence-navigation-index=${options.selectedOccurrenceNavigationIndex} --selected-navigation-edge-index=${options.selectedNavigationEdgeIndex} --selected-occurrence-adjacency-index=${options.selectedOccurrenceAdjacencyIndex} --selected-focus-context-audit=${options.selectedFocusContextAudit} --selected-frame-summary=${options.selectedFrameSummary} --selected-work-frame-matrix=${options.selectedWorkFrameMatrix} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --crossmatch-links=${options.crossmatchLinks} --crossmatch-bridge-index=${options.crossmatchBridgeIndex} --crossmatch-neighborhoods=${options.crossmatchNeighborhoods} --output=${options.selectedQaPackage} --report=reports/workbench-usage-selected-qa-package.md`;
+  commands.build_selected_qa_package = `node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-source-diversity=${options.selectedSourceDiversity} --selected-provenance-matrix=${options.selectedProvenanceMatrix} --selected-frame-provenance-matrix=${options.selectedFrameProvenanceMatrix} --selected-collision-audit=${options.selectedCollisionAudit} --selected-collision-provenance-audit=${options.selectedCollisionProvenanceAudit} --selected-signature-independence=${options.selectedSignatureIndependence} --selected-route-concentration-response=${options.selectedRouteConcentrationResponse} --selected-route-resolution=${options.selectedRouteResolution} --selected-route-provenance-audit=${options.selectedRouteProvenanceAudit} --selected-occurrence-navigation-index=${options.selectedOccurrenceNavigationIndex} --selected-navigation-edge-index=${options.selectedNavigationEdgeIndex} --selected-frame-bridge-index=${options.selectedFrameBridgeIndex} --selected-occurrence-adjacency-index=${options.selectedOccurrenceAdjacencyIndex} --selected-focus-context-audit=${options.selectedFocusContextAudit} --selected-frame-summary=${options.selectedFrameSummary} --selected-work-frame-matrix=${options.selectedWorkFrameMatrix} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --crossmatch-links=${options.crossmatchLinks} --crossmatch-bridge-index=${options.crossmatchBridgeIndex} --crossmatch-neighborhoods=${options.crossmatchNeighborhoods} --output=${options.selectedQaPackage} --report=reports/workbench-usage-selected-qa-package.md`;
   commands.validate_selected_qa_package = `node scripts/validate_workbench_usage_selected_qa_package.mjs ${options.selectedQaPackage}`;
   commands.build_selected_occurrence_lookup = `node scripts/build_workbench_usage_selected_occurrence_lookup.mjs --selected-occurrences=${options.selectedOccurrences} --output=${options.selectedOccurrenceLookup} --report=reports/workbench-usage-selected-occurrence-lookup.md --max-samples=5`;
   commands.validate_selected_occurrence_lookup = `node scripts/validate_workbench_usage_selected_occurrence_lookup.mjs ${options.selectedOccurrenceLookup}`;
@@ -1347,6 +1390,7 @@ function buildCommands(options, manifest) {
     `--selected-route-provenance-audit=${options.selectedRouteProvenanceAudit}`,
     `--selected-occurrence-navigation-index=${options.selectedOccurrenceNavigationIndex}`,
     `--selected-navigation-edge-index=${options.selectedNavigationEdgeIndex}`,
+    `--selected-frame-bridge-index=${options.selectedFrameBridgeIndex}`,
     `--selected-occurrence-adjacency-index=${options.selectedOccurrenceAdjacencyIndex}`,
     `--selected-focus-context-audit=${options.selectedFocusContextAudit}`,
     `--selected-frame-summary=${options.selectedFrameSummary}`,

@@ -66,7 +66,7 @@ console.log(`Validated usage selected QA package ${artifactPath}: items ${items.
 
 function validateCounts(packageItems) {
   if (Number(artifact.counts?.package_items || 0) !== packageItems.length) issues.push('package_items count must equal package_items length');
-  if (packageItems.length !== 20) issues.push('package must contain 20 selected artifact items');
+  if (packageItems.length !== 21) issues.push('package must contain 21 selected artifact items');
   if (Number(artifact.counts?.selected_rows || 0) <= 0) issues.push('selected_rows must be positive');
   if (Number(artifact.counts?.selected_source_refs || 0) <= 1) issues.push('selected_source_refs must show diversity');
   if (Number(artifact.counts?.selected_works || 0) <= 1) issues.push('selected_works must show diversity');
@@ -225,6 +225,30 @@ function validateCounts(packageItems) {
   }
   if (Number(artifact.counts?.selected_navigation_edge_rows_with_target_provenance || 0) !== Number(artifact.counts?.selected_navigation_edge_rows || 0)) {
     issues.push('selected_navigation_edge_rows_with_target_provenance must equal selected_navigation_edge_rows');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_edge_memberships || 0) !== Number(artifact.counts?.selected_navigation_edge_rows || 0)) {
+    issues.push('selected_frame_bridge_edge_memberships must equal selected_navigation_edge_rows');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_same_frame_edges || 0) !== Number(artifact.counts?.selected_navigation_edge_same_frame_edges || 0)) {
+    issues.push('selected_frame_bridge_same_frame_edges must equal selected_navigation_edge_same_frame_edges');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_bridge_frame_edges || 0) !== Number(artifact.counts?.selected_navigation_edge_bridge_edges || 0)) {
+    issues.push('selected_frame_bridge_bridge_frame_edges must equal selected_navigation_edge_bridge_edges');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_same_frame_rows || 0) <= 0) {
+    issues.push('selected_frame_bridge_same_frame_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_bridge_frame_rows || 0) <= 0) {
+    issues.push('selected_frame_bridge_bridge_frame_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_route_ids || 0) !== Number(artifact.counts?.selected_route_ids || 0)) {
+    issues.push('selected_frame_bridge_route_ids must equal selected_route_ids');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_sample_rows_with_links || 0) !== Number(artifact.counts?.selected_frame_bridge_sample_rows || 0)) {
+    issues.push('selected_frame_bridge_sample_rows_with_links must equal selected_frame_bridge_sample_rows');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_sample_rows_with_context || 0) !== Number(artifact.counts?.selected_frame_bridge_sample_rows || 0)) {
+    issues.push('selected_frame_bridge_sample_rows_with_context must equal selected_frame_bridge_sample_rows');
   }
   if (Number(artifact.counts?.selected_occurrence_adjacency_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
     issues.push('selected_occurrence_adjacency_rows must equal selected_rows');

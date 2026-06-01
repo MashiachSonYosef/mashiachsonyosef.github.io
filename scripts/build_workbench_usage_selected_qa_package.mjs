@@ -16,6 +16,7 @@ const defaults = {
   selectedRouteProvenanceAudit: '.local-cache/workbench-evidence/usage-selected-route-provenance-audit.json',
   selectedOccurrenceNavigationIndex: '.local-cache/workbench-evidence/usage-selected-occurrence-navigation-index.json',
   selectedNavigationEdgeIndex: '.local-cache/workbench-evidence/usage-selected-navigation-edge-index.json',
+  selectedFrameBridgeIndex: '.local-cache/workbench-evidence/usage-selected-frame-bridge-index.json',
   selectedOccurrenceAdjacencyIndex: '.local-cache/workbench-evidence/usage-selected-occurrence-adjacency-index.json',
   selectedFocusContextAudit: '.local-cache/workbench-evidence/usage-selected-focus-context-audit.json',
   selectedFrameSummary: '.local-cache/workbench-evidence/usage-selected-frame-summary.json',
@@ -42,6 +43,7 @@ const artifacts = {
   selectedRouteProvenanceAudit: readJson(options.selectedRouteProvenanceAudit),
   selectedOccurrenceNavigationIndex: readJson(options.selectedOccurrenceNavigationIndex),
   selectedNavigationEdgeIndex: readJson(options.selectedNavigationEdgeIndex),
+  selectedFrameBridgeIndex: readJson(options.selectedFrameBridgeIndex),
   selectedOccurrenceAdjacencyIndex: readJson(options.selectedOccurrenceAdjacencyIndex),
   selectedFocusContextAudit: readJson(options.selectedFocusContextAudit),
   selectedFrameSummary: readJson(options.selectedFrameSummary),
@@ -64,6 +66,7 @@ assertType(artifacts.selectedRouteResolution, 'workbench_usage_selected_route_re
 assertType(artifacts.selectedRouteProvenanceAudit, 'workbench_usage_selected_route_provenance_audit', options.selectedRouteProvenanceAudit);
 assertType(artifacts.selectedOccurrenceNavigationIndex, 'workbench_usage_selected_occurrence_navigation_index', options.selectedOccurrenceNavigationIndex);
 assertType(artifacts.selectedNavigationEdgeIndex, 'workbench_usage_selected_navigation_edge_index', options.selectedNavigationEdgeIndex);
+assertType(artifacts.selectedFrameBridgeIndex, 'workbench_usage_selected_frame_bridge_index', options.selectedFrameBridgeIndex);
 assertType(artifacts.selectedOccurrenceAdjacencyIndex, 'workbench_usage_selected_occurrence_adjacency_index', options.selectedOccurrenceAdjacencyIndex);
 assertType(artifacts.selectedFocusContextAudit, 'workbench_usage_selected_focus_context_audit', options.selectedFocusContextAudit);
 assertType(artifacts.selectedFrameSummary, 'workbench_usage_selected_frame_summary', options.selectedFrameSummary);
@@ -97,6 +100,7 @@ const artifact = {
     selected_route_provenance_audit: options.selectedRouteProvenanceAudit,
     selected_occurrence_navigation_index: options.selectedOccurrenceNavigationIndex,
     selected_navigation_edge_index: options.selectedNavigationEdgeIndex,
+    selected_frame_bridge_index: options.selectedFrameBridgeIndex,
     selected_occurrence_adjacency_index: options.selectedOccurrenceAdjacencyIndex,
     selected_focus_context_audit: options.selectedFocusContextAudit,
     selected_frame_summary: options.selectedFrameSummary,
@@ -221,6 +225,15 @@ function buildPackageItems() {
       bridge_edges: artifacts.selectedNavigationEdgeIndex.counts?.bridge_edges,
       source_context_rows: artifacts.selectedNavigationEdgeIndex.counts?.rows_with_source_context,
       target_context_rows: artifacts.selectedNavigationEdgeIndex.counts?.rows_with_target_context,
+    }),
+    item('selected_frame_bridge_index', options.selectedFrameBridgeIndex, 'reports/workbench-usage-selected-frame-bridge-index.md', artifacts.selectedFrameBridgeIndex, {
+      rows: artifacts.selectedFrameBridgeIndex.counts?.rows,
+      edge_memberships: artifacts.selectedFrameBridgeIndex.counts?.edge_memberships,
+      same_frame_rows: artifacts.selectedFrameBridgeIndex.counts?.same_frame_rows,
+      bridge_frame_rows: artifacts.selectedFrameBridgeIndex.counts?.bridge_frame_rows,
+      same_frame_edges: artifacts.selectedFrameBridgeIndex.counts?.same_frame_edges,
+      bridge_frame_edges: artifacts.selectedFrameBridgeIndex.counts?.bridge_frame_edges,
+      sample_rows: artifacts.selectedFrameBridgeIndex.counts?.sample_rows,
     }),
     item('selected_occurrence_adjacency_index', options.selectedOccurrenceAdjacencyIndex, 'reports/workbench-usage-selected-occurrence-adjacency-index.md', artifacts.selectedOccurrenceAdjacencyIndex, {
       rows: artifacts.selectedOccurrenceAdjacencyIndex.counts?.rows,
@@ -366,6 +379,17 @@ function buildCounts(items) {
     selected_navigation_edge_rows_with_target_link: Number(artifacts.selectedNavigationEdgeIndex.counts?.rows_with_target_link || 0),
     selected_navigation_edge_rows_with_source_provenance: Number(artifacts.selectedNavigationEdgeIndex.counts?.rows_with_source_provenance || 0),
     selected_navigation_edge_rows_with_target_provenance: Number(artifacts.selectedNavigationEdgeIndex.counts?.rows_with_target_provenance || 0),
+    selected_frame_bridge_rows: Number(artifacts.selectedFrameBridgeIndex.counts?.rows || 0),
+    selected_frame_bridge_edge_memberships: Number(artifacts.selectedFrameBridgeIndex.counts?.edge_memberships || 0),
+    selected_frame_bridge_same_frame_rows: Number(artifacts.selectedFrameBridgeIndex.counts?.same_frame_rows || 0),
+    selected_frame_bridge_bridge_frame_rows: Number(artifacts.selectedFrameBridgeIndex.counts?.bridge_frame_rows || 0),
+    selected_frame_bridge_same_frame_edges: Number(artifacts.selectedFrameBridgeIndex.counts?.same_frame_edges || 0),
+    selected_frame_bridge_bridge_frame_edges: Number(artifacts.selectedFrameBridgeIndex.counts?.bridge_frame_edges || 0),
+    selected_frame_bridge_route_ids: Number(artifacts.selectedFrameBridgeIndex.counts?.unique_route_ids || 0),
+    selected_frame_bridge_provenance_buckets: Number(artifacts.selectedFrameBridgeIndex.counts?.provenance_buckets || 0),
+    selected_frame_bridge_sample_rows: Number(artifacts.selectedFrameBridgeIndex.counts?.sample_rows || 0),
+    selected_frame_bridge_sample_rows_with_links: Number(artifacts.selectedFrameBridgeIndex.counts?.sample_rows_with_links || 0),
+    selected_frame_bridge_sample_rows_with_context: Number(artifacts.selectedFrameBridgeIndex.counts?.sample_rows_with_context || 0),
     selected_occurrence_adjacency_rows: Number(artifacts.selectedOccurrenceAdjacencyIndex.counts?.rows || 0),
     selected_occurrence_adjacency_target_links: Number(artifacts.selectedOccurrenceAdjacencyIndex.counts?.target_links || 0),
     selected_occurrence_adjacency_source_refs: Number(artifacts.selectedOccurrenceAdjacencyIndex.counts?.unique_source_refs || 0),
@@ -415,7 +439,7 @@ function buildCounts(items) {
 
 function buildChecks(counts) {
   return [
-    check('package_items_present', counts.package_items === 20 ? 'passed' : 'failed', `package items ${counts.package_items}`),
+    check('package_items_present', counts.package_items === 21 ? 'passed' : 'failed', `package items ${counts.package_items}`),
     check('selected_rows_consistent', counts.selected_rows === Number(artifacts.selectedSourceDiversity.counts?.selected_occurrence_refs || 0) ? 'passed' : 'failed', `selected rows ${counts.selected_rows}`),
     check('selected_provenance_rows_complete', counts.selected_provenance_rows === counts.selected_rows ? 'passed' : 'failed', `provenance rows ${counts.selected_provenance_rows}; selected rows ${counts.selected_rows}`),
     check('selected_provenance_license_metadata_complete', counts.selected_provenance_rows_with_license_metadata === counts.selected_rows ? 'passed' : 'failed', `license metadata rows ${counts.selected_provenance_rows_with_license_metadata}; selected rows ${counts.selected_rows}`),
@@ -452,6 +476,10 @@ function buildChecks(counts) {
     check('selected_navigation_edge_context_complete', counts.selected_navigation_edge_rows_with_source_context === counts.selected_navigation_edge_rows && counts.selected_navigation_edge_rows_with_target_context === counts.selected_navigation_edge_rows ? 'passed' : 'failed', `source context ${counts.selected_navigation_edge_rows_with_source_context}; target context ${counts.selected_navigation_edge_rows_with_target_context}; edges ${counts.selected_navigation_edge_rows}`),
     check('selected_navigation_edge_links_complete', counts.selected_navigation_edge_rows_with_source_link === counts.selected_navigation_edge_rows && counts.selected_navigation_edge_rows_with_target_link === counts.selected_navigation_edge_rows ? 'passed' : 'failed', `source links ${counts.selected_navigation_edge_rows_with_source_link}; target links ${counts.selected_navigation_edge_rows_with_target_link}; edges ${counts.selected_navigation_edge_rows}`),
     check('selected_navigation_edge_provenance_complete', counts.selected_navigation_edge_rows_with_source_provenance === counts.selected_navigation_edge_rows && counts.selected_navigation_edge_rows_with_target_provenance === counts.selected_navigation_edge_rows ? 'passed' : 'failed', `source provenance ${counts.selected_navigation_edge_rows_with_source_provenance}; target provenance ${counts.selected_navigation_edge_rows_with_target_provenance}; edges ${counts.selected_navigation_edge_rows}`),
+    check('selected_frame_bridge_edge_memberships_complete', counts.selected_frame_bridge_edge_memberships === counts.selected_navigation_edge_rows ? 'passed' : 'failed', `frame bridge memberships ${counts.selected_frame_bridge_edge_memberships}; edge rows ${counts.selected_navigation_edge_rows}`),
+    check('selected_frame_bridge_partition_complete', counts.selected_frame_bridge_same_frame_edges === counts.selected_navigation_edge_same_frame_edges && counts.selected_frame_bridge_bridge_frame_edges === counts.selected_navigation_edge_bridge_edges ? 'passed' : 'failed', `frame bridge same/bridge ${counts.selected_frame_bridge_same_frame_edges}/${counts.selected_frame_bridge_bridge_frame_edges}; edge same/bridge ${counts.selected_navigation_edge_same_frame_edges}/${counts.selected_navigation_edge_bridge_edges}`),
+    check('selected_frame_bridge_rows_cover_same_and_bridge', counts.selected_frame_bridge_same_frame_rows > 0 && counts.selected_frame_bridge_bridge_frame_rows > 0 ? 'passed' : 'failed', `same-frame rows ${counts.selected_frame_bridge_same_frame_rows}; bridge rows ${counts.selected_frame_bridge_bridge_frame_rows}`),
+    check('selected_frame_bridge_samples_complete', counts.selected_frame_bridge_sample_rows_with_links === counts.selected_frame_bridge_sample_rows && counts.selected_frame_bridge_sample_rows_with_context === counts.selected_frame_bridge_sample_rows ? 'passed' : 'failed', `sample links/context ${counts.selected_frame_bridge_sample_rows_with_links}/${counts.selected_frame_bridge_sample_rows_with_context}; samples ${counts.selected_frame_bridge_sample_rows}`),
     check('selected_occurrence_adjacency_rows_complete', counts.selected_occurrence_adjacency_rows === counts.selected_rows ? 'passed' : 'failed', `adjacency rows ${counts.selected_occurrence_adjacency_rows}; selected rows ${counts.selected_rows}`),
     check('selected_occurrence_adjacency_target_links_complete', counts.selected_occurrence_adjacency_target_links === counts.selected_navigation_edge_rows ? 'passed' : 'failed', `adjacency target links ${counts.selected_occurrence_adjacency_target_links}; edge rows ${counts.selected_navigation_edge_rows}`),
     check('selected_occurrence_adjacency_partition_complete', counts.selected_occurrence_adjacency_same_frame_links + counts.selected_occurrence_adjacency_bridge_frame_links === counts.selected_occurrence_adjacency_target_links ? 'passed' : 'failed', `same-frame ${counts.selected_occurrence_adjacency_same_frame_links}; bridge ${counts.selected_occurrence_adjacency_bridge_frame_links}; target links ${counts.selected_occurrence_adjacency_target_links}`),
@@ -559,6 +587,16 @@ function writeReport(relativePath, artifact) {
     `- Navigation edge target link rows: ${artifact.counts.selected_navigation_edge_rows_with_target_link}`,
     `- Navigation edge source provenance rows: ${artifact.counts.selected_navigation_edge_rows_with_source_provenance}`,
     `- Navigation edge target provenance rows: ${artifact.counts.selected_navigation_edge_rows_with_target_provenance}`,
+    `- Frame bridge rows: ${artifact.counts.selected_frame_bridge_rows}`,
+    `- Frame bridge edge memberships: ${artifact.counts.selected_frame_bridge_edge_memberships}`,
+    `- Frame bridge same-frame rows: ${artifact.counts.selected_frame_bridge_same_frame_rows}`,
+    `- Frame bridge bridge-frame rows: ${artifact.counts.selected_frame_bridge_bridge_frame_rows}`,
+    `- Frame bridge same-frame edges: ${artifact.counts.selected_frame_bridge_same_frame_edges}`,
+    `- Frame bridge bridge-frame edges: ${artifact.counts.selected_frame_bridge_bridge_frame_edges}`,
+    `- Frame bridge route IDs: ${artifact.counts.selected_frame_bridge_route_ids}`,
+    `- Frame bridge provenance buckets: ${artifact.counts.selected_frame_bridge_provenance_buckets}`,
+    `- Frame bridge sample rows: ${artifact.counts.selected_frame_bridge_sample_rows}`,
+    `- Frame bridge sample rows with links/context: ${artifact.counts.selected_frame_bridge_sample_rows_with_links}/${artifact.counts.selected_frame_bridge_sample_rows_with_context}`,
     `- Occurrence adjacency rows: ${artifact.counts.selected_occurrence_adjacency_rows}`,
     `- Occurrence adjacency target links: ${artifact.counts.selected_occurrence_adjacency_target_links}`,
     `- Occurrence adjacency source refs: ${artifact.counts.selected_occurrence_adjacency_source_refs}`,
@@ -685,6 +723,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-route-provenance-audit=')) parsed.selectedRouteProvenanceAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-navigation-index=')) parsed.selectedOccurrenceNavigationIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-navigation-edge-index=')) parsed.selectedNavigationEdgeIndex = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-frame-bridge-index=')) parsed.selectedFrameBridgeIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-adjacency-index=')) parsed.selectedOccurrenceAdjacencyIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-focus-context-audit=')) parsed.selectedFocusContextAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-frame-summary=')) parsed.selectedFrameSummary = cleanRelativePath(valueAfterEquals(arg));

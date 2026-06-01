@@ -281,6 +281,19 @@ function validateCounts() {
     'selected_navigation_edge_rows_with_target_provenance',
     'selected_navigation_edge_reader_facing_rows',
     'selected_navigation_edge_route_payload_field_hits',
+    'selected_frame_bridge_rows',
+    'selected_frame_bridge_edge_memberships',
+    'selected_frame_bridge_same_frame_rows',
+    'selected_frame_bridge_bridge_frame_rows',
+    'selected_frame_bridge_same_frame_edges',
+    'selected_frame_bridge_bridge_frame_edges',
+    'selected_frame_bridge_route_ids',
+    'selected_frame_bridge_provenance_buckets',
+    'selected_frame_bridge_sample_rows',
+    'selected_frame_bridge_sample_rows_with_links',
+    'selected_frame_bridge_sample_rows_with_context',
+    'selected_frame_bridge_reader_facing_rows',
+    'selected_frame_bridge_route_payload_field_hits',
     'selected_occurrence_adjacency_rows',
     'selected_occurrence_adjacency_target_links',
     'selected_occurrence_adjacency_source_refs',
@@ -728,6 +741,36 @@ function validateCounts() {
   if (Number(artifact.counts?.selected_navigation_edge_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_navigation_edge_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.counts?.selected_frame_bridge_edge_memberships || 0) !== Number(artifact.counts?.selected_navigation_edge_rows || 0)) {
+    issues.push('selected_frame_bridge_edge_memberships must equal selected_navigation_edge_rows');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_same_frame_edges || 0) !== Number(artifact.counts?.selected_navigation_edge_same_frame_edges || 0)) {
+    issues.push('selected_frame_bridge_same_frame_edges must equal selected_navigation_edge_same_frame_edges');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_bridge_frame_edges || 0) !== Number(artifact.counts?.selected_navigation_edge_bridge_edges || 0)) {
+    issues.push('selected_frame_bridge_bridge_frame_edges must equal selected_navigation_edge_bridge_edges');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_same_frame_rows || 0) <= 0) {
+    issues.push('selected_frame_bridge_same_frame_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_bridge_frame_rows || 0) <= 0) {
+    issues.push('selected_frame_bridge_bridge_frame_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_route_ids || 0) !== Number(artifact.counts?.unique_route_ids || 0)) {
+    issues.push('selected_frame_bridge_route_ids must equal unique_route_ids');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_sample_rows_with_links || 0) !== Number(artifact.counts?.selected_frame_bridge_sample_rows || 0)) {
+    issues.push('selected_frame_bridge_sample_rows_with_links must equal selected_frame_bridge_sample_rows');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_sample_rows_with_context || 0) !== Number(artifact.counts?.selected_frame_bridge_sample_rows || 0)) {
+    issues.push('selected_frame_bridge_sample_rows_with_context must equal selected_frame_bridge_sample_rows');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_frame_bridge_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_frame_bridge_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_frame_bridge_route_payload_field_hits must be 0');
+  }
   if (Number(artifact.counts?.selected_occurrence_adjacency_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('selected_occurrence_adjacency_rows must equal selected_occurrence_rows');
   }
@@ -839,8 +882,8 @@ function validateCounts() {
   if (Number(artifact.counts?.selected_work_frame_matrix_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_work_frame_matrix_route_payload_field_hits must be 0');
   }
-  if (Number(artifact.counts?.selected_qa_package_items || 0) !== 20) {
-    issues.push('selected_qa_package_items must be 20');
+  if (Number(artifact.counts?.selected_qa_package_items || 0) !== 21) {
+    issues.push('selected_qa_package_items must be 21');
   }
   if (Number(artifact.counts?.selected_qa_package_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('selected_qa_package_selected_rows must equal selected_occurrence_rows');
@@ -1161,6 +1204,7 @@ function validateArtifacts() {
     'selected_route_provenance_audit_report',
     'selected_occurrence_navigation_index_report',
     'selected_navigation_edge_index_report',
+    'selected_frame_bridge_index_report',
     'selected_occurrence_adjacency_index_report',
     'selected_focus_context_audit_report',
     'selected_frame_summary_report',
@@ -1978,6 +2022,45 @@ function validateValidation() {
   if (Number(artifact.validation?.selected_navigation_edge_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_navigation_edge_route_payload_field_hits must be 0');
   }
+  if (artifact.validation?.selected_frame_bridge_index_status !== 'present') {
+    issues.push('selected_frame_bridge_index_status must be present');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_edge_memberships || 0) !== Number(artifact.counts?.selected_navigation_edge_rows || 0)) {
+    issues.push('selected_frame_bridge_edge_memberships must equal selected_navigation_edge_rows');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_same_frame_edges || 0) !== Number(artifact.counts?.selected_navigation_edge_same_frame_edges || 0)) {
+    issues.push('selected_frame_bridge_same_frame_edges must equal selected_navigation_edge_same_frame_edges');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_bridge_frame_edges || 0) !== Number(artifact.counts?.selected_navigation_edge_bridge_edges || 0)) {
+    issues.push('selected_frame_bridge_bridge_frame_edges must equal selected_navigation_edge_bridge_edges');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_same_frame_rows || 0) <= 0) {
+    issues.push('selected_frame_bridge_same_frame_rows must be positive');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_bridge_frame_rows || 0) <= 0) {
+    issues.push('selected_frame_bridge_bridge_frame_rows must be positive');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_route_ids || 0) !== Number(artifact.counts?.unique_route_ids || 0)) {
+    issues.push('selected_frame_bridge_route_ids must equal unique_route_ids');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_sample_rows_with_links || 0) !== Number(artifact.validation?.selected_frame_bridge_sample_rows || 0)) {
+    issues.push('selected_frame_bridge_sample_rows_with_links must equal selected_frame_bridge_sample_rows');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_sample_rows_with_context || 0) !== Number(artifact.validation?.selected_frame_bridge_sample_rows || 0)) {
+    issues.push('selected_frame_bridge_sample_rows_with_context must equal selected_frame_bridge_sample_rows');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_frame_bridge_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_failed_checks || 0) !== 0) {
+    issues.push('selected_frame_bridge_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_warning_count || 0) !== 0) {
+    issues.push('selected_frame_bridge_warning_count must be 0');
+  }
+  if (Number(artifact.validation?.selected_frame_bridge_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_frame_bridge_route_payload_field_hits must be 0');
+  }
   if (artifact.validation?.selected_occurrence_adjacency_index_status !== 'present') {
     issues.push('selected_occurrence_adjacency_index_status must be present');
   }
@@ -2116,8 +2199,8 @@ function validateValidation() {
   if (Number(artifact.validation?.selected_work_frame_matrix_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_work_frame_matrix_route_payload_field_hits must be 0');
   }
-  if (Number(artifact.validation?.selected_qa_package_items || 0) !== 20) {
-    issues.push('selected_qa_package_items must be 20');
+  if (Number(artifact.validation?.selected_qa_package_items || 0) !== 21) {
+    issues.push('selected_qa_package_items must be 21');
   }
   if (Number(artifact.validation?.selected_qa_package_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('selected_qa_package_selected_rows must equal selected_occurrence_rows');
@@ -2279,6 +2362,8 @@ function validateCommands() {
     validate_selected_occurrence_navigation_index: 'validate_workbench_usage_selected_occurrence_navigation_index.mjs',
     build_selected_navigation_edge_index: 'build_workbench_usage_selected_navigation_edge_index.mjs',
     validate_selected_navigation_edge_index: 'validate_workbench_usage_selected_navigation_edge_index.mjs',
+    build_selected_frame_bridge_index: 'build_workbench_usage_selected_frame_bridge_index.mjs',
+    validate_selected_frame_bridge_index: 'validate_workbench_usage_selected_frame_bridge_index.mjs',
     build_selected_occurrence_adjacency_index: 'build_workbench_usage_selected_occurrence_adjacency_index.mjs',
     validate_selected_occurrence_adjacency_index: 'validate_workbench_usage_selected_occurrence_adjacency_index.mjs',
     build_selected_focus_context_audit: 'build_workbench_usage_selected_focus_context_audit.mjs',
