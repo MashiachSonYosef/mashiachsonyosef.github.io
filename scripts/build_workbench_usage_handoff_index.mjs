@@ -14,6 +14,7 @@ const defaults = {
   lookupIndex: '.local-cache/workbench-evidence/usage-lookup-index.json',
   workFrameMatrix: '.local-cache/workbench-evidence/usage-work-frame-matrix.json',
   searchRows: '.local-cache/workbench-evidence/usage-search-rows.json',
+  provenanceIndex: '.local-cache/workbench-evidence/usage-provenance-index.json',
   searchShardIndex: '.local-cache/workbench-evidence/usage-search-shard-index.json',
   refreshPriorityIndex: '.local-cache/workbench-evidence/usage-refresh-priority-index.json',
   unitDensityIndex: '.local-cache/workbench-evidence/usage-unit-density-index.json',
@@ -43,6 +44,7 @@ const sampleIndex = readJsonIfExists(options.sampleIndex);
 const lookupIndex = readJsonIfExists(options.lookupIndex);
 const workFrameMatrix = readJsonIfExists(options.workFrameMatrix);
 const searchRows = readJsonIfExists(options.searchRows);
+const provenanceIndex = readJsonIfExists(options.provenanceIndex);
 const searchShardIndex = readJsonIfExists(options.searchShardIndex);
 const refreshPriorityIndex = readJsonIfExists(options.refreshPriorityIndex);
 const unitDensityIndex = readJsonIfExists(options.unitDensityIndex);
@@ -78,6 +80,7 @@ const artifact = {
     lookup_index: options.lookupIndex,
     work_frame_matrix: options.workFrameMatrix,
     search_rows: options.searchRows,
+    provenance_index: options.provenanceIndex,
     search_shard_index: options.searchShardIndex,
     refresh_priority_index: options.refreshPriorityIndex,
     unit_density_index: options.unitDensityIndex,
@@ -107,6 +110,7 @@ const artifact = {
     lookup_index_report: 'reports/workbench-usage-lookup-index.md',
     work_frame_matrix_report: 'reports/workbench-usage-work-frame-matrix.md',
     search_rows_report: 'reports/workbench-usage-search-rows.md',
+    provenance_index_report: 'reports/workbench-usage-provenance-index.md',
     search_shard_index_report: 'reports/workbench-usage-search-shard-index.md',
     refresh_priority_index_report: 'reports/workbench-usage-refresh-priority-index.md',
     unit_density_index_report: 'reports/workbench-usage-unit-density-index.md',
@@ -147,6 +151,16 @@ const artifact = {
     search_rows_categories: searchRows?.counts?.categories ?? null,
     search_rows_clusters: searchRows?.counts?.clusters ?? null,
     search_rows_route_payload_field_hits: searchRows?.counts?.route_payload_field_hits ?? null,
+    provenance_rows: provenanceIndex?.counts?.rows ?? null,
+    provenance_licenses: provenanceIndex?.counts?.licenses ?? null,
+    provenance_version_sources: provenanceIndex?.counts?.version_sources ?? null,
+    provenance_works: provenanceIndex?.counts?.works ?? null,
+    provenance_categories: provenanceIndex?.counts?.categories ?? null,
+    provenance_rows_with_license_metadata: provenanceIndex?.counts?.rows_with_license_metadata ?? null,
+    provenance_rows_with_source_links: provenanceIndex?.counts?.rows_with_source_links ?? null,
+    provenance_rows_with_version_metadata: provenanceIndex?.counts?.rows_with_version_metadata ?? null,
+    provenance_unsafe_license_rows: provenanceIndex?.counts?.unsafe_license_rows ?? null,
+    provenance_route_payload_field_hits: provenanceIndex?.counts?.route_payload_field_hits ?? null,
     search_shard_index_shards: searchShardIndex?.counts?.shards ?? null,
     search_shard_index_rows: searchShardIndex?.counts?.rows ?? null,
     search_shard_index_categories: searchShardIndex?.counts?.categories ?? null,
@@ -233,6 +247,16 @@ const artifact = {
     search_rows_categories: searchRows?.counts?.categories ?? null,
     search_rows_failed_checks: searchRows?.quality?.failed_count ?? null,
     search_rows_route_payload_field_hits: searchRows?.counts?.route_payload_field_hits ?? null,
+    provenance_index_status: provenanceIndex?.artifact_type === 'workbench_usage_provenance_index' ? 'present' : 'not_run',
+    provenance_rows: provenanceIndex?.counts?.rows ?? null,
+    provenance_licenses: provenanceIndex?.counts?.licenses ?? null,
+    provenance_version_sources: provenanceIndex?.counts?.version_sources ?? null,
+    provenance_rows_with_license_metadata: provenanceIndex?.counts?.rows_with_license_metadata ?? null,
+    provenance_rows_with_source_links: provenanceIndex?.counts?.rows_with_source_links ?? null,
+    provenance_rows_with_version_metadata: provenanceIndex?.counts?.rows_with_version_metadata ?? null,
+    provenance_unsafe_license_rows: provenanceIndex?.counts?.unsafe_license_rows ?? null,
+    provenance_failed_checks: provenanceIndex?.quality?.failed_count ?? null,
+    provenance_route_payload_field_hits: provenanceIndex?.counts?.route_payload_field_hits ?? null,
     search_shard_index_status: searchShardIndex?.artifact_type === 'workbench_usage_navigation_search_shard_index' ? 'present' : 'not_run',
     search_shard_index_shards: searchShardIndex?.counts?.shards ?? null,
     search_shard_index_rows: searchShardIndex?.counts?.rows ?? null,
@@ -332,6 +356,9 @@ function writeReport(relativePath, artifact) {
     `- Work/frame matrix route payload-like field hits: ${artifact.counts.work_frame_matrix_route_payload_field_hits}`,
     `- Search rows: rows ${artifact.counts.search_rows}, works ${artifact.counts.search_rows_works}, categories ${artifact.counts.search_rows_categories}, clusters ${artifact.counts.search_rows_clusters}`,
     `- Search rows route payload-like field hits: ${artifact.counts.search_rows_route_payload_field_hits}`,
+    `- Provenance index: rows ${artifact.counts.provenance_rows}, licenses ${artifact.counts.provenance_licenses}, version sources ${artifact.counts.provenance_version_sources}, works ${artifact.counts.provenance_works}, categories ${artifact.counts.provenance_categories}`,
+    `- Provenance coverage: license metadata ${artifact.counts.provenance_rows_with_license_metadata}, source links ${artifact.counts.provenance_rows_with_source_links}, version metadata ${artifact.counts.provenance_rows_with_version_metadata}, unsafe license rows ${artifact.counts.provenance_unsafe_license_rows}`,
+    `- Provenance route payload-like field hits: ${artifact.counts.provenance_route_payload_field_hits}`,
     `- Search shard index: shards ${artifact.counts.search_shard_index_shards}, rows ${artifact.counts.search_shard_index_rows}, categories ${artifact.counts.search_shard_index_categories}, clusters ${artifact.counts.search_shard_index_clusters}, statuses ${artifact.counts.search_shard_index_statuses}`,
     `- Search shard index route payload-like field hits: ${artifact.counts.search_shard_index_route_payload_field_hits}`,
     `- Refresh priority: pending ${artifact.counts.refresh_priority_pending_files}, known-use candidates ${artifact.counts.refresh_priority_known_usage_candidates}, review-only ${artifact.counts.refresh_priority_review_only_not_promoted}, promoted ${artifact.counts.refresh_priority_promoted_run_targets}`,
@@ -374,6 +401,9 @@ function writeReport(relativePath, artifact) {
     `- Work/frame matrix route payload-like field hits: ${artifact.validation.work_frame_matrix_route_payload_field_hits}`,
     `- Search rows: ${artifact.validation.search_rows_status}, rows ${artifact.validation.search_rows}, works ${artifact.validation.search_rows_works}, categories ${artifact.validation.search_rows_categories}, failed ${artifact.validation.search_rows_failed_checks}`,
     `- Search rows route payload-like field hits: ${artifact.validation.search_rows_route_payload_field_hits}`,
+    `- Provenance index: ${artifact.validation.provenance_index_status}, rows ${artifact.validation.provenance_rows}, licenses ${artifact.validation.provenance_licenses}, version sources ${artifact.validation.provenance_version_sources}, failed ${artifact.validation.provenance_failed_checks}`,
+    `- Provenance coverage: license metadata ${artifact.validation.provenance_rows_with_license_metadata}, source links ${artifact.validation.provenance_rows_with_source_links}, version metadata ${artifact.validation.provenance_rows_with_version_metadata}, unsafe license rows ${artifact.validation.provenance_unsafe_license_rows}`,
+    `- Provenance route payload-like field hits: ${artifact.validation.provenance_route_payload_field_hits}`,
     `- Search shard index: ${artifact.validation.search_shard_index_status}, shards ${artifact.validation.search_shard_index_shards}, rows ${artifact.validation.search_shard_index_rows}, failed ${artifact.validation.search_shard_index_failed_checks}`,
     `- Search shard index route payload-like field hits: ${artifact.validation.search_shard_index_route_payload_field_hits}`,
     `- Refresh priority: ${artifact.validation.refresh_priority_index_status}, pending ${artifact.validation.refresh_priority_pending_files}, known-use candidates ${artifact.validation.refresh_priority_known_usage_candidates}, promoted ${artifact.validation.refresh_priority_promoted_run_targets}, failed ${artifact.validation.refresh_priority_failed_checks}`,
@@ -411,6 +441,7 @@ function writeReport(relativePath, artifact) {
     `| lookup index | ${mdCell(artifact.artifacts.lookup_index_report)} | yes |`,
     `| work/frame matrix | ${mdCell(artifact.artifacts.work_frame_matrix_report)} | yes |`,
     `| search rows | ${mdCell(artifact.artifacts.search_rows_report)} | yes |`,
+    `| provenance index | ${mdCell(artifact.artifacts.provenance_index_report)} | yes |`,
     `| search shard index | ${mdCell(artifact.artifacts.search_shard_index_report)} | yes |`,
     `| refresh priority index | ${mdCell(artifact.artifacts.refresh_priority_index_report)} | yes |`,
     `| unit density index | ${mdCell(artifact.artifacts.unit_density_index_report)} | yes |`,
@@ -451,6 +482,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--lookup-index=')) parsed.lookupIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--work-frame-matrix=')) parsed.workFrameMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--search-rows=')) parsed.searchRows = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--provenance-index=')) parsed.provenanceIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--search-shard-index=')) parsed.searchShardIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--refresh-priority-index=')) parsed.refreshPriorityIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--unit-density-index=')) parsed.unitDensityIndex = cleanRelativePath(valueAfterEquals(arg));
@@ -490,6 +522,8 @@ function buildCommands(options, manifest) {
   commands.validate_work_frame_matrix = `node scripts/validate_workbench_usage_work_frame_matrix.mjs ${options.workFrameMatrix}`;
   commands.build_search_rows = `node scripts/build_workbench_usage_search_rows.mjs --concordance=${concordancePath} --output=${options.searchRows} --report=reports/workbench-usage-search-rows.md`;
   commands.validate_search_rows = `node scripts/validate_workbench_usage_search_rows.mjs ${options.searchRows}`;
+  commands.build_provenance_index = `node scripts/build_workbench_usage_provenance_index.mjs --search-rows=${options.searchRows} --output=${options.provenanceIndex} --report=reports/workbench-usage-provenance-index.md`;
+  commands.validate_provenance_index = `node scripts/validate_workbench_usage_provenance_index.mjs ${options.provenanceIndex}`;
   commands.build_search_shard_index = `node scripts/build_workbench_usage_search_shard_index.mjs --search-rows=${options.searchRows} --output=${options.searchShardIndex} --report=reports/workbench-usage-search-shard-index.md`;
   commands.validate_search_shard_index = `node scripts/validate_workbench_usage_search_shard_index.mjs ${options.searchShardIndex}`;
   commands.build_refresh_priority_index = `node scripts/build_workbench_usage_refresh_priority_index.mjs --source-freshness=.local-cache/workbench-evidence/source-freshness.json --search-rows=${options.searchRows} --output=${options.refreshPriorityIndex} --report=reports/workbench-usage-refresh-priority-index.md`;
@@ -528,6 +562,7 @@ function buildCommands(options, manifest) {
     `--lookup-index=${options.lookupIndex}`,
     `--work-frame-matrix=${options.workFrameMatrix}`,
     `--search-rows=${options.searchRows}`,
+    `--provenance-index=${options.provenanceIndex}`,
     `--search-shard-index=${options.searchShardIndex}`,
     `--refresh-priority-index=${options.refreshPriorityIndex}`,
     `--unit-density-index=${options.unitDensityIndex}`,

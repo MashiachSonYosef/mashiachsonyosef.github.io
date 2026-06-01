@@ -183,6 +183,19 @@ await runStep('validate_usage_search_rows', [
   usageSearchRowsJson,
 ]);
 
+const usageProvenanceIndexJson = `${options.scratchDir}/usage-provenance-index.json`;
+await runStep('build_usage_provenance_index', [
+  'scripts/build_workbench_usage_provenance_index.mjs',
+  `--search-rows=${usageSearchRowsJson}`,
+  `--output=${usageProvenanceIndexJson}`,
+  `--report=${options.scratchDir}/usage-provenance-index.md`,
+]);
+
+await runStep('validate_usage_provenance_index', [
+  'scripts/validate_workbench_usage_provenance_index.mjs',
+  usageProvenanceIndexJson,
+]);
+
 const usageSearchShardIndexJson = `${options.scratchDir}/usage-search-shard-index.json`;
 await runStep('build_usage_search_shard_index', [
   'scripts/build_workbench_usage_search_shard_index.mjs',
@@ -374,6 +387,7 @@ await runStep('build_usage_handoff_index', [
   `--lookup-index=${usageLookupIndexJson}`,
   `--work-frame-matrix=${usageWorkFrameMatrixJson}`,
   `--search-rows=${usageSearchRowsJson}`,
+  `--provenance-index=${usageProvenanceIndexJson}`,
   `--search-shard-index=${usageSearchShardIndexJson}`,
   `--refresh-priority-index=${usageRefreshPriorityIndexJson}`,
   `--unit-density-index=${usageUnitDensityIndexJson}`,
@@ -422,6 +436,7 @@ const usageSampleIndex = readJsonIfExists(usageSampleIndexJson);
 const usageLookupIndex = readJsonIfExists(usageLookupIndexJson);
 const usageWorkFrameMatrix = readJsonIfExists(usageWorkFrameMatrixJson);
 const usageSearchRows = readJsonIfExists(usageSearchRowsJson);
+const usageProvenanceIndex = readJsonIfExists(usageProvenanceIndexJson);
 const usageSearchShardIndex = readJsonIfExists(usageSearchShardIndexJson);
 const usageRefreshPriorityIndex = readJsonIfExists(usageRefreshPriorityIndexJson);
 const usageUnitDensityIndex = readJsonIfExists(usageUnitDensityIndexJson);
@@ -520,6 +535,15 @@ const artifact = {
     usage_search_rows_categories: usageSearchRows?.counts?.categories ?? null,
     usage_search_rows_clusters: usageSearchRows?.counts?.clusters ?? null,
     usage_search_rows_route_payload_field_hits: usageSearchRows?.counts?.route_payload_field_hits ?? null,
+    usage_provenance_index_status: usageProvenanceIndex?.artifact_type === 'workbench_usage_provenance_index' ? 'present' : 'missing',
+    usage_provenance_rows: usageProvenanceIndex?.counts?.rows ?? null,
+    usage_provenance_licenses: usageProvenanceIndex?.counts?.licenses ?? null,
+    usage_provenance_version_sources: usageProvenanceIndex?.counts?.version_sources ?? null,
+    usage_provenance_rows_with_license_metadata: usageProvenanceIndex?.counts?.rows_with_license_metadata ?? null,
+    usage_provenance_rows_with_source_links: usageProvenanceIndex?.counts?.rows_with_source_links ?? null,
+    usage_provenance_rows_with_version_metadata: usageProvenanceIndex?.counts?.rows_with_version_metadata ?? null,
+    usage_provenance_unsafe_license_rows: usageProvenanceIndex?.counts?.unsafe_license_rows ?? null,
+    usage_provenance_route_payload_field_hits: usageProvenanceIndex?.counts?.route_payload_field_hits ?? null,
     usage_search_shard_index_status: usageSearchShardIndex?.artifact_type === 'workbench_usage_navigation_search_shard_index' ? 'present' : 'missing',
     usage_search_shard_index_shards: usageSearchShardIndex?.counts?.shards ?? null,
     usage_search_shard_index_rows: usageSearchShardIndex?.counts?.rows ?? null,
@@ -734,6 +758,7 @@ function writeReport(relativePath, artifact) {
     `- Usage lookup index: ${artifact.counts.usage_lookup_index_status}, occurrence refs ${artifact.counts.usage_lookup_index_occurrence_refs}, works ${artifact.counts.usage_lookup_index_works}`,
     `- Usage work/frame matrix: ${artifact.counts.usage_work_frame_matrix_status}, rows ${artifact.counts.usage_work_frame_matrix_rows}, works ${artifact.counts.usage_work_frame_matrix_works}, categories ${artifact.counts.usage_work_frame_matrix_categories}, clusters ${artifact.counts.usage_work_frame_matrix_clusters}, route payload hits ${artifact.counts.usage_work_frame_matrix_route_payload_field_hits}`,
     `- Usage search rows: ${artifact.counts.usage_search_rows_status}, rows ${artifact.counts.usage_search_rows}, works ${artifact.counts.usage_search_rows_works}, categories ${artifact.counts.usage_search_rows_categories}, clusters ${artifact.counts.usage_search_rows_clusters}, route payload hits ${artifact.counts.usage_search_rows_route_payload_field_hits}`,
+    `- Usage provenance: ${artifact.counts.usage_provenance_index_status}, rows ${artifact.counts.usage_provenance_rows}, licenses ${artifact.counts.usage_provenance_licenses}, version sources ${artifact.counts.usage_provenance_version_sources}, license metadata ${artifact.counts.usage_provenance_rows_with_license_metadata}, source links ${artifact.counts.usage_provenance_rows_with_source_links}, version metadata ${artifact.counts.usage_provenance_rows_with_version_metadata}, unsafe license rows ${artifact.counts.usage_provenance_unsafe_license_rows}, route payload hits ${artifact.counts.usage_provenance_route_payload_field_hits}`,
     `- Usage search shard index: ${artifact.counts.usage_search_shard_index_status}, shards ${artifact.counts.usage_search_shard_index_shards}, rows ${artifact.counts.usage_search_shard_index_rows}, categories ${artifact.counts.usage_search_shard_index_categories}, clusters ${artifact.counts.usage_search_shard_index_clusters}, statuses ${artifact.counts.usage_search_shard_index_statuses}, route payload hits ${artifact.counts.usage_search_shard_index_route_payload_field_hits}`,
     `- Usage refresh priority: ${artifact.counts.usage_refresh_priority_index_status}, pending ${artifact.counts.usage_refresh_priority_pending_files}, known-use candidates ${artifact.counts.usage_refresh_priority_known_usage_candidates}, review-only ${artifact.counts.usage_refresh_priority_review_only_not_promoted}, promoted ${artifact.counts.usage_refresh_priority_promoted_run_targets}, blocked broad refresh files ${artifact.counts.usage_refresh_priority_blocked_broad_refresh_files}, route payload hits ${artifact.counts.usage_refresh_priority_route_payload_field_hits}`,
     `- Usage unit density: ${artifact.counts.usage_unit_density_index_status}, units ${artifact.counts.usage_unit_density_units}, rows ${artifact.counts.usage_unit_density_rows}, multi-occurrence units ${artifact.counts.usage_unit_density_multi_occurrence_units}, max occurrences per unit ${artifact.counts.usage_unit_density_max_occurrences_per_unit}, works ${artifact.counts.usage_unit_density_works}, route payload hits ${artifact.counts.usage_unit_density_route_payload_field_hits}`,

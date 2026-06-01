@@ -83,6 +83,16 @@ function validateCounts() {
     'search_rows_categories',
     'search_rows_clusters',
     'search_rows_route_payload_field_hits',
+    'provenance_rows',
+    'provenance_licenses',
+    'provenance_version_sources',
+    'provenance_works',
+    'provenance_categories',
+    'provenance_rows_with_license_metadata',
+    'provenance_rows_with_source_links',
+    'provenance_rows_with_version_metadata',
+    'provenance_unsafe_license_rows',
+    'provenance_route_payload_field_hits',
     'search_shard_index_shards',
     'search_shard_index_rows',
     'search_shard_index_categories',
@@ -206,6 +216,36 @@ function validateCounts() {
   if (Number(artifact.counts?.search_rows_route_payload_field_hits || 0) !== 0) {
     issues.push('search_rows_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.counts?.provenance_rows || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('provenance_rows must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.provenance_licenses || 0) <= 0) {
+    issues.push('provenance_licenses must be positive');
+  }
+  if (Number(artifact.counts?.provenance_version_sources || 0) <= 0) {
+    issues.push('provenance_version_sources must be positive');
+  }
+  if (Number(artifact.counts?.provenance_works || 0) !== Number(artifact.counts?.lookup_works || 0)) {
+    issues.push('provenance_works must equal lookup_works');
+  }
+  if (Number(artifact.counts?.provenance_categories || 0) !== Number(artifact.counts?.search_rows_categories || 0)) {
+    issues.push('provenance_categories must equal search_rows_categories');
+  }
+  if (Number(artifact.counts?.provenance_rows_with_license_metadata || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('provenance_rows_with_license_metadata must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.provenance_rows_with_source_links || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('provenance_rows_with_source_links must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.provenance_rows_with_version_metadata || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('provenance_rows_with_version_metadata must equal concordance_rows');
+  }
+  if (Number(artifact.counts?.provenance_unsafe_license_rows || 0) !== 0) {
+    issues.push('provenance_unsafe_license_rows must be 0');
+  }
+  if (Number(artifact.counts?.provenance_route_payload_field_hits || 0) !== 0) {
+    issues.push('provenance_route_payload_field_hits must be 0');
+  }
   if (Number(artifact.counts?.search_shard_index_rows || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
     issues.push('search_shard_index_rows must equal concordance_rows');
   }
@@ -303,6 +343,7 @@ function validateArtifacts() {
     'lookup_index_report',
     'work_frame_matrix_report',
     'search_rows_report',
+    'provenance_index_report',
     'search_shard_index_report',
     'refresh_priority_index_report',
     'unit_density_index_report',
@@ -338,6 +379,9 @@ function validateValidation() {
   }
   if (artifact.validation?.search_rows_status !== 'present') {
     issues.push('validation.search_rows_status must be present');
+  }
+  if (artifact.validation?.provenance_index_status !== 'present') {
+    issues.push('validation.provenance_index_status must be present');
   }
   if (artifact.validation?.search_shard_index_status !== 'present') {
     issues.push('validation.search_shard_index_status must be present');
@@ -410,6 +454,33 @@ function validateValidation() {
   }
   if (Number(artifact.validation?.search_rows_route_payload_field_hits || 0) !== 0) {
     issues.push('search_rows_route_payload_field_hits must be 0');
+  }
+  if (Number(artifact.validation?.provenance_rows || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('validation.provenance_rows must equal concordance_rows');
+  }
+  if (Number(artifact.validation?.provenance_licenses || 0) !== Number(artifact.counts?.provenance_licenses || 0)) {
+    issues.push('validation.provenance_licenses must equal counts.provenance_licenses');
+  }
+  if (Number(artifact.validation?.provenance_version_sources || 0) !== Number(artifact.counts?.provenance_version_sources || 0)) {
+    issues.push('validation.provenance_version_sources must equal counts.provenance_version_sources');
+  }
+  if (Number(artifact.validation?.provenance_rows_with_license_metadata || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('validation.provenance_rows_with_license_metadata must equal concordance_rows');
+  }
+  if (Number(artifact.validation?.provenance_rows_with_source_links || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('validation.provenance_rows_with_source_links must equal concordance_rows');
+  }
+  if (Number(artifact.validation?.provenance_rows_with_version_metadata || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
+    issues.push('validation.provenance_rows_with_version_metadata must equal concordance_rows');
+  }
+  if (Number(artifact.validation?.provenance_unsafe_license_rows || 0) !== 0) {
+    issues.push('validation.provenance_unsafe_license_rows must be 0');
+  }
+  if (Number(artifact.validation?.provenance_failed_checks || 0) !== 0) {
+    issues.push('provenance_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.provenance_route_payload_field_hits || 0) !== 0) {
+    issues.push('provenance_route_payload_field_hits must be 0');
   }
   if (Number(artifact.validation?.search_shard_index_rows || 0) !== Number(artifact.counts?.concordance_rows || 0)) {
     issues.push('search_shard_index_rows must equal concordance_rows');
@@ -541,6 +612,8 @@ function validateCommands() {
     validate_work_frame_matrix: 'validate_workbench_usage_work_frame_matrix.mjs',
     build_search_rows: 'build_workbench_usage_search_rows.mjs',
     validate_search_rows: 'validate_workbench_usage_search_rows.mjs',
+    build_provenance_index: 'build_workbench_usage_provenance_index.mjs',
+    validate_provenance_index: 'validate_workbench_usage_provenance_index.mjs',
     build_search_shard_index: 'build_workbench_usage_search_shard_index.mjs',
     validate_search_shard_index: 'validate_workbench_usage_search_shard_index.mjs',
     build_refresh_priority_index: 'build_workbench_usage_refresh_priority_index.mjs',

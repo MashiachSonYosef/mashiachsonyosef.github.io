@@ -1,6 +1,6 @@
 # Workbench Usage Navigation Handoff
 
-Generated: 2026-06-01T00:58:45.177Z
+Generated: 2026-06-01T01:15:11.839Z
 
 ## Summary
 
@@ -19,6 +19,9 @@ Generated: 2026-06-01T00:58:45.177Z
 - Work/frame matrix route payload-like field hits: 0
 - Search rows: rows 2390, works 271, categories 15, clusters 2
 - Search rows route payload-like field hits: 0
+- Provenance index: rows 2390, licenses 4, version sources 185, works 271, categories 15
+- Provenance coverage: license metadata 2390, source links 2390, version metadata 2390, unsafe license rows 0
+- Provenance route payload-like field hits: 0
 - Search shard index: shards 74, rows 2390, categories 15, clusters 2, statuses 3
 - Search shard index route payload-like field hits: 0
 - Refresh priority: pending 80, known-use candidates 0, review-only 80, promoted 0
@@ -61,6 +64,9 @@ Generated: 2026-06-01T00:58:45.177Z
 - Work/frame matrix route payload-like field hits: 0
 - Search rows: present, rows 2390, works 271, categories 15, failed 0
 - Search rows route payload-like field hits: 0
+- Provenance index: present, rows 2390, licenses 4, version sources 185, failed 0
+- Provenance coverage: license metadata 2390, source links 2390, version metadata 2390, unsafe license rows 0
+- Provenance route payload-like field hits: 0
 - Search shard index: present, shards 74, rows 2390, failed 0
 - Search shard index route payload-like field hits: 0
 - Refresh priority: present, pending 80, known-use candidates 0, promoted 0, failed 0
@@ -80,7 +86,7 @@ Generated: 2026-06-01T00:58:45.177Z
 - Agent 6 boundary packet: present, checks 11, failed 0
 - Concentration packet: present, quality pass_with_warnings, warnings 1, failed 0
 - Concentration route payload-like field hits: 0
-- Smoke validation: passed, steps 52, failed 0
+- Smoke validation: passed, steps 54, failed 0
 
 ## Artifacts
 
@@ -98,6 +104,7 @@ Generated: 2026-06-01T00:58:45.177Z
 | lookup index | reports/workbench-usage-lookup-index.md | yes |
 | work/frame matrix | reports/workbench-usage-work-frame-matrix.md | yes |
 | search rows | reports/workbench-usage-search-rows.md | yes |
+| provenance index | reports/workbench-usage-provenance-index.md | yes |
 | search shard index | reports/workbench-usage-search-shard-index.md | yes |
 | refresh priority index | reports/workbench-usage-refresh-priority-index.md | yes |
 | unit density index | reports/workbench-usage-unit-density-index.md | yes |
@@ -135,6 +142,8 @@ Generated: 2026-06-01T00:58:45.177Z
 | validate_work_frame_matrix | node scripts/validate_workbench_usage_work_frame_matrix.mjs .local-cache/workbench-evidence/usage-work-frame-matrix.json |
 | build_search_rows | node scripts/build_workbench_usage_search_rows.mjs --concordance=data/workbench-evidence/usage-concordance.json --output=.local-cache/workbench-evidence/usage-search-rows.json --report=reports/workbench-usage-search-rows.md |
 | validate_search_rows | node scripts/validate_workbench_usage_search_rows.mjs .local-cache/workbench-evidence/usage-search-rows.json |
+| build_provenance_index | node scripts/build_workbench_usage_provenance_index.mjs --search-rows=.local-cache/workbench-evidence/usage-search-rows.json --output=.local-cache/workbench-evidence/usage-provenance-index.json --report=reports/workbench-usage-provenance-index.md |
+| validate_provenance_index | node scripts/validate_workbench_usage_provenance_index.mjs .local-cache/workbench-evidence/usage-provenance-index.json |
 | build_search_shard_index | node scripts/build_workbench_usage_search_shard_index.mjs --search-rows=.local-cache/workbench-evidence/usage-search-rows.json --output=.local-cache/workbench-evidence/usage-search-shard-index.json --report=reports/workbench-usage-search-shard-index.md |
 | validate_search_shard_index | node scripts/validate_workbench_usage_search_shard_index.mjs .local-cache/workbench-evidence/usage-search-shard-index.json |
 | build_refresh_priority_index | node scripts/build_workbench_usage_refresh_priority_index.mjs --source-freshness=.local-cache/workbench-evidence/source-freshness.json --search-rows=.local-cache/workbench-evidence/usage-search-rows.json --output=.local-cache/workbench-evidence/usage-refresh-priority-index.json --report=reports/workbench-usage-refresh-priority-index.md |
@@ -161,7 +170,7 @@ Generated: 2026-06-01T00:58:45.177Z
 | validate_agent6_boundary_packet | node scripts/validate_workbench_usage_agent6_boundary_packet.mjs .local-cache/workbench-evidence/usage-agent6-boundary-packet.json |
 | build_concentration_packet | node scripts/build_workbench_usage_concentration_packet.mjs --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --output=.local-cache/workbench-evidence/usage-concentration-packet.json --report=reports/workbench-usage-concentration-packet.md |
 | validate_concentration_packet | node scripts/validate_workbench_usage_concentration_packet.mjs .local-cache/workbench-evidence/usage-concentration-packet.json |
-| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --sample-index=.local-cache/workbench-evidence/usage-sample-index.json --lookup-index=.local-cache/workbench-evidence/usage-lookup-index.json --work-frame-matrix=.local-cache/workbench-evidence/usage-work-frame-matrix.json --search-rows=.local-cache/workbench-evidence/usage-search-rows.json --search-shard-index=.local-cache/workbench-evidence/usage-search-shard-index.json --refresh-priority-index=.local-cache/workbench-evidence/usage-refresh-priority-index.json --unit-density-index=.local-cache/workbench-evidence/usage-unit-density-index.json --selected-slice=.local-cache/workbench-evidence/usage-slice-tanakh.json --selected-slices-index=.local-cache/workbench-evidence/usage-selected-slices-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --crossmatch-bridge-index=.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json --crossmatch-neighborhoods=.local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json --agent6-boundary-packet=.local-cache/workbench-evidence/usage-agent6-boundary-packet.json --concentration-packet=.local-cache/workbench-evidence/usage-concentration-packet.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
+| build_handoff_index | node scripts/build_workbench_usage_handoff_index.mjs --manifest=data/workbench-evidence/usage-concordance-manifest.json --occurrence-link-check=.local-cache/workbench-evidence/usage-concordance-link-check.json --route-link-check=.local-cache/workbench-evidence/usage-route-link-check.json --audit-review=.local-cache/workbench-evidence/usage-audit-only-review.json --cluster-index=.local-cache/workbench-evidence/usage-cluster-index.json --route-coverage=.local-cache/workbench-evidence/usage-route-coverage.json --sample-index=.local-cache/workbench-evidence/usage-sample-index.json --lookup-index=.local-cache/workbench-evidence/usage-lookup-index.json --work-frame-matrix=.local-cache/workbench-evidence/usage-work-frame-matrix.json --search-rows=.local-cache/workbench-evidence/usage-search-rows.json --provenance-index=.local-cache/workbench-evidence/usage-provenance-index.json --search-shard-index=.local-cache/workbench-evidence/usage-search-shard-index.json --refresh-priority-index=.local-cache/workbench-evidence/usage-refresh-priority-index.json --unit-density-index=.local-cache/workbench-evidence/usage-unit-density-index.json --selected-slice=.local-cache/workbench-evidence/usage-slice-tanakh.json --selected-slices-index=.local-cache/workbench-evidence/usage-selected-slices-index.json --selected-occurrences=.local-cache/workbench-evidence/usage-selected-occurrences.json --selected-occurrence-lookup=.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json --crossmatch-links=.local-cache/workbench-evidence/usage-crossmatch-links.json --crossmatch-bridge-index=.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json --crossmatch-neighborhoods=.local-cache/workbench-evidence/usage-crossmatch-neighborhoods.json --agent6-boundary-packet=.local-cache/workbench-evidence/usage-agent6-boundary-packet.json --concentration-packet=.local-cache/workbench-evidence/usage-concentration-packet.json --smoke-validation=.local-cache/workbench-evidence/smoke-pipeline-validation.json --output=.local-cache/workbench-evidence/usage-navigation-handoff-index.json --report=reports/workbench-usage-navigation-handoff.md |
 | validate_handoff_index | node scripts/validate_workbench_usage_handoff_index.mjs .local-cache/workbench-evidence/usage-navigation-handoff-index.json |
 
 ## Boundary

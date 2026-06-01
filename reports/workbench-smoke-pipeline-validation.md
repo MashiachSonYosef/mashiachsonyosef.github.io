@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T00:56:11.578Z
+Generated: 2026-06-01T01:12:35.462Z
 
 ## Summary
 
-- Steps: 52
+- Steps: 54
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -23,6 +23,7 @@ Generated: 2026-06-01T00:56:11.578Z
 - Usage lookup index: present, occurrence refs 2390, works 271
 - Usage work/frame matrix: present, rows 2390, works 271, categories 15, clusters 2, route payload hits 0
 - Usage search rows: present, rows 2390, works 271, categories 15, clusters 2, route payload hits 0
+- Usage provenance: present, rows 2390, licenses 4, version sources 185, license metadata 2390, source links 2390, version metadata 2390, unsafe license rows 0, route payload hits 0
 - Usage search shard index: present, shards 74, rows 2390, categories 15, clusters 2, statuses 3, route payload hits 0
 - Usage refresh priority: present, pending 80, known-use candidates 0, review-only 80, promoted 0, blocked broad refresh files 80, route payload hits 0
 - Usage unit density: present, units 1673, rows 2390, multi-occurrence units 418, max occurrences per unit 11, works 271, route payload hits 0
@@ -69,6 +70,8 @@ Generated: 2026-06-01T00:56:11.578Z
 | validate_usage_work_frame_matrix | passed | Validated usage work-frame matrix .local-cache/workbench-evidence/smoke-pipeline-validation/usage-work-frame-matrix.json: works 271; rows 2390 |
 | build_usage_search_rows | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-rows.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-rows.md / Usage search rows 2390; works 271; categories 15 |
 | validate_usage_search_rows | passed | Validated usage search rows .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-rows.json: rows 2390; works 271 |
+| build_usage_provenance_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-provenance-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-provenance-index.md / Usage provenance rows 2390; licenses 4; version sources 185 |
+| validate_usage_provenance_index | passed | Validated usage provenance index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-provenance-index.json: licenses 4; version sources 185; rows 2390 |
 | build_usage_search_shard_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.md / Usage search shard index shards 74; rows 2390 |
 | validate_usage_search_shard_index | passed | Validated usage search shard index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-search-shard-index.json: shards 74; rows 2390 |
 | build_usage_refresh_priority_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-refresh-priority-index.md / Usage refresh priority pending 80; known-use candidates 0; promoted 0 |
