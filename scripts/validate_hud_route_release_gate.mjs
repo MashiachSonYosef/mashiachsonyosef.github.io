@@ -114,6 +114,10 @@ const result = {
     fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
     fixture_cases: Number(boundaryReport.inputs?.fixture_cases || 0),
     fixture_sha256: boundaryReport.inputs?.fixture_file?.sha256 || '',
+    answer_eligible_cards_with_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_with_answer_score || 0),
+    answer_eligible_cards_missing_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_missing_answer_score || 0),
+    answer_role_answer_cards: Number(boundaryReport.counts?.answer_role_answer_cards || 0),
+    answer_role_answer_noneligible_cards: Number(boundaryReport.counts?.answer_role_answer_noneligible_cards || 0),
     translation_output_unsafe_cards: Number(boundaryReport.counts?.translation_output_unsafe_cards || 0),
     answer_eligible_translation_output_unsafe_source_rows: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_source_rows || 0),
     answer_eligible_translation_output_unsafe_cards: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_cards || 0),
@@ -307,6 +311,18 @@ async function validateBoundaryReport(report, reconciliation) {
   if (count('answer_eligible_cards_with_source_rows') > count('answer_eligible_cards')) {
     issues.push('route publication boundary report has more answer-eligible source-row cards than answer-eligible cards');
   }
+  if (count('answer_eligible_cards_with_answer_score') !== count('answer_eligible_cards')) {
+    issues.push('route publication boundary report found answer-eligible cards without numeric answer_score');
+  }
+  if (count('answer_eligible_cards_missing_answer_score') !== 0) {
+    issues.push(`route publication boundary report found ${count('answer_eligible_cards_missing_answer_score')} answer-eligible card(s) missing numeric answer_score`);
+  }
+  if (count('answer_role_answer_cards') !== count('answer_eligible_cards')) {
+    issues.push('route publication boundary answer-role count does not match answer-eligible card count');
+  }
+  if (count('answer_role_answer_noneligible_cards') !== 0) {
+    issues.push(`route publication boundary report found ${count('answer_role_answer_noneligible_cards')} non-answer-eligible card(s) with answer role`);
+  }
   if (count('answer_eligible_translation_output_unsafe_cards') > count('answer_eligible_cards')) {
     issues.push('route publication boundary report has more answer-eligible unsafe cards than answer-eligible cards');
   }
@@ -483,6 +499,10 @@ function writeReport(relativePath, result) {
     `- Fixture: \`${result.route_publication_boundary.fixture}\``,
     `- Fixture cases: ${result.route_publication_boundary.fixture_cases}`,
     `- Fixture SHA-256: \`${result.route_publication_boundary.fixture_sha256 || 'missing'}\``,
+    `- Answer-eligible cards with numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_with_answer_score}`,
+    `- Answer-eligible cards missing numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_missing_answer_score}`,
+    `- Cards with answer role: ${result.route_publication_boundary.answer_role_answer_cards}`,
+    `- Cards with answer role but not answer-eligible: ${result.route_publication_boundary.answer_role_answer_noneligible_cards}`,
     `- Translation-output unsafe cards flagged: ${result.route_publication_boundary.translation_output_unsafe_cards}`,
     `- Answer-eligible translation-output unsafe source rows flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_source_rows}`,
     `- Answer-eligible translation-output unsafe cards flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_cards}`,

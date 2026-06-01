@@ -120,6 +120,10 @@ function createAudit(manifestData = {}, contractData = contract) {
       cards: 0,
       answer_eligible_cards: 0,
       answer_eligible_cards_with_source_rows: 0,
+      answer_eligible_cards_with_answer_score: 0,
+      answer_eligible_cards_missing_answer_score: 0,
+      answer_role_answer_cards: 0,
+      answer_role_answer_noneligible_cards: 0,
       source_rows: 0,
       hud_safe_source_rows: 0,
       hud_unsafe_source_rows: 0,
@@ -241,8 +245,10 @@ function auditCard(card, context, target = audit) {
   if (!card?.answer_role) addIssue(context, 'missing answer_role', target);
   else if (!allowedAnswerRoles.has(card.answer_role)) addIssue(context, `unknown answer_role: ${card.answer_role}`, target);
   if (card?.answer_role === 'answer' && card?.answer_eligible !== true) {
+    target.counts.answer_role_answer_noneligible_cards += 1;
     addIssue(context, 'answer_role=answer requires answer_eligible=true', target);
   }
+  if (card?.answer_role === 'answer') target.counts.answer_role_answer_cards += 1;
   if (card?.answer_eligible !== true && Number.isFinite(card?.answer_score)) {
     addIssue(context, 'non-answer card must not carry answer_score', target);
   }
@@ -250,9 +256,12 @@ function auditCard(card, context, target = audit) {
     target.counts.answer_eligible_cards += 1;
     if (card.answer_role !== 'answer') addIssue(context, 'answer_eligible card must use answer_role=answer', target);
     if (!Number.isFinite(card.answer_score)) {
+      target.counts.answer_eligible_cards_missing_answer_score += 1;
       addIssue(context, 'answer_eligible card missing numeric answer_score', target);
     } else if (card.answer_score < 0 || card.answer_score > 100) {
       addIssue(context, 'answer_eligible card answer_score must be between 0 and 100', target);
+    } else {
+      target.counts.answer_eligible_cards_with_answer_score += 1;
     }
     if (!sourceRows.length) addIssue(context, 'answer_eligible card missing source_rows', target);
     else target.counts.answer_eligible_cards_with_source_rows += 1;
@@ -343,6 +352,10 @@ function writeReport(relativePath, data) {
     `- Cards scanned: ${data.counts.cards}`,
     `- Answer-eligible cards: ${data.counts.answer_eligible_cards}`,
     `- Answer-eligible cards with source rows: ${data.counts.answer_eligible_cards_with_source_rows}`,
+    `- Answer-eligible cards with numeric answer score: ${data.counts.answer_eligible_cards_with_answer_score}`,
+    `- Answer-eligible cards missing numeric answer score: ${data.counts.answer_eligible_cards_missing_answer_score}`,
+    `- Cards with answer role: ${data.counts.answer_role_answer_cards}`,
+    `- Cards with answer role but not answer-eligible: ${data.counts.answer_role_answer_noneligible_cards}`,
     `- Source rows checked: ${data.counts.source_rows}`,
     `- HUD-unsafe source rows: ${data.counts.hud_unsafe_source_rows}`,
     `- Translation-output unsafe source rows flagged: ${data.counts.translation_output_unsafe_source_rows}`,

@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T05:27:09.574Z
+Generated: 2026-06-01T05:30:11.234Z
 
 ## Boundary
 
@@ -15,6 +15,10 @@ Generated: 2026-06-01T05:27:09.574Z
 - Cards scanned: 539661
 - Answer-eligible cards: 18683
 - Answer-eligible cards with source rows: 18683
+- Answer-eligible cards with numeric answer score: 18683
+- Answer-eligible cards missing numeric answer score: 0
+- Cards with answer role: 18683
+- Cards with answer role but not answer-eligible: 0
 - Source rows checked: 832792
 - HUD-unsafe source rows: 0
 - Translation-output unsafe source rows flagged: 382775
@@ -25,7 +29,7 @@ Generated: 2026-06-01T05:27:09.574Z
 - Issues: 0
 - Warnings: 335103
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
-- Validator SHA-256: `d93b061def52960b728d131c06cc536b5b7761b9693467081a34e8eaee115f4c`
+- Validator SHA-256: `52237463ae7c6abbe198bf1470953507aa8fe13bc82ae0800e96ff49037adebb`
 - Fixture cases checked: 13
 - Fixture bytes: 19368
 - Fixture SHA-256: `7b30b92f2b2ca89daf19f65c16aa97fe03b2d6f23521ac28a4b155f0e3ad92ab`
