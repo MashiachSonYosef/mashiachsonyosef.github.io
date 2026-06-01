@@ -89,6 +89,12 @@ function validateCounts() {
     'search_shard_index_clusters',
     'search_shard_index_statuses',
     'search_shard_index_route_payload_field_hits',
+    'refresh_priority_pending_files',
+    'refresh_priority_known_usage_candidates',
+    'refresh_priority_review_only_not_promoted',
+    'refresh_priority_promoted_run_targets',
+    'refresh_priority_blocked_broad_refresh_files',
+    'refresh_priority_route_payload_field_hits',
     'selected_slice_rows',
     'selected_slice_works',
     'selected_slices_index_slices',
@@ -212,6 +218,22 @@ function validateCounts() {
   if (Number(artifact.counts?.search_shard_index_route_payload_field_hits || 0) !== 0) {
     issues.push('search_shard_index_route_payload_field_hits must be 0');
   }
+  if (Number(artifact.counts?.refresh_priority_pending_files || 0) !== Number(artifact.counts?.refresh_priority_blocked_broad_refresh_files || 0)) {
+    issues.push('refresh_priority_pending_files must equal refresh_priority_blocked_broad_refresh_files');
+  }
+  if (Number(artifact.counts?.refresh_priority_promoted_run_targets || 0) !== 0) {
+    issues.push('refresh_priority_promoted_run_targets must be 0');
+  }
+  if (
+    Number(artifact.counts?.refresh_priority_known_usage_candidates || 0)
+      + Number(artifact.counts?.refresh_priority_review_only_not_promoted || 0)
+    !== Number(artifact.counts?.refresh_priority_pending_files || 0)
+  ) {
+    issues.push('refresh priority known + review-only counts must equal pending files');
+  }
+  if (Number(artifact.counts?.refresh_priority_route_payload_field_hits || 0) !== 0) {
+    issues.push('refresh_priority_route_payload_field_hits must be 0');
+  }
   const expectedDirectedEdges = Number(artifact.counts?.crossmatch_occurrence_refs || 0)
     * Math.max(0, Number(artifact.counts?.crossmatch_occurrence_refs || 0) - 1);
   if (Number(artifact.counts?.crossmatch_directed_edges || 0) !== expectedDirectedEdges) {
@@ -258,6 +280,7 @@ function validateArtifacts() {
     'work_frame_matrix_report',
     'search_rows_report',
     'search_shard_index_report',
+    'refresh_priority_index_report',
     'selected_slice_report',
     'selected_slices_index_report',
     'selected_occurrences_report',
@@ -293,6 +316,9 @@ function validateValidation() {
   }
   if (artifact.validation?.search_shard_index_status !== 'present') {
     issues.push('validation.search_shard_index_status must be present');
+  }
+  if (artifact.validation?.refresh_priority_index_status !== 'present') {
+    issues.push('validation.refresh_priority_index_status must be present');
   }
   if (artifact.validation?.selected_slice_status !== 'present') issues.push('validation.selected_slice_status must be present');
   if (artifact.validation?.selected_slices_index_status !== 'present') issues.push('validation.selected_slices_index_status must be present');
@@ -368,6 +394,18 @@ function validateValidation() {
   }
   if (Number(artifact.validation?.search_shard_index_route_payload_field_hits || 0) !== 0) {
     issues.push('search_shard_index_route_payload_field_hits must be 0');
+  }
+  if (Number(artifact.validation?.refresh_priority_pending_files || 0) !== Number(artifact.counts?.refresh_priority_pending_files || 0)) {
+    issues.push('validation.refresh_priority_pending_files must equal counts.refresh_priority_pending_files');
+  }
+  if (Number(artifact.validation?.refresh_priority_promoted_run_targets || 0) !== 0) {
+    issues.push('refresh_priority_promoted_run_targets must be 0');
+  }
+  if (Number(artifact.validation?.refresh_priority_failed_checks || 0) !== 0) {
+    issues.push('refresh_priority_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.refresh_priority_route_payload_field_hits || 0) !== 0) {
+    issues.push('refresh_priority_route_payload_field_hits must be 0');
   }
   if (!String(artifact.validation?.selected_slice_id || '').trim()) issues.push('selected_slice_id must be present');
   if (Number(artifact.validation?.selected_slice_rows || 0) <= 0) issues.push('selected_slice_rows must be positive');
@@ -462,6 +500,8 @@ function validateCommands() {
     validate_search_rows: 'validate_workbench_usage_search_rows.mjs',
     build_search_shard_index: 'build_workbench_usage_search_shard_index.mjs',
     validate_search_shard_index: 'validate_workbench_usage_search_shard_index.mjs',
+    build_refresh_priority_index: 'build_workbench_usage_refresh_priority_index.mjs',
+    validate_refresh_priority_index: 'validate_workbench_usage_refresh_priority_index.mjs',
     build_selected_slice: 'build_workbench_usage_slice_index.mjs',
     validate_selected_slice: 'validate_workbench_usage_slice_index.mjs',
     build_selected_slice_jeremiah: 'build_workbench_usage_slice_index.mjs',
