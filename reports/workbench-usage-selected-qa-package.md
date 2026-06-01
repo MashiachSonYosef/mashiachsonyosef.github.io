@@ -1,10 +1,10 @@
 # Workbench Usage Selected QA Package
 
-Generated: 2026-06-01T05:19:00.325Z
+Generated: 2026-06-01T05:32:34.754Z
 
 ## Summary
 
-- Package items: 10
+- Package items: 11
 - Selected rows: 49
 - Source refs: 38
 - Works: 20
@@ -16,6 +16,10 @@ Generated: 2026-06-01T05:19:00.325Z
 - Focus marker mismatch rows: 0
 - Repeated-focus context rows: 8
 - Missing Hebrew context rows: 0
+- Frame summary frames: 2
+- Frame summary rows: 49
+- Frame summary repeated-focus rows: 8
+- Frame summary samples: 16
 - Route concentration warning visible: 1
 - Rows with recurring signatures: 21
 - Rows with cross-cluster signatures: 9
@@ -36,7 +40,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 
 | check | status | detail |
 |---|---|---|
-| package_items_present | passed | package items 10 |
+| package_items_present | passed | package items 11 |
 | selected_rows_consistent | passed | selected rows 49 |
 | selected_route_links_complete | passed | selected route links 49; selected rows 49 |
 | route_ids_resolved | passed | unresolved route IDs 0 |
@@ -44,6 +48,9 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_focus_markers_complete | passed | focus marker rows 49; selected rows 49 |
 | selected_focus_marker_mismatch_zero | passed | focus marker mismatches 0 |
 | selected_missing_hebrew_context_zero | passed | missing Hebrew context rows 0 |
+| selected_frame_summary_complete | passed | frame summary rows 49; selected rows 49 |
+| selected_frame_summary_has_frames | passed | frame summary frames 2 |
+| selected_frame_summary_repeated_focus_matches | passed | frame repeated-focus 8; focus audit repeated-focus 8 |
 | route_concentration_warning_visible | warning | route concentration warning visible 1 |
 | crossmatch_partition_visible | passed | same-frame 1192; bridge 1160; directed 2352 |
 | crossmatch_neighborhoods_complete | passed | neighborhoods 49; selected rows 49 |
@@ -62,6 +69,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_route_concentration_response | workbench_usage_selected_route_concentration_response | .local-cache/workbench-evidence/usage-selected-route-concentration-response.json | reports/workbench-usage-selected-route-concentration-response.md | pass_with_warnings | 1 | 0 | 0 | 0 | rows: 49<br>route_buckets: 1<br>warning_visible: 1 |
 | selected_route_resolution | workbench_usage_selected_route_resolution | .local-cache/workbench-evidence/usage-selected-route-resolution.json | reports/workbench-usage-selected-route-resolution.md | passed | 0 | 0 | 0 | 0 | selected_route_links: 49<br>route_buckets: 1<br>unresolved_route_ids: 0 |
 | selected_focus_context_audit | workbench_usage_selected_focus_context_audit | .local-cache/workbench-evidence/usage-selected-focus-context-audit.json | reports/workbench-usage-selected-focus-context-audit.md | pass_with_warnings | 1 | 0 | 0 | 0 | rows: 49<br>focus_marker_rows: 49<br>focus_marker_mismatch_rows: 0<br>repeated_focus_context_rows: 8<br>missing_hebrew_context_rows: 0 |
+| selected_frame_summary | workbench_usage_selected_frame_summary | .local-cache/workbench-evidence/usage-selected-frame-summary.json | reports/workbench-usage-selected-frame-summary.md | passed | 0 | 0 | 0 | 0 | frames: 2<br>selected_rows: 49<br>repeated_focus_context_rows: 8<br>sample_occurrences: 16 |
 | selected_occurrence_lookup | workbench_usage_navigation_selected_occurrence_lookup | .local-cache/workbench-evidence/usage-selected-occurrence-lookup.json | reports/workbench-usage-selected-occurrence-lookup.md | not_applicable | 0 | 0 | 0 | 0 | rows: 49<br>work_buckets: 20<br>cluster_buckets: 2<br>status_buckets: 3 |
 | crossmatch_links | workbench_usage_navigation_crossmatch_links | .local-cache/workbench-evidence/usage-crossmatch-links.json | reports/workbench-usage-crossmatch-links.md | passed | 0 | 0 | 0 | 0 | occurrence_refs: 49<br>directed_edges: 2352<br>undirected_pairs: 1176 |
 | crossmatch_bridge_index | workbench_usage_navigation_crossmatch_bridge_index | .local-cache/workbench-evidence/usage-crossmatch-bridge-index.json | reports/workbench-usage-crossmatch-bridge-index.md | passed | 0 | 0 | 0 | 0 | same_frame_edges: 1192<br>bridge_edges: 1160<br>bridge_buckets: 2 |
