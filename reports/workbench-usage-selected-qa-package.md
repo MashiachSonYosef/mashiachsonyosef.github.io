@@ -1,10 +1,10 @@
 # Workbench Usage Selected QA Package
 
-Generated: 2026-06-01T06:23:21.015Z
+Generated: 2026-06-01T06:40:20.658Z
 
 ## Summary
 
-- Package items: 14
+- Package items: 15
 - Selected rows: 49
 - Source refs: 38
 - Works: 20
@@ -27,6 +27,13 @@ Generated: 2026-06-01T06:23:21.015Z
 - Route IDs: 1
 - Selected route links: 49
 - Unresolved route IDs: 0
+- Route/provenance rows: 1
+- Route/provenance links: 49
+- Route/provenance buckets: 5
+- Route/provenance unresolved route rows: 0
+- Route/provenance missing provenance rows: 0
+- Route/provenance payload copied rows: 0
+- Route/provenance samples: 49
 - Focus context audit rows: 49
 - Focus marker rows: 49
 - Focus marker mismatch rows: 0
@@ -61,7 +68,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 
 | check | status | detail |
 |---|---|---|
-| package_items_present | passed | package items 14 |
+| package_items_present | passed | package items 15 |
 | selected_rows_consistent | passed | selected rows 49 |
 | selected_provenance_rows_complete | passed | provenance rows 49; selected rows 49 |
 | selected_provenance_license_metadata_complete | passed | license metadata rows 49; selected rows 49 |
@@ -72,6 +79,13 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_cross_frame_collisions_visible | passed | cross-frame collision buckets 4 |
 | selected_route_links_complete | passed | selected route links 49; selected rows 49 |
 | route_ids_resolved | passed | unresolved route IDs 0 |
+| selected_route_provenance_links_complete | passed | route/provenance links 49; selected route links 49 |
+| selected_route_provenance_rows_match_routes | passed | route/provenance rows 1; route IDs 1 |
+| selected_route_provenance_buckets_match | passed | route/provenance buckets 5; provenance buckets 5 |
+| selected_route_provenance_resolved | passed | unresolved route/provenance rows 0 |
+| selected_route_provenance_present | passed | missing provenance rows 0 |
+| selected_route_provenance_payload_not_copied | passed | payload copied rows 0 |
+| selected_route_provenance_samples_complete | passed | route/provenance samples 49; selected route links 49 |
 | selected_focus_context_complete | passed | focus context rows 49; selected rows 49 |
 | selected_focus_markers_complete | passed | focus marker rows 49; selected rows 49 |
 | selected_focus_marker_mismatch_zero | passed | focus marker mismatches 0 |
@@ -101,6 +115,7 @@ This package indexes selected usage-navigation artifacts for QA. It carries coun
 | selected_signature_independence | workbench_usage_selected_signature_independence | .local-cache/workbench-evidence/usage-selected-signature-independence.json | reports/workbench-usage-selected-signature-independence.md | passed | 0 | 0 | 0 | 0 | rows: 49<br>rows_with_recurring: 21<br>rows_with_cross_cluster: 9 |
 | selected_route_concentration_response | workbench_usage_selected_route_concentration_response | .local-cache/workbench-evidence/usage-selected-route-concentration-response.json | reports/workbench-usage-selected-route-concentration-response.md | pass_with_warnings | 1 | 0 | 0 | 0 | rows: 49<br>route_buckets: 1<br>warning_visible: 1 |
 | selected_route_resolution | workbench_usage_selected_route_resolution | .local-cache/workbench-evidence/usage-selected-route-resolution.json | reports/workbench-usage-selected-route-resolution.md | passed | 0 | 0 | 0 | 0 | selected_route_links: 49<br>route_buckets: 1<br>unresolved_route_ids: 0 |
+| selected_route_provenance_audit | workbench_usage_selected_route_provenance_audit | .local-cache/workbench-evidence/usage-selected-route-provenance-audit.json | reports/workbench-usage-selected-route-provenance-audit.md | passed | 0 | 0 | 0 | 0 | route_rows: 1<br>selected_route_links: 49<br>provenance_buckets: 5<br>unresolved_route_rows: 0<br>missing_provenance_rows: 0<br>route_payload_copied_rows: 0<br>samples: 49 |
 | selected_focus_context_audit | workbench_usage_selected_focus_context_audit | .local-cache/workbench-evidence/usage-selected-focus-context-audit.json | reports/workbench-usage-selected-focus-context-audit.md | pass_with_warnings | 1 | 0 | 0 | 0 | rows: 49<br>focus_marker_rows: 49<br>focus_marker_mismatch_rows: 0<br>repeated_focus_context_rows: 8<br>missing_hebrew_context_rows: 0 |
 | selected_frame_summary | workbench_usage_selected_frame_summary | .local-cache/workbench-evidence/usage-selected-frame-summary.json | reports/workbench-usage-selected-frame-summary.md | passed | 0 | 0 | 0 | 0 | frames: 2<br>selected_rows: 49<br>repeated_focus_context_rows: 8<br>sample_occurrences: 16 |
 | selected_work_frame_matrix | workbench_usage_selected_work_frame_matrix | .local-cache/workbench-evidence/usage-selected-work-frame-matrix.json | reports/workbench-usage-selected-work-frame-matrix.md | passed | 0 | 0 | 0 | 0 | matrix_rows: 25<br>selected_rows: 49<br>works: 20<br>frames: 2<br>sample_occurrences: 48 |
