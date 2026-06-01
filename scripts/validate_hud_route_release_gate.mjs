@@ -156,6 +156,8 @@ const result = {
     invalid_source_row_fields_used_entries: Number(boundaryReport.counts?.invalid_source_row_fields_used_entries || 0),
     reference_url_fields_checked: Number(boundaryReport.counts?.reference_url_fields_checked || 0),
     invalid_reference_url_fields: Number(boundaryReport.counts?.invalid_reference_url_fields || 0),
+    license_url_compatibility_checks: Number(boundaryReport.counts?.license_url_compatibility_checks || 0),
+    invalid_license_url_compatibility: Number(boundaryReport.counts?.invalid_license_url_compatibility || 0),
     answer_eligible_cards_with_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_with_answer_score || 0),
     answer_eligible_cards_missing_answer_score: Number(boundaryReport.counts?.answer_eligible_cards_missing_answer_score || 0),
     answer_role_answer_cards: Number(boundaryReport.counts?.answer_role_answer_cards || 0),
@@ -428,6 +430,12 @@ async function validateBoundaryReport(report, reconciliation) {
   }
   if (count('invalid_reference_url_fields') !== 0) {
     issues.push(`route publication boundary report found ${count('invalid_reference_url_fields')} invalid source/license URL field(s)`);
+  }
+  if (count('license_url_compatibility_checks') !== count('source_rows')) {
+    issues.push('route publication boundary report did not check license URL compatibility for every source row');
+  }
+  if (count('invalid_license_url_compatibility') !== 0) {
+    issues.push(`route publication boundary report found ${count('invalid_license_url_compatibility')} source row(s) with incompatible license URL metadata`);
   }
   if (count('answer_eligible_cards_with_source_rows') > count('answer_eligible_cards')) {
     issues.push('route publication boundary report has more answer-eligible source-row cards than answer-eligible cards');
@@ -717,6 +725,8 @@ function writeReport(relativePath, result) {
     `- Invalid source-row fields_used entries: ${result.route_publication_boundary.invalid_source_row_fields_used_entries}`,
     `- Reference URL fields checked: ${result.route_publication_boundary.reference_url_fields_checked}`,
     `- Invalid reference URL fields: ${result.route_publication_boundary.invalid_reference_url_fields}`,
+    `- License URL compatibility checks: ${result.route_publication_boundary.license_url_compatibility_checks}`,
+    `- Invalid license URL compatibility rows: ${result.route_publication_boundary.invalid_license_url_compatibility}`,
     `- Answer-eligible cards with numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_with_answer_score}`,
     `- Answer-eligible cards missing numeric answer score: ${result.route_publication_boundary.answer_eligible_cards_missing_answer_score}`,
     `- Cards with answer role: ${result.route_publication_boundary.answer_role_answer_cards}`,

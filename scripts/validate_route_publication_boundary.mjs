@@ -154,6 +154,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       invalid_source_row_fields_used_entries: 0,
       reference_url_fields_checked: 0,
       invalid_reference_url_fields: 0,
+      license_url_compatibility_checks: 0,
+      invalid_license_url_compatibility: 0,
       hud_safe_source_rows: 0,
       hud_unsafe_source_rows: 0,
       translation_output_safe_source_rows: 0,
@@ -466,6 +468,11 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
         addIssue(`${context}.source_rows[${rowIndex}]`, `unsafe ${field}: ${row[field]}`, target);
       }
     }
+    target.counts.license_url_compatibility_checks += 1;
+    if (!licenseUrlCompatible(row)) {
+      target.counts.invalid_license_url_compatibility += 1;
+      addIssue(`${context}.source_rows[${rowIndex}]`, `license_url is not compatible with license label: ${license || 'missing'} -> ${row?.license_url || 'missing'}`, target);
+    }
     if (!Array.isArray(row?.fields_used) || !row.fields_used.length) {
       addIssue(`${context}.source_rows[${rowIndex}]`, 'missing fields_used', target);
     } else {
@@ -584,6 +591,30 @@ function safeReferenceUrl(value) {
   return /^(https:\/\/|local:)/i.test(String(value || '').trim());
 }
 
+function licenseUrlCompatible(row) {
+  const license = String(row?.license || '').trim();
+  const licenseUrl = String(row?.license_url || '').trim();
+  if (!license || !licenseUrl) return false;
+  if (/^Public Domain$/i.test(license)) return /^https:\/\/creativecommons\.org\/publicdomain\/mark\/1\.0\/?$/i.test(licenseUrl);
+  if (/^CC BY 4\.0$/i.test(license) || /^CC-BY(?: 4\.0)?$/i.test(license)) {
+    return /^https:\/\/creativecommons\.org\/licenses\/by\/4\.0\/?$/i.test(licenseUrl);
+  }
+  if (/^CC BY-SA 4\.0 \/ GFDL$/i.test(license) || /^CC BY-SA 4\.0\/GFDL$/i.test(license)) {
+    return /^https:\/\/en\.wiktionary\.org\/wiki\/Wiktionary:Copyrights$/i.test(licenseUrl);
+  }
+  if (/^CC0$/i.test(license)) {
+    return /^https:\/\/creativecommons\.org\/publicdomain\/zero\/1\.0\/?$/i.test(licenseUrl)
+      || /^https:\/\/www\.wikidata\.org\/wiki\/Wikidata:Licensing$/i.test(licenseUrl);
+  }
+  if (/^project-authored \/ CC0$/i.test(license)) {
+    return /^local:/i.test(licenseUrl) || /^https:\/\/creativecommons\.org\/publicdomain\/zero\/1\.0\/?$/i.test(licenseUrl);
+  }
+  if (/^N\/A - project lexical rule$/i.test(license) || /^N\/A - project-authored lexical rules$/i.test(license)) {
+    return /^local:/i.test(licenseUrl);
+  }
+  return false;
+}
+
 function validRouteScoreField(field, value) {
   if (!Number.isFinite(value)) return false;
   if (field === 'score_handicap') return value >= -100 && value <= 100;
@@ -672,6 +703,8 @@ function writeReport(relativePath, data) {
     `- Invalid source-row fields_used entries: ${data.counts.invalid_source_row_fields_used_entries}`,
     `- Reference URL fields checked: ${data.counts.reference_url_fields_checked}`,
     `- Invalid reference URL fields: ${data.counts.invalid_reference_url_fields}`,
+    `- License URL compatibility checks: ${data.counts.license_url_compatibility_checks}`,
+    `- Invalid license URL compatibility rows: ${data.counts.invalid_license_url_compatibility}`,
     `- HUD-unsafe source rows: ${data.counts.hud_unsafe_source_rows}`,
     `- Translation-output unsafe source rows flagged: ${data.counts.translation_output_unsafe_source_rows}`,
     `- Translation-output unsafe cards flagged: ${data.counts.translation_output_unsafe_cards}`,

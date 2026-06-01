@@ -226,7 +226,7 @@
         ]
       },
       "expected_counts": {
-        "issue_count": 1,
+        "issue_count": 2,
         "warning_count": 1,
         "answer_eligible_cards": 0,
         "answer_eligible_cards_with_source_rows": 0,
@@ -245,7 +245,8 @@
         }
       },
       "expected_issue_substrings": [
-        "unsafe HUD source license profile"
+        "unsafe HUD source license profile",
+        "license_url is not compatible"
       ],
       "expected_warning_substrings": [
         "not automatically safe as accepted translation-output support"
@@ -708,6 +709,48 @@
       },
       "expected_issue_substrings": [
         "unsafe source_url"
+      ]
+    },
+    {
+      "label": "license-url-must-match-license-label",
+      "card": {
+        "card_id": "fixture-license-url-mismatch",
+        "normalized": "fixture",
+        "route_family": "fixture",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "display_label": "Fixture lemma",
+        "definition": "Fixture license URL mismatch.",
+        "answer_eligible": false,
+        "answer_role": "evidence",
+        "source_rows": [
+          {
+            "source_name": "Fixture CC BY Source",
+            "source_family": "fixture",
+            "source_id": "fixture-cc-by-license-url-mismatch",
+            "source_url": "local:route-publication-boundary-fixtures",
+            "license": "CC BY 4.0",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "fields_used": ["fixture source", "fixture license"],
+            "notes": "Fixture row for rejecting mismatched source license labels and license URLs."
+          }
+        ]
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 1,
+        "answer_eligible_cards": 0,
+        "answer_eligible_cards_with_source_rows": 0,
+        "license_url_compatibility_checks": 1,
+        "invalid_license_url_compatibility": 1,
+        "hud_unsafe_source_rows": 0,
+        "translation_output_unsafe_cards": 1,
+        "answer_eligible_translation_output_unsafe_source_rows": 0,
+        "answer_eligible_translation_output_unsafe_cards": 0,
+        "route_cards_with_publication_fields": 0
+      },
+      "expected_issue_substrings": [
+        "license_url is not compatible"
       ]
     },
     {
