@@ -4,6 +4,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
+const importedBySmokePipeline = new URL(import.meta.url).searchParams.has('smokePipeline');
 const defaults = {
   targetQueue: '.local-cache/workbench-evidence/smoke-target-queue.json',
   fullDir: '.local-cache/workbench-evidence/full',
@@ -865,6 +866,31 @@ await runStep('audit_candidate_artifacts', [
   `--report=${options.scratchDir}/candidate-artifact-audit.md`,
 ]);
 
+const definitionWorkbenchUsageLinkPacketJson = 'data/definitions/definition-workbench-usage-link-packet.json';
+const definitionWorkbenchUsageSeedQueueJson = 'data/definitions/definition-workbench-usage-seed-queue.json';
+const definitionWorkbenchUsageJoinSmokeJson = 'data/definitions/definition-workbench-usage-join-smoke.json';
+const definitionWorkbenchUsageAgent6PacketJson = 'data/definitions/definition-workbench-usage-agent6-packet.json';
+
+await runStep('validate_definition_workbench_usage_link_packet', [
+  'scripts/validate_definition_workbench_usage_link_packet.mjs',
+  definitionWorkbenchUsageLinkPacketJson,
+]);
+
+await runStep('validate_definition_workbench_usage_seed_queue', [
+  'scripts/validate_definition_workbench_usage_seed_queue.mjs',
+  definitionWorkbenchUsageSeedQueueJson,
+]);
+
+await runStep('validate_definition_workbench_usage_join_smoke', [
+  'scripts/validate_definition_workbench_usage_join_smoke.mjs',
+  definitionWorkbenchUsageJoinSmokeJson,
+]);
+
+await runStep('validate_definition_workbench_usage_agent6_packet', [
+  'scripts/validate_definition_workbench_usage_agent6_packet.mjs',
+  definitionWorkbenchUsageAgent6PacketJson,
+]);
+
 const coverage = readJsonIfExists(coverageJson);
 const smokeCounts = readJsonIfExists(smokeCountsJson);
 const handoffIndex = readJsonIfExists(handoffIndexJson);
@@ -921,6 +947,10 @@ const usageAuditReview = readJsonIfExists(usageAuditReviewJson);
 const usageHandoffIndex = readJsonIfExists(usageHandoffIndexJson);
 const publicHandoffIntegrity = readJsonIfExists(publicHandoffIntegrityJson);
 const artifactAudit = readJsonIfExists(artifactAuditJson);
+const definitionWorkbenchUsageLinkPacket = readJsonIfExists(definitionWorkbenchUsageLinkPacketJson);
+const definitionWorkbenchUsageSeedQueue = readJsonIfExists(definitionWorkbenchUsageSeedQueueJson);
+const definitionWorkbenchUsageJoinSmoke = readJsonIfExists(definitionWorkbenchUsageJoinSmokeJson);
+const definitionWorkbenchUsageAgent6Packet = readJsonIfExists(definitionWorkbenchUsageAgent6PacketJson);
 const failedSteps = steps.filter((step) => step.status !== 'passed');
 const sourceFreshness = readJsonIfExists(sourceFreshnessJson);
 
@@ -936,6 +966,10 @@ const artifact = {
     handoff_root: options.handoffRoot,
     evidence_dir: options.evidenceDir,
     scratch_dir: options.scratchDir,
+    definition_workbench_usage_link_packet: definitionWorkbenchUsageLinkPacketJson,
+    definition_workbench_usage_seed_queue: definitionWorkbenchUsageSeedQueueJson,
+    definition_workbench_usage_join_smoke: definitionWorkbenchUsageJoinSmokeJson,
+    definition_workbench_usage_agent6_packet: definitionWorkbenchUsageAgent6PacketJson,
   },
   counts: {
     steps: steps.length,
@@ -1410,6 +1444,31 @@ const artifact = {
     useful_artifacts: artifactAudit?.counts?.useful_artifacts ?? null,
     zero_useful_non_smoke_artifacts: artifactAudit?.counts?.zero_useful_non_smoke_artifacts ?? null,
     orphan_smoke_artifacts: artifactAudit?.counts?.orphan_smoke_artifacts ?? null,
+    definition_workbench_usage_link_packet_status: definitionWorkbenchUsageLinkPacket?.quality?.status ?? null,
+    definition_workbench_usage_link_packet_warnings: definitionWorkbenchUsageLinkPacket?.quality?.warning_count ?? null,
+    definition_workbench_usage_link_sample_rows: definitionWorkbenchUsageLinkPacket?.counts?.sample_rows ?? null,
+    definition_workbench_usage_link_sample_rows_with_usage_links: definitionWorkbenchUsageLinkPacket?.counts?.sample_rows_with_usage_links ?? null,
+    definition_workbench_usage_link_usage_token_rows: definitionWorkbenchUsageLinkPacket?.counts?.usage_token_rows ?? null,
+    definition_workbench_usage_link_usage_occurrence_rows: definitionWorkbenchUsageLinkPacket?.counts?.usage_occurrence_rows ?? null,
+    definition_workbench_usage_link_selected_sample_occurrences: definitionWorkbenchUsageLinkPacket?.counts?.selected_sample_occurrences ?? null,
+    definition_workbench_usage_seed_queue_status: definitionWorkbenchUsageSeedQueue?.quality?.status ?? null,
+    definition_workbench_usage_seed_rows: definitionWorkbenchUsageSeedQueue?.counts?.seed_rows ?? null,
+    definition_workbench_usage_seed_absent_rows: definitionWorkbenchUsageSeedQueue?.counts?.seed_rows_absent_from_sample ?? null,
+    definition_workbench_usage_seed_occurrence_links: definitionWorkbenchUsageSeedQueue?.counts?.occurrence_links ?? null,
+    definition_workbench_usage_join_smoke_status: definitionWorkbenchUsageJoinSmoke?.quality?.status ?? null,
+    definition_workbench_usage_join_rows: definitionWorkbenchUsageJoinSmoke?.counts?.join_rows ?? null,
+    definition_workbench_usage_projected_rows_after_seed_append: definitionWorkbenchUsageJoinSmoke?.counts?.projected_rows_after_seed_append ?? null,
+    definition_workbench_usage_projected_usage_link_rows: definitionWorkbenchUsageJoinSmoke?.counts?.projected_usage_link_rows ?? null,
+    definition_workbench_usage_agent6_packet_status: definitionWorkbenchUsageAgent6Packet?.quality?.status ?? null,
+    definition_workbench_usage_agent6_proof_rows: definitionWorkbenchUsageAgent6Packet?.counts?.proof_occurrence_rows ?? null,
+    definition_workbench_usage_agent6_supported_rows: definitionWorkbenchUsageAgent6Packet?.counts?.supported_rows ?? null,
+    definition_workbench_usage_agent6_candidate_rows: definitionWorkbenchUsageAgent6Packet?.counts?.candidate_rows ?? null,
+    definition_workbench_usage_agent6_weak_rows: definitionWorkbenchUsageAgent6Packet?.counts?.weak_rows ?? null,
+    definition_workbench_usage_agent6_route_ids: definitionWorkbenchUsageAgent6Packet?.counts?.route_ids ?? null,
+    definition_workbench_usage_agent6_usage_frames: definitionWorkbenchUsageAgent6Packet?.counts?.usage_frames ?? null,
+    definition_workbench_usage_agent6_reader_facing_rows: definitionWorkbenchUsageAgent6Packet?.counts?.reader_facing_rows ?? null,
+    definition_workbench_usage_agent6_route_payload_field_hits: definitionWorkbenchUsageAgent6Packet?.counts?.route_payload_field_hits ?? null,
+    definition_workbench_usage_agent6_forbidden_authority_field_hits: definitionWorkbenchUsageAgent6Packet?.counts?.forbidden_authority_field_hits ?? null,
   },
   steps,
 };
@@ -1419,7 +1478,11 @@ writeReport(options.report, artifact);
 console.log(`Wrote ${options.output}`);
 console.log(`Wrote ${options.report}`);
 console.log(`Smoke pipeline validation ${failedSteps.length ? 'failed' : 'passed'}; steps ${steps.length}; failed ${failedSteps.length}`);
-if (failedSteps.length) process.exitCode = 2;
+if (importedBySmokePipeline) {
+  if (failedSteps.length) process.exitCode = 2;
+} else {
+  process.exit(failedSteps.length ? 2 : 0);
+}
 
 function parseArgs(args) {
   const parsed = { ...defaults };
@@ -1590,6 +1653,9 @@ function writeReport(relativePath, artifact) {
     `- Public handoff integrity: ${artifact.counts.public_handoff_integrity_status}, files ${artifact.counts.public_handoff_integrity_files}, matched ${artifact.counts.public_handoff_integrity_matched}, missing ${artifact.counts.public_handoff_integrity_missing}, mismatched ${artifact.counts.public_handoff_integrity_mismatched}, unexpected ${artifact.counts.public_handoff_integrity_unexpected_present}`,
     `- Candidate artifact audit quality: ${artifact.counts.candidate_artifact_audit_quality_status}, warnings ${artifact.counts.candidate_artifact_audit_warning_count}, broad queue blocked ${artifact.counts.candidate_artifact_audit_broad_queue_blocked ? 'yes' : 'no'}, orphan smoke review ${artifact.counts.candidate_artifact_audit_orphan_smoke_review ? 'yes' : 'no'}`,
     `- Candidate artifact audit: useful ${artifact.counts.useful_artifacts}, zero-useful non-smoke ${artifact.counts.zero_useful_non_smoke_artifacts}, orphan smoke ${artifact.counts.orphan_smoke_artifacts}`,
+    `- Definition Workbench usage-link packet: ${artifact.counts.definition_workbench_usage_link_packet_status}, warnings ${artifact.counts.definition_workbench_usage_link_packet_warnings}, sample rows ${artifact.counts.definition_workbench_usage_link_sample_rows}, current usage links ${artifact.counts.definition_workbench_usage_link_sample_rows_with_usage_links}, usage tokens ${artifact.counts.definition_workbench_usage_link_usage_token_rows}, usage occurrence rows ${artifact.counts.definition_workbench_usage_link_usage_occurrence_rows}, selected occurrence samples ${artifact.counts.definition_workbench_usage_link_selected_sample_occurrences}`,
+    `- Definition Workbench usage seed/join smoke: seed ${artifact.counts.definition_workbench_usage_seed_queue_status}, seed rows ${artifact.counts.definition_workbench_usage_seed_rows}, absent ${artifact.counts.definition_workbench_usage_seed_absent_rows}, occurrence links ${artifact.counts.definition_workbench_usage_seed_occurrence_links}; join ${artifact.counts.definition_workbench_usage_join_smoke_status}, join rows ${artifact.counts.definition_workbench_usage_join_rows}, projected rows ${artifact.counts.definition_workbench_usage_projected_rows_after_seed_append}, projected usage-link rows ${artifact.counts.definition_workbench_usage_projected_usage_link_rows}`,
+    `- Definition Workbench usage Agent 6 packet: ${artifact.counts.definition_workbench_usage_agent6_packet_status}, proof rows ${artifact.counts.definition_workbench_usage_agent6_proof_rows}, supported ${artifact.counts.definition_workbench_usage_agent6_supported_rows}, candidate ${artifact.counts.definition_workbench_usage_agent6_candidate_rows}, weak ${artifact.counts.definition_workbench_usage_agent6_weak_rows}, route IDs ${artifact.counts.definition_workbench_usage_agent6_route_ids}, frames ${artifact.counts.definition_workbench_usage_agent6_usage_frames}, reader-facing ${artifact.counts.definition_workbench_usage_agent6_reader_facing_rows}, route payload hits ${artifact.counts.definition_workbench_usage_agent6_route_payload_field_hits}, forbidden authority hits ${artifact.counts.definition_workbench_usage_agent6_forbidden_authority_field_hits}`,
     '',
     '## Steps',
     '',
@@ -1599,7 +1665,7 @@ function writeReport(relativePath, artifact) {
     '',
     '## Boundary',
     '',
-    'This wrapper validates smoke-only workbench evidence, the public handoff index contract, and the usage-navigation concordance. It does not run broad target selection, expand prefix families, import source text, rank routes, make ambiguous rows reader-facing, or choose HUD winners.',
+    'This wrapper validates smoke-only workbench evidence, the public handoff index contract, the usage-navigation concordance, and the Definition Workbench usage-link packet chain. It does not run broad target selection, expand prefix families, import source text, rank routes, make ambiguous rows reader-facing, or choose HUD winners.',
   ];
   const fullPath = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(fullPath), { recursive: true });

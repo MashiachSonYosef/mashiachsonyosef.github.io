@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T10:22:46.920Z
+Generated: 2026-06-01T14:06:18.651Z
 
 ## Summary
 
-- Steps: 110
+- Steps: 114
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -76,6 +76,9 @@ Generated: 2026-06-01T10:22:46.920Z
 - Public handoff integrity: passed, files 275, matched 275, missing 0, mismatched 0, unexpected 0
 - Candidate artifact audit quality: pass_with_warnings, warnings 2, broad queue blocked yes, orphan smoke review yes
 - Candidate artifact audit: useful 59, zero-useful non-smoke 30, orphan smoke 2
+- Definition Workbench usage-link packet: pass_with_warnings, warnings 1, sample rows 200, current usage links 0, usage tokens 1, usage occurrence rows 2390, selected occurrence samples 12
+- Definition Workbench usage seed/join smoke: seed passed, seed rows 1, absent 1, occurrence links 12; join passed, join rows 1, projected rows 201, projected usage-link rows 2390
+- Definition Workbench usage Agent 6 packet: passed, proof rows 12, supported 11, candidate 1, weak 0, route IDs 1, frames 2, reader-facing 0, route payload hits 0, forbidden authority hits 0
 
 ## Steps
 
@@ -191,7 +194,11 @@ Generated: 2026-06-01T10:22:46.920Z
 | validate_usage_handoff_index | passed | Workbench usage handoff index validation passed. Rows: 2390. Clusters: 2. |
 | check_public_handoff_integrity | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/public-handoff-integrity-check.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/public-handoff-integrity-check.md / Public handoff integrity passed; files 275; matched 275; missing 0; mismatched 0; unexpected 0 |
 | audit_candidate_artifacts | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/candidate-artifact-audit.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/candidate-artifact-audit.md / Artifacts 89; useful 59; zero useful 30; zero useful non-smoke 30; orphan smoke 2; quality pass_with_warnings |
+| validate_definition_workbench_usage_link_packet | passed | Definition Workbench usage-link packet validation passed with 1 warning(s). / - current Definition Workbench sample has no overlap with selected Agent 3 usage token scope / Sample rows: 200; linked sample rows: 0; usage tokens: 1; selected occurrence samples: 12. |
+| validate_definition_workbench_usage_seed_queue | passed | Definition Workbench usage seed queue validation passed. / Seed rows: 1; occurrence links: 12; route IDs: 1. |
+| validate_definition_workbench_usage_join_smoke | passed | Definition Workbench usage join smoke validation passed. / Join rows: 1; absent seeds: 1; occurrence links: 12. |
+| validate_definition_workbench_usage_agent6_packet | passed | Definition Workbench usage Agent 6 packet validation passed. / Proof rows: 12; route IDs: 1; absent seeds: 1. |
 
 ## Boundary
 
-This wrapper validates smoke-only workbench evidence, the public handoff index contract, and the usage-navigation concordance. It does not run broad target selection, expand prefix families, import source text, rank routes, make ambiguous rows reader-facing, or choose HUD winners.
+This wrapper validates smoke-only workbench evidence, the public handoff index contract, the usage-navigation concordance, and the Definition Workbench usage-link packet chain. It does not run broad target selection, expand prefix families, import source text, rank routes, make ambiguous rows reader-facing, or choose HUD winners.
