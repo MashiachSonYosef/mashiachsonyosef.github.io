@@ -751,6 +751,58 @@
       ]
     },
     {
+      "label": "duplicate-source-id-within-card-is-forbidden",
+      "card": {
+        "card_id": "fixture-duplicate-source-id",
+        "normalized": "fixture",
+        "route_family": "fixture",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "display_label": "Fixture lemma",
+        "definition": "Fixture duplicate source ID.",
+        "answer_eligible": false,
+        "answer_role": "evidence",
+        "source_rows": [
+          {
+            "source_name": "Fixture Public Domain Source",
+            "source_family": "fixture",
+            "source_id": "fixture-pd-duplicate-source-id",
+            "source_url": "local:route-publication-boundary-fixtures",
+            "license": "Public Domain",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "fields_used": ["fixture source", "fixture license"],
+            "notes": "Fixture row one for rejecting duplicate provenance rows."
+          },
+          {
+            "source_name": "Fixture Public Domain Source",
+            "source_family": "fixture",
+            "source_id": "fixture-pd-duplicate-source-id",
+            "source_url": "local:route-publication-boundary-fixtures",
+            "license": "Public Domain",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+            "fields_used": ["fixture source", "fixture license"],
+            "notes": "Fixture row two for rejecting duplicate provenance rows."
+          }
+        ]
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 0,
+        "answer_eligible_cards": 0,
+        "answer_eligible_cards_with_source_rows": 0,
+        "route_cards_with_duplicate_source_ids": 1,
+        "source_row_duplicate_source_ids": 1,
+        "hud_unsafe_source_rows": 0,
+        "translation_output_unsafe_cards": 0,
+        "answer_eligible_translation_output_unsafe_source_rows": 0,
+        "answer_eligible_translation_output_unsafe_cards": 0,
+        "route_cards_with_publication_fields": 0
+      },
+      "expected_issue_substrings": [
+        "duplicate source_id"
+      ]
+    },
+    {
       "label": "blank-fields-used-entry-is-forbidden",
       "card": {
         "card_id": "fixture-blank-fields-used",

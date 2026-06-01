@@ -135,6 +135,7 @@ function createAudit(manifestData = {}, contractData = contract) {
       invalid_route_score_formulas: 0,
       route_cards_with_source_rows: 0,
       route_cards_missing_source_rows: 0,
+      route_cards_with_duplicate_source_ids: 0,
       answer_eligible_cards: 0,
       answer_eligible_cards_with_source_rows: 0,
       answer_eligible_cards_with_answer_score: 0,
@@ -146,6 +147,7 @@ function createAudit(manifestData = {}, contractData = contract) {
       form_reference_tag_entries_checked: 0,
       invalid_form_reference_tag_entries: 0,
       source_rows: 0,
+      source_row_duplicate_source_ids: 0,
       source_row_string_fields_checked: 0,
       invalid_source_row_string_fields: 0,
       source_row_fields_used_entries_checked: 0,
@@ -407,9 +409,21 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
   }
 
   let cardHasTranslationUnsafeRow = false;
+  let cardHasDuplicateSourceId = false;
+  const sourceIdsSeen = new Set();
   const cardTranslationUnsafeRows = [];
   for (const [rowIndex, row] of sourceRows.entries()) {
     target.counts.source_rows += 1;
+    const sourceId = String(row?.source_id || '').trim();
+    if (sourceId) {
+      if (sourceIdsSeen.has(sourceId)) {
+        cardHasDuplicateSourceId = true;
+        target.counts.source_row_duplicate_source_ids += 1;
+        addIssue(`${context}.source_rows[${rowIndex}]`, `duplicate source_id within route card: ${sourceId}`, target);
+      } else {
+        sourceIdsSeen.add(sourceId);
+      }
+    }
     const license = String(row?.license || '').trim();
     increment(target.licenses, license || 'missing');
     if (!hudSafe(row)) {
@@ -464,6 +478,7 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
       }
     }
   }
+  if (cardHasDuplicateSourceId) target.counts.route_cards_with_duplicate_source_ids += 1;
 
   if (cardHasTranslationUnsafeRow) {
     target.counts.translation_output_unsafe_cards += 1;
@@ -638,6 +653,7 @@ function writeReport(relativePath, data) {
     `- Invalid route score formulas: ${data.counts.invalid_route_score_formulas}`,
     `- Cards with source rows: ${data.counts.route_cards_with_source_rows}`,
     `- Cards missing source rows: ${data.counts.route_cards_missing_source_rows}`,
+    `- Cards with duplicate source IDs: ${data.counts.route_cards_with_duplicate_source_ids}`,
     `- Answer-eligible cards: ${data.counts.answer_eligible_cards}`,
     `- Answer-eligible cards with source rows: ${data.counts.answer_eligible_cards_with_source_rows}`,
     `- Answer-eligible cards with numeric answer score: ${data.counts.answer_eligible_cards_with_answer_score}`,
@@ -649,6 +665,7 @@ function writeReport(relativePath, data) {
     `- Form-reference tag entries checked: ${data.counts.form_reference_tag_entries_checked}`,
     `- Invalid form-reference tag entries: ${data.counts.invalid_form_reference_tag_entries}`,
     `- Source rows checked: ${data.counts.source_rows}`,
+    `- Duplicate source IDs within route cards: ${data.counts.source_row_duplicate_source_ids}`,
     `- Source-row string fields checked: ${data.counts.source_row_string_fields_checked}`,
     `- Invalid source-row string fields: ${data.counts.invalid_source_row_string_fields}`,
     `- Source-row fields_used entries checked: ${data.counts.source_row_fields_used_entries_checked}`,

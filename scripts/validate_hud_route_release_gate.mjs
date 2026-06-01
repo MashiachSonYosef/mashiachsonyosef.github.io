@@ -148,7 +148,9 @@ const result = {
     invalid_route_score_formulas: Number(boundaryReport.counts?.invalid_route_score_formulas || 0),
     route_cards_with_source_rows: Number(boundaryReport.counts?.route_cards_with_source_rows || 0),
     route_cards_missing_source_rows: Number(boundaryReport.counts?.route_cards_missing_source_rows || 0),
+    route_cards_with_duplicate_source_ids: Number(boundaryReport.counts?.route_cards_with_duplicate_source_ids || 0),
     source_row_string_fields_checked: Number(boundaryReport.counts?.source_row_string_fields_checked || 0),
+    source_row_duplicate_source_ids: Number(boundaryReport.counts?.source_row_duplicate_source_ids || 0),
     invalid_source_row_string_fields: Number(boundaryReport.counts?.invalid_source_row_string_fields || 0),
     source_row_fields_used_entries_checked: Number(boundaryReport.counts?.source_row_fields_used_entries_checked || 0),
     invalid_source_row_fields_used_entries: Number(boundaryReport.counts?.invalid_source_row_fields_used_entries || 0),
@@ -402,6 +404,12 @@ async function validateBoundaryReport(report, reconciliation) {
   }
   if (count('route_cards_missing_source_rows') !== 0) {
     issues.push(`route publication boundary report found ${count('route_cards_missing_source_rows')} route card(s) missing source_rows`);
+  }
+  if (count('route_cards_with_duplicate_source_ids') !== 0) {
+    issues.push(`route publication boundary report found ${count('route_cards_with_duplicate_source_ids')} route card(s) with duplicate source_id rows`);
+  }
+  if (count('source_row_duplicate_source_ids') !== 0) {
+    issues.push(`route publication boundary report found ${count('source_row_duplicate_source_ids')} duplicate source_id row(s) within route cards`);
   }
   if (count('source_row_string_fields_checked') !== count('source_rows') * 7) {
     issues.push('route publication boundary report did not check every required source-row string field');
@@ -701,7 +709,9 @@ function writeReport(relativePath, result) {
     `- Invalid route score formulas: ${result.route_publication_boundary.invalid_route_score_formulas}`,
     `- Cards with source rows: ${result.route_publication_boundary.route_cards_with_source_rows}`,
     `- Cards missing source rows: ${result.route_publication_boundary.route_cards_missing_source_rows}`,
+    `- Cards with duplicate source IDs: ${result.route_publication_boundary.route_cards_with_duplicate_source_ids}`,
     `- Source-row string fields checked: ${result.route_publication_boundary.source_row_string_fields_checked}`,
+    `- Duplicate source IDs within route cards: ${result.route_publication_boundary.source_row_duplicate_source_ids}`,
     `- Invalid source-row string fields: ${result.route_publication_boundary.invalid_source_row_string_fields}`,
     `- Source-row fields_used entries checked: ${result.route_publication_boundary.source_row_fields_used_entries_checked}`,
     `- Invalid source-row fields_used entries: ${result.route_publication_boundary.invalid_source_row_fields_used_entries}`,

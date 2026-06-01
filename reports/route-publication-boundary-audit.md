@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T06:42:56.113Z
+Generated: 2026-06-01T06:48:27.362Z
 
 ## Boundary
 
@@ -29,6 +29,7 @@ Generated: 2026-06-01T06:42:56.113Z
 - Invalid route score formulas: 0
 - Cards with source rows: 539661
 - Cards missing source rows: 0
+- Cards with duplicate source IDs: 0
 - Answer-eligible cards: 18683
 - Answer-eligible cards with source rows: 18683
 - Answer-eligible cards with numeric answer score: 18683
@@ -40,6 +41,7 @@ Generated: 2026-06-01T06:42:56.113Z
 - Form-reference tag entries checked: 407922
 - Invalid form-reference tag entries: 0
 - Source rows checked: 832792
+- Duplicate source IDs within route cards: 0
 - Source-row string fields checked: 5829544
 - Invalid source-row string fields: 0
 - Source-row fields_used entries checked: 3185347
@@ -55,10 +57,10 @@ Generated: 2026-06-01T06:42:56.113Z
 - Issues: 0
 - Warnings: 335103
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
-- Validator SHA-256: `0de067273a16f66340018a8c048246de79fff4a0053a4b15424240c93172caed`
-- Fixture cases checked: 27
-- Fixture bytes: 43281
-- Fixture SHA-256: `34f10f2d80ace6e58ba0b98d30c0e7d536ea32d8f067bb73438e44cc0d918be0`
+- Validator SHA-256: `b4b090d2181d128b6d6b249e50a2430700b608ef4df874e0c1ddae859f695b5c`
+- Fixture cases checked: 28
+- Fixture bytes: 45422
+- Fixture SHA-256: `e1a450e532fd46cabe74d7b4760986e83337b74cbf68496f5acf88134d688c32`
 - HUD contract: `data/definitions/hud-route-contract.json`
 - Allowed display sections: answer, audit, biblical_paraphrase_evidence, citable_paraphrase_evidence, lemma, morphology, phrase_evidence, source_license, strict_aramaic, strict_hebrew, subphrase_evidence
 
