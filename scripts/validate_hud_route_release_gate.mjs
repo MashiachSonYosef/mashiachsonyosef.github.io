@@ -252,6 +252,7 @@ function validateSampleCards(routeSample, manifest, manifestPath) {
 }
 
 async function validateBoundaryReport(report, reconciliation) {
+  const count = (name) => Number(report.counts?.[name] || 0);
   if (report.schema_version !== 1) issues.push('route publication boundary report schema_version must be 1');
   if (report.artifact_type !== 'route_publication_boundary_audit') {
     issues.push(`route publication boundary report artifact_type must be route_publication_boundary_audit, got ${report.artifact_type || 'missing'}`);
@@ -285,6 +286,21 @@ async function validateBoundaryReport(report, reconciliation) {
   }
   if (Number(report.counts?.issue_count || 0) !== 0) {
     issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
+  }
+  if (count('answer_eligible_cards_with_source_rows') > count('answer_eligible_cards')) {
+    issues.push('route publication boundary report has more answer-eligible source-row cards than answer-eligible cards');
+  }
+  if (count('answer_eligible_translation_output_unsafe_cards') > count('answer_eligible_cards')) {
+    issues.push('route publication boundary report has more answer-eligible unsafe cards than answer-eligible cards');
+  }
+  if (count('translation_output_unsafe_cards') > count('cards')) {
+    issues.push('route publication boundary report has more translation-output unsafe cards than cards');
+  }
+  if (count('hud_safe_source_rows') + count('hud_unsafe_source_rows') !== count('source_rows')) {
+    issues.push('route publication boundary HUD-safe and HUD-unsafe source-row counts do not add up to source_rows');
+  }
+  if (count('translation_output_safe_source_rows') + count('translation_output_unsafe_source_rows') !== count('source_rows')) {
+    issues.push('route publication boundary translation-output source-row counts do not add up to source_rows');
   }
   if (!report.inputs?.fixture) {
     issues.push('route publication boundary report is missing fixture input path');
