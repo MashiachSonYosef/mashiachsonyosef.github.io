@@ -32,6 +32,11 @@ await runStep('report_source_freshness', [
   `--report=${options.scratchDir}/source-freshness.md`,
 ]);
 
+await runStep('validate_source_freshness', [
+  'scripts/validate_workbench_source_freshness.mjs',
+  sourceFreshnessJson,
+]);
+
 await runStep('report_reshit_smoke_coverage', [
   'scripts/report_reshit_smoke_coverage.mjs',
   `--target-queue=${options.targetQueue}`,

@@ -1,6 +1,6 @@
 # Workbench Usage Navigation Handoff
 
-Generated: 2026-06-01T00:28:54.345Z
+Generated: 2026-06-01T00:35:29.486Z
 
 ## Summary
 
@@ -71,7 +71,7 @@ Generated: 2026-06-01T00:28:54.345Z
 - Agent 6 boundary packet: present, checks 11, failed 0
 - Concentration packet: present, quality pass_with_warnings, warnings 1, failed 0
 - Concentration route payload-like field hits: 0
-- Smoke validation: passed, steps 47, failed 0
+- Smoke validation: passed, steps 48, failed 0
 
 ## Artifacts
 
