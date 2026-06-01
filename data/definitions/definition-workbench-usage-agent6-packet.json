@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "definition_workbench_usage_agent6_packet",
-  "generated_at": "2026-06-01T13:46:06.152Z",
+  "generated_at": "2026-06-01T13:54:41.115Z",
   "generator": "scripts/build_definition_workbench_usage_agent6_packet.mjs",
   "gate": "definition_workbench_gate",
   "submitted_by": "Agent 3",
@@ -27,6 +27,7 @@
     "live_sample_unchanged": true,
     "route_ids_only": true,
     "usage_rows_not_answer_authority": true,
+    "review_status_not_answer_authority": true,
     "reader_facing": false,
     "ranks_routes": false,
     "selects_visible_result": false,
@@ -45,6 +46,7 @@
   },
   "review_summary": {
     "current_sample_rows": 200,
+    "current_sample_review_verified_rows": 0,
     "current_sample_rows_with_usage_links": 0,
     "usage_tokens_absent_from_current_sample": 1,
     "join_rows": 1,
@@ -94,6 +96,7 @@
     "weak_rows": 0,
     "audit_only_ambiguous_rows": 2064,
     "current_sample_rows": 200,
+    "current_sample_review_verified_rows": 0,
     "current_sample_rows_with_usage_links": 0,
     "usage_tokens_absent_from_current_sample": 1,
     "join_rows": 1,
@@ -129,6 +132,11 @@
       "id": "usage_seed_absence_visible",
       "status": "passed",
       "detail": "sample rows 200; current usage links 0; absent seeds 1"
+    },
+    {
+      "id": "sample_review_status_not_verified",
+      "status": "passed",
+      "detail": "machine verified sample rows 0"
     },
     {
       "id": "join_smoke_bounded",

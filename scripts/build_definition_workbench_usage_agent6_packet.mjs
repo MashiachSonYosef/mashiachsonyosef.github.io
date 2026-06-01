@@ -86,6 +86,7 @@ const artifact = {
     live_sample_unchanged: true,
     route_ids_only: true,
     usage_rows_not_answer_authority: true,
+    review_status_not_answer_authority: true,
     reader_facing: false,
     ranks_routes: false,
     selects_visible_result: false,
@@ -104,6 +105,7 @@ const artifact = {
   },
   review_summary: {
     current_sample_rows: Number(joinSmoke.counts?.sample_rows_checked || 0),
+    current_sample_review_verified_rows: currentSampleReviewVerifiedRows(),
     current_sample_rows_with_usage_links: Number(linkPacket.counts?.sample_rows_with_usage_links || 0),
     usage_tokens_absent_from_current_sample: Number(seedQueue.counts?.seed_rows_absent_from_sample || 0),
     join_rows: Number(joinSmoke.counts?.join_rows || 0),
@@ -166,6 +168,7 @@ function buildCounts(rows) {
     weak_rows: rows.filter((row) => row.status === 'weak').length,
     audit_only_ambiguous_rows: Number(joinSmoke.counts?.audit_only_ambiguous_rows || 0),
     current_sample_rows: Number(joinSmoke.counts?.sample_rows_checked || 0),
+    current_sample_review_verified_rows: currentSampleReviewVerifiedRows(),
     current_sample_rows_with_usage_links: Number(linkPacket.counts?.sample_rows_with_usage_links || 0),
     usage_tokens_absent_from_current_sample: Number(seedQueue.counts?.seed_rows_absent_from_sample || 0),
     join_rows: Number(joinSmoke.counts?.join_rows || 0),
@@ -185,6 +188,7 @@ function buildChecks(counts) {
     check('proof_occurrence_metadata_complete', counts.proof_rows_with_source === counts.proof_occurrence_rows && counts.proof_rows_with_work_anchor === counts.proof_occurrence_rows && counts.proof_rows_with_context === counts.proof_occurrence_rows && counts.proof_rows_with_license === counts.proof_occurrence_rows && counts.proof_rows_with_version === counts.proof_occurrence_rows ? 'passed' : 'failed', `source/work/context/license/version ${counts.proof_rows_with_source}/${counts.proof_rows_with_work_anchor}/${counts.proof_rows_with_context}/${counts.proof_rows_with_license}/${counts.proof_rows_with_version}`),
     check('route_ids_only', counts.route_ids > 0 && counts.proof_rows_with_route_ids === counts.proof_occurrence_rows && counts.route_payload_field_hits === 0 ? 'passed' : 'failed', `route IDs ${counts.route_ids}; route-id rows ${counts.proof_rows_with_route_ids}; payload hits ${counts.route_payload_field_hits}`),
     check('usage_seed_absence_visible', counts.current_sample_rows > 0 && counts.current_sample_rows_with_usage_links === 0 && counts.usage_tokens_absent_from_current_sample > 0 ? 'passed' : 'warning', `sample rows ${counts.current_sample_rows}; current usage links ${counts.current_sample_rows_with_usage_links}; absent seeds ${counts.usage_tokens_absent_from_current_sample}`),
+    check('sample_review_status_not_verified', counts.current_sample_review_verified_rows === 0 ? 'passed' : 'failed', `machine verified sample rows ${counts.current_sample_review_verified_rows}`),
     check('join_smoke_bounded', counts.join_rows > 0 && counts.projected_rows_after_seed_append === counts.current_sample_rows + counts.usage_tokens_absent_from_current_sample ? 'passed' : 'failed', `join rows ${counts.join_rows}; projected rows ${counts.projected_rows_after_seed_append}`),
     check('ambiguous_rows_audit_only', counts.audit_only_ambiguous_rows > 0 && counts.reader_facing_rows === 0 ? 'passed' : 'failed', `audit-only ambiguous rows ${counts.audit_only_ambiguous_rows}; reader-facing rows ${counts.reader_facing_rows}`),
     check('route_concentration_warning_preserved', counts.route_concentration_warning_visible === 1 ? 'passed' : 'warning', `route concentration warning visible ${counts.route_concentration_warning_visible}`),
@@ -201,6 +205,7 @@ function writeReport(relativePath, artifact) {
     '## Summary',
     '',
     `- Current sample rows / current rows with usage links: ${artifact.counts.current_sample_rows}/${artifact.counts.current_sample_rows_with_usage_links}`,
+    `- Machine verified sample/review rows: ${artifact.counts.current_sample_review_verified_rows}`,
     `- Usage tokens absent from current sample: ${artifact.counts.usage_tokens_absent_from_current_sample}`,
     `- Join rows / projected rows after seed append: ${artifact.counts.join_rows}/${artifact.counts.projected_rows_after_seed_append}`,
     `- Projected usage-link rows: ${artifact.counts.projected_usage_link_rows}`,
@@ -238,6 +243,10 @@ function writeReport(relativePath, artifact) {
 
 function check(id, status, detail) {
   return { id, status, detail };
+}
+
+function currentSampleReviewVerifiedRows() {
+  return Number(joinSmoke.current_sample_snapshot?.machine_verified_rows ?? joinSmoke.counts?.sample_review_verified_rows ?? 0);
 }
 
 function parseArgs(args) {

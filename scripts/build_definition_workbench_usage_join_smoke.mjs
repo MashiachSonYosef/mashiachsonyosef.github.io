@@ -46,6 +46,7 @@ const artifact = {
     join_smoke_only: true,
     live_sample_unchanged: true,
     usage_rows_not_answer_authority: true,
+    review_status_not_answer_authority: true,
     route_ids_only: true,
     reader_facing: false,
     ranks_routes: false,
@@ -57,8 +58,11 @@ const artifact = {
   },
   current_sample_snapshot: {
     rows: sampleRows.length,
+    status_axis: sample.status_axis || 'machine_route_shape_status_not_review_authority',
+    review_status_axis: sample.review_status_axis || 'lexical_authority_review_status',
     status_counts: sample.counts?.status_counts || {},
     review_status_counts: sample.counts?.review_status_counts || {},
+    machine_verified_rows: countMachineVerifiedSampleRows(),
     rows_with_complete_source_license: Number(sample.counts?.rows_with_complete_source_license || 0),
     usage_link_status: 'not_mutated_by_agent3_join_smoke',
   },
@@ -146,6 +150,7 @@ function buildCounts(rows) {
   const occurrenceLinks = rows.flatMap((row) => row.occurrence_links || []);
   return {
     sample_rows_checked: sampleRows.length,
+    sample_review_verified_rows: countMachineVerifiedSampleRows(),
     seed_rows_checked: seedRows.length,
     join_rows: rows.length,
     seed_rows_absent_from_sample: rows.filter((row) => row.join_status === 'seed_absent_from_current_sample').length,
@@ -172,6 +177,7 @@ function buildCounts(rows) {
 function buildChecks(counts) {
   return [
     check('sample_rows_present', counts.sample_rows_checked > 0 ? 'passed' : 'failed', `sample rows checked ${counts.sample_rows_checked}`),
+    check('sample_review_status_not_verified', counts.sample_review_verified_rows === 0 ? 'passed' : 'failed', `machine verified sample rows ${counts.sample_review_verified_rows}`),
     check('seed_rows_present', counts.seed_rows_checked > 0 ? 'passed' : 'warning', `seed rows checked ${counts.seed_rows_checked}`),
     check('join_rows_present', counts.join_rows > 0 ? 'passed' : 'warning', `join rows ${counts.join_rows}`),
     check('seed_absence_visible', counts.seed_rows_absent_from_sample > 0 ? 'passed' : 'warning', `absent seeds ${counts.seed_rows_absent_from_sample}; already present ${counts.seed_rows_already_in_sample}`),
@@ -193,6 +199,7 @@ function writeReport(relativePath, artifact) {
     '## Summary',
     '',
     `- Current sample rows checked: ${artifact.counts.sample_rows_checked}`,
+    `- Machine verified sample/review rows: ${artifact.counts.sample_review_verified_rows}`,
     `- Seed rows checked / join rows: ${artifact.counts.seed_rows_checked}/${artifact.counts.join_rows}`,
     `- Seeds absent from current sample / already present: ${artifact.counts.seed_rows_absent_from_sample}/${artifact.counts.seed_rows_already_in_sample}`,
     `- Projected rows after bounded seed append: ${artifact.counts.projected_rows_after_seed_append}`,
@@ -237,6 +244,10 @@ function writeReport(relativePath, artifact) {
 
 function check(id, status, detail) {
   return { id, status, detail };
+}
+
+function countMachineVerifiedSampleRows() {
+  return sampleRows.filter((row) => row.status === 'verified' || row.review_status === 'verified').length;
 }
 
 function parseArgs(args) {

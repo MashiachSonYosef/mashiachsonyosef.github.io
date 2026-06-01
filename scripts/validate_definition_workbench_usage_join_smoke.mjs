@@ -58,6 +58,7 @@ function validateAuthorityPolicy(policy) {
     'join_smoke_only',
     'live_sample_unchanged',
     'usage_rows_not_answer_authority',
+    'review_status_not_answer_authority',
     'route_ids_only',
   ];
   const expectedFalse = [
@@ -81,6 +82,19 @@ function validateSnapshots(smokeData) {
   const sample = smokeData.current_sample_snapshot || {};
   const seed = smokeData.seed_queue_snapshot || {};
   if (!Number.isInteger(sample.rows) || sample.rows < 1) issues.push('current_sample_snapshot.rows must be a positive integer');
+  if (!String(sample.status_axis || '').includes('not_review_authority')) {
+    issues.push('current_sample_snapshot.status_axis must separate machine status from review authority');
+  }
+  if (!String(sample.review_status_axis || '').includes('lexical_authority_review_status')) {
+    issues.push('current_sample_snapshot.review_status_axis must identify lexical authority review status');
+  }
+  if (!sample.status_counts || typeof sample.status_counts !== 'object') issues.push('current_sample_snapshot.status_counts is required');
+  if (!sample.review_status_counts || typeof sample.review_status_counts !== 'object') issues.push('current_sample_snapshot.review_status_counts is required');
+  if (Number(sample.status_counts?.verified || 0) !== 0) issues.push('current_sample_snapshot.status_counts.verified must remain 0');
+  if (Number(sample.review_status_counts?.verified || 0) !== 0) issues.push('current_sample_snapshot.review_status_counts.verified must remain 0');
+  if (!Number.isInteger(sample.machine_verified_rows) || sample.machine_verified_rows !== 0) {
+    issues.push('current_sample_snapshot.machine_verified_rows must be 0');
+  }
   if (sample.usage_link_status !== 'not_mutated_by_agent3_join_smoke') {
     issues.push('current_sample_snapshot.usage_link_status must state live sample is not mutated');
   }
@@ -94,6 +108,7 @@ function validateSnapshots(smokeData) {
 function validateCounts(counts) {
   const requiredIntegerCounts = [
     'sample_rows_checked',
+    'sample_review_verified_rows',
     'seed_rows_checked',
     'join_rows',
     'seed_rows_absent_from_sample',
@@ -119,6 +134,7 @@ function validateCounts(counts) {
     if (!Number.isInteger(counts[key]) || counts[key] < 0) issues.push(`counts.${key} must be a non-negative integer`);
   }
   if (counts.sample_rows_checked < 1) issues.push('sample_rows_checked must be positive');
+  if (counts.sample_review_verified_rows !== 0) issues.push('sample_review_verified_rows must remain 0');
   if (counts.seed_rows_checked < 1) issues.push('seed_rows_checked must be positive');
   if (counts.join_rows !== counts.seed_rows_checked) issues.push('join_rows must match seed_rows_checked');
   if (counts.seed_rows_absent_from_sample + counts.seed_rows_already_in_sample !== counts.join_rows) {

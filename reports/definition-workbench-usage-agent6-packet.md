@@ -1,10 +1,11 @@
 # Definition Workbench Usage Agent 6 Packet
 
-Generated: 2026-06-01T13:46:06.152Z
+Generated: 2026-06-01T13:54:41.115Z
 
 ## Summary
 
 - Current sample rows / current rows with usage links: 200/0
+- Machine verified sample/review rows: 0
 - Usage tokens absent from current sample: 1
 - Join rows / projected rows after seed append: 1/201
 - Projected usage-link rows: 2390
@@ -26,6 +27,7 @@ Generated: 2026-06-01T13:46:06.152Z
 | proof_occurrence_metadata_complete | passed | source/work/context/license/version 12/12/12/12/12 |
 | route_ids_only | passed | route IDs 1; route-id rows 12; payload hits 0 |
 | usage_seed_absence_visible | passed | sample rows 200; current usage links 0; absent seeds 1 |
+| sample_review_status_not_verified | passed | machine verified sample rows 0 |
 | join_smoke_bounded | passed | join rows 1; projected rows 201 |
 | ambiguous_rows_audit_only | passed | audit-only ambiguous rows 2064; reader-facing rows 0 |
 | route_concentration_warning_preserved | passed | route concentration warning visible 1 |

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "definition_workbench_usage_join_smoke",
-  "generated_at": "2026-06-01T13:39:56.615Z",
+  "generated_at": "2026-06-01T13:54:35.391Z",
   "generator": "scripts/build_definition_workbench_usage_join_smoke.mjs",
   "policy": "Tiny Agent 3 smoke artifact proving selected usage seeds can be joined to Definition Workbench planning by token key or normalized form without modifying the live sample, copying route payloads, ranking answers, or creating definition authority.",
   "inputs": {
@@ -13,6 +13,7 @@
     "join_smoke_only": true,
     "live_sample_unchanged": true,
     "usage_rows_not_answer_authority": true,
+    "review_status_not_answer_authority": true,
     "route_ids_only": true,
     "reader_facing": false,
     "ranks_routes": false,
@@ -24,6 +25,8 @@
   },
   "current_sample_snapshot": {
     "rows": 200,
+    "status_axis": "machine_route_shape_status_not_review_authority",
+    "review_status_axis": "lexical_authority_review_status",
     "status_counts": {
       "conflicting": 96,
       "proposed_only": 49,
@@ -32,6 +35,7 @@
     "review_status_counts": {
       "unreviewed_machine_sample": 200
     },
+    "machine_verified_rows": 0,
     "rows_with_complete_source_license": 200,
     "usage_link_status": "not_mutated_by_agent3_join_smoke"
   },
@@ -48,6 +52,7 @@
   },
   "counts": {
     "sample_rows_checked": 200,
+    "sample_review_verified_rows": 0,
     "seed_rows_checked": 1,
     "join_rows": 1,
     "seed_rows_absent_from_sample": 1,
@@ -74,6 +79,11 @@
       "id": "sample_rows_present",
       "status": "passed",
       "detail": "sample rows checked 200"
+    },
+    {
+      "id": "sample_review_status_not_verified",
+      "status": "passed",
+      "detail": "machine verified sample rows 0"
     },
     {
       "id": "seed_rows_present",

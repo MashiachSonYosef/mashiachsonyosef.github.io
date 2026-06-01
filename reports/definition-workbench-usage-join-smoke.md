@@ -1,10 +1,11 @@
 # Definition Workbench Usage Join Smoke
 
-Generated: 2026-06-01T13:39:56.615Z
+Generated: 2026-06-01T13:54:35.391Z
 
 ## Summary
 
 - Current sample rows checked: 200
+- Machine verified sample/review rows: 0
 - Seed rows checked / join rows: 1/1
 - Seeds absent from current sample / already present: 1/0
 - Projected rows after bounded seed append: 201
@@ -21,6 +22,7 @@ Generated: 2026-06-01T13:39:56.615Z
 | check | status | detail |
 |---|---|---|
 | sample_rows_present | passed | sample rows checked 200 |
+| sample_review_status_not_verified | passed | machine verified sample rows 0 |
 | seed_rows_present | passed | seed rows checked 1 |
 | join_rows_present | passed | join rows 1 |
 | seed_absence_visible | passed | absent seeds 1; already present 0 |

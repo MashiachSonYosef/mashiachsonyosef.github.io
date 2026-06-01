@@ -61,6 +61,7 @@ function validateAuthorityPolicy(policy) {
     'live_sample_unchanged',
     'route_ids_only',
     'usage_rows_not_answer_authority',
+    'review_status_not_answer_authority',
   ];
   const expectedFalse = [
     'reader_facing',
@@ -92,6 +93,9 @@ function validatePacketChain(chain) {
 
 function validateReviewSummary(summary) {
   if (Number(summary.current_sample_rows || 0) < 1) issues.push('review_summary.current_sample_rows must be positive');
+  if (Number(summary.current_sample_review_verified_rows || 0) !== 0) {
+    issues.push('review_summary.current_sample_review_verified_rows must remain 0');
+  }
   if (Number(summary.current_sample_rows_with_usage_links || 0) !== 0) {
     issues.push('review_summary.current_sample_rows_with_usage_links must remain 0 for this packet');
   }
@@ -140,6 +144,7 @@ function validateCounts(counts) {
     'weak_rows',
     'audit_only_ambiguous_rows',
     'current_sample_rows',
+    'current_sample_review_verified_rows',
     'current_sample_rows_with_usage_links',
     'usage_tokens_absent_from_current_sample',
     'join_rows',
@@ -169,6 +174,7 @@ function validateCounts(counts) {
     issues.push('supported/candidate/weak counts must reconcile with proof_occurrence_rows');
   }
   if (counts.audit_only_ambiguous_rows <= 0) issues.push('audit_only_ambiguous_rows must be carried forward');
+  if (counts.current_sample_review_verified_rows !== 0) issues.push('current_sample_review_verified_rows must remain 0');
   if (counts.current_sample_rows_with_usage_links !== 0) issues.push('current_sample_rows_with_usage_links must be 0');
   if (counts.usage_tokens_absent_from_current_sample < 1) issues.push('usage_tokens_absent_from_current_sample must be positive');
   if (counts.projected_rows_after_seed_append !== counts.current_sample_rows + counts.usage_tokens_absent_from_current_sample) {
