@@ -38,6 +38,7 @@ const defaults = {
   selectedRouteProvenanceAudit: '.local-cache/workbench-evidence/usage-selected-route-provenance-audit.json',
   selectedOccurrenceNavigationIndex: '.local-cache/workbench-evidence/usage-selected-occurrence-navigation-index.json',
   selectedNavigationEdgeIndex: '.local-cache/workbench-evidence/usage-selected-navigation-edge-index.json',
+  selectedOccurrenceAdjacencyIndex: '.local-cache/workbench-evidence/usage-selected-occurrence-adjacency-index.json',
   selectedFocusContextAudit: '.local-cache/workbench-evidence/usage-selected-focus-context-audit.json',
   selectedFrameSummary: '.local-cache/workbench-evidence/usage-selected-frame-summary.json',
   selectedWorkFrameMatrix: '.local-cache/workbench-evidence/usage-selected-work-frame-matrix.json',
@@ -89,6 +90,7 @@ const selectedRouteResolution = readJsonIfExists(options.selectedRouteResolution
 const selectedRouteProvenanceAudit = readJsonIfExists(options.selectedRouteProvenanceAudit);
 const selectedOccurrenceNavigationIndex = readJsonIfExists(options.selectedOccurrenceNavigationIndex);
 const selectedNavigationEdgeIndex = readJsonIfExists(options.selectedNavigationEdgeIndex);
+const selectedOccurrenceAdjacencyIndex = readJsonIfExists(options.selectedOccurrenceAdjacencyIndex);
 const selectedFocusContextAudit = readJsonIfExists(options.selectedFocusContextAudit);
 const selectedFrameSummary = readJsonIfExists(options.selectedFrameSummary);
 const selectedWorkFrameMatrix = readJsonIfExists(options.selectedWorkFrameMatrix);
@@ -146,6 +148,7 @@ const artifact = {
     selected_route_provenance_audit: options.selectedRouteProvenanceAudit,
     selected_occurrence_navigation_index: options.selectedOccurrenceNavigationIndex,
     selected_navigation_edge_index: options.selectedNavigationEdgeIndex,
+    selected_occurrence_adjacency_index: options.selectedOccurrenceAdjacencyIndex,
     selected_focus_context_audit: options.selectedFocusContextAudit,
     selected_frame_summary: options.selectedFrameSummary,
     selected_work_frame_matrix: options.selectedWorkFrameMatrix,
@@ -197,6 +200,7 @@ const artifact = {
     selected_route_provenance_audit_report: 'reports/workbench-usage-selected-route-provenance-audit.md',
     selected_occurrence_navigation_index_report: 'reports/workbench-usage-selected-occurrence-navigation-index.md',
     selected_navigation_edge_index_report: 'reports/workbench-usage-selected-navigation-edge-index.md',
+    selected_occurrence_adjacency_index_report: 'reports/workbench-usage-selected-occurrence-adjacency-index.md',
     selected_focus_context_audit_report: 'reports/workbench-usage-selected-focus-context-audit.md',
     selected_frame_summary_report: 'reports/workbench-usage-selected-frame-summary.md',
     selected_work_frame_matrix_report: 'reports/workbench-usage-selected-work-frame-matrix.md',
@@ -439,6 +443,24 @@ const artifact = {
     selected_navigation_edge_rows_with_target_provenance: selectedNavigationEdgeIndex?.counts?.rows_with_target_provenance ?? null,
     selected_navigation_edge_reader_facing_rows: selectedNavigationEdgeIndex?.counts?.reader_facing_rows ?? null,
     selected_navigation_edge_route_payload_field_hits: selectedNavigationEdgeIndex?.counts?.route_payload_field_hits ?? null,
+    selected_occurrence_adjacency_rows: selectedOccurrenceAdjacencyIndex?.counts?.rows ?? null,
+    selected_occurrence_adjacency_target_links: selectedOccurrenceAdjacencyIndex?.counts?.target_links ?? null,
+    selected_occurrence_adjacency_source_refs: selectedOccurrenceAdjacencyIndex?.counts?.unique_source_refs ?? null,
+    selected_occurrence_adjacency_works: selectedOccurrenceAdjacencyIndex?.counts?.unique_works ?? null,
+    selected_occurrence_adjacency_frames: selectedOccurrenceAdjacencyIndex?.counts?.usage_frames ?? null,
+    selected_occurrence_adjacency_route_ids: selectedOccurrenceAdjacencyIndex?.counts?.unique_route_ids ?? null,
+    selected_occurrence_adjacency_provenance_buckets: selectedOccurrenceAdjacencyIndex?.counts?.provenance_buckets ?? null,
+    selected_occurrence_adjacency_same_frame_links: selectedOccurrenceAdjacencyIndex?.counts?.same_frame_links ?? null,
+    selected_occurrence_adjacency_bridge_frame_links: selectedOccurrenceAdjacencyIndex?.counts?.bridge_frame_links ?? null,
+    selected_occurrence_adjacency_rows_with_source_context: selectedOccurrenceAdjacencyIndex?.counts?.rows_with_source_context ?? null,
+    selected_occurrence_adjacency_rows_with_source_link: selectedOccurrenceAdjacencyIndex?.counts?.rows_with_source_link ?? null,
+    selected_occurrence_adjacency_rows_with_source_provenance: selectedOccurrenceAdjacencyIndex?.counts?.rows_with_source_provenance ?? null,
+    selected_occurrence_adjacency_rows_with_complete_targets: selectedOccurrenceAdjacencyIndex?.counts?.rows_with_complete_targets ?? null,
+    selected_occurrence_adjacency_target_links_with_context: selectedOccurrenceAdjacencyIndex?.counts?.target_links_with_context ?? null,
+    selected_occurrence_adjacency_target_links_with_source_link: selectedOccurrenceAdjacencyIndex?.counts?.target_links_with_source_link ?? null,
+    selected_occurrence_adjacency_target_links_with_provenance: selectedOccurrenceAdjacencyIndex?.counts?.target_links_with_provenance ?? null,
+    selected_occurrence_adjacency_reader_facing_rows: selectedOccurrenceAdjacencyIndex?.counts?.reader_facing_rows ?? null,
+    selected_occurrence_adjacency_route_payload_field_hits: selectedOccurrenceAdjacencyIndex?.counts?.route_payload_field_hits ?? null,
     selected_focus_context_audit_rows: selectedFocusContextAudit?.counts?.rows ?? null,
     selected_focus_context_audit_focus_marker_rows: selectedFocusContextAudit?.counts?.focus_marker_rows ?? null,
     selected_focus_context_audit_mismatch_rows: selectedFocusContextAudit?.counts?.focus_marker_mismatch_rows ?? null,
@@ -771,6 +793,27 @@ const artifact = {
     selected_navigation_edge_failed_checks: selectedNavigationEdgeIndex?.quality?.failed_count ?? null,
     selected_navigation_edge_warning_count: selectedNavigationEdgeIndex?.quality?.warning_count ?? null,
     selected_navigation_edge_route_payload_field_hits: selectedNavigationEdgeIndex?.counts?.route_payload_field_hits ?? null,
+    selected_occurrence_adjacency_index_status: selectedOccurrenceAdjacencyIndex?.artifact_type === 'workbench_usage_selected_occurrence_adjacency_index' ? 'present' : 'not_run',
+    selected_occurrence_adjacency_rows: selectedOccurrenceAdjacencyIndex?.counts?.rows ?? null,
+    selected_occurrence_adjacency_target_links: selectedOccurrenceAdjacencyIndex?.counts?.target_links ?? null,
+    selected_occurrence_adjacency_source_refs: selectedOccurrenceAdjacencyIndex?.counts?.unique_source_refs ?? null,
+    selected_occurrence_adjacency_works: selectedOccurrenceAdjacencyIndex?.counts?.unique_works ?? null,
+    selected_occurrence_adjacency_frames: selectedOccurrenceAdjacencyIndex?.counts?.usage_frames ?? null,
+    selected_occurrence_adjacency_route_ids: selectedOccurrenceAdjacencyIndex?.counts?.unique_route_ids ?? null,
+    selected_occurrence_adjacency_provenance_buckets: selectedOccurrenceAdjacencyIndex?.counts?.provenance_buckets ?? null,
+    selected_occurrence_adjacency_same_frame_links: selectedOccurrenceAdjacencyIndex?.counts?.same_frame_links ?? null,
+    selected_occurrence_adjacency_bridge_frame_links: selectedOccurrenceAdjacencyIndex?.counts?.bridge_frame_links ?? null,
+    selected_occurrence_adjacency_rows_with_source_context: selectedOccurrenceAdjacencyIndex?.counts?.rows_with_source_context ?? null,
+    selected_occurrence_adjacency_rows_with_source_link: selectedOccurrenceAdjacencyIndex?.counts?.rows_with_source_link ?? null,
+    selected_occurrence_adjacency_rows_with_source_provenance: selectedOccurrenceAdjacencyIndex?.counts?.rows_with_source_provenance ?? null,
+    selected_occurrence_adjacency_rows_with_complete_targets: selectedOccurrenceAdjacencyIndex?.counts?.rows_with_complete_targets ?? null,
+    selected_occurrence_adjacency_target_links_with_context: selectedOccurrenceAdjacencyIndex?.counts?.target_links_with_context ?? null,
+    selected_occurrence_adjacency_target_links_with_source_link: selectedOccurrenceAdjacencyIndex?.counts?.target_links_with_source_link ?? null,
+    selected_occurrence_adjacency_target_links_with_provenance: selectedOccurrenceAdjacencyIndex?.counts?.target_links_with_provenance ?? null,
+    selected_occurrence_adjacency_reader_facing_rows: selectedOccurrenceAdjacencyIndex?.counts?.reader_facing_rows ?? null,
+    selected_occurrence_adjacency_failed_checks: selectedOccurrenceAdjacencyIndex?.quality?.failed_count ?? null,
+    selected_occurrence_adjacency_warning_count: selectedOccurrenceAdjacencyIndex?.quality?.warning_count ?? null,
+    selected_occurrence_adjacency_route_payload_field_hits: selectedOccurrenceAdjacencyIndex?.counts?.route_payload_field_hits ?? null,
     selected_focus_context_audit_status: selectedFocusContextAudit?.artifact_type === 'workbench_usage_selected_focus_context_audit' ? 'present' : 'not_run',
     selected_focus_context_audit_rows: selectedFocusContextAudit?.counts?.rows ?? null,
     selected_focus_context_audit_focus_marker_rows: selectedFocusContextAudit?.counts?.focus_marker_rows ?? null,
@@ -943,6 +986,10 @@ function writeReport(relativePath, artifact) {
     `- Selected navigation edge partition: same-frame ${artifact.counts.selected_navigation_edge_same_frame_edges}, bridge ${artifact.counts.selected_navigation_edge_bridge_edges}`,
     `- Selected navigation edge completeness: source context ${artifact.counts.selected_navigation_edge_rows_with_source_context}, target context ${artifact.counts.selected_navigation_edge_rows_with_target_context}, source links ${artifact.counts.selected_navigation_edge_rows_with_source_link}, target links ${artifact.counts.selected_navigation_edge_rows_with_target_link}, source provenance ${artifact.counts.selected_navigation_edge_rows_with_source_provenance}, target provenance ${artifact.counts.selected_navigation_edge_rows_with_target_provenance}`,
     `- Selected navigation edge route payload-like field hits: ${artifact.counts.selected_navigation_edge_route_payload_field_hits}`,
+    `- Selected occurrence adjacency index: rows ${artifact.counts.selected_occurrence_adjacency_rows}, target links ${artifact.counts.selected_occurrence_adjacency_target_links}, source refs ${artifact.counts.selected_occurrence_adjacency_source_refs}, works ${artifact.counts.selected_occurrence_adjacency_works}, frames ${artifact.counts.selected_occurrence_adjacency_frames}, route IDs ${artifact.counts.selected_occurrence_adjacency_route_ids}, provenance buckets ${artifact.counts.selected_occurrence_adjacency_provenance_buckets}`,
+    `- Selected occurrence adjacency partition: same-frame ${artifact.counts.selected_occurrence_adjacency_same_frame_links}, bridge ${artifact.counts.selected_occurrence_adjacency_bridge_frame_links}`,
+    `- Selected occurrence adjacency completeness: source context ${artifact.counts.selected_occurrence_adjacency_rows_with_source_context}, source links ${artifact.counts.selected_occurrence_adjacency_rows_with_source_link}, source provenance ${artifact.counts.selected_occurrence_adjacency_rows_with_source_provenance}, complete target rows ${artifact.counts.selected_occurrence_adjacency_rows_with_complete_targets}, target context ${artifact.counts.selected_occurrence_adjacency_target_links_with_context}, target links ${artifact.counts.selected_occurrence_adjacency_target_links_with_source_link}, target provenance ${artifact.counts.selected_occurrence_adjacency_target_links_with_provenance}`,
+    `- Selected occurrence adjacency route payload-like field hits: ${artifact.counts.selected_occurrence_adjacency_route_payload_field_hits}`,
     `- Selected focus/context audit: rows ${artifact.counts.selected_focus_context_audit_rows}, focus marker rows ${artifact.counts.selected_focus_context_audit_focus_marker_rows}, mismatches ${artifact.counts.selected_focus_context_audit_mismatch_rows}, repeated-focus rows ${artifact.counts.selected_focus_context_audit_repeated_focus_rows}, missing Hebrew context rows ${artifact.counts.selected_focus_context_audit_missing_hebrew_rows}, reader-facing rows ${artifact.counts.selected_focus_context_audit_reader_facing_rows}`,
     `- Selected focus/context audit route payload-like field hits: ${artifact.counts.selected_focus_context_audit_route_payload_field_hits}`,
     `- Selected frame summary: frames ${artifact.counts.selected_frame_summary_frames}, rows ${artifact.counts.selected_frame_summary_rows}, repeated-focus rows ${artifact.counts.selected_frame_summary_repeated_focus_rows}, samples ${artifact.counts.selected_frame_summary_samples}, reader-facing rows ${artifact.counts.selected_frame_summary_reader_facing_rows}`,
@@ -1027,6 +1074,10 @@ function writeReport(relativePath, artifact) {
     `- Selected navigation edge partition: same-frame ${artifact.validation.selected_navigation_edge_same_frame_edges}, bridge ${artifact.validation.selected_navigation_edge_bridge_edges}`,
     `- Selected navigation edge completeness: source context ${artifact.validation.selected_navigation_edge_rows_with_source_context}, target context ${artifact.validation.selected_navigation_edge_rows_with_target_context}, source links ${artifact.validation.selected_navigation_edge_rows_with_source_link}, target links ${artifact.validation.selected_navigation_edge_rows_with_target_link}, source provenance ${artifact.validation.selected_navigation_edge_rows_with_source_provenance}, target provenance ${artifact.validation.selected_navigation_edge_rows_with_target_provenance}`,
     `- Selected navigation edge route payload-like field hits: ${artifact.validation.selected_navigation_edge_route_payload_field_hits}`,
+    `- Selected occurrence adjacency index: ${artifact.validation.selected_occurrence_adjacency_index_status}, rows ${artifact.validation.selected_occurrence_adjacency_rows}, target links ${artifact.validation.selected_occurrence_adjacency_target_links}, source refs ${artifact.validation.selected_occurrence_adjacency_source_refs}, works ${artifact.validation.selected_occurrence_adjacency_works}, frames ${artifact.validation.selected_occurrence_adjacency_frames}, route IDs ${artifact.validation.selected_occurrence_adjacency_route_ids}, provenance buckets ${artifact.validation.selected_occurrence_adjacency_provenance_buckets}, warnings ${artifact.validation.selected_occurrence_adjacency_warning_count}, failed ${artifact.validation.selected_occurrence_adjacency_failed_checks}`,
+    `- Selected occurrence adjacency partition: same-frame ${artifact.validation.selected_occurrence_adjacency_same_frame_links}, bridge ${artifact.validation.selected_occurrence_adjacency_bridge_frame_links}`,
+    `- Selected occurrence adjacency completeness: source context ${artifact.validation.selected_occurrence_adjacency_rows_with_source_context}, source links ${artifact.validation.selected_occurrence_adjacency_rows_with_source_link}, source provenance ${artifact.validation.selected_occurrence_adjacency_rows_with_source_provenance}, complete target rows ${artifact.validation.selected_occurrence_adjacency_rows_with_complete_targets}, target context ${artifact.validation.selected_occurrence_adjacency_target_links_with_context}, target links ${artifact.validation.selected_occurrence_adjacency_target_links_with_source_link}, target provenance ${artifact.validation.selected_occurrence_adjacency_target_links_with_provenance}`,
+    `- Selected occurrence adjacency route payload-like field hits: ${artifact.validation.selected_occurrence_adjacency_route_payload_field_hits}`,
     `- Selected focus/context audit: ${artifact.validation.selected_focus_context_audit_status}, rows ${artifact.validation.selected_focus_context_audit_rows}, focus marker rows ${artifact.validation.selected_focus_context_audit_focus_marker_rows}, mismatches ${artifact.validation.selected_focus_context_audit_mismatch_rows}, repeated-focus rows ${artifact.validation.selected_focus_context_audit_repeated_focus_rows}, missing Hebrew context rows ${artifact.validation.selected_focus_context_audit_missing_hebrew_rows}, reader-facing rows ${artifact.validation.selected_focus_context_audit_reader_facing_rows}, warnings ${artifact.validation.selected_focus_context_audit_warning_count}, failed ${artifact.validation.selected_focus_context_audit_failed_checks}`,
     `- Selected focus/context audit route payload-like field hits: ${artifact.validation.selected_focus_context_audit_route_payload_field_hits}`,
     `- Selected frame summary: ${artifact.validation.selected_frame_summary_status}, frames ${artifact.validation.selected_frame_summary_frames}, rows ${artifact.validation.selected_frame_summary_rows}, repeated-focus rows ${artifact.validation.selected_frame_summary_repeated_focus_rows}, samples ${artifact.validation.selected_frame_summary_samples}, reader-facing rows ${artifact.validation.selected_frame_summary_reader_facing_rows}, warnings ${artifact.validation.selected_frame_summary_warning_count}, failed ${artifact.validation.selected_frame_summary_failed_checks}`,
@@ -1087,6 +1138,7 @@ function writeReport(relativePath, artifact) {
     `| selected route/provenance audit | ${mdCell(artifact.artifacts.selected_route_provenance_audit_report)} | yes |`,
     `| selected occurrence navigation index | ${mdCell(artifact.artifacts.selected_occurrence_navigation_index_report)} | yes |`,
     `| selected navigation edge index | ${mdCell(artifact.artifacts.selected_navigation_edge_index_report)} | yes |`,
+    `| selected occurrence adjacency index | ${mdCell(artifact.artifacts.selected_occurrence_adjacency_index_report)} | yes |`,
     `| selected focus/context audit | ${mdCell(artifact.artifacts.selected_focus_context_audit_report)} | yes |`,
     `| selected frame summary | ${mdCell(artifact.artifacts.selected_frame_summary_report)} | yes |`,
     `| selected work/frame matrix | ${mdCell(artifact.artifacts.selected_work_frame_matrix_report)} | yes |`,
@@ -1149,6 +1201,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-route-provenance-audit=')) parsed.selectedRouteProvenanceAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-navigation-index=')) parsed.selectedOccurrenceNavigationIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-navigation-edge-index=')) parsed.selectedNavigationEdgeIndex = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-occurrence-adjacency-index=')) parsed.selectedOccurrenceAdjacencyIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-focus-context-audit=')) parsed.selectedFocusContextAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-frame-summary=')) parsed.selectedFrameSummary = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-work-frame-matrix=')) parsed.selectedWorkFrameMatrix = cleanRelativePath(valueAfterEquals(arg));
@@ -1234,6 +1287,8 @@ function buildCommands(options, manifest) {
   commands.validate_selected_occurrence_navigation_index = `node scripts/validate_workbench_usage_selected_occurrence_navigation_index.mjs ${options.selectedOccurrenceNavigationIndex}`;
   commands.build_selected_navigation_edge_index = `node scripts/build_workbench_usage_selected_navigation_edge_index.mjs --selected-occurrence-navigation-index=${options.selectedOccurrenceNavigationIndex} --crossmatch-links=${options.crossmatchLinks} --output=${options.selectedNavigationEdgeIndex} --report=reports/workbench-usage-selected-navigation-edge-index.md`;
   commands.validate_selected_navigation_edge_index = `node scripts/validate_workbench_usage_selected_navigation_edge_index.mjs ${options.selectedNavigationEdgeIndex}`;
+  commands.build_selected_occurrence_adjacency_index = `node scripts/build_workbench_usage_selected_occurrence_adjacency_index.mjs --selected-navigation-edge-index=${options.selectedNavigationEdgeIndex} --output=${options.selectedOccurrenceAdjacencyIndex} --report=reports/workbench-usage-selected-occurrence-adjacency-index.md`;
+  commands.validate_selected_occurrence_adjacency_index = `node scripts/validate_workbench_usage_selected_occurrence_adjacency_index.mjs ${options.selectedOccurrenceAdjacencyIndex}`;
   commands.build_selected_focus_context_audit = `node scripts/build_workbench_usage_selected_focus_context_audit.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --output=${options.selectedFocusContextAudit} --report=reports/workbench-usage-selected-focus-context-audit.md`;
   commands.validate_selected_focus_context_audit = `node scripts/validate_workbench_usage_selected_focus_context_audit.mjs ${options.selectedFocusContextAudit}`;
   commands.build_selected_frame_summary = `node scripts/build_workbench_usage_selected_frame_summary.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-focus-context-audit=${options.selectedFocusContextAudit} --output=${options.selectedFrameSummary} --report=reports/workbench-usage-selected-frame-summary.md`;
@@ -1242,7 +1297,7 @@ function buildCommands(options, manifest) {
   commands.validate_selected_frame_provenance_matrix = `node scripts/validate_workbench_usage_selected_frame_provenance_matrix.mjs ${options.selectedFrameProvenanceMatrix}`;
   commands.build_selected_work_frame_matrix = `node scripts/build_workbench_usage_selected_work_frame_matrix.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-frame-summary=${options.selectedFrameSummary} --output=${options.selectedWorkFrameMatrix} --report=reports/workbench-usage-selected-work-frame-matrix.md`;
   commands.validate_selected_work_frame_matrix = `node scripts/validate_workbench_usage_selected_work_frame_matrix.mjs ${options.selectedWorkFrameMatrix}`;
-  commands.build_selected_qa_package = `node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-source-diversity=${options.selectedSourceDiversity} --selected-provenance-matrix=${options.selectedProvenanceMatrix} --selected-frame-provenance-matrix=${options.selectedFrameProvenanceMatrix} --selected-collision-audit=${options.selectedCollisionAudit} --selected-collision-provenance-audit=${options.selectedCollisionProvenanceAudit} --selected-signature-independence=${options.selectedSignatureIndependence} --selected-route-concentration-response=${options.selectedRouteConcentrationResponse} --selected-route-resolution=${options.selectedRouteResolution} --selected-route-provenance-audit=${options.selectedRouteProvenanceAudit} --selected-occurrence-navigation-index=${options.selectedOccurrenceNavigationIndex} --selected-navigation-edge-index=${options.selectedNavigationEdgeIndex} --selected-focus-context-audit=${options.selectedFocusContextAudit} --selected-frame-summary=${options.selectedFrameSummary} --selected-work-frame-matrix=${options.selectedWorkFrameMatrix} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --crossmatch-links=${options.crossmatchLinks} --crossmatch-bridge-index=${options.crossmatchBridgeIndex} --crossmatch-neighborhoods=${options.crossmatchNeighborhoods} --output=${options.selectedQaPackage} --report=reports/workbench-usage-selected-qa-package.md`;
+  commands.build_selected_qa_package = `node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-source-diversity=${options.selectedSourceDiversity} --selected-provenance-matrix=${options.selectedProvenanceMatrix} --selected-frame-provenance-matrix=${options.selectedFrameProvenanceMatrix} --selected-collision-audit=${options.selectedCollisionAudit} --selected-collision-provenance-audit=${options.selectedCollisionProvenanceAudit} --selected-signature-independence=${options.selectedSignatureIndependence} --selected-route-concentration-response=${options.selectedRouteConcentrationResponse} --selected-route-resolution=${options.selectedRouteResolution} --selected-route-provenance-audit=${options.selectedRouteProvenanceAudit} --selected-occurrence-navigation-index=${options.selectedOccurrenceNavigationIndex} --selected-navigation-edge-index=${options.selectedNavigationEdgeIndex} --selected-occurrence-adjacency-index=${options.selectedOccurrenceAdjacencyIndex} --selected-focus-context-audit=${options.selectedFocusContextAudit} --selected-frame-summary=${options.selectedFrameSummary} --selected-work-frame-matrix=${options.selectedWorkFrameMatrix} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --crossmatch-links=${options.crossmatchLinks} --crossmatch-bridge-index=${options.crossmatchBridgeIndex} --crossmatch-neighborhoods=${options.crossmatchNeighborhoods} --output=${options.selectedQaPackage} --report=reports/workbench-usage-selected-qa-package.md`;
   commands.validate_selected_qa_package = `node scripts/validate_workbench_usage_selected_qa_package.mjs ${options.selectedQaPackage}`;
   commands.build_selected_occurrence_lookup = `node scripts/build_workbench_usage_selected_occurrence_lookup.mjs --selected-occurrences=${options.selectedOccurrences} --output=${options.selectedOccurrenceLookup} --report=reports/workbench-usage-selected-occurrence-lookup.md --max-samples=5`;
   commands.validate_selected_occurrence_lookup = `node scripts/validate_workbench_usage_selected_occurrence_lookup.mjs ${options.selectedOccurrenceLookup}`;
@@ -1292,6 +1347,7 @@ function buildCommands(options, manifest) {
     `--selected-route-provenance-audit=${options.selectedRouteProvenanceAudit}`,
     `--selected-occurrence-navigation-index=${options.selectedOccurrenceNavigationIndex}`,
     `--selected-navigation-edge-index=${options.selectedNavigationEdgeIndex}`,
+    `--selected-occurrence-adjacency-index=${options.selectedOccurrenceAdjacencyIndex}`,
     `--selected-focus-context-audit=${options.selectedFocusContextAudit}`,
     `--selected-frame-summary=${options.selectedFrameSummary}`,
     `--selected-work-frame-matrix=${options.selectedWorkFrameMatrix}`,

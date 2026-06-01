@@ -1,10 +1,10 @@
 # Workbench Smoke Pipeline Validation
 
-Generated: 2026-06-01T07:52:49.998Z
+Generated: 2026-06-01T08:09:30.290Z
 
 ## Summary
 
-- Steps: 98
+- Steps: 100
 - Failed steps: 0
 - Smoke targets: 55
 - Smoke counts: supported 339, candidate 1351, weak 700, ambiguous 2064
@@ -47,11 +47,13 @@ Generated: 2026-06-01T07:52:49.998Z
 - Usage selected occurrence navigation index: present, rows 49, source refs 38, work anchors 38, works 20, frames 2, route IDs 1, provenance buckets 5, collision memberships 38, reader-facing rows 0, route payload hits 0
 - Usage selected navigation edge index: present, edges 2352, source occurrences 49, target occurrences 49, source refs 38, works 20, frames 2, route IDs 1, provenance buckets 5, same-frame 1192, bridge 1160, reader-facing rows 0, route payload hits 0
 - Usage selected navigation edge completeness: source context 2352, target context 2352, source links 2352, target links 2352, source provenance 2352, target provenance 2352
+- Usage selected occurrence adjacency index: present, rows 49, target links 2352, source refs 38, works 20, frames 2, route IDs 1, provenance buckets 5, same-frame 1192, bridge 1160, reader-facing rows 0, route payload hits 0
+- Usage selected occurrence adjacency completeness: source context 49, source links 49, source provenance 49, complete target rows 49, target context 2352, target links 2352, target provenance 2352
 - Usage selected focus/context audit: present, rows 49, focus marker rows 49, mismatches 0, repeated-focus rows 8, missing Hebrew context rows 0, reader-facing rows 0, route payload hits 0
 - Usage selected frame summary: present, frames 2, rows 49, repeated-focus rows 8, samples 16, reader-facing rows 0, route payload hits 0
 - Usage selected frame/provenance matrix: present, rows 10, selected rows 49, frames 2, provenance buckets 5, missing provenance rows 0, samples 49, reader-facing rows 0, route payload hits 0
 - Usage selected work/frame matrix: present, rows 25, selected rows 49, works 20, frames 2, samples 48, reader-facing rows 0, route payload hits 0
-- Usage selected QA package: present, items 19, rows 49, route IDs 1, unresolved routes 0, route warning visible 1, directed edges 2352, bridge edges 1160, reader-facing rows 0, route payload hits 0
+- Usage selected QA package: present, items 20, rows 49, route IDs 1, unresolved routes 0, route warning visible 1, directed edges 2352, bridge edges 1160, reader-facing rows 0, route payload hits 0
 - Usage selected occurrence lookup: present, work buckets 20, cluster buckets 2, status buckets 3
 - Usage crossmatch links: present, occurrences 49, directed edges 2352, undirected pairs 1176, route payload hits 0
 - Usage crossmatch strengths: strong 1206, moderate 1146, weak 0
@@ -160,8 +162,10 @@ Generated: 2026-06-01T07:52:49.998Z
 | validate_usage_selected_occurrence_navigation_index | passed | Validated usage selected occurrence navigation index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-navigation-index.json: rows 49; source refs 38 |
 | build_usage_selected_navigation_edge_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-navigation-edge-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-navigation-edge-index.md / Selected navigation edge rows 2352; same-frame 1192; bridge 1160; route payload hits 0 |
 | validate_usage_selected_navigation_edge_index | passed | Validated usage selected navigation edge index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-navigation-edge-index.json: edges 2352; same-frame 1192; bridge 1160 |
-| build_usage_selected_qa_package | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.md / Selected QA package items 19; selected rows 49; route payload hits 0 |
-| validate_usage_selected_qa_package | passed | Validated usage selected QA package .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.json: items 19; selected rows 49 |
+| build_usage_selected_occurrence_adjacency_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-adjacency-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-adjacency-index.md / Selected occurrence adjacency rows 49; target links 2352; route payload hits 0 |
+| validate_usage_selected_occurrence_adjacency_index | passed | Validated selected occurrence adjacency index .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-occurrence-adjacency-index.json: rows 49; target links 2352 |
+| build_usage_selected_qa_package | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.md / Selected QA package items 20; selected rows 49; route payload hits 0 |
+| validate_usage_selected_qa_package | passed | Validated usage selected QA package .local-cache/workbench-evidence/smoke-pipeline-validation/usage-selected-qa-package.json: items 20; selected rows 49 |
 | build_usage_audit_review | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-audit-only-review.md / Usage audit-only review rows 2064; ambiguous 2064; blocked 0; reader-facing no |
 | build_usage_handoff_index | passed | Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-navigation-handoff-index.json / Wrote .local-cache/workbench-evidence/smoke-pipeline-validation/usage-navigation-handoff-index.md / Usage handoff index rows 2390; occurrence links passed; route links passed; smoke skipped_self_reference |
 | validate_usage_handoff_index | passed | Workbench usage handoff index validation passed. Rows: 2390. Clusters: 2. |

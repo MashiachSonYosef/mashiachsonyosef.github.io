@@ -66,7 +66,7 @@ console.log(`Validated usage selected QA package ${artifactPath}: items ${items.
 
 function validateCounts(packageItems) {
   if (Number(artifact.counts?.package_items || 0) !== packageItems.length) issues.push('package_items count must equal package_items length');
-  if (packageItems.length !== 19) issues.push('package must contain 19 selected artifact items');
+  if (packageItems.length !== 20) issues.push('package must contain 20 selected artifact items');
   if (Number(artifact.counts?.selected_rows || 0) <= 0) issues.push('selected_rows must be positive');
   if (Number(artifact.counts?.selected_source_refs || 0) <= 1) issues.push('selected_source_refs must show diversity');
   if (Number(artifact.counts?.selected_works || 0) <= 1) issues.push('selected_works must show diversity');
@@ -225,6 +225,54 @@ function validateCounts(packageItems) {
   }
   if (Number(artifact.counts?.selected_navigation_edge_rows_with_target_provenance || 0) !== Number(artifact.counts?.selected_navigation_edge_rows || 0)) {
     issues.push('selected_navigation_edge_rows_with_target_provenance must equal selected_navigation_edge_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_adjacency_rows must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_target_links || 0) !== Number(artifact.counts?.selected_navigation_edge_rows || 0)) {
+    issues.push('selected_occurrence_adjacency_target_links must equal selected_navigation_edge_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_source_refs || 0) !== Number(artifact.counts?.selected_source_refs || 0)) {
+    issues.push('selected_occurrence_adjacency_source_refs must equal selected_source_refs');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_works || 0) !== Number(artifact.counts?.selected_works || 0)) {
+    issues.push('selected_occurrence_adjacency_works must equal selected_works');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_frames || 0) !== Number(artifact.counts?.selected_frame_summary_frames || 0)) {
+    issues.push('selected_occurrence_adjacency_frames must equal selected_frame_summary_frames');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_route_ids || 0) !== Number(artifact.counts?.selected_route_ids || 0)) {
+    issues.push('selected_occurrence_adjacency_route_ids must equal selected_route_ids');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_provenance_buckets || 0) !== Number(artifact.counts?.selected_provenance_buckets || 0)) {
+    issues.push('selected_occurrence_adjacency_provenance_buckets must equal selected_provenance_buckets');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_same_frame_links || 0) + Number(artifact.counts?.selected_occurrence_adjacency_bridge_frame_links || 0) !== Number(artifact.counts?.selected_occurrence_adjacency_target_links || 0)) {
+    issues.push('selected_occurrence_adjacency_same_frame_links + bridge_frame_links must equal target links');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_strong_links || 0) + Number(artifact.counts?.selected_occurrence_adjacency_moderate_links || 0) + Number(artifact.counts?.selected_occurrence_adjacency_weak_links || 0) !== Number(artifact.counts?.selected_occurrence_adjacency_target_links || 0)) {
+    issues.push('selected_occurrence_adjacency strong/moderate/weak counts must equal target links');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_rows_with_source_context || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_adjacency_rows_with_source_context must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_rows_with_source_link || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_adjacency_rows_with_source_link must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_rows_with_source_provenance || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_adjacency_rows_with_source_provenance must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_rows_with_complete_targets || 0) !== Number(artifact.counts?.selected_rows || 0)) {
+    issues.push('selected_occurrence_adjacency_rows_with_complete_targets must equal selected_rows');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_target_links_with_context || 0) !== Number(artifact.counts?.selected_occurrence_adjacency_target_links || 0)) {
+    issues.push('selected_occurrence_adjacency_target_links_with_context must equal target links');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_target_links_with_source_link || 0) !== Number(artifact.counts?.selected_occurrence_adjacency_target_links || 0)) {
+    issues.push('selected_occurrence_adjacency_target_links_with_source_link must equal target links');
+  }
+  if (Number(artifact.counts?.selected_occurrence_adjacency_target_links_with_provenance || 0) !== Number(artifact.counts?.selected_occurrence_adjacency_target_links || 0)) {
+    issues.push('selected_occurrence_adjacency_target_links_with_provenance must equal target links');
   }
   if (Number(artifact.counts?.selected_focus_context_rows || 0) !== Number(artifact.counts?.selected_rows || 0)) {
     issues.push('selected_focus_context_rows must equal selected_rows');
