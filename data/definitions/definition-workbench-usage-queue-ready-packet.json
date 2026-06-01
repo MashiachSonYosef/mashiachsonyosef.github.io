@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "artifact_type": "definition_workbench_usage_queue_ready_packet",
+  "generated_at": "2026-06-01T14:23:12.990Z",
+  "generator": "scripts/build_definition_workbench_usage_queue_ready_packet.mjs",
+  "lane_owner": "Agent 3",
+  "target_gate": "definition_workbench_gate",
+  "target_queue": "data/control/agent6_validation_queue.json",
+  "source_packet": "data/definitions/definition-workbench-usage-agent6-packet.json",
+  "submission_boundary": {
+    "queue_ready_only": true,
+    "control_queue_mutated": false,
+    "submitted_to_agent6": false,
+    "intended_submitter": "Agent 5",
+    "agent3_does_not_submit_to_agent6_queue": true,
+    "worker_report_terminal_status_allowed": false
+  },
+  "queue_contract_snapshot": {
+    "required_request_fields": [
+      "request_id",
+      "submitted_by",
+      "gate",
+      "scope",
+      "evidence_artifacts",
+      "requested_verdict",
+      "claimed_boundary",
+      "known_risks",
+      "what_changed_since_last_agent6_ruling",
+      "what_must_not_be_accepted"
+    ],
+    "allowed_submitters": [
+      "Agent 5",
+      "Agent 7",
+      "user"
+    ],
+    "publication_global_status": "blocked_no_render"
+  },
+  "goal_board_snapshot": {
+    "goal_id": "agent3-definition-occurrence-links",
+    "goal_status": "active",
+    "evidence_target": "Bounded occurrence-link packet for Definition Workbench that preserves usage-only labeling and route/source references.",
+    "worker_report_may_set": [
+      "evidence-ready",
+      "awaiting-Agent-6"
+    ],
+    "acceptance_owner": "Agent 6"
+  },
+  "queue_entry_draft": {
+    "request_id": "agent6-definition-workbench-usage-occurrence-links",
+    "submitted_by": "Agent 5",
+    "gate": "definition_workbench_gate",
+    "scope": "Agent 3 Definition Workbench usage/occurrence-link packet for selected nonzero seeded usage evidence",
+    "status": "queue_template_not_submitted",
+    "priority": 2,
+    "evidence_artifacts": [
+      "data/definitions/definition-workbench-usage-agent6-packet.json",
+      "reports/definition-workbench-usage-agent6-packet.md",
+      "data/definitions/definition-workbench-usage-link-packet.json",
+      "reports/definition-workbench-usage-link-packet.md",
+      "data/definitions/definition-workbench-usage-seed-queue.json",
+      "reports/definition-workbench-usage-seed-queue.md",
+      "data/definitions/definition-workbench-usage-join-smoke.json",
+      "reports/definition-workbench-usage-join-smoke.md",
+      "reports/workbench-smoke-pipeline-validation.md"
+    ],
+    "requested_verdict": "pass_warn_block_usage_navigation_boundary_for_definition_workbench_planning",
+    "claimed_boundary": "Usage-navigation occurrence-link planning evidence only; not reviewed lexical authority, not UI acceptance, not route ranking, not semantic arbitration, not publication support, and not accepted translation text.",
+    "known_risks": [
+      "current 200-row Definition Workbench sample has 0 current usage links for the selected Agent 3 usage token scope",
+      "selected usage evidence is concentrated on one route ID and must not be treated as independent semantic confirmation",
+      "usage evidence remains selected seeded scope, not broad corpus coverage",
+      "ambiguous rows remain audit-only and are not reader-facing",
+      "source/provenance acceptance outside cited occurrence rows remains blocked by the source-scope gate",
+      "this artifact is queue-ready only; Agent 3 has not submitted to the Agent 6 queue"
+    ],
+    "what_changed_since_last_agent6_ruling": "Agent 3 produced a bounded Definition Workbench usage-link packet chain: the link packet preserves usage-only boundaries, the seed queue identifies one selected token absent from the current 200-row sample, the join smoke projects a bounded 201-row sample with 2390 usage-link rows, and the Agent 6 packet validates 12 proof occurrence rows with complete source/work/context/license/version/route-ID metadata, 12 Hebrew token rows, 12 Hebrew context rows, 12 focus-marker rows, 0 mojibake rows, 0 reader-facing rows, 0 route payload field hits, and 0 forbidden authority field hits.",
+    "what_must_not_be_accepted": [
+      "usage rows as definitions",
+      "reviewed lexical authority",
+      "visible answer selection",
+      "HUD or Workbench UI implementation acceptance",
+      "route ranking or semantic arbitration",
+      "publication readiness",
+      "accepted translation text",
+      "broad corpus coverage beyond selected seeded scope",
+      "Agent 2 route definition payload copied into Agent 3 usage rows"
+    ],
+    "next_agent6_action": "If Agent 5 submits this request, validate the machine-readable packet chain and decide whether the occurrence-link evidence is acceptable as Definition Workbench planning context only."
+  },
+  "source_packet_summary": {
+    "status": "passed",
+    "proof_occurrence_rows": 12,
+    "proof_rows_with_source": 12,
+    "proof_rows_with_work_anchor": 12,
+    "proof_rows_with_context": 12,
+    "proof_rows_with_license": 12,
+    "proof_rows_with_version": 12,
+    "proof_rows_with_route_ids": 12,
+    "proof_rows_with_hebrew_token": 12,
+    "proof_rows_with_hebrew_context": 12,
+    "proof_rows_with_focus_marker": 12,
+    "proof_mojibake_rows": 0,
+    "route_ids": 1,
+    "current_sample_rows": 200,
+    "current_sample_rows_with_usage_links": 0,
+    "usage_tokens_absent_from_current_sample": 1,
+    "join_rows": 1,
+    "projected_rows_after_seed_append": 201,
+    "projected_usage_link_rows": 2390,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0
+  },
+  "quality": {
+    "status": "passed",
+    "warning_count": 0,
+    "failed_count": 0
+  },
+  "counts": {
+    "required_queue_fields": 10,
+    "required_queue_fields_present": 10,
+    "evidence_artifacts": 9,
+    "evidence_artifacts_exist": 9,
+    "validator_scripts": 5,
+    "validator_scripts_exist": 5,
+    "allowed_submitters": 3,
+    "draft_submitter_allowed": 1,
+    "source_packet_status_passed": 1,
+    "proof_occurrence_rows": 12,
+    "proof_rows_with_complete_metadata": 12,
+    "proof_rows_with_hebrew_token": 12,
+    "proof_rows_with_hebrew_context": 12,
+    "proof_rows_with_focus_marker": 12,
+    "proof_mojibake_rows": 0,
+    "route_ids": 1,
+    "current_sample_rows_with_usage_links": 0,
+    "usage_tokens_absent_from_current_sample": 1,
+    "join_rows": 1,
+    "projected_usage_link_rows": 2390,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "queue_mutations": 0,
+    "submitted_to_agent6": 0
+  },
+  "checks": [
+    {
+      "id": "queue_contract_loaded",
+      "status": "passed",
+      "detail": "required fields 10; allowed submitters 3"
+    },
+    {
+      "id": "queue_required_fields_present",
+      "status": "passed",
+      "detail": "10/10"
+    },
+    {
+      "id": "draft_submitter_allowed",
+      "status": "passed",
+      "detail": "draft submitter Agent 5"
+    },
+    {
+      "id": "source_packet_passed",
+      "status": "passed",
+      "detail": "source packet status passed"
+    },
+    {
+      "id": "evidence_artifacts_exist",
+      "status": "passed",
+      "detail": "9/9"
+    },
+    {
+      "id": "validator_scripts_exist",
+      "status": "passed",
+      "detail": "5/5"
+    },
+    {
+      "id": "proof_metadata_complete",
+      "status": "passed",
+      "detail": "12/12"
+    },
+    {
+      "id": "hebrew_context_guard",
+      "status": "passed",
+      "detail": "token/context/focus/mojibake 12/12/12/0"
+    },
+    {
+      "id": "usage_boundary_only",
+      "status": "passed",
+      "detail": "reader-facing 0; route payload hits 0; forbidden authority hits 0"
+    },
+    {
+      "id": "bounded_join_visible",
+      "status": "passed",
+      "detail": "current links 0; absent 1; join rows 1; projected links 2390"
+    },
+    {
+      "id": "queue_not_mutated",
+      "status": "passed",
+      "detail": "queue mutations 0; submitted 0"
+    }
+  ]
+}
