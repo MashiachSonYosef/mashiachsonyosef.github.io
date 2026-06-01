@@ -104,6 +104,9 @@ const result = {
   public_shard_count: currentReconciliation.public_shard_count,
   route_publication_boundary: {
     report: cleanPath(options.boundaryReport),
+    generator: cleanPath(boundaryReport.generator || ''),
+    generator_sha256: boundaryReport.inputs?.generator_file?.sha256 || '',
+    manifest_sha256: boundaryReport.inputs?.manifest_file?.sha256 || '',
     issues: Number(boundaryReport.counts?.issue_count || 0),
     warnings: Number(boundaryReport.counts?.warning_count || 0),
     fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
@@ -253,6 +256,16 @@ async function validateBoundaryReport(report, reconciliation) {
   if (report.artifact_type !== 'route_publication_boundary_audit') {
     issues.push(`route publication boundary report artifact_type must be route_publication_boundary_audit, got ${report.artifact_type || 'missing'}`);
   }
+  if (cleanPath(report.generator) !== 'scripts/validate_route_publication_boundary.mjs') {
+    issues.push(`route publication boundary report generator mismatch: ${report.generator || 'missing'}`);
+  } else {
+    const currentGenerator = await fileSummary(cleanPath(report.generator));
+    if (!report.inputs?.generator_file) {
+      issues.push('route publication boundary report is missing generator file summary');
+    } else {
+      compareSummary(currentGenerator, report.inputs.generator_file, 'route publication boundary generator file');
+    }
+  }
   const reportGeneratedAt = Date.parse(report.generated_at || '');
   const publicPublishedAt = Date.parse(publicManifest.published_at || '');
   if (!Number.isFinite(reportGeneratedAt)) {
@@ -262,6 +275,10 @@ async function validateBoundaryReport(report, reconciliation) {
   }
   if (cleanPath(report.inputs?.manifest) !== cleanPath(options.publicManifest)) {
     issues.push('route publication boundary report manifest does not match public manifest under validation');
+  } else if (!report.inputs?.manifest_file) {
+    issues.push('route publication boundary report is missing public manifest file summary');
+  } else {
+    compareSummary(publicManifestSummary, report.inputs.manifest_file, 'route publication boundary public manifest file');
   }
   if (cleanPath(report.inputs?.public_lookup) !== cleanPath(path.dirname(options.publicManifest))) {
     issues.push('route publication boundary report public_lookup does not match public manifest directory');
@@ -381,6 +398,9 @@ function writeReport(relativePath, result) {
     '## Route Publication Boundary',
     '',
     `- Report: \`${result.route_publication_boundary.report}\``,
+    `- Generator: \`${result.route_publication_boundary.generator || 'missing'}\``,
+    `- Validator SHA-256: \`${result.route_publication_boundary.generator_sha256 || 'missing'}\``,
+    `- Manifest SHA-256: \`${result.route_publication_boundary.manifest_sha256 || 'missing'}\``,
     `- Boundary issues: ${result.route_publication_boundary.issues}`,
     `- Boundary warnings: ${result.route_publication_boundary.warnings}`,
     `- Fixture: \`${result.route_publication_boundary.fixture}\``,

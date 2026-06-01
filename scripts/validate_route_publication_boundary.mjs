@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
+const generatorScript = 'scripts/validate_route_publication_boundary.mjs';
 const defaults = {
   manifest: 'data/definitions/hud-route-lookup/manifest.json',
   fixture: 'data/definitions/route-publication-boundary-fixtures.json',
@@ -82,11 +83,12 @@ console.log(`Wrote ${options.output}`);
 console.log(`Wrote ${options.report}`);
 
 function createAudit(manifestData = {}) {
+  const includeInputFileSummaries = manifestData.include_input_file_summaries !== false;
   return {
     schema_version: 1,
     artifact_type: 'route_publication_boundary_audit',
     generated_at: new Date().toISOString(),
-    generator: 'scripts/validate_route_publication_boundary.mjs',
+    generator: generatorScript,
     policy: [
       'HUD route answer eligibility may select a definition card inside the lexical HUD.',
       'It is not publication readiness for accepted translation output.',
@@ -94,9 +96,11 @@ function createAudit(manifestData = {}) {
     ].join(' '),
     inputs: {
       manifest: options.manifest,
+      manifest_file: includeInputFileSummaries ? fileSummary(options.manifest) : null,
       fixture: options.fixture,
       fixture_cases: fixtureCaseCount,
-      fixture_file: fileSummary(options.fixture),
+      fixture_file: includeInputFileSummaries ? fileSummary(options.fixture) : null,
+      generator_file: includeInputFileSummaries ? fileSummary(generatorScript) : null,
       public_lookup: manifestData.public_lookup || 'data/definitions/hud-route-lookup',
       max_issues: options.maxIssues,
       max_warnings: options.maxWarnings,
@@ -136,7 +140,7 @@ function runFixtureSelfTest(relativePath) {
     issues.push(`fixture artifact_type must be route_publication_boundary_fixtures, got ${fixture.artifact_type || 'missing'}`);
   }
   for (const [index, testCase] of (fixture.cases || []).entries()) {
-    const target = createAudit({ public_lookup: 'fixture' });
+    const target = createAudit({ public_lookup: 'fixture', include_input_file_summaries: false });
     auditCard(testCase.card, `fixture:${testCase.label || index}`, target);
     for (const [countName, expectedValue] of Object.entries(testCase.expected_counts || {})) {
       const actualValue = Number(target.counts[countName] || 0);
@@ -293,6 +297,8 @@ function writeReport(relativePath, data) {
     `- Cards with publication-readiness fields: ${data.counts.route_cards_with_publication_fields}`,
     `- Issues: ${data.counts.issue_count}`,
     `- Warnings: ${data.counts.warning_count}`,
+    `- Manifest SHA-256: \`${data.inputs.manifest_file?.sha256 || 'missing'}\``,
+    `- Validator SHA-256: \`${data.inputs.generator_file?.sha256 || 'missing'}\``,
     `- Fixture cases checked: ${data.inputs.fixture_cases}`,
     `- Fixture bytes: ${data.inputs.fixture_file?.byte_length || 0}`,
     `- Fixture SHA-256: \`${data.inputs.fixture_file?.sha256 || 'missing'}\``,

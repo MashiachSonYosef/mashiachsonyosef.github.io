@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T01:32:29.519Z
+Generated: 2026-06-01T01:38:22.311Z
 
 ## Boundary
 
@@ -23,6 +23,8 @@ Generated: 2026-06-01T01:32:29.519Z
 - Cards with publication-readiness fields: 0
 - Issues: 0
 - Warnings: 335103
+- Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
+- Validator SHA-256: `4bf2fc5f31ba5768d10dee4073814d910a12eb4e473c3762f8774e98da209ac5`
 - Fixture cases checked: 5
 - Fixture bytes: 6195
 - Fixture SHA-256: `8248a250aa5527d1522e91c93eb50d4e27732e0461f24f72f6658b07c403e450`
