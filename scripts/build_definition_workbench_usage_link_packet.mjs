@@ -411,6 +411,9 @@ function parseArgs(args) {
     else if (arg.startsWith('--max-samples-per-usage-token=')) parsed.maxSamplesPerUsageToken = Number(valueAfterEquals(arg));
     else throw new Error(`Unknown argument: ${arg}`);
   }
+  if (!Number.isInteger(parsed.maxSamplesPerUsageToken) || parsed.maxSamplesPerUsageToken < 1) {
+    throw new Error('--max-samples-per-usage-token must be a positive integer');
+  }
   return parsed;
 }
 
@@ -419,7 +422,11 @@ function valueAfterEquals(arg) {
 }
 
 function cleanRelativePath(value) {
-  return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  const normalized = String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+  if (!normalized || path.isAbsolute(normalized) || normalized.split('/').includes('..')) {
+    throw new Error(`Path must be relative to repo root: ${value}`);
+  }
+  return normalized;
 }
 
 function readJson(relativePath) {
