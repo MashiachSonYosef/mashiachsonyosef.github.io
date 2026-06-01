@@ -7,6 +7,7 @@ const root = process.cwd();
 const generatorScript = 'scripts/validate_route_publication_boundary.mjs';
 const defaults = {
   manifest: 'data/definitions/hud-route-lookup/manifest.json',
+  contract: 'data/definitions/hud-route-contract.json',
   fixture: 'data/definitions/route-publication-boundary-fixtures.json',
   output: 'reports/route-publication-boundary-audit.json',
   report: 'reports/route-publication-boundary-audit.md',
@@ -54,14 +55,15 @@ const forbiddenLicenseRe = /\bNC\b|Non-?Commercial|all rights reserved|copyright
 const allowedAnswerRoles = new Set(['answer', 'evidence', 'form_reference']);
 
 const options = parseArgs(process.argv.slice(2));
+const contract = readJson(options.contract);
 let fixtureCaseCount = 0;
-fixtureCaseCount = runFixtureSelfTest(options.fixture);
+fixtureCaseCount = runFixtureSelfTest(options.fixture, contract);
 if (options.fixturesOnly) {
   console.log(`Route publication boundary fixture self-test passed. Cases: ${fixtureCaseCount}.`);
   process.exit(0);
 }
 const manifest = readJson(options.manifest);
-const audit = createAudit(manifest);
+const audit = createAudit(manifest, contract);
 
 for (const shard of manifest.shards || []) {
   audit.counts.shards += 1;
@@ -83,8 +85,9 @@ console.log(`Fixture self-test passed. Cases: ${fixtureCaseCount}.`);
 console.log(`Wrote ${options.output}`);
 console.log(`Wrote ${options.report}`);
 
-function createAudit(manifestData = {}) {
+function createAudit(manifestData = {}, contractData = contract) {
   const includeInputFileSummaries = manifestData.include_input_file_summaries !== false;
+  const allowedDisplaySections = contractSectionIds(contractData);
   return {
     schema_version: 1,
     artifact_type: 'route_publication_boundary_audit',
@@ -98,6 +101,7 @@ function createAudit(manifestData = {}) {
     inputs: {
       manifest: options.manifest,
       manifest_file: includeInputFileSummaries ? fileSummary(options.manifest) : null,
+      contract: options.contract,
       fixture: options.fixture,
       fixture_cases: fixtureCaseCount,
       fixture_file: includeInputFileSummaries ? fileSummary(options.fixture) : null,
@@ -105,6 +109,10 @@ function createAudit(manifestData = {}) {
       public_lookup: manifestData.public_lookup || 'data/definitions/hud-route-lookup',
       max_issues: options.maxIssues,
       max_warnings: options.maxWarnings,
+    },
+    contract: {
+      contract_id: contractData.contract_id || '',
+      allowed_display_sections: allowedDisplaySections,
     },
     counts: {
       shards: 0,
@@ -129,13 +137,14 @@ function createAudit(manifestData = {}) {
     answer_eligible_unsafe_translation_output_licenses: {},
     route_families: {},
     route_types: {},
+    display_sections: {},
     answer_roles: {},
     issues: [],
     warnings: [],
   };
 }
 
-function runFixtureSelfTest(relativePath) {
+function runFixtureSelfTest(relativePath, contractData) {
   const fixture = readJson(relativePath);
   const issues = [];
   if (fixture.schema_version !== 1) issues.push('fixture schema_version must be 1');
@@ -143,7 +152,7 @@ function runFixtureSelfTest(relativePath) {
     issues.push(`fixture artifact_type must be route_publication_boundary_fixtures, got ${fixture.artifact_type || 'missing'}`);
   }
   for (const [index, testCase] of (fixture.cases || []).entries()) {
-    const target = createAudit({ public_lookup: 'fixture', include_input_file_summaries: false });
+    const target = createAudit({ public_lookup: 'fixture', include_input_file_summaries: false }, contractData);
     auditCard(testCase.card, `fixture:${testCase.label || index}`, target);
     for (const [countName, expectedValue] of Object.entries(testCase.expected_counts || {})) {
       const actualValue = Number(target.counts[countName] || 0);
@@ -203,6 +212,7 @@ function auditCard(card, context, target = audit) {
     target.counts.cards += 1;
     increment(target.route_families, 'missing');
     increment(target.route_types, 'missing');
+    increment(target.display_sections, 'missing');
     increment(target.answer_roles, 'missing');
     addIssue(context, 'route card is not an object', target);
     return;
@@ -210,10 +220,14 @@ function auditCard(card, context, target = audit) {
   target.counts.cards += 1;
   increment(target.route_families, card?.route_family || 'missing');
   increment(target.route_types, card?.route_type || 'missing');
+  increment(target.display_sections, card?.display_section || 'missing');
   increment(target.answer_roles, card?.answer_role || 'missing');
 
   for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label', 'definition']) {
     if (!card?.[field]) addIssue(context, `missing ${field}`, target);
+  }
+  if (card?.display_section && !target.contract.allowed_display_sections.includes(card.display_section)) {
+    addIssue(context, `unknown display_section: ${card.display_section}`, target);
   }
 
   const publicationFields = publicationReadinessFields.filter((field) => Object.hasOwn(card || {}, field));
@@ -335,6 +349,8 @@ function writeReport(relativePath, data) {
     `- Fixture cases checked: ${data.inputs.fixture_cases}`,
     `- Fixture bytes: ${data.inputs.fixture_file?.byte_length || 0}`,
     `- Fixture SHA-256: \`${data.inputs.fixture_file?.sha256 || 'missing'}\``,
+    `- HUD contract: \`${data.inputs.contract}\``,
+    `- Allowed display sections: ${data.contract.allowed_display_sections.join(', ')}`,
     '',
     '## Unsafe For Accepted Translation Output',
     '',
@@ -351,6 +367,10 @@ function writeReport(relativePath, data) {
     '## Route Families',
     '',
     ...topCounts(data.route_families, 20).map((row) => `- ${row.value}: ${row.count}`),
+    '',
+    '## Display Sections',
+    '',
+    ...topCounts(data.display_sections, 20).map((row) => `- ${row.value}: ${row.count}`),
     '',
     '## Answer Roles',
     '',
@@ -380,6 +400,7 @@ function parseArgs(args) {
   const parsed = { ...defaults };
   for (const arg of args) {
     if (arg.startsWith('--manifest=')) parsed.manifest = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--contract=')) parsed.contract = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--fixture=')) parsed.fixture = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
@@ -396,6 +417,7 @@ function parseArgs(args) {
       '',
       'Options:',
       '  --manifest=data/definitions/hud-route-lookup/manifest.json',
+      '  --contract=data/definitions/hud-route-contract.json',
       '  --fixture=data/definitions/route-publication-boundary-fixtures.json',
       '  --output=reports/route-publication-boundary-audit.json',
       '  --report=reports/route-publication-boundary-audit.md',
@@ -424,6 +446,15 @@ function readJson(relativePath) {
   const fullPath = path.join(root, cleanRelativePath(relativePath));
   if (!fs.existsSync(fullPath)) throw new Error(`Missing JSON file: ${relativePath}`);
   return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+}
+
+function contractSectionIds(contractData) {
+  const ids = (contractData.route_sections || [])
+    .map((section) => String(section?.section_id || '').trim())
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
+  if (!ids.length) throw new Error(`HUD route contract has no route_sections: ${options.contract}`);
+  return [...new Set(ids)];
 }
 
 function fileSummary(relativePath) {

@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T05:06:57.592Z
+Generated: 2026-06-01T05:19:19.447Z
 
 ## Boundary
 
@@ -25,10 +25,12 @@ Generated: 2026-06-01T05:06:57.592Z
 - Issues: 0
 - Warnings: 335103
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
-- Validator SHA-256: `ad4edc34b70a94b1d3ffa640adbe1c22b43eb2db827576471c1116b010558555`
-- Fixture cases checked: 10
-- Fixture bytes: 14470
-- Fixture SHA-256: `eeb31f845bc8850732621cd65d4fcfec45725c095fd3a099d4687bbf2c4648ab`
+- Validator SHA-256: `7fed1c7cbb1537cfdfa1052c5d538fb47487e44488fed4410f15b6c6ea56b137`
+- Fixture cases checked: 11
+- Fixture bytes: 16082
+- Fixture SHA-256: `b4211a25b7081569c9612fb380b79f7e21234ed43a30ed7d6918ef4aed33ed7e`
+- HUD contract: `data/definitions/hud-route-contract.json`
+- Allowed display sections: answer, audit, biblical_paraphrase_evidence, citable_paraphrase_evidence, lemma, morphology, phrase_evidence, source_license, strict_aramaic, strict_hebrew, subphrase_evidence
 
 ## Unsafe For Accepted Translation Output
 
@@ -52,6 +54,13 @@ These are answer-slot candidates whose source rows remain HUD-safe but require d
 - openscriptures_definition: 3531
 - wikidata_definition: 771
 - project_lexical: 175
+
+## Display Sections
+
+- citable_paraphrase_evidence: 200000
+- phrase_evidence: 200000
+- strict_hebrew: 118176
+- lemma: 21485
 
 ## Answer Roles
 

@@ -23,6 +23,7 @@ const publicManifest = readJson(options.publicManifest, 'public lookup manifest'
 const contract = readJson(options.contract, 'HUD route contract');
 const sample = readJson(options.sample, 'HUD route lookup sample');
 const boundaryReport = readJson(options.boundaryReport, 'route publication boundary audit');
+const allowedSections = new Set((contract.route_sections || []).map((section) => section.section_id).filter(Boolean));
 
 if (stamp.schema_version !== 1) issues.push('release stamp schema_version must be 1');
 if (stamp.artifact_type !== 'hud_route_release_stamp') issues.push('release stamp artifact_type must be hud_route_release_stamp');
@@ -71,7 +72,6 @@ if (currentReconciliation.public_manifest_token_sum !== currentReconciliation.pu
   issues.push('public shard token sum does not match public distinct_normalized_tokens');
 }
 
-const allowedSections = new Set((contract.route_sections || []).map((section) => section.section_id));
 for (const section of Object.keys(stamp.route_store?.counts?.route_sections || {})) {
   if (!allowedSections.has(section)) issues.push(`stamped route section ${section} is not listed in HUD route contract`);
 }
@@ -107,6 +107,8 @@ const result = {
     generator: cleanPath(boundaryReport.generator || ''),
     generator_sha256: boundaryReport.inputs?.generator_file?.sha256 || '',
     manifest_sha256: boundaryReport.inputs?.manifest_file?.sha256 || '',
+    contract: cleanPath(boundaryReport.inputs?.contract || ''),
+    allowed_display_sections: boundaryReport.contract?.allowed_display_sections || [],
     issues: Number(boundaryReport.counts?.issue_count || 0),
     warnings: Number(boundaryReport.counts?.warning_count || 0),
     fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
@@ -285,6 +287,20 @@ async function validateBoundaryReport(report, reconciliation) {
   if (cleanPath(report.inputs?.public_lookup) !== cleanPath(path.dirname(options.publicManifest))) {
     issues.push('route publication boundary report public_lookup does not match public manifest directory');
   }
+  if (cleanPath(report.inputs?.contract) !== cleanPath(options.contract)) {
+    issues.push('route publication boundary report contract does not match HUD route contract under validation');
+  }
+  const reportAllowedSections = new Set(report.contract?.allowed_display_sections || []);
+  for (const section of allowedSections) {
+    if (!reportAllowedSections.has(section)) {
+      issues.push(`route publication boundary report is missing contract display_section ${section}`);
+    }
+  }
+  for (const section of reportAllowedSections) {
+    if (!allowedSections.has(section)) {
+      issues.push(`route publication boundary report lists unknown contract display_section ${section}`);
+    }
+  }
   if (Number(report.counts?.issue_count || 0) !== 0) {
     issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
   }
@@ -317,6 +333,14 @@ async function validateBoundaryReport(report, reconciliation) {
   }
   if (sumMap(report.route_types) !== count('cards')) {
     issues.push('route publication boundary route_types total does not equal cards');
+  }
+  if (sumMap(report.display_sections) !== count('cards')) {
+    issues.push('route publication boundary display_sections total does not equal cards');
+  }
+  for (const section of Object.keys(report.display_sections || {})) {
+    if (!allowedSections.has(section)) {
+      issues.push(`route publication boundary found display_section outside HUD contract: ${section}`);
+    }
   }
   if (sumMap(report.answer_roles) !== count('cards')) {
     issues.push('route publication boundary answer_roles total does not equal cards');
@@ -362,6 +386,9 @@ async function validateBoundaryReport(report, reconciliation) {
 function validateCard(card, context) {
   for (const field of ['card_id', 'normalized', 'route_family', 'route_type', 'display_section', 'display_label']) {
     if (!card?.[field]) issues.push(`${context}: missing ${field}`);
+  }
+  if (card.display_section && !allowedSections.has(card.display_section)) {
+    issues.push(`${context}: display_section ${card.display_section} is not listed in HUD route contract`);
   }
   if (typeof card.answer_eligible !== 'boolean') issues.push(`${context}: missing boolean answer_eligible`);
   if (!card.answer_role) issues.push(`${context}: missing answer_role`);
@@ -439,6 +466,8 @@ function writeReport(relativePath, result) {
     `- Generator: \`${result.route_publication_boundary.generator || 'missing'}\``,
     `- Validator SHA-256: \`${result.route_publication_boundary.generator_sha256 || 'missing'}\``,
     `- Manifest SHA-256: \`${result.route_publication_boundary.manifest_sha256 || 'missing'}\``,
+    `- HUD contract: \`${result.route_publication_boundary.contract || 'missing'}\``,
+    `- Allowed display sections: ${(result.route_publication_boundary.allowed_display_sections || []).join(', ')}`,
     `- Boundary issues: ${result.route_publication_boundary.issues}`,
     `- Boundary warnings: ${result.route_publication_boundary.warnings}`,
     `- Fixture: \`${result.route_publication_boundary.fixture}\``,
