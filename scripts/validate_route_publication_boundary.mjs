@@ -163,6 +163,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       invalid_source_family_values: 0,
       reference_url_fields_checked: 0,
       invalid_reference_url_fields: 0,
+      source_row_notes_checked: 0,
+      forbidden_source_row_notes: 0,
       source_url_compatibility_checks: 0,
       invalid_source_url_compatibility: 0,
       license_url_compatibility_checks: 0,
@@ -530,6 +532,11 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
       target.counts.invalid_source_family_values += 1;
       addIssue(`${context}.source_rows[${rowIndex}]`, `unknown source_family: ${row?.source_family || 'missing'}`, target);
     }
+    target.counts.source_row_notes_checked += 1;
+    if (forbiddenSourceRowNote(row?.notes)) {
+      target.counts.forbidden_source_row_notes += 1;
+      addIssue(`${context}.source_rows[${rowIndex}]`, `source row notes cite excluded translation/example/quotation material: ${row.notes}`, target);
+    }
     for (const field of ['source_url', 'license_url']) {
       if (!row?.[field]) continue;
       target.counts.reference_url_fields_checked += 1;
@@ -691,6 +698,15 @@ function sourceFamilyRecognized(row) {
   return allowedSourceFamilies.has(String(row?.source_family || '').trim().toLowerCase());
 }
 
+function forbiddenSourceRowNote(value) {
+  const text = String(value || '');
+  if (!/quotation|example|translation(?!-output)/i.test(text)) return false;
+  if (/excluded|not imported/i.test(text)) return false;
+  if (/no\s+english[\s\S]{0,80}translation[\s\S]{0,80}imported/i.test(text)) return false;
+  if (/no[\s\S]{0,80}translation[\s\S]{0,80}imported/i.test(text)) return false;
+  return true;
+}
+
 function licenseUrlCompatible(row) {
   const license = String(row?.license || '').trim();
   const licenseUrl = String(row?.license_url || '').trim();
@@ -814,6 +830,8 @@ function writeReport(relativePath, data) {
     `- Forbidden fields_used entries: ${data.counts.forbidden_fields_used_entries}`,
     `- Source family checks: ${data.counts.source_family_checks}`,
     `- Invalid source family values: ${data.counts.invalid_source_family_values}`,
+    `- Source-row notes checked: ${data.counts.source_row_notes_checked}`,
+    `- Forbidden source-row notes: ${data.counts.forbidden_source_row_notes}`,
     `- Reference URL fields checked: ${data.counts.reference_url_fields_checked}`,
     `- Invalid reference URL fields: ${data.counts.invalid_reference_url_fields}`,
     `- Source URL compatibility checks: ${data.counts.source_url_compatibility_checks}`,
