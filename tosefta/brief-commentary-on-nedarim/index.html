@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brief Commentary on Nedarim</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Brief Commentary on Nedarim<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Nedarim</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Nedarim</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
+          </section>
+        </div>
+          <p class="hero-summary">
+            <span>113 source units</span>
+            <span>1027 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: The Tosefta according to to codex Vienna. Third Augmented Edition, JTS 2001 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001234517/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: CC-BY</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Brief Commentary on Nedarim <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Brief Commentary on Nedarim <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nedarim-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-1-1" title="Brief Commentary on Nedarim 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-2-1" title="Brief Commentary on Nedarim 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-2-2" title="Brief Commentary on Nedarim 1:2:2">1:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-2-3" title="Brief Commentary on Nedarim 1:2:3">1:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-2-4" title="Brief Commentary on Nedarim 1:2:4">1:2:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-2-5" title="Brief Commentary on Nedarim 1:2:5">1:2:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-2-6" title="Brief Commentary on Nedarim 1:2:6">1:2:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-2-7" title="Brief Commentary on Nedarim 1:2:7">1:2:7</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-2-8" title="Brief Commentary on Nedarim 1:2:8">1:2:8</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-2-9" title="Brief Commentary on Nedarim 1:2:9">1:2:9</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-3-1" title="Brief Commentary on Nedarim 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-3-2" title="Brief Commentary on Nedarim 1:3:2">1:3:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-3-3" title="Brief Commentary on Nedarim 1:3:3">1:3:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-3-4" title="Brief Commentary on Nedarim 1:3:4">1:3:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-3-5" title="Brief Commentary on Nedarim 1:3:5">1:3:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-3-6" title="Brief Commentary on Nedarim 1:3:6">1:3:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-4-1" title="Brief Commentary on Nedarim 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-4-2" title="Brief Commentary on Nedarim 1:4:2">1:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-5-1" title="Brief Commentary on Nedarim 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-5-2" title="Brief Commentary on Nedarim 1:5:2">1:5:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-6-1" title="Brief Commentary on Nedarim 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-6-2" title="Brief Commentary on Nedarim 1:6:2">1:6:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-1-6-3" title="Brief Commentary on Nedarim 1:6:3">1:6:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nedarim-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-1-1" title="Brief Commentary on Nedarim 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-1-2" title="Brief Commentary on Nedarim 2:1:2">2:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-2-1" title="Brief Commentary on Nedarim 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-2-2" title="Brief Commentary on Nedarim 2:2:2">2:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-4-1" title="Brief Commentary on Nedarim 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-4-2" title="Brief Commentary on Nedarim 2:4:2">2:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-7-1" title="Brief Commentary on Nedarim 2:7:1">2:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-7-2" title="Brief Commentary on Nedarim 2:7:2">2:7:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-7-3" title="Brief Commentary on Nedarim 2:7:3">2:7:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-7-4" title="Brief Commentary on Nedarim 2:7:4">2:7:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-7-5" title="Brief Commentary on Nedarim 2:7:5">2:7:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-8-1" title="Brief Commentary on Nedarim 2:8:1">2:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-8-2" title="Brief Commentary on Nedarim 2:8:2">2:8:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-9-1" title="Brief Commentary on Nedarim 2:9:1">2:9:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-9-2" title="Brief Commentary on Nedarim 2:9:2">2:9:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-9-3" title="Brief Commentary on Nedarim 2:9:3">2:9:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-9-4" title="Brief Commentary on Nedarim 2:9:4">2:9:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-9-5" title="Brief Commentary on Nedarim 2:9:5">2:9:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-9-6" title="Brief Commentary on Nedarim 2:9:6">2:9:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-9-7" title="Brief Commentary on Nedarim 2:9:7">2:9:7</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-2-10-1" title="Brief Commentary on Nedarim 2:10:1">2:10:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nedarim-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-1-1" title="Brief Commentary on Nedarim 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-1-2" title="Brief Commentary on Nedarim 3:1:2">3:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-2-1" title="Brief Commentary on Nedarim 3:2:1">3:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-2-2" title="Brief Commentary on Nedarim 3:2:2">3:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-2-3" title="Brief Commentary on Nedarim 3:2:3">3:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-2-4" title="Brief Commentary on Nedarim 3:2:4">3:2:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-2-5" title="Brief Commentary on Nedarim 3:2:5">3:2:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-3-1" title="Brief Commentary on Nedarim 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-3-2" title="Brief Commentary on Nedarim 3:3:2">3:3:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-3-3" title="Brief Commentary on Nedarim 3:3:3">3:3:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-4-1" title="Brief Commentary on Nedarim 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-4-2" title="Brief Commentary on Nedarim 3:4:2">3:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-4-3" title="Brief Commentary on Nedarim 3:4:3">3:4:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-4-4" title="Brief Commentary on Nedarim 3:4:4">3:4:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-6-1" title="Brief Commentary on Nedarim 3:6:1">3:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-6-2" title="Brief Commentary on Nedarim 3:6:2">3:6:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-6-3" title="Brief Commentary on Nedarim 3:6:3">3:6:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-6-4" title="Brief Commentary on Nedarim 3:6:4">3:6:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-6-5" title="Brief Commentary on Nedarim 3:6:5">3:6:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-6-6" title="Brief Commentary on Nedarim 3:6:6">3:6:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-3-7-1" title="Brief Commentary on Nedarim 3:7:1">3:7:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nedarim-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-1-1" title="Brief Commentary on Nedarim 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-1-2" title="Brief Commentary on Nedarim 4:1:2">4:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-1-3" title="Brief Commentary on Nedarim 4:1:3">4:1:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-1-4" title="Brief Commentary on Nedarim 4:1:4">4:1:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-2-1" title="Brief Commentary on Nedarim 4:2:1">4:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-4-1" title="Brief Commentary on Nedarim 4:4:1">4:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-4-2" title="Brief Commentary on Nedarim 4:4:2">4:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-5-1" title="Brief Commentary on Nedarim 4:5:1">4:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-5-2" title="Brief Commentary on Nedarim 4:5:2">4:5:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-4-6-1" title="Brief Commentary on Nedarim 4:6:1">4:6:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nedarim-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-1-1" title="Brief Commentary on Nedarim 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-1-2" title="Brief Commentary on Nedarim 5:1:2">5:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-1-3" title="Brief Commentary on Nedarim 5:1:3">5:1:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-1-4" title="Brief Commentary on Nedarim 5:1:4">5:1:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-1-5" title="Brief Commentary on Nedarim 5:1:5">5:1:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-1-6" title="Brief Commentary on Nedarim 5:1:6">5:1:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-2-1" title="Brief Commentary on Nedarim 5:2:1">5:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-3-1" title="Brief Commentary on Nedarim 5:3:1">5:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-5-1" title="Brief Commentary on Nedarim 5:5:1">5:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-5-2" title="Brief Commentary on Nedarim 5:5:2">5:5:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-5-6-1" title="Brief Commentary on Nedarim 5:6:1">5:6:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nedarim-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-1-1" title="Brief Commentary on Nedarim 6:1:1">6:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-2-1" title="Brief Commentary on Nedarim 6:2:1">6:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-2-2" title="Brief Commentary on Nedarim 6:2:2">6:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-2-3" title="Brief Commentary on Nedarim 6:2:3">6:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-3-1" title="Brief Commentary on Nedarim 6:3:1">6:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-3-2" title="Brief Commentary on Nedarim 6:3:2">6:3:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-4-1" title="Brief Commentary on Nedarim 6:4:1">6:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-4-2" title="Brief Commentary on Nedarim 6:4:2">6:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-4-3" title="Brief Commentary on Nedarim 6:4:3">6:4:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-4-4" title="Brief Commentary on Nedarim 6:4:4">6:4:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-5-1" title="Brief Commentary on Nedarim 6:5:1">6:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-5-2" title="Brief Commentary on Nedarim 6:5:2">6:5:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-5-3" title="Brief Commentary on Nedarim 6:5:3">6:5:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-5-4" title="Brief Commentary on Nedarim 6:5:4">6:5:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-5-5" title="Brief Commentary on Nedarim 6:5:5">6:5:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-5-6" title="Brief Commentary on Nedarim 6:5:6">6:5:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-5-7" title="Brief Commentary on Nedarim 6:5:7">6:5:7</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-5-8" title="Brief Commentary on Nedarim 6:5:8">6:5:8</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-5-9" title="Brief Commentary on Nedarim 6:5:9">6:5:9</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-6-7-1" title="Brief Commentary on Nedarim 6:7:1">6:7:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nedarim-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-7-1-1" title="Brief Commentary on Nedarim 7:1:1">7:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-7-1-2" title="Brief Commentary on Nedarim 7:1:2">7:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-7-4-1" title="Brief Commentary on Nedarim 7:4:1">7:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-7-5-1" title="Brief Commentary on Nedarim 7:5:1">7:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-7-6-1" title="Brief Commentary on Nedarim 7:6:1">7:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-7-6-2" title="Brief Commentary on Nedarim 7:6:2">7:6:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nedarim-7-8-1" title="Brief Commentary on Nedarim 7:8:1">7:8:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-brief-commentary-on-nedarim-text-1">Chapter 1</h4>
+          <section class="unit" id="brief-commentary-on-nedarim-1-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-1-1" data-source-ref="Brief Commentary on Nedarim 1:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-1-1" aria-label="Copy link to Brief Commentary on Nedarim 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לשם וכו׳.</strong> משום שנהגו לומר: לשם (=לה׳) קרבן, והוי ליה יד לקרבן. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-2-1" data-source-ref="Brief Commentary on Nedarim 1:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-2-1" aria-label="Copy link to Brief Commentary on Nedarim 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>איני נודר וכו׳.</strong> כלומר, היו מסרבין בו לאכול, ואמר: איני נודר, ולא אכל, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-2-2" data-source-ref="Brief Commentary on Nedarim 1:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-2-2" aria-label="Copy link to Brief Commentary on Nedarim 1:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כבר הייתי וכו׳.</strong> אנו אומרים שכוונתו: אפילו אם לא נדרתי הייתי נודר עכשיו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-2-3" data-source-ref="Brief Commentary on Nedarim 1:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-2-3" aria-label="Copy link to Brief Commentary on Nedarim 1:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קרבן אם וכו׳.</strong> שמא צ&quot;ל: [לא] קרבן אם וכו׳, ודינו כאיני נודר, לעיל שו׳ 9.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-2-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-2-4" data-source-ref="Brief Commentary on Nedarim 1:2:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:2:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-2-4" aria-label="Copy link to Brief Commentary on Nedarim 1:2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא טעמו וכו׳.</strong> כלומר, אם איני טועמו הוא לא קרבן, אבל אם טועמו אני הוא קרבן, ומכלל לאו אתה שומע הן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-2-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-2-5" data-source-ref="Brief Commentary on Nedarim 1:2:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:2:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-2-5" aria-label="Copy link to Brief Commentary on Nedarim 1:2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומ׳ מוהי וכו׳.</strong> כלומר, האומר &quot;מוהי&quot;, וכן אם אמר &quot;דאמר מוהי&quot;, והיינו במה &quot;שאמר מוהי&quot;, כוונתו ל&quot;משה&quot; ולמה &quot;שאמר משה&quot;, ודינו כאילו אמר &quot;במי ששלח את משה&quot;, או בשבועה &quot;שאמר משה&quot;. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-2-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-2-6" data-source-ref="Brief Commentary on Nedarim 1:2:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:2:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-2-6" aria-label="Copy link to Brief Commentary on Nedarim 1:2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבטלו דבריו וכו׳.</strong> כלומר, שלא נתקיימה כוונתו אסור. והאומר &quot;קרבן אם טועמו אני&quot; הרי כיוון לומר שלא יטעמו, ואם טעמו נאסר עליו. וכן השני שאמר &quot;אין קרבן אם טועמו אתה&quot; הרי כיוון לומר שהראשון יטעם, ואם לא יטעם יהא קרבן, אם בטלו דברי השני והראשון לא טעם, השני אסור. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-2-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-2-7" data-source-ref="Brief Commentary on Nedarim 1:2:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:2:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-2-7" aria-label="Copy link to Brief Commentary on Nedarim 1:2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כנגד ירושלם.</strong> אולי צ&quot;ל: כנגד [קרבנות] ירושלם. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-2-8" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-2-8" data-source-ref="Brief Commentary on Nedarim 1:2:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:2:8</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-2-8" aria-label="Copy link to Brief Commentary on Nedarim 1:2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לר׳ יהודה.</strong> כלומר שאמרו במשנתנו (פ&quot;א מ&quot;ד): קרבן וכו׳ ר׳ יהודה מתיר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-2-9" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-2-9" data-source-ref="Brief Commentary on Nedarim 1:2:9">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:2:9</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-2-9" aria-label="Copy link to Brief Commentary on Nedarim 1:2:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני אוכל וכו׳.</strong> בד: שאיני וכו׳, ואף לפנינו שני=שאיני, וזו היא לשון שבועה, והואיל והיו רגילים להשבע בחיי הקרבן (עיין בבה&quot;א הע׳ 22) אנו תולים שאף כאן נתכוון כן. אבל אם הזכיר קונם, או שאמר &quot;שאני&quot; (=מה שאני), אסור. ור׳ יהודה במשנתנו סובר שאף אם אמר &quot;שאני&quot; לא נתכוין אלא להשבע בחיי הקרבן. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-3-1" data-source-ref="Brief Commentary on Nedarim 1:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-3-1" aria-label="Copy link to Brief Commentary on Nedarim 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני אוכל לך וכו׳.</strong> כלומר, מה שאוכל לך יהא כירושלם, כמזבח וכו׳, אסור, שיש כאן לשון נדר גרידא. אבל אם אמר: ירושלם, היכל, מזבח וכו׳ לא אוכל לך הרי יש כאן לשון שבועה ואנו תולים שנשבע בכל אילו, ומותר. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-3-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-3-2" data-source-ref="Brief Commentary on Nedarim 1:3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:3:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-3-2" aria-label="Copy link to Brief Commentary on Nedarim 1:3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובין שלא אוכל וכו׳.</strong> ברייתא זו סוברת שאין אומרים מכלל לאו אתה שומע הן, ואפילו אמר: חולין שלא אוכל לך, דמשמע הא מה שיאכל לא יהא חולין אלא קרבן, אין כאן נדר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-3-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-3-3" data-source-ref="Brief Commentary on Nedarim 1:3:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:3:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-3-3" aria-label="Copy link to Brief Commentary on Nedarim 1:3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[לא] חולין וכו׳.</strong> כלומר, אדם האומר &quot;לא חולין&quot; כאילו אומר במפורש &quot;קרבן&quot;, ואינו עניין למכלל לאו אתה שומע הן, ולכולי עלמא אסור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-3-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-3-4" data-source-ref="Brief Commentary on Nedarim 1:3:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:3:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-3-4" aria-label="Copy link to Brief Commentary on Nedarim 1:3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חולין, שאוכל לך, לא יאכל לך וכו׳.</strong> יש כאן חזרה על ההלכה שברישא, כלומר, אם אמר &quot;חולין&quot;, בין שאמר שאוכל לך, בין שאמר לא יאכל לך, ובין שאמר לא אוכל לך, הכל מותר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-3-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-3-5" data-source-ref="Brief Commentary on Nedarim 1:3:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:3:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-3-5" aria-label="Copy link to Brief Commentary on Nedarim 1:3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא עולה לא אוכל וכו׳.</strong> ומשמע הא מה שיאכל יהא עולה, וסובר ר׳ יעקב מכלל לאו אתה שומע הן, ואסור. וחכמים חולקין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-3-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-3-6" data-source-ref="Brief Commentary on Nedarim 1:3:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:3:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-3-6" aria-label="Copy link to Brief Commentary on Nedarim 1:3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלא הקדיש וכו׳.</strong> שהרי לא התפיס בדבר הנדור אלא בדבר האסור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-4-1" data-source-ref="Brief Commentary on Nedarim 1:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-4-1" aria-label="Copy link to Brief Commentary on Nedarim 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן התורה וכו׳.</strong> הכוונה: בתורה (כגי׳ כי&quot;ע והתלמודים) וכו׳, בכתוב בתורה וכו׳, בתורה ובכתוב [בה]. ואם נדר בתורה כוונתו לקדושת התורה ואין כאן דבר הנדור, אבל בכתוב בה, כוונתו לקרבנות הכתובים בה, ואם נדר בתורה ובכתוב בה אסור. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-4-2" data-source-ref="Brief Commentary on Nedarim 1:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-4-2" aria-label="Copy link to Brief Commentary on Nedarim 1:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכת׳ בתורה וכו׳.</strong> כלומר, לאסר אסר (במדבר ל׳, ג׳).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-5-1" data-source-ref="Brief Commentary on Nedarim 1:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-5-1" aria-label="Copy link to Brief Commentary on Nedarim 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נוהגין ברשות וכו׳.</strong> והדוגמאות הן להלן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-5-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-5-2" data-source-ref="Brief Commentary on Nedarim 1:5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:5:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-5-2" aria-label="Copy link to Brief Commentary on Nedarim 1:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד אמ׳ וכו׳.</strong> הנכון הוא בקג&quot;נ: בשבועה כיצד, אמ׳ שבועה שאיני ישן ושאיני וכו׳, וכע&quot;ז בכי&quot;ע, עיין בשנו&quot;ס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-6-1" data-source-ref="Brief Commentary on Nedarim 1:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-6-1" aria-label="Copy link to Brief Commentary on Nedarim 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנדרו לזמן מועט וכו׳.</strong> הכוונה כאן לנדר של נזירות (כמפורש בירושלמי ובבבלי), ונזירות מועטת היא ל׳ יום, ואם באמצע נזירותו שתה יין יותר מל׳ יום (שהרי כל זמן שלא הביא קרבנותיו הרי הוא בנזירותו לעולם), דיו שינהוג אח&quot;כ נזירות ל׳ יום, כעיקר נדרו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-6-2" data-source-ref="Brief Commentary on Nedarim 1:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-6-2" aria-label="Copy link to Brief Commentary on Nedarim 1:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תרומה ביהודה וכו׳.</strong> וביהודה סתם תרומה היא תרומת הלשכה, והוא דבר הנדור, ואם אמר כתרומה, אסור, אבל בגליל סתם תרומה היא תרומת כהן, והוא דבר האסור, ואם התפיס בה מותר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-1-6-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-1-6-3" data-source-ref="Brief Commentary on Nedarim 1:6:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 1:6:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-1-6-3" aria-label="Copy link to Brief Commentary on Nedarim 1:6:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מותרין בגליל.</strong> צ&quot;ל: מותרין [ביהודה, ואסורין] בגליל, כעין גי׳ ד. והוא שסתם חרמין ביהודה הם חרמי כהנים, ובגליל הם חרמי גבוה, לבדק הבית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nedarim-text-2">Chapter 2</h4>
+          <section class="unit" id="brief-commentary-on-nedarim-2-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-1-1" data-source-ref="Brief Commentary on Nedarim 2:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-1-1" aria-label="Copy link to Brief Commentary on Nedarim 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נדרי זירוזין.</strong> כלומר, ומותרין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-1-2" data-source-ref="Brief Commentary on Nedarim 2:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-1-2" aria-label="Copy link to Brief Commentary on Nedarim 2:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמ׳ קונם וכו׳.</strong> בד: נדרי הבאי, אמר קונם וכו׳. ואף לפנינו הכוונה כן, והברייתא דבוקה למשנתנו (פ&quot;ג מ&quot;ב) שמתירה נדרי הבאי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-2-1" data-source-ref="Brief Commentary on Nedarim 2:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-2-1" aria-label="Copy link to Brief Commentary on Nedarim 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תולין לחרגין וכו׳.</strong> כלומר, החרגין והחרמין (ושניהם פקידי המלכות שבכוחם להחרים רכוש, עיין בבה&quot;א) והמוכסים שרוצים לתפוס פירות של ישראל מותר לו לישראל לתלות את הפירות לתרומה (=בתרומה), כלומר לנדור שהפירות הן של תרומה, או שהן של גוי תקיף, או שהן של בית המלך, והנדרים מותרים, משום שהן נדרי אונסין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-2-2" data-source-ref="Brief Commentary on Nedarim 2:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-2-2" aria-label="Copy link to Brief Commentary on Nedarim 2:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לישראל.</strong> אבל אסור לתלות את הפירות בישראל תקיף, ואף שעכשיו החרג והחרם מפחדים ממנו, מצויים הם בעלי זרוע ליפול, ואח&quot;כ יבואו ויגלגלו עליו גם את הפירות שתלו בו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-4-1" data-source-ref="Brief Commentary on Nedarim 2:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-4-1" aria-label="Copy link to Brief Commentary on Nedarim 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור בגרים וכו׳.</strong> שאף גרים בכלל ישראל, והנודר מן הכלל אסור בפרט, אבל הנודר מן הפרט אינו אסור אלא בו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-4-2" data-source-ref="Brief Commentary on Nedarim 2:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-4-2" aria-label="Copy link to Brief Commentary on Nedarim 2:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ביתר ומוכר בפחות.</strong> הנכון הוא בכי&quot;ע: לוקח בפחות ומוכר ביוקר, וממילא אין ישראל נהנין ממנו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-7-1" data-source-ref="Brief Commentary on Nedarim 2:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-7-1" aria-label="Copy link to Brief Commentary on Nedarim 2:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מאכל.</strong> כלומר, הנאת מאכל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-7-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-7-2" data-source-ref="Brief Commentary on Nedarim 2:7:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:7:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-7-2" aria-label="Copy link to Brief Commentary on Nedarim 2:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נכנס לבקרו.</strong> כלומר, למודר, משום דרכי שלום, ואעפ&quot;י שהמבקר הדיר את החולה, מבקרו ומוכיח לו שאינו רוצה שימות. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-7-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-7-3" data-source-ref="Brief Commentary on Nedarim 2:7:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:7:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-7-3" aria-label="Copy link to Brief Commentary on Nedarim 2:7:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה לו חלה וכו׳.</strong> כלומר, אם היה לו למודר חולה בביתו אינו נכנס וכו׳, שהרי החולה יודע שלאו מחמת שנאה אליו אינו מבקרו, ואין כאן קפידא, אבל שואל בשלומו של החולה ע&quot;י המודר, אעפ&quot;י שהחולה הוא קרובו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-7-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-7-4" data-source-ref="Brief Commentary on Nedarim 2:7:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:7:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-7-4" aria-label="Copy link to Brief Commentary on Nedarim 2:7:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה כהן וכו׳.</strong> כלומר, אם המדיר היה כהן זורק על המודר דם חטאתו וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-7-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-7-5" data-source-ref="Brief Commentary on Nedarim 2:7:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:7:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-7-5" aria-label="Copy link to Brief Commentary on Nedarim 2:7:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפני דרכי שלום.</strong> טעם זה עונה גם על מה שאמרו לעיל, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-8-1" data-source-ref="Brief Commentary on Nedarim 2:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-8-1" aria-label="Copy link to Brief Commentary on Nedarim 2:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא יורד וכו׳.</strong> כלומר, אפילו בשביעית, משום שכבר חל הנדר לפני שביעית, עיין בשנו&quot;ס ובבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-8-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-8-2" data-source-ref="Brief Commentary on Nedarim 2:8:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:8:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-8-2" aria-label="Copy link to Brief Commentary on Nedarim 2:8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בשביעית וכו׳.</strong> כלומר, אם נדר ממנו בשביעית יורד וכו׳, שהרי השדה והנטיעות הם הפקר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-9-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-9-1" data-source-ref="Brief Commentary on Nedarim 2:9:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:9:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-9-1" aria-label="Copy link to Brief Commentary on Nedarim 2:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בטובת הנאתו.</strong> שהרי לא אסר את הככר על אחרים. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-9-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-9-2" data-source-ref="Brief Commentary on Nedarim 2:9:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:9:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-9-2" aria-label="Copy link to Brief Commentary on Nedarim 2:9:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה וזה וכו׳.</strong> מפני שאין מעילה אלא בהקדיש ממש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-9-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-9-3" data-source-ref="Brief Commentary on Nedarim 2:9:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:9:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-9-3" aria-label="Copy link to Brief Commentary on Nedarim 2:9:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והלה נוטל ואוכל.</strong> פיסקא ממשנתנו (ספ&quot;ד) שהתירה למדיר להפקיר מאכל אם אין לו למודר מה יאכל, והם שניהם בדרך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-9-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-9-4" data-source-ref="Brief Commentary on Nedarim 2:9:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:9:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-9-4" aria-label="Copy link to Brief Commentary on Nedarim 2:9:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ר׳ יוסה אומ׳ וכו׳.</strong> צ&quot;ל: אוס׳, אוסר (כמו שהוא בכי&quot;ע ובקג&quot;נ), מפני שקדם נדרו להפקרו, והוא סובר שאין הפקר יוצא מידי רשות המפקיר כל זמן שלא זכה בו אחר, ואם המודר זוכה בהפקר הרי הוא כמקבל מתנה ממנו. אבל אם הפקיר את נכסיו ואח&quot;כ הדיר את חבירו, מותר המודר לזכות מן ההפקר, מפני שלא היתה דעת המדיר להדירו מנכסיו שכבר הפקירן, אעפ&quot;י שהם עדיין ברשותו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-9-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-9-5" data-source-ref="Brief Commentary on Nedarim 2:9:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:9:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-9-5" aria-label="Copy link to Brief Commentary on Nedarim 2:9:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשם ששניהן וכו׳.</strong> כלומר, שותפין שנדרו הנאה זה מזה, עיין במשנתנו רפ&quot;ה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-9-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-9-6" data-source-ref="Brief Commentary on Nedarim 2:9:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:9:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-9-6" aria-label="Copy link to Brief Commentary on Nedarim 2:9:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראוי להדיר וכו׳.</strong> צ&quot;ל: רגיל להדיר וכו׳, כמו שמעתיקים הראשונים, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-9-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-9-7" data-source-ref="Brief Commentary on Nedarim 2:9:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:9:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-9-7" aria-label="Copy link to Brief Commentary on Nedarim 2:9:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>של עולי בבל.</strong> ואם שנים הדירו הנאה זה מזה מותרים ברחבה זו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-2-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-2-10-1" data-source-ref="Brief Commentary on Nedarim 2:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 2:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-2-10-1" aria-label="Copy link to Brief Commentary on Nedarim 2:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלא בפניו.</strong> כדי שלא יחשדנו שעבר על נדרו, או מפני הבושה, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nedarim-text-3">Chapter 3</h4>
+          <section class="unit" id="brief-commentary-on-nedarim-3-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-1-1" data-source-ref="Brief Commentary on Nedarim 3:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-1-1" aria-label="Copy link to Brief Commentary on Nedarim 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בסיטרות וכו׳.</strong> בכי&quot;ע: בטריות, ולפנינו צ&quot;ל: באיטרות, באיטריות, והוא שם כולל לכל מיני רקיקים שהכילו שומשמין, דבש ושומן, ודינן כתבשיל וכמעשה קדירה רך, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-1-2" data-source-ref="Brief Commentary on Nedarim 3:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-1-2" aria-label="Copy link to Brief Commentary on Nedarim 3:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מותר ביורד וכו׳.</strong> צ&quot;ל: אסור ביורד לאילפס וכו׳, מותר ביורד לקדירה, כמו שהוא בכי&quot;ע ובירושלמי ובבבלי. והטעם הוא שכל היורד לקדירה עלול לרדת לאילפס, אם רוצים לבשל מעט ובזמן קצר, אבל יש דברים שמתקנים באילפס גרידא, ולא בקדירה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-2-1" data-source-ref="Brief Commentary on Nedarim 3:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-2-1" aria-label="Copy link to Brief Commentary on Nedarim 3:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנעשין בקדירה וכו׳.</strong> בלשון בני אדם הבדילו בין מעשה קדירה לבין מעשה אילפס, וזה לחוד וזר לחוד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-2-2" data-source-ref="Brief Commentary on Nedarim 3:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-2-2" aria-label="Copy link to Brief Commentary on Nedarim 3:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן הקיים וכו׳.</strong> כלומר, מן הקום. ופירשו בירושלמי: חלבא מקטרא, חלב קשור. ויש מפרשים שהוא נסיובא דחלבא (serum). עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-2-3" data-source-ref="Brief Commentary on Nedarim 3:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-2-3" aria-label="Copy link to Brief Commentary on Nedarim 3:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור.</strong> בד, בקג&quot;נ ובכי&quot;ע: מותר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-2-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-2-4" data-source-ref="Brief Commentary on Nedarim 3:2:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:2:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-2-4" aria-label="Copy link to Brief Commentary on Nedarim 3:2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בקופה.</strong> כלומר, בקיפה, בבשר מצומק שנמחה בקדירה, או במקפה עבה מתבלין, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-2-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-2-5" data-source-ref="Brief Commentary on Nedarim 3:2:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:2:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-2-5" aria-label="Copy link to Brief Commentary on Nedarim 3:2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובהקיפו.</strong> בד: ובקיפה, ובבבלי: בקיפו. ואסר ר׳ יהודה משום שיש בו ברוטב ובמקפה טעם בשר. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-3-1" data-source-ref="Brief Commentary on Nedarim 3:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-3-1" aria-label="Copy link to Brief Commentary on Nedarim 3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ששם תולדתו וכו׳.</strong> כגון תירוש, שמן ודבש שכוונתו לפעמים: יין, זיתים ותמרים, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-3-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-3-2" data-source-ref="Brief Commentary on Nedarim 3:3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:3:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-3-2" aria-label="Copy link to Brief Commentary on Nedarim 3:3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין דרך היוצא וכו׳.</strong> כגון מי תותים, שאין תותים עומדים לסחיטה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-3-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-3-3" data-source-ref="Brief Commentary on Nedarim 3:3:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:3:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-3-3" aria-label="Copy link to Brief Commentary on Nedarim 3:3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין דרכו וכו׳.</strong> כגון זרעוני גינה שאינן נאכלין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-4-1" data-source-ref="Brief Commentary on Nedarim 3:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-4-1" aria-label="Copy link to Brief Commentary on Nedarim 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן הצמר וכו׳.</strong> ונדר ממנו מפני שהזיע מחמת המשא מ&quot;מ מותר לטעון פשתן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-4-2" data-source-ref="Brief Commentary on Nedarim 3:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-4-2" aria-label="Copy link to Brief Commentary on Nedarim 3:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שדרכו להתכסות וכו׳.</strong> כגון עורות כבשים, שמתכסים בעורות וגם בגיזי צמר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-4-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-4-3" data-source-ref="Brief Commentary on Nedarim 3:4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:4:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-4-3" aria-label="Copy link to Brief Commentary on Nedarim 3:4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין דרך היוצא וכו׳.</strong> כגון שער עורות עזים, שאין מתכסים בו, אבל מתכסים בעורות עזים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-4-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-4-4" data-source-ref="Brief Commentary on Nedarim 3:4:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:4:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-4-4" aria-label="Copy link to Brief Commentary on Nedarim 3:4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין דרכו וכו׳.</strong> כגון קני צמר גפן, שאין מתכסין בהן, אבל מתכסים בשמיכות של צמר גפן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-6-1" data-source-ref="Brief Commentary on Nedarim 3:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-6-1" aria-label="Copy link to Brief Commentary on Nedarim 3:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בירקות שדה.</strong> משום שבשביעית אין ירקות גינה מצויים, וכוונתו לירקות שדה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-6-2" data-source-ref="Brief Commentary on Nedarim 3:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-6-2" aria-label="Copy link to Brief Commentary on Nedarim 3:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באספרגיס.</strong> כלומר, בקלחים הרכים שיוצאים משרשי הכרוב. וזה הכלל, הנודר מן העיקר אסור בטפילה, אבל לא להפך. וכן להלן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-6-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-6-3" data-source-ref="Brief Commentary on Nedarim 3:6:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:6:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-6-3" aria-label="Copy link to Brief Commentary on Nedarim 3:6:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן הכרישין.</strong> כלומר, מן החציר. והיא פיסקא קטועה ממשנתנו פ&quot;ו מ&quot;ט: מן הכרישים, מותר בקפלוטות, והיינו בכרישין בעלי ראשים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-6-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-6-4" data-source-ref="Brief Commentary on Nedarim 3:6:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:6:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-6-4" aria-label="Copy link to Brief Commentary on Nedarim 3:6:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מותר בכרישין.</strong> כלומר, ואפילו במקום שקורין לקפלוטות כרישין, מפני שאפילו בכגון דא קפלוטות הן בכלל כרישין, אבל אין כרישין בכלל קפלוטות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-6-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-6-5" data-source-ref="Brief Commentary on Nedarim 3:6:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:6:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-6-5" aria-label="Copy link to Brief Commentary on Nedarim 3:6:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ור׳ יוסה מתיר.</strong> משום שהוא סובר שבני בצלים הוא מין אחר, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-6-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-6-6" data-source-ref="Brief Commentary on Nedarim 3:6:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:6:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-6-6" aria-label="Copy link to Brief Commentary on Nedarim 3:6:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באשישים.</strong> פירשו בירושלמי: עדשים קלויים וטחונים, מגובלין בדבש ומטוגנין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-3-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-3-7-1" data-source-ref="Brief Commentary on Nedarim 3:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 3:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-3-7-1" aria-label="Copy link to Brief Commentary on Nedarim 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואסור לאפות.</strong> כלומר, אסור לאפות ולאכול, והכוונה לאכילה גרידא, ואגב ששנה &quot;לכוס&quot; שנה &quot;לאפות&quot; , והכוונה שאסור באפוייה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nedarim-text-4">Chapter 4</h4>
+          <section class="unit" id="brief-commentary-on-nedarim-4-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-1-1" data-source-ref="Brief Commentary on Nedarim 4:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-1-1" aria-label="Copy link to Brief Commentary on Nedarim 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן הפיאה וכו׳.</strong> בכי&quot;ע: מן החפירא וכו׳, ובירושלמי: מן האפייה וכו׳. וברור שיש כאן מונח חקלאי, והכוונה לצמחים הדומים לפקעת, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-4-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-1-2" data-source-ref="Brief Commentary on Nedarim 4:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-1-2" aria-label="Copy link to Brief Commentary on Nedarim 4:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובחליקה ובטרגיס וכו׳.</strong> אלו הן דייסאות שהכינו מכוסמין, או מאורז, או משעורה וכו׳, והנודר מן הדגן אינו מכוין לדייסאות אילו, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-4-1-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-1-3" data-source-ref="Brief Commentary on Nedarim 4:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:1:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-1-3" aria-label="Copy link to Brief Commentary on Nedarim 4:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ופסקיא וכו׳.</strong> פסקיא היא מעין פונדא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-4-1-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-1-4" data-source-ref="Brief Commentary on Nedarim 4:1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:1:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-1-4" aria-label="Copy link to Brief Commentary on Nedarim 4:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בסקרטיא וכו׳.</strong> כלומר, מין לבוש של עור, וכן מותר בנעלי לבד (אנפיליא) ומכנסים קצרות (פלמיא). עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-4-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-2-1" data-source-ref="Brief Commentary on Nedarim 4:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-2-1" aria-label="Copy link to Brief Commentary on Nedarim 4:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחצר.</strong> בד: והצר, והיא היא, כלומר, והצטער.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-4-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-4-1" data-source-ref="Brief Commentary on Nedarim 4:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-4-1" aria-label="Copy link to Brief Commentary on Nedarim 4:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קרדום שאני קנוי.</strong> בכי&quot;ע: קונם קרדום וכו׳. ואף לפנינו הכוונה כן שאמר: קונם עלי הקרדום אם הוא שלי. ושוב אמר: קונם נכסים עלי אם יש לי וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-4-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-4-2" data-source-ref="Brief Commentary on Nedarim 4:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-4-2" aria-label="Copy link to Brief Commentary on Nedarim 4:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בידוע שאין לו וכו׳.</strong> שהרי אפילו אם היה לו קרדום כבר נאסר עליו בשעה שאמר &quot;קונם קרדום שאני קנוי&quot;, ויצא מרשותו, וכל שכן אם לא היה לו קרדום כלל, ונכסיו מותרין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-4-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-5-1" data-source-ref="Brief Commentary on Nedarim 4:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-5-1" aria-label="Copy link to Brief Commentary on Nedarim 4:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן הקייץ וכו׳.</strong> צ&quot;ל: עד הקייץ (כמו שהוא בבבלי), כלומר עד זמן הקייץ, ולא יותר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-4-5-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-5-2" data-source-ref="Brief Commentary on Nedarim 4:5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:5:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-5-2" aria-label="Copy link to Brief Commentary on Nedarim 4:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור עד פניו וכו׳.</strong> הנכון בכי&quot;ע: א׳ עד, כלומר, אמר עד פניו וכו׳, וכן בבבלי: ואמר עד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-4-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-4-6-1" data-source-ref="Brief Commentary on Nedarim 4:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 4:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-4-6-1" aria-label="Copy link to Brief Commentary on Nedarim 4:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולעולם אסור וכו׳.</strong> בכי&quot;ע: ואם לאו אסור וכו׳. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nedarim-text-5">Chapter 5</h4>
+          <section class="unit" id="brief-commentary-on-nedarim-5-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-1-1" data-source-ref="Brief Commentary on Nedarim 5:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-1-1" aria-label="Copy link to Brief Commentary on Nedarim 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וקודם לנדרו נודע וכו׳.</strong> הכוונה היא שנודע אח&quot;כ שנפלו לו בירושה קודם לנדרו, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-1-2" data-source-ref="Brief Commentary on Nedarim 5:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-1-2" aria-label="Copy link to Brief Commentary on Nedarim 5:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והתירה על נדרו.</strong> בד: והעבירוה על נדרו. ולפנינו הכוונה שוויתרה על נדרו ועברה עליו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-1-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-1-3" data-source-ref="Brief Commentary on Nedarim 5:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:1:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-1-3" aria-label="Copy link to Brief Commentary on Nedarim 5:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הימנו למטה מותר וכו׳.</strong> כלומר, מכיון שאמר &quot;לזה לזה ולזה&quot;, דינו כאילו תלה כל אחד בשלפניו, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-1-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-1-4" data-source-ref="Brief Commentary on Nedarim 5:1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:1:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-1-4" aria-label="Copy link to Brief Commentary on Nedarim 5:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרב לתלמיד.</strong> כלומר, כדי שאילת שלום הרב אצל התלמיד, או: בין הרב לתלמיד (כגירסת הירושלמי), והיינו כדי שאילת התלמיד בשלום רבו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-1-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-1-5" data-source-ref="Brief Commentary on Nedarim 5:1:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:1:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-1-5" aria-label="Copy link to Brief Commentary on Nedarim 5:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני נדרים.</strong> כלומר, ואין אומרים אם הותר אחד מהן, והיינו אפילו הותר השני מותר בראשון, מפני שנדר שבטל מקצתו בטל כולו, אלא לפנינו שני נדרים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-1-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-1-6" data-source-ref="Brief Commentary on Nedarim 5:1:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:1:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-1-6" aria-label="Copy link to Brief Commentary on Nedarim 5:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הותר השיני.</strong> ולאו משום שבטל מקצתו בטל כולו, אלא משום שאמר &quot;ועוד לפלני&quot;, משמע שתלה את השני בראשון, ואם יתיר לו חכם בראשון יותר ממילא גם בשני, אבל לא להפך, כמפורש להלן. ועיין לעיל, שו׳ 15.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-2-1" data-source-ref="Brief Commentary on Nedarim 5:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-2-1" aria-label="Copy link to Brief Commentary on Nedarim 5:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על הראשון וכו׳.</strong> כלומר, נשאלין לו על הראשון תחילה, שהרי כל זמן שלא נשאל על נדרו הראשון עדיין מותר בכל החכמים, ואין נשאלין על נדר לפני שחל האיסור. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-3-1" data-source-ref="Brief Commentary on Nedarim 5:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-3-1" aria-label="Copy link to Brief Commentary on Nedarim 5:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונדר בקרבן וכו׳.</strong> שהרי עולה וקרבן, וכן חרם והקדש, שניהם אחד הם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-5-1" data-source-ref="Brief Commentary on Nedarim 5:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-5-1" aria-label="Copy link to Brief Commentary on Nedarim 5:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונשאל לחכם וכו׳.</strong> כלומר, בדיעבד, שהרי לכתחילה יכול להשאל לחכם מעיר אחרת, ולא לחכם מאותה עיר שנדר מהנייתו, ונראה כנוגע בדבר (&quot;נשאל על פי עצמו&quot;). ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-5-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-5-2" data-source-ref="Brief Commentary on Nedarim 5:5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:5:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-5-2" aria-label="Copy link to Brief Commentary on Nedarim 5:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשאל לחכם וכו׳.</strong> כלומר, נשאל לכתחילה, משום שאין לו ברירא אחרת, שהרי נדר מליהנות מכל החכמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-5-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-5-6-1" data-source-ref="Brief Commentary on Nedarim 5:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 5:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-5-6-1" aria-label="Copy link to Brief Commentary on Nedarim 5:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זכיתה בה וכו׳.</strong> במשנתנו ספ&quot;ט: ומעשה באחד שנדר מבת אחותו הנייה, והכניסוה לבית ר׳ ישמעאל וייפוה, א&quot;ל ר׳ ישמעאל, בני, לזו נדרת? אמר לו, לאו. ופירשו בירוש׳ ובבבלי שעשה לה שן של זהב. ולפיכך אמר לו: זכית וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nedarim-text-6">Chapter 6</h4>
+          <section class="unit" id="brief-commentary-on-nedarim-6-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-1-1" data-source-ref="Brief Commentary on Nedarim 6:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-1-1" aria-label="Copy link to Brief Commentary on Nedarim 6:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד וכו׳.</strong> כלומר כיצד מפירין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-2-1" data-source-ref="Brief Commentary on Nedarim 6:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-2-1" aria-label="Copy link to Brief Commentary on Nedarim 6:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמע והפר ומת וכו׳.</strong> המלים &quot;שמע והפר&quot; הוא שריד מנוסח אחר, והן מיותרות, וצ&quot;ל כנוסח קג&quot;נ: או ששמע ושתק ומת בו ביום וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-2-2" data-source-ref="Brief Commentary on Nedarim 6:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-2-2" aria-label="Copy link to Brief Commentary on Nedarim 6:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל שמע ושתק וכו׳.</strong> בכי&quot;ע, בקג&quot;נ ובבבלי הסדר הוא: אבל שמע וקיים, שמע ושתק ומת ביום שלאחריו וכו׳. וכצ&quot;ל לפנינו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-2-3" data-source-ref="Brief Commentary on Nedarim 6:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-2-3" aria-label="Copy link to Brief Commentary on Nedarim 6:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין יכול להפר.</strong> כלומר, אין האב יכול להפר אפילו לפני מיתת הבעל, שהרי כבר קיים לה בעלה. וכל הבבא כאן מדברת בששמע האב לפני מיתת הבעל, בניגוד לסיפא שלהלן (שו׳ 9): ולא הספיק האב לשמוע וכו׳. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-3-1" data-source-ref="Brief Commentary on Nedarim 6:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-3-1" aria-label="Copy link to Brief Commentary on Nedarim 6:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הפרה אסורה.</strong> בכי&quot;ע ובקג&quot;נ: הרי זה אסור, ובד: הרי זו אסורה, כלומר, אסור לה לעבור על נדרה, אעפ&quot;י שאין כאן הפרה בטילה, ואינה לוקה, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-3-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-3-2" data-source-ref="Brief Commentary on Nedarim 6:3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:3:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-3-2" aria-label="Copy link to Brief Commentary on Nedarim 6:3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אינו יכול וכו׳.</strong> שהרי כבר הפר חלקו, ואינו יכול להפר את חלק בעלה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-4-1" data-source-ref="Brief Commentary on Nedarim 6:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-4-1" aria-label="Copy link to Brief Commentary on Nedarim 6:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמע האב והפר לה וכו׳.</strong> צ&quot;ל: ולא הפר לה וכו׳, כגירסת בעל תוספ׳ רי&quot;ד בברייתא שבבבלי. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-4-2" data-source-ref="Brief Commentary on Nedarim 6:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-4-2" aria-label="Copy link to Brief Commentary on Nedarim 6:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יחזור הבעל וכו׳.</strong> והוא כת&quot;ק לעיל, שו׳ 14. ולעיל שם לא נתארסה לאחר לפיכך האב מיפר חלקו של בעל המת, אבל כאן הרי יש לה כבר בעל אחר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-4-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-4-3" data-source-ref="Brief Commentary on Nedarim 6:4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:4:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-4-3" aria-label="Copy link to Brief Commentary on Nedarim 6:4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין יכול להפר.</strong> ור׳ נתן מוסיף שאינו יכול להפר אפילו בסיוע הבעל השני, עיין לעיל שו׳ 15, ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-4-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-4-4" data-source-ref="Brief Commentary on Nedarim 6:4:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:4:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-4-4" aria-label="Copy link to Brief Commentary on Nedarim 6:4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והחזירה בו ביום וכו׳.</strong> במשנ׳ פ&quot;י מ&quot;ג: כל שלא יצאת לרשות עצמה שעה אחת אביה ובעלה האחרון מפירין נדריה. ומפרשת התוספתא את היציאה מרשות האב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-5-1" data-source-ref="Brief Commentary on Nedarim 6:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-5-1" aria-label="Copy link to Brief Commentary on Nedarim 6:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שומרת יבם וכו׳.</strong> כלומר, ועשה בה מאמר, כפירוש הירושלמי והבבלי. יפר. כלומר, בשותפות עם האב, אם נפלה לו מן האירוסין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-5-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-5-2" data-source-ref="Brief Commentary on Nedarim 6:5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:5:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-5-2" aria-label="Copy link to Brief Commentary on Nedarim 6:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין לבה וכו׳.</strong> לבה=לי בה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-5-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-5-3" data-source-ref="Brief Commentary on Nedarim 6:5:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:5:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-5-3" aria-label="Copy link to Brief Commentary on Nedarim 6:5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משבאת לרשותי ניגמרה וכו׳.</strong> כלומר, כשנתארסה לי ניגמרה לי והנני מפר יחד עם האב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-5-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-5-4" data-source-ref="Brief Commentary on Nedarim 6:5:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:5:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-5-4" aria-label="Copy link to Brief Commentary on Nedarim 6:5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משבאת לרשותי אינו דין וכו׳.</strong> כלומר, כשעשיתי בה מאמר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-5-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-5-5" data-source-ref="Brief Commentary on Nedarim 6:5:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:5:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-5-5" aria-label="Copy link to Brief Commentary on Nedarim 6:5:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלא חלקת וכו׳.</strong> כלומר, לעניין מיתה, אם זנתה, שאפילו אם אין כאן אלא יבם אחד שעשה בה מאמר פטורה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-5-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-5-6" data-source-ref="Brief Commentary on Nedarim 6:5:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:5:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-5-6" aria-label="Copy link to Brief Commentary on Nedarim 6:5:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבל אילו הייתה וכו׳.</strong> כלומר, חבל, והלוואי והיית בימי ר׳ אלעזר בן ערך שסבר שמאמר קונה קניין גמור אף לפטור את הצרה, שמא היה מקבל את תשובתך בעניין הפרת נדרי היבמה אחרי המאמר, אבל לאמיתו של דבר אף הוא סבר בשעתו שגם לעניין הפרת נדרים אשתו היא. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-5-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-5-7" data-source-ref="Brief Commentary on Nedarim 6:5:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:5:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-5-7" aria-label="Copy link to Brief Commentary on Nedarim 6:5:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמ׳ לו ר׳ ליעזר מקוה יוכיח וכו׳.</strong> צ&quot;ל: אמ׳ לו [ל]ר׳ ליעזר וכו׳. והכוונה לשיטתו (במשנ׳ פ&quot;י מ&quot;ז) שהבעל יכול להפר נדרים שעדיין לא נדרה, ודרש ק&quot;ו, אם הוא יכול להפר נדרים שבאו לכלל איסור, ק&quot;ו אם עדיין לא באו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-5-8" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-5-8" data-source-ref="Brief Commentary on Nedarim 6:5:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:5:8</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-5-8" aria-label="Copy link to Brief Commentary on Nedarim 6:5:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עד שלא ידור.</strong> שהרי יכול להתנות מתחילה ולבטל כל נדריו שידור מכאן ולהבא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-5-9" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-5-9" data-source-ref="Brief Commentary on Nedarim 6:5:9">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:5:9</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-5-9" aria-label="Copy link to Brief Commentary on Nedarim 6:5:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רצה להקים מקים.</strong> כלומר, שהרי בשעת נדרו רשאי שלא להשגיח בתנאו, ואם זוכר את התנאי ומכל מקום נודר, חייב לקיים את נדרו. נמצא שאין ההפרה (התנאי) מבטלת את נדרו, אלא בשעת הנדר עצמו, שהוא נודר על סמך התנאי, מה שאין כן באשתו שהפרתו מתקיימת מיד, ואינו יכול לחזור בו, ולפני שנדרה אין להפרתו על מה לחול.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-6-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-6-7-1" data-source-ref="Brief Commentary on Nedarim 6:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 6:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-6-7-1" aria-label="Copy link to Brief Commentary on Nedarim 6:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מאבא היום וכו׳.</strong> כלומר, משום כבוד אביו, או משום כדי חייו. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nedarim-text-7">Chapter 7</h4>
+          <section class="unit" id="brief-commentary-on-nedarim-7-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-7-1-1" data-source-ref="Brief Commentary on Nedarim 7:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 7:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-7-1-1" aria-label="Copy link to Brief Commentary on Nedarim 7:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לבין אחרים.</strong> כלומר, שנדרה מדברים שבאו לה מאחרים (שלא מיד בעלה). ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-7-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-7-1-2" data-source-ref="Brief Commentary on Nedarim 7:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 7:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-7-1-2" aria-label="Copy link to Brief Commentary on Nedarim 7:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא יחל דברו.</strong> כלומר, ומיפר מדרבנן, שלא תקל ראשה בנדרים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-7-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-7-4-1" data-source-ref="Brief Commentary on Nedarim 7:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 7:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-7-4-1" aria-label="Copy link to Brief Commentary on Nedarim 7:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לתאנים וחשיכה וכו׳.</strong> ואין כאן הפרה בטעות, שיטעון אילו ידעתי שהפרתי לא תועיל אפילו בתאנים הייתי מיפר בשניהם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-7-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-7-5-1" data-source-ref="Brief Commentary on Nedarim 7:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 7:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-7-5-1" aria-label="Copy link to Brief Commentary on Nedarim 7:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מקים בלבו וכו׳.</strong> בבא זו מפרשת את שלפניה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-7-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-7-6-1" data-source-ref="Brief Commentary on Nedarim 7:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 7:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-7-6-1" aria-label="Copy link to Brief Commentary on Nedarim 7:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא יפר.</strong> שהרי בשעת חלות האיסור כבר לא תהיה ברשותו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-7-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-7-6-2" data-source-ref="Brief Commentary on Nedarim 7:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 7:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-7-6-2" aria-label="Copy link to Brief Commentary on Nedarim 7:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא יפר.</strong> שהרי בשעה שנדרה לא היתה ברשותו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nedarim-7-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nedarim-7-8-1" data-source-ref="Brief Commentary on Nedarim 7:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nedarim 7:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nedarim-7-8-1" aria-label="Copy link to Brief Commentary on Nedarim 7:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נטולה היא וכו׳.</strong> בכי&quot;ע ובד (בשם ס&quot;א): נטולה אני מן היהודים אם משמשתיך אני, ר׳ נתן אומ׳ וכו׳. והמלים &quot;נטולה אני מן היהודים&quot; היא פיסקא ממשנתנו ספי&quot;א. ולה נסמכה מחלוקת ר׳ נתן וחכמים. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nedarim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/brief-commentary-on-nedarim.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/brief-commentary-on-nedarim.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"brief-commentary-on-nedarim","manifest_url":"../../data/lexical/brief-commentary-on-nedarim.manifest.json","occurrence_url":"../../data/lexical/occurrences/brief-commentary-on-nedarim.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

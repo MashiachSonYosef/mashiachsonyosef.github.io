@@ -1,0 +1,2459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brief Commentary on Nazir</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Brief Commentary on Nazir<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Nazir</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Nazir</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
+          </section>
+        </div>
+          <p class="hero-summary">
+            <span>127 source units</span>
+            <span>916 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: The Tosefta according to to codex Vienna. Third Augmented Edition, JTS 2001 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001234517/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: CC-BY</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Brief Commentary on Nazir <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Brief Commentary on Nazir <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nazir-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-1-1" title="Brief Commentary on Nazir 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-1-2" title="Brief Commentary on Nazir 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-2-1" title="Brief Commentary on Nazir 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-3-1" title="Brief Commentary on Nazir 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-3-2" title="Brief Commentary on Nazir 1:3:2">1:3:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-4-1" title="Brief Commentary on Nazir 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-4-2" title="Brief Commentary on Nazir 1:4:2">1:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-4-3" title="Brief Commentary on Nazir 1:4:3">1:4:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-6-1" title="Brief Commentary on Nazir 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-1-6-2" title="Brief Commentary on Nazir 1:6:2">1:6:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nazir-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-1-1" title="Brief Commentary on Nazir 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-4-1" title="Brief Commentary on Nazir 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-5-1" title="Brief Commentary on Nazir 2:5:1">2:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-6-1" title="Brief Commentary on Nazir 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-6-2" title="Brief Commentary on Nazir 2:6:2">2:6:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-8-1" title="Brief Commentary on Nazir 2:8:1">2:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-8-2" title="Brief Commentary on Nazir 2:8:2">2:8:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-10-1" title="Brief Commentary on Nazir 2:10:1">2:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-10-2" title="Brief Commentary on Nazir 2:10:2">2:10:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-11-1" title="Brief Commentary on Nazir 2:11:1">2:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-11-2" title="Brief Commentary on Nazir 2:11:2">2:11:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-11-3" title="Brief Commentary on Nazir 2:11:3">2:11:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-11-4" title="Brief Commentary on Nazir 2:11:4">2:11:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-11-5" title="Brief Commentary on Nazir 2:11:5">2:11:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-13-1" title="Brief Commentary on Nazir 2:13:1">2:13:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-14-1" title="Brief Commentary on Nazir 2:14:1">2:14:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-14-2" title="Brief Commentary on Nazir 2:14:2">2:14:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-14-3" title="Brief Commentary on Nazir 2:14:3">2:14:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-14-4" title="Brief Commentary on Nazir 2:14:4">2:14:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-2-15-1" title="Brief Commentary on Nazir 2:15:1">2:15:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nazir-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-1-1" title="Brief Commentary on Nazir 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-2-1" title="Brief Commentary on Nazir 3:2:1">3:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-2-2" title="Brief Commentary on Nazir 3:2:2">3:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-2-3" title="Brief Commentary on Nazir 3:2:3">3:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-3-1" title="Brief Commentary on Nazir 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-4-1" title="Brief Commentary on Nazir 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-5-1" title="Brief Commentary on Nazir 3:5:1">3:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-7-1" title="Brief Commentary on Nazir 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-8-1" title="Brief Commentary on Nazir 3:8:1">3:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-9-1" title="Brief Commentary on Nazir 3:9:1">3:9:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-10-1" title="Brief Commentary on Nazir 3:10:1">3:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-11-1" title="Brief Commentary on Nazir 3:11:1">3:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-11-2" title="Brief Commentary on Nazir 3:11:2">3:11:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-11-3" title="Brief Commentary on Nazir 3:11:3">3:11:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-11-4" title="Brief Commentary on Nazir 3:11:4">3:11:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-11-5" title="Brief Commentary on Nazir 3:11:5">3:11:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-13-1" title="Brief Commentary on Nazir 3:13:1">3:13:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-13-2" title="Brief Commentary on Nazir 3:13:2">3:13:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-13-3" title="Brief Commentary on Nazir 3:13:3">3:13:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-13-4" title="Brief Commentary on Nazir 3:13:4">3:13:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-13-5" title="Brief Commentary on Nazir 3:13:5">3:13:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-15-1" title="Brief Commentary on Nazir 3:15:1">3:15:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-15-2" title="Brief Commentary on Nazir 3:15:2">3:15:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-16-1" title="Brief Commentary on Nazir 3:16:1">3:16:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-16-2" title="Brief Commentary on Nazir 3:16:2">3:16:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-16-3" title="Brief Commentary on Nazir 3:16:3">3:16:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-16-4" title="Brief Commentary on Nazir 3:16:4">3:16:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-16-5" title="Brief Commentary on Nazir 3:16:5">3:16:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-16-6" title="Brief Commentary on Nazir 3:16:6">3:16:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-3-16-7" title="Brief Commentary on Nazir 3:16:7">3:16:7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nazir-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-1-1" title="Brief Commentary on Nazir 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-1-2" title="Brief Commentary on Nazir 4:1:2">4:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-3-1" title="Brief Commentary on Nazir 4:3:1">4:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-3-2" title="Brief Commentary on Nazir 4:3:2">4:3:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-4-1" title="Brief Commentary on Nazir 4:4:1">4:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-5-1" title="Brief Commentary on Nazir 4:5:1">4:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-6-1" title="Brief Commentary on Nazir 4:6:1">4:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-8-1" title="Brief Commentary on Nazir 4:8:1">4:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-8-2" title="Brief Commentary on Nazir 4:8:2">4:8:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-8-3" title="Brief Commentary on Nazir 4:8:3">4:8:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-9-1" title="Brief Commentary on Nazir 4:9:1">4:9:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-9-2" title="Brief Commentary on Nazir 4:9:2">4:9:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-9-3" title="Brief Commentary on Nazir 4:9:3">4:9:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-11-1" title="Brief Commentary on Nazir 4:11:1">4:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-11-2" title="Brief Commentary on Nazir 4:11:2">4:11:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-4-11-3" title="Brief Commentary on Nazir 4:11:3">4:11:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nazir-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-1-1" title="Brief Commentary on Nazir 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-1-2" title="Brief Commentary on Nazir 5:1:2">5:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-1-3" title="Brief Commentary on Nazir 5:1:3">5:1:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-1-4" title="Brief Commentary on Nazir 5:1:4">5:1:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-1-5" title="Brief Commentary on Nazir 5:1:5">5:1:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-1-6" title="Brief Commentary on Nazir 5:1:6">5:1:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-1" title="Brief Commentary on Nazir 5:2:1">5:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-2" title="Brief Commentary on Nazir 5:2:2">5:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-3" title="Brief Commentary on Nazir 5:2:3">5:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-4" title="Brief Commentary on Nazir 5:2:4">5:2:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-5" title="Brief Commentary on Nazir 5:2:5">5:2:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-6" title="Brief Commentary on Nazir 5:2:6">5:2:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-7" title="Brief Commentary on Nazir 5:2:7">5:2:7</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-8" title="Brief Commentary on Nazir 5:2:8">5:2:8</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-9" title="Brief Commentary on Nazir 5:2:9">5:2:9</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-10" title="Brief Commentary on Nazir 5:2:10">5:2:10</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-2-11" title="Brief Commentary on Nazir 5:2:11">5:2:11</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-3-1" title="Brief Commentary on Nazir 5:3:1">5:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-4-1" title="Brief Commentary on Nazir 5:4:1">5:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-4-2" title="Brief Commentary on Nazir 5:4:2">5:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-4-3" title="Brief Commentary on Nazir 5:4:3">5:4:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-5-4-4" title="Brief Commentary on Nazir 5:4:4">5:4:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-nazir-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-1" title="Brief Commentary on Nazir 6:1:1">6:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-2" title="Brief Commentary on Nazir 6:1:2">6:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-3" title="Brief Commentary on Nazir 6:1:3">6:1:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-4" title="Brief Commentary on Nazir 6:1:4">6:1:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-5" title="Brief Commentary on Nazir 6:1:5">6:1:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-6" title="Brief Commentary on Nazir 6:1:6">6:1:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-7" title="Brief Commentary on Nazir 6:1:7">6:1:7</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-8" title="Brief Commentary on Nazir 6:1:8">6:1:8</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-9" title="Brief Commentary on Nazir 6:1:9">6:1:9</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-10" title="Brief Commentary on Nazir 6:1:10">6:1:10</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-11" title="Brief Commentary on Nazir 6:1:11">6:1:11</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-12" title="Brief Commentary on Nazir 6:1:12">6:1:12</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-13" title="Brief Commentary on Nazir 6:1:13">6:1:13</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-14" title="Brief Commentary on Nazir 6:1:14">6:1:14</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-15" title="Brief Commentary on Nazir 6:1:15">6:1:15</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-16" title="Brief Commentary on Nazir 6:1:16">6:1:16</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-17" title="Brief Commentary on Nazir 6:1:17">6:1:17</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-18" title="Brief Commentary on Nazir 6:1:18">6:1:18</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-19" title="Brief Commentary on Nazir 6:1:19">6:1:19</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-20" title="Brief Commentary on Nazir 6:1:20">6:1:20</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-21" title="Brief Commentary on Nazir 6:1:21">6:1:21</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-22" title="Brief Commentary on Nazir 6:1:22">6:1:22</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-1-23" title="Brief Commentary on Nazir 6:1:23">6:1:23</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-2-1" title="Brief Commentary on Nazir 6:2:1">6:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-4-1" title="Brief Commentary on Nazir 6:4:1">6:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-4-2" title="Brief Commentary on Nazir 6:4:2">6:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-6-1" title="Brief Commentary on Nazir 6:6:1">6:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-6-2" title="Brief Commentary on Nazir 6:6:2">6:6:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-nazir-6-6-3" title="Brief Commentary on Nazir 6:6:3">6:6:3</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-brief-commentary-on-nazir-text-1">Chapter 1</h4>
+          <section class="unit" id="brief-commentary-on-nazir-1-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-1-1" data-source-ref="Brief Commentary on Nazir 1:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-1-1" aria-label="Copy link to Brief Commentary on Nazir 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כנויי כנויין וכו׳.</strong> כלומר, שהחליפו את הכינוי הראשון והעיקרי בכינוי אחר הדומה לו. ועיין להלן רפ&quot;ב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-1-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-1-2" data-source-ref="Brief Commentary on Nazir 1:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-1-2" aria-label="Copy link to Brief Commentary on Nazir 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעידין וכו׳.</strong> כלומר, על אשה שמת בעלה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-1-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-2-1" data-source-ref="Brief Commentary on Nazir 1:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-2-1" aria-label="Copy link to Brief Commentary on Nazir 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דיגין וכו׳,</strong> עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-1-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-3-1" data-source-ref="Brief Commentary on Nazir 1:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-3-1" aria-label="Copy link to Brief Commentary on Nazir 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וממלוא וכו׳.</strong> צ&quot;ל: וכימלוא וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-1-3-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-3-2" data-source-ref="Brief Commentary on Nazir 1:3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:3:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-3-2" aria-label="Copy link to Brief Commentary on Nazir 1:3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>להו לכך.</strong> צ&quot;ל: לאו לכך, כלומר, לא לכך נתכוונתי, ולא היה בדעתי לחבית מלאה חרדל, אלא לחבית מלאה אתרוגין, או קישואין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-1-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-4-1" data-source-ref="Brief Commentary on Nazir 1:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-4-1" aria-label="Copy link to Brief Commentary on Nazir 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין זה וכו׳.</strong> כלומר, המגלח לשלשים יום אינו נזיר עולם, אלא מגלח לי&quot;ב חודש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-1-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-4-2" data-source-ref="Brief Commentary on Nazir 1:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-4-2" aria-label="Copy link to Brief Commentary on Nazir 1:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרי זה נזיר עולם.</strong> ומגלח פעם לי&quot;ב חודש, לשיטת ר׳ יהודה ורבי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-1-4-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-4-3" data-source-ref="Brief Commentary on Nazir 1:4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:4:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-4-3" aria-label="Copy link to Brief Commentary on Nazir 1:4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין זה וכו׳.</strong> ונזיר עד יום מותו ואסור לו לגלח לעולם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-1-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-6-1" data-source-ref="Brief Commentary on Nazir 1:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-6-1" aria-label="Copy link to Brief Commentary on Nazir 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המורט וכו׳.</strong> כלומר, נזיר ממורט שאין לו שער כלל בראשו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-1-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-1-6-2" data-source-ref="Brief Commentary on Nazir 1:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 1:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-1-6-2" aria-label="Copy link to Brief Commentary on Nazir 1:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן בלוים.</strong> כלומר, במדבר, עיין במדבר ח׳, ז׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nazir-text-2">Chapter 2</h4>
+          <section class="unit" id="brief-commentary-on-nazir-2-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-1-1" data-source-ref="Brief Commentary on Nazir 2:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-1-1" aria-label="Copy link to Brief Commentary on Nazir 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן הגרוגרות וכו׳.</strong> כלומר, אף זה בכלל כינויי כינויין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-4-1" data-source-ref="Brief Commentary on Nazir 2:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-4-1" aria-label="Copy link to Brief Commentary on Nazir 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לגלח וכו׳.</strong> סתם &quot;לגלח&quot; בעניין נזירות כוונתו להביא קרבנות נזיר, שהנזיר מגלח עליהן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-5-1" data-source-ref="Brief Commentary on Nazir 2:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-5-1" aria-label="Copy link to Brief Commentary on Nazir 2:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גילח לעצמו וכו׳.</strong> כלומר, לא יצא ידי נדרו, שהרי כבר קיבל עליו נזירות לפני שנדר לגלח נזיר, והקרבנות הן מחובתו ולא לנדרו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-6-1" data-source-ref="Brief Commentary on Nazir 2:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-6-1" aria-label="Copy link to Brief Commentary on Nazir 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גלח לעצמו וכו׳.</strong> והטעם הוא שיש להניח שלא נזר על סמך נדרו, שהרי נדרו לא היה אלא לחצי נזיר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-6-2" data-source-ref="Brief Commentary on Nazir 2:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-6-2" aria-label="Copy link to Brief Commentary on Nazir 2:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהזיר עליהן וכו׳.</strong> צ&quot;ל: שאזיר עליהן, כעין הגי׳ בכי&quot;ע.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-8-1" data-source-ref="Brief Commentary on Nazir 2:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-8-1" aria-label="Copy link to Brief Commentary on Nazir 2:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ששגגת נזירות וכו׳.</strong> כלומר, נזירות שאינה ברורה, ספק נזירות, מותרת, שלא ניתנה נזירות אלא להפלאה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-8-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-8-2" data-source-ref="Brief Commentary on Nazir 2:8:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:8:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-8-2" aria-label="Copy link to Brief Commentary on Nazir 2:8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יאמר וכו׳.</strong> כלומר, לפיכך יאמר, והכל הוא מדברי ר&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-10-1" data-source-ref="Brief Commentary on Nazir 2:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-10-1" aria-label="Copy link to Brief Commentary on Nazir 2:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לאחר ועשרים וכו׳.</strong> צ&quot;ל: לאחר עשרים וכו׳, כגי׳ הדפוסים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-10-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-10-2" data-source-ref="Brief Commentary on Nazir 2:10:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:10:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-10-2" aria-label="Copy link to Brief Commentary on Nazir 2:10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחד ומונה שלשים ומספק.</strong> צ&quot;ל: ואחר מונה שלשים ומפסיק, כעין כי&quot;ע. כלומר, אחר שמנה עשרים מן המאה שקיבל עליו &quot;מעכשיו&quot;, מונה שלשים לסתם הנזירות שחלה עליו לאחר העשרים ומפסיק, ומביא קרבנותיו ומגלח, ואח&quot;כ מונה שמונים וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-11-1" data-source-ref="Brief Commentary on Nazir 2:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-11-1" aria-label="Copy link to Brief Commentary on Nazir 2:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ביום שלשים ואחד וכו׳.</strong> שהרי אפילו בסתם נזירות לכתחילה אינו מגלח אלא ביום שלשים ואחד. ובאותו יום מתחיל למנות את השנייה, משום שמקצת היום ככולו, ואם מגלח ליום ששים ואחד נמצא שגילח גם את השנייה ליום שלשים ואחד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-11-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-11-2" data-source-ref="Brief Commentary on Nazir 2:11:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:11:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-11-2" aria-label="Copy link to Brief Commentary on Nazir 2:11:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יום שלשים וכו׳.</strong> שהרי בדיעבד אם גילח סתם נזירות ביום שלשים יצא, ומתחיל למנות את השנייה באותו יום, וחל יום שלשים ואחד שלה ביום ששים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-11-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-11-3" data-source-ref="Brief Commentary on Nazir 2:11:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:11:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-11-3" aria-label="Copy link to Brief Commentary on Nazir 2:11:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יצא.</strong> כלומר, ויצא, שהרי לכתחילה מגלח ביום ששים. אבל אם גילח ביום חמשים ותשע לא יצא, שהרי השנייה היתה נזירות מפורשת לשלשים יום שלמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-11-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-11-4" data-source-ref="Brief Commentary on Nazir 2:11:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:11:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-11-4" aria-label="Copy link to Brief Commentary on Nazir 2:11:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הראשונה ביום שלשים.</strong> וכאן, שהראשונה היתה מפורשת, בת שלשים יום מלאים, הרי גילח בתוך מלאת, וקרבנותיו לא עלו לו, ועדיין הוא עומד בתוך נזירותו הראשונה, וסותר שלשים יום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-11-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-11-5" data-source-ref="Brief Commentary on Nazir 2:11:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:11:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-11-5" aria-label="Copy link to Brief Commentary on Nazir 2:11:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מגלח את השנייה וכו׳.</strong> הנכון הוא בכי&quot;ע: מגלח את השניה ליום ששים יצא. וכע&quot;ז בדפוסים, וכן הוא &quot;יצא&quot; גם בקג&quot;נ (ולפני כן מטושטש). ופירושו שממתין שלשים יום לגידול שער, ומגלח לכתחילה ליום ששים, [ו]יצא. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-13-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-13-1" data-source-ref="Brief Commentary on Nazir 2:13:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:13:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-13-1" aria-label="Copy link to Brief Commentary on Nazir 2:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ביום שראוי וכו׳.</strong> הגירסא משובשת בכל הנוסחאות, ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-14-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-14-1" data-source-ref="Brief Commentary on Nazir 2:14:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:14:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-14-1" aria-label="Copy link to Brief Commentary on Nazir 2:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין יום השביעי וכו׳.</strong> צ&quot;ל: ואף יום השביעי, כלומר, ולא רק יום השמיני שכבר העריב שמשו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-14-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-14-2" data-source-ref="Brief Commentary on Nazir 2:14:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:14:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-14-2" aria-label="Copy link to Brief Commentary on Nazir 2:14:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שיאמרו וכו׳.</strong> שיאמרו=שאמרו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-14-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-14-3" data-source-ref="Brief Commentary on Nazir 2:14:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:14:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-14-3" aria-label="Copy link to Brief Commentary on Nazir 2:14:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עד שיטהר וכו׳.</strong> כלומר, שיטהר ויביא קרבנותיו, מתחיל למנות מיום הבאת קרבנותיו, והוא יום השמיני.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-14-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-14-4" data-source-ref="Brief Commentary on Nazir 2:14:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:14:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-14-4" aria-label="Copy link to Brief Commentary on Nazir 2:14:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מונה מיד.</strong> כלומר, שאינו צריך להביא קרבן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-2-15-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-2-15-1" data-source-ref="Brief Commentary on Nazir 2:15:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 2:15:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-2-15-1" aria-label="Copy link to Brief Commentary on Nazir 2:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>להתיר לו.</strong> כלומר, והתיר לו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nazir-text-3">Chapter 3</h4>
+          <section class="unit" id="brief-commentary-on-nazir-3-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-1-1" data-source-ref="Brief Commentary on Nazir 3:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-1-1" aria-label="Copy link to Brief Commentary on Nazir 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פי כפיו וכו׳.</strong> כלומר, כוונתו: כפיו מלשתות יין, כשערו, מלהגזז, כידו, מלהטמא למתים, כרגלו, מלכת לבית הקברות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-2-1" data-source-ref="Brief Commentary on Nazir 3:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-2-1" aria-label="Copy link to Brief Commentary on Nazir 3:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נדר להקם.</strong> כלומר, נדרו לנדרה, וקורא לנדרה &quot;הקם&quot; משום שאמרה &quot;הין&quot; וקיימה את נדרו, אבל אם קדם נדרה לנדרו, והוא אמר הין, הרי קיים לה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-2-2" data-source-ref="Brief Commentary on Nazir 3:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-2-2" aria-label="Copy link to Brief Commentary on Nazir 3:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והיא מותרת.</strong> שאין אדם מדיר את אשתו בנזיר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-2-3" data-source-ref="Brief Commentary on Nazir 3:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-2-3" aria-label="Copy link to Brief Commentary on Nazir 3:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הריני נזיר ואת.</strong> ופירשוה בירושלמי ובבבלי ש&quot;ואת&quot; כאן הוא תנאי, על מנת שאף את תהא נזירה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-3-1" data-source-ref="Brief Commentary on Nazir 3:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-3-1" aria-label="Copy link to Brief Commentary on Nazir 3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שקדם הקם לנדר.</strong> כלומר, שקדם הקימו לנדרו, שהרי אמר &quot;הין&quot;, ומלה זו כוללת את קיומו לנדרה ונדר עצמו. והלשון הוא בהקבלה לשו׳ 12, וכאן הקיום מקיים את נדרה מכל מקום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-4-1" data-source-ref="Brief Commentary on Nazir 3:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-4-1" aria-label="Copy link to Brief Commentary on Nazir 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הריני נזירה ואת וכו׳.</strong> אף כאן &quot;ואת&quot; הוא תנאי, כלעיל שו׳ 13.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-5-1" data-source-ref="Brief Commentary on Nazir 3:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-5-1" aria-label="Copy link to Brief Commentary on Nazir 3:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומ׳ לחבירו וכו׳.</strong> הפירוש הוא כמו בבבות שלעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-7-1" data-source-ref="Brief Commentary on Nazir 3:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-7-1" aria-label="Copy link to Brief Commentary on Nazir 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחברתה אסורה.</strong> שהבעל אינו עוקר את הנדר מעיקרו, אלא מיגז גייז.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-8-1" data-source-ref="Brief Commentary on Nazir 3:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-8-1" aria-label="Copy link to Brief Commentary on Nazir 3:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבועה לבית זה וכו׳.</strong> עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-9-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-9-1" data-source-ref="Brief Commentary on Nazir 3:9:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:9:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-9-1" aria-label="Copy link to Brief Commentary on Nazir 3:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם רצה להיפר וכו׳.</strong> כלומר, שהרי אם רצה להיפר מיפר, ואם לא היפר הוא נותן אצבע בין שיניה, ואינה אשמה אם נשכה אותו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-10-1" data-source-ref="Brief Commentary on Nazir 3:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-10-1" aria-label="Copy link to Brief Commentary on Nazir 3:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אינו יכול וכו׳.</strong> כלומר, ואינו יכול, שכבר עבר היום ששמע את נדרה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-11-1" data-source-ref="Brief Commentary on Nazir 3:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-11-1" aria-label="Copy link to Brief Commentary on Nazir 3:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סופנת את הארבעים.</strong> כלומר, מכת מרדות. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-11-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-11-2" data-source-ref="Brief Commentary on Nazir 3:11:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:11:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-11-2" aria-label="Copy link to Brief Commentary on Nazir 3:11:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בתגלחת טהרה וכו׳.</strong> במשנתנו פ&quot;ד מ&quot;ה: [האשה שנדרה בנזיר], נזרק עליה אחד מן הדמים אינו יכול להפר וכו׳. ומוכח מן הירושלמי שהטעם הוא משום שעצם הנזירות כבר עברה, ומשום כך אינו יכול להפר, שאין הבעל מיפר נדר שכבר עבר. ועיין בבה&quot;א ומ&quot;ש להלן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-11-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-11-3" data-source-ref="Brief Commentary on Nazir 3:11:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:11:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-11-3" aria-label="Copy link to Brief Commentary on Nazir 3:11:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לעתיד לבא.</strong> שהרי עדיין עומדת בנזירותה, ואינו מיפר נזירות שכבר עברה, עיין מ&quot;ש לעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-11-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-11-4" data-source-ref="Brief Commentary on Nazir 3:11:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:11:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-11-4" aria-label="Copy link to Brief Commentary on Nazir 3:11:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באשה מנוולת.</strong> כלומר, שאסורה לתקן שערה במספרים ולהסתרק, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-11-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-11-5" data-source-ref="Brief Commentary on Nazir 3:11:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:11:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-11-5" aria-label="Copy link to Brief Commentary on Nazir 3:11:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בתגלחת טהרה וכו׳.</strong> ורבי סובר שאעפ&quot;י שהיא כבר מותרת בכל לכתחילה, מ&quot;מ כל זמן שלא קיימה מצות גילוח עדיין עומדת בנזירותה, ויכול להפר, משום שאינו רוצה באשה מגולחת. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-13-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-13-1" data-source-ref="Brief Commentary on Nazir 3:13:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:13:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-13-1" aria-label="Copy link to Brief Commentary on Nazir 3:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לנזירותו.</strong> כלומר, שאמר: הרי אילו לנזירותי, ולא פירש יותר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-13-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-13-2" data-source-ref="Brief Commentary on Nazir 3:13:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:13:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-13-2" aria-label="Copy link to Brief Commentary on Nazir 3:13:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכולן שלמים.</strong> כלומר, אם תזדמן לו בהמה שמנה יקחנה בכל הדמים שהפריש ויביא את שאר הקרבנות מביתו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-13-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-13-3" data-source-ref="Brief Commentary on Nazir 3:13:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:13:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-13-3" aria-label="Copy link to Brief Commentary on Nazir 3:13:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יפלו לנדבה.</strong> ואעפ&quot;י שדמי חטאת מתה מעורבת בהם, משום שכן הלכה היא בנזיר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-13-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-13-4" data-source-ref="Brief Commentary on Nazir 3:13:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:13:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-13-4" aria-label="Copy link to Brief Commentary on Nazir 3:13:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין משלש מקומות.</strong> כלומר, ואפילו לקח משלשה מקומות של התערובת, ואפשר שיש כאן דמים של קרבן אחד גרידא, לא איכפת לנו, שהרי הוא אומר דמי קרבן זה בכל מקום שהם מחוללים על בהמה זו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-13-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-13-5" data-source-ref="Brief Commentary on Nazir 3:13:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:13:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-13-5" aria-label="Copy link to Brief Commentary on Nazir 3:13:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על כולם.</strong> שהרי כל זמן שלא חילל את המעות על כל הבהמות, אינו יכול להשתמש אפילו במקצתם, שמא נשארו שם מעות שאינם מחוללים. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-15-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-15-1" data-source-ref="Brief Commentary on Nazir 3:15:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:15:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-15-1" aria-label="Copy link to Brief Commentary on Nazir 3:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מגלח וכו׳.</strong> ולפ&quot;ז אינם מודים כלל בהלכה שהאיש מגלח על נזירות אביו. ושמא צ&quot;ל: בין כך ובין כך אדן (=אדם) מגלח וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-15-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-15-2" data-source-ref="Brief Commentary on Nazir 3:15:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:15:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-15-2" aria-label="Copy link to Brief Commentary on Nazir 3:15:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סתומין וכו׳.</strong> שרק בזה הלכה היא בנזיר שמגלח על נזירות אביו, אבל במפורשין דינן כלעיל, שו׳ 43.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-16-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-16-1" data-source-ref="Brief Commentary on Nazir 3:16:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:16:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-16-1" aria-label="Copy link to Brief Commentary on Nazir 3:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משעה שהיתיר.</strong> בדפוסים: משעה שנדר, וכע&quot;ז בירושלמי. ושמא &quot;משעה שהיתיר&quot; הוא באשגרה מדברי ב&quot;ש (&quot;משעה ששאל&quot;), וצ&quot;ל: כשעה שהיתיר , כלומר, כימים שוויתר ועבר על נדרו, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-16-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-16-2" data-source-ref="Brief Commentary on Nazir 3:16:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:16:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-16-2" aria-label="Copy link to Brief Commentary on Nazir 3:16:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זו טעות וכו׳.</strong> כלומר, שפתח לנזירין שעלו מן הגולה לאחר החורבן, כמשנתנו פ&quot;ה מ&quot;ד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-16-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-16-3" data-source-ref="Brief Commentary on Nazir 3:16:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:16:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-16-3" aria-label="Copy link to Brief Commentary on Nazir 3:16:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלא נתקיימו דבריו.</strong> כלומר, אם אמר הריני נזיר שזהו ראובן (והיינו, אם אינו אמת שזהו ראובן), ונמצא שמעון, הרי זה נזיר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-16-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-16-4" data-source-ref="Brief Commentary on Nazir 3:16:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:16:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-16-4" aria-label="Copy link to Brief Commentary on Nazir 3:16:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קרבן בשותפות.</strong> במשנתנו פ&quot;ה מ&quot;ו: הרתיע לאחוריו אינו נזיר (כלומר, אין אחד מהם נזיר). והתנא של התוספתא סובר שהם ספק נזירים, ומביאים קרבן בשותפות, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-16-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-16-5" data-source-ref="Brief Commentary on Nazir 3:16:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:16:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-16-5" aria-label="Copy link to Brief Commentary on Nazir 3:16:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין אחד מהן.</strong> צ&quot;ל: אין אחד מהן נזיר, כגי׳ הגניזה וד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-16-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-16-6" data-source-ref="Brief Commentary on Nazir 3:16:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:16:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-16-6" aria-label="Copy link to Brief Commentary on Nazir 3:16:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שזה יוסף ונמצא יוסף.</strong> כלומר, אפילו אם נתקיימו דבריו וכוונתו הוא וודאי נזיר לבית שמאי, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-3-16-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-3-16-7" data-source-ref="Brief Commentary on Nazir 3:16:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 3:16:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-3-16-7" aria-label="Copy link to Brief Commentary on Nazir 3:16:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לתשע וכו׳.</strong> עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nazir-text-4">Chapter 4</h4>
+          <section class="unit" id="brief-commentary-on-nazir-4-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-1-1" data-source-ref="Brief Commentary on Nazir 4:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-1-1" aria-label="Copy link to Brief Commentary on Nazir 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיוצא בהן.</strong> כלומר, ואעפ&quot;י שהן משקין שיעורן בכזית, וכמשנה אחרונה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-1-2" data-source-ref="Brief Commentary on Nazir 4:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-1-2" aria-label="Copy link to Brief Commentary on Nazir 4:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זית איגורי.</strong> זית שמן שבמקרא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-3-1" data-source-ref="Brief Commentary on Nazir 4:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-3-1" aria-label="Copy link to Brief Commentary on Nazir 4:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמירט, או שסיפסף.</strong> כלומר, שעקר את השערות, או שחרך אותן באש, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-3-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-3-2" data-source-ref="Brief Commentary on Nazir 4:3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:3:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-3-2" aria-label="Copy link to Brief Commentary on Nazir 4:3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ששתי שערות סותרות וכו׳.</strong> צ&quot;ל: ששתי שערות מעכבות בו, כך שתי שערות סותרות בו, כמו שהוא בירושלמי ובבבלי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-4-1" data-source-ref="Brief Commentary on Nazir 4:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-4-1" aria-label="Copy link to Brief Commentary on Nazir 4:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבועה שלא ישתה יין וכו׳.</strong> בדפוסים: שבועה שאשתה יין וכו׳, וחייב על כל יין ויין, בין על של מע&quot;ש ובין על היין שנשבע לשתותו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-5-1" data-source-ref="Brief Commentary on Nazir 4:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-5-1" aria-label="Copy link to Brief Commentary on Nazir 4:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין לו לספור וכו׳.</strong> כלומר, שלא נשארו לו שלשים יום משעה שגילח עד סוף נזירותו, אבל אם עדיין נשארו לו שלשים יום עד סוף נזירותו, אינו סותר כלל. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-6-1" data-source-ref="Brief Commentary on Nazir 4:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-6-1" aria-label="Copy link to Brief Commentary on Nazir 4:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כאן וכאן משלח וכו׳.</strong> צ&quot;ל: כאן וכאן אין משלח תחת הדוד, הטהור כאן וכאן משלח וכו׳, כגירסת הדפוסים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-8-1" data-source-ref="Brief Commentary on Nazir 4:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-8-1" aria-label="Copy link to Brief Commentary on Nazir 4:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ביום השמיני וכו׳.</strong> בכי&quot;ע: וחזר וניטמא יום שביעי וכו׳. והכוונה שאם נטמא ביום השביעי לטהרתו אחרי שהוזה, ושוב מנה שבעה ימים והוזה, ונטמא אח&quot;כ חייב על כל אחד, ואחד, הואיל ונטמא אחרי שהתחיל למנות ימי טהרה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-8-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-8-2" data-source-ref="Brief Commentary on Nazir 4:8:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:8:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-8-2" aria-label="Copy link to Brief Commentary on Nazir 4:8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונטמאה וכו׳ ונטמאה.</strong> צ&quot;ל: ונטמא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-8-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-8-3" data-source-ref="Brief Commentary on Nazir 4:8:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:8:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-8-3" aria-label="Copy link to Brief Commentary on Nazir 4:8:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין מתחיל לימנות וכו׳.</strong> וחולקים על ר׳ אליעזר לעיל, שו׳ 42.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-9-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-9-1" data-source-ref="Brief Commentary on Nazir 4:9:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:9:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-9-1" aria-label="Copy link to Brief Commentary on Nazir 4:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושאר שלמי נזיר וכו׳.</strong> כלומר, פרט להללו שמנה לעיל שהם פסולים לגמרי, אלא השלמים שהביאן שלא לשמן, שהם כשרים ולא עלו לבעלים לשם חובה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-9-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-9-2" data-source-ref="Brief Commentary on Nazir 4:9:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:9:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-9-2" aria-label="Copy link to Brief Commentary on Nazir 4:9:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>את הכל.</strong> כלומר, כל קרבנותיו שהביא לפני כן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-9-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-9-3" data-source-ref="Brief Commentary on Nazir 4:9:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:9:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-9-3" aria-label="Copy link to Brief Commentary on Nazir 4:9:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שקדש שער בדם.</strong> כלומר, אחרי שנזרק עליו אחד מן הדמים כבר קדש שערו, ונשלמה נזירותו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-11-1" data-source-ref="Brief Commentary on Nazir 4:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-11-1" aria-label="Copy link to Brief Commentary on Nazir 4:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ר׳ ליעזר וכו׳.</strong> צ&quot;ל: לעזר (=אלעזר), עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-11-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-11-2" data-source-ref="Brief Commentary on Nazir 4:11:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:11:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-11-2" aria-label="Copy link to Brief Commentary on Nazir 4:11:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צריך להביא וכו׳.</strong> וסובר ר׳ אלעזר שתגלחת אינה מעכבת, ומביא קרבן טומאה, משום שכבר חלה עליו נזירות שנייה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-4-11-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-4-11-3" data-source-ref="Brief Commentary on Nazir 4:11:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 4:11:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-4-11-3" aria-label="Copy link to Brief Commentary on Nazir 4:11:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שיצא מכלל ראשנה וכו׳.</strong> ואף הוא סובר שאין תגלחת מעכבת, וכבר שלמה נזירות הראשונה, אבל הואיל ומותר ומצווה לגלח על הראשונה, לא חלה עליו השנייה, שאין נזירות לחצאין. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nazir-text-5">Chapter 5</h4>
+          <section class="unit" id="brief-commentary-on-nazir-5-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-1-1" data-source-ref="Brief Commentary on Nazir 5:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-1-1" aria-label="Copy link to Brief Commentary on Nazir 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עד שיטהר וכו׳.</strong> כלומר, כל אילו שאמרו במשנתנו (פ&quot;ז מ&quot;ב) שאינו מתחיל למנות עד שיטהר ויביא קרבן, אם ניטמא לפני שטהר אינו מביא קרבן טומאה, כר&quot;ש וחכמים לעיל פ&quot;ד, שו׳ 43 ואילך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-1-2" data-source-ref="Brief Commentary on Nazir 5:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-1-2" aria-label="Copy link to Brief Commentary on Nazir 5:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומונה מיד וכו׳.</strong> כלומר, שאמרו במשנתנו (פ&quot;ז מ&quot;ג) שמונה מיד אחרי שהוזה וטבל, ואינו מביא קרבן, אם ניטמא באותו יום בטומאה שהנזיר מגלח עליה מביא קרבן טומאה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-1-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-1-3" data-source-ref="Brief Commentary on Nazir 5:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:1:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-1-3" aria-label="Copy link to Brief Commentary on Nazir 5:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ערך בהמה וכו׳.</strong> כלומר, סדר, ויותר נראה שצ&quot;ל: עדר, כבשאר נוסחאות ומקבילות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-1-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-1-4" data-source-ref="Brief Commentary on Nazir 5:1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:1:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-1-4" aria-label="Copy link to Brief Commentary on Nazir 5:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין נזיר מגלח וכו׳.</strong> מפני שטומאתן אינה מפורשת בתורה, אלא מהלכה. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-1-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-1-5" data-source-ref="Brief Commentary on Nazir 5:1:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:1:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-1-5" aria-label="Copy link to Brief Commentary on Nazir 5:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וקדשיו.</strong> כלומר, אם אכל קדשים בטומאת הגוף מן הטומאות שנמנו לעיל אינו חייב קרבן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-1-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-1-6" data-source-ref="Brief Commentary on Nazir 5:1:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:1:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-1-6" aria-label="Copy link to Brief Commentary on Nazir 5:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לתרומתן ולקדשים.</strong> כלומר, שנשרפין אם נטמאו בהן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-1" data-source-ref="Brief Commentary on Nazir 5:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-1" aria-label="Copy link to Brief Commentary on Nazir 5:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נזיר ומצורע וכו׳.</strong> כלומר, נזיר שנצטרע אחר שהשלים ימי נזירותו, מהו שישלח את קרבנותיו, וימתין עד שיטהר מצרעתו, ויגלח תגלחת אחת ותעלה לו לצרעתו (לפני ימי ספרו) ולנזירותו, ויקיים מצות גילוח מבלי להקיף את ראשו פעמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-2" data-source-ref="Brief Commentary on Nazir 5:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-2" aria-label="Copy link to Brief Commentary on Nazir 5:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>להעביר שער וכו׳.</strong> כלומר, להעבירו מכל וכל, אבל מצורע מעביר שער על מנת לגדלו כדי שיגלחנו שנית לפני שמביא קרבנותיו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-3" data-source-ref="Brief Commentary on Nazir 5:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-3" aria-label="Copy link to Brief Commentary on Nazir 5:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בימי גמרו.</strong> בבבלי: לימי חלוטו, כלומר מצורע שנתרפא ומגלח תגלחת ראשונה. ובזה הדין עמך שאין התגלחת עולה לשניהם, שהרי מצורע מגלח לגידול שער והנזיר להעברת שער.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-4" data-source-ref="Brief Commentary on Nazir 5:2:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-4" aria-label="Copy link to Brief Commentary on Nazir 5:2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בימי ספרו.</strong> כלומר, מצורע שכבר ספר שבעה ימים ומגלח עכשיו תגלחת שנייה, הרי אף הוא מגלח להעברת שער, כנזיר טהור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-5" data-source-ref="Brief Commentary on Nazir 5:2:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-5" aria-label="Copy link to Brief Commentary on Nazir 5:2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לאחר ביאת מים וכו׳.</strong> טעות ברורה, שהרי בנזיר טהור עסיקינן, והנכון במקבילות, וכאן נתחלפו השורות, וצ&quot;ל: אילו זה מגלח לאחר דמים וכו׳. והרי נזיר טהור מגלח לאחר זריקת דמים, ומצורע מגלח לפני זריקת דמים. ועיין להלן, שו׳ 26.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-6" data-source-ref="Brief Commentary on Nazir 5:2:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-6" aria-label="Copy link to Brief Commentary on Nazir 5:2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תעלה לו בטמא.</strong> והרי שניהם מגלחים לפני זריקת דמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-7" data-source-ref="Brief Commentary on Nazir 5:2:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-7" aria-label="Copy link to Brief Commentary on Nazir 5:2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לאחר דמים וכו׳.</strong> כאן צ&quot;ל: אילו זה מגלח לאחר ביאת מים וכו׳, עיין לעיל, שו׳ 23–24, ומש&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-8" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-8" data-source-ref="Brief Commentary on Nazir 5:2:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:8</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-8" aria-label="Copy link to Brief Commentary on Nazir 5:2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תקון הדבר.</strong> כלומר שיש הבדל במהות התגלחת עצמה לבין שהיא להעברת שער, או שהיא לשם גידול שער. אבל הם לא קיבלו את ההבדל לא בין תגלחת לפני זריקת דמים ובין שלאחריה ולא בין לפני ביאת מים ובין שלאחריה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-9" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-9" data-source-ref="Brief Commentary on Nazir 5:2:9">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:9</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-9" aria-label="Copy link to Brief Commentary on Nazir 5:2:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא תעלה לו בימי גמרו וכו׳.</strong> כלומר, לא תעלה לו לנזיר טהור ומצורע תגלחת אחת, שהרי המצורע בימי גמרו מגלח לשם גידול שער, כלעיל, אבל תעלה לו בימי ספרו, שהרי שניהם מגלחים לשם העברת שער.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-10" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-10" data-source-ref="Brief Commentary on Nazir 5:2:10">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:10</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-10" aria-label="Copy link to Brief Commentary on Nazir 5:2:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא תעלה לו בטהור וכו׳.</strong> כלומר, ואף בימי גמרו, נהי שלא תעלה לנזיר טהור, כלעיל, אבל תעלה לנזיר טמא, שהרי שניהם מגלחים לשם גידול שער.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-2-11" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-2-11" data-source-ref="Brief Commentary on Nazir 5:2:11">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:2:11</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-2-11" aria-label="Copy link to Brief Commentary on Nazir 5:2:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומצורע שנזר וכו׳.</strong> צ&quot;ל: ונזיר שנזר וכו׳. והמסקנא היא שמגלח תגלחת אחת בנזיר שנצטרע (וגילח בימי ספרו בנזיר טהור, או בימי גמרו בנזיר טמא). וכן נזיר שנזר בתוך נזירותו מגלח תגלחת אחת לשניהם, ואעפ&quot;י שמביא קרבנותיו בין הראשונה לשנייה אינו מגלח אלא תגלחת אחת, שתגלחת אינה מעכבת. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-3-1" data-source-ref="Brief Commentary on Nazir 5:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-3-1" aria-label="Copy link to Brief Commentary on Nazir 5:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני נזירין וכו׳.</strong> כל ההלכות, עד &quot;שלשים יום הראשנים&quot; (בשו׳ 42), הם במשנתנו פ&quot;ח מ&quot;א. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-4-1" data-source-ref="Brief Commentary on Nazir 5:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-4-1" aria-label="Copy link to Brief Commentary on Nazir 5:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלך ספק.</strong> המלה &quot;שלך&quot; היא באשגרה מלעיל ומלהלן והיא מיותרת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-4-2" data-source-ref="Brief Commentary on Nazir 5:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-4-2" aria-label="Copy link to Brief Commentary on Nazir 5:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וקרבן טומאה שלך.</strong> צ&quot;ל: וקרבן טומאה ספק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-4-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-4-3" data-source-ref="Brief Commentary on Nazir 5:4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:4:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-4-3" aria-label="Copy link to Brief Commentary on Nazir 5:4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם גילח וכו׳.</strong> כלומר, בשניהם, בין בשלשים יום הראשונים ובין באחרונים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-5-4-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-5-4-4" data-source-ref="Brief Commentary on Nazir 5:4:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 5:4:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-5-4-4" aria-label="Copy link to Brief Commentary on Nazir 5:4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הוא עצמו וכו׳.</strong> כלומר, הנזיר הראשון שהיה וודאי נזיר בראשונים, בין שהיה טהור ובין שהיה טמא, לוקה אם ניטמא בראשונים, אבל אם נטמא בשניים פטור, שמא היה נזיר טהור בראשונים, והשלים נזירותו אחרי הראשונים. אבל השני פטור בשניהם, שהרי בכל אחד מהם הוא ספק נזיר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-nazir-text-6">Chapter 6</h4>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-1" data-source-ref="Brief Commentary on Nazir 6:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-1" aria-label="Copy link to Brief Commentary on Nazir 6:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזה ושנה גילח וכו׳.</strong> כולם ציווי הם, כלומר, הזה ושנה, גלח וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-2" data-source-ref="Brief Commentary on Nazir 6:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-2" aria-label="Copy link to Brief Commentary on Nazir 6:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גילח והביא וכו׳.</strong> אף כאן ציווי הוא, כלעיל, שו׳ 4–5, ואח&quot;כ כשהשלים אין נותנין לו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-3" data-source-ref="Brief Commentary on Nazir 6:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-3" aria-label="Copy link to Brief Commentary on Nazir 6:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם לאו וכו׳.</strong> כלומר, אם אני טמא ועלי לגלח לפני הקרבן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-4" data-source-ref="Brief Commentary on Nazir 6:1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-4" aria-label="Copy link to Brief Commentary on Nazir 6:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>להחמיר עליו וכו׳.</strong> שהרי הוא גם ספק מוחלט, ועליו להביא צפורים ולגלח אח&quot;כ תגלחת ראשונה של ימי גמרו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-5" data-source-ref="Brief Commentary on Nazir 6:1:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-5" aria-label="Copy link to Brief Commentary on Nazir 6:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חטאת העוף וכו׳.</strong> כלומר, משום ספק נזיר טמא, שהרי במצורע אין קרבנות בתגלחת ראשונה, ואם היה נזיר טהור הרי כבר הקריב את עולתו והתנה עליו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-6" data-source-ref="Brief Commentary on Nazir 6:1:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-6" aria-label="Copy link to Brief Commentary on Nazir 6:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומגלח וכו׳.</strong> ואחרי התגלחת מקריב את חטאת העוף שהתנה עליה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-7" data-source-ref="Brief Commentary on Nazir 6:1:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-7" aria-label="Copy link to Brief Commentary on Nazir 6:1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומביא עולת בהמה וכו׳.</strong> בדפוסים ובירושלמי: ומונה שלשים, ומביא עולת בהמה וכו׳. ולפנינו מקוצר, שהרי אסור לו לגלח אחרי שהקריב חטאת העוף, שמא היה נזיר טמא, וטהר בתגלחת ראשונה, ועליו למנות שלשים יום בטהרה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-8" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-8" data-source-ref="Brief Commentary on Nazir 6:1:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:8</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-8" aria-label="Copy link to Brief Commentary on Nazir 6:1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הראשונה חובה וזו נדבה.</strong> צ&quot;ל: הראשונה נדבה וזו חובה. וכ&quot;ה בראשונים (בשם התוספתא) ובירושלמי. ונתחלפו השורות, עיין להלן, שו׳ 16.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-9" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-9" data-source-ref="Brief Commentary on Nazir 6:1:9">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:9</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-9" aria-label="Copy link to Brief Commentary on Nazir 6:1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הראשונה נדבה וזו חובה.</strong> צ&quot;ל להפך: הראשונה חובה וזו נדבה. וכ&quot;ה במקורות הנ&quot;ל, עיין לעיל, שו׳ 15.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-10" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-10" data-source-ref="Brief Commentary on Nazir 6:1:10">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:10</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-10" aria-label="Copy link to Brief Commentary on Nazir 6:1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>להביא חטאת וכו׳.</strong> עכשיו חוזר התנא קמא ומפרש כיצד יעשה בקרבנות מצורע למחר אחר תגלחתו של ימי ספרו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-11" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-11" data-source-ref="Brief Commentary on Nazir 6:1:11">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:11</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-11" aria-label="Copy link to Brief Commentary on Nazir 6:1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ספיקי.</strong> כלומר, אם לא הייתי מצורע, אין כאן אלא חטאת העוף הבאה על הספק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-12" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-12" data-source-ref="Brief Commentary on Nazir 6:1:12">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:12</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-12" aria-label="Copy link to Brief Commentary on Nazir 6:1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כדברי בן זומא.</strong> כלומר, לתנא שלנו שהוא חולק על ר׳ שמעון לעיל, ואינו מצריך אשם, וכבר תיקן את צרעתו בחטאת העוף. ועכשיו עליו להוציא את עצמו מספק נזירות, שאם היה מצורע, הרי כל מה שעשה עד עכשיו לא הועיל לו כלום לנזירותו, והוא ספק נזיר טהור, ספק נזיר טמא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-13" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-13" data-source-ref="Brief Commentary on Nazir 6:1:13">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:13</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-13" aria-label="Copy link to Brief Commentary on Nazir 6:1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חטאת מחובתי וכו׳.</strong> שהרי גילח לפני שהקריב חטאת העוף ולאחר עולת הבהמה, ולפיכך אם טמא היה גילח לפני החטאת וטהר, ואם טהור היה גילח אחרי זריקת דם העולה והשלים נזירותו. ועדיין הוא בספיקו שמא היה טמא ועכשיו טהר, ועליו להשלים נזירותו בטהרה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-14" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-14" data-source-ref="Brief Commentary on Nazir 6:1:14">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:14</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-14" aria-label="Copy link to Brief Commentary on Nazir 6:1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קרבנותיו שלמים.</strong> כלומר, שלימים, מביא את כל קרבנותיו ומשלים את הקרבנות שלא הביא כלל מתחילה, ואף שלמים בכלל, ואינו מתנה עליהם, שהרי היה נזיר ודאי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-15" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-15" data-source-ref="Brief Commentary on Nazir 6:1:15">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:15</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-15" aria-label="Copy link to Brief Commentary on Nazir 6:1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם טמא אני.</strong> כלומר, אם טמא הייתי בתחילה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-16" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-16" data-source-ref="Brief Commentary on Nazir 6:1:16">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:16</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-16" aria-label="Copy link to Brief Commentary on Nazir 6:1:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עולה הראשונה חובה וכו׳.</strong> הנכון הוא בכי&quot;ע:עולה הראשונה נדבה וזו חובה. וכ&quot;ה בראשונים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-17" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-17" data-source-ref="Brief Commentary on Nazir 6:1:17">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:17</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-17" aria-label="Copy link to Brief Commentary on Nazir 6:1:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הראשונה נדבה וכו׳.</strong> צ&quot;ל: הראשונה חובה וזו נדבה. וכ&quot;ה בראשונים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-18" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-18" data-source-ref="Brief Commentary on Nazir 6:1:18">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:18</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-18" aria-label="Copy link to Brief Commentary on Nazir 6:1:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנים עשר חדש.</strong> וביום ראשון של נזירותו היה ספק נזיר טהור, ספק טמא, ספק מצורע מוחלט.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-19" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-19" data-source-ref="Brief Commentary on Nazir 6:1:19">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:19</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-19" aria-label="Copy link to Brief Commentary on Nazir 6:1:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לאחר שתי שנים.</strong> ומגלח תגלחת ראשונה לאחר שנה (שמא היה נזיר טהור) ושנייה לאחר שנתים (שמא היה טמא) ומגלח בנתים, ויצא מידי ספק מצורע , אבל עדיין עומד בספק נזירות טמאה או טהורה, שמא היה מצורע, וכל מה שעשה לא הועיל לו כלום לנזירותו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-20" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-20" data-source-ref="Brief Commentary on Nazir 6:1:20">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:20</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-20" aria-label="Copy link to Brief Commentary on Nazir 6:1:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ששים ושבעה.</strong> והיינו שמונה של צרעת ודאית ושלשים, שלשים של ספק נזירות טהרה, ספק טמאה. ויום שמיני לטהרת צרעתו עולה לו גם לנזירות, שמקצת היום ככולו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-21" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-21" data-source-ref="Brief Commentary on Nazir 6:1:21">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:21</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-21" aria-label="Copy link to Brief Commentary on Nazir 6:1:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשים ושבעה וכו׳.</strong> והיינו מונה שבעה ומגלח ממה נפשך, שאם הוא מצורע עולה לו תגלחתו לתגלחת ראשונה , ואם אינו מצורע הרי הוא נזיר טמא ודאי שמגלח בשביעי, ואח&quot;כ מונה שלשים שמא לא היה מצורע וטהר מטומאתו, וצריך למנות שלשים כנזיר טהור, ומגלח תגלחת שנייה, ומותר בקדשים ממה נפשך, שאפילו היה מצורע כבר טהר בתגלחת שנייה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-22" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-22" data-source-ref="Brief Commentary on Nazir 6:1:22">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:22</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-22" aria-label="Copy link to Brief Commentary on Nazir 6:1:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבעים וארבעה יום.</strong> שמא היה מצורע, והימים שמנה לא עלו לו לנזירותו, ומונה שבעה ימים כנזיר טמא (שהרי נזיר טמא וודאי היה), נטהר, ומונה שלשים לנזירות טהרה, ביחד שלשים ושבעה ימים, וכבר מנה מקודם שלשים ושבעה ימים משום ספק צרעתו, נמצא שיוצא מכלל נזירות לאחר שבעים וארבעה יום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-1-23" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-1-23" data-source-ref="Brief Commentary on Nazir 6:1:23">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:1:23</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-1-23" aria-label="Copy link to Brief Commentary on Nazir 6:1:23">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לאחר ארבעים וארבעה יום.</strong> שבעה לצרעת ודאית, שבעה לטומאה ודאית, ושלשים לנזירות טהרה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-2-1" data-source-ref="Brief Commentary on Nazir 6:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-2-1" aria-label="Copy link to Brief Commentary on Nazir 6:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועל טומאת הגוף.</strong> כלומר של הבעלים (ולא של העובד), ונקט התנא ריצוי ציץ משום הסיפא, ובכל הקרבנות אין צורך בריצוי ציץ על טומאת הבעלים. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-4-1" data-source-ref="Brief Commentary on Nazir 6:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-4-1" aria-label="Copy link to Brief Commentary on Nazir 6:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מפר וכו׳.</strong> כלומר, אם אמר להם בלשון הפרה אינו כלום, עד שיכוף אותם ויצוה עליהם לשתות יין וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-4-2" data-source-ref="Brief Commentary on Nazir 6:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-4-2" aria-label="Copy link to Brief Commentary on Nazir 6:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין שותין וכו׳.</strong> בדפוסים: ואין שותין, והיא היא, ואף לפנינו הכוונה: אין שותין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-6-1" data-source-ref="Brief Commentary on Nazir 6:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-6-1" aria-label="Copy link to Brief Commentary on Nazir 6:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנזר וגילח וכו׳.</strong> ואעפ&quot;י שרבו אמר לו לשתות, ומן הדין עליו לציית לרבו, מ&quot;מ אם שמר את נזירותו וגילח ויצא לחרות יצא בדיעבד, ואין מבטלים את קרבנותיו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-6-2" data-source-ref="Brief Commentary on Nazir 6:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-6-2" aria-label="Copy link to Brief Commentary on Nazir 6:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נזר ולא גילח וכו׳.</strong> הואיל ועדיין לא הביא את קרבנותיו דינו כאילו זלזל בנזירותו כל הזמן (שהרי היה מותר לו להטמא) ולא יצא ידי נזירותו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-nazir-6-6-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-nazir-6-6-3" data-source-ref="Brief Commentary on Nazir 6:6:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Nazir 6:6:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-nazir-6-6-3" aria-label="Copy link to Brief Commentary on Nazir 6:6:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משעה שנטמא.</strong> וימים שמנה לטומאתו (אם הזה ושנה) עולים לו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-nazir-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/brief-commentary-on-nazir.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/brief-commentary-on-nazir.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"brief-commentary-on-nazir","manifest_url":"../../data/lexical/brief-commentary-on-nazir.manifest.json","occurrence_url":"../../data/lexical/occurrences/brief-commentary-on-nazir.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

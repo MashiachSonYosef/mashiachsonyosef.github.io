@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brief Commentary on Moed Katan</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Brief Commentary on Moed Katan<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Moed Katan</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Moed Katan</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
+          </section>
+        </div>
+          <p class="hero-summary">
+            <span>52 source units</span>
+            <span>451 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: The Tosefta according to to codex Vienna. Third Augmented Edition, JTS 2001 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001234517/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: CC-BY</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Brief Commentary on Moed Katan <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Brief Commentary on Moed Katan <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-moed-katan-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-1-1" title="Brief Commentary on Moed Katan 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-1-2" title="Brief Commentary on Moed Katan 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-1-3" title="Brief Commentary on Moed Katan 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-1-4" title="Brief Commentary on Moed Katan 1:1:4">1:1:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-1-5" title="Brief Commentary on Moed Katan 1:1:5">1:1:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-1-6" title="Brief Commentary on Moed Katan 1:1:6">1:1:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-1-7" title="Brief Commentary on Moed Katan 1:1:7">1:1:7</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-1-8" title="Brief Commentary on Moed Katan 1:1:8">1:1:8</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-2-1" title="Brief Commentary on Moed Katan 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-2-2" title="Brief Commentary on Moed Katan 1:2:2">1:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-2-3" title="Brief Commentary on Moed Katan 1:2:3">1:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-2-4" title="Brief Commentary on Moed Katan 1:2:4">1:2:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-2-5" title="Brief Commentary on Moed Katan 1:2:5">1:2:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-3-1" title="Brief Commentary on Moed Katan 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-4-1" title="Brief Commentary on Moed Katan 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-4-2" title="Brief Commentary on Moed Katan 1:4:2">1:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-4-3" title="Brief Commentary on Moed Katan 1:4:3">1:4:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-4-4" title="Brief Commentary on Moed Katan 1:4:4">1:4:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-7-1" title="Brief Commentary on Moed Katan 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-7-2" title="Brief Commentary on Moed Katan 1:7:2">1:7:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-8-1" title="Brief Commentary on Moed Katan 1:8:1">1:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-9-1" title="Brief Commentary on Moed Katan 1:9:1">1:9:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-9-2" title="Brief Commentary on Moed Katan 1:9:2">1:9:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-9-3" title="Brief Commentary on Moed Katan 1:9:3">1:9:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-9-4" title="Brief Commentary on Moed Katan 1:9:4">1:9:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-10-1" title="Brief Commentary on Moed Katan 1:10:1">1:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-11-1" title="Brief Commentary on Moed Katan 1:11:1">1:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-12-1" title="Brief Commentary on Moed Katan 1:12:1">1:12:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-12-2" title="Brief Commentary on Moed Katan 1:12:2">1:12:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-1-12-3" title="Brief Commentary on Moed Katan 1:12:3">1:12:3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-moed-katan-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-1-1" title="Brief Commentary on Moed Katan 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-1-2" title="Brief Commentary on Moed Katan 2:1:2">2:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-2-1" title="Brief Commentary on Moed Katan 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-2-2" title="Brief Commentary on Moed Katan 2:2:2">2:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-4-1" title="Brief Commentary on Moed Katan 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-6-1" title="Brief Commentary on Moed Katan 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-7-1" title="Brief Commentary on Moed Katan 2:7:1">2:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-7-2" title="Brief Commentary on Moed Katan 2:7:2">2:7:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-8-1" title="Brief Commentary on Moed Katan 2:8:1">2:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-10-1" title="Brief Commentary on Moed Katan 2:10:1">2:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-10-2" title="Brief Commentary on Moed Katan 2:10:2">2:10:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-11-1" title="Brief Commentary on Moed Katan 2:11:1">2:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-11-2" title="Brief Commentary on Moed Katan 2:11:2">2:11:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-11-3" title="Brief Commentary on Moed Katan 2:11:3">2:11:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-11-4" title="Brief Commentary on Moed Katan 2:11:4">2:11:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-12-1" title="Brief Commentary on Moed Katan 2:12:1">2:12:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-13-1" title="Brief Commentary on Moed Katan 2:13:1">2:13:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-14-1" title="Brief Commentary on Moed Katan 2:14:1">2:14:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-16-1" title="Brief Commentary on Moed Katan 2:16:1">2:16:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-16-2" title="Brief Commentary on Moed Katan 2:16:2">2:16:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-17-1" title="Brief Commentary on Moed Katan 2:17:1">2:17:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-moed-katan-2-17-2" title="Brief Commentary on Moed Katan 2:17:2">2:17:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-brief-commentary-on-moed-katan-text-1">Chapter 1</h4>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-1-1" data-source-ref="Brief Commentary on Moed Katan 1:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-1-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בית הבעל.</strong> שחיה ממי גשמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-1-2" data-source-ref="Brief Commentary on Moed Katan 1:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-1-2" aria-label="Copy link to Brief Commentary on Moed Katan 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בית השלחין וכו׳.</strong> שדה ששותה ממי שלוחין, שמשלחין לה את המים ע&quot;י תעלות שמתמלאות ממי המעיין. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-1-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-1-3" data-source-ref="Brief Commentary on Moed Katan 1:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:1:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-1-3" aria-label="Copy link to Brief Commentary on Moed Katan 1:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שחרבה.</strong> שחרב מעיינה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-1-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-1-4" data-source-ref="Brief Commentary on Moed Katan 1:1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:1:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-1-4" aria-label="Copy link to Brief Commentary on Moed Katan 1:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הימנו.</strong> כלומר, אין משקין ממעיין שחרב, אפילו שדה בית השלחין. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-1-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-1-5" data-source-ref="Brief Commentary on Moed Katan 1:1:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:1:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-1-5" aria-label="Copy link to Brief Commentary on Moed Katan 1:1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בקילון.</strong> במכשיר מיוחד לדליית המים ולהשקאה (κήλων), באנטליא, ובו אין משקין כלל אפילו מן המעיין שקיים מכבר, משום טירחא, ולא התירו אלא להמשיך ולהשקות ברגלו, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-1-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-1-6" data-source-ref="Brief Commentary on Moed Katan 1:1:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:1:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-1-6" aria-label="Copy link to Brief Commentary on Moed Katan 1:1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפי׳ מן הבריכה וכו׳.</strong> כלומר, ולא זו בלבד שאסור למלות ולהשקות בקילון עצמו, אלא אסור להשקות כלל אפילו וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-1-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-1-7" data-source-ref="Brief Commentary on Moed Katan 1:1:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:1:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-1-7" aria-label="Copy link to Brief Commentary on Moed Katan 1:1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שניטיפה וכו׳.</strong> אע&quot;פ שנראה כמשקה ממי גשמים, ולא מן המעיין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-1-8" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-1-8" data-source-ref="Brief Commentary on Moed Katan 1:1:8">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:1:8</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-1-8" aria-label="Copy link to Brief Commentary on Moed Katan 1:1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא יזלף וכו׳.</strong> כלומר, לא יזלף בכלי, אפי׳ מן העליונה לתחתונה. ועיין בשנו&quot;ס ובבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-2-1" data-source-ref="Brief Commentary on Moed Katan 1:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-2-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מרבצין וכו׳.</strong> כלומר, אפילו בכלי, משום שהרבצה היא השקאה קלה, ואין בה טורח.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-2-2" data-source-ref="Brief Commentary on Moed Katan 1:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-2-2" aria-label="Copy link to Brief Commentary on Moed Katan 1:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אילו הן עגיות.</strong> כלומר, שאסרו לעשות במועד, במשנתנו פ&quot;א מ&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-2-3" data-source-ref="Brief Commentary on Moed Katan 1:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-2-3" aria-label="Copy link to Brief Commentary on Moed Katan 1:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בדידין וכו׳.</strong> בדיד הוא כלי ברזל שהיו עושין בו את החפירה מסביב לאילן, והחפירה עצמה נקראת על שמו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-2-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-2-4" data-source-ref="Brief Commentary on Moed Katan 1:2:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:2:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-2-4" aria-label="Copy link to Brief Commentary on Moed Katan 1:2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מותרין ומשמטין וכו׳.</strong> כלומר, מוותרין ומכרסמין, את יתרון ראשי הגפנים, כשהן מטפסות על הקנים ועולים מעל לראשיהן, וכן משמטין את הגפן מעל הקנים שלא תעלה יותר מדאי, ותפסד, ומשום דבר האבד התירו, כמפורש להלן. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-2-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-2-5" data-source-ref="Brief Commentary on Moed Katan 1:2:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:2:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-2-5" aria-label="Copy link to Brief Commentary on Moed Katan 1:2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מוכר וכו׳.</strong> כלומר, אעפ&quot;י שאסרו למכור במועד (כמשנ׳ ספ&quot;ג), כאן התירו למכור את העין (המעיין) משום דבר האבד. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-3-1" data-source-ref="Brief Commentary on Moed Katan 1:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-3-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דברי ר׳ יהודה וכו׳.</strong> במשנ׳ פ&quot;א מ&quot;ד: צדין את האישות וכו׳ משדה האילן ומשדה הלבן כדרכו (כגי׳ המשנה שבירוש׳ ועוד, עיין בבה&quot;א) במועד ובשביעית. ר׳ יהודה (כגי׳ כמה נוסחאות, עיין בבה&quot;א) אומר משדה האילן כדרכו ומשדה הלבן שלא כדרכו. ואוסר רבי, כדעת ר׳ יהודה, במועד משום טורח.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-4-1" data-source-ref="Brief Commentary on Moed Katan 1:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-4-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ר׳ יהוד׳ וכו׳.</strong> הנ&quot;ל, עיין מ&quot;ש לעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-4-2" data-source-ref="Brief Commentary on Moed Katan 1:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-4-2" aria-label="Copy link to Brief Commentary on Moed Katan 1:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תוהב.</strong> תוחב, עיין בשנו&quot;ס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-4-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-4-3" data-source-ref="Brief Commentary on Moed Katan 1:4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:4:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-4-3" aria-label="Copy link to Brief Commentary on Moed Katan 1:4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה ר׳ יהודה וכו׳.</strong> צ&quot;ל: היה ר׳ מאיר (כגי׳ כי&quot;ע), והוא חכמים של משנתנו הנ&quot;ל (וכן יש שגרסו שם בפירוש: דברי ר׳ מאיר). ופירושו: וכי ר׳ מאיר היה מתיר לצוד כדרכו בשדה הלבן הסמוכה לבית השלחין, כלומר, אתמה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-4-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-4-4" data-source-ref="Brief Commentary on Moed Katan 1:4:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:4:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-4-4" aria-label="Copy link to Brief Commentary on Moed Katan 1:4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא בשדה וכו׳.</strong> צ&quot;ל: לא (כגי׳ כי&quot;ל) בשדה הסמוכה לשדה בית האילן ! והרי יש כאן הפסד מרובה, ולמה לא יצוד כדרכו? והוא חולק על רבי לעיל, שו׳ 14, שמכריע כר׳ יהודה ואוסר לצוד כדרכו משדה הלבן במועד. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-7-1" data-source-ref="Brief Commentary on Moed Katan 1:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-7-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גוהה.</strong> כלומר, גוחה וגוחן, נוטה, קיר נטוי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-7-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-7-2" data-source-ref="Brief Commentary on Moed Katan 1:7:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:7:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-7-2" aria-label="Copy link to Brief Commentary on Moed Katan 1:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין גודרין.</strong> משום שפשעו ולא תיקנו כהוגן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-8-1" data-source-ref="Brief Commentary on Moed Katan 1:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-8-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במוסגר וכו׳.</strong> כלומר, בהסגר שני, שאין כאן חומרא לגבי המצורע, שאם יטהרנו הרי הוא ככל אדם, ואם נולדו בו סמני טומאה ישתוק, אבל במוחלט אסור לראות שאין כאן קולא כלל, שאם הוא טמא הרי הוא כמו שהיה, ואם הוא טהור יצטרך לספור ז׳ ימים, ונמצא נאסר באשתו ברגל. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-9-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-9-1" data-source-ref="Brief Commentary on Moed Katan 1:9:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:9:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-9-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אי זה חנוך וכו׳.</strong> כלומר, שהתירו במשנ׳ פ&quot;א מ&quot;ו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-9-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-9-2" data-source-ref="Brief Commentary on Moed Katan 1:9:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:9:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-9-2" aria-label="Copy link to Brief Commentary on Moed Katan 1:9:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נברכה.</strong> כלומר, נברכת שהתירו במשנ׳ הנ&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-9-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-9-3" data-source-ref="Brief Commentary on Moed Katan 1:9:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:9:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-9-3" aria-label="Copy link to Brief Commentary on Moed Katan 1:9:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בקיע.</strong> נקע, כעין עריבה חצובה בכותל הסלע (לקבורה זמנית). וצורתה החצונית כעין אבוס, או שוקת. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-9-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-9-4" data-source-ref="Brief Commentary on Moed Katan 1:9:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:9:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-9-4" aria-label="Copy link to Brief Commentary on Moed Katan 1:9:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ר׳ יוסה וכו׳.</strong> צ&quot;ל: ר׳ יהודה (כגי׳ כי&quot;ע וכי&quot;ל), שאוסר (במשנ׳ פ&quot;א מ&quot;ז) לאשה לסוד במועד, אף הוא מודה בסיד שיכול לגמרו, שהיא יודעת שהסיוד יגמר ויתקלף בתוך המועד, שהיא מותרת, משום שהיא שמחה לאחר זמן בתוך המועד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-10-1" data-source-ref="Brief Commentary on Moed Katan 1:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-10-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אומן.</strong> כלומר, שורה ישרה, משום שנראה כטורח לנקות את הקרקע.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-11-1" data-source-ref="Brief Commentary on Moed Katan 1:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-11-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וטוחנין וכו׳.</strong> כלומר, לצורך המועד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-12-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-12-1" data-source-ref="Brief Commentary on Moed Katan 1:12:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:12:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-12-1" aria-label="Copy link to Brief Commentary on Moed Katan 1:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לוקחין וכו׳.</strong> במשנ׳ פ&quot;ב מ&quot;ד: אין לוקחין בתים עבדים וכו׳. ומפרשת הברייתא שהוא דווקא מישראל, אבל לוקחין וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-12-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-12-2" data-source-ref="Brief Commentary on Moed Katan 1:12:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:12:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-12-2" aria-label="Copy link to Brief Commentary on Moed Katan 1:12:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא עוד אלא לדון וכו׳.</strong> צ&quot;ל: להעיד עליהן ולדון וכו׳. עיין בשנו&quot;ס ובבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-1-12-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-1-12-3" data-source-ref="Brief Commentary on Moed Katan 1:12:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 1:12:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-1-12-3" aria-label="Copy link to Brief Commentary on Moed Katan 1:12:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בבית הקברו׳.</strong> ופירשו בגמרא בבית הפרס שטומאתו מדרבנן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-moed-katan-text-2">Chapter 2</h4>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-1-1" data-source-ref="Brief Commentary on Moed Katan 2:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-1-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאמרו וכו׳.</strong> כלומר, במשנתנו רפ&quot;ג, והיינו שאירע לו מין ממיני האונסים שמנו שם, שלא יכול היה לגלח לפני המועד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-1-2" data-source-ref="Brief Commentary on Moed Katan 2:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-1-2" aria-label="Copy link to Brief Commentary on Moed Katan 2:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>של אבל.</strong> כלומר, בכל העניינים שאסור לו לספר במועד בתוך שלשים, אם לא הסתפר בערב הרגל (להלן שו׳ 18–19) לא אסרו אלא כשפשע ולא גלח בערב הרגל, אבל אם אירע לו מין ממיני האונסין הנ&quot;ל בערב הרגל, מספר ברגל. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-2-1" data-source-ref="Brief Commentary on Moed Katan 2:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-2-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בתוך שלשים וכו׳.</strong> ופירושו כלעיל בסמוך. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-2-2" data-source-ref="Brief Commentary on Moed Katan 2:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-2-2" aria-label="Copy link to Brief Commentary on Moed Katan 2:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלא נטל וכו׳.</strong> כלומר, שלא נטל רשות מן החכמים לצאת למדינת הים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-4-1" data-source-ref="Brief Commentary on Moed Katan 2:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-4-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כותב אדם וכו׳.</strong> ונחלקו הראשונים בטעם ההיתר, אם הוא משום דבר האבד, או משום שהוא צורך המועד, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-6-1" data-source-ref="Brief Commentary on Moed Katan 2:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-6-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ורבים מתעסקין וכו׳.</strong> כלומר, באים לנחם אותו באותם חמשה ימים, שהרי כבר התעסקו עמו שני ימים לפני הרגל. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-7-1" data-source-ref="Brief Commentary on Moed Katan 2:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-7-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתוך הרגל וכו׳.</strong> כלומר, הקובר את מתו ברגל, ונשארו לו עוד שלשה ימים בתוך הרגל, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-7-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-7-2" data-source-ref="Brief Commentary on Moed Katan 2:7:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:7:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-7-2" aria-label="Copy link to Brief Commentary on Moed Katan 2:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפי שאין הרגל וכו׳.</strong> נראה שצ&quot;ל: לפי שא׳ (שאמרו) הרגל וכו׳. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-8-1" data-source-ref="Brief Commentary on Moed Katan 2:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-8-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאע&quot;פ וכו׳.</strong> כלומר, אעפ&quot;י (עיין בשנו&quot;ס), והוא עניין בפני עצמו, ואינו דבוק להלכה שלפניה, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-10-1" data-source-ref="Brief Commentary on Moed Katan 2:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-10-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי זבלין וכו׳.</strong> טיבן לא נתברר לי. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-10-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-10-2" data-source-ref="Brief Commentary on Moed Katan 2:10:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:10:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-10-2" aria-label="Copy link to Brief Commentary on Moed Katan 2:10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכוס עיקרין.</strong> כוס שנותנים לתוכו עיקרי (שרשי) ירקות ובשמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-11-1" data-source-ref="Brief Commentary on Moed Katan 2:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-11-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לבקורת.</strong> למקום הבקר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-11-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-11-2" data-source-ref="Brief Commentary on Moed Katan 2:11:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:11:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-11-2" aria-label="Copy link to Brief Commentary on Moed Katan 2:11:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלא תצטנן.</strong> כלומר, ולא תקבל את הזכר, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-11-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-11-3" data-source-ref="Brief Commentary on Moed Katan 2:11:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:11:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-11-3" aria-label="Copy link to Brief Commentary on Moed Katan 2:11:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין מרביעין וכו׳.</strong> כלומר, אפילו בזכרים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-11-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-11-4" data-source-ref="Brief Commentary on Moed Katan 2:11:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:11:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-11-4" aria-label="Copy link to Brief Commentary on Moed Katan 2:11:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בבכור וכו׳.</strong> משום שיש כאן מעין עבודה בקדשים, ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-12-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-12-1" data-source-ref="Brief Commentary on Moed Katan 2:12:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:12:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-12-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מחזירו לו וכו׳.</strong> הברייתא נשתבשה, וצ&quot;ל כגי׳ כי&quot;ע וכי&quot;ל: נוטלין הימנו ואין מחזירין לו, של בעלי בתים מחזירין לו, ואין צריך לומ׳ נוטלן הימנו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-13-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-13-1" data-source-ref="Brief Commentary on Moed Katan 2:13:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:13:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-13-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לסטיו וכו׳.</strong> כלומר, לבין העמודים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-14-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-14-1" data-source-ref="Brief Commentary on Moed Katan 2:14:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:14:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-14-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על ספסל וכו׳.</strong> ספסלים שמוכרין עליהן סחורה, משום דמחזי כמקח וממכר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-16-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-16-1" data-source-ref="Brief Commentary on Moed Katan 2:16:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:16:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-16-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בקורדקיסין וכו׳.</strong> נעלים העשויים מקליפת צמחים, ובעיקר מקליפת האלון.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-16-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-16-2" data-source-ref="Brief Commentary on Moed Katan 2:16:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:16:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-16-2" aria-label="Copy link to Brief Commentary on Moed Katan 2:16:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלחום ביד וכו׳.</strong> עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-17-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-17-1" data-source-ref="Brief Commentary on Moed Katan 2:17:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:17:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-17-1" aria-label="Copy link to Brief Commentary on Moed Katan 2:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והכל חולצין.</strong> פירש&quot;י: יוצאין לפניו חלוצי כתף, חלוקו קרוע עד שכתיפו חלוצה ערומה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-moed-katan-2-17-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-moed-katan-2-17-2" data-source-ref="Brief Commentary on Moed Katan 2:17:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Moed Katan 2:17:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-moed-katan-2-17-2" aria-label="Copy link to Brief Commentary on Moed Katan 2:17:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אי זהו מספד וכו׳.</strong> כלומר, שדנו בו במשנ׳ פ&quot;ג מ&quot;ח.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-moed-katan-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/brief-commentary-on-moed-katan.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/brief-commentary-on-moed-katan.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"brief-commentary-on-moed-katan","manifest_url":"../../data/lexical/brief-commentary-on-moed-katan.manifest.json","occurrence_url":"../../data/lexical/occurrences/brief-commentary-on-moed-katan.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>
