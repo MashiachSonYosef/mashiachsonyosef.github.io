@@ -1164,7 +1164,7 @@
       "label": "public-shard-identity-mismatch-is-forbidden",
       "shard_entry": {
         "shard": "manifest-fixture",
-        "path": "fixture.json",
+        "path": "shards/manifest-fixture.json",
         "token_count": 1,
         "card_count": 1
       },
@@ -1205,6 +1205,10 @@
         "issue_count": 1,
         "warning_count": 0,
         "shards": 1,
+        "manifest_shard_path_checks": 1,
+        "invalid_manifest_shard_paths": 0,
+        "duplicate_manifest_shard_paths": 0,
+        "duplicate_manifest_shard_ids": 0,
         "shard_identity_checks": 1,
         "shard_identity_mismatches": 1,
         "shard_count_fields_checked": 4,
@@ -1223,7 +1227,7 @@
       "label": "public-shard-count-mismatch-is-forbidden",
       "shard_entry": {
         "shard": "fixture",
-        "path": "fixture.json",
+        "path": "shards/fixture.json",
         "token_count": 2,
         "card_count": 1
       },
@@ -1264,6 +1268,10 @@
         "issue_count": 2,
         "warning_count": 0,
         "shards": 1,
+        "manifest_shard_path_checks": 1,
+        "invalid_manifest_shard_paths": 0,
+        "duplicate_manifest_shard_paths": 0,
+        "duplicate_manifest_shard_ids": 0,
         "shard_identity_checks": 1,
         "shard_identity_mismatches": 0,
         "shard_count_fields_checked": 4,
@@ -1276,6 +1284,149 @@
       },
       "expected_issue_substrings": [
         "shard count mismatch"
+      ]
+    },
+    {
+      "label": "public-shard-path-must-match-safe-shard-id",
+      "shard_entry": {
+        "shard": "fixture",
+        "path": "../fixture.json",
+        "token_count": 1,
+        "card_count": 0
+      },
+      "shard": {
+        "schema_version": 1,
+        "shard": "fixture",
+        "token_count": 0,
+        "card_count": 0,
+        "routes_by_normalized": {}
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 0,
+        "shards": 1,
+        "manifest_shard_path_checks": 1,
+        "invalid_manifest_shard_paths": 1,
+        "duplicate_manifest_shard_paths": 0,
+        "duplicate_manifest_shard_ids": 0,
+        "shard_identity_checks": 0,
+        "shard_identity_mismatches": 0,
+        "shard_count_fields_checked": 0,
+        "shard_count_field_mismatches": 0,
+        "tokens": 0,
+        "cards": 0
+      },
+      "expected_issue_substrings": [
+        "invalid public shard path"
+      ]
+    },
+    {
+      "label": "duplicate-public-shard-manifest-entries-are-forbidden",
+      "shards": [
+        {
+          "shard_entry": {
+            "shard": "fixture",
+            "path": "shards/fixture.json",
+            "token_count": 1,
+            "card_count": 1
+          },
+          "shard": {
+            "schema_version": 1,
+            "shard": "fixture",
+            "token_count": 1,
+            "card_count": 1,
+            "routes_by_normalized": {
+              "fixture-one": [
+                {
+                  "card_id": "fixture-duplicate-shard-entry-one",
+                  "normalized": "fixture-one",
+                  "route_family": "fixture",
+                  "route_type": "lemma",
+                  "display_section": "lemma",
+                  "display_label": "Fixture lemma",
+                  "definition": "Fixture duplicate shard entry one.",
+                  "answer_eligible": false,
+                  "answer_role": "evidence",
+                  "source_rows": [
+                    {
+                      "source_name": "Fixture Public Domain Source",
+                      "source_family": "fixture",
+                      "source_id": "fixture-pd-duplicate-shard-entry-one",
+                      "source_url": "local:route-publication-boundary-fixtures",
+                      "license": "Public Domain",
+                      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+                      "fields_used": ["fixture source", "fixture license"],
+                      "notes": "Fixture row one for rejecting duplicate public shard manifest entries."
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "shard_entry": {
+            "shard": "fixture",
+            "path": "shards/fixture.json",
+            "token_count": 1,
+            "card_count": 1
+          },
+          "shard": {
+            "schema_version": 1,
+            "shard": "fixture",
+            "token_count": 1,
+            "card_count": 1,
+            "routes_by_normalized": {
+              "fixture-two": [
+                {
+                  "card_id": "fixture-duplicate-shard-entry-two",
+                  "normalized": "fixture-two",
+                  "route_family": "fixture",
+                  "route_type": "lemma",
+                  "display_section": "lemma",
+                  "display_label": "Fixture lemma",
+                  "definition": "Fixture duplicate shard entry two.",
+                  "answer_eligible": false,
+                  "answer_role": "evidence",
+                  "source_rows": [
+                    {
+                      "source_name": "Fixture Public Domain Source",
+                      "source_family": "fixture",
+                      "source_id": "fixture-pd-duplicate-shard-entry-two",
+                      "source_url": "local:route-publication-boundary-fixtures",
+                      "license": "Public Domain",
+                      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+                      "fields_used": ["fixture source", "fixture license"],
+                      "notes": "Fixture row two for rejecting duplicate public shard manifest entries."
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "expected_counts": {
+        "issue_count": 2,
+        "warning_count": 0,
+        "shards": 2,
+        "manifest_shard_path_checks": 2,
+        "invalid_manifest_shard_paths": 0,
+        "duplicate_manifest_shard_paths": 1,
+        "duplicate_manifest_shard_ids": 1,
+        "shard_identity_checks": 2,
+        "shard_identity_mismatches": 0,
+        "shard_count_fields_checked": 8,
+        "shard_count_field_mismatches": 0,
+        "tokens": 2,
+        "cards": 2,
+        "answer_eligible_cards": 0,
+        "hud_unsafe_source_rows": 0,
+        "route_cards_with_publication_fields": 0
+      },
+      "expected_issue_substrings": [
+        "duplicate public shard path",
+        "duplicate public shard id"
       ]
     }
   ]

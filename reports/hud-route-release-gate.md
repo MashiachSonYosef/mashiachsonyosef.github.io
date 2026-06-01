@@ -1,6 +1,6 @@
 # HUD Route Release Gate
 
-Generated: 2026-06-01T06:57:56.258Z
+Generated: 2026-06-01T07:37:13.099Z
 Status: pass
 Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 
@@ -10,21 +10,29 @@ Release ID: hud-route-rc-2026-05-31T16-55-29-957Z
 - Cards: 539661
 - Normalized tokens: 175216
 - Shards: 7990
+- Manifest shard path checks: 7990
+- Invalid manifest shard paths: 0
+- Duplicate manifest shard paths: 0
+- Duplicate manifest shard IDs: 0
 - Sample tokens checked: 6
 
 ## Route Publication Boundary
 
 - Report: `reports/route-publication-boundary-audit.json`
 - Generator: `scripts/validate_route_publication_boundary.mjs`
-- Validator SHA-256: `7c8288cad6f8f6c2845cc5188e53bedec8b14ffcb070575fcf66812759e261ae`
+- Validator SHA-256: `c0266fa7b97353465951dc37dd6ffe4f0517e74da9846fafe1f3a13eab2c7827`
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
 - HUD contract: `data/definitions/hud-route-contract.json`
 - Allowed display sections: answer, audit, biblical_paraphrase_evidence, citable_paraphrase_evidence, lemma, morphology, phrase_evidence, source_license, strict_aramaic, strict_hebrew, subphrase_evidence
 - Boundary issues: 0
 - Boundary warnings: 335103
 - Fixture: `data/definitions/route-publication-boundary-fixtures.json`
-- Fixture cases: 30
-- Fixture SHA-256: `eb7e6d59aadbac366ad8805da7a362c684d29116d56f094f2251e3af04a10e57`
+- Fixture cases: 32
+- Fixture SHA-256: `837d31a718baea309ed89442cd7bd415040302b2d9484d03be861c5ee4650ba6`
+- Manifest shard path checks: 7990
+- Invalid manifest shard paths: 0
+- Duplicate manifest shard paths: 0
+- Duplicate manifest shard IDs: 0
 - Shard identity checks: 7990
 - Shard identity mismatches: 0
 - Shard count fields checked: 31960

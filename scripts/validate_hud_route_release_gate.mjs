@@ -62,6 +62,12 @@ const publicManifestSummary = await fileSummary(options.publicManifest);
 compareSummary(publicManifestSummary, stamp.public_lookup?.file, 'public lookup manifest');
 
 const shardSummary = summarizePublicShards(publicManifest, options.publicManifest);
+const publicManifestStructure = {
+  shard_path_checks: shardSummary.path_checks,
+  invalid_shard_paths: shardSummary.invalid_paths,
+  duplicate_shard_paths: shardSummary.duplicate_paths,
+  duplicate_shard_ids: shardSummary.duplicate_ids,
+};
 const currentReconciliation = {
   public_cards_written: Number(publicManifest.counts?.cards_written || 0),
   public_distinct_normalized_tokens: Number(publicManifest.counts?.distinct_normalized_tokens || 0),
@@ -120,6 +126,7 @@ const result = {
   public_cards_written: currentReconciliation.public_cards_written,
   public_distinct_normalized_tokens: currentReconciliation.public_distinct_normalized_tokens,
   public_shard_count: currentReconciliation.public_shard_count,
+  public_lookup_manifest: publicManifestStructure,
   route_publication_boundary: {
     report: cleanPath(options.boundaryReport),
     generator: cleanPath(boundaryReport.generator || ''),
@@ -132,6 +139,10 @@ const result = {
     fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
     fixture_cases: Number(boundaryReport.inputs?.fixture_cases || 0),
     fixture_sha256: boundaryReport.inputs?.fixture_file?.sha256 || '',
+    manifest_shard_path_checks: Number(boundaryReport.counts?.manifest_shard_path_checks || 0),
+    invalid_manifest_shard_paths: Number(boundaryReport.counts?.invalid_manifest_shard_paths || 0),
+    duplicate_manifest_shard_paths: Number(boundaryReport.counts?.duplicate_manifest_shard_paths || 0),
+    duplicate_manifest_shard_ids: Number(boundaryReport.counts?.duplicate_manifest_shard_ids || 0),
     shard_identity_checks: Number(boundaryReport.counts?.shard_identity_checks || 0),
     shard_identity_mismatches: Number(boundaryReport.counts?.shard_identity_mismatches || 0),
     shard_count_fields_checked: Number(boundaryReport.counts?.shard_count_fields_checked || 0),
@@ -261,6 +272,12 @@ function summarizePublicShards(manifest, manifestPath) {
   const publicDir = path.join(root, path.dirname(manifestPath));
   const shardDir = path.join(publicDir, 'shards');
   const manifestShardPaths = new Set((manifest.shards || []).map((shard) => shard.path));
+  const seenShardPaths = new Set();
+  const seenShardIds = new Set();
+  let pathChecks = 0;
+  let invalidPaths = 0;
+  let duplicatePaths = 0;
+  let duplicateIds = 0;
   const diskShardPaths = fs.existsSync(shardDir)
     ? fs.readdirSync(shardDir).filter((file) => file.endsWith('.json')).map((file) => `shards/${file}`)
     : [];
@@ -268,6 +285,38 @@ function summarizePublicShards(manifest, manifestPath) {
     if (!manifestShardPaths.has(shardPath)) issues.push(`stale public lookup shard not listed in manifest: ${shardPath}`);
   }
   for (const shard of manifest.shards || []) {
+    pathChecks += 1;
+    const shardId = typeof shard?.shard === 'string' ? shard.shard.trim() : '';
+    const shardPath = typeof shard?.path === 'string' ? cleanPath(shard.path.trim()) : '';
+    const expectedPath = shardId ? `shards/${shardId}.json` : '';
+    let validPath = true;
+    if (!shardId || !/^[A-Za-z0-9_-]+(?:-[A-Za-z0-9_-]+)*$/.test(shardId)) {
+      validPath = false;
+      invalidPaths += 1;
+      issues.push(`invalid public lookup shard id in manifest: ${shard?.shard || 'missing'}`);
+    }
+    if (!shardPath || shardPath !== expectedPath || shardPath.includes('..') || shardPath.includes('//') || path.isAbsolute(shardPath)) {
+      validPath = false;
+      invalidPaths += 1;
+      issues.push(`invalid public lookup shard path in manifest: ${shard?.path || 'missing'}; expected ${expectedPath || 'shards/<shard>.json'}`);
+    }
+    if (shardPath) {
+      if (seenShardPaths.has(shardPath)) {
+        duplicatePaths += 1;
+        issues.push(`duplicate public lookup shard path in manifest: ${shardPath}`);
+      } else {
+        seenShardPaths.add(shardPath);
+      }
+    }
+    if (shardId) {
+      if (seenShardIds.has(shardId)) {
+        duplicateIds += 1;
+        issues.push(`duplicate public lookup shard id in manifest: ${shardId}`);
+      } else {
+        seenShardIds.add(shardId);
+      }
+    }
+    if (!validPath) continue;
     const filePath = path.join(publicDir, shard.path || '');
     if (!fs.existsSync(filePath)) {
       issues.push(`missing public lookup shard: ${shard.path || 'missing path'}`);
@@ -280,6 +329,10 @@ function summarizePublicShards(manifest, manifestPath) {
   }
   return {
     file_count: diskShardPaths.length,
+    path_checks: pathChecks,
+    invalid_paths: invalidPaths,
+    duplicate_paths: duplicatePaths,
+    duplicate_ids: duplicateIds,
     card_sum: (manifest.shards || []).reduce((sum, shard) => sum + Number(shard.card_count || 0), 0),
     token_sum: (manifest.shards || []).reduce((sum, shard) => sum + Number(shard.token_count || 0), 0),
     byte_sum: (manifest.shards || []).reduce((sum, shard) => sum + Number(shard.byte_length || 0), 0),
@@ -360,6 +413,30 @@ async function validateBoundaryReport(report, reconciliation) {
   }
   if (Number(report.counts?.issue_count || 0) !== 0) {
     issues.push(`route publication boundary report has ${report.counts.issue_count} issue(s)`);
+  }
+  if (count('manifest_shard_path_checks') !== count('shards')) {
+    issues.push('route publication boundary report did not check every public manifest shard path');
+  }
+  if (count('manifest_shard_path_checks') !== publicManifestStructure.shard_path_checks) {
+    issues.push('route publication boundary report manifest shard path check count does not match the current public manifest');
+  }
+  if (count('invalid_manifest_shard_paths') !== 0) {
+    issues.push(`route publication boundary report found ${count('invalid_manifest_shard_paths')} invalid public manifest shard path/id value(s)`);
+  }
+  if (count('invalid_manifest_shard_paths') !== publicManifestStructure.invalid_shard_paths) {
+    issues.push('route publication boundary report invalid shard path count does not match the current public manifest');
+  }
+  if (count('duplicate_manifest_shard_paths') !== 0) {
+    issues.push(`route publication boundary report found ${count('duplicate_manifest_shard_paths')} duplicate public manifest shard path(s)`);
+  }
+  if (count('duplicate_manifest_shard_paths') !== publicManifestStructure.duplicate_shard_paths) {
+    issues.push('route publication boundary report duplicate shard path count does not match the current public manifest');
+  }
+  if (count('duplicate_manifest_shard_ids') !== 0) {
+    issues.push(`route publication boundary report found ${count('duplicate_manifest_shard_ids')} duplicate public manifest shard id(s)`);
+  }
+  if (count('duplicate_manifest_shard_ids') !== publicManifestStructure.duplicate_shard_ids) {
+    issues.push('route publication boundary report duplicate shard id count does not match the current public manifest');
   }
   if (count('shard_identity_checks') !== count('shards')) {
     issues.push('route publication boundary report did not check every public shard identity');
@@ -694,6 +771,10 @@ function writeReport(relativePath, result) {
     `- Cards: ${result.public_cards_written}`,
     `- Normalized tokens: ${result.public_distinct_normalized_tokens}`,
     `- Shards: ${result.public_shard_count}`,
+    `- Manifest shard path checks: ${result.public_lookup_manifest.shard_path_checks}`,
+    `- Invalid manifest shard paths: ${result.public_lookup_manifest.invalid_shard_paths}`,
+    `- Duplicate manifest shard paths: ${result.public_lookup_manifest.duplicate_shard_paths}`,
+    `- Duplicate manifest shard IDs: ${result.public_lookup_manifest.duplicate_shard_ids}`,
     `- Sample tokens checked: ${result.checked_sample_tokens}`,
     '',
     '## Route Publication Boundary',
@@ -709,6 +790,10 @@ function writeReport(relativePath, result) {
     `- Fixture: \`${result.route_publication_boundary.fixture}\``,
     `- Fixture cases: ${result.route_publication_boundary.fixture_cases}`,
     `- Fixture SHA-256: \`${result.route_publication_boundary.fixture_sha256 || 'missing'}\``,
+    `- Manifest shard path checks: ${result.route_publication_boundary.manifest_shard_path_checks}`,
+    `- Invalid manifest shard paths: ${result.route_publication_boundary.invalid_manifest_shard_paths}`,
+    `- Duplicate manifest shard paths: ${result.route_publication_boundary.duplicate_manifest_shard_paths}`,
+    `- Duplicate manifest shard IDs: ${result.route_publication_boundary.duplicate_manifest_shard_ids}`,
     `- Shard identity checks: ${result.route_publication_boundary.shard_identity_checks}`,
     `- Shard identity mismatches: ${result.route_publication_boundary.shard_identity_mismatches}`,
     `- Shard count fields checked: ${result.route_publication_boundary.shard_count_fields_checked}`,

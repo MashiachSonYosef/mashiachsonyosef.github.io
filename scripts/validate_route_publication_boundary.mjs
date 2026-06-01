@@ -69,7 +69,7 @@ if (options.fixturesOnly) {
 const manifest = readJson(options.manifest);
 const audit = createAudit(manifest, contract);
 
-for (const shard of manifest.shards || []) auditShard(shard);
+for (const [index, shard] of (manifest.shards || []).entries()) auditShard(shard, index);
 
 writeJson(options.output, audit);
 writeReport(options.report, audit);
@@ -117,6 +117,10 @@ function createAudit(manifestData = {}, contractData = contract) {
     },
     counts: {
       shards: 0,
+      manifest_shard_path_checks: 0,
+      invalid_manifest_shard_paths: 0,
+      duplicate_manifest_shard_paths: 0,
+      duplicate_manifest_shard_ids: 0,
       shard_identity_checks: 0,
       shard_identity_mismatches: 0,
       shard_count_fields_checked: 0,
@@ -197,9 +201,18 @@ function runFixtureSelfTest(relativePath, contractData) {
   }
   for (const [index, testCase] of (fixture.cases || []).entries()) {
     const target = createAudit({ public_lookup: 'fixture', include_input_file_summaries: false }, contractData);
-    if (testCase.shard) {
+    if (Array.isArray(testCase.shards)) {
+      for (const [shardIndex, shardCase] of testCase.shards.entries()) {
+        auditShardRecord(
+          shardCase.shard_entry || { shard: `fixture-${shardIndex}`, path: `shards/fixture-${shardIndex}.json` },
+          prepareFixtureShard(shardCase.shard),
+          `fixture:${testCase.label || index}.shards[${shardIndex}]`,
+          target,
+        );
+      }
+    } else if (testCase.shard) {
       auditShardRecord(
-        testCase.shard_entry || { shard: 'fixture', path: 'fixture.json' },
+        testCase.shard_entry || { shard: 'fixture', path: 'shards/fixture.json' },
         prepareFixtureShard(testCase.shard),
         `fixture:${testCase.label || index}.shard`,
         target,
@@ -270,15 +283,24 @@ function assertFixtureSubstrings(issues, testCase, fieldName, rows, index) {
   }
 }
 
-function auditShard(shardEntry) {
+function auditShard(shardEntry, manifestIndex) {
   const lookupRoot = cleanRelativePath(manifest.public_lookup || 'data/definitions/hud-route-lookup');
+  const validation = validateManifestShardEntry(shardEntry, `${options.manifest}:shards[${manifestIndex}]`, audit);
+  if (!validation.safeToRead) {
+    audit.counts.shards += 1;
+    return;
+  }
   const shardPath = cleanRelativePath(`${lookupRoot}/${shardEntry.path}`);
   const shard = readJson(shardPath);
-  auditShardRecord(shardEntry, shard, shardPath, audit);
+  auditShardRecord(shardEntry, shard, shardPath, audit, { entryAlreadyValidated: true });
 }
 
-function auditShardRecord(shardEntry, shard, shardPath, target = audit) {
+function auditShardRecord(shardEntry, shard, shardPath, target = audit, options = {}) {
   target.counts.shards += 1;
+  if (!options.entryAlreadyValidated) {
+    const validation = validateManifestShardEntry(shardEntry, shardPath, target);
+    if (!validation.safeToRead) return;
+  }
   const byToken = shard.routes_by_normalized || {};
   const tokenEntries = Object.entries(byToken);
   const actualTokenCount = tokenEntries.length;
@@ -298,6 +320,42 @@ function auditShardRecord(shardEntry, shard, shardPath, target = audit) {
       auditCard(card, `${shardPath}:${normalized}[${index}]`, target, normalized);
     }
   }
+}
+
+function validateManifestShardEntry(shardEntry, context, target = audit) {
+  target.counts.manifest_shard_path_checks += 1;
+  const state = runtimeState(target);
+  const shardId = typeof shardEntry?.shard === 'string' ? shardEntry.shard.trim() : '';
+  const shardPath = typeof shardEntry?.path === 'string' ? cleanRelativePath(shardEntry.path.trim()) : '';
+  let valid = true;
+  if (!shardId || !/^[A-Za-z0-9_-]+(?:-[A-Za-z0-9_-]+)*$/.test(shardId)) {
+    valid = false;
+    target.counts.invalid_manifest_shard_paths += 1;
+    addIssue(context, `invalid public shard id: ${shardEntry?.shard || 'missing'}`, target);
+  }
+  const expectedPath = shardId ? `shards/${shardId}.json` : '';
+  if (!shardPath || shardPath !== expectedPath || shardPath.includes('..') || shardPath.includes('//') || path.isAbsolute(shardPath)) {
+    valid = false;
+    target.counts.invalid_manifest_shard_paths += 1;
+    addIssue(context, `invalid public shard path: ${shardEntry?.path || 'missing'}; expected ${expectedPath || 'shards/<shard>.json'}`, target);
+  }
+  if (shardPath) {
+    if (state.seenShardPaths.has(shardPath)) {
+      target.counts.duplicate_manifest_shard_paths += 1;
+      addIssue(context, `duplicate public shard path in manifest: ${shardPath}`, target);
+    } else {
+      state.seenShardPaths.add(shardPath);
+    }
+  }
+  if (shardId) {
+    if (state.seenShardIds.has(shardId)) {
+      target.counts.duplicate_manifest_shard_ids += 1;
+      addIssue(context, `duplicate public shard id in manifest: ${shardId}`, target);
+    } else {
+      state.seenShardIds.add(shardId);
+    }
+  }
+  return { safeToRead: valid };
 }
 
 function checkShardIdentity(shardEntry, shard, context, target = audit) {
@@ -506,7 +564,7 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
 function runtimeState(target) {
   let state = auditRuntimeState.get(target);
   if (!state) {
-    state = { seenCardIds: new Set() };
+    state = { seenCardIds: new Set(), seenShardPaths: new Set(), seenShardIds: new Set() };
     auditRuntimeState.set(target, state);
   }
   return state;
@@ -677,6 +735,10 @@ function writeReport(relativePath, data) {
     '## Counts',
     '',
     `- Shards scanned: ${data.counts.shards}`,
+    `- Manifest shard path checks: ${data.counts.manifest_shard_path_checks}`,
+    `- Invalid manifest shard paths: ${data.counts.invalid_manifest_shard_paths}`,
+    `- Duplicate manifest shard paths: ${data.counts.duplicate_manifest_shard_paths}`,
+    `- Duplicate manifest shard IDs: ${data.counts.duplicate_manifest_shard_ids}`,
     `- Shard identity checks: ${data.counts.shard_identity_checks}`,
     `- Shard identity mismatches: ${data.counts.shard_identity_mismatches}`,
     `- Shard count fields checked: ${data.counts.shard_count_fields_checked}`,
