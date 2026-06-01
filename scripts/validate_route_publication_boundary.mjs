@@ -131,6 +131,8 @@ function createAudit(manifestData = {}, contractData = contract) {
       invalid_route_card_string_fields: 0,
       route_score_fields_checked: 0,
       invalid_route_score_fields: 0,
+      route_score_formula_checks: 0,
+      invalid_route_score_formulas: 0,
       route_cards_with_source_rows: 0,
       route_cards_missing_source_rows: 0,
       answer_eligible_cards: 0,
@@ -351,6 +353,7 @@ function auditCard(card, context, target = audit, expectedNormalized = null) {
       addIssue(context, `invalid numeric ${field}`, target);
     }
   }
+  checkRouteScoreFormula(card, context, target);
   if (card?.display_section && !target.contract.allowed_display_sections.includes(card.display_section)) {
     addIssue(context, `unknown display_section: ${card.display_section}`, target);
   }
@@ -530,6 +533,20 @@ function validRouteScoreField(field, value) {
   return value >= 0 && value <= 100;
 }
 
+function checkRouteScoreFormula(card, context, target = audit) {
+  target.counts.route_score_formula_checks += 1;
+  if (
+    Number.isFinite(card?.raw_score)
+    && Number.isFinite(card?.score_handicap)
+    && Number.isFinite(card?.adjusted_score)
+    && card.adjusted_score === card.raw_score - card.score_handicap
+  ) {
+    return;
+  }
+  target.counts.invalid_route_score_formulas += 1;
+  addIssue(context, 'invalid route score formula: adjusted_score must equal raw_score - score_handicap', target);
+}
+
 function addIssue(context, detail, target = audit) {
   target.counts.issue_count += 1;
   if (target.issues.length >= options.maxIssues) return;
@@ -575,6 +592,8 @@ function writeReport(relativePath, data) {
     `- Invalid route-card string fields: ${data.counts.invalid_route_card_string_fields}`,
     `- Route score fields checked: ${data.counts.route_score_fields_checked}`,
     `- Invalid route score fields: ${data.counts.invalid_route_score_fields}`,
+    `- Route score formula checks: ${data.counts.route_score_formula_checks}`,
+    `- Invalid route score formulas: ${data.counts.invalid_route_score_formulas}`,
     `- Cards with source rows: ${data.counts.route_cards_with_source_rows}`,
     `- Cards missing source rows: ${data.counts.route_cards_missing_source_rows}`,
     `- Answer-eligible cards: ${data.counts.answer_eligible_cards}`,
