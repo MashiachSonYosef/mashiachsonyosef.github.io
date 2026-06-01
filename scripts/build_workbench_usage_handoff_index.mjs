@@ -33,6 +33,7 @@ const defaults = {
   selectedRouteResolution: '.local-cache/workbench-evidence/usage-selected-route-resolution.json',
   selectedFocusContextAudit: '.local-cache/workbench-evidence/usage-selected-focus-context-audit.json',
   selectedFrameSummary: '.local-cache/workbench-evidence/usage-selected-frame-summary.json',
+  selectedWorkFrameMatrix: '.local-cache/workbench-evidence/usage-selected-work-frame-matrix.json',
   selectedQaPackage: '.local-cache/workbench-evidence/usage-selected-qa-package.json',
   selectedOccurrenceLookup: '.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json',
   crossmatchLinks: '.local-cache/workbench-evidence/usage-crossmatch-links.json',
@@ -76,6 +77,7 @@ const selectedOccurrenceCards = readJsonIfExists(options.selectedOccurrenceCards
 const selectedRouteResolution = readJsonIfExists(options.selectedRouteResolution);
 const selectedFocusContextAudit = readJsonIfExists(options.selectedFocusContextAudit);
 const selectedFrameSummary = readJsonIfExists(options.selectedFrameSummary);
+const selectedWorkFrameMatrix = readJsonIfExists(options.selectedWorkFrameMatrix);
 const selectedQaPackage = readJsonIfExists(options.selectedQaPackage);
 const selectedOccurrenceLookup = readJsonIfExists(options.selectedOccurrenceLookup);
 const crossmatchLinks = readJsonIfExists(options.crossmatchLinks);
@@ -125,6 +127,7 @@ const artifact = {
     selected_route_resolution: options.selectedRouteResolution,
     selected_focus_context_audit: options.selectedFocusContextAudit,
     selected_frame_summary: options.selectedFrameSummary,
+    selected_work_frame_matrix: options.selectedWorkFrameMatrix,
     selected_qa_package: options.selectedQaPackage,
     selected_occurrence_lookup: options.selectedOccurrenceLookup,
     crossmatch_links: options.crossmatchLinks,
@@ -168,6 +171,7 @@ const artifact = {
     selected_route_resolution_report: 'reports/workbench-usage-selected-route-resolution.md',
     selected_focus_context_audit_report: 'reports/workbench-usage-selected-focus-context-audit.md',
     selected_frame_summary_report: 'reports/workbench-usage-selected-frame-summary.md',
+    selected_work_frame_matrix_report: 'reports/workbench-usage-selected-work-frame-matrix.md',
     selected_qa_package_report: 'reports/workbench-usage-selected-qa-package.md',
     selected_occurrence_lookup_report: 'reports/workbench-usage-selected-occurrence-lookup.md',
     crossmatch_links_report: 'reports/workbench-usage-crossmatch-links.md',
@@ -339,6 +343,13 @@ const artifact = {
     selected_frame_summary_samples: selectedFrameSummary?.counts?.sample_occurrences ?? null,
     selected_frame_summary_reader_facing_rows: selectedFrameSummary?.counts?.reader_facing_rows ?? null,
     selected_frame_summary_route_payload_field_hits: selectedFrameSummary?.counts?.route_payload_field_hits ?? null,
+    selected_work_frame_matrix_rows: selectedWorkFrameMatrix?.counts?.matrix_rows ?? null,
+    selected_work_frame_matrix_selected_rows: selectedWorkFrameMatrix?.counts?.selected_rows ?? null,
+    selected_work_frame_matrix_works: selectedWorkFrameMatrix?.counts?.works ?? null,
+    selected_work_frame_matrix_frames: selectedWorkFrameMatrix?.counts?.frames ?? null,
+    selected_work_frame_matrix_samples: selectedWorkFrameMatrix?.counts?.sample_occurrences ?? null,
+    selected_work_frame_matrix_reader_facing_rows: selectedWorkFrameMatrix?.counts?.reader_facing_rows ?? null,
+    selected_work_frame_matrix_route_payload_field_hits: selectedWorkFrameMatrix?.counts?.route_payload_field_hits ?? null,
     selected_qa_package_items: selectedQaPackage?.counts?.package_items ?? null,
     selected_qa_package_selected_rows: selectedQaPackage?.counts?.selected_rows ?? null,
     selected_qa_package_route_ids: selectedQaPackage?.counts?.selected_route_ids ?? null,
@@ -568,6 +579,16 @@ const artifact = {
     selected_frame_summary_failed_checks: selectedFrameSummary?.quality?.failed_count ?? null,
     selected_frame_summary_warning_count: selectedFrameSummary?.quality?.warning_count ?? null,
     selected_frame_summary_route_payload_field_hits: selectedFrameSummary?.counts?.route_payload_field_hits ?? null,
+    selected_work_frame_matrix_status: selectedWorkFrameMatrix?.artifact_type === 'workbench_usage_selected_work_frame_matrix' ? 'present' : 'not_run',
+    selected_work_frame_matrix_rows: selectedWorkFrameMatrix?.counts?.matrix_rows ?? null,
+    selected_work_frame_matrix_selected_rows: selectedWorkFrameMatrix?.counts?.selected_rows ?? null,
+    selected_work_frame_matrix_works: selectedWorkFrameMatrix?.counts?.works ?? null,
+    selected_work_frame_matrix_frames: selectedWorkFrameMatrix?.counts?.frames ?? null,
+    selected_work_frame_matrix_samples: selectedWorkFrameMatrix?.counts?.sample_occurrences ?? null,
+    selected_work_frame_matrix_reader_facing_rows: selectedWorkFrameMatrix?.counts?.reader_facing_rows ?? null,
+    selected_work_frame_matrix_failed_checks: selectedWorkFrameMatrix?.quality?.failed_count ?? null,
+    selected_work_frame_matrix_warning_count: selectedWorkFrameMatrix?.quality?.warning_count ?? null,
+    selected_work_frame_matrix_route_payload_field_hits: selectedWorkFrameMatrix?.counts?.route_payload_field_hits ?? null,
     selected_qa_package_status: selectedQaPackage?.artifact_type === 'workbench_usage_selected_qa_package' ? 'present' : 'not_run',
     selected_qa_package_items: selectedQaPackage?.counts?.package_items ?? null,
     selected_qa_package_selected_rows: selectedQaPackage?.counts?.selected_rows ?? null,
@@ -697,6 +718,8 @@ function writeReport(relativePath, artifact) {
     `- Selected focus/context audit route payload-like field hits: ${artifact.counts.selected_focus_context_audit_route_payload_field_hits}`,
     `- Selected frame summary: frames ${artifact.counts.selected_frame_summary_frames}, rows ${artifact.counts.selected_frame_summary_rows}, repeated-focus rows ${artifact.counts.selected_frame_summary_repeated_focus_rows}, samples ${artifact.counts.selected_frame_summary_samples}, reader-facing rows ${artifact.counts.selected_frame_summary_reader_facing_rows}`,
     `- Selected frame summary route payload-like field hits: ${artifact.counts.selected_frame_summary_route_payload_field_hits}`,
+    `- Selected work/frame matrix: rows ${artifact.counts.selected_work_frame_matrix_rows}, selected rows ${artifact.counts.selected_work_frame_matrix_selected_rows}, works ${artifact.counts.selected_work_frame_matrix_works}, frames ${artifact.counts.selected_work_frame_matrix_frames}, samples ${artifact.counts.selected_work_frame_matrix_samples}, reader-facing rows ${artifact.counts.selected_work_frame_matrix_reader_facing_rows}`,
+    `- Selected work/frame matrix route payload-like field hits: ${artifact.counts.selected_work_frame_matrix_route_payload_field_hits}`,
     `- Selected QA package: items ${artifact.counts.selected_qa_package_items}, rows ${artifact.counts.selected_qa_package_selected_rows}, route IDs ${artifact.counts.selected_qa_package_route_ids}, unresolved routes ${artifact.counts.selected_qa_package_unresolved_route_ids}, route warning visible ${artifact.counts.selected_qa_package_route_concentration_warning_visible}, directed edges ${artifact.counts.selected_qa_package_crossmatch_directed_edges}, bridge edges ${artifact.counts.selected_qa_package_crossmatch_bridge_edges}, reader-facing rows ${artifact.counts.selected_qa_package_reader_facing_rows}, failed checks ${artifact.counts.selected_qa_package_failed_checks}`,
     `- Selected QA package route payload-like field hits: ${artifact.counts.selected_qa_package_route_payload_field_hits}`,
     `- Selected occurrence lookup buckets: works ${artifact.counts.selected_occurrence_lookup_work_buckets}, clusters ${artifact.counts.selected_occurrence_lookup_cluster_buckets}, statuses ${artifact.counts.selected_occurrence_lookup_status_buckets}`,
@@ -761,6 +784,8 @@ function writeReport(relativePath, artifact) {
     `- Selected focus/context audit route payload-like field hits: ${artifact.validation.selected_focus_context_audit_route_payload_field_hits}`,
     `- Selected frame summary: ${artifact.validation.selected_frame_summary_status}, frames ${artifact.validation.selected_frame_summary_frames}, rows ${artifact.validation.selected_frame_summary_rows}, repeated-focus rows ${artifact.validation.selected_frame_summary_repeated_focus_rows}, samples ${artifact.validation.selected_frame_summary_samples}, reader-facing rows ${artifact.validation.selected_frame_summary_reader_facing_rows}, warnings ${artifact.validation.selected_frame_summary_warning_count}, failed ${artifact.validation.selected_frame_summary_failed_checks}`,
     `- Selected frame summary route payload-like field hits: ${artifact.validation.selected_frame_summary_route_payload_field_hits}`,
+    `- Selected work/frame matrix: ${artifact.validation.selected_work_frame_matrix_status}, rows ${artifact.validation.selected_work_frame_matrix_rows}, selected rows ${artifact.validation.selected_work_frame_matrix_selected_rows}, works ${artifact.validation.selected_work_frame_matrix_works}, frames ${artifact.validation.selected_work_frame_matrix_frames}, samples ${artifact.validation.selected_work_frame_matrix_samples}, reader-facing rows ${artifact.validation.selected_work_frame_matrix_reader_facing_rows}, warnings ${artifact.validation.selected_work_frame_matrix_warning_count}, failed ${artifact.validation.selected_work_frame_matrix_failed_checks}`,
+    `- Selected work/frame matrix route payload-like field hits: ${artifact.validation.selected_work_frame_matrix_route_payload_field_hits}`,
     `- Selected QA package: ${artifact.validation.selected_qa_package_status}, items ${artifact.validation.selected_qa_package_items}, rows ${artifact.validation.selected_qa_package_selected_rows}, route IDs ${artifact.validation.selected_qa_package_route_ids}, unresolved routes ${artifact.validation.selected_qa_package_unresolved_route_ids}, route warning visible ${artifact.validation.selected_qa_package_route_concentration_warning_visible}, directed edges ${artifact.validation.selected_qa_package_crossmatch_directed_edges}, bridge edges ${artifact.validation.selected_qa_package_crossmatch_bridge_edges}, reader-facing rows ${artifact.validation.selected_qa_package_reader_facing_rows}, warnings ${artifact.validation.selected_qa_package_warning_count}, failed ${artifact.validation.selected_qa_package_failed_checks}`,
     `- Selected QA package route payload-like field hits: ${artifact.validation.selected_qa_package_route_payload_field_hits}`,
     `- Selected occurrence lookup: ${artifact.validation.selected_occurrence_lookup_status}, work buckets ${artifact.validation.selected_occurrence_lookup_work_buckets}`,
@@ -810,6 +835,7 @@ function writeReport(relativePath, artifact) {
     `| selected route resolution | ${mdCell(artifact.artifacts.selected_route_resolution_report)} | yes |`,
     `| selected focus/context audit | ${mdCell(artifact.artifacts.selected_focus_context_audit_report)} | yes |`,
     `| selected frame summary | ${mdCell(artifact.artifacts.selected_frame_summary_report)} | yes |`,
+    `| selected work/frame matrix | ${mdCell(artifact.artifacts.selected_work_frame_matrix_report)} | yes |`,
     `| selected QA package | ${mdCell(artifact.artifacts.selected_qa_package_report)} | yes |`,
     `| selected occurrence lookup | ${mdCell(artifact.artifacts.selected_occurrence_lookup_report)} | yes |`,
     `| crossmatch links | ${mdCell(artifact.artifacts.crossmatch_links_report)} | yes |`,
@@ -864,6 +890,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-route-resolution=')) parsed.selectedRouteResolution = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-focus-context-audit=')) parsed.selectedFocusContextAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-frame-summary=')) parsed.selectedFrameSummary = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-work-frame-matrix=')) parsed.selectedWorkFrameMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-qa-package=')) parsed.selectedQaPackage = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-lookup=')) parsed.selectedOccurrenceLookup = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--crossmatch-links=')) parsed.crossmatchLinks = cleanRelativePath(valueAfterEquals(arg));
@@ -938,7 +965,9 @@ function buildCommands(options, manifest) {
   commands.validate_selected_focus_context_audit = `node scripts/validate_workbench_usage_selected_focus_context_audit.mjs ${options.selectedFocusContextAudit}`;
   commands.build_selected_frame_summary = `node scripts/build_workbench_usage_selected_frame_summary.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-focus-context-audit=${options.selectedFocusContextAudit} --output=${options.selectedFrameSummary} --report=reports/workbench-usage-selected-frame-summary.md`;
   commands.validate_selected_frame_summary = `node scripts/validate_workbench_usage_selected_frame_summary.mjs ${options.selectedFrameSummary}`;
-  commands.build_selected_qa_package = `node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-source-diversity=${options.selectedSourceDiversity} --selected-signature-independence=${options.selectedSignatureIndependence} --selected-route-concentration-response=${options.selectedRouteConcentrationResponse} --selected-route-resolution=${options.selectedRouteResolution} --selected-focus-context-audit=${options.selectedFocusContextAudit} --selected-frame-summary=${options.selectedFrameSummary} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --crossmatch-links=${options.crossmatchLinks} --crossmatch-bridge-index=${options.crossmatchBridgeIndex} --crossmatch-neighborhoods=${options.crossmatchNeighborhoods} --output=${options.selectedQaPackage} --report=reports/workbench-usage-selected-qa-package.md`;
+  commands.build_selected_work_frame_matrix = `node scripts/build_workbench_usage_selected_work_frame_matrix.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-frame-summary=${options.selectedFrameSummary} --output=${options.selectedWorkFrameMatrix} --report=reports/workbench-usage-selected-work-frame-matrix.md`;
+  commands.validate_selected_work_frame_matrix = `node scripts/validate_workbench_usage_selected_work_frame_matrix.mjs ${options.selectedWorkFrameMatrix}`;
+  commands.build_selected_qa_package = `node scripts/build_workbench_usage_selected_qa_package.mjs --selected-occurrence-cards=${options.selectedOccurrenceCards} --selected-source-diversity=${options.selectedSourceDiversity} --selected-signature-independence=${options.selectedSignatureIndependence} --selected-route-concentration-response=${options.selectedRouteConcentrationResponse} --selected-route-resolution=${options.selectedRouteResolution} --selected-focus-context-audit=${options.selectedFocusContextAudit} --selected-frame-summary=${options.selectedFrameSummary} --selected-work-frame-matrix=${options.selectedWorkFrameMatrix} --selected-occurrence-lookup=${options.selectedOccurrenceLookup} --crossmatch-links=${options.crossmatchLinks} --crossmatch-bridge-index=${options.crossmatchBridgeIndex} --crossmatch-neighborhoods=${options.crossmatchNeighborhoods} --output=${options.selectedQaPackage} --report=reports/workbench-usage-selected-qa-package.md`;
   commands.validate_selected_qa_package = `node scripts/validate_workbench_usage_selected_qa_package.mjs ${options.selectedQaPackage}`;
   commands.build_selected_occurrence_lookup = `node scripts/build_workbench_usage_selected_occurrence_lookup.mjs --selected-occurrences=${options.selectedOccurrences} --output=${options.selectedOccurrenceLookup} --report=reports/workbench-usage-selected-occurrence-lookup.md --max-samples=5`;
   commands.validate_selected_occurrence_lookup = `node scripts/validate_workbench_usage_selected_occurrence_lookup.mjs ${options.selectedOccurrenceLookup}`;
@@ -983,6 +1012,7 @@ function buildCommands(options, manifest) {
     `--selected-route-resolution=${options.selectedRouteResolution}`,
     `--selected-focus-context-audit=${options.selectedFocusContextAudit}`,
     `--selected-frame-summary=${options.selectedFrameSummary}`,
+    `--selected-work-frame-matrix=${options.selectedWorkFrameMatrix}`,
     `--selected-qa-package=${options.selectedQaPackage}`,
     `--selected-occurrence-lookup=${options.selectedOccurrenceLookup}`,
     `--crossmatch-links=${options.crossmatchLinks}`,

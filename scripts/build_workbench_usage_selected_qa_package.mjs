@@ -11,6 +11,7 @@ const defaults = {
   selectedRouteResolution: '.local-cache/workbench-evidence/usage-selected-route-resolution.json',
   selectedFocusContextAudit: '.local-cache/workbench-evidence/usage-selected-focus-context-audit.json',
   selectedFrameSummary: '.local-cache/workbench-evidence/usage-selected-frame-summary.json',
+  selectedWorkFrameMatrix: '.local-cache/workbench-evidence/usage-selected-work-frame-matrix.json',
   selectedOccurrenceLookup: '.local-cache/workbench-evidence/usage-selected-occurrence-lookup.json',
   crossmatchLinks: '.local-cache/workbench-evidence/usage-crossmatch-links.json',
   crossmatchBridgeIndex: '.local-cache/workbench-evidence/usage-crossmatch-bridge-index.json',
@@ -28,6 +29,7 @@ const artifacts = {
   selectedRouteResolution: readJson(options.selectedRouteResolution),
   selectedFocusContextAudit: readJson(options.selectedFocusContextAudit),
   selectedFrameSummary: readJson(options.selectedFrameSummary),
+  selectedWorkFrameMatrix: readJson(options.selectedWorkFrameMatrix),
   selectedOccurrenceLookup: readJson(options.selectedOccurrenceLookup),
   crossmatchLinks: readJson(options.crossmatchLinks),
   crossmatchBridgeIndex: readJson(options.crossmatchBridgeIndex),
@@ -41,6 +43,7 @@ assertType(artifacts.selectedRouteConcentrationResponse, 'workbench_usage_select
 assertType(artifacts.selectedRouteResolution, 'workbench_usage_selected_route_resolution', options.selectedRouteResolution);
 assertType(artifacts.selectedFocusContextAudit, 'workbench_usage_selected_focus_context_audit', options.selectedFocusContextAudit);
 assertType(artifacts.selectedFrameSummary, 'workbench_usage_selected_frame_summary', options.selectedFrameSummary);
+assertType(artifacts.selectedWorkFrameMatrix, 'workbench_usage_selected_work_frame_matrix', options.selectedWorkFrameMatrix);
 assertType(artifacts.selectedOccurrenceLookup, 'workbench_usage_navigation_selected_occurrence_lookup', options.selectedOccurrenceLookup);
 assertType(artifacts.crossmatchLinks, 'workbench_usage_navigation_crossmatch_links', options.crossmatchLinks);
 assertType(artifacts.crossmatchBridgeIndex, 'workbench_usage_navigation_crossmatch_bridge_index', options.crossmatchBridgeIndex);
@@ -65,6 +68,7 @@ const artifact = {
     selected_route_resolution: options.selectedRouteResolution,
     selected_focus_context_audit: options.selectedFocusContextAudit,
     selected_frame_summary: options.selectedFrameSummary,
+    selected_work_frame_matrix: options.selectedWorkFrameMatrix,
     selected_occurrence_lookup: options.selectedOccurrenceLookup,
     crossmatch_links: options.crossmatchLinks,
     crossmatch_bridge_index: options.crossmatchBridgeIndex,
@@ -138,6 +142,13 @@ function buildPackageItems() {
       repeated_focus_context_rows: artifacts.selectedFrameSummary.counts?.repeated_focus_context_rows,
       sample_occurrences: artifacts.selectedFrameSummary.counts?.sample_occurrences,
     }),
+    item('selected_work_frame_matrix', options.selectedWorkFrameMatrix, 'reports/workbench-usage-selected-work-frame-matrix.md', artifacts.selectedWorkFrameMatrix, {
+      matrix_rows: artifacts.selectedWorkFrameMatrix.counts?.matrix_rows,
+      selected_rows: artifacts.selectedWorkFrameMatrix.counts?.selected_rows,
+      works: artifacts.selectedWorkFrameMatrix.counts?.works,
+      frames: artifacts.selectedWorkFrameMatrix.counts?.frames,
+      sample_occurrences: artifacts.selectedWorkFrameMatrix.counts?.sample_occurrences,
+    }),
     item('selected_occurrence_lookup', options.selectedOccurrenceLookup, 'reports/workbench-usage-selected-occurrence-lookup.md', artifacts.selectedOccurrenceLookup, {
       rows: artifacts.selectedOccurrenceLookup.counts?.occurrence_refs,
       work_buckets: artifacts.selectedOccurrenceLookup.counts?.work_buckets,
@@ -196,6 +207,11 @@ function buildCounts(items) {
     selected_frame_summary_rows: Number(artifacts.selectedFrameSummary.counts?.selected_rows || 0),
     selected_frame_summary_repeated_focus_rows: Number(artifacts.selectedFrameSummary.counts?.repeated_focus_context_rows || 0),
     selected_frame_summary_samples: Number(artifacts.selectedFrameSummary.counts?.sample_occurrences || 0),
+    selected_work_frame_matrix_rows: Number(artifacts.selectedWorkFrameMatrix.counts?.matrix_rows || 0),
+    selected_work_frame_matrix_selected_rows: Number(artifacts.selectedWorkFrameMatrix.counts?.selected_rows || 0),
+    selected_work_frame_matrix_works: Number(artifacts.selectedWorkFrameMatrix.counts?.works || 0),
+    selected_work_frame_matrix_frames: Number(artifacts.selectedWorkFrameMatrix.counts?.frames || 0),
+    selected_work_frame_matrix_samples: Number(artifacts.selectedWorkFrameMatrix.counts?.sample_occurrences || 0),
     route_concentration_warning_visible: Number(artifacts.selectedRouteConcentrationResponse.counts?.route_concentration_warning_visible || 0),
     rows_with_recurring_signatures: Number(artifacts.selectedSignatureIndependence.counts?.occurrence_refs_with_recurring_signatures || 0),
     rows_with_cross_cluster_signatures: Number(artifacts.selectedSignatureIndependence.counts?.occurrence_refs_with_cross_cluster_signatures || 0),
@@ -212,7 +228,7 @@ function buildCounts(items) {
 
 function buildChecks(counts) {
   return [
-    check('package_items_present', counts.package_items === 11 ? 'passed' : 'failed', `package items ${counts.package_items}`),
+    check('package_items_present', counts.package_items === 12 ? 'passed' : 'failed', `package items ${counts.package_items}`),
     check('selected_rows_consistent', counts.selected_rows === Number(artifacts.selectedSourceDiversity.counts?.selected_occurrence_refs || 0) ? 'passed' : 'failed', `selected rows ${counts.selected_rows}`),
     check('selected_route_links_complete', counts.selected_route_links === counts.selected_rows ? 'passed' : 'failed', `selected route links ${counts.selected_route_links}; selected rows ${counts.selected_rows}`),
     check('route_ids_resolved', counts.unresolved_route_ids === 0 ? 'passed' : 'failed', `unresolved route IDs ${counts.unresolved_route_ids}`),
@@ -223,6 +239,9 @@ function buildChecks(counts) {
     check('selected_frame_summary_complete', counts.selected_frame_summary_rows === counts.selected_rows ? 'passed' : 'failed', `frame summary rows ${counts.selected_frame_summary_rows}; selected rows ${counts.selected_rows}`),
     check('selected_frame_summary_has_frames', counts.selected_frame_summary_frames > 0 ? 'passed' : 'failed', `frame summary frames ${counts.selected_frame_summary_frames}`),
     check('selected_frame_summary_repeated_focus_matches', counts.selected_frame_summary_repeated_focus_rows === counts.selected_repeated_focus_context_rows ? 'passed' : 'failed', `frame repeated-focus ${counts.selected_frame_summary_repeated_focus_rows}; focus audit repeated-focus ${counts.selected_repeated_focus_context_rows}`),
+    check('selected_work_frame_matrix_complete', counts.selected_work_frame_matrix_selected_rows === counts.selected_rows ? 'passed' : 'failed', `work/frame selected rows ${counts.selected_work_frame_matrix_selected_rows}; selected rows ${counts.selected_rows}`),
+    check('selected_work_frame_matrix_has_buckets', counts.selected_work_frame_matrix_rows > 0 ? 'passed' : 'failed', `work/frame matrix rows ${counts.selected_work_frame_matrix_rows}`),
+    check('selected_work_frame_matrix_frame_coverage', counts.selected_work_frame_matrix_frames === counts.selected_frame_summary_frames ? 'passed' : 'failed', `work/frame frames ${counts.selected_work_frame_matrix_frames}; frame summary frames ${counts.selected_frame_summary_frames}`),
     check('route_concentration_warning_visible', counts.route_concentration_warning_visible === 1 ? 'warning' : 'passed', `route concentration warning visible ${counts.route_concentration_warning_visible}`),
     check('crossmatch_partition_visible', counts.crossmatch_same_frame_edges + counts.crossmatch_bridge_edges === counts.crossmatch_directed_edges ? 'passed' : 'failed', `same-frame ${counts.crossmatch_same_frame_edges}; bridge ${counts.crossmatch_bridge_edges}; directed ${counts.crossmatch_directed_edges}`),
     check('crossmatch_neighborhoods_complete', counts.crossmatch_neighborhoods === counts.selected_rows ? 'passed' : 'failed', `neighborhoods ${counts.crossmatch_neighborhoods}; selected rows ${counts.selected_rows}`),
@@ -257,6 +276,11 @@ function writeReport(relativePath, artifact) {
     `- Frame summary rows: ${artifact.counts.selected_frame_summary_rows}`,
     `- Frame summary repeated-focus rows: ${artifact.counts.selected_frame_summary_repeated_focus_rows}`,
     `- Frame summary samples: ${artifact.counts.selected_frame_summary_samples}`,
+    `- Work/frame matrix rows: ${artifact.counts.selected_work_frame_matrix_rows}`,
+    `- Work/frame matrix selected rows: ${artifact.counts.selected_work_frame_matrix_selected_rows}`,
+    `- Work/frame matrix works: ${artifact.counts.selected_work_frame_matrix_works}`,
+    `- Work/frame matrix frames: ${artifact.counts.selected_work_frame_matrix_frames}`,
+    `- Work/frame matrix samples: ${artifact.counts.selected_work_frame_matrix_samples}`,
     `- Route concentration warning visible: ${artifact.counts.route_concentration_warning_visible}`,
     `- Rows with recurring signatures: ${artifact.counts.rows_with_recurring_signatures}`,
     `- Rows with cross-cluster signatures: ${artifact.counts.rows_with_cross_cluster_signatures}`,
@@ -352,6 +376,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--selected-route-resolution=')) parsed.selectedRouteResolution = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-focus-context-audit=')) parsed.selectedFocusContextAudit = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-frame-summary=')) parsed.selectedFrameSummary = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--selected-work-frame-matrix=')) parsed.selectedWorkFrameMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--selected-occurrence-lookup=')) parsed.selectedOccurrenceLookup = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--crossmatch-links=')) parsed.crossmatchLinks = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--crossmatch-bridge-index=')) parsed.crossmatchBridgeIndex = cleanRelativePath(valueAfterEquals(arg));

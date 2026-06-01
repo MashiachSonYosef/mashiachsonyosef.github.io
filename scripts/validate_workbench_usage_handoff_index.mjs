@@ -218,6 +218,13 @@ function validateCounts() {
     'selected_frame_summary_samples',
     'selected_frame_summary_reader_facing_rows',
     'selected_frame_summary_route_payload_field_hits',
+    'selected_work_frame_matrix_rows',
+    'selected_work_frame_matrix_selected_rows',
+    'selected_work_frame_matrix_works',
+    'selected_work_frame_matrix_frames',
+    'selected_work_frame_matrix_samples',
+    'selected_work_frame_matrix_reader_facing_rows',
+    'selected_work_frame_matrix_route_payload_field_hits',
     'selected_qa_package_items',
     'selected_qa_package_selected_rows',
     'selected_qa_package_route_ids',
@@ -453,8 +460,29 @@ function validateCounts() {
   if (Number(artifact.counts?.selected_frame_summary_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_frame_summary_route_payload_field_hits must be 0');
   }
-  if (Number(artifact.counts?.selected_qa_package_items || 0) !== 11) {
-    issues.push('selected_qa_package_items must be 11');
+  if (Number(artifact.counts?.selected_work_frame_matrix_rows || 0) <= 0) {
+    issues.push('selected_work_frame_matrix_rows must be positive');
+  }
+  if (Number(artifact.counts?.selected_work_frame_matrix_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_work_frame_matrix_selected_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.counts?.selected_work_frame_matrix_works || 0) <= 1) {
+    issues.push('selected_work_frame_matrix_works must show multiple works');
+  }
+  if (Number(artifact.counts?.selected_work_frame_matrix_frames || 0) !== Number(artifact.counts?.selected_frame_summary_frames || 0)) {
+    issues.push('selected_work_frame_matrix_frames must equal selected_frame_summary_frames');
+  }
+  if (Number(artifact.counts?.selected_work_frame_matrix_samples || 0) < Number(artifact.counts?.selected_work_frame_matrix_rows || 0)) {
+    issues.push('selected_work_frame_matrix_samples must cover each matrix row');
+  }
+  if (Number(artifact.counts?.selected_work_frame_matrix_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_work_frame_matrix_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.counts?.selected_work_frame_matrix_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_work_frame_matrix_route_payload_field_hits must be 0');
+  }
+  if (Number(artifact.counts?.selected_qa_package_items || 0) !== 12) {
+    issues.push('selected_qa_package_items must be 12');
   }
   if (Number(artifact.counts?.selected_qa_package_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('selected_qa_package_selected_rows must equal selected_occurrence_rows');
@@ -770,6 +798,7 @@ function validateArtifacts() {
     'selected_route_resolution_report',
     'selected_focus_context_audit_report',
     'selected_frame_summary_report',
+    'selected_work_frame_matrix_report',
     'selected_qa_package_report',
     'selected_occurrence_lookup_report',
     'crossmatch_links_report',
@@ -851,6 +880,9 @@ function validateValidation() {
   }
   if (artifact.validation?.selected_frame_summary_status !== 'present') {
     issues.push('validation.selected_frame_summary_status must be present');
+  }
+  if (artifact.validation?.selected_work_frame_matrix_status !== 'present') {
+    issues.push('validation.selected_work_frame_matrix_status must be present');
   }
   if (artifact.validation?.selected_qa_package_status !== 'present') {
     issues.push('validation.selected_qa_package_status must be present');
@@ -1328,8 +1360,35 @@ function validateValidation() {
   if (Number(artifact.validation?.selected_frame_summary_route_payload_field_hits || 0) !== 0) {
     issues.push('selected_frame_summary_route_payload_field_hits must be 0');
   }
-  if (Number(artifact.validation?.selected_qa_package_items || 0) !== 11) {
-    issues.push('selected_qa_package_items must be 11');
+  if (Number(artifact.validation?.selected_work_frame_matrix_rows || 0) <= 0) {
+    issues.push('selected_work_frame_matrix_rows must be positive');
+  }
+  if (Number(artifact.validation?.selected_work_frame_matrix_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
+    issues.push('selected_work_frame_matrix_selected_rows must equal selected_occurrence_rows');
+  }
+  if (Number(artifact.validation?.selected_work_frame_matrix_works || 0) <= 1) {
+    issues.push('selected_work_frame_matrix_works must show multiple works');
+  }
+  if (Number(artifact.validation?.selected_work_frame_matrix_frames || 0) !== Number(artifact.counts?.selected_frame_summary_frames || 0)) {
+    issues.push('selected_work_frame_matrix_frames must equal selected_frame_summary_frames');
+  }
+  if (Number(artifact.validation?.selected_work_frame_matrix_samples || 0) < Number(artifact.validation?.selected_work_frame_matrix_rows || 0)) {
+    issues.push('selected_work_frame_matrix_samples must cover each matrix row');
+  }
+  if (Number(artifact.validation?.selected_work_frame_matrix_reader_facing_rows || 0) !== 0) {
+    issues.push('selected_work_frame_matrix_reader_facing_rows must be 0');
+  }
+  if (Number(artifact.validation?.selected_work_frame_matrix_failed_checks || 0) !== 0) {
+    issues.push('selected_work_frame_matrix_failed_checks must be 0');
+  }
+  if (Number(artifact.validation?.selected_work_frame_matrix_warning_count || 0) !== 0) {
+    issues.push('selected_work_frame_matrix_warning_count must be 0');
+  }
+  if (Number(artifact.validation?.selected_work_frame_matrix_route_payload_field_hits || 0) !== 0) {
+    issues.push('selected_work_frame_matrix_route_payload_field_hits must be 0');
+  }
+  if (Number(artifact.validation?.selected_qa_package_items || 0) !== 12) {
+    issues.push('selected_qa_package_items must be 12');
   }
   if (Number(artifact.validation?.selected_qa_package_selected_rows || 0) !== Number(artifact.counts?.selected_occurrence_rows || 0)) {
     issues.push('selected_qa_package_selected_rows must equal selected_occurrence_rows');
@@ -1481,6 +1540,8 @@ function validateCommands() {
     validate_selected_focus_context_audit: 'validate_workbench_usage_selected_focus_context_audit.mjs',
     build_selected_frame_summary: 'build_workbench_usage_selected_frame_summary.mjs',
     validate_selected_frame_summary: 'validate_workbench_usage_selected_frame_summary.mjs',
+    build_selected_work_frame_matrix: 'build_workbench_usage_selected_work_frame_matrix.mjs',
+    validate_selected_work_frame_matrix: 'validate_workbench_usage_selected_work_frame_matrix.mjs',
     build_selected_qa_package: 'build_workbench_usage_selected_qa_package.mjs',
     validate_selected_qa_package: 'validate_workbench_usage_selected_qa_package.mjs',
     build_selected_occurrence_lookup: 'build_workbench_usage_selected_occurrence_lookup.mjs',
