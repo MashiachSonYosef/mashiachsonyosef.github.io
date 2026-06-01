@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T00:23:35.871Z
+Generated: 2026-06-01T01:30:36.658Z
 
 ## Boundary
 
@@ -24,6 +24,8 @@ Generated: 2026-06-01T00:23:35.871Z
 - Issues: 0
 - Warnings: 335103
 - Fixture cases checked: 5
+- Fixture bytes: 6195
+- Fixture SHA-256: `8248a250aa5527d1522e91c93eb50d4e27732e0461f24f72f6658b07c403e450`
 
 ## Unsafe For Accepted Translation Output
 

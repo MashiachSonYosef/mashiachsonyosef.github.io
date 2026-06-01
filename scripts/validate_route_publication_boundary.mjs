@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -95,6 +96,7 @@ function createAudit(manifestData = {}) {
       manifest: options.manifest,
       fixture: options.fixture,
       fixture_cases: fixtureCaseCount,
+      fixture_file: fileSummary(options.fixture),
       public_lookup: manifestData.public_lookup || 'data/definitions/hud-route-lookup',
       max_issues: options.maxIssues,
       max_warnings: options.maxWarnings,
@@ -288,6 +290,8 @@ function writeReport(relativePath, data) {
     `- Issues: ${data.counts.issue_count}`,
     `- Warnings: ${data.counts.warning_count}`,
     `- Fixture cases checked: ${data.inputs.fixture_cases}`,
+    `- Fixture bytes: ${data.inputs.fixture_file?.byte_length || 0}`,
+    `- Fixture SHA-256: \`${data.inputs.fixture_file?.sha256 || 'missing'}\``,
     '',
     '## Unsafe For Accepted Translation Output',
     '',
@@ -367,6 +371,16 @@ function readJson(relativePath) {
   const fullPath = path.join(root, cleanRelativePath(relativePath));
   if (!fs.existsSync(fullPath)) throw new Error(`Missing JSON file: ${relativePath}`);
   return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+}
+
+function fileSummary(relativePath) {
+  const fullPath = path.join(root, cleanRelativePath(relativePath));
+  const bytes = fs.readFileSync(fullPath);
+  return {
+    path: cleanRelativePath(relativePath),
+    byte_length: bytes.length,
+    sha256: crypto.createHash('sha256').update(bytes).digest('hex'),
+  };
 }
 
 function writeJson(relativePath, data) {

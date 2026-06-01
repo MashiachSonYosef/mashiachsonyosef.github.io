@@ -85,7 +85,7 @@ for (const field of ['answer_eligible', 'answer_role', 'source_rows', 'definitio
 }
 
 validateSampleCards(sample, publicManifest, options.publicManifest);
-validateBoundaryReport(boundaryReport, currentReconciliation);
+await validateBoundaryReport(boundaryReport, currentReconciliation);
 if (options.skipDriftCheck) {
   warnings.push('skipped current route source drift check');
 } else {
@@ -108,6 +108,7 @@ const result = {
     warnings: Number(boundaryReport.counts?.warning_count || 0),
     fixture: cleanPath(boundaryReport.inputs?.fixture || ''),
     fixture_cases: Number(boundaryReport.inputs?.fixture_cases || 0),
+    fixture_sha256: boundaryReport.inputs?.fixture_file?.sha256 || '',
     translation_output_unsafe_cards: Number(boundaryReport.counts?.translation_output_unsafe_cards || 0),
     answer_eligible_translation_output_unsafe_cards: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_cards || 0),
   },
@@ -247,7 +248,7 @@ function validateSampleCards(routeSample, manifest, manifestPath) {
   }
 }
 
-function validateBoundaryReport(report, reconciliation) {
+async function validateBoundaryReport(report, reconciliation) {
   if (report.schema_version !== 1) issues.push('route publication boundary report schema_version must be 1');
   if (report.artifact_type !== 'route_publication_boundary_audit') {
     issues.push(`route publication boundary report artifact_type must be route_publication_boundary_audit, got ${report.artifact_type || 'missing'}`);
@@ -272,6 +273,13 @@ function validateBoundaryReport(report, reconciliation) {
     issues.push('route publication boundary report is missing fixture input path');
   } else if (!fs.existsSync(path.join(root, cleanPath(report.inputs.fixture)))) {
     issues.push(`route publication boundary fixture file is missing: ${report.inputs.fixture}`);
+  } else {
+    const currentFixture = await fileSummary(cleanPath(report.inputs.fixture));
+    if (!report.inputs.fixture_file) {
+      issues.push('route publication boundary report is missing fixture file summary');
+    } else {
+      compareSummary(currentFixture, report.inputs.fixture_file, 'route publication boundary fixture file');
+    }
   }
   if (Number(report.inputs?.fixture_cases || 0) < 1) {
     issues.push('route publication boundary report must include at least one fixture case');
@@ -377,6 +385,7 @@ function writeReport(relativePath, result) {
     `- Boundary warnings: ${result.route_publication_boundary.warnings}`,
     `- Fixture: \`${result.route_publication_boundary.fixture}\``,
     `- Fixture cases: ${result.route_publication_boundary.fixture_cases}`,
+    `- Fixture SHA-256: \`${result.route_publication_boundary.fixture_sha256 || 'missing'}\``,
     `- Translation-output unsafe cards flagged: ${result.route_publication_boundary.translation_output_unsafe_cards}`,
     `- Answer-eligible translation-output unsafe cards flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_cards}`,
     '',
