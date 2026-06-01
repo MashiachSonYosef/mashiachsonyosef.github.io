@@ -405,6 +405,35 @@ await runStep('validate_usage_selected_occurrence_lookup', [
   usageSelectedOccurrenceLookupJson,
 ]);
 
+const usageConcentrationPacketJson = `${options.scratchDir}/usage-concentration-packet.json`;
+await runStep('build_usage_concentration_packet', [
+  'scripts/build_workbench_usage_concentration_packet.mjs',
+  `--selected-occurrences=${usageSelectedOccurrencesJson}`,
+  `--selected-occurrence-lookup=${usageSelectedOccurrenceLookupJson}`,
+  `--output=${usageConcentrationPacketJson}`,
+  `--report=${options.scratchDir}/usage-concentration-packet.md`,
+]);
+
+await runStep('validate_usage_concentration_packet', [
+  'scripts/validate_workbench_usage_concentration_packet.mjs',
+  usageConcentrationPacketJson,
+]);
+
+const usageSelectedRouteConcentrationResponseJson = `${options.scratchDir}/usage-selected-route-concentration-response.json`;
+await runStep('build_usage_selected_route_concentration_response', [
+  'scripts/build_workbench_usage_selected_route_concentration_response.mjs',
+  `--concentration-packet=${usageConcentrationPacketJson}`,
+  `--selected-source-diversity=${usageSelectedSourceDiversityJson}`,
+  `--selected-signature-independence=${usageSelectedSignatureIndependenceJson}`,
+  `--output=${usageSelectedRouteConcentrationResponseJson}`,
+  `--report=${options.scratchDir}/usage-selected-route-concentration-response.md`,
+]);
+
+await runStep('validate_usage_selected_route_concentration_response', [
+  'scripts/validate_workbench_usage_selected_route_concentration_response.mjs',
+  usageSelectedRouteConcentrationResponseJson,
+]);
+
 const usageCrossmatchLinksJson = `${options.scratchDir}/usage-crossmatch-links.json`;
 await runStep('build_usage_crossmatch_links', [
   'scripts/build_workbench_usage_crossmatch_links.mjs',
@@ -496,10 +525,12 @@ await runStep('build_usage_handoff_index', [
   `--selected-occurrences=${usageSelectedOccurrencesJson}`,
   `--selected-signature-independence=${usageSelectedSignatureIndependenceJson}`,
   `--selected-source-diversity=${usageSelectedSourceDiversityJson}`,
+  `--selected-route-concentration-response=${usageSelectedRouteConcentrationResponseJson}`,
   `--selected-occurrence-lookup=${usageSelectedOccurrenceLookupJson}`,
   `--crossmatch-links=${usageCrossmatchLinksJson}`,
   `--crossmatch-bridge-index=${usageCrossmatchBridgeIndexJson}`,
   `--crossmatch-neighborhoods=${usageCrossmatchNeighborhoodsJson}`,
+  `--concentration-packet=${usageConcentrationPacketJson}`,
   '--no-smoke-validation',
   `--output=${usageHandoffIndexJson}`,
   `--report=${options.scratchDir}/usage-navigation-handoff-index.md`,
@@ -552,6 +583,7 @@ const usageSelectedSlicesIndex = readJsonIfExists(usageSelectedSlicesIndexJson);
 const usageSelectedOccurrences = readJsonIfExists(usageSelectedOccurrencesJson);
 const usageSelectedSignatureIndependence = readJsonIfExists(usageSelectedSignatureIndependenceJson);
 const usageSelectedSourceDiversity = readJsonIfExists(usageSelectedSourceDiversityJson);
+const usageSelectedRouteConcentrationResponse = readJsonIfExists(usageSelectedRouteConcentrationResponseJson);
 const usageSelectedOccurrenceLookup = readJsonIfExists(usageSelectedOccurrenceLookupJson);
 const usageCrossmatchLinks = readJsonIfExists(usageCrossmatchLinksJson);
 const usageCrossmatchBridgeIndex = readJsonIfExists(usageCrossmatchBridgeIndexJson);
@@ -751,6 +783,17 @@ const artifact = {
     usage_selected_source_diversity_missing_signature_rows: usageSelectedSourceDiversity?.counts?.missing_signature_independence_rows ?? null,
     usage_selected_source_diversity_reader_facing_rows: usageSelectedSourceDiversity?.counts?.reader_facing_rows ?? null,
     usage_selected_source_diversity_route_payload_field_hits: usageSelectedSourceDiversity?.counts?.route_payload_field_hits ?? null,
+    usage_selected_route_concentration_response_status: usageSelectedRouteConcentrationResponse?.artifact_type === 'workbench_usage_selected_route_concentration_response' ? 'present' : 'missing',
+    usage_selected_route_concentration_response_rows: usageSelectedRouteConcentrationResponse?.counts?.selected_occurrence_refs ?? null,
+    usage_selected_route_concentration_response_route_buckets: usageSelectedRouteConcentrationResponse?.counts?.route_id_buckets ?? null,
+    usage_selected_route_concentration_response_warning_visible: usageSelectedRouteConcentrationResponse?.counts?.route_concentration_warning_visible ?? null,
+    usage_selected_route_concentration_response_unique_source_refs: usageSelectedRouteConcentrationResponse?.counts?.unique_source_refs ?? null,
+    usage_selected_route_concentration_response_unique_works: usageSelectedRouteConcentrationResponse?.counts?.unique_works ?? null,
+    usage_selected_route_concentration_response_rows_with_recurring: usageSelectedRouteConcentrationResponse?.counts?.rows_with_recurring_signatures ?? null,
+    usage_selected_route_concentration_response_rows_with_cross_cluster: usageSelectedRouteConcentrationResponse?.counts?.rows_with_cross_cluster_signatures ?? null,
+    usage_selected_route_concentration_response_warning_count: usageSelectedRouteConcentrationResponse?.quality?.warning_count ?? null,
+    usage_selected_route_concentration_response_reader_facing_rows: usageSelectedRouteConcentrationResponse?.counts?.reader_facing_rows ?? null,
+    usage_selected_route_concentration_response_route_payload_field_hits: usageSelectedRouteConcentrationResponse?.counts?.route_payload_field_hits ?? null,
     usage_selected_occurrence_lookup_status: usageSelectedOccurrenceLookup?.artifact_type === 'workbench_usage_navigation_selected_occurrence_lookup' ? 'present' : 'missing',
     usage_selected_occurrence_lookup_work_buckets: usageSelectedOccurrenceLookup?.counts?.work_buckets ?? null,
     usage_selected_occurrence_lookup_cluster_buckets: usageSelectedOccurrenceLookup?.counts?.cluster_buckets ?? null,
@@ -945,6 +988,7 @@ function writeReport(relativePath, artifact) {
     `- Usage selected occurrences: ${artifact.counts.usage_selected_occurrences_status}, rows ${artifact.counts.usage_selected_occurrence_rows}, memberships ${artifact.counts.usage_selected_occurrence_memberships}, duplicate memberships ${artifact.counts.usage_selected_occurrence_duplicate_memberships}`,
     `- Usage selected signature independence: ${artifact.counts.usage_selected_signature_independence_status}, rows ${artifact.counts.usage_selected_signature_independence_rows}, memberships ${artifact.counts.usage_selected_signature_independence_memberships}, recurring memberships ${artifact.counts.usage_selected_signature_independence_recurring_memberships}, cross-cluster memberships ${artifact.counts.usage_selected_signature_independence_cross_cluster_memberships}, rows with recurring ${artifact.counts.usage_selected_signature_independence_rows_with_recurring}, rows with cross-cluster ${artifact.counts.usage_selected_signature_independence_rows_with_cross_cluster}, missing lookup rows ${artifact.counts.usage_selected_signature_independence_missing_lookup_rows}, reader-facing rows ${artifact.counts.usage_selected_signature_independence_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_signature_independence_route_payload_field_hits}`,
     `- Usage selected source diversity: ${artifact.counts.usage_selected_source_diversity_status}, rows ${artifact.counts.usage_selected_source_diversity_rows}, source refs ${artifact.counts.usage_selected_source_diversity_unique_source_refs}, work anchors ${artifact.counts.usage_selected_source_diversity_unique_work_anchors}, works ${artifact.counts.usage_selected_source_diversity_unique_works}, categories ${artifact.counts.usage_selected_source_diversity_unique_categories}, licenses ${artifact.counts.usage_selected_source_diversity_unique_licenses}, version sources ${artifact.counts.usage_selected_source_diversity_unique_version_sources}, duplicate source-ref buckets ${artifact.counts.usage_selected_source_diversity_duplicate_source_ref_buckets}, duplicate source-ref rows ${artifact.counts.usage_selected_source_diversity_duplicate_source_ref_rows}, missing signature rows ${artifact.counts.usage_selected_source_diversity_missing_signature_rows}, reader-facing rows ${artifact.counts.usage_selected_source_diversity_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_source_diversity_route_payload_field_hits}`,
+    `- Usage selected route concentration response: ${artifact.counts.usage_selected_route_concentration_response_status}, rows ${artifact.counts.usage_selected_route_concentration_response_rows}, route buckets ${artifact.counts.usage_selected_route_concentration_response_route_buckets}, warning visible ${artifact.counts.usage_selected_route_concentration_response_warning_visible}, source refs ${artifact.counts.usage_selected_route_concentration_response_unique_source_refs}, works ${artifact.counts.usage_selected_route_concentration_response_unique_works}, rows with recurring ${artifact.counts.usage_selected_route_concentration_response_rows_with_recurring}, rows with cross-cluster ${artifact.counts.usage_selected_route_concentration_response_rows_with_cross_cluster}, warnings ${artifact.counts.usage_selected_route_concentration_response_warning_count}, reader-facing rows ${artifact.counts.usage_selected_route_concentration_response_reader_facing_rows}, route payload hits ${artifact.counts.usage_selected_route_concentration_response_route_payload_field_hits}`,
     `- Usage selected occurrence lookup: ${artifact.counts.usage_selected_occurrence_lookup_status}, work buckets ${artifact.counts.usage_selected_occurrence_lookup_work_buckets}, cluster buckets ${artifact.counts.usage_selected_occurrence_lookup_cluster_buckets}, status buckets ${artifact.counts.usage_selected_occurrence_lookup_status_buckets}`,
     `- Usage crossmatch links: ${artifact.counts.usage_crossmatch_links_status}, occurrences ${artifact.counts.usage_crossmatch_occurrences}, directed edges ${artifact.counts.usage_crossmatch_directed_edges}, undirected pairs ${artifact.counts.usage_crossmatch_undirected_pairs}, route payload hits ${artifact.counts.usage_crossmatch_route_payload_field_hits}`,
     `- Usage crossmatch strengths: strong ${artifact.counts.usage_crossmatch_strong_edges}, moderate ${artifact.counts.usage_crossmatch_moderate_edges}, weak ${artifact.counts.usage_crossmatch_weak_edges}`,
