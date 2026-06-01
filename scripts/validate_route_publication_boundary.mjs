@@ -116,6 +116,7 @@ function createAudit(manifestData = {}) {
       hud_unsafe_source_rows: 0,
       translation_output_safe_source_rows: 0,
       translation_output_unsafe_source_rows: 0,
+      answer_eligible_translation_output_unsafe_source_rows: 0,
       translation_output_unsafe_cards: 0,
       answer_eligible_translation_output_unsafe_cards: 0,
       route_cards_with_publication_fields: 0,
@@ -232,6 +233,7 @@ function auditCard(card, context, target = audit) {
       cardHasTranslationUnsafeRow = true;
       increment(target.unsafe_translation_output_licenses, license || 'missing');
       if (card?.answer_eligible === true) {
+        target.counts.answer_eligible_translation_output_unsafe_source_rows += 1;
         increment(target.answer_eligible_unsafe_translation_output_licenses, license || 'missing');
       }
     }
@@ -302,6 +304,7 @@ function writeReport(relativePath, data) {
     `- HUD-unsafe source rows: ${data.counts.hud_unsafe_source_rows}`,
     `- Translation-output unsafe source rows flagged: ${data.counts.translation_output_unsafe_source_rows}`,
     `- Translation-output unsafe cards flagged: ${data.counts.translation_output_unsafe_cards}`,
+    `- Answer-eligible translation-output unsafe source rows flagged: ${data.counts.answer_eligible_translation_output_unsafe_source_rows}`,
     `- Answer-eligible translation-output unsafe cards flagged: ${data.counts.answer_eligible_translation_output_unsafe_cards}`,
     `- Cards with publication-readiness fields: ${data.counts.route_cards_with_publication_fields}`,
     `- Issues: ${data.counts.issue_count}`,

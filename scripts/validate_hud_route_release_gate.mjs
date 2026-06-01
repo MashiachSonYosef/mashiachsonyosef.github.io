@@ -113,6 +113,7 @@ const result = {
     fixture_cases: Number(boundaryReport.inputs?.fixture_cases || 0),
     fixture_sha256: boundaryReport.inputs?.fixture_file?.sha256 || '',
     translation_output_unsafe_cards: Number(boundaryReport.counts?.translation_output_unsafe_cards || 0),
+    answer_eligible_translation_output_unsafe_source_rows: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_source_rows || 0),
     answer_eligible_translation_output_unsafe_cards: Number(boundaryReport.counts?.answer_eligible_translation_output_unsafe_cards || 0),
   },
   checked_sample_tokens: Array.isArray(sample.sample_tokens) ? sample.sample_tokens.length : 0,
@@ -302,6 +303,24 @@ async function validateBoundaryReport(report, reconciliation) {
   if (count('translation_output_safe_source_rows') + count('translation_output_unsafe_source_rows') !== count('source_rows')) {
     issues.push('route publication boundary translation-output source-row counts do not add up to source_rows');
   }
+  if (sumMap(report.licenses) !== count('source_rows')) {
+    issues.push('route publication boundary license map total does not equal source_rows');
+  }
+  if (sumMap(report.unsafe_translation_output_licenses) !== count('translation_output_unsafe_source_rows')) {
+    issues.push('route publication boundary unsafe translation-output license map total does not equal translation_output_unsafe_source_rows');
+  }
+  if (sumMap(report.answer_eligible_unsafe_translation_output_licenses) !== count('answer_eligible_translation_output_unsafe_source_rows')) {
+    issues.push('route publication boundary answer-eligible unsafe license map total does not equal answer_eligible_translation_output_unsafe_source_rows');
+  }
+  if (sumMap(report.route_families) !== count('cards')) {
+    issues.push('route publication boundary route_families total does not equal cards');
+  }
+  if (sumMap(report.route_types) !== count('cards')) {
+    issues.push('route publication boundary route_types total does not equal cards');
+  }
+  if (count('answer_eligible_translation_output_unsafe_source_rows') < count('answer_eligible_translation_output_unsafe_cards')) {
+    issues.push('route publication boundary answer-eligible unsafe source-row count is lower than answer-eligible unsafe card count');
+  }
   if (!report.inputs?.fixture) {
     issues.push('route publication boundary report is missing fixture input path');
   } else if (!fs.existsSync(path.join(root, cleanPath(report.inputs.fixture)))) {
@@ -423,6 +442,7 @@ function writeReport(relativePath, result) {
     `- Fixture cases: ${result.route_publication_boundary.fixture_cases}`,
     `- Fixture SHA-256: \`${result.route_publication_boundary.fixture_sha256 || 'missing'}\``,
     `- Translation-output unsafe cards flagged: ${result.route_publication_boundary.translation_output_unsafe_cards}`,
+    `- Answer-eligible translation-output unsafe source rows flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_source_rows}`,
     `- Answer-eligible translation-output unsafe cards flagged: ${result.route_publication_boundary.answer_eligible_translation_output_unsafe_cards}`,
     '',
     '## Issues',
@@ -438,4 +458,8 @@ function writeReport(relativePath, result) {
 
 function cleanPath(value) {
   return String(value || '').replace(/\\/g, '/').replace(/^\.\//, '');
+}
+
+function sumMap(object) {
+  return Object.values(object || {}).reduce((sum, value) => sum + Number(value || 0), 0);
 }

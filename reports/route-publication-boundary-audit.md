@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T01:41:24.699Z
+Generated: 2026-06-01T01:46:23.780Z
 
 ## Boundary
 
@@ -19,15 +19,16 @@ Generated: 2026-06-01T01:41:24.699Z
 - HUD-unsafe source rows: 0
 - Translation-output unsafe source rows flagged: 382775
 - Translation-output unsafe cards flagged: 335103
+- Answer-eligible translation-output unsafe source rows flagged: 21087
 - Answer-eligible translation-output unsafe cards flagged: 17737
 - Cards with publication-readiness fields: 0
 - Issues: 0
 - Warnings: 335103
 - Manifest SHA-256: `558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1`
-- Validator SHA-256: `552137be146ea0d32c6f631b8b95876b715542533d62faa2a853119f0f756efc`
+- Validator SHA-256: `f0d3db76b6b44225d759fa4d902887c9bc916f139e890984df00f93341de2dbe`
 - Fixture cases checked: 5
-- Fixture bytes: 6647
-- Fixture SHA-256: `474b92a467c6cb1969e7edf39e65512b7c5e613bc476812e0fc0ba2d3a58a8c2`
+- Fixture bytes: 6783
+- Fixture SHA-256: `3eef7ca3f5b4f573399917b486bca1a95f28b29ca4b51592f9030b1e8f282020`
 
 ## Unsafe For Accepted Translation Output
 
