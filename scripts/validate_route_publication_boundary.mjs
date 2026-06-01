@@ -240,6 +240,9 @@ function auditCard(card, context, target = audit) {
   if (typeof card?.answer_eligible !== 'boolean') addIssue(context, 'missing boolean answer_eligible', target);
   if (!card?.answer_role) addIssue(context, 'missing answer_role', target);
   else if (!allowedAnswerRoles.has(card.answer_role)) addIssue(context, `unknown answer_role: ${card.answer_role}`, target);
+  if (card?.answer_role === 'answer' && card?.answer_eligible !== true) {
+    addIssue(context, 'answer_role=answer requires answer_eligible=true', target);
+  }
   if (card?.answer_eligible !== true && Number.isFinite(card?.answer_score)) {
     addIssue(context, 'non-answer card must not carry answer_score', target);
   }

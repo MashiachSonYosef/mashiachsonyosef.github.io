@@ -392,6 +392,9 @@ function validateCard(card, context) {
   }
   if (typeof card.answer_eligible !== 'boolean') issues.push(`${context}: missing boolean answer_eligible`);
   if (!card.answer_role) issues.push(`${context}: missing answer_role`);
+  if (card.answer_role === 'answer' && card.answer_eligible !== true) {
+    issues.push(`${context}: answer_role=answer requires answer_eligible=true`);
+  }
   if (card.answer_eligible === true && card.answer_role !== 'answer') {
     issues.push(`${context}: answer_eligible card must use answer_role=answer`);
   }
