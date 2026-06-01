@@ -1,6 +1,6 @@
 # Route Publication Boundary Audit
 
-Generated: 2026-06-01T00:09:41.158Z
+Generated: 2026-06-01T00:23:35.871Z
 
 ## Boundary
 
@@ -23,6 +23,7 @@ Generated: 2026-06-01T00:09:41.158Z
 - Cards with publication-readiness fields: 0
 - Issues: 0
 - Warnings: 335103
+- Fixture cases checked: 5
 
 ## Unsafe For Accepted Translation Output
 

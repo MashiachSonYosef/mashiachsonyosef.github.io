@@ -5,6 +5,7 @@ import path from 'node:path';
 const root = process.cwd();
 const defaults = {
   manifest: 'data/definitions/hud-route-lookup/manifest.json',
+  fixture: 'data/definitions/route-publication-boundary-fixtures.json',
   output: 'reports/route-publication-boundary-audit.json',
   report: 'reports/route-publication-boundary-audit.md',
   maxIssues: 100,
@@ -48,47 +49,10 @@ const translationOutputSafeLicensePatterns = [
 const forbiddenLicenseRe = /\bNC\b|Non-?Commercial|all rights reserved|copyright unclear|unknown|unverified|permission only/i;
 
 const options = parseArgs(process.argv.slice(2));
+let fixtureCaseCount = 0;
+fixtureCaseCount = runFixtureSelfTest(options.fixture);
 const manifest = readJson(options.manifest);
-const audit = {
-  schema_version: 1,
-  artifact_type: 'route_publication_boundary_audit',
-  generated_at: new Date().toISOString(),
-  generator: 'scripts/validate_route_publication_boundary.mjs',
-  policy: [
-    'HUD route answer eligibility may select a definition card inside the lexical HUD.',
-    'It is not publication readiness for accepted translation output.',
-    'Route cards must keep source/license rows; translation-output safety is flagged separately from HUD route safety.',
-  ].join(' '),
-  inputs: {
-    manifest: options.manifest,
-    public_lookup: manifest.public_lookup || 'data/definitions/hud-route-lookup',
-    max_issues: options.maxIssues,
-    max_warnings: options.maxWarnings,
-  },
-  counts: {
-    shards: 0,
-    tokens: 0,
-    cards: 0,
-    answer_eligible_cards: 0,
-    answer_eligible_cards_with_source_rows: 0,
-    source_rows: 0,
-    hud_safe_source_rows: 0,
-    hud_unsafe_source_rows: 0,
-    translation_output_safe_source_rows: 0,
-    translation_output_unsafe_source_rows: 0,
-    translation_output_unsafe_cards: 0,
-    answer_eligible_translation_output_unsafe_cards: 0,
-    route_cards_with_publication_fields: 0,
-    issue_count: 0,
-    warning_count: 0,
-  },
-  licenses: {},
-  unsafe_translation_output_licenses: {},
-  route_families: {},
-  route_types: {},
-  issues: [],
-  warnings: [],
-};
+const audit = createAudit(manifest);
 
 for (const shard of manifest.shards || []) {
   audit.counts.shards += 1;
@@ -106,8 +70,79 @@ if (audit.counts.issue_count > 0) {
 }
 
 console.log(`Route publication boundary validation passed. Cards: ${audit.counts.cards}. Answer-eligible: ${audit.counts.answer_eligible_cards}. Translation-output unsafe cards flagged: ${audit.counts.translation_output_unsafe_cards}.`);
+console.log(`Fixture self-test passed. Cases: ${fixtureCaseCount}.`);
 console.log(`Wrote ${options.output}`);
 console.log(`Wrote ${options.report}`);
+
+function createAudit(manifestData = {}) {
+  return {
+    schema_version: 1,
+    artifact_type: 'route_publication_boundary_audit',
+    generated_at: new Date().toISOString(),
+    generator: 'scripts/validate_route_publication_boundary.mjs',
+    policy: [
+      'HUD route answer eligibility may select a definition card inside the lexical HUD.',
+      'It is not publication readiness for accepted translation output.',
+      'Route cards must keep source/license rows; translation-output safety is flagged separately from HUD route safety.',
+    ].join(' '),
+    inputs: {
+      manifest: options.manifest,
+      fixture: options.fixture,
+      fixture_cases: fixtureCaseCount,
+      public_lookup: manifestData.public_lookup || 'data/definitions/hud-route-lookup',
+      max_issues: options.maxIssues,
+      max_warnings: options.maxWarnings,
+    },
+    counts: {
+      shards: 0,
+      tokens: 0,
+      cards: 0,
+      answer_eligible_cards: 0,
+      answer_eligible_cards_with_source_rows: 0,
+      source_rows: 0,
+      hud_safe_source_rows: 0,
+      hud_unsafe_source_rows: 0,
+      translation_output_safe_source_rows: 0,
+      translation_output_unsafe_source_rows: 0,
+      translation_output_unsafe_cards: 0,
+      answer_eligible_translation_output_unsafe_cards: 0,
+      route_cards_with_publication_fields: 0,
+      issue_count: 0,
+      warning_count: 0,
+    },
+    licenses: {},
+    unsafe_translation_output_licenses: {},
+    route_families: {},
+    route_types: {},
+    issues: [],
+    warnings: [],
+  };
+}
+
+function runFixtureSelfTest(relativePath) {
+  const fixture = readJson(relativePath);
+  const issues = [];
+  if (fixture.schema_version !== 1) issues.push('fixture schema_version must be 1');
+  if (fixture.artifact_type !== 'route_publication_boundary_fixtures') {
+    issues.push(`fixture artifact_type must be route_publication_boundary_fixtures, got ${fixture.artifact_type || 'missing'}`);
+  }
+  for (const [index, testCase] of (fixture.cases || []).entries()) {
+    const target = createAudit({ public_lookup: 'fixture' });
+    auditCard(testCase.card, `fixture:${testCase.label || index}`, target);
+    for (const [countName, expectedValue] of Object.entries(testCase.expected_counts || {})) {
+      const actualValue = Number(target.counts[countName] || 0);
+      if (actualValue !== expectedValue) {
+        issues.push(`${testCase.label || `case ${index}`}: expected counts.${countName}=${expectedValue}, got ${actualValue}`);
+      }
+    }
+  }
+  if (issues.length) {
+    console.error(`Route publication boundary fixture self-test failed with ${issues.length} issue(s):`);
+    for (const issue of issues) console.error(`- ${issue}`);
+    process.exit(1);
+  }
+  return (fixture.cases || []).length;
+}
 
 function auditShard(shardEntry) {
   const lookupRoot = cleanRelativePath(manifest.public_lookup || 'data/definitions/hud-route-lookup');
@@ -126,52 +161,52 @@ function auditShard(shardEntry) {
   }
 }
 
-function auditCard(card, context) {
-  audit.counts.cards += 1;
-  increment(audit.route_families, card?.route_family || 'missing');
-  increment(audit.route_types, card?.route_type || 'missing');
+function auditCard(card, context, target = audit) {
+  target.counts.cards += 1;
+  increment(target.route_families, card?.route_family || 'missing');
+  increment(target.route_types, card?.route_type || 'missing');
 
   const publicationFields = publicationReadinessFields.filter((field) => Object.hasOwn(card || {}, field));
   if (publicationFields.length) {
-    audit.counts.route_cards_with_publication_fields += 1;
-    addIssue(context, `route card carries publication-readiness field(s): ${publicationFields.join(', ')}`);
+    target.counts.route_cards_with_publication_fields += 1;
+    addIssue(context, `route card carries publication-readiness field(s): ${publicationFields.join(', ')}`, target);
   }
 
   const sourceRows = Array.isArray(card?.source_rows) ? card.source_rows : [];
   if (card?.answer_eligible === true) {
-    audit.counts.answer_eligible_cards += 1;
-    if (card.answer_role !== 'answer') addIssue(context, 'answer_eligible card must use answer_role=answer');
-    if (!sourceRows.length) addIssue(context, 'answer_eligible card missing source_rows');
-    else audit.counts.answer_eligible_cards_with_source_rows += 1;
+    target.counts.answer_eligible_cards += 1;
+    if (card.answer_role !== 'answer') addIssue(context, 'answer_eligible card must use answer_role=answer', target);
+    if (!sourceRows.length) addIssue(context, 'answer_eligible card missing source_rows', target);
+    else target.counts.answer_eligible_cards_with_source_rows += 1;
   }
 
   let cardHasTranslationUnsafeRow = false;
   for (const [rowIndex, row] of sourceRows.entries()) {
-    audit.counts.source_rows += 1;
+    target.counts.source_rows += 1;
     const license = String(row?.license || '').trim();
-    increment(audit.licenses, license || 'missing');
+    increment(target.licenses, license || 'missing');
     if (!hudSafe(row)) {
-      audit.counts.hud_unsafe_source_rows += 1;
-      addIssue(`${context}.source_rows[${rowIndex}]`, `unsafe HUD source license profile: ${license || 'missing'}`);
+      target.counts.hud_unsafe_source_rows += 1;
+      addIssue(`${context}.source_rows[${rowIndex}]`, `unsafe HUD source license profile: ${license || 'missing'}`, target);
     } else {
-      audit.counts.hud_safe_source_rows += 1;
+      target.counts.hud_safe_source_rows += 1;
     }
     if (translationOutputSafe(row)) {
-      audit.counts.translation_output_safe_source_rows += 1;
+      target.counts.translation_output_safe_source_rows += 1;
     } else {
-      audit.counts.translation_output_unsafe_source_rows += 1;
+      target.counts.translation_output_unsafe_source_rows += 1;
       cardHasTranslationUnsafeRow = true;
-      increment(audit.unsafe_translation_output_licenses, license || 'missing');
+      increment(target.unsafe_translation_output_licenses, license || 'missing');
     }
     for (const field of ['source_name', 'source_family', 'source_id', 'source_url', 'license', 'license_url']) {
-      if (!row?.[field]) addIssue(`${context}.source_rows[${rowIndex}]`, `missing ${field}`);
+      if (!row?.[field]) addIssue(`${context}.source_rows[${rowIndex}]`, `missing ${field}`, target);
     }
   }
 
   if (cardHasTranslationUnsafeRow) {
-    audit.counts.translation_output_unsafe_cards += 1;
-    if (card?.answer_eligible === true) audit.counts.answer_eligible_translation_output_unsafe_cards += 1;
-    addWarning(context, 'card is HUD-route usable but not automatically safe as accepted translation-output support without downstream license handling');
+    target.counts.translation_output_unsafe_cards += 1;
+    if (card?.answer_eligible === true) target.counts.answer_eligible_translation_output_unsafe_cards += 1;
+    addWarning(context, 'card is HUD-route usable but not automatically safe as accepted translation-output support without downstream license handling', target);
   }
 }
 
@@ -187,16 +222,16 @@ function translationOutputSafe(row) {
   return translationOutputSafeLicensePatterns.some((pattern) => pattern.test(license));
 }
 
-function addIssue(context, detail) {
-  audit.counts.issue_count += 1;
-  if (audit.issues.length >= options.maxIssues) return;
-  audit.issues.push({ context, detail: String(detail).slice(0, 300) });
+function addIssue(context, detail, target = audit) {
+  target.counts.issue_count += 1;
+  if (target.issues.length >= options.maxIssues) return;
+  target.issues.push({ context, detail: String(detail).slice(0, 300) });
 }
 
-function addWarning(context, detail) {
-  audit.counts.warning_count += 1;
-  if (audit.warnings.length >= options.maxWarnings) return;
-  audit.warnings.push({ context, detail: String(detail).slice(0, 300) });
+function addWarning(context, detail, target = audit) {
+  target.counts.warning_count += 1;
+  if (target.warnings.length >= options.maxWarnings) return;
+  target.warnings.push({ context, detail: String(detail).slice(0, 300) });
 }
 
 function increment(object, key) {
@@ -230,6 +265,7 @@ function writeReport(relativePath, data) {
     `- Cards with publication-readiness fields: ${data.counts.route_cards_with_publication_fields}`,
     `- Issues: ${data.counts.issue_count}`,
     `- Warnings: ${data.counts.warning_count}`,
+    `- Fixture cases checked: ${data.inputs.fixture_cases}`,
     '',
     '## Unsafe For Accepted Translation Output',
     '',
@@ -265,6 +301,7 @@ function parseArgs(args) {
   const parsed = { ...defaults };
   for (const arg of args) {
     if (arg.startsWith('--manifest=')) parsed.manifest = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--fixture=')) parsed.fixture = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--max-issues=')) parsed.maxIssues = Number(valueAfterEquals(arg));

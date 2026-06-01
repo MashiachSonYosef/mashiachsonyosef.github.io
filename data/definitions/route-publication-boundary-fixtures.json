@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "artifact_type": "route_publication_boundary_fixtures",
+  "purpose": "Regression cases for keeping HUD route answer eligibility separate from accepted translation-output readiness.",
+  "cases": [
+    {
+      "label": "public-domain-answer-is-hud-and-translation-safe",
+      "card": {
+        "card_id": "fixture-public-domain-answer",
+        "route_family": "fixture",
+        "route_type": "lemma",
+        "answer_eligible": true,
+        "answer_role": "answer",
+        "source_rows": [
+          {
+            "source_name": "Fixture Public Domain Source",
+            "source_family": "fixture",
+            "source_id": "fixture-pd",
+            "source_url": "local:route-publication-boundary-fixtures",
+            "license": "Public Domain",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+          }
+        ]
+      },
+      "expected_counts": {
+        "issue_count": 0,
+        "warning_count": 0,
+        "answer_eligible_cards": 1,
+        "answer_eligible_cards_with_source_rows": 1,
+        "hud_unsafe_source_rows": 0,
+        "translation_output_unsafe_cards": 0,
+        "answer_eligible_translation_output_unsafe_cards": 0,
+        "route_cards_with_publication_fields": 0
+      }
+    },
+    {
+      "label": "cc-by-answer-is-hud-safe-not-translation-output-safe",
+      "card": {
+        "card_id": "fixture-cc-by-answer",
+        "route_family": "fixture",
+        "route_type": "lemma",
+        "answer_eligible": true,
+        "answer_role": "answer",
+        "source_rows": [
+          {
+            "source_name": "Fixture CC BY Source",
+            "source_family": "fixture",
+            "source_id": "fixture-cc-by",
+            "source_url": "local:route-publication-boundary-fixtures",
+            "license": "CC BY 4.0",
+            "license_url": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ]
+      },
+      "expected_counts": {
+        "issue_count": 0,
+        "warning_count": 1,
+        "answer_eligible_cards": 1,
+        "answer_eligible_cards_with_source_rows": 1,
+        "hud_unsafe_source_rows": 0,
+        "translation_output_unsafe_cards": 1,
+        "answer_eligible_translation_output_unsafe_cards": 1,
+        "route_cards_with_publication_fields": 0
+      }
+    },
+    {
+      "label": "publication-readiness-field-is-forbidden-on-route-card",
+      "card": {
+        "card_id": "fixture-publication-field",
+        "route_family": "fixture",
+        "route_type": "lemma",
+        "answer_eligible": true,
+        "answer_role": "answer",
+        "publication_ready": true,
+        "source_rows": [
+          {
+            "source_name": "Fixture Public Domain Source",
+            "source_family": "fixture",
+            "source_id": "fixture-pd-publication-field",
+            "source_url": "local:route-publication-boundary-fixtures",
+            "license": "Public Domain",
+            "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+          }
+        ]
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 0,
+        "answer_eligible_cards": 1,
+        "answer_eligible_cards_with_source_rows": 1,
+        "hud_unsafe_source_rows": 0,
+        "translation_output_unsafe_cards": 0,
+        "answer_eligible_translation_output_unsafe_cards": 0,
+        "route_cards_with_publication_fields": 1
+      }
+    },
+    {
+      "label": "answer-without-source-rows-is-forbidden",
+      "card": {
+        "card_id": "fixture-answer-missing-source",
+        "route_family": "fixture",
+        "route_type": "lemma",
+        "answer_eligible": true,
+        "answer_role": "answer",
+        "source_rows": []
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 0,
+        "answer_eligible_cards": 1,
+        "answer_eligible_cards_with_source_rows": 0,
+        "hud_unsafe_source_rows": 0,
+        "translation_output_unsafe_cards": 0,
+        "answer_eligible_translation_output_unsafe_cards": 0,
+        "route_cards_with_publication_fields": 0
+      }
+    },
+    {
+      "label": "noncommercial-license-is-not-hud-safe",
+      "card": {
+        "card_id": "fixture-nc-license",
+        "route_family": "fixture",
+        "route_type": "lemma",
+        "answer_eligible": false,
+        "answer_role": "evidence",
+        "source_rows": [
+          {
+            "source_name": "Fixture NC Source",
+            "source_family": "fixture",
+            "source_id": "fixture-nc",
+            "source_url": "local:route-publication-boundary-fixtures",
+            "license": "CC BY-NC 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-nc/4.0/"
+          }
+        ]
+      },
+      "expected_counts": {
+        "issue_count": 1,
+        "warning_count": 1,
+        "answer_eligible_cards": 0,
+        "answer_eligible_cards_with_source_rows": 0,
+        "hud_unsafe_source_rows": 1,
+        "translation_output_unsafe_cards": 1,
+        "answer_eligible_translation_output_unsafe_cards": 0,
+        "route_cards_with_publication_fields": 0
+      }
+    }
+  ]
+}
