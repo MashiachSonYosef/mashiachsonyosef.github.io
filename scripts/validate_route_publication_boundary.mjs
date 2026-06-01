@@ -148,6 +148,15 @@ function runFixtureSelfTest(relativePath) {
         issues.push(`${testCase.label || `case ${index}`}: expected counts.${countName}=${expectedValue}, got ${actualValue}`);
       }
     }
+    for (const [mapName, expectedValues] of Object.entries(testCase.expected_map_counts || {})) {
+      const actualValues = target[mapName] || {};
+      for (const [key, expectedValue] of Object.entries(expectedValues || {})) {
+        const actualValue = Number(actualValues[key] || 0);
+        if (actualValue !== expectedValue) {
+          issues.push(`${testCase.label || `case ${index}`}: expected ${mapName}.${key}=${expectedValue}, got ${actualValue}`);
+        }
+      }
+    }
     assertFixtureSubstrings(issues, testCase, 'expected_issue_substrings', target.issues, index);
     assertFixtureSubstrings(issues, testCase, 'expected_warning_substrings', target.warnings, index);
   }
