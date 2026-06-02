@@ -576,7 +576,7 @@
     panel.appendChild(details);
   }
 
-  function applySelectionToToken(button, selection) {
+  function setTokenGlossLine(button, text, mode = '') {
     if (!button) return;
     const wrap = button.closest('.reader-token-wrap') || button.parentElement;
     let line = wrap && wrap.querySelector(':scope > .reader-gloss-line');
@@ -584,9 +584,22 @@
       line = createElement('span', 'reader-gloss-line');
       wrap.appendChild(line);
     }
-    if (line) line.textContent = selection?.selected_definition || '';
-    button.dataset.glossSelected = selection ? 'true' : 'false';
-    button.dataset.selectedGloss = selection?.selected_definition || '';
+    if (!line) return;
+    const display = String(text || '').trim();
+    line.textContent = display;
+    if (display && mode) line.dataset.glossMode = mode;
+    else delete line.dataset.glossMode;
+  }
+
+  function applySelectionToToken(button, selection) {
+    if (!button) return;
+    const selectedDefinition = String(selection?.selected_definition || '').trim();
+    const hint = button.dataset.inlineGloss || '';
+    setTokenGlossLine(button, selectedDefinition || hint, selectedDefinition ? 'selected' : (hint ? 'hint' : ''));
+    button.dataset.glossSelected = selectedDefinition ? 'true' : 'false';
+    button.dataset.selectedGloss = selectedDefinition;
+    if (selectedDefinition) button.setAttribute('data-selected-gloss', selectedDefinition);
+    else button.removeAttribute('data-selected-gloss');
   }
 
   function currentAssembly() {
@@ -1162,6 +1175,7 @@
     const routeShardPromises = new Map();
     let manifestPromise = null;
     let routeManifestPromise = null;
+    let readerHintPromise = null;
 
     const loadOccurrences = async () => {
       if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
@@ -1243,6 +1257,29 @@
         }),
       };
     };
+    const loadReaderHints = async () => {
+      if (!config.reader_hint_url) return { hints: {} };
+      if (!readerHintPromise) readerHintPromise = fetchJson(config.reader_hint_url);
+      return readerHintPromise;
+    };
+    const applyReaderHints = async () => {
+      let payload = null;
+      try {
+        payload = await loadReaderHints();
+      } catch (error) {
+        console.warn('Reader hints unavailable.', error);
+        return;
+      }
+      const hints = payload && payload.hints ? payload.hints : {};
+      document.querySelectorAll('[data-lexical-token]').forEach((button) => {
+        const tokenIds = uniqueValues((button.dataset.lexicalTokenIds || button.dataset.lexicalIndex || '').split(/\s+/));
+        const row = tokenIds.map((id) => hints[id]).find((item) => item && item.display);
+        if (!row) return;
+        button.dataset.inlineGloss = String(row.display || '').trim();
+        button.dataset.inlineGlossSource = [row.source, row.source_id].filter(Boolean).join(' ');
+        if (!button.dataset.selectedGloss) setTokenGlossLine(button, button.dataset.inlineGloss, 'hint');
+      });
+    };
 
     siteApi = { config, loadTokenRow, loadRouteCardsForToken };
     setupWorkbenchPanel();
@@ -1263,6 +1300,7 @@
       await Promise.all(tasks.slice(index, index + 24).map((task) => wrapParagraph(task.paragraph, task.tokenIds, config, loadTokenRow)));
       if (index + 24 < tasks.length) await waitForIdle();
     }
+    await applyReaderHints();
     await hydrateSelectionStoreFromIndexedDb();
     restoreSelections();
     return true;
