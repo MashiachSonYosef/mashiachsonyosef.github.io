@@ -1054,6 +1054,7 @@
     const hud = document.querySelector('[data-lexical-hud]');
     const buttonToRestore = activeHudButton;
     if (hud) hud.hidden = true;
+    document.documentElement.classList.remove('route-hud-open');
     if (buttonToRestore) {
       buttonToRestore.setAttribute('aria-pressed', 'false');
       buttonToRestore.setAttribute('aria-expanded', 'false');
@@ -1065,12 +1066,10 @@
   function positionHudNearButton(button) {
     const hud = document.querySelector('[data-lexical-hud]');
     if (!button || !hud || hud.hidden) return;
-    const margin = 12;
-    const width = Math.max(320, window.innerWidth - margin * 2);
-    hud.style.width = `${width}px`;
-    hud.style.left = `${Math.max(margin, Math.round((window.innerWidth - width) / 2))}px`;
-    hud.style.maxHeight = `${Math.max(260, window.innerHeight - margin * 2)}px`;
-    hud.style.top = `${margin}px`;
+    hud.style.width = '';
+    hud.style.left = '';
+    hud.style.maxHeight = '';
+    hud.style.top = '';
   }
 
   function scheduleHudPosition() {
@@ -1092,6 +1091,7 @@
     button.setAttribute('aria-pressed', 'true');
     button.setAttribute('aria-expanded', 'true');
     hud.hidden = false;
+    document.documentElement.classList.add('route-hud-open');
     hud.focus({ preventScroll: true });
     positionHudNearButton(button);
     const panel = hud.querySelector('[data-route-hud-panel]');

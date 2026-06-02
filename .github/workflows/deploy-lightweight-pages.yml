@@ -26,6 +26,7 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /.nojekyll
+            /404.html
             /index.html
             /tanakh/deuteronomy/index.html
             /assets/css/reader-workbench.css
@@ -42,7 +43,7 @@ jobs:
             .site/assets/css \
             .site/assets/js \
             .site/data/public-hud
-          cp -a .nojekyll index.html .site/
+          cp -a .nojekyll 404.html index.html .site/
           cp -a tanakh/deuteronomy/index.html .site/tanakh/deuteronomy/
           cp -a assets/css/reader-workbench.css .site/assets/css/
           cp -a assets/js/reader-workbench.js .site/assets/js/
@@ -50,6 +51,10 @@ jobs:
           du -sh .site
           find .site -type f -printf '%s %p\n' | sort -nr | head -20
           find .site/data/public-hud/deuteronomy -maxdepth 4 -type f -print
+          if grep -R -n -E 'Clicked Hebrew form|Best actual hit|data-hud-renderings|data-hud-breakdown|Potential options|No lexical entry yet\.|lexical-fields' .site; then
+            echo "Old HUD marker found in Pages artifact; refusing deployment." >&2
+            exit 1
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

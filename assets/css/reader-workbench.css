@@ -28,6 +28,47 @@
   background: rgba(214, 190, 138, 0.12);
 }
 
+html.route-hud-open,
+html.route-hud-open body {
+  overflow: hidden;
+}
+
+.lexical-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  min-height: 100vh;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  background: var(--panel-2);
+  padding: 18px clamp(14px, 3vw, 34px);
+  box-shadow: none;
+  overflow: auto;
+}
+
+.lexical-hud[hidden] {
+  display: none !important;
+}
+
+.lexical-hud .hud-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: -18px calc(clamp(14px, 3vw, 34px) * -1) 14px;
+  padding: 14px clamp(14px, 3vw, 34px) 10px;
+  background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0, 0, 0, 0));
+}
+
+.lexical-hud .route-hud-panel {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding-bottom: 34px;
+}
+
 .reader-workbench-panel {
   display: grid;
   gap: 12px;
