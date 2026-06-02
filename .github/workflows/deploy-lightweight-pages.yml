@@ -1,0 +1,68 @@
+name: Deploy Lightweight Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build lightweight artifact
+        run: |
+          mkdir -p .site
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.codex-tmp/' \
+            --exclude='.site/' \
+            --exclude='_site/' \
+            --exclude='data/build/' \
+            --exclude='data/catalog/' \
+            --exclude='data/import-cache/' \
+            --exclude='data/lexical/' \
+            --exclude='data/public-lexical/' \
+            --exclude='data/reports/' \
+            --exclude='data/search/' \
+            --exclude='data/sources/' \
+            --exclude='data/definitions/hud-route-lookup/' \
+            --exclude='reports/' \
+            --exclude='scripts/' \
+            ./ .site/
+          du -sh .site
+          find .site/data/public-hud/deuteronomy -maxdepth 4 -type f -print
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
