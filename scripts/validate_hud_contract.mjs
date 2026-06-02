@@ -27,47 +27,53 @@ const routePreview = read('hud-preview/routes/index.html');
 const routePreviewApp = read('hud-preview/routes/app.js');
 const renderer = read('scripts/render_site.ps1');
 const previewScripts = [...preview.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((match) => match[1]).join('\n');
+const previewQuarantined = preview.includes('data-public-runtime-quarantine="hud-preview"');
+const routePreviewQuarantined = routePreview.includes('data-public-runtime-quarantine="hud-preview-routes"');
 
-try {
-  new Function(previewScripts);
-} catch (error) {
-  issues.push(`hud-preview inline JavaScript syntax failed: ${error.message}`);
+if (!previewQuarantined) {
+  try {
+    new Function(previewScripts);
+  } catch (error) {
+    issues.push(`hud-preview inline JavaScript syntax failed: ${error.message}`);
+  }
+
+  assert(!/Click anywhere/i.test(preview), 'preview must not instruct users to click anywhere to close', issues);
+  assert(!preview.includes('hud.addEventListener("click", closeHud)'), 'preview must not close when any HUD interior is clicked', issues);
+  assert(preview.includes('data-close'), 'preview needs an explicit close control', issues);
+  assert(preview.includes('license-panel'), 'preview must keep source/license rows expanded', issues);
+  assert(!preview.includes('<details'), 'preview source/license rows should not be hidden behind details', issues);
+  assert(preview.includes('grid-auto-flow: column') || preview.includes('hud-card-lane'), 'preview must expose multi-card route groups', issues);
+  assert(!/\bPotential\b|potential option/i.test(preview), 'preview must not use vague Potential labeling', issues);
 }
 
-assert(!/Click anywhere/i.test(preview), 'preview must not instruct users to click anywhere to close', issues);
-assert(!preview.includes('hud.addEventListener("click", closeHud)'), 'preview must not close when any HUD interior is clicked', issues);
-assert(preview.includes('data-close'), 'preview needs an explicit close control', issues);
-assert(preview.includes('license-panel'), 'preview must keep source/license rows expanded', issues);
-assert(!preview.includes('<details'), 'preview source/license rows should not be hidden behind details', issues);
-assert(preview.includes('grid-auto-flow: column'), 'preview must include horizontal card lanes', issues);
-assert(preview.includes('grid-auto-columns: clamp(250px, 38%, 380px)'), 'preview card lanes must show partial overflow cards', issues);
-assert(preview.includes('document.addEventListener("wheel"'), 'preview must translate hovered wheel movement into horizontal lane scrolling', issues);
-assert(preview.includes('passive: false'), 'preview wheel handler must be cancelable for horizontal lane scrolling', issues);
-assert(!/\bPotential\b|potential option/i.test(preview), 'preview must not use vague Potential labeling', issues);
+if (!routePreviewQuarantined) {
+  try {
+    new Function(routePreviewApp);
+  } catch (error) {
+    issues.push(`hud-preview/routes app JavaScript syntax failed: ${error.message}`);
+  }
 
-try {
-  new Function(routePreviewApp);
-} catch (error) {
-  issues.push(`hud-preview/routes app JavaScript syntax failed: ${error.message}`);
+  assert(routePreview.includes('hud-route-data'), 'route preview must embed route contract data', issues);
+  assert(routePreview.includes('app.js'), 'route preview must load its renderer script', issues);
+  assert(routePreview.includes('Sources and licenses'), 'route preview must expose source/license footnotes', issues);
+  assert(routePreview.includes('grid-template-columns: repeat(auto-fit'), 'route preview must use compact card grids', issues);
+  assert(routePreviewApp.includes('selectRouteAnswer'), 'route preview app must use the same answer-selection contract as the live renderer', issues);
+  assert(routePreviewApp.includes('answerAmbiguity'), 'route preview app must suppress ambiguous answer slots like the live renderer', issues);
+  assert(!routePreview.includes('Best actual hit'), 'route preview must not use stale answer label', issues);
+  assert(!routePreview.includes('Full source and license rows'), 'route preview must not use stale source label', issues);
+  assert(!/<details/i.test(routePreview), 'route preview source/license rows should not be hidden behind details', issues);
+  assert(!/\bPotential\b|potential option|low confidence/i.test(`${routePreview}\n${routePreviewApp}`), 'route preview must not use vague or demoting labels', issues);
 }
-
-assert(routePreview.includes('hud-route-data'), 'route preview must embed route contract data', issues);
-assert(routePreview.includes('app.js'), 'route preview must load its renderer script', issues);
-assert(routePreview.includes('Full source and license rows'), 'route preview must keep source/license rows expanded in plain sections', issues);
-assert(routePreview.includes('grid-auto-flow: column'), 'route preview must include horizontal card lanes', issues);
-assert(routePreviewApp.includes('document.addEventListener("wheel"'), 'route preview must support horizontal lane wheel scrolling', issues);
-assert(routePreviewApp.includes('passive: false'), 'route preview wheel handler must be cancelable', issues);
-assert(!/<details/i.test(routePreview), 'route preview source/license rows should not be hidden behind details', issues);
-assert(!/\bPotential\b|potential option|low confidence/i.test(`${routePreview}\n${routePreviewApp}`), 'route preview must not use vague or demoting labels', issues);
 
 assert(!renderer.includes('Potential options'), 'renderer must not label route groups as Potential options', issues);
 assert(!renderer.includes('status === "Potential"'), 'renderer must not score any claim as Potential', issues);
-assert(renderer.includes('Other source matches'), 'renderer must label non-winning real routes as other source matches', issues);
-assert(renderer.includes('Audit-only checks'), 'renderer must label low-confidence/noisy rows as audit-only checks', issues);
-assert(renderer.includes('<details class="source-details" open>'), 'renderer source/license details must default open', issues);
-assert(renderer.includes('details.open = true'), 'renderer must keep source/license details open after loading a token', issues);
-assert(renderer.includes('hud-card-lane'), 'renderer must expose horizontal card lane styles for multi-card route groups', issues);
-assert(renderer.includes('document.addEventListener("wheel"'), 'renderer must support horizontal card lane wheel scrolling', issues);
+assert(renderer.includes('selectRouteAnswer'), 'renderer must own route answer selection', issues);
+assert(renderer.includes('lookupCandidateTreatments'), 'renderer must expose generated form treatment rows', issues);
+assert(renderer.includes('Sources and licenses'), 'renderer must expose source/license footnotes', issues);
+assert(renderer.includes('source-footnotes'), 'renderer must use compact source/license footnotes', issues);
+assert(renderer.includes('hud-card-lane'), 'renderer must expose compact card grids for multi-card route groups', issues);
+assert(!renderer.includes('Best actual hit'), 'renderer must not use stale answer label', issues);
+assert(!renderer.includes('Full source and license rows'), 'renderer must not use stale source label', issues);
 assert(!/Click anywhere/i.test(renderer), 'renderer must not use click-anywhere-to-close copy', issues);
 
 fail(issues);

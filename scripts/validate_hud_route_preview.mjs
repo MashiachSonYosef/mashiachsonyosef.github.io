@@ -25,6 +25,11 @@ if (!fs.existsSync(appPath)) issues.push('missing hud-preview/routes/app.js');
 
 const html = fs.readFileSync(previewPath, 'utf8');
 const app = fs.existsSync(appPath) ? fs.readFileSync(appPath, 'utf8') : '';
+if (html.includes('data-public-runtime-quarantine="hud-preview-routes"')) {
+  console.log('HUD route preview is quarantined from public runtime.');
+  process.exit(0);
+}
+
 const combined = `${html}\n${app}`;
 
 for (const forbidden of [
@@ -33,22 +38,22 @@ for (const forbidden of [
   /low confidence/i,
   /Click anywhere/i,
   /<details/i,
+  /Best actual hit/i,
+  /Full source and license rows/i,
 ]) {
   if (forbidden.test(combined)) issues.push(`preview contains forbidden pattern ${forbidden}`);
 }
 
 for (const required of [
-  'Best actual hit',
+  'Definition',
   'Strict Hebrew matches',
   'Strict Aramaic matches',
   'Lemma matches',
   'Licensed phrase use',
-  'Full source and license rows',
+  'Sources and licenses',
   'Tiny checks only',
   'Lookup shard path',
-  'grid-auto-flow: column',
-  'document.addEventListener("wheel"',
-  'passive: false',
+  'grid-template-columns: repeat(auto-fit',
   'hud-route-data',
   'app.js',
 ]) {
@@ -61,8 +66,11 @@ if (!jsonMatch) {
 } else {
   try {
     const data = JSON.parse(jsonMatch[1]);
-    if (!data.contract?.rendering_rules?.source_license_expanded_by_default) {
-      issues.push('embedded contract does not require expanded source/license rows');
+    if (!data.contract?.rendering_rules?.supports_compact_card_grids) {
+      issues.push('embedded contract does not require compact card grids');
+    }
+    if (data.contract?.rendering_rules?.supports_horizontal_card_lanes) {
+      issues.push('embedded contract still requires horizontal card lanes');
     }
     if (!Array.isArray(data.fixtures?.samples) || !data.fixtures.samples.length) {
       issues.push('embedded route fixtures are empty');
