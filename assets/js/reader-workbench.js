@@ -118,7 +118,7 @@
     .replace(/\u05E5/g, '\u05E6');
   const lexicalRootUrl = (config) => toAbsoluteUrl(config.root_href || './');
   const routeLookupManifestUrl = (config) => toAbsoluteUrl(
-    config.hud_route_lookup_manifest_url || 'data/definitions/hud-route-lookup/manifest.json',
+    config.hud_route_lookup_manifest_url || '',
     lexicalRootUrl(config),
   );
   const resolveSourceUrl = (url, config) => {
@@ -1226,6 +1226,7 @@
       return tokenRows.get(tokenIndexId) || {};
     };
     const loadRouteManifest = async () => {
+      if (!config.hud_route_lookup_manifest_url) return { prefix_length: 3, shards: [] };
       if (!routeManifestPromise) routeManifestPromise = fetchJson(routeLookupManifestUrl(config));
       return routeManifestPromise;
     };
@@ -1336,7 +1337,7 @@
       });
       const cards = collectRankedCards(sample);
       const fakeButton = document.createElement('button');
-      fakeButton.dataset.workId = 'hud-preview';
+      fakeButton.dataset.workId = 'runtime-preview';
       fakeButton.dataset.lexicalSurface = sample.token || '';
       fakeButton.dataset.normalized = sample.normalized || '';
       fakeButton.dataset.surfaceTokenId = sample.normalized || sample.token || '';
