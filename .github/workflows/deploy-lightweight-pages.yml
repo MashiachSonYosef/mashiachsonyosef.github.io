@@ -23,32 +23,32 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.nojekyll
+            /index.html
+            /tanakh/deuteronomy/index.html
+            /assets/css/reader-workbench.css
+            /assets/js/reader-workbench.js
+            /data/public-hud/deuteronomy/**
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
       - name: Build lightweight artifact
         run: |
-          mkdir -p .site
-          rsync -a --delete \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='.codex-tmp/' \
-            --exclude='.site/' \
-            --exclude='_site/' \
-            --exclude='data/build/' \
-            --exclude='data/catalog/' \
-            --exclude='data/import-cache/' \
-            --exclude='data/lexical/' \
-            --exclude='data/public-lexical/' \
-            --exclude='data/reports/' \
-            --exclude='data/search/' \
-            --exclude='data/sources/' \
-            --exclude='data/definitions/hud-route-lookup/' \
-            --exclude='reports/' \
-            --exclude='scripts/' \
-            ./ .site/
+          rm -rf .site
+          mkdir -p .site/tanakh/deuteronomy \
+            .site/assets/css \
+            .site/assets/js \
+            .site/data/public-hud
+          cp -a .nojekyll index.html .site/
+          cp -a tanakh/deuteronomy/index.html .site/tanakh/deuteronomy/
+          cp -a assets/css/reader-workbench.css .site/assets/css/
+          cp -a assets/js/reader-workbench.js .site/assets/js/
+          cp -a data/public-hud/deuteronomy .site/data/public-hud/
           du -sh .site
+          find .site -type f -printf '%s %p\n' | sort -nr | head -20
           find .site/data/public-hud/deuteronomy -maxdepth 4 -type f -print
 
       - name: Upload Pages artifact
