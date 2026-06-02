@@ -1271,13 +1271,17 @@
         return;
       }
       const hints = payload && payload.hints ? payload.hints : {};
-      document.querySelectorAll('[data-lexical-token]').forEach((button) => {
+      document.querySelectorAll('[data-lexical-index]').forEach((button) => {
         const tokenIds = uniqueValues((button.dataset.lexicalTokenIds || button.dataset.lexicalIndex || '').split(/\s+/));
         const row = tokenIds.map((id) => hints[id]).find((item) => item && item.display);
         if (!row) return;
-        button.dataset.inlineGloss = String(row.display || '').trim();
+        const gloss = String(row.display || '').trim();
+        const match = Number(row.match_percent);
+        const visibleGloss = Number.isFinite(match) && match > 0 ? `${Math.round(match)}% ${gloss}` : gloss;
+        button.dataset.inlineGloss = visibleGloss;
         button.dataset.inlineGlossSource = [row.source, row.source_id].filter(Boolean).join(' ');
-        if (!button.dataset.selectedGloss) setTokenGlossLine(button, button.dataset.inlineGloss, 'hint');
+        if (visibleGloss) button.title = `Reader hint candidate, not an accepted gloss: ${visibleGloss}`;
+        if (!button.dataset.selectedGloss) setTokenGlossLine(button, visibleGloss, 'hint');
       });
     };
 
