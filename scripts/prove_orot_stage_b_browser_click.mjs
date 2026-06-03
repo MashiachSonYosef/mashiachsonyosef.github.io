@@ -28,6 +28,8 @@ function parseArgs(argv) {
     screenshot: path.resolve('reports/agent10-orot-stage-b-top50-browser-proof-2026-06-03.png'),
     chromePath: process.env.CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     baseUrl: '',
+    workId: 'orot',
+    pagePath: 'orot/',
   };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -42,9 +44,13 @@ function parseArgs(argv) {
     else if (arg === '--screenshot') options.screenshot = path.resolve(next());
     else if (arg === '--chrome-path') options.chromePath = next();
     else if (arg === '--base-url') options.baseUrl = next();
+    else if (arg === '--work-id') options.workId = next();
+    else if (arg === '--page-path') options.pagePath = next();
     else throw new Error(`Unknown argument: ${arg}`);
   }
   if (!options.routeReport) throw new Error('--route-report is required');
+  options.pagePath = String(options.pagePath || '').replace(/^\/+/, '');
+  if (options.pagePath && !options.pagePath.endsWith('/')) options.pagePath += '/';
   return options;
 }
 
@@ -150,7 +156,7 @@ class CdpClient {
 
 async function startChrome(chromePath) {
   if (!fs.existsSync(chromePath)) throw new Error(`Chrome not found: ${chromePath}`);
-  const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'orot-stage-b-chrome-'));
+  const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'route-proof-chrome-'));
   const args = [
     '--headless=new',
     '--disable-gpu',
@@ -398,8 +404,8 @@ async function main() {
 
     const baseUrl = options.baseUrl
       ? (options.baseUrl.endsWith('/') ? options.baseUrl : `${options.baseUrl}/`)
-      : `${staticServer.origin}/orot/`;
-    const rootUrl = new URL('../', baseUrl).toString();
+      : `${staticServer.origin}/${options.pagePath}`;
+    const siteRootUrl = new URL('/', baseUrl).toString();
     await navigate(client, `${baseUrl}?cachebust=${Date.now()}`);
     const beforeClick = await evaluate(client, pageProbeExpression());
     await hardReload(client);
@@ -417,9 +423,9 @@ async function main() {
     const oldQueryProbe = await evaluate(client, pageProbeExpression());
     const oldPathProbes = [];
     for (const oldPath of [
-      `${rootUrl}hud-preview/routes/?cachebust=${Date.now()}`,
+      `${siteRootUrl}hud-preview/routes/?cachebust=${Date.now()}`,
       `${baseUrl}hud-preview/routes/?cachebust=${Date.now()}`,
-      `${rootUrl}reader-workbench/?cachebust=${Date.now()}`,
+      `${siteRootUrl}reader-workbench/?cachebust=${Date.now()}`,
     ]) {
       await navigateAny(client, oldPath);
       oldPathProbes.push(await evaluate(client, oldPathProbeExpression()));
@@ -429,19 +435,22 @@ async function main() {
     await navigate(client, `${baseUrl}?poisoned-storage=${Date.now()}`);
     const poisonedStorageProbe = await evaluate(client, pageProbeExpression());
 
-    const routeRequests = network.filter((entry) => entry.url.includes('/data/public-hud/orot/route-lookup/'));
+    const routeLookupNeedle = `/data/public-hud/${options.workId}/route-lookup/`;
+    const routeRequests = network.filter((entry) => entry.url.includes(routeLookupNeedle));
     const expectedOldPath404s = consoleErrors.filter((entry) => (
       String(entry.text || '').includes('404')
       && [
         '/hud-preview/routes/',
-        '/orot/hud-preview/routes/',
+        `/${options.pagePath}hud-preview/routes/`,
         '/reader-workbench/',
       ].some((needle) => String(entry.url || '').includes(needle))
     ));
     const unexpectedConsoleErrors = consoleErrors.filter((entry) => !expectedOldPath404s.includes(entry));
     const proof = {
       schema_version: 1,
-      artifact_type: 'orot_stage_b_top50_browser_click_proof',
+      artifact_type: 'public_route_hud_browser_click_proof',
+      work_id: options.workId,
+      page_path: options.pagePath,
       generated_at: new Date().toISOString(),
       target_mode: options.baseUrl ? 'live_url' : 'local_static',
       public_root: options.publicRoot,
@@ -449,7 +458,7 @@ async function main() {
       route_report: options.routeReport,
       screenshot: options.screenshot,
       claim_boundary: {
-        highest_claim: 'local browser-click proof for Orot top-50 route package generated from pipeline data',
+        highest_claim: `${options.workId} browser-click proof for route package generated from pipeline data`,
         not_accepted: [
           'qa_acceptance',
           'validated_public_runtime_acceptance',
@@ -477,8 +486,8 @@ async function main() {
         all_packaged_clicks_opened_route_cards: clickResults.every((result) => result.ok && result.routeCards > 0),
         all_packaged_clicks_have_sources: clickResults.every((result) => result.sourceDetails > 0),
         any_packaged_click_has_answer_card: clickResults.some((result) => result.answerCards > 0),
-        route_manifest_requested: routeRequests.some((entry) => entry.url.endsWith('/data/public-hud/orot/route-lookup/manifest.json') && entry.status === 200),
-        route_shard_requested: routeRequests.some((entry) => entry.url.includes('/data/public-hud/orot/route-lookup/shards/') && entry.status === 200),
+        route_manifest_requested: routeRequests.some((entry) => entry.url.endsWith(`/data/public-hud/${options.workId}/route-lookup/manifest.json`) && entry.status === 200),
+        route_shard_requested: routeRequests.some((entry) => entry.url.includes(`/data/public-hud/${options.workId}/route-lookup/shards/`) && entry.status === 200),
         old_marker_hits_total: [
           beforeClick,
           hardReloadProbe,
