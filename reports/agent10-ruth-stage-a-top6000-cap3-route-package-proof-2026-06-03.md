@@ -78,20 +78,66 @@ Screenshot: `reports/agent10-ruth-stage-a-top6000-cap3-browser-proof-2026-06-03.
 - Runtime exception count: `0`
 - Max click time: `134 ms`
 
+## Live Manifest Proof
+
+Live URL: `https://mashiachsonyosef.github.io/data/public-hud/ruth/route-lookup/manifest.json`
+
+- HTTP status: `200`
+- Commit deployed from Agent 10 package commit: `5439a0573`
+- Last-Modified: `Wed, 03 Jun 2026 05:52:06 GMT`
+- ETag: `"6a1fc106-40346"`
+- Published at: `2026-06-03T05:47:55.240Z`
+- Selected token count: `652`
+- Selected lookup candidate count: `797`
+- Public route key count: `567`
+- Shard count: `405`
+- Card count: `1599`
+- Total shard bytes: `2856980`
+- Max shard bytes: `23873`
+- Truncated key count: `923`
+
+## Live Browser Proof
+
+Command:
+
+```powershell
+node scripts\prove_orot_stage_b_browser_click.mjs --work-id ruth --page-path tanakh/ruth/ --base-url https://mashiachsonyosef.github.io/tanakh/ruth/ --route-report reports\agent10-ruth-stage-a-top6000-cap3-route-package-proof-2026-06-03.json --report reports\agent10-ruth-stage-a-top6000-cap3-live-browser-proof-2026-06-03.json --screenshot reports\agent10-ruth-stage-a-top6000-cap3-live-browser-proof-2026-06-03.png
+```
+
+Machine report: `reports/agent10-ruth-stage-a-top6000-cap3-live-browser-proof-2026-06-03.json`
+
+Screenshot: `reports/agent10-ruth-stage-a-top6000-cap3-live-browser-proof-2026-06-03.png`
+
+- Status: `pass`
+- Packaged clicks tested: `4`
+- All packaged clicks opened route cards: `true`
+- All packaged clicks had source/license details: `true`
+- At least one answer card rendered: `true`
+- Route manifest requested: `true`
+- Route shard requested: `true`
+- Old-HUD marker hits total: `0`
+- Inline hints before click: `796`
+- Inline hints after hard reload: `796`
+- Old-path probes: `3`
+- Expected old-path 404 count: `3`
+- Poisoned-storage selected glosses: `0`
+- Browser console error count: `0`
+- Runtime exception count: `0`
+- Max click time: `567 ms`
+
 ## Remaining Limits
 
-- Live public proof is still required after deployment before making a live-runtime evidence claim for Ruth Stage A.
-- This is route package/local browser-click evidence only, not QA acceptance or validated public/runtime acceptance.
+- This is Agent 10 live browser-click proof only, not QA acceptance or validated public/runtime acceptance.
 - Route cards remain reader evidence/convenience layers, not accepted definitions or translations.
 - Source/provenance custody and semantic correctness are not accepted here.
 
 ## Agent 8 Callback
 
-Status: `ruth_stage_a_top6000_cap3_local_pipeline_proof_passed`
+Status: `ruth_stage_a_top6000_cap3_live_pipeline_proof_passed`
 
 Artifact path: `reports/agent10-ruth-stage-a-top6000-cap3-route-package-proof-2026-06-03.md`
 
-Current package: Ruth top-6000 cap-3 route package, local proof passed.
+Current package: Ruth top-6000 cap-3 route package, live Agent 10 browser proof passed under non-acceptance boundary.
 
 Agent 1 needed: no source/provenance blocker identified; no source/provenance acceptance claimed.
 
@@ -103,4 +149,4 @@ Agent 6 needed: yes for any acceptance claim.
 
 Agent 7/13 decision needed: no hard blocker for bounded deploy evidence; do not claim acceptance.
 
-Next recommended executable route: deploy Ruth Stage A, run live browser proof, then record live boundary.
+Next recommended executable route: continue the next bounded public surface expansion, or route Ruth to Agent 6 if QA cadence requests review.
