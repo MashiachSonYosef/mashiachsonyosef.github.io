@@ -100,6 +100,13 @@
     if (!response.ok) throw new Error(`Unable to load Reader Workbench payload: ${response.status} ${url}`);
     return response.json();
   };
+  const fetchOptionalJson = async (url, base = document.baseURI) => {
+    if (!url) return null;
+    const response = await fetch(toAbsoluteUrl(url, base));
+    if (response.status === 404) return null;
+    if (!response.ok) throw new Error(`Unable to load optional Reader Workbench payload: ${response.status} ${url}`);
+    return response.json();
+  };
   const parseJsonNode = (selector, fallback) => {
     const node = document.querySelector(selector);
     if (!node || !node.textContent.trim()) return fallback;
@@ -118,9 +125,10 @@
     .replace(/\u05E5/g, '\u05E6');
   const lexicalRootUrl = (config) => toAbsoluteUrl(config.root_href || './');
   const routeLookupManifestUrl = (config) => toAbsoluteUrl(
-    config.hud_route_lookup_manifest_url || '',
+    config.hud_route_lookup_manifest_url || 'data/definitions/hud-route-lookup/manifest.json',
     lexicalRootUrl(config),
   );
+  const readerHintsUrl = (config) => config.reader_hints_url || config.reader_hint_url || '';
   const resolveSourceUrl = (url, config) => {
     const raw = String(url || '').trim();
     if (!raw) return '';
@@ -130,6 +138,124 @@
     if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl(config));
     return '';
   };
+
+  function inlineHintDisplay(value) {
+    const raw = String(value || '').replace(/\s+/g, ' ').trim();
+    if (!raw) return '';
+    const firstClause = raw.split(/\s*;\s*/)[0].trim();
+    const compact = firstClause || raw;
+    if (compact.length <= 42) return compact.replace(/\.$/, '');
+    return `${compact.slice(0, 39).trimEnd()}...`;
+  }
+
+  function normalizeReaderHint(row) {
+    const counterpart = row?.candidate_counterpart && typeof row.candidate_counterpart === 'object' ? row.candidate_counterpart : {};
+    const tokenId = firstPresentValue([row?.token_id, row?.target_token_id, row?.surface_token_id]);
+    const placeholderKind = firstPresentValue([row?.placeholder_kind]);
+    const reviewState = firstPresentValue([row?.review_state, row?.display_state]);
+    const placeholderText = firstPresentValue([row?.placeholder_text]);
+    const isPendingReview = placeholderKind === 'reader_hint_pending_review'
+      || reviewState === 'placeholder_pending_review'
+      || reviewState === 'pending_reader_hint_review';
+    if (tokenId && isPendingReview && placeholderText) {
+      return {
+        token_id: tokenId,
+        display: placeholderText,
+        inline_display: `${placeholderText} pending review`,
+        label: firstPresentValue([row?.label, counterpart.label]),
+        match_percent: null,
+        placeholder_kind: placeholderKind,
+        review_state: reviewState,
+      };
+    }
+    const display = firstPresentValue([
+      row?.inline_display,
+      row?.short_display,
+      row?.reader_hint,
+      counterpart.inline_display,
+      counterpart.display,
+      row?.display,
+      row?.definition,
+      row?.gloss,
+    ]);
+    if (!tokenId || !display) return null;
+    const matchPercent = Number.isFinite(Number(row?.match_percent ?? counterpart.match_percent))
+      ? Number(row?.match_percent ?? counterpart.match_percent)
+      : null;
+    return {
+      token_id: tokenId,
+      display,
+      inline_display: firstPresentValue([row?.inline_display, row?.short_display]) || inlineHintDisplay(display),
+      label: firstPresentValue([row?.label, counterpart.label]),
+      match_percent: matchPercent,
+    };
+  }
+
+  function readerHintRows(payload) {
+    if (!payload || typeof payload !== 'object') return [];
+    const rows = [];
+    if (payload.hints_by_token_id && typeof payload.hints_by_token_id === 'object') {
+      Object.entries(payload.hints_by_token_id).forEach(([tokenId, hint]) => {
+        rows.push({ token_id: tokenId, ...(hint && typeof hint === 'object' ? hint : { display: hint }) });
+      });
+    }
+    if (payload.hints && typeof payload.hints === 'object') {
+      Object.entries(payload.hints).forEach(([tokenId, hint]) => {
+        rows.push({ token_id: tokenId, ...(hint && typeof hint === 'object' ? hint : { display: hint }) });
+      });
+    }
+    [
+      payload.hints,
+      payload.reader_hints,
+      payload.rows,
+      payload.package_rows,
+      payload.candidate_patch_rows,
+    ].forEach((value) => {
+      if (Array.isArray(value)) rows.push(...value);
+    });
+    return rows;
+  }
+
+  async function loadReaderHints(config) {
+    const url = readerHintsUrl(config);
+    if (!url) return new Map();
+    try {
+      const payload = await fetchOptionalJson(url, lexicalRootUrl(config));
+      const hints = new Map();
+      readerHintRows(payload).forEach((row) => {
+        const hint = normalizeReaderHint(row);
+        if (hint) hints.set(hint.token_id, hint);
+      });
+      return hints;
+    } catch (error) {
+      console.warn(error);
+      return new Map();
+    }
+  }
+
+  function applyReaderHint(button, hint) {
+    if (!button || !hint) return;
+    const line = button.closest('.reader-token-wrap')?.querySelector(':scope > .reader-gloss-line');
+    if (!line) return;
+    const display = hint.inline_display || inlineHintDisplay(hint.display);
+    if (!display) return;
+    line.textContent = Number.isFinite(hint.match_percent) ? `${display} ${Math.round(hint.match_percent)}%` : display;
+    line.dataset.glossPlaceholder = 'false';
+    line.dataset.glossLabel = hint.label || '';
+    button.dataset.readerHint = line.textContent;
+    button.dataset.readerHintLabel = hint.label || '';
+  }
+
+  function applyReaderHints(hints) {
+    if (!(hints instanceof Map) || !hints.size) return;
+    document.querySelectorAll('[data-lexical-token]').forEach((button) => {
+      const tokenIds = String(button.dataset.lexicalTokenIds || button.dataset.lexicalIndex || '')
+        .split(/\s+/)
+        .filter(Boolean);
+      const hint = tokenIds.map((tokenId) => hints.get(tokenId)).find(Boolean);
+      applyReaderHint(button, hint);
+    });
+  }
 
   function defaultSelectionStore() {
     return { schema_version: 1, storage: 'local', selections: {} };
@@ -576,7 +702,7 @@
     panel.appendChild(details);
   }
 
-  function setTokenGlossLine(button, text, mode = '') {
+  function applySelectionToToken(button, selection) {
     if (!button) return;
     const wrap = button.closest('.reader-token-wrap') || button.parentElement;
     let line = wrap && wrap.querySelector(':scope > .reader-gloss-line');
@@ -584,22 +710,13 @@
       line = createElement('span', 'reader-gloss-line');
       wrap.appendChild(line);
     }
-    if (!line) return;
-    const display = String(text || '').trim();
-    line.textContent = display;
-    if (display && mode) line.dataset.glossMode = mode;
-    else delete line.dataset.glossMode;
-  }
-
-  function applySelectionToToken(button, selection) {
-    if (!button) return;
-    const selectedDefinition = String(selection?.selected_definition || '').trim();
-    const hint = button.dataset.inlineGloss || '';
-    setTokenGlossLine(button, selectedDefinition || hint, selectedDefinition ? 'selected' : (hint ? 'hint' : ''));
-    button.dataset.glossSelected = selectedDefinition ? 'true' : 'false';
-    button.dataset.selectedGloss = selectedDefinition;
-    if (selectedDefinition) button.setAttribute('data-selected-gloss', selectedDefinition);
-    else button.removeAttribute('data-selected-gloss');
+    const selectedDefinition = selection?.selected_definition || '';
+    if (line) {
+      line.textContent = selectedDefinition || 'TBD';
+      line.dataset.glossPlaceholder = selectedDefinition ? 'false' : 'true';
+    }
+    button.dataset.glossSelected = selection ? 'true' : 'false';
+    button.dataset.selectedGloss = selection?.selected_definition || '';
   }
 
   function currentAssembly() {
@@ -1030,7 +1147,9 @@
     const surface = createElement('span', 'lexical-word-surface', normalizeHebrewDisplay(text));
     span.appendChild(surface);
     wrap.appendChild(span);
-    wrap.appendChild(createElement('span', 'reader-gloss-line'));
+    const glossLine = createElement('span', 'reader-gloss-line', 'TBD');
+    glossLine.dataset.glossPlaceholder = 'true';
+    wrap.appendChild(glossLine);
     return wrap;
   }
 
@@ -1067,7 +1186,6 @@
     const hud = document.querySelector('[data-lexical-hud]');
     const buttonToRestore = activeHudButton;
     if (hud) hud.hidden = true;
-    document.documentElement.classList.remove('route-hud-open');
     if (buttonToRestore) {
       buttonToRestore.setAttribute('aria-pressed', 'false');
       buttonToRestore.setAttribute('aria-expanded', 'false');
@@ -1079,10 +1197,12 @@
   function positionHudNearButton(button) {
     const hud = document.querySelector('[data-lexical-hud]');
     if (!button || !hud || hud.hidden) return;
-    hud.style.width = '';
-    hud.style.left = '';
-    hud.style.maxHeight = '';
-    hud.style.top = '';
+    const margin = 12;
+    const width = Math.max(320, window.innerWidth - margin * 2);
+    hud.style.width = `${width}px`;
+    hud.style.left = `${Math.max(margin, Math.round((window.innerWidth - width) / 2))}px`;
+    hud.style.maxHeight = `${Math.max(260, window.innerHeight - margin * 2)}px`;
+    hud.style.top = `${margin}px`;
   }
 
   function scheduleHudPosition() {
@@ -1104,7 +1224,6 @@
     button.setAttribute('aria-pressed', 'true');
     button.setAttribute('aria-expanded', 'true');
     hud.hidden = false;
-    document.documentElement.classList.add('route-hud-open');
     hud.focus({ preventScroll: true });
     positionHudNearButton(button);
     const panel = hud.querySelector('[data-route-hud-panel]');
@@ -1175,7 +1294,6 @@
     const routeShardPromises = new Map();
     let manifestPromise = null;
     let routeManifestPromise = null;
-    let readerHintPromise = null;
 
     const loadOccurrences = async () => {
       if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
@@ -1226,7 +1344,6 @@
       return tokenRows.get(tokenIndexId) || {};
     };
     const loadRouteManifest = async () => {
-      if (!config.hud_route_lookup_manifest_url) return { prefix_length: 3, shards: [] };
       if (!routeManifestPromise) routeManifestPromise = fetchJson(routeLookupManifestUrl(config));
       return routeManifestPromise;
     };
@@ -1258,33 +1375,6 @@
         }),
       };
     };
-    const loadReaderHints = async () => {
-      if (!config.reader_hint_url) return { hints: {} };
-      if (!readerHintPromise) readerHintPromise = fetchJson(config.reader_hint_url);
-      return readerHintPromise;
-    };
-    const applyReaderHints = async () => {
-      let payload = null;
-      try {
-        payload = await loadReaderHints();
-      } catch (error) {
-        console.warn('Reader hints unavailable.', error);
-        return;
-      }
-      const hints = payload && payload.hints ? payload.hints : {};
-      document.querySelectorAll('[data-lexical-index]').forEach((button) => {
-        const tokenIds = uniqueValues((button.dataset.lexicalTokenIds || button.dataset.lexicalIndex || '').split(/\s+/));
-        const row = tokenIds.map((id) => hints[id]).find((item) => item && item.display);
-        if (!row) return;
-        const gloss = String(row.display || '').trim();
-        const match = Number(row.match_percent);
-        const visibleGloss = Number.isFinite(match) && match > 0 ? `${Math.round(match)}% ${gloss}` : gloss;
-        button.dataset.inlineGloss = visibleGloss;
-        button.dataset.inlineGlossSource = [row.source, row.source_id].filter(Boolean).join(' ');
-        if (visibleGloss) button.title = `Reader hint candidate, not an accepted gloss: ${visibleGloss}`;
-        if (!button.dataset.selectedGloss) setTokenGlossLine(button, visibleGloss, 'hint');
-      });
-    };
 
     siteApi = { config, loadTokenRow, loadRouteCardsForToken };
     setupWorkbenchPanel();
@@ -1305,7 +1395,7 @@
       await Promise.all(tasks.slice(index, index + 24).map((task) => wrapParagraph(task.paragraph, task.tokenIds, config, loadTokenRow)));
       if (index + 24 < tasks.length) await waitForIdle();
     }
-    await applyReaderHints();
+    applyReaderHints(await loadReaderHints(config));
     await hydrateSelectionStoreFromIndexedDb();
     restoreSelections();
     return true;
@@ -1337,7 +1427,7 @@
       });
       const cards = collectRankedCards(sample);
       const fakeButton = document.createElement('button');
-      fakeButton.dataset.workId = 'runtime-preview';
+      fakeButton.dataset.workId = 'hud-preview';
       fakeButton.dataset.lexicalSurface = sample.token || '';
       fakeButton.dataset.normalized = sample.normalized || '';
       fakeButton.dataset.surfaceTokenId = sample.normalized || sample.token || '';
