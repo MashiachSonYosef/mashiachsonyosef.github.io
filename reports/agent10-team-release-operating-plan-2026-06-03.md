@@ -240,12 +240,21 @@ Current returned packets:
   - Status: team queue board recorded; Orot fill critical path remains Agent 2 transform, Agent 1 source exclusions, Agent 10 local package, Agent 4 runtime proof, Agent 6 evidence review.
 - Agent 11 public/header risk scan returned `reports/agent11-public-header-risk-scan-2026-06-03.md`.
   - Status: header/readiness wording, direct-path stale-client risk, and mobile compression risk are now on Agent 10's punch list. No fixes or public deploy writes were made.
+- Agent 1 source lane returned `reports/agent1-orot-top100-source-blocker-map-2026-06-03.md`.
+  - Status: Agent 3 top-100 pilot mapped at `100` rows / `1960` occurrences.
+  - Source-clean for Agent 2 transform consideration: `87` rows.
+  - Source-linkage blocked: `13` rows, all missing `lexicon_entry_id`.
+  - Known incomplete curated rows attached: `0`.
+- Agent 2 definition-route lane returned `reports/agent2-orot-fill-producing-transform-spec-2026-06-03.md`.
+  - Status: no pilot answer-claim JSONL emitted.
+  - Agent 3 target is confirmed as the correct first dry-run target, but existing pipeline cannot safely turn it into answer rows.
+  - Top-100 target makeup: `1897` route cards, `0` answer cards, `470` phrase-evidence cards, `1341` citable-evidence cards, `67` form cards, `19` lemma cards.
+  - Exact blocker: a new dry-run transform is needed to rejoin upstream definition claims, prove morphology/prefix safety, prove homograph safety, emit separate answer rows only, and pass route-claim audit/validation.
 
 Pending packets:
 
-- Agent 1: `reports/agent1-orot-top100-source-blocker-map-2026-06-03.md`.
-- Agent 2: `reports/agent2-orot-fill-producing-transform-spec-2026-06-03.md`.
-- Agent 3: `reports/agent3-orot-gap-mechanical-buckets-2026-06-03.md`.
+- No worker packet is currently pending for the Orot top-100 pilot.
+- The next unblocked action is implementation of a dry-run, zero-or-safe-output pipeline transform for Agent 3's target subset.
 
 Current release-owner interpretation:
 
