@@ -97,6 +97,62 @@ Screenshot: `reports/agent10-deuteronomy-stage-b-top6000-cap3-browser-proof-2026
 - Runtime exception count: `0`
 - Max click time: `286 ms`
 
+## Live Manifest Proof
+
+Live URL:
+
+- `https://mashiachsonyosef.github.io/data/public-hud/deuteronomy/route-lookup/manifest.json`
+
+Cache-busted fetch result after custom deploy run `26872101652`:
+
+- HTTP status: `200`
+- Commit deployed from Agent 10 package commit: `b70f9204e`
+- Last-Modified: `Wed, 03 Jun 2026 08:09:21 GMT`
+- ETag: `"6a1fe131-e7c3d"`
+- Published at: `2026-06-03T07:58:54.663Z`
+- Selected token count: `2621`
+- Selected lookup candidate count: `1848`
+- Public route key count: `1426`
+- Shard count: `973`
+- Card count: `4133`
+- Total shard bytes: `8387801`
+- Max shard bytes: `68645`
+- Truncated key count: `4180`
+
+Live page marker checks:
+
+- `https://mashiachsonyosef.github.io/tanakh/deuteronomy/`: HTTP `200`, old-HUD marker hit `false`.
+- `https://mashiachsonyosef.github.io/`: HTTP `200`, old-HUD marker hit `false`.
+
+## Live Browser Proof
+
+Command:
+
+```powershell
+node scripts\prove_orot_stage_b_browser_click.mjs --work-id deuteronomy --page-path tanakh/deuteronomy/ --base-url https://mashiachsonyosef.github.io/tanakh/deuteronomy/ --route-report reports\agent10-deuteronomy-stage-b-top6000-cap3-route-package-proof-2026-06-03.json --report reports\agent10-deuteronomy-stage-b-top6000-cap3-live-browser-proof-2026-06-03.json --screenshot reports\agent10-deuteronomy-stage-b-top6000-cap3-live-browser-proof-2026-06-03.png
+```
+
+Machine report: `reports/agent10-deuteronomy-stage-b-top6000-cap3-live-browser-proof-2026-06-03.json`
+
+Screenshot: `reports/agent10-deuteronomy-stage-b-top6000-cap3-live-browser-proof-2026-06-03.png`
+
+- Status: `pass`
+- Packaged clicks tested: `4`
+- All packaged clicks opened route cards: `true`
+- All packaged clicks had source/license details: `true`
+- At least one answer card rendered: `true`
+- Route manifest requested: `true`
+- Route shard requested: `true`
+- Old-HUD marker hits total: `0`
+- Inline hints before click: `5973`
+- Inline hints after hard reload: `5973`
+- Old-path probes: `3`
+- Expected old-path 404 count: `3`
+- Poisoned-storage selected glosses: `0`
+- Browser console error count: `0`
+- Runtime exception count: `0`
+- Max click time: `416 ms`
+
 ## Remaining Warnings
 
 - Builder upstream route lookup probe reported `1112` shards read and `46` missing source lookup shard probes. The generated public Deuteronomy package itself has `0` missing public shards and passed browser route-manifest/shard loading.
@@ -106,11 +162,11 @@ Screenshot: `reports/agent10-deuteronomy-stage-b-top6000-cap3-browser-proof-2026
 
 ## Agent 8 Callback
 
-Status: `deuteronomy_stage_b_top6000_cap3_local_pipeline_proof_passed`
+Status: `deuteronomy_stage_b_top6000_cap3_live_pipeline_proof_passed`
 
 Artifact path: `reports/agent10-deuteronomy-stage-b-top6000-cap3-route-package-proof-2026-06-03.md`
 
-Current package: Deuteronomy top-6000 cap-3 route package, local Agent 10 browser proof passed under non-acceptance boundary.
+Current package: Deuteronomy top-6000 cap-3 route package, live Agent 10 browser proof passed under non-acceptance boundary.
 
 Agent 1 needed: no source/provenance blocker identified; no source/provenance acceptance claimed.
 
@@ -122,4 +178,4 @@ Agent 6 needed: yes for any acceptance claim.
 
 Agent 7/13 decision needed: no hard blocker for bounded deploy evidence; do not claim acceptance.
 
-Next recommended executable route: deploy the bounded Deuteronomy package, run live manifest and live browser proof, then continue pipeline-only Orot data filling when Agent 2 returns answer-candidate/disambiguation data.
+Next recommended executable route: continue pipeline-only Orot data filling when Agent 2 returns answer-candidate/disambiguation data; until then, continue the next bounded public surface expansion if no release blocker appears.
