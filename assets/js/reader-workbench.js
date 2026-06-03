@@ -94,13 +94,13 @@
     if ('requestIdleCallback' in window) window.requestIdleCallback(resolve, { timeout: 250 });
     else window.requestAnimationFrame(() => window.setTimeout(resolve, 0));
   });
-  const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
-  const fetchJson = async (url, base = document.baseURI) => {
+  const toAbsoluteUrl = (url, base = document.baseURI || location.href) => new URL(url, base).toString();
+  const fetchJson = async (url, base = document.baseURI || location.href) => {
     const response = await fetch(toAbsoluteUrl(url, base));
     if (!response.ok) throw new Error(`Unable to load Reader Workbench payload: ${response.status} ${url}`);
     return response.json();
   };
-  const fetchOptionalJson = async (url, base = document.baseURI) => {
+  const fetchOptionalJson = async (url, base = document.baseURI || location.href) => {
     if (!url) return null;
     const response = await fetch(toAbsoluteUrl(url, base));
     if (response.status === 404) return null;

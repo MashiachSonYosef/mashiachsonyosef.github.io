@@ -1,0 +1,101 @@
+{
+  "artifact_type": "agent10_orot_pending_review_runtime_proof",
+  "date": "2026-06-03",
+  "base_head_before_proof_packet": "bae62829558ce2754a409e96a848cca710d92442",
+  "scope": "Orot pending-review placeholder runtime proof only",
+  "url_checked": "http://127.0.0.1:8794/orot/?agent10_runtime=1780502268943",
+  "runtime_surface": "local static Orot page in in-app browser",
+  "runtime_wait_note": "Orot requires full lexical hydration plus reader-hints fetch before pending-review hints are visible.",
+  "pending_review_counts": {
+    "display_integrity_rows_expected": 13,
+    "display_integrity_rows_found": 13,
+    "display_integrity_rows_rendered_pending_review": 13,
+    "nc_klein_rows_expected": 17,
+    "nc_klein_rows_found": 17,
+    "nc_klein_rows_rendered_with_attribution": 17,
+    "missing_display_integrity_ids": [],
+    "missing_nc_klein_ids": []
+  },
+  "runtime_counts": {
+    "lexical_token_nodes": 59774,
+    "reader_gloss_lines": 59774
+  },
+  "samples": {
+    "display_integrity": {
+      "token_id": "tok-bf10df974281",
+      "gloss_text": "TBD pending review",
+      "data_gloss_placeholder": "false",
+      "data_reader_hint": "TBD pending review"
+    },
+    "nc_klein": {
+      "token_id": "tok-e1419d66ddac",
+      "gloss_text": "TBD pending review (Klein Dictionary CC BY-NC noncommercial educational; no definition content displayed)",
+      "data_gloss_placeholder": "false",
+      "data_reader_hint": "TBD pending review (Klein Dictionary CC BY-NC noncommercial educational; no definition content displayed)"
+    }
+  },
+  "click_proof": {
+    "target_token_id": "tok-e1419d66ddac",
+    "target_occurrences_on_page": 33,
+    "clicked_occurrence": 1,
+    "hud_present": true,
+    "hud_hidden": false,
+    "visible_route_card_count": 3,
+    "source_license_section_expanded": true,
+    "source_license_row_visible": "Akeidat Yitzchak, Pressburg 1849 | source-version-14bd52324e606c08 | Public Domain",
+    "source_marker_visible": true,
+    "license_marker_visible": true,
+    "separate_citation_marker_not_claimed": true
+  },
+  "forbidden_marker_check": {
+    "page_html": {
+      "old_no_lexical_entry": false,
+      "old_potential_options": false,
+      "old_show_potential_options": false,
+      "accepted_translation": false,
+      "accepted_gloss": false,
+      "display_tbd_field": false,
+      "inline_display_tbd_field": false,
+      "counterpart_tbd_field": false
+    },
+    "hud_after_click": {
+      "old_no_lexical_entry": false,
+      "old_potential_options": false,
+      "old_show_potential_options": false,
+      "accepted_translation": false,
+      "accepted_gloss": false
+    }
+  },
+  "deterministic_validation": [
+    "node --check assets/js/reader-workbench.js",
+    "node scripts/validate_reader_workbench_runtime.mjs",
+    "node scripts/validate_route_hud_page.mjs --page orot/index.html",
+    "node scripts/validate_agent10_orot_display_integrity_changed_public_package.mjs",
+    "node scripts/validate_agent10_orot_nc_changed_public_package.mjs",
+    "node scripts/validate_agent10_orot_nc_commercial_export_exclusion.mjs",
+    "Orot inline runtime parse check"
+  ],
+  "files_touched_by_this_checkpoint": [
+    "assets/js/reader-workbench.js",
+    "orot/index.html",
+    "reports/agent10-orot-pending-review-runtime-proof-2026-06-03.json",
+    "reports/agent10-orot-pending-review-runtime-proof-2026-06-03.md"
+  ],
+  "claims_not_made": [
+    "QA acceptance",
+    "source/provenance acceptance",
+    "license acceptance",
+    "Definition authority",
+    "usage-as-definition authority",
+    "answer acceptance",
+    "public/runtime acceptance",
+    "publication readiness",
+    "route publication support",
+    "product/data acceptance",
+    "translation output",
+    "accepted gloss",
+    "accepted text"
+  ],
+  "agent4_status": "Not blocked by this packet. User corrected that Agent 4 is not blocked; this packet supplies Agent 10 browser proof and should be routed for Agent 6/Agent 4 follow-up as needed.",
+  "next_route": "Route this proof packet to Agent 6 for exact boundary follow-up on Orot pending-review runtime behavior. Agent 4 can independently verify if requested; do not describe Agent 4 as blocked."
+}
