@@ -16,6 +16,8 @@ clear_subset_for_non_public_placeholder_add_or_block_each_row
 
 Allowed provisional labels only: `counterpart candidate`, `project-preferred counterpart candidate`.
 
+Placeholder English text is `TBD` only. It is not definition text, answer text, translation text, accepted gloss, verified text, or top-match text.
+
 NC rows remain `CC_BY_NC`, `derived_from_nc=true`, `commercial_export_allowed=false`, `attribution_required=true`, and `corpus_contamination=false`.
 
 ## Files

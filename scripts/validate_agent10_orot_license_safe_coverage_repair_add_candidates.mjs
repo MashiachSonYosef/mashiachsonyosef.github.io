@@ -41,8 +41,9 @@ expect(report.summary.public_runtime_proof_needed_now === false, 'public runtime
 for (const row of rows) {
   expect(allowedLabels.includes(row.provisional_label), `${row.target_token_id} invalid provisional label`);
   expect(row.placeholder_status === 'placeholder_only', `${row.target_token_id} placeholder status must be placeholder_only`);
-  expect(row.counterpart_text === null, `${row.target_token_id} counterpart text must be null`);
-  expect(row.stored_text_now === false, `${row.target_token_id} stored_text_now must be false`);
+  expect(row.counterpart_text === 'TBD', `${row.target_token_id} counterpart text must be TBD`);
+  expect(row.placeholder_text_stored_now === true, `${row.target_token_id} placeholder_text_stored_now must be true`);
+  expect(row.definition_text_stored_now === false, `${row.target_token_id} definition text must not be stored`);
   expect(row.cleared_by_agent6_now === false, `${row.target_token_id} must not be cleared now`);
   expect(row.add_now_before_agent6 === false, `${row.target_token_id} must not be added before Agent 6`);
   expect(row.public_emit_ready === false, `${row.target_token_id} public_emit_ready must be false`);
