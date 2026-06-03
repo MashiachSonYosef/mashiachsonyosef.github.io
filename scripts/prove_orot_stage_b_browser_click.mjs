@@ -27,6 +27,7 @@ function parseArgs(argv) {
     report: path.resolve('reports/agent10-orot-stage-b-top50-browser-proof-2026-06-03.json'),
     screenshot: path.resolve('reports/agent10-orot-stage-b-top50-browser-proof-2026-06-03.png'),
     chromePath: process.env.CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    baseUrl: '',
   };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -40,6 +41,7 @@ function parseArgs(argv) {
     else if (arg === '--report') options.report = path.resolve(next());
     else if (arg === '--screenshot') options.screenshot = path.resolve(next());
     else if (arg === '--chrome-path') options.chromePath = next();
+    else if (arg === '--base-url') options.baseUrl = next();
     else throw new Error(`Unknown argument: ${arg}`);
   }
   if (!options.routeReport) throw new Error('--route-report is required');
@@ -332,8 +334,10 @@ async function main() {
   let chrome;
   let client;
   try {
-    const staticServer = await startStaticServer(options.publicRoot);
-    server = staticServer.server;
+    const staticServer = options.baseUrl
+      ? null
+      : await startStaticServer(options.publicRoot);
+    if (staticServer) server = staticServer.server;
     chrome = await startChrome(options.chromePath);
     const newTarget = await fetch(`http://127.0.0.1:${chrome.port}/json/new?about:blank`, { method: 'PUT' }).then((response) => response.json());
     client = new CdpClient(newTarget.webSocketDebuggerUrl);
@@ -358,7 +362,9 @@ async function main() {
     await client.send('Log.enable');
     await client.send('Network.setCacheDisabled', { cacheDisabled: true });
 
-    const baseUrl = `${staticServer.origin}/orot/`;
+    const baseUrl = options.baseUrl
+      ? (options.baseUrl.endsWith('/') ? options.baseUrl : `${options.baseUrl}/`)
+      : `${staticServer.origin}/orot/`;
     await navigate(client, `${baseUrl}?cachebust=${Date.now()}`);
     const beforeClick = await evaluate(client, pageProbeExpression());
     const samplePlan = await evaluate(client, sampleExpression(tokenIds));
@@ -381,8 +387,9 @@ async function main() {
       schema_version: 1,
       artifact_type: 'orot_stage_b_top50_browser_click_proof',
       generated_at: new Date().toISOString(),
+      target_mode: options.baseUrl ? 'live_url' : 'local_static',
       public_root: options.publicRoot,
-      local_url: baseUrl,
+      target_url: baseUrl,
       route_report: options.routeReport,
       screenshot: options.screenshot,
       claim_boundary: {

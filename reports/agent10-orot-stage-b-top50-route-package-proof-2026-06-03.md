@@ -68,6 +68,27 @@ Sample clicks:
 - `של`: `43` route cards, `1` answer card, `3` source/license detail blocks.
 - `כל`: `42` route cards, `1` answer card, `3` source/license detail blocks.
 
+## Live Browser-Click Evidence
+
+Live URL: `https://mashiachsonyosef.github.io/orot/`
+
+Machine report: `reports/agent10-orot-stage-b-top50-live-browser-proof-2026-06-03.json`
+
+Screenshot: `reports/agent10-orot-stage-b-top50-live-browser-proof-2026-06-03.png`
+
+- Status: `pass`
+- Packaged clicks tested: `4`
+- All packaged clicks opened route cards: `true`
+- All packaged clicks had source/license details: `true`
+- At least one answer card rendered: `true`
+- Route manifest requested from `/data/public-hud/orot/route-lookup/manifest.json`: `true`
+- Route shard requested from `/data/public-hud/orot/route-lookup/shards/**`: `true`
+- Old-HUD marker hits total: `0`
+- Poisoned-storage selected glosses: `0`
+- Browser console error count: `0`
+- Runtime exception count: `0`
+- Max click time: `2912 ms`
+
 ## Additional Validators
 
 - `node C:\Users\owner\Documents\translations\scripts\validate_route_hud_page.mjs --page orot\index.html`: pass
