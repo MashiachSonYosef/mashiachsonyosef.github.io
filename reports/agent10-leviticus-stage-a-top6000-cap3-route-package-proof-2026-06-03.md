@@ -90,20 +90,66 @@ Screenshot: `reports/agent10-leviticus-stage-a-top6000-cap3-browser-proof-2026-0
 - Runtime exception count: `0`
 - Max click time: `276 ms`
 
+## Live Manifest Proof
+
+Live URL: `https://mashiachsonyosef.github.io/data/public-hud/leviticus/route-lookup/manifest.json`
+
+- HTTP status: `200`
+- Commit deployed from Agent 10 package commit: `13af8c497`
+- Last-Modified: `Wed, 03 Jun 2026 05:20:24 GMT`
+- ETag: `"6a1fb998-12f236"`
+- Published at: `2026-06-03T05:16:08.286Z`
+- Selected token count: `3620`
+- Selected lookup candidate count: `2968`
+- Public route key count: `1909`
+- Shard count: `1137`
+- Card count: `5237`
+- Total shard bytes: `9929827`
+- Max shard bytes: `49788`
+- Truncated key count: `5056`
+
+## Live Browser Proof
+
+Command:
+
+```powershell
+node scripts\prove_orot_stage_b_browser_click.mjs --work-id leviticus --page-path tanakh/leviticus/ --base-url https://mashiachsonyosef.github.io/tanakh/leviticus/ --route-report reports\agent10-leviticus-stage-a-top6000-cap3-route-package-proof-2026-06-03.json --report reports\agent10-leviticus-stage-a-top6000-cap3-live-browser-proof-2026-06-03.json --screenshot reports\agent10-leviticus-stage-a-top6000-cap3-live-browser-proof-2026-06-03.png
+```
+
+Machine report: `reports/agent10-leviticus-stage-a-top6000-cap3-live-browser-proof-2026-06-03.json`
+
+Screenshot: `reports/agent10-leviticus-stage-a-top6000-cap3-live-browser-proof-2026-06-03.png`
+
+- Status: `pass`
+- Packaged clicks tested: `4`
+- All packaged clicks opened route cards: `true`
+- All packaged clicks had source/license details: `true`
+- At least one answer card rendered: `true`
+- Route manifest requested: `true`
+- Route shard requested: `true`
+- Old-HUD marker hits total: `0`
+- Inline hints before click: `7055`
+- Inline hints after hard reload: `7055`
+- Old-path probes: `3`
+- Expected old-path 404 count: `3`
+- Poisoned-storage selected glosses: `0`
+- Browser console error count: `0`
+- Runtime exception count: `0`
+- Max click time: `503 ms`
+
 ## Remaining Limits
 
-- Live public proof is still required after deployment before making a live-runtime evidence claim for Leviticus Stage A.
-- This is route package/local browser-click evidence only, not QA acceptance or validated public/runtime acceptance.
+- This is Agent 10 live browser-click proof only, not QA acceptance or validated public/runtime acceptance.
 - Route cards remain reader evidence/convenience layers, not accepted definitions or translations.
 - Source/provenance custody and semantic correctness are not accepted here.
 
 ## Agent 8 Callback
 
-Status: `leviticus_stage_a_top6000_cap3_local_pipeline_proof_passed`
+Status: `leviticus_stage_a_top6000_cap3_live_pipeline_proof_passed`
 
 Artifact path: `reports/agent10-leviticus-stage-a-top6000-cap3-route-package-proof-2026-06-03.md`
 
-Current package: Leviticus top-6000 cap-3 route package, local proof passed.
+Current package: Leviticus top-6000 cap-3 route package, live Agent 10 browser proof passed under non-acceptance boundary.
 
 Agent 1 needed: no source/provenance blocker identified; no source/provenance acceptance claimed.
 
@@ -115,4 +161,4 @@ Agent 6 needed: yes for any acceptance claim.
 
 Agent 7/13 decision needed: no hard blocker for bounded deploy evidence; do not claim acceptance.
 
-Next recommended executable route: deploy Leviticus Stage A, run live browser proof, then record live boundary.
+Next recommended executable route: continue the next bounded public surface expansion, or route Leviticus to Agent 6 if QA cadence requests review.
