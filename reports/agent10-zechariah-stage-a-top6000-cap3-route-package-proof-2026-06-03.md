@@ -90,20 +90,66 @@ Screenshot: `reports/agent10-zechariah-stage-a-top6000-cap3-browser-proof-2026-0
 - Runtime exception count: `0`
 - Max click time: `146 ms`
 
+## Live Manifest Proof
+
+Live URL: `https://mashiachsonyosef.github.io/data/public-hud/zechariah/route-lookup/manifest.json`
+
+- HTTP status: `200`
+- Commit deployed from Agent 10 package commit: `b15fbf61e`
+- Last-Modified: `Wed, 03 Jun 2026 05:26:53 GMT`
+- ETag: `"6a1fbb1d-875a0"`
+- Published at: `2026-06-03T05:23:04.591Z`
+- Selected token count: `1405`
+- Selected lookup candidate count: `1828`
+- Public route key count: `1269`
+- Shard count: `801`
+- Card count: `3566`
+- Total shard bytes: `6727651`
+- Max shard bytes: `59804`
+- Truncated key count: `2163`
+
+## Live Browser Proof
+
+Command:
+
+```powershell
+node scripts\prove_orot_stage_b_browser_click.mjs --work-id zechariah --page-path tanakh/zechariah/ --base-url https://mashiachsonyosef.github.io/tanakh/zechariah/ --route-report reports\agent10-zechariah-stage-a-top6000-cap3-route-package-proof-2026-06-03.json --report reports\agent10-zechariah-stage-a-top6000-cap3-live-browser-proof-2026-06-03.json --screenshot reports\agent10-zechariah-stage-a-top6000-cap3-live-browser-proof-2026-06-03.png
+```
+
+Machine report: `reports/agent10-zechariah-stage-a-top6000-cap3-live-browser-proof-2026-06-03.json`
+
+Screenshot: `reports/agent10-zechariah-stage-a-top6000-cap3-live-browser-proof-2026-06-03.png`
+
+- Status: `pass`
+- Packaged clicks tested: `4`
+- All packaged clicks opened route cards: `true`
+- All packaged clicks had source/license details: `true`
+- At least one answer card rendered: `true`
+- Route manifest requested: `true`
+- Route shard requested: `true`
+- Old-HUD marker hits total: `0`
+- Inline hints before click: `2024`
+- Inline hints after hard reload: `2024`
+- Old-path probes: `3`
+- Expected old-path 404 count: `3`
+- Poisoned-storage selected glosses: `0`
+- Browser console error count: `0`
+- Runtime exception count: `0`
+- Max click time: `354 ms`
+
 ## Remaining Limits
 
-- Live public proof is still required after deployment before making a live-runtime evidence claim for Zechariah Stage A.
-- This is route package/local browser-click evidence only, not QA acceptance or validated public/runtime acceptance.
+- This is Agent 10 live browser-click proof only, not QA acceptance or validated public/runtime acceptance.
 - Route cards remain reader evidence/convenience layers, not accepted definitions or translations.
 - Source/provenance custody and semantic correctness are not accepted here.
 
 ## Agent 8 Callback
 
-Status: `zechariah_stage_a_top6000_cap3_local_pipeline_proof_passed`
+Status: `zechariah_stage_a_top6000_cap3_live_pipeline_proof_passed`
 
 Artifact path: `reports/agent10-zechariah-stage-a-top6000-cap3-route-package-proof-2026-06-03.md`
 
-Current package: Zechariah top-6000 cap-3 route package, local proof passed.
+Current package: Zechariah top-6000 cap-3 route package, live Agent 10 browser proof passed under non-acceptance boundary.
 
 Agent 1 needed: no source/provenance blocker identified; no source/provenance acceptance claimed.
 
@@ -115,4 +161,4 @@ Agent 6 needed: yes for any acceptance claim.
 
 Agent 7/13 decision needed: no hard blocker for bounded deploy evidence; do not claim acceptance.
 
-Next recommended executable route: deploy Zechariah Stage A, run live browser proof, then record live boundary.
+Next recommended executable route: continue the next bounded public surface expansion, or route Zechariah to Agent 6 if QA cadence requests review.
