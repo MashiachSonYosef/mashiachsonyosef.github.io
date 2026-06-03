@@ -1,0 +1,789 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent1_orot_missing_lexicon_linkage_candidates",
+  "generated_at": "2026-06-03T09:09:14.616Z",
+  "generator": "scripts/build_agent1_orot_missing_lexicon_linkage_candidates.mjs",
+  "boundary": {
+    "status": "evidence_only_candidate_buckets_no_source_mutation",
+    "pipeline_only": true,
+    "not_source_custody": true,
+    "not_source_acceptance": true,
+    "not_definition_authority": true,
+    "not_usage_as_definition": true,
+    "not_qa_acceptance": true,
+    "not_public_runtime_acceptance": true,
+    "not_publication_readiness": true,
+    "not_public_deploy": true
+  },
+  "inputs": {
+    "lineage_report": "reports/agent2-orot-pilot-lineage-candidates-2026-06-03.json",
+    "selected_lineage_status": "blocked_missing_lexicon_entry"
+  },
+  "outputs": {
+    "json_report": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-03.json",
+    "markdown_report": "reports/agent1-orot-missing-lexicon-linkage-candidates-2026-06-03.md",
+    "source_mutation": null,
+    "lexical_payload_mutation": null
+  },
+  "counts": {
+    "input_rows": 100,
+    "missing_lexicon_linkage_rows": 13,
+    "missing_lexicon_linkage_occurrences": 129,
+    "bucket_counts": {
+      "no_current_stem_source_candidate_found": 3,
+      "project_preferred_function_word_stem_candidate_exists": 3,
+      "single_stem_candidate_found_current_pipeline": 6,
+      "multi_stem_no_project_preferred_candidate": 1
+    },
+    "bucket_occurrences": {
+      "no_current_stem_source_candidate_found": 71,
+      "project_preferred_function_word_stem_candidate_exists": 23,
+      "single_stem_candidate_found_current_pipeline": 32,
+      "multi_stem_no_project_preferred_candidate": 3
+    },
+    "mutation_rows_emitted": 0,
+    "source_rows_emitted": 0,
+    "lexicon_entry_ids_assigned": 0
+  },
+  "candidates": [
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-bf10df974281",
+      "token_id": "tok-bf10df974281",
+      "surface": "כ״א",
+      "normalized": "כ״א",
+      "occurrences": 67,
+      "prefix_class": "kaf_prefix",
+      "prefix_stem_key": "״א",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "no_current_stem_source_candidate_found",
+      "candidate_edge_count": 0,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-17ba65351831",
+      "token_id": "tok-17ba65351831",
+      "surface": "ממה",
+      "normalized": "ממה",
+      "occurrences": 18,
+      "prefix_class": "mem_prefix",
+      "prefix_stem_key": "מה",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "project_preferred_function_word_stem_candidate_exists",
+      "candidate_edge_count": 3,
+      "project_preferred_edge_count": 1,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-5388bfc3ab008d81",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "מה",
+          "upstream_normalized": "מה",
+          "upstream_gloss_sample": "An expression of wonder or amazement.; Response that confirms that the speaker is paying attention (usually said unhappily).",
+          "upstream_source_rows": [
+            "kaikki|kaikki-84ebc1fb6b781be1|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        },
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-65c05b58585b4f8c",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "מה",
+          "upstream_normalized": "מה",
+          "upstream_gloss_sample": "what; that which, the thing that; that (followed by שֶׁ־); what, which",
+          "upstream_source_rows": [
+            "kaikki|kaikki-80084e24448e63f5|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        },
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-layer-ba6e5ad2e99aa94e",
+          "upstream_claim_file": ".local-cache/definition-routes/source-layer-definition-claims.jsonl",
+          "upstream_route_family": "project_lexical",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "מה",
+          "upstream_normalized": "מה",
+          "upstream_gloss_sample": "what; what which; how",
+          "upstream_source_rows": [
+            "workspace|project-function-word:mah|project-authored / CC0"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-6b169f83d239",
+      "token_id": "tok-6b169f83d239",
+      "surface": "לתן",
+      "normalized": "לתנ",
+      "occurrences": 15,
+      "prefix_class": "lamed_prefix",
+      "prefix_stem_key": "תנ",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "single_stem_candidate_found_current_pipeline",
+      "candidate_edge_count": 1,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-1ea9751bcfb2fae2",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "תן",
+          "upstream_normalized": "תנ",
+          "upstream_gloss_sample": "jackal",
+          "upstream_source_rows": [
+            "kaikki|kaikki-faf92c054664cc2f|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-f4684f98dd3c",
+      "token_id": "tok-f4684f98dd3c",
+      "surface": "הגס",
+      "normalized": "הגס",
+      "occurrences": 7,
+      "prefix_class": "article_h_prefix",
+      "prefix_stem_key": "גס",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "single_stem_candidate_found_current_pipeline",
+      "candidate_edge_count": 1,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-f80a58de4db8f68f",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "גס",
+          "upstream_normalized": "גס",
+          "upstream_gloss_sample": "coarse, rough",
+          "upstream_source_rows": [
+            "kaikki|kaikki-8c08e6798606213e|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-21ae8291f6e3",
+      "token_id": "tok-21ae8291f6e3",
+      "surface": "הקו",
+      "normalized": "הקו",
+      "occurrences": 4,
+      "prefix_class": "article_h_prefix",
+      "prefix_stem_key": "קו",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "single_stem_candidate_found_current_pipeline",
+      "candidate_edge_count": 1,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-f537a65176796248",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "קו",
+          "upstream_normalized": "קו",
+          "upstream_gloss_sample": "line; bus line",
+          "upstream_source_rows": [
+            "kaikki|kaikki-5c564f55f8902dc8|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-061fb7148fbc",
+      "token_id": "tok-061fb7148fbc",
+      "surface": "לזו",
+      "normalized": "לזו",
+      "occurrences": 3,
+      "prefix_class": "lamed_prefix",
+      "prefix_stem_key": "זו",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "project_preferred_function_word_stem_candidate_exists",
+      "candidate_edge_count": 4,
+      "project_preferred_edge_count": 1,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-42ae174c51faf313",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "זו",
+          "upstream_normalized": "זו",
+          "upstream_gloss_sample": "That (relative pronoun).",
+          "upstream_source_rows": [
+            "kaikki|kaikki-bc9cea2d481cf93f|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        },
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-9226ccb965e2ef1b",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "זו",
+          "upstream_normalized": "זו",
+          "upstream_gloss_sample": "This, this one.",
+          "upstream_source_rows": [
+            "kaikki|kaikki-ab3b6ae858f69e7e|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        },
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-adca1ebecf5e4976",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "זו",
+          "upstream_normalized": "זו",
+          "upstream_gloss_sample": "This.",
+          "upstream_source_rows": [
+            "kaikki|kaikki-02640bdf3d3de6d0|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        },
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-layer-1d4979141a60733b",
+          "upstream_claim_file": ".local-cache/definition-routes/source-layer-definition-claims.jsonl",
+          "upstream_route_family": "project_lexical",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "זו",
+          "upstream_normalized": "זו",
+          "upstream_gloss_sample": "this; this one",
+          "upstream_source_rows": [
+            "workspace|project-function-word:zu|project-authored / CC0"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-12f1b38c8e82",
+      "token_id": "tok-12f1b38c8e82",
+      "surface": "וחד",
+      "normalized": "וחד",
+      "occurrences": 3,
+      "prefix_class": "vav_prefix",
+      "prefix_stem_key": "חד",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "multi_stem_no_project_preferred_candidate",
+      "candidate_edge_count": 3,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-05aff548b4083369",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "חד",
+          "upstream_normalized": "חד",
+          "upstream_gloss_sample": "sharp; clear, exact; strong, sharp, piercing, acute",
+          "upstream_source_rows": [
+            "kaikki|kaikki-dffa80840b8c8c8c|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        },
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-d3f90f220fbc6d14",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "חד",
+          "upstream_normalized": "חד",
+          "upstream_gloss_sample": "to pose a riddle, to quiz",
+          "upstream_source_rows": [
+            "kaikki|kaikki-691728926d47770f|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        },
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-d4efb8bca6290000",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "חד",
+          "upstream_normalized": "חד",
+          "upstream_gloss_sample": "Single-, one-, uni-, mono-.",
+          "upstream_source_rows": [
+            "kaikki|kaikki-0654aa2eb81698e9|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-4a2aa0e83513",
+      "token_id": "tok-4a2aa0e83513",
+      "surface": "ב״ה",
+      "normalized": "ב״ה",
+      "occurrences": 2,
+      "prefix_class": "bet_prefix",
+      "prefix_stem_key": "״ה",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "no_current_stem_source_candidate_found",
+      "candidate_edge_count": 0,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-4c95bb88fb43",
+      "token_id": "tok-4c95bb88fb43",
+      "surface": "שזה",
+      "normalized": "שזה",
+      "occurrences": 2,
+      "prefix_class": "shin_relative_prefix",
+      "prefix_stem_key": "זה",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "project_preferred_function_word_stem_candidate_exists",
+      "candidate_edge_count": 3,
+      "project_preferred_edge_count": 1,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-c5924798c090f139",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "זה",
+          "upstream_normalized": "זה",
+          "upstream_gloss_sample": "this",
+          "upstream_source_rows": [
+            "kaikki|kaikki-3ec19a82b93eab56|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        },
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-caf6473f67dfb3b2",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "זה",
+          "upstream_normalized": "זה",
+          "upstream_gloss_sample": "this, this one.; it (for a content clause in subject position or as complement of a preposition)",
+          "upstream_source_rows": [
+            "kaikki|kaikki-9a8f74330bd7ee1e|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        },
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-layer-249c2867db674e76",
+          "upstream_claim_file": ".local-cache/definition-routes/source-layer-definition-claims.jsonl",
+          "upstream_route_family": "project_lexical",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "זה",
+          "upstream_normalized": "זה",
+          "upstream_gloss_sample": "this; this one",
+          "upstream_source_rows": [
+            "workspace|project-function-word:zeh|project-authored / CC0"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-7079eb2eb5bb",
+      "token_id": "tok-7079eb2eb5bb",
+      "surface": "ו׳",
+      "normalized": "ו׳",
+      "occurrences": 2,
+      "prefix_class": "vav_prefix",
+      "prefix_stem_key": "׳",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "no_current_stem_source_candidate_found",
+      "candidate_edge_count": 0,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-e634000d8416",
+      "token_id": "tok-e634000d8416",
+      "surface": "כג",
+      "normalized": "כג",
+      "occurrences": 2,
+      "prefix_class": "kaf_prefix",
+      "prefix_stem_key": "ג",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "single_stem_candidate_found_current_pipeline",
+      "candidate_edge_count": 1,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-1f08c7b44f786e77",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "ג",
+          "upstream_normalized": "ג",
+          "upstream_gloss_sample": "Gimel: the third letter of the Hebrew alphabet, after ב and before ד.; The numeral 3 in Hebrew numbering.",
+          "upstream_source_rows": [
+            "kaikki|kaikki-a7430242b2fb1cad|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-e7e3dabf0cb3",
+      "token_id": "tok-e7e3dabf0cb3",
+      "surface": "העב",
+      "normalized": "העב",
+      "occurrences": 2,
+      "prefix_class": "article_h_prefix",
+      "prefix_stem_key": "עב",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "single_stem_candidate_found_current_pipeline",
+      "candidate_edge_count": 1,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-c922a479b44752c9",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "עב",
+          "upstream_normalized": "עב",
+          "upstream_gloss_sample": "cloud",
+          "upstream_source_rows": [
+            "kaikki|kaikki-d5f64cea97eda069|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    },
+    {
+      "status": "source_linkage_candidate_report_only",
+      "queue_id": "agent2-orot-gap-tok-f87dd75a1506",
+      "token_id": "tok-f87dd75a1506",
+      "surface": "והו",
+      "normalized": "והו",
+      "occurrences": 2,
+      "prefix_class": "vav_plus_article",
+      "prefix_stem_key": "ו",
+      "missing_field": "lexicon_entry_id",
+      "downstream_agent2_status": "blocked_missing_lexicon_entry",
+      "source_status": "source_blocked",
+      "source_issue_count": 0,
+      "linkage_candidate_bucket": "single_stem_candidate_found_current_pipeline",
+      "candidate_edge_count": 1,
+      "project_preferred_edge_count": 0,
+      "candidate_edges": [
+        {
+          "relation": "prefix_stem_key",
+          "upstream_claim_id": "def-kaikki-lemma-52a254dcb9506128",
+          "upstream_claim_file": ".local-cache/definition-routes/kaikki-definition-claims.jsonl",
+          "upstream_route_family": "wiktionary_definition",
+          "upstream_route_type": "lemma",
+          "upstream_surface": "ו",
+          "upstream_normalized": "ו",
+          "upstream_gloss_sample": "Vav, waw: the sixth letter of the Hebrew alphabet, after ה and before ז.; The numeral 6 in Hebrew numbering.",
+          "upstream_source_rows": [
+            "kaikki|kaikki-62b04bcc7c99c6b6|CC BY-SA 4.0 / GFDL"
+          ],
+          "promote_to_answer": false
+        }
+      ],
+      "mutation_allowed_here": false,
+      "requires_before_mutation": [
+        "Agent 1/source-owner review of linkage candidate bucket",
+        "upstream token-index/linkage-rule decision if a candidate is accepted",
+        "rerun lexical payload generation for Orot after any approved upstream linkage edit",
+        "rerun Agent 2 dry-run reports after payload regeneration"
+      ],
+      "not_claimed": [
+        "source custody",
+        "source/provenance acceptance",
+        "definition authority",
+        "usage-as-definition authority",
+        "accepted text",
+        "publication readiness",
+        "public runtime acceptance"
+      ]
+    }
+  ],
+  "next_pipeline_route": {
+    "smallest_safe_unblock": "Agent 1/source-owner review of candidate buckets; no direct mutation from this packet.",
+    "if_linkage_rule_is_approved": [
+      "apply the approved upstream token-index/linkage rule outside this packet",
+      "rerun write_lexical_payloads.mjs for Orot",
+      "rerun build_orot_agent2_pilot_lineage_candidates.mjs",
+      "rerun build_orot_agent2_prefix_stem_counterpart_candidates.mjs"
+    ],
+    "exact_non_pipeline_blocker": "No approved source/linkage rule exists here for assigning missing lexicon_entry_id values."
+  },
+  "what_must_not_be_accepted": [
+    "Source custody.",
+    "Source/provenance acceptance.",
+    "Definition authority.",
+    "Usage-as-definition authority.",
+    "Accepted translation text.",
+    "QA acceptance.",
+    "Validated public/runtime acceptance.",
+    "Publication readiness.",
+    "Any lexicon_entry_id mutation."
+  ]
+}
