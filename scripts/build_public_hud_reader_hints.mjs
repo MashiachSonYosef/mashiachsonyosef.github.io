@@ -66,6 +66,8 @@ function parseArgs(argv) {
     output: '',
     report: '',
     denyLexiconEntries: DEFAULT_DENY_LEXICON_ENTRIES.slice(),
+    sourceClearanceReport: '',
+    sourceClearanceProof: null,
     preserveExisting: true,
     dryRun: false,
   };
@@ -83,6 +85,7 @@ function parseArgs(argv) {
     else if (arg === '--report') options.report = path.resolve(next());
     else if (arg === '--deny-lexicon-entry') options.denyLexiconEntries.push(next());
     else if (arg === '--deny-lexicon-entries') options.denyLexiconEntries.push(...next().split(',').map((item) => item.trim()).filter(Boolean));
+    else if (arg === '--source-clearance-report') options.sourceClearanceReport = path.resolve(next());
     else if (arg === '--replace-existing') options.preserveExisting = false;
     else if (arg === '--dry-run') options.dryRun = true;
     else if (arg === '--help' || arg === '-h') options.help = true;
@@ -399,8 +402,47 @@ function scanNeedles(text, needles) {
   return Object.fromEntries(needles.map((needle) => [needle, text.includes(needle) ? 1 : 0]));
 }
 
+function applySourceClearanceReport(options) {
+  if (!options.sourceClearanceReport) return;
+  const report = readJson(options.sourceClearanceReport);
+  if (report?.artifact_type !== 'agent1_orot_fill_source_row_evidence') {
+    throw new Error(`Unexpected source clearance artifact type in ${options.sourceClearanceReport}`);
+  }
+  if (report.status !== 'pipeline_source_rows_clear') {
+    throw new Error(`Source clearance report is not clear: ${report.status}`);
+  }
+  if (report.summary?.incomplete_curated_rows_attached !== 0) {
+    throw new Error('Source clearance report still has incomplete curated rows attached');
+  }
+  if (report.summary?.targets_missing_clean_chunk_attachment !== 0) {
+    throw new Error('Source clearance report still has targets missing clean source attachment');
+  }
+  if (report.summary?.route_lookup_shard_hit_count !== 0) {
+    throw new Error('Source clearance report must not have public route lookup shard hits before rebuild');
+  }
+  const clearedEntries = new Set((report.targets || [])
+    .filter((target) => (
+      target.status === 'pipeline_source_rows_clear'
+      && target.exact_incomplete_curated_row_present === false
+      && (target.incomplete_chunk_source_row_ids || []).length === 0
+      && ((target.complete_primary_source_row_ids || []).length + (target.complete_secondary_source_row_ids || []).length) > 0
+    ))
+    .map((target) => target.entry_id));
+  const before = options.denyLexiconEntries.slice();
+  options.denyLexiconEntries = options.denyLexiconEntries.filter((entry) => !clearedEntries.has(entry));
+  options.sourceClearanceProof = {
+    report: options.sourceClearanceReport,
+    status: report.status,
+    cleared_entries: before.filter((entry) => clearedEntries.has(entry)),
+    remaining_denied_entries: options.denyLexiconEntries,
+    summary: report.summary,
+    not_accepted: report.must_not_accept || [],
+  };
+}
+
 function main() {
   const options = parseArgs(process.argv.slice(2));
+  applySourceClearanceReport(options);
   const publicHudRoot = path.join(options.publicRoot, 'data', 'public-hud', options.workId);
   const occurrencesPath = path.join(publicHudRoot, 'occurrences.json');
   const existingHintsPath = path.join(publicHudRoot, 'reader-hints.json');
@@ -581,6 +623,7 @@ function main() {
       top_skipped_denied_tokens: sortedTop(skippedDeniedToken),
       top_existing_denied_tokens: sortedTop(existingDeniedToken),
     },
+    source_clearance_proof: options.sourceClearanceProof,
     old_hud_marker_scan: {
       markers: OLD_HUD_MARKERS,
       output_scan_hits: oldMarkerScan,
