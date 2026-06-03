@@ -76,6 +76,29 @@ const configs = {
       clicked_source_rows: 3,
     },
   },
+  amos: {
+    title: 'Amos',
+    page: 'tanakh/amos/',
+    route: '/tanakh/amos/',
+    laneId: 'amos_agent6_runtime_review',
+    candidateNumber: 8,
+    candidatePrep: 'reports/agent10-candidate-page-8-shipment-prep-2026-06-02.md',
+    agent4Proof: 'reports/agent4-amos-live-browser-click-proof-2026-06-03.json',
+    agent4ProofReport: 'reports/agent4-amos-live-browser-click-proof-2026-06-03.md',
+    agent4Screenshot: 'reports/agent4-amos-live-browser-click-proof-2026-06-03.png',
+    agent4ArtifactType: 'agent4_live_amos_browser_runtime_evidence',
+    expected: {
+      required_checks_total: 7,
+      hint_count: 954,
+      route_key_count: 927,
+      shard_count: 645,
+      card_count: 2576,
+      max_shard_bytes: 45127,
+      clicked_route_cards: 7,
+      clicked_answer_cards: 2,
+      clicked_source_rows: 5,
+    },
+  },
 };
 
 const parsed = parseArgs(process.argv.slice(2));

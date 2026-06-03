@@ -32,6 +32,16 @@ const configs = {
     expectedAnswerCardsMin: 1,
     expectedSourceRowsMin: 1,
   },
+  amos: {
+    artifact_type: 'agent4_live_amos_browser_runtime_evidence',
+    status: 'warn_live_amos_runtime_evidence',
+    urlIncludes: '/tanakh/amos/',
+    publicHudIncludes: '/data/public-hud/amos/',
+    expectedTokenId: 'tok-38310e4cbc3b',
+    expectedRouteCardsMin: 1,
+    expectedAnswerCardsMin: 1,
+    expectedSourceRowsMin: 1,
+  },
 };
 const config = configs[workId];
 expect(Boolean(config), `unsupported live browser runtime work id: ${workId}`);

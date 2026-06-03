@@ -16,7 +16,10 @@ const options = {
   jonahProof: 'reports/agent4-jonah-live-browser-click-proof-2026-06-03.json',
   jonahDocket: 'reports/agent10-agent6-ready-jonah-runtime-review-docket-2026-06-03.json',
   jonahPrep: 'reports/agent10-candidate-page-7-shipment-prep-2026-06-02.md',
+  amosProof: 'reports/agent4-amos-live-browser-click-proof-2026-06-03.json',
+  amosDocket: 'reports/agent10-agent6-ready-amos-runtime-review-docket-2026-06-03.json',
   amosPrep: 'reports/agent10-candidate-page-8-shipment-prep-2026-06-02.md',
+  zechariahPrep: 'reports/agent10-candidate-page-9-shipment-prep-2026-06-02.md',
   jsonReport: `reports/agent10-multi-lane-reader-surface-release-train-${dateSlug}.json`,
   report: `reports/agent10-multi-lane-reader-surface-release-train-${dateSlug}.md`,
   ...parseArgs(process.argv.slice(2)),
@@ -28,6 +31,7 @@ const agent6Docket = readJson(options.agent6Docket);
 const liveGuard = readJson(options.liveGuard);
 const ruthProof = readJson(options.ruthProof);
 const jonahProof = readJson(options.jonahProof);
+const amosProof = readJson(options.amosProof);
 const liveSummary = liveGuard.summary || {};
 const issues = [];
 const warnings = [];
@@ -57,7 +61,7 @@ const currentHudMarkers = [
   'data/public-hud',
 ];
 
-const activeWorkIds = ['orot', 'leviticus', 'numbers', 'ruth', 'jonah', 'amos'];
+const activeWorkIds = ['orot', 'leviticus', 'numbers', 'ruth', 'jonah', 'amos', 'zechariah'];
 const protectedWorkIds = ['deuteronomy', 'genesis', 'exodus'];
 const liveChecks = [];
 for (const workId of [...activeWorkIds, ...protectedWorkIds]) {
@@ -67,9 +71,10 @@ for (const workId of [...activeWorkIds, ...protectedWorkIds]) {
 const validationCommands = [
   ['node', ['scripts/validate_agent10_orot_missing_linkage_agent1_docket.mjs', options.agent1Docket]],
   ['node', ['scripts/validate_agent10_orot_reader_hint_candidate_patch_agent6_docket.mjs', options.agent6Docket]],
-  ['node', ['scripts/validate_route_hud_page.mjs', '--page', 'orot/index.html', '--page', 'tanakh/genesis/index.html', '--page', 'tanakh/exodus/index.html', '--page', 'tanakh/leviticus/index.html', '--page', 'tanakh/numbers/index.html', '--page', 'tanakh/deuteronomy/index.html', '--page', 'tanakh/ruth/index.html', '--page', 'tanakh/jonah/index.html', '--page', 'tanakh/amos/index.html']],
+  ['node', ['scripts/validate_route_hud_page.mjs', '--page', 'orot/index.html', '--page', 'tanakh/genesis/index.html', '--page', 'tanakh/exodus/index.html', '--page', 'tanakh/leviticus/index.html', '--page', 'tanakh/numbers/index.html', '--page', 'tanakh/deuteronomy/index.html', '--page', 'tanakh/ruth/index.html', '--page', 'tanakh/jonah/index.html', '--page', 'tanakh/amos/index.html', '--page', 'tanakh/zechariah/index.html']],
   ['node', ['scripts/validate_agent4_live_browser_runtime_evidence.mjs', options.ruthProof]],
   ['node', ['scripts/validate_agent4_live_browser_runtime_evidence.mjs', options.jonahProof]],
+  ['node', ['scripts/validate_agent4_live_browser_runtime_evidence.mjs', options.amosProof]],
 ].map(runCommand);
 
 if (liveSummary.old_hud_exposure !== 'no') issues.push('Base live old-HUD guard does not report old_hud_exposure=no.');
@@ -162,15 +167,29 @@ const lanes = [
     stop_condition: 'Stop on any old-HUD hit, runtime proof drift, stale local/source-of-truth confusion, or Agent 6 blocker.',
   },
   {
-    lane_id: 'amos_agent4_browser_proof',
+    lane_id: 'amos_agent6_runtime_review',
     work_id: 'amos',
     route: '/tanakh/amos/',
+    lane_type: 'warm_runtime_review',
+    current_state: 'live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict',
+    current_evidence: [
+      options.amosPrep,
+      options.amosProof,
+      options.amosDocket,
+    ],
+    next_packet: 'Agent 6 review docket for exact Amos #8 runtime surface using fresh lane-specific old-HUD guard and Agent 4 browser proof.',
+    stop_condition: 'Stop on any old-HUD hit, runtime proof drift, stale local/source-of-truth confusion, or Agent 6 blocker.',
+  },
+  {
+    lane_id: 'zechariah_agent4_browser_proof',
+    work_id: 'zechariah',
+    route: '/tanakh/zechariah/',
     lane_type: 'proof_needed',
     current_state: 'live_current_hud_package_exists_no_agent4_browser_proof_found',
     current_evidence: [
-      options.amosPrep,
+      options.zechariahPrep,
     ],
-    next_packet: 'Bounded Amos live browser-click proof before any Agent 6 review docket.',
+    next_packet: 'Bounded Zechariah live browser-click proof before any Agent 6 review docket.',
     stop_condition: 'Stop on old-HUD hit, failed HUD open, missing route cards/source rows, poisoned storage resurrection, or local/source-of-truth blocker.',
   },
   {
@@ -236,8 +255,14 @@ const output = {
     jonah_runtime_docket_hash_boundary: 'not_hashed_here_to_avoid_release_train_runtime_docket_cyclic_dependency',
     jonah_candidate_prep: options.jonahPrep,
     jonah_candidate_prep_sha256: sha256File(options.jonahPrep),
+    amos_browser_proof: options.amosProof,
+    amos_browser_proof_sha256: sha256File(options.amosProof),
+    amos_runtime_docket: options.amosDocket,
+    amos_runtime_docket_hash_boundary: 'not_hashed_here_to_avoid_release_train_runtime_docket_cyclic_dependency',
     amos_candidate_prep: options.amosPrep,
     amos_candidate_prep_sha256: sha256File(options.amosPrep),
+    zechariah_candidate_prep: options.zechariahPrep,
+    zechariah_candidate_prep_sha256: sha256File(options.zechariahPrep),
   },
   outputs: {
     json_report: options.jsonReport,
@@ -265,7 +290,7 @@ const output = {
   },
   summary: {
     status: issues.length ? 'blocked_release_train_packet' : (warnings.length ? 'warn_multi_lane_release_train_evidence_only' : 'multi_lane_release_train_evidence_only'),
-    active_lanes: 6,
+    active_lanes: 7,
     protected_lanes: 3,
     orot_candidate_patch_rows: agent6Docket.summary?.candidate_patch_rows || 0,
     orot_candidate_patch_occurrences: agent6Docket.summary?.candidate_patch_occurrences || 0,
@@ -308,6 +333,7 @@ const output = {
       'tanakh/ruth/index.html',
       'tanakh/jonah/index.html',
       'tanakh/amos/index.html',
+      'tanakh/zechariah/index.html',
     ],
     live_paths_extra_not_in_base_guard: [
       '/tanakh/exodus/',
@@ -316,6 +342,7 @@ const output = {
       '/tanakh/ruth/',
       '/tanakh/jonah/',
       '/tanakh/amos/',
+      '/tanakh/zechariah/',
     ],
     stop_conditions: [
       'any validator exits nonzero',
@@ -337,14 +364,15 @@ const output = {
     'Numbers Agent 6 runtime review docket with existing Agent 4 proof plus fresh lane-specific guard.',
     'Ruth Agent 6 runtime review docket with Agent 4 browser proof and fresh lane-specific guard.',
     'Jonah Agent 6 runtime review docket with Agent 4 browser proof and fresh lane-specific guard.',
-    'Amos bounded Agent 4 live browser-click proof before any Agent 6 review.',
+    'Amos Agent 6 runtime review docket with Agent 4 browser proof and fresh lane-specific guard.',
+    'Zechariah bounded Agent 4 live browser-click proof before any Agent 6 review.',
   ],
   blocked_now: [
     'No broad render.',
     'No public HUD mutation from this packet.',
     'No route JSONL/shard mutation from this packet.',
     'No source/token-index/lexical payload mutation from this packet.',
-    'No Orot/Leviticus/Numbers/Ruth/Jonah/Amos runtime asset or HTML edit from this packet.',
+    'No Orot/Leviticus/Numbers/Ruth/Jonah/Amos/Zechariah runtime asset or HTML edit from this packet.',
     'No acceptance claim by Agent 10, Agent 1, Agent 2, Agent 4, Agent 7, Agent 12, or sidecar agents.',
   ],
   issues,
@@ -440,7 +468,10 @@ function parseArgs(argv) {
     else if (arg === '--jonah-proof') parsed.jonahProof = cleanRelativePath(argv[++index]);
     else if (arg === '--jonah-docket') parsed.jonahDocket = cleanRelativePath(argv[++index]);
     else if (arg === '--jonah-prep') parsed.jonahPrep = cleanRelativePath(argv[++index]);
+    else if (arg === '--amos-proof') parsed.amosProof = cleanRelativePath(argv[++index]);
+    else if (arg === '--amos-docket') parsed.amosDocket = cleanRelativePath(argv[++index]);
     else if (arg === '--amos-prep') parsed.amosPrep = cleanRelativePath(argv[++index]);
+    else if (arg === '--zechariah-prep') parsed.zechariahPrep = cleanRelativePath(argv[++index]);
     else if (arg === '--json-report') parsed.jsonReport = cleanRelativePath(argv[++index]);
     else if (arg === '--report') parsed.report = cleanRelativePath(argv[++index]);
     else if (arg === '--help' || arg === '-h') {

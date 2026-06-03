@@ -48,6 +48,19 @@ const configs = {
     proof_artifact_type: 'agent4_live_jonah_browser_runtime_evidence',
     required_checks_total: 7,
   },
+  amos: {
+    page: 'tanakh/amos/',
+    max_shard_bytes: 45127,
+    hint_count: 954,
+    route_key_count: 927,
+    shard_count: 645,
+    card_count: 2576,
+    route_cards_clicked: 7,
+    answer_cards_clicked: 2,
+    source_rows_clicked: 5,
+    proof_artifact_type: 'agent4_live_amos_browser_runtime_evidence',
+    required_checks_total: 7,
+  },
 };
 
 const workId = data.summary?.work_id;
