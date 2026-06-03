@@ -28,6 +28,7 @@ jobs:
             /.nojekyll
             /404.html
             /index.html
+            /about/index.html
             /orot/index.html
             /tanakh/deuteronomy/index.html
             /tanakh/genesis/index.html
@@ -62,8 +63,10 @@ jobs:
           works="genesis exodus leviticus numbers deuteronomy ruth jonah amos zechariah zephaniah"
           mkdir -p .site/assets/css \
             .site/assets/js \
+            .site/about \
             .site/data/public-hud
           cp -a .nojekyll 404.html index.html .site/
+          cp -a about/index.html .site/about/
           cp -a assets/css/reader-workbench.css .site/assets/css/
           cp -a assets/js/reader-workbench.js .site/assets/js/
           mkdir -p .site/orot
