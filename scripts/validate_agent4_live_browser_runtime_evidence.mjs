@@ -22,6 +22,16 @@ const configs = {
     expectedAnswerCardsMin: 1,
     expectedSourceRowsMin: 1,
   },
+  jonah: {
+    artifact_type: 'agent4_live_jonah_browser_runtime_evidence',
+    status: 'warn_live_jonah_runtime_evidence',
+    urlIncludes: '/tanakh/jonah/',
+    publicHudIncludes: '/data/public-hud/jonah/',
+    expectedTokenId: 'tok-418aef103fcc',
+    expectedRouteCardsMin: 1,
+    expectedAnswerCardsMin: 1,
+    expectedSourceRowsMin: 1,
+  },
 };
 const config = configs[workId];
 expect(Boolean(config), `unsupported live browser runtime work id: ${workId}`);

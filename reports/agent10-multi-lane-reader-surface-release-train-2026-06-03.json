@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "artifact_type": "agent10_multi_lane_reader_surface_release_train",
-  "generated_at": "2026-06-03T11:07:22.484Z",
+  "generated_at": "2026-06-03T11:19:21.439Z",
   "generator": "scripts/build_agent10_multi_lane_reader_surface_release_train.mjs",
   "commit_basis": {
     "local_head": "7a6ea5eddfc03a83dc0450e282b297fddf77ad32",
-    "origin_main": "87828e5d44c208f11ae9d5152aada3c46b6da65b"
+    "origin_main": "e36e43f56b497d255d88172116731e3a8a88be3d"
   },
   "boundary": {
     "status": "multi_lane_release_train_evidence_only",
@@ -39,8 +39,14 @@
     "ruth_browser_proof_sha256": "19590459c5aea1a0c1c3b9c3cfecc7efd521868b78833382ee783d880113fa7c",
     "ruth_runtime_docket": "reports/agent10-agent6-ready-ruth-runtime-review-docket-2026-06-03.json",
     "ruth_runtime_docket_hash_boundary": "not_hashed_here_to_avoid_release_train_runtime_docket_cyclic_dependency",
+    "jonah_browser_proof": "reports/agent4-jonah-live-browser-click-proof-2026-06-03.json",
+    "jonah_browser_proof_sha256": "abd77de108c42c2cdb0de8ddfc50cd5a187048f87128e0e491d5d35ca743c61f",
+    "jonah_runtime_docket": "reports/agent10-agent6-ready-jonah-runtime-review-docket-2026-06-03.json",
+    "jonah_runtime_docket_hash_boundary": "not_hashed_here_to_avoid_release_train_runtime_docket_cyclic_dependency",
     "jonah_candidate_prep": "reports/agent10-candidate-page-7-shipment-prep-2026-06-02.md",
-    "jonah_candidate_prep_sha256": "4d5828f0df6f9b6f02d523d61962c514cc5b3a92111673720f4c1cc68fc1e266"
+    "jonah_candidate_prep_sha256": "4d5828f0df6f9b6f02d523d61962c514cc5b3a92111673720f4c1cc68fc1e266",
+    "amos_candidate_prep": "reports/agent10-candidate-page-8-shipment-prep-2026-06-02.md",
+    "amos_candidate_prep_sha256": "e8b6e3c21b0b0ef13454521aa0319d12ca2bfe607c57bc3cc7d4bcf9bf529baf"
   },
   "outputs": {
     "json_report": "reports/agent10-multi-lane-reader-surface-release-train-2026-06-03.json",
@@ -84,16 +90,16 @@
   },
   "summary": {
     "status": "warn_multi_lane_release_train_evidence_only",
-    "active_lanes": 5,
+    "active_lanes": 6,
     "protected_lanes": 3,
     "orot_candidate_patch_rows": 31,
     "orot_candidate_patch_occurrences": 1202,
     "orot_missing_linkage_rows": 13,
     "orot_missing_linkage_occurrences": 129,
-    "live_lanes_checked": 8,
-    "live_page_200_count": 8,
+    "live_lanes_checked": 9,
+    "live_page_200_count": 9,
     "live_page_hard_old_marker_hits": 0,
-    "live_data_endpoint_200_count": 24,
+    "live_data_endpoint_200_count": 27,
     "base_live_old_hud_exposure": "no",
     "base_hard_old_marker_hit_checks": 0,
     "validation_commands_passed": 5,
@@ -161,15 +167,29 @@
       "stop_condition": "Stop on any old-HUD hit, runtime proof drift, stale local/source-of-truth confusion, or Agent 6 blocker."
     },
     {
-      "lane_id": "jonah_agent4_browser_proof",
+      "lane_id": "jonah_agent6_runtime_review",
       "work_id": "jonah",
       "route": "/tanakh/jonah/",
+      "lane_type": "warm_runtime_review",
+      "current_state": "live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict",
+      "current_evidence": [
+        "reports/agent10-candidate-page-7-shipment-prep-2026-06-02.md",
+        "reports/agent4-jonah-live-browser-click-proof-2026-06-03.json",
+        "reports/agent10-agent6-ready-jonah-runtime-review-docket-2026-06-03.json"
+      ],
+      "next_packet": "Agent 6 review docket for exact Jonah #7 runtime surface using fresh lane-specific old-HUD guard and Agent 4 browser proof.",
+      "stop_condition": "Stop on any old-HUD hit, runtime proof drift, stale local/source-of-truth confusion, or Agent 6 blocker."
+    },
+    {
+      "lane_id": "amos_agent4_browser_proof",
+      "work_id": "amos",
+      "route": "/tanakh/amos/",
       "lane_type": "proof_needed",
       "current_state": "live_current_hud_package_exists_no_agent4_browser_proof_found",
       "current_evidence": [
-        "reports/agent10-candidate-page-7-shipment-prep-2026-06-02.md"
+        "reports/agent10-candidate-page-8-shipment-prep-2026-06-02.md"
       ],
-      "next_packet": "Bounded Jonah live browser-click proof before any Agent 6 review docket.",
+      "next_packet": "Bounded Amos live browser-click proof before any Agent 6 review docket.",
       "stop_condition": "Stop on old-HUD hit, failed HUD open, missing route cards/source rows, poisoned storage resurrection, or local/source-of-truth blocker."
     },
     {
@@ -299,6 +319,28 @@
       "max_shard_bytes": 28477
     },
     {
+      "work_id": "amos",
+      "route_path": "/tanakh/amos/",
+      "page_status": 200,
+      "page_bytes": 205563,
+      "page_sha256": "ce920a6b68c7256c926c6d453a580093f880b391d2c8d2376962c4fecece6733",
+      "page_hard_old_marker_hits": [],
+      "current_hud_markers": [
+        "data-route-hud-panel",
+        "reader-workbench.js",
+        "data/public-hud"
+      ],
+      "manifest_status": 200,
+      "reader_hints_status": 200,
+      "route_lookup_manifest_status": 200,
+      "hint_count": 954,
+      "route_key_count": 927,
+      "shard_count": 645,
+      "card_count": 2576,
+      "total_shard_bytes": 4784034,
+      "max_shard_bytes": 45127
+    },
+    {
       "work_id": "deuteronomy",
       "route_path": "/tanakh/deuteronomy/",
       "page_status": 200,
@@ -380,9 +422,9 @@
         "stderr_tail": ""
       },
       {
-        "command": "node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/genesis/index.html --page tanakh/exodus/index.html --page tanakh/leviticus/index.html --page tanakh/numbers/index.html --page tanakh/deuteronomy/index.html --page tanakh/ruth/index.html --page tanakh/jonah/index.html",
+        "command": "node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/genesis/index.html --page tanakh/exodus/index.html --page tanakh/leviticus/index.html --page tanakh/numbers/index.html --page tanakh/deuteronomy/index.html --page tanakh/ruth/index.html --page tanakh/jonah/index.html --page tanakh/amos/index.html",
         "exit_code": 0,
-        "stdout_tail": "Route HUD page validation passed for 8 page(s).",
+        "stdout_tail": "Route HUD page validation passed for 9 page(s).",
         "stderr_tail": ""
       },
       {
@@ -392,9 +434,9 @@
         "stderr_tail": ""
       },
       {
-        "command": "node scripts/validate_agent10_runtime_review_docket.mjs reports/agent10-agent6-ready-ruth-runtime-review-docket-2026-06-03.json",
+        "command": "node scripts/validate_agent4_live_browser_runtime_evidence.mjs reports/agent4-jonah-live-browser-click-proof-2026-06-03.json",
         "exit_code": 0,
-        "stdout_tail": "Agent 10 runtime review docket validation passed for reports/agent10-agent6-ready-ruth-runtime-review-docket-2026-06-03.json.",
+        "stdout_tail": "Agent 4 live browser runtime evidence validation passed for reports/agent4-jonah-live-browser-click-proof-2026-06-03.json.",
         "stderr_tail": ""
       }
     ],
@@ -418,14 +460,16 @@
       "tanakh/numbers/index.html",
       "tanakh/deuteronomy/index.html",
       "tanakh/ruth/index.html",
-      "tanakh/jonah/index.html"
+      "tanakh/jonah/index.html",
+      "tanakh/amos/index.html"
     ],
     "live_paths_extra_not_in_base_guard": [
       "/tanakh/exodus/",
       "/tanakh/leviticus/",
       "/tanakh/numbers/",
       "/tanakh/ruth/",
-      "/tanakh/jonah/"
+      "/tanakh/jonah/",
+      "/tanakh/amos/"
     ],
     "stop_conditions": [
       "any validator exits nonzero",
@@ -446,14 +490,15 @@
     "Leviticus Agent 6 runtime review docket with existing Agent 4 proof plus fresh lane-specific guard.",
     "Numbers Agent 6 runtime review docket with existing Agent 4 proof plus fresh lane-specific guard.",
     "Ruth Agent 6 runtime review docket with Agent 4 browser proof and fresh lane-specific guard.",
-    "Jonah bounded Agent 4 live browser-click proof before any Agent 6 review."
+    "Jonah Agent 6 runtime review docket with Agent 4 browser proof and fresh lane-specific guard.",
+    "Amos bounded Agent 4 live browser-click proof before any Agent 6 review."
   ],
   "blocked_now": [
     "No broad render.",
     "No public HUD mutation from this packet.",
     "No route JSONL/shard mutation from this packet.",
     "No source/token-index/lexical payload mutation from this packet.",
-    "No Orot/Leviticus/Numbers/Ruth/Jonah runtime asset or HTML edit from this packet.",
+    "No Orot/Leviticus/Numbers/Ruth/Jonah/Amos runtime asset or HTML edit from this packet.",
     "No acceptance claim by Agent 10, Agent 1, Agent 2, Agent 4, Agent 7, Agent 12, or sidecar agents."
   ],
   "issues": [],

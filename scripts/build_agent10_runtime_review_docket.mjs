@@ -53,6 +53,29 @@ const configs = {
       clicked_source_rows: 3,
     },
   },
+  jonah: {
+    title: 'Jonah',
+    page: 'tanakh/jonah/',
+    route: '/tanakh/jonah/',
+    laneId: 'jonah_agent6_runtime_review',
+    candidateNumber: 7,
+    candidatePrep: 'reports/agent10-candidate-page-7-shipment-prep-2026-06-02.md',
+    agent4Proof: 'reports/agent4-jonah-live-browser-click-proof-2026-06-03.json',
+    agent4ProofReport: 'reports/agent4-jonah-live-browser-click-proof-2026-06-03.md',
+    agent4Screenshot: 'reports/agent4-jonah-live-browser-click-proof-2026-06-03.png',
+    agent4ArtifactType: 'agent4_live_jonah_browser_runtime_evidence',
+    expected: {
+      required_checks_total: 7,
+      hint_count: 360,
+      route_key_count: 379,
+      shard_count: 285,
+      card_count: 1089,
+      max_shard_bytes: 28477,
+      clicked_route_cards: 8,
+      clicked_answer_cards: 2,
+      clicked_source_rows: 3,
+    },
+  },
 };
 
 const parsed = parseArgs(process.argv.slice(2));
@@ -79,7 +102,7 @@ const proofChecks = agent4Proof.checks || agent4Proof.summary?.checks || {};
 const liveSummary = liveGuard.summary || {};
 const validationCommands = [
   ['node', ['scripts/validate_agent10_multi_lane_reader_surface_release_train.mjs', options.releaseTrain]],
-  ['node', ['scripts/validate_route_hud_page.mjs', '--page', 'tanakh/leviticus/index.html', '--page', 'tanakh/numbers/index.html', '--page', 'tanakh/ruth/index.html']],
+  ['node', ['scripts/validate_route_hud_page.mjs', '--page', pageFile(options.page)]],
 ].map(runCommand);
 
 const issues = [];
@@ -89,8 +112,8 @@ const expected = options.expected;
 if (releaseTrain.artifact_type !== 'agent10_multi_lane_reader_surface_release_train') issues.push('Release train artifact type is unexpected.');
 if (releaseTrain.boundary?.no_public_runtime_acceptance !== true) issues.push('Release train boundary does not preserve no_public_runtime_acceptance=true.');
 if (lane.current_state !== 'live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict') {
-  if (workId === 'ruth' && lane.current_state === 'live_current_hud_package_exists_no_agent4_browser_proof_found') {
-    warnings.push('Release-train Ruth lane still says browser proof is missing; this docket supplies that proof and should supersede the stale lane state for review input only.');
+  if (lane.current_state === 'live_current_hud_package_exists_no_agent4_browser_proof_found') {
+    warnings.push(`Release-train ${options.title} lane still says browser proof is missing; this docket supplies that proof and should supersede the stale lane state for review input only.`);
   } else {
     issues.push(`${options.title} lane current_state is not the expected no-Agent-6-verdict state.`);
   }
@@ -323,6 +346,10 @@ function parseArgs(argv) {
     else throw new Error(`Unknown argument: ${arg}`);
   }
   return parsed;
+}
+
+function pageFile(page) {
+  return `${page.replace(/\/$/, '')}/index.html`;
 }
 
 function writeReport(reportPath, data) {

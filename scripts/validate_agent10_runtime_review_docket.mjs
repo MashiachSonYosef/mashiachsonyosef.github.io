@@ -35,6 +35,19 @@ const configs = {
     proof_artifact_type: 'agent4_live_ruth_browser_runtime_evidence',
     required_checks_total: 7,
   },
+  jonah: {
+    page: 'tanakh/jonah/',
+    max_shard_bytes: 28477,
+    hint_count: 360,
+    route_key_count: 379,
+    shard_count: 285,
+    card_count: 1089,
+    route_cards_clicked: 8,
+    answer_cards_clicked: 2,
+    source_rows_clicked: 3,
+    proof_artifact_type: 'agent4_live_jonah_browser_runtime_evidence',
+    required_checks_total: 7,
+  },
 };
 
 const workId = data.summary?.work_id;

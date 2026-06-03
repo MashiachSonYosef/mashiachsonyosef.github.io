@@ -1,6 +1,6 @@
 # Agent 10 Agent 6-Ready Ruth Runtime Review Docket
 
-Generated: 2026-06-03T11:07:55.096Z
+Generated: 2026-06-03T11:19:50.231Z
 
 ## Boundary
 
@@ -37,7 +37,7 @@ This is an evidence-only release-owner docket for the exact Ruth public reader s
 ## Validation Evidence
 
 - `node scripts/validate_agent10_multi_lane_reader_surface_release_train.mjs reports/agent10-multi-lane-reader-surface-release-train-2026-06-03.json`: exit=0
-- `node scripts/validate_route_hud_page.mjs --page tanakh/leviticus/index.html --page tanakh/numbers/index.html --page tanakh/ruth/index.html`: exit=0
+- `node scripts/validate_route_hud_page.mjs --page tanakh/ruth/index.html`: exit=0
 
 ## Allowed Next Routes
 
