@@ -6,6 +6,7 @@ import path from 'node:path';
 const root = process.cwd();
 const outputJson = 'reports/agent2-orot-sefaria-nc-aware-top-candidate-dry-run-2026-06-03.json';
 const outputMd = 'reports/agent2-orot-sefaria-nc-aware-top-candidate-dry-run-2026-06-03.md';
+const allowedProvisionalLabels = ['counterpart candidate', 'project-preferred counterpart candidate'];
 
 const inputs = {
   transform_spec: 'reports/agent10-orot-sefaria-nc-aware-zero-emission-transform-spec-2026-06-03.json',
@@ -23,7 +24,7 @@ const ncMeasurement = readJson(inputs.nc_measurement);
 const commercialRows = preview.rows
   .filter((row) => Number(row.public_domain_observed_entry_count || 0) > 0)
   .sort((a, b) => Number(a.source_audit_priority) - Number(b.source_audit_priority))
-  .slice(0, 20)
+  .slice(0, 33)
   .map((row) => ({
     candidate_lane: 'commercial_clean_candidate',
     source_audit_priority: row.source_audit_priority,
@@ -43,6 +44,7 @@ const commercialRows = preview.rows
     citation_metadata_present: row.public_domain_citation_metadata_present,
     relation_class: row.preview_relation_class,
     family_status: 'commercial_clean_candidate',
+    counterpart_slot: placeholderFor(row),
     source_license_group: 'PUBLIC_DOMAIN_OBSERVED',
     derived_from_nc: false,
     commercial_export_allowed: null,
@@ -85,6 +87,7 @@ const ncRows = ncMeasurement.row_lists.nc_commercial_export_exclusion_rows
     citation_metadata_present: Boolean(row.refs_present || row.source_url_present),
     relation_class: row.rough_hit_class,
     family_status: 'noncommercial_educational_candidate',
+    counterpart_slot: placeholderFor(row),
     source_license_group: 'CC_BY_NC',
     license_group: 'CC_BY_NC',
     derived_from_nc: true,
@@ -158,7 +161,7 @@ const report = {
     nc_definition_content_storage_authorized: agent6.nc_definition_content_storage_authorized,
   },
   selection_policy: {
-    commercial_clean_selection: 'Top 20 existing public-domain-observed Sefaria rows by source_audit_priority from the Agent 2 preview.',
+    commercial_clean_selection: 'Top 33 existing public-domain-observed Sefaria rows by source_audit_priority from the Agent 2 preview.',
     nc_selection: 'All 17 existing Klein/CC-BY-NC educational candidate rows from the Agent 2 NC-aware measurement.',
     no_network_calls_performed: true,
     no_definition_text_selected_or_stored: true,
@@ -184,6 +187,7 @@ const report = {
     noncommercial_educational_candidate: ncRows.length,
     blocked: 0,
   },
+  allowed_provisional_labels: allowedProvisionalLabels,
   rows,
   commercial_export_exclusion_manifest: ncRows.map((row) => ({
     token_id: row.token_id,
@@ -293,9 +297,12 @@ function writeMarkdown(relativePath, value) {
     '',
     '## Selected Rows',
     '',
-    '| Lane | Token | Surface | Occurrences | Families | Headwords |',
-    '| --- | --- | --- | ---: | --- | --- |',
-    ...value.rows.map((row) => `| ${row.candidate_lane} | \`${row.token_id}\` | ${row.surface} | ${row.occurrences} | ${row.lexicon_families.join(', ')} | ${row.headwords.join(', ')} |`),
+    'Full row detail is in the JSON artifact. This Markdown stays compact to avoid duplicating the data payload.',
+    '',
+    '| Lane | Rows | Occurrences | Detail |',
+    '| --- | ---: | ---: | --- |',
+    `| commercial_clean_candidate | ${value.summary.commercial_clean_rows} | ${value.summary.commercial_clean_occurrences} | Top public-domain-observed BDB/BDB Aramaic/Jastrow rows by existing audit priority. |`,
+    `| noncommercial_educational_candidate | ${value.summary.noncommercial_educational_rows} | ${value.summary.noncommercial_educational_occurrences} | All existing Klein/CC-BY-NC rows, flagged for commercial export exclusion. |`,
     '',
     '## NC Commercial Export Exclusion',
     '',
@@ -330,4 +337,17 @@ function writeMarkdown(relativePath, value) {
 
 function sum(values) {
   return values.reduce((total, value) => total + Number(value || 0), 0);
+}
+
+function placeholderFor(row) {
+  const label = row.category === 'ambiguous_answer_candidates'
+    ? 'project-preferred counterpart candidate'
+    : 'counterpart candidate';
+  return {
+    label,
+    status: 'placeholder_only',
+    text: null,
+    text_stored_now: false,
+    public_emit_ready: false,
+  };
 }

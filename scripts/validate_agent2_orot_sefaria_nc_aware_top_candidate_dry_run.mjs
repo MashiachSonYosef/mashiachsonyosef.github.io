@@ -56,9 +56,12 @@ expect(report.upstream_boundary_recount?.nc_definition_content_storage_authorize
 const rows = report.rows || [];
 const commercial = rows.filter((row) => row.candidate_lane === 'commercial_clean_candidate');
 const nc = rows.filter((row) => row.candidate_lane === 'noncommercial_educational_candidate');
-expect(rows.length === 37, 'included rows must be 37');
-expect(commercial.length === 20, 'commercial-clean rows must be 20');
+const allowedLabels = ['counterpart candidate', 'project-preferred counterpart candidate'];
+expect(rows.length === 50, 'included rows must be 50');
+expect(commercial.length === 33, 'commercial-clean rows must be 33');
 expect(nc.length === 17, 'NC rows must be 17');
+expect(report.summary.included_rows === rows.length, 'summary included rows mismatch');
+expect(report.summary.included_occurrences === sum(rows.map((row) => row.occurrences)), 'summary included occurrences mismatch');
 expect(sum(commercial.map((row) => row.occurrences)) === report.summary.commercial_clean_occurrences, 'commercial occurrence recount mismatch');
 expect(sum(nc.map((row) => row.occurrences)) === 259, 'NC occurrence recount must be 259');
 expect(report.summary.noncommercial_educational_occurrences === 259, 'summary NC occurrences must be 259');
@@ -76,6 +79,11 @@ for (const row of rows) {
   expect(row.source_row_emitted_now === false, `${row.token_id} source_row_emitted_now must be false`);
   expect(row.public_mutation_allowed_here === false, `${row.token_id} public mutation must be false`);
   expect(row.definition_content_stored_now === false, `${row.token_id} definition content must not be stored`);
+  expect(allowedLabels.includes(row.counterpart_slot?.label), `${row.token_id} has invalid counterpart placeholder label`);
+  expect(row.counterpart_slot?.status === 'placeholder_only', `${row.token_id} counterpart slot must be placeholder_only`);
+  expect(row.counterpart_slot?.text === null, `${row.token_id} counterpart text must remain null`);
+  expect(row.counterpart_slot?.text_stored_now === false, `${row.token_id} counterpart text must not be stored`);
+  expect(row.counterpart_slot?.public_emit_ready === false, `${row.token_id} counterpart slot must not be public emit ready`);
 }
 
 for (const row of commercial) {
@@ -123,6 +131,13 @@ for (const forbidden of [
   '"definition_content_stored_now": true',
   '"nc_definition_content_stored_now": true',
   '"noncommercial_display_public_or_runtime_authorized": true',
+  '"text_stored_now": true',
+  '"label": "definition"',
+  '"label": "answer"',
+  '"label": "translation"',
+  '"label": "accepted gloss"',
+  '"label": "verified"',
+  '"label": "top match"',
 ]) {
   expect(!jsonText.includes(forbidden), `JSON must not contain ${forbidden}`);
 }
