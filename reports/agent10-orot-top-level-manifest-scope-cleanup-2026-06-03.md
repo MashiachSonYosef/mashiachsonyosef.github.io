@@ -61,20 +61,46 @@ Old-HUD/stale-scope marker scan over `data/public-hud/orot/manifest.json`:
 - `legacy-hud`: `0`
 - `single_sentinel_route_shard_plus_reader_hints`: `0`
 
+## Live Validation
+
+Live URL checked:
+
+- `https://mashiachsonyosef.github.io/data/public-hud/orot/manifest.json`
+
+Deploy evidence:
+
+- Metadata cleanup commit: `dcc2eab95`
+- Initial deploy run: `26867868118`, failed during deploy because GitHub Pages reported an in-progress deployment for `d029955df`.
+- Retry trigger commit: `d1a449576`
+- Retry deploy run: `26868679224`, conclusion `success`
+
+Cache-busted live fetch result:
+
+- HTTP status: `200`
+- Last-Modified: `Wed, 03 Jun 2026 06:52:43 GMT`
+- ETag: `"6a1fcf3b-382"`
+- Route scope: `sentinel_chunk_plus_reader_hints_plus_bounded_top10000_cap3_route_lookup`
+- Reader final hint count: `8729`
+- Route selected token count: `8729`
+- Route public route key count: `9494`
+- Route shard count: `3184`
+- Route card count: `23506`
+- Stale scope present: `false`
+- Response bytes: `898`
+
 ## Remaining Limits
 
 - This is metadata consistency cleanup only, not a route package rebuild.
-- Live proof is required after deploy to confirm the public top-level manifest serves the corrected route scope.
 - Stage F live browser proof remains Agent 10 evidence only, not QA acceptance or validated public/runtime acceptance.
 - Route cards and inline hints remain reader evidence/convenience layers, not accepted definitions or translations.
 
 ## Agent 8 Callback
 
-Status: `orot_top_level_manifest_scope_cleanup_local_passed`
+Status: `orot_top_level_manifest_scope_cleanup_live_passed`
 
 Artifact path: `reports/agent10-orot-top-level-manifest-scope-cleanup-2026-06-03.md`
 
-Current package: Orot top-level manifest metadata corrected locally to match the existing Stage F route package boundary.
+Current package: Orot top-level manifest metadata corrected live to match the existing Stage F route package boundary.
 
 Agent 1 needed: no source/provenance change; no source/provenance acceptance claimed.
 
@@ -86,4 +112,4 @@ Agent 6 needed: yes for any acceptance claim.
 
 Agent 7/13 decision needed: no hard blocker for bounded deploy evidence; do not claim acceptance.
 
-Next recommended executable route: deploy Orot top-level manifest cleanup, verify live top-level manifest route scope and route-lookup counts, then continue to header/navigation cleanup or deliberate Deuteronomy expansion.
+Next recommended executable route: continue to header/navigation cleanup or deliberate Deuteronomy expansion, without acceptance claims.
