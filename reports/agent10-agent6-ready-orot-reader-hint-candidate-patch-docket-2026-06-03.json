@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent10_agent6_ready_orot_reader_hint_candidate_patch_docket",
+  "generated_at": "2026-06-03T09:58:10.645Z",
+  "generator": "scripts/build_agent10_orot_reader_hint_candidate_patch_agent6_docket.mjs",
+  "commit_basis": {
+    "local_head": "c70d72aef9fac6edf734809d269b17e66797bf59",
+    "origin_main": "5384567ceb62eca0587fd71df094dccde7678425"
+  },
+  "boundary": {
+    "status": "agent6_ready_review_docket_not_accepted",
+    "evidence_only": true,
+    "pipeline_only": true,
+    "review_docket_only": true,
+    "no_agent6_verdict": true,
+    "no_qa_acceptance": true,
+    "no_source_custody": true,
+    "no_source_acceptance": true,
+    "no_definition_authority": true,
+    "no_usage_as_definition": true,
+    "no_translation_output": true,
+    "no_accepted_gloss": true,
+    "no_accepted_translation_text": true,
+    "no_match_percent_authority": true,
+    "no_public_runtime_acceptance": true,
+    "no_publication_readiness": true,
+    "no_public_hud_mutation": true,
+    "no_route_jsonl_mutation": true,
+    "no_runtime_asset_mutation": true,
+    "no_approved_reader_hint_patch": true
+  },
+  "inputs": {
+    "candidate_patch": "reports/agent2-orot-reader-hint-candidate-patch-2026-06-03.json",
+    "candidate_patch_sha256": "06c8fb307852ad533ab029d563ef54e0a49512e202052756b39d66a49978929c",
+    "preview": "reports/agent2-orot-counterpart-hint-patch-preview-2026-06-03.json",
+    "preview_sha256": "bf8d9b614463341f2ac8057b19f051ccc2bb3c5a0af84262677e6948b1fd3d2a",
+    "prefix_contract": "reports/agent10-agent6-ready-orot-prefix-stem-contract-packet-2026-06-03.json",
+    "prefix_contract_sha256": "e3bfb5ebf3c74f37f1d5c624f856575595235a5038be68ac50e45cde3a4ffb7c",
+    "project_preferred_contract": "reports/agent10-agent6-ready-orot-project-preferred-contract-packet-2026-06-03.json",
+    "project_preferred_contract_sha256": "6cf1d4a19af089a0f27af6e8277e10b47261b92e7359f06a9378161d8272d2c9",
+    "live_old_hud_guard": "reports/agent10-live-public-old-hud-guard-2026-06-03-post-orot-reader-hint-candidate-patch.json",
+    "live_old_hud_guard_sha256": "d5523c45c8c5bc070927088b894c33bbd8d963df7668732f5fbea23a287eda40"
+  },
+  "outputs": {
+    "json_report": "reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-03.json",
+    "markdown_report": "reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-03.md",
+    "public_hud_output": null,
+    "route_jsonl": null,
+    "runtime_files_touched": [],
+    "source_files_touched": []
+  },
+  "review_request": {
+    "target_agent": "Agent 6",
+    "requested_verdict_type": "pass_warn_block_on_evidence_packet_only",
+    "review_target": "Orot non-public reader-hint candidate patch evidence sufficiency",
+    "decision_not_requested": [
+      "QA acceptance",
+      "source/provenance custody or acceptance",
+      "Definition authority",
+      "usage-as-definition authority",
+      "accepted gloss or translation text",
+      "public runtime acceptance",
+      "publication readiness",
+      "public HUD mutation approval"
+    ],
+    "specific_questions": [
+      "Do the two upstream Orot contract packets provide sufficient evidence for the 31-row candidate patch review boundary?",
+      "Does the candidate patch preserve preview-only derivation, row bijection, selected source rows, competing edges, and non-acceptance flags?",
+      "Is the packet sufficient for Agent 13 candidate-label policy review before any public mutation?",
+      "What exact blocker remains before a later approved public reader-hint transform may be attempted?"
+    ]
+  },
+  "summary": {
+    "status": "warn_agent6_ready_review_docket_not_accepted",
+    "candidate_patch_rows": 31,
+    "candidate_patch_occurrences": 1202,
+    "prefix_contract_rows": 12,
+    "project_preferred_rows": 19,
+    "competing_edge_rows": 19,
+    "competing_edges_total": 46,
+    "approved_rows": 0,
+    "public_emit_ready_rows": 0,
+    "answer_eligible_rows": 0,
+    "promote_to_answer_rows": 0,
+    "public_hud_rows_emitted": 0,
+    "route_jsonl_rows_emitted": 0,
+    "match_percent_available_rows": 0,
+    "match_percent_missing_rows": 31,
+    "missing_linkage_rows_outside_patch": 13,
+    "missing_linkage_occurrences_outside_patch": 129,
+    "live_old_hud_exposure": "no",
+    "live_guard_status": "warn_live_public_old_hud_guard",
+    "hard_old_marker_hit_checks": 0,
+    "validation_commands_passed": 5,
+    "validation_commands_total": 5,
+    "issues": 0,
+    "warnings": 1
+  },
+  "validation_evidence": {
+    "commands": [
+      {
+        "command": "node scripts/validate_agent2_orot_reader_hint_candidate_patch.mjs reports/agent2-orot-reader-hint-candidate-patch-2026-06-03.json",
+        "exit_code": 0,
+        "stdout_tail": "Agent 2 Orot reader-hint candidate patch validation passed for reports/agent2-orot-reader-hint-candidate-patch-2026-06-03.json.",
+        "stderr_tail": ""
+      },
+      {
+        "command": "node scripts/validate_agent2_orot_counterpart_hint_patch_preview.mjs reports/agent2-orot-counterpart-hint-patch-preview-2026-06-03.json",
+        "exit_code": 0,
+        "stdout_tail": "Agent 2 Orot counterpart hint patch preview validation passed for reports/agent2-orot-counterpart-hint-patch-preview-2026-06-03.json.",
+        "stderr_tail": ""
+      },
+      {
+        "command": "node scripts/validate_agent10_orot_prefix_stem_contract_packet.mjs reports/agent10-agent6-ready-orot-prefix-stem-contract-packet-2026-06-03.json",
+        "exit_code": 0,
+        "stdout_tail": "Agent 10 Orot prefix/stem contract packet validation passed for reports/agent10-agent6-ready-orot-prefix-stem-contract-packet-2026-06-03.json.",
+        "stderr_tail": ""
+      },
+      {
+        "command": "node scripts/validate_agent10_orot_project_preferred_contract_packet.mjs reports/agent10-agent6-ready-orot-project-preferred-contract-packet-2026-06-03.json",
+        "exit_code": 0,
+        "stdout_tail": "Agent 10 Orot project-preferred contract packet validation passed for reports/agent10-agent6-ready-orot-project-preferred-contract-packet-2026-06-03.json.",
+        "stderr_tail": ""
+      },
+      {
+        "command": "node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/deuteronomy/index.html --page tanakh/genesis/index.html",
+        "exit_code": 0,
+        "stdout_tail": "Route HUD page validation passed for 3 page(s).",
+        "stderr_tail": ""
+      }
+    ],
+    "candidate_patch_preview_bijection": {
+      "preview_input": "reports/agent2-orot-counterpart-hint-patch-preview-2026-06-03.json",
+      "preview_sha256_declared": "bf8d9b614463341f2ac8057b19f051ccc2bb3c5a0af84262677e6948b1fd3d2a",
+      "preview_sha256_actual": "bf8d9b614463341f2ac8057b19f051ccc2bb3c5a0af84262677e6948b1fd3d2a",
+      "token_rows": 31,
+      "derivation_validator": "scripts/validate_agent2_orot_reader_hint_candidate_patch.mjs"
+    },
+    "live_old_hud_guard": {
+      "artifact": "reports/agent10-live-public-old-hud-guard-2026-06-03-post-orot-reader-hint-candidate-patch.json",
+      "commit_or_deploy_id": "5384567ceb62eca0587fd71df094dccde7678425",
+      "status": "warn_live_public_old_hud_guard",
+      "old_hud_exposure": "no",
+      "hard_old_marker_hit_checks": 0,
+      "watch_old_marker_hit_checks": 1,
+      "warnings": 1,
+      "issues": 0
+    }
+  },
+  "upstream_packet_summaries": {
+    "prefix_contract": {
+      "status": "warn_agent6_ready_contract_packet_not_approved",
+      "candidate_rows": 12,
+      "candidate_occurrences": 178,
+      "answer_rows_emitted": 0,
+      "public_hud_rows_emitted": 0,
+      "match_percent_available_rows": 0,
+      "blocked_rows_outside_contract": 88,
+      "blocked_occurrences_outside_contract": 1782,
+      "missing_linkage_rows": 13,
+      "live_old_hud_exposure": "no",
+      "live_guard_status": "warn_live_public_old_hud_guard",
+      "issues": 0,
+      "warnings": 1
+    },
+    "project_preferred_contract": {
+      "status": "warn_agent6_ready_project_preferred_contract_packet_not_approved",
+      "candidate_rows": 19,
+      "candidate_occurrences": 1024,
+      "selected_project_edges": 19,
+      "competing_edges": 46,
+      "total_edges": 65,
+      "edge_count_distribution": {
+        "2": 6,
+        "3": 8,
+        "4": 2,
+        "5": 1,
+        "8": 2
+      },
+      "edge_occurrence_distribution": {
+        "2": 767,
+        "3": 146,
+        "4": 7,
+        "5": 87,
+        "8": 17
+      },
+      "answer_rows_emitted": 0,
+      "public_hud_rows_emitted": 0,
+      "match_percent_available_rows": 0,
+      "live_old_hud_exposure": "no",
+      "live_guard_status": "warn_live_public_old_hud_guard",
+      "issues": 0,
+      "warnings": 1
+    },
+    "preview": {
+      "status": "warn_candidate_patch_preview_not_approved",
+      "candidate_preview_rows": 31,
+      "candidate_preview_occurrences": 1202,
+      "prefix_contract_rows": 12,
+      "prefix_contract_occurrences": 178,
+      "project_preferred_rows": 19,
+      "project_preferred_occurrences": 1024,
+      "approved_patch_rows": 0,
+      "answer_rows_emitted": 0,
+      "public_hud_rows_emitted": 0,
+      "route_jsonl_rows_emitted": 0,
+      "match_percent_available_rows": 0,
+      "missing_linkage_rows_outside_preview": 13,
+      "missing_linkage_occurrences_outside_preview": 129,
+      "live_old_hud_exposure": "no",
+      "live_guard_status": "warn_live_public_old_hud_guard",
+      "issues": 0,
+      "warnings": 1
+    },
+    "candidate_patch": {
+      "status": "warn_candidate_patch_not_approved",
+      "candidate_patch_rows": 31,
+      "candidate_patch_occurrences": 1202,
+      "prefix_contract_rows": 12,
+      "project_preferred_rows": 19,
+      "approved_rows": 0,
+      "public_emit_ready_rows": 0,
+      "answer_eligible_rows": 0,
+      "promote_to_answer_rows": 0,
+      "public_hud_rows_emitted": 0,
+      "route_jsonl_rows_emitted": 0,
+      "match_percent_available_rows": 0,
+      "match_percent_missing_rows": 31,
+      "competing_edge_rows": 19,
+      "competing_edges_total": 46,
+      "missing_linkage_rows_outside_patch": 13,
+      "missing_linkage_occurrences_outside_patch": 129,
+      "live_old_hud_exposure": "no",
+      "live_guard_status": "warn_live_public_old_hud_guard",
+      "issues": 0,
+      "warnings": 1
+    }
+  },
+  "allowed_next_routes": [
+    "Agent 6 pass/warn/block review of this review docket only.",
+    "Agent 13 candidate-label policy decision if Agent 6 does not block evidence sufficiency.",
+    "Agent 1 review of remaining missing-linkage rows before expanding beyond the 31-row candidate patch."
+  ],
+  "blocked_now": [
+    "No public Orot reader-hint mutation is allowed from this docket.",
+    "No data/public-hud/orot/reader-hints.json write is allowed from this docket.",
+    "No route JSONL/shard write is allowed from this docket.",
+    "No Orot HTML or reader-workbench runtime asset edit is allowed from this docket.",
+    "No accepted gloss, translation, source custody, Definition authority, usage-as-definition authority, or publication readiness claim is allowed from this docket."
+  ],
+  "issues": [],
+  "warnings": [
+    "Live guard is WARN, not PASS; known watch-marker warning remains outside hard old-HUD exposure."
+  ],
+  "what_must_not_be_accepted": [
+    "Agent 6 acceptance.",
+    "QA acceptance.",
+    "Validated public/runtime acceptance.",
+    "Source custody.",
+    "Source/provenance acceptance.",
+    "Definition authority.",
+    "Usage-as-definition authority.",
+    "Translation output.",
+    "Accepted gloss.",
+    "Accepted translation text.",
+    "Match percent authority.",
+    "Public HUD mutation.",
+    "Route JSONL mutation.",
+    "Runtime asset mutation.",
+    "Publication readiness.",
+    "This docket as an approved reader-hint patch."
+  ]
+}
