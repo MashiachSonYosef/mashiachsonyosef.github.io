@@ -28,6 +28,7 @@ jobs:
             /.nojekyll
             /404.html
             /index.html
+            /orot/index.html
             /tanakh/deuteronomy/index.html
             /tanakh/genesis/index.html
             /tanakh/exodus/index.html
@@ -40,6 +41,7 @@ jobs:
             /tanakh/zephaniah/index.html
             /assets/css/reader-workbench.css
             /assets/js/reader-workbench.js
+            /data/public-hud/orot/**
             /data/public-hud/deuteronomy/**
             /data/public-hud/genesis/**
             /data/public-hud/exodus/**
@@ -64,6 +66,9 @@ jobs:
           cp -a .nojekyll 404.html index.html .site/
           cp -a assets/css/reader-workbench.css .site/assets/css/
           cp -a assets/js/reader-workbench.js .site/assets/js/
+          mkdir -p .site/orot
+          cp -a orot/index.html .site/orot/
+          cp -a data/public-hud/orot .site/data/public-hud/
           for work in $works; do
             mkdir -p ".site/tanakh/$work"
             cp -a "tanakh/$work/index.html" ".site/tanakh/$work/"
