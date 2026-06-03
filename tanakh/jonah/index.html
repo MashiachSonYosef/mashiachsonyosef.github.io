@@ -21,10 +21,11 @@
     .hero-main { min-width: 0; }
     .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
     .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
-    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
-    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-summary span { min-width: 0; max-width: 100%; overflow-wrap: anywhere; border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { min-width: 0; max-width: 100%; overflow-wrap: anywhere; border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
     .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
-    .hero-notes li { padding-left: 0.1rem; }
+    .hero-notes a { overflow-wrap: anywhere; word-break: break-word; }
+    .hero-notes li { min-width: 0; max-width: 100%; padding-left: 0.1rem; overflow-wrap: anywhere; word-break: break-word; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -67,7 +68,7 @@
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
-    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc a { text-decoration: none; font-size: 0.94rem; overflow-wrap: anywhere; }
     .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
     .toc-start:hover, .toc-unit:hover { color: var(--accent); }
     .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
@@ -95,7 +96,7 @@
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
     .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .hud-badge { display: inline-block; max-width: 100%; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; white-space: normal; overflow-wrap: anywhere; }
     .lexical-slot { margin-top: 16px; }
     .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
@@ -148,7 +149,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding: 18px 14px 16px; } .hero-summary { display: grid; grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } h2 .hud-badge, h3 .hud-badge, summary .hud-badge { display: table; margin: 5px 0 0; } .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
   <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>

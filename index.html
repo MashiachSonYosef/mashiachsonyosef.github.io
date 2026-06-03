@@ -8,18 +8,19 @@
   <style>
     :root { color-scheme: dark; --bg: #0a0b0d; --panel: rgba(18,21,27,0.94); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.2); --line-2: rgba(214,190,138,0.34); --accent: #d6be8a; --accent-2: #93a7d1; }
     * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; background: linear-gradient(180deg, #0a0b0d 0%, #11141a 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
-    main { width: min(980px, calc(100% - 28px)); margin: 0 auto; padding: 30px 0 64px; }
+    body { margin: 0; min-height: 100vh; overflow-x: hidden; background: linear-gradient(180deg, #0a0b0d 0%, #11141a 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    main { width: min(980px, 100%); max-width: 100%; margin: 0 auto; padding: 30px 14px 64px; }
     h1 { margin: 0 0 10px; font-weight: 400; font-size: clamp(2.2rem, 8vw, 4.8rem); line-height: 0.92; }
-    p { color: var(--muted); line-height: 1.55; margin: 0; }
-    .shell { border: 1px solid var(--line); background: var(--panel); padding: clamp(18px, 4vw, 34px); }
+    p { color: var(--muted); line-height: 1.55; margin: 0; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: var(--panel); padding: clamp(18px, 4vw, 34px); }
     .meta { color: var(--accent); font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 12px; margin-top: 24px; }
     .work-card { display: grid; gap: 8px; min-height: 150px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); padding: 18px; color: inherit; text-decoration: none; }
     .work-card:hover, .work-card:focus-visible { outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
     .work-card strong { color: var(--text); font-size: 1.25rem; font-weight: 400; }
     .work-card span { color: var(--accent-2); font-size: 0.88rem; }
-    .notice { margin-top: 18px; border: 1px solid var(--line); padding: 12px; background: rgba(147,167,209,0.07); }
+    .notice { display: block; width: 100%; max-width: 100%; min-width: 0; margin-top: 18px; border: 1px solid var(--line); padding: 12px; background: rgba(147,167,209,0.07); overflow-wrap: anywhere; word-break: break-word; }
+    @media (max-width: 520px) { main { padding-inline: 10px; } .shell { padding: 18px; } h1 { font-size: 2.35rem; } .meta { overflow-wrap: anywhere; } }
   </style>
 </head>
 <body>
