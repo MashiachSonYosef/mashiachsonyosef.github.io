@@ -129,29 +129,79 @@ Screenshot: `reports/agent10-orot-stage-f-cleared-source-full-cap3-browser-proof
 - Runtime exception count: `0`
 - Max click time: `818 ms`
 
+## Live Manifest Proof
+
+Live URL checked:
+
+- `https://mashiachsonyosef.github.io/data/public-hud/orot/route-lookup/manifest.json`
+
+Cache-busted fetch result:
+
+- HTTP status: `200`
+- Published at: `2026-06-03T04:16:16.059Z`
+- Selected token count: `8729`
+- Selected lookup candidate count: `16355`
+- Public route key count: `9494`
+- Shard count: `3184`
+- Card count: `23506`
+- Total shard bytes: `49259581`
+- Max shard bytes: `150072`
+
+## Live Browser Proof
+
+Command:
+
+```powershell
+node scripts\prove_orot_stage_b_browser_click.mjs --base-url https://mashiachsonyosef.github.io/orot/ --route-report reports\agent10-orot-stage-f-cleared-source-full-cap3-route-package-proof-2026-06-03.json --report reports\agent10-orot-stage-f-cleared-source-full-cap3-live-browser-proof-2026-06-03.json --screenshot reports\agent10-orot-stage-f-cleared-source-full-cap3-live-browser-proof-2026-06-03.png
+```
+
+Machine report: `reports/agent10-orot-stage-f-cleared-source-full-cap3-live-browser-proof-2026-06-03.json`
+
+Screenshot: `reports/agent10-orot-stage-f-cleared-source-full-cap3-live-browser-proof-2026-06-03.png`
+
+- Status: `pass`
+- Target URL: `https://mashiachsonyosef.github.io/orot/`
+- Packaged clicks tested: `4`
+- All packaged clicks opened route cards: `true`
+- All packaged clicks had source/license details: `true`
+- At least one answer card rendered: `true`
+- Route manifest requested: `true`
+- Route shard requested: `true`
+- Old-HUD marker hits total: `0`
+- Inline hints before click: `40055`
+- Inline hints after hard reload: `40055`
+- Old-path probes: `3`
+- Expected old-path 404 count: `3`
+- Poisoned-storage selected glosses: `0`
+- Browser console error count: `0`
+- Runtime exception count: `0`
+- Max click time: `940 ms`
+- Issues: `0`
+- Warnings: `0`
+
 ## Remaining Limits
 
-- Live public proof is still required after deployment before making a live-runtime evidence claim for Stage F.
+- This is Agent 10 live browser-click proof only, not QA acceptance or validated public/runtime acceptance.
 - `pipeline_source_rows_clear` is not source/provenance custody or source/provenance acceptance.
 - `lex-ruach-h7307` remains semantically unresolved in source evidence; public rows are evidence/convenience only.
 - Inline hints and Route HUD cards remain reader evidence/convenience layers, not accepted definitions or translations.
 
 ## Agent 8 Callback
 
-Status: `stage_f_cleared_source_local_pipeline_proof_passed`
+Status: `stage_f_cleared_source_live_pipeline_proof_passed`
 
 Artifact path: `reports/agent10-orot-stage-f-cleared-source-package-proof-2026-06-03.md`
 
-Current package: Orot cleared-source cap-3, local proof passed.
+Current package: Orot cleared-source cap-3, live proof passed under Agent 10 evidence boundary.
 
 Agent 1 needed: source-row clearance evidence produced and validator-passed; no source/provenance acceptance claimed.
 
 Agent 2 needed: no.
 
-Agent 4 needed: yes if independent browser proof is required beyond Agent 10 proof.
+Agent 4 needed: yes only if independent browser proof is required beyond Agent 10 proof.
 
 Agent 6 needed: yes for any acceptance claim.
 
-Agent 7/13 decision needed: no hard blocker for bounded deploy; do not claim acceptance.
+Agent 7/13 decision needed: no hard blocker for bounded deploy evidence; do not claim acceptance.
 
-Next recommended executable route: deploy Stage F, run live browser proof, then record live boundary.
+Next recommended executable route: address the small header/navigation issue or route this live proof to Agent 6 if QA cadence requests a review.
