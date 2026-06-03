@@ -8,9 +8,9 @@ This report does not claim QA acceptance, validated public/runtime acceptance, s
 
 ## Status
 
-Status: `local_pipeline_proof_passed`
+Status: `live_pipeline_proof_passed`
 
-The package is a bounded top-250 expansion candidate. It is still not full Orot click-time route coverage.
+The package is a bounded top-250 live expansion. It is still not full Orot click-time route coverage.
 
 ## Package Command
 
@@ -77,16 +77,59 @@ Screenshot: `reports/agent10-orot-stage-d-top250-cap25-browser-proof-2026-06-03.
 - Runtime exception count: `0`
 - Max click time: `774 ms`
 
+## Live Manifest Proof
+
+Live URL checked: `https://mashiachsonyosef.github.io/orot/`
+
+Live manifest checked: `https://mashiachsonyosef.github.io/data/public-hud/orot/route-lookup/manifest.json`
+
+- Status: `200`
+- Selected token count: `250`
+- Public route key count: `342`
+- Shard count: `252`
+- Card count: `7565`
+- Total shard bytes: `20264355`
+- Max shard bytes: `375596`
+- Published at: `2026-06-03T03:19:15.705Z`
+
+## Live Browser Proof
+
+Command:
+
+```powershell
+node scripts\prove_orot_stage_b_browser_click.mjs --base-url https://mashiachsonyosef.github.io/orot/ --route-report reports\agent10-orot-stage-d-top250-cap25-route-package-proof-2026-06-03.json --report reports\agent10-orot-stage-d-top250-cap25-live-browser-proof-2026-06-03.json --screenshot reports\agent10-orot-stage-d-top250-cap25-live-browser-proof-2026-06-03.png
+```
+
+Machine report: `reports/agent10-orot-stage-d-top250-cap25-live-browser-proof-2026-06-03.json`
+
+Screenshot: `reports/agent10-orot-stage-d-top250-cap25-live-browser-proof-2026-06-03.png`
+
+- Status: `pass`
+- Packaged clicks tested: `4`
+- All packaged clicks opened route cards: `true`
+- All packaged clicks had source/license details: `true`
+- At least one answer card rendered: `true`
+- Route manifest requested from `/data/public-hud/orot/route-lookup/manifest.json`: `true`
+- Route shard requested from `/data/public-hud/orot/route-lookup/shards/**`: `true`
+- Old-HUD marker hits total: `0`
+- Inline hints before click: `39980`
+- Inline hints after hard reload: `39980`
+- Old-path probes: `3`
+- Expected old-path 404 count: `3`
+- Poisoned-storage selected glosses: `0`
+- Browser console error count: `0`
+- Runtime exception count: `0`
+- Max click time: `1001 ms`
+
 ## Remaining Limits
 
-- Live public proof is still required after deployment before making any live-runtime evidence claim.
 - Full Orot click-time coverage remains unproven.
 - The four Agent 1 source blockers remain quarantined by denylist and are not cleared by this package.
 - Inline hints and Route HUD cards remain reader evidence/convenience layers, not accepted definitions or translations.
 
 ## Agent 8 Callback
 
-Status: `top250_cap25_local_pipeline_proof_passed`
+Status: `top250_cap25_live_pipeline_proof_passed`
 
 Artifact path: `reports/agent10-orot-stage-d-top250-cap25-route-package-proof-2026-06-03.md`
 
@@ -100,4 +143,4 @@ Agent 4 needed: not before deploy if Agent 10 keeps the same proof gate; Agent 4
 
 Agent 7/13 decision needed: no hard blocker for a bounded deploy; do not claim acceptance.
 
-Next recommended executable route: deploy the bounded top-250 package, then run live browser proof.
+Next recommended executable route: route this evidence to Agent 6/4 review if acceptance is needed; otherwise continue pipeline-only coverage expansion under the same denylist and browser-proof gates.
