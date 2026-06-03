@@ -79,14 +79,39 @@ Screenshot: `reports/agent10-orot-stage-c-top100-cap30-browser-proof-2026-06-03.
 
 ## Remaining Limits
 
-- Live public proof is still required after deployment before making any live-runtime evidence claim.
+- Live public proof is now present for this package, but it is still evidence only and not QA/public-runtime acceptance.
 - Top-250 remains blocked on payload model/design.
 - The four Agent 1 source blockers remain quarantined by denylist and are not cleared by this package.
 - Inline hints and Route HUD cards remain reader evidence/convenience layers, not accepted definitions or translations.
 
+## Live Browser Proof
+
+Live URL: `https://mashiachsonyosef.github.io/orot/`
+
+Machine report: `reports/agent10-orot-stage-c-top100-cap30-live-browser-proof-2026-06-03.json`
+
+Screenshot: `reports/agent10-orot-stage-c-top100-cap30-live-browser-proof-2026-06-03.png`
+
+- Status: `pass`
+- Packaged clicks tested: `4`
+- All packaged clicks opened route cards: `true`
+- All packaged clicks had source/license details: `true`
+- At least one answer card rendered: `true`
+- Route manifest requested from `/data/public-hud/orot/route-lookup/manifest.json`: `true`
+- Route shard requested from `/data/public-hud/orot/route-lookup/shards/**`: `true`
+- Old-HUD marker hits total: `0`
+- Inline hints before click: `39980`
+- Inline hints after hard reload: `39980`
+- Old-path probes: `3`
+- Expected old-path 404 count: `3`
+- Poisoned-storage selected glosses: `0`
+- Browser console error count: `0`
+- Runtime exception count: `0`
+- Max click time: `855 ms`
+
 ## Agent 8 Callback
 
-Status: `top100_cap30_local_pipeline_proof_passed`
+Status: `top100_cap30_live_pipeline_proof_passed`
 
 Artifact path: `reports/agent10-orot-stage-c-top100-cap30-route-package-proof-2026-06-03.md`
 
@@ -100,4 +125,4 @@ Agent 4 needed: not before deploy if Agent 10 keeps the same proof gate; Agent 4
 
 Agent 7/13 decision needed: no hard blocker for a bounded deploy; do not claim acceptance.
 
-Next recommended executable route: deploy the bounded top-100 package, then run live browser proof.
+Next recommended executable route: route the top-100 live proof to Agent 6 review, then work on a payload-reduction design for top-250 without publishing it.
