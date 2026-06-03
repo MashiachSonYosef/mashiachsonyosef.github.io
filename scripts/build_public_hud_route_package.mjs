@@ -69,6 +69,7 @@ function parseArgs(argv) {
     maxCardsPerKey: 50,
     denyLexiconEntries: DEFAULT_DENY_LEXICON_ENTRIES.slice(),
     preserveExisting: true,
+    refreshExistingRouteKeys: false,
     dryRun: false,
   };
   for (let index = 0; index < argv.length; index += 1) {
@@ -88,6 +89,7 @@ function parseArgs(argv) {
     else if (arg === '--deny-lexicon-entry') options.denyLexiconEntries.push(next());
     else if (arg === '--deny-lexicon-entries') options.denyLexiconEntries.push(...next().split(',').map((item) => item.trim()).filter(Boolean));
     else if (arg === '--replace-existing') options.preserveExisting = false;
+    else if (arg === '--refresh-existing-route-keys') options.refreshExistingRouteKeys = true;
     else if (arg === '--dry-run') options.dryRun = true;
     else if (arg === '--help' || arg === '-h') options.help = true;
     else throw new Error(`Unknown argument: ${arg}`);
@@ -489,13 +491,22 @@ function main() {
 
   const routesByShard = new Map();
   const preservedExisting = options.preserveExisting ? loadExistingRouteLookup(options.outputDir, denyNeedles) : loadExistingRouteLookup('__missing__', denyNeedles);
-  for (const [shardKey, routes] of preservedExisting.routeMaps) routesByShard.set(shardKey, new Map(routes));
+  const preservedExistingKeys = new Set();
+  for (const [shardKey, routes] of preservedExisting.routeMaps) {
+    routesByShard.set(shardKey, new Map(routes));
+    for (const key of routes.keys()) preservedExistingKeys.add(key);
+  }
   const selectedKeys = new Set();
+  const selectedExistingKeys = new Set();
   const truncatedKeys = [];
   const deniedCardsSkipped = [];
   for (const token of selectedTop) {
     for (const key of token.candidate_keys) {
       selectedKeys.add(key);
+      if (options.preserveExisting && preservedExistingKeys.has(key) && !options.refreshExistingRouteKeys) {
+        selectedExistingKeys.add(key);
+        continue;
+      }
       const cards = routeLoader.loadRouteCards(key);
       const safeCards = [];
       let deniedForKey = 0;
@@ -557,6 +568,7 @@ function main() {
       max_cards_per_key: options.maxCardsPerKey,
       denied_lexicon_entry_count: options.denyLexiconEntries.length,
       preserve_existing_public_route_keys: options.preserveExisting,
+      refresh_existing_route_keys: options.refreshExistingRouteKeys,
     },
     publication_boundary: {
       publication_status: 'not_a_translation',
@@ -569,6 +581,7 @@ function main() {
       selected_lookup_candidate_count: selectedKeys.size,
       preserved_existing_route_key_count: preservedExisting.route_key_count,
       preserved_existing_card_count: preservedExisting.card_count,
+      selected_existing_route_key_count: selectedExistingKeys.size,
       distinct_normalized_tokens: publicRouteKeyCount,
       public_route_key_count: publicRouteKeyCount,
       shard_count: shardPayloads.length,
@@ -634,8 +647,10 @@ function main() {
     route_lookup_probe: routeLoader.stats(),
     preserved_existing: {
       enabled: options.preserveExisting,
+      refresh_existing_route_keys: options.refreshExistingRouteKeys,
       route_key_count: preservedExisting.route_key_count,
       card_count: preservedExisting.card_count,
+      selected_existing_route_key_count: selectedExistingKeys.size,
       manifest_sha256: preservedExisting.manifest_sha256,
       skipped_denied_card_count: preservedExisting.skipped_denied_card_count,
       missing_shard_count: preservedExisting.missing_shard_count,

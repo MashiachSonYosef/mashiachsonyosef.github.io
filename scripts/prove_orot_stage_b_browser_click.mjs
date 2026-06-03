@@ -198,7 +198,19 @@ async function navigate(client, url) {
   await client.send('Page.navigate', { url });
   await waitFor(client, 'document.readyState === "complete"', 20000);
   await waitFor(client, 'document.querySelectorAll("[data-lexical-token]").length > 0', 20000);
-  await waitFor(client, 'document.querySelectorAll(".reader-gloss-line").length > 0', 20000);
+  await waitFor(client, '[...document.querySelectorAll("[data-lexical-token]")].some((node) => String(node.dataset.inlineGloss || "").trim())', 20000);
+}
+
+async function navigateAny(client, url) {
+  await client.send('Page.navigate', { url });
+  await waitFor(client, 'document.readyState === "complete"', 20000);
+}
+
+async function hardReload(client) {
+  await client.send('Page.reload', { ignoreCache: true });
+  await waitFor(client, 'document.readyState === "complete"', 20000);
+  await waitFor(client, 'document.querySelectorAll("[data-lexical-token]").length > 0', 20000);
+  await waitFor(client, '[...document.querySelectorAll("[data-lexical-token]")].some((node) => String(node.dataset.inlineGloss || "").trim())', 20000);
 }
 
 function pageProbeExpression() {
@@ -209,13 +221,35 @@ function pageProbeExpression() {
     return {
       url: location.href,
       tokenButtons: document.querySelectorAll('[data-lexical-token]').length,
-      inlineHints: [...document.querySelectorAll('.reader-gloss-line')].filter((node) => node.textContent.trim()).length,
+      inlineHintLines: [...document.querySelectorAll('.reader-gloss-line')].filter((node) => node.textContent.trim()).length,
+      inlineHintDatasets: [...document.querySelectorAll('[data-lexical-token]')].filter((node) => String(node.dataset.inlineGloss || '').trim()).length,
+      inlineHints: Math.max(
+        [...document.querySelectorAll('.reader-gloss-line')].filter((node) => node.textContent.trim()).length,
+        [...document.querySelectorAll('[data-lexical-token]')].filter((node) => String(node.dataset.inlineGloss || '').trim()).length
+      ),
       routeCards: document.querySelectorAll('.route-card').length,
       answerCards: document.querySelectorAll('.route-answer-card').length,
       sourceDetails: [...document.querySelectorAll('.reader-source-details, .source-footnotes')].filter((node) => node.textContent.includes('Sources and licenses')).length,
       selectedGlosses: document.querySelectorAll('[data-selected-gloss]').length,
       oldMarkerHits: markerHits,
       hudHidden: document.querySelector('[data-lexical-hud]')?.hidden ?? null
+    };
+  })()`;
+}
+
+function oldPathProbeExpression() {
+  return `(() => {
+    const markers = ${JSON.stringify(OLD_HUD_MARKERS)};
+    const html = document.documentElement.outerHTML;
+    const markerHits = markers.filter((marker) => html.includes(marker));
+    return {
+      url: location.href,
+      title: document.title,
+      bodyTextSample: document.body.textContent.replace(/\\s+/g, ' ').trim().slice(0, 300),
+      oldMarkerHits: markerHits,
+      selectedGlosses: document.querySelectorAll('[data-selected-gloss]').length,
+      routeCards: document.querySelectorAll('.route-card').length,
+      tokenButtons: document.querySelectorAll('[data-lexical-token]').length
     };
   })()`;
 }
@@ -365,8 +399,11 @@ async function main() {
     const baseUrl = options.baseUrl
       ? (options.baseUrl.endsWith('/') ? options.baseUrl : `${options.baseUrl}/`)
       : `${staticServer.origin}/orot/`;
+    const rootUrl = new URL('../', baseUrl).toString();
     await navigate(client, `${baseUrl}?cachebust=${Date.now()}`);
     const beforeClick = await evaluate(client, pageProbeExpression());
+    await hardReload(client);
+    const hardReloadProbe = await evaluate(client, pageProbeExpression());
     const samplePlan = await evaluate(client, sampleExpression(tokenIds));
     const clickResults = [];
     for (const sample of samplePlan.samples || []) {
@@ -378,11 +415,30 @@ async function main() {
 
     await navigate(client, `${baseUrl}?clicked_hebrew_form=old&hud=old&data-hud-renderings=1&sourceSummary=1&cachebust=${Date.now()}`);
     const oldQueryProbe = await evaluate(client, pageProbeExpression());
+    const oldPathProbes = [];
+    for (const oldPath of [
+      `${rootUrl}hud-preview/routes/?cachebust=${Date.now()}`,
+      `${baseUrl}hud-preview/routes/?cachebust=${Date.now()}`,
+      `${rootUrl}reader-workbench/?cachebust=${Date.now()}`,
+    ]) {
+      await navigateAny(client, oldPath);
+      oldPathProbes.push(await evaluate(client, oldPathProbeExpression()));
+    }
+    await navigate(client, `${baseUrl}?cachebust=${Date.now()}`);
     await evaluate(client, poisonStorageExpression());
     await navigate(client, `${baseUrl}?poisoned-storage=${Date.now()}`);
     const poisonedStorageProbe = await evaluate(client, pageProbeExpression());
 
     const routeRequests = network.filter((entry) => entry.url.includes('/data/public-hud/orot/route-lookup/'));
+    const expectedOldPath404s = consoleErrors.filter((entry) => (
+      String(entry.text || '').includes('404')
+      && [
+        '/hud-preview/routes/',
+        '/orot/hud-preview/routes/',
+        '/reader-workbench/',
+      ].some((needle) => String(entry.url || '').includes(needle))
+    ));
+    const unexpectedConsoleErrors = consoleErrors.filter((entry) => !expectedOldPath404s.includes(entry));
     const proof = {
       schema_version: 1,
       artifact_type: 'orot_stage_b_top50_browser_click_proof',
@@ -406,12 +462,15 @@ async function main() {
       },
       package_counts: routeReport.counts,
       before_click: beforeClick,
+      hard_reload_probe: hardReloadProbe,
       sample_plan: samplePlan,
       clicks: clickResults,
       old_query_probe: oldQueryProbe,
+      old_path_probes: oldPathProbes,
       poisoned_storage_probe: poisonedStorageProbe,
       route_requests: routeRequests,
-      browser_warnings_or_errors: consoleErrors,
+      browser_warnings_or_errors: unexpectedConsoleErrors,
+      expected_old_path_404s: expectedOldPath404s,
       runtime_exceptions: runtimeExceptions,
       pass_conditions: {
         packaged_click_count: clickResults.length,
@@ -422,12 +481,18 @@ async function main() {
         route_shard_requested: routeRequests.some((entry) => entry.url.includes('/data/public-hud/orot/route-lookup/shards/') && entry.status === 200),
         old_marker_hits_total: [
           beforeClick,
+          hardReloadProbe,
           oldQueryProbe,
           poisonedStorageProbe,
+          ...oldPathProbes,
           ...clickResults,
         ].reduce((sum, probe) => sum + (probe.oldMarkerHits || []).length, 0),
+        before_click_inline_hints: beforeClick.inlineHints,
+        hard_reload_inline_hints: hardReloadProbe.inlineHints,
+        old_path_probe_count: oldPathProbes.length,
+        expected_old_path_404_count: expectedOldPath404s.length,
         poisoned_storage_selected_glosses: poisonedStorageProbe.selectedGlosses,
-        console_error_count: consoleErrors.length,
+        console_error_count: unexpectedConsoleErrors.length,
         runtime_exception_count: runtimeExceptions.length,
         max_click_ms: clickResults.reduce((max, result) => Math.max(max, result.durationMs || 0), 0),
       },

@@ -84,10 +84,13 @@ Screenshot: `reports/agent10-orot-stage-b-top50-live-browser-proof-2026-06-03.pn
 - Route manifest requested from `/data/public-hud/orot/route-lookup/manifest.json`: `true`
 - Route shard requested from `/data/public-hud/orot/route-lookup/shards/**`: `true`
 - Old-HUD marker hits total: `0`
+- Inline hints before click: `39980`
+- Inline hints after hard reload: `39980`
+- Old-path probes: `3`, all clean `Not Published` surfaces with old-HUD marker hits `0`
 - Poisoned-storage selected glosses: `0`
 - Browser console error count: `0`
 - Runtime exception count: `0`
-- Max click time: `2912 ms`
+- Max click time: `1085 ms`
 
 ## Additional Validators
 

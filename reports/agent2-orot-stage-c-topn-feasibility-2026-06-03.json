@@ -1,0 +1,116 @@
+{
+    "schema_version":  1,
+    "artifact_type":  "agent2_orot_stage_c_topn_feasibility",
+    "generated_at":  "2026-06-03T02:53:55.1147592Z",
+    "work_id":  "orot",
+    "scope":  "dry-run route/definition data feasibility only; no package output writes",
+    "input_pipeline":  {
+                           "script":  "scripts/build_public_hud_route_package.mjs",
+                           "source_root":  "C:\\Users\\owner\\Documents\\translations",
+                           "public_root":  "C:\\Users\\owner\\Documents\\translations\\.codex-tmp\\hud-deploy-live",
+                           "report_path":  "reports\\agent2-orot-stage-c-topn-feasibility-2026-06-03.json",
+                           "top_n_values":  [
+                                                100,
+                                                250
+                                            ],
+                           "dry_run":  true
+                       },
+    "threshold_policy":  {
+                             "source":  "Agent 4 Stage B payload thresholds used by Agent 10 top-50 proof",
+                             "warn_total_shard_bytes":  10485760,
+                             "block_total_shard_bytes":  26214400,
+                             "warn_max_shard_bytes":  1048576,
+                             "block_max_shard_bytes":  3145728,
+                             "status_rule":  "under_warn if both totals are below warn thresholds; warn_exceeded_below_block if warning is exceeded but block is not; block_exceeded if either block threshold is exceeded"
+                         },
+    "results":  [
+                    {
+                        "top_n":  100,
+                        "dry_run":  true,
+                        "threshold_status":  "warn_exceeded_below_block",
+                        "under_warn_thresholds":  false,
+                        "under_block_thresholds":  true,
+                        "counts":  {
+                                       "selected_token_count":  100,
+                                       "selected_lookup_candidate_count":  140,
+                                       "preserved_existing_route_key_count":  62,
+                                       "preserved_existing_card_count":  2527,
+                                       "distinct_normalized_tokens":  126,
+                                       "public_route_key_count":  126,
+                                       "shard_count":  101,
+                                       "card_count":  4973,
+                                       "total_shard_bytes":  13500343,
+                                       "max_shard_bytes":  349870,
+                                       "truncated_key_count":  1
+                                   },
+                        "manifest_bytes":  48567,
+                        "payload_bytes":  13500343,
+                        "max_shard_bytes":  349870,
+                        "denylist_output_scan_total":  0,
+                        "old_hud_marker_output_scan_total":  0,
+                        "skipped_denied_token_count":  6,
+                        "skipped_denied_token_occurrences":  559,
+                        "denied_cards_skipped_count":  0,
+                        "route_lookup_probe":  {
+                                                   "shards_read":  3569,
+                                                   "missing_shards":  84
+                                               },
+                        "skipped":  {
+                                        "missing_token_row_count":  0,
+                                        "no_route_cards_count":  0,
+                                        "denied_cards_only_count":  0
+                                    }
+                    },
+                    {
+                        "top_n":  250,
+                        "dry_run":  true,
+                        "threshold_status":  "block_exceeded",
+                        "under_warn_thresholds":  false,
+                        "under_block_thresholds":  false,
+                        "counts":  {
+                                       "selected_token_count":  250,
+                                       "selected_lookup_candidate_count":  398,
+                                       "preserved_existing_route_key_count":  62,
+                                       "preserved_existing_card_count":  2527,
+                                       "distinct_normalized_tokens":  342,
+                                       "public_route_key_count":  342,
+                                       "shard_count":  252,
+                                       "card_count":  12231,
+                                       "total_shard_bytes":  33143641,
+                                       "max_shard_bytes":  537264,
+                                       "truncated_key_count":  1
+                                   },
+                        "manifest_bytes":  118016,
+                        "payload_bytes":  33143641,
+                        "max_shard_bytes":  537264,
+                        "denylist_output_scan_total":  0,
+                        "old_hud_marker_output_scan_total":  0,
+                        "skipped_denied_token_count":  6,
+                        "skipped_denied_token_occurrences":  559,
+                        "denied_cards_skipped_count":  0,
+                        "route_lookup_probe":  {
+                                                   "shards_read":  3569,
+                                                   "missing_shards":  84
+                                               },
+                        "skipped":  {
+                                        "missing_token_row_count":  0,
+                                        "no_route_cards_count":  0,
+                                        "denied_cards_only_count":  0
+                                    }
+                    }
+                ],
+    "claim_boundary":  {
+                           "highest_claim":  "top-100 and top-250 dry-run feasibility data generated from pipeline route data",
+                           "not_accepted":  [
+                                                "qa_acceptance",
+                                                "validated_runtime_acceptance",
+                                                "publication_readiness",
+                                                "source_provenance_acceptance",
+                                                "definition_authority",
+                                                "usage_as_definition_authority",
+                                                "accepted_translation_text",
+                                                "translation_output",
+                                                "route_package_publication"
+                                            ]
+                       }
+}
