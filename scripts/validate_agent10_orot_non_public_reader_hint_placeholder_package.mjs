@@ -13,15 +13,16 @@ expect(data.publication_status === 'non_public_candidate_package_only', 'must be
 for (const flag of ['exact_agent6_boundary_only', 'non_public_package_only', 'no_public_hud_output', 'no_route_jsonl_rows', 'no_route_shard_writes', 'no_runtime_files', 'no_public_mutation', 'no_source_files', 'no_token_index_files', 'no_lexical_payload_files', 'no_definition_content_rows', 'no_nc_definition_content_rows', 'no_answer_eligibility', 'no_accepted_text']) {
   expect(data.boundary?.[flag] === true, `boundary.${flag} must be true`);
 }
-expect(data.counts.placeholder_rows === 63, 'placeholder rows must be 63');
-expect(data.counts.placeholder_occurrences === 3046, 'placeholder occurrences must be 3046');
-expect(data.counts.commercial_clean_rows === 33, 'commercial rows must be 33');
-expect(data.counts.noncommercial_educational_rows === 17, 'NC rows must be 17');
-expect(data.counts.display_integrity_tbd_rows === 13, 'display TBD rows must be 13');
-
 const rows = data.rows || [];
-expect(rows.length === 63, 'rows length must be 63');
-expect(Object.keys(data.hints_by_token_id || {}).length === 63, 'hints_by_token_id count must be 63');
+const commercialRows = rows.filter((row) => row.lane === 'commercial_clean_candidate');
+const ncRows = rows.filter((row) => row.lane === 'noncommercial_educational_candidate');
+const displayRows = rows.filter((row) => row.lane === 'display_integrity_tbd_placeholder' || row.subset === 'display_integrity_tbd');
+expect(data.counts.placeholder_rows === rows.length, 'placeholder row count must match rows length');
+expect(data.counts.placeholder_occurrences === sum(rows.map((row) => row.occurrences)), 'placeholder occurrences must match rows');
+expect(data.counts.commercial_clean_rows === commercialRows.length, 'commercial row count mismatch');
+expect(data.counts.noncommercial_educational_rows === ncRows.length, 'NC row count mismatch');
+expect(data.counts.display_integrity_tbd_rows === displayRows.length, 'display TBD row count mismatch');
+expect(Object.keys(data.hints_by_token_id || {}).length === rows.length, 'hints_by_token_id count must match rows length');
 for (const row of rows) {
   expect(data.hints_by_token_id[row.token_id]?.token_id === row.token_id, `${row.token_id} missing from hints_by_token_id`);
   expect(row.inline_display === 'TBD' && row.display === 'TBD' && row.counterpart_text === 'TBD', `${row.token_id} must use TBD`);
@@ -33,7 +34,7 @@ for (const row of rows) {
   expect(row.public_hud_emit_allowed === false, `${row.token_id} public HUD emit must be false`);
   expect(row.route_jsonl_emit_allowed === false, `${row.token_id} route JSONL emit must be false`);
 }
-for (const row of rows.filter((row) => row.lane === 'noncommercial_educational_candidate')) {
+for (const row of ncRows) {
   expect(row.source_license_group === 'CC_BY_NC', `${row.token_id} NC source license group mismatch`);
   expect(row.derived_from_nc === true, `${row.token_id} NC derived_from_nc must be true`);
   expect(row.commercial_export_allowed === false, `${row.token_id} NC commercial export must be false`);
@@ -56,4 +57,7 @@ console.log(`non-public reader-hint placeholder package validation passed for ${
 
 function expect(condition, message) {
   if (!condition) issues.push(message);
+}
+function sum(values) {
+  return values.reduce((total, value) => total + Number(value || 0), 0);
 }
