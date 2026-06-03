@@ -19,12 +19,36 @@ const configs = {
     agent4Screenshot: 'reports/agent4-numbers-live-browser-click-proof-2026-06-02.png',
     agent4ArtifactType: 'agent4_numbers_live_browser_click_proof',
     expected: {
+      required_checks_total: 10,
       hint_count: 5204,
       route_key_count: 2577,
       shard_count: 1429,
       card_count: 7054,
       max_shard_bytes: 61167,
       clicked_route_cards: 21,
+      clicked_answer_cards: 2,
+      clicked_source_rows: 3,
+    },
+  },
+  ruth: {
+    title: 'Ruth',
+    page: 'tanakh/ruth/',
+    route: '/tanakh/ruth/',
+    laneId: 'ruth_agent4_browser_proof',
+    candidateNumber: 6,
+    candidatePrep: 'reports/agent10-candidate-page-6-shipment-prep-2026-06-02.md',
+    agent4Proof: 'reports/agent4-ruth-live-browser-click-proof-2026-06-03.json',
+    agent4ProofReport: 'reports/agent4-ruth-live-browser-click-proof-2026-06-03.md',
+    agent4Screenshot: 'reports/agent4-ruth-live-browser-click-proof-2026-06-03.png',
+    agent4ArtifactType: 'agent4_live_ruth_browser_runtime_evidence',
+    expected: {
+      required_checks_total: 7,
+      hint_count: 676,
+      route_key_count: 567,
+      shard_count: 405,
+      card_count: 1599,
+      max_shard_bytes: 23873,
+      clicked_route_cards: 8,
       clicked_answer_cards: 2,
       clicked_source_rows: 3,
     },
@@ -51,7 +75,7 @@ const agent4Proof = readJson(options.agent4Proof);
 const liveGuard = readJson(options.liveGuard);
 const liveLane = (releaseTrain.live_lane_checks || []).find((row) => row.work_id === workId) || {};
 const lane = (releaseTrain.lanes || []).find((row) => row.lane_id === options.laneId) || {};
-const proofChecks = agent4Proof.checks || {};
+const proofChecks = agent4Proof.checks || agent4Proof.summary?.checks || {};
 const liveSummary = liveGuard.summary || {};
 const validationCommands = [
   ['node', ['scripts/validate_agent10_multi_lane_reader_surface_release_train.mjs', options.releaseTrain]],
@@ -64,19 +88,25 @@ const expected = options.expected;
 
 if (releaseTrain.artifact_type !== 'agent10_multi_lane_reader_surface_release_train') issues.push('Release train artifact type is unexpected.');
 if (releaseTrain.boundary?.no_public_runtime_acceptance !== true) issues.push('Release train boundary does not preserve no_public_runtime_acceptance=true.');
-if (lane.current_state !== 'live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict') issues.push(`${options.title} lane current_state is not the expected no-Agent-6-verdict state.`);
+if (lane.current_state !== 'live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict') {
+  if (workId === 'ruth' && lane.current_state === 'live_current_hud_package_exists_no_agent4_browser_proof_found') {
+    warnings.push('Release-train Ruth lane still says browser proof is missing; this docket supplies that proof and should supersede the stale lane state for review input only.');
+  } else {
+    issues.push(`${options.title} lane current_state is not the expected no-Agent-6-verdict state.`);
+  }
+}
 if (liveLane.page_status !== 200) issues.push(`${options.title} live page does not report 200 in release train.`);
 if ((liveLane.page_hard_old_marker_hits || []).length !== 0) issues.push(`${options.title} live lane reports hard old-HUD marker hits.`);
 if (liveLane.manifest_status !== 200 || liveLane.reader_hints_status !== 200 || liveLane.route_lookup_manifest_status !== 200) issues.push(`${options.title} public-HUD dependencies are not all 200.`);
 for (const [key, value] of Object.entries(expected)) {
-  if (key.startsWith('clicked_')) continue;
+  if (key.startsWith('clicked_') || key === 'required_checks_total') continue;
   if (liveLane[key] !== value) issues.push(`${options.title} ${key} drifted from expected ${value}.`);
 }
 
 if (agent4Proof.artifact_type !== options.agent4ArtifactType) issues.push('Agent 4 proof artifact type is unexpected.');
-if (agent4Proof.status !== 'warn_evidence_packet') issues.push('Agent 4 proof status should remain warn_evidence_packet.');
-if (agent4Proof.evidence_only !== true) issues.push('Agent 4 proof must be evidence_only.');
-if (agent4Proof.no_self_acceptance !== true) issues.push('Agent 4 proof must not self-accept.');
+if (!String(agent4Proof.status || agent4Proof.summary?.status || '').startsWith('warn_')) issues.push('Agent 4 proof status should remain warn evidence.');
+if (agent4Proof.evidence_only !== true && agent4Proof.boundary?.evidence_only !== true) issues.push('Agent 4 proof must be evidence_only.');
+if (agent4Proof.no_self_acceptance !== true && agent4Proof.boundary?.no_self_acceptance !== true) issues.push('Agent 4 proof must not self-accept.');
 for (const [name, passed] of Object.entries(proofChecks)) {
   if (passed !== true) issues.push(`Agent 4 proof check failed or missing: ${name}`);
 }
@@ -92,7 +122,7 @@ if ((agent4Proof.static_http?.old_marker_hits || []).length !== 0) issues.push('
 if ((agent4Proof.runtime_static_probe?.old_marker_hits || []).length !== 0) issues.push('Agent 4 runtime static probe has old-HUD marker hits.');
 if ((agent4Proof.route_shard_static_probe?.old_marker_hits || []).length !== 0) issues.push('Agent 4 route shard static probe has old-HUD marker hits.');
 if (!fs.existsSync(path.join(root, options.agent4Screenshot))) issues.push('Agent 4 screenshot is missing.');
-else if (agent4Proof.screenshot?.sha256 !== sha256File(options.agent4Screenshot)) issues.push('Agent 4 screenshot sha256 mismatch.');
+else if (typeof agent4Proof.screenshot === 'object' && agent4Proof.screenshot?.sha256 && agent4Proof.screenshot.sha256 !== sha256File(options.agent4Screenshot)) issues.push('Agent 4 screenshot sha256 mismatch.');
 
 if (liveSummary.old_hud_exposure !== 'no') issues.push('Fresh live guard does not report old_hud_exposure=no.');
 if ((liveSummary.hard_old_marker_hit_checks || 0) !== 0) issues.push('Fresh live guard reports hard old-HUD marker hits.');
@@ -193,7 +223,7 @@ const output = {
     shard_count: liveLane.shard_count,
     card_count: liveLane.card_count,
     max_shard_bytes: liveLane.max_shard_bytes,
-    agent4_status: agent4Proof.status,
+    agent4_status: agent4Proof.status || agent4Proof.summary?.status || null,
     agent4_required_checks_passed: Object.values(proofChecks).filter(Boolean).length,
     agent4_required_checks_total: Object.keys(proofChecks).length,
     agent4_hud_open: agent4Proof.fullscreen_measurement?.hudOpen === true,

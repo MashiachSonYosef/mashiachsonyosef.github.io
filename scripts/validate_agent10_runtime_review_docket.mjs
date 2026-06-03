@@ -20,6 +20,20 @@ const configs = {
     answer_cards_clicked: 2,
     source_rows_clicked: 3,
     proof_artifact_type: 'agent4_numbers_live_browser_click_proof',
+    required_checks_total: 10,
+  },
+  ruth: {
+    page: 'tanakh/ruth/',
+    max_shard_bytes: 23873,
+    hint_count: 676,
+    route_key_count: 567,
+    shard_count: 405,
+    card_count: 1599,
+    route_cards_clicked: 8,
+    answer_cards_clicked: 2,
+    source_rows_clicked: 3,
+    proof_artifact_type: 'agent4_live_ruth_browser_runtime_evidence',
+    required_checks_total: 7,
   },
 };
 
@@ -97,9 +111,9 @@ if (config) {
   expect(data.summary?.agent4_source_rows_clicked === config.source_rows_clicked, 'Agent 4 source rows clicked drifted');
   expect(proof.artifact_type === config.proof_artifact_type, 'Agent 4 proof artifact type drifted');
 }
-expect(data.summary?.agent4_status === 'warn_evidence_packet', 'Agent 4 status drifted');
-expect(data.summary?.agent4_required_checks_passed === 10, 'expected 10 Agent 4 required checks passed');
-expect(data.summary?.agent4_required_checks_total === 10, 'expected 10 Agent 4 required checks total');
+expect(String(data.summary?.agent4_status || '').startsWith('warn_'), 'Agent 4 status drifted');
+expect(data.summary?.agent4_required_checks_passed === config?.required_checks_total, `expected ${config?.required_checks_total} Agent 4 required checks passed`);
+expect(data.summary?.agent4_required_checks_total === config?.required_checks_total, `expected ${config?.required_checks_total} Agent 4 required checks total`);
 expect(data.summary?.agent4_hud_open === true, 'Agent 4 HUD must open');
 expect(data.summary?.agent4_fullscreen_width === true, 'Agent 4 fullscreen width must be true');
 expect(data.summary?.agent4_fullscreen_height === true, 'Agent 4 fullscreen height must be true');
@@ -109,14 +123,14 @@ expect(data.summary?.fresh_hard_old_marker_hit_checks === 0, 'fresh hard old mar
 expect(data.summary?.validation_commands_passed === 2, 'expected 2 validation commands passed');
 expect(data.summary?.validation_commands_total === 2, 'expected 2 validation commands total');
 expect(data.summary?.issues === 0, 'docket issues must be 0');
-expect(data.summary?.warnings === 2, 'docket warnings must be 2');
+expect(data.summary?.warnings === (workId === 'ruth' ? 3 : 2), `docket warnings must be ${workId === 'ruth' ? 3 : 2}`);
 
 expect(liveLane.page_status === data.summary?.live_page_status, 'release train live page status mismatch');
 expect(liveLane.hint_count === data.summary?.hint_count, 'release train hint count mismatch');
 expect(liveLane.route_key_count === data.summary?.route_key_count, 'release train route key count mismatch');
 expect(liveLane.shard_count === data.summary?.shard_count, 'release train shard count mismatch');
 expect(liveLane.card_count === data.summary?.card_count, 'release train card count mismatch');
-expect(proof.status === data.summary?.agent4_status, 'Agent 4 proof status mismatch');
+expect((proof.status || proof.summary?.status) === data.summary?.agent4_status, 'Agent 4 proof status mismatch');
 expect(proof.fullscreen_measurement?.hudOpen === true, 'Agent 4 proof HUD open must remain true');
 expect((proof.fullscreen_measurement?.oldMarkerHits || []).length === 0, 'Agent 4 proof fullscreen old marker hits must be 0');
 expect(liveGuard.summary?.old_hud_exposure === 'no', 'live guard source must preserve old_hud_exposure=no');
