@@ -154,14 +154,18 @@
     const placeholderKind = firstPresentValue([row?.placeholder_kind]);
     const reviewState = firstPresentValue([row?.review_state, row?.display_state]);
     const placeholderText = firstPresentValue([row?.placeholder_text]);
+    const attributionNotice = firstPresentValue([row?.attribution_notice]);
     const isPendingReview = placeholderKind === 'reader_hint_pending_review'
       || reviewState === 'placeholder_pending_review'
       || reviewState === 'pending_reader_hint_review';
     if (tokenId && isPendingReview && placeholderText) {
+      const inlinePlaceholder = attributionNotice
+        ? `${placeholderText} pending review (${attributionNotice})`
+        : `${placeholderText} pending review`;
       return {
         token_id: tokenId,
         display: placeholderText,
-        inline_display: `${placeholderText} pending review`,
+        inline_display: inlinePlaceholder,
         label: firstPresentValue([row?.label, counterpart.label]),
         match_percent: null,
         placeholder_kind: placeholderKind,
