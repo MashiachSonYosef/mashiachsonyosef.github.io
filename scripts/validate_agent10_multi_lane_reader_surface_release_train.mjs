@@ -38,6 +38,9 @@ const inputPaths = {
   agent1_missing_linkage_docket: data.inputs?.agent1_missing_linkage_docket,
   agent6_reader_hint_candidate_patch_docket: data.inputs?.agent6_reader_hint_candidate_patch_docket,
   live_old_hud_guard: data.inputs?.live_old_hud_guard,
+  ruth_browser_proof: data.inputs?.ruth_browser_proof,
+  ruth_runtime_docket: data.inputs?.ruth_runtime_docket,
+  jonah_candidate_prep: data.inputs?.jonah_candidate_prep,
 };
 for (const [key, value] of Object.entries(inputPaths)) {
   expect(Boolean(value), `missing input path ${key}`);
@@ -46,27 +49,30 @@ for (const [key, value] of Object.entries(inputPaths)) {
 expect(data.inputs?.agent1_missing_linkage_docket_sha256 === sha256File(inputPaths.agent1_missing_linkage_docket), 'Agent 1 docket sha256 mismatch');
 expect(data.inputs?.agent6_reader_hint_candidate_patch_docket_sha256 === sha256File(inputPaths.agent6_reader_hint_candidate_patch_docket), 'Agent 6 docket sha256 mismatch');
 expect(data.inputs?.live_old_hud_guard_sha256 === sha256File(inputPaths.live_old_hud_guard), 'live guard sha256 mismatch');
+expect(data.inputs?.ruth_browser_proof_sha256 === sha256File(inputPaths.ruth_browser_proof), 'Ruth browser proof sha256 mismatch');
+expect(data.inputs?.ruth_runtime_docket_hash_boundary === 'not_hashed_here_to_avoid_release_train_runtime_docket_cyclic_dependency', 'Ruth runtime docket hash boundary missing');
+expect(data.inputs?.jonah_candidate_prep_sha256 === sha256File(inputPaths.jonah_candidate_prep), 'Jonah candidate prep sha256 mismatch');
 
 expect(data.summary?.status === 'warn_multi_lane_release_train_evidence_only', 'unexpected summary status');
-expect(data.summary?.active_lanes === 4, 'expected 4 active lanes');
+expect(data.summary?.active_lanes === 5, 'expected 5 active lanes');
 expect(data.summary?.protected_lanes === 3, 'expected 3 protected lanes');
 expect(data.summary?.orot_candidate_patch_rows === 31, 'expected 31 Orot candidate patch rows');
 expect(data.summary?.orot_candidate_patch_occurrences === 1202, 'expected 1202 Orot candidate patch occurrences');
 expect(data.summary?.orot_missing_linkage_rows === 13, 'expected 13 Orot missing-linkage rows');
 expect(data.summary?.orot_missing_linkage_occurrences === 129, 'expected 129 Orot missing-linkage occurrences');
-expect(data.summary?.live_lanes_checked === 7, 'expected 7 live lanes checked');
-expect(data.summary?.live_page_200_count === 7, 'expected all 7 live pages to return 200');
+expect(data.summary?.live_lanes_checked === 8, 'expected 8 live lanes checked');
+expect(data.summary?.live_page_200_count === 8, 'expected all 8 live pages to return 200');
 expect(data.summary?.live_page_hard_old_marker_hits === 0, 'live page hard old-HUD marker hits must be 0');
-expect(data.summary?.live_data_endpoint_200_count === 21, 'expected 21 public data endpoints to return 200');
+expect(data.summary?.live_data_endpoint_200_count === 24, 'expected 24 public data endpoints to return 200');
 expect(data.summary?.base_live_old_hud_exposure === 'no', 'base live old HUD exposure must be no');
 expect(data.summary?.base_hard_old_marker_hit_checks === 0, 'base hard old marker hits must be 0');
-expect(data.summary?.validation_commands_passed === 3, 'expected 3 validation commands passed');
-expect(data.summary?.validation_commands_total === 3, 'expected 3 validation commands total');
+expect(data.summary?.validation_commands_passed === 5, 'expected 5 validation commands passed');
+expect(data.summary?.validation_commands_total === 5, 'expected 5 validation commands total');
 expect(data.summary?.issues === 0, 'release train issues must be 0');
 expect(data.summary?.warnings === 1, 'release train warnings must be 1');
 
-expect(Array.isArray(data.lanes) && data.lanes.length === 5, 'expected 5 lane records including protected baseline bundle');
-for (const laneId of ['orot_flagship_data_fill', 'leviticus_agent6_runtime_review', 'numbers_agent6_runtime_review', 'ruth_agent4_browser_proof', 'baseline_preserve']) {
+expect(Array.isArray(data.lanes) && data.lanes.length === 6, 'expected 6 lane records including protected baseline bundle');
+for (const laneId of ['orot_flagship_data_fill', 'leviticus_agent6_runtime_review', 'numbers_agent6_runtime_review', 'ruth_agent6_runtime_review', 'jonah_agent4_browser_proof', 'baseline_preserve']) {
   expect(data.lanes.some((lane) => lane.lane_id === laneId), `missing lane ${laneId}`);
 }
 for (const lane of data.lanes || []) {
@@ -75,7 +81,7 @@ for (const lane of data.lanes || []) {
 }
 
 const liveByWork = new Map((data.live_lane_checks || []).map((row) => [row.work_id, row]));
-for (const workId of ['orot', 'leviticus', 'numbers', 'ruth', 'deuteronomy', 'genesis', 'exodus']) {
+for (const workId of ['orot', 'leviticus', 'numbers', 'ruth', 'jonah', 'deuteronomy', 'genesis', 'exodus']) {
   const row = liveByWork.get(workId);
   expect(Boolean(row), `missing live lane check for ${workId}`);
   if (!row) continue;
@@ -103,16 +109,20 @@ expect(liveByWork.get('ruth')?.hint_count === 676, 'Ruth hint count drifted');
 expect(liveByWork.get('ruth')?.route_key_count === 567, 'Ruth route key count drifted');
 expect(liveByWork.get('ruth')?.shard_count === 405, 'Ruth shard count drifted');
 expect(liveByWork.get('ruth')?.card_count === 1599, 'Ruth card count drifted');
+expect(liveByWork.get('jonah')?.hint_count === 360, 'Jonah hint count drifted');
+expect(liveByWork.get('jonah')?.route_key_count === 379, 'Jonah route key count drifted');
+expect(liveByWork.get('jonah')?.shard_count === 285, 'Jonah shard count drifted');
+expect(liveByWork.get('jonah')?.card_count === 1089, 'Jonah card count drifted');
 
 const commands = data.validation_evidence?.commands || [];
-expect(commands.length === 3, 'expected 3 validation commands');
+expect(commands.length === 5, 'expected 5 validation commands');
 for (const command of commands) {
   expect(command.exit_code === 0, `validation command must pass: ${command.command}`);
 }
 expect(data.validation_evidence?.live_old_hud_guard?.old_hud_exposure === 'no', 'live guard evidence must preserve exposure=no');
 expect(data.validation_evidence?.live_old_hud_guard?.hard_old_marker_hit_checks === 0, 'live guard evidence hard marker hits must be 0');
 expect(data.sidecar_agents?.length === 4, 'expected four sidecar agent records');
-expect(data.allowed_next_packets?.length === 6, 'expected six allowed next packets');
+expect(data.allowed_next_packets?.length === 7, 'expected seven allowed next packets');
 
 expectMustNotAccept('QA acceptance');
 expectMustNotAccept('Validated public/runtime acceptance');

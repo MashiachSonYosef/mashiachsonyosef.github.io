@@ -34,7 +34,7 @@ const configs = {
     title: 'Ruth',
     page: 'tanakh/ruth/',
     route: '/tanakh/ruth/',
-    laneId: 'ruth_agent4_browser_proof',
+    laneId: 'ruth_agent6_runtime_review',
     candidateNumber: 6,
     candidatePrep: 'reports/agent10-candidate-page-6-shipment-prep-2026-06-02.md',
     agent4Proof: 'reports/agent4-ruth-live-browser-click-proof-2026-06-03.json',

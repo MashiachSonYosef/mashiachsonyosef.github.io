@@ -1,6 +1,6 @@
 # Agent 10 Agent 6-Ready Numbers Runtime Review Docket
 
-Generated: 2026-06-03T10:41:33.807Z
+Generated: 2026-06-03T11:07:55.097Z
 
 ## Boundary
 
@@ -30,7 +30,7 @@ This is an evidence-only release-owner docket for the exact Numbers public reade
 
 ## Fresh Old-HUD Guard
 
-- Guard artifact: `reports/agent10-live-public-old-hud-guard-2026-06-03-post-numbers-runtime-docket.json`
+- Guard artifact: `reports/agent10-live-public-old-hud-guard-2026-06-03-post-ruth-browser-proof.json`
 - Old HUD exposure: no
 - Hard marker hit checks: 0
 

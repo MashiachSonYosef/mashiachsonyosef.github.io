@@ -123,7 +123,7 @@ expect(data.summary?.fresh_hard_old_marker_hit_checks === 0, 'fresh hard old mar
 expect(data.summary?.validation_commands_passed === 2, 'expected 2 validation commands passed');
 expect(data.summary?.validation_commands_total === 2, 'expected 2 validation commands total');
 expect(data.summary?.issues === 0, 'docket issues must be 0');
-expect(data.summary?.warnings === (workId === 'ruth' ? 3 : 2), `docket warnings must be ${workId === 'ruth' ? 3 : 2}`);
+expect(data.summary?.warnings === 2, 'docket warnings must be 2');
 
 expect(liveLane.page_status === data.summary?.live_page_status, 'release train live page status mismatch');
 expect(liveLane.hint_count === data.summary?.hint_count, 'release train hint count mismatch');

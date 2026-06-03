@@ -1,6 +1,6 @@
 # Agent 10 Multi-Lane Reader Surface Release Train
 
-Generated: 2026-06-03T10:17:50.839Z
+Generated: 2026-06-03T11:07:22.484Z
 
 ## Boundary
 
@@ -11,17 +11,17 @@ Generated: 2026-06-03T10:17:50.839Z
 ## Summary
 
 - Status: warn_multi_lane_release_train_evidence_only
-- Active lanes: 4
+- Active lanes: 5
 - Protected lanes: 3
 - Orot candidate patch rows / occurrences: 31 / 1202
 - Orot missing-linkage rows / occurrences: 13 / 129
-- Live lanes checked: 7
-- Live page 200 count: 7
+- Live lanes checked: 8
+- Live page 200 count: 8
 - Live page hard old-HUD marker hits: 0
-- Live data endpoint 200 count: 21
+- Live data endpoint 200 count: 24
 - Base live old HUD exposure: no
 - Base hard old marker hit checks: 0
-- Validation commands passed / total: 3 / 3
+- Validation commands passed / total: 5 / 5
 - Issues: 0
 - Warnings: 1
 
@@ -30,7 +30,8 @@ Generated: 2026-06-03T10:17:50.839Z
 - orot_flagship_data_fill: candidate_patch_and_agent6_agent1_dockets_ready_not_accepted; next=Agent 6 evidence disposition for 31-row candidate patch plus Agent 1 row-level missing-linkage disposition for 13 rows
 - leviticus_agent6_runtime_review: live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict; next=Agent 6 review docket for exact Leviticus #4 runtime surface using fresh lane-specific old-HUD guard and existing Agent 4 proof
 - numbers_agent6_runtime_review: live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict; next=Agent 6 review docket for exact Numbers #5 runtime surface using fresh lane-specific old-HUD guard and existing Agent 4 proof
-- ruth_agent4_browser_proof: live_current_hud_package_exists_no_agent4_browser_proof_found; next=Bounded Ruth live browser-click proof before any Agent 6 review docket
+- ruth_agent6_runtime_review: live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict; next=Agent 6 review docket for exact Ruth #6 runtime surface using fresh lane-specific old-HUD guard and Agent 4 browser proof.
+- jonah_agent4_browser_proof: live_current_hud_package_exists_no_agent4_browser_proof_found; next=Bounded Jonah live browser-click proof before any Agent 6 review docket.
 - baseline_preserve: protected_warn_boundaries_or_existing_prepared_surface; no new proof loop unless drift appears; next=Monitor drift and old-HUD exposure only; do not consume proof cycles unless hashes/runtime change.
 
 ## Live Lane Checks
@@ -39,6 +40,7 @@ Generated: 2026-06-03T10:17:50.839Z
 - leviticus: page=200; hard_old_hits=0; hints=3869; route_keys=1909; shards=1137; cards=5237; max_shard_bytes=49788
 - numbers: page=200; hard_old_hits=0; hints=5204; route_keys=2577; shards=1429; cards=7054; max_shard_bytes=61167
 - ruth: page=200; hard_old_hits=0; hints=676; route_keys=567; shards=405; cards=1599; max_shard_bytes=23873
+- jonah: page=200; hard_old_hits=0; hints=360; route_keys=379; shards=285; cards=1089; max_shard_bytes=28477
 - deuteronomy: page=200; hard_old_hits=0; hints=2800; route_keys=1426; shards=973; cards=4133; max_shard_bytes=68645
 - genesis: page=200; hard_old_hits=0; hints=3858; route_keys=1599; shards=1092; cards=4660; max_shard_bytes=71062
 - exodus: page=200; hard_old_hits=0; hints=5831; route_keys=2993; shards=1619; cards=8197; max_shard_bytes=61750
@@ -54,7 +56,9 @@ Generated: 2026-06-03T10:17:50.839Z
 
 - node scripts/validate_agent10_orot_missing_linkage_agent1_docket.mjs reports/agent10-agent1-ready-orot-missing-linkage-review-docket-2026-06-03.json: exit=0
 - node scripts/validate_agent10_orot_reader_hint_candidate_patch_agent6_docket.mjs reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-03.json: exit=0
-- node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/genesis/index.html --page tanakh/exodus/index.html --page tanakh/leviticus/index.html --page tanakh/numbers/index.html --page tanakh/deuteronomy/index.html --page tanakh/ruth/index.html: exit=0
+- node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/genesis/index.html --page tanakh/exodus/index.html --page tanakh/leviticus/index.html --page tanakh/numbers/index.html --page tanakh/deuteronomy/index.html --page tanakh/ruth/index.html --page tanakh/jonah/index.html: exit=0
+- node scripts/validate_agent4_live_browser_runtime_evidence.mjs reports/agent4-ruth-live-browser-click-proof-2026-06-03.json: exit=0
+- node scripts/validate_agent10_runtime_review_docket.mjs reports/agent10-agent6-ready-ruth-runtime-review-docket-2026-06-03.json: exit=0
 
 ## Allowed Next Packets
 
@@ -63,7 +67,8 @@ Generated: 2026-06-03T10:17:50.839Z
 - Orot Agent 2 zero-or-safe fill-producing dry-run transform packet.
 - Leviticus Agent 6 runtime review docket with existing Agent 4 proof plus fresh lane-specific guard.
 - Numbers Agent 6 runtime review docket with existing Agent 4 proof plus fresh lane-specific guard.
-- Ruth bounded Agent 4 live browser-click proof before any Agent 6 review.
+- Ruth Agent 6 runtime review docket with Agent 4 browser proof and fresh lane-specific guard.
+- Jonah bounded Agent 4 live browser-click proof before any Agent 6 review.
 
 ## Blocked Now
 
@@ -71,7 +76,7 @@ Generated: 2026-06-03T10:17:50.839Z
 - No public HUD mutation from this packet.
 - No route JSONL/shard mutation from this packet.
 - No source/token-index/lexical payload mutation from this packet.
-- No Orot/Leviticus/Numbers/Ruth runtime asset or HTML edit from this packet.
+- No Orot/Leviticus/Numbers/Ruth/Jonah runtime asset or HTML edit from this packet.
 - No acceptance claim by Agent 10, Agent 1, Agent 2, Agent 4, Agent 7, Agent 12, or sidecar agents.
 
 ## Issues

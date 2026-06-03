@@ -10,7 +10,10 @@ const options = {
   baseUrl: 'https://mashiachsonyosef.github.io',
   agent1Docket: 'reports/agent10-agent1-ready-orot-missing-linkage-review-docket-2026-06-03.json',
   agent6Docket: 'reports/agent10-agent6-ready-orot-reader-hint-candidate-patch-docket-2026-06-03.json',
-  liveGuard: 'reports/agent10-live-public-old-hud-guard-2026-06-03-post-orot-missing-linkage-agent1-docket.json',
+  liveGuard: 'reports/agent10-live-public-old-hud-guard-2026-06-03-post-ruth-browser-proof.json',
+  ruthProof: 'reports/agent4-ruth-live-browser-click-proof-2026-06-03.json',
+  ruthDocket: 'reports/agent10-agent6-ready-ruth-runtime-review-docket-2026-06-03.json',
+  jonahPrep: 'reports/agent10-candidate-page-7-shipment-prep-2026-06-02.md',
   jsonReport: `reports/agent10-multi-lane-reader-surface-release-train-${dateSlug}.json`,
   report: `reports/agent10-multi-lane-reader-surface-release-train-${dateSlug}.md`,
   ...parseArgs(process.argv.slice(2)),
@@ -20,6 +23,7 @@ const generatedAt = new Date().toISOString();
 const agent1Docket = readJson(options.agent1Docket);
 const agent6Docket = readJson(options.agent6Docket);
 const liveGuard = readJson(options.liveGuard);
+const ruthProof = readJson(options.ruthProof);
 const liveSummary = liveGuard.summary || {};
 const issues = [];
 const warnings = [];
@@ -49,7 +53,7 @@ const currentHudMarkers = [
   'data/public-hud',
 ];
 
-const activeWorkIds = ['orot', 'leviticus', 'numbers', 'ruth'];
+const activeWorkIds = ['orot', 'leviticus', 'numbers', 'ruth', 'jonah'];
 const protectedWorkIds = ['deuteronomy', 'genesis', 'exodus'];
 const liveChecks = [];
 for (const workId of [...activeWorkIds, ...protectedWorkIds]) {
@@ -59,7 +63,9 @@ for (const workId of [...activeWorkIds, ...protectedWorkIds]) {
 const validationCommands = [
   ['node', ['scripts/validate_agent10_orot_missing_linkage_agent1_docket.mjs', options.agent1Docket]],
   ['node', ['scripts/validate_agent10_orot_reader_hint_candidate_patch_agent6_docket.mjs', options.agent6Docket]],
-  ['node', ['scripts/validate_route_hud_page.mjs', '--page', 'orot/index.html', '--page', 'tanakh/genesis/index.html', '--page', 'tanakh/exodus/index.html', '--page', 'tanakh/leviticus/index.html', '--page', 'tanakh/numbers/index.html', '--page', 'tanakh/deuteronomy/index.html', '--page', 'tanakh/ruth/index.html']],
+  ['node', ['scripts/validate_route_hud_page.mjs', '--page', 'orot/index.html', '--page', 'tanakh/genesis/index.html', '--page', 'tanakh/exodus/index.html', '--page', 'tanakh/leviticus/index.html', '--page', 'tanakh/numbers/index.html', '--page', 'tanakh/deuteronomy/index.html', '--page', 'tanakh/ruth/index.html', '--page', 'tanakh/jonah/index.html']],
+  ['node', ['scripts/validate_agent4_live_browser_runtime_evidence.mjs', options.ruthProof]],
+  ['node', ['scripts/validate_agent10_runtime_review_docket.mjs', options.ruthDocket]],
 ].map(runCommand);
 
 if (liveSummary.old_hud_exposure !== 'no') issues.push('Base live old-HUD guard does not report old_hud_exposure=no.');
@@ -124,16 +130,30 @@ const lanes = [
     stop_condition: 'Stop on any old-HUD hit, missing Agent 4 proof evidence, live/local source-of-truth conflict, or Agent 6 blocker.',
   },
   {
-    lane_id: 'ruth_agent4_browser_proof',
+    lane_id: 'ruth_agent6_runtime_review',
     work_id: 'ruth',
     route: '/tanakh/ruth/',
+    lane_type: 'warm_runtime_review',
+    current_state: 'live_current_hud_package_and_agent4_proof_exist_no_agent6_verdict',
+    current_evidence: [
+      'reports/agent10-candidate-page-6-shipment-prep-2026-06-02.md',
+      options.ruthProof,
+      options.ruthDocket,
+    ],
+    next_packet: 'Agent 6 review docket for exact Ruth #6 runtime surface using fresh lane-specific old-HUD guard and Agent 4 browser proof.',
+    stop_condition: 'Stop on any old-HUD hit, runtime proof drift, stale local/source-of-truth confusion, or Agent 6 blocker.',
+  },
+  {
+    lane_id: 'jonah_agent4_browser_proof',
+    work_id: 'jonah',
+    route: '/tanakh/jonah/',
     lane_type: 'proof_needed',
     current_state: 'live_current_hud_package_exists_no_agent4_browser_proof_found',
     current_evidence: [
-      'reports/agent10-candidate-page-6-shipment-prep-2026-06-02.md',
+      options.jonahPrep,
     ],
-    next_packet: 'Bounded Ruth live browser-click proof before any Agent 6 review docket',
-    stop_condition: 'Stop on old-HUD hit, failed HUD open, missing route cards/source rows, poisoned storage resurrection, or cadence decision requirement.',
+    next_packet: 'Bounded Jonah live browser-click proof before any Agent 6 review docket.',
+    stop_condition: 'Stop on old-HUD hit, failed HUD open, missing route cards/source rows, poisoned storage resurrection, or local/source-of-truth blocker.',
   },
   {
     lane_id: 'baseline_preserve',
@@ -188,6 +208,12 @@ const output = {
     agent6_reader_hint_candidate_patch_docket_sha256: sha256File(options.agent6Docket),
     live_old_hud_guard: options.liveGuard,
     live_old_hud_guard_sha256: sha256File(options.liveGuard),
+    ruth_browser_proof: options.ruthProof,
+    ruth_browser_proof_sha256: sha256File(options.ruthProof),
+    ruth_runtime_docket: options.ruthDocket,
+    ruth_runtime_docket_hash_boundary: 'not_hashed_here_to_avoid_release_train_runtime_docket_cyclic_dependency',
+    jonah_candidate_prep: options.jonahPrep,
+    jonah_candidate_prep_sha256: sha256File(options.jonahPrep),
   },
   outputs: {
     json_report: options.jsonReport,
@@ -215,7 +241,7 @@ const output = {
   },
   summary: {
     status: issues.length ? 'blocked_release_train_packet' : (warnings.length ? 'warn_multi_lane_release_train_evidence_only' : 'multi_lane_release_train_evidence_only'),
-    active_lanes: 4,
+    active_lanes: 5,
     protected_lanes: 3,
     orot_candidate_patch_rows: agent6Docket.summary?.candidate_patch_rows || 0,
     orot_candidate_patch_occurrences: agent6Docket.summary?.candidate_patch_occurrences || 0,
@@ -256,12 +282,14 @@ const output = {
       'tanakh/numbers/index.html',
       'tanakh/deuteronomy/index.html',
       'tanakh/ruth/index.html',
+      'tanakh/jonah/index.html',
     ],
     live_paths_extra_not_in_base_guard: [
       '/tanakh/exodus/',
       '/tanakh/leviticus/',
       '/tanakh/numbers/',
       '/tanakh/ruth/',
+      '/tanakh/jonah/',
     ],
     stop_conditions: [
       'any validator exits nonzero',
@@ -281,14 +309,15 @@ const output = {
     'Orot Agent 2 zero-or-safe fill-producing dry-run transform packet.',
     'Leviticus Agent 6 runtime review docket with existing Agent 4 proof plus fresh lane-specific guard.',
     'Numbers Agent 6 runtime review docket with existing Agent 4 proof plus fresh lane-specific guard.',
-    'Ruth bounded Agent 4 live browser-click proof before any Agent 6 review.',
+    'Ruth Agent 6 runtime review docket with Agent 4 browser proof and fresh lane-specific guard.',
+    'Jonah bounded Agent 4 live browser-click proof before any Agent 6 review.',
   ],
   blocked_now: [
     'No broad render.',
     'No public HUD mutation from this packet.',
     'No route JSONL/shard mutation from this packet.',
     'No source/token-index/lexical payload mutation from this packet.',
-    'No Orot/Leviticus/Numbers/Ruth runtime asset or HTML edit from this packet.',
+    'No Orot/Leviticus/Numbers/Ruth/Jonah runtime asset or HTML edit from this packet.',
     'No acceptance claim by Agent 10, Agent 1, Agent 2, Agent 4, Agent 7, Agent 12, or sidecar agents.',
   ],
   issues,

@@ -1,6 +1,6 @@
 # Agent 10 Agent 6-Ready Ruth Runtime Review Docket
 
-Generated: 2026-06-03T10:55:14.878Z
+Generated: 2026-06-03T11:07:55.096Z
 
 ## Boundary
 
@@ -57,7 +57,6 @@ This is an evidence-only release-owner docket for the exact Ruth public reader s
 
 ## Warnings
 
-- Release-train Ruth lane still says browser proof is missing; this docket supplies that proof and should supersede the stale lane state for review input only.
 - Agent 4 proof is WARN because runtime script URL is not visibly versioned/cache-busted.
 - Fresh live guard is WARN, not PASS; known watch-marker warning remains outside hard old-HUD exposure.
 
