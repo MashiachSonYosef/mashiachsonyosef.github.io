@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-04T23:17:52.212Z
+Generated: 2026-06-04T23:24:35.697Z
 
 ## State
 
@@ -113,8 +113,8 @@ Generated: 2026-06-04T23:17:52.212Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 67/67 |
-| validator_scripts_exist | passed | 35/35 |
+| evidence_artifacts_exist | passed | 69/69 |
+| validator_scripts_exist | passed | 36/36 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
