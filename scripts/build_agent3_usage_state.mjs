@@ -236,6 +236,8 @@ const evidenceArtifacts = unique([
   'reports/definition-workbench-usage-concordance-navigation-packet.md',
   options.usageFreshnessImpactPacket,
   'reports/definition-workbench-usage-freshness-impact-packet.md',
+  'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json',
+  'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md',
   'reports/agent3-current-control-drift-refresh-2026-06-04.json',
   'reports/agent3-current-control-drift-refresh-2026-06-04.md',
   'data/definitions/definition-workbench-usage-link-packet.json',
@@ -281,6 +283,7 @@ const validators = unique([
   'scripts/validate_workbench_smoke_pipeline.mjs',
   'scripts/validate_workbench_public_handoff_index.mjs',
   'scripts/validate_workbench_source_freshness.mjs',
+  'scripts/validate_agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker.mjs',
   'scripts/validate_agent3_current_control_drift_refresh.mjs',
   'scripts/validate_agent3_usage_state.mjs',
 ]);
