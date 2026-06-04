@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-04T23:11:21.349Z
+Generated: 2026-06-04T23:17:52.212Z
 
 ## State
 
@@ -113,8 +113,8 @@ Generated: 2026-06-04T23:11:21.349Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 65/65 |
-| validator_scripts_exist | passed | 34/34 |
+| evidence_artifacts_exist | passed | 67/67 |
+| validator_scripts_exist | passed | 35/35 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
@@ -195,8 +195,8 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 
 - Package: `reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.md`
 - JSON: `reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json`
-- Status: `generated_at_drift_only_no_new_workset`
-- Audited files: 2; generated-at-only: 2; substantive changed: 0.
+- Status: `matrix_status_only_no_new_workset`
+- Audited files: 2; status-only: 2; generated-at-only: 0; substantive changed: 0.
 - Boundary: observer audit only; regenerated source artifacts not committed and no executable/public/Definition/answer path authorized.
 
 <!-- agent3_linkage_dedupe_generated_at_drift_audit:end -->

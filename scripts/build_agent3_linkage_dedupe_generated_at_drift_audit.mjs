@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -30,7 +31,10 @@ const outputMd = 'reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06
 const stateMdPath = 'reports/agent3-state.md';
 
 const audited = inputs.map((input) => auditInput(input));
-const generatedAtOnlyRows = audited.filter((row) => row.content_equal_ignoring_generated_at).length;
+const generatedAtOnlyRows = audited.filter(
+  (row) => row.changed_top_level_fields.length === 1 && row.changed_top_level_fields[0] === 'generated_at',
+).length;
+const statusOnlyRows = audited.filter((row) => row.git_diff_has_content === false).length;
 const substantiveChangedRows = audited.filter((row) => !row.content_equal_ignoring_generated_at).length;
 
 const artifact = {
@@ -38,7 +42,7 @@ const artifact = {
   artifact_type: 'agent3_linkage_dedupe_generated_at_drift_audit',
   generated_at: new Date().toISOString(),
   lane_owner: 'Agent 3',
-  status: substantiveChangedRows === 0 ? 'generated_at_drift_only_no_new_workset' : 'substantive_drift_needs_review',
+  status: substantiveChangedRows === 0 ? 'matrix_status_only_no_new_workset' : 'substantive_drift_needs_review',
   publication_state: 'blocked_no_render',
   active_goal: 'ongoing Agent 3 linkage/dedupe/navigation lane',
   audit_scope: {
@@ -51,6 +55,7 @@ const artifact = {
   counts: {
     audited_files: audited.length,
     generated_at_only_files: generatedAtOnlyRows,
+    status_only_files: statusOnlyRows,
     substantive_changed_files: substantiveChangedRows,
     source_files_committed_by_this_package: 0,
     public_hud_rows: 0,
@@ -68,11 +73,11 @@ const artifact = {
   package_summary: {
     result:
       substantiveChangedRows === 0
-        ? 'No substantive linkage/dedupe/navigation change detected; modified source artifacts are generated_at churn only.'
+        ? 'No substantive linkage/dedupe/navigation change detected; git status reports modified matrix artifacts but git diff is empty for the audited files.'
         : 'Substantive linkage/dedupe/navigation drift detected; review required before packaging.',
     next_agent3_action:
       substantiveChangedRows === 0
-        ? 'do not package regenerated source artifacts as new evidence; wait for exact changed workset or returned artifact'
+        ? 'do not package status-only source artifacts as new evidence; wait for exact changed workset or returned artifact'
         : 'stop and review changed fields before any handoff',
     executable_workset_created: false,
   },
@@ -95,8 +100,8 @@ const artifact = {
     'git diff --check -- reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.md scripts/build_agent3_linkage_dedupe_generated_at_drift_audit.mjs scripts/validate_agent3_linkage_dedupe_generated_at_drift_audit.mjs reports/agent3-state.md',
   ],
   what_remains_blocked: [
-    'The regenerated Orot and Deuteronomy source artifacts are not committed by this package.',
-    'No new executable Agent 3 workset exists from generated_at-only drift.',
+    'The status-only Orot and Deuteronomy source artifacts are not committed by this package.',
+    'No new executable Agent 3 workset exists from status-only matrix noise.',
     'All publication, Definition authority, answer, runtime, source, token-index, lexical payload, and accepted-text paths remain blocked.',
   ],
 };
@@ -110,7 +115,10 @@ console.log(JSON.stringify({ ok: true, output_json: outputJson, output_md: outpu
 function auditInput(input) {
   const currentText = fs.readFileSync(resolve(input.path), 'utf8');
   const current = JSON.parse(currentText);
-  const changedFields = current.generated_at === input.head_generated_at_observed_by_git_diff ? [] : ['generated_at'];
+  const gitDiff = git(['diff', '--', input.path]);
+  const gitStatusShort = git(['status', '--short', '--', input.path]).trim();
+  const gitDiffHasContent = gitDiff.trim().length > 0;
+  const changedFields = gitDiffHasContent && current.generated_at !== input.head_generated_at_observed_by_git_diff ? ['generated_at'] : [];
   const substantiveChangedFields = changedFields.filter((field) => field !== 'generated_at');
   const counts = current.counts || {};
   return {
@@ -122,8 +130,11 @@ function auditInput(input) {
     changed_top_level_fields: changedFields,
     substantive_changed_fields: substantiveChangedFields,
     content_equal_ignoring_generated_at: true,
-    diff_basis:
-      'Manual gate command `git diff --unified=3 -- <path>` observed a single generated_at hunk before package build.',
+    git_status_short: gitStatusShort,
+    git_diff_has_content: gitDiffHasContent,
+    diff_basis: gitDiffHasContent
+      ? 'Gate command `git diff -- <path>` returned content; changed fields were limited to generated_at.'
+      : 'Gate command `git diff -- <path>` returned empty; git status may still show modified because of index/stat/line-ending metadata.',
     status: current.status,
     artifact_type: current.artifact_type,
     counts: {
@@ -149,6 +160,10 @@ function auditInput(input) {
       exact_blocker_occurrences: input.expected_exact_blocker_occurrences,
     },
   };
+}
+
+function git(args) {
+  return execFileSync('git', args, { cwd: root, encoding: 'utf8' });
 }
 
 function sha256(value) {
@@ -179,6 +194,7 @@ function renderMarkdown(value) {
 - Publication state: \`${value.publication_state}\`
 - Audited files: \`${value.counts.audited_files}\`
 - Generated-at-only files: \`${value.counts.generated_at_only_files}\`
+- Status-only files: \`${value.counts.status_only_files}\`
 - Substantive changed files: \`${value.counts.substantive_changed_files}\`
 - Source files committed by this package: \`${value.counts.source_files_committed_by_this_package}\`
 
@@ -188,12 +204,12 @@ ${value.package_summary.result}
 
 ## Audited Artifacts
 
-| Role | Rows | Occurrences | Blocker rows | Changed fields | Substantive fields |
-| --- | ---: | ---: | ---: | --- | --- |
+| Role | Rows | Occurrences | Blocker rows | Git status | Git diff content | Changed fields | Substantive fields |
+| --- | ---: | ---: | ---: | --- | --- | --- | --- |
 ${value.audited_artifacts
   .map(
     (row) =>
-      `| ${row.role} | ${row.counts.rows} | ${row.counts.occurrences} | ${row.counts.exact_blocker_rows} | ${row.changed_top_level_fields.join(', ') || 'none'} | ${row.substantive_changed_fields.join(', ') || 'none'} |`,
+      `| ${row.role} | ${row.counts.rows} | ${row.counts.occurrences} | ${row.counts.exact_blocker_rows} | ${row.git_status_short || 'clean'} | ${row.git_diff_has_content ? 'yes' : 'no'} | ${row.changed_top_level_fields.join(', ') || 'none'} | ${row.substantive_changed_fields.join(', ') || 'none'} |`,
   )
   .join('\n')}
 
@@ -221,7 +237,7 @@ function updateStateMarkdown(value) {
 - Package: \`${outputMd}\`
 - JSON: \`${outputJson}\`
 - Status: \`${value.status}\`
-- Audited files: ${value.counts.audited_files}; generated-at-only: ${value.counts.generated_at_only_files}; substantive changed: ${value.counts.substantive_changed_files}.
+- Audited files: ${value.counts.audited_files}; status-only: ${value.counts.status_only_files}; generated-at-only: ${value.counts.generated_at_only_files}; substantive changed: ${value.counts.substantive_changed_files}.
 - Boundary: observer audit only; regenerated source artifacts not committed and no executable/public/Definition/answer path authorized.
 
 ${end}`;

@@ -21,11 +21,12 @@ const issues = [];
 
 expect(artifact.schema_version === 1, 'schema_version must be 1');
 expect(artifact.artifact_type === 'agent3_linkage_dedupe_generated_at_drift_audit', 'unexpected artifact_type');
-expect(artifact.status === 'generated_at_drift_only_no_new_workset', 'status must be generated_at drift only');
+expect(artifact.status === 'matrix_status_only_no_new_workset', 'status must be matrix status-only no-new-workset');
 expect(artifact.publication_state === 'blocked_no_render', 'publication_state must be blocked_no_render');
 expect(artifact.lane_owner === 'Agent 3', 'lane_owner must be Agent 3');
 expect(artifact.counts?.audited_files === expectedInputs.length, 'audited file count mismatch');
-expect(artifact.counts?.generated_at_only_files === expectedInputs.length, 'generated-at-only file count mismatch');
+expect(artifact.counts?.status_only_files === expectedInputs.length, 'status-only file count mismatch');
+expect(artifact.counts?.generated_at_only_files === 0, 'generated-at-only file count must be 0 when git diff is empty');
 expect(artifact.counts?.substantive_changed_files === 0, 'substantive changed file count must be 0');
 expect(artifact.counts?.source_files_committed_by_this_package === 0, 'source files committed count must be 0');
 
@@ -37,19 +38,14 @@ for (const expectedInput of expectedInputs) {
   if (!row) continue;
   const current = readJson(expectedPath);
   expect(row.content_equal_ignoring_generated_at === true, `${expectedPath} must match HEAD ignoring generated_at`);
-  expect(
-    JSON.stringify(row.changed_top_level_fields) === JSON.stringify(['generated_at']),
-    `${expectedPath} changed_top_level_fields mismatch`,
-  );
+  expect(row.git_diff_has_content === false, `${expectedPath} git diff must be empty`);
+  expect(typeof row.git_status_short === 'string', `${expectedPath} git_status_short must be recorded`);
+  expect(row.changed_top_level_fields.length === 0, `${expectedPath} changed_top_level_fields must be empty`);
   expect(row.substantive_changed_fields.length === 0, `${expectedPath} artifact substantive fields not empty`);
   expect(row.worktree_generated_at === current.generated_at, `${expectedPath} worktree generated_at mismatch`);
   expect(
     row.head_generated_at_observed_by_git_diff === expectedInput.head_generated_at_observed_by_git_diff,
     `${expectedPath} observed HEAD generated_at mismatch`,
-  );
-  expect(
-    row.worktree_generated_at !== row.head_generated_at_observed_by_git_diff,
-    `${expectedPath} generated_at should differ from observed HEAD value`,
   );
   expect(row.counts.rows === row.expected_counts.rows, `${expectedPath} row count mismatch`);
   expect(row.counts.occurrences === row.expected_counts.occurrences, `${expectedPath} occurrence count mismatch`);

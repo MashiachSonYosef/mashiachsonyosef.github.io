@@ -3,23 +3,24 @@
 ## Status
 
 - Artifact: `reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json`
-- Status: `generated_at_drift_only_no_new_workset`
+- Status: `matrix_status_only_no_new_workset`
 - Publication state: `blocked_no_render`
 - Audited files: `2`
-- Generated-at-only files: `2`
+- Generated-at-only files: `0`
+- Status-only files: `2`
 - Substantive changed files: `0`
 - Source files committed by this package: `0`
 
 ## Result
 
-No substantive linkage/dedupe/navigation change detected; modified source artifacts are generated_at churn only.
+No substantive linkage/dedupe/navigation change detected; git status reports modified matrix artifacts but git diff is empty for the audited files.
 
 ## Audited Artifacts
 
-| Role | Rows | Occurrences | Blocker rows | Changed fields | Substantive fields |
-| --- | ---: | ---: | ---: | --- | --- |
-| orot_169_row_route_card_candidate_card_dedupe_review | 169 | 2148 | 168 | generated_at | none |
-| deuteronomy_phase2_linkage_dedupe_source_route_matrix | 8113 | 12595 | 6779 | generated_at | none |
+| Role | Rows | Occurrences | Blocker rows | Git status | Git diff content | Changed fields | Substantive fields |
+| --- | ---: | ---: | ---: | --- | --- | --- | --- |
+| orot_169_row_route_card_candidate_card_dedupe_review | 169 | 2148 | 168 | M reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json | no | none | none |
+| deuteronomy_phase2_linkage_dedupe_source_route_matrix | 8113 | 12595 | 6779 | M reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json | no | none | none |
 
 ## Boundary
 
@@ -27,8 +28,8 @@ This is an observer audit only. It does not commit the regenerated source artifa
 
 ## Remaining Blockers
 
-- The regenerated Orot and Deuteronomy source artifacts are not committed by this package.
-- No new executable Agent 3 workset exists from generated_at-only drift.
+- The status-only Orot and Deuteronomy source artifacts are not committed by this package.
+- No new executable Agent 3 workset exists from status-only matrix noise.
 - All publication, Definition authority, answer, runtime, source, token-index, lexical payload, and accepted-text paths remain blocked.
 
 ## Validation

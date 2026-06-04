@@ -242,6 +242,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-current-control-drift-refresh-2026-06-04.md',
   'reports/agent3-next-deterministic-matrix-workset-blocker-2026-06-04.json',
   'reports/agent3-next-deterministic-matrix-workset-blocker-2026-06-04.md',
+  'reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json',
+  'reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.md',
   'data/definitions/definition-workbench-usage-link-packet.json',
   'reports/definition-workbench-usage-link-packet.md',
   'data/definitions/definition-workbench-usage-seed-queue.json',
@@ -288,6 +290,7 @@ const validators = unique([
   'scripts/validate_agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker.mjs',
   'scripts/validate_agent3_current_control_drift_refresh.mjs',
   'scripts/validate_agent3_next_deterministic_matrix_workset_blocker.mjs',
+  'scripts/validate_agent3_linkage_dedupe_generated_at_drift_audit.mjs',
   'scripts/validate_agent3_usage_state.mjs',
 ]);
 const counts = buildCounts();

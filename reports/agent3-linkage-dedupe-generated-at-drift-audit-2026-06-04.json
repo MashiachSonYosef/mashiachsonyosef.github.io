@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_linkage_dedupe_generated_at_drift_audit",
-  "generated_at": "2026-06-04T17:26:28.996Z",
+  "generated_at": "2026-06-04T23:18:59.054Z",
   "lane_owner": "Agent 3",
-  "status": "generated_at_drift_only_no_new_workset",
+  "status": "matrix_status_only_no_new_workset",
   "publication_state": "blocked_no_render",
   "active_goal": "ongoing Agent 3 linkage/dedupe/navigation lane",
   "audit_scope": {
@@ -15,15 +15,15 @@
     {
       "role": "orot_169_row_route_card_candidate_card_dedupe_review",
       "path": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
-      "worktree_sha256": "d2680b7ccead26bbd180f19b0bc13324a80e4c419545e59d3382eb6a4f62e67c",
-      "worktree_generated_at": "2026-06-04T16:06:01.966Z",
+      "worktree_sha256": "f0d601c42706974181752e887c6a4de393ce6b5f036da7807d0c12c6eeb17d8f",
+      "worktree_generated_at": "2026-06-04T13:16:27.105Z",
       "head_generated_at_observed_by_git_diff": "2026-06-04T13:16:27.105Z",
-      "changed_top_level_fields": [
-        "generated_at"
-      ],
+      "changed_top_level_fields": [],
       "substantive_changed_fields": [],
       "content_equal_ignoring_generated_at": true,
-      "diff_basis": "Manual gate command `git diff --unified=3 -- <path>` observed a single generated_at hunk before package build.",
+      "git_status_short": "M reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
+      "git_diff_has_content": false,
+      "diff_basis": "Gate command `git diff -- <path>` returned empty; git status may still show modified because of index/stat/line-ending metadata.",
       "status": "evidence-ready_with_exact_linkage_blockers",
       "artifact_type": "agent3_orot_169_row_route_card_candidate_card_dedupe_review",
       "counts": {
@@ -52,15 +52,15 @@
     {
       "role": "deuteronomy_phase2_linkage_dedupe_source_route_matrix",
       "path": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
-      "worktree_sha256": "e5183200ddcaf79e5cf53ea62d104d7a5ec23eabdb6c1d6ab20219ddc03507ec",
-      "worktree_generated_at": "2026-06-04T17:22:52.131Z",
+      "worktree_sha256": "ddcf128fd1af867999a0cc4305787c7e35797b8c2ea3b85f877c6b285d7390de",
+      "worktree_generated_at": "2026-06-04T13:55:17.808Z",
       "head_generated_at_observed_by_git_diff": "2026-06-04T13:55:17.808Z",
-      "changed_top_level_fields": [
-        "generated_at"
-      ],
+      "changed_top_level_fields": [],
       "substantive_changed_fields": [],
       "content_equal_ignoring_generated_at": true,
-      "diff_basis": "Manual gate command `git diff --unified=3 -- <path>` observed a single generated_at hunk before package build.",
+      "git_status_short": "M reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "git_diff_has_content": false,
+      "diff_basis": "Gate command `git diff -- <path>` returned empty; git status may still show modified because of index/stat/line-ending metadata.",
       "status": "evidence-ready_with_exact_blockers",
       "artifact_type": "agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix",
       "counts": {
@@ -89,7 +89,8 @@
   ],
   "counts": {
     "audited_files": 2,
-    "generated_at_only_files": 2,
+    "generated_at_only_files": 0,
+    "status_only_files": 2,
     "substantive_changed_files": 0,
     "source_files_committed_by_this_package": 0,
     "public_hud_rows": 0,
@@ -105,8 +106,8 @@
     "public_reader_output_rows": 0
   },
   "package_summary": {
-    "result": "No substantive linkage/dedupe/navigation change detected; modified source artifacts are generated_at churn only.",
-    "next_agent3_action": "do not package regenerated source artifacts as new evidence; wait for exact changed workset or returned artifact",
+    "result": "No substantive linkage/dedupe/navigation change detected; git status reports modified matrix artifacts but git diff is empty for the audited files.",
+    "next_agent3_action": "do not package status-only source artifacts as new evidence; wait for exact changed workset or returned artifact",
     "executable_workset_created": false
   },
   "boundary": {
@@ -128,8 +129,8 @@
     "git diff --check -- reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.md scripts/build_agent3_linkage_dedupe_generated_at_drift_audit.mjs scripts/validate_agent3_linkage_dedupe_generated_at_drift_audit.mjs reports/agent3-state.md"
   ],
   "what_remains_blocked": [
-    "The regenerated Orot and Deuteronomy source artifacts are not committed by this package.",
-    "No new executable Agent 3 workset exists from generated_at-only drift.",
+    "The status-only Orot and Deuteronomy source artifacts are not committed by this package.",
+    "No new executable Agent 3 workset exists from status-only matrix noise.",
     "All publication, Definition authority, answer, runtime, source, token-index, lexical payload, and accepted-text paths remain blocked."
   ]
 }
