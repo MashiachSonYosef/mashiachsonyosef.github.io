@@ -4,6 +4,8 @@ Status: `evidence_ready_control_drift_refresh`
 
 Scope: Agent 3 linkage/dedupe/navigation control readback only. This packet preserves current returned worksets and exact blockers; it does not create a new executable workset.
 
+Validator: `node scripts/validate_agent3_current_control_drift_refresh.mjs`
+
 ## Inputs Inspected
 
 | Input | Role | Current readback |
@@ -23,6 +25,7 @@ Scope: Agent 3 linkage/dedupe/navigation control readback only. This packet pres
 | Inputs observed | `7` |
 | Returned/validated Agent 3 worksets | `2` |
 | Spark-3 named mechanics commands returned pass | `8` |
+| Dedicated validators | `1` |
 | New Agent 3 executable worksets found | `0` |
 | Missing-pipeline blockers preserved | `1` |
 | Stale or contradictory Agent 3 queue fields observed | `4` |
