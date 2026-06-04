@@ -218,14 +218,14 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 
 ## Latest Linkage/Navigation Pulse
 
-- Generated: 2026-06-04T17:17:58.321Z
-- Package: `reports/agent3-downstream-deuteronomy-workset-blocker-observer-package-2026-06-04.json`
-- Status: `downstream_deuteronomy_no_agent3_workset_observed`
-- Current Spark-10 matrix rows/input count: 92
-- Agent 3 rows observed / handoff candidates: 11/0
-- External Agent 10 handoff candidates: 6
-- Downstream Agent 2 exact workset available now: 0
-- Boundary: observer evidence only; no executable workset, Definition authority, answer selection, route publication, runtime mutation, source/license acceptance, or accepted text.
-- Next step: wait for exact changed Agent 3 linkage/dedupe/navigation workset, direct Spark return, or downstream route needing Agent 3 packaging.
+- Generated: 2026-06-04T17:26:40.233Z
+- Package: `reports/agent3-spark10-hybrid-shadow-blocker-observer-package-2026-06-04.json`
+- Status: `spark10_hybrid_shadow_missing_pipeline_contract_observed`
+- Queue item: `spark10-hybrid-floor-release-relevance-shadow`
+- Queue inputs present/missing: 5/0
+- Missing contract fields: pipeline_commands, output_schema, validator_gate
+- Agent 3 Orot rows / exact blockers: 169/168
+- Boundary: observer evidence only; no executable workset, Spark10 command invention, Definition authority, answer selection, route publication, runtime mutation, source/license acceptance, or accepted text.
+- Next step: wait for exact Spark10 pipeline contract fields or a new Agent3-owned linkage/dedupe/navigation workset.
 
 <!-- agent3-latest-linkage-pulse-end -->
