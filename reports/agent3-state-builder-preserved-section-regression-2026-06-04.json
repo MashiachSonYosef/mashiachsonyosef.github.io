@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_state_builder_preserved_section_regression",
+  "generated_at": "2026-06-04T18:11:45.923Z",
+  "package_owner": "Agent 3",
+  "lane": "linkage_dedupe_navigation",
+  "status": "local_validated_commit_blocked",
+  "bounded_delta": "Locally hardened scripts/build_agent3_usage_state.mjs so reports/agent3-state.md regeneration preserves known Agent 3 observer and pulse sections.",
+  "inputs": [
+    "scripts/build_agent3_usage_state.mjs",
+    "reports/agent3-state.md",
+    "reports/agent3-state.json"
+  ],
+  "outputs": [
+    "reports/agent3-state-builder-preserved-section-regression-2026-06-04.md",
+    "reports/agent3-state-builder-preserved-section-regression-2026-06-04.json"
+  ],
+  "preserved_section_marker_pairs": [
+    {
+      "id": "agent3_frontier_receipt_custody_boundary_observer_package",
+      "start_marker": "<!-- agent3_frontier_receipt_custody_boundary_observer_package:start -->",
+      "end_marker": "<!-- agent3_frontier_receipt_custody_boundary_observer_package:end -->"
+    },
+    {
+      "id": "agent3_deuteronomy_source_license_custody_verdict_continuity",
+      "start_marker": "<!-- agent3_deuteronomy_source_license_custody_verdict_continuity:start -->",
+      "end_marker": "<!-- agent3_deuteronomy_source_license_custody_verdict_continuity:end -->"
+    },
+    {
+      "id": "agent3_linkage_dedupe_generated_at_drift_audit",
+      "start_marker": "<!-- agent3_linkage_dedupe_generated_at_drift_audit:start -->",
+      "end_marker": "<!-- agent3_linkage_dedupe_generated_at_drift_audit:end -->"
+    },
+    {
+      "id": "agent3_spark10_release_intake_return_observer",
+      "start_marker": "<!-- agent3_spark10_release_intake_return_observer:start -->",
+      "end_marker": "<!-- agent3_spark10_release_intake_return_observer:end -->"
+    },
+    {
+      "id": "agent3_latest_linkage_pulse",
+      "start_marker": "<!-- agent3-latest-linkage-pulse-start -->",
+      "end_marker": "<!-- agent3-latest-linkage-pulse-end -->"
+    }
+  ],
+  "counts": {
+    "preserved_section_pairs_configured": 5,
+    "preserved_section_starts_found_after_regeneration": 5,
+    "preserved_section_ends_found_after_regeneration": 5,
+    "state_evidence_artifacts": 59,
+    "state_evidence_artifacts_present": 59,
+    "state_validators": 31,
+    "state_validators_present": 31,
+    "smoke_failed_steps": 0
+  },
+  "validation": [
+    {
+      "command": "node --check scripts\\build_agent3_usage_state.mjs",
+      "status": "passed"
+    },
+    {
+      "command": "node scripts\\build_agent3_usage_state.mjs",
+      "status": "passed",
+      "observed_output": "Agent 3 state pass_with_warnings; evidence 59/59; validators 31/31"
+    },
+    {
+      "command": "rg -n \"agent3_frontier_receipt|agent3_deuteronomy_source_license|agent3_linkage_dedupe|agent3_spark10_release|agent3-latest-linkage-pulse\" reports\\agent3-state.md",
+      "status": "passed",
+      "observed_output": "5 start markers and 5 end markers found after regeneration"
+    },
+    {
+      "command": "node scripts\\validate_agent3_usage_state.mjs",
+      "status": "passed",
+      "observed_output": "Evidence artifacts: 59/59; validators: 31/31; smoke failed: 0"
+    }
+  ],
+  "commit_blocker": {
+    "blocked": true,
+    "reason": "scripts/build_agent3_usage_state.mjs and scripts/validate_agent3_usage_state.mjs already have large pre-existing staged Agent 3 baseline changes. Committing the local 43-line preservation delta to the builder would either absorb that staged baseline or require rewriting/unstaging another agent's index state.",
+    "preexisting_staged_files": [
+      {
+        "path": "scripts/build_agent3_usage_state.mjs",
+        "cached_stat": "1010 insertions, 1 deletion"
+      },
+      {
+        "path": "scripts/validate_agent3_usage_state.mjs",
+        "cached_stat": "1575 insertions, 1 deletion"
+      }
+    ],
+    "local_unstaged_delta": {
+      "path": "scripts/build_agent3_usage_state.mjs",
+      "stat": "42 insertions, 1 deletion",
+      "meaning": "preserved-section marker list plus append/extract helpers"
+    },
+    "safe_commit_path": "Commit or clear the pre-existing Agent 3 builder/validator baseline first, then commit the preservation delta and rerun node scripts\\build_agent3_usage_state.mjs plus node scripts\\validate_agent3_usage_state.mjs."
+  },
+  "boundary": {
+    "usage_as_definition_authority": false,
+    "definition_answer_selection": false,
+    "route_publication_support": false,
+    "qa_acceptance_claim": false,
+    "source_license_acceptance_claim": false,
+    "public_runtime_mutation": false,
+    "accepted_gloss_or_text": false
+  },
+  "known_risk": "The preservation patch is local working-tree evidence until the pre-existing staged Agent 3 builder baseline is committed or cleared. The preserved marker list is explicit, so new append-only Agent 3 state sections need a new marker pair before they are safe across regeneration.",
+  "next_step": "If another Agent 3 append-only state section becomes durable, add its marker pair to the preservation list before relying on build_agent3_usage_state.mjs regeneration."
+}
