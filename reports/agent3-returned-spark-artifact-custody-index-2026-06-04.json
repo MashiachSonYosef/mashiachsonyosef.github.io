@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_returned_spark_artifact_custody_index",
+  "generated_at": "2026-06-04T23:38:17.097Z",
+  "lane_owner": "Agent 3",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "status": "evidence_ready_returned_spark_custody_index",
+  "target": "Returned Spark and downstream linkage artifacts for active Orot and Deuteronomy worksets.",
+  "files": {
+    "input_files": [
+      "reports/agent3-active-workset-handoff-index-2026-06-04.json",
+      "reports/agent3-next-deterministic-matrix-workset-blocker-2026-06-04.json",
+      "reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json",
+      "reports/agent3-frontier-receipt-custody-boundary-observer-package-2026-06-04.json",
+      "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
+      "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "reports/spark3-orot-169-row-route-card-candidate-card-dedupe-contract-run-2026-06-04.md",
+      "reports/spark1-deuteronomy-phase2-linkage-dedupe-source-route-run-2026-06-04.md",
+      "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
+      "reports/spark3-broad-linkage-dedupe-navigation-2026-06-04-report.md",
+      "data/control/spark_standing_queue.json"
+    ],
+    "output_json": "reports/agent3-returned-spark-artifact-custody-index-2026-06-04.json",
+    "output_markdown": "reports/agent3-returned-spark-artifact-custody-index-2026-06-04.md"
+  },
+  "exact_command_or_script_to_write_or_run": "node scripts/build_agent3_returned_spark_artifact_custody_index.mjs",
+  "schema_counts": {
+    "returned_artifacts_indexed": 4,
+    "returned_artifacts_consumed": 4,
+    "unconsumed_returned_artifacts": 0,
+    "active_worksets_indexed": 2,
+    "total_rows": 8282,
+    "total_occurrences": 14743,
+    "matched_rows": 1335,
+    "matched_occurrences": 2995,
+    "blocker_rows": 6947,
+    "blocker_occurrences": 11748,
+    "changed_artifacts_found": 0,
+    "exact_new_worksets_found": 0,
+    "new_matrix_rows": 0,
+    "new_matrix_occurrences": 0,
+    "route_publication_support_rows": 0,
+    "definition_authority_rows": 0,
+    "usage_as_definition_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0
+  },
+  "returned_artifacts": [
+    {
+      "id": "spark3_orot_169_row_contract_run",
+      "runner": "Spark-3",
+      "returned_artifact": "reports/spark3-orot-169-row-route-card-candidate-card-dedupe-contract-run-2026-06-04.md",
+      "returned_artifact_sha256": "4c82a21bee024fd070cec3ee8e183dadfac14848aa0d409e797e344854edac6f",
+      "returned_artifact_bytes": 1536,
+      "role": "Orot 169-row route-card/candidate-card dedupe contract run return.",
+      "consumed_by": [
+        "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
+        "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.md"
+      ],
+      "consume_status": "consumed",
+      "missing_consumers": [],
+      "rows": 169,
+      "occurrences": 2148,
+      "blocker_rows": 168,
+      "blocker_occurrences": 2117,
+      "disposition": "consumed_by_agent3_orot_dedupe_review"
+    },
+    {
+      "id": "spark1_deuteronomy_phase2_contract_run",
+      "runner": "Spark-1",
+      "returned_artifact": "reports/spark1-deuteronomy-phase2-linkage-dedupe-source-route-run-2026-06-04.md",
+      "returned_artifact_sha256": "844c1e8928e4a9581780b8ccfd84e6c3d57a78c9378750568e9581f08752213d",
+      "returned_artifact_bytes": 1080,
+      "role": "Deuteronomy phase-2 linkage/dedupe/source-route contract run return.",
+      "consumed_by": [
+        "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+        "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.md"
+      ],
+      "consume_status": "consumed",
+      "missing_consumers": [],
+      "rows": 8113,
+      "occurrences": 12595,
+      "blocker_rows": 6779,
+      "blocker_occurrences": 9631,
+      "disposition": "consumed_by_agent3_deuteronomy_phase2_matrix"
+    },
+    {
+      "id": "spark10_orot_169_row_source_route_matrix",
+      "runner": "Spark-10",
+      "returned_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
+      "returned_artifact_sha256": "a349c7af42827e4ba8a76a8f91600bfc52ecbdebad62c21292073c4e3e0ce79a",
+      "returned_artifact_bytes": 180373,
+      "role": "Orot local route-card source-route matrix used as row-count input for Agent 3 dedupe review.",
+      "consumed_by": [
+        "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
+        "reports/agent3-broad-linkage-dedupe-navigation-package-2026-06-04.json"
+      ],
+      "consume_status": "consumed",
+      "missing_consumers": [],
+      "rows": 169,
+      "occurrences": 2148,
+      "blocker_rows": 168,
+      "blocker_occurrences": 2117,
+      "disposition": "consumed_as_orot_count_source_not_package_authority"
+    },
+    {
+      "id": "spark3_broad_linkage_dedupe_navigation_return",
+      "runner": "Spark-3",
+      "returned_artifact": "reports/spark3-broad-linkage-dedupe-navigation-2026-06-04-report.md",
+      "returned_artifact_sha256": "d06a3a64b5fa9d90c959724bb128e8b02c133b931826ed209d41370a9a38c8a8",
+      "returned_artifact_bytes": 2362,
+      "role": "Broad Spark-3 linkage/dedupe/navigation return with no next queued item.",
+      "consumed_by": [
+        "reports/agent3-broad-linkage-dedupe-navigation-package-2026-06-04.json",
+        "reports/agent3-active-workset-handoff-index-2026-06-04.json"
+      ],
+      "consume_status": "consumed",
+      "missing_consumers": [],
+      "rows": null,
+      "occurrences": null,
+      "blocker_rows": 0,
+      "blocker_occurrences": 0,
+      "disposition": "consumed_as_prior_return_no_new_workset"
+    }
+  ],
+  "active_workset_handoff": {
+    "artifact": "reports/agent3-active-workset-handoff-index-2026-06-04.json",
+    "status": "evidence_ready_active_workset_handoff_index",
+    "rows": 8282,
+    "occurrences": 14743,
+    "blocker_rows": 6947,
+    "blocker_occurrences": 11748,
+    "handoff_owner": "Agent 10 for release/package intake planning; Agent 6 only through release-owner boundary packet."
+  },
+  "current_blocker": {
+    "artifact": "reports/agent3-next-deterministic-matrix-workset-blocker-2026-06-04.json",
+    "blocker": "missing_changed_artifact_or_exact_workset",
+    "changed_artifacts_found": 0,
+    "exact_new_worksets_found": 0,
+    "wake_condition": "Wake Agent 3 only when Agent 10, Agent 7, or the queue supplies a changed artifact or exact workset with named inputs, rows/occurrences, output path/schema, validator/gate, handoff owner, and stop condition."
+  },
+  "drift_audit": {
+    "artifact": "reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json",
+    "status": "matrix_status_only_no_new_workset",
+    "audited_files": 2,
+    "status_only_files": 2,
+    "substantive_changed_files": 0
+  },
+  "frontier_observer": {
+    "artifact": "reports/agent3-frontier-receipt-custody-boundary-observer-package-2026-06-04.json",
+    "status": "evidence_ready_observer_package",
+    "source_license_custody_rows_observed": 0,
+    "external_row_payloads_copied_into_agent3": 0
+  },
+  "validator": "node scripts/validate_agent3_returned_spark_artifact_custody_index.mjs",
+  "missing_field_blocker": {
+    "blocker": "missing_changed_artifact_or_exact_workset",
+    "missing_fields": [
+      "changed_artifact_path_or_exact_workset_id",
+      "target_rows_and_occurrences_for_new_matrix",
+      "route_card_or_source_route_input_set",
+      "output_path_and_schema_for_new_matrix",
+      "validator_or_gate_for_new_matrix",
+      "handoff_trigger_for_agent10_release_package_intake",
+      "stop_condition_for_new_matrix_run"
+    ]
+  },
+  "handoff_owner": "Agent 10 for release/package intake planning; Agent 6 only by exact boundary packet prepared through release owner.",
+  "stop_condition": "Stop after returned-artifact custody index proves current Spark returns are consumed and no new matrix workset is present.",
+  "boundary": {
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_selection": false,
+    "route_publication_support": false,
+    "public_runtime_acceptance": false,
+    "publication_readiness": false,
+    "product_data_acceptance": false,
+    "accepted_gloss_text": false,
+    "public_runtime_mutation": false
+  }
+}
