@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_spark3_contract_status_reconciliation",
+  "generated_at": "2026-06-04T18:25:09.394Z",
+  "package_owner": "Agent 3",
+  "lane": "linkage_dedupe_navigation",
+  "status": "contract_present_status_stale",
+  "observed_status_artifact": "reports/spark3-standing-goal-mode-status-2026-06-04.md",
+  "observed_status_artifact_git_state": "untracked_current_worktree_evidence",
+  "observed_status_claim": "awaiting_pipeline_contract",
+  "observed_status_blocker": "missing_pipeline_contract",
+  "resolved_by_contract": {
+    "json": "reports/agent3-spark3-linkage-dedupe-navigation-pipeline-contract-2026-06-04.json",
+    "markdown": "reports/agent3-spark3-linkage-dedupe-navigation-pipeline-contract-2026-06-04.md",
+    "git_state": "tracked_clean_at_scan",
+    "contract_status": "runnable_contract_for_first_target"
+  },
+  "contract_target": {
+    "work": "Orot",
+    "workset": "route-card/candidate-card dedupe closure",
+    "rows": 169,
+    "occurrences": 2148
+  },
+  "contract_counts": {
+    "inputs": 5,
+    "existing_inputs": 5,
+    "outputs": 2,
+    "existing_outputs": 2,
+    "commands": 2,
+    "command_scripts": 2,
+    "existing_command_scripts": 2,
+    "exact_blocker_rows": 168,
+    "exact_blocker_occurrences": 2117,
+    "public_hud_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "validation": [
+    {
+      "command": "node scripts\\validate_agent3_orot_route_card_candidate_card_dedupe_review.mjs",
+      "status": "passed",
+      "observed_output": "rows 169; blocker rows 168; duplicate keys 169"
+    },
+    {
+      "command": "contract existence scan",
+      "status": "passed",
+      "observed_output": "5/5 inputs, 2/2 outputs, and 2/2 command scripts exist"
+    },
+    {
+      "command": "Spark-3 status readback",
+      "status": "contradicts_current_contract_files",
+      "observed_output": "status artifact still reports awaiting_pipeline_contract and missing_pipeline_contract"
+    }
+  ],
+  "result": "The current Spark-3 standing status is stale relative to tracked Agent 3 contract files. Spark-3 should consume the existing contract or refresh its standing status; Agent 3 does not need to author another Spark-3 Orot 169-row contract unless the contract schema changes.",
+  "next_wake_condition": "Wake Spark-3 with reports/agent3-spark3-linkage-dedupe-navigation-pipeline-contract-2026-06-04.json and the listed pipeline commands, or ask Agent 3 for a changed contract only if a required input/output/schema/count changes.",
+  "boundary": {
+    "usage_as_definition_authority": false,
+    "definition_answer_selection": false,
+    "route_publication_support": false,
+    "qa_acceptance_claim": false,
+    "source_license_acceptance_claim": false,
+    "public_runtime_mutation": false,
+    "accepted_gloss_or_text": false
+  },
+  "known_risk": "This packet reconciles current files only. The stale Spark-3 status artifact is untracked current-worktree evidence, and this packet does not prove Spark-3 consumed the contract after this packet.",
+  "what_must_not_be_accepted": [
+    "route publication support",
+    "definition/answer selection",
+    "usage-as-definition authority",
+    "QA acceptance",
+    "source/provenance/license acceptance",
+    "Definition acceptance",
+    "runtime/public acceptance",
+    "publication readiness",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "accepted text"
+  ]
+}

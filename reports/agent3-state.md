@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-04T15:20:41.134Z
+Generated: 2026-06-04T18:27:14.521Z
 
 ## State
 
@@ -229,3 +229,18 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 - Next step: supply an exact Agent3/Spark-3 command packet before any Oracle9 missed-dictionary evidence-diff execution.
 
 <!-- agent3-latest-linkage-pulse-end -->
+
+<!-- agent3_spark3_contract_status_reconciliation:start -->
+
+## Latest Spark-3 Contract Status Reconciliation
+
+- Package: `reports/agent3-spark3-contract-status-reconciliation-2026-06-04.md`
+- JSON: `reports/agent3-spark3-contract-status-reconciliation-2026-06-04.json`
+- Status: `contract_present_status_stale`
+- Observed stale status: Spark-3 still reports `awaiting_pipeline_contract` / `missing_pipeline_contract`.
+- Current contract: `reports/agent3-spark3-linkage-dedupe-navigation-pipeline-contract-2026-06-04.json`, status `runnable_contract_for_first_target`.
+- Counts: 169 rows / 2148 occurrences; inputs 5/5; outputs 2/2; command scripts 2/2; exact blockers 168 rows / 2117 occurrences.
+- Validation: Orot 169-row dedupe validator passed with 169 rows, 168 blocker rows, and 169 duplicate keys.
+- Boundary: reconciliation only; no QA/source/license/Definition/runtime/publication/answer acceptance and no public/runtime mutation.
+
+<!-- agent3_spark3_contract_status_reconciliation:end -->

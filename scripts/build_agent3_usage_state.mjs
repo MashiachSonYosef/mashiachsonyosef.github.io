@@ -59,6 +59,10 @@ const preservedReportSections = [
     '<!-- agent3-latest-linkage-pulse-start -->',
     '<!-- agent3-latest-linkage-pulse-end -->',
   ],
+  [
+    '<!-- agent3_spark3_contract_status_reconciliation:start -->',
+    '<!-- agent3_spark3_contract_status_reconciliation:end -->',
+  ],
 ];
 
 const options = parseArgs(process.argv.slice(2));
