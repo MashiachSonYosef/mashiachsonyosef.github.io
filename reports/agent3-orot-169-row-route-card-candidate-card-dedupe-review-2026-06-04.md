@@ -10,18 +10,24 @@ Workset: route-card/candidate-card dedupe closure.
 
 Boundary: no route publication support, no definition/answer selection, no usage-as-definition authority, no QA/source/provenance/license/Definition/runtime/publication/product/answer acceptance, no accepted gloss/text, and no public/runtime mutation.
 
-## Source Artifact
+## Inputs
 
-- Source JSON: `reports/agent3-spark3-dedupe-candidate-cards-against-route-cards-2026-06-04.json`
-- Source report: `reports/agent3-spark3-dedupe-candidate-cards-against-route-cards-2026-06-04.md`
+- `reports/agent3-broad-linkage-dedupe-navigation-package-2026-06-04.md`
+- `reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json`
+- `reports/agent10-orot-186-row-nohit-inventory-packet-2026-06-04.json`
+- `data/build/orot/reader-hint-placeholder-candidates.json`
+- `reports/spark3-broad-linkage-dedupe-navigation-2026-06-04-report.md`
+
+## Commands
+
+- `node scripts/build_agent3_orot_route_card_candidate_card_dedupe_review.mjs`
+- `node scripts/validate_agent3_orot_route_card_candidate_card_dedupe_review.mjs`
 
 ## Counts
 
 - Rows: 169.
 - Occurrences: 2148.
 - Unique token IDs: 169.
-- Duplicate keys: 169.
-- Unique duplicate keys: 169.
 - Duplicate-key collision groups: 0.
 - Route-card count total: 7476.
 - Candidate-card count total: 559.
@@ -46,7 +52,7 @@ Boundary: no route publication support, no definition/answer selection, no usage
 - count_level_card_evidence_present: passed; route/candidate count evidence rows 169/169.
 - package_anchor_blockers_preserved: passed; blocker rows 168/168.
 - authority_zero_gate: passed; public/runtime/answer/definition/accepted-text/source mutation counters are zero.
-- orot_expected_path_packaging: passed; Closure artifact generated at Agent 7 expected Orot hardening path without changing source counts or row evidence..
+- orot_expected_path_packaging: passed; Closure artifact generated at Agent 7 expected Orot hardening path without changing source counts or row evidence.
 
 ## Stop Condition
 
@@ -57,3 +63,4 @@ Return Orot 169-row route-card/candidate-card dedupe review artifact with eviden
 - 168 rows / 2117 occurrences still lack package-anchor evidence and remain exact blockers.
 - Detailed route/candidate/ambiguity card payload matching remains blocked because the referenced matrix and source packet expose counts, not per-card payload arrays or card IDs.
 - No route publication support is available from this packet.
+

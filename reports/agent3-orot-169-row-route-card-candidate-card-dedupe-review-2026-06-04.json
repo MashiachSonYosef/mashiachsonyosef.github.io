@@ -1,24 +1,40 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_orot_169_row_route_card_candidate_card_dedupe_review",
-  "generated_at": "2026-06-04T12:50:33.571Z",
+  "generated_at": "2026-06-04T13:16:27.105Z",
+  "generator": "scripts/build_agent3_orot_route_card_candidate_card_dedupe_review.mjs",
   "lane_owner": "Agent 3 + Spark-3",
   "active_mode": [
     "BROAD_CORPUS_EXPANSION",
     "OROT_PROTOTYPE_HARDENING"
   ],
   "workset": "route-card/candidate-card dedupe closure",
+  "source_workset": "dedupe_candidate_cards_against_route_cards",
   "status": "evidence-ready_with_exact_linkage_blockers",
   "publication_state": "blocked_no_render",
-  "source_artifact": {
-    "path": "reports/agent3-spark3-dedupe-candidate-cards-against-route-cards-2026-06-04.json",
-    "sha256": "b965b191015dc4d47a07be6199d0c1d99c48a903fd5416a5e58787b11d447c30"
+  "target_gate": "Agent 10 / Agent 6 review queue only",
+  "inputs": {
+    "agent3_package": {
+      "path": "reports/agent3-broad-linkage-dedupe-navigation-package-2026-06-04.md",
+      "sha256": "443eb9d5b8c19a17052b16d32cece77c22f4ccec8a46644609de2671f8640442"
+    },
+    "spark10_matrix": {
+      "path": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
+      "sha256": "a349c7af42827e4ba8a76a8f91600bfc52ecbdebad62c21292073c4e3e0ce79a"
+    },
+    "source_nohit_packet": {
+      "path": "reports/agent10-orot-186-row-nohit-inventory-packet-2026-06-04.json",
+      "sha256": "6d7f489e81210216948a6b5e94292eef7fcbf52cb552c632af99fad1b5cc4483"
+    },
+    "package_anchor": {
+      "path": "data/build/orot/reader-hint-placeholder-candidates.json",
+      "sha256": "ce295378dae0c03d631fe9ee11775789bf2aac90d17d184eeeb8a961de3673f3"
+    },
+    "spark3_return": {
+      "path": "reports/spark3-broad-linkage-dedupe-navigation-2026-06-04-report.md",
+      "sha256": "d06a3a64b5fa9d90c959724bb128e8b02c133b931826ed209d41370a9a38c8a8"
+    }
   },
-  "source_report": {
-    "path": "reports/agent3-spark3-dedupe-candidate-cards-against-route-cards-2026-06-04.md",
-    "sha256": "60e73f8d031d1b4c25831d583ad680ef50d291a3609d5d960dd75b0e6f5f6914"
-  },
-  "source_workset": "dedupe_candidate_cards_against_route_cards",
   "scope": {
     "target": "Orot 169-row route-card/candidate-card dedupe review",
     "rows": 169,
@@ -94,7 +110,7 @@
   "matched_route_card_evidence_scope": {
     "status": "count_level_only_from_existing_matrix_and_nohit_packet",
     "detail_payload_status": "blocked_missing_route_candidate_ambiguity_card_payload_schema",
-    "note": "The referenced package and matrix expose per-token route/candidate/ambiguity counts, not detailed card payload arrays or card IDs. This review therefore preserves count-level matched evidence and exact package-anchor blockers without inventing card matches."
+    "note": "The referenced package and matrix expose per-token route/candidate/ambiguity counts, not detailed card payload arrays or card IDs. This review preserves count-level matched evidence and exact package-anchor blockers without inventing card matches."
   },
   "exact_blocker_summary": {
     "package_anchor_blocker": "missing_package_anchor_evidence",
@@ -142,7 +158,7 @@
     {
       "id": "orot_expected_path_packaging",
       "status": "passed",
-      "detail": "Closure artifact generated at Agent 7 expected Orot hardening path without changing source counts or row evidence."
+      "detail": "Closure artifact generated at Agent 7 expected Orot hardening path without changing source counts or row evidence"
     }
   ],
   "rows": [
@@ -175,7 +191,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -224,7 +240,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -273,7 +289,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -371,7 +387,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -469,7 +485,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -567,7 +583,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -616,7 +632,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -721,7 +737,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -868,7 +884,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -917,7 +933,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -966,7 +982,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1064,7 +1080,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1211,7 +1227,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1309,7 +1325,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1358,7 +1374,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1407,7 +1423,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1505,7 +1521,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1603,7 +1619,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1652,7 +1668,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1701,7 +1717,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1750,7 +1766,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1799,7 +1815,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1848,7 +1864,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1897,7 +1913,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -1946,7 +1962,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2044,7 +2060,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2093,7 +2109,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2142,7 +2158,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2191,7 +2207,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2240,7 +2256,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2338,7 +2354,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2387,7 +2403,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2583,7 +2599,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2779,7 +2795,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2828,7 +2844,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -2877,7 +2893,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3073,7 +3089,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3171,7 +3187,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3220,7 +3236,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3269,7 +3285,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3318,7 +3334,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3367,7 +3383,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3416,7 +3432,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3465,7 +3481,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3661,7 +3677,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3710,7 +3726,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3759,7 +3775,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3808,7 +3824,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3857,7 +3873,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -3955,7 +3971,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -4004,7 +4020,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -4200,7 +4216,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -4249,7 +4265,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -4347,7 +4363,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -4445,7 +4461,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -4543,7 +4559,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -4592,7 +4608,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -4690,7 +4706,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -4886,7 +4902,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5033,7 +5049,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5131,7 +5147,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5327,7 +5343,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5376,7 +5392,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5523,7 +5539,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5719,7 +5735,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5768,7 +5784,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5817,7 +5833,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5915,7 +5931,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -5964,7 +5980,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6013,7 +6029,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6209,7 +6225,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6258,7 +6274,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6307,7 +6323,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6356,7 +6372,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6405,7 +6421,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6454,7 +6470,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6503,7 +6519,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6552,7 +6568,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6601,7 +6617,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6699,7 +6715,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6797,7 +6813,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -6993,7 +7009,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -7042,7 +7058,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -7091,7 +7107,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -7140,7 +7156,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -7189,7 +7205,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -7238,7 +7254,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -7287,7 +7303,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -7532,7 +7548,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -7630,7 +7646,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -7875,7 +7891,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -8071,7 +8087,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -8120,7 +8136,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -8218,7 +8234,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -8316,7 +8332,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
@@ -8365,7 +8381,7 @@
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"
       },
       "ambiguity_card_evidence": {
-        "status": "no_ambiguity_card_count",
+        "status": "no_count_evidence",
         "count": 0,
         "source_artifact": "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
         "payload_match_status": "detail_payload_not_exposed_by_current_matrix_schema"

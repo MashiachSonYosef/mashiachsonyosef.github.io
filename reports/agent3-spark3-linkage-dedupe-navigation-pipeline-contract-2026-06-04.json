@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_spark3_linkage_dedupe_navigation_pipeline_contract",
+  "generated_at": "2026-06-04T09:15:58.5680196-04:00",
+  "lane_owner": "Agent 3",
+  "status": "runnable_contract_for_first_target",
+  "active_mode": [
+    "BROAD_CORPUS_EXPANSION",
+    "OROT_PROTOTYPE_HARDENING"
+  ],
+  "first_target": {
+    "target_work": "Orot",
+    "workset": "route-card/candidate-card dedupe closure",
+    "rows": 169,
+    "occurrences": 2148,
+    "preserve_blockers": "168 rows / 2117 occurrences missing package-anchor evidence"
+  },
+  "route_card_provenance_inputs": [
+    "reports/agent3-broad-linkage-dedupe-navigation-package-2026-06-04.md",
+    "reports/spark10-orot-169-row-local-route-card-dedupe-source-route-matrix-2026-06-04.json",
+    "reports/agent10-orot-186-row-nohit-inventory-packet-2026-06-04.json",
+    "data/build/orot/reader-hint-placeholder-candidates.json",
+    "reports/spark3-broad-linkage-dedupe-navigation-2026-06-04-report.md"
+  ],
+  "pipeline_commands": [
+    "node scripts/build_agent3_orot_route_card_candidate_card_dedupe_review.mjs",
+    "node scripts/validate_agent3_orot_route_card_candidate_card_dedupe_review.mjs"
+  ],
+  "output": {
+    "json": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
+    "markdown": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.md",
+    "schema": {
+      "required_top_level_fields": [
+        "schema_version",
+        "artifact_type",
+        "status",
+        "inputs",
+        "scope",
+        "counts",
+        "duplicate_key_summary",
+        "matched_route_card_evidence_scope",
+        "exact_blocker_summary",
+        "gates",
+        "rows",
+        "stop_condition",
+        "what_remains_blocked",
+        "what_must_not_be_accepted"
+      ],
+      "required_row_fields": [
+        "token_id",
+        "queue_id",
+        "surface",
+        "normalized",
+        "occurrences",
+        "duplicate_key",
+        "route_card_evidence",
+        "candidate_card_evidence",
+        "ambiguity_card_evidence",
+        "package_anchor_evidence",
+        "dedupe_review_status",
+        "exact_blockers"
+      ],
+      "duplicate_key_rule": "token_id|route:<current_route_card_count>|candidate:<current_candidate_count>|ambiguity:<current_ambiguity_count>"
+    }
+  },
+  "validator_gate": {
+    "command": "node scripts/validate_agent3_orot_route_card_candidate_card_dedupe_review.mjs",
+    "required_pass_counts": {
+      "rows": 169,
+      "occurrences": 2148,
+      "unique_duplicate_keys": 169,
+      "duplicate_key_collision_groups": 0,
+      "exact_blocker_rows": 168,
+      "exact_blocker_occurrences": 2117,
+      "public_hud_rows": 0,
+      "answer_rows": 0,
+      "accepted_text_rows": 0
+    }
+  },
+  "package_owner": "Agent 3",
+  "downstream_boundaries": {
+    "agent2": "Only after mechanical dedupe identifies transform-ready rows; no transform-ready row is accepted by this contract.",
+    "agent6": "Needed for any source/provenance/license/Definition/public/runtime/answer acceptance. This contract claims none."
+  },
+  "phase_2_deuteronomy": {
+    "status": "missing_pipeline_blocker_until_seeded",
+    "missing_fields": [
+      "target rows/work manifest",
+      "route/card/provenance input matrix",
+      "output path and schema",
+      "duplicate key rules",
+      "validator/gate",
+      "stop condition"
+    ]
+  },
+  "stop_condition": "Spark-3 stops after running the two listed commands and returning the Orot 169-row dedupe review artifact, or returns the exact command/input/output/schema blocker produced by the builder or validator.",
+  "what_must_not_be_accepted": [
+    "route publication support",
+    "definition/answer selection",
+    "usage-as-definition authority",
+    "QA acceptance",
+    "source/provenance/license acceptance",
+    "Definition acceptance",
+    "runtime/public acceptance",
+    "publication readiness",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "accepted text"
+  ]
+}
