@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker",
+  "generated_at": "2026-06-04T17:58:56.639Z",
+  "lane_owner": "Agent 3",
+  "status": "missing_pipeline_blocker",
+  "blocker_id": "spark-oracle9-missed-dictionary-evidence-diff_missing_pipeline_contract",
+  "publication_state": "blocked_no_render",
+  "active_goal": "ongoing Agent 3 linkage/dedupe/navigation lane",
+  "reviewed_inputs": [
+    {
+      "role": "spark_standing_queue_json",
+      "path": "data/control/spark_standing_queue.json",
+      "sha256": "d359076d0919d2373002948063d81860e1a003a93930d1d9546abc33f75bc421",
+      "bytes": 153768
+    },
+    {
+      "role": "spark3_status_md",
+      "path": "reports/spark3-standing-goal-mode-status-2026-06-04.md",
+      "sha256": "c0e0f897f879db2f11d51c867b82cfaf7a180bb524acfeed82a40ad4ba524178",
+      "bytes": 1971
+    },
+    {
+      "role": "spark1_status_md",
+      "path": "reports/spark1-standing-goal-mode-status-2026-06-04.md",
+      "sha256": "19550eb51dbdbb0b2f2e9c90f33733133bb148427781cfd1f21f8a05ce1b7a24",
+      "bytes": 13928
+    },
+    {
+      "role": "oracle9_owner_pulse_0410_md",
+      "path": "reports/oracle9-owner-pulse-2026-06-03-0410Z.md",
+      "sha256": "7b291cc09dd69fa15840dfe6aa38a597c07d81e7afd0377cf7f847ee3a3489f1",
+      "bytes": 18729
+    },
+    {
+      "role": "oracle9_owner_pulse_1039_md",
+      "path": "reports/oracle9-owner-pulse-2026-06-03-1039Z.md",
+      "sha256": "0d1f16ed1a4dd5a0636f0001399e7cdba8b9ac4b160a06b032f55ff91dc41d7b",
+      "bytes": 14556
+    },
+    {
+      "role": "agent2_missed_dictionary_json",
+      "path": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+      "sha256": "9d37ad845cf8242a37e46aec8c5b31d07ee5349a245792a638b7d82e34c2425e",
+      "bytes": 5670
+    },
+    {
+      "role": "agent2_missed_dictionary_md",
+      "path": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.md",
+      "sha256": "d7b954393cd6d86e71eb8dc5b25cb230ded49f8351db16a8022205bf1bb3a3cb",
+      "bytes": 933
+    },
+    {
+      "role": "agent10_zero_candidate_consumption_json",
+      "path": "reports/agent10-agent2-orot-missed-dictionary-zero-candidate-consumption-2026-06-04.json",
+      "sha256": "c8e911d16f79fe9419884ea9a47884d345456494efbb65065ba80dfeda769ed3",
+      "bytes": 3642
+    },
+    {
+      "role": "agent10_zero_candidate_consumption_md",
+      "path": "reports/agent10-agent2-orot-missed-dictionary-zero-candidate-consumption-2026-06-04.md",
+      "sha256": "c5a534cff508824c7495ee386a8cf62af244e9959401d3365be93c988cee1b87",
+      "bytes": 2621
+    },
+    {
+      "role": "agent3_frontier_checkpoint_json",
+      "path": "reports/agent3-linkage-navigation-frontier-checkpoint-2026-06-04.json",
+      "sha256": "a1b501a219d2c5688dc05d39bee005df002f8e42ce88c3234b55fb0d5c4b43ac",
+      "bytes": 10367
+    }
+  ],
+  "queue_item_observed": {
+    "id": "spark-oracle9-missed-dictionary-evidence-diff",
+    "status": "active_manual_start_spark3",
+    "objective": "Collate Oracle 9 already identified missed-dictionary evidence and diff it against current Orot candidate queues.",
+    "spark_affinity": [
+      "spark-2",
+      "spark-3"
+    ],
+    "package_owners": [
+      "Agent 3",
+      "Agent 2"
+    ],
+    "first_consumer": "Agent 10",
+    "stop_condition": "Stop after diff from existing evidence only or exact blocker. If an existing pipeline/command/input is missing, return missing_pipeline_blocker.",
+    "pipeline_rule": "Run only an explicit named pipeline/command/input supplied by Agent 5/7/10. If absent, return missing_pipeline_blocker; do not invent.",
+    "boundary": "No broad new discovery until Orot closeout/blocker.",
+    "inputs": [
+      {
+        "path": "reports/oracle9-owner-pulse-2026-06-03-0410Z.md",
+        "exists": true,
+        "sha256": "7b291cc09dd69fa15840dfe6aa38a597c07d81e7afd0377cf7f847ee3a3489f1",
+        "bytes": 18729
+      },
+      {
+        "path": "reports/oracle9-owner-pulse-2026-06-03-1039Z.md",
+        "exists": true,
+        "sha256": "0d1f16ed1a4dd5a0636f0001399e7cdba8b9ac4b160a06b032f55ff91dc41d7b",
+        "bytes": 14556
+      }
+    ],
+    "inputs_present": 2,
+    "inputs_expected": 2
+  },
+  "spark3_status_observed": {
+    "path": "reports/spark3-standing-goal-mode-status-2026-06-04.md",
+    "status": "awaiting_pipeline_contract",
+    "observed_affinity_target": "spark-oracle9-missed-dictionary-evidence-diff",
+    "observed_blocker": "missing_pipeline_contract"
+  },
+  "runnable_contract_check": {
+    "complete_pipeline_contract": false,
+    "runnable_by_spark3": false,
+    "no_pipeline_invention": true,
+    "missing_contract_fields": [
+      "pipeline_commands",
+      "output_path_schema",
+      "validator_gate",
+      "command_script_invocation"
+    ],
+    "exact_blocker": "Queue item supplies source evidence inputs but does not supply pipeline_commands, output path/schema, validator/gate, or command/script invocation for Spark-3 execution."
+  },
+  "current_missed_dictionary_state": {
+    "agent2_artifact": "reports/agent2-orot-missed-dictionary-reader-hint-candidates-2026-06-04.json",
+    "agent2_artifact_type": "agent2_orot_missed_dictionary_reader_hint_candidates",
+    "candidate_rows": 0,
+    "candidate_occurrences": 0,
+    "commercial_clean_candidate_rows": 0,
+    "commercial_clean_candidate_occurrences": 0,
+    "noncommercial_educational_candidate_rows": 0,
+    "noncommercial_educational_candidate_occurrences": 0,
+    "unmatched_rows": 168,
+    "rows_added_now": 0,
+    "rows_cleared_by_agent6_now": 0,
+    "source_license_counts": {
+      "commercial_clean_candidate": 0,
+      "noncommercial_educational_candidate": 0,
+      "metadata_link_only": 0,
+      "blocked": 0,
+      "unmatched": 168
+    }
+  },
+  "agent10_consumption_observed": {
+    "path": "reports/agent10-agent2-orot-missed-dictionary-zero-candidate-consumption-2026-06-04.json",
+    "artifact_type": "agent10_agent2_orot_missed_dictionary_zero_candidate_consumption",
+    "status": "consumed_zero_candidate_return_no_agent6_route",
+    "zero_output_counts": {
+      "answer_rows": 0,
+      "answer_eligible_rows": 0,
+      "source_rows": 0,
+      "public_hud_rows": 0,
+      "route_jsonl_rows": 0,
+      "route_shard_writes": 0,
+      "definition_content_rows": 0,
+      "nc_definition_content_rows": 0,
+      "public_mutation_files": 0,
+      "runtime_files_touched": 0,
+      "source_payload_mutation_files": 0,
+      "lexical_payload_mutation_files": 0,
+      "token_index_mutation_files": 0,
+      "accepted_text_rows": 0,
+      "public_reader_output_rows": 0
+    }
+  },
+  "agent3_frontier_observed": {
+    "path": "reports/agent3-linkage-navigation-frontier-checkpoint-2026-06-04.json",
+    "status": "evidence_ready_frontier_checkpoint",
+    "publication_state": "blocked_no_render",
+    "existing_orot_missing_linkage_rows": null,
+    "existing_orot_missing_linkage_occurrences": null
+  },
+  "counts": {
+    "queue_inputs_expected": 2,
+    "queue_inputs_present": 2,
+    "missing_contract_fields": 4,
+    "candidate_rows": 0,
+    "candidate_occurrences": 0,
+    "unmatched_rows": 168,
+    "rows_added_now": 0,
+    "rows_cleared_by_agent6_now": 0,
+    "zero_output_counter_sum": 0,
+    "source_files_committed_by_this_package": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "package_summary": {
+    "result": "Spark-3 Oracle9 missed-dictionary evidence-diff item is input-present but not runnable because no complete execution contract is supplied.",
+    "next_action": "Author or supply an exact Agent3/Spark-3 command packet with pipeline_commands, output path/schema, validator/gate, package owner, Agent 6 boundary trigger, and stop condition before Spark-3 execution.",
+    "executable_workset_created": false,
+    "duplicate_package_created": false
+  },
+  "boundary": {
+    "source_provenance_acceptance": false,
+    "license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligibility": false,
+    "route_publication_support": false,
+    "public_runtime_acceptance": false,
+    "publication_readiness": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "definition_content_storage": false,
+    "candidate_text_export": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "lexicon_entry_id_mutation": false
+  },
+  "validation_commands": [
+    "node scripts/validate_agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker.mjs",
+    "git diff --check -- reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md scripts/build_agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker.mjs scripts/validate_agent3_spark3_oracle9_missed_dictionary_evidence_diff_blocker.mjs reports/agent3-state.md"
+  ],
+  "what_remains_blocked": [
+    "No Spark-3 execution is allowed because pipeline_commands are absent.",
+    "No output path/schema is supplied for the Oracle9 missed-dictionary evidence diff.",
+    "No validator/gate is supplied for the Oracle9 missed-dictionary evidence diff.",
+    "Current Agent2 missed-dictionary packet has 0 candidate rows / 0 candidate occurrences and 168 unmatched rows.",
+    "No token-index mutation, lexical-payload mutation, route-shard write, public/runtime mutation, Definition authority, answer eligibility, or accepted text is authorized."
+  ]
+}
