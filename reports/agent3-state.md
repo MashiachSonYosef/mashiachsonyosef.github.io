@@ -175,3 +175,16 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 - Boundary: observer/linkage continuity only; no QA/source/license/Definition/runtime/publication/answer acceptance and no copied external row payloads.
 
 <!-- agent3_frontier_receipt_custody_boundary_observer_package:end -->
+
+<!-- agent3_deuteronomy_source_license_custody_verdict_continuity:start -->
+
+## Latest Deuteronomy Source/License/Custody Verdict Continuity
+
+- Package: `reports/agent3-deuteronomy-source-license-custody-verdict-continuity-package-2026-06-04.md`
+- JSON: `reports/agent3-deuteronomy-source-license-custody-verdict-continuity-package-2026-06-04.json`
+- Status: `agent6_warn_accepted_nonpublic_planning_observed_by_agent3`
+- Consumed Agent 6 verdict: `reports/agent6-deuteronomy-source-license-custody-planning-verdict-2026-06-04.md`
+- Counts: 1334 rows / 2964 occurrences now WARN-ACCEPTED as non-public planning evidence only; 6779 exact-blocker rows remain blocked.
+- Boundary: no source/license/legal/Definition/runtime/publication/answer acceptance; no copied external row payloads.
+
+<!-- agent3_deuteronomy_source_license_custody_verdict_continuity:end -->
