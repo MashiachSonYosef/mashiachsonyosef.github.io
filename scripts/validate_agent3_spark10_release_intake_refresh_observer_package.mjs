@@ -17,10 +17,13 @@ const warnings = [];
 const volatileInputRoles = new Set([
   'spark10_matrix_json',
   'spark10_matrix_md',
+  'agent10_contract_json',
+  'agent10_contract_md',
   'agent10_current_lane_refresh_json',
   'agent10_current_lane_refresh_md',
   'agent3_drift_audit_json',
   'agent3_drift_audit_md',
+  'agent3_state_md',
 ]);
 
 expect(artifact.schema_version === 1, 'schema_version must be 1');
@@ -71,18 +74,27 @@ const matrixCurrentMatchesPackage = matrixInput?.sha256 === matrixCurrentHash;
 const agent10RefreshInput = reviewedInputs.find((input) => input.role === 'agent10_current_lane_refresh_json');
 const agent10RefreshCurrentMatchesPackage =
   agent10RefreshInput?.sha256 === sha256('reports/agent10-current-lane-returns-refresh-consumption-2026-06-04.json');
+const contractInput = reviewedInputs.find((input) => input.role === 'agent10_contract_json');
+const contractCurrentMatchesPackage =
+  contractInput?.sha256 === sha256('reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json');
 if (matrixCurrentMatchesPackage) {
   expect(artifact.spark10_return_observed?.generated_at === matrix.generated_at, 'observed matrix generated_at mismatch');
 } else {
   warnings.push('current Spark-10 matrix changed after package build; validating embedded Agent 3 snapshot only');
 }
 expect(artifact.spark10_return_observed?.contract_path === matrix.contract_path, 'matrix contract path mismatch');
-expect(artifact.agent10_contract_observed?.input_count === contract.inputs.length, 'contract input count mismatch');
+if (contractCurrentMatchesPackage) {
+  expect(artifact.agent10_contract_observed?.input_count === contract.inputs.length, 'contract input count mismatch');
+} else {
+  warnings.push('current Agent 10 Spark-10 contract changed after package build; validating embedded contract snapshot only');
+}
 expect(artifact.agent10_contract_observed?.input_count === 90, 'contract input count must be 90');
-expect(
-  artifact.agent10_contract_observed?.agent6_handoff_condition === contract.agent6_handoff_condition,
-  'contract handoff condition mismatch',
-);
+if (contractCurrentMatchesPackage) {
+  expect(
+    artifact.agent10_contract_observed?.agent6_handoff_condition === contract.agent6_handoff_condition,
+    'contract handoff condition mismatch',
+  );
+}
 if (agent10RefreshCurrentMatchesPackage) {
   expect(
     artifact.agent10_current_lane_refresh_observed?.status === agent10Refresh.status,
