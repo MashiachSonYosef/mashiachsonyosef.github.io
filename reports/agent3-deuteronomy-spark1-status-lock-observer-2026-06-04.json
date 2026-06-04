@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_deuteronomy_spark1_status_lock_observer",
+  "generated_at": "2026-06-04T18:30:33.249Z",
+  "package_owner": "Agent 3",
+  "lane": "linkage_dedupe_navigation",
+  "status": "evidence_ready_status_lock_observer",
+  "observed_status_artifacts": [
+    {
+      "path": "reports/spark1-standing-goal-mode-status-2026-06-04.md",
+      "git_state": "untracked_current_worktree_evidence",
+      "observed_status": "ready_contracts_exhausted",
+      "observed_deuteronomy_result": "rows=8113 occurrences=12595 exact_blocker_rows=6779 downstream_boundary_rows=1334 duplicate_key_collision_groups=0"
+    },
+    {
+      "path": "reports/agent10-weekly-lexicon-release-next-boundary-or-blocker-2026-06-04.md",
+      "git_state": "untracked_current_worktree_evidence",
+      "observed_status": "Deuteronomy phase-2 return consumed",
+      "observed_boundary": "non-public planning/provenance evidence only; no transform execution or candidate-text export boundary"
+    }
+  ],
+  "tracked_agent3_artifacts": [
+    {
+      "path": "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.json",
+      "git_state": "tracked_clean_at_scan",
+      "status": "runnable_contract"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "git_state": "tracked_clean_after_generated_at_drift_revert",
+      "status": "evidence-ready_with_exact_blockers"
+    }
+  ],
+  "matrix_counts": {
+    "rows": 8113,
+    "occurrences": 12595,
+    "exact_blocker_rows": 6779,
+    "exact_blocker_occurrences": 9631,
+    "downstream_boundary_rows": 1334,
+    "downstream_boundary_occurrences": 2964,
+    "duplicate_key_collision_groups": 0,
+    "public_hud_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0
+  },
+  "validation": [
+    {
+      "command": "node scripts\\validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+      "status": "passed",
+      "observed_output": "rows 8113; blockers 6779; downstream 1334"
+    },
+    {
+      "command": "git diff -- reports\\agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "status": "generated_at_only_then_reverted",
+      "observed_output": "only generated_at differed before checkout-index restore"
+    }
+  ],
+  "result": "No new Agent 3 Deuteronomy executable workset is opened by the current Spark-1/Agent-10 status. The phase-2 matrix remains validated evidence-only with exact blockers preserved.",
+  "next_wake_condition": "Wake Agent 3 only for Deuteronomy if a changed linkage/source-route input appears, a changed contract is requested, or a downstream Agent 2/Agent 6 boundary returns with an exact Agent 3 linkage/provenance question.",
+  "boundary": {
+    "usage_as_definition_authority": false,
+    "definition_answer_selection": false,
+    "route_publication_support": false,
+    "qa_acceptance_claim": false,
+    "source_license_acceptance_claim": false,
+    "public_runtime_mutation": false,
+    "candidate_text_export": false,
+    "accepted_gloss_or_text": false
+  },
+  "known_risk": "The Spark-1 and Agent-10 status files are untracked current-worktree evidence; this packet does not claim those files are committed source of truth or that downstream Agent 2/Agent 6 boundaries are complete.",
+  "what_must_not_be_accepted": [
+    "route publication support",
+    "definition/answer selection",
+    "usage-as-definition authority",
+    "QA acceptance",
+    "source/provenance/license acceptance",
+    "Definition acceptance",
+    "runtime/public acceptance",
+    "publication readiness",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "accepted text",
+    "candidate-text export"
+  ]
+}

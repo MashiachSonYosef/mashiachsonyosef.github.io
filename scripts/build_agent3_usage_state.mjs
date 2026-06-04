@@ -63,6 +63,10 @@ const preservedReportSections = [
     '<!-- agent3_spark3_contract_status_reconciliation:start -->',
     '<!-- agent3_spark3_contract_status_reconciliation:end -->',
   ],
+  [
+    '<!-- agent3_deuteronomy_spark1_status_lock_observer:start -->',
+    '<!-- agent3_deuteronomy_spark1_status_lock_observer:end -->',
+  ],
 ];
 
 const options = parseArgs(process.argv.slice(2));
