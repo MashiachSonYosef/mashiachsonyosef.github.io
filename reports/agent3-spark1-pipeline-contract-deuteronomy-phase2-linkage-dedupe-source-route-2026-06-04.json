@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_spark1_pipeline_contract_deuteronomy_phase2_linkage_dedupe_source_route",
+  "generated_at": "2026-06-04T09:30:00-04:00",
+  "lane_owner": "Agent 3",
+  "runnable_by": {
+    "spark": "Spark-1",
+    "thread": "019e92c1-89b1-7821-898b-2106638345cb"
+  },
+  "status": "runnable_contract",
+  "active_mode": [
+    "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+    "two-primary Spark model"
+  ],
+  "target": {
+    "work_id": "deuteronomy",
+    "work_title": "Deuteronomy",
+    "workset": "deuteronomy-linkage-dedupe-source-route-matrix",
+    "rows": 8113,
+    "occurrences": 12595
+  },
+  "route_card_provenance_inputs": [
+    "reports/agent10-deuteronomy-pipeline-intake-state-2026-06-04.md",
+    "data/lexical/deuteronomy.manifest.json",
+    "data/lexical/occurrences/deuteronomy.json",
+    "data/lexical/token-indexes/tanakh/deuteronomy.json",
+    "data/public-lexical/by-work/deuteronomy-token-claims-min60.csv",
+    "data/sources/deuteronomy.json",
+    "data/overlays/deuteronomy.json"
+  ],
+  "pipeline_commands": [
+    "node scripts/build_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+    "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs"
+  ],
+  "output": {
+    "json": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+    "markdown": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.md",
+    "schema": {
+      "required_top_level_fields": [
+        "schema_version",
+        "artifact_type",
+        "status",
+        "target_work",
+        "inputs",
+        "source_metadata",
+        "counts",
+        "route_bucket_counts",
+        "duplicate_key_summary",
+        "exact_blocker_summary",
+        "downstream_boundary_summary",
+        "gates",
+        "rows",
+        "stop_condition",
+        "what_remains_blocked",
+        "what_must_not_be_accepted"
+      ],
+      "required_row_fields": [
+        "token_index_id",
+        "clicked_surface_form",
+        "normalized_form",
+        "occurrence_count",
+        "export_status",
+        "route_bucket",
+        "duplicate_key",
+        "source_route_evidence",
+        "downstream_boundary",
+        "exact_blockers"
+      ],
+      "duplicate_key_rule": "work_id|token_index_id|normalized_form|export_status"
+    }
+  },
+  "validator_gate": {
+    "command": "node scripts/validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+    "required_pass_counts": {
+      "rows": 8113,
+      "occurrences": 12595,
+      "token_index_forms": 8113,
+      "token_index_occurrences": 12595,
+      "occurrence_units": 956,
+      "source_units": 956,
+      "manifest_chunks": 9,
+      "joined_token_index_rows": 8113,
+      "missing_token_index_join_rows": 0,
+      "unique_duplicate_keys": 8113,
+      "duplicate_key_collision_groups": 0,
+      "exact_blocker_rows": 6779,
+      "exact_blocker_occurrences": 9631,
+      "downstream_boundary_rows": 1334,
+      "downstream_boundary_occurrences": 2964,
+      "public_hud_rows": 0,
+      "answer_rows": 0,
+      "accepted_text_rows": 0
+    }
+  },
+  "package_owner": "Agent 3",
+  "downstream_boundaries": {
+    "agent2": "1334 rows / 2964 occurrences are downstream-boundary candidates only. Agent 2 may act only after accepting the mechanical matrix as input; this contract accepts no transform-ready row.",
+    "agent6": "Required before any source/provenance/license/Definition/public/runtime/answer acceptance. This contract claims none."
+  },
+  "stop_condition": "Spark-1 stops after running the two listed commands and returning the Deuteronomy phase-2 linkage/dedupe/source-route matrix artifact, or returns the exact command/input/output/schema blocker produced by the builder or validator.",
+  "what_must_not_be_accepted": [
+    "route publication support",
+    "definition/answer selection",
+    "usage-as-definition authority",
+    "QA acceptance",
+    "source/provenance/license acceptance",
+    "Definition acceptance",
+    "runtime/public acceptance",
+    "publication readiness",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "accepted text"
+  ]
+}
