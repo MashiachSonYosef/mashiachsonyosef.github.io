@@ -248,6 +248,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-active-workset-handoff-index-2026-06-04.md',
   'reports/agent3-returned-spark-artifact-custody-index-2026-06-04.json',
   'reports/agent3-returned-spark-artifact-custody-index-2026-06-04.md',
+  'reports/agent3-post-custody-wake-condition-audit-2026-06-04.json',
+  'reports/agent3-post-custody-wake-condition-audit-2026-06-04.md',
   'data/definitions/definition-workbench-usage-link-packet.json',
   'reports/definition-workbench-usage-link-packet.md',
   'data/definitions/definition-workbench-usage-seed-queue.json',
@@ -297,6 +299,7 @@ const validators = unique([
   'scripts/validate_agent3_linkage_dedupe_generated_at_drift_audit.mjs',
   'scripts/validate_agent3_active_workset_handoff_index.mjs',
   'scripts/validate_agent3_returned_spark_artifact_custody_index.mjs',
+  'scripts/validate_agent3_post_custody_wake_condition_audit.mjs',
   'scripts/validate_agent3_usage_state.mjs',
 ]);
 const counts = buildCounts();
