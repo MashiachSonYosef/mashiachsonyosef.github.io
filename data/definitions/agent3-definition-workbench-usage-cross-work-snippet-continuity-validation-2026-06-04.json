@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_definition_workbench_usage_cross_work_snippet_continuity_validation",
+  "generated_at": "2026-06-04T10:49:49.776Z",
+  "generator": "scripts/build_agent3_definition_workbench_usage_cross_work_snippet_continuity_validation.mjs",
+  "lane_owner": "Agent 3",
+  "status": "evidence-ready",
+  "focus_token_normalized": "ראשית",
+  "target_gate": "definition_workbench_gate",
+  "source_artifacts": {
+    "cross_work_snippet_locator": "data/definitions/agent3-definition-workbench-usage-collision-work-category-cross-work-snippet-locator-reshit.json",
+    "agent3_state": "reports/agent3-state.md"
+  },
+  "policy": "Continuity validation run for the Agent 3 cross-work snippet locator in the current June 4 worktree. It records validator results and current counts for QA handoff only; it does not inspect source text, rank routes, select answers, copy Agent 2 payloads, emit definitions, translate, mutate queues, or publish.",
+  "authority_boundary": {
+    "usage_navigation_only": true,
+    "continuity_validation_only": true,
+    "observed_usage_only": true,
+    "route_ids_only": true,
+    "audit_only": true,
+    "reader_facing": false,
+    "definition_authority": false,
+    "reviewed_lexical_authority": false,
+    "semantic_independence": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "visible_answer_selection": false,
+    "copied_route_payloads": false,
+    "accepted_text_output": false,
+    "publication_claim": false,
+    "source_text_read": false,
+    "broad_target_expansion": false,
+    "agent6_accepted": false
+  },
+  "command_results": [
+    {
+      "key": "cross_work_snippet_locator",
+      "command": "node scripts\\validate_agent3_definition_workbench_usage_collision_work_category_cross_work_snippet_locator.mjs",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_collision_work_category_cross_work_snippet_locator.mjs",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-collision-work-category-cross-work-snippet-locator-reshit.json",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "PASS artifact_type: agent3_definition_workbench_usage_collision_work_category_cross_work_snippet_locator\nPASS status_boundary: evidence-ready\nPASS source_artifact_exists: data/definitions/agent3-definition-workbench-usage-collision-work-category-source-ref-repeat-locator-reshit.json\nPASS source_repeat_locator_visible: source rows/repeat snippets 96/7\nPASS cross_work_snippet_counts: buckets/cross-work/cross-category/rows 3/3/1/6\nPASS bucket_shape: all buckets are two-row cross-work route-pointer review buckets\nPASS clickable_metadata_complete: ref/url/anchor/context/license/version 6/6/6/6/6/6\nPASS route_ids_only_visible: route rows/distinct 6/1\nPASS observed_usage_labels_complete: observed 6/6\nPASS cross_work_diversity_visible: source/anchor/work/category/license 6/6/6/4/2\nPASS no_reader_payload_authority_or_semantic_claims: reader/payload/forbidden/semantic 0/0/0/0\nPASS no_source_broad_queue_side_effects: source/broad/queue/submitted 0/0/0/0\nPASS authority_boundary_false_flags: {\"usage_navigation_only\":true,\"cross_work_snippet_locator_only\":true,\"observed_usage_only\":true,\"route_ids_only\":true,\"audit_only\":true,\"reader_facing\":false,\"definition_authority\":false,\"reviewed_lexical_authority\":false,\"semantic_independence\":false,\"semantic_arbitration\":false,\"route_ranking\":false,\"visible_answer_selection\":false,\"copied_route_payloads\":false,\"accepted_text_output\":false,\"publication_claim\":false,\"source_text_read\":false,\"broad_target_expansion\":false,\"agent6_accepted\":false}\nPASS report_non_authority_wording: report carries non-authority and no-semantic-independence wording\nPASS all_embedded_checks_passed: 8/8\nAgent 3 cross-work snippet locator validation passed: buckets 3; rows 6",
+      "stderr": ""
+    },
+    {
+      "key": "agent3_usage_state",
+      "command": "node scripts\\validate_agent3_usage_state.mjs",
+      "validator_path": "scripts/validate_agent3_usage_state.mjs",
+      "data_path": "reports/agent3-state.md",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "Agent 3 usage state validation passed.\nEvidence artifacts: 59/59; validators: 31/31; smoke failed: 0.",
+      "stderr": ""
+    }
+  ],
+  "counts": {
+    "validation_commands": 2,
+    "commands_passed": 2,
+    "commands_failed": 0,
+    "validators_present": 2,
+    "data_paths_present": 2,
+    "source_repeat_locator_rows": 96,
+    "source_phrase_context_repeat_buckets": 7,
+    "cross_work_snippet_buckets": 3,
+    "cross_category_buckets": 1,
+    "cross_work_snippet_occurrence_rows": 6,
+    "rows_with_source_ref": 6,
+    "rows_with_source_url": 6,
+    "rows_with_local_work_anchor": 6,
+    "rows_with_license": 6,
+    "rows_with_version": 6,
+    "rows_with_route_ids": 6,
+    "rows_labeled_observed_usage_only": 6,
+    "distinct_works": 6,
+    "distinct_categories": 4,
+    "distinct_licenses": 2,
+    "distinct_route_ids": 1,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "semantic_independence_claims": 0,
+    "source_text_reads": 0,
+    "broad_target_expansion": 0,
+    "queue_mutations": 0,
+    "submitted_to_agent6": 0
+  },
+  "checks": [
+    {
+      "id": "validation_commands_passed",
+      "status": "passed",
+      "detail": "commands/pass/fail 2/2/0"
+    },
+    {
+      "id": "validators_and_data_present",
+      "status": "passed",
+      "detail": "validators/data 2/2"
+    },
+    {
+      "id": "cross_work_counts_stable",
+      "status": "passed",
+      "detail": "source/repeat/cross/category/rows 96/7/3/1/6"
+    },
+    {
+      "id": "links_and_metadata_complete",
+      "status": "passed",
+      "detail": "ref/url/anchor/license/version/route 6/6/6/6/6/6"
+    },
+    {
+      "id": "observed_usage_complete",
+      "status": "passed",
+      "detail": "observed 6/6"
+    },
+    {
+      "id": "diversity_stable",
+      "status": "passed",
+      "detail": "work/category/license/route 6/4/2/1"
+    },
+    {
+      "id": "no_reader_payload_authority_or_semantic_claims",
+      "status": "passed",
+      "detail": "reader/payload/forbidden/semantic 0/0/0/0"
+    },
+    {
+      "id": "no_source_broad_queue_side_effects",
+      "status": "passed",
+      "detail": "source/broad/queue/submitted 0/0/0/0"
+    }
+  ]
+}
