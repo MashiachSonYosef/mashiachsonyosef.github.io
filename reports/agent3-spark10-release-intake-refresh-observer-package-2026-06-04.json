@@ -1,0 +1,396 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_spark10_release_intake_refresh_observer_package",
+  "generated_at": "2026-06-04T16:55:01.169Z",
+  "lane_owner": "Agent 3",
+  "status": "spark10_release_intake_refresh_observed_no_agent3_executable_workset",
+  "publication_state": "blocked_no_render",
+  "active_goal": "ongoing Agent 3 linkage/dedupe/navigation lane",
+  "reviewed_inputs": [
+    {
+      "role": "spark10_matrix_json",
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "sha256": "e70726cb2dd2d4087e71b74de020bfbe4d359b4e8d401f59274a4f2a7bff3dbb",
+      "bytes": 71131
+    },
+    {
+      "role": "spark10_matrix_md",
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+      "sha256": "a5e9ab6fb0a24181a105e0f0a2f21fce120c7b33e0663ba9e181206ce176afb1",
+      "bytes": 19123
+    },
+    {
+      "role": "agent10_contract_json",
+      "path": "reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+      "sha256": "915aa2cbf67f73665250c10fc36438d1f05cafe3397ab7b573655537dbb7d759",
+      "bytes": 33759
+    },
+    {
+      "role": "agent10_contract_md",
+      "path": "reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.md",
+      "sha256": "a306f3fcb1e06c3e77a32bc46c905231ce267f57fda9c90555b11f984ec85fdb",
+      "bytes": 9937
+    },
+    {
+      "role": "agent10_current_lane_refresh_json",
+      "path": "reports/agent10-current-lane-returns-refresh-consumption-2026-06-04.json",
+      "sha256": "b2b90702ce1710c8d2db76df022935a3cc7f9c8d75606d5bd9ab9e618843e167",
+      "bytes": 5079
+    },
+    {
+      "role": "agent10_current_lane_refresh_md",
+      "path": "reports/agent10-current-lane-returns-refresh-consumption-2026-06-04.md",
+      "sha256": "680800ce72dbfd7a83a9b4053a860c6831b3fbf9dc912e09e6469371d80ded30",
+      "bytes": 2508
+    },
+    {
+      "role": "prior_agent3_observer_json",
+      "path": "reports/agent3-spark10-release-intake-return-observer-package-2026-06-04.json",
+      "sha256": "3058f903c4e9f39fc96354143ad97a0a62ac1bc1a2132e92b3706218bc533900",
+      "bytes": 14463
+    },
+    {
+      "role": "prior_agent3_observer_md",
+      "path": "reports/agent3-spark10-release-intake-return-observer-package-2026-06-04.md",
+      "sha256": "7d26c4ec28b9437e1e0ed3d4ab00e7f4ccef4984eb0749514e7a296ceaeec695",
+      "bytes": 6310
+    },
+    {
+      "role": "agent3_drift_audit_json",
+      "path": "reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json",
+      "sha256": "9fd83d9eee37643309a44b9b2c948598665e26ea255bf097ff157908ec9dcd54",
+      "bytes": 5844
+    },
+    {
+      "role": "agent3_drift_audit_md",
+      "path": "reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.md",
+      "sha256": "c335119fcfe8f8382fc38296cfde39c75f2d24c4c33aea741dc40139fc1a7b9b",
+      "bytes": 1919
+    },
+    {
+      "role": "agent3_state_md",
+      "path": "reports/agent3-state.md",
+      "sha256": "ba5dd6c93f49546bd21b8017742e7413ac3c8e732e5deea46fcc6e8bdd7eea05",
+      "bytes": 17043
+    }
+  ],
+  "refresh_delta_observed": {
+    "reason": "The current Spark-10 release/package intake matrix changed after the prior Agent 3 observer package; this package refreshes Agent 3 observer state without creating a new workset.",
+    "prior_observer_path": "reports/agent3-spark10-release-intake-return-observer-package-2026-06-04.json",
+    "prior_observer_generated_at": "2026-06-04T16:22:50.436Z",
+    "prior_matrix_generated_at": "2026-06-04T16:21:37.404Z",
+    "prior_matrix_sha256": "755b6b9917b72bd1428292016e6e9ee15f153ea519a276bd0aa1ab85013a34f6",
+    "current_matrix_path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "current_matrix_generated_at": "2026-06-04T16:50:25.672Z",
+    "current_matrix_sha256": "e70726cb2dd2d4087e71b74de020bfbe4d359b4e8d401f59274a4f2a7bff3dbb",
+    "matrix_hash_changed": true,
+    "matrix_generated_at_changed": true
+  },
+  "spark10_return_observed": {
+    "matrix_path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "artifact_type": "spark10_release_package_intake_matrix",
+    "generated_at": "2026-06-04T16:50:25.672Z",
+    "contract_path": "reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "summary": {
+      "inputs_checked": 90,
+      "missing_required_inputs": 0,
+      "release_relevant_rows": 26,
+      "agent6_handoff_candidates": 4,
+      "public_runtime_mutation_authorized": false,
+      "answer_definition_release_authorized": false
+    },
+    "stop_condition": "Spark-10 stops after producing the release/package intake matrix plus validator pass, or exact missing_input_blocker/missing_pipeline_blocker naming the missing input, command, output, schema, or validator.",
+    "boundary": {
+      "public_runtime_mutation_authorized": false,
+      "route_shard_edit_authorized": false,
+      "answer_eligibility_authorized": false,
+      "definition_content_storage_authorized": false,
+      "accepted_text_authorized": false,
+      "publication_readiness_authorized": false
+    }
+  },
+  "agent10_contract_observed": {
+    "path": "reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "artifact_type": "spark10_release_package_intake_pipeline_contract",
+    "spark_thread_id": "019e92c2-00a7-78f3-b9ab-6f3c11305a0a",
+    "input_count": 90,
+    "output": {
+      "json": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "md": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md"
+    },
+    "agent6_handoff_condition": "Only if the generated matrix identifies an exact changed package artifact or exact Agent6-ready packet with path, row/occurrence boundary, source/license lane, zero-emission counters, and review question. Otherwise Agent 6 remains held.",
+    "stop_condition": "Spark-10 stops after producing the release/package intake matrix plus validator pass, or exact missing_input_blocker/missing_pipeline_blocker naming the missing input, command, output, schema, or validator.",
+    "boundary": {
+      "public_runtime_mutation_authorized": false,
+      "route_shard_edit_authorized": false,
+      "answer_eligibility_authorized": false,
+      "definition_content_storage_authorized": false,
+      "accepted_text_authorized": false,
+      "publication_readiness_authorized": false
+    }
+  },
+  "agent10_current_lane_refresh_observed": {
+    "path": "reports/agent10-current-lane-returns-refresh-consumption-2026-06-04.json",
+    "artifact_type": "agent10_current_lane_returns_refresh_consumption",
+    "status": "release_intake_consumed_refreshed_agent2_counts_and_agent1_export_partitions",
+    "active_agent6_wait": {
+      "primary_route_packet": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+      "supplemental_partition_packet": "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.json",
+      "prior_agent8_submission_id": "019e9360-1529-7d53-b55f-177a4cfaeb2f",
+      "stop_condition": "wait_for_agent6_verdict_artifact_path_or_exact_delivery_review_blocker"
+    },
+    "zero_boundary": {
+      "definition_authority": false,
+      "usage_as_definition_authority": false,
+      "answer_acceptance": false,
+      "answer_eligible": false,
+      "accepted_gloss_text": false,
+      "public_reader_output": false,
+      "route_shard_edit": false,
+      "public_runtime_mutation": false,
+      "publication_readiness": false,
+      "source_license_acceptance": false,
+      "qa_acceptance": false,
+      "definition_content_storage": false,
+      "candidate_text_export": false,
+      "commercial_export_permission": false,
+      "nc_commercial_authorization": false
+    }
+  },
+  "agent3_rows_observed": [
+    {
+      "path": "reports/agent3-spark3-linkage-dedupe-navigation-pipeline-contract-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "artifact_type": "Agent 3 / Spark-3 Linkage-Dedupe-Navigation Pipeline Contract - 2026-06-04",
+      "status": "runnable_contract_for_first_target.",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "artifact_type": "Agent 3 / Spark-1 Deuteronomy Phase-2 Linkage-Dedupe-Source-Route Contract - 2026-06-04",
+      "status": "runnable_contract.",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "artifact_type": "agent3_spark1_pipeline_contract_deuteronomy_phase2_linkage_dedupe_source_route",
+      "status": "runnable_contract",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "artifact_type": "Agent 3 Deuteronomy Linkage/Dedupe/Source-Route Matrix - 2026-06-04",
+      "status": "evidence-ready_with_exact_blockers.",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "artifact_type": "agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix",
+      "status": "evidence-ready_with_exact_blockers",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-phase2-spark1-return-consumption-package-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "artifact_type": "agent3_deuteronomy_phase2_spark1_return_consumption_package",
+      "status": "spark1_return_consumed_agent3_review_package",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "artifact_type": "Agent 3 Orot 169-Row Route/Card Candidate/Card Dedupe Review - 2026-06-04",
+      "status": "evidence-ready_with_exact_linkage_blockers.",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-linkage-navigation-frontier-checkpoint-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "artifact_type": "Agent 3 Linkage Navigation Frontier Checkpoint - 2026-06-04",
+      "status": "evidence_ready_frontier_checkpoint",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-linkage-navigation-frontier-checkpoint-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "artifact_type": "agent3_linkage_navigation_frontier_checkpoint",
+      "status": "evidence_ready_frontier_checkpoint",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-source-license-custody-verdict-continuity-package-2026-06-04.md",
+      "lane_owner": "Agent 3",
+      "artifact_type": "Agent 3 Deuteronomy Source/License/Custody Verdict Continuity Package - 2026-06-04",
+      "status": "agent6_warn_accepted_nonpublic_planning_observed_by_agent3",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    },
+    {
+      "path": "reports/agent3-deuteronomy-source-license-custody-verdict-continuity-package-2026-06-04.json",
+      "lane_owner": "Agent 3",
+      "artifact_type": "agent3_deuteronomy_source_license_custody_verdict_continuity_package",
+      "status": "agent6_warn_accepted_nonpublic_planning_observed_by_agent3",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "inspect_if_release_relevant"
+    }
+  ],
+  "agent6_handoff_candidates_observed": [
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "artifact_type": "Agent 10 Agent6-Ready Old Dictionary Excluded-Row License-Lane Reaudit Boundary Packet - 2026-06-04",
+      "status": null,
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-excluded-row-license-lane-reaudit-boundary-packet-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "artifact_type": "agent10_agent6_ready_old_dictionary_excluded_row_license_lane_reaudit_boundary_packet",
+      "status": "agent6_ready_old_dictionary_license_lane_reaudit_packet_not_accepted",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.md",
+      "lane_owner": "Agent 10",
+      "artifact_type": "Agent 10 Agent6-Ready Old Dictionary Export Partitions Supplement - 2026-06-04",
+      "status": null,
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists"
+    },
+    {
+      "path": "reports/agent10-agent6-ready-old-dictionary-license-lane-export-partitions-supplement-2026-06-04.json",
+      "lane_owner": "Agent 10",
+      "artifact_type": "agent10_agent6_ready_old_dictionary_license_lane_export_partitions_supplement",
+      "status": "agent6_ready_supplemental_partition_evidence_not_accepted",
+      "exists": true,
+      "release_relevance": null,
+      "blocker": null,
+      "agent6_handoff_candidate": false,
+      "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists"
+    }
+  ],
+  "prior_agent3_drift_audit_observed": {
+    "path": "reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json",
+    "status": "generated_at_drift_only_no_new_workset",
+    "audited_files": 2,
+    "generated_at_only_files": 2,
+    "substantive_changed_files": 0,
+    "source_files_committed_by_package": 0
+  },
+  "counts": {
+    "spark10_inputs_checked": 90,
+    "spark10_missing_required_inputs": 0,
+    "spark10_release_relevant_rows": 26,
+    "spark10_agent6_handoff_candidates": 4,
+    "agent3_rows_observed": 11,
+    "agent3_handoff_candidate_rows": 0,
+    "external_agent10_handoff_candidate_rows": 4,
+    "agent3_rows_with_missing_inputs": 0,
+    "agent3_rows_with_public_or_mutation_action": 0,
+    "matrix_hash_changed_since_prior_observer": 1,
+    "source_files_committed_by_this_package": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "package_summary": {
+    "result": "Current Spark-10 intake matrix refresh consumed as Agent 3 linkage/navigation observer evidence only; no Agent 3 executable workset or handoff candidate was created.",
+    "agent3_next_action": "Wait for an exact changed Agent 3 linkage/dedupe/navigation workset, direct Spark return, or explicit downstream route needing Agent 3 packaging.",
+    "agent6_handoff_owner": "Agent 10 for old-dictionary packets, not Agent 3",
+    "executable_workset_created": false,
+    "current_matrix_refresh_packaged": true
+  },
+  "boundary": {
+    "source_provenance_acceptance": false,
+    "license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligibility": false,
+    "route_publication_support": false,
+    "public_runtime_acceptance": false,
+    "publication_readiness": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "definition_content_storage": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false
+  },
+  "validation_commands": [
+    "node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "node scripts/validate_spark10_release_package_intake.mjs reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
+    "node scripts/validate_agent3_spark10_release_intake_refresh_observer_package.mjs"
+  ],
+  "what_remains_blocked": [
+    "The current Spark-10 release/package matrix is external Spark-10/Agent-10 intake evidence and is not committed by this Agent 3 package.",
+    "The four Agent 6 handoff candidates are Agent 10 old-dictionary packets, not Agent 3 linkage/dedupe/navigation routes.",
+    "Agent 3 regenerated Orot/Deuteronomy source JSON files remain generated_at-only drift and are not committed here.",
+    "No publication, Definition authority, answer eligibility, source/license acceptance, runtime mutation, route publication support, or accepted text is authorized."
+  ]
+}
