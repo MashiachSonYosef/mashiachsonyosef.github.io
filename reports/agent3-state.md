@@ -188,3 +188,15 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 - Boundary: no source/license/legal/Definition/runtime/publication/answer acceptance; no copied external row payloads.
 
 <!-- agent3_deuteronomy_source_license_custody_verdict_continuity:end -->
+
+<!-- agent3_linkage_dedupe_generated_at_drift_audit:start -->
+
+## Latest Linkage/Dedupe Generated-At Drift Audit
+
+- Package: `reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.md`
+- JSON: `reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json`
+- Status: `generated_at_drift_only_no_new_workset`
+- Audited files: 2; generated-at-only: 2; substantive changed: 0.
+- Boundary: observer audit only; regenerated source artifacts not committed and no executable/public/Definition/answer path authorized.
+
+<!-- agent3_linkage_dedupe_generated_at_drift_audit:end -->

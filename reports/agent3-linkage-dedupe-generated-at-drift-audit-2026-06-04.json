@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_linkage_dedupe_generated_at_drift_audit",
+  "generated_at": "2026-06-04T16:13:39.829Z",
+  "lane_owner": "Agent 3",
+  "status": "generated_at_drift_only_no_new_workset",
+  "publication_state": "blocked_no_render",
+  "active_goal": "ongoing Agent 3 linkage/dedupe/navigation lane",
+  "audit_scope": {
+    "reason": "Current worktree contains modified Agent 3 linkage/dedupe JSON artifacts after the latest continuity package; direct git diff inspection showed only generated_at hunks.",
+    "target": "classify whether modified artifacts create a new Agent 3 executable workset",
+    "source_files_committed_by_this_package": 0
+  },
+  "audited_artifacts": [
+    {
+      "role": "orot_169_row_route_card_candidate_card_dedupe_review",
+      "path": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
+      "worktree_sha256": "d2680b7ccead26bbd180f19b0bc13324a80e4c419545e59d3382eb6a4f62e67c",
+      "worktree_generated_at": "2026-06-04T16:06:01.966Z",
+      "head_generated_at_observed_by_git_diff": "2026-06-04T13:16:27.105Z",
+      "changed_top_level_fields": [
+        "generated_at"
+      ],
+      "substantive_changed_fields": [],
+      "content_equal_ignoring_generated_at": true,
+      "diff_basis": "Manual gate command `git diff --unified=3 -- <path>` observed a single generated_at hunk before package build.",
+      "status": "evidence-ready_with_exact_linkage_blockers",
+      "artifact_type": "agent3_orot_169_row_route_card_candidate_card_dedupe_review",
+      "counts": {
+        "rows": 169,
+        "occurrences": 2148,
+        "exact_blocker_rows": 168,
+        "exact_blocker_occurrences": 2117,
+        "public_hud_rows": 0,
+        "route_jsonl_rows": 0,
+        "route_shard_writes": 0,
+        "runtime_files_changed": 0,
+        "source_files_changed": 0,
+        "token_index_files_changed": 0,
+        "lexical_payload_files_changed": 0,
+        "definition_content_rows": 0,
+        "answer_rows": 0,
+        "accepted_text_rows": 0
+      },
+      "expected_counts": {
+        "rows": 169,
+        "occurrences": 2148,
+        "exact_blocker_rows": 168,
+        "exact_blocker_occurrences": 2117
+      }
+    },
+    {
+      "role": "deuteronomy_phase2_linkage_dedupe_source_route_matrix",
+      "path": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "worktree_sha256": "8426dfb9d1c038db533b346656b551fa831b5bd24403bf84c26ffb1eed34ef36",
+      "worktree_generated_at": "2026-06-04T16:03:09.666Z",
+      "head_generated_at_observed_by_git_diff": "2026-06-04T13:55:17.808Z",
+      "changed_top_level_fields": [
+        "generated_at"
+      ],
+      "substantive_changed_fields": [],
+      "content_equal_ignoring_generated_at": true,
+      "diff_basis": "Manual gate command `git diff --unified=3 -- <path>` observed a single generated_at hunk before package build.",
+      "status": "evidence-ready_with_exact_blockers",
+      "artifact_type": "agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix",
+      "counts": {
+        "rows": 8113,
+        "occurrences": 12595,
+        "exact_blocker_rows": 6779,
+        "exact_blocker_occurrences": 9631,
+        "public_hud_rows": 0,
+        "route_jsonl_rows": 0,
+        "route_shard_writes": 0,
+        "runtime_files_changed": 0,
+        "source_files_changed": 0,
+        "token_index_files_changed": 0,
+        "lexical_payload_files_changed": 0,
+        "definition_content_rows": 0,
+        "answer_rows": 0,
+        "accepted_text_rows": 0
+      },
+      "expected_counts": {
+        "rows": 8113,
+        "occurrences": 12595,
+        "exact_blocker_rows": 6779,
+        "exact_blocker_occurrences": 9631
+      }
+    }
+  ],
+  "counts": {
+    "audited_files": 2,
+    "generated_at_only_files": 2,
+    "substantive_changed_files": 0,
+    "source_files_committed_by_this_package": 0,
+    "public_hud_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "runtime_files_changed": 0,
+    "source_files_changed": 0,
+    "token_index_files_changed": 0,
+    "lexical_payload_files_changed": 0,
+    "definition_content_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_reader_output_rows": 0
+  },
+  "package_summary": {
+    "result": "No substantive linkage/dedupe/navigation change detected; modified source artifacts are generated_at churn only.",
+    "next_agent3_action": "do not package regenerated source artifacts as new evidence; wait for exact changed workset or returned artifact",
+    "executable_workset_created": false
+  },
+  "boundary": {
+    "observer_audit_only": true,
+    "no_source_file_commit": true,
+    "no_route_publication_support": true,
+    "no_definition_authority": true,
+    "no_usage_as_definition_authority": true,
+    "no_answer_selection": true,
+    "no_source_provenance_acceptance": true,
+    "no_license_acceptance": true,
+    "no_public_runtime_acceptance": true,
+    "no_publication_readiness": true,
+    "no_accepted_gloss_or_text": true,
+    "no_public_reader_output": true
+  },
+  "validation_commands": [
+    "node scripts/validate_agent3_linkage_dedupe_generated_at_drift_audit.mjs",
+    "git diff --check -- reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.json reports/agent3-linkage-dedupe-generated-at-drift-audit-2026-06-04.md scripts/build_agent3_linkage_dedupe_generated_at_drift_audit.mjs scripts/validate_agent3_linkage_dedupe_generated_at_drift_audit.mjs reports/agent3-state.md"
+  ],
+  "what_remains_blocked": [
+    "The regenerated Orot and Deuteronomy source artifacts are not committed by this package.",
+    "No new executable Agent 3 workset exists from generated_at-only drift.",
+    "All publication, Definition authority, answer, runtime, source, token-index, lexical payload, and accepted-text paths remain blocked."
+  ]
+}
