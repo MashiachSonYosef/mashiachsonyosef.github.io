@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-04T11:16:49.873Z
+Generated: 2026-06-04T15:20:41.134Z
 
 ## State
 
@@ -8,7 +8,7 @@ Generated: 2026-06-04T11:16:49.873Z
 - Worker state: evidence-ready
 - QA acceptance state: not_agent6_accepted
 - Goal: agent3-definition-occurrence-links (awaiting-Agent-6)
-- Manager / acceptance owner: none_current_release_chain / Agent 6
+- Manager / acceptance owner: Agent 7 / broad corpus expansion / Agent 6
 - Queue-ready packet: data/definitions/definition-workbench-usage-queue-ready-packet.json
 - Queue mutated / submitted: false/false
 
