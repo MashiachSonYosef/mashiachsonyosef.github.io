@@ -19,6 +19,8 @@ const volatileInputRoles = new Set([
   'spark10_matrix_md',
   'agent10_current_lane_refresh_json',
   'agent10_current_lane_refresh_md',
+  'agent3_drift_audit_json',
+  'agent3_drift_audit_md',
 ]);
 
 expect(artifact.schema_version === 1, 'schema_version must be 1');
