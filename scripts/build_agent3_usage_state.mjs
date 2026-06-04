@@ -71,6 +71,10 @@ const preservedReportSections = [
     '<!-- agent3_current_wake_audit:start -->',
     '<!-- agent3_current_wake_audit:end -->',
   ],
+  [
+    '<!-- agent3_current_control_drift_refresh:start -->',
+    '<!-- agent3_current_control_drift_refresh:end -->',
+  ],
 ];
 
 const options = parseArgs(process.argv.slice(2));

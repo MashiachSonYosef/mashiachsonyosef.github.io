@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-04T18:37:46.250Z
+Generated: 2026-06-04T18:51:48.301Z
 
 ## State
 
@@ -272,3 +272,16 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 - Boundary: wake audit only; no QA/source/license/Definition/runtime/publication/answer acceptance and no public/runtime mutation.
 
 <!-- agent3_current_wake_audit:end -->
+
+<!-- agent3_current_control_drift_refresh:start -->
+
+## Latest Current Control Drift Refresh
+
+- Package: `reports/agent3-current-control-drift-refresh-2026-06-04.md`
+- JSON: `reports/agent3-current-control-drift-refresh-2026-06-04.json`
+- Status: `evidence_ready_control_drift_refresh`
+- Current finding: Orot and Deuteronomy Agent 3 worksets remain returned/validated evidence; current queue still contains stale Deuteronomy contract-gap fields, while Oracle9 remains the only preserved Agent 3 missing-pipeline blocker from current readback.
+- Counts: inputs observed 7; returned/validated worksets 2; Spark-3 mechanics commands returned pass 8; stale or contradictory Agent 3 queue fields 4; new Agent 3 executable worksets 0; route-publication/Definition/answer/accepted-text/public-runtime rows 0/0/0/0/0.
+- Boundary: control drift refresh only; no QA/source/license/Definition/runtime/publication/answer acceptance, no route publication support, and no public/runtime mutation.
+
+<!-- agent3_current_control_drift_refresh:end -->
