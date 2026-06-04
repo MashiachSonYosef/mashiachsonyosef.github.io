@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_production_shaped_provenance_navigation_package",
+  "package_class": "provenance_navigation_packet",
+  "generated_at": "2026-06-04T07:20:38.7829841-04:00",
+  "lane_owner": "Agent 3",
+  "status": "evidence-ready",
+  "target_gate": "Agent 10 / Agent 6 review queue only",
+  "publication_state": "blocked_no_render",
+  "scope": {
+    "workdir": "C:/Users/owner/Documents/translations",
+    "focus": "Definition Workbench occurrence-link support",
+    "target": "safe-license corpus package linkage and provenance navigation",
+    "mode": "usage-navigation evidence only",
+    "definition_authority": false,
+    "license_acceptance": false,
+    "source_provenance_custody_acceptance": false,
+    "runtime_or_public_acceptance": false
+  },
+  "control_inputs": [
+    {
+      "path": "reports/agent7-agent5-production-shaped-goal-map-2026-06-04.md",
+      "role": "Agent 7 production-shaped Agent 3 goal map"
+    },
+    {
+      "path": "data/control/spark_standing_queue.json",
+      "role": "Spark standing queue"
+    }
+  ],
+  "source_artifacts": [
+    "reports/agent3-state.md",
+    "reports/agent3-state.json",
+    "data/definitions/agent3-definition-workbench-usage-collision-work-category-index-reshit.json",
+    "reports/agent3-definition-workbench-usage-collision-work-category-index-reshit.md",
+    "data/definitions/agent3-definition-workbench-usage-collision-work-category-occurrence-locator-reshit.json",
+    "reports/agent3-definition-workbench-usage-collision-work-category-occurrence-locator-reshit.md",
+    "data/definitions/agent3-definition-workbench-usage-collision-work-category-provenance-locator-reshit.json",
+    "reports/agent3-definition-workbench-usage-collision-work-category-provenance-locator-reshit.md"
+  ],
+  "validated_package_counts": {
+    "source_locator_rows": 96,
+    "candidate_package_rows_with_stable_linkage": 96,
+    "candidate_package_rows_with_exact_linkage_blocker": 0,
+    "unique_occurrence_ids": 96,
+    "rows_with_source_url": 96,
+    "rows_with_local_work_anchor": 96,
+    "rows_with_phrase_context_snippet": 96,
+    "rows_with_license_url": 96,
+    "rows_with_version_title": 96,
+    "rows_with_version_source": 96,
+    "rows_with_route_ids_only": 96,
+    "rows_labeled_observed_usage_only": 96,
+    "distinct_source_refs": 49,
+    "distinct_works": 24,
+    "distinct_categories": 8,
+    "distinct_licenses": 2,
+    "distinct_version_sources": 22,
+    "distinct_agent2_route_ids": 1,
+    "public_domain_occurrence_rows": 94,
+    "cc_by_sa_occurrence_rows": 2
+  },
+  "authority_boundary_counts": {
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "source_text_reads": 0,
+    "broad_target_expansion": 0,
+    "queue_mutations": 0,
+    "submitted_to_agent6": 0
+  },
+  "validated_commands": [
+    {
+      "command": "node scripts/build_agent3_usage_state.mjs",
+      "result": "pass_with_warnings; evidence 59/59; validators 31/31"
+    },
+    {
+      "command": "node scripts/validate_agent3_usage_state.mjs",
+      "result": "passed; evidence artifacts 59/59; validators 31/31; smoke failed 0"
+    },
+    {
+      "command": "node scripts/build_agent3_definition_workbench_usage_collision_work_category_index.mjs",
+      "result": "evidence-ready; categories 8; works 24; category-license rows 8"
+    },
+    {
+      "command": "node scripts/validate_agent3_definition_workbench_usage_collision_work_category_index.mjs",
+      "result": "passed; categories 8; works 24; category-license rows 8"
+    },
+    {
+      "command": "node scripts/build_agent3_definition_workbench_usage_collision_work_category_occurrence_locator.mjs",
+      "result": "evidence-ready; rows 96; anchors 96/96"
+    },
+    {
+      "command": "node scripts/validate_agent3_definition_workbench_usage_collision_work_category_occurrence_locator.mjs",
+      "result": "passed; rows 96; anchors 96/96"
+    },
+    {
+      "command": "node scripts/build_agent3_definition_workbench_usage_collision_work_category_provenance_locator.mjs",
+      "result": "evidence-ready; rows 96; licenses 2; version sources 22"
+    },
+    {
+      "command": "node scripts/validate_agent3_definition_workbench_usage_collision_work_category_provenance_locator.mjs",
+      "result": "passed; rows 96; licenses 2; version sources 22"
+    }
+  ],
+  "spark_queue_findings": [
+    {
+      "queue_id": "spark-oracle9-missed-dictionary-evidence-diff",
+      "package_owner": "Agent 3 / Agent 2",
+      "first_consumer": "Agent 10",
+      "input_status": {
+        "required_inputs": 2,
+        "present_inputs": 2,
+        "missing_inputs": []
+      },
+      "status": "missing_pipeline_blocker",
+      "needed_command": "Named existing command to diff Oracle 9 missed-dictionary evidence against current Orot candidate queues",
+      "needed_output": "missed-dictionary evidence diff",
+      "blocker_reason": "The required inputs exist, but none of the eight allowed Agent 3 commands produces a missed-evidence diff."
+    },
+    {
+      "queue_id": "spark5plus-continuation-dedupe",
+      "package_owner": "Agent 10 / Agent 3",
+      "first_consumer": "Agent 10",
+      "input_status": {
+        "rules_file_present": true,
+        "continuation_report_count": 33,
+        "agent5_relay_count": 97
+      },
+      "status": "missing_pipeline_blocker",
+      "needed_command": "Named existing command to dedupe spark5-plus continuation outputs and Agent 5 continuation relay messages",
+      "needed_output": "deduped continuation index",
+      "blocker_reason": "The named inputs exist, but none of the eight allowed Agent 3 commands produces a continuation dedupe index."
+    }
+  ],
+  "consumer_notes": [
+    "Use this packet as occurrence/provenance navigation evidence only.",
+    "All row linkage is route-ID-only; no Agent 2 definition payload is copied into Agent 3.",
+    "Rows remain labeled observed usage only and are not reader-facing Definition answers.",
+    "Agent 6, Agent 10, source/provenance custody, runtime, product, and publication acceptance are not claimed."
+  ]
+}
