@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_current_wake_audit",
+  "generated_at": "2026-06-04T18:35:39.792Z",
+  "package_owner": "Agent 3",
+  "lane": "linkage_dedupe_navigation",
+  "status": "no_new_agent3_executable_workset",
+  "observed_control_inputs": [
+    {
+      "path": "data/control/spark_standing_queue.json",
+      "git_state": "untracked_current_worktree_evidence",
+      "generated_at": "2026-06-04T16:20:00Z",
+      "status": "two_primary_spark_model_synced"
+    },
+    {
+      "path": "reports/spark1-standing-goal-mode-status-2026-06-04.md",
+      "git_state": "untracked_current_worktree_evidence",
+      "status": "ready_contracts_exhausted"
+    },
+    {
+      "path": "reports/spark3-standing-goal-mode-status-2026-06-04.md",
+      "git_state": "untracked_current_worktree_evidence",
+      "status": "awaiting_pipeline_contract"
+    },
+    {
+      "path": "reports/spark10-primary-agent8-13-status-2026-06-04.md",
+      "git_state": "untracked_current_worktree_evidence",
+      "status": "awaiting_agent_8_13_exact_contract_or_changed_artifact"
+    },
+    {
+      "path": "reports/agent10-weekly-lexicon-release-next-boundary-or-blocker-2026-06-04.md",
+      "git_state": "untracked_current_worktree_evidence",
+      "status": "release-owner boundary log observed"
+    }
+  ],
+  "agent3_lane_findings": [
+    {
+      "workset": "Orot 169-row route-card/candidate-card dedupe",
+      "state": "returned_validated",
+      "artifact": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
+      "rows": 169,
+      "occurrences": 2148,
+      "exact_blocker_rows": 168,
+      "exact_blocker_occurrences": 2117,
+      "next_agent3_action": "none unless exact card-payload matching command/input/output schema/validator is supplied"
+    },
+    {
+      "workset": "Deuteronomy phase-2 linkage/dedupe/source-route matrix",
+      "state": "returned_validated_consumed_as_evidence_only",
+      "artifact": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+      "rows": 8113,
+      "occurrences": 12595,
+      "exact_blocker_rows": 6779,
+      "exact_blocker_occurrences": 9631,
+      "downstream_boundary_rows": 1334,
+      "downstream_boundary_occurrences": 2964,
+      "next_agent3_action": "none unless a changed linkage/source-route input appears or downstream Agent 2/Agent 6 returns an exact Agent 3 provenance question"
+    },
+    {
+      "workset": "Oracle9 missed-dictionary evidence diff",
+      "state": "missing_pipeline_blocker_preserved",
+      "artifact": "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
+      "candidate_rows": 0,
+      "unmatched_rows": 168,
+      "missing_fields": [
+        "pipeline_commands",
+        "output_path_schema",
+        "validator_gate",
+        "command_script_invocation"
+      ],
+      "next_agent3_action": "author or receive exact command contract before any Spark-3 execution"
+    },
+    {
+      "workset": "Spark-10 hybrid release relevance shadow",
+      "state": "not_agent3_actionable",
+      "reason": "current Spark-10 missing inputs/contracts are Agent 2/Agent 4/release-owner wake fields, not a changed Agent 3 linkage packet"
+    }
+  ],
+  "counts": {
+    "agent3_returned_or_validated_worksets": 2,
+    "agent3_missing_pipeline_blockers_preserved": 1,
+    "new_agent3_executable_worksets": 0,
+    "new_agent3_route_publication_support_rows": 0,
+    "new_agent3_answer_rows": 0,
+    "new_agent3_accepted_text_rows": 0,
+    "untracked_control_inputs_observed": 5
+  },
+  "validation": [
+    {
+      "command": "node scripts\\validate_agent3_orot_route_card_candidate_card_dedupe_review.mjs",
+      "status": "passed",
+      "observed_output": "rows 169; blocker rows 168; duplicate keys 169"
+    },
+    {
+      "command": "node scripts\\validate_agent3_deuteronomy_phase2_linkage_dedupe_source_route_matrix.mjs",
+      "status": "passed",
+      "observed_output": "rows 8113; blockers 6779; downstream 1334"
+    },
+    {
+      "command": "targeted control/status scan",
+      "status": "passed",
+      "observed_output": "Spark-1 ready_contracts_exhausted; Spark-3 missing command contract for Oracle9; Spark-10 waiting on non-Agent-3 changed package/contract fields"
+    }
+  ],
+  "result": "No new Agent 3 executable linkage/dedupe/navigation workset is open from the current control/status readback. Preserve existing evidence-only returns and exact blockers; do not duplicate-route Deuteronomy or Orot.",
+  "next_wake_condition": "Wake Agent 3 only for a changed Agent 3 linkage/source-route input, exact card-payload matching contract, Oracle9 missed-dictionary command contract, or downstream Agent 2/Agent 6 question that names an Agent 3 provenance/linkage field.",
+  "boundary": {
+    "usage_as_definition_authority": false,
+    "definition_answer_selection": false,
+    "route_publication_support": false,
+    "qa_acceptance_claim": false,
+    "source_license_acceptance_claim": false,
+    "public_runtime_mutation": false,
+    "candidate_text_export": false,
+    "accepted_gloss_or_text": false
+  },
+  "known_risk": "This audit uses untracked current-worktree control/status files as observed evidence; it is a wake audit, not queue mutation or downstream acceptance.",
+  "what_must_not_be_accepted": [
+    "route publication support",
+    "definition/answer selection",
+    "usage-as-definition authority",
+    "QA acceptance",
+    "source/provenance/license acceptance",
+    "Definition acceptance",
+    "runtime/public acceptance",
+    "publication readiness",
+    "product/data acceptance",
+    "answer acceptance",
+    "accepted gloss",
+    "accepted text",
+    "candidate-text export"
+  ]
+}

@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-04T18:31:55.484Z
+Generated: 2026-06-04T18:37:46.250Z
 
 ## State
 
@@ -259,3 +259,16 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 - Boundary: no new Agent 3 Deuteronomy executable workset, no QA/source/license/Definition/runtime/publication/answer acceptance, and no public/runtime mutation.
 
 <!-- agent3_deuteronomy_spark1_status_lock_observer:end -->
+
+<!-- agent3_current_wake_audit:start -->
+
+## Latest Current Wake Audit
+
+- Package: `reports/agent3-current-wake-audit-2026-06-04.md`
+- JSON: `reports/agent3-current-wake-audit-2026-06-04.json`
+- Status: `no_new_agent3_executable_workset`
+- Current finding: Orot and Deuteronomy Agent 3 worksets are returned/validated; Oracle9 remains missing exact command contract; Spark-10 blockers are non-Agent-3 from current readback.
+- Counts: returned/validated worksets 2; missing-pipeline blockers preserved 1; new Agent 3 executable worksets 0; route-publication/answer/accepted-text rows 0/0/0.
+- Boundary: wake audit only; no QA/source/license/Definition/runtime/publication/answer acceptance and no public/runtime mutation.
+
+<!-- agent3_current_wake_audit:end -->

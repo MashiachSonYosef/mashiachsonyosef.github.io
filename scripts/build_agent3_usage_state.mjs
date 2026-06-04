@@ -67,6 +67,10 @@ const preservedReportSections = [
     '<!-- agent3_deuteronomy_spark1_status_lock_observer:start -->',
     '<!-- agent3_deuteronomy_spark1_status_lock_observer:end -->',
   ],
+  [
+    '<!-- agent3_current_wake_audit:start -->',
+    '<!-- agent3_current_wake_audit:end -->',
+  ],
 ];
 
 const options = parseArgs(process.argv.slice(2));
