@@ -1,6 +1,6 @@
 # Agent 3 Crossmatch Inventory Packet
 
-Generated: 2026-06-05T10:50:43.815Z
+Generated: 2026-06-05T11:00:07.448Z
 
 ## Boundary
 
@@ -12,15 +12,15 @@ Generated: 2026-06-05T10:50:43.815Z
 
 - Files inspected: 225
 - Data/report/script files: 51/57/117
-- Committed-clean / dirty-or-uncommitted files: 33/192
-- Staged added / staged modified / worktree modified / untracked: 176/16/0/0
+- Committed-clean / dirty-or-uncommitted files: 37/188
+- Staged added / staged modified / worktree modified / untracked: 172/16/0/0
 - Reader-facing / route-payload / forbidden-authority / truthy-authority hits: 0/0/0/0
 
 ## Blocker
 
 - Status: exact_blocker
 - Blocker: crossmatch_inventory_contains_dirty_or_uncommitted_artifacts
-- Detail: 192 crossmatch/usage files are staged, modified, or untracked; treat them as inventory only until a bounded subset is validated and committed.
+- Detail: 188 crossmatch/usage files are staged, modified, or untracked; treat them as inventory only until a bounded subset is validated and committed.
 
 ## Dirty Or Uncommitted Sample
 
@@ -36,7 +36,6 @@ Generated: 2026-06-05T10:50:43.815Z
 | data/definitions/agent3-definition-workbench-usage-collision-work-category-cross-work-snippet-locator-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_work_category_cross_work_snippet_locator |
 | data/definitions/agent3-definition-workbench-usage-collision-work-category-handoff-manifest-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_work_category_handoff_manifest |
 | data/definitions/agent3-definition-workbench-usage-collision-work-category-integrity-digest-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_work_category_integrity_digest |
-| data/definitions/agent3-definition-workbench-usage-collision-work-category-source-ref-repeat-locator-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_work_category_source_ref_repeat_locator |
 | data/definitions/agent3-definition-workbench-usage-collision-work-category-validation-run-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_work_category_validation_run |
 | data/definitions/agent3-definition-workbench-usage-concordance-token-matrix.json | data_artifact | staged_added | agent3_definition_workbench_usage_concordance_token_matrix |
 | data/definitions/agent3-definition-workbench-usage-focus-collision-audit-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_focus_collision_audit |
@@ -66,6 +65,7 @@ Generated: 2026-06-05T10:50:43.815Z
 | data/definitions/definition-workbench-usage-queue-ready-packet.json | data_artifact | staged_modified | definition_workbench_usage_queue_ready_packet |
 | data/definitions/definition-workbench-usage-route-concentration-guardrail.json | data_artifact | staged_added | definition_workbench_usage_route_concentration_guardrail |
 | data/definitions/definition-workbench-usage-route-diversity-probe.json | data_artifact | staged_added | definition_workbench_usage_route_diversity_probe |
+| data/definitions/definition-workbench-usage-route-pointer-audit.json | data_artifact | staged_added | definition_workbench_usage_route_pointer_audit |
 
 ## Artifact Types
 
