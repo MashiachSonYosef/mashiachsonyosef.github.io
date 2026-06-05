@@ -41,7 +41,7 @@ const agent3RelatedRows = rows.filter((row) => isAgent3Related(row));
 const handoffRows = rows.filter(isHandoffCandidate);
 const agent3RelatedHandoffRows = agent3RelatedRows.filter(isHandoffCandidate);
 const routeExactRows = rows.filter((row) => row.next_agent10_action === 'route_exact_contract_or_missing_field_blocker');
-const directAgent6PacketRows = rows.filter((row) => row.release_relevance_hint === 'agent6_ready_boundary_packet');
+const directAgent6PacketRows = rows.filter((row) => row.agent6_handoff_needed === true);
 const consumedAgent3 = (agent10.consumed_packages || []).find(
   (entry) => entry.package_workset === 'agent3_deuteronomy_phase2_continuity_registration',
 );

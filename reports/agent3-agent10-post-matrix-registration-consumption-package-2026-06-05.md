@@ -27,11 +27,11 @@
 | Exact blocker rows | 6779 |
 | Exact blocker occurrences | 9631 |
 | External lane rows copied | 0 |
-| Spark10 inputs checked | 313 |
-| Spark10 release-relevant rows | 85 |
-| Spark10 handoff candidates | 14 |
+| Spark10 inputs checked | 320 |
+| Spark10 release-relevant rows | 83 |
+| Spark10 handoff candidates | 12 |
 | Spark10 Agent 3 continuity registered rows | 4 |
-| Spark10 validation blockers | 2 |
+| Spark10 validation blockers | 0 |
 | Direct Agent 3 executable worksets | 0 |
 
 ## Boundary
@@ -44,9 +44,9 @@ Wake Agent 3 only when Agent 10, Agent 7, or a queue supplies an exact changed e
 
 ## Upstream Spark10 Validation
 
-- Status: `blocked_by_current_spark10_cap_drift`
+- Status: `passed_at_package_time`
 - Validator command: `node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json`
-- Blockers: `spark10_route_exact_cap_drift` observed 2 vs expected at most 1 route-exact row; `spark10_agent6_candidate_count_drift` observed 12 vs expected 14
+- Blockers: `none`
 
 ## Validation
 
@@ -56,13 +56,13 @@ Wake Agent 3 only when Agent 10, Agent 7, or a queue supplies an exact changed e
 
 ## Reviewed Inputs
 
-- `reports/agent10-post-matrix-lane-output-consumption-2026-06-05.json` (9294 bytes, sha256 `11835819d9c9d2df469a18948f5d32e8e57af399fe1f2521a0df8c864a7f60f4`)
-- `reports/agent10-post-matrix-lane-output-consumption-2026-06-05.md` (9689 bytes, sha256 `f9568f28d80d8f95271cf300a280a84e9589086fa4ade36acde10fc10cb1beea`)
+- `reports/agent10-post-matrix-lane-output-consumption-2026-06-05.json` (11363 bytes, sha256 `4422dfec38ed402d4d05c6d28657531e69e96ddd034cf9edaccce22aa8aefcca`)
+- `reports/agent10-post-matrix-lane-output-consumption-2026-06-05.md` (11671 bytes, sha256 `3ae746186534e4f006655c1cae0b21dd48a1372ba57181c9ae354b9c84802f52`)
 - `reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.json` (18415 bytes, sha256 `8a6f8afd8c40bc6d1d678afbdf4775415ca14ec3644fa186ad4ee5c8ee0a6019`)
 - `reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.md` (6314 bytes, sha256 `eba9707624d46d2b62d74f558fa00a7a15c8bba2a7229fd277ea187faaacb423`)
 - `reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.json` (28581 bytes, sha256 `d1c0dfbcc2277523b2b65c1026082f5a8e39b965a848ccfb1b278c8f054c8193`)
 - `reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.md` (5111 bytes, sha256 `0b732070db53408015a14ec8a957dd9bdaf897c7f825cb052837b00c0f1d19c2`)
-- `reports/spark10-release-package-intake-matrix-current-2026-06-04.json` (243043 bytes, sha256 `f7a272b3d0c3e8dd4946c3604f266b54f91e30c48738350d4e3d9936a06de611`)
-- `reports/spark10-release-package-intake-matrix-current-2026-06-04.md` (62408 bytes, sha256 `fb1df9af0b1a207390785aa9551c55c9857b89f6d7d122301a50cef8233f6995`)
-- `reports/agent3-state.json` (58287 bytes, sha256 `6b545333b8c4633f166092ef3f95f8efbb4e8bd34c98b09f233e2b63d82f8516`)
-- `reports/agent3-state.md` (23691 bytes, sha256 `a8803dff1991463e2ea96c17561cedff208e183e99ce84f5d3452d0fa817d5ba`)
+- `reports/spark10-release-package-intake-matrix-current-2026-06-04.json` (248650 bytes, sha256 `a51c3544249ce2c113eb582b5327329aca24a1b136807c71d072ed869f11d19f`)
+- `reports/spark10-release-package-intake-matrix-current-2026-06-04.md` (63741 bytes, sha256 `f6119c39834f049e0924b046f2f06d7e09ff852f2c0e9741581aec492202c767`)
+- `reports/agent3-state.json` (58287 bytes, sha256 `5a244ef04b899b62caed8c16a89c5e479e72229ba8555ab51b91f810df92deb8`)
+- `reports/agent3-state.md` (23691 bytes, sha256 `bf8c1e35b350f47abf3ef85f28aced61ec1c536b61055977e775ef74f05f9fa7`)

@@ -126,6 +126,19 @@ function validateSpark10SnapshotIfUnchanged() {
   ];
   expect(spark10.summary.inputs_checked === artifact.schema_counts.spark10_inputs_checked, 'Spark10 input count mismatch');
   expect(rows.length === artifact.schema_counts.spark10_matrix_rows, 'Spark10 row count mismatch');
+  const agent6HandoffRows = rows.filter((row) => row.agent6_handoff_needed === true);
+  expect(
+    spark10.summary.agent6_handoff_candidates === artifact.schema_counts.spark10_agent6_handoff_candidates,
+    'Spark10 Agent 6 handoff summary mismatch',
+  );
+  expect(
+    agent6HandoffRows.length === artifact.schema_counts.spark10_direct_agent6_packet_rows,
+    'Spark10 direct Agent 6 packet row count mismatch',
+  );
+  expect(
+    spark10.summary.agent6_handoff_candidates === agent6HandoffRows.length,
+    'Spark10 Agent 6 candidate rows must match summary',
+  );
   expect(
     required.every((targetPath) => rows.some((row) => row.path === targetPath)),
     'Spark10 snapshot must register all four latest Agent 3 continuity/audit rows',
@@ -161,6 +174,12 @@ function validateBoundaries() {
       artifact.upstream_spark10_validation.blockers.length > 0,
       'blocked Spark10 validation must name blockers',
     );
+  } else {
+    expect(
+      artifact.upstream_spark10_validation?.blockers?.length === 0,
+      'passed Spark10 validation must not name blockers',
+    );
+    expect(artifact.schema_counts.spark10_validation_blocker_count === 0, 'passed Spark10 validation blocker count must be 0');
   }
   expect(/Agent 10/.test(artifact.handoff_owner || ''), 'handoff owner must name Agent 10');
   for (const key of [
