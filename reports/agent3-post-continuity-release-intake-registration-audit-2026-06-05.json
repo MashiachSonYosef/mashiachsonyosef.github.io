@@ -1,0 +1,620 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_post_continuity_release_intake_registration_audit",
+  "generated_at": "2026-06-05T01:04:14.912Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane_owner": "Agent 3",
+  "status": "latest_agent3_package_state_indexed_missing_spark10_intake_row",
+  "publication_state": "blocked_no_render",
+  "target": "Audit whether the latest Agent 3 Deuteronomy transform/readiness continuity package is visible to Spark-10 release/package intake and whether any new executable Agent 3 workset exists.",
+  "files": {
+    "input_files": [
+      "reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.json",
+      "reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.md",
+      "scripts/validate_agent3_deuteronomy_phase2_transform_readiness_verdict_continuity_package.mjs",
+      "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+      "reports/agent3-spark10-matrix-delta-audit-2026-06-05.json",
+      "reports/agent3-spark10-matrix-delta-audit-2026-06-05.md",
+      "reports/agent10-weekly-lexicon-release-next-boundary-or-blocker-2026-06-04.md",
+      "reports/agent10-current-changed-lane-outputs-consumption-2026-06-04.json",
+      "reports/agent10-current-changed-lane-outputs-consumption-2026-06-04.md",
+      "reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.json",
+      "reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.md",
+      "data/control/spark_standing_queue.json",
+      "data/control/agent_goal_board.json",
+      "reports/agent3-state.json",
+      "reports/agent3-state.md"
+    ],
+    "output_json": "reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.json",
+    "output_markdown": "reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.md"
+  },
+  "exact_command_or_script_to_write_or_run": "node scripts/build_agent3_post_continuity_release_intake_registration_audit.mjs",
+  "latest_agent3_package": {
+    "path": "reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.json",
+    "markdown_path": "reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.md",
+    "status": "agent6_warn_accepted_nonpublic_transform_readiness_observed_by_agent3",
+    "publication_state": "blocked_no_render",
+    "transform_readiness_rows": 1334,
+    "transform_readiness_occurrences": 2964,
+    "agent3_matrix_rows": 8113,
+    "agent3_matrix_occurrences": 12595,
+    "exact_blocker_rows": 6779,
+    "exact_blocker_occurrences": 9631,
+    "external_lane_rows_copied": 0,
+    "executable_output_authorized": false,
+    "state_indexed_json": true,
+    "state_indexed_markdown": true,
+    "validator_indexed": true,
+    "spark10_intake_registered": false
+  },
+  "spark10_current_matrix": {
+    "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "artifact_type": "spark10_release_package_intake_matrix",
+    "generated_at": "2026-06-05T01:04:09.982Z",
+    "summary": {
+      "inputs_checked": 280,
+      "missing_required_inputs": 0,
+      "release_relevant_rows": 116,
+      "agent6_handoff_candidates": 45,
+      "public_runtime_mutation_authorized": false,
+      "answer_definition_release_authorized": false
+    },
+    "boundary": {
+      "public_runtime_mutation_authorized": false,
+      "route_shard_edit_authorized": false,
+      "answer_eligibility_authorized": false,
+      "definition_content_storage_authorized": false,
+      "accepted_text_authorized": false,
+      "publication_readiness_authorized": false
+    },
+    "row_count": 280,
+    "agent3_rows": 24,
+    "spark3_rows": 5,
+    "agent3_related_rows": 32,
+    "handoff_rows": 45,
+    "agent3_related_handoff_rows": 9,
+    "latest_agent3_package_registered": false,
+    "agent3_related_paths": [
+      {
+        "path": "reports/spark3-standing-goal-mode-status-2026-06-04.md",
+        "lane_owner": "Spark-3",
+        "status": null,
+        "blocker_class": "pipeline_contract_blocker",
+        "next_agent10_action": "route_exact_contract_or_missing_field_blocker",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/spark3-orot-169-row-route-card-candidate-card-dedupe-contract-run-2026-06-04.md",
+        "lane_owner": "Spark-3",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-spark3-linkage-dedupe-navigation-pipeline-contract-2026-06-04.md",
+        "lane_owner": "Agent 3",
+        "status": "runnable_contract_for_first_target.",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.md",
+        "lane_owner": "Agent 3",
+        "status": "runnable_contract.",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-spark1-pipeline-contract-deuteronomy-phase2-linkage-dedupe-source-route-2026-06-04.json",
+        "lane_owner": "Agent 3",
+        "status": "runnable_contract",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.md",
+        "lane_owner": "Agent 3",
+        "status": "evidence-ready_with_exact_blockers.",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-deuteronomy-linkage-dedupe-source-route-matrix-2026-06-04.json",
+        "lane_owner": "Agent 3",
+        "status": "evidence-ready_with_exact_blockers",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-deuteronomy-phase2-spark1-return-consumption-package-2026-06-04.json",
+        "lane_owner": "Agent 3",
+        "status": "spark1_return_consumed_agent3_review_package",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent6-deuteronomy-phase2-agent3-supplemental-receipt-2026-06-04.md",
+        "lane_owner": "Agent 6",
+        "status": "RECEIVED / WARN-ACCEPTED as supplemental linkage-dedupe provenance evidence only.",
+        "blocker_class": "warn_accepted_evidence_only",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent10-agent6-deuteronomy-phase2-agent3-supplemental-receipt-consumption-2026-06-04.json",
+        "lane_owner": "Agent 10",
+        "status": "agent6_warn_accepted_supplemental_provenance_evidence_only",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.md",
+        "lane_owner": "Agent 3",
+        "status": "evidence-ready_with_exact_linkage_blockers.",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-linkage-navigation-frontier-checkpoint-2026-06-04.md",
+        "lane_owner": "Agent 3",
+        "status": "evidence_ready_frontier_checkpoint",
+        "blocker_class": "blocked_no_render",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-linkage-navigation-frontier-checkpoint-2026-06-04.json",
+        "lane_owner": "Agent 3",
+        "status": "evidence_ready_frontier_checkpoint",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-deuteronomy-source-license-custody-verdict-continuity-package-2026-06-04.md",
+        "lane_owner": "Agent 3",
+        "status": "agent6_warn_accepted_nonpublic_planning_observed_by_agent3",
+        "blocker_class": "blocked_no_render",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-deuteronomy-source-license-custody-verdict-continuity-package-2026-06-04.json",
+        "lane_owner": "Agent 3",
+        "status": "agent6_warn_accepted_nonpublic_planning_observed_by_agent3",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-spark3-contract-status-reconciliation-2026-06-04.md",
+        "lane_owner": "Agent 3",
+        "status": "contract_present_status_stale",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-spark3-contract-status-reconciliation-2026-06-04.json",
+        "lane_owner": "Agent 3",
+        "status": "contract_present_status_stale",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-current-control-drift-refresh-2026-06-04.md",
+        "lane_owner": "Agent 3",
+        "status": "evidence_ready_control_drift_refresh",
+        "blocker_class": "missing_pipeline_blocker",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-current-control-drift-refresh-2026-06-04.json",
+        "lane_owner": "Agent 3",
+        "status": "evidence_ready_control_drift_refresh",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-state.md",
+        "lane_owner": "Agent 3",
+        "status": "evidence_ready_observer_package",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists",
+        "agent6_handoff_needed": true
+      },
+      {
+        "path": "reports/agent3-state.json",
+        "lane_owner": "Agent 3",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists",
+        "agent6_handoff_needed": true
+      },
+      {
+        "path": "data/definitions/definition-workbench-usage-queue-ready-packet.json",
+        "lane_owner": "Agent 3",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists",
+        "agent6_handoff_needed": true
+      },
+      {
+        "path": "data/definitions/definition-workbench-usage-agent6-packet.json",
+        "lane_owner": "Agent 3",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists",
+        "agent6_handoff_needed": true
+      },
+      {
+        "path": "data/definitions/definition-workbench-usage-occurrence-links.json",
+        "lane_owner": "Agent 3",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists",
+        "agent6_handoff_needed": true
+      },
+      {
+        "path": "data/definitions/definition-workbench-usage-route-resolution.json",
+        "lane_owner": "Agent 3",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists",
+        "agent6_handoff_needed": true
+      },
+      {
+        "path": "data/definitions/definition-workbench-usage-consumer-manifest.json",
+        "lane_owner": "Agent 3",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists",
+        "agent6_handoff_needed": true
+      },
+      {
+        "path": "reports/agent10-agent3-workbench-usage-navigation-consumption-2026-06-04.md",
+        "lane_owner": "Agent 10",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists",
+        "agent6_handoff_needed": true
+      },
+      {
+        "path": "reports/agent10-agent3-workbench-usage-navigation-consumption-2026-06-04.json",
+        "lane_owner": "Agent 10",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "prepare_or_route_agent6_boundary_only_if_exact_package_exists",
+        "agent6_handoff_needed": true
+      },
+      {
+        "path": "reports/agent3-post-custody-wake-condition-audit-2026-06-04.md",
+        "lane_owner": "Agent 3",
+        "status": "no_new_agent3_executable_workset_after_custody_index",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent3-post-custody-wake-condition-audit-2026-06-04.json",
+        "lane_owner": "Agent 3",
+        "status": "no_new_agent3_executable_workset_after_custody_index",
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.md",
+        "lane_owner": "Agent 10",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      },
+      {
+        "path": "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.json",
+        "lane_owner": "Agent 10",
+        "status": null,
+        "blocker_class": "none_detected_by_intake",
+        "next_agent10_action": "inspect_if_release_relevant",
+        "agent6_handoff_needed": false
+      }
+    ]
+  },
+  "previous_spark10_delta_audit": {
+    "path": "reports/agent3-spark10-matrix-delta-audit-2026-06-05.json",
+    "status": "spark10_matrix_delta_observed_no_agent3_workset",
+    "counts": {
+      "current_inputs_checked": 275,
+      "current_release_relevant_rows": 118,
+      "current_agent6_handoff_candidates": 47,
+      "current_matrix_rows": 275,
+      "current_agent3_rows": 24,
+      "current_spark3_rows": 5,
+      "agent10_agent3_runnable_queue_items": 0,
+      "agent10_changed_artifacts_found": 0,
+      "agent10_exact_new_worksets_found": 0
+    }
+  },
+  "agent10_changed_outputs_consumption": {
+    "path": "reports/agent10-current-changed-lane-outputs-consumption-2026-06-04.json",
+    "package_workset": "current_changed_lane_outputs_after_spark10_matrix",
+    "consumed_packages": [
+      {
+        "package_workset": "workbench-full-source-name-custody-partitions",
+        "release_relevance": "Agent 6 carried the exact packet as non-public source/license custody planning evidence only",
+        "exact_blocker": "full_source_name_custody_partitions_require_agent6_boundary_before_any_source_license_acceptance_or_export_use; cc_by_attribution_partition_use_requires_exact_attribution_boundary; cc_by_sa_share_alike_partition_use_requires_exact_share_alike_boundary; candidate_text_export_storage_display_or_answer_use_requires_a_later_exact_row_subset_packet"
+      },
+      {
+        "package_workset": "old-dictionary-lane-partition-transform-planning-matrix",
+        "release_relevance": "Agent 6 carried the exact packet as non-public lane-partition transform-planning evidence only",
+        "exact_blocker": "old_dictionary_candidate_text_consumption_export_storage_requires_new_exact_agent6_boundary; changed_source_family_linkage_dictionary_evidence_required_for_168_orot_unmatched_rows; bdb_augmented_strong_blocked_or_needs_review_pending_independent_custody_evidence; klein_rows_noncommercial_educational_candidate_only_not_commercial_export_candidates"
+      },
+      {
+        "package_workset": "deuteronomy-source-license-custody-agent4-gate",
+        "release_relevance": "Agent4 validator/prereq gate proof for the changed Deuteronomy source/license custody boundary packet; no new Agent6 route because Deuteronomy source/license custody verdict already returned",
+        "exact_blocker": "No release/public/runtime/answer/definition action from Agent4 gate proof; future changed package/input required before new Agent4 or Agent6 route."
+      }
+    ],
+    "zero_counters": {
+      "answer_rows": 0,
+      "answer_eligible_rows": 0,
+      "public_reader_output_rows": 0,
+      "route_jsonl_rows": 0,
+      "route_shard_writes": 0,
+      "definition_content_rows": 0,
+      "candidate_text_export_rows": 0,
+      "accepted_text_rows": 0,
+      "public_runtime_mutation": 0
+    },
+    "highest_permissible_claim": "Agent 10 consumed changed Agent1/Agent2/Agent4 lane outputs, delivered two Agent6-ready non-public planning boundary packets, consumed Agent 6's combined non-public planning-evidence verdict, and preserved exact blockers and zero-emission counters."
+  },
+  "agent10_current_boundary_verdict_consumption": {
+    "path": "reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.json",
+    "disposition": "warn_only_non_public_planning_evidence_only",
+    "packets": [
+      {
+        "workset": "workbench_full_source_name_custody_partitions",
+        "carried_forward_as": "non_public_source_license_custody_planning_evidence_only"
+      },
+      {
+        "workset": "old_dictionary_lane_partition_transform_planning",
+        "carried_forward_as": "non_public_lane_partition_transform_planning_evidence_only"
+      }
+    ],
+    "zero_counters": {
+      "answer_rows": 0,
+      "answer_eligible_rows": 0,
+      "public_reader_output_rows": 0,
+      "route_jsonl_rows": 0,
+      "route_shard_writes": 0,
+      "definition_content_rows": 0,
+      "candidate_text_export_rows": 0,
+      "accepted_text_rows": 0,
+      "public_runtime_mutation": 0,
+      "runtime_source_token_index_lexical_edits": 0
+    },
+    "next_release_owner_action": "Carry both outputs as non-public planning evidence only inside Spark-10 / Agent 10 release-package intake. Any stronger use requires a new exact Agent 6 boundary packet."
+  },
+  "queue_reference": {
+    "path": "data/control/spark_standing_queue.json",
+    "queue_items_seen": 0,
+    "direct_agent3_runnable_items": []
+  },
+  "goal_reference": {
+    "path": "data/control/agent_goal_board.json",
+    "agent3_goal": {
+      "id": "agent3-broad-linkage-dedupe-navigation",
+      "agent": "Agent 3",
+      "status": "active_spark3_returned_no_queued_item_agent3_consumes",
+      "goal": "Package broad linkage/dedupe/navigation evidence, including current 169 local-route-card matrix and returned 96/96 provenance-navigation package.",
+      "spark": "spark-3 broad linkage/dedupe/navigation mechanics",
+      "latest_spark_artifact": "reports/spark3-broad-linkage-dedupe-navigation-2026-06-04-report.md",
+      "next_action": "Agent 3 consumes/packages returned Spark-3 mechanics; Spark-3 sleeps until exact next linkage/dedupe/navigation command set exists."
+    }
+  },
+  "agent3_state_reference": {
+    "path": "reports/agent3-state.json",
+    "quality_status": "pass_with_warnings",
+    "evidence_artifacts": 85,
+    "evidence_artifacts_exist": 85,
+    "validator_scripts": 44,
+    "validator_scripts_exist": 44
+  },
+  "schema_counts": {
+    "previous_inputs_checked": 275,
+    "previous_release_relevant_rows": 118,
+    "previous_agent6_handoff_candidates": 47,
+    "previous_matrix_rows": 275,
+    "previous_agent3_rows": 24,
+    "previous_spark3_rows": 5,
+    "current_inputs_checked": 280,
+    "current_missing_required_inputs": 0,
+    "current_release_relevant_rows": 116,
+    "current_agent6_handoff_candidates": 45,
+    "current_matrix_rows": 280,
+    "current_agent3_rows": 24,
+    "current_spark3_rows": 5,
+    "current_agent3_related_rows": 32,
+    "current_handoff_rows": 45,
+    "current_agent3_related_handoff_rows": 9,
+    "input_delta_since_previous_audit": 5,
+    "matrix_row_delta_since_previous_audit": 5,
+    "release_relevant_delta_since_previous_audit": -2,
+    "handoff_delta_since_previous_audit": -2,
+    "agent3_row_delta_since_previous_audit": 0,
+    "spark3_row_delta_since_previous_audit": 0,
+    "latest_agent3_package_state_indexed": 1,
+    "latest_agent3_validator_state_indexed": 1,
+    "latest_agent3_package_spark10_registered": 0,
+    "direct_queue_agent3_runnable_items": 0,
+    "route_publication_support_rows": 0,
+    "definition_authority_rows": 0,
+    "usage_as_definition_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0,
+    "public_reader_output_rows": 0
+  },
+  "reviewed_inputs": [
+    {
+      "role": "latestAgent3PackageJson",
+      "path": "reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.json",
+      "sha256": "8a6f8afd8c40bc6d1d678afbdf4775415ca14ec3644fa186ad4ee5c8ee0a6019",
+      "bytes": 18415
+    },
+    {
+      "role": "latestAgent3PackageMd",
+      "path": "reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.md",
+      "sha256": "eba9707624d46d2b62d74f558fa00a7a15c8bba2a7229fd277ea187faaacb423",
+      "bytes": 6314
+    },
+    {
+      "role": "latestAgent3Validator",
+      "path": "scripts/validate_agent3_deuteronomy_phase2_transform_readiness_verdict_continuity_package.mjs",
+      "sha256": "82b7fc3a7bae6cd05dcc6996f06ed89240cbcd79b2b7ee55b6982cca9167cba0",
+      "bytes": 14825
+    },
+    {
+      "role": "spark10MatrixJson",
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "sha256": "6e3486e950a0666b51b6f5c8d313e4f1f123478ce233788f6d47f180ae05fafb",
+      "bytes": 217824
+    },
+    {
+      "role": "spark10MatrixMd",
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+      "sha256": "af758921cba34ac953981244382e80c6f00d2dab15af3067c57768bbeddba74c",
+      "bytes": 56617
+    },
+    {
+      "role": "previousSpark10DeltaAuditJson",
+      "path": "reports/agent3-spark10-matrix-delta-audit-2026-06-05.json",
+      "sha256": "eb5650a67806c7284db9891e441e717473cdade70a9ae1dd8903439009c0609a",
+      "bytes": 12616
+    },
+    {
+      "role": "previousSpark10DeltaAuditMd",
+      "path": "reports/agent3-spark10-matrix-delta-audit-2026-06-05.md",
+      "sha256": "847e538de6a31dcfec9c89d287374425d7e289bf961837ce09e053182742db0d",
+      "bytes": 3751
+    },
+    {
+      "role": "agent10WeeklyBoundaryOrBlockerMd",
+      "path": "reports/agent10-weekly-lexicon-release-next-boundary-or-blocker-2026-06-04.md",
+      "sha256": "281be11ea1d21b032005e84d5d242b6746f86c0363ae69868d62823e147be6a2",
+      "bytes": 98953
+    },
+    {
+      "role": "agent10ChangedOutputsConsumptionJson",
+      "path": "reports/agent10-current-changed-lane-outputs-consumption-2026-06-04.json",
+      "sha256": "47dcaa072445078356a6c053e8f18ffde00925be50075ad2f84700d2686b41ac",
+      "bytes": 10050
+    },
+    {
+      "role": "agent10ChangedOutputsConsumptionMd",
+      "path": "reports/agent10-current-changed-lane-outputs-consumption-2026-06-04.md",
+      "sha256": "6a4dff83286c493a823d3ea6f943d0fa48243164595624fa370cde7ebed02c26",
+      "bytes": 6774
+    },
+    {
+      "role": "agent10CurrentBoundaryVerdictConsumptionJson",
+      "path": "reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.json",
+      "sha256": "41dbb2e62a39b0043ae37615244a43df9c75d227b475d9dbfa72ac3bfbfcf252",
+      "bytes": 5583
+    },
+    {
+      "role": "agent10CurrentBoundaryVerdictConsumptionMd",
+      "path": "reports/agent10-agent6-current-release-package-boundary-packets-verdict-consumption-2026-06-05.md",
+      "sha256": "a73333c22cf641b8087278420d7bcc7e890982b4942c1ea82708f69e1098fbee",
+      "bytes": 5305
+    },
+    {
+      "role": "sparkQueueJson",
+      "path": "data/control/spark_standing_queue.json",
+      "sha256": "f96750a52082fcbd43103155549845dfa4ac10a184f1753537c525bab354e06a",
+      "bytes": 5209
+    },
+    {
+      "role": "agentGoalBoardJson",
+      "path": "data/control/agent_goal_board.json",
+      "sha256": "075449a79b818733bce64e23d8123f0c7e8bd3a2d0dbe358350fb9601f3e28b9",
+      "bytes": 346321
+    },
+    {
+      "role": "agent3StateJson",
+      "path": "reports/agent3-state.json",
+      "sha256": "f46b273279cb2c0f16a24fb92b40bb6b814a161844a52e74a3a05e5c992693e6",
+      "bytes": 57760
+    },
+    {
+      "role": "agent3StateMd",
+      "path": "reports/agent3-state.md",
+      "sha256": "6f814a3a107f21fd22025f873a1359649e7c361f0a1173ee7ad46943b26b8cd1",
+      "bytes": 22047
+    }
+  ],
+  "volatile_reviewed_input_roles": [
+    "spark10MatrixJson",
+    "spark10MatrixMd",
+    "agent10WeeklyBoundaryOrBlockerMd",
+    "agent3StateJson",
+    "agent3StateMd"
+  ],
+  "missing_field_blocker": {
+    "blocker": "missing_spark10_intake_registration_or_exact_agent3_workset",
+    "source": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "wake_condition": "Latest Agent 3 package is state-indexed but not represented as its own Spark-10 intake row; Agent 3 still lacks an exact changed executable workset.",
+    "missing_fields": [
+      "spark10_contract_or_matrix_row_for_latest_agent3_package_if_release_owner_wants_intake_tracking",
+      "changed_agent3_artifact_path_or_exact_workset_id",
+      "target_rows_and_occurrences_for_new_agent3_matrix",
+      "route_card_or_source_route_input_set",
+      "output_path_and_schema_for_new_agent3_matrix",
+      "validator_or_gate_for_new_agent3_matrix",
+      "handoff_trigger_for_agent10_release_package_intake",
+      "stop_condition_for_new_agent3_run"
+    ]
+  },
+  "handoff_owner": "Agent 10 for release/package intake registration decision; Agent 6 only by exact boundary packet prepared through release owner; Agent 3 remains held until exact changed workset.",
+  "stop_condition": "Stop after recording latest Agent 3 package registration state and the absence of an executable Agent 3 workset.",
+  "boundary": {
+    "source_license_acceptance": false,
+    "source_provenance_acceptance": false,
+    "qa_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "answer_selection": false,
+    "route_publication_support": false,
+    "public_runtime_acceptance": false,
+    "publication_readiness": false,
+    "product_data_acceptance": false,
+    "package_export_authorization": false,
+    "accepted_gloss_text": false,
+    "accepted_text": false,
+    "translation_output": false,
+    "public_reader_output": false,
+    "public_runtime_mutation": false
+  },
+  "validators": [
+    "node scripts/validate_agent3_post_continuity_release_intake_registration_audit.mjs",
+    "node scripts/validate_agent3_deuteronomy_phase2_transform_readiness_verdict_continuity_package.mjs",
+    "node scripts/validate_agent3_usage_state.mjs",
+    "node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json"
+  ]
+}
