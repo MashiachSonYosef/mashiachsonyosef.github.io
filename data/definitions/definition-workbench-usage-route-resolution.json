@@ -1,0 +1,3152 @@
+{
+  "schema_version": 1,
+  "artifact_type": "definition_workbench_usage_route_resolution",
+  "generated_at": "2026-06-01T18:26:28.170Z",
+  "generator": "scripts/build_definition_workbench_usage_route_resolution.mjs",
+  "policy": "Agent 3 route-ID resolution audit for Definition Workbench usage occurrence links. It proves selected occurrence links resolve to Agent 2 route IDs through local route-source files while copying only safe route metadata; it does not copy definitions, rank routes, choose visible answers, translate, or publish.",
+  "inputs": {
+    "occurrence_links": "data/definitions/definition-workbench-usage-occurrence-links.json",
+    "route_source": "data/definitions/hud-route-store-sample.json"
+  },
+  "authority_policy": {
+    "usage_navigation_only": true,
+    "route_ids_only": true,
+    "route_resolution_only": true,
+    "reader_facing": false,
+    "copies_route_payloads": false,
+    "copies_definition_payloads": false,
+    "ranks_routes": false,
+    "selects_visible_result": false,
+    "publication_claim": false
+  },
+  "quality": {
+    "status": "passed",
+    "warning_count": 0,
+    "failed_count": 0
+  },
+  "counts": {
+    "occurrence_link_rows": 49,
+    "occurrence_route_rows": 49,
+    "route_ids": 1,
+    "resolved_route_ids": 1,
+    "unresolved_route_ids": 0,
+    "resolved_occurrence_route_rows": 49,
+    "unresolved_occurrence_route_rows": 0,
+    "answer_eligible_occurrence_route_rows": 49,
+    "answer_eligible_rows_with_source_license_profile": 49,
+    "source_license_profile_complete_rows": 49,
+    "forbidden_license_profile_rows": 0,
+    "future_translation_output_blocked_rows": 49,
+    "source_refs": 38,
+    "cluster_ids": 2,
+    "usage_frames": 2,
+    "status_counts": {
+      "supported": 11,
+      "candidate": 26,
+      "weak": 12
+    },
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0
+  },
+  "checks": [
+    {
+      "id": "route_rows_present",
+      "status": "passed",
+      "detail": "occurrence route rows 49; route IDs 1"
+    },
+    {
+      "id": "all_routes_resolved",
+      "status": "passed",
+      "detail": "unresolved route IDs 0; unresolved rows 0"
+    },
+    {
+      "id": "occurrence_rows_covered",
+      "status": "passed",
+      "detail": "route rows 49; occurrence links 49"
+    },
+    {
+      "id": "status_counts_cover_rows",
+      "status": "passed",
+      "detail": "status rows 49; rows 49"
+    },
+    {
+      "id": "route_metadata_safe",
+      "status": "passed",
+      "detail": "route payload hits 0; forbidden hits 0"
+    },
+    {
+      "id": "answer_eligible_source_license_profile",
+      "status": "passed",
+      "detail": "answer eligible rows 49; with complete source/license profile 49"
+    },
+    {
+      "id": "forbidden_license_profile_absent",
+      "status": "passed",
+      "detail": "forbidden license profile rows 0"
+    },
+    {
+      "id": "future_translation_output_blocked",
+      "status": "passed",
+      "detail": "blocked rows 49; occurrence route rows 49"
+    },
+    {
+      "id": "usage_only_boundary",
+      "status": "passed",
+      "detail": "reader-facing rows 0"
+    }
+  ],
+  "routes": [
+    {
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "occurrence_link_rows": 49,
+      "source_refs": 38,
+      "works": 20,
+      "status_counts": {
+        "supported": 11,
+        "candidate": 26,
+        "weak": 12
+      },
+      "cluster_counts": {
+        "reshit-first-yield-priority": 29,
+        "reshit-opening-time-order": 20
+      }
+    }
+  ],
+  "occurrence_route_rows": [
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-001",
+      "occurrence_id": "usage-occ-fdc732ff9cd0d3f0",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "II Chronicles 31:5",
+      "status": "supported",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-002",
+      "occurrence_id": "usage-occ-b3e79e3c967ebf9e",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Deuteronomy 26:13:5",
+      "status": "supported",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-003",
+      "occurrence_id": "usage-occ-df940d11a1836822",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Jeremiah 2:3",
+      "status": "supported",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-004",
+      "occurrence_id": "usage-occ-71374260060279c2",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Genesis 49:3:1",
+      "status": "supported",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-005",
+      "occurrence_id": "usage-occ-83ba4d802c6f2b05",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Genesis 49:3:1",
+      "status": "supported",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-006",
+      "occurrence_id": "usage-occ-a1521c02e65de90b",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Numbers 15:20",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-007",
+      "occurrence_id": "usage-occ-8008c7a8c7586f22",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Deuteronomy 16:9:1",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-008",
+      "occurrence_id": "usage-occ-2f65e77bb7f0c740",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Numbers 15:20:1",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-009",
+      "occurrence_id": "usage-occ-2c64462a53931b74",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Deuteronomy 18:4:1",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-010",
+      "occurrence_id": "usage-occ-47bf963ad9a76044",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Numbers 18:27:1",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-011",
+      "occurrence_id": "usage-occ-90be1409942dfcaf",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Genesis 1:1:2",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-012",
+      "occurrence_id": "usage-occ-f24b5d3657726ba4",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Genesis 1:1:2",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-013",
+      "occurrence_id": "usage-occ-3335fdf1c131a41b",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Exodus 23:19",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-014",
+      "occurrence_id": "usage-occ-f42c0126e09247d8",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Exodus 34:26",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-015",
+      "occurrence_id": "usage-occ-dc8819f50eead906",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Exodus 22:28:1",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-016",
+      "occurrence_id": "usage-occ-1241d6cf00b1bb65",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Exodus 23:19:1",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-017",
+      "occurrence_id": "usage-occ-ebd3368c5b249204",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Exodus 23:19:2",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-018",
+      "occurrence_id": "usage-occ-07fb51bc9b843915",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Genesis 48:16:2",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-019",
+      "occurrence_id": "usage-occ-f306cf37adebf665",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Leviticus 2:14:1",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-020",
+      "occurrence_id": "usage-occ-a17c99f9faaf145a",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Psalms 78:51",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-021",
+      "occurrence_id": "usage-occ-9f6106c9ebad1ff2",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Psalms 105:36",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-022",
+      "occurrence_id": "usage-occ-7e3b3556629acfe3",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Deuteronomy 26:2:1",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-023",
+      "occurrence_id": "usage-occ-2c7797cb4ae82700",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ezekiel 48:14",
+      "status": "candidate",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-024",
+      "occurrence_id": "usage-occ-e56d17b07b8d3701",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Deuteronomy 33:21:1",
+      "status": "weak",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-025",
+      "occurrence_id": "usage-occ-0cb76705b570ccfe",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Deuteronomy 18:4",
+      "status": "weak",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-026",
+      "occurrence_id": "usage-occ-9bdab75500e6ccfc",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Exodus 22:28:1",
+      "status": "weak",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-027",
+      "occurrence_id": "usage-occ-a8452ab47b478bf4",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Leviticus 23:11:1",
+      "status": "weak",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-028",
+      "occurrence_id": "usage-occ-30c6147afd1489e7",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Leviticus 23:10",
+      "status": "weak",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-029",
+      "occurrence_id": "usage-occ-bdaab00735116193",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Leviticus 23:10:1",
+      "status": "weak",
+      "cluster_id": "reshit-first-yield-priority",
+      "usage_frame_label": "first-yield / first-produce frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-030",
+      "occurrence_id": "usage-occ-d091fa04119c0e3b",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Genesis 1:1:2",
+      "status": "supported",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-031",
+      "occurrence_id": "usage-occ-d3308a5f3a14db62",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Genesis 1:1:2",
+      "status": "supported",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-032",
+      "occurrence_id": "usage-occ-20eb12a810ca008f",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Genesis, Introduction:22",
+      "status": "supported",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-033",
+      "occurrence_id": "usage-occ-a561919ce2a76fd0",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Genesis, Introduction:22",
+      "status": "supported",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-034",
+      "occurrence_id": "usage-occ-1640cefd9c8b351c",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Genesis 9:25:2",
+      "status": "supported",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-035",
+      "occurrence_id": "usage-occ-c589dc9e364b020a",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Genesis 1:1:2",
+      "status": "supported",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-036",
+      "occurrence_id": "usage-occ-2f0e79aa0cafa686",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Genesis 1:1",
+      "status": "candidate",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-037",
+      "occurrence_id": "usage-occ-e63885d56586ef74",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Deuteronomy 33:27:3",
+      "status": "candidate",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-038",
+      "occurrence_id": "usage-occ-f4c6ba102ca44a4d",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Deuteronomy 33:27:3",
+      "status": "candidate",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-039",
+      "occurrence_id": "usage-occ-fb86118b460f63c4",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Genesis 1:1:1",
+      "status": "candidate",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-040",
+      "occurrence_id": "usage-occ-bc222104bb98c08d",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Numbers 24:20:1",
+      "status": "candidate",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-041",
+      "occurrence_id": "usage-occ-3ce7de17f673ccb6",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Numbers 24:20:1",
+      "status": "candidate",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-042",
+      "occurrence_id": "usage-occ-d8e7e43a47eb99c3",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Job 40:19",
+      "status": "candidate",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-043",
+      "occurrence_id": "usage-occ-2ebabba5d9674042",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Proverbs 8:22",
+      "status": "candidate",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-044",
+      "occurrence_id": "usage-occ-4a6e6002a9a1d195",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Genesis 10:10",
+      "status": "weak",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-045",
+      "occurrence_id": "usage-occ-f7a661c3c78aea55",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Genesis 10:21:2",
+      "status": "weak",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-046",
+      "occurrence_id": "usage-occ-b44e9953de2b6953",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Deuteronomy 18:4:2",
+      "status": "weak",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-047",
+      "occurrence_id": "usage-occ-3efac773afbb1995",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Deuteronomy 21:17:3",
+      "status": "weak",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-048",
+      "occurrence_id": "usage-occ-7910403de1fd30f7",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Ibn Ezra on Genesis 1:1:1",
+      "status": "weak",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    },
+    {
+      "row_id": "definition-workbench-usage-occurrence-link-049",
+      "occurrence_id": "usage-occ-04798368ff3ae685",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source": "data/definitions/hud-route-store-sample.json",
+      "resolution_status": "resolved",
+      "source_ref": "Rashi on Numbers 15:20:1",
+      "status": "weak",
+      "cluster_id": "reshit-opening-time-order",
+      "usage_frame_label": "opening / first-in-order frame",
+      "route_metadata": {
+        "normalized": "ראשית",
+        "surface": "ראשית",
+        "route_family": "wiktionary_definition",
+        "route_type": "lemma",
+        "display_section": "lemma",
+        "language": "Hebrew",
+        "answer_eligible": true,
+        "source_license_profile": {
+          "complete": true,
+          "row_count": 1,
+          "incomplete_rows": 0,
+          "forbidden_license_detected": false,
+          "forbidden_license_rows": 0,
+          "license_families": [
+            "CC BY-SA 4.0 / GFDL"
+          ],
+          "rows": [
+            {
+              "source_name": "Hebrew Wiktionary data via Kaikki/Wiktextract",
+              "source_family": "kaikki",
+              "source_id": "kaikki-07cda45e0ce27966",
+              "source_url": "https://kaikki.org/dictionary/Hebrew/index.html",
+              "license": "CC BY-SA 4.0 / GFDL",
+              "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+              "fields_used": [
+                "word",
+                "part of speech",
+                "glosses",
+                "forms/tags without examples"
+              ],
+              "notes": "Kaikki Hebrew JSONL line 520. Examples and quotation translations excluded."
+            }
+          ]
+        },
+        "future_accepted_translation_output": {
+          "accepted_translation_output": false,
+          "publication_readiness": false,
+          "requires_future_translation_review": true,
+          "status": "blocked_route_resolution_only",
+          "reason": "Route-resolution metadata is not accepted translation text and does not clear future translation-output review."
+        }
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "route_payload_copied": false,
+        "not_definition_authority": true
+      }
+    }
+  ]
+}

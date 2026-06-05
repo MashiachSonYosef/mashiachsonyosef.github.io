@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "artifact_type": "definition_workbench_usage_route_pointer_audit",
+  "generated_at": "2026-06-02T02:43:37.055Z",
+  "generator": "scripts/build_definition_workbench_usage_route_pointer_audit.mjs",
+  "policy": "Agent 3 route-pointer audit for Definition Workbench usage navigation. It proves usage/support/navigation rows carry Agent 2 route IDs and resolver artifact paths only; it does not copy Agent 2 route payloads, route metadata, definitions, translations, ranking, visible answers, or publication claims.",
+  "inputs": {
+    "route_resolution": "data/definitions/definition-workbench-usage-route-resolution.json",
+    "occurrence_support_packet": "data/definitions/definition-workbench-usage-occurrence-support-packet.json",
+    "concordance_navigation_packet": "data/definitions/definition-workbench-usage-concordance-navigation-packet.json",
+    "planning_packet": "data/definitions/definition-workbench-usage-planning-packet.json"
+  },
+  "authority_boundary": {
+    "usage_navigation_only": true,
+    "observed_usage_only": true,
+    "route_pointer_only": true,
+    "route_ids_only": true,
+    "resolver_paths_only": true,
+    "agent2_payload_resolution_external": true,
+    "reader_facing": false,
+    "copies_route_payloads": false,
+    "copies_agent2_payloads": false,
+    "copies_route_metadata": false,
+    "ranks_routes": false,
+    "selects_visible_result": false,
+    "semantic_arbitration": false,
+    "lexical_authority": false,
+    "publication_claim": false,
+    "accepted_text_output": false
+  },
+  "consumer_rule": {
+    "row_label": "route pointer only",
+    "downstream_action": "Resolve Agent 2 route payloads outside Agent 3 artifacts.",
+    "observed_usage_row_label_required": "observed usage only",
+    "route_concentration_status": "single_route_pointer_scope"
+  },
+  "route_pointer_rows": [
+    {
+      "route_pointer_id": "usage-route-pointer-9a6b3211cada5c3f",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "route_source_path": "data/definitions/hud-route-store-sample.json",
+      "route_resolution_artifact": "data/definitions/definition-workbench-usage-route-resolution.json",
+      "resolution_status": "resolved",
+      "occurrence_route_rows": 49,
+      "support_rows": 49,
+      "navigation_rows": 2390,
+      "selected_navigation_rows": 49,
+      "planning_rows": 1,
+      "selected_source_refs": 38,
+      "selected_works": 20,
+      "selected_usage_frames": 2,
+      "concordance_source_refs": 1673,
+      "concordance_works": 271,
+      "concordance_categories": 15,
+      "selected_status_counts": {
+        "candidate": 26,
+        "supported": 11,
+        "weak": 12
+      },
+      "concordance_status_counts": {
+        "supported": 339,
+        "candidate": 1351,
+        "weak": 700
+      },
+      "row_label": "route pointer only",
+      "route_payload_copied": false,
+      "agent2_payload_copied": false,
+      "route_metadata_copied": false,
+      "consumer_action": "resolve_agent2_route_payloads_outside_agent3"
+    }
+  ],
+  "counts": {
+    "route_pointer_rows": 1,
+    "route_ids": 1,
+    "resolved_route_ids": 1,
+    "unresolved_route_ids": 0,
+    "route_source_paths": 1,
+    "existing_route_source_paths": 1,
+    "occurrence_route_rows": 49,
+    "occurrence_route_rows_with_pointer": 49,
+    "support_rows": 49,
+    "support_rows_with_pointer": 49,
+    "support_rows_with_resolved_route_ids": 49,
+    "navigation_rows": 2390,
+    "navigation_rows_with_pointer": 2390,
+    "selected_navigation_rows": 49,
+    "planning_rows": 1,
+    "planning_rows_with_pointer": 1,
+    "selected_source_refs": 38,
+    "selected_works": 20,
+    "selected_usage_frames": 2,
+    "concordance_source_refs": 1673,
+    "concordance_works": 271,
+    "concordance_categories": 15,
+    "supported_rows": 11,
+    "candidate_rows": 26,
+    "weak_rows": 12,
+    "navigation_supported_rows": 339,
+    "navigation_candidate_rows": 1351,
+    "navigation_weak_rows": 700,
+    "audit_only_ambiguous_rows_available": 2064,
+    "audit_only_ambiguous_rows_emitted": 0,
+    "route_payload_copied_rows": 0,
+    "agent2_payload_copied_rows": 0,
+    "route_metadata_copied_rows": 0,
+    "semantic_arbitration_rows": 0,
+    "answer_authority_rows": 0,
+    "route_ranking_rows": 0,
+    "visible_answer_selection_rows": 0,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "route_metadata_field_hits": 0,
+    "queue_mutations": 0,
+    "submitted_to_agent6": 0
+  },
+  "checks": [
+    {
+      "id": "route_pointers_present",
+      "status": "passed",
+      "detail": "pointers/routes 1/1"
+    },
+    {
+      "id": "single_route_scope_visible",
+      "status": "warning",
+      "detail": "route pointers 1"
+    },
+    {
+      "id": "route_ids_resolved",
+      "status": "passed",
+      "detail": "resolved/unresolved 1/0"
+    },
+    {
+      "id": "route_sources_exist",
+      "status": "passed",
+      "detail": "source paths 1/1"
+    },
+    {
+      "id": "occurrence_rows_linked",
+      "status": "passed",
+      "detail": "49/49"
+    },
+    {
+      "id": "support_rows_linked",
+      "status": "passed",
+      "detail": "support 49/49; resolved 49"
+    },
+    {
+      "id": "navigation_rows_linked",
+      "status": "passed",
+      "detail": "2390/2390"
+    },
+    {
+      "id": "planning_rows_linked",
+      "status": "passed",
+      "detail": "1/1"
+    },
+    {
+      "id": "selected_context_visible",
+      "status": "passed",
+      "detail": "selected refs/works/frames 38/20/2; concordance refs/works 1673/271"
+    },
+    {
+      "id": "status_counts_cover_support",
+      "status": "passed",
+      "detail": "support status 11/26/12; rows 49"
+    },
+    {
+      "id": "ambiguous_rows_audit_only",
+      "status": "passed",
+      "detail": "ambiguous 2064/0"
+    },
+    {
+      "id": "route_payloads_not_copied",
+      "status": "passed",
+      "detail": "copied route/agent2/metadata rows 0/0/0; metadata fields 0"
+    },
+    {
+      "id": "usage_only_boundary",
+      "status": "passed",
+      "detail": "semantic/answer/rank/visible/reader 0/0/0/0/0"
+    },
+    {
+      "id": "forbidden_authority_absent",
+      "status": "passed",
+      "detail": "route payload/forbidden 0/0"
+    },
+    {
+      "id": "no_queue_mutation",
+      "status": "passed",
+      "detail": "0/0"
+    }
+  ],
+  "quality": {
+    "status": "pass_with_warnings",
+    "warning_count": 1,
+    "failed_count": 0
+  }
+}

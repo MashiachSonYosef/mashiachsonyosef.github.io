@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "definition_workbench_usage_link_packet",
-  "generated_at": "2026-06-01T13:26:54.731Z",
+  "generated_at": "2026-06-01T17:25:44.103Z",
   "generator": "scripts/build_definition_workbench_usage_link_packet.mjs",
   "policy": "Bounded Agent 3 packet joining Definition Workbench planning rows to usage-navigation occurrence rows by token key or normalized form. It carries usage links, source/license/context metadata, and route IDs only; it does not publish source excerpts as definitions, copy route payloads, rank definitions, select visible answers, translate, or make publication claims.",
   "definition_sample_contract": {
@@ -10,7 +10,27 @@
     "review_policy": "This machine builder never emits review_status=verified. Verified is reserved for future reviewed lexical authority outside this sample contract.",
     "answer_role_policy": "Answer cards are counted only when answer_eligible=true and answer_role=answer. All other route cards remain evidence-only counts in this sample.",
     "source_license_policy": "Source/license completeness is checked against route card source_rows. This sample emits only completeness flags, source-family aggregates, route-family aggregates, and card IDs.",
-    "multi_answer_policy": "multi_answer=true when more than one distinct answer definition hash exists. These rows retain conflicting status as a warning, not a hidden winner."
+    "multi_answer_policy": "multi_answer=true when more than one distinct answer definition hash exists. These rows retain conflicting status as a warning, not a hidden winner.",
+    "publication_boundary": {
+      "boundary_status": "blocked_no_render",
+      "sample_only": true,
+      "reader_facing": false,
+      "ui_assignment": false,
+      "publication_claim": false,
+      "clears_publication_readiness": false,
+      "reviewed_lexical_authority": false,
+      "accepted_translation_output": false,
+      "source_publication": false,
+      "public_lookup_artifact": false,
+      "does_not_clear": [
+        "ui_assignment",
+        "reviewed_lexical_authority",
+        "accepted_translation",
+        "source_publication",
+        "public_lookup_publication",
+        "publication_readiness"
+      ]
+    }
   },
   "inputs": {
     "definition_workbench_sample": "data/definitions/definition-workbench-sample.json",
@@ -52,7 +72,7 @@
     "sample_review_status_counts": {
       "unreviewed_machine_sample": 200
     },
-    "sample_review_verified_rows": 0,
+    "sample_forbidden_verified_label_rows": 0,
     "usage_token_rows": 1,
     "usage_tokens_in_sample": 0,
     "usage_tokens_not_in_sample": 1,
@@ -97,7 +117,7 @@
     {
       "id": "sample_review_status_not_verified",
       "status": "passed",
-      "detail": "machine verified status rows 0"
+      "detail": "forbidden verified labels 0"
     },
     {
       "id": "multi_answer_warning_preserved",

@@ -32,6 +32,7 @@ if (packet.gate !== 'definition_workbench_gate') issues.push('gate must be defin
 if (packet.submitted_by !== 'Agent 3') issues.push('submitted_by must be Agent 3');
 
 validateAuthorityPolicy(packet.authority_policy || {});
+validateEvidenceArtifacts(packet.evidence_artifacts || [], packet.validators || []);
 validatePacketChain(packet.packet_chain || {});
 validateReviewSummary(packet.review_summary || {});
 validateAcceptanceBoundaries(packet.acceptance_boundaries || {});
@@ -80,21 +81,81 @@ function validateAuthorityPolicy(policy) {
   }
 }
 
+function validateEvidenceArtifacts(evidenceArtifacts, validators) {
+  if (!Array.isArray(evidenceArtifacts)) {
+    issues.push('evidence_artifacts must be an array');
+    return;
+  }
+  if (!Array.isArray(validators)) {
+    issues.push('validators must be an array');
+    return;
+  }
+  if (evidenceArtifacts.length !== 12) issues.push('evidence_artifacts must contain 12 current chain artifacts');
+  if (validators.length !== 7) issues.push('validators must contain 7 current chain validators');
+  for (const required of [
+    'data/definitions/definition-workbench-usage-link-packet.json',
+    'reports/definition-workbench-usage-link-packet.md',
+    'data/definitions/definition-workbench-usage-seed-queue.json',
+    'reports/definition-workbench-usage-seed-queue.md',
+    'data/definitions/definition-workbench-usage-join-smoke.json',
+    'reports/definition-workbench-usage-join-smoke.md',
+    'data/definitions/definition-workbench-usage-route-resolution.json',
+    'reports/definition-workbench-usage-route-resolution.md',
+    'data/definitions/definition-workbench-usage-sample-gap-audit.json',
+    'reports/definition-workbench-usage-sample-gap-audit.md',
+    'data/definitions/definition-workbench-usage-consumer-manifest.json',
+    'reports/definition-workbench-usage-consumer-manifest.md',
+  ]) {
+    if (!evidenceArtifacts.includes(required)) issues.push(`evidence_artifacts missing ${required}`);
+  }
+  for (const required of [
+    'scripts/validate_definition_workbench_usage_link_packet.mjs',
+    'scripts/validate_definition_workbench_usage_seed_queue.mjs',
+    'scripts/validate_definition_workbench_usage_join_smoke.mjs',
+    'scripts/validate_definition_workbench_usage_route_resolution.mjs',
+    'scripts/validate_definition_workbench_usage_sample_gap_audit.mjs',
+    'scripts/validate_definition_workbench_usage_consumer_manifest.mjs',
+    'scripts/validate_definition_workbench_usage_agent6_packet.mjs',
+  ]) {
+    if (!validators.includes(required)) issues.push(`validators missing ${required}`);
+  }
+  for (const artifactPath of evidenceArtifacts) {
+    if (!fs.existsSync(path.join(root, cleanRelativePath(artifactPath)))) {
+      issues.push(`evidence artifact missing on disk: ${artifactPath}`);
+    }
+  }
+  for (const scriptPath of validators) {
+    if (!fs.existsSync(path.join(root, cleanRelativePath(scriptPath)))) {
+      issues.push(`validator script missing on disk: ${scriptPath}`);
+    }
+  }
+}
+
 function validatePacketChain(chain) {
   if (chain.link_packet_status !== 'pass_with_warnings') {
     issues.push('packet_chain.link_packet_status must preserve pass_with_warnings from the no-overlap link packet');
   }
   if (chain.seed_queue_status !== 'passed') issues.push('packet_chain.seed_queue_status must be passed');
   if (chain.join_smoke_status !== 'passed') issues.push('packet_chain.join_smoke_status must be passed');
+  if (chain.route_resolution_status !== 'passed') issues.push('packet_chain.route_resolution_status must be passed');
+  if (chain.sample_gap_audit_status !== 'pass_with_warnings') {
+    issues.push('packet_chain.sample_gap_audit_status must preserve pass_with_warnings from the sample-gap audit');
+  }
+  if (chain.consumer_manifest_status !== 'pass_with_warnings') {
+    issues.push('packet_chain.consumer_manifest_status must preserve pass_with_warnings from the consumer manifest');
+  }
   if (Number(chain.link_packet_warning_count || 0) < 1) warnings.push('link packet warning count is not visible');
   if (Number(chain.seed_queue_warning_count || 0) !== 0) issues.push('seed queue warning count must be 0');
   if (Number(chain.join_smoke_warning_count || 0) !== 0) issues.push('join smoke warning count must be 0');
+  if (Number(chain.route_resolution_warning_count || 0) !== 0) issues.push('route resolution warning count must be 0');
+  if (Number(chain.sample_gap_audit_warning_count || 0) < 1) warnings.push('sample-gap audit warning count is not visible');
+  if (Number(chain.consumer_manifest_warning_count || 0) < 1) warnings.push('consumer manifest warning count is not visible');
 }
 
 function validateReviewSummary(summary) {
   if (Number(summary.current_sample_rows || 0) < 1) issues.push('review_summary.current_sample_rows must be positive');
-  if (Number(summary.current_sample_review_verified_rows || 0) !== 0) {
-    issues.push('review_summary.current_sample_review_verified_rows must remain 0');
+  if (Number(summary.current_sample_forbidden_verified_label_rows || 0) !== 0) {
+    issues.push('review_summary.current_sample_forbidden_verified_label_rows must remain 0');
   }
   if (Number(summary.current_sample_rows_with_usage_links || 0) !== 0) {
     issues.push('review_summary.current_sample_rows_with_usage_links must remain 0 for this packet');
@@ -110,9 +171,29 @@ function validateReviewSummary(summary) {
     issues.push('review_summary.projected_usage_link_rows must cover selected proof rows');
   }
   if (summary.route_concentration_warning_visible !== true) warnings.push('route concentration warning must stay visible');
+  if (Number(summary.route_resolution_rows || 0) < 1) issues.push('review_summary.route_resolution_rows must be positive');
+  if (Number(summary.route_resolution_unresolved_route_ids || 0) !== 0) {
+    issues.push('review_summary.route_resolution_unresolved_route_ids must be 0');
+  }
+  if (Number(summary.route_resolution_forbidden_license_profile_rows || 0) !== 0) {
+    issues.push('review_summary.route_resolution_forbidden_license_profile_rows must be 0');
+  }
+  if (Number(summary.route_resolution_future_translation_output_blocked_rows || 0) !== Number(summary.route_resolution_rows || 0)) {
+    issues.push('review_summary.route_resolution_future_translation_output_blocked_rows must equal route_resolution_rows');
+  }
+  if (Number(summary.sample_gap_rows || 0) < 1) issues.push('review_summary.sample_gap_rows must be positive');
+  if (summary.sample_gap_overlap_visible !== true) warnings.push('sample gap overlap warning must stay visible');
+  if (Number(summary.consumer_manifest_entries || 0) < 10) issues.push('review_summary.consumer_manifest_entries must be at least 10');
+  if (Number(summary.consumer_manifest_reader_facing_rows || 0) !== 0) {
+    issues.push('review_summary.consumer_manifest_reader_facing_rows must be 0');
+  }
+  if (Number(summary.consumer_manifest_forbidden_authority_field_hits || 0) !== 0) {
+    issues.push('review_summary.consumer_manifest_forbidden_authority_field_hits must be 0');
+  }
 }
 
 function validateAcceptanceBoundaries(boundaries) {
+  validatePublicationBoundary(boundaries.definition_sample_publication_boundary, 'acceptance_boundaries.definition_sample_publication_boundary');
   if (!Array.isArray(boundaries.acceptable_if_validated) || boundaries.acceptable_if_validated.length < 3) {
     issues.push('acceptance_boundaries.acceptable_if_validated must contain bounded acceptable claims');
   }
@@ -125,10 +206,44 @@ function validateAcceptanceBoundaries(boundaries) {
   }
 }
 
+function validatePublicationBoundary(boundary, context) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push(`${context} must be an object`);
+    return;
+  }
+  if (boundary.boundary_status !== 'blocked_no_render') issues.push(`${context}.boundary_status must be blocked_no_render`);
+  if (boundary.sample_only !== true) issues.push(`${context}.sample_only must be true`);
+  for (const key of [
+    'reader_facing',
+    'ui_assignment',
+    'publication_claim',
+    'clears_publication_readiness',
+    'reviewed_lexical_authority',
+    'accepted_translation_output',
+    'source_publication',
+    'public_lookup_artifact',
+  ]) {
+    if (boundary[key] !== false) issues.push(`${context}.${key} must be false`);
+  }
+  const blockedClaims = new Set(Array.isArray(boundary.does_not_clear) ? boundary.does_not_clear : []);
+  for (const required of [
+    'ui_assignment',
+    'reviewed_lexical_authority',
+    'accepted_translation',
+    'source_publication',
+    'public_lookup_publication',
+    'publication_readiness',
+  ]) {
+    if (!blockedClaims.has(required)) issues.push(`${context}.does_not_clear must include ${required}`);
+  }
+}
+
 function validateCounts(counts) {
   const requiredIntegerCounts = [
     'evidence_artifacts',
+    'evidence_artifacts_exist',
     'validator_scripts',
+    'validator_scripts_exist',
     'proof_occurrence_rows',
     'proof_rows_with_source',
     'proof_rows_with_work_anchor',
@@ -148,13 +263,27 @@ function validateCounts(counts) {
     'weak_rows',
     'audit_only_ambiguous_rows',
     'current_sample_rows',
-    'current_sample_review_verified_rows',
+    'current_sample_forbidden_verified_label_rows',
     'current_sample_rows_with_usage_links',
     'usage_tokens_absent_from_current_sample',
     'join_rows',
     'projected_rows_after_seed_append',
     'projected_usage_link_rows',
     'route_concentration_warning_visible',
+    'route_resolution_rows',
+    'route_resolution_route_ids',
+    'route_resolution_unresolved_route_ids',
+    'route_resolution_forbidden_license_profile_rows',
+    'route_resolution_future_translation_output_blocked_rows',
+    'sample_gap_rows',
+    'sample_gap_selected_occurrence_links',
+    'sample_gap_overlap_visible',
+    'sample_gap_reader_facing_rows',
+    'sample_gap_forbidden_authority_field_hits',
+    'consumer_manifest_entries',
+    'consumer_manifest_reader_facing_rows',
+    'consumer_manifest_route_payload_field_hits',
+    'consumer_manifest_forbidden_authority_field_hits',
     'reader_facing_rows',
     'route_payload_field_hits',
     'forbidden_authority_field_hits',
@@ -162,8 +291,10 @@ function validateCounts(counts) {
   for (const key of requiredIntegerCounts) {
     if (!Number.isInteger(counts[key]) || counts[key] < 0) issues.push(`counts.${key} must be a non-negative integer`);
   }
-  if (counts.evidence_artifacts !== 6) issues.push('evidence_artifacts must be 6');
-  if (counts.validator_scripts !== 4) issues.push('validator_scripts must be 4');
+  if (counts.evidence_artifacts !== 12) issues.push('evidence_artifacts must be 12');
+  if (counts.evidence_artifacts_exist !== counts.evidence_artifacts) issues.push('all evidence artifacts must exist');
+  if (counts.validator_scripts !== 7) issues.push('validator_scripts must be 7');
+  if (counts.validator_scripts_exist !== counts.validator_scripts) issues.push('all validator scripts must exist');
   if (counts.proof_occurrence_rows < 1) issues.push('proof_occurrence_rows must be positive');
   if (counts.proof_rows_with_source !== counts.proof_occurrence_rows) issues.push('all proof rows must include source links');
   if (counts.proof_rows_with_work_anchor !== counts.proof_occurrence_rows) issues.push('all proof rows must include work anchors');
@@ -182,7 +313,7 @@ function validateCounts(counts) {
     issues.push('supported/candidate/weak counts must reconcile with proof_occurrence_rows');
   }
   if (counts.audit_only_ambiguous_rows <= 0) issues.push('audit_only_ambiguous_rows must be carried forward');
-  if (counts.current_sample_review_verified_rows !== 0) issues.push('current_sample_review_verified_rows must remain 0');
+  if (counts.current_sample_forbidden_verified_label_rows !== 0) issues.push('current_sample_forbidden_verified_label_rows must remain 0');
   if (counts.current_sample_rows_with_usage_links !== 0) issues.push('current_sample_rows_with_usage_links must be 0');
   if (counts.usage_tokens_absent_from_current_sample < 1) issues.push('usage_tokens_absent_from_current_sample must be positive');
   if (counts.projected_rows_after_seed_append !== counts.current_sample_rows + counts.usage_tokens_absent_from_current_sample) {
@@ -192,6 +323,30 @@ function validateCounts(counts) {
     issues.push('projected_usage_link_rows must cover proof_occurrence_rows');
   }
   if (counts.route_concentration_warning_visible !== 1) warnings.push('route concentration warning is not visible');
+  if (counts.route_resolution_rows < 1) issues.push('route_resolution_rows must be positive');
+  if (counts.route_resolution_route_ids !== counts.route_ids) issues.push('route_resolution_route_ids must equal route_ids');
+  if (counts.route_resolution_unresolved_route_ids !== 0) issues.push('route_resolution_unresolved_route_ids must be 0');
+  if (counts.route_resolution_forbidden_license_profile_rows !== 0) {
+    issues.push('route_resolution_forbidden_license_profile_rows must be 0');
+  }
+  if (counts.route_resolution_future_translation_output_blocked_rows !== counts.route_resolution_rows) {
+    issues.push('route_resolution_future_translation_output_blocked_rows must equal route_resolution_rows');
+  }
+  if (counts.sample_gap_rows < 1) issues.push('sample_gap_rows must be positive');
+  if (counts.sample_gap_selected_occurrence_links < 1) issues.push('sample_gap_selected_occurrence_links must be positive');
+  if (counts.sample_gap_overlap_visible !== 1) warnings.push('sample gap overlap warning is not visible');
+  if (counts.sample_gap_reader_facing_rows !== 0) issues.push('sample_gap_reader_facing_rows must be 0');
+  if (counts.sample_gap_forbidden_authority_field_hits !== 0) {
+    issues.push('sample_gap_forbidden_authority_field_hits must be 0');
+  }
+  if (counts.consumer_manifest_entries < 10) issues.push('consumer_manifest_entries must be at least 10');
+  if (counts.consumer_manifest_reader_facing_rows !== 0) issues.push('consumer_manifest_reader_facing_rows must be 0');
+  if (counts.consumer_manifest_route_payload_field_hits !== 0) {
+    issues.push('consumer_manifest_route_payload_field_hits must be 0');
+  }
+  if (counts.consumer_manifest_forbidden_authority_field_hits !== 0) {
+    issues.push('consumer_manifest_forbidden_authority_field_hits must be 0');
+  }
   if (counts.reader_facing_rows !== 0) issues.push('reader_facing_rows must remain 0');
   if (counts.route_payload_field_hits !== 0) issues.push('route_payload_field_hits must remain 0');
   if (counts.forbidden_authority_field_hits !== 0) issues.push('forbidden_authority_field_hits must remain 0');

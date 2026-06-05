@@ -1,6 +1,6 @@
 # Definition Workbench Usage Link Packet
 
-Generated: 2026-06-01T13:26:54.731Z
+Generated: 2026-06-01T17:25:44.103Z
 
 ## Summary
 
@@ -9,7 +9,7 @@ Generated: 2026-06-01T13:26:54.731Z
 - Sample rows without current usage links: 200
 - Sample rows with complete source/license flags: 200
 - Multi-answer sample rows: 96
-- Machine verified sample/review rows: 0
+- Rows using forbidden verified labels: 0
 - Usage token rows: 1
 - Usage tokens in sample / not in sample: 0/1
 - Usage occurrence rows / selected occurrence rows: 2390/49
@@ -39,7 +39,7 @@ Generated: 2026-06-01T13:26:54.731Z
 | usage_tokens_present | passed | usage token rows 1 |
 | sample_overlap_visible | warning | sample rows with usage links 0; usage tokens not in sample 1 |
 | sample_source_license_complete | passed | complete source/license sample rows 200/200 |
-| sample_review_status_not_verified | passed | machine verified status rows 0 |
+| sample_review_status_not_verified | passed | forbidden verified labels 0 |
 | multi_answer_warning_preserved | passed | multi-answer rows 96; conflicting rows 96 |
 | selected_usage_occurrences_present | passed | selected usage occurrence rows 49 |
 | selected_occurrence_links_complete | passed | source/work links 12/12; samples 12 |
@@ -67,5 +67,10 @@ Generated: 2026-06-01T13:26:54.731Z
 Bounded Agent 3 packet joining Definition Workbench planning rows to usage-navigation occurrence rows by token key or normalized form. It carries usage links, source/license/context metadata, and route IDs only; it does not publish source excerpts as definitions, copy route payloads, rank definitions, select visible answers, translate, or make publication claims.
 
 This machine builder never emits review_status=verified. Verified is reserved for future reviewed lexical authority outside this sample contract.
+
+Definition sample boundary status: blocked_no_render
+Definition sample clears publication readiness: false
+Definition sample reviewed lexical authority: false
+Definition sample publication claim: false
 
 Current gap: if sample rows with current usage links is 0, the selected Agent 3 usage token is not part of the current 200-row Definition Workbench sample. This packet should guide the next sample/join step; it is not evidence of broad usage coverage.

@@ -1,0 +1,2253 @@
+{
+  "schema_version": 1,
+  "artifact_type": "definition_workbench_usage_provenance_buckets",
+  "generated_at": "2026-06-01T16:42:37.210Z",
+  "generator": "scripts/build_definition_workbench_usage_provenance_buckets.mjs",
+  "policy": "Stable Agent 3 Definition Workbench provenance-bucket packet. It groups selected usage occurrence links by provenance/version/license and provenance-plus-cluster for review/navigation while preserving source refs, work/page anchors, Hebrew context, provenance/license metadata, and route IDs only. It does not define terms, translate, copy route payloads, rank routes, choose visible answers, arbitrate semantics, or publish.",
+  "inputs": {
+    "occurrence_links": "data/definitions/definition-workbench-usage-occurrence-links.json",
+    "route_resolution": "data/definitions/definition-workbench-usage-route-resolution.json"
+  },
+  "authority_policy": {
+    "usage_navigation_only": true,
+    "observed_usage_only": true,
+    "provenance_bucket_navigation_only": true,
+    "occurrence_links_only": true,
+    "route_ids_only": true,
+    "reader_facing": false,
+    "copies_route_payloads": false,
+    "copies_definition_payloads": false,
+    "ranks_routes": false,
+    "selects_visible_result": false,
+    "semantic_arbitration": false,
+    "publication_claim": false
+  },
+  "quality": {
+    "status": "passed",
+    "warning_count": 0,
+    "failed_count": 0
+  },
+  "counts": {
+    "provenance_buckets": 5,
+    "provenance_frame_buckets": 10,
+    "occurrence_rows": 49,
+    "work_count": 20,
+    "source_ref_count": 38,
+    "license_count": 2,
+    "version_source_count": 4,
+    "multi_work_provenance_buckets": 4,
+    "multi_work_provenance_rows": 46,
+    "multi_frame_provenance_buckets": 5,
+    "multi_frame_provenance_rows": 49,
+    "status_counts": {
+      "supported": 11,
+      "candidate": 26,
+      "weak": 12
+    },
+    "route_ids": 1,
+    "unresolved_route_ids": 0,
+    "rows_with_source_link": 49,
+    "rows_with_work_anchor": 49,
+    "rows_with_provenance": 49,
+    "rows_with_license_metadata": 49,
+    "rows_with_version_metadata": 49,
+    "rows_with_hebrew_context": 49,
+    "rows_with_focus_marker": 49,
+    "observed_usage_only_provenance_buckets": 5,
+    "observed_usage_only_provenance_frame_buckets": 10,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0
+  },
+  "checks": [
+    {
+      "id": "provenance_buckets_present",
+      "status": "passed",
+      "detail": "provenance/provenance-frames/rows 5/10/49"
+    },
+    {
+      "id": "license_version_spread_visible",
+      "status": "passed",
+      "detail": "licenses/version sources 2/4"
+    },
+    {
+      "id": "provenance_navigation_visible",
+      "status": "passed",
+      "detail": "multi-work provenance/rows 4/46; multi-frame provenance/rows 5/49"
+    },
+    {
+      "id": "metadata_complete",
+      "status": "passed",
+      "detail": "source/work/provenance/license/version/context/focus 49/49/49/49/49/49/49"
+    },
+    {
+      "id": "route_ids_resolved",
+      "status": "passed",
+      "detail": "route IDs 1; unresolved 0"
+    },
+    {
+      "id": "usage_only_boundary",
+      "status": "passed",
+      "detail": "observed provenance/provenance-frame 5/10; reader-facing/payload/forbidden 0/0/0"
+    }
+  ],
+  "provenance_buckets": [
+    {
+      "provenance_key": "selected-provenance-8ce923181e9f5287|Miqra according to the Masorah|https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94|CC-BY-SA|https://creativecommons.org/licenses/by-sa/4.0/",
+      "provenance_id": "selected-provenance-8ce923181e9f5287",
+      "version_title": "Miqra according to the Masorah",
+      "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "row_count": 14,
+      "work_count": 11,
+      "source_ref_count": 14,
+      "multi_work_provenance": true,
+      "multi_frame_provenance": true,
+      "status_counts": {
+        "supported": 2,
+        "candidate": 9,
+        "weak": 3
+      },
+      "work_slugs": [
+        "tanakh/deuteronomy",
+        "tanakh/exodus",
+        "tanakh/ezekiel",
+        "tanakh/genesis",
+        "tanakh/ii-chronicles",
+        "tanakh/jeremiah",
+        "tanakh/job",
+        "tanakh/leviticus",
+        "tanakh/numbers",
+        "tanakh/proverbs",
+        "tanakh/psalms"
+      ],
+      "work_titles": [
+        "Deuteronomy",
+        "Exodus",
+        "Ezekiel",
+        "Genesis",
+        "II Chronicles",
+        "Jeremiah",
+        "Job",
+        "Leviticus",
+        "Numbers",
+        "Proverbs",
+        "Psalms"
+      ],
+      "source_refs": [
+        "Deuteronomy 18:4",
+        "Exodus 23:19",
+        "Exodus 34:26",
+        "Ezekiel 48:14",
+        "Genesis 10:10",
+        "Genesis 1:1",
+        "II Chronicles 31:5",
+        "Jeremiah 2:3",
+        "Job 40:19",
+        "Leviticus 23:10",
+        "Numbers 15:20",
+        "Proverbs 8:22",
+        "Psalms 105:36",
+        "Psalms 78:51"
+      ],
+      "source_hrefs": [
+        "https://www.sefaria.org/Deuteronomy_18:4",
+        "https://www.sefaria.org/Exodus_23:19",
+        "https://www.sefaria.org/Exodus_34:26",
+        "https://www.sefaria.org/Ezekiel_48:14",
+        "https://www.sefaria.org/Genesis_10:10",
+        "https://www.sefaria.org/Genesis_1:1",
+        "https://www.sefaria.org/II_Chronicles_31:5",
+        "https://www.sefaria.org/Jeremiah_2:3",
+        "https://www.sefaria.org/Job_40:19",
+        "https://www.sefaria.org/Leviticus_23:10",
+        "https://www.sefaria.org/Numbers_15:20",
+        "https://www.sefaria.org/Proverbs_8:22",
+        "https://www.sefaria.org/Psalms_105:36",
+        "https://www.sefaria.org/Psalms_78:51"
+      ],
+      "work_anchor_hrefs": [
+        "tanakh/deuteronomy/index.html#deuteronomy-18-4",
+        "tanakh/exodus/index.html#exodus-23-19",
+        "tanakh/exodus/index.html#exodus-34-26",
+        "tanakh/ezekiel/index.html#ezekiel-48-14",
+        "tanakh/genesis/index.html#genesis-1-1",
+        "tanakh/genesis/index.html#genesis-10-10",
+        "tanakh/ii-chronicles/index.html#ii-chronicles-31-5",
+        "tanakh/jeremiah/index.html#jeremiah-2-3",
+        "tanakh/job/index.html#job-40-19",
+        "tanakh/leviticus/index.html#leviticus-23-10",
+        "tanakh/numbers/index.html#numbers-15-20",
+        "tanakh/proverbs/index.html#proverbs-8-22",
+        "tanakh/psalms/index.html#psalms-105-36",
+        "tanakh/psalms/index.html#psalms-78-51"
+      ],
+      "cluster_ids": [
+        "reshit-first-yield-priority",
+        "reshit-opening-time-order"
+      ],
+      "usage_frame_labels": [
+        "first-yield / first-produce frame",
+        "opening / first-in-order frame"
+      ],
+      "route_ids": [
+        "def-kaikki-lemma-e4f94cd5131316a8"
+      ],
+      "unresolved_route_ids": [],
+      "provenance_frame_buckets": [
+        {
+          "provenance_frame_key": "selected-provenance-8ce923181e9f5287|Miqra according to the Masorah|https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94|CC-BY-SA|https://creativecommons.org/licenses/by-sa/4.0/::reshit-first-yield-priority",
+          "provenance_id": "selected-provenance-8ce923181e9f5287",
+          "version_title": "Miqra according to the Masorah",
+          "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+          "license": "CC-BY-SA",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "cluster_id": "reshit-first-yield-priority",
+          "usage_frame_label": "first-yield / first-produce frame",
+          "row_count": 10,
+          "status_counts": {
+            "supported": 2,
+            "candidate": 6,
+            "weak": 2
+          },
+          "work_slugs": [
+            "tanakh/deuteronomy",
+            "tanakh/exodus",
+            "tanakh/ezekiel",
+            "tanakh/ii-chronicles",
+            "tanakh/jeremiah",
+            "tanakh/leviticus",
+            "tanakh/numbers",
+            "tanakh/psalms"
+          ],
+          "source_refs": [
+            "Deuteronomy 18:4",
+            "Exodus 23:19",
+            "Exodus 34:26",
+            "Ezekiel 48:14",
+            "II Chronicles 31:5",
+            "Jeremiah 2:3",
+            "Leviticus 23:10",
+            "Numbers 15:20",
+            "Psalms 105:36",
+            "Psalms 78:51"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 99,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-001",
+              "occurrence_id": "usage-occ-fdc732ff9cd0d3f0",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֣ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֣ית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 99,
+              "source_ref": "II Chronicles 31:5",
+              "source_href": "https://www.sefaria.org/II_Chronicles_31:5",
+              "work_title": "II Chronicles",
+              "work_slug": "tanakh/ii-chronicles",
+              "work_anchor_href": "tanakh/ii-chronicles/index.html#ii-chronicles-31-5",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "וְכִפְרֹ֣ץ הַדָּבָ֗ר הִרְבּ֤וּ בְנֵֽי־יִשְׂרָאֵל֙ [רֵאשִׁ֣ית] דָּגָ֗ן תִּיר֤וֹשׁ וְיִצְהָר֙ וּדְבַ֔שׁ וְכֹ֖ל תְּבוּאַ֣ת שָׂדֶ֑ה וּמַעְשַׂ֥ר",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-003",
+              "occurrence_id": "usage-occ-df940d11a1836822",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֖ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֖ית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 98,
+              "source_ref": "Jeremiah 2:3",
+              "source_href": "https://www.sefaria.org/Jeremiah_2:3",
+              "work_title": "Jeremiah",
+              "work_slug": "tanakh/jeremiah",
+              "work_anchor_href": "tanakh/jeremiah/index.html#jeremiah-2-3",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "קֹ֤דֶשׁ יִשְׂרָאֵל֙ לַיהֹוָ֔ה [רֵאשִׁ֖ית] תְּבוּאָתֹ֑ה כׇּל־אֹכְלָ֣יו יֶאְשָׁ֔מוּ רָעָ֛ה תָּבֹ֥א אֲלֵיהֶ֖ם נְאֻם־יְהֹוָֽה׃ פ",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-006",
+              "occurrence_id": "usage-occ-a1521c02e65de90b",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית֙",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית֙",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 88,
+              "source_ref": "Numbers 15:20",
+              "source_href": "https://www.sefaria.org/Numbers_15:20",
+              "work_title": "Numbers",
+              "work_slug": "tanakh/numbers",
+              "work_anchor_href": "tanakh/numbers/index.html#numbers-15-20",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "[רֵאשִׁית֙] עֲרִסֹ֣תֵכֶ֔ם חַלָּ֖ה תָּרִ֣ימוּ תְרוּמָ֑ה כִּתְרוּמַ֣ת גֹּ֔רֶן כֵּ֖ן תָּרִ֥ימוּ",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-013",
+              "occurrence_id": "usage-occ-3335fdf1c131a41b",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֗ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֗ית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Exodus 23:19",
+              "source_href": "https://www.sefaria.org/Exodus_23:19",
+              "work_title": "Exodus",
+              "work_slug": "tanakh/exodus",
+              "work_anchor_href": "tanakh/exodus/index.html#exodus-23-19",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "[רֵאשִׁ֗ית] בִּכּוּרֵי֙ אַדְמָ֣תְךָ֔ תָּבִ֕יא בֵּ֖ית יְהֹוָ֣ה אֱלֹהֶ֑יךָ לֹֽא־תְבַשֵּׁ֥ל גְּדִ֖י",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-021",
+              "occurrence_id": "usage-occ-9f6106c9ebad1ff2",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵ֝אשִׁ֗ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵ֝אשִׁ֗ית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Psalms 105:36",
+              "source_href": "https://www.sefaria.org/Psalms_105:36",
+              "work_title": "Psalms",
+              "work_slug": "tanakh/psalms",
+              "work_anchor_href": "tanakh/psalms/index.html#psalms-105-36",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "וַיַּ֣ךְ כׇּל־בְּכ֣וֹר בְּאַרְצָ֑ם [רֵ֝אשִׁ֗ית] לְכׇל־אוֹנָֽם׃",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-020",
+              "occurrence_id": "usage-occ-a17c99f9faaf145a",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֥ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֥ית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Psalms 78:51",
+              "source_href": "https://www.sefaria.org/Psalms_78:51",
+              "work_title": "Psalms",
+              "work_slug": "tanakh/psalms",
+              "work_anchor_href": "tanakh/psalms/index.html#psalms-78-51",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "וַיַּ֣ךְ כׇּל־בְּכ֣וֹר בְּמִצְרָ֑יִם [רֵאשִׁ֥ית] א֝וֹנִ֗ים בְּאׇהֳלֵי־חָֽם׃",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-014",
+              "occurrence_id": "usage-occ-f42c0126e09247d8",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֗ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֗ית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Exodus 34:26",
+              "source_href": "https://www.sefaria.org/Exodus_34:26",
+              "work_title": "Exodus",
+              "work_slug": "tanakh/exodus",
+              "work_anchor_href": "tanakh/exodus/index.html#exodus-34-26",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "[רֵאשִׁ֗ית] בִּכּוּרֵי֙ אַדְמָ֣תְךָ֔ תָּבִ֕יא בֵּ֖ית יְהֹוָ֣ה אֱלֹהֶ֑יךָ לֹא־תְבַשֵּׁ֥ל גְּדִ֖י",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-023",
+              "occurrence_id": "usage-occ-2c7797cb4ae82700",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֣ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֣ית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 71,
+              "source_ref": "Ezekiel 48:14",
+              "source_href": "https://www.sefaria.org/Ezekiel_48:14",
+              "work_title": "Ezekiel",
+              "work_slug": "tanakh/ezekiel",
+              "work_anchor_href": "tanakh/ezekiel/index.html#ezekiel-48-14",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "וְלֹֽא־יִמְכְּר֣וּ מִמֶּ֗נּוּ וְלֹ֥א יָמֵ֛ר וְלֹ֥א יעבור יַעֲבִ֖יר [רֵאשִׁ֣ית] הָאָ֑רֶץ כִּי־קֹ֖דֶשׁ לַיהֹוָֽה׃",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-025",
+              "occurrence_id": "usage-occ-0cb76705b570ccfe",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֨ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֨ית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 67,
+              "source_ref": "Deuteronomy 18:4",
+              "source_href": "https://www.sefaria.org/Deuteronomy_18:4",
+              "work_title": "Deuteronomy",
+              "work_slug": "tanakh/deuteronomy",
+              "work_anchor_href": "tanakh/deuteronomy/index.html#deuteronomy-18-4",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "[רֵאשִׁ֨ית] דְּגָֽנְךָ֜ תִּירֹשְׁךָ֣ וְיִצְהָרֶ֗ךָ וְרֵאשִׁ֛ית גֵּ֥ז צֹאנְךָ֖ תִּתֶּן־לֽוֹ׃",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-028",
+              "occurrence_id": "usage-occ-30c6147afd1489e7",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֥ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֥ית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 67,
+              "source_ref": "Leviticus 23:10",
+              "source_href": "https://www.sefaria.org/Leviticus_23:10",
+              "work_title": "Leviticus",
+              "work_slug": "tanakh/leviticus",
+              "work_anchor_href": "tanakh/leviticus/index.html#leviticus-23-10",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "אֲשֶׁ֤ר אֲנִי֙ נֹתֵ֣ן לָכֶ֔ם וּקְצַרְתֶּ֖ם אֶת־קְצִירָ֑הּ וַהֲבֵאתֶ֥ם אֶת־עֹ֛מֶר [רֵאשִׁ֥ית] קְצִירְכֶ֖ם אֶל־הַכֹּהֵֽן׃",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        },
+        {
+          "provenance_frame_key": "selected-provenance-8ce923181e9f5287|Miqra according to the Masorah|https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94|CC-BY-SA|https://creativecommons.org/licenses/by-sa/4.0/::reshit-opening-time-order",
+          "provenance_id": "selected-provenance-8ce923181e9f5287",
+          "version_title": "Miqra according to the Masorah",
+          "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+          "license": "CC-BY-SA",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "cluster_id": "reshit-opening-time-order",
+          "usage_frame_label": "opening / first-in-order frame",
+          "row_count": 4,
+          "status_counts": {
+            "supported": 0,
+            "candidate": 3,
+            "weak": 1
+          },
+          "work_slugs": [
+            "tanakh/genesis",
+            "tanakh/job",
+            "tanakh/proverbs"
+          ],
+          "source_refs": [
+            "Genesis 10:10",
+            "Genesis 1:1",
+            "Job 40:19",
+            "Proverbs 8:22"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 73,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-036",
+              "occurrence_id": "usage-occ-2f0e79aa0cafa686",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֖ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֖ית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 73,
+              "source_ref": "Genesis 1:1",
+              "source_href": "https://www.sefaria.org/Genesis_1:1",
+              "work_title": "Genesis",
+              "work_slug": "tanakh/genesis",
+              "work_anchor_href": "tanakh/genesis/index.html#genesis-1-1",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "בְּ [רֵאשִׁ֖ית] בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-043",
+              "occurrence_id": "usage-occ-2ebabba5d9674042",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֣ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֣ית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 71,
+              "source_ref": "Proverbs 8:22",
+              "source_href": "https://www.sefaria.org/Proverbs_8:22",
+              "work_title": "Proverbs",
+              "work_slug": "tanakh/proverbs",
+              "work_anchor_href": "tanakh/proverbs/index.html#proverbs-8-22",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "יְֽהֹוָ֗ה קָ֭נָנִי [רֵאשִׁ֣ית] דַּרְכּ֑וֹ קֶ֖דֶם מִפְעָלָ֣יו מֵאָֽז׃",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-042",
+              "occurrence_id": "usage-occ-d8e7e43a47eb99c3",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֣ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֣ית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 71,
+              "source_ref": "Job 40:19",
+              "source_href": "https://www.sefaria.org/Job_40:19",
+              "work_title": "Job",
+              "work_slug": "tanakh/job",
+              "work_anchor_href": "tanakh/job/index.html#job-40-19",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "ה֭וּא [רֵאשִׁ֣ית] דַּרְכֵי־אֵ֑ל הָ֝עֹשׂ֗וֹ יַגֵּ֥שׁ חַרְבּֽוֹ׃",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-044",
+              "occurrence_id": "usage-occ-4a6e6002a9a1d195",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁ֤ית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁ֤ית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 69,
+              "source_ref": "Genesis 10:10",
+              "source_href": "https://www.sefaria.org/Genesis_10:10",
+              "work_title": "Genesis",
+              "work_slug": "tanakh/genesis",
+              "work_anchor_href": "tanakh/genesis/index.html#genesis-10-10",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "וַתְּהִ֨י [רֵאשִׁ֤ית] מַמְלַכְתּוֹ֙ בָּבֶ֔ל וְאֶ֖רֶךְ וְאַכַּ֣ד וְכַלְנֵ֑ה בְּאֶ֖רֶץ שִׁנְעָֽר׃",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-8ce923181e9f5287",
+              "version_title": "Miqra according to the Masorah",
+              "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+              "license": "CC-BY-SA",
+              "license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        }
+      ],
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "provenance_bucket_navigation_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "provenance_key": "selected-provenance-b76cf0375617000e|Piotrkow, 1907-1911|https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/",
+      "provenance_id": "selected-provenance-b76cf0375617000e",
+      "version_title": "Piotrkow, 1907-1911",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "row_count": 13,
+      "work_count": 2,
+      "source_ref_count": 9,
+      "multi_work_provenance": true,
+      "multi_frame_provenance": true,
+      "status_counts": {
+        "supported": 5,
+        "candidate": 5,
+        "weak": 3
+      },
+      "work_slugs": [
+        "tanakh/ibn-ezra-on-exodus",
+        "tanakh/ibn-ezra-on-genesis"
+      ],
+      "work_titles": [
+        "Ibn Ezra on Exodus",
+        "Ibn Ezra on Genesis"
+      ],
+      "source_refs": [
+        "Ibn Ezra on Exodus 22:28:1",
+        "Ibn Ezra on Exodus 23:19:1",
+        "Ibn Ezra on Exodus 23:19:2",
+        "Ibn Ezra on Genesis 10:21:2",
+        "Ibn Ezra on Genesis 1:1:1",
+        "Ibn Ezra on Genesis 48:16:2",
+        "Ibn Ezra on Genesis 49:3:1",
+        "Ibn Ezra on Genesis 9:25:2",
+        "Ibn Ezra on Genesis, Introduction:22"
+      ],
+      "source_hrefs": [
+        "https://www.sefaria.org/Ibn_Ezra_on_Exodus_22:28:1",
+        "https://www.sefaria.org/Ibn_Ezra_on_Exodus_23:19:1",
+        "https://www.sefaria.org/Ibn_Ezra_on_Exodus_23:19:2",
+        "https://www.sefaria.org/Ibn_Ezra_on_Genesis%2C_Introduction:22",
+        "https://www.sefaria.org/Ibn_Ezra_on_Genesis_10:21:2",
+        "https://www.sefaria.org/Ibn_Ezra_on_Genesis_1:1:1",
+        "https://www.sefaria.org/Ibn_Ezra_on_Genesis_48:16:2",
+        "https://www.sefaria.org/Ibn_Ezra_on_Genesis_49:3:1",
+        "https://www.sefaria.org/Ibn_Ezra_on_Genesis_9:25:2"
+      ],
+      "work_anchor_hrefs": [
+        "tanakh/ibn-ezra-on-exodus/index.html#ibn-ezra-on-exodus-22-28-1",
+        "tanakh/ibn-ezra-on-exodus/index.html#ibn-ezra-on-exodus-23-19-1",
+        "tanakh/ibn-ezra-on-exodus/index.html#ibn-ezra-on-exodus-23-19-2",
+        "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-1-1-1",
+        "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-10-21-2",
+        "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-48-16-2",
+        "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-49-3-1",
+        "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-9-25-2",
+        "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-introduction-introduction-22"
+      ],
+      "cluster_ids": [
+        "reshit-first-yield-priority",
+        "reshit-opening-time-order"
+      ],
+      "usage_frame_labels": [
+        "first-yield / first-produce frame",
+        "opening / first-in-order frame"
+      ],
+      "route_ids": [
+        "def-kaikki-lemma-e4f94cd5131316a8"
+      ],
+      "unresolved_route_ids": [],
+      "provenance_frame_buckets": [
+        {
+          "provenance_frame_key": "selected-provenance-b76cf0375617000e|Piotrkow, 1907-1911|https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/::reshit-first-yield-priority",
+          "provenance_id": "selected-provenance-b76cf0375617000e",
+          "version_title": "Piotrkow, 1907-1911",
+          "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+          "license": "Public Domain",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "cluster_id": "reshit-first-yield-priority",
+          "usage_frame_label": "first-yield / first-produce frame",
+          "row_count": 7,
+          "status_counts": {
+            "supported": 2,
+            "candidate": 4,
+            "weak": 1
+          },
+          "work_slugs": [
+            "tanakh/ibn-ezra-on-exodus",
+            "tanakh/ibn-ezra-on-genesis"
+          ],
+          "source_refs": [
+            "Ibn Ezra on Exodus 22:28:1",
+            "Ibn Ezra on Exodus 23:19:1",
+            "Ibn Ezra on Exodus 23:19:2",
+            "Ibn Ezra on Genesis 48:16:2",
+            "Ibn Ezra on Genesis 49:3:1"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 94,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-004",
+              "occurrence_id": "usage-occ-71374260060279c2",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 94,
+              "source_ref": "Ibn Ezra on Genesis 49:3:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Genesis_49:3:1",
+              "work_title": "Ibn Ezra on Genesis",
+              "work_slug": "tanakh/ibn-ezra-on-genesis",
+              "work_anchor_href": "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-49-3-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "אתה כחי בך נראה בתחלה כחי והבכור יקרא [ראשית] און וכמוהו ראשית אונים תהלים עט נא",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-005",
+              "occurrence_id": "usage-occ-83ba4d802c6f2b05",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 94,
+              "source_ref": "Ibn Ezra on Genesis 49:3:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Genesis_49:3:1",
+              "work_title": "Ibn Ezra on Genesis",
+              "work_slug": "tanakh/ibn-ezra-on-genesis",
+              "work_anchor_href": "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-49-3-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "נראה בתחלה כחי והבכור יקרא ראשית און וכמוהו [ראשית] אונים תהלים עט נא",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-018",
+              "occurrence_id": "usage-occ-07fb51bc9b843915",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Ibn Ezra on Genesis 48:16:2",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Genesis_48:16:2",
+              "work_title": "Ibn Ezra on Genesis",
+              "work_slug": "tanakh/ibn-ezra-on-genesis",
+              "work_anchor_href": "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-48-16-2",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "ל כה גם נתן לו הבכורה כי הוא [ראשית] מחשבתו ואחר שלא היה ראובן ראוי לבכורה היה",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-016",
+              "occurrence_id": "usage-occ-1241d6cf00b1bb65",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Ibn Ezra on Exodus 23:19:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Exodus_23:19:1",
+              "work_title": "Ibn Ezra on Exodus",
+              "work_slug": "tanakh/ibn-ezra-on-exodus",
+              "work_anchor_href": "tanakh/ibn-ezra-on-exodus/index.html#ibn-ezra-on-exodus-23-19-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "[ראשית] זהו ואם תקריב מנחת בכורים ויקרא ב יד",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-015",
+              "occurrence_id": "usage-occ-dc8819f50eead906",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Ibn Ezra on Exodus 22:28:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Exodus_22:28:1",
+              "work_title": "Ibn Ezra on Exodus",
+              "work_slug": "tanakh/ibn-ezra-on-exodus",
+              "work_anchor_href": "tanakh/ibn-ezra-on-exodus/index.html#ibn-ezra-on-exodus-22-28-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "כן עמו בכור בניך תתן לי כי הוא [ראשית] אונו ובן זוטא אמר כי מלאתך על ההריון",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-017",
+              "occurrence_id": "usage-occ-ebd3368c5b249204",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Ibn Ezra on Exodus 23:19:2",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Exodus_23:19:2",
+              "work_title": "Ibn Ezra on Exodus",
+              "work_slug": "tanakh/ibn-ezra-on-exodus",
+              "work_anchor_href": "tanakh/ibn-ezra-on-exodus/index.html#ibn-ezra-on-exodus-23-19-2",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "וכל זה חשבו בעבור שמצאנו זאת המצוה עם [ראשית] בכורי אדמתך והנה גם הוא במקום אחר עם",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-026",
+              "occurrence_id": "usage-occ-9bdab75500e6ccfc",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 67,
+              "source_ref": "Ibn Ezra on Exodus 22:28:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Exodus_22:28:1",
+              "work_title": "Ibn Ezra on Exodus",
+              "work_slug": "tanakh/ibn-ezra-on-exodus",
+              "work_anchor_href": "tanakh/ibn-ezra-on-exodus/index.html#ibn-ezra-on-exodus-22-28-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "הדמע והנה פי זה הכתוב במקום אחר והוא [ראשית] דגנך תירושך ויצהרך דבר יח ד על כן",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        },
+        {
+          "provenance_frame_key": "selected-provenance-b76cf0375617000e|Piotrkow, 1907-1911|https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/::reshit-opening-time-order",
+          "provenance_id": "selected-provenance-b76cf0375617000e",
+          "version_title": "Piotrkow, 1907-1911",
+          "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+          "license": "Public Domain",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "cluster_id": "reshit-opening-time-order",
+          "usage_frame_label": "opening / first-in-order frame",
+          "row_count": 6,
+          "status_counts": {
+            "supported": 3,
+            "candidate": 1,
+            "weak": 2
+          },
+          "work_slugs": [
+            "tanakh/ibn-ezra-on-genesis"
+          ],
+          "source_refs": [
+            "Ibn Ezra on Genesis 10:21:2",
+            "Ibn Ezra on Genesis 1:1:1",
+            "Ibn Ezra on Genesis 9:25:2",
+            "Ibn Ezra on Genesis, Introduction:22"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 94,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-032",
+              "occurrence_id": "usage-occ-20eb12a810ca008f",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 94,
+              "source_ref": "Ibn Ezra on Genesis, Introduction:22",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Genesis%2C_Introduction:22",
+              "work_title": "Ibn Ezra on Genesis",
+              "work_slug": "tanakh/ibn-ezra-on-genesis",
+              "work_anchor_href": "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-introduction-introduction-22",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "כב אחר העולם נברא על לויתן שנאמר ״הוא [ראשית] דרכי אל״ איוב מ יט אחר העולם נברא",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-033",
+              "occurrence_id": "usage-occ-a561919ce2a76fd0",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 94,
+              "source_ref": "Ibn Ezra on Genesis, Introduction:22",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Genesis%2C_Introduction:22",
+              "work_title": "Ibn Ezra on Genesis",
+              "work_slug": "tanakh/ibn-ezra-on-genesis",
+              "work_anchor_href": "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-introduction-introduction-22",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "דרש בראשית בתורה שנאמר ״ד׳ קנני [ראשית] דרכו״ משלי ח כב אחר העולם נברא על",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-034",
+              "occurrence_id": "usage-occ-1640cefd9c8b351c",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 92,
+              "source_ref": "Ibn Ezra on Genesis 9:25:2",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Genesis_9:25:2",
+              "work_title": "Ibn Ezra on Genesis",
+              "work_slug": "tanakh/ibn-ezra-on-genesis",
+              "work_anchor_href": "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-9-25-2",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "הראשון אחר המבול היה מכוש וכן כתוב ותהי [ראשית] ממלכתו בבל בראשית יו ד י",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-039",
+              "occurrence_id": "usage-occ-fb86118b460f63c4",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 73,
+              "source_ref": "Ibn Ezra on Genesis 1:1:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Genesis_1:1:1",
+              "work_title": "Ibn Ezra on Genesis",
+              "work_slug": "tanakh/ibn-ezra-on-genesis",
+              "work_anchor_href": "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-1-1-1",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "בלי טעם וטעמם שלא יעלה על לב שאין [ראשית] לשמים ולארץ ע כ אמר בראשית ולפי דעתי",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-045",
+              "occurrence_id": "usage-occ-f7a661c3c78aea55",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 67,
+              "source_ref": "Ibn Ezra on Genesis 10:21:2",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Genesis_10:21:2",
+              "work_title": "Ibn Ezra on Genesis",
+              "work_slug": "tanakh/ibn-ezra-on-genesis",
+              "work_anchor_href": "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-10-21-2",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "ושנה וחדשים ופי שנתים שנכנסה השנה השנית מחשבון [ראשית] המבול גם יש אומרים כי אחר חמשה חדשים",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-048",
+              "occurrence_id": "usage-occ-7910403de1fd30f7",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 63,
+              "source_ref": "Ibn Ezra on Genesis 1:1:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Genesis_1:1:1",
+              "work_title": "Ibn Ezra on Genesis",
+              "work_slug": "tanakh/ibn-ezra-on-genesis",
+              "work_anchor_href": "tanakh/ibn-ezra-on-genesis/index.html#ibn-ezra-on-genesis-default-default-1-1-1",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "הערב או הלילה או החשך והנה שכחו וירא [ראשית] לו דבר ל ג כ א וי א",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-b76cf0375617000e",
+              "version_title": "Piotrkow, 1907-1911",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        }
+      ],
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "provenance_bucket_navigation_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "provenance_key": "selected-provenance-d9158c0823132e6b|Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934|https://www.nli.org.il/he/books/NNL_ALEPH001969084|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/",
+      "provenance_id": "selected-provenance-d9158c0823132e6b",
+      "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "row_count": 11,
+      "work_count": 3,
+      "source_ref_count": 7,
+      "multi_work_provenance": true,
+      "multi_frame_provenance": true,
+      "status_counts": {
+        "supported": 4,
+        "candidate": 5,
+        "weak": 2
+      },
+      "work_slugs": [
+        "tanakh/rashi-on-deuteronomy",
+        "tanakh/rashi-on-genesis",
+        "tanakh/rashi-on-leviticus"
+      ],
+      "work_titles": [
+        "Rashi on Deuteronomy",
+        "Rashi on Genesis",
+        "Rashi on Leviticus"
+      ],
+      "source_refs": [
+        "Rashi on Deuteronomy 16:9:1",
+        "Rashi on Deuteronomy 18:4:1",
+        "Rashi on Deuteronomy 18:4:2",
+        "Rashi on Deuteronomy 26:13:5",
+        "Rashi on Deuteronomy 26:2:1",
+        "Rashi on Genesis 1:1:2",
+        "Rashi on Leviticus 23:10:1"
+      ],
+      "source_hrefs": [
+        "https://www.sefaria.org/Rashi_on_Deuteronomy_16:9:1",
+        "https://www.sefaria.org/Rashi_on_Deuteronomy_18:4:1",
+        "https://www.sefaria.org/Rashi_on_Deuteronomy_18:4:2",
+        "https://www.sefaria.org/Rashi_on_Deuteronomy_26:13:5",
+        "https://www.sefaria.org/Rashi_on_Deuteronomy_26:2:1",
+        "https://www.sefaria.org/Rashi_on_Genesis_1:1:2",
+        "https://www.sefaria.org/Rashi_on_Leviticus_23:10:1"
+      ],
+      "work_anchor_hrefs": [
+        "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-16-9-1",
+        "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-18-4-1",
+        "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-18-4-2",
+        "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-26-13-5",
+        "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-26-2-1",
+        "tanakh/rashi-on-genesis/index.html#rashi-on-genesis-1-1-2",
+        "tanakh/rashi-on-leviticus/index.html#rashi-on-leviticus-23-10-1"
+      ],
+      "cluster_ids": [
+        "reshit-first-yield-priority",
+        "reshit-opening-time-order"
+      ],
+      "usage_frame_labels": [
+        "first-yield / first-produce frame",
+        "opening / first-in-order frame"
+      ],
+      "route_ids": [
+        "def-kaikki-lemma-e4f94cd5131316a8"
+      ],
+      "unresolved_route_ids": [],
+      "provenance_frame_buckets": [
+        {
+          "provenance_frame_key": "selected-provenance-d9158c0823132e6b|Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934|https://www.nli.org.il/he/books/NNL_ALEPH001969084|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/::reshit-first-yield-priority",
+          "provenance_id": "selected-provenance-d9158c0823132e6b",
+          "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+          "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+          "license": "Public Domain",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "cluster_id": "reshit-first-yield-priority",
+          "usage_frame_label": "first-yield / first-produce frame",
+          "row_count": 7,
+          "status_counts": {
+            "supported": 1,
+            "candidate": 5,
+            "weak": 1
+          },
+          "work_slugs": [
+            "tanakh/rashi-on-deuteronomy",
+            "tanakh/rashi-on-genesis",
+            "tanakh/rashi-on-leviticus"
+          ],
+          "source_refs": [
+            "Rashi on Deuteronomy 16:9:1",
+            "Rashi on Deuteronomy 18:4:1",
+            "Rashi on Deuteronomy 26:13:5",
+            "Rashi on Deuteronomy 26:2:1",
+            "Rashi on Genesis 1:1:2",
+            "Rashi on Leviticus 23:10:1"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 99,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-002",
+              "occurrence_id": "usage-occ-b3e79e3c967ebf9e",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 99,
+              "source_ref": "Rashi on Deuteronomy 26:13:5",
+              "source_href": "https://www.sefaria.org/Rashi_on_Deuteronomy_26:13:5",
+              "work_title": "Rashi on Deuteronomy",
+              "work_slug": "tanakh/rashi-on-deuteronomy",
+              "work_anchor_href": "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-26-13-5",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "וְלֹא מַעֲשֵׂר לִתְרוּמָה וְלֹא שֵׁנִי לָרִאשׁוֹן שֶׁהַתְּרוּמָה קְרוּיָה [רֵאשִׁית] שֶׁהִיא רִאשׁוֹנָה מִשֶּׁנַעֲשָׂה דָגָן וּכְתִיב שמות כ ב",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-007",
+              "occurrence_id": "usage-occ-8008c7a8c7586f22",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 88,
+              "source_ref": "Rashi on Deuteronomy 16:9:1",
+              "source_href": "https://www.sefaria.org/Rashi_on_Deuteronomy_16:9:1",
+              "work_title": "Rashi on Deuteronomy",
+              "work_slug": "tanakh/rashi-on-deuteronomy",
+              "work_anchor_href": "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-16-9-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "מהחל חרמש בקמה מִשֶּׁנִּקְצַר הָעֹמֶר שֶׁהוּא [רֵאשִׁית] הַקָּצִיר עי ספרי מנחות ע א",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-009",
+              "occurrence_id": "usage-occ-2c64462a53931b74",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 86,
+              "source_ref": "Rashi on Deuteronomy 18:4:1",
+              "source_href": "https://www.sefaria.org/Rashi_on_Deuteronomy_18:4:1",
+              "work_title": "Rashi on Deuteronomy",
+              "work_slug": "tanakh/rashi-on-deuteronomy",
+              "work_anchor_href": "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-18-4-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "[ראשית] דגנך זוֹ תְּרוּמָה וְלֹא פֵּרֵשׁ בָּהּ שִׁעוּר אֲבָל",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-011",
+              "occurrence_id": "usage-occ-90be1409942dfcaf",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 77,
+              "source_ref": "Rashi on Genesis 1:1:2",
+              "source_href": "https://www.sefaria.org/Rashi_on_Genesis_1:1:2",
+              "work_title": "Rashi on Genesis",
+              "work_slug": "tanakh/rashi-on-genesis",
+              "work_anchor_href": "tanakh/rashi-on-genesis/index.html#rashi-on-genesis-1-1-2",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "שֶׁנִקְרֵאת רֵאשִׁית דַּרְכּוֹ משלי ח וּבִשְׁבִיל יִשְׂרָאֵל שֶׁנִקְרְאוּ [רֵאשִׁית] תְּבוּאָתוֹ ירמיה ב וְאִם בָּאתָ לְפָרְשׁוֹ כִּפְשׁוּטוֹ כָּךְ",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-012",
+              "occurrence_id": "usage-occ-f24b5d3657726ba4",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 77,
+              "source_ref": "Rashi on Genesis 1:1:2",
+              "source_href": "https://www.sefaria.org/Rashi_on_Genesis_1:1:2",
+              "work_title": "Rashi on Genesis",
+              "work_slug": "tanakh/rashi-on-genesis",
+              "work_anchor_href": "tanakh/rashi-on-genesis/index.html#rashi-on-genesis-1-1-2",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "אֶלָּא דָּרְשֵׁנִי כְּמוֹ שֶׁדְּרָשׁוּהוּ רַבּוֹתֵינוּ בִּשְׁבִיל הַתּוֹרָה שֶׁנִקְרֵאת [רֵאשִׁית] דַּרְכּוֹ משלי ח וּבִשְׁבִיל יִשְׂרָאֵל שֶׁנִקְרְאוּ רֵאשִׁית תְּבוּאָתוֹ",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-022",
+              "occurrence_id": "usage-occ-7e3b3556629acfe3",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Rashi on Deuteronomy 26:2:1",
+              "source_href": "https://www.sefaria.org/Rashi_on_Deuteronomy_26:2:1",
+              "work_title": "Rashi on Deuteronomy",
+              "work_slug": "tanakh/rashi-on-deuteronomy",
+              "work_anchor_href": "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-26-2-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "מראשית וְלֹא כָל [רֵאשִׁית] שֶׁאֵין כָּל הַפֵּרוֹת חַיָּבִים בְּבִכּוּרִים אֶלָּא שִׁבְעַת הַמִּינִין",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-029",
+              "occurrence_id": "usage-occ-bdaab00735116193",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 67,
+              "source_ref": "Rashi on Leviticus 23:10:1",
+              "source_href": "https://www.sefaria.org/Rashi_on_Leviticus_23:10:1",
+              "work_title": "Rashi on Leviticus",
+              "work_slug": "tanakh/rashi-on-leviticus",
+              "work_anchor_href": "tanakh/rashi-on-leviticus/index.html#rashi-on-leviticus-23-10-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "[ראשית] קצירכם שֶׁתְּהֵא רִאשׁוֹנָה לַקָּצִיר ספרא",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        },
+        {
+          "provenance_frame_key": "selected-provenance-d9158c0823132e6b|Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934|https://www.nli.org.il/he/books/NNL_ALEPH001969084|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/::reshit-opening-time-order",
+          "provenance_id": "selected-provenance-d9158c0823132e6b",
+          "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+          "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+          "license": "Public Domain",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "cluster_id": "reshit-opening-time-order",
+          "usage_frame_label": "opening / first-in-order frame",
+          "row_count": 4,
+          "status_counts": {
+            "supported": 3,
+            "candidate": 0,
+            "weak": 1
+          },
+          "work_slugs": [
+            "tanakh/rashi-on-deuteronomy",
+            "tanakh/rashi-on-genesis"
+          ],
+          "source_refs": [
+            "Rashi on Deuteronomy 18:4:2",
+            "Rashi on Genesis 1:1:2"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 99,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-030",
+              "occurrence_id": "usage-occ-d091fa04119c0e3b",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 99,
+              "source_ref": "Rashi on Genesis 1:1:2",
+              "source_href": "https://www.sefaria.org/Rashi_on_Genesis_1:1:2",
+              "work_title": "Rashi on Genesis",
+              "work_slug": "tanakh/rashi-on-genesis",
+              "work_anchor_href": "tanakh/rashi-on-genesis/index.html#rashi-on-genesis-1-1-2",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "יְהוֹיָקִים שׁם כ ז רֵאשִׁית מַמְלַכְתּוֹ בראשית י [רֵאשִׁית] דְּגָנְךָ דברים י ח ד אַף כָּאן אַתָּה",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-031",
+              "occurrence_id": "usage-occ-d3308a5f3a14db62",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 99,
+              "source_ref": "Rashi on Genesis 1:1:2",
+              "source_href": "https://www.sefaria.org/Rashi_on_Genesis_1:1:2",
+              "work_title": "Rashi on Genesis",
+              "work_slug": "tanakh/rashi-on-genesis",
+              "work_anchor_href": "tanakh/rashi-on-genesis/index.html#rashi-on-genesis-1-1-2",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "שֶׁלְּאַחֲרָיו כְּמוֹ בְּרֵאשִׁית מַמְלֶכֶת יְהוֹיָקִים שׁם כ ז [רֵאשִׁית] מַמְלַכְתּוֹ בראשית י רֵאשִׁית דְּגָנְךָ דברים י ח",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-035",
+              "occurrence_id": "usage-occ-c589dc9e364b020a",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "supported",
+              "raw_score": 92,
+              "source_ref": "Rashi on Genesis 1:1:2",
+              "source_href": "https://www.sefaria.org/Rashi_on_Genesis_1:1:2",
+              "work_title": "Rashi on Genesis",
+              "work_slug": "tanakh/rashi-on-genesis",
+              "work_anchor_href": "tanakh/rashi-on-genesis/index.html#rashi-on-genesis-1-1-2",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "לִכְתֹּב בָּרִאשׁוֹנָה בָּרָא אֶת הַשָּׁמַיִם וְגוֹ שֶׁאֵין לְךָ [רֵאשִׁית] בַּמִּקְרָא שֶׁאֵינוֹ דָבוּק לַתֵּבָה שֶׁלְּאַחֲרָיו כְּמוֹ בְּרֵאשִׁית מַמְלֶכֶת",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-046",
+              "occurrence_id": "usage-occ-b44e9953de2b6953",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 67,
+              "source_ref": "Rashi on Deuteronomy 18:4:2",
+              "source_href": "https://www.sefaria.org/Rashi_on_Deuteronomy_18:4:2",
+              "work_title": "Rashi on Deuteronomy",
+              "work_slug": "tanakh/rashi-on-deuteronomy",
+              "work_anchor_href": "tanakh/rashi-on-deuteronomy/index.html#rashi-on-deuteronomy-18-4-2",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "צאנך כְּשֶׁאַתָּה גּוֹזֵז צֹאנְךָ בְּכָל שָׁנָה תֵּן מִמֶּנָּה [רֵאשִׁית] לַכֹּהֵן וְלֹא פֵּרֵשׁ בָּהּ שִׁעוּר וְרַבּוֹתֵינוּ נָתְנוּ בָהּ",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-d9158c0823132e6b",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        }
+      ],
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "provenance_bucket_navigation_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "provenance_key": "selected-provenance-9311c0de2ca12567|On Your Way|http://mobile.tora.ws/|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/",
+      "provenance_id": "selected-provenance-9311c0de2ca12567",
+      "version_title": "On Your Way",
+      "version_source": "http://mobile.tora.ws/",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "row_count": 8,
+      "work_count": 3,
+      "source_ref_count": 6,
+      "multi_work_provenance": true,
+      "multi_frame_provenance": true,
+      "status_counts": {
+        "supported": 0,
+        "candidate": 5,
+        "weak": 3
+      },
+      "work_slugs": [
+        "tanakh/ibn-ezra-on-deuteronomy",
+        "tanakh/ibn-ezra-on-leviticus",
+        "tanakh/ibn-ezra-on-numbers"
+      ],
+      "work_titles": [
+        "Ibn Ezra on Deuteronomy",
+        "Ibn Ezra on Leviticus",
+        "Ibn Ezra on Numbers"
+      ],
+      "source_refs": [
+        "Ibn Ezra on Deuteronomy 21:17:3",
+        "Ibn Ezra on Deuteronomy 33:21:1",
+        "Ibn Ezra on Deuteronomy 33:27:3",
+        "Ibn Ezra on Leviticus 23:11:1",
+        "Ibn Ezra on Leviticus 2:14:1",
+        "Ibn Ezra on Numbers 24:20:1"
+      ],
+      "source_hrefs": [
+        "https://www.sefaria.org/Ibn_Ezra_on_Deuteronomy_21:17:3",
+        "https://www.sefaria.org/Ibn_Ezra_on_Deuteronomy_33:21:1",
+        "https://www.sefaria.org/Ibn_Ezra_on_Deuteronomy_33:27:3",
+        "https://www.sefaria.org/Ibn_Ezra_on_Leviticus_23:11:1",
+        "https://www.sefaria.org/Ibn_Ezra_on_Leviticus_2:14:1",
+        "https://www.sefaria.org/Ibn_Ezra_on_Numbers_24:20:1"
+      ],
+      "work_anchor_hrefs": [
+        "tanakh/ibn-ezra-on-deuteronomy/index.html#ibn-ezra-on-deuteronomy-21-17-3",
+        "tanakh/ibn-ezra-on-deuteronomy/index.html#ibn-ezra-on-deuteronomy-33-21-1",
+        "tanakh/ibn-ezra-on-deuteronomy/index.html#ibn-ezra-on-deuteronomy-33-27-3",
+        "tanakh/ibn-ezra-on-leviticus/index.html#ibn-ezra-on-leviticus-2-14-1",
+        "tanakh/ibn-ezra-on-leviticus/index.html#ibn-ezra-on-leviticus-23-11-1",
+        "tanakh/ibn-ezra-on-numbers/index.html#ibn-ezra-on-numbers-24-20-1"
+      ],
+      "cluster_ids": [
+        "reshit-first-yield-priority",
+        "reshit-opening-time-order"
+      ],
+      "usage_frame_labels": [
+        "first-yield / first-produce frame",
+        "opening / first-in-order frame"
+      ],
+      "route_ids": [
+        "def-kaikki-lemma-e4f94cd5131316a8"
+      ],
+      "unresolved_route_ids": [],
+      "provenance_frame_buckets": [
+        {
+          "provenance_frame_key": "selected-provenance-9311c0de2ca12567|On Your Way|http://mobile.tora.ws/|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/::reshit-first-yield-priority",
+          "provenance_id": "selected-provenance-9311c0de2ca12567",
+          "version_title": "On Your Way",
+          "version_source": "http://mobile.tora.ws/",
+          "license": "Public Domain",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "cluster_id": "reshit-first-yield-priority",
+          "usage_frame_label": "first-yield / first-produce frame",
+          "row_count": 3,
+          "status_counts": {
+            "supported": 0,
+            "candidate": 1,
+            "weak": 2
+          },
+          "work_slugs": [
+            "tanakh/ibn-ezra-on-deuteronomy",
+            "tanakh/ibn-ezra-on-leviticus"
+          ],
+          "source_refs": [
+            "Ibn Ezra on Deuteronomy 33:21:1",
+            "Ibn Ezra on Leviticus 23:11:1",
+            "Ibn Ezra on Leviticus 2:14:1"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 75,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-019",
+              "occurrence_id": "usage-occ-f306cf37adebf665",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 75,
+              "source_ref": "Ibn Ezra on Leviticus 2:14:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Leviticus_2:14:1",
+              "work_title": "Ibn Ezra on Leviticus",
+              "work_slug": "tanakh/ibn-ezra-on-leviticus",
+              "work_anchor_href": "tanakh/ibn-ezra-on-leviticus/index.html#ibn-ezra-on-leviticus-2-14-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "ולפי דעתי כי אין צורך כי החיוב הוא [ראשית] בכורים ולא הבכורים והרוצה להביא מנחה מבכורים נדבה",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-9311c0de2ca12567",
+              "version_title": "On Your Way",
+              "version_source": "http://mobile.tora.ws/",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-024",
+              "occurrence_id": "usage-occ-e56d17b07b8d3701",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 69,
+              "source_ref": "Ibn Ezra on Deuteronomy 33:21:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Deuteronomy_33:21:1",
+              "work_title": "Ibn Ezra on Deuteronomy",
+              "work_slug": "tanakh/ibn-ezra-on-deuteronomy",
+              "work_anchor_href": "tanakh/ibn-ezra-on-deuteronomy/index.html#ibn-ezra-on-deuteronomy-33-21-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "וירא [ראשית] לו הטעם שראה לנפשו ויבקש לו נחלה קודם",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-9311c0de2ca12567",
+              "version_title": "On Your Way",
+              "version_source": "http://mobile.tora.ws/",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-027",
+              "occurrence_id": "usage-occ-a8452ab47b478bf4",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 67,
+              "source_ref": "Ibn Ezra on Leviticus 23:11:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Leviticus_23:11:1",
+              "work_title": "Ibn Ezra on Leviticus",
+              "work_slug": "tanakh/ibn-ezra-on-leviticus",
+              "work_anchor_href": "tanakh/ibn-ezra-on-leviticus/index.html#ibn-ezra-on-leviticus-23-11-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "ועשו מצות ועוד כי אין קציר כי הוא [ראשית] קציר שעורים גם יש כדמות ראיה על פירושו",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-9311c0de2ca12567",
+              "version_title": "On Your Way",
+              "version_source": "http://mobile.tora.ws/",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        },
+        {
+          "provenance_frame_key": "selected-provenance-9311c0de2ca12567|On Your Way|http://mobile.tora.ws/|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/::reshit-opening-time-order",
+          "provenance_id": "selected-provenance-9311c0de2ca12567",
+          "version_title": "On Your Way",
+          "version_source": "http://mobile.tora.ws/",
+          "license": "Public Domain",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "cluster_id": "reshit-opening-time-order",
+          "usage_frame_label": "opening / first-in-order frame",
+          "row_count": 5,
+          "status_counts": {
+            "supported": 0,
+            "candidate": 4,
+            "weak": 1
+          },
+          "work_slugs": [
+            "tanakh/ibn-ezra-on-deuteronomy",
+            "tanakh/ibn-ezra-on-numbers"
+          ],
+          "source_refs": [
+            "Ibn Ezra on Deuteronomy 21:17:3",
+            "Ibn Ezra on Deuteronomy 33:27:3",
+            "Ibn Ezra on Numbers 24:20:1"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 73,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-040",
+              "occurrence_id": "usage-occ-bc222104bb98c08d",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 73,
+              "source_ref": "Ibn Ezra on Numbers 24:20:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Numbers_24:20:1",
+              "work_title": "Ibn Ezra on Numbers",
+              "work_slug": "tanakh/ibn-ezra-on-numbers",
+              "work_anchor_href": "tanakh/ibn-ezra-on-numbers/index.html#ibn-ezra-on-numbers-24-20-1",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "ועד אשה מעולל ועד יונק וזקן ורבים פירשו [ראשית] גוים כי הם יחשבו בראש הגוים ולא היה",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-9311c0de2ca12567",
+              "version_title": "On Your Way",
+              "version_source": "http://mobile.tora.ws/",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-037",
+              "occurrence_id": "usage-occ-e63885d56586ef74",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 73,
+              "source_ref": "Ibn Ezra on Deuteronomy 33:27:3",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Deuteronomy_33:27:3",
+              "work_title": "Ibn Ezra on Deuteronomy",
+              "work_slug": "tanakh/ibn-ezra-on-deuteronomy",
+              "work_anchor_href": "tanakh/ibn-ezra-on-deuteronomy/index.html#ibn-ezra-on-deuteronomy-33-27-3",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "קדם והטעם קדמון שאין לו ראשית ואחרית וטעם [ראשית] ואחרית כנגד הנבראים והגאון אמר כי ומתחת פירוש",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-9311c0de2ca12567",
+              "version_title": "On Your Way",
+              "version_source": "http://mobile.tora.ws/",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-038",
+              "occurrence_id": "usage-occ-f4c6ba102ca44a4d",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 73,
+              "source_ref": "Ibn Ezra on Deuteronomy 33:27:3",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Deuteronomy_33:27:3",
+              "work_title": "Ibn Ezra on Deuteronomy",
+              "work_slug": "tanakh/ibn-ezra-on-deuteronomy",
+              "work_anchor_href": "tanakh/ibn-ezra-on-deuteronomy/index.html#ibn-ezra-on-deuteronomy-33-27-3",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "כי הוא אלהי קדם והטעם קדמון שאין לו [ראשית] ואחרית וטעם ראשית ואחרית כנגד הנבראים והגאון אמר",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-9311c0de2ca12567",
+              "version_title": "On Your Way",
+              "version_source": "http://mobile.tora.ws/",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-041",
+              "occurrence_id": "usage-occ-3ce7de17f673ccb6",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 71,
+              "source_ref": "Ibn Ezra on Numbers 24:20:1",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Numbers_24:20:1",
+              "work_title": "Ibn Ezra on Numbers",
+              "work_slug": "tanakh/ibn-ezra-on-numbers",
+              "work_anchor_href": "tanakh/ibn-ezra-on-numbers/index.html#ibn-ezra-on-numbers-24-20-1",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "וירא את עמלק בדרך נבואה והמשל [ראשית] גוים ופירושו כי הוא הגוי הנלחם עם ישראל",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-9311c0de2ca12567",
+              "version_title": "On Your Way",
+              "version_source": "http://mobile.tora.ws/",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-047",
+              "occurrence_id": "usage-occ-3efac773afbb1995",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 63,
+              "source_ref": "Ibn Ezra on Deuteronomy 21:17:3",
+              "source_href": "https://www.sefaria.org/Ibn_Ezra_on_Deuteronomy_21:17:3",
+              "work_title": "Ibn Ezra on Deuteronomy",
+              "work_slug": "tanakh/ibn-ezra-on-deuteronomy",
+              "work_anchor_href": "tanakh/ibn-ezra-on-deuteronomy/index.html#ibn-ezra-on-deuteronomy-21-17-3",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "כי הוא [ראשית] אונו הנודע עם הישר ידבר וכל ישראל בחזקת",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-9311c0de2ca12567",
+              "version_title": "On Your Way",
+              "version_source": "http://mobile.tora.ws/",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        }
+      ],
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "provenance_bucket_navigation_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "provenance_key": "selected-provenance-81d1d9b642f7b7e9|Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization|https://www.nli.org.il/he/books/NNL_ALEPH001969084|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/",
+      "provenance_id": "selected-provenance-81d1d9b642f7b7e9",
+      "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "row_count": 3,
+      "work_count": 1,
+      "source_ref_count": 2,
+      "multi_work_provenance": false,
+      "multi_frame_provenance": true,
+      "status_counts": {
+        "supported": 0,
+        "candidate": 2,
+        "weak": 1
+      },
+      "work_slugs": [
+        "tanakh/rashi-on-numbers"
+      ],
+      "work_titles": [
+        "Rashi on Numbers"
+      ],
+      "source_refs": [
+        "Rashi on Numbers 15:20:1",
+        "Rashi on Numbers 18:27:1"
+      ],
+      "source_hrefs": [
+        "https://www.sefaria.org/Rashi_on_Numbers_15:20:1",
+        "https://www.sefaria.org/Rashi_on_Numbers_18:27:1"
+      ],
+      "work_anchor_hrefs": [
+        "tanakh/rashi-on-numbers/index.html#rashi-on-numbers-15-20-1",
+        "tanakh/rashi-on-numbers/index.html#rashi-on-numbers-18-27-1"
+      ],
+      "cluster_ids": [
+        "reshit-first-yield-priority",
+        "reshit-opening-time-order"
+      ],
+      "usage_frame_labels": [
+        "first-yield / first-produce frame",
+        "opening / first-in-order frame"
+      ],
+      "route_ids": [
+        "def-kaikki-lemma-e4f94cd5131316a8"
+      ],
+      "unresolved_route_ids": [],
+      "provenance_frame_buckets": [
+        {
+          "provenance_frame_key": "selected-provenance-81d1d9b642f7b7e9|Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization|https://www.nli.org.il/he/books/NNL_ALEPH001969084|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/::reshit-first-yield-priority",
+          "provenance_id": "selected-provenance-81d1d9b642f7b7e9",
+          "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization",
+          "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+          "license": "Public Domain",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "cluster_id": "reshit-first-yield-priority",
+          "usage_frame_label": "first-yield / first-produce frame",
+          "row_count": 2,
+          "status_counts": {
+            "supported": 0,
+            "candidate": 2,
+            "weak": 0
+          },
+          "work_slugs": [
+            "tanakh/rashi-on-numbers"
+          ],
+          "source_refs": [
+            "Rashi on Numbers 15:20:1",
+            "Rashi on Numbers 18:27:1"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 88,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-008",
+              "occurrence_id": "usage-occ-2f65e77bb7f0c740",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 88,
+              "source_ref": "Rashi on Numbers 15:20:1",
+              "source_href": "https://www.sefaria.org/Rashi_on_Numbers_15:20:1",
+              "work_title": "Rashi on Numbers",
+              "work_slug": "tanakh/rashi-on-numbers",
+              "work_anchor_href": "tanakh/rashi-on-numbers/index.html#rashi-on-numbers-15-20-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "לַגֻּלְגֹּלֶת שם תָּרִימוּ מֵרֵאשִׁיתָהּ כְּלוֹמַר קֹדֶם שֶׁתֹּאכְלוּ מִמֶּנָּה [רֵאשִׁית] חֶלְקָהּ חלה אַחַת תרימו תרומה לְשֵׁם ה עירובין",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-81d1d9b642f7b7e9",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            },
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-010",
+              "occurrence_id": "usage-occ-47bf963ad9a76044",
+              "token_key": "he:ראשית",
+              "token_surface": "רֵאשִׁית",
+              "token_normalized": "ראשית",
+              "focus_surface": "רֵאשִׁית",
+              "focus_normalized": "ראשית",
+              "status": "candidate",
+              "raw_score": 86,
+              "source_ref": "Rashi on Numbers 18:27:1",
+              "source_href": "https://www.sefaria.org/Rashi_on_Numbers_18:27:1",
+              "work_title": "Rashi on Numbers",
+              "work_slug": "tanakh/rashi-on-numbers",
+              "work_anchor_href": "tanakh/rashi-on-numbers/index.html#rashi-on-numbers-18-27-1",
+              "cluster_id": "reshit-first-yield-priority",
+              "usage_frame_label": "first-yield / first-produce frame",
+              "context_focus_marked": "וְלִטְמֵאִין וְחַיָּבִין עָלֶיהָ מִיתָה וְחֹמֶשׁ כִּתְרוּמָה גְדוֹלָה שֶׁנִּקְרֵאת [רֵאשִׁית] דָּגָן מִן הַגֹּרֶן",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-81d1d9b642f7b7e9",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        },
+        {
+          "provenance_frame_key": "selected-provenance-81d1d9b642f7b7e9|Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization|https://www.nli.org.il/he/books/NNL_ALEPH001969084|Public Domain|https://creativecommons.org/publicdomain/mark/1.0/::reshit-opening-time-order",
+          "provenance_id": "selected-provenance-81d1d9b642f7b7e9",
+          "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization",
+          "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+          "license": "Public Domain",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "cluster_id": "reshit-opening-time-order",
+          "usage_frame_label": "opening / first-in-order frame",
+          "row_count": 1,
+          "status_counts": {
+            "supported": 0,
+            "candidate": 0,
+            "weak": 1
+          },
+          "work_slugs": [
+            "tanakh/rashi-on-numbers"
+          ],
+          "source_refs": [
+            "Rashi on Numbers 15:20:1"
+          ],
+          "route_ids": [
+            "def-kaikki-lemma-e4f94cd5131316a8"
+          ],
+          "max_raw_score": 63,
+          "occurrence_rows": [
+            {
+              "row_id": "definition-workbench-usage-occurrence-link-049",
+              "occurrence_id": "usage-occ-04798368ff3ae685",
+              "token_key": "he:ראשית",
+              "token_surface": "ראשית",
+              "token_normalized": "ראשית",
+              "focus_surface": "ראשית",
+              "focus_normalized": "ראשית",
+              "status": "weak",
+              "raw_score": 63,
+              "source_ref": "Rashi on Numbers 15:20:1",
+              "source_href": "https://www.sefaria.org/Rashi_on_Numbers_15:20:1",
+              "work_title": "Rashi on Numbers",
+              "work_slug": "tanakh/rashi-on-numbers",
+              "work_anchor_href": "tanakh/rashi-on-numbers/index.html#rashi-on-numbers-15-20-1",
+              "cluster_id": "reshit-opening-time-order",
+              "usage_frame_label": "opening / first-in-order frame",
+              "context_focus_marked": "[ראשית] ערסתכם כְּשֶׁתָּלוּשׁוּ כְדֵי עִסַּתְכֶם שֶׁאַתֶּם רְגִילִין לָלוּשׁ בַּמִּדְבָּר",
+              "related_route_ids": [
+                "def-kaikki-lemma-e4f94cd5131316a8"
+              ],
+              "provenance_id": "selected-provenance-81d1d9b642f7b7e9",
+              "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization",
+              "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+              "license": "Public Domain",
+              "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+            }
+          ],
+          "unresolved_route_ids": [],
+          "usage_boundary": {
+            "observed_usage_only": true,
+            "reader_facing": false,
+            "route_ids_only": true,
+            "provenance_bucket_navigation_only": true,
+            "not_answer_authority": true,
+            "not_definition_authority": true,
+            "not_semantic_arbitration": true
+          }
+        }
+      ],
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "provenance_bucket_navigation_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    }
+  ]
+}

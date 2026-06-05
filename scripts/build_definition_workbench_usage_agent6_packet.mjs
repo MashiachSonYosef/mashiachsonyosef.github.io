@@ -7,6 +7,9 @@ const defaults = {
   usageLinkPacket: 'data/definitions/definition-workbench-usage-link-packet.json',
   usageSeedQueue: 'data/definitions/definition-workbench-usage-seed-queue.json',
   usageJoinSmoke: 'data/definitions/definition-workbench-usage-join-smoke.json',
+  usageRouteResolution: 'data/definitions/definition-workbench-usage-route-resolution.json',
+  usageSampleGapAudit: 'data/definitions/definition-workbench-usage-sample-gap-audit.json',
+  usageConsumerManifest: 'data/definitions/definition-workbench-usage-consumer-manifest.json',
   output: 'data/definitions/definition-workbench-usage-agent6-packet.json',
   report: 'reports/definition-workbench-usage-agent6-packet.md',
 };
@@ -15,6 +18,9 @@ const options = parseArgs(process.argv.slice(2));
 const linkPacket = readJson(options.usageLinkPacket);
 const seedQueue = readJson(options.usageSeedQueue);
 const joinSmoke = readJson(options.usageJoinSmoke);
+const routeResolution = readJson(options.usageRouteResolution);
+const sampleGapAudit = readJson(options.usageSampleGapAudit);
+const consumerManifest = readJson(options.usageConsumerManifest);
 
 if (linkPacket.artifact_type !== 'definition_workbench_usage_link_packet') {
   throw new Error(`${options.usageLinkPacket} is not a Definition Workbench usage-link packet`);
@@ -25,6 +31,39 @@ if (seedQueue.artifact_type !== 'definition_workbench_usage_seed_queue') {
 if (joinSmoke.artifact_type !== 'definition_workbench_usage_join_smoke') {
   throw new Error(`${options.usageJoinSmoke} is not a Definition Workbench usage join smoke`);
 }
+if (routeResolution.artifact_type !== 'definition_workbench_usage_route_resolution') {
+  throw new Error(`${options.usageRouteResolution} is not a Definition Workbench usage route-resolution packet`);
+}
+if (sampleGapAudit.artifact_type !== 'definition_workbench_usage_sample_gap_audit') {
+  throw new Error(`${options.usageSampleGapAudit} is not a Definition Workbench usage sample-gap audit`);
+}
+if (consumerManifest.artifact_type !== 'definition_workbench_usage_consumer_manifest') {
+  throw new Error(`${options.usageConsumerManifest} is not a Definition Workbench usage consumer manifest`);
+}
+
+const evidenceArtifacts = [
+  options.usageLinkPacket,
+  'reports/definition-workbench-usage-link-packet.md',
+  options.usageSeedQueue,
+  'reports/definition-workbench-usage-seed-queue.md',
+  options.usageJoinSmoke,
+  'reports/definition-workbench-usage-join-smoke.md',
+  options.usageRouteResolution,
+  'reports/definition-workbench-usage-route-resolution.md',
+  options.usageSampleGapAudit,
+  'reports/definition-workbench-usage-sample-gap-audit.md',
+  options.usageConsumerManifest,
+  'reports/definition-workbench-usage-consumer-manifest.md',
+];
+const validatorScripts = [
+  'scripts/validate_definition_workbench_usage_link_packet.mjs',
+  'scripts/validate_definition_workbench_usage_seed_queue.mjs',
+  'scripts/validate_definition_workbench_usage_join_smoke.mjs',
+  'scripts/validate_definition_workbench_usage_route_resolution.mjs',
+  'scripts/validate_definition_workbench_usage_sample_gap_audit.mjs',
+  'scripts/validate_definition_workbench_usage_consumer_manifest.mjs',
+  'scripts/validate_definition_workbench_usage_agent6_packet.mjs',
+];
 
 const joinRows = Array.isArray(joinSmoke.join_rows) ? joinSmoke.join_rows : [];
 const proofOccurrences = joinRows.flatMap((row) => (row.occurrence_links || []).map((occurrence) => ({
@@ -65,21 +104,9 @@ const artifact = {
   gate: 'definition_workbench_gate',
   submitted_by: 'Agent 3',
   requested_review: 'usage_navigation_boundary_review_for_definition_workbench_planning',
-  policy: 'Agent 3 QA packet for Definition Workbench usage-navigation linkage. It packages existing usage-link, seed-queue, and join-smoke artifacts for Agent 6 review without claiming answer authority, UI readiness, semantic verdicts, route ranking, accepted translation, publication readiness, or source/provenance acceptance beyond the cited rows.',
-  evidence_artifacts: [
-    options.usageLinkPacket,
-    'reports/definition-workbench-usage-link-packet.md',
-    options.usageSeedQueue,
-    'reports/definition-workbench-usage-seed-queue.md',
-    options.usageJoinSmoke,
-    'reports/definition-workbench-usage-join-smoke.md',
-  ],
-  validators: [
-    'scripts/validate_definition_workbench_usage_link_packet.mjs',
-    'scripts/validate_definition_workbench_usage_seed_queue.mjs',
-    'scripts/validate_definition_workbench_usage_join_smoke.mjs',
-    'scripts/validate_definition_workbench_usage_agent6_packet.mjs',
-  ],
+  policy: 'Agent 3 QA packet for Definition Workbench usage-navigation linkage. It packages usage-link, seed-queue, join-smoke, route-resolution, sample-gap, and consumer-manifest artifacts for Agent 6 review without claiming answer authority, UI readiness, semantic verdicts, route ranking, accepted translation, publication readiness, or source/provenance acceptance beyond the cited rows.',
+  evidence_artifacts: evidenceArtifacts,
+  validators: validatorScripts,
   authority_policy: {
     usage_navigation_only: true,
     qa_packet_only: true,
@@ -99,13 +126,19 @@ const artifact = {
     link_packet_status: linkPacket.quality?.status || 'unknown',
     seed_queue_status: seedQueue.quality?.status || 'unknown',
     join_smoke_status: joinSmoke.quality?.status || 'unknown',
+    route_resolution_status: routeResolution.quality?.status || 'unknown',
+    sample_gap_audit_status: sampleGapAudit.quality?.status || 'unknown',
+    consumer_manifest_status: consumerManifest.quality?.status || 'unknown',
     link_packet_warning_count: Number(linkPacket.quality?.warning_count || 0),
     seed_queue_warning_count: Number(seedQueue.quality?.warning_count || 0),
     join_smoke_warning_count: Number(joinSmoke.quality?.warning_count || 0),
+    route_resolution_warning_count: Number(routeResolution.quality?.warning_count || 0),
+    sample_gap_audit_warning_count: Number(sampleGapAudit.quality?.warning_count || 0),
+    consumer_manifest_warning_count: Number(consumerManifest.quality?.warning_count || 0),
   },
   review_summary: {
     current_sample_rows: Number(joinSmoke.counts?.sample_rows_checked || 0),
-    current_sample_review_verified_rows: currentSampleReviewVerifiedRows(),
+    current_sample_forbidden_verified_label_rows: currentSampleForbiddenVerifiedLabelRows(),
     current_sample_rows_with_usage_links: Number(linkPacket.counts?.sample_rows_with_usage_links || 0),
     usage_tokens_absent_from_current_sample: Number(seedQueue.counts?.seed_rows_absent_from_sample || 0),
     join_rows: Number(joinSmoke.counts?.join_rows || 0),
@@ -113,13 +146,25 @@ const artifact = {
     projected_usage_link_rows: Number(joinSmoke.counts?.projected_usage_link_rows || 0),
     selected_occurrence_proof_rows: proofOccurrences.length,
     route_concentration_warning_visible: Number(joinSmoke.counts?.route_concentration_warning_visible || 0) === 1,
+    route_resolution_rows: Number(routeResolution.counts?.occurrence_route_rows || 0),
+    route_resolution_unresolved_route_ids: Number(routeResolution.counts?.unresolved_route_ids || 0),
+    route_resolution_forbidden_license_profile_rows: Number(routeResolution.counts?.forbidden_license_profile_rows || 0),
+    route_resolution_future_translation_output_blocked_rows: Number(routeResolution.counts?.future_translation_output_blocked_rows || 0),
+    sample_gap_rows: Number(sampleGapAudit.counts?.gap_rows || 0),
+    sample_gap_overlap_visible: Number(sampleGapAudit.counts?.sample_overlap_gap_visible || 0) === 1,
+    consumer_manifest_entries: Number(consumerManifest.counts?.manifest_entries || 0),
+    consumer_manifest_reader_facing_rows: Number(consumerManifest.counts?.reader_facing_rows || 0),
+    consumer_manifest_forbidden_authority_field_hits: Number(consumerManifest.counts?.forbidden_authority_field_hits || 0),
   },
   acceptance_boundaries: {
+    definition_sample_publication_boundary: joinSmoke.current_sample_snapshot?.publication_boundary || null,
     acceptable_if_validated: [
       'usage-only occurrence linkage can be inspected as Definition Workbench planning context',
       'seed queue can guide a future bounded sample-join smoke',
       'route references are route IDs only and must resolve through Agent 2 artifacts',
       'selected occurrence links preserve source, work anchor, context, license, and version metadata',
+      'sample-gap warning can guide a future bounded sample refresh without answer authority',
+      'consumer manifest identifies safe usage-navigation consumers and prohibited uses',
     ],
     blocked_acceptance_claims: [
       'reviewed lexical authority',
@@ -151,8 +196,10 @@ console.log(`Definition Workbench usage Agent 6 packet proof rows ${artifact.cou
 
 function buildCounts(rows) {
   return {
-    evidence_artifacts: 6,
-    validator_scripts: 4,
+    evidence_artifacts: evidenceArtifacts.length,
+    evidence_artifacts_exist: evidenceArtifacts.filter((artifactPath) => fs.existsSync(path.join(root, artifactPath))).length,
+    validator_scripts: validatorScripts.length,
+    validator_scripts_exist: validatorScripts.filter((scriptPath) => fs.existsSync(path.join(root, scriptPath))).length,
     proof_occurrence_rows: rows.length,
     proof_rows_with_source: rows.filter((row) => row.source_href).length,
     proof_rows_with_work_anchor: rows.filter((row) => row.work_anchor_href).length,
@@ -172,13 +219,27 @@ function buildCounts(rows) {
     weak_rows: rows.filter((row) => row.status === 'weak').length,
     audit_only_ambiguous_rows: Number(joinSmoke.counts?.audit_only_ambiguous_rows || 0),
     current_sample_rows: Number(joinSmoke.counts?.sample_rows_checked || 0),
-    current_sample_review_verified_rows: currentSampleReviewVerifiedRows(),
+    current_sample_forbidden_verified_label_rows: currentSampleForbiddenVerifiedLabelRows(),
     current_sample_rows_with_usage_links: Number(linkPacket.counts?.sample_rows_with_usage_links || 0),
     usage_tokens_absent_from_current_sample: Number(seedQueue.counts?.seed_rows_absent_from_sample || 0),
     join_rows: Number(joinSmoke.counts?.join_rows || 0),
     projected_rows_after_seed_append: Number(joinSmoke.counts?.projected_rows_after_seed_append || 0),
     projected_usage_link_rows: Number(joinSmoke.counts?.projected_usage_link_rows || 0),
     route_concentration_warning_visible: Number(joinSmoke.counts?.route_concentration_warning_visible || 0) === 1 ? 1 : 0,
+    route_resolution_rows: Number(routeResolution.counts?.occurrence_route_rows || 0),
+    route_resolution_route_ids: Number(routeResolution.counts?.route_ids || 0),
+    route_resolution_unresolved_route_ids: Number(routeResolution.counts?.unresolved_route_ids || 0),
+    route_resolution_forbidden_license_profile_rows: Number(routeResolution.counts?.forbidden_license_profile_rows || 0),
+    route_resolution_future_translation_output_blocked_rows: Number(routeResolution.counts?.future_translation_output_blocked_rows || 0),
+    sample_gap_rows: Number(sampleGapAudit.counts?.gap_rows || 0),
+    sample_gap_selected_occurrence_links: Number(sampleGapAudit.counts?.selected_occurrence_links || 0),
+    sample_gap_overlap_visible: Number(sampleGapAudit.counts?.sample_overlap_gap_visible || 0),
+    sample_gap_reader_facing_rows: Number(sampleGapAudit.counts?.reader_facing_rows || 0),
+    sample_gap_forbidden_authority_field_hits: Number(sampleGapAudit.counts?.forbidden_authority_field_hits || 0),
+    consumer_manifest_entries: Number(consumerManifest.counts?.manifest_entries || 0),
+    consumer_manifest_reader_facing_rows: Number(consumerManifest.counts?.reader_facing_rows || 0),
+    consumer_manifest_route_payload_field_hits: Number(consumerManifest.counts?.route_payload_field_hits || 0),
+    consumer_manifest_forbidden_authority_field_hits: Number(consumerManifest.counts?.forbidden_authority_field_hits || 0),
     reader_facing_rows: 0,
     route_payload_field_hits: 0,
     forbidden_authority_field_hits: 0,
@@ -187,14 +248,17 @@ function buildCounts(rows) {
 
 function buildChecks(counts) {
   return [
-    check('artifact_chain_present', counts.evidence_artifacts === 6 && counts.validator_scripts === 4 ? 'passed' : 'failed', `evidence artifacts ${counts.evidence_artifacts}; validators ${counts.validator_scripts}`),
+    check('artifact_chain_present', counts.evidence_artifacts === 12 && counts.evidence_artifacts_exist === counts.evidence_artifacts && counts.validator_scripts === 7 && counts.validator_scripts_exist === counts.validator_scripts ? 'passed' : 'failed', `evidence artifacts ${counts.evidence_artifacts_exist}/${counts.evidence_artifacts}; validators ${counts.validator_scripts_exist}/${counts.validator_scripts}`),
     check('proof_occurrences_present', counts.proof_occurrence_rows > 0 ? 'passed' : 'failed', `proof occurrence rows ${counts.proof_occurrence_rows}`),
     check('proof_occurrence_metadata_complete', counts.proof_rows_with_source === counts.proof_occurrence_rows && counts.proof_rows_with_work_anchor === counts.proof_occurrence_rows && counts.proof_rows_with_context === counts.proof_occurrence_rows && counts.proof_rows_with_license === counts.proof_occurrence_rows && counts.proof_rows_with_version === counts.proof_occurrence_rows ? 'passed' : 'failed', `source/work/context/license/version ${counts.proof_rows_with_source}/${counts.proof_rows_with_work_anchor}/${counts.proof_rows_with_context}/${counts.proof_rows_with_license}/${counts.proof_rows_with_version}`),
     check('proof_hebrew_context_intact', counts.proof_rows_with_hebrew_token === counts.proof_occurrence_rows && counts.proof_rows_with_hebrew_context === counts.proof_occurrence_rows && counts.proof_rows_with_focus_marker === counts.proof_occurrence_rows && counts.proof_mojibake_rows === 0 ? 'passed' : 'failed', `Hebrew token/context ${counts.proof_rows_with_hebrew_token}/${counts.proof_rows_with_hebrew_context}; focus markers ${counts.proof_rows_with_focus_marker}; mojibake ${counts.proof_mojibake_rows}`),
     check('route_ids_only', counts.route_ids > 0 && counts.proof_rows_with_route_ids === counts.proof_occurrence_rows && counts.route_payload_field_hits === 0 ? 'passed' : 'failed', `route IDs ${counts.route_ids}; route-id rows ${counts.proof_rows_with_route_ids}; payload hits ${counts.route_payload_field_hits}`),
     check('usage_seed_absence_visible', counts.current_sample_rows > 0 && counts.current_sample_rows_with_usage_links === 0 && counts.usage_tokens_absent_from_current_sample > 0 ? 'passed' : 'warning', `sample rows ${counts.current_sample_rows}; current usage links ${counts.current_sample_rows_with_usage_links}; absent seeds ${counts.usage_tokens_absent_from_current_sample}`),
-    check('sample_review_status_not_verified', counts.current_sample_review_verified_rows === 0 ? 'passed' : 'failed', `machine verified sample rows ${counts.current_sample_review_verified_rows}`),
+    check('sample_review_status_not_verified', counts.current_sample_forbidden_verified_label_rows === 0 ? 'passed' : 'failed', `forbidden verified labels ${counts.current_sample_forbidden_verified_label_rows}`),
     check('join_smoke_bounded', counts.join_rows > 0 && counts.projected_rows_after_seed_append === counts.current_sample_rows + counts.usage_tokens_absent_from_current_sample ? 'passed' : 'failed', `join rows ${counts.join_rows}; projected rows ${counts.projected_rows_after_seed_append}`),
+    check('route_resolution_boundary_preserved', counts.route_resolution_rows > 0 && counts.route_resolution_route_ids === counts.route_ids && counts.route_resolution_unresolved_route_ids === 0 && counts.route_resolution_forbidden_license_profile_rows === 0 && counts.route_resolution_future_translation_output_blocked_rows === counts.route_resolution_rows ? 'passed' : 'failed', `rows ${counts.route_resolution_rows}; route IDs ${counts.route_resolution_route_ids}; unresolved ${counts.route_resolution_unresolved_route_ids}; forbidden license rows ${counts.route_resolution_forbidden_license_profile_rows}; translation blocked ${counts.route_resolution_future_translation_output_blocked_rows}`),
+    check('sample_gap_boundary_visible', counts.sample_gap_rows > 0 && counts.sample_gap_selected_occurrence_links > 0 && counts.sample_gap_overlap_visible === 1 && counts.sample_gap_reader_facing_rows === 0 && counts.sample_gap_forbidden_authority_field_hits === 0 ? 'warning' : 'failed', `gap rows ${counts.sample_gap_rows}; selected links ${counts.sample_gap_selected_occurrence_links}; overlap visible ${counts.sample_gap_overlap_visible}; reader-facing/forbidden ${counts.sample_gap_reader_facing_rows}/${counts.sample_gap_forbidden_authority_field_hits}`),
+    check('consumer_manifest_boundary_preserved', counts.consumer_manifest_entries >= 10 && counts.consumer_manifest_reader_facing_rows === 0 && counts.consumer_manifest_route_payload_field_hits === 0 && counts.consumer_manifest_forbidden_authority_field_hits === 0 ? 'passed' : 'failed', `entries ${counts.consumer_manifest_entries}; reader-facing/payload/forbidden ${counts.consumer_manifest_reader_facing_rows}/${counts.consumer_manifest_route_payload_field_hits}/${counts.consumer_manifest_forbidden_authority_field_hits}`),
     check('ambiguous_rows_audit_only', counts.audit_only_ambiguous_rows > 0 && counts.reader_facing_rows === 0 ? 'passed' : 'failed', `audit-only ambiguous rows ${counts.audit_only_ambiguous_rows}; reader-facing rows ${counts.reader_facing_rows}`),
     check('route_concentration_warning_preserved', counts.route_concentration_warning_visible === 1 ? 'passed' : 'warning', `route concentration warning visible ${counts.route_concentration_warning_visible}`),
     check('forbidden_authority_fields_absent', counts.forbidden_authority_field_hits === 0 ? 'passed' : 'failed', `forbidden authority field hits ${counts.forbidden_authority_field_hits}`),
@@ -210,7 +274,7 @@ function writeReport(relativePath, artifact) {
     '## Summary',
     '',
     `- Current sample rows / current rows with usage links: ${artifact.counts.current_sample_rows}/${artifact.counts.current_sample_rows_with_usage_links}`,
-    `- Machine verified sample/review rows: ${artifact.counts.current_sample_review_verified_rows}`,
+    `- Rows using forbidden verified labels: ${artifact.counts.current_sample_forbidden_verified_label_rows}`,
     `- Usage tokens absent from current sample: ${artifact.counts.usage_tokens_absent_from_current_sample}`,
     `- Join rows / projected rows after seed append: ${artifact.counts.join_rows}/${artifact.counts.projected_rows_after_seed_append}`,
     `- Projected usage-link rows: ${artifact.counts.projected_usage_link_rows}`,
@@ -221,6 +285,10 @@ function writeReport(relativePath, artifact) {
     `- Route IDs: ${artifact.counts.route_ids}`,
     `- Usage frames: ${artifact.counts.usage_frames}`,
     `- Audit-only ambiguous rows carried: ${artifact.counts.audit_only_ambiguous_rows}`,
+    `- Route resolution rows / route IDs / unresolved: ${artifact.counts.route_resolution_rows}/${artifact.counts.route_resolution_route_ids}/${artifact.counts.route_resolution_unresolved_route_ids}`,
+    `- Route resolution forbidden license rows / translation blocked rows: ${artifact.counts.route_resolution_forbidden_license_profile_rows}/${artifact.counts.route_resolution_future_translation_output_blocked_rows}`,
+    `- Sample gap rows / selected occurrence links / overlap visible: ${artifact.counts.sample_gap_rows}/${artifact.counts.sample_gap_selected_occurrence_links}/${artifact.counts.sample_gap_overlap_visible}`,
+    `- Consumer manifest entries: ${artifact.counts.consumer_manifest_entries}`,
     `- Reader-facing rows: ${artifact.counts.reader_facing_rows}`,
     `- Forbidden authority field hits: ${artifact.counts.forbidden_authority_field_hits}`,
     '',
@@ -243,6 +311,11 @@ function writeReport(relativePath, artifact) {
     artifact.policy,
     '',
     'This packet is for Agent 6 review of usage-navigation linkage only. It should not be used as a reader-facing definition, route winner, semantic verdict, or publication artifact.',
+    '',
+    `Definition sample boundary status: ${artifact.acceptance_boundaries.definition_sample_publication_boundary?.boundary_status || '(missing)'}`,
+    `Definition sample clears publication readiness: ${artifact.acceptance_boundaries.definition_sample_publication_boundary?.clears_publication_readiness}`,
+    `Definition sample reviewed lexical authority: ${artifact.acceptance_boundaries.definition_sample_publication_boundary?.reviewed_lexical_authority}`,
+    `Definition sample publication claim: ${artifact.acceptance_boundaries.definition_sample_publication_boundary?.publication_claim}`,
   ];
   writeText(relativePath, `${lines.join('\n')}\n`);
 }
@@ -259,8 +332,8 @@ function hasMojibake(value) {
   return /[\u00d7\u00d6\ufffd]/.test(String(value || ''));
 }
 
-function currentSampleReviewVerifiedRows() {
-  return Number(joinSmoke.current_sample_snapshot?.machine_verified_rows ?? joinSmoke.counts?.sample_review_verified_rows ?? 0);
+function currentSampleForbiddenVerifiedLabelRows() {
+  return Number(joinSmoke.current_sample_snapshot?.forbidden_verified_label_rows ?? joinSmoke.counts?.sample_forbidden_verified_label_rows ?? 0);
 }
 
 function parseArgs(args) {
@@ -269,6 +342,9 @@ function parseArgs(args) {
     if (arg.startsWith('--usage-link-packet=')) parsed.usageLinkPacket = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-seed-queue=')) parsed.usageSeedQueue = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-join-smoke=')) parsed.usageJoinSmoke = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--usage-route-resolution=')) parsed.usageRouteResolution = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--usage-sample-gap-audit=')) parsed.usageSampleGapAudit = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--usage-consumer-manifest=')) parsed.usageConsumerManifest = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--output=')) parsed.output = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--report=')) parsed.report = cleanRelativePath(valueAfterEquals(arg));
     else throw new Error(`Unknown argument: ${arg}`);

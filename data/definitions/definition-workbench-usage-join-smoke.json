@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "definition_workbench_usage_join_smoke",
-  "generated_at": "2026-06-01T13:54:35.391Z",
+  "generated_at": "2026-06-01T17:25:43.680Z",
   "generator": "scripts/build_definition_workbench_usage_join_smoke.mjs",
   "policy": "Tiny Agent 3 smoke artifact proving selected usage seeds can be joined to Definition Workbench planning by token key or normalized form without modifying the live sample, copying route payloads, ranking answers, or creating definition authority.",
   "inputs": {
@@ -27,6 +27,26 @@
     "rows": 200,
     "status_axis": "machine_route_shape_status_not_review_authority",
     "review_status_axis": "lexical_authority_review_status",
+    "publication_boundary": {
+      "boundary_status": "blocked_no_render",
+      "sample_only": true,
+      "reader_facing": false,
+      "ui_assignment": false,
+      "publication_claim": false,
+      "clears_publication_readiness": false,
+      "reviewed_lexical_authority": false,
+      "accepted_translation_output": false,
+      "source_publication": false,
+      "public_lookup_artifact": false,
+      "does_not_clear": [
+        "ui_assignment",
+        "reviewed_lexical_authority",
+        "accepted_translation",
+        "source_publication",
+        "public_lookup_publication",
+        "publication_readiness"
+      ]
+    },
     "status_counts": {
       "conflicting": 96,
       "proposed_only": 49,
@@ -35,7 +55,7 @@
     "review_status_counts": {
       "unreviewed_machine_sample": 200
     },
-    "machine_verified_rows": 0,
+    "forbidden_verified_label_rows": 0,
     "rows_with_complete_source_license": 200,
     "usage_link_status": "not_mutated_by_agent3_join_smoke"
   },
@@ -52,7 +72,7 @@
   },
   "counts": {
     "sample_rows_checked": 200,
-    "sample_review_verified_rows": 0,
+    "sample_forbidden_verified_label_rows": 0,
     "seed_rows_checked": 1,
     "join_rows": 1,
     "seed_rows_absent_from_sample": 1,
@@ -83,7 +103,7 @@
     {
       "id": "sample_review_status_not_verified",
       "status": "passed",
-      "detail": "machine verified sample rows 0"
+      "detail": "forbidden verified labels 0"
     },
     {
       "id": "seed_rows_present",

@@ -1,11 +1,11 @@
 # Definition Workbench Usage Join Smoke
 
-Generated: 2026-06-01T13:54:35.391Z
+Generated: 2026-06-01T17:25:43.680Z
 
 ## Summary
 
 - Current sample rows checked: 200
-- Machine verified sample/review rows: 0
+- Rows using forbidden verified labels: 0
 - Seed rows checked / join rows: 1/1
 - Seeds absent from current sample / already present: 1/0
 - Projected rows after bounded seed append: 201
@@ -22,7 +22,7 @@ Generated: 2026-06-01T13:54:35.391Z
 | check | status | detail |
 |---|---|---|
 | sample_rows_present | passed | sample rows checked 200 |
-| sample_review_status_not_verified | passed | machine verified sample rows 0 |
+| sample_review_status_not_verified | passed | forbidden verified labels 0 |
 | seed_rows_present | passed | seed rows checked 1 |
 | join_rows_present | passed | join rows 1 |
 | seed_absence_visible | passed | absent seeds 1; already present 0 |
@@ -44,3 +44,8 @@ Generated: 2026-06-01T13:54:35.391Z
 Tiny Agent 3 smoke artifact proving selected usage seeds can be joined to Definition Workbench planning by token key or normalized form without modifying the live sample, copying route payloads, ranking answers, or creating definition authority.
 
 The live Definition Workbench sample is not rewritten by this artifact. The smoke only proves a bounded usage-navigation join path for the seed queue.
+
+Definition sample boundary status: blocked_no_render
+Definition sample clears publication readiness: false
+Definition sample reviewed lexical authority: false
+Definition sample publication claim: false

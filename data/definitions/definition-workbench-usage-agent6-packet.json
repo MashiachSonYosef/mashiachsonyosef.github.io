@@ -1,24 +1,33 @@
 {
   "schema_version": 1,
   "artifact_type": "definition_workbench_usage_agent6_packet",
-  "generated_at": "2026-06-01T14:15:18.209Z",
+  "generated_at": "2026-06-01T18:39:12.098Z",
   "generator": "scripts/build_definition_workbench_usage_agent6_packet.mjs",
   "gate": "definition_workbench_gate",
   "submitted_by": "Agent 3",
   "requested_review": "usage_navigation_boundary_review_for_definition_workbench_planning",
-  "policy": "Agent 3 QA packet for Definition Workbench usage-navigation linkage. It packages existing usage-link, seed-queue, and join-smoke artifacts for Agent 6 review without claiming answer authority, UI readiness, semantic verdicts, route ranking, accepted translation, publication readiness, or source/provenance acceptance beyond the cited rows.",
+  "policy": "Agent 3 QA packet for Definition Workbench usage-navigation linkage. It packages usage-link, seed-queue, join-smoke, route-resolution, sample-gap, and consumer-manifest artifacts for Agent 6 review without claiming answer authority, UI readiness, semantic verdicts, route ranking, accepted translation, publication readiness, or source/provenance acceptance beyond the cited rows.",
   "evidence_artifacts": [
     "data/definitions/definition-workbench-usage-link-packet.json",
     "reports/definition-workbench-usage-link-packet.md",
     "data/definitions/definition-workbench-usage-seed-queue.json",
     "reports/definition-workbench-usage-seed-queue.md",
     "data/definitions/definition-workbench-usage-join-smoke.json",
-    "reports/definition-workbench-usage-join-smoke.md"
+    "reports/definition-workbench-usage-join-smoke.md",
+    "data/definitions/definition-workbench-usage-route-resolution.json",
+    "reports/definition-workbench-usage-route-resolution.md",
+    "data/definitions/definition-workbench-usage-sample-gap-audit.json",
+    "reports/definition-workbench-usage-sample-gap-audit.md",
+    "data/definitions/definition-workbench-usage-consumer-manifest.json",
+    "reports/definition-workbench-usage-consumer-manifest.md"
   ],
   "validators": [
     "scripts/validate_definition_workbench_usage_link_packet.mjs",
     "scripts/validate_definition_workbench_usage_seed_queue.mjs",
     "scripts/validate_definition_workbench_usage_join_smoke.mjs",
+    "scripts/validate_definition_workbench_usage_route_resolution.mjs",
+    "scripts/validate_definition_workbench_usage_sample_gap_audit.mjs",
+    "scripts/validate_definition_workbench_usage_consumer_manifest.mjs",
     "scripts/validate_definition_workbench_usage_agent6_packet.mjs"
   ],
   "authority_policy": {
@@ -40,27 +49,64 @@
     "link_packet_status": "pass_with_warnings",
     "seed_queue_status": "passed",
     "join_smoke_status": "passed",
+    "route_resolution_status": "passed",
+    "sample_gap_audit_status": "pass_with_warnings",
+    "consumer_manifest_status": "pass_with_warnings",
     "link_packet_warning_count": 1,
     "seed_queue_warning_count": 0,
-    "join_smoke_warning_count": 0
+    "join_smoke_warning_count": 0,
+    "route_resolution_warning_count": 0,
+    "sample_gap_audit_warning_count": 1,
+    "consumer_manifest_warning_count": 3
   },
   "review_summary": {
     "current_sample_rows": 200,
-    "current_sample_review_verified_rows": 0,
+    "current_sample_forbidden_verified_label_rows": 0,
     "current_sample_rows_with_usage_links": 0,
     "usage_tokens_absent_from_current_sample": 1,
     "join_rows": 1,
     "projected_rows_after_seed_append": 201,
     "projected_usage_link_rows": 2390,
     "selected_occurrence_proof_rows": 12,
-    "route_concentration_warning_visible": true
+    "route_concentration_warning_visible": true,
+    "route_resolution_rows": 49,
+    "route_resolution_unresolved_route_ids": 0,
+    "route_resolution_forbidden_license_profile_rows": 0,
+    "route_resolution_future_translation_output_blocked_rows": 49,
+    "sample_gap_rows": 1,
+    "sample_gap_overlap_visible": true,
+    "consumer_manifest_entries": 10,
+    "consumer_manifest_reader_facing_rows": 0,
+    "consumer_manifest_forbidden_authority_field_hits": 0
   },
   "acceptance_boundaries": {
+    "definition_sample_publication_boundary": {
+      "boundary_status": "blocked_no_render",
+      "sample_only": true,
+      "reader_facing": false,
+      "ui_assignment": false,
+      "publication_claim": false,
+      "clears_publication_readiness": false,
+      "reviewed_lexical_authority": false,
+      "accepted_translation_output": false,
+      "source_publication": false,
+      "public_lookup_artifact": false,
+      "does_not_clear": [
+        "ui_assignment",
+        "reviewed_lexical_authority",
+        "accepted_translation",
+        "source_publication",
+        "public_lookup_publication",
+        "publication_readiness"
+      ]
+    },
     "acceptable_if_validated": [
       "usage-only occurrence linkage can be inspected as Definition Workbench planning context",
       "seed queue can guide a future bounded sample-join smoke",
       "route references are route IDs only and must resolve through Agent 2 artifacts",
-      "selected occurrence links preserve source, work anchor, context, license, and version metadata"
+      "selected occurrence links preserve source, work anchor, context, license, and version metadata",
+      "sample-gap warning can guide a future bounded sample refresh without answer authority",
+      "consumer manifest identifies safe usage-navigation consumers and prohibited uses"
     ],
     "blocked_acceptance_claims": [
       "reviewed lexical authority",
@@ -74,13 +120,15 @@
     ]
   },
   "quality": {
-    "status": "passed",
-    "warning_count": 0,
+    "status": "pass_with_warnings",
+    "warning_count": 1,
     "failed_count": 0
   },
   "counts": {
-    "evidence_artifacts": 6,
-    "validator_scripts": 4,
+    "evidence_artifacts": 12,
+    "evidence_artifacts_exist": 12,
+    "validator_scripts": 7,
+    "validator_scripts_exist": 7,
     "proof_occurrence_rows": 12,
     "proof_rows_with_source": 12,
     "proof_rows_with_work_anchor": 12,
@@ -100,13 +148,27 @@
     "weak_rows": 0,
     "audit_only_ambiguous_rows": 2064,
     "current_sample_rows": 200,
-    "current_sample_review_verified_rows": 0,
+    "current_sample_forbidden_verified_label_rows": 0,
     "current_sample_rows_with_usage_links": 0,
     "usage_tokens_absent_from_current_sample": 1,
     "join_rows": 1,
     "projected_rows_after_seed_append": 201,
     "projected_usage_link_rows": 2390,
     "route_concentration_warning_visible": 1,
+    "route_resolution_rows": 49,
+    "route_resolution_route_ids": 1,
+    "route_resolution_unresolved_route_ids": 0,
+    "route_resolution_forbidden_license_profile_rows": 0,
+    "route_resolution_future_translation_output_blocked_rows": 49,
+    "sample_gap_rows": 1,
+    "sample_gap_selected_occurrence_links": 12,
+    "sample_gap_overlap_visible": 1,
+    "sample_gap_reader_facing_rows": 0,
+    "sample_gap_forbidden_authority_field_hits": 0,
+    "consumer_manifest_entries": 10,
+    "consumer_manifest_reader_facing_rows": 0,
+    "consumer_manifest_route_payload_field_hits": 0,
+    "consumer_manifest_forbidden_authority_field_hits": 0,
     "reader_facing_rows": 0,
     "route_payload_field_hits": 0,
     "forbidden_authority_field_hits": 0
@@ -115,7 +177,7 @@
     {
       "id": "artifact_chain_present",
       "status": "passed",
-      "detail": "evidence artifacts 6; validators 4"
+      "detail": "evidence artifacts 12/12; validators 7/7"
     },
     {
       "id": "proof_occurrences_present",
@@ -145,12 +207,27 @@
     {
       "id": "sample_review_status_not_verified",
       "status": "passed",
-      "detail": "machine verified sample rows 0"
+      "detail": "forbidden verified labels 0"
     },
     {
       "id": "join_smoke_bounded",
       "status": "passed",
       "detail": "join rows 1; projected rows 201"
+    },
+    {
+      "id": "route_resolution_boundary_preserved",
+      "status": "passed",
+      "detail": "rows 49; route IDs 1; unresolved 0; forbidden license rows 0; translation blocked 49"
+    },
+    {
+      "id": "sample_gap_boundary_visible",
+      "status": "warning",
+      "detail": "gap rows 1; selected links 12; overlap visible 1; reader-facing/forbidden 0/0"
+    },
+    {
+      "id": "consumer_manifest_boundary_preserved",
+      "status": "passed",
+      "detail": "entries 10; reader-facing/payload/forbidden 0/0/0"
     },
     {
       "id": "ambiguous_rows_audit_only",

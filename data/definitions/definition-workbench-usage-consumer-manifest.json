@@ -1,0 +1,856 @@
+{
+  "schema_version": 1,
+  "artifact_type": "definition_workbench_usage_consumer_manifest",
+  "generated_at": "2026-06-02T02:43:44.672Z",
+  "generator": "scripts/build_definition_workbench_usage_consumer_manifest.mjs",
+  "policy": "Stable Agent 3 Definition Workbench usage-navigation consumer manifest. It identifies safe downstream consumption paths for selected usage occurrence artifacts while preserving source/license/provenance visibility and route-ID-only linkage. It is not a HUD implementation, route ranking surface, semantic arbiter, public UI acceptance, publication claim, or accepted text source.",
+  "inputs": {
+    "occurrence_links": "data/definitions/definition-workbench-usage-occurrence-links.json",
+    "route_resolution": "data/definitions/definition-workbench-usage-route-resolution.json",
+    "crossmatch_neighbors": "data/definitions/definition-workbench-usage-crossmatch-neighbors.json",
+    "source_ref_buckets": "data/definitions/definition-workbench-usage-source-ref-buckets.json",
+    "work_buckets": "data/definitions/definition-workbench-usage-work-buckets.json",
+    "provenance_buckets": "data/definitions/definition-workbench-usage-provenance-buckets.json",
+    "occurrence_detail_index": "data/definitions/definition-workbench-usage-occurrence-detail-index.json",
+    "facet_index": "data/definitions/definition-workbench-usage-facet-index.json",
+    "context_token_index": "data/definitions/definition-workbench-usage-context-token-index.json",
+    "context_token_links": "data/definitions/definition-workbench-usage-context-token-links.json",
+    "context_token_occurrence_index": "data/definitions/definition-workbench-usage-context-token-occurrence-index.json",
+    "occurrence_context_profile": "data/definitions/definition-workbench-usage-occurrence-context-profile.json",
+    "route_diversity_probe": "data/definitions/definition-workbench-usage-route-diversity-probe.json",
+    "route_concentration_guardrail": "data/definitions/definition-workbench-usage-route-concentration-guardrail.json",
+    "route_pointer_audit": "data/definitions/definition-workbench-usage-route-pointer-audit.json",
+    "sample_gap_audit": "data/definitions/definition-workbench-usage-sample-gap-audit.json"
+  },
+  "authority_policy": {
+    "usage_navigation_only": true,
+    "observed_usage_only": true,
+    "consumer_manifest_only": true,
+    "route_ids_only": true,
+    "source_license_required": true,
+    "reader_facing": false,
+    "copies_route_payloads": false,
+    "copies_definition_payloads": false,
+    "ranks_routes": false,
+    "selects_visible_result": false,
+    "semantic_arbitration": false,
+    "reviewed_lexical_authority": false,
+    "accepted_translation_output": false,
+    "publication_readiness": false,
+    "publication_claim": false
+  },
+  "status_semantics": {
+    "machine_status_axis": "machine_route_shape_status_not_review_authority",
+    "machine_complete_label": "single_answer_source_complete",
+    "machine_complete_label_basis": "one answer route hash and complete source/license rows; not reviewed lexical authority",
+    "machine_forbidden_status_labels": [
+      "verified"
+    ],
+    "review_status_axis": "lexical_authority_review_status",
+    "machine_review_status": "unreviewed_machine_sample",
+    "verified_review_status_reserved": true,
+    "verified_review_status_reserved_for": "future reviewed lexical authority outside machine-generated usage/navigation artifacts",
+    "usage_status_scope": "observed usage/navigation status only; not answer authority and not reviewed lexical authority",
+    "answer_role_preserved": true,
+    "source_license_rows_preserved": true,
+    "multi_answer_warnings_preserved": true,
+    "publication_boundary_preserved": true
+  },
+  "consumer_contract": {
+    "safe_uses": [
+      "occurrence lookup by stable occurrence_id",
+      "source/work/provenance navigation",
+      "route-ID-only linkback to Agent 2 artifacts",
+      "QA checks for source/license/context visibility",
+      "audit comparison of selected usage frames and neighbor links"
+    ],
+    "prohibited_uses": [
+      "usage rows as definitions",
+      "visible answer selection",
+      "route ranking",
+      "semantic arbitration",
+      "public UI acceptance",
+      "publication support",
+      "accepted translation text",
+      "copying Agent 2 route payloads",
+      "reader-facing ambiguous rows",
+      "broad corpus completion claims"
+    ],
+    "required_row_label": "observed usage only",
+    "ambiguous_rows_policy": "audit-only unless a later Agent 6 docket accepts a narrower display boundary",
+    "downstream_route_payload_rule": "consume related_route_ids only; resolve Agent 2 payloads outside Agent 3 artifacts"
+  },
+  "navigation_keys": {
+    "stable_row_keys": [
+      "occurrence_id",
+      "row_id",
+      "detail_id"
+    ],
+    "source_keys": [
+      "source_ref",
+      "source_href",
+      "work_slug",
+      "work_anchor_href"
+    ],
+    "usage_keys": [
+      "token_key",
+      "focus_normalized",
+      "cluster_id",
+      "usage_frame_label",
+      "status",
+      "raw_score"
+    ],
+    "provenance_keys": [
+      "provenance_id",
+      "version_title",
+      "version_source",
+      "license",
+      "license_url"
+    ],
+    "bucket_keys": [
+      "source_ref_bucket_key",
+      "source_cluster_key",
+      "work_bucket_key",
+      "work_frame_key",
+      "provenance_key",
+      "provenance_frame_key"
+    ],
+    "route_keys": [
+      "related_route_ids",
+      "route_sources",
+      "unresolved_route_ids"
+    ]
+  },
+  "manifest_entries": [
+    {
+      "artifact_id": "occurrence_links",
+      "data_path": "data/definitions/definition-workbench-usage-occurrence-links.json",
+      "report_path": "reports/definition-workbench-usage-occurrence-links.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_occurrence_links.mjs",
+      "artifact_type": "definition_workbench_usage_occurrence_links",
+      "status": "passed",
+      "safe_consumer_role": "base selected occurrence links with source/work/context/provenance/route IDs",
+      "primary_count_key": "occurrence_link_rows",
+      "primary_count": 49,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 49,
+        "rows_with_work_anchor": 49,
+        "rows_with_hebrew_context": 49,
+        "rows_with_focus_marker": 49,
+        "rows_with_license_metadata": 49,
+        "rows_with_version_metadata": 49
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "route_resolution",
+      "data_path": "data/definitions/definition-workbench-usage-route-resolution.json",
+      "report_path": "reports/definition-workbench-usage-route-resolution.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_route_resolution.mjs",
+      "artifact_type": "definition_workbench_usage_route_resolution",
+      "status": "passed",
+      "safe_consumer_role": "route-ID resolution proof without Agent 2 payload copying",
+      "primary_count_key": "occurrence_route_rows",
+      "primary_count": 49,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 0,
+        "rows_with_work_anchor": 0,
+        "rows_with_hebrew_context": 0,
+        "rows_with_focus_marker": 0,
+        "rows_with_license_metadata": 0,
+        "rows_with_version_metadata": 0
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "crossmatch_neighbors",
+      "data_path": "data/definitions/definition-workbench-usage-crossmatch-neighbors.json",
+      "report_path": "reports/definition-workbench-usage-crossmatch-neighbors.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_crossmatch_neighbors.mjs",
+      "artifact_type": "definition_workbench_usage_crossmatch_neighbors",
+      "status": "passed",
+      "safe_consumer_role": "occurrence-to-occurrence navigation neighbors",
+      "primary_count_key": "neighbor_link_rows",
+      "primary_count": 2352,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 49,
+        "rows_with_work_anchor": 0,
+        "rows_with_hebrew_context": 49,
+        "rows_with_focus_marker": 49,
+        "rows_with_license_metadata": 0,
+        "rows_with_version_metadata": 0
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "source_ref_buckets",
+      "data_path": "data/definitions/definition-workbench-usage-source-ref-buckets.json",
+      "report_path": "reports/definition-workbench-usage-source-ref-buckets.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_source_ref_buckets.mjs",
+      "artifact_type": "definition_workbench_usage_source_ref_buckets",
+      "status": "passed",
+      "safe_consumer_role": "source-ref and source-ref-plus-cluster grouping",
+      "primary_count_key": "source_ref_buckets",
+      "primary_count": 38,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 38,
+        "rows_with_work_anchor": 0,
+        "rows_with_hebrew_context": 49,
+        "rows_with_focus_marker": 49,
+        "rows_with_license_metadata": 0,
+        "rows_with_version_metadata": 0
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "work_buckets",
+      "data_path": "data/definitions/definition-workbench-usage-work-buckets.json",
+      "report_path": "reports/definition-workbench-usage-work-buckets.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_work_buckets.mjs",
+      "artifact_type": "definition_workbench_usage_work_buckets",
+      "status": "passed",
+      "safe_consumer_role": "work and work-plus-cluster grouping",
+      "primary_count_key": "work_buckets",
+      "primary_count": 20,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 49,
+        "rows_with_work_anchor": 49,
+        "rows_with_hebrew_context": 49,
+        "rows_with_focus_marker": 49,
+        "rows_with_license_metadata": 0,
+        "rows_with_version_metadata": 0
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "provenance_buckets",
+      "data_path": "data/definitions/definition-workbench-usage-provenance-buckets.json",
+      "report_path": "reports/definition-workbench-usage-provenance-buckets.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_provenance_buckets.mjs",
+      "artifact_type": "definition_workbench_usage_provenance_buckets",
+      "status": "passed",
+      "safe_consumer_role": "version/license/provenance grouping",
+      "primary_count_key": "provenance_buckets",
+      "primary_count": 5,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 49,
+        "rows_with_work_anchor": 49,
+        "rows_with_hebrew_context": 49,
+        "rows_with_focus_marker": 49,
+        "rows_with_license_metadata": 49,
+        "rows_with_version_metadata": 49
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "occurrence_detail_index",
+      "data_path": "data/definitions/definition-workbench-usage-occurrence-detail-index.json",
+      "report_path": "reports/definition-workbench-usage-occurrence-detail-index.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_occurrence_detail_index.mjs",
+      "artifact_type": "definition_workbench_usage_occurrence_detail_index",
+      "status": "passed",
+      "safe_consumer_role": "joined occurrence detail navigation index",
+      "primary_count_key": "occurrence_detail_rows",
+      "primary_count": 49,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 49,
+        "rows_with_work_anchor": 49,
+        "rows_with_hebrew_context": 49,
+        "rows_with_focus_marker": 49,
+        "rows_with_license_metadata": 49,
+        "rows_with_version_metadata": 49
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "facet_index",
+      "data_path": "data/definitions/definition-workbench-usage-facet-index.json",
+      "report_path": "reports/definition-workbench-usage-facet-index.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_facet_index.mjs",
+      "artifact_type": "definition_workbench_usage_facet_index",
+      "status": "pass_with_warnings",
+      "safe_consumer_role": "selected occurrence search/filter facets with route concentration warning",
+      "primary_count_key": "facets_total",
+      "primary_count": 75,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 49,
+        "rows_with_work_anchor": 49,
+        "rows_with_hebrew_context": 0,
+        "rows_with_focus_marker": 49,
+        "rows_with_license_metadata": 49,
+        "rows_with_version_metadata": 49
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "context_token_index",
+      "data_path": "data/definitions/definition-workbench-usage-context-token-index.json",
+      "report_path": "reports/definition-workbench-usage-context-token-index.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_context_token_index.mjs",
+      "artifact_type": "definition_workbench_usage_context_token_index",
+      "status": "pass_with_warnings",
+      "safe_consumer_role": "selected occurrence Hebrew context-token co-occurrence navigation",
+      "primary_count_key": "context_token_rows",
+      "primary_count": 370,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 49,
+        "rows_with_work_anchor": 49,
+        "rows_with_hebrew_context": 49,
+        "rows_with_focus_marker": 49,
+        "rows_with_license_metadata": 49,
+        "rows_with_version_metadata": 49
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "context_token_links",
+      "data_path": "data/definitions/definition-workbench-usage-context-token-links.json",
+      "report_path": "reports/definition-workbench-usage-context-token-links.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_context_token_links.mjs",
+      "artifact_type": "definition_workbench_usage_context_token_links",
+      "status": "pass_with_warnings",
+      "safe_consumer_role": "per-appearance Hebrew context-token links back to selected occurrence rows",
+      "primary_count_key": "context_token_link_rows",
+      "primary_count": 645,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 645,
+        "rows_with_work_anchor": 645,
+        "rows_with_hebrew_context": 645,
+        "rows_with_focus_marker": 645,
+        "rows_with_license_metadata": 645,
+        "rows_with_version_metadata": 645
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "context_token_occurrence_index",
+      "data_path": "data/definitions/definition-workbench-usage-context-token-occurrence-index.json",
+      "report_path": "reports/definition-workbench-usage-context-token-occurrence-index.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_context_token_occurrence_index.mjs",
+      "artifact_type": "definition_workbench_usage_context_token_occurrence_index",
+      "status": "pass_with_warnings",
+      "safe_consumer_role": "reverse lookup from normalized Hebrew context token to all selected occurrence-link IDs",
+      "primary_count_key": "context_token_occurrence_rows",
+      "primary_count": 370,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 645,
+        "rows_with_work_anchor": 645,
+        "rows_with_hebrew_context": 645,
+        "rows_with_focus_marker": 645,
+        "rows_with_license_metadata": 645,
+        "rows_with_version_metadata": 645
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "occurrence_context_profile",
+      "data_path": "data/definitions/definition-workbench-usage-occurrence-context-profile.json",
+      "report_path": "reports/definition-workbench-usage-occurrence-context-profile.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_occurrence_context_profile.mjs",
+      "artifact_type": "definition_workbench_usage_occurrence_context_profile",
+      "status": "pass_with_warnings",
+      "safe_consumer_role": "occurrence-centric context-token profile with reverse-index IDs",
+      "primary_count_key": "profile_rows",
+      "primary_count": 49,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 49,
+        "rows_with_work_anchor": 49,
+        "rows_with_hebrew_context": 49,
+        "rows_with_focus_marker": 49,
+        "rows_with_license_metadata": 49,
+        "rows_with_version_metadata": 49
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "route_diversity_probe",
+      "data_path": "data/definitions/definition-workbench-usage-route-diversity-probe.json",
+      "report_path": "reports/definition-workbench-usage-route-diversity-probe.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_route_diversity_probe.mjs",
+      "artifact_type": "definition_workbench_usage_route_diversity_probe",
+      "status": "pass_with_warnings",
+      "safe_consumer_role": "route concentration visibility over selected occurrence links without semantic independence claims",
+      "primary_count_key": "occurrence_rows",
+      "primary_count": 49,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 0,
+        "rows_with_work_anchor": 0,
+        "rows_with_hebrew_context": 0,
+        "rows_with_focus_marker": 0,
+        "rows_with_license_metadata": 0,
+        "rows_with_version_metadata": 0
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "route_concentration_guardrail",
+      "data_path": "data/definitions/definition-workbench-usage-route-concentration-guardrail.json",
+      "report_path": "reports/definition-workbench-usage-route-concentration-guardrail.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_route_concentration_guardrail.mjs",
+      "artifact_type": "definition_workbench_usage_route_concentration_guardrail",
+      "status": "pass_with_warnings",
+      "safe_consumer_role": "consolidated route-concentration guardrail blocking semantic independence and answer-authority overclaim",
+      "primary_count_key": "guardrail_surfaces",
+      "primary_count": 7,
+      "route_ids": 0,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 0,
+        "rows_with_work_anchor": 0,
+        "rows_with_hebrew_context": 0,
+        "rows_with_focus_marker": 0,
+        "rows_with_license_metadata": 0,
+        "rows_with_version_metadata": 0
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "route_pointer_audit",
+      "data_path": "data/definitions/definition-workbench-usage-route-pointer-audit.json",
+      "report_path": "reports/definition-workbench-usage-route-pointer-audit.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_route_pointer_audit.mjs",
+      "artifact_type": "definition_workbench_usage_route_pointer_audit",
+      "status": "pass_with_warnings",
+      "safe_consumer_role": "route-ID pointer audit for resolving Agent 2 route payloads outside Agent 3 artifacts",
+      "primary_count_key": "route_pointer_rows",
+      "primary_count": 1,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 0,
+        "rows_with_work_anchor": 0,
+        "rows_with_hebrew_context": 0,
+        "rows_with_focus_marker": 0,
+        "rows_with_license_metadata": 0,
+        "rows_with_version_metadata": 0
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    },
+    {
+      "artifact_id": "sample_gap_audit",
+      "data_path": "data/definitions/definition-workbench-usage-sample-gap-audit.json",
+      "report_path": "reports/definition-workbench-usage-sample-gap-audit.md",
+      "validator_script": "scripts/validate_definition_workbench_usage_sample_gap_audit.mjs",
+      "artifact_type": "definition_workbench_usage_sample_gap_audit",
+      "status": "pass_with_warnings",
+      "safe_consumer_role": "Definition Workbench sample-overlap gap visibility for selected usage tokens without answer authority",
+      "primary_count_key": "gap_rows",
+      "primary_count": 1,
+      "route_ids": 1,
+      "unresolved_route_ids": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "metadata_summary": {
+        "rows_with_source_link": 12,
+        "rows_with_work_anchor": 12,
+        "rows_with_hebrew_context": 12,
+        "rows_with_focus_marker": 12,
+        "rows_with_license_metadata": 12,
+        "rows_with_version_metadata": 12
+      },
+      "usage_boundary": {
+        "observed_usage_only": true,
+        "reader_facing": false,
+        "route_ids_only": true,
+        "consumer_manifest_entry_only": true,
+        "not_answer_authority": true,
+        "not_definition_authority": true,
+        "not_semantic_arbitration": true
+      }
+    }
+  ],
+  "quality": {
+    "status": "pass_with_warnings",
+    "warning_count": 9,
+    "failed_count": 0
+  },
+  "counts": {
+    "manifest_entries": 16,
+    "data_artifacts": 16,
+    "data_artifacts_exist": 16,
+    "report_artifacts": 16,
+    "report_artifacts_exist": 16,
+    "validator_scripts": 16,
+    "validator_scripts_exist": 16,
+    "passed_entries": 16,
+    "occurrence_link_rows": 49,
+    "occurrence_detail_rows": 49,
+    "source_ref_buckets": 38,
+    "work_buckets": 20,
+    "provenance_buckets": 5,
+    "facet_index_facets": 75,
+    "facet_index_occurrence_rows": 49,
+    "facet_index_route_concentration_warning": 1,
+    "context_token_index_rows": 370,
+    "context_token_index_occurrence_rows": 49,
+    "context_token_index_occurrences": 596,
+    "context_token_index_cross_frame_rows": 44,
+    "context_token_index_repeated_focus_occurrences": 8,
+    "context_token_index_route_concentration_warning": 1,
+    "context_token_link_rows": 645,
+    "context_token_link_context_tokens": 370,
+    "context_token_link_occurrence_rows": 49,
+    "context_token_link_focus_rows": 49,
+    "context_token_link_context_rows": 596,
+    "context_token_link_repeated_focus_rows": 8,
+    "context_token_link_cross_frame_rows": 223,
+    "context_token_link_route_concentration_warning": 1,
+    "context_token_occurrence_index_rows": 370,
+    "context_token_occurrence_index_link_rows": 645,
+    "context_token_occurrence_index_occurrence_rows": 49,
+    "context_token_occurrence_index_focus_rows": 49,
+    "context_token_occurrence_index_context_rows": 596,
+    "context_token_occurrence_index_repeated_focus_rows": 8,
+    "context_token_occurrence_index_cross_frame_rows": 44,
+    "context_token_occurrence_index_cross_frame_link_rows": 223,
+    "context_token_occurrence_index_route_concentration_warning": 1,
+    "occurrence_context_profile_rows": 49,
+    "occurrence_context_profile_link_rows": 645,
+    "occurrence_context_profile_unique_context_tokens": 370,
+    "occurrence_context_profile_reverse_index_rows": 370,
+    "occurrence_context_profile_rows_with_reverse_index_ids": 49,
+    "occurrence_context_profile_rows_with_complete_reverse_index_mapping": 49,
+    "occurrence_context_profile_focus_rows": 49,
+    "occurrence_context_profile_context_rows": 596,
+    "occurrence_context_profile_repeated_focus_rows": 8,
+    "occurrence_context_profile_cross_frame_rows": 223,
+    "occurrence_context_profile_route_concentration_warning": 1,
+    "route_diversity_probe_occurrence_rows": 49,
+    "route_diversity_probe_route_ids": 1,
+    "route_diversity_probe_max_route_share_basis_points": 10000,
+    "route_diversity_probe_concentration_warning": 1,
+    "route_diversity_probe_semantic_independence_claim_allowed": 0,
+    "route_concentration_guardrail_surfaces": 7,
+    "route_concentration_guardrail_single_route_surfaces": 7,
+    "route_concentration_guardrail_max_share_surfaces": 7,
+    "route_concentration_guardrail_warning_surfaces": 7,
+    "route_concentration_guardrail_semantic_independence_allowed_rows": 0,
+    "route_concentration_guardrail_answer_authority_allowed_rows": 0,
+    "route_concentration_guardrail_route_ranking_allowed_rows": 0,
+    "route_concentration_guardrail_visible_answer_selection_allowed_rows": 0,
+    "route_concentration_guardrail_reader_facing_rows": 0,
+    "route_concentration_guardrail_route_payload_field_hits": 0,
+    "route_concentration_guardrail_forbidden_authority_field_hits": 0,
+    "route_concentration_guardrail_unresolved_route_ids": 0,
+    "route_pointer_audit_rows": 1,
+    "route_pointer_audit_route_ids": 1,
+    "route_pointer_audit_resolved_route_ids": 1,
+    "route_pointer_audit_unresolved_route_ids": 0,
+    "route_pointer_audit_support_rows_with_pointer": 49,
+    "route_pointer_audit_support_rows": 49,
+    "route_pointer_audit_navigation_rows_with_pointer": 2390,
+    "route_pointer_audit_navigation_rows": 2390,
+    "route_pointer_audit_planning_rows_with_pointer": 1,
+    "route_pointer_audit_planning_rows": 1,
+    "route_pointer_audit_reader_facing_rows": 0,
+    "route_pointer_audit_route_payload_field_hits": 0,
+    "route_pointer_audit_forbidden_authority_field_hits": 0,
+    "route_pointer_audit_route_metadata_field_hits": 0,
+    "sample_gap_audit_gap_rows": 1,
+    "sample_gap_audit_sample_rows": 200,
+    "sample_gap_audit_sample_rows_with_usage_links": 0,
+    "sample_gap_audit_usage_tokens_not_in_sample": 1,
+    "sample_gap_audit_selected_occurrence_links": 12,
+    "sample_gap_audit_route_ids": 1,
+    "sample_gap_audit_sample_overlap_gap_visible": 1,
+    "crossmatch_neighbor_links": 2352,
+    "route_ids": 1,
+    "unresolved_route_ids": 0,
+    "rows_with_source_link": 49,
+    "rows_with_work_anchor": 49,
+    "rows_with_hebrew_context": 49,
+    "rows_with_focus_marker": 49,
+    "rows_with_license_metadata": 49,
+    "rows_with_version_metadata": 49,
+    "rows_with_all_bucket_links": 49,
+    "observed_usage_only_rows": 49,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "prohibited_consumer_uses": 10
+  },
+  "checks": [
+    {
+      "id": "manifest_entries_present",
+      "status": "passed",
+      "detail": "entries 16"
+    },
+    {
+      "id": "data_artifacts_exist",
+      "status": "passed",
+      "detail": "16/16"
+    },
+    {
+      "id": "report_artifacts_exist",
+      "status": "passed",
+      "detail": "16/16"
+    },
+    {
+      "id": "validator_scripts_exist",
+      "status": "passed",
+      "detail": "16/16"
+    },
+    {
+      "id": "entries_passed",
+      "status": "passed",
+      "detail": "16/16"
+    },
+    {
+      "id": "detail_alignment",
+      "status": "passed",
+      "detail": "detail/occurrence 49/49"
+    },
+    {
+      "id": "metadata_complete",
+      "status": "passed",
+      "detail": "rows/source/work/context/focus/license/version/buckets/observed 49/49/49/49/49/49/49/49/49"
+    },
+    {
+      "id": "route_ids_only",
+      "status": "passed",
+      "detail": "route IDs 1; unresolved 0"
+    },
+    {
+      "id": "facet_index_present",
+      "status": "warning",
+      "detail": "facets 75; rows 49; concentration warning 1"
+    },
+    {
+      "id": "context_token_index_present",
+      "status": "warning",
+      "detail": "tokens 370; occurrences 596; cross-frame 44; repeated focus 8; concentration 1"
+    },
+    {
+      "id": "context_token_links_present",
+      "status": "warning",
+      "detail": "links 645/645; context 596/596; tokens 370/370; occurrences 49/49; focus/context/repeated 49/596/8; cross-frame 223; concentration 1"
+    },
+    {
+      "id": "context_token_occurrence_index_present",
+      "status": "warning",
+      "detail": "rows/links/occurrences 370/645/49; focus/context/repeated 49/596/8; cross-frame 44/223; concentration 1"
+    },
+    {
+      "id": "occurrence_context_profile_present",
+      "status": "warning",
+      "detail": "profiles/links/tokens/reverse 49/645/370/370; reverse-linked 49/49; focus/context/cross-frame 49/596/223; concentration 1"
+    },
+    {
+      "id": "route_diversity_probe_present",
+      "status": "warning",
+      "detail": "rows 49; route IDs 1; max share 10000/10000; semantic independence allowed 0"
+    },
+    {
+      "id": "route_concentration_guardrail_present",
+      "status": "warning",
+      "detail": "surfaces/single/max/warn 7/7/7/7; semantic/answer/rank/visible 0/0/0/0; reader/payload/forbidden/unresolved 0/0/0/0"
+    },
+    {
+      "id": "route_pointer_audit_present",
+      "status": "warning",
+      "detail": "routes/resolved/unresolved 1/1/0; support 49/49; navigation 2390/2390; planning 1/1; reader/payload/forbidden/metadata 0/0/0/0"
+    },
+    {
+      "id": "sample_gap_audit_present",
+      "status": "warning",
+      "detail": "gap rows 1; sample usage links 0/200; usage tokens not in sample 1; selected links 12"
+    },
+    {
+      "id": "usage_boundary_only",
+      "status": "passed",
+      "detail": "reader-facing 0; route-payload 0; forbidden 0"
+    }
+  ]
+}

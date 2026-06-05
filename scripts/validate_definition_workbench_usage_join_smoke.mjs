@@ -88,12 +88,13 @@ function validateSnapshots(smokeData) {
   if (!String(sample.review_status_axis || '').includes('lexical_authority_review_status')) {
     issues.push('current_sample_snapshot.review_status_axis must identify lexical authority review status');
   }
+  validatePublicationBoundary(sample.publication_boundary, 'current_sample_snapshot.publication_boundary');
   if (!sample.status_counts || typeof sample.status_counts !== 'object') issues.push('current_sample_snapshot.status_counts is required');
   if (!sample.review_status_counts || typeof sample.review_status_counts !== 'object') issues.push('current_sample_snapshot.review_status_counts is required');
   if (Number(sample.status_counts?.verified || 0) !== 0) issues.push('current_sample_snapshot.status_counts.verified must remain 0');
   if (Number(sample.review_status_counts?.verified || 0) !== 0) issues.push('current_sample_snapshot.review_status_counts.verified must remain 0');
-  if (!Number.isInteger(sample.machine_verified_rows) || sample.machine_verified_rows !== 0) {
-    issues.push('current_sample_snapshot.machine_verified_rows must be 0');
+  if (!Number.isInteger(sample.forbidden_verified_label_rows) || sample.forbidden_verified_label_rows !== 0) {
+    issues.push('current_sample_snapshot.forbidden_verified_label_rows must be 0');
   }
   if (sample.usage_link_status !== 'not_mutated_by_agent3_join_smoke') {
     issues.push('current_sample_snapshot.usage_link_status must state live sample is not mutated');
@@ -108,7 +109,7 @@ function validateSnapshots(smokeData) {
 function validateCounts(counts) {
   const requiredIntegerCounts = [
     'sample_rows_checked',
-    'sample_review_verified_rows',
+    'sample_forbidden_verified_label_rows',
     'seed_rows_checked',
     'join_rows',
     'seed_rows_absent_from_sample',
@@ -134,7 +135,7 @@ function validateCounts(counts) {
     if (!Number.isInteger(counts[key]) || counts[key] < 0) issues.push(`counts.${key} must be a non-negative integer`);
   }
   if (counts.sample_rows_checked < 1) issues.push('sample_rows_checked must be positive');
-  if (counts.sample_review_verified_rows !== 0) issues.push('sample_review_verified_rows must remain 0');
+  if (counts.sample_forbidden_verified_label_rows !== 0) issues.push('sample_forbidden_verified_label_rows must remain 0');
   if (counts.seed_rows_checked < 1) issues.push('seed_rows_checked must be positive');
   if (counts.join_rows !== counts.seed_rows_checked) issues.push('join_rows must match seed_rows_checked');
   if (counts.seed_rows_absent_from_sample + counts.seed_rows_already_in_sample !== counts.join_rows) {
@@ -266,6 +267,38 @@ function requireOccurrenceBoundary(boundary, context) {
   if (boundary.reader_facing !== false) issues.push(`${context}.reader_facing must be false`);
   if (boundary.route_ids_only !== true) issues.push(`${context}.route_ids_only must be true`);
   if (boundary.not_answer_authority !== true) issues.push(`${context}.not_answer_authority must be true`);
+}
+
+function validatePublicationBoundary(boundary, context) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push(`${context} must be an object`);
+    return;
+  }
+  if (boundary.boundary_status !== 'blocked_no_render') issues.push(`${context}.boundary_status must be blocked_no_render`);
+  if (boundary.sample_only !== true) issues.push(`${context}.sample_only must be true`);
+  for (const key of [
+    'reader_facing',
+    'ui_assignment',
+    'publication_claim',
+    'clears_publication_readiness',
+    'reviewed_lexical_authority',
+    'accepted_translation_output',
+    'source_publication',
+    'public_lookup_artifact',
+  ]) {
+    if (boundary[key] !== false) issues.push(`${context}.${key} must be false`);
+  }
+  const blockedClaims = new Set(Array.isArray(boundary.does_not_clear) ? boundary.does_not_clear : []);
+  for (const required of [
+    'ui_assignment',
+    'reviewed_lexical_authority',
+    'accepted_translation',
+    'source_publication',
+    'public_lookup_publication',
+    'publication_readiness',
+  ]) {
+    if (!blockedClaims.has(required)) issues.push(`${context}.does_not_clear must include ${required}`);
+  }
 }
 
 function requireString(value, field) {

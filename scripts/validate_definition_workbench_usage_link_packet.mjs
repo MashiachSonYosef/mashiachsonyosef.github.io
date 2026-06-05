@@ -76,6 +76,7 @@ function validateDefinitionSampleContract(contract) {
   if (!String(contract.multi_answer_policy || '').includes('multi_answer=true')) {
     issues.push('definition_sample_contract.multi_answer_policy must preserve multi-answer warnings');
   }
+  validatePublicationBoundary(contract.publication_boundary, 'definition_sample_contract.publication_boundary');
 }
 
 function validateAuthorityPolicy(policy) {
@@ -110,7 +111,7 @@ function validateCounts(counts) {
     'sample_rows_with_selected_usage_links',
     'sample_rows_with_complete_source_license',
     'multi_answer_sample_rows',
-    'sample_review_verified_rows',
+    'sample_forbidden_verified_label_rows',
     'usage_token_rows',
     'usage_tokens_in_sample',
     'usage_tokens_not_in_sample',
@@ -140,7 +141,7 @@ function validateCounts(counts) {
   if (counts.sample_rows_with_complete_source_license !== counts.sample_rows) {
     issues.push('all sample rows must preserve complete source/license flags');
   }
-  if (counts.sample_review_verified_rows !== 0) {
+  if (counts.sample_forbidden_verified_label_rows !== 0) {
     issues.push('machine sample rows must not carry status=verified or review_status=verified');
   }
   if (!counts.sample_status_counts || typeof counts.sample_status_counts !== 'object') issues.push('sample_status_counts is required');
@@ -296,6 +297,38 @@ function requireBooleanBoundary(boundary, context) {
   if (boundary.reader_facing !== false) issues.push(`${context}.reader_facing must be false`);
   if (boundary.route_ids_only !== true) issues.push(`${context}.route_ids_only must be true`);
   if (boundary.not_definition_authority !== true) issues.push(`${context}.not_definition_authority must be true`);
+}
+
+function validatePublicationBoundary(boundary, context) {
+  if (!boundary || typeof boundary !== 'object') {
+    issues.push(`${context} must be an object`);
+    return;
+  }
+  if (boundary.boundary_status !== 'blocked_no_render') issues.push(`${context}.boundary_status must be blocked_no_render`);
+  if (boundary.sample_only !== true) issues.push(`${context}.sample_only must be true`);
+  for (const key of [
+    'reader_facing',
+    'ui_assignment',
+    'publication_claim',
+    'clears_publication_readiness',
+    'reviewed_lexical_authority',
+    'accepted_translation_output',
+    'source_publication',
+    'public_lookup_artifact',
+  ]) {
+    if (boundary[key] !== false) issues.push(`${context}.${key} must be false`);
+  }
+  const blockedClaims = new Set(Array.isArray(boundary.does_not_clear) ? boundary.does_not_clear : []);
+  for (const required of [
+    'ui_assignment',
+    'reviewed_lexical_authority',
+    'accepted_translation',
+    'source_publication',
+    'public_lookup_publication',
+    'publication_readiness',
+  ]) {
+    if (!blockedClaims.has(required)) issues.push(`${context}.does_not_clear must include ${required}`);
+  }
 }
 
 function requireString(value, field) {
