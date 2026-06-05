@@ -1,6 +1,6 @@
 # Agent 3 Definition Workbench Usage Source-Freshness Refresh
 
-Generated: 2026-06-02T11:29:34.649Z
+Generated: 2026-06-05T12:41:07.532Z
 
 Status: evidence-ready; awaiting Agent 6 review. This is current-state usage-navigation freshness evidence only and does not claim Agent 6 acceptance.
 

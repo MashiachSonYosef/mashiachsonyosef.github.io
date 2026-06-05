@@ -30,6 +30,8 @@ const defaults = {
   usageOccurrenceSupportPacket: 'data/definitions/definition-workbench-usage-occurrence-support-packet.json',
   usageConcordanceNavigationPacket: 'data/definitions/definition-workbench-usage-concordance-navigation-packet.json',
   usageFreshnessImpactPacket: 'data/definitions/definition-workbench-usage-freshness-impact-packet.json',
+  usageSourceFreshnessRefresh: 'reports/agent3-definition-workbench-usage-source-freshness-refresh-2026-06-02.json',
+  usageFreshnessFollowup: 'reports/agent3-definition-workbench-usage-freshness-followup-2026-06-02.json',
   crossmatchInventoryPacket: 'reports/agent3-crossmatch-inventory-packet-2026-06-05.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   usageConcordance: 'data/workbench-evidence/usage-concordance.json',
@@ -121,6 +123,8 @@ const usageAnchorAudit = readJson(options.usageAnchorAudit);
 const usageOccurrenceSupportPacket = readJson(options.usageOccurrenceSupportPacket);
 const usageConcordanceNavigationPacket = readJson(options.usageConcordanceNavigationPacket);
 const usageFreshnessImpactPacket = readJson(options.usageFreshnessImpactPacket);
+const usageSourceFreshnessRefresh = readJson(options.usageSourceFreshnessRefresh);
+const usageFreshnessFollowup = readJson(options.usageFreshnessFollowup);
 const crossmatchInventoryPacket = readJson(options.crossmatchInventoryPacket);
 const smokeValidation = readJson(options.smokeValidation);
 const usageConcordance = readJson(options.usageConcordance);
@@ -199,6 +203,12 @@ if (usageConcordanceNavigationPacket.artifact_type !== 'definition_workbench_usa
 if (usageFreshnessImpactPacket.artifact_type !== 'definition_workbench_usage_freshness_impact_packet') {
   throw new Error(`${options.usageFreshnessImpactPacket} is not a freshness impact packet`);
 }
+if (usageSourceFreshnessRefresh.artifact_type !== 'agent3_definition_workbench_usage_source_freshness_refresh') {
+  throw new Error(`${options.usageSourceFreshnessRefresh} is not an Agent 3 source freshness refresh packet`);
+}
+if (usageFreshnessFollowup.artifact_type !== 'agent3_definition_workbench_usage_freshness_followup') {
+  throw new Error(`${options.usageFreshnessFollowup} is not an Agent 3 freshness follow-up packet`);
+}
 if (crossmatchInventoryPacket.artifact_type !== 'agent3_crossmatch_inventory_packet') {
   throw new Error(`${options.crossmatchInventoryPacket} is not an Agent 3 crossmatch inventory packet`);
 }
@@ -257,6 +267,10 @@ const evidenceArtifacts = unique([
   'reports/definition-workbench-usage-concordance-navigation-packet.md',
   options.usageFreshnessImpactPacket,
   'reports/definition-workbench-usage-freshness-impact-packet.md',
+  options.usageSourceFreshnessRefresh,
+  'reports/agent3-definition-workbench-usage-source-freshness-refresh-2026-06-02.md',
+  options.usageFreshnessFollowup,
+  'reports/agent3-definition-workbench-usage-freshness-followup-2026-06-02.md',
   options.crossmatchInventoryPacket,
   'reports/agent3-crossmatch-inventory-packet-2026-06-05.md',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json',
@@ -330,6 +344,8 @@ const validators = unique([
   'scripts/validate_definition_workbench_usage_occurrence_support_packet.mjs',
   'scripts/validate_definition_workbench_usage_concordance_navigation_packet.mjs',
   'scripts/validate_definition_workbench_usage_freshness_impact_packet.mjs',
+  'scripts/validate_agent3_definition_workbench_usage_source_freshness_refresh.mjs',
+  'scripts/validate_agent3_definition_workbench_usage_freshness_followup.mjs',
   'scripts/validate_agent3_crossmatch_inventory_packet.mjs',
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
   'scripts/validate_definition_workbench_usage_seed_queue.mjs',
@@ -744,6 +760,26 @@ const artifact = {
     freshness_impact_reader_facing_rows: Number(usageFreshnessImpactPacket.counts?.reader_facing_rows || 0),
     freshness_impact_route_payload_field_hits: Number(usageFreshnessImpactPacket.counts?.route_payload_field_hits || 0),
     freshness_impact_forbidden_authority_field_hits: Number(usageFreshnessImpactPacket.counts?.forbidden_authority_field_hits || 0),
+    source_freshness_refresh_dirty_source_files: Number(usageSourceFreshnessRefresh.counts?.git_dirty_source_files || 0),
+    source_freshness_refresh_modified_source_files: Number(usageSourceFreshnessRefresh.counts?.git_modified_source_files || 0),
+    source_freshness_refresh_untracked_source_files: Number(usageSourceFreshnessRefresh.counts?.git_untracked_source_files || 0),
+    source_freshness_refresh_overlap_sources: Number(usageSourceFreshnessRefresh.counts?.dirty_sources_with_current_usage_overlap || 0),
+    source_freshness_refresh_impacted_navigation_rows: Number(usageSourceFreshnessRefresh.counts?.impacted_navigation_rows || 0),
+    source_freshness_refresh_impacted_selected_support_rows: Number(usageSourceFreshnessRefresh.counts?.impacted_selected_support_rows || 0),
+    source_freshness_refresh_promoted_run_targets: Number(usageSourceFreshnessRefresh.counts?.promoted_run_targets || 0),
+    source_freshness_refresh_source_text_read: Number(usageSourceFreshnessRefresh.counts?.source_text_read || 0),
+    source_freshness_refresh_broad_target_expansion: Number(usageSourceFreshnessRefresh.counts?.broad_target_expansion || 0),
+    source_freshness_refresh_reader_facing_rows: Number(usageSourceFreshnessRefresh.counts?.reader_facing_rows || 0),
+    source_freshness_refresh_route_payload_field_hits: Number(usageSourceFreshnessRefresh.counts?.route_payload_field_hits || 0),
+    source_freshness_refresh_forbidden_authority_field_hits: Number(usageSourceFreshnessRefresh.counts?.forbidden_authority_field_hits || 0),
+    source_freshness_refresh_prior_pending_delta: Number(usageSourceFreshnessRefresh.counts?.current_vs_prior_pending_delta || 0),
+    freshness_followup_live_dirty_source_files: Number(usageFreshnessFollowup.counts?.live_dirty_source_files || 0),
+    freshness_followup_overlap_sources: Number(usageFreshnessFollowup.counts?.dirty_sources_with_current_usage_overlap || 0),
+    freshness_followup_impacted_navigation_rows: Number(usageFreshnessFollowup.counts?.impacted_navigation_rows || 0),
+    freshness_followup_current_route_ids: Number(usageFreshnessFollowup.counts?.current_route_ids || 0),
+    freshness_followup_queue_mutations: Number(usageFreshnessFollowup.counts?.queue_mutations || 0),
+    freshness_followup_submitted_to_agent6: Number(usageFreshnessFollowup.counts?.submitted_to_agent6 || 0),
+    freshness_followup_forbidden_authority_field_hits: Number(usageFreshnessFollowup.counts?.forbidden_authority_field_hits || 0),
     crossmatch_inventory_files: Number(crossmatchInventoryPacket.counts?.files_in_inventory || 0),
     crossmatch_inventory_dirty_or_uncommitted_files: Number(crossmatchInventoryPacket.counts?.dirty_or_uncommitted_files || 0),
     crossmatch_inventory_forbidden_truthy_authority_claims: Number(crossmatchInventoryPacket.counts?.forbidden_truthy_authority_claims || 0),
@@ -769,6 +805,7 @@ const artifact = {
     'Usage coverage is selected seeded scope, not broad corpus completion.',
     'Ambiguous rows remain audit-only and are not reader-facing.',
     `Public handoff source freshness is ${publicHandoffIndex.coverage_boundary?.source_freshness?.status || 'unknown'} with ${Number(publicHandoffIndex.coverage_boundary?.source_freshness?.files_modified_after_artifact || 0)} files modified after the usage artifact scan.`,
+    `Current Agent 3 source-freshness refresh recount is ${Number(usageSourceFreshnessRefresh.counts?.git_dirty_source_files || 0)} dirty source files with ${Number(usageSourceFreshnessRefresh.counts?.dirty_sources_with_current_usage_overlap || 0)} direct usage-overlap sources and ${Number(usageSourceFreshnessRefresh.counts?.impacted_navigation_rows || 0)} impacted navigation rows; this narrows impact only and does not clear broad freshness.`,
     `Smoke source freshness is ${smokeValidation.counts?.source_freshness_status || 'unknown'} with ${Number(smokeValidation.counts?.usage_refresh_priority_pending_files || 0)} pending refresh files.`,
     'Agent 3 did not mutate Agent 6 queue state; Agent 5 remains the intended submitter.',
   ],
@@ -1177,6 +1214,26 @@ function buildCounts() {
     freshness_impact_reader_facing_rows: Number(usageFreshnessImpactPacket.counts?.reader_facing_rows || 0),
     freshness_impact_route_payload_field_hits: Number(usageFreshnessImpactPacket.counts?.route_payload_field_hits || 0),
     freshness_impact_forbidden_authority_field_hits: Number(usageFreshnessImpactPacket.counts?.forbidden_authority_field_hits || 0),
+    source_freshness_refresh_dirty_source_files: Number(usageSourceFreshnessRefresh.counts?.git_dirty_source_files || 0),
+    source_freshness_refresh_modified_source_files: Number(usageSourceFreshnessRefresh.counts?.git_modified_source_files || 0),
+    source_freshness_refresh_untracked_source_files: Number(usageSourceFreshnessRefresh.counts?.git_untracked_source_files || 0),
+    source_freshness_refresh_overlap_sources: Number(usageSourceFreshnessRefresh.counts?.dirty_sources_with_current_usage_overlap || 0),
+    source_freshness_refresh_impacted_navigation_rows: Number(usageSourceFreshnessRefresh.counts?.impacted_navigation_rows || 0),
+    source_freshness_refresh_impacted_selected_support_rows: Number(usageSourceFreshnessRefresh.counts?.impacted_selected_support_rows || 0),
+    source_freshness_refresh_promoted_run_targets: Number(usageSourceFreshnessRefresh.counts?.promoted_run_targets || 0),
+    source_freshness_refresh_source_text_read: Number(usageSourceFreshnessRefresh.counts?.source_text_read || 0),
+    source_freshness_refresh_broad_target_expansion: Number(usageSourceFreshnessRefresh.counts?.broad_target_expansion || 0),
+    source_freshness_refresh_reader_facing_rows: Number(usageSourceFreshnessRefresh.counts?.reader_facing_rows || 0),
+    source_freshness_refresh_route_payload_field_hits: Number(usageSourceFreshnessRefresh.counts?.route_payload_field_hits || 0),
+    source_freshness_refresh_forbidden_authority_field_hits: Number(usageSourceFreshnessRefresh.counts?.forbidden_authority_field_hits || 0),
+    source_freshness_refresh_prior_pending_delta: Number(usageSourceFreshnessRefresh.counts?.current_vs_prior_pending_delta || 0),
+    freshness_followup_live_dirty_source_files: Number(usageFreshnessFollowup.counts?.live_dirty_source_files || 0),
+    freshness_followup_overlap_sources: Number(usageFreshnessFollowup.counts?.dirty_sources_with_current_usage_overlap || 0),
+    freshness_followup_impacted_navigation_rows: Number(usageFreshnessFollowup.counts?.impacted_navigation_rows || 0),
+    freshness_followup_current_route_ids: Number(usageFreshnessFollowup.counts?.current_route_ids || 0),
+    freshness_followup_queue_mutations: Number(usageFreshnessFollowup.counts?.queue_mutations || 0),
+    freshness_followup_submitted_to_agent6: Number(usageFreshnessFollowup.counts?.submitted_to_agent6 || 0),
+    freshness_followup_forbidden_authority_field_hits: Number(usageFreshnessFollowup.counts?.forbidden_authority_field_hits || 0),
     crossmatch_inventory_files: Number(crossmatchInventoryPacket.counts?.files_in_inventory || 0),
     crossmatch_inventory_dirty_or_uncommitted_files: Number(crossmatchInventoryPacket.counts?.dirty_or_uncommitted_files || 0),
     crossmatch_inventory_forbidden_truthy_authority_claims: Number(crossmatchInventoryPacket.counts?.forbidden_truthy_authority_claims || 0),
@@ -1226,6 +1283,7 @@ function buildChecks(counts) {
     check('concordance_navigation_complete', counts.concordance_navigation_rows === counts.usage_concordance_rows && counts.concordance_navigation_supported_rows + counts.concordance_navigation_candidate_rows + counts.concordance_navigation_weak_rows === counts.concordance_navigation_rows && counts.concordance_navigation_selected_support_rows === counts.occurrence_support_rows && counts.concordance_navigation_source_refs > 0 && counts.concordance_navigation_works > 0 && counts.concordance_navigation_categories > 0 && counts.concordance_navigation_route_ids > 0 && counts.concordance_navigation_rows_with_source_url === counts.concordance_navigation_rows && counts.concordance_navigation_rows_with_local_work_anchor === counts.concordance_navigation_rows && counts.concordance_navigation_rows_with_context_snippet === counts.concordance_navigation_rows && counts.concordance_navigation_rows_with_focus_marker === counts.concordance_navigation_rows && counts.concordance_navigation_rows_with_route_ids === counts.concordance_navigation_rows && counts.concordance_navigation_rows_with_license_metadata === counts.concordance_navigation_rows && counts.concordance_navigation_rows_with_version_metadata === counts.concordance_navigation_rows && counts.concordance_navigation_reader_facing_rows === 0 && counts.concordance_navigation_route_payload_field_hits === 0 && counts.concordance_navigation_forbidden_authority_field_hits === 0 ? 'passed' : 'failed', `rows ${counts.concordance_navigation_rows}/${counts.usage_concordance_rows}; supported/candidate/weak ${counts.concordance_navigation_supported_rows}/${counts.concordance_navigation_candidate_rows}/${counts.concordance_navigation_weak_rows}; selected ${counts.concordance_navigation_selected_support_rows}/${counts.occurrence_support_rows}; source/work/category/route ${counts.concordance_navigation_source_refs}/${counts.concordance_navigation_works}/${counts.concordance_navigation_categories}/${counts.concordance_navigation_route_ids}; reader-facing/payload/forbidden ${counts.concordance_navigation_reader_facing_rows}/${counts.concordance_navigation_route_payload_field_hits}/${counts.concordance_navigation_forbidden_authority_field_hits}`),
     check('public_handoff_index_complete', counts.public_handoff_selected_targets > 0 && counts.public_handoff_validation_passed === counts.public_handoff_selected_targets && counts.public_handoff_validation_failed === 0 && counts.public_handoff_eligible_usage_rows === counts.usage_concordance_rows && counts.public_handoff_supported_rows + counts.public_handoff_candidate_rows + counts.public_handoff_weak_rows === counts.public_handoff_eligible_usage_rows && counts.public_handoff_count_only_ambiguous_rows === counts.audit_only_ambiguous_rows && counts.public_handoff_zero_useful_targets === 0 && counts.public_handoff_downstream_consumable === 1 && counts.public_handoff_validation_passed_flag === 1 && counts.public_handoff_zero_useful_targets_blocked === 1 && counts.public_handoff_ambiguous_rows_audit_only === 1 && counts.public_handoff_license_policy_passed === 1 && counts.public_handoff_corpus_exhaustive === 0 && counts.public_handoff_source_freshness_status === 'stale' && counts.public_handoff_artifact_source_files_scanned > 0 && counts.public_handoff_current_source_files >= counts.public_handoff_artifact_source_files_scanned && counts.public_handoff_source_count_delta > 0 && counts.public_handoff_files_modified_after_artifact > 0 && counts.public_handoff_files_created_after_artifact > 0 && counts.public_handoff_final_ranking_authority === 0 && counts.public_handoff_visible_answer_authority === 0 && counts.public_handoff_carries_text_rows === 0 && counts.public_handoff_warning_count > 0 ? 'warning' : 'failed', `targets/pass/fail ${counts.public_handoff_selected_targets}/${counts.public_handoff_validation_passed}/${counts.public_handoff_validation_failed}; eligible/ambiguous ${counts.public_handoff_eligible_usage_rows}/${counts.public_handoff_count_only_ambiguous_rows}; freshness ${counts.public_handoff_source_freshness_status} scanned/current/delta/modified ${counts.public_handoff_artifact_source_files_scanned}/${counts.public_handoff_current_source_files}/${counts.public_handoff_source_count_delta}/${counts.public_handoff_files_modified_after_artifact}; authority final/answer/text ${counts.public_handoff_final_ranking_authority}/${counts.public_handoff_visible_answer_authority}/${counts.public_handoff_carries_text_rows}`),
     check('freshness_impact_complete', counts.freshness_impact_pending_refresh_files > 0 && counts.freshness_impact_pending_with_current_usage_overlap === 0 && counts.freshness_impact_impacted_navigation_rows === 0 && counts.freshness_impact_impacted_selected_support_rows === 0 && counts.freshness_impact_promoted_run_targets === 0 && counts.freshness_impact_source_text_read === 0 && counts.freshness_impact_broad_target_expansion === 0 && counts.freshness_impact_reader_facing_rows === 0 && counts.freshness_impact_route_payload_field_hits === 0 && counts.freshness_impact_forbidden_authority_field_hits === 0 ? 'passed' : 'failed', `pending/overlap/impacted/selected/promoted ${counts.freshness_impact_pending_refresh_files}/${counts.freshness_impact_pending_with_current_usage_overlap}/${counts.freshness_impact_impacted_navigation_rows}/${counts.freshness_impact_impacted_selected_support_rows}/${counts.freshness_impact_promoted_run_targets}; sourceText/broad/reader/payload/forbidden ${counts.freshness_impact_source_text_read}/${counts.freshness_impact_broad_target_expansion}/${counts.freshness_impact_reader_facing_rows}/${counts.freshness_impact_route_payload_field_hits}/${counts.freshness_impact_forbidden_authority_field_hits}`),
+    check('current_source_freshness_refresh_complete', counts.source_freshness_refresh_dirty_source_files > 0 && counts.source_freshness_refresh_overlap_sources === 0 && counts.source_freshness_refresh_impacted_navigation_rows === 0 && counts.source_freshness_refresh_impacted_selected_support_rows === 0 && counts.source_freshness_refresh_promoted_run_targets === 0 && counts.source_freshness_refresh_source_text_read === 0 && counts.source_freshness_refresh_broad_target_expansion === 0 && counts.source_freshness_refresh_reader_facing_rows === 0 && counts.source_freshness_refresh_route_payload_field_hits === 0 && counts.source_freshness_refresh_forbidden_authority_field_hits === 0 && counts.freshness_followup_queue_mutations === 0 && counts.freshness_followup_submitted_to_agent6 === 0 ? 'passed' : 'failed', `dirty/overlap/impacted/selected/delta ${counts.source_freshness_refresh_dirty_source_files}/${counts.source_freshness_refresh_overlap_sources}/${counts.source_freshness_refresh_impacted_navigation_rows}/${counts.source_freshness_refresh_impacted_selected_support_rows}/${counts.source_freshness_refresh_prior_pending_delta}; sourceText/broad/promoted/reader/payload/forbidden ${counts.source_freshness_refresh_source_text_read}/${counts.source_freshness_refresh_broad_target_expansion}/${counts.source_freshness_refresh_promoted_run_targets}/${counts.source_freshness_refresh_reader_facing_rows}/${counts.source_freshness_refresh_route_payload_field_hits}/${counts.source_freshness_refresh_forbidden_authority_field_hits}; queue/submitted ${counts.freshness_followup_queue_mutations}/${counts.freshness_followup_submitted_to_agent6}`),
     check('crossmatch_inventory_packet_complete', counts.crossmatch_inventory_files > 0 && counts.crossmatch_inventory_forbidden_truthy_authority_claims === 0 ? 'warning' : 'failed', `files ${counts.crossmatch_inventory_files}; dirty/uncommitted ${counts.crossmatch_inventory_dirty_or_uncommitted_files}; truthy authority ${counts.crossmatch_inventory_forbidden_truthy_authority_claims}`),
     check('proof_metadata_complete', counts.proof_occurrence_rows > 0 && counts.proof_rows_with_complete_metadata === counts.proof_occurrence_rows ? 'passed' : 'failed', `${counts.proof_rows_with_complete_metadata}/${counts.proof_occurrence_rows}`),
     check('hebrew_context_clean', counts.proof_rows_with_hebrew_context === counts.proof_occurrence_rows && counts.proof_mojibake_rows === 0 ? 'passed' : 'failed', `Hebrew context ${counts.proof_rows_with_hebrew_context}; mojibake ${counts.proof_mojibake_rows}`),
@@ -1338,6 +1396,11 @@ function writeReport(relativePath, artifact) {
     `- Freshness impact pending / overlap / impacted rows: ${artifact.current_metrics.freshness_impact_pending_refresh_files}/${artifact.current_metrics.freshness_impact_pending_with_current_usage_overlap}/${artifact.current_metrics.freshness_impact_impacted_navigation_rows}`,
     `- Freshness impact selected support / promoted targets: ${artifact.current_metrics.freshness_impact_impacted_selected_support_rows}/${artifact.current_metrics.freshness_impact_promoted_run_targets}`,
     `- Freshness impact source-text / broad-expansion / reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.freshness_impact_source_text_read}/${artifact.current_metrics.freshness_impact_broad_target_expansion}/${artifact.current_metrics.freshness_impact_reader_facing_rows}/${artifact.current_metrics.freshness_impact_route_payload_field_hits}/${artifact.current_metrics.freshness_impact_forbidden_authority_field_hits}`,
+    `- Current source-freshness refresh dirty / modified / untracked: ${artifact.current_metrics.source_freshness_refresh_dirty_source_files}/${artifact.current_metrics.source_freshness_refresh_modified_source_files}/${artifact.current_metrics.source_freshness_refresh_untracked_source_files}`,
+    `- Current source-freshness refresh overlap / impacted / selected / delta: ${artifact.current_metrics.source_freshness_refresh_overlap_sources}/${artifact.current_metrics.source_freshness_refresh_impacted_navigation_rows}/${artifact.current_metrics.source_freshness_refresh_impacted_selected_support_rows}/${artifact.current_metrics.source_freshness_refresh_prior_pending_delta}`,
+    `- Current source-freshness refresh source-text / broad-expansion / promoted / reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.source_freshness_refresh_source_text_read}/${artifact.current_metrics.source_freshness_refresh_broad_target_expansion}/${artifact.current_metrics.source_freshness_refresh_promoted_run_targets}/${artifact.current_metrics.source_freshness_refresh_reader_facing_rows}/${artifact.current_metrics.source_freshness_refresh_route_payload_field_hits}/${artifact.current_metrics.source_freshness_refresh_forbidden_authority_field_hits}`,
+    `- Freshness follow-up dirty / overlap / impacted / route IDs: ${artifact.current_metrics.freshness_followup_live_dirty_source_files}/${artifact.current_metrics.freshness_followup_overlap_sources}/${artifact.current_metrics.freshness_followup_impacted_navigation_rows}/${artifact.current_metrics.freshness_followup_current_route_ids}`,
+    `- Freshness follow-up queue mutations / submitted / forbidden-authority hits: ${artifact.current_metrics.freshness_followup_queue_mutations}/${artifact.current_metrics.freshness_followup_submitted_to_agent6}/${artifact.current_metrics.freshness_followup_forbidden_authority_field_hits}`,
     `- Crossmatch inventory files / dirty-uncommitted / truthy-authority hits: ${artifact.current_metrics.crossmatch_inventory_files}/${artifact.current_metrics.crossmatch_inventory_dirty_or_uncommitted_files}/${artifact.current_metrics.crossmatch_inventory_forbidden_truthy_authority_claims}`,
     `- Proof rows / complete metadata: ${artifact.current_metrics.proof_occurrence_rows}/${artifact.current_metrics.proof_rows_with_complete_metadata}`,
     `- Hebrew context / mojibake rows: ${artifact.current_metrics.proof_rows_with_hebrew_context}/${artifact.current_metrics.proof_mojibake_rows}`,

@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-05T11:46:26.929Z
+Generated: 2026-06-05T12:54:22.179Z
 
 ## State
 
@@ -100,6 +100,11 @@ Generated: 2026-06-05T11:46:26.929Z
 - Freshness impact pending / overlap / impacted rows: 173/0/0
 - Freshness impact selected support / promoted targets: 0/0
 - Freshness impact source-text / broad-expansion / reader-facing / route-payload / forbidden-authority hits: 0/0/0/0/0
+- Current source-freshness refresh dirty / modified / untracked: 29/6/23
+- Current source-freshness refresh overlap / impacted / selected / delta: 0/0/0/-144
+- Current source-freshness refresh source-text / broad-expansion / promoted / reader-facing / route-payload / forbidden-authority hits: 0/0/0/0/0/0
+- Freshness follow-up dirty / overlap / impacted / route IDs: 29/0/0/1
+- Freshness follow-up queue mutations / submitted / forbidden-authority hits: 0/0/0
 - Crossmatch inventory files / dirty-uncommitted / truthy-authority hits: 225/0/0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
@@ -114,8 +119,8 @@ Generated: 2026-06-05T11:46:26.929Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 95/95 |
-| validator_scripts_exist | passed | 49/49 |
+| evidence_artifacts_exist | passed | 99/99 |
+| validator_scripts_exist | passed | 51/51 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
@@ -144,6 +149,7 @@ Generated: 2026-06-05T11:46:26.929Z
 | concordance_navigation_complete | passed | rows 2390/2390; supported/candidate/weak 339/1351/700; selected 49/49; source/work/category/route 1673/271/15/1; reader-facing/payload/forbidden 0/0/0 |
 | public_handoff_index_complete | warning | targets/pass/fail 55/55/0; eligible/ambiguous 2390/2064; freshness stale scanned/current/delta/modified 1192/1360/168/173; authority final/answer/text 0/0/0 |
 | freshness_impact_complete | passed | pending/overlap/impacted/selected/promoted 173/0/0/0/0; sourceText/broad/reader/payload/forbidden 0/0/0/0/0 |
+| current_source_freshness_refresh_complete | passed | dirty/overlap/impacted/selected/delta 29/0/0/0/-144; sourceText/broad/promoted/reader/payload/forbidden 0/0/0/0/0/0; queue/submitted 0/0 |
 | crossmatch_inventory_packet_complete | warning | files 225; dirty/uncommitted 0; truthy authority 0 |
 | proof_metadata_complete | passed | 12/12 |
 | hebrew_context_clean | passed | Hebrew context 12; mojibake 0 |
@@ -157,6 +163,7 @@ Generated: 2026-06-05T11:46:26.929Z
 - Usage coverage is selected seeded scope, not broad corpus completion.
 - Ambiguous rows remain audit-only and are not reader-facing.
 - Public handoff source freshness is stale with 173 files modified after the usage artifact scan.
+- Current Agent 3 source-freshness refresh recount is 29 dirty source files with 0 direct usage-overlap sources and 0 impacted navigation rows; this narrows impact only and does not clear broad freshness.
 - Smoke source freshness is stale with 173 pending refresh files.
 - Agent 3 did not mutate Agent 6 queue state; Agent 5 remains the intended submitter.
 
