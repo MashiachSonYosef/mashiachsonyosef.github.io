@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_definition_workbench_usage_collision_work_category_validation_run",
+  "generated_at": "2026-06-05T11:08:16.773Z",
+  "generator": "scripts/build_agent3_definition_workbench_usage_collision_work_category_validation_run.mjs",
+  "lane_owner": "Agent 3",
+  "status": "evidence-ready",
+  "focus_token_normalized": "ראשית",
+  "target_gate": "definition_workbench_gate",
+  "source_artifacts": {
+    "collision_work_category_index": "data/definitions/agent3-definition-workbench-usage-collision-work-category-index-reshit.json",
+    "agent3_state": "reports/agent3-state.md"
+  },
+  "policy": "Validation-run packet for the Agent 3 collision work/category index. It records current validator outputs for QA evidence only; it does not inspect source text, rank routes, select answers, copy Agent 2 payloads, emit definitions, translate, mutate queues, or publish.",
+  "authority_boundary": {
+    "usage_navigation_only": true,
+    "validation_run_only": true,
+    "observed_usage_only": true,
+    "route_ids_only": true,
+    "audit_only": true,
+    "reader_facing": false,
+    "definition_authority": false,
+    "reviewed_lexical_authority": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "visible_answer_selection": false,
+    "copied_route_payloads": false,
+    "accepted_text_output": false,
+    "publication_claim": false,
+    "source_text_read": false,
+    "broad_target_expansion": false,
+    "agent6_accepted": false
+  },
+  "command_results": [
+    {
+      "key": "collision_work_category_index",
+      "command": "node scripts\\validate_agent3_definition_workbench_usage_collision_work_category_index.mjs",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_collision_work_category_index.mjs",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-collision-work-category-index-reshit.json",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "Agent 3 collision work/category index validation passed: categories 8; works 24; category-license rows 8",
+      "stderr": ""
+    },
+    {
+      "key": "agent3_usage_state",
+      "command": "node scripts\\validate_agent3_usage_state.mjs",
+      "validator_path": "scripts/validate_agent3_usage_state.mjs",
+      "data_path": "reports/agent3-state.md",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "passed": true,
+      "stdout": "Agent 3 usage state validation passed.\nEvidence artifacts: 95/95; validators: 49/49; smoke failed: 0.",
+      "stderr": ""
+    }
+  ],
+  "counts": {
+    "validation_commands": 2,
+    "commands_passed": 2,
+    "commands_failed": 0,
+    "validators_present": 2,
+    "data_paths_present": 2,
+    "source_occurrence_rows": 106,
+    "category_index_rows": 8,
+    "work_index_rows": 24,
+    "category_license_index_rows": 8,
+    "queue_links": 200,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "source_text_reads": 0,
+    "broad_target_expansion": 0,
+    "queue_mutations": 0,
+    "submitted_to_agent6": 0
+  },
+  "checks": [
+    {
+      "id": "validation_commands_present",
+      "status": "passed",
+      "detail": "commands 2"
+    },
+    {
+      "id": "all_commands_passed",
+      "status": "passed",
+      "detail": "passed/failed 2/0"
+    },
+    {
+      "id": "validators_and_data_present",
+      "status": "passed",
+      "detail": "validators/data 2/2"
+    },
+    {
+      "id": "work_category_counts_visible",
+      "status": "passed",
+      "detail": "source/category/work/category-license 106/8/24/8"
+    },
+    {
+      "id": "queue_links_visible",
+      "status": "passed",
+      "detail": "queue links 200"
+    },
+    {
+      "id": "no_authority_or_side_effects",
+      "status": "passed",
+      "detail": "boundary 0/0/0/0/0/0/0"
+    }
+  ]
+}
