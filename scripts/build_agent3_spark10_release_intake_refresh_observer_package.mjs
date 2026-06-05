@@ -39,6 +39,9 @@ const handoffCandidates = rows
       row.next_agent10_action === 'prepare_or_route_agent6_boundary_only_if_exact_package_exists',
   )
   .map(summarizeRow);
+const handoffBlocker = handoffCandidates.length
+  ? `The ${handoffCandidates.length} observed Agent 6 handoff candidate(s) are external matrix rows, not Agent 3 linkage/dedupe/navigation routes.`
+  : 'No Agent 6 handoff candidates are present in the current Spark-10 matrix; Agent 3 created none.';
 
 const artifact = {
   schema_version: 1,
@@ -129,7 +132,7 @@ const artifact = {
       'Current Spark-10 intake matrix refresh consumed as Agent 3 linkage/navigation observer evidence only; no Agent 3 executable workset or handoff candidate was created.',
     agent3_next_action:
       'Wait for an exact changed Agent 3 linkage/dedupe/navigation workset, direct Spark return, or explicit downstream route needing Agent 3 packaging.',
-    agent6_handoff_owner: 'Agent 10 for old-dictionary packets, not Agent 3',
+    agent6_handoff_owner: handoffCandidates.length ? 'External matrix owner(s), not Agent 3' : 'none observed; Agent 3 created none',
     executable_workset_created: false,
     current_matrix_refresh_packaged: true,
   },
@@ -141,7 +144,7 @@ const artifact = {
   ],
   what_remains_blocked: [
     'The current Spark-10 release/package matrix is external Spark-10/Agent-10 intake evidence and is not committed by this Agent 3 package.',
-    'The four Agent 6 handoff candidates are Agent 10 old-dictionary packets, not Agent 3 linkage/dedupe/navigation routes.',
+    handoffBlocker,
     'Agent 3 regenerated Orot/Deuteronomy source JSON files remain generated_at-only drift and are not committed here.',
     'No publication, Definition authority, answer eligibility, source/license acceptance, runtime mutation, route publication support, or accepted text is authorized.',
   ],

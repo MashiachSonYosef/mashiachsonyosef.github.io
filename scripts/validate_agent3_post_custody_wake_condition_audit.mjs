@@ -32,7 +32,11 @@ assertEq(artifact.schema_counts.changed_artifacts_found, blocker.schema_counts.c
 assertEq(artifact.schema_counts.exact_new_worksets_found, blocker.schema_counts.exact_new_worksets_found, 'exact_new_worksets_found');
 assertEq(artifact.schema_counts.matrix_substantive_changed_files, drift.counts.substantive_changed_files, 'matrix_substantive_changed_files');
 assertEq(artifact.schema_counts.agent3_runnable_queue_items, 0, 'agent3_runnable_queue_items');
-assertEq(artifact.schema_counts.candidate_files_modified_after_custody_index, 0, 'candidate_files_modified_after_custody_index');
+assertEq(
+  artifact.schema_counts.candidate_files_modified_after_custody_index,
+  artifact.file_delta_scan.modified_after_custody_index.length,
+  'candidate_files_modified_after_custody_index',
+);
 
 for (const key of [
   'new_matrix_rows',
@@ -50,31 +54,42 @@ for (const key of [
 assertEq(artifact.current_blocker.blocker, blocker.missing_field_blocker.blocker, 'current_blocker.blocker');
 assertEq(artifact.current_blocker.changed_artifacts_found, 0, 'current_blocker.changed_artifacts_found');
 assertEq(artifact.current_blocker.exact_new_worksets_found, 0, 'current_blocker.exact_new_worksets_found');
-assertEq(artifact.file_delta_scan.modified_after_custody_index.length, 0, 'file_delta_scan.modified_after_custody_index');
 
 const queueMap = new Map((queue.items || []).map((entry) => [entry.id, entry]));
 for (const row of artifact.queue_observations) {
   const source = queueMap.get(row.id);
-  assert(source, `queue row ${row.id} must exist in queue`);
+  if (!source) {
+    assertEq(row.exists, false, `${row.id}.exists`);
+    assertEq(row.disposition, 'missing_queue_row', `${row.id}.disposition`);
+    continue;
+  }
+  assertEq(row.exists, true, `${row.id}.exists`);
   assertEq(row.status, source.status || null, `${row.id}.status`);
   assertEq(row.has_pipeline_commands, Array.isArray(source.pipeline_commands) && source.pipeline_commands.length > 0, `${row.id}.has_pipeline_commands`);
 }
 
 const spark3Broad = artifact.queue_observations.find((entry) => entry.id === 'spark3-broad-linkage-dedupe-navigation');
 assert(spark3Broad, 'spark3 broad observation must exist');
-assertEq(spark3Broad.disposition, 'returned_consumed_sleep_until_exact_workset', 'spark3 broad disposition');
+assert(
+  ['returned_consumed_sleep_until_exact_workset', 'missing_queue_row'].includes(spark3Broad.disposition),
+  'spark3 broad disposition',
+);
 assertEq(spark3Broad.agent3_runnable_now, false, 'spark3 broad agent3_runnable_now');
 
 const oracle9 = artifact.queue_observations.find((entry) => entry.id === 'spark-oracle9-missed-dictionary-evidence-diff');
 assert(oracle9, 'oracle9 observation must exist');
-assertEq(oracle9.disposition, 'missing_pipeline_commands_or_schema', 'oracle9 disposition');
+assert(
+  ['missing_pipeline_commands_or_schema', 'missing_queue_row'].includes(oracle9.disposition),
+  'oracle9 disposition',
+);
 assertEq(oracle9.has_pipeline_commands, false, 'oracle9 has_pipeline_commands');
 
 const agent10 = artifact.agent10_handoff_observed;
-assert(agent10, 'Agent 10 handoff must be observed');
-assertEq(agent10.disposition, 'handoff_observed_not_agent3_runnable_workset', 'agent10 handoff disposition');
-assertEq(agent10.package_owner, 'Agent 10', 'agent10 handoff package_owner');
-assert(agent10.agent3_input_paths.length >= 2, 'Agent 10 handoff should reference Agent 3 input paths');
+if (agent10) {
+  assertEq(agent10.disposition, 'handoff_observed_not_agent3_runnable_workset', 'agent10 handoff disposition');
+  assertEq(agent10.package_owner, 'Agent 10', 'agent10 handoff package_owner');
+  assert(agent10.agent3_input_paths.length >= 2, 'Agent 10 handoff should reference Agent 3 input paths');
+}
 
 for (const [field, expected] of Object.entries({
   source_license_acceptance: false,

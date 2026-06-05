@@ -34,7 +34,9 @@ const agent3Goal = (goalBoard.goals || []).find((entry) => entry.id === 'agent3-
   || (goalBoard.goals || []).find((entry) => entry.id === 'agent3-definition-occurrence-links')
   || null;
 
-const agent10Shadow = queueItems.find((entry) => entry.id === 'spark10-hybrid-floor-release-relevance-shadow');
+const agent10Shadow = queueItems.find(
+  (entry) => entry.id === 'spark10-hybrid-floor-release-relevance-shadow' && entry.exists === true,
+);
 const agent3RunnableQueueItems = queueItems.filter((entry) => entry.agent3_runnable_now);
 
 const artifact = {
@@ -168,7 +170,22 @@ console.log(`Agent 3 post-custody wake audit: runnable ${artifact.schema_counts.
 
 function queueItem(id) {
   const item = (queue.items || []).find((entry) => entry.id === id);
-  if (!item) return null;
+  if (!item) {
+    return {
+      id,
+      exists: false,
+      status: null,
+      package_owners: [],
+      returned_artifact: null,
+      expected_output: null,
+      has_pipeline_commands: false,
+      pipeline_command_count: 0,
+      agent3_runnable_now: false,
+      disposition: 'missing_queue_row',
+      wake_condition: 'No current queue item with this id; wake only with an exact changed artifact or exact workset contract.',
+      inputs: [],
+    };
+  }
   const packageOwners = item.package_owners || [];
   const hasPipelineCommands = Array.isArray(item.pipeline_commands) && item.pipeline_commands.length > 0;
   const isAgent3Owned = packageOwners.includes('Agent 3');
@@ -179,6 +196,7 @@ function queueItem(id) {
     && !String(item.status || '').includes('missing');
   return {
     id: item.id,
+    exists: true,
     status: item.status || null,
     package_owners: packageOwners,
     returned_artifact: item.returned_artifact || null,

@@ -29,7 +29,7 @@
 | Agent 3 matrix occurrences | 12595 |
 | Exact blocker rows | 6779 |
 | Exact blocker occurrences | 9631 |
-| Spark10/local inputs checked | 322 |
+| Spark10/local inputs checked | 376 |
 | Spark10/local Agent 3 executable rows | 0 |
 | Current no-workset blocker sources | 3 |
 | Control edits | 0 |
@@ -46,12 +46,12 @@ This packet is non-public control reconciliation and linkage/navigation planning
 
 ## Reviewed Inputs
 
-- `data/control/spark_standing_queue.json` (8310 bytes, sha256 `3bd58bdd364b979aba89fac1848553404ee15f198889f01cde1e71e34c4bcf50`)
-- `reports/agent10-direct-release-package-goal-state-2026-06-05.json` (5206 bytes, sha256 `293ae5ef6c045f565c38882a9c13b3d688853724ca593e7b7c847764d17cd65d`)
-- `reports/agent10-direct-release-package-goal-state-2026-06-05.md` (3883 bytes, sha256 `fc5eb4885295e84ddb11e179d8d195e4c3d0932eeac7494bfb7ac16f28653704`)
-- `reports/agent3-agent10-direct-release-goal-state-consumption-2026-06-05.json` (19255 bytes, sha256 `840af84aca8eb36c7715b7551ff724758247da2bb86b2c838bf0055b66901a99`)
-- `reports/agent3-agent10-direct-release-goal-state-consumption-2026-06-05.md` (4752 bytes, sha256 `f78f931d0871f84c3b76da61858952efc024a9ca412443165dc637282df9c955`)
-- `reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.json` (15029 bytes, sha256 `a19e20e84c1a1460136b7315680d8a7585d18c1a4761926477f4d69c6a37dc69`)
-- `reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.md` (4308 bytes, sha256 `bcba4a1fee21a0afd607e49dc3dddd4bfe2f6a4282c95d20ccc71b70bc3b5f35`)
-- `reports/spark10-release-package-intake-matrix-current-2026-06-04.json` (254113 bytes, sha256 `a1f88d3d81d25bbb984f0b5006490c0ef0b09d7a630a1f31a80e08e9188d95c9`)
-- `reports/spark10-release-package-intake-matrix-current-2026-06-04.md` (64376 bytes, sha256 `977648896e2963ddca236693cfc17278a75a8ee9ee135aa50734f423685226a3`)
+- `data/control/spark_standing_queue.json` (20184 bytes, sha256 `c4ed7fc10c1ac9131cd52fcfb1358cbd4dd89e8ce26c0c6f11b8ed4559951333`)
+- `reports/agent10-direct-release-package-goal-state-2026-06-05.json` (8749 bytes, sha256 `c6626770264d75a55fd722c585324b26e296ad9edd2e9457970f6ed5e3e36e3e`)
+- `reports/agent10-direct-release-package-goal-state-2026-06-05.md` (6148 bytes, sha256 `2454d0e5355cfae97b207ad3129bce31dc381c17796c507ae51a634df97272d9`)
+- `reports/agent3-agent10-direct-release-goal-state-consumption-2026-06-05.json` (19296 bytes, sha256 `222d0f90933706252778e92543017da9461207f7c8459088dd98b9331d8c37ee`)
+- `reports/agent3-agent10-direct-release-goal-state-consumption-2026-06-05.md` (4752 bytes, sha256 `7a076c59ab0e9366cf99458336b77466b7f0fe5d540fa9cfa4bf8a5e9a520b7e`)
+- `reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.json` (15022 bytes, sha256 `cf661e4c8672cc89cd8956c28b3f1cccc924b171ff9e9cfc9552be2fc3686445`)
+- `reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.md` (4307 bytes, sha256 `b44fcc0d9bb29af67cc609f1bd81687e0549bc5e60465af4149c176eb55964da`)
+- `reports/spark10-release-package-intake-matrix-current-2026-06-04.json` (298681 bytes, sha256 `b91ac05e6c92df8eabf540d321214047a1caaa2606bb2d4cd428e473c11c6b85`)
+- `reports/spark10-release-package-intake-matrix-current-2026-06-04.md` (74033 bytes, sha256 `4eccde2bb059fb94915368822948c7c920dac17a5f865487e14057ce492a778b`)

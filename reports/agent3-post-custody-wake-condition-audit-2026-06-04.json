@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_post_custody_wake_condition_audit",
-  "generated_at": "2026-06-04T23:46:00.641Z",
+  "generated_at": "2026-06-05T12:13:05.707Z",
   "lane_owner": "Agent 3",
   "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
   "status": "no_new_agent3_executable_workset_after_custody_index",
@@ -30,9 +30,9 @@
     "blocker_occurrences": 11748,
     "queue_items_checked": 4,
     "agent3_runnable_queue_items": 0,
-    "agent10_handoff_items_observed": 1,
-    "candidate_files_scanned": 37,
-    "candidate_files_modified_after_custody_index": 0,
+    "agent10_handoff_items_observed": 0,
+    "candidate_files_scanned": 43,
+    "candidate_files_modified_after_custody_index": 6,
     "changed_artifacts_found": 0,
     "exact_new_worksets_found": 0,
     "matrix_substantive_changed_files": 0,
@@ -48,83 +48,59 @@
   "queue_observations": [
     {
       "id": "spark3-broad-linkage-dedupe-navigation",
-      "status": "returned_no_blocker_no_queued_item_sleep_until_wake_condition",
-      "package_owners": [
-        "Agent 3"
-      ],
-      "returned_artifact": "reports/spark3-broad-linkage-dedupe-navigation-2026-06-04-report.md",
-      "expected_output": "mechanical linkage/dedupe/navigation matrix for Agent 3 packaging",
-      "has_pipeline_commands": true,
-      "pipeline_command_count": 8,
+      "exists": false,
+      "status": null,
+      "package_owners": [],
+      "returned_artifact": null,
+      "expected_output": null,
+      "has_pipeline_commands": false,
+      "pipeline_command_count": 0,
       "agent3_runnable_now": false,
-      "disposition": "returned_consumed_sleep_until_exact_workset",
-      "wake_condition": "Only if Agent 5/7/10 adds a new exact Spark-3 queue item with explicit pipeline_commands and required output schema.",
-      "inputs": [
-        "reports/agent7-broad-agent-spark-goals-2026-06-04.md",
-        "reports/spark-3-state.md",
-        "reports/spark5-plus-orot-continuation-rules.md"
-      ]
+      "disposition": "missing_queue_row",
+      "wake_condition": "No current queue item with this id; wake only with an exact changed artifact or exact workset contract.",
+      "inputs": []
     },
     {
       "id": "spark-oracle9-missed-dictionary-evidence-diff",
-      "status": "active_manual_start_spark3",
-      "package_owners": [
-        "Agent 3",
-        "Agent 2"
-      ],
+      "exists": false,
+      "status": null,
+      "package_owners": [],
       "returned_artifact": null,
-      "expected_output": "missed-dictionary evidence diff for Agent 3 navigation packaging and Agent 2 transform packaging",
+      "expected_output": null,
       "has_pipeline_commands": false,
       "pipeline_command_count": 0,
       "agent3_runnable_now": false,
-      "disposition": "missing_pipeline_commands_or_schema",
-      "wake_condition": null,
-      "inputs": [
-        "reports/oracle9-owner-pulse-2026-06-03-0410Z.md",
-        "reports/oracle9-owner-pulse-2026-06-03-1039Z.md"
-      ]
+      "disposition": "missing_queue_row",
+      "wake_condition": "No current queue item with this id; wake only with an exact changed artifact or exact workset contract.",
+      "inputs": []
     },
     {
       "id": "spark5plus-continuation-dedupe",
-      "status": "returned_mechanical_inventory_secondary_spark10_capacity_reallocated",
-      "package_owners": [
-        "Agent 10",
-        "Agent 3"
-      ],
-      "returned_artifact": "reports/spark10-replacement-spark5plus-continuation-dedupe-2026-06-04.md",
-      "expected_output": "deduped continuation index for Agent 10",
+      "exists": false,
+      "status": null,
+      "package_owners": [],
+      "returned_artifact": null,
+      "expected_output": null,
       "has_pipeline_commands": false,
       "pipeline_command_count": 0,
       "agent3_runnable_now": false,
-      "disposition": "missing_pipeline_commands_or_schema",
-      "wake_condition": "Exact named command, input set, output path/schema, and stop condition.",
-      "inputs": [
-        "reports/spark5-plus-orot-continuation-rules.md",
-        "reports/spark5-plus-orot-continuation-2026-06-04*.md",
-        "reports/agent5-message-from-spark5-plus-continuation-*.md"
-      ]
+      "disposition": "missing_queue_row",
+      "wake_condition": "No current queue item with this id; wake only with an exact changed artifact or exact workset contract.",
+      "inputs": []
     },
     {
       "id": "spark10-hybrid-floor-release-relevance-shadow",
-      "status": "active_reseed_needed_after_agent1_agent3_orot_returns",
-      "package_owners": [
-        "Agent 10"
-      ],
+      "exists": false,
+      "status": null,
+      "package_owners": [],
       "returned_artifact": null,
-      "expected_output": "reports/spark10-hybrid-floor-release-relevance-shadow-2026-06-04.md",
-      "has_pipeline_commands": true,
-      "pipeline_command_count": 3,
+      "expected_output": null,
+      "has_pipeline_commands": false,
+      "pipeline_command_count": 0,
       "agent3_runnable_now": false,
-      "disposition": "agent10_owned_handoff_not_agent3_runnable",
-      "wake_condition": null,
-      "inputs": [
-        "reports/agent10-spark10-release-package-intake-pipeline-contract-2026-06-04.json",
-        "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.md",
-        "reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.json",
-        "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.md",
-        "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json",
-        "reports/agent6-broad-definition-workbench-500-sample-boundary-verdict-2026-06-04.md"
-      ]
+      "disposition": "missing_queue_row",
+      "wake_condition": "No current queue item with this id; wake only with an exact changed artifact or exact workset contract.",
+      "inputs": []
     }
   ],
   "file_delta_scan": {
@@ -142,7 +118,38 @@
       "reports/agent3-state.json",
       "reports/agent3-state.md"
     ],
-    "modified_after_custody_index": []
+    "modified_after_custody_index": [
+      {
+        "path": "reports/agent3-agent10-post-custody-consumption-control-cap-observer-package-2026-06-04.json",
+        "mtime_iso": "2026-06-05T00:09:46.094Z",
+        "sha256": "f5c5e2fa2ff35bcfea24cf6f6862b43e2fbfd512d340a993cf72f0e6f4a04768"
+      },
+      {
+        "path": "reports/agent3-agent10-post-custody-consumption-control-cap-observer-package-2026-06-04.md",
+        "mtime_iso": "2026-06-05T00:09:46.095Z",
+        "sha256": "0a3b9bd127809e397ccba5a0fda9865048d70aea3cddfc983df70a9dc1f53fd6"
+      },
+      {
+        "path": "reports/agent3-downstream-deuteronomy-workset-blocker-observer-package-2026-06-04.json",
+        "mtime_iso": "2026-06-05T11:54:07.799Z",
+        "sha256": "63aba2104deefda878d1168381fb7650b51c9975f5a86d40a32580b280a98cd6"
+      },
+      {
+        "path": "reports/agent3-downstream-deuteronomy-workset-blocker-observer-package-2026-06-04.md",
+        "mtime_iso": "2026-06-05T11:54:07.799Z",
+        "sha256": "7de3730787c6c37d862fa6ba8e165e836ea5e02679ae0ed07d4925247520f0f3"
+      },
+      {
+        "path": "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.json",
+        "mtime_iso": "2026-06-05T12:02:56.457Z",
+        "sha256": "93a5c1eba25412dc78ee4f1385df5f92582377ed501b2c7a79c9650f2b53ad24"
+      },
+      {
+        "path": "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.md",
+        "mtime_iso": "2026-06-05T12:02:56.457Z",
+        "sha256": "e944a4495b510b6db152fa9dcd39dcbfea71698d14a56c13858ac2ad0ac1e37e"
+      }
+    ]
   },
   "active_handoff": {
     "artifact": "reports/agent3-active-workset-handoff-index-2026-06-04.json",
@@ -159,16 +166,7 @@
     "exact_new_worksets_found": 0,
     "wake_condition": "Wake Agent 3 only when Agent 10, Agent 7, or the queue supplies a changed artifact or exact workset with named inputs, rows/occurrences, output path/schema, validator/gate, handoff owner, and stop condition."
   },
-  "agent10_handoff_observed": {
-    "queue_item": "spark10-hybrid-floor-release-relevance-shadow",
-    "status": "active_reseed_needed_after_agent1_agent3_orot_returns",
-    "package_owner": "Agent 10",
-    "agent3_input_paths": [
-      "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.md",
-      "reports/agent3-orot-169-row-route-card-candidate-card-dedupe-review-2026-06-04.json"
-    ],
-    "disposition": "handoff_observed_not_agent3_runnable_workset"
-  },
+  "agent10_handoff_observed": null,
   "agent3_goal_observation": {
     "id": "agent3-broad-linkage-dedupe-navigation",
     "status": "active_spark3_returned_no_queued_item_agent3_consumes",

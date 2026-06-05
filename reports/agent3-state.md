@@ -252,8 +252,8 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 - Package: `reports/agent3-spark10-release-intake-return-observer-package-2026-06-04.md`
 - JSON: `reports/agent3-spark10-release-intake-return-observer-package-2026-06-04.json`
 - Status: `spark10_release_intake_return_observed_no_agent3_executable_workset`
-- Spark-10 summary: 90 inputs checked, 4 Agent 6 handoff candidates.
-- Agent 3 rows observed: 11; Agent 3 handoff candidates: 0.
+- Spark-10 summary: 371 inputs checked, 0 Agent 6 handoff candidates.
+- Agent 3 rows observed: 41; Agent 3 handoff candidates: 0.
 - Boundary: observer/linkage continuity only; no new Agent 3 executable workset, no acceptance, no public/runtime/Definition/answer path.
 
 <!-- agent3_spark10_release_intake_return_observer:end -->
@@ -262,13 +262,13 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 
 ## Latest Linkage/Navigation Pulse
 
-- Generated: 2026-06-05T11:54:07.783Z
-- Package: `reports/agent3-downstream-deuteronomy-workset-blocker-observer-package-2026-06-04.json`
-- Status: `downstream_deuteronomy_no_agent3_workset_observed`
-- Current Spark-10 matrix rows/input count: 365
+- Generated: 2026-06-05T12:09:41.361Z
+- Package: `reports/agent3-spark10-release-intake-refresh-observer-package-2026-06-04.json`
+- Status: `spark10_release_intake_refresh_observed_no_agent3_executable_workset`
+- Current Spark-10 matrix rows/input count: 371
 - Agent 3 rows observed / handoff candidates: 41/0
 - External Agent 10 handoff candidates: 0
-- Downstream Agent 2 exact workset available now: 0
+- Matrix hash changed since prior observer: 0
 - Boundary: observer evidence only; no executable workset, Definition authority, answer selection, route publication, runtime mutation, source/license acceptance, or accepted text.
 - Next step: wait for exact changed Agent 3 linkage/dedupe/navigation workset, direct Spark return, or downstream route needing Agent 3 packaging.
 

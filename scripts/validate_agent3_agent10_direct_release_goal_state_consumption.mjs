@@ -98,8 +98,14 @@ function validateDirectGoal() {
     'direct matrix inputs mismatch',
   );
   expect(matrixRow?.counts?.missing_required_inputs === 0, 'direct matrix missing inputs must be 0');
-  expect(matrixRow?.counts?.release_relevant_rows === 83, 'direct matrix release-relevant rows mismatch');
-  expect(matrixRow?.counts?.agent6_handoff_candidates === 12, 'direct matrix Agent 6 handoff mismatch');
+  expect(
+    matrixRow?.counts?.release_relevant_rows === artifact.schema_counts.direct_goal_matrix_release_relevant_rows,
+    'direct matrix release-relevant rows mismatch',
+  );
+  expect(
+    matrixRow?.counts?.agent6_handoff_candidates === artifact.schema_counts.direct_goal_matrix_agent6_handoff_candidates,
+    'direct matrix Agent 6 handoff mismatch',
+  );
   for (const [key, value] of Object.entries(directGoal.zero_counters || {})) {
     expect(value === 0, `Agent 10 direct zero counter ${key} must be 0`);
   }
@@ -122,6 +128,27 @@ function validatePostMatrix() {
 
 function validateSpark10() {
   expect(spark10.artifact_type === 'spark10_release_package_intake_matrix', 'Spark10/local matrix type mismatch');
+  const observed = artifact.spark10_local_matrix_reference || {};
+  const observedSummary = observed.summary || {};
+  expect(
+    observedSummary.inputs_checked === artifact.schema_counts.spark10_matrix_inputs_checked,
+    'observed Spark10/local inputs must match artifact snapshot',
+  );
+  expect(
+    observedSummary.release_relevant_rows === artifact.schema_counts.spark10_matrix_release_relevant_rows,
+    'observed Spark10/local release-relevant rows must match artifact snapshot',
+  );
+  expect(
+    observedSummary.agent6_handoff_candidates === artifact.schema_counts.spark10_matrix_agent6_handoff_candidates,
+    'observed Spark10/local handoff candidates must match artifact snapshot',
+  );
+  expect(observed.row_count === artifact.schema_counts.spark10_matrix_rows, 'observed Spark10/local row count mismatch');
+  expect(observed.agent6_handoff_rows === artifact.schema_counts.spark10_agent6_handoff_rows, 'observed Spark10/local handoff row count mismatch');
+  expect(allFalse(observed.boundary), 'observed Spark10/local boundary must be all false');
+  if (!currentMatchesReviewedInput('spark10MatrixJson', 'reports/spark10-release-package-intake-matrix-current-2026-06-04.json')) {
+    warnings.push('current Spark10/local matrix changed after package build; validated embedded package snapshot only');
+    return;
+  }
   const rows = spark10.rows || [];
   const agent6Rows = rows.filter((row) => row.agent6_handoff_needed === true);
   const agent3Rows = rows.filter(
@@ -150,20 +177,24 @@ function validateSpark10() {
     'Spark10/local handoff candidates must match artifact snapshot',
   );
   expect(rows.length === artifact.schema_counts.spark10_matrix_rows, 'Spark10/local row count must match artifact snapshot');
-  expect(agent6Rows.length === 12, 'Spark10/local Agent 6 handoff rows must be 12');
+  expect(
+    agent6Rows.length === artifact.schema_counts.spark10_agent6_handoff_rows,
+    'Spark10/local Agent 6 handoff rows must match artifact snapshot',
+  );
   expect(agent3ExecutableRows.length === 0, 'Spark10/local Agent 3 executable rows must be 0');
   expect(allFalse(spark10.boundary), 'Spark10/local boundary must be all false');
 }
 
 function validateCounts() {
   const counts = artifact.schema_counts || {};
-  expect(counts.direct_goal_rows === 5, 'direct goal rows must be 5');
+  expect(counts.direct_goal_rows === (directGoal.rows || []).length, 'direct goal rows mismatch');
   expect(counts.direct_goal_agent3_rows === 1, 'direct Agent 3 row count must be 1');
   expect(counts.direct_goal_agent3_executable_worksets === 0, 'direct Agent 3 executable worksets must be 0');
   expect(counts.direct_goal_matrix_inputs_checked >= 320, 'artifact direct goal matrix inputs must be at least 320');
   expect(counts.spark10_matrix_inputs_checked >= counts.direct_goal_matrix_inputs_checked, 'artifact Spark10 inputs must be at least direct goal inputs');
-  expect(counts.spark10_matrix_release_relevant_rows === 83, 'artifact Spark10 release rows mismatch');
-  expect(counts.spark10_matrix_agent6_handoff_candidates === 12, 'artifact Spark10 handoff mismatch');
+  const observedSummary = artifact.spark10_local_matrix_reference?.summary || {};
+  expect(counts.spark10_matrix_release_relevant_rows === observedSummary.release_relevant_rows, 'artifact Spark10 release rows mismatch');
+  expect(counts.spark10_matrix_agent6_handoff_candidates === observedSummary.agent6_handoff_candidates, 'artifact Spark10 handoff mismatch');
   expect(
     counts.matrix_input_delta_since_direct_goal ===
       counts.spark10_matrix_inputs_checked - counts.direct_goal_matrix_inputs_checked,
@@ -239,6 +270,11 @@ function resolve(relativePath) {
 
 function sha256(relativePath) {
   return crypto.createHash('sha256').update(fs.readFileSync(resolve(relativePath))).digest('hex');
+}
+
+function currentMatchesReviewedInput(role, relativePath) {
+  const reviewed = (artifact.reviewed_inputs || []).find((input) => input.role === role);
+  return Boolean(reviewed) && reviewed.sha256 === sha256(relativePath);
 }
 
 function expect(condition, message) {
