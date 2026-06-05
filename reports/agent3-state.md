@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-05T14:22:49.315Z
+Generated: 2026-06-05T14:33:50.315Z
 
 ## State
 
@@ -109,6 +109,7 @@ Generated: 2026-06-05T14:22:49.315Z
 - Agent10 crossmatch direct-state stale/current dirty / delta / boundary packets: 192/0/192/0
 - Post-crossmatch wake queue-stale / current-dirty / registered / executable / blockers: 1/0/4/0/2
 - Orot route-selection crossmatch rows / occurrences / mismatch-linkagegap-blockers: 5/359/1-1-3
+- Post-route-selection wake executable / blockers / wake-conditions: 0/3/4
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -122,8 +123,8 @@ Generated: 2026-06-05T14:22:49.315Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 105/105 |
-| validator_scripts_exist | passed | 54/54 |
+| evidence_artifacts_exist | passed | 107/107 |
+| validator_scripts_exist | passed | 55/55 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
@@ -157,6 +158,7 @@ Generated: 2026-06-05T14:22:49.315Z
 | agent10_crossmatch_direct_state_reconciliation_complete | warning | direct/fresh/current dirty 192/0/0; stale delta 192; blockers/control/agent6 0/0/0 |
 | post_crossmatch_reconciliation_wake_audit_complete | warning | queue stale 1; stale dirty delta 192; current dirty 0; registered/executable/blockers/agent6 4/0/2/0 |
 | orot_route_selection_crossmatch_matrix_complete | warning | rows/occurrences 5/359; mismatches/linkage-gaps/blockers 1/1/3; route-payload/forbidden 0/0 |
+| post_route_selection_wake_audit_complete | warning | executable/blockers/wake 0/3/4; queue/acceptance 0/0 |
 | proof_metadata_complete | passed | 12/12 |
 | hebrew_context_clean | passed | Hebrew context 12; mojibake 0 |
 | no_authority_fields | passed | reader-facing 0; route payload 0; forbidden 0 |

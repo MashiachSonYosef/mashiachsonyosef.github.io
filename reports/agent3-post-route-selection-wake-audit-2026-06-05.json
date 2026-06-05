@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_post_route_selection_wake_audit",
+  "generated_at": "2026-06-05T14:31:46.590Z",
+  "generator": "scripts/build_agent3_post_route_selection_wake_audit.mjs",
+  "lane_owner": "Agent 3",
+  "status": "exact_blocker_wake_condition",
+  "commit_context": {
+    "head_commit": "2662e8893",
+    "route_selection_matrix_commit": "2662e8893"
+  },
+  "inputs": {
+    "matrix": "reports/agent3-orot-route-selection-crossmatch-matrix-2026-06-05.json",
+    "goal_board": "data/control/agent_goal_board.json",
+    "standing_queue": "data/control/spark_standing_queue.json",
+    "post_crossmatch_wake_audit": "reports/agent3-post-crossmatch-reconciliation-wake-audit-2026-06-05.json"
+  },
+  "authority_boundary": {
+    "navigation_evidence_only": true,
+    "blocker_wake_condition_only": true,
+    "usage_as_definition_authority": false,
+    "definition_authority": false,
+    "route_publication_support": false,
+    "answer_selection": false,
+    "route_ranking": false,
+    "semantic_arbitration": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "public_runtime_mutation": false,
+    "accepted_gloss_text": false
+  },
+  "schema_counts": {
+    "route_selection_rows": 5,
+    "route_selection_occurrence_links": 359,
+    "route_selection_candidate_mismatches": 1,
+    "route_selection_token_index_linkage_gaps": 1,
+    "route_selection_exact_blockers": 3,
+    "post_crossmatch_direct_executable_worksets": 0,
+    "post_crossmatch_stale_queue_rows": 1,
+    "current_direct_executable_worksets": 0,
+    "worksets_considered": 3,
+    "exact_blockers": 3,
+    "wake_conditions": 4,
+    "queue_mutations": 0,
+    "submitted_to_agent6": 0,
+    "acceptance_claims": 0,
+    "public_runtime_mutations": 0
+  },
+  "worksets_considered": [
+    {
+      "workset_id": "orot_route_selection_crossmatch_matrix",
+      "status": "consumed_current_cycle",
+      "artifact": "reports/agent3-orot-route-selection-crossmatch-matrix-2026-06-05.json",
+      "commit": "2662e8893",
+      "rows": 5,
+      "occurrences": 359,
+      "candidate_mismatch_rows": 1,
+      "token_index_linkage_gap_rows": 1,
+      "exact_blocker_rows": 3,
+      "executable_agent3_workset": false,
+      "reason": "Current cycle already produced and committed the evidence-only Orot route-selection crossmatch matrix."
+    },
+    {
+      "workset_id": "definition_workbench_usage_concordance_token_matrix",
+      "status": "queued awaiting Agent 6 usage concordance token matrix verdict; usage-navigation evidence only",
+      "artifact": "data/definitions/agent3-definition-workbench-usage-concordance-token-matrix.json",
+      "queue_item": "agent6-agent3-definition-workbench-usage-concordance-token-matrix",
+      "executable_agent3_workset": false,
+      "reason": "Current goal-board state is awaiting Agent 6 verdict, not a changed Agent 3 build target."
+    },
+    {
+      "workset_id": "standing_queue_deuteronomy_phase2_contract_gap",
+      "status": "stale_non_executable_control_text",
+      "artifact": "reports/spark3-orot-169-row-route-card-candidate-card-dedupe-contract-run-2026-06-04.md; Deuteronomy phase-2 contract missing exact fields",
+      "executable_agent3_workset": false,
+      "reason": "Standing queue still names a Deuteronomy phase-2 missing-contract gap, but the post-crossmatch audit observed zero direct executable Agent 3 worksets and one stale queue row."
+    }
+  ],
+  "exact_blockers": [
+    {
+      "blocker_id": "no_new_exact_changed_agent3_workset_after_route_selection_matrix",
+      "owner": "Agent 7/Agent 10 to supply changed workset; Agent 3 to execute when supplied",
+      "detail": "After consuming the Agent 12 route-selection workset, no second exact changed Agent 3 workset is present in the checked control surfaces."
+    },
+    {
+      "blocker_id": "standing_queue_deuteronomy_phase2_contract_gap_stale",
+      "owner": "Agent 7/Agent 5 control refresh or Agent 10 release package owner",
+      "detail": "data/control/spark_standing_queue.json still carries older Deuteronomy phase-2 missing-contract language that current Agent 3 post-crossmatch audit already classified as stale/non-executable."
+    },
+    {
+      "blocker_id": "usage_concordance_token_matrix_awaiting_agent6",
+      "owner": "Agent 6",
+      "detail": "Definition Workbench usage concordance/token matrix is awaiting Agent 6 verdict and does not require Agent 3 rerun unless Agent 6 returns a changed evidence requirement."
+    }
+  ],
+  "wake_conditions": [
+    {
+      "wake_id": "route_selection_transform_workset",
+      "required_fields": "target rows, input matrix path, selected route/card IDs, expected transform owner, output schema, validator/gate, stop condition",
+      "owner": "Agent 10 package intake; Agent 2 transform lane"
+    },
+    {
+      "wake_id": "agent6_changed_evidence_requirement",
+      "required_fields": "Agent 6 dated docket with exact Agent 3 evidence delta requested",
+      "owner": "Agent 6"
+    },
+    {
+      "wake_id": "changed_orot_route_selection_inputs",
+      "required_fields": "changed token-index, occurrence, reader-hint, or route-shard input path plus hash/mtime and target rows affected",
+      "owner": "Agent 10 or Agent 7 to route changed input; Agent 3 to rerun matrix"
+    },
+    {
+      "wake_id": "new_agent3_matrix_workset",
+      "required_fields": "target | files | command/script | output artifact | schema/counts | validator | handoff owner | stop condition",
+      "owner": "Agent 7/Agent 10"
+    }
+  ],
+  "handoff": {
+    "release_package_owner": "Agent 10",
+    "qa_boundary_owner": "Agent 6 only when a dated docket is required",
+    "next_step": "Sleep this Agent 3 sublane until one wake condition supplies exact changed inputs; do not broaden discovery or rerun stale Deuteronomy contract text."
+  }
+}

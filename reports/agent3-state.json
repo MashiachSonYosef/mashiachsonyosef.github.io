@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_usage_navigation_state",
-  "generated_at": "2026-06-05T14:22:49.315Z",
+  "generated_at": "2026-06-05T14:33:50.315Z",
   "generator": "scripts/build_agent3_usage_state.mjs",
   "agent": "Agent 3",
   "lane": "workbench_usage_navigation",
@@ -91,6 +91,8 @@
     "reports/agent3-post-crossmatch-reconciliation-wake-audit-2026-06-05.md",
     "reports/agent3-orot-route-selection-crossmatch-matrix-2026-06-05.json",
     "reports/agent3-orot-route-selection-crossmatch-matrix-2026-06-05.md",
+    "reports/agent3-post-route-selection-wake-audit-2026-06-05.json",
+    "reports/agent3-post-route-selection-wake-audit-2026-06-05.md",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md",
     "reports/agent3-current-control-drift-refresh-2026-06-04.json",
@@ -168,6 +170,7 @@
     "scripts/validate_agent3_agent10_crossmatch_direct_state_reconciliation.mjs",
     "scripts/validate_agent3_post_crossmatch_reconciliation_wake_audit.mjs",
     "scripts/validate_agent3_orot_route_selection_crossmatch_matrix.mjs",
+    "scripts/validate_agent3_post_route_selection_wake_audit.mjs",
     "scripts/validate_definition_workbench_usage_link_packet.mjs",
     "scripts/validate_definition_workbench_usage_seed_queue.mjs",
     "scripts/validate_definition_workbench_usage_join_smoke.mjs",
@@ -611,6 +614,11 @@
     "orot_route_selection_exact_blockers": 3,
     "orot_route_selection_route_payload_field_hits": 0,
     "orot_route_selection_forbidden_authority_field_hits": 0,
+    "post_route_selection_wake_current_executable_worksets": 0,
+    "post_route_selection_wake_exact_blockers": 3,
+    "post_route_selection_wake_conditions": 4,
+    "post_route_selection_wake_queue_mutations": 0,
+    "post_route_selection_wake_acceptance_claims": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -639,14 +647,14 @@
   ],
   "quality": {
     "status": "pass_with_warnings",
-    "warning_count": 16,
+    "warning_count": 17,
     "failed_count": 0
   },
   "counts": {
-    "evidence_artifacts": 105,
-    "evidence_artifacts_exist": 105,
-    "validator_scripts": 54,
-    "validator_scripts_exist": 54,
+    "evidence_artifacts": 107,
+    "evidence_artifacts_exist": 107,
+    "validator_scripts": 55,
+    "validator_scripts_exist": 55,
     "queue_required_fields_present": 10,
     "queue_required_fields": 10,
     "queue_mutations": 0,
@@ -1063,6 +1071,11 @@
     "orot_route_selection_exact_blockers": 3,
     "orot_route_selection_route_payload_field_hits": 0,
     "orot_route_selection_forbidden_authority_field_hits": 0,
+    "post_route_selection_wake_current_executable_worksets": 0,
+    "post_route_selection_wake_exact_blockers": 3,
+    "post_route_selection_wake_conditions": 4,
+    "post_route_selection_wake_queue_mutations": 0,
+    "post_route_selection_wake_acceptance_claims": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -1087,12 +1100,12 @@
     {
       "id": "evidence_artifacts_exist",
       "status": "passed",
-      "detail": "105/105"
+      "detail": "107/107"
     },
     {
       "id": "validator_scripts_exist",
       "status": "passed",
-      "detail": "54/54"
+      "detail": "55/55"
     },
     {
       "id": "queue_ready_not_submitted",
@@ -1258,6 +1271,11 @@
       "id": "orot_route_selection_crossmatch_matrix_complete",
       "status": "warning",
       "detail": "rows/occurrences 5/359; mismatches/linkage-gaps/blockers 1/1/3; route-payload/forbidden 0/0"
+    },
+    {
+      "id": "post_route_selection_wake_audit_complete",
+      "status": "warning",
+      "detail": "executable/blockers/wake 0/3/4; queue/acceptance 0/0"
     },
     {
       "id": "proof_metadata_complete",
