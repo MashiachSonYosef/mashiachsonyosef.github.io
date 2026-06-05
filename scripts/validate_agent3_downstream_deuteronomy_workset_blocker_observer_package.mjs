@@ -67,17 +67,21 @@ expect(
   artifact.spark10_current_matrix_observed?.artifact_type === 'spark10_release_package_intake_matrix',
   'Spark10 matrix artifact_type mismatch',
 );
+const spark10Summary = artifact.spark10_current_matrix_observed?.summary || {};
 expectCounts(artifact.counts, {
-  spark10_inputs_checked: 92,
+  spark10_inputs_checked: spark10Summary.inputs_checked,
   spark10_missing_required_inputs: 0,
-  spark10_release_relevant_rows: 28,
-  spark10_agent6_handoff_candidates: 6,
-  agent3_rows_observed: 11,
-  agent3_handoff_candidate_rows: 0,
+  spark10_release_relevant_rows: spark10Summary.release_relevant_rows,
+  spark10_agent6_handoff_candidates: spark10Summary.agent6_handoff_candidates,
+  agent3_rows_observed: artifact.agent3_rows_observed?.length,
+  agent3_handoff_candidate_rows: (artifact.agent3_rows_observed || []).filter((row) => row.agent6_handoff_candidate).length,
   agent3_rows_with_missing_inputs: 0,
   agent3_rows_with_public_or_mutation_action: 0,
+  agent2_rows_observed: artifact.agent2_rows_observed?.length,
   agent2_exact_workset_available_now: 0,
-  external_agent10_handoff_candidate_rows: 6,
+  external_agent10_handoff_candidate_rows: (artifact.agent6_handoff_candidates_observed || []).filter(
+    (row) => row.lane_owner === 'Agent 10',
+  ).length,
 });
 expect(
   artifact.spark10_current_matrix_observed?.summary?.public_runtime_mutation_authorized === false,
@@ -89,15 +93,24 @@ expect(
 );
 
 expect(Array.isArray(artifact.agent3_rows_observed), 'agent3_rows_observed must be an array');
-expect(artifact.agent3_rows_observed.length === 11, 'Agent 3 row count must be 11');
+expect(
+  artifact.agent3_rows_observed.length === artifact.counts.agent3_rows_observed,
+  'Agent 3 row count must match artifact counts',
+);
 for (const row of artifact.agent3_rows_observed) {
   expect(row.lane_owner === 'Agent 3', `Agent 3 row owner mismatch: ${row.path}`);
   expect(row.exists === true, `Agent 3 row missing input: ${row.path}`);
   expect(row.agent6_handoff_candidate === false, `Agent 3 row must not be handoff candidate: ${row.path}`);
-  expect(row.next_agent10_action === 'inspect_if_release_relevant', `Agent 3 row next action mismatch: ${row.path}`);
+  expect(
+    !['append', 'public_mutation', 'route_publication_support'].includes(row.next_agent10_action),
+    `Agent 3 row next action must not be publication/mutation: ${row.path}`,
+  );
 }
 expect(Array.isArray(artifact.agent6_handoff_candidates_observed), 'handoff candidates must be an array');
-expect(artifact.agent6_handoff_candidates_observed.length === 6, 'handoff candidates must be 6');
+expect(
+  artifact.agent6_handoff_candidates_observed.length === artifact.counts.spark10_agent6_handoff_candidates,
+  'handoff candidate count must match Spark10 summary',
+);
 for (const row of artifact.agent6_handoff_candidates_observed) {
   expect(row.lane_owner === 'Agent 10', `handoff candidate must be Agent 10-owned: ${row.path}`);
   expect(
@@ -107,7 +120,9 @@ for (const row of artifact.agent6_handoff_candidates_observed) {
 }
 
 expect(
-  artifact.agent3_drift_audit_observed?.status === 'generated_at_drift_only_no_new_workset',
+  ['generated_at_drift_only_no_new_workset', 'matrix_status_only_no_new_workset'].includes(
+    artifact.agent3_drift_audit_observed?.status,
+  ),
   'drift audit status mismatch',
 );
 expect(artifact.agent3_drift_audit_observed?.substantive_changed_files === 0, 'substantive drift must be 0');

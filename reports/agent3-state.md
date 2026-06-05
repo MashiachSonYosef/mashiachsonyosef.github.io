@@ -262,15 +262,15 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 
 ## Latest Linkage/Navigation Pulse
 
-- Generated: 2026-06-04T17:58:56.639Z
-- Package: `reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json`
-- Status: `missing_pipeline_blocker`
-- Queue item: `spark-oracle9-missed-dictionary-evidence-diff`
-- Inputs present / expected: 2/2
-- Missing contract fields: pipeline_commands, output_path_schema, validator_gate, command_script_invocation
-- Missed-dictionary candidate rows / unmatched rows: 0/168
-- Boundary: blocker evidence only; no executable workset, Definition authority, answer selection, route publication, runtime mutation, source/license acceptance, candidate text export, lexicon_entry_id mutation, or accepted text.
-- Next step: supply an exact Agent3/Spark-3 command packet before any Oracle9 missed-dictionary evidence-diff execution.
+- Generated: 2026-06-05T11:51:50.230Z
+- Package: `reports/agent3-downstream-deuteronomy-workset-blocker-observer-package-2026-06-04.json`
+- Status: `downstream_deuteronomy_no_agent3_workset_observed`
+- Current Spark-10 matrix rows/input count: 365
+- Agent 3 rows observed / handoff candidates: 41/0
+- External Agent 10 handoff candidates: 0
+- Downstream Agent 2 exact workset available now: 0
+- Boundary: observer evidence only; no executable workset, Definition authority, answer selection, route publication, runtime mutation, source/license acceptance, or accepted text.
+- Next step: wait for exact changed Agent 3 linkage/dedupe/navigation workset, direct Spark return, or downstream route needing Agent 3 packaging.
 
 <!-- agent3-latest-linkage-pulse-end -->
 

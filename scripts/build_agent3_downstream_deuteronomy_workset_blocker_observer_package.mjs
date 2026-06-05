@@ -123,7 +123,7 @@ const artifact = {
   what_remains_blocked: [
     'No new Agent 3 executable linkage/dedupe/navigation workset is named by the downstream Agent 2 return.',
     'Agent 2 exact workset remains blocked until a changed input or exact new target is named.',
-    'The observed Agent 6 handoff candidates are Agent 10-owned packets, not Agent 3 routes.',
+    'The current matrix exposes zero Agent 6 handoff candidates and zero Agent 3 handoff candidates.',
     'Agent 3 Orot/Deuteronomy source matrices remain generated_at-only working-tree drift and are not committed here.',
     'No publication, Definition authority, answer eligibility, source/license acceptance, runtime mutation, route publication support, or accepted text is authorized.',
   ],
@@ -200,7 +200,11 @@ function renderMarkdown(value) {
   lines.push('');
   lines.push('## Handoff Candidates');
   lines.push('');
-  lines.push('The observed Agent 6 handoff candidates are external Agent 10 packets, not Agent 3 routes.');
+  lines.push(
+    value.agent6_handoff_candidates_observed.length
+      ? 'The observed Agent 6 handoff candidates are external Agent 10 packets, not Agent 3 routes.'
+      : 'The current matrix exposes zero Agent 6 handoff candidates and zero Agent 3 handoff candidates.',
+  );
   lines.push('');
   lines.push('| Path | Owner | Status | Next action |');
   lines.push('| --- | --- | --- | --- |');
