@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_definition_workbench_usage_collision_handoff_manifest",
+  "generated_at": "2026-06-02T12:48:21.110Z",
+  "generator": "scripts/build_agent3_definition_workbench_usage_collision_handoff_manifest.mjs",
+  "lane_owner": "Agent 3",
+  "status": "evidence-ready",
+  "focus_token_normalized": "ראשית",
+  "target_gate": "definition_workbench_gate",
+  "policy": "Handoff manifest for Agent 3 collision/review/reverse-index usage-navigation artifacts. This manifest is a consumption and QA index only; it does not rank routes, select visible answers, copy Agent 2 payloads, emit definitions, translate, mutate queues, or publish.",
+  "authority_boundary": {
+    "usage_navigation_only": true,
+    "collision_handoff_manifest_only": true,
+    "observed_usage_only": true,
+    "route_ids_only": true,
+    "audit_only": true,
+    "reader_facing": false,
+    "definition_authority": false,
+    "reviewed_lexical_authority": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "visible_answer_selection": false,
+    "copied_route_payloads": false,
+    "accepted_text_output": false,
+    "publication_claim": false,
+    "source_text_read": false,
+    "broad_target_expansion": false,
+    "agent6_accepted": false
+  },
+  "consumer_contract": {
+    "allowed_use": "Agent 6/Agent 5 QA intake and downstream usage-navigation planning only",
+    "required_label": "observed usage only",
+    "route_payload_rule": "related Agent 2 route IDs may be carried; Agent 2 route payloads must be resolved outside Agent 3 artifacts",
+    "ambiguity_rule": "collision and ambiguous rows remain audit/review-only unless a later Agent 6 docket accepts a narrower display boundary",
+    "blocked_uses": [
+      "definition authority",
+      "reviewed lexical authority",
+      "visible answer selection",
+      "route ranking",
+      "semantic arbitration",
+      "HUD or Workbench UI acceptance",
+      "public/runtime display",
+      "publication readiness",
+      "accepted translation text"
+    ]
+  },
+  "manifest_entries": [
+    {
+      "key": "focus_collision_audit",
+      "role": "full collision/repeatability audit over current focus-token drilldown",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-focus-collision-audit-reshit.json",
+      "report_path": "reports/agent3-definition-workbench-usage-focus-collision-audit-reshit.md",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_focus_collision_audit.mjs",
+      "data_exists": true,
+      "report_exists": true,
+      "validator_exists": true,
+      "artifact_type": "agent3_definition_workbench_usage_focus_collision_audit",
+      "expected_type": "agent3_definition_workbench_usage_focus_collision_audit",
+      "type_matches": true,
+      "status": "evidence-ready",
+      "focus_token_normalized": "ראשית",
+      "source_artifacts": {
+        "focus_token_drilldown": "data/definitions/agent3-definition-workbench-usage-focus-token-drilldown-reshit.json"
+      },
+      "route_ids": [
+        "def-kaikki-lemma-e4f94cd5131316a8"
+      ],
+      "counts": {
+        "source_drilldown_rows": 2390,
+        "focus_token_rows": 2390,
+        "source_refs": 1673,
+        "works": 271,
+        "licenses": 4,
+        "route_ids": 1,
+        "collision_rows": 410,
+        "duplicate_source_ref_buckets": 418,
+        "duplicate_source_ref_rows": 1135,
+        "duplicate_local_work_anchor_buckets": 418,
+        "duplicate_local_work_anchor_rows": 1135,
+        "duplicate_phrase_context_buckets": 10,
+        "duplicate_phrase_context_rows": 20,
+        "duplicate_work_frame_buckets": 220,
+        "duplicate_work_frame_rows": 2231,
+        "duplicate_source_ref_frame_buckets": 400,
+        "duplicate_source_ref_frame_rows": 1029,
+        "duplicate_source_ref_license_buckets": 418,
+        "duplicate_source_ref_license_rows": 1135,
+        "emitted_source_ref_collision_rows": 80,
+        "emitted_local_work_anchor_collision_rows": 80,
+        "emitted_phrase_context_collision_rows": 10,
+        "emitted_work_frame_collision_rows": 80,
+        "emitted_source_ref_frame_collision_rows": 80,
+        "emitted_source_ref_license_collision_rows": 80,
+        "rows_with_complete_metadata": 2390,
+        "rows_with_route_ids": 2390,
+        "observed_usage_only_rows": 2390,
+        "audit_only_collision_rows": 410,
+        "reader_facing_rows": 0,
+        "route_payload_field_hits": 0,
+        "forbidden_authority_field_hits": 0,
+        "source_text_reads": 0,
+        "broad_target_expansion": 0,
+        "queue_mutations": 0,
+        "submitted_to_agent6": 0
+      },
+      "boundary_summary": {
+        "reader_facing_rows": 0,
+        "route_payload_field_hits": 0,
+        "forbidden_authority_field_hits": 0,
+        "source_text_reads": 0,
+        "broad_target_expansion": 0,
+        "queue_mutations": 0,
+        "submitted_to_agent6": 0
+      }
+    },
+    {
+      "key": "collision_review_queue",
+      "role": "compact Agent 6 review queue selected from collision audit rows",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-collision-review-queue-reshit.json",
+      "report_path": "reports/agent3-definition-workbench-usage-collision-review-queue-reshit.md",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_collision_review_queue.mjs",
+      "data_exists": true,
+      "report_exists": true,
+      "validator_exists": true,
+      "artifact_type": "agent3_definition_workbench_usage_collision_review_queue",
+      "expected_type": "agent3_definition_workbench_usage_collision_review_queue",
+      "type_matches": true,
+      "status": "evidence-ready",
+      "focus_token_normalized": "ראשית",
+      "source_artifacts": {
+        "collision_audit": "data/definitions/agent3-definition-workbench-usage-focus-collision-audit-reshit.json"
+      },
+      "route_ids": [
+        "def-kaikki-lemma-e4f94cd5131316a8"
+      ],
+      "counts": {
+        "source_collision_rows": 410,
+        "review_queue_rows": 70,
+        "max_rows_per_type": 12,
+        "source_ref_rows": 12,
+        "local_work_anchor_rows": 12,
+        "phrase_context_rows": 10,
+        "work_frame_rows": 12,
+        "source_ref_frame_rows": 12,
+        "source_ref_license_rows": 12,
+        "represented_occurrence_links": 106,
+        "represented_source_refs": 55,
+        "represented_works": 24,
+        "represented_licenses": 2,
+        "queue_rows_with_route_ids": 70,
+        "queue_rows_with_complete_samples": 70,
+        "rows_labeled_observed_usage_only": 70,
+        "review_only_rows": 70,
+        "reader_facing_rows": 0,
+        "route_payload_field_hits": 0,
+        "forbidden_authority_field_hits": 0,
+        "source_text_reads": 0,
+        "broad_target_expansion": 0,
+        "queue_mutations": 0,
+        "submitted_to_agent6": 0
+      },
+      "boundary_summary": {
+        "reader_facing_rows": 0,
+        "route_payload_field_hits": 0,
+        "forbidden_authority_field_hits": 0,
+        "source_text_reads": 0,
+        "broad_target_expansion": 0,
+        "queue_mutations": 0,
+        "submitted_to_agent6": 0
+      }
+    },
+    {
+      "key": "collision_review_reverse_index",
+      "role": "reverse index from representative occurrence/source/work/license links back to review queue rows",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-collision-review-reverse-index-reshit.json",
+      "report_path": "reports/agent3-definition-workbench-usage-collision-review-reverse-index-reshit.md",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_collision_review_reverse_index.mjs",
+      "data_exists": true,
+      "report_exists": true,
+      "validator_exists": true,
+      "artifact_type": "agent3_definition_workbench_usage_collision_review_reverse_index",
+      "expected_type": "agent3_definition_workbench_usage_collision_review_reverse_index",
+      "type_matches": true,
+      "status": "evidence-ready",
+      "focus_token_normalized": "ראשית",
+      "source_artifacts": {
+        "collision_review_queue": "data/definitions/agent3-definition-workbench-usage-collision-review-queue-reshit.json"
+      },
+      "route_ids": [
+        "def-kaikki-lemma-e4f94cd5131316a8"
+      ],
+      "counts": {
+        "source_review_queue_rows": 70,
+        "occurrence_index_rows": 106,
+        "source_ref_index_rows": 55,
+        "work_index_rows": 24,
+        "license_index_rows": 2,
+        "occurrence_queue_links": 200,
+        "source_ref_queue_links": 200,
+        "work_queue_links": 200,
+        "license_queue_links": 200,
+        "occurrence_rows_with_multiple_queue_links": 40,
+        "source_refs_with_multiple_queue_links": 26,
+        "works_with_multiple_queue_links": 19,
+        "licenses_with_multiple_queue_links": 2,
+        "rows_with_complete_occurrence_metadata": 106,
+        "rows_labeled_observed_usage_only": 106,
+        "review_navigation_only_rows": 106,
+        "route_id_rows": 106,
+        "reader_facing_rows": 0,
+        "route_payload_field_hits": 0,
+        "forbidden_authority_field_hits": 0,
+        "source_text_reads": 0,
+        "broad_target_expansion": 0,
+        "queue_mutations": 0,
+        "submitted_to_agent6": 0
+      },
+      "boundary_summary": {
+        "reader_facing_rows": 0,
+        "route_payload_field_hits": 0,
+        "forbidden_authority_field_hits": 0,
+        "source_text_reads": 0,
+        "broad_target_expansion": 0,
+        "queue_mutations": 0,
+        "submitted_to_agent6": 0
+      }
+    }
+  ],
+  "counts": {
+    "manifest_entries": 3,
+    "entries_with_data_report_validator": 3,
+    "entries_with_expected_type": 3,
+    "evidence_ready_entries": 3,
+    "focus_tokens": 1,
+    "route_ids": 1,
+    "collision_audit_source_rows": 2390,
+    "collision_audit_rows": 410,
+    "review_queue_rows": 70,
+    "reverse_index_occurrence_rows": 106,
+    "reverse_index_source_ref_rows": 55,
+    "reverse_index_work_rows": 24,
+    "reverse_index_license_rows": 2,
+    "total_reader_facing_rows": 0,
+    "total_route_payload_field_hits": 0,
+    "total_forbidden_authority_field_hits": 0,
+    "total_source_text_reads": 0,
+    "total_broad_target_expansion": 0,
+    "total_queue_mutations": 0,
+    "total_submitted_to_agent6": 0
+  },
+  "checks": [
+    {
+      "id": "manifest_entries_present",
+      "status": "passed",
+      "detail": "entries 3"
+    },
+    {
+      "id": "data_report_validator_present",
+      "status": "passed",
+      "detail": "present 3/3"
+    },
+    {
+      "id": "artifact_types_match",
+      "status": "passed",
+      "detail": "type matches 3/3"
+    },
+    {
+      "id": "entries_evidence_ready",
+      "status": "passed",
+      "detail": "evidence-ready 3/3"
+    },
+    {
+      "id": "single_focus_and_route_visible",
+      "status": "passed",
+      "detail": "focus/route 1/1"
+    },
+    {
+      "id": "collision_layer_counts_visible",
+      "status": "passed",
+      "detail": "source/collision/queue/reverse 2390/410/70/106"
+    },
+    {
+      "id": "reverse_indexes_visible",
+      "status": "passed",
+      "detail": "source/work/license 55/24/2"
+    },
+    {
+      "id": "no_reader_payload_authority_hits",
+      "status": "passed",
+      "detail": "reader/payload/forbidden 0/0/0"
+    },
+    {
+      "id": "no_source_broad_queue_side_effects",
+      "status": "passed",
+      "detail": "source/broad/queue/submitted 0/0/0/0"
+    }
+  ]
+}

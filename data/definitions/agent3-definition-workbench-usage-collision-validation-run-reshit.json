@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_definition_workbench_usage_collision_validation_run",
+  "generated_at": "2026-06-02T12:59:11.800Z",
+  "generator": "scripts/build_agent3_definition_workbench_usage_collision_validation_run.mjs",
+  "lane_owner": "Agent 3",
+  "status": "evidence-ready",
+  "focus_token_normalized": "ראשית",
+  "target_gate": "definition_workbench_gate",
+  "source_artifacts": {
+    "collision_integrity_digest": "data/definitions/agent3-definition-workbench-usage-collision-integrity-digest-reshit.json",
+    "agent3_state": "reports/agent3-state.md"
+  },
+  "policy": "Validation-run packet for the Agent 3 collision handoff set. It records current validator commands and outputs for QA evidence only; it does not inspect source text, rank routes, select answers, copy Agent 2 payloads, mutate queues, emit definitions, translate, or publish.",
+  "authority_boundary": {
+    "usage_navigation_only": true,
+    "validation_run_only": true,
+    "observed_usage_only": true,
+    "route_ids_only": true,
+    "audit_only": true,
+    "reader_facing": false,
+    "definition_authority": false,
+    "reviewed_lexical_authority": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "visible_answer_selection": false,
+    "copied_route_payloads": false,
+    "accepted_text_output": false,
+    "publication_claim": false,
+    "source_text_read": false,
+    "broad_target_expansion": false,
+    "agent6_accepted": false
+  },
+  "command_results": [
+    {
+      "key": "focus_collision_audit",
+      "command": "node scripts\\validate_agent3_definition_workbench_usage_focus_collision_audit.mjs",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_focus_collision_audit.mjs",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-focus-collision-audit-reshit.json",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "stdout": "Agent 3 collision audit validation passed: source rows 2390; collision rows 410; source-ref buckets 418; route IDs 1",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "key": "collision_review_queue",
+      "command": "node scripts\\validate_agent3_definition_workbench_usage_collision_review_queue.mjs",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_collision_review_queue.mjs",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-collision-review-queue-reshit.json",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "stdout": "Agent 3 collision review queue validation passed: review rows 70; represented occurrences 106; route rows 70",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "key": "collision_review_reverse_index",
+      "command": "node scripts\\validate_agent3_definition_workbench_usage_collision_review_reverse_index.mjs",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_collision_review_reverse_index.mjs",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-collision-review-reverse-index-reshit.json",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "stdout": "Agent 3 collision review reverse index validation passed: occurrence rows 106; source refs 55; works 24; links 200",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "key": "collision_handoff_manifest",
+      "command": "node scripts\\validate_agent3_definition_workbench_usage_collision_handoff_manifest.mjs",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_collision_handoff_manifest.mjs",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-collision-handoff-manifest-reshit.json",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "stdout": "Agent 3 collision handoff manifest validation passed: entries 3; queue rows 70; reverse occurrences 106",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "key": "collision_integrity_digest",
+      "command": "node scripts\\validate_agent3_definition_workbench_usage_collision_integrity_digest.mjs",
+      "validator_path": "scripts/validate_agent3_definition_workbench_usage_collision_integrity_digest.mjs",
+      "data_path": "data/definitions/agent3-definition-workbench-usage-collision-integrity-digest-reshit.json",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "stdout": "Agent 3 collision integrity digest validation passed: entries 12; artifact keys 4; total bytes 4886939",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "key": "agent3_usage_state",
+      "command": "node scripts\\validate_agent3_usage_state.mjs",
+      "validator_path": "scripts/validate_agent3_usage_state.mjs",
+      "data_path": "reports/agent3-state.md",
+      "validator_exists": true,
+      "data_exists": true,
+      "exit_code": 0,
+      "stdout": "Agent 3 usage state validation passed.\nEvidence artifacts: 59/59; validators: 31/31; smoke failed: 0.",
+      "stderr": "",
+      "passed": true
+    }
+  ],
+  "counts": {
+    "validation_commands": 6,
+    "commands_passed": 6,
+    "commands_failed": 0,
+    "validators_present": 6,
+    "data_paths_present": 6,
+    "json_data_artifacts": 5,
+    "evidence_ready_json_artifacts": 5,
+    "route_ids": 1,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "source_text_reads": 0,
+    "broad_target_expansion": 0,
+    "queue_mutations": 0,
+    "submitted_to_agent6": 0
+  },
+  "checks": [
+    {
+      "id": "validation_commands_present",
+      "status": "passed",
+      "detail": "commands 6"
+    },
+    {
+      "id": "all_validators_present",
+      "status": "passed",
+      "detail": "validators 6/6"
+    },
+    {
+      "id": "all_data_paths_present",
+      "status": "passed",
+      "detail": "data paths 6/6"
+    },
+    {
+      "id": "all_commands_passed",
+      "status": "passed",
+      "detail": "passed/failed 6/0"
+    },
+    {
+      "id": "json_data_evidence_ready",
+      "status": "passed",
+      "detail": "evidence-ready json 5/5"
+    },
+    {
+      "id": "single_route_visible",
+      "status": "passed",
+      "detail": "route IDs 1"
+    },
+    {
+      "id": "no_reader_payload_authority_hits",
+      "status": "passed",
+      "detail": "reader/payload/forbidden 0/0/0"
+    },
+    {
+      "id": "no_source_broad_queue_side_effects",
+      "status": "passed",
+      "detail": "source/broad/queue/submitted 0/0/0/0"
+    }
+  ]
+}
