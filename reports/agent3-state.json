@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_usage_navigation_state",
-  "generated_at": "2026-06-05T13:55:36.753Z",
+  "generated_at": "2026-06-05T14:22:49.315Z",
   "generator": "scripts/build_agent3_usage_state.mjs",
   "agent": "Agent 3",
   "lane": "workbench_usage_navigation",
@@ -89,6 +89,8 @@
     "reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.md",
     "reports/agent3-post-crossmatch-reconciliation-wake-audit-2026-06-05.json",
     "reports/agent3-post-crossmatch-reconciliation-wake-audit-2026-06-05.md",
+    "reports/agent3-orot-route-selection-crossmatch-matrix-2026-06-05.json",
+    "reports/agent3-orot-route-selection-crossmatch-matrix-2026-06-05.md",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md",
     "reports/agent3-current-control-drift-refresh-2026-06-04.json",
@@ -165,6 +167,7 @@
     "scripts/validate_agent3_crossmatch_inventory_packet.mjs",
     "scripts/validate_agent3_agent10_crossmatch_direct_state_reconciliation.mjs",
     "scripts/validate_agent3_post_crossmatch_reconciliation_wake_audit.mjs",
+    "scripts/validate_agent3_orot_route_selection_crossmatch_matrix.mjs",
     "scripts/validate_definition_workbench_usage_link_packet.mjs",
     "scripts/validate_definition_workbench_usage_seed_queue.mjs",
     "scripts/validate_definition_workbench_usage_join_smoke.mjs",
@@ -601,6 +604,13 @@
     "post_crossmatch_wake_direct_executable_worksets": 0,
     "post_crossmatch_wake_no_new_workset_blockers": 2,
     "post_crossmatch_wake_agent6_boundary_packets_opened": 0,
+    "orot_route_selection_rows": 5,
+    "orot_route_selection_occurrence_links": 359,
+    "orot_route_selection_candidate_mismatches": 1,
+    "orot_route_selection_token_index_linkage_gaps": 1,
+    "orot_route_selection_exact_blockers": 3,
+    "orot_route_selection_route_payload_field_hits": 0,
+    "orot_route_selection_forbidden_authority_field_hits": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -629,14 +639,14 @@
   ],
   "quality": {
     "status": "pass_with_warnings",
-    "warning_count": 15,
+    "warning_count": 16,
     "failed_count": 0
   },
   "counts": {
-    "evidence_artifacts": 103,
-    "evidence_artifacts_exist": 103,
-    "validator_scripts": 53,
-    "validator_scripts_exist": 53,
+    "evidence_artifacts": 105,
+    "evidence_artifacts_exist": 105,
+    "validator_scripts": 54,
+    "validator_scripts_exist": 54,
     "queue_required_fields_present": 10,
     "queue_required_fields": 10,
     "queue_mutations": 0,
@@ -1046,6 +1056,13 @@
     "post_crossmatch_wake_direct_executable_worksets": 0,
     "post_crossmatch_wake_no_new_workset_blockers": 2,
     "post_crossmatch_wake_agent6_boundary_packets_opened": 0,
+    "orot_route_selection_rows": 5,
+    "orot_route_selection_occurrence_links": 359,
+    "orot_route_selection_candidate_mismatches": 1,
+    "orot_route_selection_token_index_linkage_gaps": 1,
+    "orot_route_selection_exact_blockers": 3,
+    "orot_route_selection_route_payload_field_hits": 0,
+    "orot_route_selection_forbidden_authority_field_hits": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -1070,12 +1087,12 @@
     {
       "id": "evidence_artifacts_exist",
       "status": "passed",
-      "detail": "103/103"
+      "detail": "105/105"
     },
     {
       "id": "validator_scripts_exist",
       "status": "passed",
-      "detail": "53/53"
+      "detail": "54/54"
     },
     {
       "id": "queue_ready_not_submitted",
@@ -1236,6 +1253,11 @@
       "id": "post_crossmatch_reconciliation_wake_audit_complete",
       "status": "warning",
       "detail": "queue stale 1; stale dirty delta 192; current dirty 0; registered/executable/blockers/agent6 4/0/2/0"
+    },
+    {
+      "id": "orot_route_selection_crossmatch_matrix_complete",
+      "status": "warning",
+      "detail": "rows/occurrences 5/359; mismatches/linkage-gaps/blockers 1/1/3; route-payload/forbidden 0/0"
     },
     {
       "id": "proof_metadata_complete",
