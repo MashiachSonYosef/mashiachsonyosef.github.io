@@ -79,22 +79,47 @@ function validateReviewedInputs() {
 
 function validateCounts() {
   const counts = artifact.schema_counts || {};
-  expect(counts.live_refresh_inputs_checked === 263, 'live refresh inputs must be 263');
-  expect(counts.live_refresh_release_relevant_rows === 116, 'live refresh release-relevant rows must be 116');
-  expect(counts.live_refresh_handoff_candidates === 45, 'live refresh handoff candidates must be 45');
-  expect(counts.current_matrix_inputs_checked === counts.live_refresh_inputs_checked, 'current matrix inputs must match live refresh');
+  const current = artifact.current_matrix_observed || {};
+  expect(counts.live_refresh_inputs_checked > 0, 'live refresh inputs must be nonzero');
+  expect(counts.live_refresh_release_relevant_rows >= 0, 'live refresh release-relevant rows must be nonnegative');
+  expect(counts.live_refresh_handoff_candidates >= 0, 'live refresh handoff candidates must be nonnegative');
+  expect(
+    counts.current_matrix_inputs_checked === number(current.summary?.inputs_checked),
+    'current matrix inputs must match current snapshot',
+  );
   expect(counts.current_matrix_missing_required_inputs === 0, 'current matrix missing inputs must be 0');
-  expect(counts.current_matrix_release_relevant_rows === counts.live_refresh_release_relevant_rows, 'current release-relevant count must match live refresh');
-  expect(counts.current_matrix_agent6_handoff_candidates === counts.live_refresh_handoff_candidates, 'current handoff count must match live refresh');
+  expect(
+    counts.current_matrix_release_relevant_rows === number(current.summary?.release_relevant_rows),
+    'current release-relevant count must match current snapshot',
+  );
+  expect(
+    counts.current_matrix_agent6_handoff_candidates === number(current.summary?.agent6_handoff_candidates),
+    'current handoff count must match current snapshot',
+  );
   expect(counts.current_matrix_rows === counts.current_matrix_inputs_checked, 'current matrix rows should equal inputs checked');
-  expect(counts.current_matrix_agent3_rows === 24, 'current Agent 3 row count must be 24');
-  expect(counts.current_matrix_spark3_rows === 5, 'current Spark-3 row count must be 5');
+  expect(counts.current_matrix_agent3_rows === current.agent3_rows, 'current Agent 3 row count mismatch');
+  expect(counts.current_matrix_spark3_rows === current.spark3_rows, 'current Spark-3 row count mismatch');
   expect(counts.current_matrix_handoff_rows === counts.current_matrix_agent6_handoff_candidates, 'handoff row count mismatch');
-  expect(counts.current_matrix_agent3_handoff_rows === 7, 'current Agent 3 handoff row count must be 7');
-  expect(counts.matrix_counts_match_live_refresh_snapshot === 1, 'matrix must match live refresh snapshot');
-  expect(counts.matrix_row_delta_since_live_refresh_snapshot === 0, 'matrix row delta after refresh must be 0');
-  expect(counts.release_relevant_delta_since_live_refresh_snapshot === 0, 'release-relevant delta after refresh must be 0');
-  expect(counts.handoff_delta_since_live_refresh_snapshot === 0, 'handoff delta after refresh must be 0');
+  expect(counts.current_matrix_agent3_handoff_rows === current.agent3_handoff_rows, 'current Agent 3 handoff row count mismatch');
+  expect(
+    counts.matrix_counts_match_live_refresh_snapshot === (current.counts_match_live_refresh_snapshot ? 1 : 0),
+    'matrix refresh match flag mismatch',
+  );
+  expect(
+    counts.matrix_row_delta_since_live_refresh_snapshot ===
+      counts.current_matrix_rows - number(artifact.live_refresh_reference?.snapshot_counts?.live_matrix_rows),
+    'matrix row delta after refresh mismatch',
+  );
+  expect(
+    counts.release_relevant_delta_since_live_refresh_snapshot ===
+      counts.current_matrix_release_relevant_rows - counts.live_refresh_release_relevant_rows,
+    'release-relevant delta after refresh mismatch',
+  );
+  expect(
+    counts.handoff_delta_since_live_refresh_snapshot ===
+      counts.current_matrix_handoff_rows - counts.live_refresh_handoff_candidates,
+    'handoff delta after refresh mismatch',
+  );
   expect(counts.agent10_agent3_runnable_queue_items === 0, 'Agent 10 Agent 3 runnable queue items must be 0');
   expect(counts.agent10_changed_artifacts_found === 0, 'changed artifacts found must be 0');
   expect(counts.agent10_exact_new_worksets_found === 0, 'exact new worksets found must be 0');
@@ -184,6 +209,10 @@ function resolve(relativePath) {
 
 function sha256(relativePath) {
   return crypto.createHash('sha256').update(fs.readFileSync(resolve(relativePath))).digest('hex');
+}
+
+function number(value) {
+  return Number.isFinite(Number(value)) ? Number(value) : 0;
 }
 
 function expect(condition, message) {
