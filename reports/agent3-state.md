@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-05T01:09:50.604Z
+Generated: 2026-06-05T01:22:59.280Z
 
 ## State
 
@@ -113,8 +113,8 @@ Generated: 2026-06-05T01:09:50.604Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 87/87 |
-| validator_scripts_exist | passed | 45/45 |
+| evidence_artifacts_exist | passed | 89/89 |
+| validator_scripts_exist | passed | 46/46 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
@@ -216,6 +216,20 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 - Blocker: `missing_spark10_intake_registration_or_exact_agent3_workset`; no Agent 3 executable workset is created here.
 
 <!-- agent3_post_continuity_release_intake_registration_audit:end -->
+
+<!-- agent3_agent10_post_matrix_registration_consumption:start -->
+
+## Latest Agent10 Post-Matrix Registration Consumption
+
+- Package: `reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.md`
+- JSON: `reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.json`
+- Status: `agent10_post_matrix_registration_consumed_no_executable_workset`
+- Agent 10 input: `reports/agent10-post-matrix-lane-output-consumption-2026-06-05.json`
+- Resolved blocker scope: Spark-10 registration for latest Agent 3 Deuteronomy continuity artifacts only
+- Remaining blocker: `no_exact_changed_executable_agent3_workset`
+- Counts: 1334 rows / 2964 occurrences; Spark10 registered continuity rows 4; executable worksets 0.
+
+<!-- agent3_agent10_post_matrix_registration_consumption:end -->
 
 <!-- agent3_linkage_dedupe_generated_at_drift_audit:start -->
 

@@ -56,6 +56,10 @@ const preservedReportSections = [
     '<!-- agent3_post_continuity_release_intake_registration_audit:end -->',
   ],
   [
+    '<!-- agent3_agent10_post_matrix_registration_consumption:start -->',
+    '<!-- agent3_agent10_post_matrix_registration_consumption:end -->',
+  ],
+  [
     '<!-- agent3_linkage_dedupe_generated_at_drift_audit:start -->',
     '<!-- agent3_linkage_dedupe_generated_at_drift_audit:end -->',
   ],
@@ -272,6 +276,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.md',
   'reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.json',
   'reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.md',
+  'reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.json',
+  'reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.md',
   'data/definitions/definition-workbench-usage-link-packet.json',
   'reports/definition-workbench-usage-link-packet.md',
   'data/definitions/definition-workbench-usage-seed-queue.json',
@@ -329,6 +335,7 @@ const validators = unique([
   'scripts/validate_agent3_spark10_matrix_delta_audit.mjs',
   'scripts/validate_agent3_deuteronomy_phase2_transform_readiness_verdict_continuity_package.mjs',
   'scripts/validate_agent3_post_continuity_release_intake_registration_audit.mjs',
+  'scripts/validate_agent3_agent10_post_matrix_registration_consumption_package.mjs',
   'scripts/validate_agent3_usage_state.mjs',
 ]);
 const counts = buildCounts();
