@@ -222,6 +222,8 @@ const artifact = {
     'spark10MatrixJson',
     'spark10MatrixMd',
     'agent10WeeklyBoundaryOrBlockerMd',
+    'sparkQueueJson',
+    'agentGoalBoardJson',
     'agent3StateJson',
     'agent3StateMd',
   ],
