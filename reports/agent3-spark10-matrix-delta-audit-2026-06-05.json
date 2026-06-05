@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_spark10_matrix_delta_audit",
+  "generated_at": "2026-06-05T00:33:48.926Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE",
+  "lane_owner": "Agent 3",
+  "status": "spark10_matrix_delta_observed_no_agent3_workset",
+  "publication_state": "blocked_no_render",
+  "target": "Record the live Spark-10 intake matrix delta after the prior Agent 3 post-refresh no-new-workset audit while preserving Agent 3 as evidence/navigation only.",
+  "files": {
+    "input_files": [
+      "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+      "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.json",
+      "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.md",
+      "reports/agent3-spark10-live-matrix-refresh-observer-package-2026-06-04.json",
+      "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.json",
+      "data/control/spark_standing_queue.json",
+      "data/control/agent_goal_board.json",
+      "reports/agent3-state.json"
+    ],
+    "output_json": "reports/agent3-spark10-matrix-delta-audit-2026-06-05.json",
+    "output_markdown": "reports/agent3-spark10-matrix-delta-audit-2026-06-05.md"
+  },
+  "exact_command_or_script_to_write_or_run": "node scripts/build_agent3_spark10_matrix_delta_audit.mjs",
+  "previous_post_refresh_audit": {
+    "path": "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.json",
+    "status": "post_refresh_no_new_agent3_workset",
+    "counts": {
+      "current_matrix_inputs_checked": 263,
+      "current_matrix_release_relevant_rows": 116,
+      "current_matrix_agent6_handoff_candidates": 45,
+      "current_matrix_rows": 263,
+      "current_matrix_agent3_rows": 24,
+      "current_matrix_spark3_rows": 5,
+      "agent10_agent3_runnable_queue_items": 0,
+      "agent10_changed_artifacts_found": 0,
+      "agent10_exact_new_worksets_found": 0
+    },
+    "blocker": {
+      "blocker": "missing_changed_artifact_or_exact_workset",
+      "source": "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.json",
+      "wake_condition": "No new Agent 3 workset is present after the live Spark-10 refresh; wake only with a changed Agent 3 artifact path or exact workset with named inputs, row/occurrence bounds, output schema/path, validator/gate, handoff owner, and stop condition.",
+      "missing_fields": [
+        "changed_agent3_artifact_path_or_exact_workset_id",
+        "target_rows_and_occurrences_for_new_agent3_matrix",
+        "route_card_or_source_route_input_set",
+        "output_path_and_schema_for_new_agent3_matrix",
+        "validator_or_gate_for_new_agent3_matrix",
+        "handoff_trigger_for_agent10_release_package_intake",
+        "stop_condition_for_new_agent3_run"
+      ]
+    }
+  },
+  "live_refresh_reference": {
+    "path": "reports/agent3-spark10-live-matrix-refresh-observer-package-2026-06-04.json",
+    "status": "live_spark10_matrix_refresh_observed_no_agent3_executable_workset",
+    "snapshot_counts": {
+      "live_inputs_checked": 263,
+      "live_release_relevant_rows": 116,
+      "live_agent6_handoff_candidates": 45,
+      "matrix_row_delta_since_previous_observer": 24
+    }
+  },
+  "current_matrix": {
+    "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+    "artifact_type": "spark10_release_package_intake_matrix",
+    "generated_at": "2026-06-05T00:29:42.217Z",
+    "summary": {
+      "inputs_checked": 275,
+      "missing_required_inputs": 0,
+      "release_relevant_rows": 118,
+      "agent6_handoff_candidates": 47,
+      "public_runtime_mutation_authorized": false,
+      "answer_definition_release_authorized": false
+    },
+    "boundary": {
+      "public_runtime_mutation_authorized": false,
+      "route_shard_edit_authorized": false,
+      "answer_eligibility_authorized": false,
+      "definition_content_storage_authorized": false,
+      "accepted_text_authorized": false,
+      "publication_readiness_authorized": false
+    },
+    "row_count": 275,
+    "agent3_rows": 24,
+    "spark3_rows": 5,
+    "handoff_rows": 47,
+    "agent3_handoff_rows": 7
+  },
+  "agent10_consumption_reference": {
+    "path": "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.json",
+    "counts": {
+      "returned_artifacts_indexed": 4,
+      "returned_artifacts_consumed": 4,
+      "active_worksets_indexed": 2,
+      "total_rows": 8282,
+      "total_occurrences": 14743,
+      "blocker_rows": 6947,
+      "blocker_occurrences": 11748,
+      "queue_items_checked": 4,
+      "agent3_runnable_queue_items": 0,
+      "agent10_handoff_items_observed": 1,
+      "candidate_files_scanned": 37,
+      "candidate_files_modified_after_custody_index": 0,
+      "changed_artifacts_found": 0,
+      "exact_new_worksets_found": 0,
+      "new_matrix_rows": 0,
+      "new_matrix_occurrences": 0
+    },
+    "exact_blocker": {
+      "id": "missing_changed_artifact_or_exact_workset",
+      "wake_condition": "Wake Agent 3 only when Agent 10, Agent 7, or the queue supplies a changed artifact or exact workset with named inputs, rows/occurrences, output path/schema, validator/gate, handoff owner, and stop condition.",
+      "missing_fields": [
+        "changed_artifact_path_or_exact_workset_id",
+        "target_rows_and_occurrences_for_new_matrix",
+        "route_card_or_source_route_input_set",
+        "output_path_and_schema_for_new_matrix",
+        "validator_or_gate_for_new_matrix",
+        "handoff_trigger_for_agent10_release_package_intake",
+        "stop_condition_for_new_matrix_run"
+      ]
+    },
+    "stop_condition": "Stop at this no-new-workset blocker until changed artifact or exact Agent 3 workset appears.",
+    "zero_counters": {
+      "route_publication_support_rows": 0,
+      "definition_authority_rows": 0,
+      "usage_as_definition_rows": 0,
+      "answer_rows": 0,
+      "accepted_text_rows": 0,
+      "public_runtime_mutations": 0
+    }
+  },
+  "queue_reference": {
+    "path": "data/control/spark_standing_queue.json",
+    "queue_items_seen": 0,
+    "direct_agent3_runnable_items": []
+  },
+  "goal_reference": {
+    "path": "data/control/agent_goal_board.json",
+    "id": "agent3-broad-linkage-dedupe-navigation",
+    "status": "active_spark3_returned_no_queued_item_agent3_consumes",
+    "latest_spark_artifact": "reports/spark3-broad-linkage-dedupe-navigation-2026-06-04-report.md",
+    "next_action": "Agent 3 consumes/packages returned Spark-3 mechanics; Spark-3 sleeps until exact next linkage/dedupe/navigation command set exists."
+  },
+  "agent3_state_reference": {
+    "path": "reports/agent3-state.json",
+    "quality_status": "pass_with_warnings",
+    "evidence_artifacts": 83,
+    "evidence_artifacts_exist": 83,
+    "validator_scripts": 43,
+    "validator_scripts_exist": 43
+  },
+  "schema_counts": {
+    "previous_inputs_checked": 263,
+    "previous_release_relevant_rows": 116,
+    "previous_agent6_handoff_candidates": 45,
+    "previous_matrix_rows": 263,
+    "previous_agent3_rows": 24,
+    "previous_spark3_rows": 5,
+    "current_inputs_checked": 275,
+    "current_missing_required_inputs": 0,
+    "current_release_relevant_rows": 118,
+    "current_agent6_handoff_candidates": 47,
+    "current_matrix_rows": 275,
+    "current_agent3_rows": 24,
+    "current_spark3_rows": 5,
+    "current_handoff_rows": 47,
+    "current_agent3_handoff_rows": 7,
+    "input_delta_since_previous_audit": 12,
+    "matrix_row_delta_since_previous_audit": 12,
+    "release_relevant_delta_since_previous_audit": 2,
+    "handoff_delta_since_previous_audit": 2,
+    "agent3_row_delta_since_previous_audit": 0,
+    "spark3_row_delta_since_previous_audit": 0,
+    "agent10_agent3_runnable_queue_items": 0,
+    "agent10_changed_artifacts_found": 0,
+    "agent10_exact_new_worksets_found": 0,
+    "agent10_new_matrix_rows": 0,
+    "agent10_new_matrix_occurrences": 0,
+    "direct_queue_agent3_runnable_items": 0,
+    "state_evidence_artifacts": 83,
+    "state_evidence_artifacts_exist": 83,
+    "state_validator_scripts": 43,
+    "state_validator_scripts_exist": 43,
+    "route_publication_support_rows": 0,
+    "definition_authority_rows": 0,
+    "usage_as_definition_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0,
+    "public_reader_output_rows": 0
+  },
+  "reviewed_inputs": [
+    {
+      "role": "spark10MatrixJson",
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.json",
+      "sha256": "2857f8fa2d7143606194060746c7d21159606a363ee5f01c2749711fa0869242",
+      "bytes": 213663
+    },
+    {
+      "role": "spark10MatrixMd",
+      "path": "reports/spark10-release-package-intake-matrix-current-2026-06-04.md",
+      "sha256": "52bac67ec7d3465ee2d135cb15df1885f9d847f954de98af4b78206ff450e097",
+      "bytes": 55536
+    },
+    {
+      "role": "previousPostRefreshAuditJson",
+      "path": "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.json",
+      "sha256": "1d67fdfbf5e78a4897a5ea20797d27a662e8d291abce8e202e6c588c03702f50",
+      "bytes": 13102
+    },
+    {
+      "role": "previousPostRefreshAuditMd",
+      "path": "reports/agent3-post-refresh-no-new-workset-audit-2026-06-05.md",
+      "sha256": "4d462a5cb66fc08b7fae2eed29f3fcbab0d7d9c0c36df60baa9df1e599ba8d1f",
+      "bytes": 3687
+    },
+    {
+      "role": "liveRefreshJson",
+      "path": "reports/agent3-spark10-live-matrix-refresh-observer-package-2026-06-04.json",
+      "sha256": "fb6de835c191e80fe5ff53290c438850052953eb0284cffc269e3f8995a27ef1",
+      "bytes": 55229
+    },
+    {
+      "role": "agent10ConsumptionJson",
+      "path": "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.json",
+      "sha256": "5f394e21369761aab3fc36e2c37d7492d8376111403dcdb85a360285d57e7abb",
+      "bytes": 4573
+    },
+    {
+      "role": "sparkQueueJson",
+      "path": "data/control/spark_standing_queue.json",
+      "sha256": "b8db228709806aca89c7cfd7917446d42e18eb0a94706b1e9a5b3cfdfe1117e9",
+      "bytes": 7803
+    },
+    {
+      "role": "agentGoalBoardJson",
+      "path": "data/control/agent_goal_board.json",
+      "sha256": "4ca407720a97d992f6a9105c7ef09aa3dde98f3b78814599db0bf01d2efdb0ba",
+      "bytes": 339259
+    },
+    {
+      "role": "agent3StateJson",
+      "path": "reports/agent3-state.json",
+      "sha256": "aa34a8022e93d6ab17385f068c72456fe3bf4b76306d7a50ba9444c26543db42",
+      "bytes": 57453
+    }
+  ],
+  "missing_field_blocker": {
+    "blocker": "missing_changed_artifact_or_exact_workset",
+    "source": "reports/agent10-agent3-post-custody-wake-and-control-cap-consumption-2026-06-04.json",
+    "wake_condition": "Spark-10 intake matrix size changed, but Agent 3 still lacks a changed Agent 3 artifact path or exact workset with named inputs, row/occurrence bounds, output schema/path, validator/gate, handoff owner, and stop condition.",
+    "missing_fields": [
+      "changed_agent3_artifact_path_or_exact_workset_id",
+      "target_rows_and_occurrences_for_new_agent3_matrix",
+      "route_card_or_source_route_input_set",
+      "output_path_and_schema_for_new_agent3_matrix",
+      "validator_or_gate_for_new_agent3_matrix",
+      "handoff_trigger_for_agent10_release_package_intake",
+      "stop_condition_for_new_agent3_run"
+    ]
+  },
+  "handoff_owner": "Agent 10 for release/package intake; Agent 6 only by exact boundary packet prepared through release owner; Agent 3 remains held until exact changed workset.",
+  "stop_condition": "Stop after recording the Spark-10 matrix delta because the delta changes release-intake surface size only and does not create an Agent 3 executable workset.",
+  "boundary": {
+    "source_license_acceptance": false,
+    "source_provenance_acceptance": false,
+    "qa_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "answer_selection": false,
+    "route_publication_support": false,
+    "public_runtime_acceptance": false,
+    "publication_readiness": false,
+    "product_data_acceptance": false,
+    "package_export_authorization": false,
+    "accepted_gloss_text": false,
+    "accepted_text": false,
+    "translation_output": false,
+    "public_reader_output": false,
+    "public_runtime_mutation": false
+  },
+  "validators": [
+    "node scripts/validate_agent3_spark10_matrix_delta_audit.mjs",
+    "node scripts/validate_agent3_usage_state.mjs",
+    "node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json"
+  ]
+}
