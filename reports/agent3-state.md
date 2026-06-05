@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-05T11:00:34.901Z
+Generated: 2026-06-05T11:06:33.267Z
 
 ## State
 
@@ -100,7 +100,7 @@ Generated: 2026-06-05T11:00:34.901Z
 - Freshness impact pending / overlap / impacted rows: 173/0/0
 - Freshness impact selected support / promoted targets: 0/0
 - Freshness impact source-text / broad-expansion / reader-facing / route-payload / forbidden-authority hits: 0/0/0/0/0
-- Crossmatch inventory files / dirty-uncommitted / truthy-authority hits: 225/188/0
+- Crossmatch inventory files / dirty-uncommitted / truthy-authority hits: 225/184/0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -144,7 +144,7 @@ Generated: 2026-06-05T11:00:34.901Z
 | concordance_navigation_complete | passed | rows 2390/2390; supported/candidate/weak 339/1351/700; selected 49/49; source/work/category/route 1673/271/15/1; reader-facing/payload/forbidden 0/0/0 |
 | public_handoff_index_complete | warning | targets/pass/fail 55/55/0; eligible/ambiguous 2390/2064; freshness stale scanned/current/delta/modified 1192/1360/168/173; authority final/answer/text 0/0/0 |
 | freshness_impact_complete | passed | pending/overlap/impacted/selected/promoted 173/0/0/0/0; sourceText/broad/reader/payload/forbidden 0/0/0/0/0 |
-| crossmatch_inventory_packet_complete | warning | files 225; dirty/uncommitted 188; truthy authority 0 |
+| crossmatch_inventory_packet_complete | warning | files 225; dirty/uncommitted 184; truthy authority 0 |
 | proof_metadata_complete | passed | 12/12 |
 | hebrew_context_clean | passed | Hebrew context 12; mojibake 0 |
 | no_authority_fields | passed | reader-facing 0; route payload 0; forbidden 0 |
