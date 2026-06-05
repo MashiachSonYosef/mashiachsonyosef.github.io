@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_usage_navigation_state",
-  "generated_at": "2026-06-05T16:58:04.162Z",
+  "generated_at": "2026-06-05T23:03:12.635Z",
   "generator": "scripts/build_agent3_usage_state.mjs",
   "agent": "Agent 3",
   "lane": "workbench_usage_navigation",
@@ -95,6 +95,8 @@
     "reports/agent3-post-route-selection-wake-audit-2026-06-05.md",
     "reports/agent3-old-dictionary-row-overlap-linkage-matrix-2026-06-05.json",
     "reports/agent3-old-dictionary-row-overlap-linkage-matrix-2026-06-05.md",
+    "reports/agent3-old-dictionary-candidate-use-continuity-crossmatch-2026-06-05.json",
+    "reports/agent3-old-dictionary-candidate-use-continuity-crossmatch-2026-06-05.md",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md",
     "reports/agent3-current-control-drift-refresh-2026-06-04.json",
@@ -174,6 +176,7 @@
     "scripts/validate_agent3_orot_route_selection_crossmatch_matrix.mjs",
     "scripts/validate_agent3_post_route_selection_wake_audit.mjs",
     "scripts/validate_agent3_old_dictionary_row_overlap_linkage_matrix.mjs",
+    "scripts/validate_agent3_old_dictionary_candidate_use_continuity_crossmatch.mjs",
     "scripts/validate_definition_workbench_usage_link_packet.mjs",
     "scripts/validate_definition_workbench_usage_seed_queue.mjs",
     "scripts/validate_definition_workbench_usage_join_smoke.mjs",
@@ -632,6 +635,15 @@
     "old_dictionary_row_overlap_route_payload_field_hits": 0,
     "old_dictionary_row_overlap_forbidden_authority_field_hits": 0,
     "old_dictionary_row_overlap_acceptance_claims": 0,
+    "old_dictionary_candidate_use_rows": 78,
+    "old_dictionary_candidate_use_occurrences": 1461,
+    "old_dictionary_candidate_use_sample_linked_rows": 19,
+    "old_dictionary_candidate_use_sample_unlinked_rows": 59,
+    "old_dictionary_candidate_use_blocker_link_rows": 78,
+    "old_dictionary_candidate_use_duplicate_queue_ids": 0,
+    "old_dictionary_candidate_use_duplicate_token_ids": 0,
+    "old_dictionary_candidate_use_forbidden_payload_field_hits": 0,
+    "old_dictionary_candidate_use_acceptance_claims": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -664,10 +676,10 @@
     "failed_count": 0
   },
   "counts": {
-    "evidence_artifacts": 109,
-    "evidence_artifacts_exist": 109,
-    "validator_scripts": 56,
-    "validator_scripts_exist": 56,
+    "evidence_artifacts": 111,
+    "evidence_artifacts_exist": 111,
+    "validator_scripts": 57,
+    "validator_scripts_exist": 57,
     "queue_required_fields_present": 10,
     "queue_required_fields": 10,
     "queue_mutations": 0,
@@ -1099,6 +1111,15 @@
     "old_dictionary_row_overlap_route_payload_field_hits": 0,
     "old_dictionary_row_overlap_forbidden_authority_field_hits": 0,
     "old_dictionary_row_overlap_acceptance_claims": 0,
+    "old_dictionary_candidate_use_rows": 78,
+    "old_dictionary_candidate_use_occurrences": 1461,
+    "old_dictionary_candidate_use_sample_linked_rows": 19,
+    "old_dictionary_candidate_use_sample_unlinked_rows": 59,
+    "old_dictionary_candidate_use_blocker_link_rows": 78,
+    "old_dictionary_candidate_use_duplicate_queue_ids": 0,
+    "old_dictionary_candidate_use_duplicate_token_ids": 0,
+    "old_dictionary_candidate_use_forbidden_payload_field_hits": 0,
+    "old_dictionary_candidate_use_acceptance_claims": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -1123,12 +1144,12 @@
     {
       "id": "evidence_artifacts_exist",
       "status": "passed",
-      "detail": "109/109"
+      "detail": "111/111"
     },
     {
       "id": "validator_scripts_exist",
       "status": "passed",
-      "detail": "56/56"
+      "detail": "57/57"
     },
     {
       "id": "queue_ready_not_submitted",
