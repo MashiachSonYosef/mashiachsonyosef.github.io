@@ -1,6 +1,6 @@
 # Agent 3 Collision Work/Category Occurrence Locator
 
-Generated: 2026-06-04T15:21:01.503Z
+Generated: 2026-06-05T10:45:09.839Z
 
 Status: evidence-ready; awaiting Agent 6. This is occurrence-link navigation only and not Definition authority.
 
