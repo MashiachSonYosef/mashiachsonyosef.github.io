@@ -1,6 +1,6 @@
 # Agent 3 Crossmatch Inventory Packet
 
-Generated: 2026-06-05T11:42:15.051Z
+Generated: 2026-06-05T11:46:20.163Z
 
 ## Boundary
 
@@ -12,44 +12,19 @@ Generated: 2026-06-05T11:42:15.051Z
 
 - Files inspected: 225
 - Data/report/script files: 51/57/117
-- Committed-clean / dirty-or-uncommitted files: 201/24
-- Staged added / staged modified / worktree modified / untracked: 24/0/0/0
+- Committed-clean / dirty-or-uncommitted files: 225/0
+- Staged added / staged modified / worktree modified / untracked: 0/0/0/0
 - Reader-facing / route-payload / forbidden-authority / truthy-authority hits: 0/0/0/0
 
 ## Blocker
 
-- Status: exact_blocker
-- Blocker: crossmatch_inventory_contains_dirty_or_uncommitted_artifacts
-- Detail: 24 crossmatch/usage files are staged, modified, or untracked; treat them as inventory only until a bounded subset is validated and committed.
+- Status: none
+- Blocker: none
+- Detail: No dirty or uncommitted files found in the scoped crossmatch/usage inventory.
 
 ## Dirty Or Uncommitted Sample
 
-| path | kind | git statuses | artifact type |
-| --- | --- | --- | --- |
-| data/definitions/agent3-definition-workbench-usage-license-provenance-matrix.json | data_artifact | staged_added | agent3_definition_workbench_usage_license_provenance_matrix |
-| data/definitions/agent3-definition-workbench-usage-token-bridge-consumer-addendum.json | data_artifact | staged_added | agent3_definition_workbench_usage_token_bridge_consumer_addendum |
-| data/definitions/agent3-definition-workbench-usage-token-bridge-index.json | data_artifact | staged_added | agent3_definition_workbench_usage_token_bridge_index |
-| reports/agent3-definition-workbench-usage-freshness-followup-2026-06-02.json | report_artifact | staged_added | agent3_definition_workbench_usage_freshness_followup |
-| reports/agent3-definition-workbench-usage-freshness-followup-2026-06-02.md | report_artifact | staged_added |  |
-| reports/agent3-definition-workbench-usage-license-provenance-matrix.md | report_artifact | staged_added |  |
-| reports/agent3-definition-workbench-usage-negative-consumer-followup-2026-06-02.json | report_artifact | staged_added | agent3_definition_workbench_usage_negative_consumer_followup |
-| reports/agent3-definition-workbench-usage-negative-consumer-followup-2026-06-02.md | report_artifact | staged_added |  |
-| reports/agent3-definition-workbench-usage-source-freshness-refresh-2026-06-02.json | report_artifact | staged_added | agent3_definition_workbench_usage_source_freshness_refresh |
-| reports/agent3-definition-workbench-usage-source-freshness-refresh-2026-06-02.md | report_artifact | staged_added |  |
-| reports/agent3-definition-workbench-usage-token-bridge-consumer-addendum.md | report_artifact | staged_added |  |
-| reports/agent3-definition-workbench-usage-token-bridge-index.md | report_artifact | staged_added |  |
-| scripts/build_agent3_definition_workbench_usage_freshness_followup.mjs | pipeline_script | staged_added |  |
-| scripts/build_agent3_definition_workbench_usage_license_provenance_matrix.mjs | pipeline_script | staged_added |  |
-| scripts/build_agent3_definition_workbench_usage_negative_consumer_followup.mjs | pipeline_script | staged_added |  |
-| scripts/build_agent3_definition_workbench_usage_source_freshness_refresh.mjs | pipeline_script | staged_added |  |
-| scripts/build_agent3_definition_workbench_usage_token_bridge_consumer_addendum.mjs | pipeline_script | staged_added |  |
-| scripts/build_agent3_definition_workbench_usage_token_bridge_index.mjs | pipeline_script | staged_added |  |
-| scripts/validate_agent3_definition_workbench_usage_freshness_followup.mjs | pipeline_script | staged_added |  |
-| scripts/validate_agent3_definition_workbench_usage_license_provenance_matrix.mjs | pipeline_script | staged_added |  |
-| scripts/validate_agent3_definition_workbench_usage_negative_consumer_followup.mjs | pipeline_script | staged_added |  |
-| scripts/validate_agent3_definition_workbench_usage_source_freshness_refresh.mjs | pipeline_script | staged_added |  |
-| scripts/validate_agent3_definition_workbench_usage_token_bridge_consumer_addendum.mjs | pipeline_script | staged_added |  |
-| scripts/validate_agent3_definition_workbench_usage_token_bridge_index.mjs | pipeline_script | staged_added |  |
+No dirty or uncommitted files in the scoped inventory.
 
 ## Artifact Types
 
@@ -92,4 +67,4 @@ Stop after this inventory packet records current file/linkage status and exact b
 
 ## Next Step
 
-Select one bounded dirty/uncommitted subset, run its named builder and validator, then commit only that subset before treating it as package evidence.
+Use this inventory as the next clean crossmatch navigation baseline.
