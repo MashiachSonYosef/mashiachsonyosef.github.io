@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_usage_navigation_state",
-  "generated_at": "2026-06-05T23:27:01.184Z",
+  "generated_at": "2026-06-05T23:37:26.029Z",
   "generator": "scripts/build_agent3_usage_state.mjs",
   "agent": "Agent 3",
   "lane": "workbench_usage_navigation",
@@ -101,6 +101,8 @@
     "reports/agent3-old-dictionary-candidate-use-source-family-blocker-matrix-2026-06-05.md",
     "reports/agent3-old-dictionary-candidate-use-source-rid-continuity-crossmatch-2026-06-05.json",
     "reports/agent3-old-dictionary-candidate-use-source-rid-continuity-crossmatch-2026-06-05.md",
+    "reports/agent3-old-dictionary-candidate-use-exact-subset-crossmatch-2026-06-05.json",
+    "reports/agent3-old-dictionary-candidate-use-exact-subset-crossmatch-2026-06-05.md",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md",
     "reports/agent3-current-control-drift-refresh-2026-06-04.json",
@@ -183,6 +185,7 @@
     "scripts/validate_agent3_old_dictionary_candidate_use_continuity_crossmatch.mjs",
     "scripts/validate_agent3_old_dictionary_candidate_use_source_family_blocker_matrix.mjs",
     "scripts/validate_agent3_old_dictionary_candidate_use_source_rid_continuity_crossmatch.mjs",
+    "scripts/validate_agent3_old_dictionary_candidate_use_exact_subset_crossmatch.mjs",
     "scripts/validate_definition_workbench_usage_link_packet.mjs",
     "scripts/validate_definition_workbench_usage_seed_queue.mjs",
     "scripts/validate_definition_workbench_usage_join_smoke.mjs",
@@ -668,6 +671,14 @@
     "old_dictionary_candidate_use_source_rid_unused_namespace_prefixes": 1,
     "old_dictionary_candidate_use_source_rid_forbidden_payload_field_hits": 0,
     "old_dictionary_candidate_use_source_rid_acceptance_claims": 0,
+    "old_dictionary_candidate_use_exact_subset_matched_rows": 78,
+    "old_dictionary_candidate_use_exact_subset_missing_rows": 0,
+    "old_dictionary_candidate_use_exact_subset_commercial_only_rows": 5,
+    "old_dictionary_candidate_use_exact_subset_nc_overlap_rows": 65,
+    "old_dictionary_candidate_use_exact_subset_blocked_overlap_rows": 64,
+    "old_dictionary_candidate_use_exact_subset_triple_overlap_rows": 56,
+    "old_dictionary_candidate_use_exact_subset_forbidden_payload_field_hits": 0,
+    "old_dictionary_candidate_use_exact_subset_acceptance_claims": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -700,10 +711,10 @@
     "failed_count": 0
   },
   "counts": {
-    "evidence_artifacts": 115,
-    "evidence_artifacts_exist": 115,
-    "validator_scripts": 59,
-    "validator_scripts_exist": 59,
+    "evidence_artifacts": 117,
+    "evidence_artifacts_exist": 117,
+    "validator_scripts": 60,
+    "validator_scripts_exist": 60,
     "queue_required_fields_present": 10,
     "queue_required_fields": 10,
     "queue_mutations": 0,
@@ -1162,6 +1173,14 @@
     "old_dictionary_candidate_use_source_rid_unused_namespace_prefixes": 1,
     "old_dictionary_candidate_use_source_rid_forbidden_payload_field_hits": 0,
     "old_dictionary_candidate_use_source_rid_acceptance_claims": 0,
+    "old_dictionary_candidate_use_exact_subset_matched_rows": 78,
+    "old_dictionary_candidate_use_exact_subset_missing_rows": 0,
+    "old_dictionary_candidate_use_exact_subset_commercial_only_rows": 5,
+    "old_dictionary_candidate_use_exact_subset_nc_overlap_rows": 65,
+    "old_dictionary_candidate_use_exact_subset_blocked_overlap_rows": 64,
+    "old_dictionary_candidate_use_exact_subset_triple_overlap_rows": 56,
+    "old_dictionary_candidate_use_exact_subset_forbidden_payload_field_hits": 0,
+    "old_dictionary_candidate_use_exact_subset_acceptance_claims": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -1186,12 +1205,12 @@
     {
       "id": "evidence_artifacts_exist",
       "status": "passed",
-      "detail": "115/115"
+      "detail": "117/117"
     },
     {
       "id": "validator_scripts_exist",
       "status": "passed",
-      "detail": "59/59"
+      "detail": "60/60"
     },
     {
       "id": "queue_ready_not_submitted",
