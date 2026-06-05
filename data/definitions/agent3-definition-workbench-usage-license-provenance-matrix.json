@@ -1,0 +1,3136 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_definition_workbench_usage_license_provenance_matrix",
+  "generated_at": "2026-06-02T11:37:22.062Z",
+  "generator": "scripts/build_agent3_definition_workbench_usage_license_provenance_matrix.mjs",
+  "lane_owner": "Agent 3",
+  "target_gate": "definition_workbench_gate",
+  "status": "evidence-ready",
+  "source_artifacts": {
+    "concordance_navigation_packet": "data/definitions/definition-workbench-usage-concordance-navigation-packet.json",
+    "route_pointer_audit": "data/definitions/definition-workbench-usage-route-pointer-audit.json"
+  },
+  "policy": "Agent 3 usage-navigation license/provenance matrix over existing concordance rows only. It preserves source/license/version/category/status visibility and route IDs only. It does not read source text, import sources, expand targets, rank routes, select answers, define terms, translate, copy Agent 2 payloads, or claim publication/source-custody acceptance.",
+  "authority_boundary": {
+    "observed_usage_only": true,
+    "license_provenance_navigation_only": true,
+    "route_ids_only": true,
+    "source_text_read": false,
+    "broad_target_expansion": false,
+    "reader_facing": false,
+    "lexical_authority": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "visible_answer_selection": false,
+    "copied_agent2_payloads": false,
+    "publication_claim": false,
+    "source_provenance_custody_claim": false,
+    "accepted_text_claim": false,
+    "agent6_acceptance_claim": false
+  },
+  "counts": {
+    "navigation_rows": 2390,
+    "license_count": 4,
+    "license_url_count": 4,
+    "allowed_license_rows": 2390,
+    "disallowed_license_rows": 0,
+    "version_source_count": 165,
+    "category_count": 15,
+    "status_count": 3,
+    "route_ids": 1,
+    "route_pointer_rows": 1,
+    "route_pointer_payload_hits": 0,
+    "route_pointer_metadata_hits": 0,
+    "metadata_complete_rows": 2390,
+    "observed_usage_only_rows": 2390,
+    "reader_facing_rows": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_authority_field_hits": 0,
+    "license_status_category_rows": 72,
+    "license_version_rows": 185,
+    "license_category_rows": 29,
+    "license_route_rows": 4,
+    "source_text_read": 0,
+    "broad_target_expansion": 0,
+    "queue_mutations": 0,
+    "submitted_to_agent6": 0
+  },
+  "checks": [
+    {
+      "id": "navigation_rows_present",
+      "status": "passed",
+      "detail": "rows 2390"
+    },
+    {
+      "id": "license_metadata_complete",
+      "status": "passed",
+      "detail": "metadata/allowed/disallowed 2390/2390/0"
+    },
+    {
+      "id": "license_spread_visible",
+      "status": "passed",
+      "detail": "licenses/license URLs/version sources 4/4/165"
+    },
+    {
+      "id": "category_status_spread_visible",
+      "status": "passed",
+      "detail": "categories/statuses 15/3"
+    },
+    {
+      "id": "route_pointer_boundary_visible",
+      "status": "passed",
+      "detail": "route IDs/pointers/payload/metadata 1/1/0/0"
+    },
+    {
+      "id": "usage_only_boundary",
+      "status": "passed",
+      "detail": "observed/reader/payload/forbidden 2390/0/0/0"
+    },
+    {
+      "id": "no_broad_or_queue_side_effects",
+      "status": "passed",
+      "detail": "sourceText/broad/queue/submitted 0/0/0/0"
+    }
+  ],
+  "license_counts": {
+    "CC-BY": 34,
+    "CC-BY-SA": 77,
+    "CC0": 15,
+    "Public Domain": 2264
+  },
+  "license_url_counts": {
+    "https://creativecommons.org/licenses/by-sa/4.0/": 77,
+    "https://creativecommons.org/licenses/by/4.0/": 34,
+    "https://creativecommons.org/publicdomain/mark/1.0/": 2264,
+    "https://creativecommons.org/publicdomain/zero/1.0/": 15
+  },
+  "version_source_counts": {
+    "http://he.wikisource.org": 1,
+    "http://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%A7%D7%95%D7%93%D7%A9_%D7%90": 1,
+    "http://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%97%D7%95%D7%AA_%D7%A6%D7%93%D7%99%D7%A7%D7%99%D7%9D": 1,
+    "http://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%91_%D7%94%D7%9C%D7%9B%D7%95%D7%AA_%D7%91%D7%A8%D7%9B%D7%95%D7%AA_%D7%94%D7%A9%D7%97%D7%A8": 1,
+    "http://he.wikisource.org/wiki/%D7%A2%D7%A8%D7%95%D7%9A_%D7%94%D7%A9%D7%95%D7%9C%D7%97%D7%9F_%D7%90%D7%95%D7%A8%D7%97_%D7%97%D7%99%D7%99%D7%9D_%D7%90": 5,
+    "http://he.wikisource.org/wiki/%D7%A8%D7%9E%D7%91%22%D7%9D_%D7%94%D7%A7%D7%93%D7%9E%D7%94_%D7%9C%D7%9E%D7%A9%D7%A0%D7%94_%D7%AA%D7%95%D7%A8%D7%94_(%D7%9E%D7%A6%D7%95%D7%95%D7%AA_%D7%A2%D7%A9%D7%94)": 4,
+    "http://he.wikisource.org/wiki/%D7%A8%D7%9E%D7%91%22%D7%9D_%D7%94%D7%A7%D7%93%D7%9E%D7%94_%D7%9C%D7%9E%D7%A9%D7%A0%D7%94_%D7%AA%D7%95%D7%A8%D7%94_(%D7%AA%D7%95%D7%9B%D7%9F_%D7%94%D7%97%D7%99%D7%91%D7%95%D7%A8)": 1,
+    "http://mobile.tora.ws/": 27,
+    "http://mobile.tora.ws/index.html?bgf=lnn(500099,0,0)": 30,
+    "http://mobile.tora.ws/index.html?bgf=lnn(500121,0,0)": 4,
+    "http://rosetta.nli.org.il/delivery/DeliveryManagerServlet?dps_pid=IE13133653": 1,
+    "http://sefaria.org.il": 2,
+    "http://toratemetfreeware.com/online/f_01815.html": 1,
+    "http://www.ateret4u.com/online/f_01643.html#HtmpReportNum0016_L2": 12,
+    "http://www.daat.ac.il": 3,
+    "http://www.daat.ac.il/daat/hasfarim/hashmonaim-a-2.htm": 1,
+    "http://www.hebrew.grimoar.cz/anonym/sefer_ha-kana.htm": 1,
+    "http://www.hebrew.grimoar.cz/azulaj/chesed_le-avraham.htm": 1,
+    "http://www.hebrew.grimoar.cz/gikatalia/saare_ora.htm": 8,
+    "http://www.hebrew.grimoar.cz/kordovero/pardes_rimonim.htm": 37,
+    "http://www.hebrew.grimoar.cz/luzzato/kalach_pitchej_chochma.htm": 1,
+    "http://www.hebrew.grimoar.cz/rekanati_al_ha-torah.html": 37,
+    "http://www.hebrew.grimoar.cz/vital/maamarej_rasbi.htm": 3,
+    "http://www.hebrew.grimoar.cz/vital/saar_ha-pasukim.htm": 2,
+    "http://www.mechon-mamre.org/b/f/f13.htm": 1,
+    "http://www.mechon-mamre.org/b/f/f16.htm": 1,
+    "http://www.mechon-mamre.org/b/f/f19.htm": 1,
+    "http://www.mechon-mamre.org/b/f/f24.htm": 1,
+    "http://www.mechon-mamre.org/b/f/f47.htm": 1,
+    "http://www.mechon-mamre.org/b/f/f53.htm": 2,
+    "http://www.mechon-mamre.org/b/f/f6a.htm": 2,
+    "http://www.toratemetfreeware.com/index.html?downloads": 64,
+    "http://www.toratemetfreeware.com/online/a_root.html": 14,
+    "http://www.toratemetfreeware.com/online/d_root__106_kblh.html": 24,
+    "http://www.toratemetfreeware.com/online/f_01180.html": 1,
+    "https://benyehuda.org/read/47208": 26,
+    "https://beta.nli.org.il/he/books/NNL_ALEPH001725650/NLI": 7,
+    "https://beta.nli.org.il/he/books/NNL_ALEPH002042999/NLI": 4,
+    "https://bybe.benyehuda.org/read/7575": 1,
+    "https://fjms.genizah.org": 104,
+    "https://fjms.genizah.org/": 14,
+    "https://he.wikisource.org/wiki/%D7%90%D7%92%D7%A8%D7%AA_%D7%90%D7%A8%D7%99%D7%A1%D7%98%D7%99%D7%90%D7%A1_(%D7%9B%D7%94%D7%A0%D7%90)": 1,
+    "https://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%AA%D7%95%D7%A8%D7%94": 1,
+    "https://he.wikisource.org/wiki/%D7%91%D7%99%D7%90%D7%95%D7%A8_%D7%94%D7%9C%D7%9B%D7%94": 2,
+    "https://he.wikisource.org/wiki/%D7%91%D7%9F_%D7%90%D7%99%D7%A9_%D7%97%D7%99": 2,
+    "https://he.wikisource.org/wiki/%D7%91%D7%9F_%D7%A1%D7%99%D7%A8%D7%90": 2,
+    "https://he.wikisource.org/wiki/%D7%92%D7%A8%22%D7%90_%D7%A2%D7%9C_%D7%A1%D7%A4%D7%A8%D7%90_%D7%93%D7%A6%D7%A0%D7%99%D7%A2%D7%95%D7%AA%D7%90": 7,
+    "https://he.wikisource.org/wiki/%D7%97%D7%A4%D7%A5_%D7%97%D7%99%D7%99%D7%9D_%D7%A2%D7%9C_%D7%A1%D7%A4%D7%A8%D7%90": 15,
+    "https://he.wikisource.org/wiki/%D7%9E%D7%93%D7%91%D7%A8_%D7%A9%D7%95%D7%A8": 15,
+    "https://he.wikisource.org/wiki/%D7%9E%D7%9C%D7%97%D7%9E%D7%95%D7%AA_%D7%94%27_(%D7%99%D7%97%D7%99%D7%90_%D7%A7%D7%90%D7%A4%D7%97)": 10,
+    "https://he.wikisource.org/wiki/%D7%9E%D7%9C%D7%97%D7%9E%D7%95%D7%AA_%D7%94%27_(%D7%A8%D7%9C%D7%91%22%D7%92)": 8,
+    "https://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%95%D7%A7%D7%97_%D7%A2%D7%9C_%D7%94%D7%9E%D7%A9%D7%A0%D7%94": 5,
+    "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94": 14,
+    "https://he.wikisource.org/wiki/%D7%A0%D7%95%D7%A2%D7%9D_%D7%90%D7%9C%D7%99%D7%9E%D7%9C%D7%9A": 10,
+    "https://he.wikisource.org/wiki/%D7%A1%D7%9C%D7%99%D7%97%D7%95%D7%AA_%D7%9C%D7%99%D7%9E%D7%99_%D7%94%D7%AA%D7%A9%D7%95%D7%91%D7%94/%D7%9E%D7%A0%D7%94%D7%92_%D7%9C%D7%99%D7%98%D7%90": 2,
+    "https://he.wikisource.org/wiki/%D7%A1%D7%9C%D7%99%D7%97%D7%95%D7%AA_%D7%9C%D7%99%D7%9E%D7%99_%D7%94%D7%AA%D7%A9%D7%95%D7%91%D7%94/%D7%9E%D7%A0%D7%94%D7%92_%D7%A4%D7%95%D7%9C%D7%99%D7%9F": 3,
+    "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8_%D7%94%D7%99%D7%95%D7%91%D7%9C%D7%99%D7%9D": 2,
+    "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99": 8,
+    "https://he.wikisource.org/wiki/%D7%A2%D7%A8%D7%95%D7%9A_%D7%94%D7%A9%D7%95%D7%9C%D7%97%D7%9F": 10,
+    "https://he.wikisource.org/wiki/%D7%A4%D7%A8%D7%99_%D7%94%D7%90%D7%A8%D7%A5": 4,
+    "https://he.wikisource.org/wiki/%D7%A7%D7%95%D7%9C_%D7%94%D7%AA%D7%95%D7%A8_%D7%92": 1,
+    "https://he.wikisource.org/wiki/%D7%A7%D7%99%D7%A0%D7%95%D7%AA_%D7%9C%D7%AA%D7%A9%D7%A2%D7%94_%D7%91%D7%90%D7%91_(%D7%90%D7%A9%D7%9B%D7%A0%D7%96)": 1,
+    "https://he.wikisource.org/wiki/%D7%A9%D7%91%D7%98_%D7%9E%D7%95%D7%A1%D7%A8": 2,
+    "https://he.wikisource.org/wiki/%D7%AA%D7%95%D7%A8%D7%AA_%D7%94%D7%A2%D7%95%D7%9C%D7%94": 1,
+    "https://www.nli.org.il/en/books/NNL_ALEPH001264247/NLI": 1,
+    "https://www.nli.org.il/en/books/NNL_ALEPH001340195/NLI": 3,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001013444/NLI": 7,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001014854/NLI": 41,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001050629": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001062708": 8,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001091554": 54,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001094577": 8,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001124498": 52,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001125478": 9,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001129557 ": 15,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001148825/NLI": 117,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001166995": 6,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001167224": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001175092": 20,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001175329": 30,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001186213": 188,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001188109": 3,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001191318 ": 18,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001196456": 17,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001227196": 6,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001242736/NLI": 10,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001261239&context=L": 3,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001310968": 16,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001323847": 14,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001326511": 12,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001738025/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001741731": 62,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001763733": 22,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001763900/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001769510": 3,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001771677": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001779928/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001784725": 7,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001799135": 32,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001832511/NLI": 27,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001855369": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001870067": 14,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001872727/NLI&local_base=NNL01": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001873955": 2,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001881071": 2,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001881900": 153,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001886777/NLI": 5,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001911837": 12,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001919747/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001922206": 58,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001933768/NLI": 2,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001933796": 20,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001935970": 36,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001945066": 23,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001950380": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001964863/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001969084": 14,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001986677": 127,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL": 13,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI": 24,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001987598/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001987633": 20,
+    "https://www.nli.org.il/he/books/NNL_ALEPH001987876/NLI": 2,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002002279/NLI": 2,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002007733 ": 9,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002023637": 3,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002027638": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002034858": 49,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002074799": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002082351/NLI": 3,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002083900": 12,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002084080": 4,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002085545/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002089275&context=L": 10,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002097680": 4,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002097765": 12,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002097765&context=L": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002097773": 2,
+    "https://www.nli.org.il/he/books/NNL_ALEPH002654606": 18,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990003745680205171/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990011247430205171/NLI": 7,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990011676280205171/NLI": 5,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990011880130205171/NLI": 8,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990011988730205171/NLI": 2,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990012428250205171/NLI": 12,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990012777260205171/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990017640040205171/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990018376830205171/NLI": 38,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990018727270205171/NLI": 10,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990018959660205171/NLI": 3,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990019041030205171/NLI": 29,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990019674420205171/NLI": 41,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990020073790205171/NLI": 3,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990020276490205171/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990020310840205171/NLI": 13,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990020480520205171/NLI": 15,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990020506360205171/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990020573270205171": 8,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990020679460205171/NLI": 35,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990020776110205171/NLI": 1,
+    "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI": 13,
+    "https://www.nli.org.il/he/books/NNL_ARCHIVE_AL001986680": 6,
+    "https://www.nli.org.il/he/books/NNL01": 6,
+    "https://www.sefaria.org": 67,
+    "https://www.sefaria.org/": 2
+  },
+  "category_counts": {
+    "ari": 9,
+    "chasidut": 810,
+    "gra": 39,
+    "halakhah": 460,
+    "jewish-thought": 107,
+    "kabbalah": 344,
+    "liturgy": 20,
+    "midrash": 308,
+    "mishnah": 5,
+    "musar": 204,
+    "orot": 1,
+    "rav-kook": 17,
+    "second-temple": 8,
+    "tanakh": 49,
+    "tosefta": 9
+  },
+  "status_counts": {
+    "candidate": 1351,
+    "supported": 339,
+    "weak": 700
+  },
+  "route_counts": {
+    "def-kaikki-lemma-e4f94cd5131316a8": 2390
+  },
+  "license_summary_rows": [
+    {
+      "license": "Public Domain",
+      "row_count": 2264,
+      "license_urls": [
+        "https://creativecommons.org/publicdomain/mark/1.0/"
+      ],
+      "categories": [
+        "ari",
+        "chasidut",
+        "gra",
+        "halakhah",
+        "jewish-thought",
+        "kabbalah",
+        "liturgy",
+        "midrash",
+        "mishnah",
+        "musar",
+        "rav-kook",
+        "second-temple",
+        "tanakh",
+        "tosefta"
+      ],
+      "statuses": [
+        "candidate",
+        "supported",
+        "weak"
+      ],
+      "works": 237,
+      "version_sources": 140,
+      "allowed_for_usage_navigation": true
+    },
+    {
+      "license": "CC-BY-SA",
+      "row_count": 77,
+      "license_urls": [
+        "https://creativecommons.org/licenses/by-sa/4.0/"
+      ],
+      "categories": [
+        "gra",
+        "halakhah",
+        "jewish-thought",
+        "kabbalah",
+        "liturgy",
+        "midrash",
+        "musar",
+        "orot",
+        "rav-kook",
+        "second-temple",
+        "tanakh"
+      ],
+      "statuses": [
+        "candidate",
+        "supported",
+        "weak"
+      ],
+      "works": 31,
+      "version_sources": 22,
+      "allowed_for_usage_navigation": true
+    },
+    {
+      "license": "CC-BY",
+      "row_count": 34,
+      "license_urls": [
+        "https://creativecommons.org/licenses/by/4.0/"
+      ],
+      "categories": [
+        "halakhah",
+        "midrash"
+      ],
+      "statuses": [
+        "candidate",
+        "supported",
+        "weak"
+      ],
+      "works": 3,
+      "version_sources": 3,
+      "allowed_for_usage_navigation": true
+    },
+    {
+      "license": "CC0",
+      "row_count": 15,
+      "license_urls": [
+        "https://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "categories": [
+        "halakhah",
+        "liturgy"
+      ],
+      "statuses": [
+        "candidate",
+        "supported",
+        "weak"
+      ],
+      "works": 2,
+      "version_sources": 1,
+      "allowed_for_usage_navigation": true
+    }
+  ],
+  "license_version_rows": [
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sefat emet, Piotrków, 1905-1908",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001186213",
+      "row_count": 188,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefat-emet"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Pri Tzaddik, Lublin, 1901",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001986677",
+      "row_count": 127,
+      "work_count": 1,
+      "sample_work_ids": [
+        "peri-tzadik"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ohr Hachama, Peremyshl, 1896-1898",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001148825/NLI",
+      "row_count": 117,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ohr-hachammah-on-zohar"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Friedberg Edition",
+      "version_source": "https://fjms.genizah.org",
+      "row_count": 94,
+      "work_count": 26,
+      "sample_work_ids": [
+        "benei-binyamin-on-mishneh-torah-circumcision",
+        "even-haazel-on-mishneh-torah-daily-offerings-and-additional-offerings",
+        "even-haazel-on-mishneh-torah-damages-to-property",
+        "even-haazel-on-mishneh-torah-ownerless-property-and-gifts",
+        "har-hamoriyah-on-mishneh-torah-daily-offerings-and-additional-offerings",
+        "har-hamoriyah-on-mishneh-torah-trespass",
+        "kiryat-sefer-on-mishneh-torah-daily-offerings-and-additional-offerings",
+        "kiryat-sefer-on-mishneh-torah-festival-offering",
+        "kiryat-sefer-on-mishneh-torah-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary",
+        "kiryat-sefer-on-mishneh-torah-firstlings",
+        "kiryat-sefer-on-mishneh-torah-heave-offerings",
+        "kiryat-sefer-on-mishneh-torah-inheritances",
+        "kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar",
+        "kiryat-sefer-on-mishneh-torah-trespass",
+        "maasai-lamelekh-on-mishneh-torah-admission-into-the-sanctuary",
+        "maasai-lamelekh-on-mishneh-torah-sacrificial-procedure",
+        "maasai-lamelekh-on-mishneh-torah-the-chosen-temple",
+        "maasai-lamelekh-on-mishneh-torah-things-forbidden-on-the-altar",
+        "ohr-sameach-on-mishneh-torah-firstlings",
+        "ohr-sameach-on-mishneh-torah-neighbors"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shenei Luchot HaBrit, based on Amsterdam, 1698 ed. Part III",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001881900",
+      "row_count": 82,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shenei-luchot-haberit"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Lʹviv, 1868",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001741731",
+      "row_count": 62,
+      "work_count": 1,
+      "sample_work_ids": [
+        "zera-kodesh"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Midrash Lekach Tov on Torah, Vilna 1884",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001922206",
+      "row_count": 58,
+      "work_count": 3,
+      "sample_work_ids": [
+        "beur-hareem-on-midrash-lekach-tov",
+        "midrash-lekach-tov",
+        "notes-and-corrections-on-midrash-lekach-tov"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ohev Yisrael, Zhitomir, 1863.",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001091554",
+      "row_count": 54,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ohev-yisrael"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Beit Aharon, Brody, 1875.",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001124498",
+      "row_count": 52,
+      "work_count": 1,
+      "sample_work_ids": [
+        "beit-aharon"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Yismach Moshe, Sighet, 1898",
+      "version_source": "https://www.sefaria.org",
+      "row_count": 52,
+      "work_count": 1,
+      "sample_work_ids": [
+        "yismach-moshe"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Torat Emet 363",
+      "version_source": "http://www.toratemetfreeware.com/index.html?downloads",
+      "row_count": 51,
+      "work_count": 13,
+      "sample_work_ids": [
+        "kessef-mishneh-on-mishneh-torah-diverse-species",
+        "kessef-mishneh-on-mishneh-torah-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary",
+        "kessef-mishneh-on-mishneh-torah-firstlings",
+        "kessef-mishneh-on-mishneh-torah-gifts-to-the-poor",
+        "kessef-mishneh-on-mishneh-torah-heave-offerings",
+        "kessef-mishneh-on-mishneh-torah-things-forbidden-on-the-altar",
+        "kessef-mishneh-on-mishneh-torah-tithes",
+        "mishneh-torah-daily-offerings-and-additional-offerings",
+        "mishneh-torah-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary",
+        "mishneh-torah-foundations-of-the-torah",
+        "mishneh-torah-gifts-to-the-poor",
+        "mishneh-torah-heave-offerings",
+        "mishneh-torah-inheritances"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Akeidat Yitzchak, Pressburg 1849",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002034858",
+      "row_count": 49,
+      "work_count": 1,
+      "sample_work_ids": [
+        "akeidat-yitzchak"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shenei Luchot HaBrit, based on Amsterdam, 1698 ed. Part I",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001881900",
+      "row_count": 45,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shenei-luchot-haberit"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Livorno, 1795",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990019674420205171/NLI",
+      "row_count": 41,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ketem-paz-on-zohar"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sod Yesharim, Warsaw 1902-1908",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001014854/NLI",
+      "row_count": 41,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sod-yesharim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Zholkva, 1864",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990018376830205171/NLI",
+      "row_count": 38,
+      "work_count": 1,
+      "sample_work_ids": [
+        "mikdash-melekh-on-zohar"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Pardes Rimonim",
+      "version_source": "http://www.hebrew.grimoar.cz/kordovero/pardes_rimonim.htm",
+      "row_count": 37,
+      "work_count": 1,
+      "sample_work_ids": [
+        "pardes-rimmonim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Recanati on the Torah",
+      "version_source": "http://www.hebrew.grimoar.cz/rekanati_al_ha-torah.html",
+      "row_count": 37,
+      "work_count": 1,
+      "sample_work_ids": [
+        "recanati-on-the-torah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tiferet Shlomo, Warsaw, 1867",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020679460205171/NLI",
+      "row_count": 35,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tiferet-shlomo"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Maor Vashemesh, Breslau, 1842",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001799135",
+      "row_count": 32,
+      "work_count": 1,
+      "sample_work_ids": [
+        "maor-vashemesh"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Me'or Einayim -- OYW",
+      "version_source": "http://mobile.tora.ws/index.html?bgf=lnn(500099,0,0)",
+      "row_count": 30,
+      "work_count": 1,
+      "sample_work_ids": [
+        "meor-einayim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Otzar Midrashim, New York, 1915",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001175329",
+      "row_count": 30,
+      "work_count": 1,
+      "sample_work_ids": [
+        "otzar-midrashim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1883",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990019041030205171/NLI",
+      "row_count": 29,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ohr-hameir"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Arukh HaShulchan HeAtid, Zeraim, Tel Aviv 1938",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001832511/NLI",
+      "row_count": 27,
+      "work_count": 1,
+      "sample_work_ids": [
+        "arukh-hashulchan-heatid"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shenei Luchot HaBrit, based on Amsterdam, 1698 ed. Part II",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001881900",
+      "row_count": 26,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shenei-luchot-haberit"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1894",
+      "version_source": "https://benyehuda.org/read/47208",
+      "row_count": 26,
+      "work_count": 1,
+      "sample_work_ids": [
+        "moreh-nevukhei-hazeman"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tur Yoreh Deah, Vilna, 1923",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001935970",
+      "row_count": 25,
+      "work_count": 2,
+      "sample_work_ids": [
+        "beit-yosef",
+        "prisha"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Midrash Rabbah, Vilna, 1878",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI",
+      "row_count": 24,
+      "work_count": 12,
+      "sample_work_ids": [
+        "maharzu-hakatzar-on-bereshit-rabbah",
+        "matnot-kehunah-on-bamidbar-rabbah",
+        "matnot-kehunah-on-bereshit-rabbah",
+        "matnot-kehunah-on-kohelet-rabbah",
+        "matnot-kehunah-on-shir-hashirim-rabbah",
+        "perush-maharzu-on-bamidbar-rabbah",
+        "perush-maharzu-on-bereshit-rabbah",
+        "perush-maharzu-on-eichah-rabbah",
+        "perush-maharzu-on-kohelet-rabbah",
+        "perush-maharzu-on-shir-hashirim-rabbah",
+        "yefeh-toar-on-bereshit-rabbah",
+        "yefeh-toar-on-shemot-rabbah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Zohar Chadash",
+      "version_source": "http://www.toratemetfreeware.com/online/d_root__106_kblh.html",
+      "row_count": 24,
+      "work_count": 1,
+      "sample_work_ids": [
+        "zohar-chadash"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Avodat Yisrael; Konigsberg, c. 1860.",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001945066",
+      "row_count": 23,
+      "work_count": 1,
+      "sample_work_ids": [
+        "avodat-yisrael"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Bnei Yisaschar, Piotrkow 1883",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001763733",
+      "row_count": 22,
+      "work_count": 1,
+      "sample_work_ids": [
+        "bnei-yissaschar"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ben Ish Chai, Jerusalem, 1898",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001933796",
+      "row_count": 20,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ben-ish-hai"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Midrash Tanhuma haKadum veHaYashan, S. Buber, 1885",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001987633",
+      "row_count": 20,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midrash-tanchuma-buber"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Minchat Chinuch, Piotrkew, 1902",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001175092",
+      "row_count": 20,
+      "work_count": 1,
+      "sample_work_ids": [
+        "minchat-chinukh"
+      ]
+    },
+    {
+      "license": "CC-BY",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "version_title": "Iggeret haShabbat, KTAV Publishing House, 2009",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002654606",
+      "row_count": 18,
+      "work_count": 1,
+      "sample_work_ids": [
+        "the-sabbath-epistle"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Aderet Eliyahu, Halberstadt, 1860",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001191318 ",
+      "row_count": 18,
+      "work_count": 1,
+      "sample_work_ids": [
+        "aderet-eliyahu"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sefer Yereim HaShalem, Vilna, 1892-1901",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001196456",
+      "row_count": 17,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-yereim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Degel Machaneh Ephraim, Korets, 1810",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001129557 ",
+      "row_count": 15,
+      "work_count": 1,
+      "sample_work_ids": [
+        "degel-machaneh-ephraim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Midbar Shur",
+      "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%93%D7%91%D7%A8_%D7%A9%D7%95%D7%A8",
+      "row_count": 15,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midbar-shur"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sefer Yetzirah, Warsaw 1884",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001310968",
+      "row_count": 15,
+      "work_count": 5,
+      "sample_work_ids": [
+        "hagra-on-sefer-yetzirah-gra-version",
+        "pri-yitzhak-on-sefer-yetzirah-gra-version",
+        "raavad-on-sefer-yetzirah",
+        "sefer-yetzirah",
+        "sefer-yetzirah-gra-version"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1852",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020480520205171/NLI",
+      "row_count": 15,
+      "work_count": 1,
+      "sample_work_ids": [
+        "beur-haradal-on-pirkei-derabbi-eliezer"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%97%D7%A4%D7%A5_%D7%97%D7%99%D7%99%D7%9D_%D7%A2%D7%9C_%D7%A1%D7%A4%D7%A8%D7%90",
+      "row_count": 15,
+      "work_count": 1,
+      "sample_work_ids": [
+        "chafetz-chaim-on-sifra"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Miqra according to the Masorah",
+      "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94",
+      "row_count": 14,
+      "work_count": 11,
+      "sample_work_ids": [
+        "deuteronomy",
+        "exodus",
+        "ezekiel",
+        "genesis",
+        "ii-chronicles",
+        "jeremiah",
+        "job",
+        "leviticus",
+        "numbers",
+        "proverbs",
+        "psalms"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Friedberg Edition",
+      "version_source": "https://fjms.genizah.org/",
+      "row_count": 14,
+      "work_count": 8,
+      "sample_work_ids": [
+        "divrei-yirmiyahu-on-mishneh-torah-reading-the-shema",
+        "divrei-yirmiyahu-on-mishneh-torah-shofar-sukkah-and-lulav",
+        "divrei-yirmiyahu-on-mishneh-torah-torah-study",
+        "maaseh-rokeach-on-first-fruits-and-other-gifts-to-priests-outside-the-sanctuary",
+        "maaseh-rokeach-on-marriage",
+        "maaseh-rokeach-on-sabbath",
+        "maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein",
+        "nachal-eitan-on-mishneh-torah-leavened-and-unleavened-bread"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Maggid Devarav leYa'akov, Koretz, 1781",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001870067",
+      "row_count": 14,
+      "work_count": 1,
+      "sample_work_ids": [
+        "maggid-devarav-leyaakov"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Midrash Aggadah, ed. Buber, Vienna, 1894.",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001323847",
+      "row_count": 14,
+      "work_count": 2,
+      "sample_work_ids": [
+        "midrash-aggadah",
+        "notes-and-corrections-on-midrash-aggadah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Midrash Tanchuma -- Torat Emet",
+      "version_source": "http://www.toratemetfreeware.com/online/a_root.html",
+      "row_count": 14,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midrash-tanchuma"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Piotrkow, 1907-1911",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020973480205171/NLI",
+      "row_count": 13,
+      "work_count": 2,
+      "sample_work_ids": [
+        "ibn-ezra-on-exodus",
+        "ibn-ezra-on-genesis"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Wien, 1862",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020310840205171/NLI",
+      "row_count": 13,
+      "work_count": 1,
+      "sample_work_ids": [
+        "raavad-on-sifra"
+      ]
+    },
+    {
+      "license": "CC-BY",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "version_title": "Sifre on Deuteronomy, ed. Dr. Louis Finkelstein. JTS, 1969",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990012428250205171/NLI",
+      "row_count": 12,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sifrei-devarim"
+      ]
+    },
+    {
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "version_title": "Gerlitz edition, published by Oraita",
+      "version_source": "https://www.sefaria.org",
+      "row_count": 12,
+      "work_count": 1,
+      "sample_work_ids": [
+        "piskei-challah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Daat",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001911837",
+      "row_count": 12,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ein-yaakov"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Machzor Vitry, Berlin, 1893-97",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002083900",
+      "row_count": 12,
+      "work_count": 1,
+      "sample_work_ids": [
+        "machzor-vitry"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Torat Emet",
+      "version_source": "http://www.ateret4u.com/online/f_01643.html#HtmpReportNum0016_L2",
+      "row_count": 12,
+      "work_count": 1,
+      "sample_work_ids": [
+        "pele-yoetz"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ashlei Ravrevei: Shulchan Aruch Yoreh Deah, Lemberg, 1888",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002097765",
+      "row_count": 11,
+      "work_count": 4,
+      "sample_work_ids": [
+        "beer-hagolah-on-shulchan-arukh-yoreh-deah",
+        "beur-hagra-on-shulchan-arukh-yoreh-deah",
+        "pitchei-teshuva-on-shulchan-arukh-yoreh-deah",
+        "shulchan-arukh-yoreh-deah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "OYW (segmentation according to Warsaw 1880)",
+      "version_source": "http://mobile.tora.ws/",
+      "row_count": 11,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tanna-debei-eliyahu-rabbah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+      "row_count": 11,
+      "work_count": 3,
+      "sample_work_ids": [
+        "rashi-on-deuteronomy",
+        "rashi-on-genesis",
+        "rashi-on-leviticus"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Torat Emet 357",
+      "version_source": "http://www.toratemetfreeware.com/index.html?downloads",
+      "row_count": 11,
+      "work_count": 6,
+      "sample_work_ids": [
+        "baer-hetev-on-shulchan-arukh-orach-chayim",
+        "baer-hetev-on-shulchan-arukh-yoreh-deah",
+        "mishnah-bikkurim",
+        "mishnah-terumot",
+        "pirkei-avot",
+        "sefer-hayashar"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Arukh HaShulchan, Yoreh De'ah -- Wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A2%D7%A8%D7%95%D7%9A_%D7%94%D7%A9%D7%95%D7%9C%D7%97%D7%9F",
+      "row_count": 10,
+      "work_count": 1,
+      "sample_work_ids": [
+        "arukh-hashulchan"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "ויקיטקסט",
+      "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%9C%D7%97%D7%9E%D7%95%D7%AA_%D7%94%27_(%D7%99%D7%97%D7%99%D7%90_%D7%A7%D7%90%D7%A4%D7%97)",
+      "row_count": 10,
+      "work_count": 1,
+      "sample_work_ids": [
+        "the-wars-of-god"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": " Noam Elimelech, Lvov, 1788.",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A0%D7%95%D7%A2%D7%9D_%D7%90%D7%9C%D7%99%D7%9E%D7%9C%D7%9A",
+      "row_count": 10,
+      "work_count": 1,
+      "sample_work_ids": [
+        "noam-elimelekh"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Megaleh Amukot, based on Krakow, 1637 edition",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002089275&context=L",
+      "row_count": 10,
+      "work_count": 1,
+      "sample_work_ids": [
+        "megalleh-amukkot-on-parashat-vaetchanan"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Menorat HaMaor, Alnakawa, H.G. Enelow ed. N.Y. 1929-1934",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001242736/NLI",
+      "row_count": 10,
+      "work_count": 1,
+      "sample_work_ids": [
+        "menorat-hamaor"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Midrash Rabbah with Etz Yosef, Warsaw, 1867",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL",
+      "row_count": 10,
+      "work_count": 2,
+      "sample_work_ids": [
+        "etz-yosef-on-bereishit-rabbah",
+        "etz-yosef-on-shemot-rabbah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tzafnat Pa'neach on Mishneh Torah, Warsaw-Piotrków, 1903-1908",
+      "version_source": "https://fjms.genizah.org",
+      "row_count": 10,
+      "work_count": 5,
+      "sample_work_ids": [
+        "tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property",
+        "tzafnat-paneach-on-mishneh-torah-forbidden-foods",
+        "tzafnat-paneach-on-mishneh-torah-foreign-worship-and-customs-of-the-nations",
+        "tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor",
+        "tzafnat-paneach-on-mishneh-torah-ritual-slaughter"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Vilna, 1879",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990018727270205171/NLI",
+      "row_count": 10,
+      "work_count": 1,
+      "sample_work_ids": [
+        "zohar-harakia"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Aruch HaShulchan, Vilna 1923-29",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001326511",
+      "row_count": 9,
+      "work_count": 1,
+      "sample_work_ids": [
+        "arukh-hashulchan"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Midrash Shmuel, Warsaw, 1876",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001125478",
+      "row_count": 9,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midrash-shmuel-on-avot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Pri Haaretz, Kopyst 1814",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002007733 ",
+      "row_count": 9,
+      "work_count": 1,
+      "sample_work_ids": [
+        "peri-haaretz"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99",
+      "row_count": 8,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sifrei-bamidbar"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Abudarham. Lisbon, 1489.",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001094577",
+      "row_count": 8,
+      "work_count": 1,
+      "sample_work_ids": [
+        "abudarham"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Halakhot Gedolot, Warsaw 1874",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020573270205171",
+      "row_count": 8,
+      "work_count": 1,
+      "sample_work_ids": [
+        "halakhot-gedolot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Milhamot Hashem, Leipzig, 1866",
+      "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%9C%D7%97%D7%9E%D7%95%D7%AA_%D7%94%27_(%D7%A8%D7%9C%D7%91%22%D7%92)",
+      "row_count": 8,
+      "work_count": 1,
+      "sample_work_ids": [
+        "the-wars-of-the-lord"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Minhat Kenaot, Pressburg, 1838.",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001062708",
+      "row_count": 8,
+      "work_count": 1,
+      "sample_work_ids": [
+        "minchat-kenaot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "On Your Way",
+      "version_source": "http://mobile.tora.ws/",
+      "row_count": 8,
+      "work_count": 3,
+      "sample_work_ids": [
+        "ibn-ezra-on-deuteronomy",
+        "ibn-ezra-on-leviticus",
+        "ibn-ezra-on-numbers"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "OYW",
+      "version_source": "http://mobile.tora.ws/",
+      "row_count": 8,
+      "work_count": 2,
+      "sample_work_ids": [
+        "midrash-tehillim",
+        "pesikta-rabbati"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shaarei Orah, grimoar",
+      "version_source": "http://www.hebrew.grimoar.cz/gikatalia/saare_ora.htm",
+      "row_count": 8,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shaarei-orah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1901",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990011880130205171/NLI",
+      "row_count": 8,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midrash-haittamari"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Kad HaKemach, Warsaw 1872",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001784725",
+      "row_count": 7,
+      "work_count": 1,
+      "sample_work_ids": [
+        "kad-hakemach"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sechel Tob, Berlin 1900-1901",
+      "version_source": "https://beta.nli.org.il/he/books/NNL_ALEPH001725650/NLI",
+      "row_count": 7,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midrash-sekhel-tov"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tur Choshen Mishpat: Vilna, 1923",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001935970",
+      "row_count": 7,
+      "work_count": 3,
+      "sample_work_ids": [
+        "beit-yosef",
+        "drisha",
+        "prisha"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Vilna, 1860",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990011247430205171/NLI",
+      "row_count": 7,
+      "work_count": 1,
+      "sample_work_ids": [
+        "maavar-yabbok"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1872",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001013444/NLI",
+      "row_count": 7,
+      "work_count": 1,
+      "sample_work_ids": [
+        "beit-elohim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%92%D7%A8%22%D7%90_%D7%A2%D7%9C_%D7%A1%D7%A4%D7%A8%D7%90_%D7%93%D7%A6%D7%A0%D7%99%D7%A2%D7%95%D7%AA%D7%90",
+      "row_count": 7,
+      "work_count": 1,
+      "sample_work_ids": [
+        "beur-hagra-on-sifra-detzniuta"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Kol Bo 1547 Venice Unknown Publisher",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001227196",
+      "row_count": 6,
+      "work_count": 1,
+      "sample_work_ids": [
+        "kol-bo"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sheiltot d'Rav Achai Gaon; Vilna, 1861",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001166995",
+      "row_count": 6,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sheiltot-drav-achai-gaon"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tzidkat HaTzadick, Lublin, 1913",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ARCHIVE_AL001986680",
+      "row_count": 6,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tzidkat-hatzadik"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Arukh HaShulchan, Orach Chayim -- Wikisource",
+      "version_source": "http://he.wikisource.org/wiki/%D7%A2%D7%A8%D7%95%D7%9A_%D7%94%D7%A9%D7%95%D7%9C%D7%97%D7%9F_%D7%90%D7%95%D7%A8%D7%97_%D7%97%D7%99%D7%99%D7%9D_%D7%90",
+      "row_count": 5,
+      "work_count": 1,
+      "sample_work_ids": [
+        "arukh-hashulchan"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Maaseh Rokeach, Amsterdam 1740",
+      "version_source": "https://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%95%D7%A7%D7%97_%D7%A2%D7%9C_%D7%94%D7%9E%D7%A9%D7%A0%D7%94",
+      "row_count": 5,
+      "work_count": 1,
+      "sample_work_ids": [
+        "maaseh-rokeach-on-mishnah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Józefów, 1866",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990011676280205171/NLI",
+      "row_count": 5,
+      "work_count": 1,
+      "sample_work_ids": [
+        "yaarot-devash-ii"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Piotrków, 1898-1900",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001886777/NLI",
+      "row_count": 5,
+      "work_count": 1,
+      "sample_work_ids": [
+        "beur-hagra-on-jerusalem-talmud-challah"
+      ]
+    },
+    {
+      "license": "CC-BY",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "version_title": "Pesikta de Rav Kahana according to an Oxford manuscript, Dov Mandelbaum ed., N.Y. 1987",
+      "version_source": "https://beta.nli.org.il/he/books/NNL_ALEPH002042999/NLI",
+      "row_count": 4,
+      "work_count": 1,
+      "sample_work_ids": [
+        "pesikta-derav-kahana"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Wikisource Mishneh Torah",
+      "version_source": "http://he.wikisource.org/wiki/%D7%A8%D7%9E%D7%91%22%D7%9D_%D7%94%D7%A7%D7%93%D7%9E%D7%94_%D7%9C%D7%9E%D7%A9%D7%A0%D7%94_%D7%AA%D7%95%D7%A8%D7%94_(%D7%9E%D7%A6%D7%95%D7%95%D7%AA_%D7%A2%D7%A9%D7%94)",
+      "row_count": 4,
+      "work_count": 1,
+      "sample_work_ids": [
+        "mishneh-torah-positive-mitzvot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Pri Haaretz -- wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A4%D7%A8%D7%99_%D7%94%D7%90%D7%A8%D7%A5",
+      "row_count": 4,
+      "work_count": 1,
+      "sample_work_ids": [
+        "peri-haaretz"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sefer Chassidim, Zhitomir, 1857",
+      "version_source": "https://www.nli.org.il/he/books/NNL01",
+      "row_count": 4,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-chasidim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shulhan Arukh, Hoshen ha-Mishpat, Lemberg, 1898",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002097680",
+      "row_count": 4,
+      "work_count": 2,
+      "sample_work_ids": [
+        "kessef-hakodashim-on-shulchan-arukh-choshen-mishpat",
+        "turei-zahav-on-shulchan-arukh-choshen-mishpat"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Yaarot Devash -- OYW",
+      "version_source": "http://mobile.tora.ws/index.html?bgf=lnn(500121,0,0)",
+      "row_count": 4,
+      "work_count": 1,
+      "sample_work_ids": [
+        "yaarot-devash-i"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Selichot Nusach Polin -- Wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A1%D7%9C%D7%99%D7%97%D7%95%D7%AA_%D7%9C%D7%99%D7%9E%D7%99_%D7%94%D7%AA%D7%A9%D7%95%D7%91%D7%94/%D7%9E%D7%A0%D7%94%D7%92_%D7%A4%D7%95%D7%9C%D7%99%D7%9F",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "selichot-nusach-polin"
+      ]
+    },
+    {
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "version_title": " Shaliehsaboo Edition",
+      "version_source": "https://www.sefaria.org",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "siddur-edot-hamizrach"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Aruch HaShulchan, Choshen Mishpat. Vilna 1923-29",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001326511",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "arukh-hashulchan"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Jerusalem, 1872",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990018959660205171/NLI",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shaar-hamitzvot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Lviv, 1905",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002082351/NLI",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-haorah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Maginei Eretz: Shulchan Aruch Orach Chaim, Lemberg, 1893",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002084080",
+      "row_count": 3,
+      "work_count": 3,
+      "sample_work_ids": [
+        "chatam-sofer-on-shulchan-arukh-orach-chayim",
+        "chokhmat-shlomo-on-shulchan-arukh-orach-chayim",
+        "shaarei-teshuvah-on-shulchan-arukh-orach-chayim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Marbeh Lesaper, Karlsruhe 1791",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001261239&context=L",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "marbeh-lesaper-on-pesach-haggadah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Midrash Rabbah, with Etz Yosef, Warsaw, 1867",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001987082&context=L&vid=NLI&search_scope=Local&tab=default_tab&lang=iw_IL",
+      "row_count": 3,
+      "work_count": 2,
+      "sample_work_ids": [
+        "etz-yosef-on-esther-rabbah",
+        "etz-yosef-on-kohelet-rabbah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Munkatch, 1901",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002023637",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-mitzvot-gadol"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001969084",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "rashi-on-numbers"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sefer HaMitzvot, Warsaw 1883",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001769510",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-hamitzvot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shaar Maamarei Rashbi",
+      "version_source": "http://www.hebrew.grimoar.cz/vital/maamarej_rasbi.htm",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shaar-maamarei-rashbi"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shevet Musar, Fiyorda, 1761",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001188109",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shevet-musar"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tanna deBei Eliyahu Zuta",
+      "version_source": "http://www.daat.ac.il",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tanna-debei-eliyahu-zuta"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1876",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020073790205171/NLI",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "nishmat-chayyim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1897",
+      "version_source": "https://www.nli.org.il/en/books/NNL_ALEPH001340195/NLI",
+      "row_count": 3,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-haterumah"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Ben Sira, David Kahana ed. -- Wikisource ",
+      "version_source": "https://he.wikisource.org/wiki/%D7%91%D7%9F_%D7%A1%D7%99%D7%A8%D7%90",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ben-sira"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Selichot Nusach Lita -- Wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A1%D7%9C%D7%99%D7%97%D7%95%D7%AA_%D7%9C%D7%99%D7%9E%D7%99_%D7%94%D7%AA%D7%A9%D7%95%D7%91%D7%94/%D7%9E%D7%A0%D7%94%D7%92_%D7%9C%D7%99%D7%98%D7%90",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "selichot-nusach-ashkenaz-lita"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Shevet Musar, Wilhermsdorf 1738",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A9%D7%91%D7%98_%D7%9E%D7%95%D7%A1%D7%A8",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shevet-musar"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Wikisource 2019",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8_%D7%94%D7%99%D7%95%D7%91%D7%9C%D7%99%D7%9D",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "book-of-jubilees"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ben Ish Hai -- Wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%91%D7%9F_%D7%90%D7%99%D7%A9_%D7%97%D7%99",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ben-ish-hai"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Biur Halacha",
+      "version_source": "https://he.wikisource.org/wiki/%D7%91%D7%99%D7%90%D7%95%D7%A8_%D7%94%D7%9C%D7%9B%D7%94",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "biur-halacha"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Chayei Adam, Vilna, 1844",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001873955",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "chayyei-adam"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Divrei Emet, Zalkowa 1801",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001881071",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "divrei-emet"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Imrei Binah, Jerusalem 1908",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001933768/NLI",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "imrei-binah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "New York, 1934",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001987876/NLI",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "mishnat-rabbi-eliezer"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Pirke DeRabbi Eliezer, Sefaria Vocalized Edition",
+      "version_source": "http://sefaria.org.il",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "pirkei-derabbi-eliezer"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sefaria Vocalized Edition",
+      "version_source": "https://www.sefaria.org/",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shaarei-teshuvah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shaar HaPesukim",
+      "version_source": "http://www.hebrew.grimoar.cz/vital/saar_ha-pasukim.htm",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shaar-hapesukim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shulhan Arukh, Hoshen ha-Mishpat, Lemberg, 1898",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002097773",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shulchan-arukh-choshen-mishpat"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tosefta Chullin - Machon Mamre",
+      "version_source": "http://www.mechon-mamre.org/b/f/f53.htm",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tosefta-chullin"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tosefta Tevul Yom - Machon Mamre",
+      "version_source": "http://www.mechon-mamre.org/b/f/f6a.htm",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tosefta-tevul-yom"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tur Even HaEzer, Vilna, 1923",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001935970",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "drisha"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tur Orach Chaim, Vilna, 1923",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001935970",
+      "row_count": 2,
+      "work_count": 2,
+      "sample_work_ids": [
+        "beit-yosef",
+        "prisha"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Vilna, 1874",
+      "version_source": "http://www.toratemetfreeware.com/index.html?downloads",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "nefesh-hachayim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1875",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990011988730205171/NLI",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "yesod-veshoresh-haavodah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1876",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002002279/NLI",
+      "row_count": 2,
+      "work_count": 1,
+      "sample_work_ids": [
+        "seder-hayom"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Kinnot for Tisha B'Av -- Wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A7%D7%99%D7%A0%D7%95%D7%AA_%D7%9C%D7%AA%D7%A9%D7%A2%D7%94_%D7%91%D7%90%D7%91_(%D7%90%D7%A9%D7%9B%D7%A0%D7%96)",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "kinnot-for-tisha-bav-ashkenaz"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Kol HaTor: Chapter 3",
+      "version_source": "https://he.wikisource.org/wiki/%D7%A7%D7%95%D7%9C_%D7%94%D7%AA%D7%95%D7%A8_%D7%92",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "kol-hator"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Orchot Tzadikim -- Vocalized",
+      "version_source": "http://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%97%D7%95%D7%AA_%D7%A6%D7%93%D7%99%D7%A7%D7%99%D7%9D",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "orchot-tzadikim"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Orot HaKodesh -- Wikitext",
+      "version_source": "http://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%A7%D7%95%D7%93%D7%A9_%D7%90",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "orot-ha-kodesh"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Orot HaTorah -- Wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%90%D7%95%D7%A8%D7%95%D7%AA_%D7%94%D7%AA%D7%95%D7%A8%D7%94",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "orot-ha-torah"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Sefer haKuzari - Project Ben-Yehuda",
+      "version_source": "https://bybe.benyehuda.org/read/7575",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "kuzari"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "The Letter of Aristeas -- wikisource",
+      "version_source": "https://he.wikisource.org/wiki/%D7%90%D7%92%D7%A8%D7%AA_%D7%90%D7%A8%D7%99%D7%A1%D7%98%D7%99%D7%90%D7%A1_(%D7%9B%D7%94%D7%A0%D7%90)",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "letter-of-aristeas"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Wikisource",
+      "version_source": "http://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%91_%D7%94%D7%9C%D7%9B%D7%95%D7%AA_%D7%91%D7%A8%D7%9B%D7%95%D7%AA_%D7%94%D7%A9%D7%97%D7%A8",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "maaseh-rav"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Wikisource",
+      "version_source": "http://he.wikisource.org",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "orot"
+      ]
+    },
+    {
+      "license": "CC-BY-SA",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "version_title": "Wikisource Mishneh Torah",
+      "version_source": "http://he.wikisource.org/wiki/%D7%A8%D7%9E%D7%91%22%D7%9D_%D7%94%D7%A7%D7%93%D7%9E%D7%94_%D7%9C%D7%9E%D7%A9%D7%A0%D7%94_%D7%AA%D7%95%D7%A8%D7%94_(%D7%AA%D7%95%D7%9B%D7%9F_%D7%94%D7%97%D7%99%D7%91%D7%95%D7%A8)",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "mishneh-torah-overview-of-mishneh-torah-contents"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ahavat Chesed -- Torat Emet",
+      "version_source": "http://toratemetfreeware.com/online/f_01815.html",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ahavat-chesed"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ashlei Ravrevei: Shulchan Aruch Yoreh Deah, Lemberg, 1888",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002097765&context=L",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "rabbi-akiva-eiger-on-shulchan-arukh-yoreh-deah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ashlei Ravrevei: Shulchan Aruch Yoreh Deah, Lemberg, 1888",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002084080",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "yad-ephraim-on-shulchan-arukh-yoreh-deah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Avodat HaKodesh, Pressburg, 1859",
+      "version_source": "https://www.nli.org.il/he/books/NNL01",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sansan-leyair"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Bechinat Olam, Vilna 1879",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020506360205171/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "bechinat-olam"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Berlin, 1908",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001738025/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midrash-tannaim-on-deuteronomy"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Buber Edition, Berlin, 1912",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990017640040205171/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "siddur-rashi"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Chesed le-Avraham -- grimoar",
+      "version_source": "http://www.hebrew.grimoar.cz/azulaj/chesed_le-avraham.htm",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "chesed-leavraham"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Chokhmat Shlomo, Warsaw 1885",
+      "version_source": "https://www.nli.org.il/he/books/NNL01",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "the-wisdom-of-solomon"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Darkhei Yesharim, Warsaw 1913.",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001950380",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "darkhei-yesharim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Emunot we-Deot; Leipzig, 1864.",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020276490205171/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "haemunot-vehadeot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Iggerot Tzfun, Vilna 1890",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001855369",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "nineteen-letters"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Jerusalem, 1909",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990012777260205171/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shaar-hahakdamot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Kalach Pitchei Chokhmah -- grimoar",
+      "version_source": "http://www.hebrew.grimoar.cz/luzzato/kalach_pitchej_chochma.htm",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "kalach-pitchei-chokhmah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Kereti u'Peleti, Warsaw, 1878",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002097765",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "peleti-on-shulchan-arukh-yoreh-deah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ketuvim Achronim, Seckel Isaac Frankel. Warsaw, 1885",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001964863/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "book-of-judith"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Krakow, 1893",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001987598/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midrash-shmuel"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Krakow, 1903",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001779928/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "aggadat-bereshit"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Livorno, 1779",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001919747/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-hamakhria"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Maggid Meisharim - Torat Emet",
+      "version_source": "http://www.toratemetfreeware.com/online/f_01180.html",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "maggid-meisharim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Ramban on Sefer Yetzirah, Warsaw 1884",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001310968",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "ramban-on-sefer-yetzirah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sefer HaKana",
+      "version_source": "http://www.hebrew.grimoar.cz/anonym/sefer_ha-kana.htm",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-hakanah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sefer Hamitzvot L'Rasag, Warsaw, 1914. Vocalized Edition",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002027638",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-hamitzvot-of-rasag"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Sefer Mitzvot Katan, Kopys, 1820",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001771677",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "sefer-mitzvot-katan"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Shivchei HaBesht, Kopyst 1815",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002074799",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "shivchei-habesht"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tobia ben Elieser's Commentar zu Koheleth, Berlin 1904",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001050629",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midrash-lekach-tov-on-ecclesiastes"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Torat HaOlah, based on Prague, 1570 and Lemberg, 1858 editions ",
+      "version_source": "https://he.wikisource.org/wiki/%D7%AA%D7%95%D7%A8%D7%AA_%D7%94%D7%A2%D7%95%D7%9C%D7%94",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "torat-haolah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tosefta Challah",
+      "version_source": "http://www.mechon-mamre.org/b/f/f19.htm",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tosefta-challah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tosefta Dem'ai",
+      "version_source": "http://www.mechon-mamre.org/b/f/f13.htm",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tosefta-demai"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tosefta Eduyot - Machon Mamre",
+      "version_source": "http://www.mechon-mamre.org/b/f/f47.htm",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tosefta-eduyot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tosefta Shekalim",
+      "version_source": "http://www.mechon-mamre.org/b/f/f24.htm",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tosefta-shekalim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Tosefta Terumot",
+      "version_source": "http://www.mechon-mamre.org/b/f/f16.htm",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tosefta-terumot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Urim veTumim, Warsaw 1881, Vol 2",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001167224",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "urim-vetumim-tumim"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Vilna, 1879 -- vocalized",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001872727/NLI&local_base=NNL01",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "azharot-of-solomon-ibn-gabirol"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1881",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH001763900/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1887",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990003745680205171/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "maalot-hamiddot"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1891",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH990020776110205171/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "simlah-chadashah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1902",
+      "version_source": "https://www.nli.org.il/he/books/NNL_ALEPH002085545/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tashbetz-katan"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Warsaw, 1913",
+      "version_source": "http://rosetta.nli.org.il/delivery/DeliveryManagerServlet?dps_pid=IE13133653",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "tzavaat-harivash"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "Yalkut Talmud Torah. Cincinnati, 1940",
+      "version_source": "https://www.nli.org.il/en/books/NNL_ALEPH001264247/NLI",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "midrash-yelamdenu-selections-from-yalkut-talmud-torah"
+      ]
+    },
+    {
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "version_title": "כתובים אחרונים - יצחק זעקיל פרענקיל",
+      "version_source": "http://www.daat.ac.il/daat/hasfarim/hashmonaim-a-2.htm",
+      "row_count": 1,
+      "work_count": 1,
+      "sample_work_ids": [
+        "the-book-of-maccabees-i"
+      ]
+    }
+  ],
+  "license_category_rows": [
+    {
+      "license": "Public Domain",
+      "category": "chasidut",
+      "row_count": 810
+    },
+    {
+      "license": "Public Domain",
+      "category": "halakhah",
+      "row_count": 410
+    },
+    {
+      "license": "Public Domain",
+      "category": "kabbalah",
+      "row_count": 329
+    },
+    {
+      "license": "Public Domain",
+      "category": "midrash",
+      "row_count": 284
+    },
+    {
+      "license": "Public Domain",
+      "category": "musar",
+      "row_count": 201
+    },
+    {
+      "license": "Public Domain",
+      "category": "jewish-thought",
+      "row_count": 106
+    },
+    {
+      "license": "Public Domain",
+      "category": "gra",
+      "row_count": 37
+    },
+    {
+      "license": "Public Domain",
+      "category": "tanakh",
+      "row_count": 35
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "halakhah",
+      "row_count": 20
+    },
+    {
+      "license": "CC-BY",
+      "category": "halakhah",
+      "row_count": 18
+    },
+    {
+      "license": "CC-BY",
+      "category": "midrash",
+      "row_count": 16
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "kabbalah",
+      "row_count": 15
+    },
+    {
+      "license": "Public Domain",
+      "category": "rav-kook",
+      "row_count": 15
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "tanakh",
+      "row_count": 14
+    },
+    {
+      "license": "CC0",
+      "category": "halakhah",
+      "row_count": 12
+    },
+    {
+      "license": "Public Domain",
+      "category": "liturgy",
+      "row_count": 11
+    },
+    {
+      "license": "Public Domain",
+      "category": "ari",
+      "row_count": 9
+    },
+    {
+      "license": "Public Domain",
+      "category": "tosefta",
+      "row_count": 9
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "midrash",
+      "row_count": 8
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "liturgy",
+      "row_count": 6
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "second-temple",
+      "row_count": 5
+    },
+    {
+      "license": "Public Domain",
+      "category": "mishnah",
+      "row_count": 5
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "musar",
+      "row_count": 3
+    },
+    {
+      "license": "CC0",
+      "category": "liturgy",
+      "row_count": 3
+    },
+    {
+      "license": "Public Domain",
+      "category": "second-temple",
+      "row_count": 3
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "gra",
+      "row_count": 2
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "rav-kook",
+      "row_count": 2
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "jewish-thought",
+      "row_count": 1
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "orot",
+      "row_count": 1
+    }
+  ],
+  "license_status_category_rows": [
+    {
+      "license": "Public Domain",
+      "category": "chasidut",
+      "status": "candidate",
+      "row_count": 524
+    },
+    {
+      "license": "Public Domain",
+      "category": "chasidut",
+      "status": "weak",
+      "row_count": 212
+    },
+    {
+      "license": "Public Domain",
+      "category": "kabbalah",
+      "status": "candidate",
+      "row_count": 203
+    },
+    {
+      "license": "Public Domain",
+      "category": "halakhah",
+      "status": "candidate",
+      "row_count": 170
+    },
+    {
+      "license": "Public Domain",
+      "category": "halakhah",
+      "status": "weak",
+      "row_count": 154
+    },
+    {
+      "license": "Public Domain",
+      "category": "midrash",
+      "status": "candidate",
+      "row_count": 152
+    },
+    {
+      "license": "Public Domain",
+      "category": "musar",
+      "status": "candidate",
+      "row_count": 117
+    },
+    {
+      "license": "Public Domain",
+      "category": "halakhah",
+      "status": "supported",
+      "row_count": 86
+    },
+    {
+      "license": "Public Domain",
+      "category": "kabbalah",
+      "status": "weak",
+      "row_count": 80
+    },
+    {
+      "license": "Public Domain",
+      "category": "chasidut",
+      "status": "supported",
+      "row_count": 74
+    },
+    {
+      "license": "Public Domain",
+      "category": "midrash",
+      "status": "weak",
+      "row_count": 71
+    },
+    {
+      "license": "Public Domain",
+      "category": "jewish-thought",
+      "status": "candidate",
+      "row_count": 63
+    },
+    {
+      "license": "Public Domain",
+      "category": "midrash",
+      "status": "supported",
+      "row_count": 61
+    },
+    {
+      "license": "Public Domain",
+      "category": "musar",
+      "status": "weak",
+      "row_count": 61
+    },
+    {
+      "license": "Public Domain",
+      "category": "kabbalah",
+      "status": "supported",
+      "row_count": 46
+    },
+    {
+      "license": "Public Domain",
+      "category": "jewish-thought",
+      "status": "weak",
+      "row_count": 35
+    },
+    {
+      "license": "Public Domain",
+      "category": "musar",
+      "status": "supported",
+      "row_count": 23
+    },
+    {
+      "license": "Public Domain",
+      "category": "gra",
+      "status": "candidate",
+      "row_count": 21
+    },
+    {
+      "license": "Public Domain",
+      "category": "tanakh",
+      "status": "candidate",
+      "row_count": 17
+    },
+    {
+      "license": "CC-BY",
+      "category": "halakhah",
+      "status": "weak",
+      "row_count": 15
+    },
+    {
+      "license": "Public Domain",
+      "category": "gra",
+      "status": "weak",
+      "row_count": 15
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "halakhah",
+      "status": "candidate",
+      "row_count": 11
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "tanakh",
+      "status": "candidate",
+      "row_count": 9
+    },
+    {
+      "license": "Public Domain",
+      "category": "tanakh",
+      "status": "supported",
+      "row_count": 9
+    },
+    {
+      "license": "Public Domain",
+      "category": "tanakh",
+      "status": "weak",
+      "row_count": 9
+    },
+    {
+      "license": "CC-BY",
+      "category": "midrash",
+      "status": "candidate",
+      "row_count": 8
+    },
+    {
+      "license": "Public Domain",
+      "category": "jewish-thought",
+      "status": "supported",
+      "row_count": 8
+    },
+    {
+      "license": "Public Domain",
+      "category": "rav-kook",
+      "status": "supported",
+      "row_count": 8
+    },
+    {
+      "license": "CC-BY",
+      "category": "midrash",
+      "status": "weak",
+      "row_count": 7
+    },
+    {
+      "license": "Public Domain",
+      "category": "liturgy",
+      "status": "candidate",
+      "row_count": 7
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "kabbalah",
+      "status": "candidate",
+      "row_count": 6
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "liturgy",
+      "status": "candidate",
+      "row_count": 6
+    },
+    {
+      "license": "CC0",
+      "category": "halakhah",
+      "status": "weak",
+      "row_count": 6
+    },
+    {
+      "license": "Public Domain",
+      "category": "rav-kook",
+      "status": "candidate",
+      "row_count": 6
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "halakhah",
+      "status": "supported",
+      "row_count": 5
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "kabbalah",
+      "status": "weak",
+      "row_count": 5
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "halakhah",
+      "status": "weak",
+      "row_count": 4
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "kabbalah",
+      "status": "supported",
+      "row_count": 4
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "midrash",
+      "status": "weak",
+      "row_count": 4
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "second-temple",
+      "status": "candidate",
+      "row_count": 4
+    },
+    {
+      "license": "CC0",
+      "category": "halakhah",
+      "status": "candidate",
+      "row_count": 4
+    },
+    {
+      "license": "Public Domain",
+      "category": "ari",
+      "status": "weak",
+      "row_count": 4
+    },
+    {
+      "license": "Public Domain",
+      "category": "tosefta",
+      "status": "candidate",
+      "row_count": 4
+    },
+    {
+      "license": "CC-BY",
+      "category": "halakhah",
+      "status": "candidate",
+      "row_count": 3
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "tanakh",
+      "status": "weak",
+      "row_count": 3
+    },
+    {
+      "license": "Public Domain",
+      "category": "ari",
+      "status": "supported",
+      "row_count": 3
+    },
+    {
+      "license": "Public Domain",
+      "category": "liturgy",
+      "status": "weak",
+      "row_count": 3
+    },
+    {
+      "license": "Public Domain",
+      "category": "mishnah",
+      "status": "candidate",
+      "row_count": 3
+    },
+    {
+      "license": "Public Domain",
+      "category": "tosefta",
+      "status": "weak",
+      "row_count": 3
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "gra",
+      "status": "candidate",
+      "row_count": 2
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "midrash",
+      "status": "candidate",
+      "row_count": 2
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "midrash",
+      "status": "supported",
+      "row_count": 2
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "musar",
+      "status": "weak",
+      "row_count": 2
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "rav-kook",
+      "status": "candidate",
+      "row_count": 2
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "tanakh",
+      "status": "supported",
+      "row_count": 2
+    },
+    {
+      "license": "CC0",
+      "category": "halakhah",
+      "status": "supported",
+      "row_count": 2
+    },
+    {
+      "license": "CC0",
+      "category": "liturgy",
+      "status": "candidate",
+      "row_count": 2
+    },
+    {
+      "license": "Public Domain",
+      "category": "ari",
+      "status": "candidate",
+      "row_count": 2
+    },
+    {
+      "license": "Public Domain",
+      "category": "second-temple",
+      "status": "candidate",
+      "row_count": 2
+    },
+    {
+      "license": "Public Domain",
+      "category": "tosefta",
+      "status": "supported",
+      "row_count": 2
+    },
+    {
+      "license": "CC-BY",
+      "category": "midrash",
+      "status": "supported",
+      "row_count": 1
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "jewish-thought",
+      "status": "weak",
+      "row_count": 1
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "musar",
+      "status": "candidate",
+      "row_count": 1
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "orot",
+      "status": "weak",
+      "row_count": 1
+    },
+    {
+      "license": "CC-BY-SA",
+      "category": "second-temple",
+      "status": "weak",
+      "row_count": 1
+    },
+    {
+      "license": "CC0",
+      "category": "liturgy",
+      "status": "weak",
+      "row_count": 1
+    },
+    {
+      "license": "Public Domain",
+      "category": "gra",
+      "status": "supported",
+      "row_count": 1
+    },
+    {
+      "license": "Public Domain",
+      "category": "liturgy",
+      "status": "supported",
+      "row_count": 1
+    },
+    {
+      "license": "Public Domain",
+      "category": "mishnah",
+      "status": "supported",
+      "row_count": 1
+    },
+    {
+      "license": "Public Domain",
+      "category": "mishnah",
+      "status": "weak",
+      "row_count": 1
+    },
+    {
+      "license": "Public Domain",
+      "category": "rav-kook",
+      "status": "weak",
+      "row_count": 1
+    },
+    {
+      "license": "Public Domain",
+      "category": "second-temple",
+      "status": "weak",
+      "row_count": 1
+    }
+  ],
+  "license_route_rows": [
+    {
+      "license": "Public Domain",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "row_count": 2264
+    },
+    {
+      "license": "CC-BY-SA",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "row_count": 77
+    },
+    {
+      "license": "CC-BY",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "row_count": 34
+    },
+    {
+      "license": "CC0",
+      "route_id": "def-kaikki-lemma-e4f94cd5131316a8",
+      "row_count": 15
+    }
+  ],
+  "quality": {
+    "status": "passed",
+    "failed_checks": 0,
+    "warning_checks": 0
+  }
+}

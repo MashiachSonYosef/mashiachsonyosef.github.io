@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_definition_workbench_usage_negative_consumer_followup",
+  "generated_at": "2026-06-02T13:28:20.894Z",
+  "generator": "scripts/build_agent3_definition_workbench_usage_negative_consumer_followup.mjs",
+  "lane_owner": "Agent 3",
+  "target_reviewer": "Agent 6",
+  "queue_submitter": "Agent 5",
+  "status": "evidence-ready",
+  "chosen_path": "ui_consumer_negative_tests",
+  "source_reports": [
+    {
+      "report": "reports/definition-workbench-usage-queue-ready-packet.md",
+      "exists": true
+    },
+    {
+      "report": "reports/definition-workbench-usage-consumer-manifest.md",
+      "exists": true
+    },
+    {
+      "report": "reports/definition-workbench-usage-route-pointer-audit.md",
+      "exists": true
+    },
+    {
+      "report": "reports/agent6-agent3-definition-workbench-usage-occurrence-links-verdict-2026-06-02.md",
+      "exists": true
+    }
+  ],
+  "source_json": [
+    {
+      "name": "queue_packet",
+      "path": "data/definitions/definition-workbench-usage-queue-ready-packet.json",
+      "exists": true
+    },
+    {
+      "name": "consumer_manifest",
+      "path": "data/definitions/definition-workbench-usage-consumer-manifest.json",
+      "exists": true
+    },
+    {
+      "name": "route_pointer_audit",
+      "path": "data/definitions/definition-workbench-usage-route-pointer-audit.json",
+      "exists": true
+    },
+    {
+      "name": "agent3_state",
+      "path": "reports/agent3-state.json",
+      "exists": true
+    }
+  ],
+  "scanned_json_for_authority_keys": [
+    "data/definitions/definition-workbench-usage-queue-ready-packet.json",
+    "data/definitions/definition-workbench-usage-consumer-manifest.json",
+    "data/definitions/definition-workbench-usage-route-pointer-audit.json",
+    "reports/agent3-state.json"
+  ],
+  "forbidden_authority_keys_checked": [
+    "accepted_translation",
+    "accepted_translation_text",
+    "agent2_payload",
+    "agent2_payloads",
+    "answer",
+    "definition",
+    "definition_text",
+    "final_answer",
+    "meaning",
+    "meaning_claim",
+    "route_metadata",
+    "route_payload",
+    "route_payloads",
+    "selected_answer",
+    "semantic_claim",
+    "translation",
+    "translation_text",
+    "visible_answer",
+    "winner"
+  ],
+  "forbidden_authority_value_hits": [],
+  "counts": {
+    "files_inspected": 8,
+    "source_reports_present": 4,
+    "source_reports_expected": 4,
+    "source_json_present": 4,
+    "source_json_expected": 4,
+    "queue_required_fields_present": 10,
+    "queue_required_fields": 10,
+    "queue_evidence_artifacts_exist": 53,
+    "queue_evidence_artifacts": 53,
+    "queue_submitted_to_agent6": 0,
+    "queue_mutations": 0,
+    "consumer_manifest_entries": 16,
+    "consumer_manifest_passed_entries": 16,
+    "consumer_manifest_data_artifacts_exist": 16,
+    "consumer_manifest_data_artifacts": 16,
+    "consumer_manifest_report_artifacts_exist": 16,
+    "consumer_manifest_report_artifacts": 16,
+    "consumer_manifest_validator_scripts_exist": 16,
+    "consumer_manifest_validator_scripts": 16,
+    "consumer_manifest_reader_facing_rows": 0,
+    "consumer_manifest_route_payload_field_hits": 0,
+    "consumer_manifest_forbidden_authority_field_hits": 0,
+    "occurrence_link_rows": 49,
+    "occurrence_link_complete_metadata_rows": 49,
+    "occurrence_link_reader_facing_rows": 0,
+    "occurrence_link_route_payload_field_hits": 0,
+    "occurrence_link_forbidden_authority_field_hits": 0,
+    "concordance_navigation_rows": 2390,
+    "concordance_supported_rows": 339,
+    "concordance_candidate_rows": 1351,
+    "concordance_weak_rows": 700,
+    "concordance_reader_facing_rows": 0,
+    "concordance_route_payload_field_hits": 0,
+    "concordance_forbidden_authority_field_hits": 0,
+    "ambiguous_audit_only_available": 2064,
+    "ambiguous_emitted_rows": 0,
+    "route_pointer_rows": 1,
+    "route_pointer_route_ids": 1,
+    "route_pointer_resolved_route_ids": 1,
+    "route_pointer_unresolved_route_ids": 0,
+    "route_pointer_support_rows_with_pointer": 49,
+    "route_pointer_support_rows": 49,
+    "route_pointer_navigation_rows_with_pointer": 2390,
+    "route_pointer_navigation_rows": 2390,
+    "route_pointer_payload_copied_rows": 0,
+    "route_pointer_agent2_payload_copied_rows": 0,
+    "route_pointer_metadata_copied_rows": 0,
+    "route_pointer_reader_facing_rows": 0,
+    "route_pointer_route_payload_field_hits": 0,
+    "route_pointer_forbidden_authority_field_hits": 0,
+    "route_pointer_route_metadata_field_hits": 0,
+    "single_route_scope_warning": 1,
+    "agent3_state_evidence_artifacts_exist": 59,
+    "agent3_state_evidence_artifacts": 59,
+    "agent3_state_validator_scripts_exist": 31,
+    "agent3_state_validator_scripts": 31,
+    "agent3_state_smoke_failed": 0,
+    "agent3_state_source_freshness_pending": 173,
+    "forbidden_authority_value_hits": 0
+  },
+  "negative_tests": [
+    {
+      "name": "source_files_present",
+      "status": "passed",
+      "severity": "required",
+      "detail": "reports 4/4; json 4/4"
+    },
+    {
+      "name": "queue_is_not_self_submitted",
+      "status": "passed",
+      "severity": "required",
+      "detail": "required fields 10/10; queue mutations/submitted 0/0"
+    },
+    {
+      "name": "consumer_manifest_usage_only",
+      "status": "passed",
+      "severity": "required",
+      "detail": "reader-facing/route-payload/forbidden 0/0/0"
+    },
+    {
+      "name": "occurrence_links_not_answers",
+      "status": "passed",
+      "severity": "required",
+      "detail": "rows/metadata 49/49; reader-facing/payload/forbidden 0/0/0"
+    },
+    {
+      "name": "concordance_navigation_not_reader_authority",
+      "status": "passed",
+      "severity": "required",
+      "detail": "rows 2390; reader-facing/payload/forbidden 0/0/0"
+    },
+    {
+      "name": "ambiguous_rows_audit_only",
+      "status": "passed",
+      "severity": "required",
+      "detail": "ambiguous available/emitted 2064/0"
+    },
+    {
+      "name": "route_pointers_resolve_without_payload_copy",
+      "status": "passed",
+      "severity": "required",
+      "detail": "routes/resolved/unresolved 1/1/0; support 49/49; navigation 2390/2390; payload/agent2/metadata copied 0/0/0"
+    },
+    {
+      "name": "forbidden_authority_keys_absent_in_scanned_json",
+      "status": "passed",
+      "severity": "required",
+      "detail": "hard-true forbidden authority value hits 0"
+    },
+    {
+      "name": "single_route_scope_visible_not_resolved",
+      "status": "warning",
+      "severity": "warning",
+      "detail": "route IDs 1; this packet preserves the Agent 6 WARN rather than claiming diversity"
+    },
+    {
+      "name": "source_freshness_still_pending",
+      "status": "warning",
+      "severity": "warning",
+      "detail": "pending source-freshness files 173"
+    }
+  ],
+  "queue_intake_summary": {
+    "packet_role": "usage-navigation occurrence-link follow-up only",
+    "validated_result": "negative consumer tests passed with warnings preserved",
+    "selected_rows": 49,
+    "navigation_rows": 2390,
+    "supported_candidate_weak": "339/1351/700",
+    "route_ids": 1,
+    "route_payload_policy": "route IDs only; resolve Agent 2 payloads outside Agent 3 artifacts",
+    "ambiguity_policy": "audit-only; not emitted reader-facing",
+    "agent6_verdict_dependency": "WARN-ACCEPTED planning evidence only; this packet does not claim Agent 6 acceptance"
+  },
+  "boundaries": {
+    "observed_usage_only": true,
+    "answer_authority_claimed": false,
+    "semantic_arbitration_claimed": false,
+    "route_ranking_claimed": false,
+    "visible_answer_selection_claimed": false,
+    "ui_runtime_acceptance_claimed": false,
+    "public_display_claimed": false,
+    "publication_readiness_claimed": false,
+    "source_provenance_custody_claimed": false,
+    "copied_agent2_payloads_claimed": false,
+    "accepted_text_claimed": false,
+    "agent6_acceptance_claimed": false,
+    "broad_corpus_completion_claimed": false
+  },
+  "stop_conditions_respected": {
+    "broad_corpus_rebuild_required": false,
+    "route_ranking_required": false,
+    "ui_runtime_work_required": false,
+    "source_provenance_acceptance_required": false,
+    "destructive_action_required": false,
+    "external_input_required": false
+  },
+  "quality": {
+    "status": "pass_with_warnings",
+    "failed_checks": 0,
+    "warning_checks": 2,
+    "warnings": [
+      "single_route_scope_visible_not_resolved",
+      "source_freshness_still_pending"
+    ]
+  }
+}
