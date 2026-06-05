@@ -1,0 +1,343 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_agent10_crossmatch_direct_state_reconciliation",
+  "generated_at": "2026-06-05T13:36:13.676Z",
+  "active_mode": "WEEKLY_LEXICON_EXPANSION_GOAL_MODE / direct Agent run mode",
+  "lane_owner": "Agent 3",
+  "package_owner": "Agent 3",
+  "status": "agent10_direct_state_crossmatch_row_stale_current_inventory_clean",
+  "publication_state": "blocked_no_render",
+  "target": "Reconcile Agent 10 top-level direct-goal crossmatch summary counts against the later Agent 10 fresh-output consumption packet and the committed Agent 3 crossmatch inventory packet.",
+  "files": {
+    "input_files": [
+      "reports/agent10-direct-release-package-goal-state-2026-06-05.json",
+      "reports/agent10-direct-release-package-goal-state-2026-06-05.md",
+      "reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.json",
+      "reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.md",
+      "reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+      "reports/agent3-crossmatch-inventory-packet-2026-06-05.md",
+      "reports/agent3-state.json",
+      "reports/agent3-state.md"
+    ],
+    "output_json": "reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.json",
+    "output_markdown": "reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.md"
+  },
+  "exact_command_or_script_to_write_or_run": "node scripts/build_agent3_agent10_crossmatch_direct_state_reconciliation.mjs",
+  "direct_state_row": {
+    "path": "reports/agent10-direct-release-package-goal-state-2026-06-05.json",
+    "generated_at": "2026-06-05T01:44:00.000Z",
+    "goal": "Agent 3 crossmatch inventory and Agent 4 third-missed gate proof",
+    "local_artifact_or_exact_blocker": "reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.json",
+    "counts": {
+      "agent3_files_in_inventory": 225,
+      "agent3_dirty_or_uncommitted_files": 192,
+      "agent3_reader_facing_rows": 0,
+      "agent3_route_payload_field_hits": 0,
+      "agent3_forbidden_authority_field_hits": 0,
+      "agent4_rows": 169,
+      "agent4_occurrences": 2148,
+      "agent4_validators_passed": 2
+    },
+    "exact_blockers": [
+      "crossmatch_inventory_contains_dirty_or_uncommitted_artifacts",
+      "agent3_crossmatch_inventory_count_changed_during_agent10_intake",
+      "agent4_crossmatch_gate_proof_stale_against_current_agent3_inventory"
+    ],
+    "stop_condition": "Stop at Agent 3 exact blocker, volatile inventory-count blocker, and Agent 4 prereq/stale evidence; no package evidence use for dirty/uncommitted subset until bounded validation/commit."
+  },
+  "fresh_consumption_row": {
+    "path": "reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.json",
+    "generated_at": "2026-06-05T10:36:00.000Z",
+    "package_workset": "agent3_crossmatch_inventory_packet",
+    "counts": {
+      "files_in_inventory": 225,
+      "data_artifacts": 51,
+      "report_artifacts": 57,
+      "pipeline_scripts": 117,
+      "dirty_or_uncommitted_files": 0,
+      "committed_clean_files": 225,
+      "untracked_files": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "forbidden_truthy_authority_claims": 0
+    },
+    "exact_blocker": "none_for_clean_inventory_baseline",
+    "validator_result": "node scripts\\validate_agent3_crossmatch_inventory_packet.mjs reports\\agent3-crossmatch-inventory-packet-2026-06-05.json passed",
+    "next_handoff": "Preserve as clean navigation baseline only. Agent 3 must provide a bounded package-use packet or exact changed workset before Agent 10 treats it as release/package evidence."
+  },
+  "stale_gate_proof_reference": {
+    "package_workset": "agent4_agent3_crossmatch_inventory_gate_proof",
+    "exact_blocker": "agent4_crossmatch_gate_proof_stale_against_current_agent3_inventory",
+    "counts": {
+      "gate_proof_files_in_inventory": 227,
+      "gate_proof_dirty_or_uncommitted_files": 206,
+      "current_agent3_files_in_inventory": 225,
+      "current_agent3_dirty_or_uncommitted_files": 0,
+      "gate_proof_stale_against_current_agent3_inventory": 1,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0
+    },
+    "next_handoff": "Agent 4 may refresh the gate proof after the Agent 3 inventory stabilizes; Agent 10 does not open a new Agent 6 route from the stale proof."
+  },
+  "current_agent3_inventory": {
+    "path": "reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+    "generated_at": "2026-06-05T11:46:20.163Z",
+    "artifact_type": "agent3_crossmatch_inventory_packet",
+    "blocker": {
+      "status": "none",
+      "blocker_id": null,
+      "blocker_detail": "No dirty or uncommitted files found in the scoped crossmatch/usage inventory.",
+      "blocked_file_count": 0
+    },
+    "counts": {
+      "files_in_inventory": 225,
+      "data_artifacts": 51,
+      "report_artifacts": 57,
+      "pipeline_scripts": 117,
+      "agent3_owned_files": 108,
+      "shared_definition_workbench_usage_files": 108,
+      "committed_clean_files": 225,
+      "dirty_or_uncommitted_files": 0,
+      "staged_added_files": 0,
+      "staged_modified_files": 0,
+      "worktree_modified_files": 0,
+      "untracked_files": 0,
+      "reader_facing_rows": 0,
+      "route_payload_field_hits": 0,
+      "forbidden_authority_field_hits": 0,
+      "forbidden_truthy_authority_claims": 0,
+      "git_status_counts": {
+        "committed_clean": 225
+      },
+      "kind_counts": {
+        "data_artifact": 51,
+        "report_artifact": 57,
+        "pipeline_script": 117
+      },
+      "owner_counts": {
+        "agent3": 108,
+        "shared_definition_workbench_usage": 108,
+        "shared_workbench_usage_pipeline": 9
+      },
+      "artifact_type_counts": {
+        "agent3_definition_workbench_usage_collision_handoff_manifest": 1,
+        "agent3_definition_workbench_usage_collision_integrity_digest": 1,
+        "agent3_definition_workbench_usage_collision_package_summary": 1,
+        "agent3_definition_workbench_usage_collision_provenance_index": 1,
+        "agent3_definition_workbench_usage_collision_review_queue": 1,
+        "agent3_definition_workbench_usage_collision_review_reverse_index": 1,
+        "agent3_definition_workbench_usage_collision_validation_run": 1,
+        "agent3_definition_workbench_usage_collision_work_category_cross_work_snippet_locator": 1,
+        "agent3_definition_workbench_usage_collision_work_category_handoff_manifest": 1,
+        "agent3_definition_workbench_usage_collision_work_category_index": 1,
+        "agent3_definition_workbench_usage_collision_work_category_integrity_digest": 1,
+        "agent3_definition_workbench_usage_collision_work_category_occurrence_locator": 1,
+        "agent3_definition_workbench_usage_collision_work_category_provenance_locator": 1,
+        "agent3_definition_workbench_usage_collision_work_category_source_ref_repeat_locator": 1,
+        "agent3_definition_workbench_usage_collision_work_category_validation_run": 1,
+        "agent3_definition_workbench_usage_concordance_token_matrix": 1,
+        "agent3_definition_workbench_usage_cross_work_snippet_continuity_validation": 1,
+        "agent3_definition_workbench_usage_focus_collision_audit": 1,
+        "agent3_definition_workbench_usage_focus_frame_summary": 1,
+        "agent3_definition_workbench_usage_focus_navigation_shards": 1,
+        "agent3_definition_workbench_usage_focus_token_drilldown": 1,
+        "agent3_definition_workbench_usage_license_provenance_matrix": 1,
+        "agent3_definition_workbench_usage_token_bridge_consumer_addendum": 1,
+        "agent3_definition_workbench_usage_token_bridge_index": 1,
+        "definition_workbench_usage_agent6_packet": 1,
+        "definition_workbench_usage_anchor_audit": 1,
+        "definition_workbench_usage_concordance_navigation_packet": 1,
+        "definition_workbench_usage_consumer_manifest": 1,
+        "definition_workbench_usage_context_token_index": 1,
+        "definition_workbench_usage_context_token_links": 1,
+        "definition_workbench_usage_context_token_occurrence_index": 1,
+        "definition_workbench_usage_crossmatch_neighbors": 1,
+        "definition_workbench_usage_facet_index": 1,
+        "definition_workbench_usage_freshness_impact_packet": 1,
+        "definition_workbench_usage_join_smoke": 1,
+        "definition_workbench_usage_link_packet": 1,
+        "definition_workbench_usage_occurrence_context_profile": 1,
+        "definition_workbench_usage_occurrence_detail_index": 1,
+        "definition_workbench_usage_occurrence_links": 1,
+        "definition_workbench_usage_occurrence_support_packet": 1,
+        "definition_workbench_usage_planning_packet": 1,
+        "definition_workbench_usage_provenance_buckets": 1,
+        "definition_workbench_usage_queue_ready_packet": 1,
+        "definition_workbench_usage_route_concentration_guardrail": 1,
+        "definition_workbench_usage_route_diversity_probe": 1,
+        "definition_workbench_usage_route_pointer_audit": 1,
+        "definition_workbench_usage_route_resolution": 1,
+        "definition_workbench_usage_sample_gap_audit": 1,
+        "definition_workbench_usage_seed_queue": 1,
+        "definition_workbench_usage_source_ref_buckets": 1,
+        "definition_workbench_usage_work_buckets": 1,
+        "agent3_definition_workbench_usage_freshness_followup": 1,
+        "agent3_definition_workbench_usage_negative_consumer_followup": 1,
+        "agent3_definition_workbench_usage_source_freshness_refresh": 1
+      }
+    }
+  },
+  "agent3_state_reference": {
+    "path": "reports/agent3-state.json",
+    "generated_at": "2026-06-05T13:36:09.488Z",
+    "quality_status": "pass_with_warnings",
+    "crossmatch_inventory_files": 225,
+    "crossmatch_inventory_dirty_uncommitted": 0,
+    "forbidden_authority_hits": 0
+  },
+  "reconciliation": {
+    "direct_state_row_status": "stale_count_row_observed",
+    "current_inventory_status": "clean_inventory_baseline_observed",
+    "fresh_consumption_status": "agent10_fresh_consumption_already_records_clean_inventory",
+    "stale_direct_blockers_preserved_as_top_level_summary_drift": [
+      "crossmatch_inventory_contains_dirty_or_uncommitted_artifacts",
+      "agent3_crossmatch_inventory_count_changed_during_agent10_intake",
+      "agent4_crossmatch_gate_proof_stale_against_current_agent3_inventory"
+    ],
+    "control_edit_authorized": false,
+    "release_or_boundary_route_authorized": false,
+    "recommended_handoff": "Agent 10 may refresh its top-level direct-goal summary row if desired; Agent 3 provides only this reconciliation evidence and no release/package authority."
+  },
+  "schema_counts": {
+    "direct_state_rows_matching_crossmatch": 1,
+    "direct_state_agent3_files_in_inventory": 225,
+    "direct_state_agent3_dirty_or_uncommitted_files": 192,
+    "direct_state_agent3_reader_facing_rows": 0,
+    "direct_state_agent3_route_payload_field_hits": 0,
+    "direct_state_agent3_forbidden_authority_field_hits": 0,
+    "direct_state_exact_blockers": 3,
+    "fresh_consumption_agent3_files_in_inventory": 225,
+    "fresh_consumption_agent3_dirty_or_uncommitted_files": 0,
+    "fresh_consumption_agent3_untracked_files": 0,
+    "fresh_consumption_agent3_reader_facing_rows": 0,
+    "fresh_consumption_agent3_route_payload_field_hits": 0,
+    "fresh_consumption_agent3_forbidden_authority_field_hits": 0,
+    "fresh_consumption_agent3_truthy_authority_claims": 0,
+    "current_inventory_files_in_inventory": 225,
+    "current_inventory_dirty_or_uncommitted_files": 0,
+    "current_inventory_untracked_files": 0,
+    "current_inventory_reader_facing_rows": 0,
+    "current_inventory_route_payload_field_hits": 0,
+    "current_inventory_forbidden_authority_field_hits": 0,
+    "current_inventory_truthy_authority_claims": 0,
+    "stale_dirty_count_delta": 192,
+    "current_inventory_blocker_count": 0,
+    "agent4_stale_gate_proof_blockers": 1,
+    "control_edits": 0,
+    "agent6_boundary_packets_opened": 0,
+    "route_publication_support_rows": 0,
+    "definition_authority_rows": 0,
+    "usage_as_definition_rows": 0,
+    "answer_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutations": 0,
+    "public_reader_output_rows": 0
+  },
+  "reviewed_inputs": [
+    {
+      "role": "agent10DirectStateJson",
+      "path": "reports/agent10-direct-release-package-goal-state-2026-06-05.json",
+      "exists": true,
+      "bytes": 8749,
+      "sha256": "c6626770264d75a55fd722c585324b26e296ad9edd2e9457970f6ed5e3e36e3e"
+    },
+    {
+      "role": "agent10DirectStateMd",
+      "path": "reports/agent10-direct-release-package-goal-state-2026-06-05.md",
+      "exists": true,
+      "bytes": 6148,
+      "sha256": "2454d0e5355cfae97b207ad3129bce31dc381c17796c507ae51a634df97272d9"
+    },
+    {
+      "role": "agent10FreshConsumptionJson",
+      "path": "reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.json",
+      "exists": true,
+      "bytes": 7316,
+      "sha256": "6fdecde09046af7e180e74c81b2280654a397e0c50ab15f655ae07bd9f60f6ad"
+    },
+    {
+      "role": "agent10FreshConsumptionMd",
+      "path": "reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.md",
+      "exists": true,
+      "bytes": 4171,
+      "sha256": "83b64381f2d8c2c9b11fcbb8eed70b15a1fdc64d4a84ab933963cabfcc4462b7"
+    },
+    {
+      "role": "agent3InventoryJson",
+      "path": "reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+      "exists": true,
+      "bytes": 162184,
+      "sha256": "07485aeb05a8f8d40b8e737e73bea153aed7abfebb3d6bb182586b7ac1217ca1"
+    },
+    {
+      "role": "agent3InventoryMd",
+      "path": "reports/agent3-crossmatch-inventory-packet-2026-06-05.md",
+      "exists": true,
+      "bytes": 3309,
+      "sha256": "ed7fb346e19526040926d8648450e94e4cd05f4bf2dd3b54951f756534813173"
+    },
+    {
+      "role": "agent3StateJson",
+      "path": "reports/agent3-state.json",
+      "exists": true,
+      "bytes": 63974,
+      "sha256": "6f3e09e7afdf5fb0705888a8454772ee05f650fc9e4ba7fdf6e8dd6042c2862b"
+    },
+    {
+      "role": "agent3StateMd",
+      "path": "reports/agent3-state.md",
+      "exists": true,
+      "bytes": 24854,
+      "sha256": "8e3f3e0fabd8b311111e3d6abf25902029a043bb8bf8004b28409a611cbb9e0e"
+    }
+  ],
+  "remaining_blocker": {
+    "blocker": "top_level_agent10_direct_state_crossmatch_row_stale_until_agent10_refreshes_summary",
+    "wake_condition": "Agent 3 has no changed executable crossmatch workset here; wake Agent 3 only with a changed artifact path or exact workset with rows/occurrences, inputs, output schema/path, validator/gate, handoff owner, and stop condition.",
+    "missing_fields_for_new_agent3_workset": [
+      "changed_agent3_artifact_path_or_exact_workset_id",
+      "target_rows_and_occurrences_for_new_agent3_matrix",
+      "route_card_or_source_route_input_set",
+      "output_path_and_schema_for_new_agent3_matrix",
+      "validator_or_gate_for_new_agent3_matrix",
+      "handoff_trigger_for_agent10_release_package_intake",
+      "stop_condition_for_new_agent3_run"
+    ]
+  },
+  "handoff_owner": "Agent 10 for top-level summary refresh if desired; Agent 3 remains evidence-only and held until exact changed workset.",
+  "stop_condition": "Stop after recording that Agent 10 fresh consumption and current Agent 3 inventory show a clean crossmatch inventory baseline despite the stale top-level direct-goal summary row.",
+  "evidence_scope": {
+    "usage_navigation_only": true,
+    "occurrence_navigation_only": true,
+    "route_ids_only": true,
+    "control_reconciliation_only": true
+  },
+  "boundary": {
+    "source_license_acceptance": false,
+    "source_provenance_acceptance": false,
+    "qa_acceptance": false,
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "semantic_arbitration": false,
+    "route_ranking": false,
+    "answer_selection": false,
+    "route_publication_support": false,
+    "public_runtime_acceptance": false,
+    "publication_readiness": false,
+    "product_data_acceptance": false,
+    "package_export_authorization": false,
+    "accepted_gloss_text": false,
+    "accepted_text": false,
+    "translation_output": false,
+    "public_reader_output": false,
+    "public_runtime_mutation": false,
+    "control_state_mutation": false
+  },
+  "validators": [
+    "node scripts/validate_agent3_agent10_crossmatch_direct_state_reconciliation.mjs",
+    "node scripts/validate_agent3_crossmatch_inventory_packet.mjs reports/agent3-crossmatch-inventory-packet-2026-06-05.json",
+    "node scripts/validate_agent3_usage_state.mjs"
+  ]
+}

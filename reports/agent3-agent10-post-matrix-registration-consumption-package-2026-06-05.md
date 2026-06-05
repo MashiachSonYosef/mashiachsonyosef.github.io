@@ -27,7 +27,7 @@
 | Exact blocker rows | 6779 |
 | Exact blocker occurrences | 9631 |
 | External lane rows copied | 0 |
-| Spark10 inputs checked | 369 |
+| Spark10 inputs checked | 405 |
 | Spark10 release-relevant rows | 73 |
 | Spark10 handoff candidates | 0 |
 | Spark10 Agent 3 continuity registered rows | 4 |
@@ -60,9 +60,9 @@ Wake Agent 3 only when Agent 10, Agent 7, or a queue supplies an exact changed e
 - `reports/agent10-post-matrix-lane-output-consumption-2026-06-05.md` (11724 bytes, sha256 `903794b6eb80336482e4921f3c9c9ca103a5941a68723abb78acf4684310e8f3`)
 - `reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.json` (18415 bytes, sha256 `8a6f8afd8c40bc6d1d678afbdf4775415ca14ec3644fa186ad4ee5c8ee0a6019`)
 - `reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.md` (6314 bytes, sha256 `eba9707624d46d2b62d74f558fa00a7a15c8bba2a7229fd277ea187faaacb423`)
-- `reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.json` (28581 bytes, sha256 `d1c0dfbcc2277523b2b65c1026082f5a8e39b965a848ccfb1b278c8f054c8193`)
-- `reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.md` (5111 bytes, sha256 `0b732070db53408015a14ec8a957dd9bdaf897c7f825cb052837b00c0f1d19c2`)
-- `reports/spark10-release-package-intake-matrix-current-2026-06-04.json` (292884 bytes, sha256 `fc086d4fe27b70eb20e52757ab7a0dfd8115fe7bbb4973dfa82cbff9d041d93e`)
-- `reports/spark10-release-package-intake-matrix-current-2026-06-04.md` (72626 bytes, sha256 `00d4854c19bfce8c7b56ac2e28cf9e796c79f8552315a42d78f51cdaf4f71e79`)
-- `reports/agent3-state.json` (59447 bytes, sha256 `e88cb3908de5ef00ac63342320207403f6b5f16fe481da438f923c2ae02652bb`)
-- `reports/agent3-state.md` (23797 bytes, sha256 `753b0347366aa03f99aab2784df455ab641178ede445146e1d1a87987a1e3ed3`)
+- `reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.json` (36512 bytes, sha256 `e2d964dc5509a156a755071755affbb33de8b5ea57adbd17d4e39a0a19d86c13`)
+- `reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.md` (5054 bytes, sha256 `c1e405ce1d88b68584b1447c79efe94c6056ecf7114608730d610238279dd1c0`)
+- `reports/spark10-release-package-intake-matrix-current-2026-06-04.json` (321404 bytes, sha256 `d43510238e05b05a90177bc425a7296bbadb46ee6e17ad1a6f21a01de3eab81d`)
+- `reports/spark10-release-package-intake-matrix-current-2026-06-04.md` (79543 bytes, sha256 `6699200b8d4e0df03efa4384b2b3514512b9347d4483ff2a0e2d2052f89a7c95`)
+- `reports/agent3-state.json` (63974 bytes, sha256 `0581deb12540123cb4b02ad408a2cb088fd6ec1384faccb5c60518273f9e993c`)
+- `reports/agent3-state.md` (24854 bytes, sha256 `5900e6414a8135012147900ea43d16d6f556f9b86cd96721ad59ec3dd9c78878`)

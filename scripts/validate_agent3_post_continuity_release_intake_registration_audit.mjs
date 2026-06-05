@@ -122,11 +122,21 @@ function validateSnapshotCounts() {
   expect(counts.previous_matrix_rows === previousCounts.current_matrix_rows, 'previous matrix rows mismatch');
   expect(counts.current_missing_required_inputs === 0, 'missing required inputs must be 0');
   expect(counts.current_matrix_rows === counts.current_inputs_checked, 'matrix rows should equal input count');
-  expect(counts.current_agent3_rows === 24, 'current Agent 3 rows must remain 24 at package snapshot');
-  expect(counts.current_spark3_rows === 5, 'current Spark-3 related rows must be 5 at package snapshot');
+  expect(
+    counts.current_agent3_rows >= counts.previous_agent3_rows,
+    'current Agent 3 rows must not be below previous package snapshot',
+  );
+  expect(
+    counts.current_spark3_rows >= counts.previous_spark3_rows,
+    'current Spark-3 related rows must not be below previous package snapshot',
+  );
   expect(counts.current_agent3_related_rows >= 24, 'Agent 3 related rows must cover Agent 3 rows');
   expect(counts.direct_queue_agent3_runnable_items === 0, 'direct Agent 3 runnable queue items must be 0');
-  expect(counts.latest_agent3_package_spark10_registered === 0, 'latest package should be absent from package-time Spark10 intake');
+  if (artifact.status === 'latest_agent3_package_already_registered_no_new_workset') {
+    expect(counts.latest_agent3_package_spark10_registered === 1, 'latest package should be registered in current Spark10 intake');
+  } else {
+    expect(counts.latest_agent3_package_spark10_registered === 0, 'latest package should be absent from package-time Spark10 intake');
+  }
   expect(counts.input_delta_since_previous_audit === counts.current_inputs_checked - counts.previous_inputs_checked, 'input delta mismatch');
   expect(
     counts.release_relevant_delta_since_previous_audit ===
@@ -138,7 +148,10 @@ function validateSnapshotCounts() {
       counts.current_agent6_handoff_candidates - counts.previous_agent6_handoff_candidates,
     'handoff delta mismatch',
   );
-  expect(counts.agent3_row_delta_since_previous_audit === 0, 'Agent 3 row delta must be 0');
+  expect(
+    counts.agent3_row_delta_since_previous_audit === counts.current_agent3_rows - counts.previous_agent3_rows,
+    'Agent 3 row delta mismatch',
+  );
 
   for (const key of [
     'route_publication_support_rows',
@@ -173,7 +186,12 @@ function validateCurrentSpark10IfUnchanged() {
     'current matrix handoff count mismatch',
   );
   expect(rows.length === artifact.schema_counts.current_matrix_rows, 'current matrix row count mismatch');
-  expect(!rows.some((row) => row.path === latestPath), 'latest Agent 3 package unexpectedly registered in unchanged matrix');
+  const latestRegistered = rows.some((row) => row.path === latestPath);
+  if (artifact.schema_counts.latest_agent3_package_spark10_registered === 1) {
+    expect(latestRegistered, 'latest Agent 3 package should be registered in unchanged matrix');
+  } else {
+    expect(!latestRegistered, 'latest Agent 3 package unexpectedly registered in unchanged matrix');
+  }
 }
 
 function validateState() {
@@ -193,10 +211,11 @@ function validateBoundaries() {
   for (const [key, value] of Object.entries(artifact.agent10_current_boundary_verdict_consumption?.zero_counters || {})) {
     expect(value === 0, `Agent 10 verdict zero counter ${key} must be 0`);
   }
-  expect(
-    artifact.missing_field_blocker?.blocker === 'missing_spark10_intake_registration_or_exact_agent3_workset',
-    'missing field blocker mismatch',
-  );
+  const expectedBlocker =
+    artifact.status === 'latest_agent3_package_already_registered_no_new_workset'
+      ? 'missing_changed_artifact_or_exact_workset'
+      : 'missing_spark10_intake_registration_or_exact_agent3_workset';
+  expect(artifact.missing_field_blocker?.blocker === expectedBlocker, 'missing field blocker mismatch');
   expect(/Agent 10/.test(artifact.handoff_owner || ''), 'handoff owner must name Agent 10');
 
   const serialized = JSON.stringify(artifact);
