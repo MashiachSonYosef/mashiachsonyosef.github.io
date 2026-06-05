@@ -10,7 +10,7 @@
 
 ## Current Counts
 
-- Spark10 inputs checked: `365`
+- Spark10 inputs checked: `376`
 - Spark10 release-relevant rows: `73`
 - Spark10 Agent 6 handoff candidates: `0`
 - Agent 3 rows observed / handoff candidates: `41/0`

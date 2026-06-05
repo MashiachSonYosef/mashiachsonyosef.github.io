@@ -23,8 +23,8 @@ const stateMdPath = 'reports/agent3-state.md';
 
 const queue = readJson(queuePath);
 const activeItem = (queue.items || []).find((item) => item.id === activeItemId);
-if (!activeItem) throw new Error(`Missing queue item: ${activeItemId}`);
-const inputStatuses = (activeItem.inputs || []).map((inputPath) => {
+const queueItemMissing = !activeItem;
+const inputStatuses = (activeItem?.inputs || []).map((inputPath) => {
   const exists = fs.existsSync(resolve(inputPath));
   return {
     path: inputPath,
@@ -35,11 +35,13 @@ const inputStatuses = (activeItem.inputs || []).map((inputPath) => {
 });
 const missingInputs = inputStatuses.filter((input) => !input.exists);
 const missingContractFields = [];
-if (!Array.isArray(activeItem.pipeline_commands) || activeItem.pipeline_commands.length === 0) {
+if (queueItemMissing) {
+  missingContractFields.push('missing_queue_row');
+} else if (!Array.isArray(activeItem.pipeline_commands) || activeItem.pipeline_commands.length === 0) {
   missingContractFields.push('pipeline_commands');
 }
-if (!activeItem.output_schema) missingContractFields.push('output_schema');
-if (!activeItem.validator_gate) missingContractFields.push('validator_gate');
+if (!queueItemMissing && !activeItem.output_schema) missingContractFields.push('output_schema');
+if (!queueItemMissing && !activeItem.validator_gate) missingContractFields.push('validator_gate');
 const staleShadowText = fs.readFileSync(resolve(inputs.stale_spark10_shadow_md), 'utf8');
 const staleShadowMissingInputClaims = [
   'reports/agent1-orot-nc-klein-educational-source-family-map-2026-06-04.md',
@@ -59,20 +61,25 @@ const artifact = {
   artifact_type: 'agent3_spark10_hybrid_shadow_blocker_observer_package',
   generated_at: new Date().toISOString(),
   lane_owner: 'Agent 3',
-  status: 'spark10_hybrid_shadow_missing_pipeline_contract_observed',
+  status: queueItemMissing
+    ? 'spark10_hybrid_shadow_queue_row_missing_observed'
+    : 'spark10_hybrid_shadow_missing_pipeline_contract_observed',
   publication_state: 'blocked_no_render',
   active_goal: 'ongoing Agent 3 linkage/dedupe/navigation lane',
   reviewed_inputs: manifest(inputs),
   queue_item_observed: {
     path: queuePath,
-    id: activeItem.id,
-    status: activeItem.status,
-    objective: activeItem.objective,
-    assigned_thread_id: activeItem.assigned_thread_id,
-    expected_output: activeItem.expected_output,
-    package_owners: activeItem.package_owners || [],
-    stop_condition: activeItem.stop_condition,
-    boundary: activeItem.boundary,
+    id: activeItem?.id || activeItemId,
+    exists: !queueItemMissing,
+    status: activeItem?.status || null,
+    objective: activeItem?.objective || null,
+    assigned_thread_id: activeItem?.assigned_thread_id || null,
+    expected_output: activeItem?.expected_output || null,
+    package_owners: activeItem?.package_owners || [],
+    stop_condition:
+      activeItem?.stop_condition ||
+      'Wake only with a restored exact queue item or a changed Agent 3-owned linkage/dedupe/navigation workset.',
+    boundary: activeItem?.boundary || 'missing_queue_row; no runnable Spark10 shadow contract exists',
     inputs: inputStatuses,
     missing_inputs: missingInputs.map((input) => input.path),
     missing_contract_fields: missingContractFields,
@@ -125,10 +132,11 @@ const artifact = {
     public_reader_output_rows: 0,
   },
   package_summary: {
-    result:
-      'Spark10 hybrid release-relevance shadow is blocked by missing runnable pipeline contract fields, not by missing Agent3 Orot input.',
+    result: queueItemMissing
+      ? 'Spark10 hybrid release-relevance shadow queue row is absent; no Agent3 executable linkage/dedupe/navigation workset is created.'
+      : 'Spark10 hybrid release-relevance shadow is blocked by missing runnable pipeline contract fields, not by missing Agent3 Orot input.',
     agent3_next_action:
-      'Do not invent Spark10 commands; wait for exact pipeline_commands, output_schema, validator_gate, package owner, and stop condition or a new Agent3-owned linkage/dedupe/navigation workset.',
+      'Do not invent Spark10 commands; wait for a restored exact queue item with pipeline contract fields or a new Agent3-owned linkage/dedupe/navigation workset.',
     executable_workset_created: false,
     missing_pipeline_blocker_packaged: true,
   },
@@ -138,7 +146,9 @@ const artifact = {
     'git diff --check -- reports/agent3-spark10-hybrid-shadow-blocker-observer-package-2026-06-04.json reports/agent3-spark10-hybrid-shadow-blocker-observer-package-2026-06-04.md scripts/build_agent3_spark10_hybrid_shadow_blocker_observer_package.mjs scripts/validate_agent3_spark10_hybrid_shadow_blocker_observer_package.mjs reports/agent3-state.md',
   ],
   what_remains_blocked: [
-    'Spark10 hybrid shadow queue item lacks pipeline_commands, output_schema, and validator_gate.',
+    queueItemMissing
+      ? 'Spark10 hybrid shadow queue item is absent from the current standing queue.'
+      : 'Spark10 hybrid shadow queue item lacks pipeline_commands, output_schema, and validator_gate.',
     'Existing Spark10 hybrid shadow report is stale relative to current queue inputs and remains evidence only.',
     'No Agent3 executable linkage/dedupe/navigation workset is created here.',
     'Agent3 Orot source matrix remains working-tree generated_at drift and is not committed here.',

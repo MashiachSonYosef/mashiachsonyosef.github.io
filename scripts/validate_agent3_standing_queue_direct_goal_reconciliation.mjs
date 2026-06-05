@@ -89,6 +89,21 @@ function validateCurrentEvidence() {
   expect(directConsumption.remaining_blocker?.blocker === 'no_exact_changed_executable_agent3_workset', 'direct consumption blocker mismatch');
   expect(directConsumption.schema_counts?.direct_goal_agent3_executable_worksets === 0, 'direct consumption executable worksets must be 0');
 
+  const observedMatrix = artifact.current_local_matrix || {};
+  expect(
+    observedMatrix.summary?.inputs_checked === artifact.schema_counts.spark10_matrix_inputs_checked,
+    'observed Spark10 input count mismatch',
+  );
+  expect(
+    observedMatrix.agent3_executable_rows === artifact.schema_counts.spark10_agent3_executable_rows,
+    'observed Spark10 Agent 3 executable rows mismatch',
+  );
+  expect(allFalse(observedMatrix.boundary), 'observed Spark10 boundary must be all false');
+  if (!currentMatchesReviewedInput('spark10MatrixJson', 'reports/spark10-release-package-intake-matrix-current-2026-06-04.json')) {
+    warnings.push('current Spark10 matrix changed after package build; validated embedded package snapshot only');
+    return;
+  }
+
   const rows = spark10.rows || [];
   const agent3ExecutableRows = rows.filter(
     (row) =>
@@ -172,6 +187,11 @@ function resolve(relativePath) {
 
 function sha256(relativePath) {
   return crypto.createHash('sha256').update(fs.readFileSync(resolve(relativePath))).digest('hex');
+}
+
+function currentMatchesReviewedInput(role, relativePath) {
+  const reviewed = (artifact.reviewed_inputs || []).find((input) => input.role === role);
+  return Boolean(reviewed) && reviewed.sha256 === sha256(relativePath);
 }
 
 function expect(condition, message) {

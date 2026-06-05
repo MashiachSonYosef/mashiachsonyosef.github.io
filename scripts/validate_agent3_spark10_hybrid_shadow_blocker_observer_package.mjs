@@ -15,7 +15,13 @@ expect(
   artifact.artifact_type === 'agent3_spark10_hybrid_shadow_blocker_observer_package',
   'unexpected artifact_type',
 );
-expect(artifact.status === 'spark10_hybrid_shadow_missing_pipeline_contract_observed', 'unexpected status');
+expect(
+  [
+    'spark10_hybrid_shadow_missing_pipeline_contract_observed',
+    'spark10_hybrid_shadow_queue_row_missing_observed',
+  ].includes(artifact.status),
+  'unexpected status',
+);
 expect(artifact.publication_state === 'blocked_no_render', 'publication_state must be blocked_no_render');
 expect(artifact.lane_owner === 'Agent 3', 'lane_owner must be Agent 3');
 
@@ -33,36 +39,64 @@ for (const input of reviewedInputs) {
 }
 
 expect(artifact.queue_item_observed?.id === 'spark10-hybrid-floor-release-relevance-shadow', 'queue item id mismatch');
-expect(
-  artifact.queue_item_observed?.status === 'active_reseed_needed_after_agent1_agent3_orot_returns',
-  'queue item status mismatch',
-);
-expect(artifact.queue_item_observed?.expected_output === 'reports/spark10-hybrid-floor-release-relevance-shadow-2026-06-04.md', 'expected output mismatch');
+const queueRowMissing = artifact.queue_item_observed?.exists === false;
+if (queueRowMissing) {
+  expect(artifact.queue_item_observed?.status === null, 'missing queue item status must be null');
+  expect(artifact.queue_item_observed?.expected_output === null, 'missing queue item expected output must be null');
+} else {
+  expect(
+    artifact.queue_item_observed?.status === 'active_reseed_needed_after_agent1_agent3_orot_returns',
+    'queue item status mismatch',
+  );
+  expect(artifact.queue_item_observed?.expected_output === 'reports/spark10-hybrid-floor-release-relevance-shadow-2026-06-04.md', 'expected output mismatch');
+}
 expect(Array.isArray(artifact.queue_item_observed?.inputs), 'queue inputs must be an array');
-expect(artifact.counts?.queue_inputs_expected === 5, 'queue input expected count must be 5');
-expect(artifact.counts?.queue_inputs_present === 5, 'queue input present count must be 5');
+expect(artifact.counts?.queue_inputs_expected === artifact.queue_item_observed.inputs.length, 'queue input expected count mismatch');
+expect(artifact.counts?.queue_inputs_present === artifact.queue_item_observed.inputs.filter((input) => input.exists).length, 'queue input present count mismatch');
 expect(artifact.counts?.queue_inputs_missing === 0, 'queue input missing count must be 0');
 expect(Array.isArray(artifact.queue_item_observed?.missing_inputs), 'missing inputs must be array');
 expect(artifact.queue_item_observed.missing_inputs.length === 0, 'queue item should have no missing inputs now');
+if (queueRowMissing) {
+  expect(
+    JSON.stringify(artifact.queue_item_observed?.missing_contract_fields) === JSON.stringify(['missing_queue_row']),
+    'missing queue row contract field mismatch',
+  );
+} else {
+  expect(
+    JSON.stringify(artifact.queue_item_observed?.missing_contract_fields) ===
+      JSON.stringify(['pipeline_commands', 'output_schema', 'validator_gate']),
+    'missing contract fields mismatch',
+  );
+}
 expect(
-  JSON.stringify(artifact.queue_item_observed?.missing_contract_fields) ===
-    JSON.stringify(['pipeline_commands', 'output_schema', 'validator_gate']),
-  'missing contract fields mismatch',
+  artifact.counts?.missing_contract_fields === artifact.queue_item_observed.missing_contract_fields.length,
+  'missing contract field count mismatch',
 );
-expect(artifact.counts?.missing_contract_fields === 3, 'missing contract field count must be 3');
 
-expect(artifact.spark10_primary_status_observed?.blocker === 'missing_pipeline_blocker', 'Spark10 status blocker mismatch');
+if (queueRowMissing) {
+  expect(
+    ['missing_pipeline_blocker', 'not_detected'].includes(artifact.spark10_primary_status_observed?.blocker),
+    'Spark10 status blocker mismatch',
+  );
+  expect(
+    ['stale_missing_input_blocker_report', 'unknown'].includes(artifact.stale_shadow_observed?.status),
+    'stale shadow status mismatch',
+  );
+} else {
+  expect(artifact.spark10_primary_status_observed?.blocker === 'missing_pipeline_blocker', 'Spark10 status blocker mismatch');
+  expect(
+    artifact.spark10_primary_status_observed?.current_status_mentions_missing_contract_fields === true,
+    'Spark10 status must mention missing contract fields',
+  );
+  expect(
+    artifact.stale_shadow_observed?.status === 'stale_missing_input_blocker_report',
+    'stale shadow status mismatch',
+  );
+}
 expect(
-  artifact.spark10_primary_status_observed?.current_status_mentions_missing_contract_fields === true,
-  'Spark10 status must mention missing contract fields',
-);
-expect(
-  artifact.stale_shadow_observed?.status === 'stale_missing_input_blocker_report',
-  'stale shadow status mismatch',
-);
-expect(
-  artifact.counts?.stale_shadow_now_present_missing_claim_paths === 4,
-  'stale shadow now-present claim count must be 4',
+  artifact.counts?.stale_shadow_now_present_missing_claim_paths ===
+    artifact.stale_shadow_observed?.now_present_paths_claimed_missing?.length,
+  'stale shadow now-present claim count mismatch',
 );
 
 expect(

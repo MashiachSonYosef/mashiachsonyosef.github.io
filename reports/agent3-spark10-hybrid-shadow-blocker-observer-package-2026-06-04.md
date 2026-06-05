@@ -3,19 +3,19 @@
 ## Status
 
 - Artifact: `reports/agent3-spark10-hybrid-shadow-blocker-observer-package-2026-06-04.json`
-- Status: `spark10_hybrid_shadow_missing_pipeline_contract_observed`
+- Status: `spark10_hybrid_shadow_queue_row_missing_observed`
 - Publication state: `blocked_no_render`
 - Lane owner: `Agent 3`
-- Result: Spark10 hybrid release-relevance shadow is blocked by missing runnable pipeline contract fields, not by missing Agent3 Orot input.
+- Result: Spark10 hybrid release-relevance shadow queue row is absent; no Agent3 executable linkage/dedupe/navigation workset is created.
 
 ## Queue Item
 
 - Queue: `data/control/spark_standing_queue.json`
 - Item: `spark10-hybrid-floor-release-relevance-shadow`
-- Status: `active_reseed_needed_after_agent1_agent3_orot_returns`
-- Expected output: `reports/spark10-hybrid-floor-release-relevance-shadow-2026-06-04.md`
-- Inputs present/missing: `5/0`
-- Missing contract fields: `pipeline_commands, output_schema, validator_gate`
+- Status: `null`
+- Expected output: `null`
+- Inputs present/missing: `0/0`
+- Missing contract fields: `missing_queue_row`
 
 ## Agent 3 Orot Input
 
@@ -27,8 +27,8 @@
 ## Stale Shadow
 
 - Prior shadow report: `reports/spark10-hybrid-floor-release-relevance-shadow-2026-06-04.md`
-- Prior shadow status: `stale_missing_input_blocker_report`
-- Paths now present but claimed missing by stale shadow: `4`
+- Prior shadow status: `unknown`
+- Paths now present but claimed missing by stale shadow: `5`
 
 ## Boundary
 
@@ -36,7 +36,7 @@ This is an Agent 3 observer/blocker package only. It does not create or run a Sp
 
 ## Remaining Blockers
 
-- Spark10 hybrid shadow queue item lacks pipeline_commands, output_schema, and validator_gate.
+- Spark10 hybrid shadow queue item is absent from the current standing queue.
 - Existing Spark10 hybrid shadow report is stale relative to current queue inputs and remains evidence only.
 - No Agent3 executable linkage/dedupe/navigation workset is created here.
 - Agent3 Orot source matrix remains working-tree generated_at drift and is not committed here.
