@@ -278,6 +278,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-post-continuity-release-intake-registration-audit-2026-06-05.md',
   'reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.json',
   'reports/agent3-agent10-post-matrix-registration-consumption-package-2026-06-05.md',
+  'reports/agent3-agent10-direct-release-goal-state-consumption-2026-06-05.json',
+  'reports/agent3-agent10-direct-release-goal-state-consumption-2026-06-05.md',
   'data/definitions/definition-workbench-usage-link-packet.json',
   'reports/definition-workbench-usage-link-packet.md',
   'data/definitions/definition-workbench-usage-seed-queue.json',
@@ -336,6 +338,7 @@ const validators = unique([
   'scripts/validate_agent3_deuteronomy_phase2_transform_readiness_verdict_continuity_package.mjs',
   'scripts/validate_agent3_post_continuity_release_intake_registration_audit.mjs',
   'scripts/validate_agent3_agent10_post_matrix_registration_consumption_package.mjs',
+  'scripts/validate_agent3_agent10_direct_release_goal_state_consumption.mjs',
   'scripts/validate_agent3_usage_state.mjs',
 ]);
 const counts = buildCounts();
