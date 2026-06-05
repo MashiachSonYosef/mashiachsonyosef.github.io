@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-05T00:33:44.076Z
+Generated: 2026-06-05T00:51:57.595Z
 
 ## State
 
@@ -113,8 +113,8 @@ Generated: 2026-06-05T00:33:44.076Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 83/83 |
-| validator_scripts_exist | passed | 43/43 |
+| evidence_artifacts_exist | passed | 85/85 |
+| validator_scripts_exist | passed | 44/44 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
@@ -188,6 +188,20 @@ Agent 3 output remains usage navigation and occurrence-link evidence only. This 
 - Boundary: no source/license/legal/Definition/runtime/publication/answer acceptance; no copied external row payloads.
 
 <!-- agent3_deuteronomy_source_license_custody_verdict_continuity:end -->
+
+<!-- agent3_deuteronomy_transform_readiness_verdict_continuity:start -->
+
+## Latest Deuteronomy Transform/Readiness Verdict Continuity
+
+- Package: `reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.md`
+- JSON: `reports/agent3-deuteronomy-phase2-transform-readiness-verdict-continuity-package-2026-06-05.json`
+- Status: `agent6_warn_accepted_nonpublic_transform_readiness_observed_by_agent3`
+- Consumed Agent 6 verdict: `reports/agent6-deuteronomy-phase2-transform-readiness-boundary-verdict-2026-06-04.md`
+- Consumed Agent 6 supplemental receipt: `reports/agent6-deuteronomy-phase2-agent3-supplemental-receipt-2026-06-04.md`
+- Counts: 1334 rows / 2964 occurrences now WARN-ACCEPTED as non-public transform/readiness planning evidence only; 6779 exact-blocker rows remain blocked.
+- Boundary: no source/license/legal/Definition/runtime/publication/answer acceptance; no copied row payloads.
+
+<!-- agent3_deuteronomy_transform_readiness_verdict_continuity:end -->
 
 <!-- agent3_linkage_dedupe_generated_at_drift_audit:start -->
 
