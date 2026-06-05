@@ -1,6 +1,6 @@
 # Agent 3 Crossmatch Inventory Packet
 
-Generated: 2026-06-05T11:16:36.529Z
+Generated: 2026-06-05T11:28:49.236Z
 
 ## Boundary
 
@@ -12,27 +12,20 @@ Generated: 2026-06-05T11:16:36.529Z
 
 - Files inspected: 225
 - Data/report/script files: 51/57/117
-- Committed-clean / dirty-or-uncommitted files: 53/172
-- Staged added / staged modified / worktree modified / untracked: 156/16/0/0
+- Committed-clean / dirty-or-uncommitted files: 81/144
+- Staged added / staged modified / worktree modified / untracked: 128/16/0/0
 - Reader-facing / route-payload / forbidden-authority / truthy-authority hits: 0/0/0/0
 
 ## Blocker
 
 - Status: exact_blocker
 - Blocker: crossmatch_inventory_contains_dirty_or_uncommitted_artifacts
-- Detail: 172 crossmatch/usage files are staged, modified, or untracked; treat them as inventory only until a bounded subset is validated and committed.
+- Detail: 144 crossmatch/usage files are staged, modified, or untracked; treat them as inventory only until a bounded subset is validated and committed.
 
 ## Dirty Or Uncommitted Sample
 
 | path | kind | git statuses | artifact type |
 | --- | --- | --- | --- |
-| data/definitions/agent3-definition-workbench-usage-collision-handoff-manifest-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_handoff_manifest |
-| data/definitions/agent3-definition-workbench-usage-collision-integrity-digest-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_integrity_digest |
-| data/definitions/agent3-definition-workbench-usage-collision-package-summary-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_package_summary |
-| data/definitions/agent3-definition-workbench-usage-collision-provenance-index-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_provenance_index |
-| data/definitions/agent3-definition-workbench-usage-collision-review-queue-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_review_queue |
-| data/definitions/agent3-definition-workbench-usage-collision-review-reverse-index-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_review_reverse_index |
-| data/definitions/agent3-definition-workbench-usage-collision-validation-run-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_collision_validation_run |
 | data/definitions/agent3-definition-workbench-usage-concordance-token-matrix.json | data_artifact | staged_added | agent3_definition_workbench_usage_concordance_token_matrix |
 | data/definitions/agent3-definition-workbench-usage-focus-collision-audit-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_focus_collision_audit |
 | data/definitions/agent3-definition-workbench-usage-focus-frame-summary-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_focus_frame_summary |
@@ -66,6 +59,13 @@ Generated: 2026-06-05T11:16:36.529Z
 | data/definitions/definition-workbench-usage-sample-gap-audit.json | data_artifact | staged_added | definition_workbench_usage_sample_gap_audit |
 | data/definitions/definition-workbench-usage-source-ref-buckets.json | data_artifact | staged_added | definition_workbench_usage_source_ref_buckets |
 | data/definitions/definition-workbench-usage-work-buckets.json | data_artifact | staged_added | definition_workbench_usage_work_buckets |
+| reports/agent3-definition-workbench-usage-concordance-token-matrix.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-focus-collision-audit-reshit.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-focus-frame-summary-reshit.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-focus-navigation-shards-reshit.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-focus-token-drilldown-reshit.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-freshness-followup-2026-06-02.json | report_artifact | staged_added | agent3_definition_workbench_usage_freshness_followup |
+| reports/agent3-definition-workbench-usage-freshness-followup-2026-06-02.md | report_artifact | staged_added |  |
 
 ## Artifact Types
 
