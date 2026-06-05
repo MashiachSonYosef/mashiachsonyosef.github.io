@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_usage_navigation_state",
-  "generated_at": "2026-06-05T14:33:50.315Z",
+  "generated_at": "2026-06-05T16:58:04.162Z",
   "generator": "scripts/build_agent3_usage_state.mjs",
   "agent": "Agent 3",
   "lane": "workbench_usage_navigation",
@@ -93,6 +93,8 @@
     "reports/agent3-orot-route-selection-crossmatch-matrix-2026-06-05.md",
     "reports/agent3-post-route-selection-wake-audit-2026-06-05.json",
     "reports/agent3-post-route-selection-wake-audit-2026-06-05.md",
+    "reports/agent3-old-dictionary-row-overlap-linkage-matrix-2026-06-05.json",
+    "reports/agent3-old-dictionary-row-overlap-linkage-matrix-2026-06-05.md",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md",
     "reports/agent3-current-control-drift-refresh-2026-06-04.json",
@@ -171,6 +173,7 @@
     "scripts/validate_agent3_post_crossmatch_reconciliation_wake_audit.mjs",
     "scripts/validate_agent3_orot_route_selection_crossmatch_matrix.mjs",
     "scripts/validate_agent3_post_route_selection_wake_audit.mjs",
+    "scripts/validate_agent3_old_dictionary_row_overlap_linkage_matrix.mjs",
     "scripts/validate_definition_workbench_usage_link_packet.mjs",
     "scripts/validate_definition_workbench_usage_seed_queue.mjs",
     "scripts/validate_definition_workbench_usage_join_smoke.mjs",
@@ -619,6 +622,16 @@
     "post_route_selection_wake_conditions": 4,
     "post_route_selection_wake_queue_mutations": 0,
     "post_route_selection_wake_acceptance_claims": 0,
+    "old_dictionary_row_overlap_buckets": 8,
+    "old_dictionary_row_overlap_rows": 500,
+    "old_dictionary_row_overlap_occurrences": 8427,
+    "old_dictionary_row_overlap_duplicate_sample_tokens": 0,
+    "old_dictionary_row_overlap_source_family_pointer_rows": 17,
+    "old_dictionary_row_overlap_exact_blockers": 6,
+    "old_dictionary_row_overlap_audit_zero_rows": 2,
+    "old_dictionary_row_overlap_route_payload_field_hits": 0,
+    "old_dictionary_row_overlap_forbidden_authority_field_hits": 0,
+    "old_dictionary_row_overlap_acceptance_claims": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -647,14 +660,14 @@
   ],
   "quality": {
     "status": "pass_with_warnings",
-    "warning_count": 17,
+    "warning_count": 18,
     "failed_count": 0
   },
   "counts": {
-    "evidence_artifacts": 107,
-    "evidence_artifacts_exist": 107,
-    "validator_scripts": 55,
-    "validator_scripts_exist": 55,
+    "evidence_artifacts": 109,
+    "evidence_artifacts_exist": 109,
+    "validator_scripts": 56,
+    "validator_scripts_exist": 56,
     "queue_required_fields_present": 10,
     "queue_required_fields": 10,
     "queue_mutations": 0,
@@ -1076,6 +1089,16 @@
     "post_route_selection_wake_conditions": 4,
     "post_route_selection_wake_queue_mutations": 0,
     "post_route_selection_wake_acceptance_claims": 0,
+    "old_dictionary_row_overlap_buckets": 8,
+    "old_dictionary_row_overlap_rows": 500,
+    "old_dictionary_row_overlap_occurrences": 8427,
+    "old_dictionary_row_overlap_duplicate_sample_tokens": 0,
+    "old_dictionary_row_overlap_source_family_pointer_rows": 17,
+    "old_dictionary_row_overlap_exact_blockers": 6,
+    "old_dictionary_row_overlap_audit_zero_rows": 2,
+    "old_dictionary_row_overlap_route_payload_field_hits": 0,
+    "old_dictionary_row_overlap_forbidden_authority_field_hits": 0,
+    "old_dictionary_row_overlap_acceptance_claims": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -1100,12 +1123,12 @@
     {
       "id": "evidence_artifacts_exist",
       "status": "passed",
-      "detail": "107/107"
+      "detail": "109/109"
     },
     {
       "id": "validator_scripts_exist",
       "status": "passed",
-      "detail": "55/55"
+      "detail": "56/56"
     },
     {
       "id": "queue_ready_not_submitted",
@@ -1276,6 +1299,11 @@
       "id": "post_route_selection_wake_audit_complete",
       "status": "warning",
       "detail": "executable/blockers/wake 0/3/4; queue/acceptance 0/0"
+    },
+    {
+      "id": "old_dictionary_row_overlap_linkage_matrix_complete",
+      "status": "warning",
+      "detail": "buckets/rows/occurrences 8/500/8427; sample-dupes/source-pointers/blockers/audit-zero 0/17/6/2; route-payload/forbidden/acceptance 0/0/0"
     },
     {
       "id": "proof_metadata_complete",
