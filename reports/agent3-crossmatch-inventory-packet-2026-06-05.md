@@ -1,6 +1,6 @@
 # Agent 3 Crossmatch Inventory Packet
 
-Generated: 2026-06-05T11:28:49.236Z
+Generated: 2026-06-05T11:42:15.051Z
 
 ## Boundary
 
@@ -12,60 +12,44 @@ Generated: 2026-06-05T11:28:49.236Z
 
 - Files inspected: 225
 - Data/report/script files: 51/57/117
-- Committed-clean / dirty-or-uncommitted files: 81/144
-- Staged added / staged modified / worktree modified / untracked: 128/16/0/0
+- Committed-clean / dirty-or-uncommitted files: 201/24
+- Staged added / staged modified / worktree modified / untracked: 24/0/0/0
 - Reader-facing / route-payload / forbidden-authority / truthy-authority hits: 0/0/0/0
 
 ## Blocker
 
 - Status: exact_blocker
 - Blocker: crossmatch_inventory_contains_dirty_or_uncommitted_artifacts
-- Detail: 144 crossmatch/usage files are staged, modified, or untracked; treat them as inventory only until a bounded subset is validated and committed.
+- Detail: 24 crossmatch/usage files are staged, modified, or untracked; treat them as inventory only until a bounded subset is validated and committed.
 
 ## Dirty Or Uncommitted Sample
 
 | path | kind | git statuses | artifact type |
 | --- | --- | --- | --- |
-| data/definitions/agent3-definition-workbench-usage-concordance-token-matrix.json | data_artifact | staged_added | agent3_definition_workbench_usage_concordance_token_matrix |
-| data/definitions/agent3-definition-workbench-usage-focus-collision-audit-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_focus_collision_audit |
-| data/definitions/agent3-definition-workbench-usage-focus-frame-summary-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_focus_frame_summary |
-| data/definitions/agent3-definition-workbench-usage-focus-navigation-shards-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_focus_navigation_shards |
-| data/definitions/agent3-definition-workbench-usage-focus-token-drilldown-reshit.json | data_artifact | staged_added | agent3_definition_workbench_usage_focus_token_drilldown |
 | data/definitions/agent3-definition-workbench-usage-license-provenance-matrix.json | data_artifact | staged_added | agent3_definition_workbench_usage_license_provenance_matrix |
 | data/definitions/agent3-definition-workbench-usage-token-bridge-consumer-addendum.json | data_artifact | staged_added | agent3_definition_workbench_usage_token_bridge_consumer_addendum |
 | data/definitions/agent3-definition-workbench-usage-token-bridge-index.json | data_artifact | staged_added | agent3_definition_workbench_usage_token_bridge_index |
-| data/definitions/definition-workbench-usage-agent6-packet.json | data_artifact | staged_modified | definition_workbench_usage_agent6_packet |
-| data/definitions/definition-workbench-usage-anchor-audit.json | data_artifact | staged_added | definition_workbench_usage_anchor_audit |
-| data/definitions/definition-workbench-usage-concordance-navigation-packet.json | data_artifact | staged_added | definition_workbench_usage_concordance_navigation_packet |
-| data/definitions/definition-workbench-usage-consumer-manifest.json | data_artifact | staged_added | definition_workbench_usage_consumer_manifest |
-| data/definitions/definition-workbench-usage-context-token-index.json | data_artifact | staged_added | definition_workbench_usage_context_token_index |
-| data/definitions/definition-workbench-usage-context-token-links.json | data_artifact | staged_added | definition_workbench_usage_context_token_links |
-| data/definitions/definition-workbench-usage-context-token-occurrence-index.json | data_artifact | staged_added | definition_workbench_usage_context_token_occurrence_index |
-| data/definitions/definition-workbench-usage-crossmatch-neighbors.json | data_artifact | staged_added | definition_workbench_usage_crossmatch_neighbors |
-| data/definitions/definition-workbench-usage-facet-index.json | data_artifact | staged_added | definition_workbench_usage_facet_index |
-| data/definitions/definition-workbench-usage-freshness-impact-packet.json | data_artifact | staged_added | definition_workbench_usage_freshness_impact_packet |
-| data/definitions/definition-workbench-usage-join-smoke.json | data_artifact | staged_modified | definition_workbench_usage_join_smoke |
-| data/definitions/definition-workbench-usage-link-packet.json | data_artifact | staged_modified | definition_workbench_usage_link_packet |
-| data/definitions/definition-workbench-usage-occurrence-context-profile.json | data_artifact | staged_added | definition_workbench_usage_occurrence_context_profile |
-| data/definitions/definition-workbench-usage-occurrence-detail-index.json | data_artifact | staged_added | definition_workbench_usage_occurrence_detail_index |
-| data/definitions/definition-workbench-usage-occurrence-support-packet.json | data_artifact | staged_added | definition_workbench_usage_occurrence_support_packet |
-| data/definitions/definition-workbench-usage-planning-packet.json | data_artifact | staged_added | definition_workbench_usage_planning_packet |
-| data/definitions/definition-workbench-usage-provenance-buckets.json | data_artifact | staged_added | definition_workbench_usage_provenance_buckets |
-| data/definitions/definition-workbench-usage-queue-ready-packet.json | data_artifact | staged_modified | definition_workbench_usage_queue_ready_packet |
-| data/definitions/definition-workbench-usage-route-concentration-guardrail.json | data_artifact | staged_added | definition_workbench_usage_route_concentration_guardrail |
-| data/definitions/definition-workbench-usage-route-diversity-probe.json | data_artifact | staged_added | definition_workbench_usage_route_diversity_probe |
-| data/definitions/definition-workbench-usage-route-pointer-audit.json | data_artifact | staged_added | definition_workbench_usage_route_pointer_audit |
-| data/definitions/definition-workbench-usage-route-resolution.json | data_artifact | staged_added | definition_workbench_usage_route_resolution |
-| data/definitions/definition-workbench-usage-sample-gap-audit.json | data_artifact | staged_added | definition_workbench_usage_sample_gap_audit |
-| data/definitions/definition-workbench-usage-source-ref-buckets.json | data_artifact | staged_added | definition_workbench_usage_source_ref_buckets |
-| data/definitions/definition-workbench-usage-work-buckets.json | data_artifact | staged_added | definition_workbench_usage_work_buckets |
-| reports/agent3-definition-workbench-usage-concordance-token-matrix.md | report_artifact | staged_added |  |
-| reports/agent3-definition-workbench-usage-focus-collision-audit-reshit.md | report_artifact | staged_added |  |
-| reports/agent3-definition-workbench-usage-focus-frame-summary-reshit.md | report_artifact | staged_added |  |
-| reports/agent3-definition-workbench-usage-focus-navigation-shards-reshit.md | report_artifact | staged_added |  |
-| reports/agent3-definition-workbench-usage-focus-token-drilldown-reshit.md | report_artifact | staged_added |  |
 | reports/agent3-definition-workbench-usage-freshness-followup-2026-06-02.json | report_artifact | staged_added | agent3_definition_workbench_usage_freshness_followup |
 | reports/agent3-definition-workbench-usage-freshness-followup-2026-06-02.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-license-provenance-matrix.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-negative-consumer-followup-2026-06-02.json | report_artifact | staged_added | agent3_definition_workbench_usage_negative_consumer_followup |
+| reports/agent3-definition-workbench-usage-negative-consumer-followup-2026-06-02.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-source-freshness-refresh-2026-06-02.json | report_artifact | staged_added | agent3_definition_workbench_usage_source_freshness_refresh |
+| reports/agent3-definition-workbench-usage-source-freshness-refresh-2026-06-02.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-token-bridge-consumer-addendum.md | report_artifact | staged_added |  |
+| reports/agent3-definition-workbench-usage-token-bridge-index.md | report_artifact | staged_added |  |
+| scripts/build_agent3_definition_workbench_usage_freshness_followup.mjs | pipeline_script | staged_added |  |
+| scripts/build_agent3_definition_workbench_usage_license_provenance_matrix.mjs | pipeline_script | staged_added |  |
+| scripts/build_agent3_definition_workbench_usage_negative_consumer_followup.mjs | pipeline_script | staged_added |  |
+| scripts/build_agent3_definition_workbench_usage_source_freshness_refresh.mjs | pipeline_script | staged_added |  |
+| scripts/build_agent3_definition_workbench_usage_token_bridge_consumer_addendum.mjs | pipeline_script | staged_added |  |
+| scripts/build_agent3_definition_workbench_usage_token_bridge_index.mjs | pipeline_script | staged_added |  |
+| scripts/validate_agent3_definition_workbench_usage_freshness_followup.mjs | pipeline_script | staged_added |  |
+| scripts/validate_agent3_definition_workbench_usage_license_provenance_matrix.mjs | pipeline_script | staged_added |  |
+| scripts/validate_agent3_definition_workbench_usage_negative_consumer_followup.mjs | pipeline_script | staged_added |  |
+| scripts/validate_agent3_definition_workbench_usage_source_freshness_refresh.mjs | pipeline_script | staged_added |  |
+| scripts/validate_agent3_definition_workbench_usage_token_bridge_consumer_addendum.mjs | pipeline_script | staged_added |  |
+| scripts/validate_agent3_definition_workbench_usage_token_bridge_index.mjs | pipeline_script | staged_added |  |
 
 ## Artifact Types
 
