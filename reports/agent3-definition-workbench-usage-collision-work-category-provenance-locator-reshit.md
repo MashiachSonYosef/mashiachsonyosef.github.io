@@ -1,6 +1,6 @@
 # Agent 3 Collision Work/Category Provenance Locator
 
-Generated: 2026-06-04T15:21:11.787Z
+Generated: 2026-06-05T10:48:55.344Z
 
 Status: evidence-ready; awaiting Agent 6. This is provenance navigation only and not Definition authority or source/provenance custody acceptance.
 
