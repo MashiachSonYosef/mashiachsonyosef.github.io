@@ -41,9 +41,11 @@ const agent3RelatedRows = rows.filter((row) => isAgent3Related(row));
 const handoffRows = rows.filter(isHandoffCandidate);
 const agent3RelatedHandoffRows = agent3RelatedRows.filter(isHandoffCandidate);
 const routeExactRows = rows.filter((row) => row.next_agent10_action === 'route_exact_contract_or_missing_field_blocker');
+const directAgent6PacketRows = rows.filter((row) => row.release_relevance_hint === 'agent6_ready_boundary_packet');
 const consumedAgent3 = (agent10.consumed_packages || []).find(
   (entry) => entry.package_workset === 'agent3_deuteronomy_phase2_continuity_registration',
 );
+const spark10ValidationBlockers = buildSpark10ValidationBlockers();
 
 const artifact = {
   schema_version: 1,
@@ -124,6 +126,7 @@ const artifact = {
     agent3_related_rows: agent3RelatedRows.length,
     agent3_related_handoff_rows: agent3RelatedHandoffRows.length,
     handoff_rows: handoffRows.length,
+    direct_agent6_packet_rows: directAgent6PacketRows.length,
     route_exact_rows: routeExactRows.map((row) => ({
       path: row.path,
       lane_owner: row.lane_owner || null,
@@ -156,6 +159,8 @@ const artifact = {
     spark10_agent3_related_rows: agent3RelatedRows.length,
     spark10_agent3_related_handoff_rows: agent3RelatedHandoffRows.length,
     spark10_route_exact_rows: routeExactRows.length,
+    spark10_direct_agent6_packet_rows: directAgent6PacketRows.length,
+    spark10_validation_blocker_count: spark10ValidationBlockers.length,
     direct_agent3_executable_worksets: 0,
     route_publication_support_rows: 0,
     definition_authority_rows: 0,
@@ -191,6 +196,12 @@ const artifact = {
       'stop_condition_for_new_agent3_run',
     ],
   },
+  upstream_spark10_validation: {
+    status: spark10ValidationBlockers.length ? 'blocked_by_current_spark10_cap_drift' : 'passed_at_package_time',
+    validator_command:
+      'node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json',
+    blockers: spark10ValidationBlockers,
+  },
   handoff_owner:
     'Agent 10 for release/package intake; Agent 6 only by exact boundary packet prepared through release owner; Agent 3 remains held until exact changed executable workset.',
   stop_condition:
@@ -219,7 +230,6 @@ const artifact = {
     'node scripts/validate_agent3_agent10_post_matrix_registration_consumption_package.mjs',
     'node scripts/validate_agent3_deuteronomy_phase2_transform_readiness_verdict_continuity_package.mjs',
     'node scripts/validate_agent3_usage_state.mjs',
-    'node scripts/validate_spark10_release_package_intake.mjs reports/spark10-release-package-intake-matrix-current-2026-06-04.json',
   ],
 };
 
@@ -248,6 +258,27 @@ function isHandoffCandidate(row) {
     row.agent6_handoff_needed === true ||
     row.next_agent10_action === 'prepare_or_route_agent6_boundary_only_if_exact_package_exists'
   );
+}
+
+function buildSpark10ValidationBlockers() {
+  const blockers = [];
+  if (routeExactRows.length > 1) {
+    blockers.push({
+      id: 'spark10_route_exact_cap_drift',
+      expected: 'at most 1 route-exact row',
+      observed: routeExactRows.length,
+      paths: routeExactRows.map((row) => row.path),
+    });
+  }
+  if (directAgent6PacketRows.length !== number(spark10.summary?.agent6_handoff_candidates)) {
+    blockers.push({
+      id: 'spark10_agent6_candidate_count_drift',
+      expected: number(spark10.summary?.agent6_handoff_candidates),
+      observed: directAgent6PacketRows.length,
+      paths: directAgent6PacketRows.map((row) => row.path),
+    });
+  }
+  return blockers;
 }
 
 function manifest(entries) {
@@ -324,6 +355,7 @@ function renderMarkdown(value) {
 | Spark10 release-relevant rows | ${counts.spark10_release_relevant_rows} |
 | Spark10 handoff candidates | ${counts.spark10_agent6_handoff_candidates} |
 | Spark10 Agent 3 continuity registered rows | ${counts.spark10_agent3_continuity_registered_rows} |
+| Spark10 validation blockers | ${counts.spark10_validation_blocker_count} |
 | Direct Agent 3 executable worksets | ${counts.direct_agent3_executable_worksets} |
 
 ## Boundary
@@ -333,6 +365,12 @@ This package is non-public planning/navigation evidence only. It does not author
 ## Wake Condition
 
 ${value.remaining_blocker.wake_condition}
+
+## Upstream Spark10 Validation
+
+- Status: \`${value.upstream_spark10_validation.status}\`
+- Validator command: \`${value.upstream_spark10_validation.validator_command}\`
+- Blockers: ${value.upstream_spark10_validation.blockers.length ? value.upstream_spark10_validation.blockers.map((blocker) => `\`${blocker.id}\` observed ${blocker.observed} vs expected ${blocker.expected}`).join('; ') : '`none`'}
 
 ## Validation
 

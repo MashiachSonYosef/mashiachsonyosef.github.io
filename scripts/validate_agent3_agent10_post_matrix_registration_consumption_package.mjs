@@ -131,6 +131,10 @@ function validateSpark10SnapshotIfUnchanged() {
     'Spark10 snapshot must register all four latest Agent 3 continuity/audit rows',
   );
   expect(artifact.schema_counts.spark10_agent3_continuity_registered_rows === 4, 'Spark10 registered rows must be 4');
+  expect(
+    artifact.schema_counts.spark10_validation_blocker_count === artifact.upstream_spark10_validation?.blockers?.length,
+    'Spark10 validation blocker count mismatch',
+  );
 }
 
 function validateState() {
@@ -146,6 +150,18 @@ function validateBoundaries() {
   expect(allFalse(artifact.boundary), 'artifact boundary must be all false');
   expect(allFalse(artifact.spark10_registration_snapshot?.boundary), 'Spark10 boundary must be all false');
   expect(artifact.remaining_blocker?.blocker === 'no_exact_changed_executable_agent3_workset', 'remaining blocker mismatch');
+  expect(
+    ['blocked_by_current_spark10_cap_drift', 'passed_at_package_time'].includes(
+      artifact.upstream_spark10_validation?.status,
+    ),
+    'Spark10 validation status mismatch',
+  );
+  if (artifact.upstream_spark10_validation?.status === 'blocked_by_current_spark10_cap_drift') {
+    expect(
+      artifact.upstream_spark10_validation.blockers.length > 0,
+      'blocked Spark10 validation must name blockers',
+    );
+  }
   expect(/Agent 10/.test(artifact.handoff_owner || ''), 'handoff owner must name Agent 10');
   for (const key of [
     'route_publication_support_rows',
