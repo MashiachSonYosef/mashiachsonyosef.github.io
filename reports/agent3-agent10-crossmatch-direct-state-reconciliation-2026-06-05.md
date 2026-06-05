@@ -56,5 +56,5 @@ This packet is non-public control reconciliation and crossmatch/navigation evide
 - `reports/agent10-agent3-agent4-fresh-output-consumption-2026-06-05.md` (4171 bytes, sha256 `83b64381f2d8c2c9b11fcbb8eed70b15a1fdc64d4a84ab933963cabfcc4462b7`)
 - `reports/agent3-crossmatch-inventory-packet-2026-06-05.json` (162184 bytes, sha256 `07485aeb05a8f8d40b8e737e73bea153aed7abfebb3d6bb182586b7ac1217ca1`)
 - `reports/agent3-crossmatch-inventory-packet-2026-06-05.md` (3309 bytes, sha256 `ed7fb346e19526040926d8648450e94e4cd05f4bf2dd3b54951f756534813173`)
-- `reports/agent3-state.json` (63974 bytes, sha256 `6f3e09e7afdf5fb0705888a8454772ee05f650fc9e4ba7fdf6e8dd6042c2862b`)
-- `reports/agent3-state.md` (24854 bytes, sha256 `8e3f3e0fabd8b311111e3d6abf25902029a043bb8bf8004b28409a611cbb9e0e`)
+- `reports/agent3-state.json` (65272 bytes, sha256 `6caccc803e2dc950eb21a497d17c344128a4b3daa0ccaf5dfd147d58223fc9f3`)
+- `reports/agent3-state.md` (25121 bytes, sha256 `b2de535844e416524f152c4a028582116d51eb4b22b7a008b53c6931e153dc0f`)

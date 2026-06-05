@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_usage_navigation_state",
-  "generated_at": "2026-06-05T13:36:09.488Z",
+  "generated_at": "2026-06-05T13:55:36.753Z",
   "generator": "scripts/build_agent3_usage_state.mjs",
   "agent": "Agent 3",
   "lane": "workbench_usage_navigation",
@@ -87,6 +87,8 @@
     "reports/agent3-crossmatch-inventory-packet-2026-06-05.md",
     "reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.json",
     "reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.md",
+    "reports/agent3-post-crossmatch-reconciliation-wake-audit-2026-06-05.json",
+    "reports/agent3-post-crossmatch-reconciliation-wake-audit-2026-06-05.md",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md",
     "reports/agent3-current-control-drift-refresh-2026-06-04.json",
@@ -162,6 +164,7 @@
     "scripts/validate_agent3_definition_workbench_usage_freshness_followup.mjs",
     "scripts/validate_agent3_crossmatch_inventory_packet.mjs",
     "scripts/validate_agent3_agent10_crossmatch_direct_state_reconciliation.mjs",
+    "scripts/validate_agent3_post_crossmatch_reconciliation_wake_audit.mjs",
     "scripts/validate_definition_workbench_usage_link_packet.mjs",
     "scripts/validate_definition_workbench_usage_seed_queue.mjs",
     "scripts/validate_definition_workbench_usage_join_smoke.mjs",
@@ -591,6 +594,13 @@
     "agent10_crossmatch_current_inventory_blocker_count": 0,
     "agent10_crossmatch_control_edits": 0,
     "agent10_crossmatch_agent6_boundary_packets_opened": 0,
+    "post_crossmatch_wake_queue_stale_deuteronomy_rows": 1,
+    "post_crossmatch_wake_agent10_stale_dirty_count_delta": 192,
+    "post_crossmatch_wake_current_inventory_dirty_files": 0,
+    "post_crossmatch_wake_registered_continuity_rows": 4,
+    "post_crossmatch_wake_direct_executable_worksets": 0,
+    "post_crossmatch_wake_no_new_workset_blockers": 2,
+    "post_crossmatch_wake_agent6_boundary_packets_opened": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -619,14 +629,14 @@
   ],
   "quality": {
     "status": "pass_with_warnings",
-    "warning_count": 14,
+    "warning_count": 15,
     "failed_count": 0
   },
   "counts": {
-    "evidence_artifacts": 101,
-    "evidence_artifacts_exist": 101,
-    "validator_scripts": 52,
-    "validator_scripts_exist": 52,
+    "evidence_artifacts": 103,
+    "evidence_artifacts_exist": 103,
+    "validator_scripts": 53,
+    "validator_scripts_exist": 53,
     "queue_required_fields_present": 10,
     "queue_required_fields": 10,
     "queue_mutations": 0,
@@ -1029,6 +1039,13 @@
     "agent10_crossmatch_current_inventory_blocker_count": 0,
     "agent10_crossmatch_control_edits": 0,
     "agent10_crossmatch_agent6_boundary_packets_opened": 0,
+    "post_crossmatch_wake_queue_stale_deuteronomy_rows": 1,
+    "post_crossmatch_wake_agent10_stale_dirty_count_delta": 192,
+    "post_crossmatch_wake_current_inventory_dirty_files": 0,
+    "post_crossmatch_wake_registered_continuity_rows": 4,
+    "post_crossmatch_wake_direct_executable_worksets": 0,
+    "post_crossmatch_wake_no_new_workset_blockers": 2,
+    "post_crossmatch_wake_agent6_boundary_packets_opened": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -1053,12 +1070,12 @@
     {
       "id": "evidence_artifacts_exist",
       "status": "passed",
-      "detail": "101/101"
+      "detail": "103/103"
     },
     {
       "id": "validator_scripts_exist",
       "status": "passed",
-      "detail": "52/52"
+      "detail": "53/53"
     },
     {
       "id": "queue_ready_not_submitted",
@@ -1214,6 +1231,11 @@
       "id": "agent10_crossmatch_direct_state_reconciliation_complete",
       "status": "warning",
       "detail": "direct/fresh/current dirty 192/0/0; stale delta 192; blockers/control/agent6 0/0/0"
+    },
+    {
+      "id": "post_crossmatch_reconciliation_wake_audit_complete",
+      "status": "warning",
+      "detail": "queue stale 1; stale dirty delta 192; current dirty 0; registered/executable/blockers/agent6 4/0/2/0"
     },
     {
       "id": "proof_metadata_complete",

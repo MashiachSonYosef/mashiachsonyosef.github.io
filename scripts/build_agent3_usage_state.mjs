@@ -35,6 +35,8 @@ const defaults = {
   crossmatchInventoryPacket: 'reports/agent3-crossmatch-inventory-packet-2026-06-05.json',
   agent10CrossmatchDirectStateReconciliation:
     'reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.json',
+  postCrossmatchReconciliationWakeAudit:
+    'reports/agent3-post-crossmatch-reconciliation-wake-audit-2026-06-05.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   usageConcordance: 'data/workbench-evidence/usage-concordance.json',
   usageHandoffIndex: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -133,6 +135,7 @@ const usageSourceFreshnessRefresh = readJson(options.usageSourceFreshnessRefresh
 const usageFreshnessFollowup = readJson(options.usageFreshnessFollowup);
 const crossmatchInventoryPacket = readJson(options.crossmatchInventoryPacket);
 const agent10CrossmatchDirectStateReconciliation = readJson(options.agent10CrossmatchDirectStateReconciliation);
+const postCrossmatchReconciliationWakeAudit = readJson(options.postCrossmatchReconciliationWakeAudit);
 const smokeValidation = readJson(options.smokeValidation);
 const usageConcordance = readJson(options.usageConcordance);
 const usageHandoffIndex = readJson(options.usageHandoffIndex);
@@ -227,6 +230,11 @@ if (
     `${options.agent10CrossmatchDirectStateReconciliation} is not an Agent 3 / Agent 10 crossmatch direct-state reconciliation packet`,
   );
 }
+if (postCrossmatchReconciliationWakeAudit.artifact_type !== 'agent3_post_crossmatch_reconciliation_wake_audit') {
+  throw new Error(
+    `${options.postCrossmatchReconciliationWakeAudit} is not an Agent 3 post-crossmatch reconciliation wake audit`,
+  );
+}
 if (publicHandoffIndex.artifact_type !== 'workbench_public_handoff_index') {
   throw new Error(`${options.publicHandoffIndex} is not a public handoff index`);
 }
@@ -290,6 +298,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-crossmatch-inventory-packet-2026-06-05.md',
   options.agent10CrossmatchDirectStateReconciliation,
   'reports/agent3-agent10-crossmatch-direct-state-reconciliation-2026-06-05.md',
+  options.postCrossmatchReconciliationWakeAudit,
+  'reports/agent3-post-crossmatch-reconciliation-wake-audit-2026-06-05.md',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md',
   'reports/agent3-current-control-drift-refresh-2026-06-04.json',
@@ -365,6 +375,7 @@ const validators = unique([
   'scripts/validate_agent3_definition_workbench_usage_freshness_followup.mjs',
   'scripts/validate_agent3_crossmatch_inventory_packet.mjs',
   'scripts/validate_agent3_agent10_crossmatch_direct_state_reconciliation.mjs',
+  'scripts/validate_agent3_post_crossmatch_reconciliation_wake_audit.mjs',
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
   'scripts/validate_definition_workbench_usage_seed_queue.mjs',
   'scripts/validate_definition_workbench_usage_join_smoke.mjs',
@@ -808,6 +819,13 @@ const artifact = {
     agent10_crossmatch_current_inventory_blocker_count: Number(agent10CrossmatchDirectStateReconciliation.schema_counts?.current_inventory_blocker_count || 0),
     agent10_crossmatch_control_edits: Number(agent10CrossmatchDirectStateReconciliation.schema_counts?.control_edits || 0),
     agent10_crossmatch_agent6_boundary_packets_opened: Number(agent10CrossmatchDirectStateReconciliation.schema_counts?.agent6_boundary_packets_opened || 0),
+    post_crossmatch_wake_queue_stale_deuteronomy_rows: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.queue_stale_deuteronomy_contract_gap_rows || 0),
+    post_crossmatch_wake_agent10_stale_dirty_count_delta: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.stale_direct_dirty_count_delta || 0),
+    post_crossmatch_wake_current_inventory_dirty_files: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.current_inventory_dirty_or_uncommitted_files || 0),
+    post_crossmatch_wake_registered_continuity_rows: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.spark10_agent3_continuity_registered_rows || 0),
+    post_crossmatch_wake_direct_executable_worksets: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.direct_agent3_executable_worksets || 0),
+    post_crossmatch_wake_no_new_workset_blockers: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.no_new_agent3_workset_blockers || 0),
+    post_crossmatch_wake_agent6_boundary_packets_opened: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.agent6_boundary_packets_opened || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -1269,6 +1287,13 @@ function buildCounts() {
     agent10_crossmatch_current_inventory_blocker_count: Number(agent10CrossmatchDirectStateReconciliation.schema_counts?.current_inventory_blocker_count || 0),
     agent10_crossmatch_control_edits: Number(agent10CrossmatchDirectStateReconciliation.schema_counts?.control_edits || 0),
     agent10_crossmatch_agent6_boundary_packets_opened: Number(agent10CrossmatchDirectStateReconciliation.schema_counts?.agent6_boundary_packets_opened || 0),
+    post_crossmatch_wake_queue_stale_deuteronomy_rows: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.queue_stale_deuteronomy_contract_gap_rows || 0),
+    post_crossmatch_wake_agent10_stale_dirty_count_delta: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.stale_direct_dirty_count_delta || 0),
+    post_crossmatch_wake_current_inventory_dirty_files: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.current_inventory_dirty_or_uncommitted_files || 0),
+    post_crossmatch_wake_registered_continuity_rows: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.spark10_agent3_continuity_registered_rows || 0),
+    post_crossmatch_wake_direct_executable_worksets: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.direct_agent3_executable_worksets || 0),
+    post_crossmatch_wake_no_new_workset_blockers: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.no_new_agent3_workset_blockers || 0),
+    post_crossmatch_wake_agent6_boundary_packets_opened: Number(postCrossmatchReconciliationWakeAudit.schema_counts?.agent6_boundary_packets_opened || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -1318,6 +1343,7 @@ function buildChecks(counts) {
     check('current_source_freshness_refresh_complete', counts.source_freshness_refresh_dirty_source_files > 0 && counts.source_freshness_refresh_overlap_sources === 0 && counts.source_freshness_refresh_impacted_navigation_rows === 0 && counts.source_freshness_refresh_impacted_selected_support_rows === 0 && counts.source_freshness_refresh_promoted_run_targets === 0 && counts.source_freshness_refresh_source_text_read === 0 && counts.source_freshness_refresh_broad_target_expansion === 0 && counts.source_freshness_refresh_reader_facing_rows === 0 && counts.source_freshness_refresh_route_payload_field_hits === 0 && counts.source_freshness_refresh_forbidden_authority_field_hits === 0 && counts.freshness_followup_queue_mutations === 0 && counts.freshness_followup_submitted_to_agent6 === 0 ? 'passed' : 'failed', `dirty/overlap/impacted/selected/delta ${counts.source_freshness_refresh_dirty_source_files}/${counts.source_freshness_refresh_overlap_sources}/${counts.source_freshness_refresh_impacted_navigation_rows}/${counts.source_freshness_refresh_impacted_selected_support_rows}/${counts.source_freshness_refresh_prior_pending_delta}; sourceText/broad/promoted/reader/payload/forbidden ${counts.source_freshness_refresh_source_text_read}/${counts.source_freshness_refresh_broad_target_expansion}/${counts.source_freshness_refresh_promoted_run_targets}/${counts.source_freshness_refresh_reader_facing_rows}/${counts.source_freshness_refresh_route_payload_field_hits}/${counts.source_freshness_refresh_forbidden_authority_field_hits}; queue/submitted ${counts.freshness_followup_queue_mutations}/${counts.freshness_followup_submitted_to_agent6}`),
     check('crossmatch_inventory_packet_complete', counts.crossmatch_inventory_files > 0 && counts.crossmatch_inventory_forbidden_truthy_authority_claims === 0 ? 'warning' : 'failed', `files ${counts.crossmatch_inventory_files}; dirty/uncommitted ${counts.crossmatch_inventory_dirty_or_uncommitted_files}; truthy authority ${counts.crossmatch_inventory_forbidden_truthy_authority_claims}`),
     check('agent10_crossmatch_direct_state_reconciliation_complete', counts.agent10_crossmatch_direct_state_dirty_or_uncommitted_files > 0 && counts.agent10_crossmatch_fresh_consumption_dirty_or_uncommitted_files === 0 && counts.agent10_crossmatch_current_inventory_dirty_or_uncommitted_files === 0 && counts.agent10_crossmatch_stale_dirty_count_delta === counts.agent10_crossmatch_direct_state_dirty_or_uncommitted_files && counts.agent10_crossmatch_current_inventory_blocker_count === 0 && counts.agent10_crossmatch_control_edits === 0 && counts.agent10_crossmatch_agent6_boundary_packets_opened === 0 ? 'warning' : 'failed', `direct/fresh/current dirty ${counts.agent10_crossmatch_direct_state_dirty_or_uncommitted_files}/${counts.agent10_crossmatch_fresh_consumption_dirty_or_uncommitted_files}/${counts.agent10_crossmatch_current_inventory_dirty_or_uncommitted_files}; stale delta ${counts.agent10_crossmatch_stale_dirty_count_delta}; blockers/control/agent6 ${counts.agent10_crossmatch_current_inventory_blocker_count}/${counts.agent10_crossmatch_control_edits}/${counts.agent10_crossmatch_agent6_boundary_packets_opened}`),
+    check('post_crossmatch_reconciliation_wake_audit_complete', counts.post_crossmatch_wake_queue_stale_deuteronomy_rows === 1 && counts.post_crossmatch_wake_agent10_stale_dirty_count_delta > 0 && counts.post_crossmatch_wake_current_inventory_dirty_files === 0 && counts.post_crossmatch_wake_registered_continuity_rows === 4 && counts.post_crossmatch_wake_direct_executable_worksets === 0 && counts.post_crossmatch_wake_no_new_workset_blockers === 2 && counts.post_crossmatch_wake_agent6_boundary_packets_opened === 0 ? 'warning' : 'failed', `queue stale ${counts.post_crossmatch_wake_queue_stale_deuteronomy_rows}; stale dirty delta ${counts.post_crossmatch_wake_agent10_stale_dirty_count_delta}; current dirty ${counts.post_crossmatch_wake_current_inventory_dirty_files}; registered/executable/blockers/agent6 ${counts.post_crossmatch_wake_registered_continuity_rows}/${counts.post_crossmatch_wake_direct_executable_worksets}/${counts.post_crossmatch_wake_no_new_workset_blockers}/${counts.post_crossmatch_wake_agent6_boundary_packets_opened}`),
     check('proof_metadata_complete', counts.proof_occurrence_rows > 0 && counts.proof_rows_with_complete_metadata === counts.proof_occurrence_rows ? 'passed' : 'failed', `${counts.proof_rows_with_complete_metadata}/${counts.proof_occurrence_rows}`),
     check('hebrew_context_clean', counts.proof_rows_with_hebrew_context === counts.proof_occurrence_rows && counts.proof_mojibake_rows === 0 ? 'passed' : 'failed', `Hebrew context ${counts.proof_rows_with_hebrew_context}; mojibake ${counts.proof_mojibake_rows}`),
     check('no_authority_fields', counts.reader_facing_rows === 0 && counts.route_payload_field_hits === 0 && counts.forbidden_authority_field_hits === 0 ? 'passed' : 'failed', `reader-facing ${counts.reader_facing_rows}; route payload ${counts.route_payload_field_hits}; forbidden ${counts.forbidden_authority_field_hits}`),
@@ -1436,6 +1462,7 @@ function writeReport(relativePath, artifact) {
     `- Freshness follow-up queue mutations / submitted / forbidden-authority hits: ${artifact.current_metrics.freshness_followup_queue_mutations}/${artifact.current_metrics.freshness_followup_submitted_to_agent6}/${artifact.current_metrics.freshness_followup_forbidden_authority_field_hits}`,
     `- Crossmatch inventory files / dirty-uncommitted / truthy-authority hits: ${artifact.current_metrics.crossmatch_inventory_files}/${artifact.current_metrics.crossmatch_inventory_dirty_or_uncommitted_files}/${artifact.current_metrics.crossmatch_inventory_forbidden_truthy_authority_claims}`,
     `- Agent10 crossmatch direct-state stale/current dirty / delta / boundary packets: ${artifact.current_metrics.agent10_crossmatch_direct_state_dirty_or_uncommitted_files}/${artifact.current_metrics.agent10_crossmatch_current_inventory_dirty_or_uncommitted_files}/${artifact.current_metrics.agent10_crossmatch_stale_dirty_count_delta}/${artifact.current_metrics.agent10_crossmatch_agent6_boundary_packets_opened}`,
+    `- Post-crossmatch wake queue-stale / current-dirty / registered / executable / blockers: ${artifact.current_metrics.post_crossmatch_wake_queue_stale_deuteronomy_rows}/${artifact.current_metrics.post_crossmatch_wake_current_inventory_dirty_files}/${artifact.current_metrics.post_crossmatch_wake_registered_continuity_rows}/${artifact.current_metrics.post_crossmatch_wake_direct_executable_worksets}/${artifact.current_metrics.post_crossmatch_wake_no_new_workset_blockers}`,
     `- Proof rows / complete metadata: ${artifact.current_metrics.proof_occurrence_rows}/${artifact.current_metrics.proof_rows_with_complete_metadata}`,
     `- Hebrew context / mojibake rows: ${artifact.current_metrics.proof_rows_with_hebrew_context}/${artifact.current_metrics.proof_mojibake_rows}`,
     `- Reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.reader_facing_rows}/${artifact.current_metrics.route_payload_field_hits}/${artifact.current_metrics.forbidden_authority_field_hits}`,
