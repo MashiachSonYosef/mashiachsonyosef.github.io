@@ -119,6 +119,8 @@ const defaults = {
     'reports/agent3-old-dictionary-candidate-use-bridge-gap-source-rid-blocker-crossmatch-2026-06-06.json',
   oldDictionaryCandidateUseBridgeGapSourceRidPrereqRouteCrossmatch:
     'reports/agent3-old-dictionary-candidate-use-bridge-gap-source-rid-prereq-route-crossmatch-2026-06-06.json',
+  oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix:
+    'reports/agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   usageConcordance: 'data/workbench-evidence/usage-concordance.json',
   usageHandoffIndex: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -328,6 +330,9 @@ const oldDictionaryCandidateUseBridgeGapSourceRidBlockerCrossmatch = readJson(
 );
 const oldDictionaryCandidateUseBridgeGapSourceRidPrereqRouteCrossmatch = readJson(
   options.oldDictionaryCandidateUseBridgeGapSourceRidPrereqRouteCrossmatch,
+);
+const oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix = readJson(
+  options.oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix,
 );
 const smokeValidation = readJson(options.smokeValidation);
 const usageConcordance = readJson(options.usageConcordance);
@@ -731,6 +736,14 @@ if (
     `${options.oldDictionaryCandidateUseBridgeGapSourceRidPrereqRouteCrossmatch} is not an Agent 3 old-dictionary candidate-use bridge-gap source-RID prereq-route crossmatch`,
   );
 }
+if (
+  oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.artifact_type !==
+  'agent3_old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_matrix'
+) {
+  throw new Error(
+    `${options.oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix} is not an Agent 3 old-dictionary candidate-use bridge-gap candidate prereq closure matrix`,
+  );
+}
 if (publicHandoffIndex.artifact_type !== 'workbench_public_handoff_index') {
   throw new Error(`${options.publicHandoffIndex} is not a public handoff index`);
 }
@@ -878,6 +891,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-old-dictionary-candidate-use-bridge-gap-source-rid-blocker-crossmatch-2026-06-06.md',
   options.oldDictionaryCandidateUseBridgeGapSourceRidPrereqRouteCrossmatch,
   'reports/agent3-old-dictionary-candidate-use-bridge-gap-source-rid-prereq-route-crossmatch-2026-06-06.md',
+  options.oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix,
+  'reports/agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.md',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md',
   'reports/agent3-current-control-drift-refresh-2026-06-04.json',
@@ -995,6 +1010,7 @@ const validators = unique([
   'scripts/validate_agent3_old_dictionary_candidate_use_queue_source_bridge_gap_workset.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch.mjs',
+  'scripts/validate_agent3_old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_matrix.mjs',
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
   'scripts/validate_definition_workbench_usage_seed_queue.mjs',
   'scripts/validate_definition_workbench_usage_join_smoke.mjs',
@@ -1926,6 +1942,16 @@ const artifact = {
     old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseBridgeGapSourceRidPrereqRouteCrossmatch.counts?.forbidden_payload_field_hits || 0),
     old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_acceptance_claims: Number(oldDictionaryCandidateUseBridgeGapSourceRidPrereqRouteCrossmatch.counts?.acceptance_claims || 0),
     old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_release_actions: Number(oldDictionaryCandidateUseBridgeGapSourceRidPrereqRouteCrossmatch.counts?.release_actions || 0),
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_rows: Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.closure_rows || 0),
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_occ_refs: `${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.closure_occurrences || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.missing_source_rid_references || 0)}`,
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_a06_direct: `${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.all_a06_evidence_boundary_prereq_rows || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.all_direct_source_citation_prereq_rows || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.mixed_prereq_route_rows || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.missing_prereq_route_rows || 0)}`,
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_a06_direct_occ: `${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.all_a06_evidence_boundary_prereq_occurrences || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.all_direct_source_citation_prereq_occurrences || 0)}`,
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_blockers: `${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.source_rid_blocker_rows_present || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.queue_source_coverage_rows_present || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.current_blocker_total || 0)}`,
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_flags: `${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.source_rids_requiring_source_citation || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.source_rids_transform_blocked || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.source_rids_after_boundary_prereq || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.approval_route_owner_a07_rows || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.a06_evidence_validator_production_only_rows || 0)}-${Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.a06_approval_requested_rows || 0)}`,
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_selection_claims: Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.source_family_selection_claims || 0),
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.forbidden_payload_field_hits || 0),
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_acceptance_claims: Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.acceptance_claims || 0),
+    old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_release_actions: Number(oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix.counts?.release_actions || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -2759,6 +2785,7 @@ function writeReport(relativePath, artifact) {
     `- Old-dictionary candidate-use queue/source bridge gap workset rows / occurrences / outside-linkedmissing-linkedextra rows / outside-linkedmissing-linkedextra occurrences / sourceRID refs total-outside-linked-extra / carried blockers-pairs-sourceRIDs-membershipOcc-currentblockers / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_rows}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_outside_linked}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_outside_linked_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_source_rid_refs}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_carried_forward}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_bridge_gap_workset_release_actions}`,
     `- Old-dictionary candidate-use bridge-gap source-RID blocker crossmatch rows / refs-occ / blocker-present-missing-coverage-present-missing / queues-tokens-prefixes / blocker refs-occ-currentblockers / citation-transform-Agent6 blocker flags / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_rows}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_refs_occ}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_blocker_coverage}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_queue_prefix}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_blocker_totals}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_blocker_flags}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch_release_actions}`,
     `- Old-dictionary candidate-use bridge-gap source-RID prereq route crossmatch rows / refs-occ / A06direct-both-missing / A06direct occ / blocker-coverage-prereqblockers-sourceblockers / citation-transform-boundary-route-candidate-public flags / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_rows}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_refs_occ}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_a06_direct}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_a06_direct_occ}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_blockers}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_flags}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch_release_actions}`,
+    `- Old-dictionary candidate-use bridge-gap candidate prereq closure rows / occ-sourceRIDrefs / A06direct-mixed-missing / A06direct occ / blocker-coverage-currentblockers / citation-transform-boundary-A07-A06-A06approval flags / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_rows}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_occ_refs}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_a06_direct}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_a06_direct_occ}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_blockers}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_flags}/${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_release_actions}`,
     `- Proof rows / complete metadata: ${artifact.current_metrics.proof_occurrence_rows}/${artifact.current_metrics.proof_rows_with_complete_metadata}`,
     `- Hebrew context / mojibake rows: ${artifact.current_metrics.proof_rows_with_hebrew_context}/${artifact.current_metrics.proof_mojibake_rows}`,
     `- Reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.reader_facing_rows}/${artifact.current_metrics.route_payload_field_hits}/${artifact.current_metrics.forbidden_authority_field_hits}`,
@@ -2903,6 +2930,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--old-dictionary-candidate-use-queue-source-bridge-gap-workset=')) parsed.oldDictionaryCandidateUseQueueSourceBridgeGapWorkset = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-bridge-gap-source-rid-blocker-crossmatch=')) parsed.oldDictionaryCandidateUseBridgeGapSourceRidBlockerCrossmatch = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-bridge-gap-source-rid-prereq-route-crossmatch=')) parsed.oldDictionaryCandidateUseBridgeGapSourceRidPrereqRouteCrossmatch = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix=')) parsed.oldDictionaryCandidateUseBridgeGapCandidatePrereqClosureMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-concordance=')) parsed.usageConcordance = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-handoff-index=')) parsed.usageHandoffIndex = cleanRelativePath(valueAfterEquals(arg));
