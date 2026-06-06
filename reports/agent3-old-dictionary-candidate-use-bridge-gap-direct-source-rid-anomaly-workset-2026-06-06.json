@@ -1,0 +1,526 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_old_dictionary_candidate_use_bridge_gap_direct_source_rid_anomaly_workset",
+  "generated_at": "2026-06-06T13:17:08.249Z",
+  "generator": "scripts/build_agent3_old_dictionary_candidate_use_bridge_gap_direct_source_rid_anomaly_workset.mjs",
+  "lane_owner": "Agent 3",
+  "status": "evidence-ready",
+  "target": "Classify all five direct source-RID locator rows and select bounded anomaly rows for downstream dedupe/navigation review.",
+  "authority_boundary": {
+    "linkage_navigation_only": true,
+    "source_rid_anomaly_workset_only": true,
+    "approval_sop_final_validation_release_gate_owner_a07": true,
+    "evidence_validators_repo_cleaning_production_owner_a06": true,
+    "a06_outputs_evidence_ready_until_a07_approves": true,
+    "do_not_ask_a06_for_approval": true,
+    "a06_approval_requested": false,
+    "qa_acceptance": false,
+    "agent6_acceptance": false,
+    "source_provenance_acceptance": false,
+    "source_license_acceptance": false,
+    "source_legal_acceptance": false,
+    "source_citation_supplied_by_agent3": false,
+    "source_text_read": false,
+    "candidate_text_export": false,
+    "definition_content_storage": false,
+    "usage_as_definition_authority": false,
+    "definition_authority": false,
+    "answer_selection": false,
+    "route_ranking": false,
+    "publication_readiness": false,
+    "public_runtime_mutation": false,
+    "accepted_gloss_text": false,
+    "release_action": false
+  },
+  "inputs": {
+    "direct_source_rid_locator_crossmatch": "reports/agent3-old-dictionary-candidate-use-bridge-gap-direct-source-rid-locator-crossmatch-2026-06-06.json",
+    "agent1_public_domain_citation_metadata_custody": "reports/agent1-old-dictionary-public-domain-citation-metadata-custody-2026-06-05.json",
+    "agent1_commercial_clean_only_metadata_custody": "reports/agent1-old-dictionary-commercial-clean-only-metadata-custody-2026-06-05.json",
+    "agent2_direct_source_citation_prereq_intake_contract": "reports/agent2-old-dictionary-78-row-direct-source-citation-prereq-intake-contract-2026-06-06.json"
+  },
+  "inherited_process_timeout_records": [
+    {
+      "status": "process_timeout",
+      "command": "rg -n \"P00280|M00032|U00063|E00687|I00126\" reports data --glob \"*.json\" --glob \"*.md\"",
+      "requested_timeout_ms": 60000,
+      "observed_timeout_ms": 402307,
+      "partial_output_or_artifact": "Partial output showed Agent 1 custody and Agent 2 direct-contract locator hits for the 5 source RIDs; broad reports/data search was not complete.",
+      "next_safe_action": "Use named input files only for this locator crossmatch; do not continue broad rg scans over reports/data for these source RIDs."
+    }
+  ],
+  "counts": {
+    "input_locator_rows": 5,
+    "selected_anomaly_rows": 3,
+    "non_anomaly_reviewed_rows": 2,
+    "selected_anomaly_occurrences": 42,
+    "reviewed_occurrences": 58,
+    "unique_reviewed_source_rids": 5,
+    "unique_anomaly_source_rids": 3,
+    "duplicate_public_domain_locator_rows": 1,
+    "duplicate_commercial_locator_rows": 1,
+    "zero_public_domain_refs_rows": 1,
+    "zero_commercial_refs_rows": 1,
+    "commercial_ref_gap_rows": 1,
+    "multi_public_domain_rid_rows": 1,
+    "multi_commercial_rid_rows": 1,
+    "agent2_source_citation_or_url_present_rows": 0,
+    "agent2_transform_rule_still_blocked_rows": 5,
+    "inherited_process_timeout_records": 1,
+    "new_broad_search_commands_run": 0,
+    "a07_approval_route_rows": 5,
+    "a06_evidence_owner_rows": 5,
+    "a06_approval_requested_rows": 0,
+    "source_license_acceptance_claims": 0,
+    "source_provenance_acceptance_claims": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "source_text_rows": 0,
+    "definition_authority_rows": 0,
+    "answer_selection_rows": 0,
+    "accepted_text_rows": 0,
+    "publication_or_release_claims": 0,
+    "acceptance_claims": 0,
+    "forbidden_payload_field_hits": 0
+  },
+  "reviewed_locator_rows": [
+    {
+      "review_row_id": "agent3-direct-source-rid-anomaly-review-6d3ceb9cfbcd",
+      "locator_row_id": "agent3-direct-source-rid-locator-6d3ceb9cfbcd",
+      "queue_id": "agent2-orot-gap-tok-126d54d64a8c",
+      "token_id": "tok-126d54d64a8c",
+      "lexicon_entry_id": "lex-bfe47d1ee541",
+      "source_rid": "P00280",
+      "source_rid_prefix": "P",
+      "occurrences": 13,
+      "selected_for_downstream_review": true,
+      "anomaly_flags": [
+        "duplicate_agent1_public_domain_source_rid_locator",
+        "duplicate_agent1_commercial_source_rid_locator"
+      ],
+      "anomaly_count": 2,
+      "agent2_contract_locator_paths": [
+        "direct_identifier_rows[1]"
+      ],
+      "agent1_public_domain_exact_locator_paths": [
+        "public_domain_metadata_rows[107]"
+      ],
+      "agent1_public_domain_all_queue_locator_count": 2,
+      "agent1_commercial_exact_locator_paths": [
+        "commercial_clean_only_metadata_rows[4]"
+      ],
+      "agent1_commercial_all_queue_locator_count": 2,
+      "agent1_commercial_ref_gap_locator_paths": [],
+      "agent1_public_domain_rid_count": 1,
+      "agent1_commercial_rid_count": 1,
+      "agent1_public_domain_refs_count": 3,
+      "agent1_commercial_refs_count": 3,
+      "agent2_source_family": "Jastrow Dictionary",
+      "agent2_triage_group": "commercial_clean_only",
+      "agent2_source_citation_or_url_present": false,
+      "agent2_transform_rule_still_blocked": true,
+      "exact_blockers": [
+        "source_rid_duplicate_locator_requires_queue_scope_dedupe"
+      ],
+      "ordinary_locator_status": null,
+      "approval_route_owner": "A07",
+      "evidence_validator_owner": "A06",
+      "a06_approval_requested": false,
+      "source_license_acceptance": false,
+      "source_provenance_acceptance": false,
+      "source_citation_supplied_by_agent3": false,
+      "source_text_read": false,
+      "definition_authority": false,
+      "answer_selection": false,
+      "accepted_text": false,
+      "next_safe_action": "Route this source-RID anomaly to Agent 10 intake and Agent 1/Agent 2 row-level enrichment before any transform consideration; approval route remains A07."
+    },
+    {
+      "review_row_id": "agent3-direct-source-rid-anomaly-review-b217f51f77c6",
+      "locator_row_id": "agent3-direct-source-rid-locator-b217f51f77c6",
+      "queue_id": "agent2-orot-gap-tok-d29b2c27700e",
+      "token_id": "tok-d29b2c27700e",
+      "lexicon_entry_id": "lex-b17d59a7de67",
+      "source_rid": "M00032",
+      "source_rid_prefix": "M",
+      "occurrences": 18,
+      "selected_for_downstream_review": true,
+      "anomaly_flags": [
+        "zero_public_domain_refs_count",
+        "zero_commercial_refs_count",
+        "commercial_ref_gap_row_present"
+      ],
+      "anomaly_count": 3,
+      "agent2_contract_locator_paths": [
+        "direct_identifier_rows[0]"
+      ],
+      "agent1_public_domain_exact_locator_paths": [
+        "public_domain_metadata_rows[76]"
+      ],
+      "agent1_public_domain_all_queue_locator_count": 1,
+      "agent1_commercial_exact_locator_paths": [
+        "commercial_clean_only_metadata_rows[3]"
+      ],
+      "agent1_commercial_all_queue_locator_count": 1,
+      "agent1_commercial_ref_gap_locator_paths": [
+        "ref_gap_rows[0]"
+      ],
+      "agent1_public_domain_rid_count": 1,
+      "agent1_commercial_rid_count": 1,
+      "agent1_public_domain_refs_count": 0,
+      "agent1_commercial_refs_count": 0,
+      "agent2_source_family": "Jastrow Dictionary",
+      "agent2_triage_group": "commercial_clean_only",
+      "agent2_source_citation_or_url_present": false,
+      "agent2_transform_rule_still_blocked": true,
+      "exact_blockers": [
+        "source_rid_zero_ref_gap_blocks_direct_source_citation_enrichment"
+      ],
+      "ordinary_locator_status": null,
+      "approval_route_owner": "A07",
+      "evidence_validator_owner": "A06",
+      "a06_approval_requested": false,
+      "source_license_acceptance": false,
+      "source_provenance_acceptance": false,
+      "source_citation_supplied_by_agent3": false,
+      "source_text_read": false,
+      "definition_authority": false,
+      "answer_selection": false,
+      "accepted_text": false,
+      "next_safe_action": "Route this source-RID anomaly to Agent 10 intake and Agent 1/Agent 2 row-level enrichment before any transform consideration; approval route remains A07."
+    },
+    {
+      "review_row_id": "agent3-direct-source-rid-anomaly-review-75780f3ce039",
+      "locator_row_id": "agent3-direct-source-rid-locator-75780f3ce039",
+      "queue_id": "agent2-orot-gap-tok-d6cbb8ff849c",
+      "token_id": "tok-d6cbb8ff849c",
+      "lexicon_entry_id": "lex-418a89f3f4f6",
+      "source_rid": "U00063",
+      "source_rid_prefix": "U",
+      "occurrences": 9,
+      "selected_for_downstream_review": false,
+      "anomaly_flags": [],
+      "anomaly_count": 0,
+      "agent2_contract_locator_paths": [
+        "direct_identifier_rows[3]"
+      ],
+      "agent1_public_domain_exact_locator_paths": [
+        "public_domain_metadata_rows[171]"
+      ],
+      "agent1_public_domain_all_queue_locator_count": 1,
+      "agent1_commercial_exact_locator_paths": [
+        "commercial_clean_only_metadata_rows[8]"
+      ],
+      "agent1_commercial_all_queue_locator_count": 1,
+      "agent1_commercial_ref_gap_locator_paths": [],
+      "agent1_public_domain_rid_count": 1,
+      "agent1_commercial_rid_count": 1,
+      "agent1_public_domain_refs_count": 1,
+      "agent1_commercial_refs_count": 1,
+      "agent2_source_family": "Jastrow Dictionary",
+      "agent2_triage_group": "commercial_clean_only",
+      "agent2_source_citation_or_url_present": false,
+      "agent2_transform_rule_still_blocked": true,
+      "exact_blockers": [],
+      "ordinary_locator_status": "reviewed_no_locator_anomaly_but_direct_source_citation_still_missing",
+      "approval_route_owner": "A07",
+      "evidence_validator_owner": "A06",
+      "a06_approval_requested": false,
+      "source_license_acceptance": false,
+      "source_provenance_acceptance": false,
+      "source_citation_supplied_by_agent3": false,
+      "source_text_read": false,
+      "definition_authority": false,
+      "answer_selection": false,
+      "accepted_text": false,
+      "next_safe_action": "Keep as reviewed locator evidence only; source_citation_or_url remains missing and transform stays blocked."
+    },
+    {
+      "review_row_id": "agent3-direct-source-rid-anomaly-review-583d49afa68b",
+      "locator_row_id": "agent3-direct-source-rid-locator-583d49afa68b",
+      "queue_id": "agent2-orot-gap-tok-e50370ece8ba",
+      "token_id": "tok-e50370ece8ba",
+      "lexicon_entry_id": "lex-937a1b7512c1",
+      "source_rid": "E00687",
+      "source_rid_prefix": "E",
+      "occurrences": 11,
+      "selected_for_downstream_review": true,
+      "anomaly_flags": [
+        "multi_public_domain_rid_custody_row",
+        "multi_commercial_rid_custody_row"
+      ],
+      "anomaly_count": 2,
+      "agent2_contract_locator_paths": [
+        "direct_identifier_rows[2]"
+      ],
+      "agent1_public_domain_exact_locator_paths": [
+        "public_domain_metadata_rows[138]"
+      ],
+      "agent1_public_domain_all_queue_locator_count": 1,
+      "agent1_commercial_exact_locator_paths": [
+        "commercial_clean_only_metadata_rows[6]"
+      ],
+      "agent1_commercial_all_queue_locator_count": 1,
+      "agent1_commercial_ref_gap_locator_paths": [],
+      "agent1_public_domain_rid_count": 2,
+      "agent1_commercial_rid_count": 2,
+      "agent1_public_domain_refs_count": 23,
+      "agent1_commercial_refs_count": 23,
+      "agent2_source_family": "Jastrow Dictionary",
+      "agent2_triage_group": "commercial_clean_only",
+      "agent2_source_citation_or_url_present": false,
+      "agent2_transform_rule_still_blocked": true,
+      "exact_blockers": [
+        "source_rid_multi_rid_custody_row_requires_exact_rid_scope"
+      ],
+      "ordinary_locator_status": null,
+      "approval_route_owner": "A07",
+      "evidence_validator_owner": "A06",
+      "a06_approval_requested": false,
+      "source_license_acceptance": false,
+      "source_provenance_acceptance": false,
+      "source_citation_supplied_by_agent3": false,
+      "source_text_read": false,
+      "definition_authority": false,
+      "answer_selection": false,
+      "accepted_text": false,
+      "next_safe_action": "Route this source-RID anomaly to Agent 10 intake and Agent 1/Agent 2 row-level enrichment before any transform consideration; approval route remains A07."
+    },
+    {
+      "review_row_id": "agent3-direct-source-rid-anomaly-review-24e71211b63f",
+      "locator_row_id": "agent3-direct-source-rid-locator-24e71211b63f",
+      "queue_id": "agent2-orot-gap-tok-f14e3500010d",
+      "token_id": "tok-f14e3500010d",
+      "lexicon_entry_id": "lex-39c7377efc1f",
+      "source_rid": "I00126",
+      "source_rid_prefix": "I",
+      "occurrences": 7,
+      "selected_for_downstream_review": false,
+      "anomaly_flags": [],
+      "anomaly_count": 0,
+      "agent2_contract_locator_paths": [
+        "direct_identifier_rows[4]"
+      ],
+      "agent1_public_domain_exact_locator_paths": [
+        "public_domain_metadata_rows[230]"
+      ],
+      "agent1_public_domain_all_queue_locator_count": 1,
+      "agent1_commercial_exact_locator_paths": [
+        "commercial_clean_only_metadata_rows[11]"
+      ],
+      "agent1_commercial_all_queue_locator_count": 1,
+      "agent1_commercial_ref_gap_locator_paths": [],
+      "agent1_public_domain_rid_count": 1,
+      "agent1_commercial_rid_count": 1,
+      "agent1_public_domain_refs_count": 1,
+      "agent1_commercial_refs_count": 1,
+      "agent2_source_family": "Jastrow Dictionary",
+      "agent2_triage_group": "commercial_clean_only",
+      "agent2_source_citation_or_url_present": false,
+      "agent2_transform_rule_still_blocked": true,
+      "exact_blockers": [],
+      "ordinary_locator_status": "reviewed_no_locator_anomaly_but_direct_source_citation_still_missing",
+      "approval_route_owner": "A07",
+      "evidence_validator_owner": "A06",
+      "a06_approval_requested": false,
+      "source_license_acceptance": false,
+      "source_provenance_acceptance": false,
+      "source_citation_supplied_by_agent3": false,
+      "source_text_read": false,
+      "definition_authority": false,
+      "answer_selection": false,
+      "accepted_text": false,
+      "next_safe_action": "Keep as reviewed locator evidence only; source_citation_or_url remains missing and transform stays blocked."
+    }
+  ],
+  "selected_anomaly_rows": [
+    {
+      "review_row_id": "agent3-direct-source-rid-anomaly-review-6d3ceb9cfbcd",
+      "locator_row_id": "agent3-direct-source-rid-locator-6d3ceb9cfbcd",
+      "queue_id": "agent2-orot-gap-tok-126d54d64a8c",
+      "token_id": "tok-126d54d64a8c",
+      "lexicon_entry_id": "lex-bfe47d1ee541",
+      "source_rid": "P00280",
+      "source_rid_prefix": "P",
+      "occurrences": 13,
+      "selected_for_downstream_review": true,
+      "anomaly_flags": [
+        "duplicate_agent1_public_domain_source_rid_locator",
+        "duplicate_agent1_commercial_source_rid_locator"
+      ],
+      "anomaly_count": 2,
+      "agent2_contract_locator_paths": [
+        "direct_identifier_rows[1]"
+      ],
+      "agent1_public_domain_exact_locator_paths": [
+        "public_domain_metadata_rows[107]"
+      ],
+      "agent1_public_domain_all_queue_locator_count": 2,
+      "agent1_commercial_exact_locator_paths": [
+        "commercial_clean_only_metadata_rows[4]"
+      ],
+      "agent1_commercial_all_queue_locator_count": 2,
+      "agent1_commercial_ref_gap_locator_paths": [],
+      "agent1_public_domain_rid_count": 1,
+      "agent1_commercial_rid_count": 1,
+      "agent1_public_domain_refs_count": 3,
+      "agent1_commercial_refs_count": 3,
+      "agent2_source_family": "Jastrow Dictionary",
+      "agent2_triage_group": "commercial_clean_only",
+      "agent2_source_citation_or_url_present": false,
+      "agent2_transform_rule_still_blocked": true,
+      "exact_blockers": [
+        "source_rid_duplicate_locator_requires_queue_scope_dedupe"
+      ],
+      "ordinary_locator_status": null,
+      "approval_route_owner": "A07",
+      "evidence_validator_owner": "A06",
+      "a06_approval_requested": false,
+      "source_license_acceptance": false,
+      "source_provenance_acceptance": false,
+      "source_citation_supplied_by_agent3": false,
+      "source_text_read": false,
+      "definition_authority": false,
+      "answer_selection": false,
+      "accepted_text": false,
+      "next_safe_action": "Route this source-RID anomaly to Agent 10 intake and Agent 1/Agent 2 row-level enrichment before any transform consideration; approval route remains A07."
+    },
+    {
+      "review_row_id": "agent3-direct-source-rid-anomaly-review-b217f51f77c6",
+      "locator_row_id": "agent3-direct-source-rid-locator-b217f51f77c6",
+      "queue_id": "agent2-orot-gap-tok-d29b2c27700e",
+      "token_id": "tok-d29b2c27700e",
+      "lexicon_entry_id": "lex-b17d59a7de67",
+      "source_rid": "M00032",
+      "source_rid_prefix": "M",
+      "occurrences": 18,
+      "selected_for_downstream_review": true,
+      "anomaly_flags": [
+        "zero_public_domain_refs_count",
+        "zero_commercial_refs_count",
+        "commercial_ref_gap_row_present"
+      ],
+      "anomaly_count": 3,
+      "agent2_contract_locator_paths": [
+        "direct_identifier_rows[0]"
+      ],
+      "agent1_public_domain_exact_locator_paths": [
+        "public_domain_metadata_rows[76]"
+      ],
+      "agent1_public_domain_all_queue_locator_count": 1,
+      "agent1_commercial_exact_locator_paths": [
+        "commercial_clean_only_metadata_rows[3]"
+      ],
+      "agent1_commercial_all_queue_locator_count": 1,
+      "agent1_commercial_ref_gap_locator_paths": [
+        "ref_gap_rows[0]"
+      ],
+      "agent1_public_domain_rid_count": 1,
+      "agent1_commercial_rid_count": 1,
+      "agent1_public_domain_refs_count": 0,
+      "agent1_commercial_refs_count": 0,
+      "agent2_source_family": "Jastrow Dictionary",
+      "agent2_triage_group": "commercial_clean_only",
+      "agent2_source_citation_or_url_present": false,
+      "agent2_transform_rule_still_blocked": true,
+      "exact_blockers": [
+        "source_rid_zero_ref_gap_blocks_direct_source_citation_enrichment"
+      ],
+      "ordinary_locator_status": null,
+      "approval_route_owner": "A07",
+      "evidence_validator_owner": "A06",
+      "a06_approval_requested": false,
+      "source_license_acceptance": false,
+      "source_provenance_acceptance": false,
+      "source_citation_supplied_by_agent3": false,
+      "source_text_read": false,
+      "definition_authority": false,
+      "answer_selection": false,
+      "accepted_text": false,
+      "next_safe_action": "Route this source-RID anomaly to Agent 10 intake and Agent 1/Agent 2 row-level enrichment before any transform consideration; approval route remains A07."
+    },
+    {
+      "review_row_id": "agent3-direct-source-rid-anomaly-review-583d49afa68b",
+      "locator_row_id": "agent3-direct-source-rid-locator-583d49afa68b",
+      "queue_id": "agent2-orot-gap-tok-e50370ece8ba",
+      "token_id": "tok-e50370ece8ba",
+      "lexicon_entry_id": "lex-937a1b7512c1",
+      "source_rid": "E00687",
+      "source_rid_prefix": "E",
+      "occurrences": 11,
+      "selected_for_downstream_review": true,
+      "anomaly_flags": [
+        "multi_public_domain_rid_custody_row",
+        "multi_commercial_rid_custody_row"
+      ],
+      "anomaly_count": 2,
+      "agent2_contract_locator_paths": [
+        "direct_identifier_rows[2]"
+      ],
+      "agent1_public_domain_exact_locator_paths": [
+        "public_domain_metadata_rows[138]"
+      ],
+      "agent1_public_domain_all_queue_locator_count": 1,
+      "agent1_commercial_exact_locator_paths": [
+        "commercial_clean_only_metadata_rows[6]"
+      ],
+      "agent1_commercial_all_queue_locator_count": 1,
+      "agent1_commercial_ref_gap_locator_paths": [],
+      "agent1_public_domain_rid_count": 2,
+      "agent1_commercial_rid_count": 2,
+      "agent1_public_domain_refs_count": 23,
+      "agent1_commercial_refs_count": 23,
+      "agent2_source_family": "Jastrow Dictionary",
+      "agent2_triage_group": "commercial_clean_only",
+      "agent2_source_citation_or_url_present": false,
+      "agent2_transform_rule_still_blocked": true,
+      "exact_blockers": [
+        "source_rid_multi_rid_custody_row_requires_exact_rid_scope"
+      ],
+      "ordinary_locator_status": null,
+      "approval_route_owner": "A07",
+      "evidence_validator_owner": "A06",
+      "a06_approval_requested": false,
+      "source_license_acceptance": false,
+      "source_provenance_acceptance": false,
+      "source_citation_supplied_by_agent3": false,
+      "source_text_read": false,
+      "definition_authority": false,
+      "answer_selection": false,
+      "accepted_text": false,
+      "next_safe_action": "Route this source-RID anomaly to Agent 10 intake and Agent 1/Agent 2 row-level enrichment before any transform consideration; approval route remains A07."
+    }
+  ],
+  "exact_blocker_summary": [
+    {
+      "exact_blocker": "source_rid_duplicate_locator_requires_queue_scope_dedupe",
+      "rows": 1,
+      "source_rids": [
+        "P00280"
+      ],
+      "occurrences": 13,
+      "evidence_role": "source_rid_anomaly_navigation_only_no_acceptance_claim"
+    },
+    {
+      "exact_blocker": "source_rid_zero_ref_gap_blocks_direct_source_citation_enrichment",
+      "rows": 1,
+      "source_rids": [
+        "M00032"
+      ],
+      "occurrences": 18,
+      "evidence_role": "source_rid_anomaly_navigation_only_no_acceptance_claim"
+    },
+    {
+      "exact_blocker": "source_rid_multi_rid_custody_row_requires_exact_rid_scope",
+      "rows": 1,
+      "source_rids": [
+        "E00687"
+      ],
+      "occurrences": 11,
+      "evidence_role": "source_rid_anomaly_navigation_only_no_acceptance_claim"
+    }
+  ],
+  "handoff": {
+    "owner": "Agent 10 for package intake; Agent 1/Agent 2 for source-citation enrichment and row-scope clarification; A07 for approval; A06 evidence/validator production only.",
+    "next_safe_action": "Use selected anomaly rows to resolve source-RID duplication, zero-ref/ref-gap, and multi-RID custody-row navigation before any transform or release consideration.",
+    "stop_condition": "Stop at anomaly workset evidence; no source text read, source/license/legal acceptance, Definition answer selection, route publication support, runtime mutation, or accepted text claim."
+  }
+}
