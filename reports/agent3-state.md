@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T06:47:28.495Z
+Generated: 2026-06-06T06:59:33.379Z
 
 ## State
 
@@ -119,6 +119,7 @@ Generated: 2026-06-06T06:47:28.495Z
 - Old-dictionary pure commercial candidate-use workset rows / occurrences / unique source RIDs / blockers / transform-ready: 5/58/6/1/0
 - Old-dictionary overlap candidate-use workset rows / occurrences / unique source RIDs / blockers / bucket-family-set rows / transform-ready: 73/1403/339/3/7/0
 - Old-dictionary candidate-use split closure rows / occurrences / missing / extra / duplicate queue IDs / shared source RIDs / transform-ready: 78/1461/0/0/0/1/0
+- Old-dictionary candidate-use handoff index entries / JSON / reports / validators / type mismatches / authority issues: 9/9/9/9/0/0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -132,8 +133,8 @@ Generated: 2026-06-06T06:47:28.495Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 125/125 |
-| validator_scripts_exist | passed | 64/64 |
+| evidence_artifacts_exist | passed | 127/127 |
+| validator_scripts_exist | passed | 65/65 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |

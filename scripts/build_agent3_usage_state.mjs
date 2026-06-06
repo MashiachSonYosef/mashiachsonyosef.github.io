@@ -59,6 +59,8 @@ const defaults = {
     'reports/agent3-old-dictionary-overlap-candidate-use-boundary-workset-2026-06-06.json',
   oldDictionaryCandidateUseSplitClosureCrossmatch:
     'reports/agent3-old-dictionary-candidate-use-split-closure-crossmatch-2026-06-06.json',
+  oldDictionaryCandidateUseHandoffIndex:
+    'reports/agent3-old-dictionary-candidate-use-handoff-index-2026-06-06.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   usageConcordance: 'data/workbench-evidence/usage-concordance.json',
   usageHandoffIndex: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -183,6 +185,7 @@ const oldDictionaryOverlapCandidateUseBoundaryWorkset = readJson(
 const oldDictionaryCandidateUseSplitClosureCrossmatch = readJson(
   options.oldDictionaryCandidateUseSplitClosureCrossmatch,
 );
+const oldDictionaryCandidateUseHandoffIndex = readJson(options.oldDictionaryCandidateUseHandoffIndex);
 const smokeValidation = readJson(options.smokeValidation);
 const usageConcordance = readJson(options.usageConcordance);
 const usageHandoffIndex = readJson(options.usageHandoffIndex);
@@ -357,6 +360,11 @@ if (
     `${options.oldDictionaryCandidateUseSplitClosureCrossmatch} is not an Agent 3 old-dictionary candidate-use split closure crossmatch`,
   );
 }
+if (oldDictionaryCandidateUseHandoffIndex.artifact_type !== 'agent3_old_dictionary_candidate_use_handoff_index') {
+  throw new Error(
+    `${options.oldDictionaryCandidateUseHandoffIndex} is not an Agent 3 old-dictionary candidate-use handoff index`,
+  );
+}
 if (publicHandoffIndex.artifact_type !== 'workbench_public_handoff_index') {
   throw new Error(`${options.publicHandoffIndex} is not a public handoff index`);
 }
@@ -444,6 +452,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-old-dictionary-overlap-candidate-use-boundary-workset-2026-06-06.md',
   options.oldDictionaryCandidateUseSplitClosureCrossmatch,
   'reports/agent3-old-dictionary-candidate-use-split-closure-crossmatch-2026-06-06.md',
+  options.oldDictionaryCandidateUseHandoffIndex,
+  'reports/agent3-old-dictionary-candidate-use-handoff-index-2026-06-06.md',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md',
   'reports/agent3-current-control-drift-refresh-2026-06-04.json',
@@ -531,6 +541,7 @@ const validators = unique([
   'scripts/validate_agent3_old_dictionary_pure_commercial_candidate_use_boundary_workset.mjs',
   'scripts/validate_agent3_old_dictionary_overlap_candidate_use_boundary_workset.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_split_closure_crossmatch.mjs',
+  'scripts/validate_agent3_old_dictionary_candidate_use_handoff_index.mjs',
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
   'scripts/validate_definition_workbench_usage_seed_queue.mjs',
   'scripts/validate_definition_workbench_usage_join_smoke.mjs',
@@ -1071,6 +1082,16 @@ const artifact = {
     old_dictionary_candidate_use_split_closure_transform_ready_rows: Number(oldDictionaryCandidateUseSplitClosureCrossmatch.counts?.transform_ready_rows || 0),
     old_dictionary_candidate_use_split_closure_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseSplitClosureCrossmatch.counts?.forbidden_payload_field_hits || 0),
     old_dictionary_candidate_use_split_closure_acceptance_claims: Number(oldDictionaryCandidateUseSplitClosureCrossmatch.counts?.acceptance_claims || 0),
+    old_dictionary_candidate_use_handoff_index_entries: Number(oldDictionaryCandidateUseHandoffIndex.counts?.handoff_entries || 0),
+    old_dictionary_candidate_use_handoff_index_json_artifacts_exist: Number(oldDictionaryCandidateUseHandoffIndex.counts?.json_artifacts_exist || 0),
+    old_dictionary_candidate_use_handoff_index_report_artifacts_exist: Number(oldDictionaryCandidateUseHandoffIndex.counts?.report_artifacts_exist || 0),
+    old_dictionary_candidate_use_handoff_index_validator_scripts_exist: Number(oldDictionaryCandidateUseHandoffIndex.counts?.validator_scripts_exist || 0),
+    old_dictionary_candidate_use_handoff_index_artifact_type_mismatches: Number(oldDictionaryCandidateUseHandoffIndex.counts?.artifact_type_mismatches || 0),
+    old_dictionary_candidate_use_handoff_index_entries_with_authority_issues: Number(oldDictionaryCandidateUseHandoffIndex.counts?.entries_with_nonzero_authority_counters || 0),
+    old_dictionary_candidate_use_handoff_index_split_missing_rows: Number(oldDictionaryCandidateUseHandoffIndex.counts?.split_closure_missing_rows || 0),
+    old_dictionary_candidate_use_handoff_index_split_duplicate_queue_ids: Number(oldDictionaryCandidateUseHandoffIndex.counts?.split_closure_duplicate_queue_ids || 0),
+    old_dictionary_candidate_use_handoff_index_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseHandoffIndex.counts?.forbidden_payload_field_hits || 0),
+    old_dictionary_candidate_use_handoff_index_acceptance_claims: Number(oldDictionaryCandidateUseHandoffIndex.counts?.acceptance_claims || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -1629,6 +1650,16 @@ function buildCounts() {
     old_dictionary_candidate_use_split_closure_transform_ready_rows: Number(oldDictionaryCandidateUseSplitClosureCrossmatch.counts?.transform_ready_rows || 0),
     old_dictionary_candidate_use_split_closure_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseSplitClosureCrossmatch.counts?.forbidden_payload_field_hits || 0),
     old_dictionary_candidate_use_split_closure_acceptance_claims: Number(oldDictionaryCandidateUseSplitClosureCrossmatch.counts?.acceptance_claims || 0),
+    old_dictionary_candidate_use_handoff_index_entries: Number(oldDictionaryCandidateUseHandoffIndex.counts?.handoff_entries || 0),
+    old_dictionary_candidate_use_handoff_index_json_artifacts_exist: Number(oldDictionaryCandidateUseHandoffIndex.counts?.json_artifacts_exist || 0),
+    old_dictionary_candidate_use_handoff_index_report_artifacts_exist: Number(oldDictionaryCandidateUseHandoffIndex.counts?.report_artifacts_exist || 0),
+    old_dictionary_candidate_use_handoff_index_validator_scripts_exist: Number(oldDictionaryCandidateUseHandoffIndex.counts?.validator_scripts_exist || 0),
+    old_dictionary_candidate_use_handoff_index_artifact_type_mismatches: Number(oldDictionaryCandidateUseHandoffIndex.counts?.artifact_type_mismatches || 0),
+    old_dictionary_candidate_use_handoff_index_entries_with_authority_issues: Number(oldDictionaryCandidateUseHandoffIndex.counts?.entries_with_nonzero_authority_counters || 0),
+    old_dictionary_candidate_use_handoff_index_split_missing_rows: Number(oldDictionaryCandidateUseHandoffIndex.counts?.split_closure_missing_rows || 0),
+    old_dictionary_candidate_use_handoff_index_split_duplicate_queue_ids: Number(oldDictionaryCandidateUseHandoffIndex.counts?.split_closure_duplicate_queue_ids || 0),
+    old_dictionary_candidate_use_handoff_index_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseHandoffIndex.counts?.forbidden_payload_field_hits || 0),
+    old_dictionary_candidate_use_handoff_index_acceptance_claims: Number(oldDictionaryCandidateUseHandoffIndex.counts?.acceptance_claims || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -1812,6 +1843,7 @@ function writeReport(relativePath, artifact) {
     `- Old-dictionary pure commercial candidate-use workset rows / occurrences / unique source RIDs / blockers / transform-ready: ${artifact.current_metrics.old_dictionary_pure_commercial_candidate_use_workset_rows}/${artifact.current_metrics.old_dictionary_pure_commercial_candidate_use_workset_occurrences}/${artifact.current_metrics.old_dictionary_pure_commercial_candidate_use_workset_source_rids}/${artifact.current_metrics.old_dictionary_pure_commercial_candidate_use_workset_blocker_rows}/${artifact.current_metrics.old_dictionary_pure_commercial_candidate_use_workset_transform_ready_rows}`,
     `- Old-dictionary overlap candidate-use workset rows / occurrences / unique source RIDs / blockers / bucket-family-set rows / transform-ready: ${artifact.current_metrics.old_dictionary_overlap_candidate_use_workset_rows}/${artifact.current_metrics.old_dictionary_overlap_candidate_use_workset_occurrences}/${artifact.current_metrics.old_dictionary_overlap_candidate_use_workset_unique_source_rids}/${artifact.current_metrics.old_dictionary_overlap_candidate_use_workset_blocker_rows}/${artifact.current_metrics.old_dictionary_overlap_candidate_use_workset_bucket_family_sets}/${artifact.current_metrics.old_dictionary_overlap_candidate_use_workset_transform_ready_rows}`,
     `- Old-dictionary candidate-use split closure rows / occurrences / missing / extra / duplicate queue IDs / shared source RIDs / transform-ready: ${artifact.current_metrics.old_dictionary_candidate_use_split_closure_rows}/${artifact.current_metrics.old_dictionary_candidate_use_split_closure_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_split_closure_missing_rows}/${artifact.current_metrics.old_dictionary_candidate_use_split_closure_extra_rows}/${artifact.current_metrics.old_dictionary_candidate_use_split_closure_duplicate_queue_ids}/${artifact.current_metrics.old_dictionary_candidate_use_split_closure_shared_source_rids}/${artifact.current_metrics.old_dictionary_candidate_use_split_closure_transform_ready_rows}`,
+    `- Old-dictionary candidate-use handoff index entries / JSON / reports / validators / type mismatches / authority issues: ${artifact.current_metrics.old_dictionary_candidate_use_handoff_index_entries}/${artifact.current_metrics.old_dictionary_candidate_use_handoff_index_json_artifacts_exist}/${artifact.current_metrics.old_dictionary_candidate_use_handoff_index_report_artifacts_exist}/${artifact.current_metrics.old_dictionary_candidate_use_handoff_index_validator_scripts_exist}/${artifact.current_metrics.old_dictionary_candidate_use_handoff_index_artifact_type_mismatches}/${artifact.current_metrics.old_dictionary_candidate_use_handoff_index_entries_with_authority_issues}`,
     `- Proof rows / complete metadata: ${artifact.current_metrics.proof_occurrence_rows}/${artifact.current_metrics.proof_rows_with_complete_metadata}`,
     `- Hebrew context / mojibake rows: ${artifact.current_metrics.proof_rows_with_hebrew_context}/${artifact.current_metrics.proof_mojibake_rows}`,
     `- Reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.reader_facing_rows}/${artifact.current_metrics.route_payload_field_hits}/${artifact.current_metrics.forbidden_authority_field_hits}`,
@@ -1926,6 +1958,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--old-dictionary-pure-commercial-candidate-use-boundary-workset=')) parsed.oldDictionaryPureCommercialCandidateUseBoundaryWorkset = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-overlap-candidate-use-boundary-workset=')) parsed.oldDictionaryOverlapCandidateUseBoundaryWorkset = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-split-closure-crossmatch=')) parsed.oldDictionaryCandidateUseSplitClosureCrossmatch = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--old-dictionary-candidate-use-handoff-index=')) parsed.oldDictionaryCandidateUseHandoffIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-concordance=')) parsed.usageConcordance = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-handoff-index=')) parsed.usageHandoffIndex = cleanRelativePath(valueAfterEquals(arg));
