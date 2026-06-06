@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T08:09:42.172Z
+Generated: 2026-06-06T08:16:43.973Z
 
 ## State
 
@@ -126,6 +126,7 @@ Generated: 2026-06-06T08:09:42.172Z
 - Old-dictionary candidate-use Agent 1 route recheck rows / recheck required / target-registry match / registry postdates blocker / missing citation / delivery attempts / transform-ready: 1/1/1/1/78/0/0
 - Old-dictionary candidate-use gate-proof coverage rows / any gate / direct / aggregate / missing / blockers / authority issues / transform-ready: 14/12/5/9/2/2/0/0
 - Old-dictionary candidate-use current blocker index rows / observed / affected rows-occurrences / missing citation-transform-gate / route recheck / forbidden-acceptance-release hits: 8/8/78-1461/78-78-2/1/0-0-0
+- Old-dictionary candidate-use row blocker matrix rows / occurrences / blocker links / missing citation-transform / gate boundary-source / route recheck / pure-overlap / forbidden-acceptance-release hits: 78/1461/780/78-78/78-78/78/5-73/0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -139,8 +140,8 @@ Generated: 2026-06-06T08:09:42.172Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 139/139 |
-| validator_scripts_exist | passed | 71/71 |
+| evidence_artifacts_exist | passed | 141/141 |
+| validator_scripts_exist | passed | 72/72 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
