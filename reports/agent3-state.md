@@ -1,13 +1,14 @@
 # Agent 3 State
 
-Generated: 2026-06-06T12:16:55.498Z
+Generated: 2026-06-06T12:31:32.873Z
 
 ## State
 
 - Lane: workbench_usage_navigation
 - Worker state: evidence-ready
 - QA acceptance state: not_a07_approved_a06_evidence_ready_only
-- Goal: agent3-definition-occurrence-links (awaiting-Agent-6)
+- Goal: agent3-definition-occurrence-links
+- Stored goal-board status: awaiting-Agent-6
 - Manager: Agent 7 / broad corpus expansion
 - Approval owner: A07
 - Evidence owner: A06
@@ -154,6 +155,7 @@ Generated: 2026-06-06T12:16:55.498Z
 - Old-dictionary candidate-use bridge-gap source-RID prereq route crossmatch rows / refs-occ / A06direct-both-missing / A06direct occ / blocker-coverage-prereqblockers-sourceblockers / citation-transform-boundary-route-candidate-public flags / selection-forbidden-acceptance-release hits: 30/30-389/25-5-0-0/331-58/30-0-300-300/30-30-30-0-0-0/0-0-0-0
 - Old-dictionary candidate-use bridge-gap candidate prereq closure rows / occ-sourceRIDrefs / A06direct-mixed-missing / A06direct occ / blocker-coverage-currentblockers / citation-transform-boundary-A07-A06-A06approval flags / selection-forbidden-acceptance-release hits: 14/173-30/9-5-0-0/115-58/30-0-140/30-30-30-14-14-0/0-0-0-0
 - Old-dictionary candidate-use bridge-gap A07/A06 route overlay rows / occ-links-sourceRIDs / direct-A06-mixed rows / direct-A06-missing links / citation-present-transform-blocker-coverage / A07-A06-A06approval-donotask / evidence-preserve-redo-blockers / selection-forbidden-acceptance-release hits: 14/173-30-30/5-9-0/5-25-0/30-0-30-30-0/14-14-0-14/14-14-14-140/0-0-0-0
+- Old-dictionary candidate-use bridge-gap downstream intake coverage rows / occ-links / inputs direct-valid-A10source-A10preboundary-A10verdict / direct rows-matched-missing-citation-transform / A06 rows-consumed-missing-links / broad source-preboundary-rowlevelsource-rowlevelpreboundary-Agent3null / route correction-A07-A06-A06approval-donotask / selection-forbidden-acceptance-release hits: 14/173-30/5-1-78-78-78/5-5-0-5-5/9-0-9-25/14-14-0-0-14/14-14-14-0-14/0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -167,8 +169,8 @@ Generated: 2026-06-06T12:16:55.498Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; approval A07; evidence A06; stored acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 189/189 |
-| validator_scripts_exist | passed | 96/96 |
+| evidence_artifacts_exist | passed | 191/191 |
+| validator_scripts_exist | passed | 97/97 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
