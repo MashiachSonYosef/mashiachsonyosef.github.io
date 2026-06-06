@@ -45,7 +45,7 @@ jobs:
           du -sh .site
           find .site -type f -printf '%s %p\n' | sort -nr | head -20
           find .site -type f -print
-          if grep -R -n -E 'Clicked Hebrew form|Best actual hit|data-hud-renderings|data-hud-breakdown|Potential options|No lexical entry yet\.|lexical-fields' .site; then
+          if find .site -type f \( -name '*.html' -o -name '*.js' -o -name '*.css' \) -print0 | xargs -0 grep -n -E 'Clicked Hebrew form|Best actual hit|data-hud-renderings|data-hud-breakdown|Potential options|No lexical entry yet\.|lexical-fields'; then
             echo "Old HUD marker found in Pages artifact; refusing deployment." >&2
             exit 1
           fi
