@@ -103,6 +103,8 @@ const defaults = {
     'reports/agent3-old-dictionary-candidate-use-queue-partition-closure-2026-06-06.json',
   oldDictionaryCandidateUsePartitionOverlapDiagnosticIndex:
     'reports/agent3-old-dictionary-candidate-use-partition-overlap-diagnostic-index-2026-06-06.json',
+  oldDictionaryCandidateUseQueueSourceDedupeKeyIndex:
+    'reports/agent3-old-dictionary-candidate-use-queue-source-dedupe-key-index-2026-06-06.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   usageConcordance: 'data/workbench-evidence/usage-concordance.json',
   usageHandoffIndex: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -288,6 +290,9 @@ const oldDictionaryCandidateUseQueuePartitionClosure = readJson(
 );
 const oldDictionaryCandidateUsePartitionOverlapDiagnosticIndex = readJson(
   options.oldDictionaryCandidateUsePartitionOverlapDiagnosticIndex,
+);
+const oldDictionaryCandidateUseQueueSourceDedupeKeyIndex = readJson(
+  options.oldDictionaryCandidateUseQueueSourceDedupeKeyIndex,
 );
 const smokeValidation = readJson(options.smokeValidation);
 const usageConcordance = readJson(options.usageConcordance);
@@ -627,6 +632,14 @@ if (
     `${options.oldDictionaryCandidateUsePartitionOverlapDiagnosticIndex} is not an Agent 3 old-dictionary candidate-use partition overlap diagnostic index`,
   );
 }
+if (
+  oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.artifact_type !==
+  'agent3_old_dictionary_candidate_use_queue_source_dedupe_key_index'
+) {
+  throw new Error(
+    `${options.oldDictionaryCandidateUseQueueSourceDedupeKeyIndex} is not an Agent 3 old-dictionary candidate-use queue/source dedupe key index`,
+  );
+}
 if (publicHandoffIndex.artifact_type !== 'workbench_public_handoff_index') {
   throw new Error(`${options.publicHandoffIndex} is not a public handoff index`);
 }
@@ -758,6 +771,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-old-dictionary-candidate-use-queue-partition-closure-2026-06-06.md',
   options.oldDictionaryCandidateUsePartitionOverlapDiagnosticIndex,
   'reports/agent3-old-dictionary-candidate-use-partition-overlap-diagnostic-index-2026-06-06.md',
+  options.oldDictionaryCandidateUseQueueSourceDedupeKeyIndex,
+  'reports/agent3-old-dictionary-candidate-use-queue-source-dedupe-key-index-2026-06-06.md',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md',
   'reports/agent3-current-control-drift-refresh-2026-06-04.json',
@@ -867,6 +882,7 @@ const validators = unique([
   'scripts/validate_agent3_old_dictionary_candidate_use_single_batch_queue_workset.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_queue_partition_closure.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_partition_overlap_diagnostic_index.mjs',
+  'scripts/validate_agent3_old_dictionary_candidate_use_queue_source_dedupe_key_index.mjs',
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
   'scripts/validate_definition_workbench_usage_seed_queue.mjs',
   'scripts/validate_definition_workbench_usage_join_smoke.mjs',
@@ -1710,6 +1726,17 @@ const artifact = {
     old_dictionary_candidate_use_partition_overlap_diagnostic_forbidden_payload_field_hits: Number(oldDictionaryCandidateUsePartitionOverlapDiagnosticIndex.counts?.forbidden_payload_field_hits || 0),
     old_dictionary_candidate_use_partition_overlap_diagnostic_acceptance_claims: Number(oldDictionaryCandidateUsePartitionOverlapDiagnosticIndex.counts?.acceptance_claims || 0),
     old_dictionary_candidate_use_partition_overlap_diagnostic_release_actions: Number(oldDictionaryCandidateUsePartitionOverlapDiagnosticIndex.counts?.release_actions || 0),
+    old_dictionary_candidate_use_queue_source_dedupe_key_rows: Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.dedupe_key_rows || 0),
+    old_dictionary_candidate_use_queue_source_dedupe_key_cross_single: `${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.cross_batch_dedupe_key_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.single_batch_dedupe_key_rows || 0)}`,
+    old_dictionary_candidate_use_queue_source_dedupe_key_unique_duplicate: `${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.unique_queue_source_pair_keys || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.duplicate_queue_source_pair_keys || 0)}`,
+    old_dictionary_candidate_use_queue_source_dedupe_key_queue_source_token_batch: `${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.unique_queue_ids || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.unique_source_rids || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.unique_token_ids || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.unique_batch_ids || 0)}`,
+    old_dictionary_candidate_use_queue_source_dedupe_key_diagnostics: `${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.source_rid_overlap_diagnostic_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.source_rid_overlap_diagnostic_source_rids || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.batch_id_overlap_diagnostic_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.batch_id_overlap_diagnostic_batch_ids || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.source_and_batch_overlap_diagnostic_rows || 0)}`,
+    old_dictionary_candidate_use_queue_source_dedupe_key_ref_occurrence: `${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.reference_total || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.occurrence_total || 0)}`,
+    old_dictionary_candidate_use_queue_source_dedupe_key_citation_transform_boundary: `${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.source_citation_required_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.source_citation_or_url_present_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.transform_rule_still_blocked_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.agent6_boundary_after_prereq_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.source_family_selection_boundary_blocker_rows || 0)}`,
+    old_dictionary_candidate_use_queue_source_dedupe_key_selection_claims: Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.source_family_selection_claims || 0),
+    old_dictionary_candidate_use_queue_source_dedupe_key_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.forbidden_payload_field_hits || 0),
+    old_dictionary_candidate_use_queue_source_dedupe_key_acceptance_claims: Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.acceptance_claims || 0),
+    old_dictionary_candidate_use_queue_source_dedupe_key_release_actions: Number(oldDictionaryCandidateUseQueueSourceDedupeKeyIndex.counts?.release_actions || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -2535,6 +2562,7 @@ function writeReport(relativePath, artifact) {
     `- Old-dictionary candidate-use single-batch queue workset rows / links / batchlinks / sourceRIDs / queue-token-batch IDs / multisource-single-cross / max source-occ / ref-occ / summaries / citation-transform-after-prereq-existingpacket-blocker links / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_rows}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_links}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_batch_links}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_source_rids}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_queue_token_batch_ids}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_multi_single_cross}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_max_source_occurrence}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_ref_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_summaries}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_citation_required_links}-${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_transform_blocked_links}-${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_after_prereq_links}-${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_existing_packet_links}-${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_blocker_links}/${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_single_batch_queue_workset_release_actions}`,
     `- Old-dictionary candidate-use queue partition closure partitions / queues input-cross-single-union / queue overlap-missing-extra / pairs input-cross-single-union / pair overlap-missing-extra / source overlap-union / batch overlap-union / ref-occ / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_partitions}/${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_queues}/${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_queue_overlap_missing_extra}/${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_pairs}/${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_pair_overlap_missing_extra}/${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_source_overlap_union}/${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_batch_overlap_union}/${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_ref_occurrence}/${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_partition_closure_release_actions}`,
     `- Old-dictionary candidate-use partition overlap diagnostics source rows / source queue-pair counts / source ref-occ / batch rows / batch queue memberships / batch ref-occ / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_source_rows}/${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_source_queue_pair_counts}/${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_source_ref_occ}/${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_batch_rows}/${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_batch_queue_memberships}/${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_batch_ref_occ}/${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_partition_overlap_diagnostic_release_actions}`,
+    `- Old-dictionary candidate-use queue/source dedupe key rows / cross-single / unique-duplicate keys / queue-source-token-batch IDs / diagnostic rows / ref-occ / citation-present-transform-Agent6-blocker / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_rows}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_cross_single}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_unique_duplicate}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_queue_source_token_batch}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_diagnostics}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_ref_occurrence}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_citation_transform_boundary}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_dedupe_key_release_actions}`,
     `- Proof rows / complete metadata: ${artifact.current_metrics.proof_occurrence_rows}/${artifact.current_metrics.proof_rows_with_complete_metadata}`,
     `- Hebrew context / mojibake rows: ${artifact.current_metrics.proof_rows_with_hebrew_context}/${artifact.current_metrics.proof_mojibake_rows}`,
     `- Reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.reader_facing_rows}/${artifact.current_metrics.route_payload_field_hits}/${artifact.current_metrics.forbidden_authority_field_hits}`,
@@ -2671,6 +2699,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--old-dictionary-candidate-use-single-batch-queue-workset=')) parsed.oldDictionaryCandidateUseSingleBatchQueueWorkset = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-queue-partition-closure=')) parsed.oldDictionaryCandidateUseQueuePartitionClosure = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-partition-overlap-diagnostic-index=')) parsed.oldDictionaryCandidateUsePartitionOverlapDiagnosticIndex = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--old-dictionary-candidate-use-queue-source-dedupe-key-index=')) parsed.oldDictionaryCandidateUseQueueSourceDedupeKeyIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-concordance=')) parsed.usageConcordance = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-handoff-index=')) parsed.usageHandoffIndex = cleanRelativePath(valueAfterEquals(arg));
