@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T09:44:45.267Z
+Generated: 2026-06-06T09:53:07.261Z
 
 ## State
 
@@ -136,6 +136,7 @@ Generated: 2026-06-06T09:44:45.267Z
 - Old-dictionary candidate-use source-family selection exclusion rows / direct non-excluded / Agent6-covered-unpacketized / occurrences / classifications-prefixes / citation-transform-after-prereq-blocker rows / selection-forbidden-acceptance-release hits: 339/5/25-314/8126/2-20/339-339-339-339/0-0-0-0
 - Old-dictionary candidate-use unpacketized source-family workset rows / refs-occurrences / prefixes-queue-token IDs / family-triage-impact-partition signatures / citation-transform-after-prereq-existingpacket-blocker rows / selection-forbidden-acceptance-release hits: 314/363-7795/19-65-65/4-4-3-2/314-314-314-0-314/0-0-0-0
 - Old-dictionary candidate-use source-family batch plan batches / rows / multi-single / refs-occurrences / max rows-occurrences / signatures / citation-transform-after-prereq-existingpacket-blocker rows / selection-forbidden-acceptance-release hits: 16/314/12-4/363-7795/138-1261/4-4-3-2/314-314-314-0-314/0-0-0-0
+- Old-dictionary candidate-use source-family queue/batch rows / links / batch-queue-sourcebatch / cross-single / multisource-single / multiqueue source RIDs / max batch-source-occ / ref-occ memberships / citation-transform-after-prereq-existingpacket-blocker links / selection-forbidden-acceptance-release hits: 65/363/94-314/25-40/61-4/43/3-12-1344/475-12111/363-363-363-0-363/0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -149,8 +150,8 @@ Generated: 2026-06-06T09:44:45.267Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 159/159 |
-| validator_scripts_exist | passed | 81/81 |
+| evidence_artifacts_exist | passed | 161/161 |
+| validator_scripts_exist | passed | 82/82 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
