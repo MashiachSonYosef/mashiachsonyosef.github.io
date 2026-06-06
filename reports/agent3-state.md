@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T08:44:13.820Z
+Generated: 2026-06-06T08:53:44.749Z
 
 ## State
 
@@ -130,6 +130,7 @@ Generated: 2026-06-06T08:44:13.820Z
 - Old-dictionary candidate-use source-RID blocker rows / references / prefixes / unique queue IDs / multi-queue rows / blocker links / missing citation-transform-Agent6 / gate boundary-source / forbidden-acceptance-release hits: 344/393/21/78/43/3457/344-344-344/344-344/0-0-0
 - Old-dictionary candidate-use source-citation worklist rows / references / prefixes / unique queue IDs / multi-queue-cross-partition / citation-transform-Agent6 rows / forbidden-acceptance-release hits: 344/393/21/78/43-1/344-344-344/0-0-0
 - Old-dictionary candidate-use source-citation batch rows / memberships / unique source RIDs / source-family-partition-triage-impact groups / citation-transform-Agent6 memberships / forbidden-acceptance-release hits: 30/836/344/3-2-4-3/836-836-836/0-0-0
+- Old-dictionary candidate-use source-citation prefix rows / summaries / memberships / unique source RIDs-prefixes-families / multi-family prefixes-memberships / citation-transform-Agent6 memberships / forbidden-acceptance-release hits: 54/21/780/344-21-3/19-744/780-780-780/0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -143,8 +144,8 @@ Generated: 2026-06-06T08:44:13.820Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 147/147 |
-| validator_scripts_exist | passed | 75/75 |
+| evidence_artifacts_exist | passed | 149/149 |
+| validator_scripts_exist | passed | 76/76 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
