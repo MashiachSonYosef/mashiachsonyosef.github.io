@@ -30,15 +30,17 @@ work not approved for live route | keep source data but omit live link | root pa
 
 trigger | action | output artifact | success condition | timeout | fallback | owner
 ---|---|---|---|---|---|---
-book page render starts | group rows by source unit and chapter | book `index.html` | chapter nav, unit heading, source line, token rows exist | 10 minutes | render first blocked unit report | renderer
+book page render starts | group rows by source unit and chapter | book `index.html` | small section tracker, unit heading, source line, token rows exist | 10 minutes | render first blocked unit report | renderer
 mobile/desktop layout check | verify rows wrap without hiding text | browser proof or static check | Hebrew, gloss, match remain visible | 10 minutes | simplify columns to one-column mobile | renderer
+reader needs less page chrome | provide section tracker hide/show button | book `index.html` | section tracker can be collapsed without changing source rows | immediate | shrink tracker links | renderer
 
 ## 5. Organize the HUD popup
 
 trigger | action | output artifact | success condition | timeout | fallback | owner
 ---|---|---|---|---|---|---
-Hebrew token clicked | open fixed popout HUD | work page | HUD appears above page, not inline below rows | 5 seconds | show lookup failure in HUD | renderer
-evidence exists | show source/license details inside HUD | work page | evidence visible without changing pre-HUD | 5 seconds | show no route cards | renderer
+Hebrew token clicked | open full-screen HUD | work page | HUD appears above page, not inline below rows | 5 seconds | show lookup failure in HUD | renderer
+evidence exists | show source/license details inside HUD | work page | evidence visible without changing pre-HUD | 5 seconds | show no details | renderer
+public HUD text changes | keep labels in plain workbench language | work page | labels use gloss/source/details/use gloss, not route jargon | immediate | block wording until rewritten plainly | renderer
 
 ## 6. Organize the percent matcher
 

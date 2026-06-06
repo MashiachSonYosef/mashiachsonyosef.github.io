@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daniel Reader Pipeline | Mashiach Son Yosef Library</title>
+  <title>daniel | hebrew work bench</title>
   <style>
     :root {
       color-scheme: dark;
-      --bg: #0a0b0c;
-      --panel: #111419;
-      --panel-2: #171c20;
-      --text: #f3ecdf;
-      --muted: #b9b0a3;
-      --line: rgba(214, 190, 138, 0.26);
-      --line-strong: rgba(214, 190, 138, 0.48);
-      --accent: #d6be8a;
-      --accent-2: #9fb9aa;
-      --danger: #d69b7f;
-      --hebrew: #f8f1e5;
+      --bg: #0d0d0b;
+      --panel: #141411;
+      --panel-2: #191815;
+      --text: #f4efe5;
+      --muted: #bdb5a7;
+      --line: rgba(214, 190, 138, 0.3);
+      --line-strong: rgba(214, 190, 138, 0.52);
+      --accent: #d8c38d;
+      --accent-2: #b9c3aa;
+      --hebrew: #f7f0e3;
     }
 
     * { box-sizing: border-box; }
@@ -36,7 +35,7 @@
     .shell {
       width: min(1220px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 24px 0 80px;
+      padding: 28px 0 80px;
     }
 
     .topbar {
@@ -46,23 +45,13 @@
       align-items: center;
       color: var(--muted);
       font-size: 0.96rem;
-      padding-bottom: 22px;
-    }
-
-    .topbar nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
     }
 
     .hero {
-      border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      padding: 30px 0;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
-      gap: 28px;
-      align-items: end;
+      padding: 26px 0 24px;
     }
 
     .kicker {
@@ -81,65 +70,51 @@
       letter-spacing: 0;
     }
 
-    .lede {
-      margin: 16px 0 0;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 1.07rem;
-      line-height: 1.58;
-    }
-
-    .proof-panel {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 16px;
-    }
-
-    .proof-panel strong {
-      display: block;
-      color: var(--accent);
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-
-    .proof-panel dl {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px 14px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .proof-panel dd {
-      margin: 0;
-      color: var(--text);
-      text-align: right;
-    }
-
-    .chapter-nav {
+    .chapter-tracker {
       position: sticky;
       top: 0;
       z-index: 5;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
-      padding: 12px 0;
-      background: rgba(10, 11, 12, 0.94);
+      padding: 6px 0;
+      background: rgba(13, 13, 11, 0.94);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(10px);
+    }
+
+    .section-toggle {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      font: 0.78rem/1 Georgia, "Times New Roman", serif;
+      padding: 6px 8px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .chapter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .chapter-tracker[data-collapsed="true"] .chapter-nav {
+      display: none;
     }
 
     .chapter-nav a {
       text-decoration: none;
       border: 1px solid var(--line);
       color: var(--muted);
-      padding: 6px 9px;
-      font-size: 0.88rem;
+      min-width: 28px;
+      padding: 5px 7px;
+      font-size: 0.76rem;
+      text-align: center;
     }
 
     .unit {
-      padding: 28px 0 8px;
+      padding: 26px 0 8px;
       border-bottom: 1px solid var(--line);
     }
 
@@ -164,36 +139,36 @@
     }
 
     .source-line {
-      margin: 12px 0 18px;
+      margin: 10px 0 16px;
       color: var(--muted);
-      font-size: 1.03rem;
-      line-height: 1.9;
+      font-size: 1rem;
+      line-height: 1.8;
       overflow-wrap: anywhere;
     }
 
     .prehud-table {
       display: grid;
-      gap: 7px;
+      gap: 6px;
     }
 
     .prehud-row {
       display: grid;
-      grid-template-columns: minmax(9rem, 14rem) minmax(0, 1fr) 5.25rem;
-      gap: 10px;
+      grid-template-columns: minmax(8.5rem, 13rem) minmax(0, 1fr) 4.75rem;
+      gap: 0;
       align-items: stretch;
-      min-height: 44px;
-      border: 1px solid rgba(214, 190, 138, 0.18);
+      min-height: 42px;
+      border: 1px solid rgba(214, 190, 138, 0.2);
       background: rgba(255, 255, 255, 0.02);
     }
 
     .hebrew-token {
       width: 100%;
       border: 0;
-      border-right: 1px solid rgba(214, 190, 138, 0.18);
-      background: rgba(255, 255, 255, 0.025);
+      border-right: 1px solid rgba(214, 190, 138, 0.2);
+      background: rgba(255, 255, 255, 0.018);
       color: var(--hebrew);
-      font: 1.22rem/1.35 Georgia, "Times New Roman", serif;
-      padding: 8px 10px;
+      font: 1.18rem/1.35 Georgia, "Times New Roman", serif;
+      padding: 7px 10px;
       text-align: left;
       cursor: pointer;
       overflow-wrap: anywhere;
@@ -204,7 +179,7 @@
     .hebrew-token[aria-expanded="true"] {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
-      background: rgba(214, 190, 138, 0.12);
+      background: rgba(214, 190, 138, 0.1);
     }
 
     .gloss-cell {
@@ -212,7 +187,7 @@
       display: flex;
       gap: 6px;
       align-items: center;
-      padding: 8px 0;
+      padding: 7px 10px;
       line-height: 1.45;
     }
 
@@ -228,7 +203,7 @@
 
     .source-ref {
       color: var(--accent-2);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       white-space: nowrap;
     }
 
@@ -236,10 +211,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border-left: 1px solid rgba(214, 190, 138, 0.18);
+      border-left: 1px solid rgba(214, 190, 138, 0.2);
       color: var(--accent);
       font-size: 0.9rem;
-      padding: 8px;
+      padding: 7px;
       white-space: nowrap;
     }
 
@@ -247,21 +222,24 @@
       position: fixed;
       inset: 0;
       z-index: 40;
-      background: rgba(0, 0, 0, 0.48);
+      background: rgba(0, 0, 0, 0.72);
     }
 
     .route-hud {
       position: fixed;
       z-index: 50;
-      top: 24px;
-      right: 24px;
-      width: min(620px, calc(100vw - 48px));
-      max-height: calc(100vh - 48px);
-      overflow: auto;
-      border: 1px solid var(--line-strong);
-      background: #101318;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.56);
-      padding: 18px;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 0;
+      background: #11110f;
+      box-shadow: none;
+      padding: clamp(14px, 2.6vw, 30px);
+    }
+
+    .route-hud[hidden] {
+      display: none;
     }
 
     .hud-top {
@@ -272,6 +250,11 @@
       border-bottom: 1px solid var(--line);
       padding-bottom: 12px;
       margin-bottom: 14px;
+    }
+
+    [data-hud-routes] {
+      overflow: auto;
+      padding-right: 6px;
     }
 
     .hud-word {
@@ -319,10 +302,9 @@
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      color: var(--accent-2);
+      color: var(--muted);
       font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0;
     }
 
     .route-definition {
@@ -369,7 +351,6 @@
 
     @media (max-width: 760px) {
       .shell { width: min(100% - 20px, 1220px); }
-      .hero { grid-template-columns: 1fr; }
       h1 { font-size: 2.35rem; }
       .prehud-row {
         grid-template-columns: 1fr;
@@ -387,11 +368,8 @@
         border-left: 0;
         border-top: 1px solid rgba(214, 190, 138, 0.18);
       }
-      .route-hud {
-        top: 10px;
-        right: 10px;
-        width: calc(100vw - 20px);
-        max-height: calc(100vh - 20px);
+      .chapter-tracker {
+        align-items: flex-start;
       }
     }
   </style>
@@ -399,34 +377,22 @@
 <body>
   <main class="shell" id="top">
     <header class="topbar" aria-label="Site navigation">
-      <a href="../../">Library</a>
-      <nav>
-        <a href="../../about/">About / License</a>
-      </nav>
+      <a href="../../">hebrew work bench</a>
     </header>
 
     <section class="hero" aria-labelledby="work-title">
       <div>
-        <p class="kicker">Tanakh / Ketuvim</p>
-        <h1 id="work-title">Daniel</h1>
-        <p class="lede">This page is rendered from the Daniel occurrence roster. Each Hebrew token gets its own row. The pre-HUD English layer shows a current reader selection when the pipeline provides one; otherwise it shows TBD. The popout HUD keeps route options, source rows, and license detail inspectable.</p>
+        <p class="kicker">tanakh / ketuvim</p>
+        <h1 id="work-title">daniel</h1>
       </div>
-      <aside class="proof-panel" aria-label="Render proof">
-        <strong>Pipeline Proof</strong>
-        <dl>
-          <dt>Units</dt><dd>357</dd>
-          <dt>Token rows</dt><dd>5456</dd>
-          <dt>Pre-HUD selections</dt><dd>0</dd>
-          <dt>TBD fallbacks</dt><dd>5456</dd>
-          <dt>Roster source</dt><dd>occurrence IDs</dd>
-          <dt>Generated</dt><dd>2026-06-06</dd>
-        </dl>
-      </aside>
     </section>
 
-    <nav class="chapter-nav" aria-label="Daniel chapters">
-      <a href="#daniel-1-1">Daniel 1</a><a href="#daniel-2-1">Daniel 2</a><a href="#daniel-3-1">Daniel 3</a><a href="#daniel-4-1">Daniel 4</a><a href="#daniel-5-1">Daniel 5</a><a href="#daniel-6-1">Daniel 6</a><a href="#daniel-7-1">Daniel 7</a><a href="#daniel-8-1">Daniel 8</a><a href="#daniel-9-1">Daniel 9</a><a href="#daniel-10-1">Daniel 10</a><a href="#daniel-11-1">Daniel 11</a><a href="#daniel-12-1">Daniel 12</a>
-    </nav>
+    <div class="chapter-tracker" data-section-tracker>
+      <button class="section-toggle" type="button" data-section-toggle aria-controls="chapter-links" aria-expanded="true">sections</button>
+      <nav class="chapter-nav" id="chapter-links" aria-label="Daniel chapters">
+        <a href="#daniel-1-1">1</a><a href="#daniel-2-1">2</a><a href="#daniel-3-1">3</a><a href="#daniel-4-1">4</a><a href="#daniel-5-1">5</a><a href="#daniel-6-1">6</a><a href="#daniel-7-1">7</a><a href="#daniel-8-1">8</a><a href="#daniel-9-1">9</a><a href="#daniel-10-1">10</a><a href="#daniel-11-1">11</a><a href="#daniel-12-1">12</a>
+      </nav>
+    </div>
 
 
       <section class="unit" id="daniel-1-1" data-unit-id="daniel-1-1">
@@ -42858,9 +42824,9 @@
 
       function sourceList(card) {
         const rows = cleanValues(card.source_rows);
-        if (!rows.length) return "No public source row attached.";
+        if (!rows.length) return "no source row.";
         return rows.slice(0, 5).map((row, index) => {
-          const label = firstPresent([row.source_name, row.source_id, "Source " + (index + 1)]);
+          const label = firstPresent([row.source_name, row.source_id, "source " + (index + 1)]);
           const license = firstPresent([row.license, row.license_url, "license not listed"]);
           return "#" + (index + 1) + " " + label + " | " + license;
         }).join("\n");
@@ -42901,19 +42867,19 @@
         const article = createElement("article", "route-card");
         article.dataset.selectable = selectable ? "true" : "false";
         const header = document.createElement("header");
-        header.appendChild(createElement("span", "", selectable ? "Definition option" : "Evidence only"));
+        header.appendChild(createElement("span", "", selectable ? "gloss" : "details"));
         header.appendChild(createElement("span", "", String(routeScore(card)) + "%"));
         article.appendChild(header);
-        article.appendChild(createElement("p", "route-definition", routeRenderings(card)[0] || "No definition rendering."));
+        article.appendChild(createElement("p", "route-definition", routeRenderings(card)[0] || "no gloss text."));
         const details = createElement("details", "route-details");
         details.open = index === 0;
-        details.appendChild(createElement("summary", "", "Sources / route"));
-        const body = createElement("pre", "", sourceList(card) + "\nRoute: " + routeSection(card) + " / " + (card.match_type || card.route_type || "unknown"));
+        details.appendChild(createElement("summary", "", "source"));
+        const body = createElement("pre", "", sourceList(card) + "\ntype: " + routeSection(card) + " / " + (card.match_type || card.route_type || "unknown"));
         body.style.whiteSpace = "pre-wrap";
         body.style.fontFamily = "inherit";
         details.appendChild(body);
         article.appendChild(details);
-        const button = createElement("button", "use-gloss", selectable ? "Use this gloss locally" : "Evidence only");
+        const button = createElement("button", "use-gloss", selectable ? "use gloss" : "details");
         button.type = "button";
         button.disabled = !selectable;
         if (selectable) button.addEventListener("click", () => updatePrehudFromCard(activeButton, card, index + 1));
@@ -42938,7 +42904,7 @@
         const routes = hud.querySelector("[data-hud-routes]");
         hud.querySelector("[data-hud-word]").textContent = button.dataset.surface || button.textContent;
         hud.querySelector("[data-hud-meta]").textContent = button.dataset.sourceRef + " | row " + button.dataset.rowIndex + " | " + button.dataset.tokenId;
-        hud.querySelector("[data-hud-status]").textContent = "Loading route cards...";
+        hud.querySelector("[data-hud-status]").textContent = "loading";
         routes.replaceChildren();
         hud.hidden = false;
         try {
@@ -42946,20 +42912,31 @@
           const selected = selectRouteAnswer(activeCards);
           const selectableCount = activeCards.filter(canSaveGlossSelection).length;
           hud.querySelector("[data-hud-status]").textContent = selected.answerState === "definition"
-            ? "Current route answer-slot option is available in HUD. Pre-HUD fills only from a selection/hint layer or local reader choice."
-            : (selected.answerState === "ambiguous" ? "Multiple close route meanings; pre-HUD remains TBD until selection." : "No selectable route answer yet; pre-HUD remains TBD.");
+            ? "gloss found. choose it to fill the row."
+            : (selected.answerState === "ambiguous" ? "multiple glosses. choose one." : "no gloss yet. row stays TBD.");
           if (!activeCards.length) {
-            routes.appendChild(createElement("p", "empty", "No route cards are available for this token."));
+            routes.appendChild(createElement("p", "empty", "no details yet."));
             return;
           }
-          const summary = createElement("p", "empty", selectableCount + " selectable option(s), " + (activeCards.length - selectableCount) + " evidence-only card(s).");
+          const summary = createElement("p", "empty", selectableCount + " gloss option(s), " + (activeCards.length - selectableCount) + " detail card(s).");
           routes.appendChild(summary);
           activeCards.slice(0, 24).forEach((card, index) => routes.appendChild(renderCard(card, index)));
         } catch (error) {
           console.error(error);
-          hud.querySelector("[data-hud-status]").textContent = "HUD route lookup failed.";
+          hud.querySelector("[data-hud-status]").textContent = "lookup failed.";
           routes.appendChild(createElement("p", "empty", String(error.message || error)));
         }
+      }
+
+      const sectionTracker = document.querySelector("[data-section-tracker]");
+      const sectionToggle = document.querySelector("[data-section-toggle]");
+      if (sectionTracker && sectionToggle) {
+        sectionToggle.addEventListener("click", () => {
+          const collapsed = sectionTracker.dataset.collapsed === "true";
+          sectionTracker.dataset.collapsed = collapsed ? "false" : "true";
+          sectionToggle.setAttribute("aria-expanded", collapsed ? "true" : "false");
+          sectionToggle.textContent = collapsed ? "sections" : "show sections";
+        });
       }
 
       document.querySelectorAll(".hebrew-token").forEach((button) => {
