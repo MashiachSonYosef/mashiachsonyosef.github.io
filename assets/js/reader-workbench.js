@@ -142,10 +142,23 @@
   function inlineHintDisplay(value) {
     const raw = String(value || '').replace(/\s+/g, ' ').trim();
     if (!raw) return '';
-    const firstClause = raw.split(/\s*;\s*/)[0].trim();
-    const compact = firstClause || raw;
-    if (compact.length <= 42) return compact.replace(/\.$/, '');
-    return `${compact.slice(0, 39).trimEnd()}...`;
+    return raw.replace(/\.$/, '');
+  }
+
+  function firstNumericValue(values) {
+    for (const value of values) {
+      if (value === undefined || value === null || value === '') continue;
+      const numeric = Number(value);
+      if (Number.isFinite(numeric)) return numeric;
+    }
+    return null;
+  }
+
+  function formatGlossLine(display, percent) {
+    const text = String(display || '').replace(/\s+/g, ' ').trim();
+    if (!text) return '';
+    const numeric = firstNumericValue([percent]);
+    return Number.isFinite(numeric) ? `${text} ${Math.round(numeric)}%` : text;
   }
 
   function normalizeReaderHint(row) {
@@ -183,9 +196,16 @@
       row?.gloss,
     ]);
     if (!tokenId || !display) return null;
-    const matchPercent = Number.isFinite(Number(row?.match_percent ?? counterpart.match_percent))
-      ? Number(row?.match_percent ?? counterpart.match_percent)
-      : null;
+    const matchPercent = firstNumericValue([
+      row?.match_percent,
+      counterpart.match_percent,
+      row?.confidence_percent,
+      counterpart.confidence_percent,
+      row?.adjusted_score,
+      counterpart.adjusted_score,
+      row?.raw_score,
+      counterpart.raw_score,
+    ]);
     return {
       token_id: tokenId,
       display,
@@ -243,7 +263,7 @@
     if (!line) return;
     const display = hint.inline_display || inlineHintDisplay(hint.display);
     if (!display) return;
-    line.textContent = Number.isFinite(hint.match_percent) ? `${display} ${Math.round(hint.match_percent)}%` : display;
+    line.textContent = formatGlossLine(display, hint.match_percent);
     line.dataset.glossPlaceholder = 'false';
     line.dataset.glossLabel = hint.label || '';
     button.dataset.readerHint = line.textContent;
@@ -716,7 +736,7 @@
     }
     const selectedDefinition = selection?.selected_definition || '';
     if (line) {
-      line.textContent = selectedDefinition || 'TBD';
+      line.textContent = selectedDefinition ? formatGlossLine(selectedDefinition, selection?.match_percent ?? selection?.confidence_percent) : 'TBD';
       line.dataset.glossPlaceholder = selectedDefinition ? 'false' : 'true';
     }
     button.dataset.glossSelected = selection ? 'true' : 'false';
@@ -745,6 +765,7 @@
     if (!rendering) return null;
     const unit = button.closest('[data-unit]');
     const now = new Date().toISOString();
+    const confidencePercent = firstNumericValue([card.confidence_percent, card.adjusted_score, card.raw_score, routeScore(card)]);
     const selection = {
       schema_version: 1,
       artifact_type: 'gloss_selection',
@@ -761,7 +782,8 @@
       selected_definition: rendering,
       answer_eligible: card.answer_eligible === true,
       answer_role: card.answer_role || (card.answer_eligible === true ? 'answer' : 'evidence'),
-      confidence_percent: Number.isFinite(card.confidence_percent) ? card.confidence_percent : null,
+      confidence_percent: confidencePercent,
+      match_percent: confidencePercent,
       source_rows: cleanValues(card.source_rows),
       user_note: '',
       study_status: 'draft',

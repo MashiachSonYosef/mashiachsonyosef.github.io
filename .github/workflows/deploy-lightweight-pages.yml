@@ -28,10 +28,15 @@ jobs:
             /.nojekyll
             /404.html
             /index.html
+            /assets/css/reader-workbench.css
+            /assets/js/reader-workbench.js
             /tanakh/daniel/index.html
-            /tanakh/ezekiel/index.html
+            /data/lexical/daniel.manifest.json
+            /data/lexical/daniel-chunks
+            /data/lexical/occurrences/daniel.json
+            /data/definitions/hud-route-lookup-daniel/manifest.json
+            /data/definitions/hud-route-lookup-daniel/shards
             /data/public-lexical/by-work/daniel-token-claims-min60.csv
-            /data/public-lexical/by-work/ezekiel-token-claims-min60.csv
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -40,13 +45,22 @@ jobs:
         run: |
           rm -rf .site
           mkdir -p .site/tanakh/daniel \
-            .site/tanakh/ezekiel \
+            .site/assets/css \
+            .site/assets/js \
+            .site/data/lexical/daniel-chunks \
+            .site/data/lexical/occurrences \
+            .site/data/definitions/hud-route-lookup-daniel \
             .site/data/public-lexical/by-work
           cp -a .nojekyll 404.html index.html .site/
+          cp -a assets/css/reader-workbench.css .site/assets/css/
+          cp -a assets/js/reader-workbench.js .site/assets/js/
           cp -a tanakh/daniel/index.html .site/tanakh/daniel/
-          cp -a tanakh/ezekiel/index.html .site/tanakh/ezekiel/
+          cp -a data/lexical/daniel.manifest.json .site/data/lexical/
+          cp -a data/lexical/daniel-chunks/. .site/data/lexical/daniel-chunks/
+          cp -a data/lexical/occurrences/daniel.json .site/data/lexical/occurrences/
+          cp -a data/definitions/hud-route-lookup-daniel/manifest.json .site/data/definitions/hud-route-lookup-daniel/
+          cp -a data/definitions/hud-route-lookup-daniel/shards .site/data/definitions/hud-route-lookup-daniel/
           cp -a data/public-lexical/by-work/daniel-token-claims-min60.csv .site/data/public-lexical/by-work/
-          cp -a data/public-lexical/by-work/ezekiel-token-claims-min60.csv .site/data/public-lexical/by-work/
           du -sh .site
           find .site -type f -printf '%s %p\n' | sort -nr | head -20
           find .site -type f -print

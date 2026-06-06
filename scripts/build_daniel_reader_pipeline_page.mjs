@@ -4,25 +4,11 @@ import path from "node:path";
 const root = process.cwd();
 
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
-const exists = (relativePath) => fs.existsSync(path.join(root, relativePath));
-
-const workArg = process.argv.find((arg) => arg.startsWith("--work="));
-const workId = (workArg ? workArg.slice("--work=".length) : "daniel").trim();
-const workConfig = {
-  daniel: { label: "Daniel", section: "Tanakh / Ketuvim" },
-  ezekiel: { label: "Ezekiel", section: "Tanakh / Neviim" },
-}[workId] || { label: workId.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()), section: "Tanakh" };
-const claimsPath = `data/public-lexical/by-work/${workId}-token-claims-min60.csv`;
-const outputDir = `tanakh/${workId}`;
-const outputPath = `${outputDir}/index.html`;
-const reportPath = `reports/${workId}-reader-pipeline-page-report.json`;
-
-const source = readJson(`data/sources/${workId}.json`);
-const occurrences = readJson(`data/lexical/occurrences/${workId}.json`);
-const tokenIndex = readJson(`data/lexical/token-indexes/tanakh/${workId}.json`);
-
-const hintPath = `data/public-hud/${workId}/reader-hints.json`;
-const hintsPayload = exists(hintPath) ? readJson(hintPath) : { hints: {} };
+const writeText = (relativePath, text) => {
+  const fullPath = path.join(root, relativePath);
+  fs.mkdirSync(path.dirname(fullPath), { recursive: true });
+  fs.writeFileSync(fullPath, text, "utf8");
+};
 
 const escapeHtml = (value) => String(value ?? "")
   .replace(/&/g, "&amp;")
@@ -31,152 +17,262 @@ const escapeHtml = (value) => String(value ?? "")
   .replace(/"/g, "&quot;")
   .replace(/'/g, "&#39;");
 
-const inlineDisplay = (value) => String(value || "").replace(/\s+/g, " ").trim().replace(/\.$/, "");
-const compactText = (value) => String(value || "").replace(/\s+/g, " ").trim();
+const escapeAttr = escapeHtml;
 
-function firstPresent(values) {
-  for (const value of values) {
-    if (value !== undefined && value !== null && value !== "") return value;
-  }
-  return "";
+const workArg = process.argv.find((arg) => arg.startsWith("--work="));
+const workId = (workArg ? workArg.slice("--work=".length) : "daniel").trim();
+
+if (workId !== "daniel") {
+  throw new Error("This pilot generator is scoped to Daniel only.");
 }
 
-function firstNumber(values) {
-  for (const value of values) {
-    if (value === undefined || value === null || value === "") continue;
-    const number = Number(value);
-    if (Number.isFinite(number)) return number;
-  }
-  return null;
+const work = {
+  id: "daniel",
+  label: "Daniel",
+  section: "Tanakh / Ketuvim",
+  sourcePath: "data/sources/daniel.json",
+  occurrencePath: "data/lexical/occurrences/daniel.json",
+  manifestPath: "data/lexical/daniel.manifest.json",
+  tokenIndexPath: "data/lexical/token-indexes/tanakh/daniel.json",
+  globalRouteLookupPath: "data/definitions/hud-route-lookup/manifest.json",
+  routeLookupPath: "data/definitions/hud-route-lookup-daniel/manifest.json",
+  csvPath: "data/public-lexical/by-work/daniel-token-claims-min60.csv",
+  outputPath: "tanakh/daniel/index.html",
+  reportPath: "reports/daniel-reader-pipeline-page-report.json",
+};
+
+const source = readJson(work.sourcePath);
+const occurrences = readJson(work.occurrencePath);
+const manifest = readJson(work.manifestPath);
+const tokenIndex = readJson(work.tokenIndexPath);
+const routeLookupManifest = readJson(work.globalRouteLookupPath);
+const units = Array.isArray(source.units) ? source.units : [];
+
+const countOccurrenceRows = () => Object.values(occurrences.units || {}).reduce((sum, unit) => {
+  const paragraphs = Array.isArray(unit.paragraphs) ? unit.paragraphs : [];
+  return sum + paragraphs.reduce((paragraphSum, paragraph) => {
+    const ids = Array.isArray(paragraph.token_index_ids) ? paragraph.token_index_ids : [];
+    return paragraphSum + ids.length;
+  }, 0);
+}, 0);
+
+const chapterId = (chapter) => `chapter-${chapter}`;
+
+const normalizeHebrewDisplay = (value) => typeof value === "string"
+  ? value.replace(/([\u0590-\u05FF])'/g, "$1\u05F3").replace(/([\u0590-\u05FF])"(?=[\u0590-\u05FF])/g, "$1\u05F4")
+  : value;
+
+const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || ""))
+  .normalize("NFC")
+  .replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "")
+  .replace(/\u05DA/g, "\u05DB")
+  .replace(/\u05DD/g, "\u05DE")
+  .replace(/\u05DF/g, "\u05E0")
+  .replace(/\u05E3/g, "\u05E4")
+  .replace(/\u05E5/g, "\u05E6");
+
+function addLookupCandidate(map, key, relation, penalty = 0) {
+  const normalized = normalizeHebrewKey(key);
+  if (!normalized || map.has(normalized)) return;
+  map.set(normalized, { key: normalized, relation, penalty });
 }
 
-function hintRows(payload) {
-  const rows = [];
-  if (payload?.hints && typeof payload.hints === "object" && !Array.isArray(payload.hints)) {
-    Object.entries(payload.hints).forEach(([tokenId, hint]) => {
-      rows.push({ token_id: tokenId, ...(hint && typeof hint === "object" ? hint : { display: hint }) });
+function lookupCandidatesFor(clickedForm, normalized) {
+  const candidates = new Map();
+  addLookupCandidate(candidates, normalized || clickedForm, "exact", 0);
+  const primary = normalizeHebrewKey(normalized || clickedForm);
+  String(primary || "").split(/[\u05BE-]/).filter((part) => part && part !== primary).forEach((part) => addLookupCandidate(candidates, part, "maqaf component", 12));
+  const prefixPattern = /^[\u05D5\u05D1\u05DB\u05DC\u05DE\u05D4\u05E9]/;
+  for (let pass = 0; pass < 3; pass += 1) {
+    [...candidates.values()].slice().forEach((candidate) => {
+      if (candidate.key.length >= 4 && prefixPattern.test(candidate.key)) addLookupCandidate(candidates, candidate.key.slice(1), "prefix-stripped candidate", 20 + pass * 4);
     });
   }
-  if (payload?.hints_by_token_id && typeof payload.hints_by_token_id === "object") {
-    Object.entries(payload.hints_by_token_id).forEach(([tokenId, hint]) => {
-      rows.push({ token_id: tokenId, ...(hint && typeof hint === "object" ? hint : { display: hint }) });
-    });
-  }
-  ["reader_hints", "rows", "package_rows", "candidate_patch_rows"].forEach((key) => {
-    if (Array.isArray(payload?.[key])) rows.push(...payload[key]);
+  [...candidates.values()].slice().forEach((candidate) => {
+    if (!candidate.key.endsWith("\u05D9\u05DE")) return;
+    const stem = candidate.key.slice(0, -2);
+    if (stem.endsWith("\u05D4") && stem.length >= 3) addLookupCandidate(candidates, `${stem.slice(0, -1)}\u05D5\u05D4\u05D9\u05DE`, "mater-expanded plural candidate", 14);
   });
-  return rows;
+  const suffixRules = [
+    { suffix: "\u05D9\u05DE", relation: "plural-suffix candidate", penalty: 18 },
+    { suffix: "\u05D5\u05EA", relation: "plural-suffix candidate", penalty: 18 },
+    { suffix: "\u05D9\u05D4", relation: "possessive-suffix candidate", penalty: 24 },
+    { suffix: "\u05D9\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
+    { suffix: "\u05D9\u05DB", relation: "possessive-suffix candidate", penalty: 24 },
+    { suffix: "\u05D9\u05DB\u05DE", relation: "possessive-suffix candidate", penalty: 28 },
+    { suffix: "\u05D9\u05DB\u05E0", relation: "possessive-suffix candidate", penalty: 28 },
+    { suffix: "\u05D4\u05DE", relation: "possessive-suffix candidate", penalty: 28 },
+    { suffix: "\u05D4\u05E0", relation: "possessive-suffix candidate", penalty: 28 },
+    { suffix: "\u05E0\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
+    { suffix: "\u05DB", relation: "possessive-suffix candidate", penalty: 24 },
+    { suffix: "\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
+    { suffix: "\u05D4", relation: "suffix-stripped candidate", penalty: 24 },
+    { suffix: "\u05D9", relation: "suffix-stripped candidate", penalty: 24 },
+  ];
+  [...candidates.values()].slice().forEach((candidate) => {
+    suffixRules.forEach((rule) => {
+      if (candidate.key.endsWith(rule.suffix) && candidate.key.length - rule.suffix.length >= 3) {
+        addLookupCandidate(candidates, candidate.key.slice(0, -rule.suffix.length), rule.relation, rule.penalty);
+      }
+    });
+  });
+  return [...candidates.values()];
 }
 
-function normalizeHint(row) {
-  const counterpart = row?.candidate_counterpart && typeof row.candidate_counterpart === "object" ? row.candidate_counterpart : {};
-  const tokenId = firstPresent([row?.token_id, row?.target_token_id, row?.surface_token_id]);
-  const display = firstPresent([
-    row?.inline_display,
-    row?.short_display,
-    row?.reader_hint,
-    counterpart.inline_display,
-    counterpart.display,
-    row?.display,
-    row?.definition,
-    row?.gloss,
-  ]);
-  if (!tokenId || !display) return null;
-  const matchPercent = firstNumber([
-    row?.match_percent,
-    counterpart.match_percent,
-    row?.confidence_percent,
-    counterpart.confidence_percent,
-    row?.adjusted_score,
-    counterpart.adjusted_score,
-    row?.raw_score,
-    counterpart.raw_score,
-  ]);
-  return {
-    token_id: tokenId,
-    display: inlineDisplay(display),
-    match_percent: matchPercent,
-    source: firstPresent([row?.source, row?.source_name, counterpart.source, counterpart.source_name]),
-    license: firstPresent([row?.license, counterpart.license]),
-    status: firstPresent([row?.status, row?.candidate_status, counterpart.status, "reader_hint"]),
+function codepointKey(value, prefixLength) {
+  const chars = [...String(value || "")].slice(0, prefixLength);
+  if (!chars.length) return "empty";
+  const first = chars[0].codePointAt(0);
+  if (first < 0x05d0 || first > 0x05ea) return "other";
+  return chars.map((char) => char.codePointAt(0).toString(16).padStart(4, "0")).join("-");
+}
+
+function buildScopedRouteLookup() {
+  const prefixLength = Number(routeLookupManifest.prefix_length || 3);
+  const shardByKey = new Map((routeLookupManifest.shards || []).map((shard) => [shard.shard, shard]));
+  const candidateKeysByShard = new Map();
+
+  for (const row of tokenIndex.forms || []) {
+    lookupCandidatesFor(row.surface_word, row.normalized_word).forEach((candidate) => {
+      const shardKey = codepointKey(candidate.key, prefixLength);
+      if (!candidateKeysByShard.has(shardKey)) candidateKeysByShard.set(shardKey, new Set());
+      candidateKeysByShard.get(shardKey).add(candidate.key);
+    });
+  }
+
+  const targetDir = path.join(root, "data/definitions/hud-route-lookup-daniel");
+  fs.rmSync(targetDir, { recursive: true, force: true });
+  fs.mkdirSync(path.join(targetDir, "shards"), { recursive: true });
+
+  const scopedShards = [];
+  const missingShards = [];
+  let candidateKeyCount = 0;
+  let candidateKeysWithRoutes = 0;
+
+  [...candidateKeysByShard.entries()].sort(([a], [b]) => a.localeCompare(b)).forEach(([shardKey, candidateKeys]) => {
+    candidateKeyCount += candidateKeys.size;
+    const shard = shardByKey.get(shardKey);
+    if (!shard?.path) {
+      missingShards.push(shardKey);
+      return;
+    }
+    const sourcePath = path.join(root, "data/definitions/hud-route-lookup", shard.path);
+    const targetPath = path.join(targetDir, shard.path);
+    if (!fs.existsSync(sourcePath)) {
+      missingShards.push(shardKey);
+      return;
+    }
+    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+    const sourceShard = readJson(path.relative(root, sourcePath));
+    const routesByNormalized = {};
+    for (const key of candidateKeys) {
+      const routes = sourceShard.routes_by_normalized?.[key];
+      if (Array.isArray(routes) && routes.length) {
+        routesByNormalized[key] = routes;
+        candidateKeysWithRoutes += 1;
+      }
+    }
+    const tokenCount = Object.keys(routesByNormalized).length;
+    if (!tokenCount) return;
+    const cardCount = Object.values(routesByNormalized).reduce((sum, routes) => sum + routes.length, 0);
+    const scopedShard = {
+      schema_version: sourceShard.schema_version || 1,
+      shard: shardKey,
+      token_count: tokenCount,
+      card_count: cardCount,
+      routes_by_normalized: routesByNormalized,
+    };
+    fs.writeFileSync(targetPath, JSON.stringify(scopedShard), "utf8");
+    scopedShards.push({
+      ...shard,
+      token_count: tokenCount,
+      card_count: cardCount,
+      byte_length: fs.statSync(targetPath).size,
+    });
+  });
+
+  const scopedManifest = {
+    ...routeLookupManifest,
+    public_lookup: "data/definitions/hud-route-lookup-daniel",
+    scoped_from: work.globalRouteLookupPath,
+    scope_work_id: work.id,
+    scope_strategy: "Daniel page-scoped shard subset generated from token-index lookup candidates.",
+    counts: {
+      ...(routeLookupManifest.counts || {}),
+      source_shard_count: routeLookupManifest.counts?.shard_count || (routeLookupManifest.shards || []).length,
+      shard_count: scopedShards.length,
+      missing_candidate_shard_count: missingShards.length,
+      candidate_key_count: candidateKeyCount,
+      candidate_keys_with_routes: candidateKeysWithRoutes,
+      candidate_keys_without_routes: candidateKeyCount - candidateKeysWithRoutes,
+      card_count: scopedShards.reduce((sum, shard) => sum + Number(shard.card_count || 0), 0),
+      token_count: scopedShards.reduce((sum, shard) => sum + Number(shard.token_count || 0), 0),
+      byte_length: scopedShards.reduce((sum, shard) => sum + Number(shard.byte_length || 0), 0),
+      max_shard_bytes: scopedShards.reduce((max, shard) => Math.max(max, Number(shard.byte_length || 0)), 0),
+    },
+    shards: scopedShards,
+    missing_candidate_shards: missingShards,
   };
+
+  writeText(work.routeLookupPath, `${JSON.stringify(scopedManifest, null, 2)}\n`);
+  return scopedManifest;
 }
 
-const hints = new Map();
-hintRows(hintsPayload).forEach((row) => {
-  const hint = normalizeHint(row);
-  if (hint) hints.set(hint.token_id, hint);
-});
+const chapters = [...new Set(units.map((unit) => unit.chapter_number).filter((chapter) => chapter !== undefined && chapter !== null))]
+  .sort((a, b) => Number(a) - Number(b));
 
-const formByTokenId = new Map(tokenIndex.forms.map((form) => [form.token_index_id, form]));
-const unitById = new Map(Object.entries(occurrences.units || {}));
-
-const chapters = new Map();
-const unitsHtml = [];
-let rowCount = 0;
-let selectedRowCount = 0;
-let missingFormCount = 0;
-
-for (const unit of source.units) {
-  const occurrenceUnit = unitById.get(unit.unit_id);
-  const tokenIds = [];
-  (occurrenceUnit?.paragraphs || []).forEach((paragraph) => {
-    (paragraph.token_index_ids || []).forEach((tokenId) => tokenIds.push(tokenId));
-  });
-  if (!chapters.has(unit.chapter_number)) chapters.set(unit.chapter_number, []);
-  chapters.get(unit.chapter_number).push(unit);
-
-  const rows = tokenIds.map((tokenId, index) => {
-    const form = formByTokenId.get(tokenId);
-    if (!form) missingFormCount += 1;
-    const hint = hints.get(tokenId);
-    const hasSelection = Boolean(hint?.display);
-    if (hasSelection) selectedRowCount += 1;
-    rowCount += 1;
-    const surface = form?.surface_word || tokenId;
-    const normalized = form?.normalized_word || surface;
-    const gloss = hasSelection ? hint.display : "TBD";
-    const match = hasSelection && Number.isFinite(hint.match_percent) ? `${Math.round(hint.match_percent)}%` : "TBD";
-    const sourceLabel = hasSelection ? "1" : "";
-    const sourceBadge = sourceLabel ? `<sup class="source-ref">#${sourceLabel}</sup>` : "";
-    const state = hasSelection ? "selection" : "tbd";
-    return `
-          <div class="prehud-row" data-prehud-row data-prehud-state="${state}">
-            <button class="hebrew-token" type="button" lang="he" dir="rtl" data-token-id="${escapeHtml(tokenId)}" data-normalized="${escapeHtml(normalized)}" data-surface="${escapeHtml(surface)}" data-unit-id="${escapeHtml(unit.unit_id)}" data-source-ref="${escapeHtml(unit.source_ref)}" data-row-index="${index + 1}" aria-controls="route-hud" aria-expanded="false">${escapeHtml(surface)}</button>
-            <div class="gloss-cell">
-              <span class="gloss-text" data-gloss-text data-placeholder="${hasSelection ? "false" : "true"}">${escapeHtml(gloss)}</span>${sourceBadge}
+const unitHtml = (unit) => {
+  const unitId = String(unit.unit_id || unit.anchor_id || `daniel-${unit.sequence || ""}`);
+  const sourceRef = String(unit.source_ref || unit.sefaria_ref || unitId);
+  const paragraphs = (Array.isArray(unit.hebrew) ? unit.hebrew : []).map((paragraph, index) => `
+              <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="${index}">${escapeHtml(paragraph)}</p>`).join("");
+  return `
+          <section class="unit" id="${escapeAttr(unit.anchor_id || unitId)}" data-unit data-lexical-unit data-unit-id="${escapeAttr(unitId)}" data-source-ref="${escapeAttr(sourceRef)}">
+            <div class="unit-head">
+              <div><h4>${escapeHtml(sourceRef)}</h4></div>
+              <a class="anchor" href="#${escapeAttr(unit.anchor_id || unitId)}" aria-label="Copy link to ${escapeAttr(sourceRef)}">#</a>
             </div>
-            <div class="match-cell" data-match-text>${escapeHtml(match)}</div>
-          </div>`;
-  }).join("");
+            <div class="unit-grid">
+              <div>${paragraphs}
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#${escapeAttr(chapterId(unit.chapter_number || 1))}">Back to chapter start</a>
+            </nav>
+          </section>`;
+};
 
-  const sourceText = compactText((unit.hebrew || []).join(" "));
-  unitsHtml.push(`
-      <section class="unit" id="${escapeHtml(unit.unit_id)}" data-unit-id="${escapeHtml(unit.unit_id)}">
-        <div class="unit-head">
-          <h2>${escapeHtml(unit.source_ref)}</h2>
-          <a href="#top">Top</a>
-        </div>
-        <p class="source-line" lang="he" dir="rtl">${escapeHtml(sourceText)}</p>
-        <div class="prehud-table" aria-label="${escapeHtml(unit.source_ref)} token rows">
-${rows}
-        </div>
-      </section>`);
-}
+const chapterHtml = chapters.map((chapter) => {
+  const chapterUnits = units.filter((unit) => Number(unit.chapter_number) === Number(chapter));
+  return `
+          <h2 id="${escapeAttr(chapterId(chapter))}">Chapter ${escapeHtml(chapter)} <span class="hud-badge">Route HUD active</span></h2>
+${chapterUnits.map(unitHtml).join("\n")}`;
+}).join("\n");
 
-const chapterLinks = [...chapters.keys()].sort((a, b) => a - b).map((chapter) => {
-  const firstUnit = chapters.get(chapter)[0];
-  return `<a href="#${escapeHtml(firstUnit.unit_id)}">${chapter}</a>`;
-}).join("");
+const tocHtml = chapters.map((chapter) => `
+              <a href="#${escapeAttr(chapterId(chapter))}">Chapter ${escapeHtml(chapter)}</a>`).join("");
 
-const generatedAt = new Date().toISOString();
+const config = {
+  manifest_url: "../../data/lexical/daniel.manifest.json",
+  occurrence_url: "../../data/lexical/occurrences/daniel.json",
+  hud_route_lookup_manifest_url: "../../data/definitions/hud-route-lookup-daniel/manifest.json",
+  root_href: "../../",
+};
+
+const sourceUnit = units[0] || {};
+const occurrenceRows = countOccurrenceRows();
+const scopedRouteLookup = buildScopedRouteLookup();
+const configJson = JSON.stringify(config).replace(/</g, "\\u003c");
 
 const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${escapeHtml(workConfig.label)} | Hebrew Workbench</title>
+  <title>Daniel | Hebrew Workbench</title>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
   <style>
     :root {
       color-scheme: dark;
@@ -186,14 +282,13 @@ const html = `<!DOCTYPE html>
       --text: #f4efe5;
       --muted: #bdb5a7;
       --line: rgba(214, 190, 138, 0.3);
-      --line-strong: rgba(214, 190, 138, 0.52);
+      --line-2: rgba(214, 190, 138, 0.52);
       --accent: #d8c38d;
       --accent-2: #b9c3aa;
       --hebrew: #f7f0e3;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -205,10 +300,10 @@ const html = `<!DOCTYPE html>
 
     a { color: inherit; }
 
-    .shell {
-      width: min(1220px, calc(100% - 32px));
+    .reader-shell {
+      width: min(1240px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 28px 0 80px;
+      padding: 28px 0 88px;
     }
 
     .topbar {
@@ -217,827 +312,373 @@ const html = `<!DOCTYPE html>
       gap: 16px;
       align-items: center;
       color: var(--muted);
-      font-size: 0.96rem;
+      font-size: 0.95rem;
       padding-bottom: 18px;
       border-bottom: 1px solid var(--line);
     }
 
+    .topbar a,
+    .unit-nav a,
+    .anchor,
+    .export-button {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
     .hero {
+      padding: 26px 0 22px;
       border-bottom: 1px solid var(--line);
-      padding: 26px 0 24px;
     }
 
     .kicker {
+      margin: 0 0 10px;
       color: var(--accent-2);
       font-size: 0.86rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin: 0 0 10px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 3.4rem;
-      line-height: 1;
+    h1,
+    h2,
+    h3,
+    h4 {
       font-weight: 400;
       letter-spacing: 0;
     }
 
-    .chapter-tracker {
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 0;
-      background: rgba(13, 13, 11, 0.94);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(10px);
+    h1 {
+      margin: 0;
+      font-size: clamp(2.3rem, 8vw, 4.4rem);
+      line-height: 0.98;
     }
 
-    .section-toggle {
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+      padding-top: 24px;
+    }
+
+    .toc {
+      position: sticky;
+      top: 14px;
       border: 1px solid var(--line);
       background: var(--panel);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .toc h2 {
+      margin: 0 0 4px;
+      font-size: 1rem;
       color: var(--text);
-      font: 0.78rem/1 Georgia, "Times New Roman", serif;
-      padding: 6px 8px;
-      cursor: pointer;
-      white-space: nowrap;
     }
 
-    .chapter-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-
-    .chapter-tracker[data-collapsed="true"] .chapter-nav {
-      display: none;
-    }
-
-    .chapter-nav a {
-      text-decoration: none;
-      border: 1px solid var(--line);
+    .toc a {
       color: var(--muted);
-      min-width: 28px;
-      padding: 5px 7px;
-      font-size: 0.76rem;
-      text-align: center;
+      text-decoration: none;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+    }
+
+    .toc a:hover,
+    .toc a:focus-visible {
+      color: var(--accent);
+    }
+
+    .work {
+      min-width: 0;
+      display: grid;
+      gap: 18px;
+    }
+
+    .work > h2 {
+      margin: 10px 0 0;
+      color: var(--text);
+      font-size: 1.35rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .hud-badge {
+      display: inline-block;
+      color: var(--accent-2);
+      font-size: 0.72rem;
+      margin-left: 8px;
     }
 
     .unit {
-      padding: 26px 0 8px;
-      border-bottom: 1px solid var(--line);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.018);
+      padding: 18px;
+      display: grid;
+      gap: 14px;
     }
 
     .unit-head {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
       align-items: baseline;
+      gap: 12px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
     }
 
-    .unit h2 {
+    .unit-head h4 {
       margin: 0;
-      font-size: 1.36rem;
-      font-weight: 400;
-      letter-spacing: 0;
-    }
-
-    .unit-head a {
-      color: var(--muted);
-      font-size: 0.86rem;
-      text-decoration: none;
-    }
-
-    .source-line {
-      margin: 10px 0 16px;
-      color: var(--muted);
+      color: var(--text);
       font-size: 1rem;
-      line-height: 1.8;
-      overflow-wrap: anywhere;
     }
 
-    .prehud-table {
+    .unit-grid {
       display: grid;
-      gap: 6px;
+      gap: 12px;
+      min-width: 0;
     }
 
-    .prehud-row {
-      display: grid;
-      grid-template-columns: minmax(8.5rem, 13rem) minmax(0, 1fr) 4.75rem;
-      gap: 0;
-      align-items: stretch;
-      min-height: 42px;
-      border: 1px solid rgba(214, 190, 138, 0.2);
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .hebrew-token {
-      width: 100%;
-      border: 0;
-      border-right: 1px solid rgba(214, 190, 138, 0.2);
-      box-shadow: inset 3px 0 0 var(--accent);
-      background: linear-gradient(90deg, rgba(216, 195, 141, 0.11), rgba(255, 255, 255, 0.018));
+    .hebrew {
       color: var(--hebrew);
-      font: 1.24rem/1.35 Georgia, "Times New Roman", serif;
-      padding: 8px 10px 8px 13px;
-      text-align: left;
-      cursor: pointer;
+      font-size: clamp(1.45rem, 2.5vw, 2.15rem);
+      line-height: 2.25;
+      margin: 0;
       overflow-wrap: anywhere;
+    }
+
+    .lexical-word {
+      display: inline-block;
+      color: inherit;
+      border: 1px solid rgba(214, 190, 138, 0.2);
+      border-radius: 4px;
+      background: rgba(216, 195, 141, 0.035);
+      padding: 0.02em 0.12em 0.06em;
+      cursor: pointer;
       text-decoration: underline;
       text-decoration-thickness: 1px;
-      text-decoration-color: rgba(216, 195, 141, 0.72);
-      text-underline-offset: 4px;
+      text-underline-offset: 0.16em;
+      transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
     }
 
-    .hebrew-token:hover,
-    .hebrew-token:focus-visible,
-    .hebrew-token[aria-expanded="true"] {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-      background: rgba(214, 190, 138, 0.1);
+    .lexical-word:hover,
+    .lexical-word:focus-visible {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(216, 195, 141, 0.09);
+      outline: none;
     }
 
-    .gloss-cell {
-      min-width: 0;
+    .lexical-slot {
+      min-height: 0;
+    }
+
+    .unit-nav {
       display: flex;
-      gap: 6px;
-      align-items: center;
-      padding: 7px 10px;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .license-notice {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--muted);
+      padding: 12px;
+      font-size: 0.9rem;
       line-height: 1.45;
     }
 
-    .gloss-text {
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
-
-    .gloss-text[data-placeholder="true"] {
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    .source-ref {
-      color: var(--accent-2);
-      font-size: 0.7rem;
-      white-space: nowrap;
-    }
-
-    .match-cell {
+    .export-actions {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      border-left: 1px solid rgba(214, 190, 138, 0.2);
-      color: var(--accent);
-      font-size: 0.9rem;
-      padding: 7px;
-      white-space: nowrap;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 0;
     }
 
-    .hud-backdrop {
+    .export-button {
+      border: 1px solid var(--line-2);
+      padding: 6px 8px;
+    }
+
+    .lexical-hud {
       position: fixed;
       inset: 0;
       z-index: 40;
-      background: rgba(0, 0, 0, 0.72);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: rgba(13, 13, 11, 0.97);
+      color: var(--text);
+      padding: 16px;
+      overflow: auto;
     }
 
-    .route-hud {
-      position: fixed;
-      z-index: 50;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border: 0;
-      background: #11110f;
-      box-shadow: none;
-      padding: clamp(14px, 2.6vw, 30px);
-    }
-
-    .route-hud[hidden] {
+    .lexical-hud[hidden] {
       display: none;
     }
 
-    .hud-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 12px;
-      margin-bottom: 14px;
-    }
-
-    [data-hud-routes] {
-      overflow: auto;
-      padding-right: 6px;
-    }
-
-    .hud-word {
-      margin: 0;
-      color: var(--hebrew);
-      font-size: 2rem;
-      line-height: 1.2;
-    }
-
-    .hud-meta {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.45;
-    }
-
-    .hud-close {
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--text);
-      font-size: 1.2rem;
-      width: 34px;
-      height: 34px;
-      cursor: pointer;
-    }
-
-    .hud-status {
-      margin: 0 0 12px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .route-card {
-      border: 1px solid rgba(214, 190, 138, 0.22);
-      background: rgba(255, 255, 255, 0.025);
-      padding: 12px;
-      margin: 10px 0;
-    }
-
-    .route-card[data-selectable="false"] {
-      opacity: 0.82;
-    }
-
-    .route-card header {
+    .hud-head {
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      letter-spacing: 0;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
     }
 
-    .route-definition {
-      margin: 8px 0;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
+    .hud-head h2 {
+      margin: 0;
+      font-size: 1.25rem;
     }
 
-    .route-details {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.45;
-    }
-
-    .route-details summary {
-      cursor: pointer;
+    .hud-close {
+      border: 1px solid var(--line-2);
+      background: var(--panel);
       color: var(--accent);
-    }
-
-    .use-gloss {
-      margin-top: 10px;
-      border: 1px solid var(--line-strong);
-      background: rgba(214, 190, 138, 0.1);
-      color: var(--text);
-      padding: 7px 10px;
+      padding: 8px 10px;
+      font: inherit;
       cursor: pointer;
-      font-family: inherit;
     }
 
-    .use-gloss:disabled {
-      cursor: not-allowed;
-      color: var(--muted);
-      border-color: var(--line);
-      background: transparent;
+    .route-hud-panel {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+      align-content: start;
     }
 
-    .empty {
+    .placeholder {
       color: var(--muted);
       margin: 0;
-      line-height: 1.5;
     }
 
-    [hidden] { display: none !important; }
-
     @media (max-width: 760px) {
-      .shell { width: min(100% - 20px, 1220px); }
-      h1 { font-size: 2.35rem; }
-      .prehud-row {
+      .reader-shell {
+        width: min(100% - 20px, 680px);
+        padding-top: 18px;
+      }
+
+      .topbar,
+      .layout {
+        display: grid;
+      }
+
+      .layout {
         grid-template-columns: 1fr;
-        gap: 0;
       }
-      .hebrew-token {
-        border-right: 0;
-        border-bottom: 1px solid rgba(214, 190, 138, 0.18);
+
+      .toc {
+        position: static;
       }
-      .gloss-cell {
-        padding: 9px 10px;
-      }
-      .match-cell {
-        justify-content: flex-start;
-        border-left: 0;
-        border-top: 1px solid rgba(214, 190, 138, 0.18);
-      }
-      .chapter-tracker {
-        align-items: flex-start;
+
+      .unit {
+        padding: 12px;
       }
     }
   </style>
 </head>
 <body>
-  <main class="shell" id="top">
-    <header class="topbar" aria-label="Site navigation">
+  <main class="reader-shell" id="work-top">
+    <nav class="topbar" aria-label="Site">
       <a href="../../">Hebrew Workbench</a>
+      <span>${escapeHtml(work.section)}</span>
+    </nav>
+    <header class="hero">
+      <p class="kicker">${escapeHtml(work.section)}</p>
+      <h1>${escapeHtml(work.label)}</h1>
     </header>
-
-    <section class="hero" aria-labelledby="work-title">
-      <div>
-        <p class="kicker">${escapeHtml(workConfig.section)}</p>
-        <h1 id="work-title">${escapeHtml(workConfig.label)}</h1>
-      </div>
-    </section>
-
-    <div class="chapter-tracker" data-section-tracker>
-      <button class="section-toggle" type="button" data-section-toggle aria-controls="chapter-links" aria-expanded="true">sections</button>
-      <nav class="chapter-nav" id="chapter-links" aria-label="${escapeHtml(workConfig.label)} sections">
-        ${chapterLinks}
-      </nav>
+    <div class="layout">
+      <aside class="toc" aria-label="Chapters">
+        <h2>Chapters</h2>${tocHtml}
+      </aside>
+      <article class="work">
+${chapterHtml}
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> shared Reader Workbench runtime with Daniel token manifest and route lookup files.
+          <p>Hebrew source: ${escapeHtml(sourceUnit.version_title || "")} (${escapeHtml(sourceUnit.license || "")}).</p>
+          <p class="export-actions"><a class="export-button" href="../../${escapeAttr(work.manifestPath)}">HUD token manifest</a><a class="export-button" href="../../${escapeAttr(work.routeLookupPath)}">Route lookup manifest</a><a class="export-button" href="../../${escapeAttr(work.csvPath)}">Daniel CSV</a></p>
+        </div>
+      </article>
     </div>
-
-${unitsHtml.join("\n")}
   </main>
-
-  <div class="hud-backdrop" data-hud-backdrop hidden></div>
-  <aside class="route-hud" id="route-hud" aria-live="polite" hidden>
-    <div class="hud-top">
-      <div>
-        <p class="hud-word" data-hud-word lang="he" dir="rtl"></p>
-        <p class="hud-meta" data-hud-meta></p>
-      </div>
-      <button class="hud-close" type="button" data-hud-close aria-label="Close HUD">x</button>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
     </div>
-    <p class="hud-status" data-hud-status></p>
-    <div data-hud-routes></div>
-  </aside>
-
-  <script>
-    (() => {
-      "use strict";
-
-      const routeSectionRank = new Map([
-        ["strict_hebrew", 0],
-        ["strict_aramaic", 1],
-        ["morphology", 2],
-        ["lemma", 3],
-        ["subphrase_evidence", 4],
-        ["biblical_paraphrase_evidence", 5],
-        ["citable_paraphrase_evidence", 6],
-        ["phrase_evidence", 7],
-        ["audit", 8],
-      ]);
-      const productionSections = new Set([
-        "strict_hebrew",
-        "strict_aramaic",
-        "morphology",
-        "lemma",
-        "subphrase_evidence",
-        "biblical_paraphrase_evidence",
-        "citable_paraphrase_evidence",
-      ]);
-      const claimsCsvUrl = "../../${escapeHtml(claimsPath)}";
-      const localSelectionKey = "reader-pipeline:${escapeHtml(workId)}:v1";
-      let claimsPromise = null;
-      let activeButton = null;
-      let activeCards = [];
-
-      const normalizeHebrewDisplay = (value) => typeof value === "string"
-        ? value.replace(/([\\u0590-\\u05FF])'/g, "$1\\u05F3").replace(/([\\u0590-\\u05FF])\\"(?=[\\u0590-\\u05FF])/g, "$1\\u05F4")
-        : value;
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || ""))
-        .normalize("NFC")
-        .replace(/[\\u0591-\\u05BD\\u05BF\\u05C1-\\u05C2\\u05C4-\\u05C5\\u05C7]/g, "")
-        .replace(/\\u05DA/g, "\\u05DB")
-        .replace(/\\u05DD/g, "\\u05DE")
-        .replace(/\\u05DF/g, "\\u05E0")
-        .replace(/\\u05E3/g, "\\u05E4")
-        .replace(/\\u05E5/g, "\\u05E6");
-      const cleanValues = (values) => Array.isArray(values) ? values.filter((value) => value !== undefined && value !== null && value !== "") : [];
-      const firstPresent = (values) => {
-        for (const value of values) {
-          if (value !== undefined && value !== null && value !== "") return value;
-        }
-        return "";
-      };
-
-      function createElement(tag, className, text) {
-        const element = document.createElement(tag);
-        if (className) element.className = className;
-        if (text !== undefined) element.textContent = text;
-        return element;
-      }
-
-      function routeSection(card) {
-        return card.display_section || card.route_type || card.route_family || "audit";
-      }
-
-      function isUsageEvidenceCard(card) {
-        const fields = [card?.display_section, card?.route_type, card?.route_family, card?.answer_role, card?.meaning_quality]
-          .map((value) => String(value || "").toLowerCase().replace(/[\\s-]+/g, "_"));
-        return fields.some((value) => value === "phrase_evidence" || value === "usage_evidence" || value === "source_phrase_evidence");
-      }
-
-      function routeRenderings(card) {
-        if (!card) return [];
-        if (isUsageEvidenceCard(card)) {
-          return [firstPresent([card.linked_route_definition, card.linked_definition, card.route_definition, card.route_definition_text]) || "observed usage only"];
-        }
-        const genericUsage = "Usage context only; no meaning is forced by this phrase row.";
-        const values = [];
-        const definition = firstPresent([card.definition, card.gloss]);
-        if (definition && definition !== genericUsage) values.push(definition);
-        const meaningClaim = firstPresent([card.meaning_claim]);
-        if (meaningClaim) values.push(meaningClaim);
-        return values;
-      }
-
-      function answerRoleAllowsDefinition(role) {
-        const cleanRole = String(role || "").toLowerCase().replace(/[\\s-]+/g, "_");
-        return ["", "answer", "definition", "reader_answer", "primary_definition"].includes(cleanRole);
-      }
-
-      function isAnswerEligible(card) {
-        if (isUsageEvidenceCard(card)) return false;
-        if (!card || !productionSections.has(routeSection(card)) || !routeRenderings(card).length) return false;
-        if (card.answer_eligible === false || !answerRoleAllowsDefinition(card.answer_role)) return false;
-        if (card.answer_eligible === true) return true;
-        if (Object.prototype.hasOwnProperty.call(card, "answer_eligible") || Object.prototype.hasOwnProperty.call(card, "answer_role")) return false;
-        return card.meaning_quality === "definition" && !["phrase_evidence", "subphrase_evidence"].includes(routeSection(card));
-      }
-
-      function sourceRowHasPublicFields(row) {
-        return Boolean(row && (row.source_name || row.source_id || row.source_url || row.license || row.license_url));
-      }
-
-      function canSaveGlossSelection(card) {
-        return Boolean(card
-          && card.answer_eligible === true
-          && answerRoleAllowsDefinition(card.answer_role)
-          && !isUsageEvidenceCard(card)
-          && routeRenderings(card).length
-          && cleanValues(card.source_rows).some(sourceRowHasPublicFields));
-      }
-
-      function routeScore(card) {
-        const base = Number.isFinite(card.adjusted_score)
-          ? card.adjusted_score
-          : (Number.isFinite(card.raw_score) ? card.raw_score : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : 0));
-        const penalty = Number.isFinite(card.lookup_penalty) ? card.lookup_penalty : 0;
-        return Math.max(0, Math.round(base - penalty));
-      }
-
-      function answerTextKey(card) {
-        return routeRenderings(card).map((line) => String(line || "").replace(/\\s+/g, " ").trim().toLowerCase()).filter(Boolean).join(" | ");
-      }
-
-      function cardIdentity(card) {
-        const sources = cleanValues(card.source_rows)
-          .map((row) => [row.source_name, row.source_id, row.license, row.license_url].map((value) => String(value || "").trim()).join("|"))
-          .join(";");
-        return [answerTextKey(card), routeSection(card), card.match_type || card.route_type || "", routeScore(card), sources].join("\\u001f");
-      }
-
-      function compareRouteCards(leftCard, rightCard) {
-        const left = [-(routeScore(leftCard) ?? -1000), routeSectionRank.get(routeSection(leftCard)) ?? 9, -(Number.isFinite(leftCard.answer_score) ? leftCard.answer_score : 0), String(leftCard.card_id || "")];
-        const right = [-(routeScore(rightCard) ?? -1000), routeSectionRank.get(routeSection(rightCard)) ?? 9, -(Number.isFinite(rightCard.answer_score) ? rightCard.answer_score : 0), String(rightCard.card_id || "")];
-        for (let index = 0; index < left.length; index += 1) {
-          if (left[index] < right[index]) return -1;
-          if (left[index] > right[index]) return 1;
-        }
-        return 0;
-      }
-
-      function answerAmbiguity(primary, candidates) {
-        if (!primary) return { ambiguous: false, count: 0 };
-        const topScore = routeScore(primary);
-        const topRelation = primary.lookup_relation || "exact";
-        const close = candidates.filter((card) => (card.lookup_relation || "exact") === topRelation && Math.abs(routeScore(card) - topScore) <= 6);
-        const meanings = new Set(close.map(answerTextKey).filter(Boolean));
-        return { ambiguous: meanings.size > 1, count: meanings.size };
-      }
-
-      function selectRouteAnswer(cards) {
-        const candidates = cards.filter(isAnswerEligible).sort(compareRouteCards);
-        const exactAnswer = candidates.filter((card) => (card.lookup_relation || "exact") === "exact").sort(compareRouteCards)[0];
-        const selected = exactAnswer || candidates[0] || null;
-        const ambiguity = answerAmbiguity(selected, candidates);
-        return {
-          answerCard: ambiguity.ambiguous ? null : selected,
-          answerState: ambiguity.ambiguous ? "ambiguous" : (selected ? "definition" : "none"),
-          ambiguityCount: ambiguity.count,
-        };
-      }
-
-      function codepointKey(value, prefixLength) {
-        const chars = [...String(value || "")].slice(0, prefixLength);
-        if (!chars.length) return "empty";
-        const first = chars[0].codePointAt(0);
-        if (first < 0x05d0 || first > 0x05ea) return "other";
-        return chars.map((char) => char.codePointAt(0).toString(16).padStart(4, "0")).join("-");
-      }
-
-      function addLookupCandidate(map, key, relation, penalty = 0) {
-        const normalized = normalizeHebrewKey(key);
-        if (!normalized || map.has(normalized)) return;
-        map.set(normalized, { key: normalized, relation, penalty });
-      }
-
-      function lookupCandidatesFor(clickedForm, normalized) {
-        const candidates = new Map();
-        addLookupCandidate(candidates, normalized || clickedForm, "exact", 0);
-        const primary = normalizeHebrewKey(normalized || clickedForm);
-        String(primary || "").split(/[\\u05BE-]/).filter((part) => part && part !== primary).forEach((part) => addLookupCandidate(candidates, part, "maqaf component", 12));
-        const prefixPattern = /^[\\u05D5\\u05D1\\u05DB\\u05DC\\u05DE\\u05D4\\u05E9]/;
-        for (let pass = 0; pass < 3; pass += 1) {
-          [...candidates.values()].slice().forEach((candidate) => {
-            if (candidate.key.length >= 4 && prefixPattern.test(candidate.key)) addLookupCandidate(candidates, candidate.key.slice(1), "prefix-stripped candidate", 20 + pass * 4);
-          });
-        }
-        const suffixRules = [
-          { suffix: "\\u05D9\\u05DE", relation: "plural-suffix candidate", penalty: 18 },
-          { suffix: "\\u05D5\\u05EA", relation: "plural-suffix candidate", penalty: 18 },
-          { suffix: "\\u05D9\\u05D4", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\\u05D9\\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\\u05D9\\u05DB", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\\u05D4\\u05DE", relation: "possessive-suffix candidate", penalty: 28 },
-          { suffix: "\\u05D4\\u05E0", relation: "possessive-suffix candidate", penalty: 28 },
-          { suffix: "\\u05E0\\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\\u05DB", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\\u05D4", relation: "suffix-stripped candidate", penalty: 24 },
-          { suffix: "\\u05D9", relation: "suffix-stripped candidate", penalty: 24 },
-        ];
-        [...candidates.values()].slice().forEach((candidate) => {
-          suffixRules.forEach((rule) => {
-            if (candidate.key.endsWith(rule.suffix) && candidate.key.length - rule.suffix.length >= 3) {
-              addLookupCandidate(candidates, candidate.key.slice(0, -rule.suffix.length), rule.relation, rule.penalty);
-            }
-          });
-        });
-        return [...candidates.values()];
-      }
-
-      function parseCsv(text) {
-        const rows = [];
-        let row = [];
-        let field = "";
-        let quoted = false;
-        for (let index = 0; index < text.length; index += 1) {
-          const char = text[index];
-          const next = text[index + 1];
-          if (quoted) {
-            if (char === '"' && next === '"') {
-              field += '"';
-              index += 1;
-            } else if (char === '"') {
-              quoted = false;
-            } else {
-              field += char;
-            }
-          } else if (char === '"') {
-            quoted = true;
-          } else if (char === ",") {
-            row.push(field);
-            field = "";
-          } else if (char === "\\n") {
-            row.push(field);
-            rows.push(row);
-            row = [];
-            field = "";
-          } else if (char !== "\\r") {
-            field += char;
-          }
-        }
-        if (field || row.length) {
-          row.push(field);
-          rows.push(row);
-        }
-        return rows;
-      }
-
-      async function claimRows() {
-        if (!claimsPromise) {
-          claimsPromise = fetch(claimsCsvUrl).then(async (response) => {
-            if (!response.ok) throw new Error("${escapeHtml(workConfig.label)} CSV fetch failed: " + response.status);
-            const rows = parseCsv(await response.text()).filter((row) => row.some(Boolean));
-            const header = rows.shift() || [];
-            return rows.map((row) => Object.fromEntries(header.map((name, index) => [name, row[index] || ""])));
-          });
-        }
-        return claimsPromise;
-      }
-
-      function cardsFromClaim(row) {
-        const definitions = String(row.safe_rendering_options || "").split("|").map((value) => value.trim()).filter(Boolean);
-        if (!definitions.length) return [];
-        const confidence = Number(row.best_confidence_any_claim || row.safe_min_confidence || 0);
-        const sources = String(row.safe_source_names || "").split("|").map((value) => value.trim()).filter(Boolean);
-        const sourceIds = String(row.safe_source_ids || "").split("|").map((value) => value.trim()).filter(Boolean);
-        const licenses = String(row.safe_licenses || "").split("|").map((value) => value.trim()).filter(Boolean);
-        return definitions.map((definition, index) => ({
-          card_id: "${escapeHtml(workId)}-csv-" + normalizeHebrewKey(row.normalized_form || row.clicked_surface_form) + "-" + index,
-          route_family: "${escapeHtml(workId)}_csv_claim",
-          route_type: "csv_evidence",
-          display_section: "audit",
-          display_label: "CSV evidence",
-          language: "Hebrew",
-          match_type: row.export_status || "csv",
-          confidence_percent: Number.isFinite(confidence) ? confidence : 0,
-          answer_eligible: false,
-          answer_role: "evidence",
-          definition,
-          source_rows: [{
-            source_name: sources[0] || "${escapeHtml(workConfig.label)} public lexical CSV",
-            source_id: sourceIds[0] || row.safe_claim_ids || "",
-            source_url: claimsCsvUrl,
-            license: licenses[0] || "",
-            fields_used: ["clicked_surface_form", "normalized_form", "safe_rendering_options", "safe_source_names", "safe_licenses"],
-          }],
-          raw_score: Number.isFinite(confidence) ? confidence : 0,
-          adjusted_score: Number.isFinite(confidence) ? confidence : 0,
-        }));
-      }
-
-      async function cardsForButton(button) {
-        const normalized = normalizeHebrewKey(button.dataset.normalized || button.dataset.surface);
-        const surface = button.dataset.surface || "";
-        const rows = await claimRows();
-        const cards = [];
-        rows.forEach((row) => {
-          const rowKey = normalizeHebrewKey(row.normalized_form || row.clicked_surface_form);
-          if (rowKey === normalized || row.clicked_surface_form === surface) {
-            cards.push(...cardsFromClaim(row));
-          }
-        });
-        return [...new Map(cards.map((card) => [cardIdentity(card), card])).values()].sort(compareRouteCards);
-      }
-
-      function sourceList(card) {
-        const rows = cleanValues(card.source_rows);
-        if (!rows.length) return "no source row.";
-        return rows.slice(0, 5).map((row, index) => {
-          const label = firstPresent([row.source_name, row.source_id, "source " + (index + 1)]);
-          const license = firstPresent([row.license, row.license_url, "license not listed"]);
-          return "#" + (index + 1) + " " + label + " | " + license;
-        }).join("\\n");
-      }
-
-      function updatePrehudFromCard(button, card, sourceNumber) {
-        const row = button.closest("[data-prehud-row]");
-        const gloss = routeRenderings(card)[0] || "";
-        if (!row || !gloss) return;
-        row.dataset.prehudState = "local-selection";
-        const glossNode = row.querySelector("[data-gloss-text]");
-        const matchNode = row.querySelector("[data-match-text]");
-        const sourceRef = row.querySelector(".source-ref") || document.createElement("sup");
-        sourceRef.className = "source-ref";
-        sourceRef.textContent = "#" + sourceNumber;
-        glossNode.textContent = gloss;
-        glossNode.dataset.placeholder = "false";
-        if (!sourceRef.parentElement) glossNode.insertAdjacentElement("afterend", sourceRef);
-        matchNode.textContent = routeScore(card) + "%";
-        try {
-          const selections = JSON.parse(window.localStorage.getItem(localSelectionKey) || "{}");
-          selections[button.dataset.unitId + ":" + button.dataset.rowIndex + ":" + button.dataset.tokenId] = {
-            token_id: button.dataset.tokenId,
-            display: gloss,
-            match_percent: routeScore(card),
-            card_id: card.card_id || "",
-            selected_at: new Date().toISOString(),
-            publication_status: "local_reader_selection_not_published",
-          };
-          window.localStorage.setItem(localSelectionKey, JSON.stringify(selections));
-        } catch (error) {
-          console.warn(error);
-        }
-      }
-
-      function renderCard(card, index) {
-        const selectable = canSaveGlossSelection(card);
-        const article = createElement("article", "route-card");
-        article.dataset.selectable = selectable ? "true" : "false";
-        const header = document.createElement("header");
-        header.appendChild(createElement("span", "", selectable ? "gloss" : "details"));
-        header.appendChild(createElement("span", "", String(routeScore(card)) + "%"));
-        article.appendChild(header);
-        article.appendChild(createElement("p", "route-definition", routeRenderings(card)[0] || "no gloss text."));
-        const details = createElement("details", "route-details");
-        details.open = index === 0;
-        details.appendChild(createElement("summary", "", "source"));
-        const body = createElement("pre", "", sourceList(card) + "\\ntype: " + routeSection(card) + " / " + (card.match_type || card.route_type || "unknown"));
-        body.style.whiteSpace = "pre-wrap";
-        body.style.fontFamily = "inherit";
-        details.appendChild(body);
-        article.appendChild(details);
-        if (selectable) {
-          const button = createElement("button", "use-gloss", "use gloss");
-          button.type = "button";
-          button.addEventListener("click", () => updatePrehudFromCard(activeButton, card, index + 1));
-          article.appendChild(button);
-        }
-        return article;
-      }
-
-      function closeHud() {
-        document.querySelector("[data-hud-backdrop]").hidden = true;
-        document.querySelector("#route-hud").hidden = true;
-        if (activeButton) activeButton.setAttribute("aria-expanded", "false");
-        activeButton = null;
-        activeCards = [];
-      }
-
-      async function openHud(button) {
-        if (activeButton && activeButton !== button) activeButton.setAttribute("aria-expanded", "false");
-        activeButton = button;
-        button.setAttribute("aria-expanded", "true");
-        document.querySelector("[data-hud-backdrop]").hidden = false;
-        const hud = document.querySelector("#route-hud");
-        const routes = hud.querySelector("[data-hud-routes]");
-        hud.querySelector("[data-hud-word]").textContent = button.dataset.surface || button.textContent;
-        hud.querySelector("[data-hud-meta]").textContent = button.dataset.sourceRef + " | row " + button.dataset.rowIndex + " | " + button.dataset.tokenId;
-        hud.querySelector("[data-hud-status]").textContent = "loading";
-        routes.replaceChildren();
-        hud.hidden = false;
-        try {
-          activeCards = await cardsForButton(button);
-          const selected = selectRouteAnswer(activeCards);
-          const selectableCount = activeCards.filter(canSaveGlossSelection).length;
-          hud.querySelector("[data-hud-status]").textContent = selected.answerState === "definition"
-            ? "gloss found. choose it to fill the row."
-            : (selected.answerState === "ambiguous" ? "multiple glosses. choose one." : (activeCards.length ? "details found. row stays TBD." : "no gloss yet. row stays TBD."));
-          if (!activeCards.length) {
-            routes.appendChild(createElement("p", "empty", "no details yet."));
-            return;
-          }
-          const summary = createElement("p", "empty", selectableCount + " glosses, " + (activeCards.length - selectableCount) + " details.");
-          routes.appendChild(summary);
-          activeCards.slice(0, 24).forEach((card, index) => routes.appendChild(renderCard(card, index)));
-        } catch (error) {
-          console.error(error);
-          hud.querySelector("[data-hud-status]").textContent = "lookup failed.";
-          routes.appendChild(createElement("p", "empty", String(error.message || error)));
-        }
-      }
-
-      const sectionTracker = document.querySelector("[data-section-tracker]");
-      const sectionToggle = document.querySelector("[data-section-toggle]");
-      if (sectionTracker && sectionToggle) {
-        sectionToggle.addEventListener("click", () => {
-          const collapsed = sectionTracker.dataset.collapsed === "true";
-          sectionTracker.dataset.collapsed = collapsed ? "false" : "true";
-          sectionToggle.setAttribute("aria-expanded", collapsed ? "true" : "false");
-          sectionToggle.textContent = collapsed ? "sections" : "show sections";
-        });
-      }
-
-      document.querySelectorAll(".hebrew-token").forEach((button) => {
-        button.addEventListener("click", () => openHud(button));
-      });
-      document.querySelector("[data-hud-close]").addEventListener("click", closeHud);
-      document.querySelector("[data-hud-backdrop]").addEventListener("click", closeHud);
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeHud();
-      });
-    })();
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../${escapeAttr(work.occurrencePath)}">{}</script>
+  <script type="application/json" data-lexical-config>${configJson}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
   </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
 </body>
 </html>
 `;
 
-fs.mkdirSync(path.join(root, outputDir), { recursive: true });
-fs.writeFileSync(path.join(root, outputPath), html, "utf8");
+writeText(work.outputPath, html);
 
 const report = {
-  generated_at: generatedAt,
-  work_id: workId,
-  source_units: source.units.length,
-  token_rows: rowCount,
-  selected_prehud_rows: selectedRowCount,
-  tbd_fallback_rows: rowCount - selectedRowCount,
-  missing_form_count: missingFormCount,
+  schema_version: 1,
+  work_id: work.id,
+  generated_at: new Date().toISOString(),
+  source_units: units.length,
+  source_chapters: chapters.length,
+  token_rows: occurrenceRows,
   occurrence_total_reported: occurrences.total_occurrences,
-  hint_source: exists(hintPath) ? hintPath : null,
-  route_lookup_runtime_source: claimsPath,
-  prehud_rule: "display reader hint/selection when present; otherwise TBD fallback",
+  selected_prehud_rows: 0,
+  tbd_fallback_rows: occurrenceRows,
+  render_runtime: "shared_reader_workbench",
+  shared_assets: [
+    "assets/css/reader-workbench.css",
+    "assets/js/reader-workbench.js",
+    work.manifestPath,
+    work.occurrencePath,
+    work.routeLookupPath,
+  ],
+  lexical_manifest_chunks: (manifest.chunks || []).map((chunk) => chunk.url),
+  route_lookup_scope: {
+    source_manifest: work.globalRouteLookupPath,
+    scoped_manifest: work.routeLookupPath,
+    shard_count: scopedRouteLookup.counts.shard_count,
+    missing_candidate_shard_count: scopedRouteLookup.counts.missing_candidate_shard_count,
+    byte_length: scopedRouteLookup.counts.byte_length,
+  },
+  a10_baseline_markers: {
+    data_lexical_config: true,
+    data_lexical_occurrences: true,
+    data_lexical_unit: true,
+    data_route_hud_panel: true,
+    shared_reader_workbench_js: true,
+  },
 };
 
-fs.mkdirSync(path.join(root, "reports"), { recursive: true });
-fs.writeFileSync(path.join(root, reportPath), `${JSON.stringify(report, null, 2)}\n`, "utf8");
-console.log(JSON.stringify(report, null, 2));
+writeText(work.reportPath, `${JSON.stringify(report, null, 2)}\n`);
+console.log(JSON.stringify({ ok: true, output: work.outputPath, report: work.reportPath, token_rows: occurrenceRows }, null, 2));

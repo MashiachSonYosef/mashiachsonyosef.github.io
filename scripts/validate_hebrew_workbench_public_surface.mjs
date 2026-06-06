@@ -5,9 +5,8 @@ const root = process.cwd();
 const issues = [];
 
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), "utf8");
+const readJson = (relativePath) => JSON.parse(read(relativePath));
 const exists = (relativePath) => fs.existsSync(path.join(root, relativePath));
-const catalog = JSON.parse(read("data/site/hebrew-workbench-catalog.json"));
-const indexHtml = read("index.html");
 
 function issue(message) {
   issues.push(message);
@@ -16,6 +15,20 @@ function issue(message) {
 function requireMatch(name, ok) {
   if (!ok) issue(name);
 }
+
+function occurrenceRowCount(occurrences) {
+  return Object.values(occurrences.units || {}).reduce((sum, unit) => {
+    const paragraphs = Array.isArray(unit.paragraphs) ? unit.paragraphs : [];
+    return sum + paragraphs.reduce((paragraphSum, paragraph) => {
+      const ids = Array.isArray(paragraph.token_index_ids) ? paragraph.token_index_ids : [];
+      return paragraphSum + ids.length;
+    }, 0);
+  }, 0);
+}
+
+const catalog = readJson("data/site/hebrew-workbench-catalog.json");
+const indexHtml = read("index.html");
+const workflow = read(".github/workflows/deploy-lightweight-pages.yml");
 
 const corpora = Array.isArray(catalog.corpora) ? catalog.corpora : [];
 const corpusIds = corpora.map((corpus) => corpus.id);
@@ -27,16 +40,13 @@ const workHrefs = corpora.flatMap((corpus) => (corpus.works || []).map((work) =>
   href: work.href,
   label: work.label,
 })));
-const expectedWorkIds = ["daniel", "ezekiel"];
-const expectedWorkLabels = { daniel: "Daniel", ezekiel: "Ezekiel" };
 
 requireMatch("catalog must define exactly 11 corpus buckets", corpora.length === 11);
 requireMatch("catalog must include tanakh", corpusIds.includes("tanakh"));
 requireMatch("catalog must include featured", corpusIds.includes("featured"));
-expectedWorkIds.forEach((workId) => {
-  requireMatch(`tanakh must list ${workId}`, Boolean((tanakh?.works || []).some((work) => work.id === workId && work.href === `tanakh/${workId}/`)));
-  requireMatch(`featured must list ${workId}`, Boolean((featured?.works || []).some((work) => work.id === workId && work.href === `tanakh/${workId}/`)));
-});
+requireMatch("tanakh must list Daniel", Boolean((tanakh?.works || []).some((work) => work.id === "daniel" && work.href === "tanakh/daniel/")));
+requireMatch("featured must list Daniel", Boolean((featured?.works || []).some((work) => work.id === "daniel" && work.href === "tanakh/daniel/")));
+requireMatch("catalog must not expose Ezekiel", !JSON.stringify(catalog).includes("ezekiel"));
 
 for (const work of workHrefs) {
   if (work.href.endsWith("/")) {
@@ -48,39 +58,61 @@ requireMatch("root title must be plain", indexHtml.includes("<title>Hebrew Workb
 requireMatch("root corpus heading must use organization", indexHtml.includes("11 Corpus Organization Chart"));
 requireMatch("root must use expandable tanakh card", /<details class="corpus-card" data-live="true" id="tanakh" open>/.test(indexHtml));
 requireMatch("root must use expandable featured card", /<details class="corpus-card" data-live="true" id="featured" open>/.test(indexHtml));
-requireMatch("root must not link corpus tile straight to daniel", !/<a class="corpus-link"[^>]+tanakh\/daniel\//.test(indexHtml));
-expectedWorkIds.forEach((workId) => {
-  requireMatch(`root must expose ${workId} from tanakh and featured only as work links`, (indexHtml.match(new RegExp(`<a class="work-link" href="tanakh/${workId}/">${expectedWorkLabels[workId]}</a>`, "g")) || []).length === 2);
-  requireMatch(`root must expose ${workId} csv download`, indexHtml.includes(`<a class="download-link" href="data/public-lexical/by-work/${workId}-token-claims-min60.csv" download>${expectedWorkLabels[workId]} CSV</a>`));
-});
+requireMatch("root must not link corpus tile straight to Daniel", !/<a class="corpus-link"[^>]+tanakh\/daniel\//.test(indexHtml));
+requireMatch("root must expose Daniel from tanakh and featured only as work links", (indexHtml.match(/<a class="work-link" href="tanakh\/daniel\/">Daniel<\/a>/g) || []).length === 2);
+requireMatch("root must expose Daniel csv download", indexHtml.includes('<a class="download-link" href="data/public-lexical/by-work/daniel-token-claims-min60.csv" download>Daniel CSV</a>'));
+requireMatch("root must not expose Ezekiel", !/Ezekiel|ezekiel/.test(indexHtml));
 
-const workResults = expectedWorkIds.map((workId) => {
-  const html = read(`tanakh/${workId}/index.html`);
-  const report = JSON.parse(read(`reports/${workId}-reader-pipeline-page-report.json`));
-  const rowCount = (html.match(/<div class="prehud-row"/g) || []).length;
-  requireMatch(`${workId} title must be plain`, html.includes(`<title>${expectedWorkLabels[workId]} | Hebrew Workbench</title>`));
-  requireMatch(`${workId} row count must match report`, rowCount === report.token_rows && rowCount > 0);
-  requireMatch(`${workId} unresolved rows must remain TBD`, report.tbd_fallback_rows === report.token_rows && report.selected_prehud_rows === 0);
-  requireMatch(`${workId} Hebrew tokens must be button controls`, /<button class="hebrew-token"[\s\S]*?aria-controls="route-hud"/.test(html));
-  requireMatch(`${workId} Hebrew token CSS must look clickable`, /box-shadow: inset 3px 0 0 var\(--accent\);/.test(html) && /text-decoration: underline;/.test(html));
-  requireMatch(`${workId} HUD must be full screen`, /\.route-hud \{[\s\S]*?inset: 0;[\s\S]*?display: flex;/.test(html));
-  requireMatch(`${workId} section tracker must be collapsible`, html.includes("data-section-tracker") && html.includes("data-section-toggle"));
-  requireMatch(`${workId} HUD public wording must be plain`, html.includes("gloss found. choose it to fill the row.") && html.includes("details found. row stays TBD.") && html.includes("no gloss yet. row stays TBD."));
-  requireMatch(`${workId} HUD must not show old public wording`, !/Definition option|Evidence only|Current route answer-slot|route cards|Pipeline Proof|About \/ License/.test(html));
-  return {
-    work_id: workId,
-    rows: rowCount,
-    tbd_rows: report.tbd_fallback_rows,
-    route_lookup_runtime_source: report.route_lookup_runtime_source,
-  };
+const html = read("tanakh/daniel/index.html");
+const report = readJson("reports/daniel-reader-pipeline-page-report.json");
+const occurrences = readJson("data/lexical/occurrences/daniel.json");
+const scopedRouteLookup = readJson("data/definitions/hud-route-lookup-daniel/manifest.json");
+const occurrenceRows = occurrenceRowCount(occurrences);
+
+requireMatch("Daniel title must be plain", html.includes("<title>Daniel | Hebrew Workbench</title>"));
+requireMatch("Daniel must use shared reader css", html.includes('../../assets/css/reader-workbench.css'));
+requireMatch("Daniel must use shared reader js", html.includes('../../assets/js/reader-workbench.js'));
+requireMatch("Daniel must declare lexical config", html.includes("data-lexical-config"));
+requireMatch("Daniel must declare lexical occurrences", html.includes("data-lexical-occurrences"));
+requireMatch("Daniel must declare route HUD panel", html.includes("data-route-hud-panel"));
+requireMatch("Daniel must render lexical units", html.includes("data-lexical-unit"));
+requireMatch("Daniel must keep full-screen HUD shell", /\.lexical-hud \{[\s\S]*?position: fixed;[\s\S]*?inset: 0;/.test(html));
+requireMatch("Daniel must keep Hebrew forms visibly clickable", /\.lexical-word \{[\s\S]*?cursor: pointer;[\s\S]*?text-decoration: underline;/.test(html));
+requireMatch("Daniel must not use standalone pre-HUD rows", !html.includes('class="prehud-row"'));
+requireMatch("Daniel must not use standalone Hebrew token buttons", !html.includes('class="hebrew-token"'));
+requireMatch("Daniel must not inline standalone HUD route payload", !html.includes("data-hud-routes"));
+requireMatch("Daniel report must use shared runtime", report.render_runtime === "shared_reader_workbench");
+requireMatch("Daniel report row count must match occurrences", report.token_rows === occurrenceRows && report.occurrence_total_reported === occurrences.total_occurrences);
+requireMatch("Daniel unresolved rows must remain TBD until shared runtime/hints select them", report.tbd_fallback_rows === report.token_rows && report.selected_prehud_rows === 0);
+requireMatch("Daniel must point to page-scoped route lookup", html.includes("../../data/definitions/hud-route-lookup-daniel/manifest.json"));
+requireMatch("Daniel scoped route lookup must have shards", scopedRouteLookup.scope_work_id === "daniel" && scopedRouteLookup.counts?.shard_count > 0);
+requireMatch("Daniel scoped route lookup must have route cards", scopedRouteLookup.counts?.card_count > 0 && scopedRouteLookup.counts?.candidate_keys_with_routes > 0);
+
+[
+  "/assets/css/reader-workbench.css",
+  "/assets/js/reader-workbench.js",
+  "/data/lexical/daniel.manifest.json",
+  "/data/lexical/daniel-chunks",
+  "/data/lexical/occurrences/daniel.json",
+  "/data/definitions/hud-route-lookup-daniel/manifest.json",
+  "/data/definitions/hud-route-lookup-daniel/shards",
+].forEach((requiredPath) => {
+  requireMatch(`Pages workflow must publish ${requiredPath}`, workflow.includes(requiredPath));
 });
+requireMatch("Pages workflow must not publish Ezekiel", !/ezekiel/i.test(workflow));
 
 const result = {
   ok: issues.length === 0,
   checked_at: new Date().toISOString(),
   corpus_count: corpora.length,
   work_links: workHrefs,
-  works: workResults,
+  works: [{
+    work_id: "daniel",
+    source_units: report.source_units,
+    token_rows: report.token_rows,
+    tbd_rows: report.tbd_fallback_rows,
+    render_runtime: report.render_runtime,
+  }],
   issues,
 };
 

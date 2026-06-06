@@ -1,9 +1,12 @@
 .reader-token-wrap {
-  display: inline-flex;
-  align-items: baseline;
+  display: inline-grid;
+  grid-auto-rows: min-content;
+  justify-items: center;
+  align-items: start;
   vertical-align: baseline;
-  gap: 0.16em;
+  gap: 0.02em;
   margin: 0 0.08em;
+  max-width: min(34rem, calc(100vw - 32px));
 }
 
 .reader-token-wrap .lexical-word {
@@ -11,65 +14,31 @@
 }
 
 .reader-gloss-line {
+  display: block;
   direction: ltr;
   unicode-bidi: isolate;
   color: var(--accent);
   font-size: 0.58em;
-  line-height: 1;
-  max-width: 10em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.05;
+  width: max-content;
+  max-width: min(34rem, calc(100vw - 32px));
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 
-.reader-gloss-line:empty {
-  display: none;
+.reader-gloss-line[data-gloss-placeholder="true"] {
+  color: var(--muted);
+  font-weight: 600;
+  opacity: 0.72;
 }
 
 .lexical-word[data-gloss-selected="true"] {
   border-color: var(--accent);
   background: rgba(214, 190, 138, 0.12);
-}
-
-html.route-hud-open,
-html.route-hud-open body {
-  overflow: hidden;
-}
-
-.lexical-hud {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  width: 100vw;
-  max-width: none;
-  height: 100dvh;
-  min-height: 100vh;
-  max-height: none;
-  border: 0;
-  border-radius: 0;
-  background: var(--panel-2);
-  padding: 18px clamp(14px, 3vw, 34px);
-  box-shadow: none;
-  overflow: auto;
-}
-
-.lexical-hud[hidden] {
-  display: none !important;
-}
-
-.lexical-hud .hud-head {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  margin: -18px calc(clamp(14px, 3vw, 34px) * -1) 14px;
-  padding: 14px clamp(14px, 3vw, 34px) 10px;
-  background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0, 0, 0, 0));
-}
-
-.lexical-hud .route-hud-panel {
-  width: min(1120px, 100%);
-  margin: 0 auto;
-  padding-bottom: 34px;
 }
 
 .reader-workbench-panel {
