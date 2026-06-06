@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T10:01:23.944Z
+Generated: 2026-06-06T10:08:56.281Z
 
 ## State
 
@@ -138,6 +138,7 @@ Generated: 2026-06-06T10:01:23.944Z
 - Old-dictionary candidate-use source-family batch plan batches / rows / multi-single / refs-occurrences / max rows-occurrences / signatures / citation-transform-after-prereq-existingpacket-blocker rows / selection-forbidden-acceptance-release hits: 16/314/12-4/363-7795/138-1261/4-4-3-2/314-314-314-0-314/0-0-0-0
 - Old-dictionary candidate-use source-family queue/batch rows / links / batch-queue-sourcebatch / cross-single / multisource-single / multiqueue source RIDs / max batch-source-occ / ref-occ memberships / citation-transform-after-prereq-existingpacket-blocker links / selection-forbidden-acceptance-release hits: 65/363/94-314/25-40/61-4/43/3-12-1344/475-12111/363-363-363-0-363/0-0-0-0
 - Old-dictionary candidate-use cross-batch queue guard rows / links / batchlinks / sourceRIDs / queue-token-batch IDs / three-two / max batch-source-occ / ref-occ / summaries / citation-transform-after-prereq-existingpacket-blocker links / selection-forbidden-acceptance-release hits: 25/163/54/121/25-27-14/4-21/3-11-1344/266-8811/14-3-4-3/163-163-163-0-163/0-0-0-0
+- Old-dictionary candidate-use single-batch queue workset rows / links / batchlinks / sourceRIDs / queue-token-batch IDs / multisource-single-cross / max source-occ / ref-occ / summaries / citation-transform-after-prereq-existingpacket-blocker links / selection-forbidden-acceptance-release hits: 40/200/40/200/40-44-11/36-4-0/12-450/209-3300/11-4-3-3/200-200-200-0-200/0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -151,8 +152,8 @@ Generated: 2026-06-06T10:01:23.944Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 163/163 |
-| validator_scripts_exist | passed | 83/83 |
+| evidence_artifacts_exist | passed | 165/165 |
+| validator_scripts_exist | passed | 84/84 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
