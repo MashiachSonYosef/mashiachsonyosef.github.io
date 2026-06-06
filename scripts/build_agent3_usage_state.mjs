@@ -89,6 +89,8 @@ const defaults = {
     'reports/agent3-old-dictionary-candidate-use-direct-source-citation-prereq-matrix-2026-06-06.json',
   oldDictionaryCandidateUseSourceFamilySelectionExclusionInventory:
     'reports/agent3-old-dictionary-candidate-use-source-family-selection-exclusion-inventory-2026-06-06.json',
+  oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset:
+    'reports/agent3-old-dictionary-candidate-use-unpacketized-source-family-selection-workset-2026-06-06.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   usageConcordance: 'data/workbench-evidence/usage-concordance.json',
   usageHandoffIndex: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -253,6 +255,9 @@ const oldDictionaryCandidateUseDirectSourceCitationPrereqMatrix = readJson(
 );
 const oldDictionaryCandidateUseSourceFamilySelectionExclusionInventory = readJson(
   options.oldDictionaryCandidateUseSourceFamilySelectionExclusionInventory,
+);
+const oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset = readJson(
+  options.oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset,
 );
 const smokeValidation = readJson(options.smokeValidation);
 const usageConcordance = readJson(options.usageConcordance);
@@ -545,6 +550,14 @@ if (
     `${options.oldDictionaryCandidateUseSourceFamilySelectionExclusionInventory} is not an Agent 3 old-dictionary candidate-use source-family-selection exclusion inventory`,
   );
 }
+if (
+  oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.artifact_type !==
+  'agent3_old_dictionary_candidate_use_unpacketized_source_family_selection_workset'
+) {
+  throw new Error(
+    `${options.oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset} is not an Agent 3 old-dictionary candidate-use unpacketized source-family-selection workset`,
+  );
+}
 if (publicHandoffIndex.artifact_type !== 'workbench_public_handoff_index') {
   throw new Error(`${options.publicHandoffIndex} is not a public handoff index`);
 }
@@ -662,6 +675,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-old-dictionary-candidate-use-direct-source-citation-prereq-matrix-2026-06-06.md',
   options.oldDictionaryCandidateUseSourceFamilySelectionExclusionInventory,
   'reports/agent3-old-dictionary-candidate-use-source-family-selection-exclusion-inventory-2026-06-06.md',
+  options.oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset,
+  'reports/agent3-old-dictionary-candidate-use-unpacketized-source-family-selection-workset-2026-06-06.md',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md',
   'reports/agent3-current-control-drift-refresh-2026-06-04.json',
@@ -764,6 +779,7 @@ const validators = unique([
   'scripts/validate_agent3_old_dictionary_candidate_use_agent6_source_family_boundary_prereq_matrix.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_direct_source_citation_prereq_matrix.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_source_family_selection_exclusion_inventory.mjs',
+  'scripts/validate_agent3_old_dictionary_candidate_use_unpacketized_source_family_selection_workset.mjs',
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
   'scripts/validate_definition_workbench_usage_seed_queue.mjs',
   'scripts/validate_definition_workbench_usage_join_smoke.mjs',
@@ -1495,6 +1511,25 @@ const artifact = {
     old_dictionary_candidate_use_source_family_selection_exclusion_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseSourceFamilySelectionExclusionInventory.counts?.forbidden_payload_field_hits || 0),
     old_dictionary_candidate_use_source_family_selection_exclusion_acceptance_claims: Number(oldDictionaryCandidateUseSourceFamilySelectionExclusionInventory.counts?.acceptance_claims || 0),
     old_dictionary_candidate_use_source_family_selection_exclusion_release_actions: Number(oldDictionaryCandidateUseSourceFamilySelectionExclusionInventory.counts?.release_actions || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_rows: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.workset_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_occurrences: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.occurrence_total || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_source_rid_refs: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.source_rid_references || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_prefixes: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.unique_source_rid_prefixes || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_queue_ids: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.unique_queue_ids || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_token_ids: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.unique_token_ids || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_family_signatures: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.source_family_signature_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_triage_signatures: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.triage_signature_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_impact_buckets: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.impact_bucket_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_partition_signatures: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.partition_signature_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_citation_required_rows: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.source_citation_required_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_transform_blocked_rows: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.transform_rule_still_blocked_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_after_prereq_rows: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.agent6_boundary_after_prereq_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_existing_packet_rows: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.source_family_boundary_packet_exists_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_blocker_rows: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.source_family_selection_boundary_blocker_rows || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_selection_claims: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.source_family_selection_claims || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.forbidden_payload_field_hits || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_acceptance_claims: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.acceptance_claims || 0),
+    old_dictionary_candidate_use_unpacketized_source_family_selection_release_actions: Number(oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset.counts?.release_actions || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -2313,6 +2348,7 @@ function writeReport(relativePath, artifact) {
     `- Old-dictionary candidate-use Agent 6 boundary prereq rows / prefixes / occurrences / queue-token IDs / source families / citation-transform-after-prereq-ready rows / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_rows}/${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_prefix_rows}/${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_unique_queue_ids}-${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_unique_token_ids}/${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_source_family_count}/${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_citation_required_rows}-${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_transform_blocked_rows}-${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_after_prereq_rows}-${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_ready_now_rows}/${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_agent6_boundary_prereq_release_actions}`,
     `- Old-dictionary candidate-use direct source-citation rows / excluded source-family-boundary-Agent6 rows / occurrences / prefix-source-family rows / citation-transform-after-prereq-source-family-blocker rows / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_rows}/${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_excluded_source_family_boundary_rows}-${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_excluded_agent6_prereq_rows}/${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_prefix_rows}-${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_source_family_rows}/${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_citation_required_rows}-${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_transform_blocked_rows}-${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_after_prereq_rows}-${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_source_family_blocker_rows}/${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_direct_source_citation_release_actions}`,
     `- Old-dictionary candidate-use source-family selection exclusion rows / direct non-excluded / Agent6-covered-unpacketized / occurrences / classifications-prefixes / citation-transform-after-prereq-blocker rows / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_rows}/${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_direct_rows}/${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_agent6_covered_rows}-${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_unpacketized_rows}/${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_classification_rows}-${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_prefix_rows}/${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_citation_required_rows}-${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_transform_blocked_rows}-${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_after_prereq_rows}-${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_blocker_rows}/${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_source_family_selection_exclusion_release_actions}`,
+    `- Old-dictionary candidate-use unpacketized source-family workset rows / refs-occurrences / prefixes-queue-token IDs / family-triage-impact-partition signatures / citation-transform-after-prereq-existingpacket-blocker rows / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_rows}/${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_source_rid_refs}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_prefixes}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_queue_ids}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_token_ids}/${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_family_signatures}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_triage_signatures}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_impact_buckets}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_partition_signatures}/${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_citation_required_rows}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_transform_blocked_rows}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_after_prereq_rows}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_existing_packet_rows}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_blocker_rows}/${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_unpacketized_source_family_selection_release_actions}`,
     `- Proof rows / complete metadata: ${artifact.current_metrics.proof_occurrence_rows}/${artifact.current_metrics.proof_rows_with_complete_metadata}`,
     `- Hebrew context / mojibake rows: ${artifact.current_metrics.proof_rows_with_hebrew_context}/${artifact.current_metrics.proof_mojibake_rows}`,
     `- Reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.reader_facing_rows}/${artifact.current_metrics.route_payload_field_hits}/${artifact.current_metrics.forbidden_authority_field_hits}`,
@@ -2442,6 +2478,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--old-dictionary-candidate-use-agent6-source-family-boundary-prereq-matrix=')) parsed.oldDictionaryCandidateUseAgent6SourceFamilyBoundaryPrereqMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-direct-source-citation-prereq-matrix=')) parsed.oldDictionaryCandidateUseDirectSourceCitationPrereqMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-source-family-selection-exclusion-inventory=')) parsed.oldDictionaryCandidateUseSourceFamilySelectionExclusionInventory = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--old-dictionary-candidate-use-unpacketized-source-family-selection-workset=')) parsed.oldDictionaryCandidateUseUnpacketizedSourceFamilySelectionWorkset = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-concordance=')) parsed.usageConcordance = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-handoff-index=')) parsed.usageHandoffIndex = cleanRelativePath(valueAfterEquals(arg));

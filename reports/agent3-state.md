@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T09:29:24.644Z
+Generated: 2026-06-06T09:37:19.736Z
 
 ## State
 
@@ -134,6 +134,7 @@ Generated: 2026-06-06T09:29:24.644Z
 - Old-dictionary candidate-use Agent 6 boundary prereq rows / prefixes / occurrences / queue-token IDs / source families / citation-transform-after-prereq-ready rows / selection-forbidden-acceptance-release hits: 25/10/331/9-9/1/25-25-25-0/0-0-0-0
 - Old-dictionary candidate-use direct source-citation rows / excluded source-family-boundary-Agent6 rows / occurrences / prefix-source-family rows / citation-transform-after-prereq-source-family-blocker rows / selection-forbidden-acceptance-release hits: 5/339-25/58/5-1/5-5-5-0/0-0-0-0
 - Old-dictionary candidate-use source-family selection exclusion rows / direct non-excluded / Agent6-covered-unpacketized / occurrences / classifications-prefixes / citation-transform-after-prereq-blocker rows / selection-forbidden-acceptance-release hits: 339/5/25-314/8126/2-20/339-339-339-339/0-0-0-0
+- Old-dictionary candidate-use unpacketized source-family workset rows / refs-occurrences / prefixes-queue-token IDs / family-triage-impact-partition signatures / citation-transform-after-prereq-existingpacket-blocker rows / selection-forbidden-acceptance-release hits: 314/363-7795/19-65-65/4-4-3-2/314-314-314-0-314/0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -147,8 +148,8 @@ Generated: 2026-06-06T09:29:24.644Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 155/155 |
-| validator_scripts_exist | passed | 79/79 |
+| evidence_artifacts_exist | passed | 157/157 |
+| validator_scripts_exist | passed | 80/80 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
