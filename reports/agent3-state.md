@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T13:24:58.993Z
+Generated: 2026-06-06T13:34:43.586Z
 
 ## State
 
@@ -161,6 +161,7 @@ Generated: 2026-06-06T13:24:58.993Z
 - Old-dictionary candidate-use bridge-gap direct source-RID locator rows / occ-sourceRIDs / A2-PDexact-PDall-commercialexact-commercialall-refgap / citationpresent-transformblocked-zeroref-timeouts / A07-A06-A06approval / license-provenance-citationsupplied-sourcetext-definition-acceptedtext-release-acceptance-forbidden claims: 5/58-5/5-5-6-5-6-1/0-5-1-1/5-5-0/0-0-0-0-0-0-0-0-0
 - Old-dictionary candidate-use bridge-gap direct source-RID anomaly reviewed-selected-nonanomaly / selectedocc-reviewedocc-anomalyRIDs-reviewedRIDs / duplicatePD-duplicateCommercial-zeroPD-zeroCommercial-refgap-multiPD-multiCommercial / citationpresent-transformblocked-inheritedTimeouts-newBroadSearch / A07-A06-A06approval / license-provenance-citationsupplied-sourcetext-definition-answer-acceptedtext-release-acceptance-forbidden claims: 5-3-2/42-58-3-5/1-1-1-1-1-1-1/0-5-1-0/5-5-0/0-0-0-0-0-0-0-0-0-0
 - Old-dictionary candidate-use bridge-gap direct source-RID owner/action reviewed-selected-action / occ-sourceRIDs / dedupe-refgap-exactscope / Agent10-Agent1-Agent2-A07-A06-fields / citationpresent-transformblocked-inheritedTimeouts-newBroadSearch / A07-A06-A06approval / license-provenance-citationsupplied-sourcetext-definition-answer-routepub-acceptedtext-releaseactions-releaseclaims-acceptance-forbidden claims: 5-3-3/42-3/1-1-1/3-3-3-3-3-36/0-3-1-0/3-3-0/0-0-0-0-0-0-0-0-0-0-0-0
+- Old-dictionary candidate-use bridge-gap direct source-RID downstream gap action-gaps-occ-sourceRIDs / coverage-Agent2-valid-A10broad-A10preboundary / A10source-A10preboundary-A10refresh-Agent1alignment rowlevel / citationpresent-transformblocked-fields / A07-A06-A06approval / license-provenance-citationsupplied-sourcetext-definition-answer-routepub-acceptedtext-releaseactions-releaseclaims-acceptance-forbidden claims: 3-3-42-3/3-3-3-3-3/0-0-0-0/0-3-21/3-3-0/0-0-0-0-0-0-0-0-0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -174,8 +175,8 @@ Generated: 2026-06-06T13:24:58.993Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; approval A07; evidence A06; stored acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 201/201 |
-| validator_scripts_exist | passed | 102/102 |
+| evidence_artifacts_exist | passed | 203/203 |
+| validator_scripts_exist | passed | 103/103 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
