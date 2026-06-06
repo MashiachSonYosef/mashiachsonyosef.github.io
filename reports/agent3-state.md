@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T11:12:45.997Z
+Generated: 2026-06-06T11:22:33.194Z
 
 ## State
 
@@ -146,6 +146,7 @@ Generated: 2026-06-06T11:12:45.997Z
 - Old-dictionary candidate-use queue/source subchain handoff entries / artifacts json-report-validator-type-ready / source-refs-queues-pairs / cross-closure / diag-dedupe-coverage / source-vs-membership occ / authority-entry hits / selection-forbidden-acceptance-release hits: 8/8-8-8-0-8/314-363-65-363/25-40-0-0-0-0-0-0/7-9-363-0-0-0-0-0-0-0/7795-12111/0/0-0-0-0
 - Old-dictionary candidate-use queue/source boundary blocker rows / inputs dedupe-coverage-handoff / keys unique-dupe-source-queue / summaries partition-signature-exact / cross-single / flags citation-present-transform-Agent6-familyblocker-packet / diagnostics source-batch-both / ref-occ-sourceocc / selection-forbidden-acceptance-release hits: 363/363-314-8/363-0-314-65/2-1-1/163-200/363-0-363-363-363-0/16-288-16/475-12111-7795/0-0-0-0
 - Old-dictionary candidate-use queue/source candidate-row bridge rows / occurrences / linked-outside rows / linked-outside occurrences / blockers-pairs-sourceRIDs-membershipOcc / sourceRID exact-missing-extra-outside / queue gaps candidate-source / diagnostics bridge-source-batch-linksource-linkbatch / selection-forbidden-acceptance-release hits: 78/1461/65-13/1299-162/363-363-314-12111/64-1-0-13/13-0/6-60-16-288/0-0-0-0
+- Old-dictionary candidate-use queue/source bridge gap workset rows / occurrences / outside-linkedmissing-linkedextra rows / outside-linkedmissing-linkedextra occurrences / sourceRID refs total-outside-linked-extra / carried blockers-pairs-sourceRIDs-membershipOcc-currentblockers / selection-forbidden-acceptance-release hits: 14/173/13-1-0/162-11-0/30-29-1-0/1-1-1-21-140/0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -159,8 +160,8 @@ Generated: 2026-06-06T11:12:45.997Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 179/179 |
-| validator_scripts_exist | passed | 91/91 |
+| evidence_artifacts_exist | passed | 181/181 |
+| validator_scripts_exist | passed | 92/92 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
