@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T10:52:59.488Z
+Generated: 2026-06-06T11:00:14.840Z
 
 ## State
 
@@ -144,6 +144,7 @@ Generated: 2026-06-06T10:52:59.488Z
 - Old-dictionary candidate-use queue/source dedupe key rows / cross-single / unique-duplicate keys / queue-source-token-batch IDs / diagnostic rows / ref-occ / citation-present-transform-Agent6-blocker / selection-forbidden-acceptance-release hits: 363/163-200/363-0/65-314-65-16/16-7-288-9-16/475-12111/363-0-363-363-363/0-0-0-0
 - Old-dictionary candidate-use source-RID dedupe coverage rows / workset-refs-dedupe-sourceRIDs / missing-extra source-pairs / ref-queue mismatches / source-vs-membership occ / multi-single / diagnostic rows / citation-present-transform-Agent6-blocker / selection-forbidden-acceptance-release hits: 314/314-363-363-314/0-0-0-0/0-0/7795-12111/43-271/7-16-273-288-7/314-0-314-314-314/0-0-0-0
 - Old-dictionary candidate-use queue/source subchain handoff entries / artifacts json-report-validator-type-ready / source-refs-queues-pairs / cross-closure / diag-dedupe-coverage / source-vs-membership occ / authority-entry hits / selection-forbidden-acceptance-release hits: 8/8-8-8-0-8/314-363-65-363/25-40-0-0-0-0-0-0/7-9-363-0-0-0-0-0-0-0/7795-12111/0/0-0-0-0
+- Old-dictionary candidate-use queue/source boundary blocker rows / inputs dedupe-coverage-handoff / keys unique-dupe-source-queue / summaries partition-signature-exact / cross-single / flags citation-present-transform-Agent6-familyblocker-packet / diagnostics source-batch-both / ref-occ-sourceocc / selection-forbidden-acceptance-release hits: 363/363-314-8/363-0-314-65/2-1-1/163-200/363-0-363-363-363-0/16-288-16/475-12111-7795/0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -157,8 +158,8 @@ Generated: 2026-06-06T10:52:59.488Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 175/175 |
-| validator_scripts_exist | passed | 89/89 |
+| evidence_artifacts_exist | passed | 177/177 |
+| validator_scripts_exist | passed | 90/90 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
