@@ -111,6 +111,8 @@ const defaults = {
     'reports/agent3-old-dictionary-candidate-use-queue-source-subchain-handoff-index-2026-06-06.json',
   oldDictionaryCandidateUseQueueSourceBoundaryBlockerMatrix:
     'reports/agent3-old-dictionary-candidate-use-queue-source-boundary-blocker-matrix-2026-06-06.json',
+  oldDictionaryCandidateUseQueueSourceCandidateRowBridge:
+    'reports/agent3-old-dictionary-candidate-use-queue-source-candidate-row-bridge-2026-06-06.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   usageConcordance: 'data/workbench-evidence/usage-concordance.json',
   usageHandoffIndex: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -308,6 +310,9 @@ const oldDictionaryCandidateUseQueueSourceSubchainHandoffIndex = readJson(
 );
 const oldDictionaryCandidateUseQueueSourceBoundaryBlockerMatrix = readJson(
   options.oldDictionaryCandidateUseQueueSourceBoundaryBlockerMatrix,
+);
+const oldDictionaryCandidateUseQueueSourceCandidateRowBridge = readJson(
+  options.oldDictionaryCandidateUseQueueSourceCandidateRowBridge,
 );
 const smokeValidation = readJson(options.smokeValidation);
 const usageConcordance = readJson(options.usageConcordance);
@@ -679,6 +684,14 @@ if (
     `${options.oldDictionaryCandidateUseQueueSourceBoundaryBlockerMatrix} is not an Agent 3 old-dictionary candidate-use queue/source boundary blocker matrix`,
   );
 }
+if (
+  oldDictionaryCandidateUseQueueSourceCandidateRowBridge.artifact_type !==
+  'agent3_old_dictionary_candidate_use_queue_source_candidate_row_bridge'
+) {
+  throw new Error(
+    `${options.oldDictionaryCandidateUseQueueSourceCandidateRowBridge} is not an Agent 3 old-dictionary candidate-use queue/source candidate-row bridge`,
+  );
+}
 if (publicHandoffIndex.artifact_type !== 'workbench_public_handoff_index') {
   throw new Error(`${options.publicHandoffIndex} is not a public handoff index`);
 }
@@ -818,6 +831,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-old-dictionary-candidate-use-queue-source-subchain-handoff-index-2026-06-06.md',
   options.oldDictionaryCandidateUseQueueSourceBoundaryBlockerMatrix,
   'reports/agent3-old-dictionary-candidate-use-queue-source-boundary-blocker-matrix-2026-06-06.md',
+  options.oldDictionaryCandidateUseQueueSourceCandidateRowBridge,
+  'reports/agent3-old-dictionary-candidate-use-queue-source-candidate-row-bridge-2026-06-06.md',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md',
   'reports/agent3-current-control-drift-refresh-2026-06-04.json',
@@ -931,6 +946,7 @@ const validators = unique([
   'scripts/validate_agent3_old_dictionary_candidate_use_source_rid_dedupe_coverage_crossmatch.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_queue_source_subchain_handoff_index.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_queue_source_boundary_blocker_matrix.mjs',
+  'scripts/validate_agent3_old_dictionary_candidate_use_queue_source_candidate_row_bridge.mjs',
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
   'scripts/validate_definition_workbench_usage_seed_queue.mjs',
   'scripts/validate_definition_workbench_usage_join_smoke.mjs',
@@ -1820,6 +1836,18 @@ const artifact = {
     old_dictionary_candidate_use_queue_source_boundary_blocker_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseQueueSourceBoundaryBlockerMatrix.counts?.forbidden_payload_field_hits || 0),
     old_dictionary_candidate_use_queue_source_boundary_blocker_acceptance_claims: Number(oldDictionaryCandidateUseQueueSourceBoundaryBlockerMatrix.counts?.acceptance_claims || 0),
     old_dictionary_candidate_use_queue_source_boundary_blocker_release_actions: Number(oldDictionaryCandidateUseQueueSourceBoundaryBlockerMatrix.counts?.release_actions || 0),
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_rows: Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.candidate_bridge_rows || 0),
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_occurrences: Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.candidate_bridge_occurrences || 0),
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_linked_outside: `${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.queue_source_subchain_linked_candidate_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.outside_queue_source_subchain_candidate_rows || 0)}`,
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_linked_outside_occurrences: `${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.queue_source_subchain_linked_candidate_occurrences || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.outside_queue_source_subchain_candidate_occurrences || 0)}`,
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_linked_pairs_source_occ: `${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.queue_source_blocker_rows_linked || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.queue_source_pair_keys_linked_unique || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.queue_source_unique_source_rids_linked || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.queue_source_occurrence_membership_total_linked || 0)}`,
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_source_rid_status: `${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.source_rid_exact_match_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.source_rid_missing_from_queue_source_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.source_rid_extra_in_queue_source_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.source_rid_outside_subchain_rows || 0)}`,
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_queue_gaps: `${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.candidate_queue_ids_missing_queue_source_subchain || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.queue_source_queue_ids_missing_candidate_row || 0)}`,
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_diagnostics: `${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.source_rid_overlap_diagnostic_bridge_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.batch_id_overlap_diagnostic_bridge_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.source_rid_overlap_diagnostic_link_rows || 0)}-${Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.batch_id_overlap_diagnostic_link_rows || 0)}`,
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_selection_claims: Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.source_family_selection_claims || 0),
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.forbidden_payload_field_hits || 0),
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_acceptance_claims: Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.acceptance_claims || 0),
+    old_dictionary_candidate_use_queue_source_candidate_row_bridge_release_actions: Number(oldDictionaryCandidateUseQueueSourceCandidateRowBridge.counts?.release_actions || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -2649,6 +2677,7 @@ function writeReport(relativePath, artifact) {
     `- Old-dictionary candidate-use source-RID dedupe coverage rows / workset-refs-dedupe-sourceRIDs / missing-extra source-pairs / ref-queue mismatches / source-vs-membership occ / multi-single / diagnostic rows / citation-present-transform-Agent6-blocker / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_rows}/${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_source_refs}/${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_missing_extra}/${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_mismatch}/${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_multi_single}/${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_diagnostics}/${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_citation_transform_boundary}/${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_source_rid_dedupe_coverage_release_actions}`,
     `- Old-dictionary candidate-use queue/source subchain handoff entries / artifacts json-report-validator-type-ready / source-refs-queues-pairs / cross-closure / diag-dedupe-coverage / source-vs-membership occ / authority-entry hits / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_entries}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_artifacts}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_source_queue_pairs}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_cross_closure}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_diag_dedupe_coverage}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_entries_with_authority_counters}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_subchain_handoff_release_actions}`,
     `- Old-dictionary candidate-use queue/source boundary blocker rows / inputs dedupe-coverage-handoff / keys unique-dupe-source-queue / summaries partition-signature-exact / cross-single / flags citation-present-transform-Agent6-familyblocker-packet / diagnostics source-batch-both / ref-occ-sourceocc / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_rows}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_inputs}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_keys}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_summary_rows}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_cross_single}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_flags}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_diagnostics}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_ref_occ}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_boundary_blocker_release_actions}`,
+    `- Old-dictionary candidate-use queue/source candidate-row bridge rows / occurrences / linked-outside rows / linked-outside occurrences / blockers-pairs-sourceRIDs-membershipOcc / sourceRID exact-missing-extra-outside / queue gaps candidate-source / diagnostics bridge-source-batch-linksource-linkbatch / selection-forbidden-acceptance-release hits: ${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_rows}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_linked_outside}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_linked_outside_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_linked_pairs_source_occ}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_source_rid_status}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_queue_gaps}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_diagnostics}/${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_selection_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_forbidden_payload_field_hits}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_acceptance_claims}-${artifact.current_metrics.old_dictionary_candidate_use_queue_source_candidate_row_bridge_release_actions}`,
     `- Proof rows / complete metadata: ${artifact.current_metrics.proof_occurrence_rows}/${artifact.current_metrics.proof_rows_with_complete_metadata}`,
     `- Hebrew context / mojibake rows: ${artifact.current_metrics.proof_rows_with_hebrew_context}/${artifact.current_metrics.proof_mojibake_rows}`,
     `- Reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.reader_facing_rows}/${artifact.current_metrics.route_payload_field_hits}/${artifact.current_metrics.forbidden_authority_field_hits}`,
@@ -2789,6 +2818,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--old-dictionary-candidate-use-source-rid-dedupe-coverage-crossmatch=')) parsed.oldDictionaryCandidateUseSourceRidDedupeCoverageCrossmatch = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-queue-source-subchain-handoff-index=')) parsed.oldDictionaryCandidateUseQueueSourceSubchainHandoffIndex = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-queue-source-boundary-blocker-matrix=')) parsed.oldDictionaryCandidateUseQueueSourceBoundaryBlockerMatrix = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--old-dictionary-candidate-use-queue-source-candidate-row-bridge=')) parsed.oldDictionaryCandidateUseQueueSourceCandidateRowBridge = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-concordance=')) parsed.usageConcordance = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-handoff-index=')) parsed.usageHandoffIndex = cleanRelativePath(valueAfterEquals(arg));
