@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T11:32:34.970Z
+Generated: 2026-06-06T11:48:42.898Z
 
 ## State
 
@@ -148,6 +148,7 @@ Generated: 2026-06-06T11:32:34.970Z
 - Old-dictionary candidate-use queue/source candidate-row bridge rows / occurrences / linked-outside rows / linked-outside occurrences / blockers-pairs-sourceRIDs-membershipOcc / sourceRID exact-missing-extra-outside / queue gaps candidate-source / diagnostics bridge-source-batch-linksource-linkbatch / selection-forbidden-acceptance-release hits: 78/1461/65-13/1299-162/363-363-314-12111/64-1-0-13/13-0/6-60-16-288/0-0-0-0
 - Old-dictionary candidate-use queue/source bridge gap workset rows / occurrences / outside-linkedmissing-linkedextra rows / outside-linkedmissing-linkedextra occurrences / sourceRID refs total-outside-linked-extra / carried blockers-pairs-sourceRIDs-membershipOcc-currentblockers / selection-forbidden-acceptance-release hits: 14/173/13-1-0/162-11-0/30-29-1-0/1-1-1-21-140/0-0-0-0
 - Old-dictionary candidate-use bridge-gap source-RID blocker crossmatch rows / refs-occ / blocker-present-missing-coverage-present-missing / queues-tokens-prefixes / blocker refs-occ-currentblockers / citation-transform-Agent6 blocker flags / selection-forbidden-acceptance-release hits: 30/30-389/30-0-0-30/14-14-12/30-389-300/30-30-30/0-0-0-0
+- Old-dictionary candidate-use bridge-gap source-RID prereq route crossmatch rows / refs-occ / A06direct-both-missing / A06direct occ / blocker-coverage-prereqblockers-sourceblockers / citation-transform-boundary-route-candidate-public flags / selection-forbidden-acceptance-release hits: 30/30-389/25-5-0-0/331-58/30-0-300-300/30-30-30-0-0-0/0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -161,8 +162,8 @@ Generated: 2026-06-06T11:32:34.970Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 183/183 |
-| validator_scripts_exist | passed | 93/93 |
+| evidence_artifacts_exist | passed | 185/185 |
+| validator_scripts_exist | passed | 94/94 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
