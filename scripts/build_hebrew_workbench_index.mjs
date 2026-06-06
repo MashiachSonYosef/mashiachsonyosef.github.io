@@ -1,9 +1,52 @@
-<!DOCTYPE html>
+import fs from "node:fs";
+import path from "node:path";
+
+const root = process.cwd();
+const catalogPath = path.join(root, "data/site/hebrew-workbench-catalog.json");
+const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
+
+const escapeHtml = (value) => String(value ?? "")
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;")
+  .replace(/'/g, "&#39;");
+
+const escapeAttr = escapeHtml;
+
+function workLinks(works = []) {
+  return works.map((work) => `
+            <a class="work-link" href="${escapeAttr(work.href)}">${escapeHtml(work.label)}</a>`).join("");
+}
+
+function corpusCard(corpus) {
+  const works = Array.isArray(corpus.works) ? corpus.works : [];
+  if (works.length) {
+    return `
+        <details class="corpus-card" data-live="true" id="${escapeAttr(corpus.id)}"${corpus.open ? " open" : ""}>
+          <summary>${escapeHtml(corpus.label)}</summary>
+          <div class="work-list">
+${workLinks(works)}
+          </div>
+        </details>`;
+  }
+  return `
+        <div class="corpus-card" id="${escapeAttr(corpus.id)}">
+          <span>${escapeHtml(corpus.label)}</span>
+        </div>`;
+}
+
+function downloadLink(download) {
+  return `
+        <a class="download-link" href="${escapeAttr(download.href)}" download>${escapeHtml(download.label)}</a>`;
+}
+
+const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>hebrew work bench</title>
+  <title>${escapeHtml(catalog.title)}</title>
   <style>
     :root {
       color-scheme: dark;
@@ -163,74 +206,30 @@
 <body>
   <main>
     <header>
-      <h1>hebrew work bench</h1>
+      <h1>${escapeHtml(catalog.title)}</h1>
     </header>
 
     <section aria-labelledby="corpus-title">
-      <h2 id="corpus-title">11 corpus org chart</h2>
+      <h2 id="corpus-title">${escapeHtml(catalog.corpus_heading)}</h2>
       <div class="corpus-grid">
-
-        <details class="corpus-card" data-live="true" id="tanakh" open>
-          <summary>tanakh</summary>
-          <div class="work-list">
-
-            <a class="work-link" href="tanakh/daniel/">daniel</a>
-          </div>
-        </details>
-
-        <div class="corpus-card" id="mishnah">
-          <span>mishnah</span>
-        </div>
-
-        <div class="corpus-card" id="midrash">
-          <span>midrash</span>
-        </div>
-
-        <div class="corpus-card" id="talmud">
-          <span>talmud</span>
-        </div>
-
-        <div class="corpus-card" id="halakhah">
-          <span>halakhah</span>
-        </div>
-
-        <div class="corpus-card" id="kabbalah">
-          <span>kabbalah</span>
-        </div>
-
-        <div class="corpus-card" id="thought">
-          <span>thought / musar / chasidut</span>
-        </div>
-
-        <div class="corpus-card" id="second-temple">
-          <span>second temple</span>
-        </div>
-
-        <div class="corpus-card" id="liturgy">
-          <span>liturgy</span>
-        </div>
-
-        <div class="corpus-card" id="targum">
-          <span>targum</span>
-        </div>
-
-        <details class="corpus-card" data-live="true" id="featured" open>
-          <summary>featured</summary>
-          <div class="work-list">
-
-            <a class="work-link" href="tanakh/daniel/">daniel</a>
-          </div>
-        </details>
+${catalog.corpora.map(corpusCard).join("\n")}
       </div>
     </section>
 
     <footer class="downloads" aria-labelledby="downloads-title">
-      <h2 id="downloads-title">potential downloads</h2>
+      <h2 id="downloads-title">${escapeHtml(catalog.downloads_heading)}</h2>
       <div class="download-list">
-
-        <a class="download-link" href="data/public-lexical/by-work/daniel-token-claims-min60.csv" download>full csv</a>
+${(catalog.downloads || []).map(downloadLink).join("\n")}
       </div>
     </footer>
   </main>
 </body>
 </html>
+`;
+
+fs.writeFileSync(path.join(root, "index.html"), html, "utf8");
+console.log(JSON.stringify({
+  generated: "index.html",
+  corpora: catalog.corpora.length,
+  featured_works: (catalog.corpora.find((corpus) => corpus.id === "featured")?.works || []).length,
+}, null, 2));

@@ -18,6 +18,7 @@ trigger | action | output artifact | success condition | timeout | fallback | ow
 ---|---|---|---|---|---|---
 owner changes splash wording | edit only root `index.html` | root page | visible copy matches owner wording | 10 minutes | revert to last owner-approved splash wording | publisher
 plain-language rule active | remove explanatory hero copy | root page | only title, corpus chart, downloads remain | immediate | block extra copy | publisher
+root links change | edit `data/site/hebrew-workbench-catalog.json` then run `node scripts/build_hebrew_workbench_index.mjs` | root page | corpus cards expand to work links; no corpus tile links straight to a work | 10 minutes | restore last valid catalog | publisher
 
 ## 3. Organize corpus of TBD Hebrew
 
@@ -25,6 +26,7 @@ trigger | action | output artifact | success condition | timeout | fallback | ow
 ---|---|---|---|---|---|---
 new corpus/work enters site queue | assign one of 11 corpus buckets | root chart plus work path | work has stable corpus path | 10 minutes | place in `other` until owner classifies | catalog owner
 work not approved for live route | keep source data but omit live link | root page | no unapproved work link appears | immediate | remove homepage link | publisher
+featured list changes | add or remove only the work row under `featured` in the catalog | catalog plus root page | featured points to existing work paths only; it creates no duplicate work artifact | 10 minutes | remove featured row until path is valid | publisher
 
 ## 4. Organize a book page
 
@@ -39,6 +41,7 @@ reader needs less page chrome | provide section tracker hide/show button | book 
 trigger | action | output artifact | success condition | timeout | fallback | owner
 ---|---|---|---|---|---|---
 Hebrew token clicked | open full-screen HUD | work page | HUD appears above page, not inline below rows | 5 seconds | show lookup failure in HUD | renderer
+Hebrew token renders | style token as a visible button/link target | work page | Hebrew token has visible click affordance and opens HUD | immediate | strengthen token border/underline | renderer
 evidence exists | show source/license details inside HUD | work page | evidence visible without changing pre-HUD | 5 seconds | show no details | renderer
 public HUD text changes | keep labels in plain workbench language | work page | labels use gloss/source/details/use gloss, not route jargon | immediate | block wording until rewritten plainly | renderer
 

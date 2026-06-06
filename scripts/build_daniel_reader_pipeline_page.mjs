@@ -327,13 +327,18 @@ const html = `<!DOCTYPE html>
       width: 100%;
       border: 0;
       border-right: 1px solid rgba(214, 190, 138, 0.2);
-      background: rgba(255, 255, 255, 0.018);
+      box-shadow: inset 3px 0 0 var(--accent);
+      background: linear-gradient(90deg, rgba(216, 195, 141, 0.11), rgba(255, 255, 255, 0.018));
       color: var(--hebrew);
-      font: 1.18rem/1.35 Georgia, "Times New Roman", serif;
-      padding: 7px 10px;
+      font: 1.24rem/1.35 Georgia, "Times New Roman", serif;
+      padding: 8px 10px 8px 13px;
       text-align: left;
       cursor: pointer;
       overflow-wrap: anywhere;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-decoration-color: rgba(216, 195, 141, 0.72);
+      text-underline-offset: 4px;
     }
 
     .hebrew-token:hover,
@@ -691,6 +696,13 @@ ${unitsHtml.join("\n")}
         return routeRenderings(card).map((line) => String(line || "").replace(/\\s+/g, " ").trim().toLowerCase()).filter(Boolean).join(" | ");
       }
 
+      function cardIdentity(card) {
+        const sources = cleanValues(card.source_rows)
+          .map((row) => [row.source_name, row.source_id, row.license, row.license_url].map((value) => String(value || "").trim()).join("|"))
+          .join(";");
+        return [answerTextKey(card), routeSection(card), card.match_type || card.route_type || "", routeScore(card), sources].join("\\u001f");
+      }
+
       function compareRouteCards(leftCard, rightCard) {
         const left = [-(routeScore(leftCard) ?? -1000), routeSectionRank.get(routeSection(leftCard)) ?? 9, -(Number.isFinite(leftCard.answer_score) ? leftCard.answer_score : 0), String(leftCard.card_id || "")];
         const right = [-(routeScore(rightCard) ?? -1000), routeSectionRank.get(routeSection(rightCard)) ?? 9, -(Number.isFinite(rightCard.answer_score) ? rightCard.answer_score : 0), String(rightCard.card_id || "")];
@@ -863,7 +875,7 @@ ${unitsHtml.join("\n")}
             cards.push(...cardsFromClaim(row));
           }
         });
-        return cards.sort(compareRouteCards);
+        return [...new Map(cards.map((card) => [cardIdentity(card), card])).values()].sort(compareRouteCards);
       }
 
       function sourceList(card) {
@@ -923,11 +935,12 @@ ${unitsHtml.join("\n")}
         body.style.fontFamily = "inherit";
         details.appendChild(body);
         article.appendChild(details);
-        const button = createElement("button", "use-gloss", selectable ? "use gloss" : "details");
-        button.type = "button";
-        button.disabled = !selectable;
-        if (selectable) button.addEventListener("click", () => updatePrehudFromCard(activeButton, card, index + 1));
-        article.appendChild(button);
+        if (selectable) {
+          const button = createElement("button", "use-gloss", "use gloss");
+          button.type = "button";
+          button.addEventListener("click", () => updatePrehudFromCard(activeButton, card, index + 1));
+          article.appendChild(button);
+        }
         return article;
       }
 
@@ -957,12 +970,12 @@ ${unitsHtml.join("\n")}
           const selectableCount = activeCards.filter(canSaveGlossSelection).length;
           hud.querySelector("[data-hud-status]").textContent = selected.answerState === "definition"
             ? "gloss found. choose it to fill the row."
-            : (selected.answerState === "ambiguous" ? "multiple glosses. choose one." : "no gloss yet. row stays TBD.");
+            : (selected.answerState === "ambiguous" ? "multiple glosses. choose one." : (activeCards.length ? "details found. row stays TBD." : "no gloss yet. row stays TBD."));
           if (!activeCards.length) {
             routes.appendChild(createElement("p", "empty", "no details yet."));
             return;
           }
-          const summary = createElement("p", "empty", selectableCount + " gloss option(s), " + (activeCards.length - selectableCount) + " detail card(s).");
+          const summary = createElement("p", "empty", selectableCount + " glosses, " + (activeCards.length - selectableCount) + " details.");
           routes.appendChild(summary);
           activeCards.slice(0, 24).forEach((card, index) => routes.appendChild(renderCard(card, index)));
         } catch (error) {
