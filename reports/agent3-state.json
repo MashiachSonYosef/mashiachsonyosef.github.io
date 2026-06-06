@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_usage_navigation_state",
-  "generated_at": "2026-06-06T10:19:18.559Z",
+  "generated_at": "2026-06-06T10:29:11.434Z",
   "generator": "scripts/build_agent3_usage_state.mjs",
   "agent": "Agent 3",
   "lane": "workbench_usage_navigation",
@@ -153,6 +153,8 @@
     "reports/agent3-old-dictionary-candidate-use-single-batch-queue-workset-2026-06-06.md",
     "reports/agent3-old-dictionary-candidate-use-queue-partition-closure-2026-06-06.json",
     "reports/agent3-old-dictionary-candidate-use-queue-partition-closure-2026-06-06.md",
+    "reports/agent3-old-dictionary-candidate-use-partition-overlap-diagnostic-index-2026-06-06.json",
+    "reports/agent3-old-dictionary-candidate-use-partition-overlap-diagnostic-index-2026-06-06.md",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md",
     "reports/agent3-current-control-drift-refresh-2026-06-04.json",
@@ -261,6 +263,7 @@
     "scripts/validate_agent3_old_dictionary_candidate_use_cross_batch_queue_guard.mjs",
     "scripts/validate_agent3_old_dictionary_candidate_use_single_batch_queue_workset.mjs",
     "scripts/validate_agent3_old_dictionary_candidate_use_queue_partition_closure.mjs",
+    "scripts/validate_agent3_old_dictionary_candidate_use_partition_overlap_diagnostic_index.mjs",
     "scripts/validate_definition_workbench_usage_link_packet.mjs",
     "scripts/validate_definition_workbench_usage_seed_queue.mjs",
     "scripts/validate_definition_workbench_usage_join_smoke.mjs",
@@ -1074,6 +1077,16 @@
     "old_dictionary_candidate_use_queue_partition_closure_forbidden_payload_field_hits": 0,
     "old_dictionary_candidate_use_queue_partition_closure_acceptance_claims": 0,
     "old_dictionary_candidate_use_queue_partition_closure_release_actions": 0,
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_source_rows": 7,
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_source_queue_pair_counts": "4-2-9-7",
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_source_ref_occ": "24-16-651-471",
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_batch_rows": 9,
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_batch_queue_memberships": "30-38",
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_batch_ref_occ": "117-207-3109-3256",
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_selection_claims": 0,
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_forbidden_payload_field_hits": 0,
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_acceptance_claims": 0,
+    "old_dictionary_candidate_use_partition_overlap_diagnostic_release_actions": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -1106,10 +1119,10 @@
     "failed_count": 0
   },
   "counts": {
-    "evidence_artifacts": 167,
-    "evidence_artifacts_exist": 167,
-    "validator_scripts": 85,
-    "validator_scripts_exist": 85,
+    "evidence_artifacts": 169,
+    "evidence_artifacts_exist": 169,
+    "validator_scripts": 86,
+    "validator_scripts_exist": 86,
     "queue_required_fields_present": 10,
     "queue_required_fields": 10,
     "queue_mutations": 0,
@@ -1689,12 +1702,12 @@
     {
       "id": "evidence_artifacts_exist",
       "status": "passed",
-      "detail": "167/167"
+      "detail": "169/169"
     },
     {
       "id": "validator_scripts_exist",
       "status": "passed",
-      "detail": "85/85"
+      "detail": "86/86"
     },
     {
       "id": "queue_ready_not_submitted",

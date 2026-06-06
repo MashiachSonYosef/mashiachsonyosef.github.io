@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_old_dictionary_candidate_use_partition_overlap_diagnostic_index",
+  "generated_at": "2026-06-06T10:28:54.806Z",
+  "generator": "scripts/build_agent3_old_dictionary_candidate_use_partition_overlap_diagnostic_index.mjs",
+  "lane_owner": "Agent 3",
+  "status": "evidence-ready",
+  "target": "old_dictionary_candidate_use_partition_overlap_diagnostic_navigation",
+  "authority_boundary": {
+    "linkage_navigation_only": true,
+    "diagnostic_overlap_index_only": true,
+    "queue_source_pair_partition_remains_authoritative_for_this_packet": true,
+    "source_rid_overlap_is_diagnostic_not_partition_failure": true,
+    "batch_id_overlap_is_diagnostic_not_partition_failure": true,
+    "observed_source_families_are_not_selection_or_acceptance": true,
+    "no_new_acceptance_or_release_claim": true,
+    "qa_acceptance": false,
+    "agent6_acceptance": false,
+    "source_family_selection": false,
+    "source_provenance_acceptance": false,
+    "source_license_acceptance": false,
+    "source_legal_acceptance": false,
+    "source_citation_supplied_by_agent3": false,
+    "transform_authority": false,
+    "source_text_read": false,
+    "candidate_text_export": false,
+    "definition_content_storage": false,
+    "lemma_content_storage": false,
+    "reader_hint_content_storage": false,
+    "usage_as_definition_authority": false,
+    "definition_authority": false,
+    "answer_selection": false,
+    "answer_eligibility": false,
+    "route_ranking": false,
+    "publication_readiness": false,
+    "public_runtime_mutation": false,
+    "accepted_gloss_text": false,
+    "release_action": false
+  },
+  "inputs": {
+    "queue_partition_closure": "reports/agent3-old-dictionary-candidate-use-queue-partition-closure-2026-06-06.json",
+    "cross_batch_queue_guard": "reports/agent3-old-dictionary-candidate-use-cross-batch-queue-guard-2026-06-06.json",
+    "single_batch_queue_workset": "reports/agent3-old-dictionary-candidate-use-single-batch-queue-workset-2026-06-06.json"
+  },
+  "counts": {
+    "queue_partition_rows": 2,
+    "input_queue_rows": 65,
+    "input_queue_source_pairs": 363,
+    "queue_overlap_rows": 0,
+    "queue_source_pair_overlap_rows": 0,
+    "source_rid_overlap_rows": 7,
+    "source_rid_overlap_cross_queue_count": 4,
+    "source_rid_overlap_single_queue_count": 2,
+    "source_rid_overlap_cross_pair_count": 9,
+    "source_rid_overlap_single_pair_count": 7,
+    "source_rid_overlap_cross_reference_total": 24,
+    "source_rid_overlap_single_reference_total": 16,
+    "source_rid_overlap_cross_occurrence_total": 651,
+    "source_rid_overlap_single_occurrence_total": 471,
+    "batch_id_overlap_rows": 9,
+    "batch_id_overlap_cross_queue_memberships": 30,
+    "batch_id_overlap_single_queue_memberships": 38,
+    "batch_id_overlap_cross_reference_total": 117,
+    "batch_id_overlap_single_reference_total": 207,
+    "batch_id_overlap_cross_occurrence_total": 3109,
+    "batch_id_overlap_single_occurrence_total": 3256,
+    "source_family_selection_claims": 0,
+    "source_acceptance_claims": 0,
+    "source_citation_supplied_by_agent3_rows": 0,
+    "candidate_text_rows": 0,
+    "definition_content_rows": 0,
+    "lemma_content_rows": 0,
+    "reader_hint_content_rows": 0,
+    "answer_rows": 0,
+    "answer_eligible_rows": 0,
+    "route_jsonl_rows": 0,
+    "route_shard_writes": 0,
+    "source_text_rows": 0,
+    "accepted_text_rows": 0,
+    "public_runtime_mutation": 0,
+    "export_rows": 0,
+    "release_actions": 0,
+    "route_payload_field_hits": 0,
+    "forbidden_payload_field_hits": 0,
+    "acceptance_claims": 0
+  },
+  "source_rid_overlap_rows": [
+    {
+      "overlap_id": "agent3-source-rid-partition-overlap-a64f4ba25ea3",
+      "source_rid": "BDB03814",
+      "overlap_type": "source_rid_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-0f4d8d348070",
+        "agent2-orot-gap-tok-0f93ec938211",
+        "agent2-orot-gap-tok-291ea0c973ba"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-3fc615d98aec"
+      ],
+      "cross_link_ids": [
+        "agent3-source-family-selection-queue-link-0531e9886acbcf40",
+        "agent3-source-family-selection-queue-link-7120308cfb9af785",
+        "agent3-source-family-selection-queue-link-da2f6d1fd597981d"
+      ],
+      "single_link_ids": [
+        "agent3-source-family-selection-queue-link-1883d4958131733c"
+      ],
+      "cross_queue_source_pair_count": 3,
+      "single_queue_source_pair_count": 1,
+      "cross_reference_total": 12,
+      "single_reference_total": 4,
+      "cross_occurrence_total": 270,
+      "single_occurrence_total": 90,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "source_rid_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not collapse this source RID across cross-batch and single-batch queue partitions.",
+      "mechanical_order": 1
+    },
+    {
+      "overlap_id": "agent3-source-rid-partition-overlap-c6a72d7dc708",
+      "source_rid": "BDB03823",
+      "overlap_type": "source_rid_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-0f4d8d348070"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-3fc615d98aec"
+      ],
+      "cross_link_ids": [
+        "agent3-source-family-selection-queue-link-1de2664abde8112f"
+      ],
+      "single_link_ids": [
+        "agent3-source-family-selection-queue-link-b502228fafc83a79"
+      ],
+      "cross_queue_source_pair_count": 1,
+      "single_queue_source_pair_count": 1,
+      "cross_reference_total": 2,
+      "single_reference_total": 2,
+      "cross_occurrence_total": 74,
+      "single_occurrence_total": 74,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "source_rid_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not collapse this source RID across cross-batch and single-batch queue partitions.",
+      "mechanical_order": 2
+    },
+    {
+      "overlap_id": "agent3-source-rid-partition-overlap-a36ecfcef22b",
+      "source_rid": "BDB03824",
+      "overlap_type": "source_rid_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-0f4d8d348070"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-3fc615d98aec"
+      ],
+      "cross_link_ids": [
+        "agent3-source-family-selection-queue-link-693c1628a5a256d5"
+      ],
+      "single_link_ids": [
+        "agent3-source-family-selection-queue-link-0198a07f442451df"
+      ],
+      "cross_queue_source_pair_count": 1,
+      "single_queue_source_pair_count": 1,
+      "cross_reference_total": 2,
+      "single_reference_total": 2,
+      "cross_occurrence_total": 74,
+      "single_occurrence_total": 74,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "source_rid_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not collapse this source RID across cross-batch and single-batch queue partitions.",
+      "mechanical_order": 3
+    },
+    {
+      "overlap_id": "agent3-source-rid-partition-overlap-e9703c31b657",
+      "source_rid": "BDBA0338",
+      "overlap_type": "source_rid_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-0f93ec938211"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-3fc615d98aec"
+      ],
+      "cross_link_ids": [
+        "agent3-source-family-selection-queue-link-c8f65ee317ca270c"
+      ],
+      "single_link_ids": [
+        "agent3-source-family-selection-queue-link-883736f396becd65"
+      ],
+      "cross_queue_source_pair_count": 1,
+      "single_queue_source_pair_count": 1,
+      "cross_reference_total": 2,
+      "single_reference_total": 2,
+      "cross_occurrence_total": 72,
+      "single_occurrence_total": 72,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "source_rid_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not collapse this source RID across cross-batch and single-batch queue partitions.",
+      "mechanical_order": 4
+    },
+    {
+      "overlap_id": "agent3-source-rid-partition-overlap-0eb6c0e9e339",
+      "source_rid": "E00650",
+      "overlap_type": "source_rid_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-25908effa80c"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-e50370ece8ba"
+      ],
+      "cross_link_ids": [
+        "agent3-source-family-selection-queue-link-08e93fe1c3766b7d"
+      ],
+      "single_link_ids": [
+        "agent3-source-family-selection-queue-link-8c117fc5dd464e17"
+      ],
+      "cross_queue_source_pair_count": 1,
+      "single_queue_source_pair_count": 1,
+      "cross_reference_total": 2,
+      "single_reference_total": 2,
+      "cross_occurrence_total": 21,
+      "single_occurrence_total": 21,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "source_rid_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not collapse this source RID across cross-batch and single-batch queue partitions.",
+      "mechanical_order": 5
+    },
+    {
+      "overlap_id": "agent3-source-rid-partition-overlap-05b08e93e3a1",
+      "source_rid": "J00100",
+      "overlap_type": "source_rid_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-291ea0c973ba"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-3fc615d98aec"
+      ],
+      "cross_link_ids": [
+        "agent3-source-family-selection-queue-link-24ef5017fdee9040"
+      ],
+      "single_link_ids": [
+        "agent3-source-family-selection-queue-link-3bdc8ca978fd622a"
+      ],
+      "cross_queue_source_pair_count": 1,
+      "single_queue_source_pair_count": 1,
+      "cross_reference_total": 2,
+      "single_reference_total": 2,
+      "cross_occurrence_total": 70,
+      "single_occurrence_total": 70,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "source_rid_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not collapse this source RID across cross-batch and single-batch queue partitions.",
+      "mechanical_order": 6
+    },
+    {
+      "overlap_id": "agent3-source-rid-partition-overlap-0ce8dbce514c",
+      "source_rid": "J00101",
+      "overlap_type": "source_rid_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-291ea0c973ba"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-3fc615d98aec"
+      ],
+      "cross_link_ids": [
+        "agent3-source-family-selection-queue-link-f5b7635551fdf096"
+      ],
+      "single_link_ids": [
+        "agent3-source-family-selection-queue-link-c7f0a89109424a54"
+      ],
+      "cross_queue_source_pair_count": 1,
+      "single_queue_source_pair_count": 1,
+      "cross_reference_total": 2,
+      "single_reference_total": 2,
+      "cross_occurrence_total": 70,
+      "single_occurrence_total": 70,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "source_rid_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not collapse this source RID across cross-batch and single-batch queue partitions.",
+      "mechanical_order": 7
+    }
+  ],
+  "batch_id_overlap_rows": [
+    {
+      "overlap_id": "agent3-batch-id-partition-overlap-fdaf774a2a82",
+      "batch_id": "agent3-source-family-selection-batch-0fcc91298c5a",
+      "overlap_type": "batch_id_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-0a04ca1d499c",
+        "agent2-orot-gap-tok-1b76a9f88fc7",
+        "agent2-orot-gap-tok-cf9427570b0a"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-16b3c5cb6ffe",
+        "agent2-orot-gap-tok-56693093a95f"
+      ],
+      "cross_queue_count": 3,
+      "single_queue_count": 2,
+      "cross_reference_total": 7,
+      "single_reference_total": 16,
+      "cross_occurrence_total": 349,
+      "single_occurrence_total": 531,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "batch_id_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not treat this shared batch ID as evidence that the queue partitions overlap.",
+      "mechanical_order": 1
+    },
+    {
+      "overlap_id": "agent3-batch-id-partition-overlap-dc7770d9ea89",
+      "batch_id": "agent3-source-family-selection-batch-1bdfa6995259",
+      "overlap_type": "batch_id_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-0a04ca1d499c",
+        "agent2-orot-gap-tok-0f4d8d348070",
+        "agent2-orot-gap-tok-0f93ec938211",
+        "agent2-orot-gap-tok-1b76a9f88fc7",
+        "agent2-orot-gap-tok-291ea0c973ba",
+        "agent2-orot-gap-tok-cf9427570b0a",
+        "agent2-orot-gap-tok-e2ce674d9f4b"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-3fc615d98aec"
+      ],
+      "cross_queue_count": 7,
+      "single_queue_count": 1,
+      "cross_reference_total": 46,
+      "single_reference_total": 14,
+      "cross_occurrence_total": 1786,
+      "single_occurrence_total": 450,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "batch_id_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not treat this shared batch ID as evidence that the queue partitions overlap.",
+      "mechanical_order": 2
+    },
+    {
+      "overlap_id": "agent3-batch-id-partition-overlap-549da7f3428e",
+      "batch_id": "agent3-source-family-selection-batch-342e6e69c3c0",
+      "overlap_type": "batch_id_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-0f4d8d348070"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-1465a7c5cc1e"
+      ],
+      "cross_queue_count": 1,
+      "single_queue_count": 1,
+      "cross_reference_total": 3,
+      "single_reference_total": 1,
+      "cross_occurrence_total": 33,
+      "single_occurrence_total": 6,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "batch_id_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not treat this shared batch ID as evidence that the queue partitions overlap.",
+      "mechanical_order": 3
+    },
+    {
+      "overlap_id": "agent3-batch-id-partition-overlap-3017d7354cc7",
+      "batch_id": "agent3-source-family-selection-batch-36349c997713",
+      "overlap_type": "batch_id_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-1bfe6fea9d85",
+        "agent2-orot-gap-tok-97b1bacd102d",
+        "agent2-orot-gap-tok-b9470f18041a"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-1282c4d855bc",
+        "agent2-orot-gap-tok-294be776e38a",
+        "agent2-orot-gap-tok-2a3aa32e04a0",
+        "agent2-orot-gap-tok-589103867952",
+        "agent2-orot-gap-tok-8fb44ba631ca"
+      ],
+      "cross_queue_count": 3,
+      "single_queue_count": 5,
+      "cross_reference_total": 6,
+      "single_reference_total": 25,
+      "cross_occurrence_total": 339,
+      "single_occurrence_total": 922,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "batch_id_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not treat this shared batch ID as evidence that the queue partitions overlap.",
+      "mechanical_order": 4
+    },
+    {
+      "overlap_id": "agent3-batch-id-partition-overlap-9f3aa1202d70",
+      "batch_id": "agent3-source-family-selection-batch-5af39601c157",
+      "overlap_type": "batch_id_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-0f93ec938211",
+        "agent2-orot-gap-tok-25908effa80c",
+        "agent2-orot-gap-tok-d4386c5736f3",
+        "agent2-orot-gap-tok-e2ce674d9f4b"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-34ebba2c4af3",
+        "agent2-orot-gap-tok-70b3e3c41e86",
+        "agent2-orot-gap-tok-954a5b722be5",
+        "agent2-orot-gap-tok-ac8452043a50",
+        "agent2-orot-gap-tok-c0095bd05aab"
+      ],
+      "cross_queue_count": 4,
+      "single_queue_count": 5,
+      "cross_reference_total": 20,
+      "single_reference_total": 29,
+      "cross_occurrence_total": 239,
+      "single_occurrence_total": 278,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "batch_id_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not treat this shared batch ID as evidence that the queue partitions overlap.",
+      "mechanical_order": 5
+    },
+    {
+      "overlap_id": "agent3-batch-id-partition-overlap-8254be5b90fe",
+      "batch_id": "agent3-source-family-selection-batch-aafff2afc5b9",
+      "overlap_type": "batch_id_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-5bbcbcbeb49f",
+        "agent2-orot-gap-tok-c3620ec0d8b6"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-1e91d5b8a56f"
+      ],
+      "cross_queue_count": 2,
+      "single_queue_count": 1,
+      "cross_reference_total": 7,
+      "single_reference_total": 5,
+      "cross_occurrence_total": 80,
+      "single_occurrence_total": 30,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "batch_id_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not treat this shared batch ID as evidence that the queue partitions overlap.",
+      "mechanical_order": 6
+    },
+    {
+      "overlap_id": "agent3-batch-id-partition-overlap-6bce566bf6c9",
+      "batch_id": "agent3-source-family-selection-batch-ce5f2b394a3d",
+      "overlap_type": "batch_id_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-ec33723d6467"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-34dd4ebfbd4c"
+      ],
+      "cross_queue_count": 1,
+      "single_queue_count": 1,
+      "cross_reference_total": 1,
+      "single_reference_total": 2,
+      "cross_occurrence_total": 7,
+      "single_occurrence_total": 14,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "batch_id_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not treat this shared batch ID as evidence that the queue partitions overlap.",
+      "mechanical_order": 7
+    },
+    {
+      "overlap_id": "agent3-batch-id-partition-overlap-a8ddaaeb62df",
+      "batch_id": "agent3-source-family-selection-batch-d2102776dac2",
+      "overlap_type": "batch_id_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-1e4f797dd1ef",
+        "agent2-orot-gap-tok-291ea0c973ba",
+        "agent2-orot-gap-tok-8aa62110c6b8",
+        "agent2-orot-gap-tok-ad2da84f5070",
+        "agent2-orot-gap-tok-af7f65b1eff5",
+        "agent2-orot-gap-tok-e884601a972a",
+        "agent2-orot-gap-tok-f4cff4f44050",
+        "agent2-orot-gap-tok-fc91f05003f7"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-02b5ead307f3",
+        "agent2-orot-gap-tok-07fe058a49be",
+        "agent2-orot-gap-tok-1e2d07d7405c",
+        "agent2-orot-gap-tok-27e45c2c7e65",
+        "agent2-orot-gap-tok-3712548da960",
+        "agent2-orot-gap-tok-41286517ec4b",
+        "agent2-orot-gap-tok-4a6da1b8659c",
+        "agent2-orot-gap-tok-51c492e2e5d0",
+        "agent2-orot-gap-tok-51caea11ccec",
+        "agent2-orot-gap-tok-5de1df7f82d8",
+        "agent2-orot-gap-tok-8059308f849a",
+        "agent2-orot-gap-tok-8bfed3ad352b",
+        "agent2-orot-gap-tok-8da2697aba91",
+        "agent2-orot-gap-tok-a25180b15784",
+        "agent2-orot-gap-tok-c44fd3779a0b",
+        "agent2-orot-gap-tok-c66bf1a435f8",
+        "agent2-orot-gap-tok-d6d2242bb168",
+        "agent2-orot-gap-tok-d88479b936e5",
+        "agent2-orot-gap-tok-ddc9e559a102",
+        "agent2-orot-gap-tok-e4705867db59",
+        "agent2-orot-gap-tok-f9e05644070e"
+      ],
+      "cross_queue_count": 8,
+      "single_queue_count": 21,
+      "cross_reference_total": 25,
+      "single_reference_total": 113,
+      "cross_occurrence_total": 255,
+      "single_occurrence_total": 1004,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "batch_id_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not treat this shared batch ID as evidence that the queue partitions overlap.",
+      "mechanical_order": 8
+    },
+    {
+      "overlap_id": "agent3-batch-id-partition-overlap-c09bdfaf5594",
+      "batch_id": "agent3-source-family-selection-batch-e7bcd727c7ce",
+      "overlap_type": "batch_id_reused_across_queue_partitions",
+      "cross_queue_ids": [
+        "agent2-orot-gap-tok-25908effa80c"
+      ],
+      "single_queue_ids": [
+        "agent2-orot-gap-tok-e50370ece8ba"
+      ],
+      "cross_queue_count": 1,
+      "single_queue_count": 1,
+      "cross_reference_total": 2,
+      "single_reference_total": 2,
+      "cross_occurrence_total": 21,
+      "single_occurrence_total": 21,
+      "diagnostic_status": "diagnostic_only_not_partition_failure",
+      "exact_blocker": "batch_id_reused_across_queue_partitions_diagnostic_only_use_queue_source_pair_key",
+      "evidence_role": "partition_overlap_diagnostic_navigation_only_no_acceptance_claim",
+      "next_safe_action": "Use queue_id/source_rid pairs for package dedupe; do not treat this shared batch ID as evidence that the queue partitions overlap.",
+      "mechanical_order": 9
+    }
+  ],
+  "downstream_handoff": {
+    "handoff_owner": "Agent 10 package intake can use this diagnostic index to avoid source-RID or batch-ID level duplicate claims while preserving the queue/source-pair partition as the dedupe basis.",
+    "stop_condition": "Partition overlap diagnostic index emitted; no source text read, no source-family selection made, no source citation supplied, no transform text generated, no route write, no public mutation, and no acceptance action taken."
+  }
+}
