@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T12:54:03.819Z
+Generated: 2026-06-06T13:11:36.345Z
 
 ## State
 
@@ -158,6 +158,7 @@ Generated: 2026-06-06T12:54:03.819Z
 - Old-dictionary candidate-use bridge-gap downstream intake coverage rows / occ-links / inputs direct-valid-A10source-A10preboundary-A10verdict / direct rows-matched-missing-citation-transform / A06 rows-consumed-missing-links / broad source-preboundary-rowlevelsource-rowlevelpreboundary-Agent3null / route correction-A07-A06-A06approval-donotask / selection-forbidden-acceptance-release hits: 14/173-30/5-1-78-78-78/5-5-0-5-5/9-0-9-25/14-14-0-0-14/14-14-14-0-14/0-0-0-0
 - Old-dictionary candidate-use bridge-gap A06 row-level downstream blocker rows / occ-links-sourceRIDs / queue-token-lexicon-prefixes / missing-broadsource-broadpreboundary-rowlevelsource-rowlevelpreboundary / citation-present-transform-notauthorized / A07-A06-A06approval-evidence-donotask / selection-forbidden-acceptance-release hits: 9/115-25-25/9-9-8-10/9-9-9-0-0/9-0-9-9/9-9-0-9-9/0-0-0-0
 - Old-dictionary candidate-use bridge-gap direct source-citation blocker rows / occ-links-sourceRIDs / queue-token-lexicon-prefixes / agent2 matched-queue-valid / citation-present-directpresent-transform-directtransform / broad source-preboundary-rowlevelsource-rowlevelpreboundary / A07-A06-A06approval-evidence-donotask / selection-forbidden-acceptance-release hits: 5/58-5-5/5-5-5-5/5-5-5/5-0-0-5-5/5-5-0-0/5-5-0-5-5/0-0-0-0
+- Old-dictionary candidate-use bridge-gap direct source-RID locator rows / occ-sourceRIDs / A2-PDexact-PDall-commercialexact-commercialall-refgap / citationpresent-transformblocked-zeroref-timeouts / A07-A06-A06approval / license-provenance-citationsupplied-sourcetext-definition-acceptedtext-release-acceptance-forbidden claims: 5/58-5/5-5-6-5-6-1/0-5-1-1/5-5-0/0-0-0-0-0-0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -171,8 +172,8 @@ Generated: 2026-06-06T12:54:03.819Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; approval A07; evidence A06; stored acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 195/195 |
-| validator_scripts_exist | passed | 99/99 |
+| evidence_artifacts_exist | passed | 197/197 |
+| validator_scripts_exist | passed | 100/100 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
