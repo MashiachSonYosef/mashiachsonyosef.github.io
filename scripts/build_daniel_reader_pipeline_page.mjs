@@ -6,11 +6,22 @@ const root = process.cwd();
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
 const exists = (relativePath) => fs.existsSync(path.join(root, relativePath));
 
-const source = readJson("data/sources/daniel.json");
-const occurrences = readJson("data/lexical/occurrences/daniel.json");
-const tokenIndex = readJson("data/lexical/token-indexes/tanakh/daniel.json");
+const workArg = process.argv.find((arg) => arg.startsWith("--work="));
+const workId = (workArg ? workArg.slice("--work=".length) : "daniel").trim();
+const workConfig = {
+  daniel: { label: "daniel", section: "tanakh / ketuvim" },
+  ezekiel: { label: "ezekiel", section: "tanakh / neviim" },
+}[workId] || { label: workId.replace(/-/g, " "), section: "tanakh" };
+const claimsPath = `data/public-lexical/by-work/${workId}-token-claims-min60.csv`;
+const outputDir = `tanakh/${workId}`;
+const outputPath = `${outputDir}/index.html`;
+const reportPath = `reports/${workId}-reader-pipeline-page-report.json`;
 
-const hintPath = "data/public-hud/daniel/reader-hints.json";
+const source = readJson(`data/sources/${workId}.json`);
+const occurrences = readJson(`data/lexical/occurrences/${workId}.json`);
+const tokenIndex = readJson(`data/lexical/token-indexes/tanakh/${workId}.json`);
+
+const hintPath = `data/public-hud/${workId}/reader-hints.json`;
 const hintsPayload = exists(hintPath) ? readJson(hintPath) : { hints: {} };
 
 const escapeHtml = (value) => String(value ?? "")
@@ -165,7 +176,7 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>daniel | hebrew work bench</title>
+  <title>${escapeHtml(workConfig.label)} | hebrew work bench</title>
   <style>
     :root {
       color-scheme: dark;
@@ -549,14 +560,14 @@ const html = `<!DOCTYPE html>
 
     <section class="hero" aria-labelledby="work-title">
       <div>
-        <p class="kicker">tanakh / ketuvim</p>
-        <h1 id="work-title">daniel</h1>
+        <p class="kicker">${escapeHtml(workConfig.section)}</p>
+        <h1 id="work-title">${escapeHtml(workConfig.label)}</h1>
       </div>
     </section>
 
     <div class="chapter-tracker" data-section-tracker>
       <button class="section-toggle" type="button" data-section-toggle aria-controls="chapter-links" aria-expanded="true">sections</button>
-      <nav class="chapter-nav" id="chapter-links" aria-label="Daniel chapters">
+      <nav class="chapter-nav" id="chapter-links" aria-label="${escapeHtml(workConfig.label)} sections">
         ${chapterLinks}
       </nav>
     </div>
@@ -601,8 +612,8 @@ ${unitsHtml.join("\n")}
         "biblical_paraphrase_evidence",
         "citable_paraphrase_evidence",
       ]);
-      const claimsCsvUrl = "../../data/public-lexical/by-work/daniel-token-claims-min60.csv";
-      const localSelectionKey = "reader-pipeline:daniel:v1";
+      const claimsCsvUrl = "../../${escapeHtml(claimsPath)}";
+      const localSelectionKey = "reader-pipeline:${escapeHtml(workId)}:v1";
       let claimsPromise = null;
       let activeButton = null;
       let activeCards = [];
@@ -824,7 +835,7 @@ ${unitsHtml.join("\n")}
       async function claimRows() {
         if (!claimsPromise) {
           claimsPromise = fetch(claimsCsvUrl).then(async (response) => {
-            if (!response.ok) throw new Error("Daniel CSV fetch failed: " + response.status);
+            if (!response.ok) throw new Error("${escapeHtml(workConfig.label)} CSV fetch failed: " + response.status);
             const rows = parseCsv(await response.text()).filter((row) => row.some(Boolean));
             const header = rows.shift() || [];
             return rows.map((row) => Object.fromEntries(header.map((name, index) => [name, row[index] || ""])));
@@ -841,8 +852,8 @@ ${unitsHtml.join("\n")}
         const sourceIds = String(row.safe_source_ids || "").split("|").map((value) => value.trim()).filter(Boolean);
         const licenses = String(row.safe_licenses || "").split("|").map((value) => value.trim()).filter(Boolean);
         return definitions.map((definition, index) => ({
-          card_id: "daniel-csv-" + normalizeHebrewKey(row.normalized_form || row.clicked_surface_form) + "-" + index,
-          route_family: "daniel_csv_claim",
+          card_id: "${escapeHtml(workId)}-csv-" + normalizeHebrewKey(row.normalized_form || row.clicked_surface_form) + "-" + index,
+          route_family: "${escapeHtml(workId)}_csv_claim",
           route_type: "csv_evidence",
           display_section: "audit",
           display_label: "CSV evidence",
@@ -853,7 +864,7 @@ ${unitsHtml.join("\n")}
           answer_role: "evidence",
           definition,
           source_rows: [{
-            source_name: sources[0] || "Daniel public lexical CSV",
+            source_name: sources[0] || "${escapeHtml(workConfig.label)} public lexical CSV",
             source_id: sourceIds[0] || row.safe_claim_ids || "",
             source_url: claimsCsvUrl,
             license: licenses[0] || "",
@@ -1010,11 +1021,12 @@ ${unitsHtml.join("\n")}
 </html>
 `;
 
-fs.writeFileSync(path.join(root, "tanakh/daniel/index.html"), html, "utf8");
+fs.mkdirSync(path.join(root, outputDir), { recursive: true });
+fs.writeFileSync(path.join(root, outputPath), html, "utf8");
 
 const report = {
   generated_at: generatedAt,
-  work_id: "daniel",
+  work_id: workId,
   source_units: source.units.length,
   token_rows: rowCount,
   selected_prehud_rows: selectedRowCount,
@@ -1022,10 +1034,10 @@ const report = {
   missing_form_count: missingFormCount,
   occurrence_total_reported: occurrences.total_occurrences,
   hint_source: exists(hintPath) ? hintPath : null,
-  route_lookup_runtime_source: "data/public-lexical/by-work/daniel-token-claims-min60.csv",
+  route_lookup_runtime_source: claimsPath,
   prehud_rule: "display reader hint/selection when present; otherwise TBD fallback",
 };
 
 fs.mkdirSync(path.join(root, "reports"), { recursive: true });
-fs.writeFileSync(path.join(root, "reports/daniel-reader-pipeline-page-report.json"), `${JSON.stringify(report, null, 2)}\n`, "utf8");
+fs.writeFileSync(path.join(root, reportPath), `${JSON.stringify(report, null, 2)}\n`, "utf8");
 console.log(JSON.stringify(report, null, 2));

@@ -11,6 +11,7 @@ trigger | action | output artifact | success condition | timeout | fallback | ow
 source work selected | load source units plus lexical occurrence roster | generated work `index.html` | one visible row per occurrence token | 10 minutes | mark render blocked with missing roster/source path | renderer
 no approved pre-HUD selection | display `TBD` in gloss and match columns | work page | unresolved rows do not invent glosses | immediate | keep row TBD | renderer
 reader-hint/selection file exists | fill pre-HUD from selection layer only | work page | selected rows cite source number and match percent | 10 minutes | keep selected row TBD and log bad selection | renderer
+second work proof requested | run the same render command with `--work=<work_id>` and validate both works | generated work page plus validator JSON | added work uses the same HUD, TBD barrier, catalog, and deploy path | 15 minutes | block publication and report missing input path | renderer
 
 ## 2. Fix the splash header
 
