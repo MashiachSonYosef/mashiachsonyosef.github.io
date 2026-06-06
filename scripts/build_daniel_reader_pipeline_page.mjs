@@ -630,10 +630,9 @@ ${unitsHtml.join("\n")}
         "biblical_paraphrase_evidence",
         "citable_paraphrase_evidence",
       ]);
-      const lookupRoot = "../../data/definitions/hud-route-lookup/";
+      const claimsCsvUrl = "../../data/public-lexical/by-work/daniel-token-claims-min60.csv";
       const localSelectionKey = "reader-pipeline:daniel:v1";
-      let manifestPromise = null;
-      const shardCache = new Map();
+      let claimsPromise = null;
       let activeButton = null;
       let activeCards = [];
 
@@ -806,38 +805,98 @@ ${unitsHtml.join("\n")}
         return [...candidates.values()];
       }
 
-      async function routeManifest() {
-        if (!manifestPromise) {
-          manifestPromise = fetch(lookupRoot + "manifest.json").then((response) => {
-            if (!response.ok) throw new Error("Route manifest fetch failed: " + response.status);
-            return response.json();
-          });
+      function parseCsv(text) {
+        const rows = [];
+        let row = [];
+        let field = "";
+        let quoted = false;
+        for (let index = 0; index < text.length; index += 1) {
+          const char = text[index];
+          const next = text[index + 1];
+          if (quoted) {
+            if (char === '"' && next === '"') {
+              field += '"';
+              index += 1;
+            } else if (char === '"') {
+              quoted = false;
+            } else {
+              field += char;
+            }
+          } else if (char === '"') {
+            quoted = true;
+          } else if (char === ",") {
+            row.push(field);
+            field = "";
+          } else if (char === "\\n") {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = "";
+          } else if (char !== "\\r") {
+            field += char;
+          }
         }
-        return manifestPromise;
+        if (field || row.length) {
+          row.push(field);
+          rows.push(row);
+        }
+        return rows;
       }
 
-      async function shardForKey(key, prefixLength) {
-        const shard = codepointKey(key, prefixLength);
-        if (!shardCache.has(shard)) {
-          shardCache.set(shard, fetch(lookupRoot + "shards/" + shard + ".json").then((response) => {
-            if (response.status === 404) return null;
-            if (!response.ok) throw new Error("Route shard fetch failed: " + response.status);
-            return response.json();
-          }));
+      async function claimRows() {
+        if (!claimsPromise) {
+          claimsPromise = fetch(claimsCsvUrl).then(async (response) => {
+            if (!response.ok) throw new Error("Daniel CSV fetch failed: " + response.status);
+            const rows = parseCsv(await response.text()).filter((row) => row.some(Boolean));
+            const header = rows.shift() || [];
+            return rows.map((row) => Object.fromEntries(header.map((name, index) => [name, row[index] || ""])));
+          });
         }
-        return shardCache.get(shard);
+        return claimsPromise;
+      }
+
+      function cardsFromClaim(row) {
+        const definitions = String(row.safe_rendering_options || "").split("|").map((value) => value.trim()).filter(Boolean);
+        if (!definitions.length) return [];
+        const confidence = Number(row.best_confidence_any_claim || row.safe_min_confidence || 0);
+        const sources = String(row.safe_source_names || "").split("|").map((value) => value.trim()).filter(Boolean);
+        const sourceIds = String(row.safe_source_ids || "").split("|").map((value) => value.trim()).filter(Boolean);
+        const licenses = String(row.safe_licenses || "").split("|").map((value) => value.trim()).filter(Boolean);
+        return definitions.map((definition, index) => ({
+          card_id: "daniel-csv-" + normalizeHebrewKey(row.normalized_form || row.clicked_surface_form) + "-" + index,
+          route_family: "daniel_csv_claim",
+          route_type: "csv_evidence",
+          display_section: "audit",
+          display_label: "CSV evidence",
+          language: "Hebrew",
+          match_type: row.export_status || "csv",
+          confidence_percent: Number.isFinite(confidence) ? confidence : 0,
+          answer_eligible: false,
+          answer_role: "evidence",
+          definition,
+          source_rows: [{
+            source_name: sources[0] || "Daniel public lexical CSV",
+            source_id: sourceIds[0] || row.safe_claim_ids || "",
+            source_url: claimsCsvUrl,
+            license: licenses[0] || "",
+            fields_used: ["clicked_surface_form", "normalized_form", "safe_rendering_options", "safe_source_names", "safe_licenses"],
+          }],
+          raw_score: Number.isFinite(confidence) ? confidence : 0,
+          adjusted_score: Number.isFinite(confidence) ? confidence : 0,
+        }));
       }
 
       async function cardsForButton(button) {
-        const manifest = await routeManifest();
-        const prefixLength = manifest.prefix_length || 3;
-        const candidates = lookupCandidatesFor(button.dataset.surface, button.dataset.normalized);
+        const normalized = normalizeHebrewKey(button.dataset.normalized || button.dataset.surface);
+        const surface = button.dataset.surface || "";
+        const rows = await claimRows();
         const cards = [];
-        for (const candidate of candidates) {
-          const shard = await shardForKey(candidate.key, prefixLength);
-          const rows = shard?.routes_by_normalized?.[candidate.key] || [];
-          rows.forEach((card) => cards.push({ ...card, lookup_relation: candidate.relation, lookup_penalty: candidate.penalty }));
-        }
+        rows.forEach((row) => {
+          const rowKey = normalizeHebrewKey(row.normalized_form || row.clicked_surface_form);
+          if (rowKey === normalized || row.clicked_surface_form === surface) {
+            cards.push(...cardsFromClaim(row));
+          }
+        });
         return cards.sort(compareRouteCards);
       }
 
@@ -973,7 +1032,7 @@ const report = {
   missing_form_count: missingFormCount,
   occurrence_total_reported: occurrences.total_occurrences,
   hint_source: exists(hintPath) ? hintPath : null,
-  route_lookup_runtime_source: "data/definitions/hud-route-lookup",
+  route_lookup_runtime_source: "data/public-lexical/by-work/daniel-token-claims-min60.csv",
   prehud_rule: "display reader hint/selection when present; otherwise TBD fallback",
 };
 
