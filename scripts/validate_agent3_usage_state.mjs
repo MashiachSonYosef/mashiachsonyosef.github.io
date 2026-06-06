@@ -13,8 +13,16 @@ if (state.artifact_type !== 'agent3_usage_navigation_state') issues.push('artifa
 if (state.agent !== 'Agent 3') issues.push('agent must be Agent 3');
 if (state.lane !== 'workbench_usage_navigation') issues.push('lane must be workbench_usage_navigation');
 if (state.worker_state !== 'evidence-ready') issues.push('worker_state must be evidence-ready');
-if (state.qa_acceptance_state !== 'not_agent6_accepted') issues.push('qa_acceptance_state must be not_agent6_accepted');
-if (state.acceptance_owner !== 'Agent 6') issues.push('acceptance_owner must be Agent 6');
+if (state.qa_acceptance_state !== 'not_a07_approved_a06_evidence_ready_only') {
+  issues.push('qa_acceptance_state must be not_a07_approved_a06_evidence_ready_only');
+}
+if (state.acceptance_owner !== 'A07') issues.push('acceptance_owner must be A07');
+if (state.approval_owner !== 'A07') issues.push('approval_owner must be A07');
+if (state.evidence_validator_owner !== 'A06') issues.push('evidence_validator_owner must be A06');
+if (state.a06_outputs_are_evidence_ready_until_a07_approves !== true) {
+  issues.push('a06_outputs_are_evidence_ready_until_a07_approves must be true');
+}
+if (state.do_not_ask_a06_for_approval !== true) issues.push('do_not_ask_a06_for_approval must be true');
 
 validateAuthorityBoundary(state.authority_boundary || {});
 validateHandoffState(state.handoff_state || {});
@@ -43,6 +51,10 @@ function validateAuthorityBoundary(boundary) {
     'usage_navigation_only',
     'occurrence_link_packet_only',
     'route_ids_only',
+    'approval_sop_final_validation_release_gate_owner_a07',
+    'evidence_validators_repo_cleaning_production_owner_a06',
+    'a06_outputs_evidence_ready_until_a07_approves',
+    'do_not_ask_a06_for_approval',
   ];
   const expectedFalse = [
     'definition_authority',

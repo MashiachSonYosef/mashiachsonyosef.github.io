@@ -1,14 +1,17 @@
 # Agent 3 State
 
-Generated: 2026-06-06T11:58:45.709Z
+Generated: 2026-06-06T12:16:55.498Z
 
 ## State
 
 - Lane: workbench_usage_navigation
 - Worker state: evidence-ready
-- QA acceptance state: not_agent6_accepted
+- QA acceptance state: not_a07_approved_a06_evidence_ready_only
 - Goal: agent3-definition-occurrence-links (awaiting-Agent-6)
-- Manager / acceptance owner: Agent 7 / broad corpus expansion / Agent 6
+- Manager: Agent 7 / broad corpus expansion
+- Approval owner: A07
+- Evidence owner: A06
+- A06 evidence-only until A07 approval / do not ask A06 for approval: true/true
 - Queue-ready packet: data/definitions/definition-workbench-usage-queue-ready-packet.json
 - Queue mutated / submitted: false/false
 
@@ -150,6 +153,7 @@ Generated: 2026-06-06T11:58:45.709Z
 - Old-dictionary candidate-use bridge-gap source-RID blocker crossmatch rows / refs-occ / blocker-present-missing-coverage-present-missing / queues-tokens-prefixes / blocker refs-occ-currentblockers / citation-transform-Agent6 blocker flags / selection-forbidden-acceptance-release hits: 30/30-389/30-0-0-30/14-14-12/30-389-300/30-30-30/0-0-0-0
 - Old-dictionary candidate-use bridge-gap source-RID prereq route crossmatch rows / refs-occ / A06direct-both-missing / A06direct occ / blocker-coverage-prereqblockers-sourceblockers / citation-transform-boundary-route-candidate-public flags / selection-forbidden-acceptance-release hits: 30/30-389/25-5-0-0/331-58/30-0-300-300/30-30-30-0-0-0/0-0-0-0
 - Old-dictionary candidate-use bridge-gap candidate prereq closure rows / occ-sourceRIDrefs / A06direct-mixed-missing / A06direct occ / blocker-coverage-currentblockers / citation-transform-boundary-A07-A06-A06approval flags / selection-forbidden-acceptance-release hits: 14/173-30/9-5-0-0/115-58/30-0-140/30-30-30-14-14-0/0-0-0-0
+- Old-dictionary candidate-use bridge-gap A07/A06 route overlay rows / occ-links-sourceRIDs / direct-A06-mixed rows / direct-A06-missing links / citation-present-transform-blocker-coverage / A07-A06-A06approval-donotask / evidence-preserve-redo-blockers / selection-forbidden-acceptance-release hits: 14/173-30-30/5-9-0/5-25-0/30-0-30-30-0/14-14-0-14/14-14-14-140/0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -162,9 +166,9 @@ Generated: 2026-06-06T11:58:45.709Z
 | check | status | detail |
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
-| goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 187/187 |
-| validator_scripts_exist | passed | 95/95 |
+| goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; approval A07; evidence A06; stored acceptance Agent 6 |
+| evidence_artifacts_exist | passed | 189/189 |
+| validator_scripts_exist | passed | 96/96 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |

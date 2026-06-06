@@ -1,21 +1,29 @@
 {
   "schema_version": 1,
   "artifact_type": "agent3_usage_navigation_state",
-  "generated_at": "2026-06-06T11:58:45.709Z",
+  "generated_at": "2026-06-06T12:16:55.498Z",
   "generator": "scripts/build_agent3_usage_state.mjs",
   "agent": "Agent 3",
   "lane": "workbench_usage_navigation",
   "state_file": "reports/agent3-state.md",
   "worker_state": "evidence-ready",
-  "qa_acceptance_state": "not_agent6_accepted",
+  "qa_acceptance_state": "not_a07_approved_a06_evidence_ready_only",
   "goal_id": "agent3-definition-occurrence-links",
   "goal_board_status": "awaiting-Agent-6",
   "manager": "Agent 7 / broad corpus expansion",
-  "acceptance_owner": "Agent 6",
+  "acceptance_owner": "A07",
+  "approval_owner": "A07",
+  "evidence_validator_owner": "A06",
+  "a06_outputs_are_evidence_ready_until_a07_approves": true,
+  "do_not_ask_a06_for_approval": true,
   "authority_boundary": {
     "usage_navigation_only": true,
     "occurrence_link_packet_only": true,
     "route_ids_only": true,
+    "approval_sop_final_validation_release_gate_owner_a07": true,
+    "evidence_validators_repo_cleaning_production_owner_a06": true,
+    "a06_outputs_evidence_ready_until_a07_approves": true,
+    "do_not_ask_a06_for_approval": true,
     "definition_authority": false,
     "semantic_arbitration": false,
     "route_ranking": false,
@@ -173,6 +181,8 @@
     "reports/agent3-old-dictionary-candidate-use-bridge-gap-source-rid-prereq-route-crossmatch-2026-06-06.md",
     "reports/agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.json",
     "reports/agent3-old-dictionary-candidate-use-bridge-gap-candidate-prereq-closure-matrix-2026-06-06.md",
+    "reports/agent3-old-dictionary-candidate-use-bridge-gap-a07-a06-route-overlay-2026-06-06.json",
+    "reports/agent3-old-dictionary-candidate-use-bridge-gap-a07-a06-route-overlay-2026-06-06.md",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json",
     "reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md",
     "reports/agent3-current-control-drift-refresh-2026-06-04.json",
@@ -291,6 +301,7 @@
     "scripts/validate_agent3_old_dictionary_candidate_use_bridge_gap_source_rid_blocker_crossmatch.mjs",
     "scripts/validate_agent3_old_dictionary_candidate_use_bridge_gap_source_rid_prereq_route_crossmatch.mjs",
     "scripts/validate_agent3_old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_matrix.mjs",
+    "scripts/validate_agent3_old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay.mjs",
     "scripts/validate_definition_workbench_usage_link_packet.mjs",
     "scripts/validate_definition_workbench_usage_seed_queue.mjs",
     "scripts/validate_definition_workbench_usage_join_smoke.mjs",
@@ -1212,6 +1223,17 @@
     "old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_forbidden_payload_field_hits": 0,
     "old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_acceptance_claims": 0,
     "old_dictionary_candidate_use_bridge_gap_candidate_prereq_closure_release_actions": 0,
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_rows": 14,
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_occ_links": "173-30-30",
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_worksets": "5-9-0",
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_link_routes": "5-25-0",
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_prereq_blockers": "30-0-30-30-0",
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_route_law": "14-14-0-14",
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_preservation_flags": "14-14-14-140",
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_selection_claims": 0,
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_forbidden_payload_field_hits": 0,
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_acceptance_claims": 0,
+    "old_dictionary_candidate_use_bridge_gap_a07_a06_route_overlay_release_actions": 0,
     "proof_occurrence_rows": 12,
     "proof_rows_with_complete_metadata": 12,
     "proof_rows_with_hebrew_context": 12,
@@ -1244,10 +1266,10 @@
     "failed_count": 0
   },
   "counts": {
-    "evidence_artifacts": 187,
-    "evidence_artifacts_exist": 187,
-    "validator_scripts": 95,
-    "validator_scripts_exist": 95,
+    "evidence_artifacts": 189,
+    "evidence_artifacts_exist": 189,
+    "validator_scripts": 96,
+    "validator_scripts_exist": 96,
     "queue_required_fields_present": 10,
     "queue_required_fields": 10,
     "queue_mutations": 0,
@@ -1822,17 +1844,17 @@
     {
       "id": "goal_boundary_loaded",
       "status": "passed",
-      "detail": "goal agent3-definition-occurrence-links; acceptance Agent 6"
+      "detail": "goal agent3-definition-occurrence-links; approval A07; evidence A06; stored acceptance Agent 6"
     },
     {
       "id": "evidence_artifacts_exist",
       "status": "passed",
-      "detail": "187/187"
+      "detail": "189/189"
     },
     {
       "id": "validator_scripts_exist",
       "status": "passed",
-      "detail": "95/95"
+      "detail": "96/96"
     },
     {
       "id": "queue_ready_not_submitted",
