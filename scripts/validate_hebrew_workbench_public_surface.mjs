@@ -28,6 +28,7 @@ const workHrefs = corpora.flatMap((corpus) => (corpus.works || []).map((work) =>
   label: work.label,
 })));
 const expectedWorkIds = ["daniel", "ezekiel"];
+const expectedWorkLabels = { daniel: "Daniel", ezekiel: "Ezekiel" };
 
 requireMatch("catalog must define exactly 11 corpus buckets", corpora.length === 11);
 requireMatch("catalog must include tanakh", corpusIds.includes("tanakh"));
@@ -43,20 +44,21 @@ for (const work of workHrefs) {
   }
 }
 
-requireMatch("root title must be plain", indexHtml.includes("<title>hebrew work bench</title>"));
+requireMatch("root title must be plain", indexHtml.includes("<title>Hebrew Workbench</title>"));
+requireMatch("root corpus heading must use organization", indexHtml.includes("11 Corpus Organization Chart"));
 requireMatch("root must use expandable tanakh card", /<details class="corpus-card" data-live="true" id="tanakh" open>/.test(indexHtml));
 requireMatch("root must use expandable featured card", /<details class="corpus-card" data-live="true" id="featured" open>/.test(indexHtml));
 requireMatch("root must not link corpus tile straight to daniel", !/<a class="corpus-link"[^>]+tanakh\/daniel\//.test(indexHtml));
 expectedWorkIds.forEach((workId) => {
-  requireMatch(`root must expose ${workId} from tanakh and featured only as work links`, (indexHtml.match(new RegExp(`<a class="work-link" href="tanakh/${workId}/">${workId}</a>`, "g")) || []).length === 2);
-  requireMatch(`root must expose ${workId} csv download`, indexHtml.includes(`<a class="download-link" href="data/public-lexical/by-work/${workId}-token-claims-min60.csv" download>${workId} csv</a>`));
+  requireMatch(`root must expose ${workId} from tanakh and featured only as work links`, (indexHtml.match(new RegExp(`<a class="work-link" href="tanakh/${workId}/">${expectedWorkLabels[workId]}</a>`, "g")) || []).length === 2);
+  requireMatch(`root must expose ${workId} csv download`, indexHtml.includes(`<a class="download-link" href="data/public-lexical/by-work/${workId}-token-claims-min60.csv" download>${expectedWorkLabels[workId]} CSV</a>`));
 });
 
 const workResults = expectedWorkIds.map((workId) => {
   const html = read(`tanakh/${workId}/index.html`);
   const report = JSON.parse(read(`reports/${workId}-reader-pipeline-page-report.json`));
   const rowCount = (html.match(/<div class="prehud-row"/g) || []).length;
-  requireMatch(`${workId} title must be plain`, html.includes(`<title>${workId} | hebrew work bench</title>`));
+  requireMatch(`${workId} title must be plain`, html.includes(`<title>${expectedWorkLabels[workId]} | Hebrew Workbench</title>`));
   requireMatch(`${workId} row count must match report`, rowCount === report.token_rows && rowCount > 0);
   requireMatch(`${workId} unresolved rows must remain TBD`, report.tbd_fallback_rows === report.token_rows && report.selected_prehud_rows === 0);
   requireMatch(`${workId} Hebrew tokens must be button controls`, /<button class="hebrew-token"[\s\S]*?aria-controls="route-hud"/.test(html));

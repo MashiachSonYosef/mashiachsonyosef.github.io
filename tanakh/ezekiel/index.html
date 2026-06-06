@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ezekiel | hebrew work bench</title>
+  <title>Ezekiel | Hebrew Workbench</title>
   <style>
     :root {
       color-scheme: dark;
@@ -382,19 +382,19 @@
 <body>
   <main class="shell" id="top">
     <header class="topbar" aria-label="Site navigation">
-      <a href="../../">hebrew work bench</a>
+      <a href="../../">Hebrew Workbench</a>
     </header>
 
     <section class="hero" aria-labelledby="work-title">
       <div>
-        <p class="kicker">tanakh / neviim</p>
-        <h1 id="work-title">ezekiel</h1>
+        <p class="kicker">Tanakh / Neviim</p>
+        <h1 id="work-title">Ezekiel</h1>
       </div>
     </section>
 
     <div class="chapter-tracker" data-section-tracker>
       <button class="section-toggle" type="button" data-section-toggle aria-controls="chapter-links" aria-expanded="true">sections</button>
-      <nav class="chapter-nav" id="chapter-links" aria-label="ezekiel sections">
+      <nav class="chapter-nav" id="chapter-links" aria-label="Ezekiel sections">
         <a href="#ezekiel-1-1">1</a><a href="#ezekiel-2-1">2</a><a href="#ezekiel-3-1">3</a><a href="#ezekiel-4-1">4</a><a href="#ezekiel-5-1">5</a><a href="#ezekiel-6-1">6</a><a href="#ezekiel-7-1">7</a><a href="#ezekiel-8-1">8</a><a href="#ezekiel-9-1">9</a><a href="#ezekiel-10-1">10</a><a href="#ezekiel-11-1">11</a><a href="#ezekiel-12-1">12</a><a href="#ezekiel-13-1">13</a><a href="#ezekiel-14-1">14</a><a href="#ezekiel-15-1">15</a><a href="#ezekiel-16-1">16</a><a href="#ezekiel-17-1">17</a><a href="#ezekiel-18-1">18</a><a href="#ezekiel-19-1">19</a><a href="#ezekiel-20-1">20</a><a href="#ezekiel-21-1">21</a><a href="#ezekiel-22-1">22</a><a href="#ezekiel-23-1">23</a><a href="#ezekiel-24-1">24</a><a href="#ezekiel-25-1">25</a><a href="#ezekiel-26-1">26</a><a href="#ezekiel-27-1">27</a><a href="#ezekiel-28-1">28</a><a href="#ezekiel-29-1">29</a><a href="#ezekiel-30-1">30</a><a href="#ezekiel-31-1">31</a><a href="#ezekiel-32-1">32</a><a href="#ezekiel-33-1">33</a><a href="#ezekiel-34-1">34</a><a href="#ezekiel-35-1">35</a><a href="#ezekiel-36-1">36</a><a href="#ezekiel-37-1">37</a><a href="#ezekiel-38-1">38</a><a href="#ezekiel-39-1">39</a><a href="#ezekiel-40-1">40</a><a href="#ezekiel-41-1">41</a><a href="#ezekiel-42-1">42</a><a href="#ezekiel-43-1">43</a><a href="#ezekiel-44-1">44</a><a href="#ezekiel-45-1">45</a><a href="#ezekiel-46-1">46</a><a href="#ezekiel-47-1">47</a><a href="#ezekiel-48-1">48</a>
       </nav>
     </div>
@@ -131529,7 +131529,7 @@
       async function claimRows() {
         if (!claimsPromise) {
           claimsPromise = fetch(claimsCsvUrl).then(async (response) => {
-            if (!response.ok) throw new Error("ezekiel CSV fetch failed: " + response.status);
+            if (!response.ok) throw new Error("Ezekiel CSV fetch failed: " + response.status);
             const rows = parseCsv(await response.text()).filter((row) => row.some(Boolean));
             const header = rows.shift() || [];
             return rows.map((row) => Object.fromEntries(header.map((name, index) => [name, row[index] || ""])));
@@ -131558,7 +131558,7 @@
           answer_role: "evidence",
           definition,
           source_rows: [{
-            source_name: sources[0] || "ezekiel public lexical CSV",
+            source_name: sources[0] || "Ezekiel public lexical CSV",
             source_id: sourceIds[0] || row.safe_claim_ids || "",
             source_url: claimsCsvUrl,
             license: licenses[0] || "",

@@ -9,9 +9,9 @@ const exists = (relativePath) => fs.existsSync(path.join(root, relativePath));
 const workArg = process.argv.find((arg) => arg.startsWith("--work="));
 const workId = (workArg ? workArg.slice("--work=".length) : "daniel").trim();
 const workConfig = {
-  daniel: { label: "daniel", section: "tanakh / ketuvim" },
-  ezekiel: { label: "ezekiel", section: "tanakh / neviim" },
-}[workId] || { label: workId.replace(/-/g, " "), section: "tanakh" };
+  daniel: { label: "Daniel", section: "Tanakh / Ketuvim" },
+  ezekiel: { label: "Ezekiel", section: "Tanakh / Neviim" },
+}[workId] || { label: workId.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()), section: "Tanakh" };
 const claimsPath = `data/public-lexical/by-work/${workId}-token-claims-min60.csv`;
 const outputDir = `tanakh/${workId}`;
 const outputPath = `${outputDir}/index.html`;
@@ -176,7 +176,7 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${escapeHtml(workConfig.label)} | hebrew work bench</title>
+  <title>${escapeHtml(workConfig.label)} | Hebrew Workbench</title>
   <style>
     :root {
       color-scheme: dark;
@@ -555,7 +555,7 @@ const html = `<!DOCTYPE html>
 <body>
   <main class="shell" id="top">
     <header class="topbar" aria-label="Site navigation">
-      <a href="../../">hebrew work bench</a>
+      <a href="../../">Hebrew Workbench</a>
     </header>
 
     <section class="hero" aria-labelledby="work-title">
