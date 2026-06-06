@@ -1,6 +1,6 @@
 # Agent 3 State
 
-Generated: 2026-06-06T09:03:31.176Z
+Generated: 2026-06-06T09:16:07.104Z
 
 ## State
 
@@ -132,6 +132,7 @@ Generated: 2026-06-06T09:03:31.176Z
 - Old-dictionary candidate-use source-citation batch rows / memberships / unique source RIDs / source-family-partition-triage-impact groups / citation-transform-Agent6 memberships / forbidden-acceptance-release hits: 30/836/344/3-2-4-3/836-836-836/0-0-0
 - Old-dictionary candidate-use source-citation prefix rows / summaries / memberships / unique source RIDs-prefixes-families / multi-family prefixes-memberships / citation-transform-Agent6 memberships / forbidden-acceptance-release hits: 54/21/780/344-21-3/19-744/780-780-780/0-0-0
 - Old-dictionary candidate-use Agent 6 boundary prereq rows / prefixes / occurrences / queue-token IDs / source families / citation-transform-after-prereq-ready rows / selection-forbidden-acceptance-release hits: 25/10/331/9-9/1/25-25-25-0/0-0-0-0
+- Old-dictionary candidate-use direct source-citation rows / excluded source-family-boundary-Agent6 rows / occurrences / prefix-source-family rows / citation-transform-after-prereq-source-family-blocker rows / selection-forbidden-acceptance-release hits: 5/339-25/58/5-1/5-5-5-0/0-0-0-0
 - Proof rows / complete metadata: 12/12
 - Hebrew context / mojibake rows: 12/0
 - Reader-facing / route-payload / forbidden-authority hits: 0/0/0
@@ -145,8 +146,8 @@ Generated: 2026-06-06T09:03:31.176Z
 |---|---|---|
 | registry_state_file_present | passed | registry reports/agent3-state.md; report reports/agent3-state.md |
 | goal_boundary_loaded | passed | goal agent3-definition-occurrence-links; acceptance Agent 6 |
-| evidence_artifacts_exist | passed | 151/151 |
-| validator_scripts_exist | passed | 77/77 |
+| evidence_artifacts_exist | passed | 153/153 |
+| validator_scripts_exist | passed | 78/78 |
 | queue_ready_not_submitted | passed | fields 10/10; mutations 0; submitted 0 |
 | usage_counts_nonzero | passed | supported/candidate/weak 339/1351/700 |
 | ambiguous_audit_only_visible | passed | ambiguous 2064; reader-facing 0 |
