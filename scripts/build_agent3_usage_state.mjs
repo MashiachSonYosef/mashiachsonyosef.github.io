@@ -67,6 +67,8 @@ const defaults = {
     'reports/agent3-old-dictionary-candidate-use-boundary-chain-crossmatch-2026-06-06.json',
   oldDictionaryCandidateUseSourceCitationDependencyCrossmatch:
     'reports/agent3-old-dictionary-candidate-use-source-citation-dependency-crossmatch-2026-06-06.json',
+  oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch:
+    'reports/agent3-old-dictionary-candidate-use-agent1-route-recheck-crossmatch-2026-06-06.json',
   smokeValidation: '.local-cache/workbench-evidence/smoke-pipeline-validation.json',
   usageConcordance: 'data/workbench-evidence/usage-concordance.json',
   usageHandoffIndex: '.local-cache/workbench-evidence/usage-navigation-handoff-index.json',
@@ -198,6 +200,9 @@ const oldDictionaryCandidateUseBoundaryChainCrossmatch = readJson(
 );
 const oldDictionaryCandidateUseSourceCitationDependencyCrossmatch = readJson(
   options.oldDictionaryCandidateUseSourceCitationDependencyCrossmatch,
+);
+const oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch = readJson(
+  options.oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch,
 );
 const smokeValidation = readJson(options.smokeValidation);
 const usageConcordance = readJson(options.usageConcordance);
@@ -402,6 +407,14 @@ if (
     `${options.oldDictionaryCandidateUseSourceCitationDependencyCrossmatch} is not an Agent 3 old-dictionary candidate-use source-citation dependency crossmatch`,
   );
 }
+if (
+  oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.artifact_type !==
+  'agent3_old_dictionary_candidate_use_agent1_route_recheck_crossmatch'
+) {
+  throw new Error(
+    `${options.oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch} is not an Agent 3 old-dictionary candidate-use Agent 1 route recheck crossmatch`,
+  );
+}
 if (publicHandoffIndex.artifact_type !== 'workbench_public_handoff_index') {
   throw new Error(`${options.publicHandoffIndex} is not a public handoff index`);
 }
@@ -497,6 +510,8 @@ const evidenceArtifacts = unique([
   'reports/agent3-old-dictionary-candidate-use-boundary-chain-crossmatch-2026-06-06.md',
   options.oldDictionaryCandidateUseSourceCitationDependencyCrossmatch,
   'reports/agent3-old-dictionary-candidate-use-source-citation-dependency-crossmatch-2026-06-06.md',
+  options.oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch,
+  'reports/agent3-old-dictionary-candidate-use-agent1-route-recheck-crossmatch-2026-06-06.md',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.json',
   'reports/agent3-spark3-oracle9-missed-dictionary-evidence-diff-blocker-2026-06-04.md',
   'reports/agent3-current-control-drift-refresh-2026-06-04.json',
@@ -588,6 +603,7 @@ const validators = unique([
   'scripts/validate_agent3_old_dictionary_candidate_use_row_lineage_matrix.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_boundary_chain_crossmatch.mjs',
   'scripts/validate_agent3_old_dictionary_candidate_use_source_citation_dependency_crossmatch.mjs',
+  'scripts/validate_agent3_old_dictionary_candidate_use_agent1_route_recheck_crossmatch.mjs',
   'scripts/validate_definition_workbench_usage_link_packet.mjs',
   'scripts/validate_definition_workbench_usage_seed_queue.mjs',
   'scripts/validate_definition_workbench_usage_join_smoke.mjs',
@@ -1180,6 +1196,16 @@ const artifact = {
     old_dictionary_candidate_use_source_citation_dependency_source_acceptance_claims: Number(oldDictionaryCandidateUseSourceCitationDependencyCrossmatch.counts?.source_acceptance_claims || 0),
     old_dictionary_candidate_use_source_citation_dependency_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseSourceCitationDependencyCrossmatch.counts?.forbidden_payload_field_hits || 0),
     old_dictionary_candidate_use_source_citation_dependency_acceptance_claims: Number(oldDictionaryCandidateUseSourceCitationDependencyCrossmatch.counts?.acceptance_claims || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.route_recheck_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_required_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.route_recheck_required_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_target_matches_registry_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.attempted_target_matches_registry_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_registry_postdates_blocker_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.registry_postdates_route_blocker_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_missing_citation_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.source_citation_missing_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_missing_transform_rule_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.transform_rule_missing_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_delivery_attempts_by_agent3: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.delivery_attempts_by_agent3 || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_transform_ready_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.transform_ready_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.forbidden_payload_field_hits || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_acceptance_claims: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.acceptance_claims || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -1790,6 +1816,16 @@ function buildCounts() {
     old_dictionary_candidate_use_source_citation_dependency_source_acceptance_claims: Number(oldDictionaryCandidateUseSourceCitationDependencyCrossmatch.counts?.source_acceptance_claims || 0),
     old_dictionary_candidate_use_source_citation_dependency_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseSourceCitationDependencyCrossmatch.counts?.forbidden_payload_field_hits || 0),
     old_dictionary_candidate_use_source_citation_dependency_acceptance_claims: Number(oldDictionaryCandidateUseSourceCitationDependencyCrossmatch.counts?.acceptance_claims || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.route_recheck_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_required_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.route_recheck_required_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_target_matches_registry_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.attempted_target_matches_registry_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_registry_postdates_blocker_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.registry_postdates_route_blocker_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_missing_citation_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.source_citation_missing_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_missing_transform_rule_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.transform_rule_missing_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_delivery_attempts_by_agent3: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.delivery_attempts_by_agent3 || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_transform_ready_rows: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.transform_ready_rows || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_forbidden_payload_field_hits: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.forbidden_payload_field_hits || 0),
+    old_dictionary_candidate_use_agent1_route_recheck_acceptance_claims: Number(oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch.counts?.acceptance_claims || 0),
     proof_occurrence_rows: Number(usageAgent6Packet.counts?.proof_occurrence_rows || 0),
     proof_rows_with_complete_metadata: completeProofRows(usageAgent6Packet),
     proof_rows_with_hebrew_context: Number(usageAgent6Packet.counts?.proof_rows_with_hebrew_context || 0),
@@ -1977,6 +2013,7 @@ function writeReport(relativePath, artifact) {
     `- Old-dictionary candidate-use row lineage rows / occurrences / all-layer-linked / gaps / duplicate queue IDs / Agent 2 queue pointers / transform-ready: ${artifact.current_metrics.old_dictionary_candidate_use_row_lineage_rows}/${artifact.current_metrics.old_dictionary_candidate_use_row_lineage_occurrences}/${artifact.current_metrics.old_dictionary_candidate_use_row_lineage_all_layers_linked}/${artifact.current_metrics.old_dictionary_candidate_use_row_lineage_gap_rows}/${artifact.current_metrics.old_dictionary_candidate_use_row_lineage_duplicate_queue_ids}/${artifact.current_metrics.old_dictionary_candidate_use_row_lineage_agent2_queue_pointers}/${artifact.current_metrics.old_dictionary_candidate_use_row_lineage_transform_ready_rows}`,
     `- Old-dictionary candidate-use boundary-chain crossmatch rows / preboundary matches / zero-text matches / missing-extra-mismatch rows / current transform blockers / zero-counter violations / transform-ready: ${artifact.current_metrics.old_dictionary_candidate_use_boundary_chain_rows}/${artifact.current_metrics.old_dictionary_candidate_use_boundary_chain_preboundary_matches}/${artifact.current_metrics.old_dictionary_candidate_use_boundary_chain_zero_text_matches}/${artifact.current_metrics.old_dictionary_candidate_use_boundary_chain_missing_rows}-${artifact.current_metrics.old_dictionary_candidate_use_boundary_chain_extra_rows}-${artifact.current_metrics.old_dictionary_candidate_use_boundary_chain_mismatch_rows}/${artifact.current_metrics.old_dictionary_candidate_use_boundary_chain_current_transform_blockers}/${artifact.current_metrics.old_dictionary_candidate_use_boundary_chain_zero_counter_violations}/${artifact.current_metrics.old_dictionary_candidate_use_boundary_chain_transform_ready_rows}`,
     `- Old-dictionary candidate-use source-citation dependency rows / missing citation / missing transform rule / source RID refs / blockers / stale Agent 1 route blockers / transform-ready: ${artifact.current_metrics.old_dictionary_candidate_use_source_citation_dependency_rows}/${artifact.current_metrics.old_dictionary_candidate_use_source_citation_dependency_missing_citation_rows}/${artifact.current_metrics.old_dictionary_candidate_use_source_citation_dependency_missing_transform_rule_rows}/${artifact.current_metrics.old_dictionary_candidate_use_source_citation_dependency_source_rid_refs}/${artifact.current_metrics.old_dictionary_candidate_use_source_citation_dependency_exact_blockers}/${artifact.current_metrics.old_dictionary_candidate_use_source_citation_dependency_stale_agent1_route_blockers}/${artifact.current_metrics.old_dictionary_candidate_use_source_citation_dependency_transform_ready_rows}`,
+    `- Old-dictionary candidate-use Agent 1 route recheck rows / recheck required / target-registry match / registry postdates blocker / missing citation / delivery attempts / transform-ready: ${artifact.current_metrics.old_dictionary_candidate_use_agent1_route_recheck_rows}/${artifact.current_metrics.old_dictionary_candidate_use_agent1_route_recheck_required_rows}/${artifact.current_metrics.old_dictionary_candidate_use_agent1_route_recheck_target_matches_registry_rows}/${artifact.current_metrics.old_dictionary_candidate_use_agent1_route_recheck_registry_postdates_blocker_rows}/${artifact.current_metrics.old_dictionary_candidate_use_agent1_route_recheck_missing_citation_rows}/${artifact.current_metrics.old_dictionary_candidate_use_agent1_route_recheck_delivery_attempts_by_agent3}/${artifact.current_metrics.old_dictionary_candidate_use_agent1_route_recheck_transform_ready_rows}`,
     `- Proof rows / complete metadata: ${artifact.current_metrics.proof_occurrence_rows}/${artifact.current_metrics.proof_rows_with_complete_metadata}`,
     `- Hebrew context / mojibake rows: ${artifact.current_metrics.proof_rows_with_hebrew_context}/${artifact.current_metrics.proof_mojibake_rows}`,
     `- Reader-facing / route-payload / forbidden-authority hits: ${artifact.current_metrics.reader_facing_rows}/${artifact.current_metrics.route_payload_field_hits}/${artifact.current_metrics.forbidden_authority_field_hits}`,
@@ -2095,6 +2132,7 @@ function parseArgs(args) {
     else if (arg.startsWith('--old-dictionary-candidate-use-row-lineage-matrix=')) parsed.oldDictionaryCandidateUseRowLineageMatrix = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-boundary-chain-crossmatch=')) parsed.oldDictionaryCandidateUseBoundaryChainCrossmatch = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--old-dictionary-candidate-use-source-citation-dependency-crossmatch=')) parsed.oldDictionaryCandidateUseSourceCitationDependencyCrossmatch = cleanRelativePath(valueAfterEquals(arg));
+    else if (arg.startsWith('--old-dictionary-candidate-use-agent1-route-recheck-crossmatch=')) parsed.oldDictionaryCandidateUseAgent1RouteRecheckCrossmatch = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--smoke-validation=')) parsed.smokeValidation = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-concordance=')) parsed.usageConcordance = cleanRelativePath(valueAfterEquals(arg));
     else if (arg.startsWith('--usage-handoff-index=')) parsed.usageHandoffIndex = cleanRelativePath(valueAfterEquals(arg));
