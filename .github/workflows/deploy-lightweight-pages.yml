@@ -42,41 +42,21 @@ jobs:
             /tanakh/zechariah/index.html
             /tanakh/zephaniah/index.html
             /data/definitions/hud-route-lookup
-            /data/lexical/amos.manifest.json
-            /data/lexical/amos-chunks
-            /data/lexical/deuteronomy.manifest.json
-            /data/lexical/deuteronomy-chunks
-            /data/lexical/exodus.manifest.json
-            /data/lexical/exodus-chunks
-            /data/lexical/genesis.manifest.json
-            /data/lexical/genesis-chunks
-            /data/lexical/jonah.manifest.json
-            /data/lexical/jonah-chunks
-            /data/lexical/leviticus.manifest.json
-            /data/lexical/leviticus-chunks
-            /data/lexical/numbers.manifest.json
-            /data/lexical/numbers-chunks
             /data/lexical/orot.manifest.json
             /data/lexical/orot-chunks
-            /data/lexical/ruth.manifest.json
-            /data/lexical/ruth-chunks
-            /data/lexical/source-layers
-            /data/lexical/zechariah.manifest.json
-            /data/lexical/zechariah-chunks
-            /data/lexical/zephaniah.manifest.json
-            /data/lexical/zephaniah-chunks
-            /data/lexical/occurrences/amos.json
-            /data/lexical/occurrences/deuteronomy.json
-            /data/lexical/occurrences/exodus.json
-            /data/lexical/occurrences/genesis.json
-            /data/lexical/occurrences/jonah.json
-            /data/lexical/occurrences/leviticus.json
-            /data/lexical/occurrences/numbers.json
             /data/lexical/occurrences/orot.json
-            /data/lexical/occurrences/ruth.json
-            /data/lexical/occurrences/zechariah.json
-            /data/lexical/occurrences/zephaniah.json
+            /data/lexical/source-layers
+            /data/public-hud/amos
+            /data/public-hud/deuteronomy
+            /data/public-hud/exodus
+            /data/public-hud/genesis
+            /data/public-hud/jonah
+            /data/public-hud/leviticus
+            /data/public-hud/numbers
             /data/public-hud/orot
+            /data/public-hud/ruth
+            /data/public-hud/zechariah
+            /data/public-hud/zephaniah
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -107,9 +87,7 @@ jobs:
           cp -a orot/index.html .site/orot/
           for work in amos deuteronomy exodus genesis jonah leviticus numbers ruth zechariah zephaniah; do
             cp -a "tanakh/$work/index.html" ".site/tanakh/$work/"
-            cp -a "data/lexical/$work.manifest.json" .site/data/lexical/
-            cp -a "data/lexical/$work-chunks" .site/data/lexical/
-            cp -a "data/lexical/occurrences/$work.json" .site/data/lexical/occurrences/
+            cp -a "data/public-hud/$work" .site/data/public-hud/
           done
           cp -a data/lexical/orot.manifest.json .site/data/lexical/
           cp -a data/lexical/orot-chunks .site/data/lexical/
