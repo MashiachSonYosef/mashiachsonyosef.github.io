@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brief Commentary on Shekalim</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Brief Commentary on Shekalim<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Shekalim</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Shekalim</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
+          </section>
+        </div>
+          <p class="hero-summary">
+            <span>114 source units</span>
+            <span>1100 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: The Tosefta according to to codex Vienna. Third Augmented Edition, JTS 2001 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001234517/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: CC-BY</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Brief Commentary on Shekalim <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Brief Commentary on Shekalim <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-shekalim-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-1-1" title="Brief Commentary on Shekalim 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-1-2" title="Brief Commentary on Shekalim 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-1-3" title="Brief Commentary on Shekalim 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-2-1" title="Brief Commentary on Shekalim 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-2-2" title="Brief Commentary on Shekalim 1:2:2">1:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-3-1" title="Brief Commentary on Shekalim 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-3-2" title="Brief Commentary on Shekalim 1:3:2">1:3:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-5-1" title="Brief Commentary on Shekalim 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-5-2" title="Brief Commentary on Shekalim 1:5:2">1:5:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-5-3" title="Brief Commentary on Shekalim 1:5:3">1:5:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-5-4" title="Brief Commentary on Shekalim 1:5:4">1:5:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-5-5" title="Brief Commentary on Shekalim 1:5:5">1:5:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-5-6" title="Brief Commentary on Shekalim 1:5:6">1:5:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-6-1" title="Brief Commentary on Shekalim 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-6-2" title="Brief Commentary on Shekalim 1:6:2">1:6:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-6-3" title="Brief Commentary on Shekalim 1:6:3">1:6:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-7-1" title="Brief Commentary on Shekalim 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-7-2" title="Brief Commentary on Shekalim 1:7:2">1:7:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-7-3" title="Brief Commentary on Shekalim 1:7:3">1:7:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-8-1" title="Brief Commentary on Shekalim 1:8:1">1:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-8-2" title="Brief Commentary on Shekalim 1:8:2">1:8:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-8-3" title="Brief Commentary on Shekalim 1:8:3">1:8:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-8-4" title="Brief Commentary on Shekalim 1:8:4">1:8:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-8-5" title="Brief Commentary on Shekalim 1:8:5">1:8:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-9-1" title="Brief Commentary on Shekalim 1:9:1">1:9:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-9-2" title="Brief Commentary on Shekalim 1:9:2">1:9:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-10-1" title="Brief Commentary on Shekalim 1:10:1">1:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-10-2" title="Brief Commentary on Shekalim 1:10:2">1:10:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-10-3" title="Brief Commentary on Shekalim 1:10:3">1:10:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-10-4" title="Brief Commentary on Shekalim 1:10:4">1:10:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-11-1" title="Brief Commentary on Shekalim 1:11:1">1:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-12-1" title="Brief Commentary on Shekalim 1:12:1">1:12:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-12-2" title="Brief Commentary on Shekalim 1:12:2">1:12:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-12-3" title="Brief Commentary on Shekalim 1:12:3">1:12:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-1-12-4" title="Brief Commentary on Shekalim 1:12:4">1:12:4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-shekalim-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-1-1" title="Brief Commentary on Shekalim 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-1-2" title="Brief Commentary on Shekalim 2:1:2">2:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-1-3" title="Brief Commentary on Shekalim 2:1:3">2:1:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-1-4" title="Brief Commentary on Shekalim 2:1:4">2:1:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-2-1" title="Brief Commentary on Shekalim 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-2-2" title="Brief Commentary on Shekalim 2:2:2">2:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-2-3" title="Brief Commentary on Shekalim 2:2:3">2:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-2-4" title="Brief Commentary on Shekalim 2:2:4">2:2:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-2-5" title="Brief Commentary on Shekalim 2:2:5">2:2:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-2-6" title="Brief Commentary on Shekalim 2:2:6">2:2:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-3-1" title="Brief Commentary on Shekalim 2:3:1">2:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-4-1" title="Brief Commentary on Shekalim 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-4-2" title="Brief Commentary on Shekalim 2:4:2">2:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-5-1" title="Brief Commentary on Shekalim 2:5:1">2:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-5-2" title="Brief Commentary on Shekalim 2:5:2">2:5:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-5-3" title="Brief Commentary on Shekalim 2:5:3">2:5:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-5-4" title="Brief Commentary on Shekalim 2:5:4">2:5:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-6-1" title="Brief Commentary on Shekalim 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-6-2" title="Brief Commentary on Shekalim 2:6:2">2:6:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-6-3" title="Brief Commentary on Shekalim 2:6:3">2:6:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-6-4" title="Brief Commentary on Shekalim 2:6:4">2:6:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-7-1" title="Brief Commentary on Shekalim 2:7:1">2:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-8-1" title="Brief Commentary on Shekalim 2:8:1">2:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-8-2" title="Brief Commentary on Shekalim 2:8:2">2:8:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-9-1" title="Brief Commentary on Shekalim 2:9:1">2:9:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-9-2" title="Brief Commentary on Shekalim 2:9:2">2:9:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-10-1" title="Brief Commentary on Shekalim 2:10:1">2:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-10-2" title="Brief Commentary on Shekalim 2:10:2">2:10:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-10-3" title="Brief Commentary on Shekalim 2:10:3">2:10:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-11-1" title="Brief Commentary on Shekalim 2:11:1">2:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-11-2" title="Brief Commentary on Shekalim 2:11:2">2:11:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-11-3" title="Brief Commentary on Shekalim 2:11:3">2:11:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-11-4" title="Brief Commentary on Shekalim 2:11:4">2:11:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-12-1" title="Brief Commentary on Shekalim 2:12:1">2:12:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-12-2" title="Brief Commentary on Shekalim 2:12:2">2:12:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-12-3" title="Brief Commentary on Shekalim 2:12:3">2:12:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-13-1" title="Brief Commentary on Shekalim 2:13:1">2:13:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-13-2" title="Brief Commentary on Shekalim 2:13:2">2:13:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-13-3" title="Brief Commentary on Shekalim 2:13:3">2:13:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-13-4" title="Brief Commentary on Shekalim 2:13:4">2:13:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-14-1" title="Brief Commentary on Shekalim 2:14:1">2:14:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-15-1" title="Brief Commentary on Shekalim 2:15:1">2:15:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-16-1" title="Brief Commentary on Shekalim 2:16:1">2:16:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-16-2" title="Brief Commentary on Shekalim 2:16:2">2:16:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-17-1" title="Brief Commentary on Shekalim 2:17:1">2:17:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-2-17-2" title="Brief Commentary on Shekalim 2:17:2">2:17:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-shekalim-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-1-1" title="Brief Commentary on Shekalim 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-1-2" title="Brief Commentary on Shekalim 3:1:2">3:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-2-1" title="Brief Commentary on Shekalim 3:2:1">3:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-2-2" title="Brief Commentary on Shekalim 3:2:2">3:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-2-3" title="Brief Commentary on Shekalim 3:2:3">3:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-2-4" title="Brief Commentary on Shekalim 3:2:4">3:2:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-2-5" title="Brief Commentary on Shekalim 3:2:5">3:2:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-3-1" title="Brief Commentary on Shekalim 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-3-2" title="Brief Commentary on Shekalim 3:3:2">3:3:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-4-1" title="Brief Commentary on Shekalim 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-4-2" title="Brief Commentary on Shekalim 3:4:2">3:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-4-3" title="Brief Commentary on Shekalim 3:4:3">3:4:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-4-4" title="Brief Commentary on Shekalim 3:4:4">3:4:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-7-1" title="Brief Commentary on Shekalim 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-9-1" title="Brief Commentary on Shekalim 3:9:1">3:9:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-9-2" title="Brief Commentary on Shekalim 3:9:2">3:9:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-10-1" title="Brief Commentary on Shekalim 3:10:1">3:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-12-1" title="Brief Commentary on Shekalim 3:12:1">3:12:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-12-2" title="Brief Commentary on Shekalim 3:12:2">3:12:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-13-1" title="Brief Commentary on Shekalim 3:13:1">3:13:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-13-2" title="Brief Commentary on Shekalim 3:13:2">3:13:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-13-3" title="Brief Commentary on Shekalim 3:13:3">3:13:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-14-1" title="Brief Commentary on Shekalim 3:14:1">3:14:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-14-2" title="Brief Commentary on Shekalim 3:14:2">3:14:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-14-3" title="Brief Commentary on Shekalim 3:14:3">3:14:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-15-1" title="Brief Commentary on Shekalim 3:15:1">3:15:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-20-1" title="Brief Commentary on Shekalim 3:20:1">3:20:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-21-1" title="Brief Commentary on Shekalim 3:21:1">3:21:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-21-2" title="Brief Commentary on Shekalim 3:21:2">3:21:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-21-3" title="Brief Commentary on Shekalim 3:21:3">3:21:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-22-1" title="Brief Commentary on Shekalim 3:22:1">3:22:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-22-2" title="Brief Commentary on Shekalim 3:22:2">3:22:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-shekalim-3-25-1" title="Brief Commentary on Shekalim 3:25:1">3:25:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-brief-commentary-on-shekalim-text-1">Chapter 1</h4>
+          <section class="unit" id="brief-commentary-on-shekalim-1-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-1-1" data-source-ref="Brief Commentary on Shekalim 1:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-1-1" aria-label="Copy link to Brief Commentary on Shekalim 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בו.</strong> כלומר, באדר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-1-2" data-source-ref="Brief Commentary on Shekalim 1:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-1-2" aria-label="Copy link to Brief Commentary on Shekalim 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שחולחלו.</strong> כלומר שנעשו שם חללים ע&quot;י הגשמים ששטפו את החול שבין האבנים שבכביש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-1-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-1-3" data-source-ref="Brief Commentary on Shekalim 1:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:1:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-1-3" aria-label="Copy link to Brief Commentary on Shekalim 1:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פרק למועד וכו׳.</strong> כלומר, שלשים יום לפני המועד, סמוך לעולי רגלים, ומתקנין אותן פעם בשנה לכל ימות החמה, לשלש הרגלים. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-2-1" data-source-ref="Brief Commentary on Shekalim 1:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-2-1" aria-label="Copy link to Brief Commentary on Shekalim 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחופרין בורות וכו׳.</strong> שאין כבר חשש שיתקלקלו מן הגשמים המרובים, ועדיין הם יכולים להמלאות מן המלקוש, ויהו מוכנים לימות הגשמים הבאים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-2-2" data-source-ref="Brief Commentary on Shekalim 1:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-2-2" aria-label="Copy link to Brief Commentary on Shekalim 1:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>להקוות עליו.</strong> כלומר, לעשותו מקוה ראוי לטבילה, ואם מימיו מרודדין, ואין מכסים את כל הגוף, ממלא בכתף מים שאובים עד שיתפחו מימיו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-3-1" data-source-ref="Brief Commentary on Shekalim 1:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-3-1" aria-label="Copy link to Brief Commentary on Shekalim 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ופטור וכו׳.</strong> אפילו עקרם בעל הבית, שהרי הם הפקר, ועדיין לא נאסרו, כגון שעלו מאיליהם. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-3-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-3-2" data-source-ref="Brief Commentary on Shekalim 1:3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:3:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-3-2" aria-label="Copy link to Brief Commentary on Shekalim 1:3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחייב במעשרות.</strong> אם עקרם בעל הבית. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-5-1" data-source-ref="Brief Commentary on Shekalim 1:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-5-1" aria-label="Copy link to Brief Commentary on Shekalim 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא על הסלע וכו׳.</strong> מפני שחזקתם מקום טהרה, ולא יתנו בני אדם דעתם על הציון, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-5-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-5-2" data-source-ref="Brief Commentary on Shekalim 1:5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:5:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-5-2" aria-label="Copy link to Brief Commentary on Shekalim 1:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במקום הטומאה.</strong> שמא לא ירגיש בציון עד שיגיע אליו ויטמא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-5-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-5-3" data-source-ref="Brief Commentary on Shekalim 1:5:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:5:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-5-3" aria-label="Copy link to Brief Commentary on Shekalim 1:5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טמא.</strong> צ&quot;ל: טהור (כגי׳ הרש&quot;ס בתוספתא). ובהאהיל על הציון שעל גבי קרקע עסיקינן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-5-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-5-4" data-source-ref="Brief Commentary on Shekalim 1:5:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:5:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-5-4" aria-label="Copy link to Brief Commentary on Shekalim 1:5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טהור.</strong> צ&quot;ל: טמא, כמקורות הנ&quot;ל, שהרי אין מציינין על אבן אחת, אלא מציינין משני צדי הטומאה, שייראה הציון לבא משתי רוחות. ואם ציינו על אבן אחת גרידא יש לחשוש שמא המת הוא תחתיה, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-5-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-5-5" data-source-ref="Brief Commentary on Shekalim 1:5:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:5:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-5-5" aria-label="Copy link to Brief Commentary on Shekalim 1:5:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על בשר וכו׳.</strong> שהרי חזקתו מתאכל, ואין מרבין טומאה בא&quot;י.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-5-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-5-6" data-source-ref="Brief Commentary on Shekalim 1:5:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:5:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-5-6" aria-label="Copy link to Brief Commentary on Shekalim 1:5:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין מטמאין וכו׳.</strong> כלומר, שאינן לא רוב בניינו, או רוב מניינו, ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-6-1" data-source-ref="Brief Commentary on Shekalim 1:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-6-1" aria-label="Copy link to Brief Commentary on Shekalim 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קריבין מהן.</strong> שהרי אין באין משל יחיד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-6-2" data-source-ref="Brief Commentary on Shekalim 1:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-6-2" aria-label="Copy link to Brief Commentary on Shekalim 1:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והיה הרופא וכו׳.</strong> ואף שהחולה מצטער מן החיתוך, סופו שהוא מכיר שאין כוונתו אלא לרפואתו. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-6-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-6-3" data-source-ref="Brief Commentary on Shekalim 1:6:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:6:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-6-3" aria-label="Copy link to Brief Commentary on Shekalim 1:6:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ששקלו וכו׳.</strong> ומשה רבינו לקח מהם את הכסף בעל כרחם, כדי להצילם מן הנגף. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-7-1" data-source-ref="Brief Commentary on Shekalim 1:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-7-1" aria-label="Copy link to Brief Commentary on Shekalim 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לוקחין וכו׳.</strong> כלומר, קונים מהם וכו׳, אבל אין לוקחין מהן כסף בשביל קרבנות ציבור, ומכל שכן שאין מקבלין מהם בהמות בשביל קרבנות ציבור, ואפילו אם מוסרים אותן לציבור, שהציבור יקריבם לשם הציבור. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-7-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-7-2" data-source-ref="Brief Commentary on Shekalim 1:7:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:7:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-7-2" aria-label="Copy link to Brief Commentary on Shekalim 1:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומקבלין וכו׳.</strong> כלומר, נדבת יחיד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-7-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-7-3" data-source-ref="Brief Commentary on Shekalim 1:7:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:7:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-7-3" aria-label="Copy link to Brief Commentary on Shekalim 1:7:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עולה ושלמים.</strong> בתו&quot;כ ובבבלי: אלא עולה בלבד, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-8-1" data-source-ref="Brief Commentary on Shekalim 1:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-8-1" aria-label="Copy link to Brief Commentary on Shekalim 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על ידי יתומים.</strong> כלומר, בשביל יתומים גדולים. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-8-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-8-2" data-source-ref="Brief Commentary on Shekalim 1:8:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:8:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-8-2" aria-label="Copy link to Brief Commentary on Shekalim 1:8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חייבין בקולבון.</strong> כלומר, ואעפ&quot;י שהוא שוקל מטבע אחד בשביל שני היתומים, אין דינו כשוקל שקל שלם של תורה מתפוסת הבית שאינו חייב בקולבון, לשיטת החכמים להלן בסמוך. וקולבון הוא דמי פרוטרוט של שני חצאי השקלים. ושיעורו מבואר להלן, שו׳ 30. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-8-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-8-3" data-source-ref="Brief Commentary on Shekalim 1:8:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:8:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-8-3" aria-label="Copy link to Brief Commentary on Shekalim 1:8:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השוקל שקל וכו׳.</strong> כלומר, שקל של זמנם, והוא מחצית השקל של תורה, ונותן אותו במטבע אחד (ואין צורך לצירוף של שולחני, עיין להלן, שו׳ 33–34), אעפ&quot;י כן חייב בקולבון.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-8-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-8-4" data-source-ref="Brief Commentary on Shekalim 1:8:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:8:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-8-4" aria-label="Copy link to Brief Commentary on Shekalim 1:8:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני דינרין וכו׳.</strong> כלומר, שנתן מחצית השקל של תורה בשני מטבעות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-8-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-8-5" data-source-ref="Brief Commentary on Shekalim 1:8:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:8:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-8-5" aria-label="Copy link to Brief Commentary on Shekalim 1:8:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לנדבה.</strong> לקיץ המזבח, שמקריבין עליו עולות, כשהוא בטל מקרבנות אחרים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-9-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-9-1" data-source-ref="Brief Commentary on Shekalim 1:9:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:9:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-9-1" aria-label="Copy link to Brief Commentary on Shekalim 1:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא הספיק להקריב וכו׳.</strong> כלומר, שעדיין לא מסרם לגיזבר, שהרי בשקל יחיד כשהוא מוסרו לגזבר הוא מתערב בשקלים אחרים של התרומה החדשה, ואינו ניכר לעצמו, וממילא יפול לחדתין. עיין להלן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-9-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-9-2" data-source-ref="Brief Commentary on Shekalim 1:9:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:9:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-9-2" aria-label="Copy link to Brief Commentary on Shekalim 1:9:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הראשון יפול וכו׳.</strong> כלומר, השקל שהפריש בראשונה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-10-1" data-source-ref="Brief Commentary on Shekalim 1:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-10-1" aria-label="Copy link to Brief Commentary on Shekalim 1:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שקלו מחברו וכו׳.</strong> כלומר, משל חבירו, משקלי חבירו. ועיין בשנו&quot;ס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-10-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-10-2" data-source-ref="Brief Commentary on Shekalim 1:10:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:10:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-10-2" aria-label="Copy link to Brief Commentary on Shekalim 1:10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זוזיו וכו׳.</strong> כלומר, ששקל שקלו מזוזיו שהקדיש לבדק הבית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-10-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-10-3" data-source-ref="Brief Commentary on Shekalim 1:10:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:10:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-10-3" aria-label="Copy link to Brief Commentary on Shekalim 1:10:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלקח מעל וכו׳.</strong> וסובר ר&quot;ש שהמעביר מקודש לקודש מעל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-10-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-10-4" data-source-ref="Brief Commentary on Shekalim 1:10:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:10:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-10-4" aria-label="Copy link to Brief Commentary on Shekalim 1:10:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שיזרקו הדמים.</strong> כלומר, שיהנה ותעשה מחשבתו, אבל בלאו הכי המוציא מקודש לקודש לא מעל. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-11-1" data-source-ref="Brief Commentary on Shekalim 1:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-11-1" aria-label="Copy link to Brief Commentary on Shekalim 1:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מביאין מנחות וכו׳.</strong> וכולם צריכים להיות ממשקה ישראל (כלומר, מן הדברים המותרים באכילה), ומדברים שמותר להפסידם. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-12-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-12-1" data-source-ref="Brief Commentary on Shekalim 1:12:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:12:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-12-1" aria-label="Copy link to Brief Commentary on Shekalim 1:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מותר יין וכו׳.</strong> כלומר, המפריש מעות ליין נסכיו, או לשמן של מנחתו, והותירו. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-12-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-12-2" data-source-ref="Brief Commentary on Shekalim 1:12:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:12:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-12-2" aria-label="Copy link to Brief Commentary on Shekalim 1:12:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מותר בזיכין וכו׳.</strong> כלומר, לבונה בשביל לחם הפנים. מותר גזירין וכו׳. צ&quot;ל: נזירין (כגי׳ ד ועוד), והיינו שגבו לצורך נזירים עניים או מצורעים עניים. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-12-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-12-3" data-source-ref="Brief Commentary on Shekalim 1:12:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:12:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-12-3" aria-label="Copy link to Brief Commentary on Shekalim 1:12:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לנזיר זה וכו׳.</strong> כדין נזיר יחיד שהותיר בעצמו, כמפורש במשנתנו פ&quot;ב מ&quot;ה, ולהלן פ&quot;ג, שו׳ 21–22.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-1-12-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-1-12-4" data-source-ref="Brief Commentary on Shekalim 1:12:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 1:12:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-1-12-4" aria-label="Copy link to Brief Commentary on Shekalim 1:12:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כסות בכסות וכו׳.</strong> כלומר, אין גובין בשביל עני טלית זו ונותנין לו טלית אחרת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-shekalim-text-2">Chapter 2</h4>
+          <section class="unit" id="brief-commentary-on-shekalim-2-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-1-1" data-source-ref="Brief Commentary on Shekalim 2:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-1-1" aria-label="Copy link to Brief Commentary on Shekalim 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אי זהו פרס וכו׳.</strong> כלומר, ששנו במשנתנו רפ&quot;ג שבו תורמין את הלשכה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-1-2" data-source-ref="Brief Commentary on Shekalim 2:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-1-2" aria-label="Copy link to Brief Commentary on Shekalim 2:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>למה כותבין וכו׳.</strong> כמפורש במשנתנו פ&quot;ג מ&quot;ב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-1-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-1-3" data-source-ref="Brief Commentary on Shekalim 2:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:1:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-1-3" aria-label="Copy link to Brief Commentary on Shekalim 2:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגיע זמן וכו׳.</strong> כלומר פרוס עצרת, או פרוס החג, שבהם תורמין את הלשכה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-1-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-1-4" data-source-ref="Brief Commentary on Shekalim 2:1:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:1:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-1-4" aria-label="Copy link to Brief Commentary on Shekalim 2:1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן הישנה.</strong> כלומר, מן המשוייר, ממה שנשתייר בלשכה אחרי שתרמו את הקופות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-2-1" data-source-ref="Brief Commentary on Shekalim 2:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-2-1" aria-label="Copy link to Brief Commentary on Shekalim 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכניסה וכו׳.</strong> כלומר, מחפשים ובודקים בגופו ובבגדיו, שלא יוכל לטעון הבאתי אתי זהב משל עצמי, אם ימצאוהו אצלו ביציאתו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-2-2" data-source-ref="Brief Commentary on Shekalim 2:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-2-2" aria-label="Copy link to Brief Commentary on Shekalim 2:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הטוב בעיני שמים וכו׳.</strong> התוספתא מסמיכה להלכה שלנו ברייתא ממדרש הלכה, והיא תלויה במחלוקת ר&quot;ע ור׳ ישמעאל. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-2-3" data-source-ref="Brief Commentary on Shekalim 2:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-2-3" aria-label="Copy link to Brief Commentary on Shekalim 2:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והישר בעיני אדם וכו׳.</strong> כלומר, ר&quot;ע סובר שאמנם צריך אדם לעשות את הטוב בעיני ה׳, אבל באותו זמן צריך להזהר שיהא ישר גם בעיני אדם. וסובר ר&quot;ע שאין מבזין אותו בחפושים ובפשפושים, ומספיק שהוא ידאג לעצמו שלא יכנס ללשכה בפרגוד חפות, במנעל וכדומה, שלא יבוא לידי חשד. והוא כסתם משנתנו פ&quot;ג מ&quot;ב, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-2-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-2-4" data-source-ref="Brief Commentary on Shekalim 2:2:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:2:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-2-4" aria-label="Copy link to Brief Commentary on Shekalim 2:2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אף הישר וכו׳.</strong> בכי&quot;ע חסרה המלה &quot;אף&quot;, וגם לפנינו היא לאו בדווקא, עיין בבה&quot;א. ור׳ ישמעאל סובר שאין משגיחין בכגון דא בבני אדם, ומה שישר בעיני שמים הוא ממילא טוב גם בעיני בני אדם. ושיטת התוספתא היא כר׳ ישמעאל, ולפיכך מפשפשין בו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-2-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-2-5" data-source-ref="Brief Commentary on Shekalim 2:2:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:2:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-2-5" aria-label="Copy link to Brief Commentary on Shekalim 2:2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין כאן טוב.</strong> כלומר, לא נזכר כאן &quot;טוב&quot;, שהרי לכאורה אין זה טוב בעיני בני אדם שעושין דין בעיר הנדחת ומחרימין גם את נכסי הצדיקים שבתוכה, ומכאן שמה שהוא ישר בעיני שמים, הוא ממילא טוב בעיני אדם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-2-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-2-6" data-source-ref="Brief Commentary on Shekalim 2:2:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:2:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-2-6" aria-label="Copy link to Brief Commentary on Shekalim 2:2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וישראל הוא ידע.</strong> כלומר, אם ה׳ יודע, גם בני ישראל ידעו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-3-1" data-source-ref="Brief Commentary on Shekalim 2:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-3-1" aria-label="Copy link to Brief Commentary on Shekalim 2:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחיפה בקטבליאות וכו׳.</strong> כלומר, כיסה את הנשאר בעורות, כדי להניח על גביהם את השקלים שהגיעו אחרי התרומה הראשונה, ולא יתערבו בשיריים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-4-1" data-source-ref="Brief Commentary on Shekalim 2:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-4-1" aria-label="Copy link to Brief Commentary on Shekalim 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא היה וכו׳.</strong> שהרי זו היתה התרומה האחרונה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-4-2" data-source-ref="Brief Commentary on Shekalim 2:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-4-2" aria-label="Copy link to Brief Commentary on Shekalim 2:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>איסטראות וכו׳.</strong> כלומר, מפני משא הדרך היו מצרפים את שקליהם לאיסטראות (στατῆρες) ולדרכונות (Δαρεικοί).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-5-1" data-source-ref="Brief Commentary on Shekalim 2:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-5-1" aria-label="Copy link to Brief Commentary on Shekalim 2:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועל הגבוי וכו׳.</strong> כלומר, על הגבוי שאבד בדרך, ואפילו על מה שעתידים לגבות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-5-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-5-2" data-source-ref="Brief Commentary on Shekalim 2:5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:5:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-5-2" aria-label="Copy link to Brief Commentary on Shekalim 2:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באחרונה, שמא יצטרך וכו׳.</strong> כלומר, אין תורמין על העתיד לגבות אלא בתרומה האחרונה, אבל בשתי הראשונות אין תורמין על העתיד לגבות, שמא יצטרך (כלומר, יעני) אחד מישראל ולא יוכל לשקול בזמנו ויתרום אח&quot;כ לאחרי התרומה הראשונה או השניה, ובתרומה שלישית כבר יהא שקלו גבוי. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-5-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-5-3" data-source-ref="Brief Commentary on Shekalim 2:5:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:5:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-5-3" aria-label="Copy link to Brief Commentary on Shekalim 2:5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עברה שנתן וכו׳.</strong> כלומר, שנעשו שיריים אחרי שעברה שנתן, וחומות העיר ומגדלותיה באין משיירי הלשכה, ואי אפשר שלא ליהנות ממנה, ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-5-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-5-4" data-source-ref="Brief Commentary on Shekalim 2:5:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:5:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-5-4" aria-label="Copy link to Brief Commentary on Shekalim 2:5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואילו ואילו וכו׳.</strong> עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-6-1" data-source-ref="Brief Commentary on Shekalim 2:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-6-1" aria-label="Copy link to Brief Commentary on Shekalim 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנשים היו וכו׳.</strong> כלומר, הנשים שהיו וכו׳. וכן הפירוש להלן בסמוך. וכן להלן, שו׳ 34: קריבין, כלומר, שקריבין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-6-2" data-source-ref="Brief Commentary on Shekalim 2:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-6-2" aria-label="Copy link to Brief Commentary on Shekalim 2:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נאותין וכו׳.</strong> כלומר, נהנים ומשתמשים בהם לצורכם באכילת קדשים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-6-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-6-3" data-source-ref="Brief Commentary on Shekalim 2:6:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:6:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-6-3" aria-label="Copy link to Brief Commentary on Shekalim 2:6:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פר הבא וכו׳.</strong> כלומר, פר העלם דבר של צבור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-6-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-6-4" data-source-ref="Brief Commentary on Shekalim 2:6:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:6:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-6-4" aria-label="Copy link to Brief Commentary on Shekalim 2:6:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קריבין וכו׳.</strong> כלומר, שקריבין, עיין לעיל שו׳ 25 ואילך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-7-1" data-source-ref="Brief Commentary on Shekalim 2:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-7-1" aria-label="Copy link to Brief Commentary on Shekalim 2:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בא החדש וכו׳.</strong> כלומר, הירח החדש, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-8-1" data-source-ref="Brief Commentary on Shekalim 2:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-8-1" aria-label="Copy link to Brief Commentary on Shekalim 2:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>למחצית שכר וכו׳.</strong> כלומר, שהמוכר מטפל בהם בחנם, אלא שמקבל עליו אחריות בעד חצי דמיהם, ונוטל מחצית הריוח, ובכגון דא לא אסרו במעות צדקה משום אבק רבית, אלא משום הפסד עניים, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-8-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-8-2" data-source-ref="Brief Commentary on Shekalim 2:8:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:8:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-8-2" aria-label="Copy link to Brief Commentary on Shekalim 2:8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומקיצין וכו׳.</strong> ומאכילין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-9-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-9-1" data-source-ref="Brief Commentary on Shekalim 2:9:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:9:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-9-1" aria-label="Copy link to Brief Commentary on Shekalim 2:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפרישין מהן וכו׳.</strong> כלומר, מוציאין מן הנכסים את הדברים הראויים לקרבנות צבור בשווי שכר האומנין שהקדש חייב להם בעד בדק הבית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-9-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-9-2" data-source-ref="Brief Commentary on Shekalim 2:9:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:9:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-9-2" aria-label="Copy link to Brief Commentary on Shekalim 2:9:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על מעות האומנין וכו׳.</strong> כלומר, מעות של הקדש שחולל על הבניין שעשו בו הפועלים, והכסף יצא ע&quot;י כך לחולין, ועל הכסף הזה מחללין את הדברים שהוציאו מן הנכסים, והם יוצאים ע&quot;י כך לחולין, והכסף נתפס בקדושתן. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-10-1" data-source-ref="Brief Commentary on Shekalim 2:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-10-1" aria-label="Copy link to Brief Commentary on Shekalim 2:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהמה וכו׳.</strong> ואין לציבור צורך בה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-10-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-10-2" data-source-ref="Brief Commentary on Shekalim 2:10:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:10:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-10-2" aria-label="Copy link to Brief Commentary on Shekalim 2:10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לצרכי וכו׳.</strong> כלומר, לצריכי וכו׳, לאנשים שצריכים וזקוקים להביא זבחי עולות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-10-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-10-3" data-source-ref="Brief Commentary on Shekalim 2:10:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:10:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-10-3" aria-label="Copy link to Brief Commentary on Shekalim 2:10:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דברי ר׳ ליעזר וכו׳.</strong> כלומר, דברי ר׳ אליעזר שבמשנתנו פ&quot;ד מ&quot;ח הסובר שאם היו בנכסיו דברים הראויים לגבי מזבח, אלא שאין ראויין לפדיון, ימכרו לצריכי אותו המין ויביא בדמיהן עולות הם הם דברי ר׳ יהושע במ&quot;ז (ובתוספתא לעיל בסמוך), ודברי ר׳ יהושע כאן (ובמשנתנו מ&quot;ז) הם דברי ר׳ אליעזר שבמ&quot;ח. ולא כשיטתו לעיל, שו׳ 47, שבדברים שיש להם פדיון דמיהם נופלים לבדק הבית. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-11-1" data-source-ref="Brief Commentary on Shekalim 2:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-11-1" aria-label="Copy link to Brief Commentary on Shekalim 2:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משערין וכו׳.</strong> כלומר, פוסקין את השער עם המספק את הקינין להקדש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-11-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-11-2" data-source-ref="Brief Commentary on Shekalim 2:11:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:11:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-11-2" aria-label="Copy link to Brief Commentary on Shekalim 2:11:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואמ׳ תנו לי מעותי וכו׳.</strong> לפנינו וכן בד נסתרסו השורות, וצ&quot;ל כאן מה שכתוב להלן שו׳ 55: רצה לחזור בו בתוך שלשים יום אין שומעין לו. וכ&quot;ה בכי&quot;ע ובכי&quot;ל. ועיין מ&quot;ש להלן, שו׳ 54–55.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-11-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-11-3" data-source-ref="Brief Commentary on Shekalim 2:11:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:11:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-11-3" aria-label="Copy link to Brief Commentary on Shekalim 2:11:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>להביא וכו׳.</strong> כלומר את היינות וכו׳ לנסכיו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-11-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-11-4" data-source-ref="Brief Commentary on Shekalim 2:11:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:11:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-11-4" aria-label="Copy link to Brief Commentary on Shekalim 2:11:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלא היו אילו וכו׳.</strong> כלומר, החותמות שנזכרו בפ&quot;ה מ&quot;א ומ&quot;ד, ולהלן שו׳ 73 ואילך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-12-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-12-1" data-source-ref="Brief Commentary on Shekalim 2:12:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:12:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-12-1" aria-label="Copy link to Brief Commentary on Shekalim 2:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תורמין וכו׳.</strong> כלומר, פותחין (כגירסת הראשונים. ועיין גי׳ כי&quot;ע) את הלשכה על מנת לשלם למספקים להקדש את מעותיהם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-12-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-12-2" data-source-ref="Brief Commentary on Shekalim 2:12:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:12:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-12-2" aria-label="Copy link to Brief Commentary on Shekalim 2:12:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רצה לחזור בו וכו׳.</strong> כאן צ&quot;ל מה שכתוב לעיל שו׳ 51: ואמ׳ תנו לי מעותי מן המטבע היוצא במדינתי, כגי׳ כי&quot;ע וראשונים (עיין בשנו&quot;ס ובבה&quot;א). ועיין מ&quot;ש לעיל, שו׳ 51.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-12-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-12-3" data-source-ref="Brief Commentary on Shekalim 2:12:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:12:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-12-3" aria-label="Copy link to Brief Commentary on Shekalim 2:12:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אצל שולחני.</strong> והשולחני ישלם לו ממטבע היוצא במדינתו, עיין להלן, שו׳ 62.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-13-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-13-1" data-source-ref="Brief Commentary on Shekalim 2:13:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:13:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-13-1" aria-label="Copy link to Brief Commentary on Shekalim 2:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תורמין וכו׳.</strong> צ&quot;ל: פותחין, כגי׳ ד וכי&quot;ע, עיין בשנו&quot;ס, והכוונה כלעיל שו׳ 54.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-13-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-13-2" data-source-ref="Brief Commentary on Shekalim 2:13:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:13:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-13-2" aria-label="Copy link to Brief Commentary on Shekalim 2:13:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תנו לי וכו׳.</strong> התוספתא חוזרת על ההלכה שלעיל ומבארת ביתר פרוט וברור כיצד נוהג הגיזבר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-13-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-13-3" data-source-ref="Brief Commentary on Shekalim 2:13:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:13:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-13-3" aria-label="Copy link to Brief Commentary on Shekalim 2:13:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קודח וכו׳.</strong> כלומר, תוקע את המדה לתוך השקלים, ושואב ומעלה לפי חשבון המטבעות השונים המעורבים בלשכה, ונמצא המספק מרויח, שלפעמים עולים ביד הגזבר מטבעות היוצאים במדינתו של המספק, ואינו צריך להחליף את כולם אצל השולחני.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-13-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-13-4" data-source-ref="Brief Commentary on Shekalim 2:13:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:13:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-13-4" aria-label="Copy link to Brief Commentary on Shekalim 2:13:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפי חשבון כל המטבע וכו׳.</strong> יש כאן עירבוביא של שתי נוסחאות, עיין בשנו&quot;ס. וכנראה שצ&quot;ל לפנינו: לפי חשבון (כלומר, השולחני נותן לו לפי חשבון ערך המטבעות, ומשתכר בחילופו). כל המטבע [יוצא] בירושלם מפני כך. כלומר, מפני שביד השולחני היו כל מיני מטבעות מכל הארצות שקבל מן המספקים שנטלו מתרומת הלשכה, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-14-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-14-1" data-source-ref="Brief Commentary on Shekalim 2:14:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:14:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-14-1" aria-label="Copy link to Brief Commentary on Shekalim 2:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על הלולב.</strong> כנראה שהכוונה שהיה ממונה על הלולבים שהיו סודרין על גבי האיצטבא שבהר הבית, עיין סוכה פ&quot;ד מ&quot;ד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-15-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-15-1" data-source-ref="Brief Commentary on Shekalim 2:15:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:15:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-15-1" aria-label="Copy link to Brief Commentary on Shekalim 2:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואת מעשר שני.</strong> עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-16-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-16-1" data-source-ref="Brief Commentary on Shekalim 2:16:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:16:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-16-1" aria-label="Copy link to Brief Commentary on Shekalim 2:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ארבעה חותמות וכו׳.</strong> כמפורש במשנתנו פ&quot;ה מ&quot;ג. ומי שהיה צריך לנסכים היה משלם לממונה על החותמות, מקבל ממנו חותם, והולך בחותם לממונה על הנסכים ומקבל ממנו נסכים לפי ערך החותם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-16-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-16-2" data-source-ref="Brief Commentary on Shekalim 2:16:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:16:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-16-2" aria-label="Copy link to Brief Commentary on Shekalim 2:16:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חוטא היה מביא וכו׳.</strong> כלומר החותם שהיה כתוב עליו &quot;חוטא&quot; היה מביא, היה מכניס לבעל החותם, לוגו הצריך לו למתן בהונות, עם שאר הנסכים של החותם. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-17-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-17-1" data-source-ref="Brief Commentary on Shekalim 2:17:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:17:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-17-1" aria-label="Copy link to Brief Commentary on Shekalim 2:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושאר השתחואות וכו׳.</strong> כנראה שבבא זו חוזרת לדברי הת&quot;ק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-2-17-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-2-17-2" data-source-ref="Brief Commentary on Shekalim 2:17:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 2:17:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-2-17-2" aria-label="Copy link to Brief Commentary on Shekalim 2:17:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכאן וכאן וכו׳.</strong> כלומר, בין כנגד השערים ובין שעל גבי הקרבנות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-shekalim-text-3">Chapter 3</h4>
+          <section class="unit" id="brief-commentary-on-shekalim-3-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-1-1" data-source-ref="Brief Commentary on Shekalim 3:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-1-1" aria-label="Copy link to Brief Commentary on Shekalim 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשה עשר וכו׳.</strong> כל הברייתא מתפרשת להלן בתוספתא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-1-2" data-source-ref="Brief Commentary on Shekalim 3:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-1-2" aria-label="Copy link to Brief Commentary on Shekalim 3:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אילו ואילו וכו׳.</strong> כנראה שצ&quot;ל: והן נופלין, כלומר העתיקין וכו׳. והגירסא שלפנינו היא באשגרה מלעיל פ&quot;ב, שו׳ 25, ומלהלן, שו׳ 16.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-2-1" data-source-ref="Brief Commentary on Shekalim 3:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-2-1" aria-label="Copy link to Brief Commentary on Shekalim 3:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קינים.</strong> פיסקא ממשנתנו פ&quot;ו מ&quot;ה, ומלעיל ה&quot;א. וכן בכל הברייתות להלן מתחיל בפיסקא קצרה ממשנה הנ&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-2-2" data-source-ref="Brief Commentary on Shekalim 3:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-2-2" aria-label="Copy link to Brief Commentary on Shekalim 3:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרי עלי קן.</strong> הלשון &quot;הרי עלי&quot; היא באשגרה מן הברייתות שלהלן, וצ&quot;ל: הרי אילו לקן, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-2-3" data-source-ref="Brief Commentary on Shekalim 3:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-2-3" aria-label="Copy link to Brief Commentary on Shekalim 3:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בפחות וכו׳.</strong> דמי הקן היו קבועים מראש, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-2-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-2-4" data-source-ref="Brief Commentary on Shekalim 3:2:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:2:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-2-4" aria-label="Copy link to Brief Commentary on Shekalim 3:2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אל יפול וכו׳.</strong> עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-2-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-2-5" data-source-ref="Brief Commentary on Shekalim 3:2:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:2:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-2-5" aria-label="Copy link to Brief Commentary on Shekalim 3:2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מקלחין וכו׳.</strong> כלומר, מריקין את השופר, וכן להלן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-3-1" data-source-ref="Brief Commentary on Shekalim 3:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-3-1" aria-label="Copy link to Brief Commentary on Shekalim 3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפני התערובות.</strong> כלומר, שתמות אשה שנתנה לשופר דמי קינה, ונמצא שדמי חטאת מתה מעורבים בתוך השופר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-3-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-3-2" data-source-ref="Brief Commentary on Shekalim 3:3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:3:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-3-2" aria-label="Copy link to Brief Commentary on Shekalim 3:3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלא האומ׳ וכו׳.</strong> כלומר, לא היה שופר לקיני חובה כלל (שהרי יש בהן חטאת), אבל היו שני שופרות, על אחד מהם היה כתוב &quot;תורין&quot; ועל השני &quot;בני יונה&quot;, וכולן עולות נדבה, והאומר הרי עלי תרין (תורין) וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-4-1" data-source-ref="Brief Commentary on Shekalim 3:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-4-1" aria-label="Copy link to Brief Commentary on Shekalim 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מביא דמי וכו׳.</strong> כלומר, אעפ&quot;י שאמר הרי עלי עצים וכו׳, אינו צריך להביא עצים מביתו אלא נותן את דמיהם, ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-4-2" data-source-ref="Brief Commentary on Shekalim 3:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-4-2" aria-label="Copy link to Brief Commentary on Shekalim 3:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ניאותין וכו׳.</strong> כלומר, כהנים נהנים ומשתמשין בהן לצורכיהם באכילת קדשים, ולהתחמם כנגדן, ואין מועלין בהן אפילו אם השתמשו בהן יותר מכדי צורכן. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-4-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-4-3" data-source-ref="Brief Commentary on Shekalim 3:4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:4:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-4-3" aria-label="Copy link to Brief Commentary on Shekalim 3:4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עצים אילו וכו׳.</strong> כלומר, שהתכוין שהעצים הללו יקרבו כקרבן ממש (של יחיד), ויטענו עצים אחרים לשורפן (ולא ישתמשו בהן לעצי המערכה, למכשירי קרבן) הרי העצים הם קרבן ממש לדברי רבי שלהלן. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-4-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-4-4" data-source-ref="Brief Commentary on Shekalim 3:4:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:4:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-4-4" aria-label="Copy link to Brief Commentary on Shekalim 3:4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אילו ואילו נופלין וכו׳.</strong> כלומר, בין המתנדב עצים למערכה ובין מתנדב עצים לקרבן, שניהם נופלין וכו׳. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-7-1" data-source-ref="Brief Commentary on Shekalim 3:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-7-1" aria-label="Copy link to Brief Commentary on Shekalim 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קיני זבין וכו׳.</strong> קיני זבים וזבות הם תמיד שוים, ובין בעושר ובין בעוני מביאים שתי פרידות אחת לעולה ואחת לחטאת, ולפיכך מונה אותם אחת, אבל יולדת כשהיא עשירה מביאה רק את חטאתה עוף, ועולתה הוא כבש בן שנתו, ולפיכך מנאוה במיוחד. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-9-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-9-1" data-source-ref="Brief Commentary on Shekalim 3:9:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:9:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-9-1" aria-label="Copy link to Brief Commentary on Shekalim 3:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובהר הבית וכו׳.</strong> ואין אדם מצוי להכניס לשם מעות מעשר אפילו ברגל, והמעות שמקבל מן הגזברים הם כבר מחוללים, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-9-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-9-2" data-source-ref="Brief Commentary on Shekalim 3:9:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:9:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-9-2" aria-label="Copy link to Brief Commentary on Shekalim 3:9:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובירושלם וכו׳.</strong> כלומר, בשאר שווקים, חוץ משוק של מוכרי בהמות, ואנו הולכים אחר הרוב, אבל בשעת הרגל רוב האוכלסים הם מעולי רגלים, והמעות שבידם הם כסף מעשר לשלמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-10-1" data-source-ref="Brief Commentary on Shekalim 3:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-10-1" aria-label="Copy link to Brief Commentary on Shekalim 3:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור.</strong> משום חשש נבלה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-12-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-12-1" data-source-ref="Brief Commentary on Shekalim 3:12:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:12:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-12-1" aria-label="Copy link to Brief Commentary on Shekalim 3:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משלם את הקרן וכו׳.</strong> הואיל ואין בהם מעילה, אלא הפסד הכהנים, ולפיכך משלם להם והם קונים בדמיהם שלמים, ואוכלים קדשים כנגד מה שהפסידם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-12-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-12-2" data-source-ref="Brief Commentary on Shekalim 3:12:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:12:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-12-2" aria-label="Copy link to Brief Commentary on Shekalim 3:12:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחומש וכו׳.</strong> משום שאין זריקה מוציאה אלא מידי מעילה ואינו חייב אשם מעילה, אבל מידי חומש לא הוציאה, ובשר קודש אינו גרוע מתרומה, ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-13-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-13-1" data-source-ref="Brief Commentary on Shekalim 3:13:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:13:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-13-1" aria-label="Copy link to Brief Commentary on Shekalim 3:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פרוכת וכו׳.</strong> כלומר, פרוכת של קדשי קדשים, שהיתה פרוסה לרוחבו של היכל, ולגובהו מן העלייה עד הרצפה. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-13-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-13-2" data-source-ref="Brief Commentary on Shekalim 3:13:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:13:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-13-2" aria-label="Copy link to Brief Commentary on Shekalim 3:13:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחרת וכו׳.</strong> כלומר, הפרוכת השנייה (שרמזו לה במשנתנו פ&quot;ח מ&quot;ה), היא הפרוכת הפרוסה על פתח ההיכל, שגובהו עשרים ורחבו עשר. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-13-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-13-3" data-source-ref="Brief Commentary on Shekalim 3:13:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:13:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-13-3" aria-label="Copy link to Brief Commentary on Shekalim 3:13:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זו שמוציאין וכו׳.</strong> כלומר, לר׳ יהודה לא היו עושין פרוכת מיוחדת לפתח ההיכל, אלא כשהיו מחליפין בכל שנה את פרוכת הדביר בחדשה, היו קופלים את הישנה ומתאימים אותה לפתח ההיכל. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-14-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-14-1" data-source-ref="Brief Commentary on Shekalim 3:14:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:14:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-14-1" aria-label="Copy link to Brief Commentary on Shekalim 3:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בזו כת׳ וכו׳.</strong> כלומר, בפרוכת של דביר כתוב מעשה חושב, ובזו, כלומר בפרוכת שעל פתח ההיכל כתיב וכו׳. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-14-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-14-2" data-source-ref="Brief Commentary on Shekalim 3:14:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:14:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-14-2" aria-label="Copy link to Brief Commentary on Shekalim 3:14:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמוציאין אותה וכו׳.</strong> כלומר, פרוכת הדביר שהיו מוציאין אותה על מנת להחליפה בחדשה, היו פורסין אותה בעלייה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-14-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-14-3" data-source-ref="Brief Commentary on Shekalim 3:14:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:14:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-14-3" aria-label="Copy link to Brief Commentary on Shekalim 3:14:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד לשנים וכו׳.</strong> כלומר, היו מקפלים את גובהה פעמים, ונמצא שגובהה עכשיו עשר אמות, ורחבה נשאר כמו שהיה (עשרים אמה), ונותנים אותה בעלייה, והיא חוצצת את כל רוחב העלייה, אבל לא היה שם שום צורך שגובהה יגיע עד התקרה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-15-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-15-1" data-source-ref="Brief Commentary on Shekalim 3:15:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:15:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-15-1" aria-label="Copy link to Brief Commentary on Shekalim 3:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו שם וכו׳.</strong> כלומר. בדביר. ופרוכת זו בלבד היתה חובה (אבל שאר הפרוכות כולן אינן אלא לצניעות), והיו עושין לדביר שתי פרוכות אחת להשתמש בה מיד, ואת השנייה היו מקפלין ושומרין להיות מוכנת למקרה אם תטמא הפרוכת הפרוסה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-20-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-20-1" data-source-ref="Brief Commentary on Shekalim 3:20:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:20:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-20-1" aria-label="Copy link to Brief Commentary on Shekalim 3:20:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הביא פרידה וכו׳.</strong> והשנייה עליו חובה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-21-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-21-1" data-source-ref="Brief Commentary on Shekalim 3:21:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:21:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-21-1" aria-label="Copy link to Brief Commentary on Shekalim 3:21:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חובתו מן הבהמה וכו׳.</strong> כלומר, עולה ושלמים מן הבהמה, כמו שנכנסו אבותינו לברית (שמות כ&quot;ד, ה׳). ואם עשה את שתי עולותיו מן הבהמה (במקום לעשותן מן העוף), יצא בדיעבד, כמפורש להלן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-21-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-21-2" data-source-ref="Brief Commentary on Shekalim 3:21:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:21:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-21-2" aria-label="Copy link to Brief Commentary on Shekalim 3:21:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הביא לצרעתו וכו׳.</strong> כלומר, אם הגר הביא קרבן לצרעתו אין הקרבן מתירו לאכול בקדשים אלא אם כן הביא קרבן אחר לכפרתו (לשם גירותו), ואעפ&quot;י שהקרבן הראשון מוכיח שנוהג בקדושת ישראל, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-21-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-21-3" data-source-ref="Brief Commentary on Shekalim 3:21:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:21:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-21-3" aria-label="Copy link to Brief Commentary on Shekalim 3:21:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לנזירותיו וכו׳.</strong> ואעפ&quot;י שקרבן גזירות של טהרה הוא עולה ושלמים של בהמה, עיין מ&quot;ש לעיל, שו׳ 60.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-22-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-22-1" data-source-ref="Brief Commentary on Shekalim 3:22:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:22:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-22-1" aria-label="Copy link to Brief Commentary on Shekalim 3:22:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וצריך להביא וכו׳.</strong> כלומר, צריך להפריש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-22-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-22-2" data-source-ref="Brief Commentary on Shekalim 3:22:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:22:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-22-2" aria-label="Copy link to Brief Commentary on Shekalim 3:22:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפני תקלה.</strong> שמא יכשלו ויהנו, וימעלו בהקדש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-shekalim-3-25-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-shekalim-3-25-1" data-source-ref="Brief Commentary on Shekalim 3:25:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Shekalim 3:25:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-shekalim-3-25-1" aria-label="Copy link to Brief Commentary on Shekalim 3:25:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונתרבה.</strong> כלומר, בשמנה בגדים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-shekalim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/brief-commentary-on-shekalim.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/brief-commentary-on-shekalim.json">{}</script>
+  <script type="application/json" data-lexical-config>{
+  "work_id": "brief-commentary-on-shekalim",
+  "manifest_url": "../../data/lexical/brief-commentary-on-shekalim.manifest.json",
+  "occurrence_url": "../../data/lexical/occurrences/brief-commentary-on-shekalim.json",
+  "hud_route_lookup_manifest_url": "../../data/definitions/hud-route-lookup/manifest.json",
+  "root_href": "../../",
+  "reader_layout_mode": "prehud_rows"
+}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

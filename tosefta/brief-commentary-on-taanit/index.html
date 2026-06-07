@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brief Commentary on Taanit</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Brief Commentary on Taanit<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Taanit</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Taanit</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
+          </section>
+        </div>
+          <p class="hero-summary">
+            <span>66 source units</span>
+            <span>627 HUD forms</span>
+            <span>imported 2026-06-01</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: The Tosefta according to to codex Vienna. Third Augmented Edition, JTS 2001 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001234517/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: CC-BY</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Brief Commentary on Taanit <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Brief Commentary on Taanit <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-taanit-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-1-1" title="Brief Commentary on Taanit 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-1-2" title="Brief Commentary on Taanit 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-1-3" title="Brief Commentary on Taanit 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-2-1" title="Brief Commentary on Taanit 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-2-2" title="Brief Commentary on Taanit 1:2:2">1:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-2-3" title="Brief Commentary on Taanit 1:2:3">1:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-3-1" title="Brief Commentary on Taanit 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-4-1" title="Brief Commentary on Taanit 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-4-2" title="Brief Commentary on Taanit 1:4:2">1:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-5-1" title="Brief Commentary on Taanit 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-6-1" title="Brief Commentary on Taanit 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-8-1" title="Brief Commentary on Taanit 1:8:1">1:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-8-2" title="Brief Commentary on Taanit 1:8:2">1:8:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-8-3" title="Brief Commentary on Taanit 1:8:3">1:8:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-8-4" title="Brief Commentary on Taanit 1:8:4">1:8:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-8-5" title="Brief Commentary on Taanit 1:8:5">1:8:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-10-1" title="Brief Commentary on Taanit 1:10:1">1:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-11-1" title="Brief Commentary on Taanit 1:11:1">1:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-12-1" title="Brief Commentary on Taanit 1:12:1">1:12:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-13-1" title="Brief Commentary on Taanit 1:13:1">1:13:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-1-13-2" title="Brief Commentary on Taanit 1:13:2">1:13:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-taanit-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-1-1" title="Brief Commentary on Taanit 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-2-1" title="Brief Commentary on Taanit 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-2-2" title="Brief Commentary on Taanit 2:2:2">2:2:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-2-3" title="Brief Commentary on Taanit 2:2:3">2:2:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-2-4" title="Brief Commentary on Taanit 2:2:4">2:2:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-2-5" title="Brief Commentary on Taanit 2:2:5">2:2:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-2-6" title="Brief Commentary on Taanit 2:2:6">2:2:6</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-2-7" title="Brief Commentary on Taanit 2:2:7">2:2:7</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-3-1" title="Brief Commentary on Taanit 2:3:1">2:3:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-3-2" title="Brief Commentary on Taanit 2:3:2">2:3:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-4-1" title="Brief Commentary on Taanit 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-4-2" title="Brief Commentary on Taanit 2:4:2">2:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-4-3" title="Brief Commentary on Taanit 2:4:3">2:4:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-4-4" title="Brief Commentary on Taanit 2:4:4">2:4:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-4-5" title="Brief Commentary on Taanit 2:4:5">2:4:5</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-5-1" title="Brief Commentary on Taanit 2:5:1">2:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-5-2" title="Brief Commentary on Taanit 2:5:2">2:5:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-9-1" title="Brief Commentary on Taanit 2:9:1">2:9:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-9-2" title="Brief Commentary on Taanit 2:9:2">2:9:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-10-1" title="Brief Commentary on Taanit 2:10:1">2:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-10-2" title="Brief Commentary on Taanit 2:10:2">2:10:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-13-1" title="Brief Commentary on Taanit 2:13:1">2:13:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-13-2" title="Brief Commentary on Taanit 2:13:2">2:13:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-16-1" title="Brief Commentary on Taanit 2:16:1">2:16:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-2-17-1" title="Brief Commentary on Taanit 2:17:1">2:17:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-brief-commentary-on-taanit-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-1-1" title="Brief Commentary on Taanit 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-2-1" title="Brief Commentary on Taanit 3:2:1">3:2:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-4-1" title="Brief Commentary on Taanit 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-4-2" title="Brief Commentary on Taanit 3:4:2">3:4:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-5-1" title="Brief Commentary on Taanit 3:5:1">3:5:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-6-1" title="Brief Commentary on Taanit 3:6:1">3:6:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-6-2" title="Brief Commentary on Taanit 3:6:2">3:6:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-7-1" title="Brief Commentary on Taanit 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-7-2" title="Brief Commentary on Taanit 3:7:2">3:7:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-7-3" title="Brief Commentary on Taanit 3:7:3">3:7:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-7-4" title="Brief Commentary on Taanit 3:7:4">3:7:4</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-8-1" title="Brief Commentary on Taanit 3:8:1">3:8:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-10-1" title="Brief Commentary on Taanit 3:10:1">3:10:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-10-2" title="Brief Commentary on Taanit 3:10:2">3:10:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-11-1" title="Brief Commentary on Taanit 3:11:1">3:11:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-11-2" title="Brief Commentary on Taanit 3:11:2">3:11:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-12-1" title="Brief Commentary on Taanit 3:12:1">3:12:1</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-12-2" title="Brief Commentary on Taanit 3:12:2">3:12:2</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-12-3" title="Brief Commentary on Taanit 3:12:3">3:12:3</a></li>
+                    <li><a class="toc-unit" href="#brief-commentary-on-taanit-3-14-1" title="Brief Commentary on Taanit 3:14:1">3:14:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-brief-commentary-on-taanit-text-1">Chapter 1</h4>
+          <section class="unit" id="brief-commentary-on-taanit-1-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-1-1" data-source-ref="Brief Commentary on Taanit 1:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-1-1" aria-label="Copy link to Brief Commentary on Taanit 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עד שיצא וכו׳.</strong> ואפילו לא ירדו גשמים לפני כן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-1-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-1-2" data-source-ref="Brief Commentary on Taanit 1:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:1:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-1-2" aria-label="Copy link to Brief Commentary on Taanit 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יורה במרחשון וכו׳.</strong> כלומר, כוונת הפסוק היא שהגשמים יהיו בזמנם, יורה בזמנו ומלקוש בזמנו, בתוך חודש ניסן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-1-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-1-3" data-source-ref="Brief Commentary on Taanit 1:1:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:1:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-1-3" aria-label="Copy link to Brief Commentary on Taanit 1:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לששה חדשים וכו׳.</strong> ובימי יואל היה נס ועשתה התבואה לחמשה עשר יום, וממילא מוכח שהיורה ירד בניסן, ואם היורה בניסן, הרי המלקוש סימן ברכה בכל החודש, אעפ&quot;י שבאותו זמן ביכרה התבואה לט&quot;ו יום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-2-1" data-source-ref="Brief Commentary on Taanit 1:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-2-1" aria-label="Copy link to Brief Commentary on Taanit 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנה חסירה וכו׳.</strong> כלומר, שלפי תקופת החמה עדיין לא הגיעה זמנה של רביעה, נותנין לה חסרונה, ואין שואלין אלא משיגיע הזמן לפי תקופת החמה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-2-2" data-source-ref="Brief Commentary on Taanit 1:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-2-2" aria-label="Copy link to Brief Commentary on Taanit 1:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם לאו וכו׳.</strong> כלומר, שלא היתה חסירה, ואפילו היתה יתירה (על תקופת החמה) מתחיל לשאול כבשנים כסדרן, ואינו מקדים, משום שעדיין יש פנאי לגשמי ברכה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-2-3" data-source-ref="Brief Commentary on Taanit 1:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-2-3" aria-label="Copy link to Brief Commentary on Taanit 1:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיבורה.</strong> פירשו בירושלמי שמדברים כאן בשעבר כבר חודש העיבור, והשאלה היא מתי מפסיקים מלשאול (כלעיל שו׳ 1 ומשנ׳), הרי נותנים לה עיבורה, והולכים אחרי תקופת החמה. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-3-1" data-source-ref="Brief Commentary on Taanit 1:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-3-1" aria-label="Copy link to Brief Commentary on Taanit 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין היחידים וכו׳.</strong> כלומר, היחידים (המבוארים להלן שו׳ 29 ואילך) אין מתענין אלא מראש חודש כסלו, שהיא הרביעה האפלה לדעתו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-4-1" data-source-ref="Brief Commentary on Taanit 1:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-4-1" aria-label="Copy link to Brief Commentary on Taanit 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משתגיע וכו׳.</strong> בכי&quot;ע ובירושלמי הגירסא להפך: כל התלוי ברביעה משתרד רביעה שניה, וכל שאין תלוי ברביעה משתגיע וכו׳. וגירסא זו יותר מחוורת, והדברים התלויים בגשמים ממש (עיין בבלי ו׳ ב׳) זמנם משתרד, אבל דברים שאינם תלויים בגשמים (כגון שנדר הנאה מחברו עד רביעה שנייה) זמנם משתגיע. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-4-2" data-source-ref="Brief Commentary on Taanit 1:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-4-2" aria-label="Copy link to Brief Commentary on Taanit 1:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טפח וכו׳.</strong> ונתנו שיעורים לכל רביעה ורביעה, ואם ירדו בכל רביעה פחות מכשיעורה אין כאן רביעה ומתחילים להתענות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-5-1" data-source-ref="Brief Commentary on Taanit 1:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-5-1" aria-label="Copy link to Brief Commentary on Taanit 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היהודים וגו׳.</strong> הכוונה לסוף הפסוק: וצומו עלי וכו׳ שלשת ימים לילה ויום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-6-1" data-source-ref="Brief Commentary on Taanit 1:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-6-1" aria-label="Copy link to Brief Commentary on Taanit 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קרית הגבר.</strong> פירש רש&quot;י שהכוונה לקריאה הראשונה של התרנגול (שהיא אחרי חצות).</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-8-1" data-source-ref="Brief Commentary on Taanit 1:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-8-1" aria-label="Copy link to Brief Commentary on Taanit 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתעלפין.</strong> מתחלפין, עיין בשנו&quot;ס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-8-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-8-2" data-source-ref="Brief Commentary on Taanit 1:8:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:8:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-8-2" aria-label="Copy link to Brief Commentary on Taanit 1:8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דברי כיבושין וכו׳.</strong> דברי עידוד, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-8-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-8-3" data-source-ref="Brief Commentary on Taanit 1:8:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:8:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-8-3" aria-label="Copy link to Brief Commentary on Taanit 1:8:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מציבין.</strong> צבין, נפוחים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-8-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-8-4" data-source-ref="Brief Commentary on Taanit 1:8:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:8:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-8-4" aria-label="Copy link to Brief Commentary on Taanit 1:8:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראית תדע וכו׳.</strong> הפסוק מקוצר, עיין בשנו&quot;ס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-8-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-8-5" data-source-ref="Brief Commentary on Taanit 1:8:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:8:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-8-5" aria-label="Copy link to Brief Commentary on Taanit 1:8:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשא לבבינו וכו׳.</strong> כלומר, שם ונותן את לבו (נותן דעתו) לכפו, לגזל שבידו להחזירו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-10-1" data-source-ref="Brief Commentary on Taanit 1:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-10-1" aria-label="Copy link to Brief Commentary on Taanit 1:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היכן אומ׳ וכו׳.</strong> כלומר, היכן אומרן לשש הנוספות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-11-1" data-source-ref="Brief Commentary on Taanit 1:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-11-1" aria-label="Copy link to Brief Commentary on Taanit 1:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קומו וברכו וכו׳.</strong> הכוונה לסוף הפסוק: ויברכו את שם כבודך, והיינו ברוך שם כבוד מלכותו וכו׳. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-12-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-12-1" data-source-ref="Brief Commentary on Taanit 1:12:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:12:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-12-1" aria-label="Copy link to Brief Commentary on Taanit 1:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הוא אומ׳ וכו׳.</strong> כלומר, במקדש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-13-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-13-1" data-source-ref="Brief Commentary on Taanit 1:13:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:13:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-13-1" aria-label="Copy link to Brief Commentary on Taanit 1:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחוזר ואו׳ וכו׳.</strong> כלומר, אחרי שענו ברוך שם כבוד מלכותו וכו׳, חזר ואמר שוב מי שענה וכו׳, כדי להפסיק בין ברוך שם וכו׳ לבין התקיעות, שלא יראה שתוקעין על ברוך שם וכו׳, שהיא ברכה לעצמה, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-1-13-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-1-13-2" data-source-ref="Brief Commentary on Taanit 1:13:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 1:13:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-1-13-2" aria-label="Copy link to Brief Commentary on Taanit 1:13:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תוקעין ומריעין, אחת וכו׳.</strong> לפני הרש&quot;ס היתה כאן הגירסא: מריעין תוקעין ומריעין. ולפ&quot;ז הפירוש הוא: אחת תקיעה (כלומר, שתוקעין ומריעין ותוקעין) ואחת הרעה (כלומר, שמריעין ותוקעין ומריעין), וכן הסדר בשלישית ורביעית, ובחמישית וששית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-taanit-text-2">Chapter 2</h4>
+          <section class="unit" id="brief-commentary-on-taanit-2-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-1-1" data-source-ref="Brief Commentary on Taanit 2:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-1-1" aria-label="Copy link to Brief Commentary on Taanit 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובללום וכו׳.</strong> לפי פשוטו משמע שלא הטילו שם אלא עשרים גורלות (כמפורש בכמה נוסחאות בבבלי), וארבע המשמרות לא היו זקוקים לגורל. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-2-1" data-source-ref="Brief Commentary on Taanit 2:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-2-1" aria-label="Copy link to Brief Commentary on Taanit 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שיש בו וכו׳.</strong> המלה &quot;שיש&quot; היא באשגרה מלמטה שהיא חוזרת שם כמה פעמים, וכאן הכוונה יש בו, והיינו שאין משמר שיש בו פחות מארבעה בתי אבות. ועיין בשנו&quot;ס ובבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-2-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-2-2" data-source-ref="Brief Commentary on Taanit 2:2:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:2:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-2-2" aria-label="Copy link to Brief Commentary on Taanit 2:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שקבעו עצמן וכו׳.</strong> כלומר, כל בית אב במשמר שלו קבע את יומו לעולם, בכל פעם שהמשמר משרת בבית המקדש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-2-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-2-3" data-source-ref="Brief Commentary on Taanit 2:2:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:2:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-2-3" aria-label="Copy link to Brief Commentary on Taanit 2:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמגדילין וכו׳.</strong> הכוונה כאן לכהנים שלא הכירו את המשמר שלהם, והיו נטפלים למשמרות אחרים. ויש שהגדילו את המשמרות פעם בחודש וכו׳. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-2-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-2-4" data-source-ref="Brief Commentary on Taanit 2:2:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:2:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-2-4" aria-label="Copy link to Brief Commentary on Taanit 2:2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין אסור וכו׳.</strong> כלומר, אין אסור לשתות יין אלא אותו היום הקבוע לעבודתו בבית המקדש, שמא יעלה לירושלים ויהא שתוי ולא יוכל לשמש, אבל הוא מותר בשאר כל הימים. ומדברים בכהנים שמחוץ לירושלים בזמן הבית, עיין להלן, שו׳ 21, בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-2-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-2-5" data-source-ref="Brief Commentary on Taanit 2:2:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:2:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-2-5" aria-label="Copy link to Brief Commentary on Taanit 2:2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל שאין מכיר וכו׳.</strong> ברייתא זו נסמכה לסיפא של פ&quot;ב מ&quot;ז, לאיסור תספורת של אנשי משמר. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-2-6" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-2-6" data-source-ref="Brief Commentary on Taanit 2:2:6">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:2:6</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-2-6" aria-label="Copy link to Brief Commentary on Taanit 2:2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל אותו חודש.</strong> המלה &quot;אותו&quot; היא באשגרה מלעיל (ובדפוסים חסרה), וכאן הכוונה שאסור לספר כל חודש וחודש, משום ספק שמא הוא יום טוב שלו, אבל יותר מחודש לא אסרו לו, שהרי אף בזמן משמרתו אם קרה וגדל פרע מגלח שלא יפסל מעבודה. והתוספתא מדברת בזמן הבית, ובכהנים שחוץ לירושלים. אבל בשתיית יין לא נאסרו כלל אם אין מכירין את משמרתם, לשיטת התוספתא והירושלמי, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-2-7" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-2-7" data-source-ref="Brief Commentary on Taanit 2:2:7">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:2:7</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-2-7" aria-label="Copy link to Brief Commentary on Taanit 2:2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור לעולם וכו׳.</strong> כלומר, להסתפר לעולם, משום ספק שמא הוא יו&quot;ט שלו (ואם יקראו אותו לירושלים, יסתפר כדי להתכשר לעבודה), אלא שתיקנתו קלקלתו, והיינו קלקלתו שאינו מכיר את משמרתו תיקנה אותו והתירתו להסתפר, משום שהיא גזירה שאינו יכול לעמוד בה. (ע&quot;פ הירושלמי). ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-3-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-3-1" data-source-ref="Brief Commentary on Taanit 2:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:3:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-3-1" aria-label="Copy link to Brief Commentary on Taanit 2:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עד שלא חרב וכו׳.</strong> והיינו כשהם חוץ לירושלים ומכירים את המשמר שלהם, עיין לעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-3-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-3-2" data-source-ref="Brief Commentary on Taanit 2:3:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:3:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-3-2" aria-label="Copy link to Brief Commentary on Taanit 2:3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאבל וכו׳.</strong> ואם נמנע מלהסתפר בשבוע שחל בו זמן משמרו, נוהג כבמועד ולא כאבל. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-4-1" data-source-ref="Brief Commentary on Taanit 2:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-4-1" aria-label="Copy link to Brief Commentary on Taanit 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפסיקין למקרא מגלה.</strong> אין למקרא אלא במקרא, כלומר, מפסיקין לבני הכפרים מסדר הפרשיות, במקרא מגילה שלהם. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-4-2" data-source-ref="Brief Commentary on Taanit 2:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-4-2" aria-label="Copy link to Brief Commentary on Taanit 2:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תענית צבור.</strong> הכוונה כאן לתעניות האמצעיות והאחרונות של גשמים, שנשנו במש׳ פ&quot;א מ&quot;ו. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-4-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-4-3" data-source-ref="Brief Commentary on Taanit 2:4:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:4:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-4-3" aria-label="Copy link to Brief Commentary on Taanit 2:4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לתענית יחיד.</strong> הכוונה לתעניות היחידים שנשנו במשנ׳ פ&quot;א מ&quot;ד ומ&quot;ז, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-4-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-4-4" data-source-ref="Brief Commentary on Taanit 2:4:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:4:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-4-4" aria-label="Copy link to Brief Commentary on Taanit 2:4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בתענית יחיד.</strong> כלומר, אפילו בתעניות הסופיות שנשנו במשנ׳ ספ&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-4-5" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-4-5" data-source-ref="Brief Commentary on Taanit 2:4:5">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:4:5</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-4-5" aria-label="Copy link to Brief Commentary on Taanit 2:4:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מפסיקין וכו׳.</strong> שהרי באמצעיות ובאחרונות עסיקינן (עיין מ&quot;ש לעיל שו׳ 28), וכבר התחילו להתענות, אבל היחידים מפסיקים אפילו בסוף, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-5-1" data-source-ref="Brief Commentary on Taanit 2:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-5-1" aria-label="Copy link to Brief Commentary on Taanit 2:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעשה וגזרו וכו׳.</strong> כלומר, בתעניות שניות שחלו בחנוכה, ור׳ אליעזר ור׳ יהושע סוברים שאפילו התחילו מפסיקים, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-5-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-5-2" data-source-ref="Brief Commentary on Taanit 2:5:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:5:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-5-2" aria-label="Copy link to Brief Commentary on Taanit 2:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נוהגת בדבריו.</strong> כלומר, כדעתו במשנ׳ ספ&quot;ב, שאם התחילו אין מפסיקין, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-9-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-9-1" data-source-ref="Brief Commentary on Taanit 2:9:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:9:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-9-1" aria-label="Copy link to Brief Commentary on Taanit 2:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפי׳ שלשה וכו׳.</strong> כלומר, וביום השלישי מתו עוד שלשה, אעפ&quot;י שיש כאן ששה מתים בשלשה ימים, אין זה דבר, שהרי יש בו הפסק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-9-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-9-2" data-source-ref="Brief Commentary on Taanit 2:9:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:9:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-9-2" aria-label="Copy link to Brief Commentary on Taanit 2:9:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסכרה, אם מתין וכו׳.</strong> כלומר מחלת הגרון המצויה אצל ילדים, והיא מחלה ממארת ומדבקת, אפילו מתו בה ביום אחד מתריעין עליה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-10-1" data-source-ref="Brief Commentary on Taanit 2:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-10-1" aria-label="Copy link to Brief Commentary on Taanit 2:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגוביי.</strong> הארבה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-10-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-10-2" data-source-ref="Brief Commentary on Taanit 2:10:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:10:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-10-2" aria-label="Copy link to Brief Commentary on Taanit 2:10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושטפה.</strong> העבירה מן העולם, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-13-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-13-1" data-source-ref="Brief Commentary on Taanit 2:13:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:13:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-13-1" aria-label="Copy link to Brief Commentary on Taanit 2:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בקרן אפל.</strong> בכי&quot;ל: בקרן העופל (וכ&quot;ה בירושלמי), ועיין דה&quot;ב כ&quot;ז, ג׳ ועוד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-13-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-13-2" data-source-ref="Brief Commentary on Taanit 2:13:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:13:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-13-2" aria-label="Copy link to Brief Commentary on Taanit 2:13:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>של כל דבר וכו׳.</strong> כלומר, לא של מים ולא של אש. ועיין בשנו&quot;ס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-16-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-16-1" data-source-ref="Brief Commentary on Taanit 2:16:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:16:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-16-1" aria-label="Copy link to Brief Commentary on Taanit 2:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משלים וכו׳.</strong> כלומר, אם נדר להתענות ביום מסויים, שאמר הריני מתענה ביום זה. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-2-17-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-2-17-1" data-source-ref="Brief Commentary on Taanit 2:17:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 2:17:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-2-17-1" aria-label="Copy link to Brief Commentary on Taanit 2:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אי זהו הלל וכו׳.</strong> כלומר שאמרו במשנ׳ ספ&quot;ג.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-brief-commentary-on-taanit-text-3">Chapter 3</h4>
+          <section class="unit" id="brief-commentary-on-taanit-3-1-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-1-1" data-source-ref="Brief Commentary on Taanit 3:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:1:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-1-1" aria-label="Copy link to Brief Commentary on Taanit 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בשלשה פרקים וכו׳.</strong> היינו בתעניות, במעמדות וביום הכיפורים, כמבואר במשנ׳ רפ&quot;ד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-2-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-2-1" data-source-ref="Brief Commentary on Taanit 3:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:2:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-2-1" aria-label="Copy link to Brief Commentary on Taanit 3:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עמודים.</strong> כלומר, מעמדות, הללו שעומדים בירושלים על הקרבנות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-4-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-4-1" data-source-ref="Brief Commentary on Taanit 3:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:4:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-4-1" aria-label="Copy link to Brief Commentary on Taanit 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין בו וכו׳.</strong> כלומר, אין בו מעמד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-4-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-4-2" data-source-ref="Brief Commentary on Taanit 3:4:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:4:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-4-2" aria-label="Copy link to Brief Commentary on Taanit 3:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קורין וכו׳.</strong> חוזר לקריאת מעשה בראשית שלעיל, שו׳ 13.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-5-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-5-1" data-source-ref="Brief Commentary on Taanit 3:5:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:5:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-5-1" aria-label="Copy link to Brief Commentary on Taanit 3:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לימנות וכו׳.</strong> כלומר, במשנתנו פ&quot;ד מ&quot;ה, והרי כל מי שהביא קרבן עצים, יום טוב הוא לו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-6-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-6-1" data-source-ref="Brief Commentary on Taanit 3:6:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:6:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-6-1" aria-label="Copy link to Brief Commentary on Taanit 3:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אותן ימים וכו׳.</strong> שנמנו במשנתנו הנ&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-6-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-6-2" data-source-ref="Brief Commentary on Taanit 3:6:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:6:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-6-2" aria-label="Copy link to Brief Commentary on Taanit 3:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סנואה בן בנימן וכו׳.</strong> שקרבן עצים שלהם הוא בעשרה באב, כמשנתנו הנ&quot;ל. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-7-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-7-1" data-source-ref="Brief Commentary on Taanit 3:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:7:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-7-1" aria-label="Copy link to Brief Commentary on Taanit 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מהו בני גונבי וכו׳.</strong> שנזכרו במשנתנו פ&quot;ד מ&quot;ה הנ&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-7-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-7-2" data-source-ref="Brief Commentary on Taanit 3:7:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:7:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-7-2" aria-label="Copy link to Brief Commentary on Taanit 3:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פרדדיאות.</strong> צ&quot;ל: פרסדיאות, πραισίδια, משמרות גבולים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-7-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-7-3" data-source-ref="Brief Commentary on Taanit 3:7:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:7:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-7-3" aria-label="Copy link to Brief Commentary on Taanit 3:7:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועושין כמין סלים.</strong> מלים הללו הן באשגרה מלהלן שו׳ 42, עיין בשנו&quot;ס ובבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-7-4" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-7-4" data-source-ref="Brief Commentary on Taanit 3:7:4">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:7:4</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-7-4" aria-label="Copy link to Brief Commentary on Taanit 3:7:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני כפין.</strong> שני גושין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-8-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-8-1" data-source-ref="Brief Commentary on Taanit 3:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:8:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-8-1" aria-label="Copy link to Brief Commentary on Taanit 3:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מהו או׳ בני סלמאי וכו׳.</strong> הכוונה לדה&quot;א ב׳, נ&quot;ד: ובני שלמא בית לחם ונטופתי. עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-10-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-10-1" data-source-ref="Brief Commentary on Taanit 3:10:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:10:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-10-1" aria-label="Copy link to Brief Commentary on Taanit 3:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בשנייה, ובראשונה בשבעה בו.</strong> צ&quot;ל: בראשונה ובשנייה בשבעה [עשר] בו. עיין בשנו&quot;ס. וכ&quot;ה במקבילות. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-10-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-10-2" data-source-ref="Brief Commentary on Taanit 3:10:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:10:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-10-2" aria-label="Copy link to Brief Commentary on Taanit 3:10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נאמ׳ בתשעה וכו׳.</strong> צ&quot;ל: בעשור לחודש, ואם נאמ׳ בעשור וכו׳, כגי׳ כי&quot;ע. והכוונה לסתירה בין מ&quot;ב כ&quot;ה, ח׳-ט׳, ובין ירמי׳ נ&quot;ב, י&quot;ב-י&quot;ג. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-11-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-11-1" data-source-ref="Brief Commentary on Taanit 3:11:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:11:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-11-1" aria-label="Copy link to Brief Commentary on Taanit 3:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מסעודת וכו׳.</strong> כלומר, סעודה המפסקת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-11-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-11-2" data-source-ref="Brief Commentary on Taanit 3:11:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:11:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-11-2" aria-label="Copy link to Brief Commentary on Taanit 3:11:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמותר לוכל וכו׳.</strong> וחולק על הרישא, ומותר לרחוץ פניו ידיו ורגליו, כל זמן שלא קיבל עליו את התענית, וכן מותר לעשות כן בתוך סעודה המפסקת. ועיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-12-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-12-1" data-source-ref="Brief Commentary on Taanit 3:12:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:12:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-12-1" aria-label="Copy link to Brief Commentary on Taanit 3:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולהדיוטות בשפה רפה.</strong> כלומר, ולהדיוטות משיבין בשפה רפה (ירושלמי). ויש שפירשו: ולהדיוטות שואלין בשפה רפה, עיין בבה&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-12-2" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-12-2" data-source-ref="Brief Commentary on Taanit 3:12:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:12:2</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-12-2" aria-label="Copy link to Brief Commentary on Taanit 3:12:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתקנין וכו׳.</strong> כלומר, מכינים צרכי סעודה וכו׳, עיין בבה&quot;א בהערה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-12-3" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-12-3" data-source-ref="Brief Commentary on Taanit 3:12:3">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:12:3</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-12-3" aria-label="Copy link to Brief Commentary on Taanit 3:12:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכולן.</strong> בכל הדברים שנשנו במשנ׳ פ&quot;ד מ&quot;ז.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="brief-commentary-on-taanit-3-14-1" data-unit data-lexical-unit data-unit-id="brief-commentary-on-taanit-3-14-1" data-source-ref="Brief Commentary on Taanit 3:14:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Brief Commentary on Taanit 3:14:1</h4></div>
+              <a class="anchor" href="#brief-commentary-on-taanit-3-14-1" aria-label="Copy link to Brief Commentary on Taanit 3:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אותן ימים וכו׳.</strong> כלומר, כל הצומות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-brief-commentary-on-taanit-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/brief-commentary-on-taanit.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/brief-commentary-on-taanit.json">{}</script>
+  <script type="application/json" data-lexical-config>{
+  "work_id": "brief-commentary-on-taanit",
+  "manifest_url": "../../data/lexical/brief-commentary-on-taanit.manifest.json",
+  "occurrence_url": "../../data/lexical/occurrences/brief-commentary-on-taanit.json",
+  "hud_route_lookup_manifest_url": "../../data/definitions/hud-route-lookup/manifest.json",
+  "root_href": "../../",
+  "reader_layout_mode": "prehud_rows"
+}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{
+  "artifact_type": "agent10_full_corpus_batch_flagship_render_staging_packet",
+  "agent": "A10",
+  "batch": "Batch75",
+  "corpus_family": "Tosefta",
+  "status": "ready_for_a14_review_staging",
+  "baseline_head": "41ebe62ba",
+  "prior_checkpoint": "Batch60 through Batch65 corpus closures pushed by A14 at aea61fc1b; Batch66-69 sent to A14; Batch70-73 sent to A14; Batch74 sent to A14 as Tosefta start.",
+  "direct_render_contract": {
+    "canonical_hud_behavior": "A10/Orot Route HUD behavior preserved",
+    "reader_layout_mode": "prehud_rows",
+    "source_visible_clickable": true,
+    "prehud_gate": "fail_closed_quiet_TBD_unless_safe_route_backed_hint_exists",
+    "featured_policy": "No Featured additions; Orot remains only Featured",
+    "shared_files_changed": false
+  },
+  "changed_files": [
+    "tosefta/brief-commentary-on-peah/index.html",
+    "tosefta/brief-commentary-on-rosh-hashanah/index.html",
+    "tosefta/brief-commentary-on-shabbat/index.html",
+    "tosefta/brief-commentary-on-shekalim/index.html",
+    "tosefta/brief-commentary-on-sheviit/index.html",
+    "tosefta/brief-commentary-on-sotah/index.html",
+    "tosefta/brief-commentary-on-taanit/index.html",
+    "tosefta/brief-commentary-on-terumot/index.html",
+    "tosefta/brief-commentary-on-yevamot/index.html",
+    "tosefta/brief-commentary-on-yoma/index.html",
+    "tosefta/tosefta-arakhin/index.html",
+    "tosefta/tosefta-avodah-zarah/index.html",
+    "tosefta/tosefta-bava-batra/index.html",
+    "tosefta/tosefta-bava-kamma/index.html",
+    "tosefta/tosefta-bava-metzia/index.html",
+    "tosefta/tosefta-beitzah/index.html",
+    "tosefta/tosefta-bekhorot/index.html",
+    "tosefta/tosefta-berakhot/index.html",
+    "tosefta/tosefta-bikkurim/index.html",
+    "tosefta/tosefta-chagigah/index.html"
+  ],
+  "counts": {
+    "pages": 20,
+    "token_rows": 95083,
+    "configured_hint_rows": 0,
+    "expected_quiet_tbd_rows": 95083,
+    "remaining_tosefta_targets_after_batch": 51
+  },
+  "validators": [
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page <20 Batch75 pages>",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- <20 Batch75 pages>",
+      "timeout_ms": 60000,
+      "result": "passed_with_crlf_warnings_only"
+    },
+    {
+      "command": "node <Batch75 source/config/asset guard>",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "details": {
+        "pages": 20,
+        "token_rows": 95083,
+        "configured_hint_rows": 0,
+        "expected_quiet_tbd_rows": 95083
+      }
+    },
+    {
+      "command": "packet JSON parse after write",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- reports/agent10-full-corpus-batch75-tosefta-flagship-render-staging-packet-2026-06-07.md reports/agent10-full-corpus-batch75-tosefta-flagship-render-staging-packet-2026-06-07.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "blockers": [],
+  "a14_next_action": [
+    "review/stage/commit/push Batch75 Tosefta if A14 validation agrees",
+    "add/verify normal corpus links and deploy carry rules in A14 lane",
+    "return checkpoint or exact blocker; A10 can continue Tosefta targets next"
+  ],
+  "boundary": [
+    "render/preHUD staging evidence only",
+    "no QA/source/license/legal/Definition/product/answer/accepted-text acceptance",
+    "no publication/release/public-runtime acceptance"
+  ]
+}
