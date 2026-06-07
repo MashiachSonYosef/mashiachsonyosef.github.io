@@ -1383,10 +1383,10 @@
     ]));
   }
 
-  function makePrehudRow(row, tokenIndexId, ordinal, config, hint) {
+  function makePrehudRow(row, tokenIndexId, ordinal, config, hint, fallbackSurface = '') {
     const rowNode = createElement('div', 'prehud-row reader-token-wrap');
     rowNode.dataset.tokenRowId = tokenIndexId || '';
-    const surface = surfaceFromTokenRow(row, tokenIndexId);
+    const surface = surfaceFromTokenRow(row, fallbackSurface || '');
     const wordCell = createElement('div', 'prehud-word');
     const word = makeLexicalWord(surface, tokenIndexId, ordinal, config, tokenIndexId ? [tokenIndexId] : []);
     wordCell.appendChild(word);
@@ -1455,6 +1455,7 @@
         slot.replaceChildren();
         slot.dataset.prehudRowsInitialized = 'true';
       }
+      const visibleTokens = Array.from((paragraph.textContent || '').matchAll(HEBREW_TOKEN_RE)).map((match) => match[0]);
       const group = createElement('div', 'prehud-rows');
       group.dataset.lexicalParagraphRows = paragraph.dataset.lexicalParagraph || '';
       const rows = typeof loadTokenRow === 'function'
@@ -1462,7 +1463,7 @@
         : tokenIds.map(() => ({}));
       tokenIds.forEach((tokenId, index) => {
         const hint = readerHints instanceof Map ? readerHints.get(tokenId) : null;
-        group.appendChild(makePrehudRow(rows[index], tokenId, index + 1, config, hint));
+        group.appendChild(makePrehudRow(rows[index], tokenId, index + 1, config, hint, visibleTokens[index] || ''));
       });
       slot.appendChild(group);
       return;
