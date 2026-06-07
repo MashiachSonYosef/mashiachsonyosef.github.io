@@ -281,14 +281,15 @@
   }
 
   function setTokenGlossDisplay(button, display, matchPercent, placeholder = false) {
+    const wrap = tokenWrapFor(button);
+    const isPrehudRow = wrap && wrap.classList.contains('prehud-row');
     const line = ensureTokenGlossLine(button);
-    const text = display ? formatGlossLine(display, matchPercent) : 'TBD';
+    const text = display ? (isPrehudRow ? display : formatGlossLine(display, matchPercent)) : 'TBD';
     if (line) {
       line.textContent = text;
       line.dataset.glossPlaceholder = placeholder ? 'true' : 'false';
       line.dataset.glossText = display || '';
     }
-    const wrap = tokenWrapFor(button);
     const match = wrap ? wrap.querySelector('[data-match-text]') : null;
     if (match) {
       const percent = Number(matchPercent ?? NaN);
@@ -1382,22 +1383,48 @@
     ]));
   }
 
-  function makePrehudRow(row, tokenIndexId, ordinal, config) {
+  function makePrehudRow(row, tokenIndexId, ordinal, config, hint) {
     const rowNode = createElement('div', 'prehud-row reader-token-wrap');
     rowNode.dataset.tokenRowId = tokenIndexId || '';
     const surface = surfaceFromTokenRow(row, tokenIndexId);
     const wordCell = createElement('div', 'prehud-word');
-    wordCell.appendChild(makeLexicalWord(surface, tokenIndexId, ordinal, config, tokenIndexId ? [tokenIndexId] : []));
+    const word = makeLexicalWord(surface, tokenIndexId, ordinal, config, tokenIndexId ? [tokenIndexId] : []);
+    wordCell.appendChild(word);
     rowNode.appendChild(wordCell);
     const glossCell = createElement('div', 'prehud-gloss');
     const glossLine = createElement('span', 'reader-gloss-line', 'TBD');
     glossLine.dataset.glossPlaceholder = 'true';
     glossLine.dataset.glossText = '';
     glossCell.appendChild(glossLine);
+    glossCell.setAttribute('role', 'button');
+    glossCell.setAttribute('tabindex', '0');
+    glossCell.setAttribute('aria-label', `Open Route HUD for ${surface}`);
     rowNode.appendChild(glossCell);
     const matchCell = createElement('div', 'prehud-match', 'TBD');
     matchCell.dataset.matchText = 'TBD';
+    matchCell.setAttribute('role', 'button');
+    matchCell.setAttribute('tabindex', '0');
+    matchCell.setAttribute('aria-label', `Open Route HUD for ${surface}`);
     rowNode.appendChild(matchCell);
+    const openHudFromRow = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      void renderWord(word);
+    };
+    const openHudFromKeyboard = (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      openHudFromRow(event);
+    };
+    rowNode.addEventListener('click', (event) => {
+      if (event.target === word || word.contains(event.target)) return;
+      openHudFromRow(event);
+    });
+    rowNode.addEventListener('keydown', openHudFromKeyboard);
+    glossCell.addEventListener('click', openHudFromRow);
+    glossCell.addEventListener('keydown', openHudFromKeyboard);
+    matchCell.addEventListener('click', openHudFromRow);
+    matchCell.addEventListener('keydown', openHudFromKeyboard);
+    applyReaderHint(word, hint);
     return rowNode;
   }
 
@@ -1418,7 +1445,7 @@
     node.parentNode.replaceChild(fragment, node);
   }
 
-  async function wrapParagraph(paragraph, tokenIds, config, loadTokenRow) {
+  async function wrapParagraph(paragraph, tokenIds, config, loadTokenRow, readerHints) {
     if (config?.reader_layout_mode === 'prehud_rows') {
       const unit = paragraph.closest('[data-lexical-unit]');
       const slot = unit ? unit.querySelector('[data-lexical-slot]') : null;
@@ -1434,7 +1461,8 @@
         ? await Promise.all(tokenIds.map((tokenId) => loadTokenRow(tokenId).catch(() => ({}))))
         : tokenIds.map(() => ({}));
       tokenIds.forEach((tokenId, index) => {
-        group.appendChild(makePrehudRow(rows[index], tokenId, index + 1, config));
+        const hint = readerHints instanceof Map ? readerHints.get(tokenId) : null;
+        group.appendChild(makePrehudRow(rows[index], tokenId, index + 1, config, hint));
       });
       slot.appendChild(group);
       return;
@@ -1450,10 +1478,15 @@
     textNodes.forEach((node) => wrapTextNode(node, tokenIds, state, config));
   }
 
+  function setRouteHudScrollLock(locked) {
+    document.documentElement.classList.toggle('route-hud-open', Boolean(locked));
+  }
+
   function closeRouteHud({ restoreFocus = false } = {}) {
     const hud = document.querySelector('[data-lexical-hud]');
     const buttonToRestore = activeHudButton;
     if (hud) hud.hidden = true;
+    setRouteHudScrollLock(false);
     if (buttonToRestore) {
       buttonToRestore.setAttribute('aria-pressed', 'false');
       buttonToRestore.setAttribute('aria-expanded', 'false');
@@ -1492,6 +1525,7 @@
     button.setAttribute('aria-pressed', 'true');
     button.setAttribute('aria-expanded', 'true');
     hud.hidden = false;
+    setRouteHudScrollLock(true);
     hud.focus({ preventScroll: true });
     positionHudNearButton(button);
     const panel = hud.querySelector('[data-route-hud-panel]');
@@ -1676,6 +1710,7 @@
     setupWorkbenchPanel();
     bindSiteEvents(hud);
     await waitForIdle();
+    const readerHints = await loadReaderHints(config);
     const loadedOccurrences = await loadOccurrences();
     const tasks = [];
     document.querySelectorAll('[data-lexical-unit]').forEach((unit) => {
@@ -1688,10 +1723,10 @@
       });
     });
     for (let index = 0; index < tasks.length; index += 24) {
-      await Promise.all(tasks.slice(index, index + 24).map((task) => wrapParagraph(task.paragraph, task.tokenIds, config, loadTokenRow)));
+      await Promise.all(tasks.slice(index, index + 24).map((task) => wrapParagraph(task.paragraph, task.tokenIds, config, loadTokenRow, readerHints)));
       if (index + 24 < tasks.length) await waitForIdle();
     }
-    applyReaderHints(await loadReaderHints(config));
+    if (config?.reader_layout_mode !== 'prehud_rows') applyReaderHints(readerHints);
     await hydrateSelectionStoreFromIndexedDb();
     restoreSelections();
     return true;

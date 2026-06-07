@@ -9,6 +9,15 @@
   max-width: min(34rem, calc(100vw - 32px));
 }
 
+html.route-hud-open,
+html.route-hud-open body {
+  overflow: hidden;
+}
+
+html.route-hud-open body {
+  overscroll-behavior: contain;
+}
+
 .reader-token-wrap .lexical-word {
   margin: 0;
 }
@@ -42,61 +51,90 @@
 }
 
 .hebrew-source {
-  font-size: clamp(0.98rem, 1.4vw, 1.16rem);
-  line-height: 1.55;
+  font-size: clamp(0.84rem, 1vw, 1rem);
+  line-height: 1.45;
   opacity: 0.82;
   border: 1px solid rgba(214, 190, 138, 0.16);
   background: rgba(255, 255, 255, 0.018);
-  padding: 8px 10px;
-  margin-bottom: 10px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
 }
 
 .prehud-rows {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
 .reader-token-wrap.prehud-row {
   display: grid;
-  grid-template-columns: minmax(4.8rem, 8rem) minmax(0, 1fr) minmax(4rem, auto);
-  gap: 10px;
-  align-items: center;
+  grid-template-columns: minmax(4rem, 6.6rem) minmax(0, 1fr) minmax(3.4rem, auto);
+  gap: 8px;
+  align-items: start;
   justify-items: stretch;
   width: 100%;
   max-width: none;
   margin: 0;
   border: 1px solid rgba(214, 190, 138, 0.18);
   background: rgba(255, 255, 255, 0.018);
-  padding: 8px 10px;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.reader-token-wrap.prehud-row:hover,
+.reader-token-wrap.prehud-row:focus-within {
+  border-color: rgba(214, 190, 138, 0.34);
+  background: rgba(214, 190, 138, 0.04);
 }
 
 .prehud-word {
   min-width: 0;
+  direction: rtl;
+  unicode-bidi: isolate;
   text-align: right;
 }
 
+.prehud-word .lexical-word,
+.prehud-word .lexical-word-surface {
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
 .prehud-word .lexical-word {
-  font-size: clamp(1.45rem, 2.4vw, 2.05rem);
+  font-size: clamp(1.08rem, 1.7vw, 1.44rem);
+  line-height: 1.25;
 }
 
 .prehud-gloss {
   min-width: 0;
+  cursor: pointer;
 }
 
 .prehud-gloss .reader-gloss-line {
   width: auto;
   max-width: none;
   color: var(--text);
-  font-size: 0.94rem;
-  line-height: 1.35;
+  font-size: 0.9rem;
+  line-height: 1.32;
   text-align: left;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  border-left: 2px solid rgba(214, 190, 138, 0.46);
+  background: rgba(214, 190, 138, 0.055);
+  padding: 5px 7px;
 }
 
 .prehud-match {
   color: var(--accent);
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   text-align: right;
   white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid rgba(214, 190, 138, 0.22);
+  background: rgba(214, 190, 138, 0.045);
+  padding: 3px 5px;
+  justify-self: end;
 }
 
 .reader-workbench-panel {

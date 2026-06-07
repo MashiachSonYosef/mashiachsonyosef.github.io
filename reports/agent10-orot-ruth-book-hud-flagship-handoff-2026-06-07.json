@@ -1,0 +1,97 @@
+{
+  "artifact_type": "agent10_book_hud_flagship_handoff",
+  "date": "2026-06-07",
+  "status": "ready_for_a14_live_flagship_staging_path",
+  "acceptance_claims": false,
+  "release_claim": false,
+  "primary_flagship_target": "orot/index.html",
+  "same_contract_proof_target": "tanakh/ruth/index.html",
+  "files_in_scope": [
+    "orot/index.html",
+    "tanakh/ruth/index.html",
+    "assets/css/reader-workbench.css",
+    "assets/js/reader-workbench.js",
+    "reports/agent10-orot-ruth-book-hud-flagship-handoff-2026-06-07.md",
+    "reports/agent10-orot-ruth-book-hud-flagship-handoff-2026-06-07.json"
+  ],
+  "contract": {
+    "layout_mode": "prehud_rows",
+    "compact_header": true,
+    "source_license_collapsed_disclosure": true,
+    "full_hebrew_passage_above_rows": true,
+    "one_hebrew_token_per_row": true,
+    "full_wrapped_selected_gloss_or_tbd": true,
+    "gloss_and_match_cells_open_canonical_route_hud": true,
+    "route_hud_scroll_lock": true,
+    "hebrew_bidi_isolated": true,
+    "fake_definition_promotion": false
+  },
+  "proof": {
+    "orot": {
+      "url": "http://127.0.0.1:8802/orot/",
+      "layout_mode": "prehud_rows",
+      "runtime_observed": [
+        "row_layer_hydrated",
+        "row_click_opens_route_hud",
+        "definition_option_visible_after_settle",
+        "source_license_evidence_visible_after_settle",
+        "scroll_lock_active_with_hud_open"
+      ],
+      "screenshot": "C:/Users/owner/AppData/Local/Temp/orot-preview-header-2026-06-07.png"
+    },
+    "ruth": {
+      "url": "http://127.0.0.1:8802/tanakh/ruth/",
+      "layout_mode": "prehud_rows",
+      "units": 85,
+      "rows": 1132,
+      "runtime_observed": [
+        "row_layer_hydrated",
+        "first_row_full_wrapped_gloss_and_match_percent",
+        "row_click_opens_route_hud",
+        "definition_option_visible",
+        "source_license_evidence_visible",
+        "scroll_lock_active_with_hud_open"
+      ],
+      "console_errors_or_warnings": 0,
+      "screenshots": [
+        "C:/Users/owner/AppData/Local/Temp/ruth-preview-header-2026-06-07.png",
+        "C:/Users/owner/AppData/Local/Temp/ruth-preview-hud-row-2026-06-07.png"
+      ]
+    }
+  },
+  "validators": [
+    {
+      "command": "node --check assets/js/reader-workbench.js",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/ruth/index.html",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- orot/index.html tanakh/ruth/index.html assets/css/reader-workbench.css assets/js/reader-workbench.js",
+      "result": "passed_with_crlf_replacement_warnings_only"
+    },
+    {
+      "command": "curl.exe --max-time 4 -I http://127.0.0.1:8802/tanakh/ruth/",
+      "result": "passed_http_200"
+    }
+  ],
+  "a14_expected_action": [
+    "use_orot_index_as_live_flagship_book_hud_target",
+    "preserve_ruth_as_same_contract_tanakh_proof_page",
+    "do_not_redesign_hud",
+    "do_not_replace_shared_reader_workbench_contract",
+    "do_not_promote_tbd_or_fake_definition_text"
+  ],
+  "boundary": [
+    "no_qa_acceptance",
+    "no_source_license_legal_acceptance",
+    "no_definition_authority",
+    "no_answer_acceptance",
+    "no_accepted_gloss_or_text",
+    "no_public_deploy",
+    "no_release_claim"
+  ],
+  "stop_condition": "A14 stages or prepares only scoped files for owner-requested live flagship path, or returns exact blocker."
+}
