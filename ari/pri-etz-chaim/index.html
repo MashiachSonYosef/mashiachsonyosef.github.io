@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -86,48 +93,48 @@
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-field-row { display: contents; }
-    .lexical-field-row[hidden] { display: none; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .breakdown-list { display: grid; gap: 8px; }
-    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
-    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
-    .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
-    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
-    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
-    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
-    .lexical-entry .entry-hebrew { color: var(--hebrew); }
-    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
-    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
     .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
-    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; }
-    .other-entries { margin-top: 12px; }
-    .claim-row-list details { margin-top: 8px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
-    .source-claim { color: var(--text); margin: 0 0 6px; }
-    .source-claim span { color: var(--hebrew); }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
-    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
     .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
@@ -141,28 +148,37 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
-        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-        <h1>Pri Etz Chaim</h1>
-        <p class="meta">589 total source units | imported 2026-04-27</p>
-        <p class="meta source-citation">Hebrew version: Pri Etz Chaim | Version source: <a href="http://www.hebrew.grimoar.cz/vital/pri_ec_chajim.htm">www.hebrew.grimoar.cz</a> | Digitization: Sefaria API | License: Public Domain</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>3215 matched</strong> / 9512 unique forms.</p>
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Pri Etz Chaim<sup class="hero-ref">1</sup></h1>
+          <p class="hero-summary">
+            <span>589 source units</span>
+            <span>9512 HUD forms</span>
+            <span>imported 2026-04-27</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Pri Etz Chaim | Version source: <a href="http://www.hebrew.grimoar.cz/vital/pri_ec_chajim.htm">www.hebrew.grimoar.cz</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Gate of Prayer <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Prayer <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-prayer">Start</a>
               <details class="toc-section">
-                <summary>Introduction <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Introduction <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-prayer-introduction">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -222,7 +238,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>default <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>default <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-prayer-default">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -238,10 +254,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Blessings <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Blessings <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-blessings">Start</a>
               <details class="toc-section">
-                <summary>Gate of Blessings <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Blessings <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-blessings-gate-of-blessings">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -281,10 +297,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Fringes <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Fringes <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-fringes">Start</a>
               <details class="toc-section">
-                <summary>Gate of Fringes <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Fringes <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-fringes-gate-of-fringes">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -309,10 +325,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Teffilin <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Teffilin <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-teffilin">Start</a>
               <details class="toc-section">
-                <summary>Gate of Teffilin <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Teffilin <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-teffilin-gate-of-teffilin">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -339,10 +355,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the World of Action <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the World of Action <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-world-of-action">Start</a>
               <details class="toc-section">
-                <summary>Gate of the World of Action <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the World of Action <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-world-of-action-gate-of-the-world-of-action">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -370,10 +386,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Holies <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Holies <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-holies">Start</a>
               <details class="toc-section">
-                <summary>From Second Edition <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>From Second Edition <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-holies-from-second-edition">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -538,7 +554,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>default <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>default <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-holies-default">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -569,10 +585,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Songs <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Songs <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-songs">Start</a>
               <details class="toc-section">
-                <summary>Gate of Songs <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Songs <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-songs-gate-of-songs">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -597,10 +613,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Recitation of the Shema <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Recitation of the Shema <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-recitation-of-the-shema">Start</a>
               <details class="toc-section">
-                <summary>Gate of the Recitation of the Shema <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the Recitation of the Shema <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-recitation-of-the-shema-gate-of-the-recitation-of-the-shema">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -634,10 +650,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Silent Prayer <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Silent Prayer <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-silent-prayer">Start</a>
               <details class="toc-section">
-                <summary>Gate of the Silent Prayer <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the Silent Prayer <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-silent-prayer-gate-of-the-silent-prayer">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -657,10 +673,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Repetition of the Silent Prayer <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Repetition of the Silent Prayer <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-repetition-of-the-silent-prayer">Start</a>
               <details class="toc-section">
-                <summary>Gate of the Repetition of the Silent Prayer <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the Repetition of the Silent Prayer <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-repetition-of-the-silent-prayer-gate-of-the-repetition-of-the-silent-prayer">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -674,10 +690,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Amen Intention <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Amen Intention <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-amen-intention">Start</a>
               <details class="toc-section">
-                <summary>Gate of Amen Intention <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Amen Intention <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-amen-intention-gate-of-amen-intention">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -700,10 +716,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Confession <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Confession <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-confession">Start</a>
               <details class="toc-section">
-                <summary>Gate of Confession <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Confession <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-confession-gate-of-confession">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -724,10 +740,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Putting Down the Head <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Putting Down the Head <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-putting-down-the-head">Start</a>
               <details class="toc-section">
-                <summary>Gate of Putting Down the Head <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Putting Down the Head <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-putting-down-the-head-gate-of-putting-down-the-head">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -743,10 +759,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Reading the Torah <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Reading the Torah <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-reading-the-torah">Start</a>
               <details class="toc-section">
-                <summary>Gate of Reading the Torah <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Reading the Torah <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-reading-the-torah-gate-of-reading-the-torah">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -779,10 +795,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Afternoon and Evening Prayers <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Afternoon and Evening Prayers <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-afternoon-and-evening-prayers">Start</a>
               <details class="toc-section">
-                <summary>Gate of the Afternoon and Evening Prayers <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the Afternoon and Evening Prayers <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-afternoon-and-evening-prayers-gate-of-the-afternoon-and-evening-prayers">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -806,10 +822,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Recitation of the Shema Before Retiring <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Recitation of the Shema Before Retiring <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-recitation-of-the-shema-before-retiring">Start</a>
               <details class="toc-section">
-                <summary>Gate of the Recitation of the Shema Before Retiring <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the Recitation of the Shema Before Retiring <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-recitation-of-the-shema-before-retiring-gate-of-the-recitation-of-the-shema-before-retiring">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -826,10 +842,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Midnight Prayer <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Midnight Prayer <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-midnight-prayer">Start</a>
               <details class="toc-section">
-                <summary>Gate of the Midnight Prayer <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the Midnight Prayer <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-midnight-prayer-gate-of-the-midnight-prayer">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -848,10 +864,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Conduct While Learning <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Conduct While Learning <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-conduct-while-learning">Start</a>
               <details class="toc-section">
-                <summary>Gate of Conduct While Learning <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Conduct While Learning <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-conduct-while-learning-gate-of-conduct-while-learning">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -944,10 +960,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Sabbath <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Sabbath <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-sabbath">Start</a>
               <details class="toc-section">
-                <summary>Introduction <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Introduction <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-sabbath-introduction">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -973,7 +989,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>default <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>default <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-sabbath-default">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -999,10 +1015,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of The New Month, Chanukah, and Purim <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of The New Month, Chanukah, and Purim <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-new-month-chanukah-and-purim">Start</a>
               <details class="toc-section">
-                <summary>Gate of The New Month, Chanukah, and Purim <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of The New Month, Chanukah, and Purim <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-new-month-chanukah-and-purim-gate-of-the-new-month-chanukah-and-purim">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1018,10 +1034,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Festival <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Festival <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-festival">Start</a>
               <details class="toc-section">
-                <summary>Gate of Festival <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Festival <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-festival-gate-of-festival">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1039,10 +1055,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Passover <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Passover <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-passover">Start</a>
               <details class="toc-section">
-                <summary>Gate of Passover <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Passover <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-passover-gate-of-passover">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1097,10 +1113,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Omer Count <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Omer Count <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-omer-count">Start</a>
               <details class="toc-section">
-                <summary>Gate of the Omer Count <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the Omer Count <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-omer-count-gate-of-the-omer-count">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1135,10 +1151,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Shavuot <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Shavuot <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-shavuot">Start</a>
               <details class="toc-section">
-                <summary>Gate of Shavuot <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Shavuot <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-shavuot-gate-of-shavuot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1187,10 +1203,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Rosh Hashana <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Rosh Hashana <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-rosh-hashana">Start</a>
               <details class="toc-section">
-                <summary>Introduction <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Introduction <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-rosh-hashana-introduction">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1206,7 +1222,7 @@
                 </details>
               </details>
               <details class="toc-section">
-                <summary>default <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>default <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-rosh-hashana-default">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1226,10 +1242,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Prayers of Rosh Hashana <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Prayers of Rosh Hashana <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-prayers-of-rosh-hashana">Start</a>
               <details class="toc-section">
-                <summary>Gate of the Prayers of Rosh Hashana <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the Prayers of Rosh Hashana <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-prayers-of-rosh-hashana-gate-of-the-prayers-of-rosh-hashana">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1251,10 +1267,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of the Shofer <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of the Shofer <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-the-shofer">Start</a>
               <details class="toc-section">
-                <summary>Gate of the Shofer <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of the Shofer <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-the-shofer-gate-of-the-shofer">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1293,10 +1309,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Yom Kippur <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Yom Kippur <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-yom-kippur">Start</a>
               <details class="toc-section">
-                <summary>Gate of Yom Kippur <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Yom Kippur <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-yom-kippur-gate-of-yom-kippur">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1322,10 +1338,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Sukkot <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Sukkot <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-sukkot">Start</a>
               <details class="toc-section">
-                <summary>Gate of Sukkot <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Sukkot <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-sukkot-gate-of-sukkot">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1355,10 +1371,10 @@
               </details>
             </details>
             <details class="toc-group">
-              <summary>Gate of Lulav <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Gate of Lulav <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#group-gate-of-lulav">Start</a>
               <details class="toc-section">
-                <summary>Gate of Lulav <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Gate of Lulav <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#section-gate-of-lulav-gate-of-lulav">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -1384,8 +1400,8 @@
           </details>
         </nav>
         <article>
-          <h2 id="group-gate-of-prayer">Gate of Prayer <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-prayer-introduction">Introduction <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-prayer">Gate of Prayer <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-prayer-introduction">Introduction <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-prayer-introduction-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-prayer-introduction-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -1522,7 +1538,7 @@
               <a href="#chapter-gate-of-prayer-introduction-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <h3 id="section-gate-of-prayer-default">default <span class="hud-badge">Lexical layer active</span></h3>
+          <h3 id="section-gate-of-prayer-default">default <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-prayer-default-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-prayer-default-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -1604,8 +1620,8 @@
               <a href="#chapter-gate-of-prayer-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-blessings">Gate of Blessings <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-blessings-gate-of-blessings">Gate of Blessings <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-blessings">Gate of Blessings <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-blessings-gate-of-blessings">Gate of Blessings <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-blessings-gate-of-blessings-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-blessings-gate-of-blessings-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -2071,8 +2087,8 @@
               <a href="#chapter-gate-of-blessings-gate-of-blessings-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-fringes">Gate of Fringes <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-fringes-gate-of-fringes">Gate of Fringes <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-fringes">Gate of Fringes <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-fringes-gate-of-fringes">Gate of Fringes <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-fringes-gate-of-fringes-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-fringes-gate-of-fringes-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -2298,8 +2314,8 @@
               <a href="#chapter-gate-of-fringes-gate-of-fringes-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-teffilin">Gate of Teffilin <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-teffilin-gate-of-teffilin">Gate of Teffilin <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-teffilin">Gate of Teffilin <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-teffilin-gate-of-teffilin">Gate of Teffilin <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-teffilin-gate-of-teffilin-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-teffilin-gate-of-teffilin-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -2557,8 +2573,8 @@
               <a href="#chapter-gate-of-teffilin-gate-of-teffilin-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-world-of-action">Gate of the World of Action <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-world-of-action-gate-of-the-world-of-action">Gate of the World of Action <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-world-of-action">Gate of the World of Action <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-world-of-action-gate-of-the-world-of-action">Gate of the World of Action <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-world-of-action-gate-of-the-world-of-action-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-world-of-action-gate-of-the-world-of-action-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -2832,8 +2848,8 @@
               <a href="#chapter-gate-of-the-world-of-action-gate-of-the-world-of-action-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-holies">Gate of the Holies <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-holies-from-second-edition">From Second Edition <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-holies">Gate of the Holies <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-holies-from-second-edition">From Second Edition <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-holies-from-second-edition-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-holies-from-second-edition-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -3225,7 +3241,7 @@
               <a href="#chapter-gate-of-the-holies-from-second-edition-23">Back to chapter/section start</a>
             </nav>
           </section>
-          <h3 id="section-gate-of-the-holies-default">default <span class="hud-badge">Lexical layer active</span></h3>
+          <h3 id="section-gate-of-the-holies-default">default <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-holies-default-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-holies-default-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -3547,8 +3563,8 @@
               <a href="#chapter-gate-of-the-holies-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-songs">Gate of Songs <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-songs-gate-of-songs">Gate of Songs <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-songs">Gate of Songs <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-songs-gate-of-songs">Gate of Songs <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-songs-gate-of-songs-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-songs-gate-of-songs-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -3774,8 +3790,8 @@
               <a href="#chapter-gate-of-songs-gate-of-songs-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-recitation-of-the-shema">Gate of the Recitation of the Shema <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-recitation-of-the-shema-gate-of-the-recitation-of-the-shema">Gate of the Recitation of the Shema <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-recitation-of-the-shema">Gate of the Recitation of the Shema <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-recitation-of-the-shema-gate-of-the-recitation-of-the-shema">Gate of the Recitation of the Shema <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-recitation-of-the-shema-gate-of-the-recitation-of-the-shema-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-recitation-of-the-shema-gate-of-the-recitation-of-the-shema-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -4145,8 +4161,8 @@
               <a href="#chapter-gate-of-the-recitation-of-the-shema-gate-of-the-recitation-of-the-shema-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-silent-prayer">Gate of the Silent Prayer <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-silent-prayer-gate-of-the-silent-prayer">Gate of the Silent Prayer <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-silent-prayer">Gate of the Silent Prayer <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-silent-prayer-gate-of-the-silent-prayer">Gate of the Silent Prayer <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-silent-prayer-gate-of-the-silent-prayer-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-silent-prayer-gate-of-the-silent-prayer-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -4292,8 +4308,8 @@
               <a href="#chapter-gate-of-the-silent-prayer-gate-of-the-silent-prayer-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-repetition-of-the-silent-prayer">Gate of the Repetition of the Silent Prayer <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-repetition-of-the-silent-prayer-gate-of-the-repetition-of-the-silent-prayer">Gate of the Repetition of the Silent Prayer <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-repetition-of-the-silent-prayer">Gate of the Repetition of the Silent Prayer <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-repetition-of-the-silent-prayer-gate-of-the-repetition-of-the-silent-prayer">Gate of the Repetition of the Silent Prayer <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-repetition-of-the-silent-prayer-gate-of-the-repetition-of-the-silent-prayer-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-repetition-of-the-silent-prayer-gate-of-the-repetition-of-the-silent-prayer-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -4343,8 +4359,8 @@
               <a href="#chapter-gate-of-the-repetition-of-the-silent-prayer-gate-of-the-repetition-of-the-silent-prayer-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-amen-intention">Gate of Amen Intention <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-amen-intention-gate-of-amen-intention">Gate of Amen Intention <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-amen-intention">Gate of Amen Intention <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-amen-intention-gate-of-amen-intention">Gate of Amen Intention <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-amen-intention-gate-of-amen-intention-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-amen-intention-gate-of-amen-intention-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -4538,8 +4554,8 @@
               <a href="#chapter-gate-of-amen-intention-gate-of-amen-intention-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-confession">Gate of Confession <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-confession-gate-of-confession">Gate of Confession <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-confession">Gate of Confession <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-confession-gate-of-confession">Gate of Confession <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-confession-gate-of-confession-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-confession-gate-of-confession-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -4701,8 +4717,8 @@
               <a href="#chapter-gate-of-confession-gate-of-confession-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-putting-down-the-head">Gate of Putting Down the Head <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-putting-down-the-head-gate-of-putting-down-the-head">Gate of Putting Down the Head <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-putting-down-the-head">Gate of Putting Down the Head <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-putting-down-the-head-gate-of-putting-down-the-head">Gate of Putting Down the Head <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-putting-down-the-head-gate-of-putting-down-the-head-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-putting-down-the-head-gate-of-putting-down-the-head-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -4784,8 +4800,8 @@
               <a href="#chapter-gate-of-putting-down-the-head-gate-of-putting-down-the-head-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-reading-the-torah">Gate of Reading the Torah <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-reading-the-torah-gate-of-reading-the-torah">Gate of Reading the Torah <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-reading-the-torah">Gate of Reading the Torah <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-reading-the-torah-gate-of-reading-the-torah">Gate of Reading the Torah <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-reading-the-torah-gate-of-reading-the-torah-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-reading-the-torah-gate-of-reading-the-torah-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -5139,8 +5155,8 @@
               <a href="#chapter-gate-of-reading-the-torah-gate-of-reading-the-torah-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-afternoon-and-evening-prayers">Gate of the Afternoon and Evening Prayers <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-afternoon-and-evening-prayers-gate-of-the-afternoon-and-evening-prayers">Gate of the Afternoon and Evening Prayers <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-afternoon-and-evening-prayers">Gate of the Afternoon and Evening Prayers <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-afternoon-and-evening-prayers-gate-of-the-afternoon-and-evening-prayers">Gate of the Afternoon and Evening Prayers <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-afternoon-and-evening-prayers-gate-of-the-afternoon-and-evening-prayers-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-afternoon-and-evening-prayers-gate-of-the-afternoon-and-evening-prayers-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -5350,8 +5366,8 @@
               <a href="#chapter-gate-of-the-afternoon-and-evening-prayers-gate-of-the-afternoon-and-evening-prayers-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-recitation-of-the-shema-before-retiring">Gate of the Recitation of the Shema Before Retiring <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-recitation-of-the-shema-before-retiring-gate-of-the-recitation-of-the-shema-before-retiring">Gate of the Recitation of the Shema Before Retiring <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-recitation-of-the-shema-before-retiring">Gate of the Recitation of the Shema Before Retiring <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-recitation-of-the-shema-before-retiring-gate-of-the-recitation-of-the-shema-before-retiring">Gate of the Recitation of the Shema Before Retiring <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-recitation-of-the-shema-before-retiring-gate-of-the-recitation-of-the-shema-before-retiring-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-recitation-of-the-shema-before-retiring-gate-of-the-recitation-of-the-shema-before-retiring-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -5449,8 +5465,8 @@
               <a href="#chapter-gate-of-the-recitation-of-the-shema-before-retiring-gate-of-the-recitation-of-the-shema-before-retiring-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-midnight-prayer">Gate of the Midnight Prayer <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-midnight-prayer-gate-of-the-midnight-prayer">Gate of the Midnight Prayer <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-midnight-prayer">Gate of the Midnight Prayer <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-midnight-prayer-gate-of-the-midnight-prayer">Gate of the Midnight Prayer <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-midnight-prayer-gate-of-the-midnight-prayer-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-midnight-prayer-gate-of-the-midnight-prayer-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -5580,8 +5596,8 @@
               <a href="#chapter-gate-of-the-midnight-prayer-gate-of-the-midnight-prayer-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-conduct-while-learning">Gate of Conduct While Learning <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-conduct-while-learning-gate-of-conduct-while-learning">Gate of Conduct While Learning <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-conduct-while-learning">Gate of Conduct While Learning <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-conduct-while-learning-gate-of-conduct-while-learning">Gate of Conduct While Learning <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-conduct-while-learning-gate-of-conduct-while-learning-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-conduct-while-learning-gate-of-conduct-while-learning-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -6895,8 +6911,8 @@
               <a href="#chapter-gate-of-conduct-while-learning-gate-of-conduct-while-learning-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-sabbath">Gate of the Sabbath <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-sabbath-introduction">Introduction <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-sabbath">Gate of the Sabbath <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-sabbath-introduction">Introduction <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-sabbath-introduction-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-sabbath-introduction-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -7154,7 +7170,7 @@
               <a href="#chapter-gate-of-the-sabbath-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h3 id="section-gate-of-the-sabbath-default">default <span class="hud-badge">Lexical layer active</span></h3>
+          <h3 id="section-gate-of-the-sabbath-default">default <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-sabbath-default-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-sabbath-default-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -7396,8 +7412,8 @@
               <a href="#chapter-gate-of-the-sabbath-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-new-month-chanukah-and-purim">Gate of The New Month, Chanukah, and Purim <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-new-month-chanukah-and-purim-gate-of-the-new-month-chanukah-and-purim">Gate of The New Month, Chanukah, and Purim <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-new-month-chanukah-and-purim">Gate of The New Month, Chanukah, and Purim <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-new-month-chanukah-and-purim-gate-of-the-new-month-chanukah-and-purim">Gate of The New Month, Chanukah, and Purim <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-new-month-chanukah-and-purim-gate-of-the-new-month-chanukah-and-purim-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-new-month-chanukah-and-purim-gate-of-the-new-month-chanukah-and-purim-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -7479,8 +7495,8 @@
               <a href="#chapter-gate-of-the-new-month-chanukah-and-purim-gate-of-the-new-month-chanukah-and-purim-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-festival">Gate of Festival <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-festival-gate-of-festival">Gate of Festival <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-festival">Gate of Festival <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-festival-gate-of-festival">Gate of Festival <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-festival-gate-of-festival-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-festival-gate-of-festival-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -7594,8 +7610,8 @@
               <a href="#chapter-gate-of-festival-gate-of-festival-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-passover">Gate of Passover <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-passover-gate-of-passover">Gate of Passover <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-passover">Gate of Passover <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-passover-gate-of-passover">Gate of Passover <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-passover-gate-of-passover-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-passover-gate-of-passover-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -8301,8 +8317,8 @@
               <a href="#chapter-gate-of-passover-gate-of-passover-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-omer-count">Gate of the Omer Count <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-omer-count-gate-of-the-omer-count">Gate of the Omer Count <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-omer-count">Gate of the Omer Count <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-omer-count-gate-of-the-omer-count">Gate of the Omer Count <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-omer-count-gate-of-the-omer-count-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-omer-count-gate-of-the-omer-count-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -8688,8 +8704,8 @@
               <a href="#chapter-gate-of-the-omer-count-gate-of-the-omer-count-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-shavuot">Gate of Shavuot <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-shavuot-gate-of-shavuot">Gate of Shavuot <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-shavuot">Gate of Shavuot <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-shavuot-gate-of-shavuot">Gate of Shavuot <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-shavuot-gate-of-shavuot-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-shavuot-gate-of-shavuot-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -9299,8 +9315,8 @@
               <a href="#chapter-gate-of-shavuot-gate-of-shavuot-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-rosh-hashana">Gate of Rosh Hashana <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-rosh-hashana-introduction">Introduction <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-rosh-hashana">Gate of Rosh Hashana <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-rosh-hashana-introduction">Introduction <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-rosh-hashana-introduction-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-rosh-hashana-introduction-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -9398,7 +9414,7 @@
               <a href="#chapter-gate-of-rosh-hashana-introduction-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h3 id="section-gate-of-rosh-hashana-default">default <span class="hud-badge">Lexical layer active</span></h3>
+          <h3 id="section-gate-of-rosh-hashana-default">default <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-rosh-hashana-default-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-rosh-hashana-default-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -9544,8 +9560,8 @@
               <a href="#chapter-gate-of-rosh-hashana-default-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-prayers-of-rosh-hashana">Gate of the Prayers of Rosh Hashana <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-prayers-of-rosh-hashana-gate-of-the-prayers-of-rosh-hashana">Gate of the Prayers of Rosh Hashana <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-prayers-of-rosh-hashana">Gate of the Prayers of Rosh Hashana <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-prayers-of-rosh-hashana-gate-of-the-prayers-of-rosh-hashana">Gate of the Prayers of Rosh Hashana <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-prayers-of-rosh-hashana-gate-of-the-prayers-of-rosh-hashana-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-prayers-of-rosh-hashana-gate-of-the-prayers-of-rosh-hashana-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -9723,8 +9739,8 @@
               <a href="#chapter-gate-of-the-prayers-of-rosh-hashana-gate-of-the-prayers-of-rosh-hashana-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-the-shofer">Gate of the Shofer <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-the-shofer-gate-of-the-shofer">Gate of the Shofer <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-the-shofer">Gate of the Shofer <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-the-shofer-gate-of-the-shofer">Gate of the Shofer <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-the-shofer-gate-of-the-shofer-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-the-shofer-gate-of-the-shofer-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -10174,8 +10190,8 @@
               <a href="#chapter-gate-of-the-shofer-gate-of-the-shofer-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-yom-kippur">Gate of Yom Kippur <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-yom-kippur-gate-of-yom-kippur">Gate of Yom Kippur <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-yom-kippur">Gate of Yom Kippur <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-yom-kippur-gate-of-yom-kippur">Gate of Yom Kippur <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-yom-kippur-gate-of-yom-kippur-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-yom-kippur-gate-of-yom-kippur-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -10417,8 +10433,8 @@
               <a href="#chapter-gate-of-yom-kippur-gate-of-yom-kippur-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-sukkot">Gate of Sukkot <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-sukkot-gate-of-sukkot">Gate of Sukkot <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-sukkot">Gate of Sukkot <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-sukkot-gate-of-sukkot">Gate of Sukkot <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-sukkot-gate-of-sukkot-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-sukkot-gate-of-sukkot-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -10724,8 +10740,8 @@
               <a href="#chapter-gate-of-sukkot-gate-of-sukkot-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <h2 id="group-gate-of-lulav">Gate of Lulav <span class="hud-badge">Lexical layer active</span></h2>
-          <h3 id="section-gate-of-lulav-gate-of-lulav">Gate of Lulav <span class="hud-badge">Lexical layer active</span></h3>
+          <h2 id="group-gate-of-lulav">Gate of Lulav <span class="hud-badge">Route HUD active</span></h2>
+          <h3 id="section-gate-of-lulav-gate-of-lulav">Gate of Lulav <span class="hud-badge">Route HUD active</span></h3>
           <h4 id="chapter-gate-of-lulav-gate-of-lulav-1">Chapter 1</h4>
           <section class="unit" id="pri-etz-chaim-gate-of-lulav-gate-of-lulav-1-1" data-unit data-lexical-unit>
             <div class="unit-head">
@@ -10936,32 +10952,21 @@
             </nav>
           </section>
         <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/pri-etz-chaim.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/pri-etz-chaim-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/pri-etz-chaim.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
-      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-lemma-strict-row><dt>Strict Lemma</dt><dd data-hud-lemma-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/pri-etz-chaim.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/pri-etz-chaim.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/pri-etz-chaim.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/pri-etz-chaim.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/pri-etz-chaim.manifest.json","occurrence_url":"../../data/lexical/occurrences/pri-etz-chaim.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -10975,9 +10980,16 @@
       const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
       const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
       const chunkPromises = new Map();
+      const routeShardPromises = new Map();
       const sourceRows = new Map();
       let manifestPromise = null;
+      let routeManifestPromise = null;
       const hud = document.querySelector("[data-lexical-hud]");
+      if (!hud) return;
+      const waitForIdle = () => new Promise((resolve) => {
+        if ("requestIdleCallback" in window) window.requestIdleCallback(resolve, { timeout: 250 });
+        else window.requestAnimationFrame(() => window.setTimeout(resolve, 0));
+      });
       const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
       const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
       const localSourceUrlMap = {
@@ -11013,6 +11025,11 @@
         if (!lexicalConfig.manifest_url) return null;
         if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
         return manifestPromise;
+      };
+      const routeLookupManifestUrl = () => toAbsoluteUrl(lexicalConfig.hud_route_lookup_manifest_url || "data/definitions/hud-route-lookup/manifest.json", lexicalRootUrl());
+      const loadRouteManifest = async () => {
+        if (!routeManifestPromise) routeManifestPromise = fetchJson(routeLookupManifestUrl());
+        return routeManifestPromise;
       };
       const resolveSourceRows = (ids, inlineRows) => {
         if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
@@ -11052,8 +11069,81 @@
         if (chunkId) await loadChunk(chunkId);
         return tokenRows.get(tokenIndexId) || {};
       };
+      const codepointKey = (value, prefixLength) => {
+        const chars = [...String(value || "")].slice(0, prefixLength);
+        if (!chars.length) return "empty";
+        const first = chars[0].codePointAt(0);
+        if (first < 0x05d0 || first > 0x05ea) return "other";
+        return chars.map((char) => char.codePointAt(0).toString(16).padStart(4, "0")).join("-");
+      };
+      const loadRouteCards = async (normalized) => {
+        if (!normalized) return [];
+        const manifest = await loadRouteManifest();
+        const shardKey = codepointKey(normalized, Number(manifest.prefix_length || 2));
+        const shardInfo = (manifest.shards || []).find((shard) => shard.shard === shardKey);
+        if (!shardInfo || !shardInfo.path) return [];
+        if (!routeShardPromises.has(shardKey)) {
+          routeShardPromises.set(shardKey, fetchJson(shardInfo.path, routeLookupManifestUrl()));
+        }
+        const shard = await routeShardPromises.get(shardKey);
+        return (((shard || {}).routes_by_normalized || {})[normalized] || []).slice();
+      };
+      const addLookupCandidate = (map, key, relation, penalty = 0) => {
+        const normalized = normalizeHebrewKey(key);
+        if (!normalized || map.has(normalized)) return;
+        map.set(normalized, { key: normalized, relation, penalty });
+      };
+      const lookupCandidatesFor = (clickedForm, normalized) => {
+        const candidates = new Map();
+        addLookupCandidate(candidates, normalized || clickedForm, "exact", 0);
+        const primary = normalizeHebrewKey(normalized || clickedForm);
+        String(primary || "").split(/[\u05BE-]/).filter((part) => part && part !== primary).forEach((part) => addLookupCandidate(candidates, part, "maqaf component", 12));
+        const prefixPattern = /^[\u05D5\u05D1\u05DB\u05DC\u05DE\u05D4\u05E9]/;
+        for (let pass = 0; pass < 3; pass += 1) {
+          [...candidates.values()].slice().forEach((candidate) => {
+            if (candidate.key.length >= 4 && prefixPattern.test(candidate.key)) addLookupCandidate(candidates, candidate.key.slice(1), "prefix-stripped candidate", 20 + pass * 4);
+          });
+        }
+        [...candidates.values()].slice().forEach((candidate) => {
+          if (!candidate.key.endsWith("\u05D9\u05DE")) return;
+          const stem = candidate.key.slice(0, -2);
+          if (stem.endsWith("\u05D4") && stem.length >= 3) addLookupCandidate(candidates, `${stem.slice(0, -1)}\u05D5\u05D4\u05D9\u05DE`, "mater-expanded plural candidate", 14);
+        });
+        const suffixRules = [
+          { suffix: "\u05D9\u05DE", relation: "plural-suffix candidate", penalty: 18 },
+          { suffix: "\u05D5\u05EA", relation: "plural-suffix candidate", penalty: 18 },
+          { suffix: "\u05D9\u05D4", relation: "possessive-suffix candidate", penalty: 24 },
+          { suffix: "\u05D9\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
+          { suffix: "\u05D9\u05DB", relation: "possessive-suffix candidate", penalty: 24 },
+          { suffix: "\u05D9\u05DB\u05DE", relation: "possessive-suffix candidate", penalty: 28 },
+          { suffix: "\u05D9\u05DB\u05E0", relation: "possessive-suffix candidate", penalty: 28 },
+          { suffix: "\u05D4\u05DE", relation: "possessive-suffix candidate", penalty: 28 },
+          { suffix: "\u05D4\u05E0", relation: "possessive-suffix candidate", penalty: 28 },
+          { suffix: "\u05E0\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
+          { suffix: "\u05DB", relation: "possessive-suffix candidate", penalty: 24 },
+          { suffix: "\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
+          { suffix: "\u05D4", relation: "suffix-stripped candidate", penalty: 24 },
+          { suffix: "\u05D9", relation: "suffix-stripped candidate", penalty: 24 }
+        ];
+        [...candidates.values()].slice().forEach((candidate) => {
+          suffixRules.forEach((rule) => {
+            if (candidate.key.endsWith(rule.suffix) && candidate.key.length - rule.suffix.length >= 3) addLookupCandidate(candidates, candidate.key.slice(0, -rule.suffix.length), rule.relation, rule.penalty);
+          });
+        });
+        return [...candidates.values()];
+      };
+      const loadRouteCardsForToken = async (clickedForm, normalized) => {
+        const candidates = lookupCandidatesFor(clickedForm, normalized);
+        const rows = [];
+        for (const candidate of candidates) {
+          const cards = await loadRouteCards(candidate.key);
+          cards.forEach((card) => rows.push({ ...card, lookup_key: candidate.key, lookup_relation: candidate.relation, lookup_penalty: candidate.penalty }));
+        }
+        const seen = new Set();
+        return { candidates, cards: rows.filter((card) => { const key = `${card.card_id || ""}|${card.lookup_key || ""}`; if (seen.has(key)) return false; seen.add(key); return true; }) };
+      };
       const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22\u05BE-]*/gu;
       const makeWordSpan = (text, tokenIndexId, ordinal) => {
         const span = document.createElement("span");
         span.className = "lexical-word";
@@ -11062,8 +11152,12 @@
         span.tabIndex = 0;
         span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
         span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalSurface = text || "";
         span.dataset.lexicalEntry = "";
         span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-haspopup", "dialog");
+        span.setAttribute("aria-controls", "route-hud-panel");
+        span.setAttribute("aria-expanded", "false");
         span.setAttribute("aria-pressed", "false");
         span.textContent = normalizeHebrewDisplay(text);
         return span;
@@ -11090,36 +11184,36 @@
         const state = { index: 0 };
         textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
       };
-      const loadedOccurrences = await loadOccurrences();
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+      const hydrateLexicalWords = async () => {
+        await waitForIdle();
+        const loadedOccurrences = await loadOccurrences();
+        const tasks = [];
+        document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+          const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+          if (!unitData) return;
+          const paragraphsByIndex = new Map((unitData.paragraphs || []).map((item) => [Number(item.paragraph_index), item]));
+          unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+            const paragraphData = paragraphsByIndex.get(Number(paragraph.dataset.lexicalParagraph));
+            tasks.push({ paragraph, tokenIds: paragraphData ? (paragraphData.token_index_ids || []) : [] });
+          });
         });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
+        for (let index = 0; index < tasks.length; index += 24) {
+          tasks.slice(index, index + 24).forEach((task) => wrapParagraph(task.paragraph, task.tokenIds));
+          if (index + 24 < tasks.length) await waitForIdle();
+        }
+      };
+      hydrateLexicalWords().catch((error) => console.error(error));
       let activeHudButton = null;
       if (hud.parentElement !== document.body) document.body.appendChild(hud);
       const positionHudNearButton = (button) => {
         if (!button || hud.hidden) return;
-        const rect = button.getBoundingClientRect();
         const margin = 12;
-        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        const width = Math.max(320, window.innerWidth - margin * 2);
         hud.style.width = width + "px";
-        const preferredLeft = rect.right - width;
-        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
-        const below = window.innerHeight - rect.bottom - margin;
-        const above = rect.top - margin;
-        const openAbove = below < 280 && above > below;
-        const available = Math.max(220, (openAbove ? above : below) - margin);
-        hud.style.maxHeight = Math.min(560, available) + "px";
-        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
-        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
-        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        const left = Math.max(margin, Math.round((window.innerWidth - width) / 2));
+        const available = Math.max(260, window.innerHeight - margin * 2);
+        hud.style.maxHeight = available + "px";
+        const top = margin;
         hud.style.left = left + "px";
         hud.style.top = top + "px";
       };
@@ -11127,540 +11221,391 @@
         if (!activeHudButton || hud.hidden) return;
         window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
       };
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const setRowHidden = (root, selector, hidden) => {
-        const row = root.querySelector(selector);
-        if (row) row.hidden = Boolean(hidden);
-      };
       const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
-      const cleanStrictRenderings = (values) => {
-        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
-        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
-        return [...new Set(raw.filter((value) => {
-          if (value.length > 64) return false;
-          if (/[()]/.test(value)) return false;
-          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
-          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
-          return true;
-        }))];
-      };
       const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
       const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
-      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
-      const isAramaicView = (view) => {
-        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
-        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
-        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
-      };
-      const strictEntriesForView = (view) => {
-        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
-        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
-        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
-          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
-          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
-        });
-      };
-      const getStrictBuckets = (view) => {
-        const topLevel = getStrictRenderings(view);
-        const strictEntries = strictEntriesForView(view);
-        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
-        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        const lemmaLikely = cleanStrictRenderings(strictEntries.flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]), lemma: lemmaLikely };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely, lemma: lemmaLikely };
-      };
-      const strictEntryKeys = (view) => {
-        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
-      };
-      const appendRenderings = (node, values) => {
-        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
-        if (!filtered.length) { node.append("N/A"); return; }
-        if (filtered.length === 1) { node.append(filtered[0]); return; }
-        const ul = document.createElement("ul");
-        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderBreakdown = (root, view) => {
-        const node = root.querySelector("[data-hud-breakdown]");
-        if (!node) return;
-        node.replaceChildren();
-        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
-        if (!rows.length) { node.textContent = ""; return; }
-        const list = document.createElement("div");
-        list.className = "breakdown-list";
-        rows.forEach((row) => {
-          const section = document.createElement("section");
-          section.className = "breakdown-row";
-          const head = document.createElement("p");
-          const hebrew = document.createElement("strong");
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
-          head.appendChild(hebrew);
-          section.appendChild(head);
-          const renderings = document.createElement("div");
-          appendRenderings(renderings, row.strict_renderings || []);
-          section.appendChild(renderings);
-          list.appendChild(section);
-        });
-        node.appendChild(list);
-      };
-      const isRelatedEntry = (entry) => {
-        const relation = String(entry.relation_label || "").toLowerCase();
-        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
-      };
-      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
-      const isNoisyAlternateEntry = (entry) => {
-        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
-        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
-      };
-      const renderEntryList = (entries, roleLabel) => {
-        const list = document.createElement("div");
-        list.className = "lexical-entry-list";
-        const groupedEntries = new Map();
-        entries.forEach((entry) => {
-          const spelling = entry.lemma || entry.match_key || "N/A";
-          const key = `${entry.context_role || "entry"}|${spelling}`;
-          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
-          const group = groupedEntries.get(key);
-          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
-        });
-        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
-        sorted.forEach((entry) => {
-          const card = document.createElement("section");
-          card.className = "lexical-entry";
-          const title = document.createElement("h3");
-          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
-          title.append(role, ": ");
-          const spelling = document.createElement("span");
-          spelling.className = "entry-hebrew";
-          spelling.lang = "he";
-          spelling.dir = "rtl";
-          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
-          title.appendChild(spelling);
-          const meta = document.createElement("p");
-          meta.className = "entry-meta";
-          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
-          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
-          const renderings = document.createElement("div");
-          const renderLabel = document.createElement("p");
-          renderLabel.className = "entry-label";
-          renderLabel.textContent = "Strict renderings";
-          renderings.appendChild(renderLabel);
-          appendRenderings(renderings, entry.strict_renderings || []);
-          card.append(title, meta, renderings);
-          list.appendChild(card);
-        });
-        return list;
-      };
       const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const sourceRowsByKey = (view) => {
-        const map = new Map();
-        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
-        return map;
-      };
-      const sourceRowsForEntry = (view, entry) => {
-        const map = sourceRowsByKey(view);
-        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
-        return row ? [row] : [];
-      };
-      const cleanTransliteration = (value) => {
-        const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
-      };
-      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
-      const sourceQualityScore = (rows) => {
-        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
-        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
-        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
-        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
-        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
-        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
-        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
-        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
-        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
-        return { delta: -10, reason: "missing source row" };
-      };
-      const parserScore = (view) => {
-        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
-        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
-        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
-        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
-        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
-        return { delta: 0, reason: "" };
-      };
-      const applyDisplayBoost = (status, rawScore, view) => {
-        return { score: rawScore, reasons: [] };
-      };
-      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
-        const reasons = [];
-        let score = 0;
-        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
-        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
-        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
-        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
-        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else if (status === "Strict Lemma") { score = 78; reasons.push("strict lemma row"); }
-        else { score = 84; reasons.push("strict Hebrew row"); }
-        const rendered = cleanStrictRenderings(renderings || []);
-        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
-        const sourceQuality = sourceQualityScore(rows);
-        score += sourceQuality.delta;
-        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
-        const view = evidence.view || {};
-        const entry = evidence.entry || {};
-        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
-        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
-        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
-        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
-        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
-        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
-        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
-        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
-        const parser = parserScore(view);
-        score += evidence.surfaceClaim ? parser.delta : 0;
-        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
-        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
-        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, "Strict Lemma": 95, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, "Strict Lemma": 50, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
-        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
-        const display = applyDisplayBoost(status, rawScore, view);
-        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
-      };
-      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
-      const uniqueClaims = (claims) => {
-        const seen = new Set();
-        return cleanValues(claims).filter((claim) => {
-          const key = claimRowKey(claim);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
-        const sourceRows = cleanValues(rows);
-        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
-        const cleanRenderings = cleanStrictRenderings(renderings || []);
-        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
-        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
-      };
-      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
-      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
       const displayLicense = (row) => {
         const license = String(row && row.license || "").trim();
         if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
         return license || "N/A";
       };
-      const sourceSummary = (rows) => {
-        const cleanRows = cleanValues(rows);
-        if (!cleanRows.length) return null;
-        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
-        const licenses = uniqueValues(cleanRows.map(displayLicense));
-        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
-        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      const firstPresentValue = (values) => cleanValues(values).map((value) => String(value || "").trim()).find(Boolean) || "";
+      const usageEvidenceRouteTypes = new Set(["usage_evidence", "workbench_usage", "workbench_usage_evidence", "workbench_usage_commentary", "biblical_workbench", "biblical_workbench_usage", "source_workbench_usage", "observed_usage"]);
+      const isUsageEvidenceCard = (card) => {
+        if (!card) return false;
+        const routeFields = [card.display_section, card.route_type, card.route_family, card.answer_role, card.meaning_quality].map((value) => String(value || "").toLowerCase().replace(/[\s-]+/g, "_")).filter(Boolean);
+        return routeFields.some((value) => usageEvidenceRouteTypes.has(value)) || Boolean(card.usage_note || card.frame_label);
       };
-      const DISPLAY_THRESHOLD = 50;
-      const MAX_VISIBLE_CLAIMS = 5;
-      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, "Strict Lemma": 2, Potential: 3, Related: 4, Caution: 5, Unresolved: 6 };
-      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
-      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
-      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
-      const appendClaimCard = (list, claim) => {
-        const card = document.createElement("section");
-        card.className = "claim-row";
-        const head = document.createElement("div");
-        head.className = "claim-row-head";
-        const badge = document.createElement("span");
-        badge.className = "claim-status";
-        const confidence = claimConfidence(claim);
-        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
-        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
-        const hebrew = document.createElement("strong");
-        hebrew.className = "claim-hebrew";
-        hebrew.lang = "he";
-        hebrew.dir = "rtl";
-        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(badge, hebrew);
-        card.appendChild(head);
-        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
-        const renderings = document.createElement("p");
-        renderings.className = "claim-renderings";
-        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
-        card.appendChild(renderings);
-        const source = sourceSummary(claim.rows);
-        if (source) {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = `Source: ${source.source}`;
-          const licenseLine = document.createElement("p");
-          licenseLine.className = "claim-license";
-          licenseLine.textContent = `License: ${source.license}`;
-          card.append(sourceLine, licenseLine);
-        } else if (claim.status === "Caution") {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = "Source: metadata incomplete";
-          card.appendChild(sourceLine);
-        }
-        list.appendChild(card);
+      const routeScore = (card) => {
+        const base = Number.isFinite(card.adjusted_score) ? card.adjusted_score : (Number.isFinite(card.raw_score) ? card.raw_score : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : 0));
+        const penalty = Number.isFinite(card.lookup_penalty) ? card.lookup_penalty : 0;
+        return Math.max(0, Math.round(base - penalty));
       };
-      const appendClaimsUnderDetails = (parent, label, claims) => {
-        if (!claims.length) return;
+      const routeScoreBasis = (card) => {
+        const parts = [];
+        if (Number.isFinite(card.raw_score)) parts.push(`raw ${card.raw_score}`);
+        if (Number.isFinite(card.score_handicap) && card.score_handicap) parts.push(`handicap ${card.score_handicap}`);
+        if (Number.isFinite(card.adjusted_score)) parts.push(`adjusted ${card.adjusted_score}`);
+        if (card.lookup_relation && card.lookup_relation !== "exact") parts.push(`${card.lookup_relation} -${card.lookup_penalty || 0}`);
+        if (card.source_ref) parts.push(card.source_ref);
+        return parts;
+      };
+      const routeRenderings = (card) => {
+        if (!card) return [];
+        if (isUsageEvidenceCard(card)) return [firstPresentValue([card.linked_route_definition, card.linked_definition, card.route_definition, card.route_definition_text]) || "observed usage only"];
+        const values = [];
+        const genericUsage = "Usage context only; no meaning is forced by this phrase row.";
+        const definition = firstPresentValue([card.definition]);
+        if (definition && definition !== genericUsage) values.push(definition);
+        const meaningClaim = firstPresentValue([card.meaning_claim]);
+        if (meaningClaim) values.push(meaningClaim);
+        return values;
+      };
+      const buildSourceNotes = (cards) => {
+        const noteMap = new Map();
+        const cardMap = new Map();
+        cleanValues(cards).forEach((card) => {
+          const indexes = [];
+          cleanValues(card.source_rows).forEach((row) => {
+            const key = sourceRowKey(row);
+            if (!key || key === "|") return;
+            if (!noteMap.has(key)) noteMap.set(key, { index: noteMap.size + 1, row });
+            indexes.push(noteMap.get(key).index);
+          });
+          const uniqueIndexes = uniqueValues(indexes).slice(0, 4);
+          if (uniqueIndexes.length) cardMap.set(card, uniqueIndexes);
+        });
+        return { cardMap, notes: [...noteMap.values()] };
+      };
+      const appendSourceRefs = (parent, indexes) => {
+        const cleanIndexes = uniqueValues(indexes);
+        if (!parent || !cleanIndexes.length) return;
+        const sup = document.createElement("sup");
+        sup.className = "source-note-index";
+        sup.textContent = cleanIndexes.join(",");
+        parent.appendChild(sup);
+      };
+      const appendSourceFootnotes = (panel, notes) => {
+        const cleanNotes = cleanValues(notes);
+        if (!cleanNotes.length) return;
         const details = document.createElement("details");
-        details.className = "other-entries";
+        details.className = "source-footnotes route-source-card";
         const summary = document.createElement("summary");
-        summary.textContent = label;
-        const box = document.createElement("div");
-        box.className = "claim-row-list";
-        claims.forEach((claim) => appendClaimCard(box, claim));
-        details.append(summary, box);
-        parent.appendChild(details);
-      };
-      const appendClaimRows = (node, claims) => {
-        if (!node) return;
-        node.replaceChildren();
-        const rows = sortClaimsForDisplay(claims);
-        if (!rows.length) { node.textContent = "N/A"; return; }
-        const list = document.createElement("div");
-        list.className = "claim-row-list";
-        const displayRows = rows.filter(isDisplayableClaim);
-        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
-        const visibleRows = displayRows.length ? displayRows : lowRows;
-        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
-        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
-        if (!visibleRows.length) { node.textContent = "N/A"; return; }
-        node.appendChild(list);
-      };
-      const placeholderClaim = (status, hebrew, message) => makeClaim("Unresolved", hebrew || "Clicked form", [message], [], "", { statusOverride: status });
-      const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [], lemma: [] };
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) {
-          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
-          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
-          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
-        }
-        strictEntriesForView(view).forEach((entry) => {
-          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
-          const bucket = strictBuckets[bucketName] || [];
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (!renderings.length) return;
-          claims.lemma.push(claimFromEntry(view, entry, "Strict Lemma", renderings));
-          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        summary.textContent = `Sources and licenses (${cleanNotes.length})`;
+        details.appendChild(summary);
+        cleanNotes.forEach(({ index, row }) => {
+          const line = document.createElement("p");
+          line.className = "source-footnote-row";
+          const marker = document.createElement("strong");
+          marker.textContent = `${index}. `;
+          line.appendChild(marker);
+          const sourceHref = resolveSourceUrl(row.source_url);
+          if (sourceHref) { const link = document.createElement("a"); link.href = sourceHref; link.textContent = row.source_name || "Source"; line.appendChild(link); }
+          else line.append(row.source_name || "Source");
+          line.append(` | ${row.source_id || "N/A"} | ${displayLicense(row)}`);
+          details.appendChild(line);
         });
-        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
-          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-        }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic), lemma: uniqueClaims(claims.lemma) };
+        panel.appendChild(details);
       };
-      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
-      const uniqueSourceGroups = (groups) => {
+      const routeSectionTitles = new Map([
+        ["strict_hebrew", "Strict Hebrew matches"],
+        ["strict_aramaic", "Strict Aramaic matches"],
+        ["morphology", "Word-part breakdown"],
+        ["lemma", "Lemma matches"],
+        ["subphrase_evidence", "Subphrase evidence"],
+        ["biblical_paraphrase_evidence", "Biblical definition/paraphrase matches"],
+        ["citable_paraphrase_evidence", "Citable definition/paraphrase matches"],
+        ["usage_evidence", "Usage evidence"],
+        ["phrase_evidence", "Licensed phrase uses"],
+        ["audit", "Tiny checks only"]
+      ]);
+      const routeSectionRank = new Map([["strict_hebrew", 0], ["strict_aramaic", 1], ["morphology", 2], ["lemma", 3], ["subphrase_evidence", 4], ["biblical_paraphrase_evidence", 5], ["citable_paraphrase_evidence", 6], ["usage_evidence", 7], ["phrase_evidence", 8], ["audit", 9]]);
+      const answerCandidateSections = new Set(["strict_hebrew", "strict_aramaic", "morphology", "lemma", "subphrase_evidence", "biblical_paraphrase_evidence", "citable_paraphrase_evidence"]);
+      const placeholderSections = ["strict_hebrew", "strict_aramaic", "morphology", "lemma", "subphrase_evidence", "biblical_paraphrase_evidence", "citable_paraphrase_evidence", "usage_evidence", "phrase_evidence"];
+      const routeSection = (card) => isUsageEvidenceCard(card) ? "usage_evidence" : (card.display_section || card.route_type || "audit");
+      const rankCardParts = (card) => {
+        const adjusted = Number.isFinite(card.adjusted_score) ? card.adjusted_score : routeScore(card);
+        const raw = Number.isFinite(card.raw_score) ? card.raw_score : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : 0);
+        return [-(adjusted - (card.lookup_penalty || 0)), -raw, routeSectionRank.get(routeSection(card)) ?? 9, -(Number.isFinite(card.answer_score) ? card.answer_score : 0), String(card.card_id || "")];
+      };
+      const compareRouteCards = (leftCard, rightCard) => {
+        const left = rankCardParts(leftCard);
+        const right = rankCardParts(rightCard);
+        for (let index = 0; index < left.length; index += 1) { if (left[index] < right[index]) return -1; if (left[index] > right[index]) return 1; }
+        return 0;
+      };
+      const answerRoleAllowsDefinition = (role) => {
+        const cleanRole = String(role || "").toLowerCase().replace(/[\s-]+/g, "_");
+        return ["", "answer", "definition", "reader_answer", "primary_definition"].includes(cleanRole);
+      };
+      const cardHasAnswerContract = (card) => Object.prototype.hasOwnProperty.call(card || {}, "answer_eligible") || Object.prototype.hasOwnProperty.call(card || {}, "answer_role");
+      const cardHasDefinitionText = (card) => routeRenderings(card).some((line) => String(line || "").trim());
+      const isAnswerEligibleCard = (card) => {
+        if (!card || !answerCandidateSections.has(routeSection(card)) || !cardHasDefinitionText(card)) return false;
+        if (card.answer_eligible === false || !answerRoleAllowsDefinition(card.answer_role)) return false;
+        if (card.answer_eligible === true) return true;
+        if (cardHasAnswerContract(card)) return false;
+        return card.meaning_quality === "definition" && !["phrase_evidence", "subphrase_evidence"].includes(routeSection(card));
+      };
+      const answerTextKey = (card) => routeRenderings(card).map((line) => String(line || "").replace(/\s+/g, " ").trim().toLowerCase()).filter(Boolean).join(" | ");
+      const answerAmbiguity = (primary, candidates) => {
+        if (!primary) return { ambiguous: false, count: 0 };
+        const topScore = routeScore(primary);
+        const topRelation = primary.lookup_relation || "exact";
+        const close = candidates.filter((card) => (card.lookup_relation || "exact") === topRelation && Math.abs(routeScore(card) - topScore) <= 6);
+        const meanings = new Set(close.map(answerTextKey).filter(Boolean));
+        return { ambiguous: meanings.size > 1, count: meanings.size };
+      };
+      const selectRouteAnswer = (cards) => {
+        const candidates = cleanValues(cards).filter(isAnswerEligibleCard).sort(compareRouteCards);
+        const exactAnswer = candidates.filter((card) => (card.lookup_relation || "exact") === "exact").sort(compareRouteCards)[0];
+        const selected = exactAnswer || candidates[0] || null;
+        const ambiguity = answerAmbiguity(selected, candidates);
+        return { answerCard: ambiguity.ambiguous ? null : selected, answerCandidates: candidates, answerState: ambiguity.ambiguous ? "ambiguous" : (selected ? "definition" : "none"), ambiguityCount: ambiguity.count };
+      };
+      const displayHebrewKey = (value) => String(value || "")
+        .replace(/\u05DB$/u, "\u05DA")
+        .replace(/\u05DE$/u, "\u05DD")
+        .replace(/\u05E0$/u, "\u05DF")
+        .replace(/\u05E4$/u, "\u05E3")
+        .replace(/\u05E6$/u, "\u05E5");
+      const treatmentForLookup = (card) => {
+        if (!card || !card.lookup_key || !card.lookup_relation || card.lookup_relation === "exact") return "";
+        const key = displayHebrewKey(card.lookup_key);
+        if (card.lookup_relation === "mater-expanded plural candidate") return `Matched by plural-form treatment: also try ${key}.`;
+        if (card.lookup_relation === "plural-suffix candidate") return `Matched by plural suffix treatment: base candidate ${key}.`;
+        if (card.lookup_relation === "possessive-suffix candidate") return `Matched by possessive suffix treatment: base candidate ${key}.`;
+        if (card.lookup_relation === "suffix-stripped candidate") return `Matched by suffix-stripped treatment: base candidate ${key}.`;
+        if (card.lookup_relation === "prefix-stripped candidate") return `Matched by prefix treatment: base candidate ${key}.`;
+        if (card.lookup_relation === "maqaf component") return `Matched by maqaf component: ${key}.`;
+        return `Matched by ${card.lookup_relation}: ${key}.`;
+      };
+      const lookupTreatmentLabel = (relation) => {
+        if (relation === "mater-expanded plural candidate") return "plural form";
+        if (relation === "plural-suffix candidate") return "plural suffix";
+        if (relation === "possessive-suffix candidate") return "possessive suffix";
+        if (relation === "suffix-stripped candidate") return "suffix stripped";
+        if (relation === "prefix-stripped candidate") return "prefix stripped";
+        if (relation === "maqaf component") return "maqaf component";
+        return relation || "lookup";
+      };
+      const lookupCandidateTreatments = (lookupCandidates) => {
+        const rows = [];
         const seen = new Set();
-        return cleanValues(groups).filter((group) => {
-          if (!group.rows.length) return false;
-          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
-          if (seen.has(key)) return false;
+        cleanValues(lookupCandidates).forEach((candidate) => {
+          if (!candidate || !candidate.key || !candidate.relation || candidate.relation === "exact") return;
+          const key = `${candidate.relation}|${candidate.key}`;
+          if (seen.has(key)) return;
           seen.add(key);
-          return true;
+          rows.push({ text: `${lookupTreatmentLabel(candidate.relation)}: also check ${displayHebrewKey(candidate.key)}`, note: `generated lookup candidate${candidate.penalty ? `; rank penalty ${candidate.penalty}` : ""}, not final definition` });
         });
+        return rows;
       };
-      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || [])]);
-      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(strictClaims.lemma || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
-      };
-      const appendSecondarySources = (container, view, entries, label) => {
-        const groups = sourceGroupsForEntries(view, entries);
-        if (!groups.length) return;
-        const sourceDetails = document.createElement("details");
-        sourceDetails.className = "source-details";
-        const sourceSummary = document.createElement("summary");
-        sourceSummary.textContent = label;
-        const sourceBox = document.createElement("div");
-        sourceDetails.append(sourceSummary, sourceBox);
-        renderSourceGroups(sourceBox, groups);
-        container.appendChild(sourceDetails);
-      };
-      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
-        const potentialNode = root.querySelector("[data-hud-potential]");
-        const relatedNode = root.querySelector("[data-hud-related]");
-        const cautionNode = root.querySelector("[data-hud-caution]");
-        const result = { potential: [], related: [], caution: [] };
-        if (!potentialNode || !relatedNode || !cautionNode) return result;
-        potentialNode.replaceChildren();
-        relatedNode.replaceChildren();
-        cautionNode.replaceChildren();
-        if (!hasLexicalEntry) {
-          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
-          setRowHidden(root, "[data-hud-potential-row]", false);
-          setRowHidden(root, "[data-hud-related-row]", true);
-          setRowHidden(root, "[data-hud-caution-row]", true);
-          appendClaimRows(potentialNode, result.potential);
-          return result;
+      const tokenShapeNotes = (clickedForm, normalized) => {
+        const key = normalizeHebrewKey(normalized || clickedForm);
+        const notes = [];
+        if (key.endsWith("\u05D9\u05DE") && key.length > 3) {
+          const stem = key.slice(0, -2);
+          const expanded = stem.endsWith("\u05D4") ? `${stem.slice(0, -1)}\u05D5\u05D4\u05D9\u05DE` : "";
+          notes.push({ text: `${displayHebrewKey(stem)} + -\u05D9\u05DD = plural form candidate${expanded ? `; also try ${displayHebrewKey(expanded)}` : ""}`, note: "proposed morphology, not final definition" });
         }
-        const entries = cleanValues(view.possible_entries);
-        const strictKeys = strictEntryKeys(view);
-        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
-        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
-        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
-        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
-        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
-        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
-        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
-        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
-        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
-        result.potential.push(...keepForDisplay(visiblePotentialClaims));
-        result.related.push(...keepForDisplay(visibleRelatedClaims));
-        result.caution.push(...keepForDisplay(cautionClaims));
-        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
-        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
-        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
-        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
-        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
-        if (result.related.length) appendClaimRows(relatedNode, result.related);
-        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
-        return result;
+        if (key.endsWith("\u05D5\u05EA") && key.length > 3) notes.push({ text: `${displayHebrewKey(key.slice(0, -2))} + -\u05D5\u05EA = plural form candidate`, note: "proposed morphology, not final definition" });
+        return notes;
       };
-      const renderSourceRow = (row) => {
-        const title = document.createElement("p");
-        const strong = document.createElement("strong");
-        const sourceHref = resolveSourceUrl(row.source_url);
-        if (sourceHref) {
-          const link = document.createElement("a");
-          link.href = sourceHref;
-          link.textContent = row.source_name || "Source";
-          strong.appendChild(link);
-        } else {
-          strong.textContent = row.source_name || "Source";
-        }
-        title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
-        return title;
+      const formTreatmentRows = (cards) => cleanValues(cards)
+        .filter((card) => /(?:plural|singular|dual|construct|defective spelling|form of|suffix|prefix)/i.test(`${card.definition || ""} ${card.meaning_claim || ""} ${card.match_type || ""}`))
+        .sort(compareRouteCards)
+        .slice(0, 4);
+      const appendTokenTreatmentCard = (panel, clickedForm, normalized, cards, lookupCandidates) => {
+        const notes = tokenShapeNotes(clickedForm, normalized);
+        const generatedRows = lookupCandidateTreatments(lookupCandidates);
+        const treatmentRows = formTreatmentRows(cards);
+        if (!notes.length && !generatedRows.length && !treatmentRows.length) return;
+        const section = document.createElement("section");
+        section.className = "route-treatment-card";
+        const title = document.createElement("strong");
+        title.textContent = "Form treatment";
+        section.appendChild(title);
+        [...notes, ...generatedRows].forEach((item) => { const line = document.createElement("p"); line.className = "route-treatment-line"; line.textContent = `${item.text} - ${item.note}`; section.appendChild(line); });
+        treatmentRows.forEach((card) => { const rendering = routeRenderings(card)[0]; if (!rendering) return; const line = document.createElement("p"); line.className = "route-treatment-line"; line.textContent = rendering; section.appendChild(line); });
+        panel.appendChild(section);
       };
-      const renderSourceGroups = (sourceBox, groups) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        const sourceGroups = cleanValues(groups);
-        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceGroups.forEach((group) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const claim = document.createElement("p");
-          claim.className = "source-claim";
-          claim.append("For ");
-          const lemma = document.createElement("span");
-          lemma.lang = "he";
-          lemma.dir = "rtl";
-          lemma.textContent = group.label || "Lexical claim";
-          claim.appendChild(lemma);
-          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
-          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
-          section.appendChild(claim);
-          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
-          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
-          sourceBox.appendChild(section);
+      const appendPhraseLine = (card, parent) => {
+        const tokens = cleanValues(card.phrase_tokens);
+        const phraseText = firstPresentValue([card.phrase_hebrew, card.phrase_text_hebrew, card.phrase]);
+        if (!tokens.length && !phraseText) return;
+        const phrase = document.createElement("p");
+        phrase.className = "phrase-line";
+        phrase.lang = "he";
+        phrase.dir = "rtl";
+        if (!tokens.length) { phrase.textContent = normalizeHebrewDisplay(phraseText); parent.appendChild(phrase); return; }
+        tokens.forEach((token, index) => {
+          if (index) phrase.append(" ");
+          const span = document.createElement("span");
+          span.className = token.role === "focus-token" || token.role === "focus-part" ? "phrase-focus" : "phrase-context";
+          span.textContent = normalizeHebrewDisplay(token.surface || "");
+          phrase.appendChild(span);
         });
+        parent.appendChild(phrase);
       };
+      const appendUsageEvidenceDetails = (card, parent) => {
+        if (!isUsageEvidenceCard(card)) return;
+        const scoreParts = [];
+        if (Number.isFinite(card.raw_score)) scoreParts.push(`raw ${card.raw_score}`);
+        if (Number.isFinite(card.score_handicap) && card.score_handicap) scoreParts.push(`handicap ${card.score_handicap}`);
+        if (Number.isFinite(card.adjusted_score)) scoreParts.push(`adjusted ${card.adjusted_score}`);
+        if (Number.isFinite(card.confidence_percent)) scoreParts.push(`confidence ${card.confidence_percent}%`);
+        if (!scoreParts.length) scoreParts.push(`${routeScore(card)}%`);
+        const rows = [
+          ["Usage", card.usage_note],
+          ["Frame", card.frame_label],
+          ["Status", firstPresentValue([card.status, card.candidate_status, card.claim_status, card.display_status, card.confidence_band, card.answer_role])],
+          ["Score", scoreParts.join(" / ")],
+          ["Source", firstPresentValue([card.source_ref, card.ref, card.occurrence_ref])]
+        ].filter((row) => firstPresentValue([row[1]]));
+        if (!rows.length) return;
+        const box = document.createElement("div");
+        box.className = "usage-evidence-details";
+        rows.forEach(([labelText, value]) => { const line = document.createElement("p"); const label = document.createElement("strong"); label.textContent = `${labelText}: `; line.append(label, normalizeHebrewDisplay(String(value || ""))); box.appendChild(line); });
+        parent.appendChild(box);
+      };
+      const compactRelationLabel = (card) => {
+        const relation = card && card.lookup_relation && card.lookup_relation !== "exact" ? String(card.lookup_relation).replace(/ candidate$/i, "") : "direct";
+        return relation.replace(/-/g, " ");
+      };
+      const appendRouteCard = (parent, card, role = "evidence", order = 0, sourceIndexes = []) => {
+        const article = document.createElement("article");
+        article.className = `claim-row route-card ${role === "answer" ? "route-answer-card" : ""}`;
+        const cardHebrew = normalizeHebrewDisplay(card.hebrew || card.surface || "");
+        article.dataset.routeHebrew = cardHebrew;
+        if (role !== "answer") {
+          const head = document.createElement("div");
+          head.className = "claim-row-head";
+          const badge = document.createElement("span");
+          badge.className = "claim-status";
+          badge.textContent = order ? `#${order}` : "route";
+          const hebrew = document.createElement("strong");
+          hebrew.className = "claim-hebrew";
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = cardHebrew;
+          head.append(badge, hebrew);
+          article.appendChild(head);
+        }
+        const renderings = routeRenderings(card);
+        if (renderings.length) renderings.forEach((line, index) => { const p = document.createElement("p"); p.className = "claim-renderings"; p.textContent = normalizeHebrewDisplay(line); if (index === 0) appendSourceRefs(p, sourceIndexes); article.appendChild(p); });
+        else { article.dataset.evidenceOnly = "true"; }
+        const meta = document.createElement("p");
+        meta.className = "route-meta";
+        meta.textContent = [routeSectionTitles.get(routeSection(card)) || routeSection(card), `${routeScore(card)}%`, compactRelationLabel(card)].filter(Boolean).join(" | ");
+        article.dataset.routeMeta = meta.textContent;
+        if (role !== "answer") article.appendChild(meta);
+        const treatment = treatmentForLookup(card);
+        if (treatment) { const p = document.createElement("p"); p.className = "claim-treatment-line"; p.textContent = treatment; article.appendChild(p); }
+        appendPhraseLine(card, article);
+        appendUsageEvidenceDetails(card, article);
+        article.dataset.rankBasis = routeScoreBasis(card).join(" / ") || "No rank fields on this card.";
+        parent.appendChild(article);
+      };
+      const appendRouteSection = (panel, sectionId, cards, sourceCardMap) => {
+        const section = document.createElement("section");
+        section.className = "route-section-card";
+        const title = document.createElement("div");
+        title.className = "route-section-title";
+        const h3 = document.createElement("h3"); h3.textContent = routeSectionTitles.get(sectionId) || sectionId;
+        const count = document.createElement("span"); count.textContent = `${cards.length} route${cards.length === 1 ? "" : "s"}`;
+        title.append(h3, count);
+        section.appendChild(title);
+        if (!cards.length) return;
+        const lane = document.createElement("div"); lane.className = cards.length > 1 ? "claim-row-list hud-card-lane" : "claim-row-list";
+        cards.sort(compareRouteCards).forEach((card, index) => appendRouteCard(lane, card, "evidence", index + 1, sourceCardMap ? sourceCardMap.get(card) : []));
+        section.appendChild(lane);
+        panel.appendChild(section);
+      };
+      const renderRouteHudPanel = (panel, clickedForm, normalized, cards, lookupCandidates) => {
+        panel.replaceChildren();
+        const sourceNotes = buildSourceNotes(cards);
+        const selected = document.createElement("div"); selected.className = "route-selected-token"; selected.lang = "he"; selected.dir = "rtl"; selected.textContent = normalizeHebrewDisplay(clickedForm || normalized || ""); panel.appendChild(selected);
+        appendTokenTreatmentCard(panel, clickedForm, normalized, cards, lookupCandidates);
+        const { answerCard, answerState, ambiguityCount } = selectRouteAnswer(cards);
+        const answerSection = document.createElement("section"); answerSection.className = "route-section-card route-answer-card";
+        const answerTitle = document.createElement("div"); answerTitle.className = "route-section-title";
+        const answerH3 = document.createElement("h3"); answerH3.textContent = answerState === "ambiguous" ? "Definition candidates" : "Definition";
+        const answerMeta = document.createElement("span");
+        answerMeta.textContent = answerCard ? `${routeScore(answerCard)}% ${answerCard.lookup_relation === "exact" ? "direct" : answerCard.lookup_relation}` : (answerState === "ambiguous" ? `${ambiguityCount || 2} options` : "not answer-eligible");
+        answerTitle.append(answerH3, answerMeta); answerSection.appendChild(answerTitle);
+        if (answerCard) appendRouteCard(answerSection, answerCard, "answer", 0, sourceNotes.cardMap.get(answerCard)); else { const p = document.createElement("p"); p.className = "placeholder"; p.textContent = answerState === "ambiguous" ? "Ambiguous; compare evidence below." : "No definition yet."; answerSection.appendChild(p); }
+        panel.appendChild(answerSection);
+        const bySection = new Map();
+        cards.filter((card) => card !== answerCard).forEach((card) => { const section = routeSection(card); if (!bySection.has(section)) bySection.set(section, []); bySection.get(section).push(card); });
+        placeholderSections.forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap));
+        [...bySection.keys()].filter((section) => !placeholderSections.includes(section)).sort((a, b) => (routeSectionRank.get(a) ?? 9) - (routeSectionRank.get(b) ?? 9)).forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap));
+        const lookup = document.createElement("details"); lookup.className = "route-audit-card";
+        const lookupTitle = document.createElement("summary"); lookupTitle.textContent = `Lookup keys (${lookupCandidates.length})`; lookup.appendChild(lookupTitle);
+        const lookupText = document.createElement("p"); lookupText.className = "placeholder"; lookupText.textContent = `Normalized key: ${normalized || "N/A"} | Cards: ${cards.length} | Lookup keys: ${lookupCandidates.map((item) => `${item.key}${item.relation === "exact" ? "" : ` (${item.relation})`}`).join(", ") || "none"}`; lookup.appendChild(lookupText);
+        panel.appendChild(lookup);
+        appendSourceFootnotes(panel, sourceNotes.notes);
+      };
+      const primaryWordText = (button) => button.dataset.lexicalSurface || button.querySelector(".lexical-word-surface")?.textContent?.trim() || button.textContent.trim();
       const buildWordView = async (button) => {
         const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+        return { ...tokenRow, hebrew_word: primaryWordText(button) || tokenRow.surface_word, source_rows: [], secondary_source_rows: [] };
       };
       const renderWord = async (button) => {
         const unit = button.closest("[data-lexical-unit]");
         const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
         if (!unit || !slot) return;
+        if (activeHudButton && activeHudButton !== button) { activeHudButton.setAttribute("aria-pressed", "false"); activeHudButton.setAttribute("aria-expanded", "false"); }
         activeHudButton = button;
         if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
         button.setAttribute("aria-pressed", "true");
+        button.setAttribute("aria-expanded", "true");
         hud.hidden = false;
+        hud.focus({ preventScroll: true });
         positionHudNearButton(button);
-        setText(hud, "[data-hud-word]", button.textContent.trim());
-        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
-        setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
-        setRowHidden(hud, "[data-hud-caution-row]", true);
-        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        setList(hud, "[data-hud-aramaic-strict]", ["Loading lexical entry..."]);
-        setList(hud, "[data-hud-lemma-strict]", ["Loading lexical entry..."]);
-        renderBreakdown(hud, {});
-        renderPotentialAndRelatedEntries(hud, {}, false, false);
-        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        const panel = hud.querySelector("[data-route-hud-panel]");
+        if (panel) { const loading = document.createElement("p"); loading.className = "placeholder"; loading.textContent = "Loading route cards..."; panel.replaceChildren(loading); }
         try {
           const view = await buildWordView(button);
           if (button.getAttribute("aria-pressed") !== "true") return;
-          setText(hud, "[data-hud-word]", view.hebrew_word);
-          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [], lemma: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0 || strictClaims.lemma.length > 0;
           const clickedForm = view.hebrew_word || view.surface_word || "Clicked form";
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
-          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew.length ? strictClaims.hebrew : [placeholderClaim("Strict Hebrew", clickedForm, "No Hebrew strict match yet.")]);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic.length ? strictClaims.aramaic : [placeholderClaim("Strict Aramaic", clickedForm, "No Aramaic strict match yet.")]);
-          appendClaimRows(hud.querySelector("[data-hud-lemma-strict]"), strictClaims.lemma.length ? strictClaims.lemma : [placeholderClaim("Strict Lemma", clickedForm, "No lemma strict match yet.")]);
-          renderBreakdown(hud, view);
-          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
-          const details = hud.querySelector("details");
-          if (details) details.open = false;
+          const hudTitle = hud.querySelector("#route-hud-title"); if (hudTitle) hudTitle.textContent = `Route HUD: ${normalizeHebrewDisplay(clickedForm || "")}`;
+          const clickedNormalized = normalizeHebrewKey(clickedForm);
+          const rowSurfaceNormalized = normalizeHebrewKey(view.surface_word || "");
+          const normalized = rowSurfaceNormalized && rowSurfaceNormalized === clickedNormalized ? (view.normalized_word || clickedNormalized) : clickedNormalized;
+          const routeLookup = await loadRouteCardsForToken(clickedForm, normalized);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          if (panel) renderRouteHudPanel(panel, clickedForm, normalized, routeLookup.cards, routeLookup.candidates);
           positionHudNearButton(button);
         } catch (error) {
           console.error(error);
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", false);
-          setRowHidden(hud, "[data-hud-lemma-strict-row]", false);
-          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          setList(hud, "[data-hud-aramaic-strict]", ["No Aramaic strict match yet."]);
-          setList(hud, "[data-hud-lemma-strict]", ["No lemma strict match yet."]);
+          if (panel) { const errorNote = document.createElement("p"); errorNote.className = "placeholder"; errorNote.textContent = "New HUD route lookup failed for this click."; panel.replaceChildren(errorNote); }
           positionHudNearButton(button);
         }
       };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
+      const closeRouteHud = ({ restoreFocus = false } = {}) => {
+        const buttonToRestore = activeHudButton;
+        hud.hidden = true;
+        if (buttonToRestore) { buttonToRestore.setAttribute("aria-pressed", "false"); buttonToRestore.setAttribute("aria-expanded", "false"); }
+        activeHudButton = null;
+        if (restoreFocus && buttonToRestore) buttonToRestore.focus({ preventScroll: true });
+      };
+      document.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-lexical-token]");
+        if (button) { renderWord(button); return; }
+        if (!hud.hidden && !event.target.closest("[data-lexical-hud]")) closeRouteHud();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !hud.hidden) { event.preventDefault(); closeRouteHud({ restoreFocus: true }); return; }
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const button = event.target.closest("[data-lexical-token]");
+        if (!button) return;
+        event.preventDefault();
+        renderWord(button);
       });
       document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          activeHudButton = null;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
+        button.addEventListener("click", () => closeRouteHud({ restoreFocus: true }));
       });
       window.addEventListener("resize", scheduleHudPosition);
       window.addEventListener("scroll", scheduleHudPosition, true);
