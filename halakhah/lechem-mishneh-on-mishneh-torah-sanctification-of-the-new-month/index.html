@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -31,6 +38,11 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -47,6 +59,7 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -80,48 +93,48 @@
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-field-row { display: contents; }
-    .lexical-field-row[hidden] { display: none; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .breakdown-list { display: grid; gap: 8px; }
-    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
-    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
-    .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
-    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
-    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
-    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
-    .lexical-entry .entry-hebrew { color: var(--hebrew); }
-    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
-    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
     .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
-    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; }
-    .other-entries { margin-top: 12px; }
-    .claim-row-list details { margin-top: 8px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
-    .source-claim { color: var(--text); margin: 0 0 6px; }
-    .source-claim span { color: var(--hebrew); }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
-    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
     .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
@@ -135,20 +148,23 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
 <body>
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
-        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-        <h1>Lechem Mishneh on Mishneh Torah, Sanctification of the New Month</h1>
-        <p class="work-label">Commentary on Mishneh Torah, Sanctification of the New Month</p>
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Lechem Mishneh on Mishneh Torah, Sanctification of the New Month<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Mishneh Torah, Sanctification of the New Month</p>
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/">Open Mishneh Torah, Sanctification of the New Month</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
@@ -156,19 +172,27 @@
             <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
-        <p class="meta">39 total source units | imported 2026-05-21</p>
-        <p class="meta source-citation">Hebrew version: ToratEmet | Version source: <a href="http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html">www.toratemetfreeware.com</a> | Digitization: Sefaria API | License: Public Domain</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>628 matched</strong> / 1698 unique forms.</p>
+          <p class="hero-summary">
+            <span>39 source units</span>
+            <span>1698 HUD forms</span>
+            <span>imported 2026-05-21</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: ToratEmet | Version source: <a href="http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html">www.toratemetfreeware.com</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Lechem Mishneh on Mishneh Torah, Sanctification of the New Month <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Lechem Mishneh on Mishneh Torah, Sanctification of the New Month <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Lechem Mishneh on Mishneh Torah, Sanctification of the New Month <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Lechem Mishneh on Mishneh Torah, Sanctification of the New Month <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -233,13 +257,18 @@
         </nav>
         <article>
           <h4 id="chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-1">Chapter 1</h4>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:1:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-1-1">Mishneh Torah, Sanctification of the New Month 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חָדְשֵׁי הַשָּׁנָה הֵם חָדְשֵׁי הַלְּבָנָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כח יד)</span> &quot;עלַת חֹדֶשׁ בְּחָדְשׁוֹ&quot; וְנֶאֱמַר <span class="source-small">(שמות יב ב)</span> &quot;הַחֹדֶשׁ הַזֶּה לָכֶם רֹאשׁ חֳדָשִׁים&quot;. כָּךְ אָמְרוּ חֲכָמִים הֶרְאָה לוֹ הַקָּדוֹשׁ בָּרוּךְ הוּא לְמשֶׁה בְּמַרְאֵה הַנְּבוּאָה דְּמוּת לְבָנָה וְאָמַר לוֹ כָּזֶה רְאֵה וְקַדֵּשׁ. וְהַשָּׁנִים שֶׁאָנוּ מְחַשְּׁבִין הֵם שְׁנֵי הַחַמָּה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז א)</span> &quot;שָׁמוֹר אֶת חֹדֶשׁ הָאָבִיב&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כך אמרו חכמים וכו׳.</strong> בפ&quot;ק דר&quot;ה (דף כ׳) אמרו יכול כשם שמעברין את השנה לצורך כך מעברין את החדש לצורך ת&quot;ל החדש הזה לכם כזה וראה וקדש:</p>
               </div>
             </div>
@@ -249,13 +278,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-2-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-2-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:2:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-2-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-1-2">Mishneh Torah, Sanctification of the New Month 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכַמָּה יְתֵרָה שְׁנַת הַחַמָּה עַל שְׁנַת הַלְּבָנָה קָרוֹב מֵאַחַד עָשָׂר יוֹם. לְפִיכָךְ כְּשֶׁיִּתְקַבֵּץ מִן הַתּוֹסֶפֶת הַזֹּאת כְּמוֹ שְׁלֹשִׁים יוֹם אוֹ פָּחוֹת מְעַט אוֹ יוֹתֵר מְעַט מוֹסִיפִין חֹדֶשׁ אֶחָד וְעוֹשִׂין אוֹתָהּ הַשָּׁנָה שְׁלֹשָׁה עָשָׂר חֹדֶשׁ וְהִיא הַנִּקְרֵאת שָׁנָה מְעֵבֶּרֶת. שֶׁאִי אֶפְשָׁר לִהְיוֹת הַשָּׁנָה שְׁנֵים עָשָׂר חֹדֶשׁ וְכָךְ וְכָךְ יָמִים שֶׁנֶּאֱמַר <span class="source-small">(שמות יב ב)</span> &quot;לְחָדְשֵׁי הַשָּׁנָה&quot;. חֳדָשִׁים אַתָּה מוֹנֶה לְשָׁנָה וְאֵין אַתָּה מוֹנֶה יָמִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכמה יתירה וכו׳.</strong> בפ&quot;ק דערכין (דף ט׳) ובפ&quot;ק דסנהדרין (דף י&quot;ג):</p>
               </div>
             </div>
@@ -265,13 +299,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-3-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-3-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:3:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-3-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-1-3">Mishneh Torah, Sanctification of the New Month 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַלְּבָנָה נִסְתֶּרֶת בְּכָל חֹדֶשׁ וְאֵינָהּ נִרְאֵית כְּמוֹ שְׁנֵי יָמִים אוֹ פָּחוֹת אוֹ יוֹתֵר מְעַט. כְּמוֹ יוֹם אֶחָד קֹדֶם שֶׁתִּדְבַּק בַּשֶּׁמֶשׁ בְּסוֹף הַחֹדֶשׁ וּכְמוֹ יוֹם אֶחָד אַחַר שֶׁתִּדְבַּק בַּשֶּׁמֶשׁ וְתֵרָאֶה בַּמַּעֲרָב בָּעֶרֶב. וּבַלַּיִל שֶׁתֵּרָאֶה בַּמַּעֲרָב אַחַר שֶׁנִּסְתְּרָה הוּא תְּחִלַּת הַחֹדֶשׁ וּמוֹנִין מֵאוֹתוֹ הַיּוֹם תִּשְׁעָה וְעֶשְׂרִים יוֹם. וְאִם יֵרָאֶה הַיָּרֵחַ לֵיל שְׁלֹשִׁים יִהְיֶה יוֹם שְׁלֹשִׁים רֹאשׁ הַחֹדֶשׁ. וְאִם לֹא יֵרָאֶה יִהְיֶה רֹאשׁ הַחֹדֶשׁ יוֹם אֶחָד וּשְׁלֹשִׁים וְיִהְיֶה יוֹם שְׁלֹשִׁים מֵחֹדֶשׁ שֶׁעָבַר. וְאֵין נִזְקָקִין לַיָּרֵחַ בְּלֵיל אֶחָד וּשְׁלֹשִׁים בֵּין שֶׁנִּרְאָה בֵּין שֶׁלֹּא נִרְאָה. שֶׁאֵין לְךָ חֹדֶשׁ לְבָנָה יוֹתֵר עַל שְׁלֹשִׁים יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הלבנה נסתרת בכל חדש וכו׳.</strong> בפ&quot;ק דר&quot;ה (דף כ׳:) אמרינן אמר ר׳ זירא אמר ר׳ נחמן עשרים וארבע שעי מיכסי סיהרא לדידן שית מעתיקא ותמני סרי מחדתא לדידהו שית מחדתא ותמני סרי מעתיקא ע&quot;כ. וא&quot;כ קשה על רבינו ז&quot;ל איך כתב שהיא נסתרת שני ימים ואולי י&quot;ל דרבינו ז&quot;ל דבר כפי הרוב שמחכמתו באצטגנינות ראה שכן הוא וגמרא קאמרא דלפחות לא ימעיט מכ&quot;ד שעי:</p>
               </div>
             </div>
@@ -281,13 +320,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-5-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-5-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:5:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-5-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-1-5">Mishneh Torah, Sanctification of the New Month 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין רְאִיַּת הַיָּרֵחַ מְסוּרָה לְכָל אָדָם כְּמוֹ שַׁבַּת בְּרֵאשִׁית שֶׁכָּל אֶחָד מוֹנֶה שִׁשָּׁה וְשׁוֹבֵת בַּשְּׁבִיעִי. אֶלָּא לְבֵית דִּין הַדָּבָר מָסוּר עַד שֶׁיְּקַדְּשׁוּהוּ בֵּית דִּין וְיִקְבְּעוּ אוֹתוֹ הַיּוֹם רֹאשׁ חֹדֶשׁ הוּא שֶׁיִּהְיֶה רֹאשׁ חֹדֶשׁ. שֶׁנֶּאֱמַר <span class="source-small">(שמות יב ב)</span> &quot;הַחֹדֶשׁ הַזֶּה לָכֶם&quot; עֵדוּת זוֹ תִּהְיֶה מְסוּרָה לָכֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין ראיית הירח מסורה לכל אדם וכו׳.</strong> פרק קמא דראש השנה (דף כ&quot;ב) אמרו דרבי שמעון סבר דהחדש הזה לכם עדות זו תהא כשרה בכם ורבנן סברי עדות זו תהא מסורה לכם. וכדברי רבנן כתב רבינו ז&quot;ל דהלכתא כוותייהו:</p>
               </div>
             </div>
@@ -297,13 +341,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-6-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-6-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:6:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-6-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-1-6">Mishneh Torah, Sanctification of the New Month 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין מְחַשְּׁבִין בְּחֶשְׁבּוֹנוֹת כְּדֶרֶךְ שֶׁמְּחַשְּׁבִים הָאִיצְטַגְנִינִים שֶׁיּוֹדְעִין מְקוֹמוֹת הַכּוֹכָבִים וּמַהֲלָכָם וְחוֹקְרִים וּמְדַקְדְּקִים עַד שֶׁיֵּדְעוּ אִם אֶפְשָׁר שֶׁיֵּרָאֶה הַיָּרֵחַ בִּזְמַנּוֹ שֶׁהוּא לֵיל שְׁלֹשִׁים אוֹ אִי אֶפְשָׁר. אִם יָדְעוּ שֶׁאֶפְשָׁר שֶׁיֵּרָאֶה יוֹשְׁבִין וּמְצַפִּין לָעֵדִים כָּל הַיּוֹם כֻּלּוֹ שֶׁהוּא יוֹם שְׁלֹשִׁים. אִם בָּאוּ עֵדִים וּדְרָשׁוּם וַחֲקָרוּם כַּהֲלָכָה וְנֶאֶמְנוּ דִּבְרֵיהֶם מְקַדְּשִׁין אוֹתוֹ. וְאִם לֹא נִרְאָה וְלֹא בָּאוּ עֵדִים מַשְׁלִימִין שְׁלֹשִׁים וְיִהְיֶה חֹדֶשׁ מְעֵבָּר. וְאִם יָדְעוּ בְּחֶשְׁבּוֹן שֶׁאִי אֶפְשָׁר שֶׁיֵּרָאֶה אֵין יוֹשְׁבִים יוֹם שְׁלֹשִׁים וְאֵין מְצַפִּין לָעֵדִים. וְאִם בָּאוּ עֵדִים יוֹדְעִין בְּוַדַּאי שֶׁהֵן עֵדֵי שֶׁקֶר אוֹ שֶׁנִּרְאֵית לָהֶם דְּמוּת לְבָנָה מִן הֶעָבִים וְאֵינָהּ הַלְּבָנָה הַוַּדָּאִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בית דין מחשבין בחשבונות וכו׳.</strong> בפ&quot;ק (דף כ׳:) אמרו נולד קודם חצות בידוע שנראה סמוך לשקיעת החמה לא נולד קודם חצות בידוע שלא נראה סמוך לשקיעת החמה למאי נפקא מינה וכו׳ לאכחושי סהדי, כלומר אם נולד אחר חצות ובאו עדים ואמרו ראינו החדש קודם שקיעת החמה כדי לקדשו היום עדי שקר הם וכן אמרו שם עוד עניינים אחרים לאכחושי סהדי:</p>
               </div>
             </div>
@@ -313,13 +362,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:7:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-1-7">Mishneh Torah, Sanctification of the New Month 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה עַל בֵּית דִּין שֶׁיְּחַשְּׁבוּ וְיֵדְעוּ אִם יֵרָאֶה הַיָּרֵחַ אוֹ לֹא יֵרָאֶה. וְשֶׁיִּדְרְשׁוּ אֶת הָעֵדִים עַד שֶׁיְּקַדְּשׁוּ אֶת הַחֹדֶשׁ. וְיִשְׁלְחוּ וְיוֹדִיעוּ שְׁאָר הָעָם בְּאֵי זֶה יוֹם הוּא רֹאשׁ חֹדֶשׁ כְּדֵי שֶׁיֵּדְעוּ בְּאֵי זֶה יוֹם הֵן הַמּוֹעֲדוֹת. שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג ב)</span> &quot;אֲשֶׁר תִּקְרְאוּ אֹתָם מִקְרָאֵי קֹדֶשׁ&quot; וְנֶאֱמַר <span class="source-small">(שמות יג י)</span> &quot;וְשָׁמַרְתָּ אֶת הַחֻקָּה הַזֹּאת לְמוֹעֲדָהּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה מן התורה על ב&quot;ד שיחשבו וידעו וכו׳.</strong> היינו משום דכתיב החדש הזה לכם דהיינו עדות זו מסורה לכם:</p>
               </div>
             </div>
@@ -329,13 +383,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-7-2" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-7-2" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-7-2" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:7:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:7:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-1-7-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 1:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-1-7">Mishneh Torah, Sanctification of the New Month 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה עַל בֵּית דִּין שֶׁיְּחַשְּׁבוּ וְיֵדְעוּ אִם יֵרָאֶה הַיָּרֵחַ אוֹ לֹא יֵרָאֶה. וְשֶׁיִּדְרְשׁוּ אֶת הָעֵדִים עַד שֶׁיְּקַדְּשׁוּ אֶת הַחֹדֶשׁ. וְיִשְׁלְחוּ וְיוֹדִיעוּ שְׁאָר הָעָם בְּאֵי זֶה יוֹם הוּא רֹאשׁ חֹדֶשׁ כְּדֵי שֶׁיֵּדְעוּ בְּאֵי זֶה יוֹם הֵן הַמּוֹעֲדוֹת. שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג ב)</span> &quot;אֲשֶׁר תִּקְרְאוּ אֹתָם מִקְרָאֵי קֹדֶשׁ&quot; וְנֶאֱמַר <span class="source-small">(שמות יג י)</span> &quot;וְשָׁמַרְתָּ אֶת הַחֻקָּה הַזֹּאת לְמוֹעֲדָהּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וישלחו ויודיעו וכו׳.</strong> בפ״ק בסופו (דף כ&quot;ב) אמרו מחללין את השבת ויוצאין לעדות החדש שנאמר אלה מועדי ה׳ מקראי קדש אשר תקראו אותם במועדם עד כאן. ומכאן למד רבינו ז״ל דמצוה לשלוח ולהודיע שהרי משמע מן הברייתא דענין שלוח השלוחים נכנס בכלל קריאה והא דהוי החיוב על בית דין משום דבפרק אם אינן מכירין (ראש השנה דף כ&quot;ה) דרשו אתם ואפילו שוגגים אתם ואפילו מוטעים וזה הוי לב״ד:</p>
               </div>
             </div>
@@ -346,13 +405,18 @@
             </nav>
           </section>
           <h4 id="chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Chapter 2</h4>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:2:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-2">Mishneh Torah, Sanctification of the New Month 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דִּין תּוֹרָה שֶׁאֵין מְדַקְדְּקִין בְּעֵדוּת הַחֹדֶשׁ. שֶׁאֲפִלּוּ קִדְּשׁוּ אֶת הַחֹדֶשׁ עַל פִּי עֵדִים וְנִמְצְאוּ זוֹמְמִין בְּעֵדוּת זוֹ הֲרֵי זֶה מְקֻדָּשׁ. לְפִיכָךְ הָיוּ בָּרִאשׁוֹנָה מְקַבְּלִין עֵדוּת הַחֹדֶשׁ מִכָּל אָדָם מִיִּשְׂרָאֵל שֶׁכָּל יִשְׂרָאֵל בְּחֶזְקַת כַּשְׁרוּת עַד שֶׁיִּוָּדַע לְךָ שֶׁזֶּה פָּסוּל. מִשֶּׁקִּלְקְלוּ הַבַּיְתוֹסִים וְהָיוּ שׂוֹכְרִין אֲנָשִׁים לְהָעִיד שֶׁרָאוּ וְהֵם לֹא רָאוּ הִתְקִינוּ שֶׁלֹּא יְקַבְּלוּ בֵּית דִּין עֵדוּת הַחֹדֶשׁ אֶלָּא מֵעֵדִים שֶׁמַּכִּירִין בֵּית דִּין אוֹתָן שֶׁהֵם כְּשֵׁרִים וְשֶׁיִּהְיוּ דּוֹרְשִׁין וְחוֹקְרִים בָּעֵדוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דין תורה שאין מדקדקין בעדות החדש וכו׳ שכל ישראל בחזקת כשרות וכו׳.</strong> הקשה המפרש דהא אמר הרב ז״ל בפרק י״א מהל׳ עדות שכל עם הארץ פסול עד שיוחזק שהוא הולך בדרכי הכשרים ותירץ שמ״ש כאן שכל ישראל בחזקת כשרים וכו׳ היינו מן התורה אבל מה שאמרו בהל׳ עדות הוא שפסול מדבריהם ע״כ. ואני אומר אם קושיתו קושיא תירוצו אינו תירוץ דמ״מ כיון דהוא פסול מדבריהם איך היו מקבלין ממנו עדות והא בריש הפרק כתב רבינו ז״ל שהפסול מדבריהם פסול לעדות החדש. אבל באמת קושיתו אינה קושיא דנהי דמי שידענו שהוא ע״ה ודאי שהוא פסול לעדות אבל מסתמא אין אנו מחזיקים לשום אדם מישראל שהוא ע״ה דהיינו שאינו לא במקרא ולא במשנה ולא בדרך ארץ דעל הסתם כל ישראל בחזקת כשרים הם והם בדרך ארץ לפחות אבל כשידענו אותו ודאי שהוא ע״ה פסול וזהו שכתב שם בהל׳ עדות דהיינו היכא שידענו אותו בודאי. אבל מ״מ אני תמיה קצת דמשמע מדברי רבינו ז״ל דדוקא הכא משום דאפילו היו מזימין לעדים היה החדש מקודש לפיכך אין אנו צריכין להכיר את העדים אבל בעלמא בדיני ממונות דאם הוזמו עדותן בטלה צריך שיכירו את העדים, ולא ראינו לרבינו ז״ל בהל׳ עדות ולא לשום פוסק אחר שהצריך שהדיינים יכירו לעדים או שיביאו עדים להעיד שהם כשרים משמע דהם סוברים כפשטא דברייתא דפ׳ אין מכירין (דף כ&quot;ב) דקאמר דהתקינו בקידוש החדש שלא יהיו מקבלין אלא מן המכירין, שם הוא משום דרצו לעשות מעלה בקדוש החדש מפני שקלקלו אבל בעלמא ודאי דאינו צריך. וממ״ש רבינו ז״ל כאן נראה בהפך דהתקנה לא היתה אלא להשוות עדות החדש עם שאר עדויות דבעלמא דהזמה מועלת בהן ודבר זה לא מצינו ולא ראינו. ומה שכתב רבינו דאע״פ שנמצאו זוממין החדש מקודש אפשר דנפקא ליה משום הא דאמרו בפרק שני דר״ה (דף כ&quot;ה) אתם ואפילו שוגגים אתם ואפילו מוטעים אבל הטעם שכתב המפרש משום דמילתא דעבידא לגלויי לא משקרי אינו ענין לכאן דלא מקרי בהא מילתא דעבידא לגלויי אלא כשבא אחד ואמר ב״ד קדשו את החדש וכדאיתא בפרק אם אינן מכירין (ראש השנה דף כ&quot;ב:) גבי עולא דאמר קדשוה לירחא במערבא וכתבו רבינו ז״ל לקמן בפרק ג׳ אבל לומר אם ראו את החדש או לא אין זה מילתא דעבידא לאגלויי דמי יודע אם אלו לא ראו דאע״פ שרבים אחרים לא ראו אפשר דאלו ראו ואילו היה מילתא דעבידא לאגלויי היה נאמן בעד אחד כמו בעד אחד שבא ואמר קדשו בית דין את החדש דהוא לבדו נאמן כדאיתא לקמן בפרק שלישי. ומה שיש לדקדק בדברי רבינו ז״ל אכתוב לקמן בס״ד:</p>
               </div>
             </div>
@@ -362,13 +426,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-2-2" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-2-2" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-2-2" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:2:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:2:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-2-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-2">Mishneh Torah, Sanctification of the New Month 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דִּין תּוֹרָה שֶׁאֵין מְדַקְדְּקִין בְּעֵדוּת הַחֹדֶשׁ. שֶׁאֲפִלּוּ קִדְּשׁוּ אֶת הַחֹדֶשׁ עַל פִּי עֵדִים וְנִמְצְאוּ זוֹמְמִין בְּעֵדוּת זוֹ הֲרֵי זֶה מְקֻדָּשׁ. לְפִיכָךְ הָיוּ בָּרִאשׁוֹנָה מְקַבְּלִין עֵדוּת הַחֹדֶשׁ מִכָּל אָדָם מִיִּשְׂרָאֵל שֶׁכָּל יִשְׂרָאֵל בְּחֶזְקַת כַּשְׁרוּת עַד שֶׁיִּוָּדַע לְךָ שֶׁזֶּה פָּסוּל. מִשֶּׁקִּלְקְלוּ הַבַּיְתוֹסִים וְהָיוּ שׂוֹכְרִין אֲנָשִׁים לְהָעִיד שֶׁרָאוּ וְהֵם לֹא רָאוּ הִתְקִינוּ שֶׁלֹּא יְקַבְּלוּ בֵּית דִּין עֵדוּת הַחֹדֶשׁ אֶלָּא מֵעֵדִים שֶׁמַּכִּירִין בֵּית דִּין אוֹתָן שֶׁהֵם כְּשֵׁרִים וְשֶׁיִּהְיוּ דּוֹרְשִׁין וְחוֹקְרִים בָּעֵדוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושיהו דורשין וחוקרין בעדות וכו׳.</strong> קשה דאין זה מן התקנה דבלא&quot;ה מדין התורה היה כן דכיון דעדות החדש בעי מומחין ודאי דבעי דרישה וחקירה כדאיתא בריש סנהדרין ובהודאות והלוואות דמשום טעמא דנעילת דלת ליתא לדרישה וחקירה אבל בעדות החודש דליכא ה&quot;ט ודאי דלא סלקו רבנן הדרישה והחקירה וכן נראה לעיל מדברי רבינו ז&quot;ל בסוף פרק שני שכתב מצות עשה מן התורה וכו׳ ושידרשו העדים:</p>
               </div>
             </div>
@@ -378,13 +447,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-4-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-4-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:4:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-4-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-4">Mishneh Torah, Sanctification of the New Month 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין מְחַשְּׁבִין בַּדְּרָכִים שֶׁהָאִיצְטַגְנִינִין מְחַשְּׁבִין בָּהֶם וְיוֹדְעִין הַלְּבָנָה כְּשֶׁתֵּרָאֶה בְּחֹדֶשׁ זֶה אִם תִּהְיֶה בִּצְפוֹן הַשֶּׁמֶשׁ אוֹ בִּדְרוֹמָהּ וְאִם תִּהְיֶה רְחָבָה אוֹ קְצָרָה וּלְהֵיכָן יִהְיוּ רָאשֵׁי קַרְנֶיהָ נוֹטִין. וּכְשֶׁיָּבוֹאוּ הָעֵדִים לְהָעִיד בּוֹדְקִין אוֹתָם כֵּיצַד רְאִיתֶם אוֹתָהּ בְּצָפוֹן אוֹ בְּדָרוֹם. לְהֵיכָן הָיוּ קַרְנֶיהָ נוֹטוֹת. כַּמָּה הָיְתָה גְּבוֹהָה בִּרְאִיַּת עֵינֵיכֶם וְכַמָּה הָיְתָה רְחָבָה. אִם נִמְצְאוּ דִּבְרֵיהֶם מְכֻוָּנִין לְמַה שֶּׁנּוֹדַע בַּחֶשְׁבּוֹן מְקַבְּלִין אוֹתָם וְאִם לֹא נִמְצְאוּ דִּבְרֵיהֶם מְכֻוָּנִין אֵין מְקַבְּלִין אוֹתָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בית דין מחשבים בדרכים וכו׳.</strong> בפ׳ אם אינן מכירין (ראש השנה כ&quot;ד:) וכו׳ ועוד אמרו שם לפני החמה או לאחר החמה ואמרו שם (כ&quot;ג:) פגימתה לפני החמה או לאחר החמה ולא ביארו רבינו ז״ל שכללו במה שכתב להיכן ראשי קרניה נוטות וביאר ענין זה היטב בפרק י״ט ושם נתבאר הכל:</p>
               </div>
             </div>
@@ -394,13 +468,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-5-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-5-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:5:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-5-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-5">Mishneh Torah, Sanctification of the New Month 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרוּ הָעֵדִים רְאִינוּהוּ בַּמַּיִם אוֹ בֶּעָבִים אוֹ בַּעֲשָׁשִׁית. אוֹ שֶׁרָאוּ מִקְצָתוֹ בָּרָקִיעַ וּמִקְצָתוֹ בֶּעָבִים אוֹ בַּמַּיִם אוֹ בַּעֲשָׁשִׁית אֵין זוֹ רְאִיָּה וְאֵין מְקַדְּשִׁין עַל רְאִיָּה זֹאת. אָמַר אֶחָד רְאִיתִיו גָּבוֹהַּ בְּעֵינַי כְּמוֹ שְׁתֵּי קוֹמוֹת וְאָמַר הַשֵּׁנִי כְּמוֹ שָׁלֹשׁ קוֹמוֹת הָיָה גָּבוֹהַּ מִצְטָרְפִין. אָמַר הָאֶחָד כְּמוֹ שָׁלֹשׁ קוֹמוֹת וְהַשֵּׁנִי אוֹמֵר כְּמוֹ חָמֵשׁ אֵין מִצְטָרְפִין. וּמִצְטָרֵף אֶחָד מֵהֶם עִם שֵׁנִי שֶׁיָּעִיד כְּמוֹתוֹ אוֹ יִהְיֶה בֵּינֵיהֶן קוֹמָה אַחַת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרו העדים ראינוהו במים וכו׳ או שראו מקצתו ברקיע ומקצתו בעבים.</strong> בפ׳ אם אינן מכירין (כ&quot;ד):</p>
               </div>
             </div>
@@ -410,13 +489,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-5-2" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-5-2" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-5-2" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:5:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:5:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-5-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-5">Mishneh Torah, Sanctification of the New Month 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרוּ הָעֵדִים רְאִינוּהוּ בַּמַּיִם אוֹ בֶּעָבִים אוֹ בַּעֲשָׁשִׁית. אוֹ שֶׁרָאוּ מִקְצָתוֹ בָּרָקִיעַ וּמִקְצָתוֹ בֶּעָבִים אוֹ בַּמַּיִם אוֹ בַּעֲשָׁשִׁית אֵין זוֹ רְאִיָּה וְאֵין מְקַדְּשִׁין עַל רְאִיָּה זֹאת. אָמַר אֶחָד רְאִיתִיו גָּבוֹהַּ בְּעֵינַי כְּמוֹ שְׁתֵּי קוֹמוֹת וְאָמַר הַשֵּׁנִי כְּמוֹ שָׁלֹשׁ קוֹמוֹת הָיָה גָּבוֹהַּ מִצְטָרְפִין. אָמַר הָאֶחָד כְּמוֹ שָׁלֹשׁ קוֹמוֹת וְהַשֵּׁנִי אוֹמֵר כְּמוֹ חָמֵשׁ אֵין מִצְטָרְפִין. וּמִצְטָרֵף אֶחָד מֵהֶם עִם שֵׁנִי שֶׁיָּעִיד כְּמוֹתוֹ אוֹ יִהְיֶה בֵּינֵיהֶן קוֹמָה אַחַת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר אחד ראיתיו גבוה וכו׳.</strong> ג״ז ברייתא שם ואמרו שם בסיפא דברייתא אבל מצטרפין לעדות אחרת ובפ׳ כל הנשבעים (שבועות דף מ&quot;ז מ&quot;ח) בסופו הקשו מהך ברייתא לרב חסדא דאמר בהדי סהדי שקרי למה לי גבי ב׳ כתי עדים המכחישות זו את זו. ותירצו אליביה דה״ק אמר רבא הוא ואחר מצטרפין לעדות אחרת של ראש חדש דהוה להו תרי וחד ואין דבריו של אחד במקום שנים כלום ואע״ג דאנן קיימא לן כר׳ הונא דאית ליה זו באה בפני עצמה ומעידה וזו באה בפני עצמה מ״מ פסק רבינו ז״ל כאוקימתא דאתמר אליבא דרב חסדא משום דודאי הדין אמת אלא דמה שהקשה שם לרב חסדא הוא משום דלר׳ הונא אתי לישנא דלעדות אחרת כפשוטו דהיינו עדות ענין אחר אבל לרב חסדא זו עדות עצמה היא אלא שהוא עד אחר וכבר רמזו בתוס׳ ז״ל דוחק זה בפרק אם אין מכירין אבל הדין אמת אליבא דכ״ע. ולהכי נ״ל דרש״י ז״ל פרק אם אין מכירין פירש הברייתא כמו שתירצו בשבועות אליבא דרב חסדא אע״ג דלא ק״ל כוותיה דכיון דדינא אמת לכולהו רצה לפרש הברייתא בענין שיהיה הדין אמת לכולהו אע״ג דהלשון הוא דחוק קצת:</p>
               </div>
             </div>
@@ -426,13 +510,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:6:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-6">Mishneh Torah, Sanctification of the New Month 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרוּ רְאִינוּהוּ בְּלֹא כַּוָּנָה וְכֵיוָן שֶׁהִתְבּוֹנַנְנוּ בּוֹ וְנִתְכַּוַּנְנוּ לִרְאוֹתוֹ לְהָעִיד שׁוּב לֹא רְאִינוּהוּ אֵין זוֹ עֵדוּת וְאֵין מְקַדְּשִׁין עָלֶיהָ. שֶׁמָּא עָבִים נִתְקַשְּׁרוּ וְנִרְאוּ כַּלְּבָנָה וְכָלוּ וְהָלְכוּ לָהֶם. אָמְרוּ עֵדִים רְאִינוּהוּ בְּיוֹם תִּשְׁעָה וְעֶשְׂרִים שַׁחֲרִית בַּמִּזְרָח קֹדֶם שֶׁתַּעֲלֶה הַשֶּׁמֶשׁ וּרְאִינוּהוּ עַרְבִית בַּמַּעֲרָב בְּלֵיל שְׁלֹשִׁים הֲרֵי אֵלּוּ נֶאֱמָנִים וּמְקַדְּשִׁין עַל רְאִיָּה זוֹ שֶׁהֲרֵי רָאוּהוּ בִּזְמַנּוֹ. אֲבָל הָרְאִיָּה שֶׁאָמְרוּ שֶׁרָאוּהוּ בְּשַׁחֲרִית אֵין נִזְקָקִין לָהּ שֶׁאֵין אָנוּ אַחְרָאִין לִרְאִיַּת שַׁחֲרִית וּבְיָדוּעַ שֶׁהֶעָבִים הֵם שֶׁנִּתְקַשְּׁרוּ וְנִרְאָה לָהֶם כִּלְבָנָה. וְכֵן אִם רָאוּהוּ בִּזְמַנּוֹ וּבְלֵיל עִבּוּרוֹ לֹא נִרְאָה הֲרֵי אֵלּוּ נֶאֱמָנִין שֶׁאֵין אָנוּ אַחְרָאִין אֶלָּא לִרְאִיַּת לֵיל שְׁלֹשִׁים בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרו ראינוהו בלא כוונה.</strong> גם זה שם ברייתא וגמרא:</p>
               </div>
             </div>
@@ -442,13 +531,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-6-2" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-6-2" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-6-2" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:6:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:6:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-6-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:6:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-6">Mishneh Torah, Sanctification of the New Month 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרוּ רְאִינוּהוּ בְּלֹא כַּוָּנָה וְכֵיוָן שֶׁהִתְבּוֹנַנְנוּ בּוֹ וְנִתְכַּוַּנְנוּ לִרְאוֹתוֹ לְהָעִיד שׁוּב לֹא רְאִינוּהוּ אֵין זוֹ עֵדוּת וְאֵין מְקַדְּשִׁין עָלֶיהָ. שֶׁמָּא עָבִים נִתְקַשְּׁרוּ וְנִרְאוּ כַּלְּבָנָה וְכָלוּ וְהָלְכוּ לָהֶם. אָמְרוּ עֵדִים רְאִינוּהוּ בְּיוֹם תִּשְׁעָה וְעֶשְׂרִים שַׁחֲרִית בַּמִּזְרָח קֹדֶם שֶׁתַּעֲלֶה הַשֶּׁמֶשׁ וּרְאִינוּהוּ עַרְבִית בַּמַּעֲרָב בְּלֵיל שְׁלֹשִׁים הֲרֵי אֵלּוּ נֶאֱמָנִים וּמְקַדְּשִׁין עַל רְאִיָּה זוֹ שֶׁהֲרֵי רָאוּהוּ בִּזְמַנּוֹ. אֲבָל הָרְאִיָּה שֶׁאָמְרוּ שֶׁרָאוּהוּ בְּשַׁחֲרִית אֵין נִזְקָקִין לָהּ שֶׁאֵין אָנוּ אַחְרָאִין לִרְאִיַּת שַׁחֲרִית וּבְיָדוּעַ שֶׁהֶעָבִים הֵם שֶׁנִּתְקַשְּׁרוּ וְנִרְאָה לָהֶם כִּלְבָנָה. וְכֵן אִם רָאוּהוּ בִּזְמַנּוֹ וּבְלֵיל עִבּוּרוֹ לֹא נִרְאָה הֲרֵי אֵלּוּ נֶאֱמָנִין שֶׁאֵין אָנוּ אַחְרָאִין אֶלָּא לִרְאִיַּת לֵיל שְׁלֹשִׁים בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרו עדים ראינוהו ביום תשעה ועשרים שחרית וכו׳.</strong> במשנה פרק אם אינן מכירין (ראש השנה דף כ&quot;ד:) מעשה שבאו עדים ואמרו ראינוהו שחרית במזרח וערבית במערב אמר ר׳ יוחנן בן נורי עדי שקר הם. ורש״י ז״ל פירש דעל החדשה העידו ועדי שקר דקאמר ר׳ יוחנן בן נורי לפי שאינה ממהרת לרוץ בשתים עשר שעות ביום מתוך המזרח לתוך מערב ע״כ. ומסתייעא מילתיה ממאי דקאמר בגמרא פעמים שבא בארוכה ופעמים שבא בקצרה. ורבינו ז״ל הרחיק מאד מן הדעת פירוש זה ופירש דריב״נ שהיה חולק הוא מפני שכפי חשבונן לא היה יכול להראות ערבית של ליל שלשים ומפני זה היה מרחיק הענין ולזה השיב רבן גמליאל פעמים בא בארוכה ופעמים בא בקצרה אפשר שתוכל להראות פעמים יותר מהרה מפעם אחרת כפי דרכי התכונה. וכמ״ש רבינו ז״ל פרק י״ב מהלכות אלו וז״ל שהירח עקלקלות גדולות יש במעגלותיו וכו׳ ולפיכך אמרו חכמים שמש ידע מבואו ירח לא ידע מבואו ואמרו חכמים פעמים בא בארוכה פעמים בא בקצרה כמו שתראה מחשבונות אלו שפעמים תוסיף ופעמים תגרע וזה הוא ההפרש שהיה בין ריב״נ ור״ג. אבל מה שהיו אומרים שראו שחרית זה ודאי דברי הבל הם וכדמות לבנה נראה להם שזה א״א ומה שהשיב ר״ג הוא דכיון דפעמים בא בארוכה ופעמים בא בקצרה ואפשר שתראה ערבית א״כ נאמר דכן הוא האמת ומה שאמרו ראינוהו במזרח שחרית דברי הבל הם ונראה להם כלבנה:</p>
               </div>
             </div>
@@ -458,13 +552,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-7-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-7-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:7:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-7-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-7">Mishneh Torah, Sanctification of the New Month 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד מְקַבְּלִין עֵדוּת הַחֹדֶשׁ. כָּל מִי שֶׁרָאוּי לְהָעִיד שֶׁרָאָה אֶת הַיָּרֵחַ בָּא לְבֵית דִּין. וּבֵית דִּין מַכְנִיסִים אוֹתָן כֻּלָּן לְמָקוֹם אֶחָד וְעוֹשִׂין לָהֶן סְעֻדּוֹת גְּדוֹלוֹת כְּדֵי שֶׁיִּהְיוּ הָעָם רְגִילִין לָבוֹא. וְזוּג שֶׁבָּא רִאשׁוֹן בּוֹדְקִין אוֹתָן רִאשׁוֹן בַּבְּדִיקוֹת שֶׁאָמַרְנוּ. מַכְנִיסִין אֶת הַגָּדוֹל וְשׁוֹאֲלִין אוֹתוֹ. נִמְצְאוּ דְּבָרָיו מְכֻוָּנִים לַחֶשְׁבּוֹן מַכְנִיסִים אֶת חֲבֵרוֹ. נִמְצְאוּ דִּבְרֵיהֶם מְכֻוָּנִין עֵדוּתָן קַיֶּמֶת. וּשְׁאָר כָּל הַזּוּגוֹת שׁוֹאֲלִין אוֹתָם רָאשֵׁי דְּבָרִים. לֹא שֶׁצְּרִיכִים לָהֶם אֶלָּא כְּדֵי שֶׁלֹּא יֵצְאוּ בְּפַחֵי נֶפֶשׁ, כְּדֵי שֶׁיִּהְיוּ רְגִילִין לָבוֹא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד מקבלין עדות החדש וכו׳.</strong> בפרק אם אינן מכירין (ראש השנה דף כ&quot;ג:) במשנה חצר גדולה היתה בירושלים ובית יעזק היתה נקראת ולשם כל העדים מתכנסים וכו׳ וכל אלו הם דברי רבינו ז״ל. עוד אמרו שם במשנה בראשונה לא היו זזים משם כל היום התקין רבן גמליאל וכו׳ והזכירו רבינו ז״ל זה בהלכות שבת פרק כ״ח:</p>
               </div>
             </div>
@@ -474,13 +573,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-7-2" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-7-2" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-7-2" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:7:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:7:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-7-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-7">Mishneh Torah, Sanctification of the New Month 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד מְקַבְּלִין עֵדוּת הַחֹדֶשׁ. כָּל מִי שֶׁרָאוּי לְהָעִיד שֶׁרָאָה אֶת הַיָּרֵחַ בָּא לְבֵית דִּין. וּבֵית דִּין מַכְנִיסִים אוֹתָן כֻּלָּן לְמָקוֹם אֶחָד וְעוֹשִׂין לָהֶן סְעֻדּוֹת גְּדוֹלוֹת כְּדֵי שֶׁיִּהְיוּ הָעָם רְגִילִין לָבוֹא. וְזוּג שֶׁבָּא רִאשׁוֹן בּוֹדְקִין אוֹתָן רִאשׁוֹן בַּבְּדִיקוֹת שֶׁאָמַרְנוּ. מַכְנִיסִין אֶת הַגָּדוֹל וְשׁוֹאֲלִין אוֹתוֹ. נִמְצְאוּ דְּבָרָיו מְכֻוָּנִים לַחֶשְׁבּוֹן מַכְנִיסִים אֶת חֲבֵרוֹ. נִמְצְאוּ דִּבְרֵיהֶם מְכֻוָּנִין עֵדוּתָן קַיֶּמֶת. וּשְׁאָר כָּל הַזּוּגוֹת שׁוֹאֲלִין אוֹתָם רָאשֵׁי דְּבָרִים. לֹא שֶׁצְּרִיכִים לָהֶם אֶלָּא כְּדֵי שֶׁלֹּא יֵצְאוּ בְּפַחֵי נֶפֶשׁ, כְּדֵי שֶׁיִּהְיוּ רְגִילִין לָבוֹא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מכניסין את הגדול ושואלין וכו׳.</strong> גם זה משנה (שם):</p>
               </div>
             </div>
@@ -490,13 +594,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-8">Mishneh Torah, Sanctification of the New Month 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ אַחַר שֶׁתִּתְקַיֵּם הָעֵדוּת רֹאשׁ בֵּית דִּין אוֹמֵר מְקֻדָּשׁ וְכָל הָעָם עוֹנִים אַחֲרָיו מְקֻדָּשׁ מְקֻדָּשׁ. וְאֵין מְקַדְּשִׁין אֶת הַחֹדֶשׁ אֶלָּא בִּשְׁלֹשָׁה. וְאֵין מְחַשְּׁבִין אֶלָּא בִּשְׁלֹשָׁה. וְאֵין מְקַדְּשִׁין אֶלָּא חֹדֶשׁ שֶׁנִּרְאֶה בִּזְמַנּוֹ. וְאֵין מְקַדְּשִׁין אֶלָּא בַּיּוֹם וְאִם קִדְּשׁוּהוּ בַּלַּיְלָה אֵינוֹ מְקֻדָּשׁ. ואֲפִלּוּ רָאוּהוּ בֵּית דִּין וְכָל יִשְׂרָאֵל וְלֹא אָמְרוּ בֵּית דִּין מְקֻדָּשׁ עַד שֶׁחָשְׁכָה לֵיל אֶחָד וּשְׁלֹשִׁים. אוֹ שֶׁנֶּחְקְרוּ הָעֵדִים וְלֹא הִסְפִּיקוּ בֵּית דִּין לוֹמַר מְקֻדָּשׁ עַד שֶׁחָשְׁכָה לֵיל אֶחָד וּשְׁלֹשִׁים. אֵין מְקַדְּשִׁין אוֹתוֹ וְיִהְיֶה הַחֹדֶשׁ מְעֻבָּר וְלֹא יִהְיֶה רֹאשׁ חֹדֶשׁ אֶלָּא יוֹם אֶחָד וּשְׁלֹשִׁים אַף עַל פִּי שֶׁנִּרְאֵית בְּלֵיל שְׁלֹשִׁים. שֶׁאֵין הָרְאִיָּה קוֹבַעַת אֶלָּא בֵּית דִּין שֶׁאָמְרוּ מְקֻדָּשׁ הֵם שֶׁקּוֹבְעִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר כך אחר שתתקיים העדות וכו׳.</strong> גם זה שם במשנה (כ&quot;ב.):</p>
               </div>
             </div>
@@ -506,13 +615,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-2" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-2" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-2" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-8">Mishneh Torah, Sanctification of the New Month 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ אַחַר שֶׁתִּתְקַיֵּם הָעֵדוּת רֹאשׁ בֵּית דִּין אוֹמֵר מְקֻדָּשׁ וְכָל הָעָם עוֹנִים אַחֲרָיו מְקֻדָּשׁ מְקֻדָּשׁ. וְאֵין מְקַדְּשִׁין אֶת הַחֹדֶשׁ אֶלָּא בִּשְׁלֹשָׁה. וְאֵין מְחַשְּׁבִין אֶלָּא בִּשְׁלֹשָׁה. וְאֵין מְקַדְּשִׁין אֶלָּא חֹדֶשׁ שֶׁנִּרְאֶה בִּזְמַנּוֹ. וְאֵין מְקַדְּשִׁין אֶלָּא בַּיּוֹם וְאִם קִדְּשׁוּהוּ בַּלַּיְלָה אֵינוֹ מְקֻדָּשׁ. ואֲפִלּוּ רָאוּהוּ בֵּית דִּין וְכָל יִשְׂרָאֵל וְלֹא אָמְרוּ בֵּית דִּין מְקֻדָּשׁ עַד שֶׁחָשְׁכָה לֵיל אֶחָד וּשְׁלֹשִׁים. אוֹ שֶׁנֶּחְקְרוּ הָעֵדִים וְלֹא הִסְפִּיקוּ בֵּית דִּין לוֹמַר מְקֻדָּשׁ עַד שֶׁחָשְׁכָה לֵיל אֶחָד וּשְׁלֹשִׁים. אֵין מְקַדְּשִׁין אוֹתוֹ וְיִהְיֶה הַחֹדֶשׁ מְעֻבָּר וְלֹא יִהְיֶה רֹאשׁ חֹדֶשׁ אֶלָּא יוֹם אֶחָד וּשְׁלֹשִׁים אַף עַל פִּי שֶׁנִּרְאֵית בְּלֵיל שְׁלֹשִׁים. שֶׁאֵין הָרְאִיָּה קוֹבַעַת אֶלָּא בֵּית דִּין שֶׁאָמְרוּ מְקֻדָּשׁ הֵם שֶׁקּוֹבְעִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין מקדשין את החדש אלא בג׳.</strong> ר״פ ראוהו בית דין (ראש השנה דף כ&quot;ה) ופרקא קמא דסנהדרין (דף י׳:):</p>
               </div>
             </div>
@@ -522,13 +636,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-3" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-3" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-3" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:3">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:3</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-3" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-8">Mishneh Torah, Sanctification of the New Month 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ אַחַר שֶׁתִּתְקַיֵּם הָעֵדוּת רֹאשׁ בֵּית דִּין אוֹמֵר מְקֻדָּשׁ וְכָל הָעָם עוֹנִים אַחֲרָיו מְקֻדָּשׁ מְקֻדָּשׁ. וְאֵין מְקַדְּשִׁין אֶת הַחֹדֶשׁ אֶלָּא בִּשְׁלֹשָׁה. וְאֵין מְחַשְּׁבִין אֶלָּא בִּשְׁלֹשָׁה. וְאֵין מְקַדְּשִׁין אֶלָּא חֹדֶשׁ שֶׁנִּרְאֶה בִּזְמַנּוֹ. וְאֵין מְקַדְּשִׁין אֶלָּא בַּיּוֹם וְאִם קִדְּשׁוּהוּ בַּלַּיְלָה אֵינוֹ מְקֻדָּשׁ. ואֲפִלּוּ רָאוּהוּ בֵּית דִּין וְכָל יִשְׂרָאֵל וְלֹא אָמְרוּ בֵּית דִּין מְקֻדָּשׁ עַד שֶׁחָשְׁכָה לֵיל אֶחָד וּשְׁלֹשִׁים. אוֹ שֶׁנֶּחְקְרוּ הָעֵדִים וְלֹא הִסְפִּיקוּ בֵּית דִּין לוֹמַר מְקֻדָּשׁ עַד שֶׁחָשְׁכָה לֵיל אֶחָד וּשְׁלֹשִׁים. אֵין מְקַדְּשִׁין אוֹתוֹ וְיִהְיֶה הַחֹדֶשׁ מְעֻבָּר וְלֹא יִהְיֶה רֹאשׁ חֹדֶשׁ אֶלָּא יוֹם אֶחָד וּשְׁלֹשִׁים אַף עַל פִּי שֶׁנִּרְאֵית בְּלֵיל שְׁלֹשִׁים. שֶׁאֵין הָרְאִיָּה קוֹבַעַת אֶלָּא בֵּית דִּין שֶׁאָמְרוּ מְקֻדָּשׁ הֵם שֶׁקּוֹבְעִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין מקדשין אלא חדש שנראה בזמנו.</strong> משנה בפרק אם אינן מכירין (ראש השנה דף כ&quot;ד) ופסק כר׳ אליעזר בר צדוק דאמר אם לא נראה בזמנו אין מקדשין אותו שכבר קדשוהו שמים וכן פסקו שם בגמרא:</p>
               </div>
             </div>
@@ -538,13 +657,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-4" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-4" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-4" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:4">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:4</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-8-4" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:8:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-8">Mishneh Torah, Sanctification of the New Month 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ אַחַר שֶׁתִּתְקַיֵּם הָעֵדוּת רֹאשׁ בֵּית דִּין אוֹמֵר מְקֻדָּשׁ וְכָל הָעָם עוֹנִים אַחֲרָיו מְקֻדָּשׁ מְקֻדָּשׁ. וְאֵין מְקַדְּשִׁין אֶת הַחֹדֶשׁ אֶלָּא בִּשְׁלֹשָׁה. וְאֵין מְחַשְּׁבִין אֶלָּא בִּשְׁלֹשָׁה. וְאֵין מְקַדְּשִׁין אֶלָּא חֹדֶשׁ שֶׁנִּרְאֶה בִּזְמַנּוֹ. וְאֵין מְקַדְּשִׁין אֶלָּא בַּיּוֹם וְאִם קִדְּשׁוּהוּ בַּלַּיְלָה אֵינוֹ מְקֻדָּשׁ. ואֲפִלּוּ רָאוּהוּ בֵּית דִּין וְכָל יִשְׂרָאֵל וְלֹא אָמְרוּ בֵּית דִּין מְקֻדָּשׁ עַד שֶׁחָשְׁכָה לֵיל אֶחָד וּשְׁלֹשִׁים. אוֹ שֶׁנֶּחְקְרוּ הָעֵדִים וְלֹא הִסְפִּיקוּ בֵּית דִּין לוֹמַר מְקֻדָּשׁ עַד שֶׁחָשְׁכָה לֵיל אֶחָד וּשְׁלֹשִׁים. אֵין מְקַדְּשִׁין אוֹתוֹ וְיִהְיֶה הַחֹדֶשׁ מְעֻבָּר וְלֹא יִהְיֶה רֹאשׁ חֹדֶשׁ אֶלָּא יוֹם אֶחָד וּשְׁלֹשִׁים אַף עַל פִּי שֶׁנִּרְאֵית בְּלֵיל שְׁלֹשִׁים. שֶׁאֵין הָרְאִיָּה קוֹבַעַת אֶלָּא בֵּית דִּין שֶׁאָמְרוּ מְקֻדָּשׁ הֵם שֶׁקּוֹבְעִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפילו ראוהו בית דין.</strong> משנה וגמרא שם (בריש ראוהו ב&quot;ד דף כ&quot;ה:):</p>
               </div>
             </div>
@@ -554,13 +678,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:9:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-9">Mishneh Torah, Sanctification of the New Month 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רָאוּהוּ בֵּית דִּין עַצְמָן בְּסוֹף יוֹם תִּשְׁעָה וְעֶשְׂרִים. אִם עֲדַיִן לֹא יָצָא כּוֹכַב לֵיל שְׁלֹשִׁים. בֵּית דִּין אוֹמְרִים מְקֻדָּשׁ שֶׁעֲדַיִן יוֹם הוּא. וְאִם רָאוּהוּ בְּלֵיל שְׁלֹשִׁים אַחַר שֶׁיָּצְאוּ שְׁנֵי כּוֹכָבִים. לְמָחָר מוֹשִׁיבִין שְׁנֵי דַּיָּנִין אֵצֶל אֶחָד מֵהֶם וְיָעִידוּ הַשְּׁנַיִם בִּפְנֵי הַשְּׁלֹשָׁה וִיקַדְּשׁוּהוּ הַשְּׁלֹשָׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראוהו בית דין עצמן בסוף יום כ&quot;ט וכו׳.</strong> זה הלשון קשה להולמו והרב מהר&quot;ל ן׳ חביב ז&quot;ל האריך בו בטוב טעם ודעת ע&quot;ש:</p>
               </div>
             </div>
@@ -570,13 +699,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-10-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-10-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:10:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-2-10-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-2-10">Mishneh Torah, Sanctification of the New Month 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין שֶׁקִּדְּשׁוּ אֶת הַחֹדֶשׁ בֵּין שׁוֹגְגִין בֵּין מֻטְעִין בֵּין אֲנוּסִים הֲרֵי זֶה מְקֻדָּשׁ וְחַיָּבִין הַכּל לְתַקֵּן הַמּוֹעֲדוֹת עַל הַיּוֹם שֶׁקִּדְּשׁוּ בּוֹ. אַף עַל פִּי שֶׁזֶּה יוֹדֵעַ שֶׁטָּעוּ חַיָּב לִסְמֹךְ עֲלֵיהֶם שֶׁאֵין הַדָּבָר מָסוּר אֶלָּא לָהֶם וּמִי שֶׁצִּוָּה לִשְׁמֹר הַמּוֹעֲדוֹת הוּא צִוָּה לִסְמֹךְ עֲלֵיהֶם שֶׁנֶּאֱמַר אֲשֶׁר תִּקְרְאוּ אֹתָם וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בית דין שקדשו את החדש וכו׳.</strong> בפ׳ אם אינן מכירין בסופו (דף כ&quot;ה) אמרו שם שכך דרש ר&quot;ע ואמר לו ר׳ יהושע עקיבא נחמתני (עקיבא) נחמתני:</p>
               </div>
             </div>
@@ -587,13 +721,18 @@
             </nav>
           </section>
           <h4 id="chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Chapter 3</h4>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-1-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-1-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:1:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-1-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-1">Mishneh Torah, Sanctification of the New Month 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֵדִים שֶׁרָאוּ אֶת הַחֹדֶשׁ אִם הָיָה בֵּינֵיהֶם וּבֵין מָקוֹם שֶׁיֵּשׁ בּוֹ בֵּית דִּין מַהֲלַךְ לַיְלָה וָיוֹם אוֹ פָּחוֹת הוֹלְכִין וּמְעִידִין. וְאִם הָיָה בֵּינֵיהֶן יֶתֶר עַל כֵּן לֹא יֵלְכוּ שֶׁאֵין עֵדוּתָן אַחַר יוֹם שְׁלֹשִׁים מוֹעֶלֶת שֶׁכְּבָר נִתְעַבֵּר הַחֹדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עדים שראו את החדש אם היה ביניהן וכו׳.</strong> במשנה בסוף פ&quot;ק (דף כ&quot;ב) אמרו ואם היתה דרך רחוקה לוקחים בידם מזונות שעל מהלך לילה ויום מחללין את השבת ויוצאין לעדות החדש. הקשה כאן המפרש דהא רבינו ז&quot;ל אמר לקמן בסוף הפרק דאם אחר ד׳ או ה׳ ימים באו עדים רחוקים והעידו שראו את החדש בזמנו שהוא ליל שלשים אם עמדו העדים בעדותם מקדשין אותו וחוזרין ומונין לאותו חדש מיום שלשים הואיל ונראה הירח בלילו וא&quot;כ איך כתב רבינו ז&quot;ל כאן דאינו מועיל העדות שכבר נתעבר החדש. ותירץ דאינו מועלת לענין הקרבת הקרבן אבל מועיל לחזור ולמנות לאותו חדש מיום שלשים. ואני אומר אין תירוצו זה תירוץ דעדיין תקשי לך למה לא ילכו ויועיל לנו לענין מנין החדש דנפקא לן טובא בענין בששה חדשים שיוצאים בהם השלוחים כמו שביאר רבינו ז&quot;ל לקמן וכ&quot;ת דמ&quot;מ אין מחללין על זה השבת כיון דכבר עבר קרבן ראש חדש ונסכיו מ&quot;מ קשה. חדא דרבינו ז&quot;ל לא הזכיר שלא ילכו בשבת אלא שלא ילכו ומשמע אפילו ביום חול לא ילכו שעדותם לא יועיל ואילו היה מזכיר רבינו ז&quot;ל בלשון המשנה שעל מהלך יום ולילה מחללין את השבת ניחא דמשמע דלא קאמר מהלך יום ולילה אלא לענין חלול שבת דוקא אבל מדברי רבינו ז&quot;ל משמע דיום ולילה הוזכר במשנה לענין היציאה אפי׳ בחול דאל&quot;כ אין יוצאין בחול דאינם מחוייבים העדים לילך כיון שלא יועיל עדותם ועוד בתשרי וניסן דאיכא תקנת מועדות מה איכא למימר ילכו אפילו בשבת לתקן המועדות כדי שיוכלו השלוחין לצאת מהרה לתקן המועדות וכ&quot;ש במשנה דמפני זה מחללין את השבת בניסן ותשרי. לכך נראה לי ודאי דאין תירוץ המפרש עולה כלל. ולעיקר הקושיא נ&quot;ל לתרץ דכיון דב&quot;ד קדשו את החודש אע&quot;פ שימצא הדבר טעות מדין תורה הוא מקודש כמו שכתב רבינו ז&quot;ל בפירוש דאפי׳ נמצאו העדים זוממין מדין תורה מקודש דהתורה לא תלה הדבר אלא במה שיעשו בית דין וכיון שכן אחר שעברוהו בית דין אע&quot;פ שלא ימצא הדבר כן מעובר הוא ואין אנו צריכים לקבל כל עדות שיבא אחרי כן דאפילו האמת כדברי העדים הבאים אין אנו מחוייבים לסתור מה שעשו ב&quot;ד אבל מ&quot;מ ב&quot;ד מפני שנראה הדבר כשקר היכא דבאו עדים ונמצאו דבריהם מכוונים סותרים את העיבור ומפני כך מבלבלין ומאיימים אותם כדי שיחזרו בהם אע&quot;פ שבית דין מבינים שהאמת אתם מכל מקום רוצים שיחזרו בהם דאם יחזרו בהם שוב ליכא כאן לעז העולם שיאמרו שנתעבר החדש שלא כדין אבל כשהעדים עומדים בדבורם אז מוכרחים ב&quot;ד לסותרו שלא יאמרו העולם שהחדש נתעבר בשקר וכיוצא בזה חייש רב דימי בפ&quot;ק דראש השנה ואמר שם מחזי כשיקרא ולכך נראה אע&quot;פ שאין הדין כך סותרין את עיבורם מפני שלא יוציאו לעז ולכך ודאי כל היכא דאנו יכולים לעשות שלא יעידו אותם העדים נעשה ולכך אמרינן שלא ילכו להעיד שכבר נתעבר החדש ואין לנו תועלת בעדותם כלל דאם אנן סותרין את העיבור אחרי כן הוא מפני שהם באים מאליהם ומעידים עדות גמורה ומפני הלעז אנו סותרים העיבור הראשון אבל יותר טוב היה שלא ילכו. ובזה נתיישב אצלי קושיא אחרת דכתב הרב ז&quot;ל בסוף פרק זה עד שלא תתקיים הזמה ויתקדש החדש בזמנו משמע דאם נתקיימה ההזמה נתבטל הקידוש והוי החדש מעובר והא לעיל בפרק שני כתב דאע&quot;פ שיבאו עדים ויזימו לראשונים החדש מקודש, א&quot;ו דשם כתב דדין תורה הוא זה אבל מ&quot;מ רבנן תקנו דהיכא דנראה ודאי דהעדות הוא שקר ברור לכל העולם אע&quot;ג דמדין התורה החדש מקודש מכל מקום כדי שלא יוציאו העולם לעז סתרינן הקידוש הראשון. זה נראה לי באמת נכון ליישב דברי רבינו ז&quot;ל:</p>
               </div>
             </div>
@@ -603,13 +742,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-2-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-2-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:2:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-2-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-2">Mishneh Torah, Sanctification of the New Month 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֵדִים שֶׁרָאוּ אֶת הַחֹדֶשׁ הֲרֵי אֵלּוּ הוֹלְכִין לְבֵית דִּין לְהָעִיד וַאֲפִלּוּ הָיָה שַׁבָּת שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג ד)</span> &quot;אֲשֶׁר תִּקְרְאוּ אֹתָם בְּמוֹעֲדָם&quot; וְכָל מָקוֹם שֶׁנֶּאֱמַר מוֹעֵד דּוֹחֶה אֶת הַשַּׁבָּת. לְפִיכָךְ אֵין מְחַלְּלִין אֶלָּא עַל רֹאשׁ חֹדֶשׁ נִיסָן וְעַל רֹאשׁ חֹדֶשׁ תִּשְׁרֵי בִּלְבַד מִפְּנֵי תַּקָּנַת הַמּוֹעֲדוֹת. וּבִזְמַן שֶׁבֵּית הַמִּקְדָּשׁ קַיָּם מְחַלְּלִין עַל כֻּלָּן מִפְּנֵי קָרְבַּן מוּסָף שֶׁבְּכָל רֹאשׁ חֹדֶשׁ וְחֹדֶשׁ שֶׁהוּא דּוֹחֶה אֶת הַשַּׁבָּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עדים שראו את החדש הרי אלו הולכים לבית דין להעיד וכו׳.</strong> קשה מאי לפיכך הוא זה הא מן התורה על כולן מחללין משום דכלהו ראשי חדשים איקרו מועד כדכתבו רש&quot;י והתוס׳ ז&quot;ל בספ&quot;ק אלא דרבנן אסרו לפי שאין תיקון המועדות תלוי בהם אלא דוקא ניסן ותשרי שתלוי בהם תקון המועדות ומוכרחים אנו לומר כן דאי לאו אלא ניסן ותשרי דכתיב בהו קרא דאלה מועדי ה׳ א&quot;כ כשבה&quot;מ קיים אמאי מחללין שבת ועקרו רבנן דבר תורה וא&quot;כ תימה על רבינו ז&quot;ל שכתב לפיכך אין מחללין אלא על אלו אדרבה מפני טעם זה היה ראוי לחלל על הכל. וי&quot;ל דאע&quot;ג דשאר חדשים אתרבו מדאיתקרו מועד בפרשת פנחס מ&quot;מ הך קרא דאלה מועדי ה׳ לא כתיב אלא בניסן ותשרי וכיון שכן מצאו מקום רבנן לומר דלהכי חלקינהו קרא להני לומר דהני בכל זמן מחללין משא&quot;כ בשאר דמחללין כשבית המקדש קיים אבל כשאין ביהמ&quot;ק קיים לא:</p>
               </div>
             </div>
@@ -619,13 +763,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-3-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-3-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:3:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-3-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-3">Mishneh Torah, Sanctification of the New Month 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁמְּחַלְּלִין הָעֵדִים שֶׁרָאוּ אֶת הַחֹדֶשׁ אֶת הַשַּׁבָּת כָּךְ מְחַלְּלִין עִמָּהֶן הָעֵדִים שֶׁמְּזַכִּין אוֹתָן בְּבֵית דִּין אִם לֹא הָיוּ בֵּית דִּין מַכִּירִין אֶת הָרוֹאִין. וַאֲפִלּוּ הָיָה זֶה שֶׁמּוֹדִיעַ אוֹתָן לְבֵית דִּין עֵד אֶחָד הֲרֵי זֶה הוֹלֵךְ עִמָּהֶן וּמְחַלֵּל מִסָּפֵק שֶׁמָּא יִמָּצֵא אַחֵר וְיִצְטָרֵף עִמּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשם שמחללין העדים כו׳.</strong> בריש פרק אם אינן מכירין (ראש השנה דף כ&quot;ב) על מתני׳ דאמרה משלחים עמו אחר להעידו הקשו שם וחד מהימן והתניא מעשה שבא הוא ועדיו עמו וכו׳ אמר רב פפא מאי אחר זוג אחר וכו׳ וחד לא מהימן והתניא מעשה בר׳ נהוראי שהלך אצל העד להעיד עליו בשבת באושא ותירצו רבי נהוראי סהדא אחרינא הוה בהדיה והא דלא חשיב ליה משום כבודו של ר׳ נהוראי רב אשי אמר ר׳ נהוראי סהדא אחרינא הוה באושא ואזל ר׳ נהוראי לאצטרופי בהדיה א״ה מאי למימרא מהו דתימא מספיקא לא מחללינן שבתא קמ״ל ע״כ. והקשו התוס׳ ז״ל גבי הא דהקשו בגמ׳ וחד מי מהימן תימא כי לא מהימן נמי מחלל את השבת לילך שם שמא יצטרף עם אחר כדתנן בפ״ק גבי אב ובנו דילכו לא מפני שיצטרפו זה עם זה אלא שאם יפסל האחד שיצטרף השני עם אחר ונראה דלא מקשה היאך אחד מחלל שבת כיון דלא מהימן לחודיה אלא מקשה על לישנא דמתניתין דנקט אחד דמשמע דחד מהימן ע״כ. וקשה על זה דמשמע דאית להו דאחד ילך בשבת אע״פ שאינו יודע אם יש שם אחר א״כ למה הוצרכו בגמ׳ לידחק בהדי דרבי נהוראי דליכא מהתם קושיא כלל דהתם לא קאמר אלא שרבי נהוראי הלך להעיד שם בשבת אע״פ שלא היה עד עמו אלא אולי ימצא שם עד אחר דבשלמא במתניתין הוצרך לידחק ולומר מאי זוג אותו הזוג משום דקשיא ליה דאמאי משלחין אחד לבד הא אחד לא מהימן היה להם לשלוח שנים אבל מברייתא דר׳ נהוראי לק״מ. ויש לומר דהכי מקשה מדקאמרה הברייתא להעיד עליו ולא קאמרה להצטרף עם אחר להעיד עליו משמע דרבי נהוראי לחודיה היה נאמן ותירצו דלא הזכירו משום כבודו של רבי נהוראי. וא״ת איך תירץ רב אשי קושיא זו דעדיין קשיא ליה להצטרף עם אחר להעיד מבעי ליה ולא להעיד עליו דמשמע דהוא לחודיה מהימן ותו קשיא למה לי שיהא עד אחר באושא אע״פ שלא ידענו שיש שם עד אחר הלך להצטרף אולי ימצא שם עד אחר לפי דברי התוס׳ ז״ל. לזה יש לתרץ עם מה שכתבו התוס׳ ז״ל (בדיבור סהדא הוה) וז״ל י״ל דמיירי בעד אחד שראה את החדש שהלך רבי נהוראי להצטרף ולהעיד נמי על החדש. ולפי זה פירוש הברייתא הכי הלך אצל העד של החדש שהיה באושא להצטרף עמו ולהעיד על החדש וא״כ הוזכרה בברייתא השניה עדים ולזה הקשו בגמרא א״ה מאי למימרא כלומר בשלמא בלישנא קמא דתירץ דהיה רבי נהוראי העד שמכיר העד אשמעינן בברייתא דאע״ג דלא היה העד עצמו חילל את השבת אבל לתירוצא בתרא דהוא היה העד עצמו מאי למימרא אבל לפירוש רש״י ז״ל שפירש דסהדא אחרינא הוה בהדיה איירי לעד המכיר א״כ הך קושיא דאי הכי קאי לתירוצא קמא ג״כ ולהכי כתבו התוס׳ ז״ל דלפירוש רש״י ז״ל קאי פירכא דאי הכי לב׳ שנויי. אבל קשה דאתירוצא קמא מתרץ מהו דתימא מספיקא לא מחללינן שבתא הא לא הוי ספקא דהעד עצמו היה הולך עמו אלא שלא הזכירו מפני כבודו. וי״ל דמ״מ איכא מהו דתימא דילמא אותו העד שהלכו להעיד עליו שהוא כשר לא ימצאוהו באושא שיעיד על החדש וא״כ נמצא דהליכתן להעיד עליו שהוא כשר היה לבטלה א״כ נמצא ודאי דלפי׳ רש״י ז״ל דוקא היכא דידענו שיש שם עד אחר באותו מקום שהולך שם להצטרף עמו אע״פ שלא ידענו שהוא בביתו אם לאו מחלל את השבת אבל אם לא ידענו שיש שם עד כלל לא דאי לא למה הזכירו בגמ׳ סהדא אחרינא הוה באושא. א״כ נמצא דרבינו ז״ל דאית ליה דאפילו עד אחד שמכירו לעד ילך אפילו שלא ידע שיש לשם אחר שיעיד גם כן להצטרף עמו ודאי דאית ליה כפירוש התוספות ז״ל דס״ל דאפילו חד ילך אפי׳ שלא ידע אם יש שם אחר דומיא דאב ובנו. ועדיין קשה מנא לן הך דינא דמההיא דאב ובנו אין ראיה דילמא דמתני׳ לא קאמר בשבת אלא בחול קאמרה מתני׳ דחייבים לילך שניהם משום דדילמא יצטרפו אבל ודאי לחלל שבת לא יחלל אלא אחד מהם דוקא ומנ״ל לתוס׳ האי דינא. וגם לפי פירושם מהך סוגיא אין הכרח לדין זה דלתירוצא קמא שנים הם שהלכו ומשום כבודו של ר׳ נהוראי לא הזכירו ולתירוצא בתרא העד המוזכר בברייתא הוא העד המעיד על החדש ועמו הלך להצטרף עם העד שהיה שם באושא. ונראה ודאי להביא ראיה לדין זה מההיא מתני׳ דספ״ק שאמרו שעברו יותר מארבעים זוג משמע דכולן מחללין את השבת אע״פ שכבר הלכו ראשונים להעיד ומשמע דבשבת איירי מתני׳ מדקאמר דעיכבן ודאי דמהך טעמא היה רוצה לעכבן שלא יחללו את השבת ועוד דקאמר במתני׳ דאפילו דנראה בעליל דהיא גלויה לכל מחללין את השבת אבל מ״מ הא דאב ובנו דהכריחו התוס׳ ז״ל אינה ראיה מכרחת כ״כ ואולי דהתוס׳ ס״ל דפשטא דמתני׳ דאב ובנו אדלעיל קאי דמתני׳ דלעיל קאמרה דמחללין את השבת ואח״כ אמרה אב ובנו וכו׳ משמע דהם נמי יחללו השבת ומ״מ למדנו דדעת רבינו ז״ל כדעת התוס׳ ז״ל ולא כדעת רש״י ז״ל. ומה שהקשה המפרש מענין המילה שאין מחללין עליה השבת על הספק שאני קידוש החדש דתלוי ביה תקנת המועדות ועל שום ספק מחללין משא״כ מילה שיכול לעשותה ביום אחר ופשוט הוא:</p>
               </div>
             </div>
@@ -635,13 +784,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-4-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-4-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:4:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-4-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-4">Mishneh Torah, Sanctification of the New Month 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה הָעֵד שֶׁרָאָה אֶת הַחֹדֶשׁ בְּלֵיל הַשַּׁבָּת חוֹלֶה מַרְכִּיבִין אוֹתוֹ עַל הַחֲמוֹר וַאֲפִלּוּ בַּמִּטָּה. וְאִם יֵשׁ לָהֶן אוֹרֵב בַּדֶּרֶךְ לוֹקְחִין הָעֵדִים בְּיָדָן כְּלֵי זַיִן. וְאִם הָיָה דֶּרֶךְ רְחוֹקָה לוֹקְחִים בְּיָדָם מְזוֹנוֹת. וַאֲפִלּוּ רָאוּהוּ גָּדוֹל וְנִרְאֶה לַכּל לֹא יֹאמְרוּ כְּשֵׁם שֶׁרְאִינוּהוּ אֲנַחְנוּ רָאוּהוּ אֲחֵרִים וְאֵין אָנוּ צְרִיכִין לְחַלֵּל אֶת הַשַּׁבָּת אֶלָּא כָּל מִי שֶׁיִּרְאֶה הַחֹדֶשׁ וְיִהְיֶה רָאוּי לְהָעִיד וְיִהְיֶה בֵּינוֹ וּבֵין הַמָּקוֹם שֶׁקָּבוּעַ בּוֹ בֵּית דִּין לַיְלָה וָיוֹם אוֹ פָּחוֹת מִצְוָה עָלָיו לְחַלֵּל אֶת הַשַּׁבָּת וְלֵילֵךְ וּלְהָעִיד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה העד שראה את החדש וכו׳ חולה.</strong> פ&quot;ק (דף כ&quot;ב) במשנה מי שראה את החדש ואינו יכול להלך מוליכין אותו וכו׳:</p>
               </div>
             </div>
@@ -651,13 +805,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-4-2" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-4-2" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-4-2" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:4:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:4:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-4-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-4">Mishneh Torah, Sanctification of the New Month 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה הָעֵד שֶׁרָאָה אֶת הַחֹדֶשׁ בְּלֵיל הַשַּׁבָּת חוֹלֶה מַרְכִּיבִין אוֹתוֹ עַל הַחֲמוֹר וַאֲפִלּוּ בַּמִּטָּה. וְאִם יֵשׁ לָהֶן אוֹרֵב בַּדֶּרֶךְ לוֹקְחִין הָעֵדִים בְּיָדָן כְּלֵי זַיִן. וְאִם הָיָה דֶּרֶךְ רְחוֹקָה לוֹקְחִים בְּיָדָם מְזוֹנוֹת. וַאֲפִלּוּ רָאוּהוּ גָּדוֹל וְנִרְאֶה לַכּל לֹא יֹאמְרוּ כְּשֵׁם שֶׁרְאִינוּהוּ אֲנַחְנוּ רָאוּהוּ אֲחֵרִים וְאֵין אָנוּ צְרִיכִין לְחַלֵּל אֶת הַשַּׁבָּת אֶלָּא כָּל מִי שֶׁיִּרְאֶה הַחֹדֶשׁ וְיִהְיֶה רָאוּי לְהָעִיד וְיִהְיֶה בֵּינוֹ וּבֵין הַמָּקוֹם שֶׁקָּבוּעַ בּוֹ בֵּית דִּין לַיְלָה וָיוֹם אוֹ פָּחוֹת מִצְוָה עָלָיו לְחַלֵּל אֶת הַשַּׁבָּת וְלֵילֵךְ וּלְהָעִיד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפילו ראהו גדול וכו׳.</strong> שם (כ&quot;א:) בין שנראה בעליל בין שלא נראה בעליל מחללין עליו את השבת וכו׳:</p>
               </div>
             </div>
@@ -667,13 +826,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-5-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-5-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:5:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-5-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-5">Mishneh Torah, Sanctification of the New Month 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּרִאשׁוֹנָה הָיוּ מְקַבְּלִין עֵדוּת הַחֹדֶשׁ בְּכָל יוֹם שְׁלֹשִׁים. פַּעַם אַחַת נִשְׁתַּהוּ הָעֵדִים מִלָּבוֹא עַד בֵּין הָעַרְבַּיִם וְנִתְקַלְקְלוּ בַּמִּקְדָּשׁ וְלֹא יָדְעוּ מַה יַּעֲשׂוּ אִם יַעֲשׂוּ עוֹלָה שֶׁל בֵּין הָעַרְבַּיִם שֶׁמָּא יָבוֹאוּ הָעֵדִים וְאִי אֶפְשָׁר שֶׁיַּקְרִיבוּ מוּסַף הַיּוֹם אַחַר תָּמִיד שֶׁל בֵּין הָעַרְבַּיִם. עָמְדוּ בֵּית דִּין וְהִתְקִינוּ שֶׁלֹּא יִהְיוּ מְקַבְּלִים עֵדוּת הַחֹדֶשׁ אֶלָּא עַד הַמִּנְחָה כְּדֵי שֶׁיְּהֵא שָׁהוּת בַּיּוֹם לְהַקְרִיב מוּסָפִין וְתָמִיד שֶׁל בֵּין הָעַרְבַּיִם וְנִסְכֵּיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בראשונה היו מקבלים עדות החדש בכל יום שלשים וכו׳.</strong> בפרק יו&quot;ט של ר&quot;ה (דף ל׳:) אמרינן במשנה בראשונה היו מקבלין עדות החדש כל היום פעם אחת נשתהו העדים מלבא ונתקלקלו הלוים בשיר וכו׳ ואמר שם מה קלקול קלקלו הלוים בשיר הכא תירגמו שלא אמרו שירה כל עיקר ר׳ זירא אמר שאמרו שירה של חול עם תמיד של בין הערבים ע&quot;כ. והתימה על רבינו דלא כתב כשום חד מינייהו אלא מפרש שהיו בהולים ולא היו יודעים מה יעשו ומשמע דלא עשו כלל. והוא תימה שלא הוזכר זה לא במשנה ולא בגמרא ועוד תימה אמאי קאמר בגמרא שקלקלו בשיר לימא שלא הקריבו מוסף היום שא&quot;א להקריבו אחר תמיד של בין הערבים ואם הקריבו קרבן תמיד של בין הערבים אבדו המוסף. והתוס׳ ז&quot;ל הקשו קושיא זו ולא מצאו תירוץ לו אלא דאית להו דיכול להקריב אח&quot;כ מוסף היום דאתי עשה דרבים ודחי עשה דהשלמה. אבל רבינו ז&quot;ל דאית ליה דא&quot;א להקריבו אמאי לא הזכירו קלקול זה ואי משום שהיו בהולים [לא הקריבו] לא תמיד ולא מוסף. כל שכן שהוספת שהיה לו להזכיר קלקול זה הגדול. ועוד דזה א&quot;א דהרי בגמרא אמרו שלא אמרו שירה כל עיקר. ואחר אמר שאמרו שירה של חול ולדברי הכל הקריבו תמיד של בין הערבים. וי&quot;ל דרבינו ז&quot;ל הוקשה לו קושית התוס׳ ז&quot;ל דאמאי לא הזכיר קלקול זה של מוסף וסובר כתירוץ דדחי שם התוס׳ ז&quot;ל דכשהביאו התמיד של בין הערבים התנו ואמרו אם יהיה מוסף או תמיד ולמפרע נמצא שהיה מוסף ואמרו עליו שירה של חול. וכ&quot;ת אמאי לא קאמר שאמרו עם המוסף שירה של חול ולא עם התמיד, וי&quot;ל דקאמר עם התמיד משום דבאותה שעה שהקריבוהו היה נראה כתמיד של בין הערבים שעדיין לא באו העדים וא&quot;כ כשבאו אח&quot;כ היה הראשון מוסף ואח&quot;כ הקריבו התמיד וא&quot;כ לא היה קלקול במוסף. ומ&quot;ד שלא אמרו שירה כל עיקר הוא מפני שלא היו יודעים אם זה יהיה מוסף וצ&quot;ל שירה של יו&quot;ט או יהיה תמיד וצ&quot;ל שירה של חול ולפיכך לא אמרו שירה כל עיקר והקלקול לא היה אלא בשירה לבד משום דלמ&quot;ד לא אמרו שירה כל עיקר באותו היום לא באו העדים כדכתבו שם התוס׳ ז&quot;ל בפ׳ יו&quot;ט של ר&quot;ה. ורבינו ז&quot;ל פסק כמ&quot;ד שלא אמרו שירה כל עיקר משום דבגמ׳ אמרו הכא תרגימו ולכך כתב שנתקלקלו מפני שלא היו יודעים אם היה זה מוסף מפני שהוא יו&quot;ט וא&quot;א שיהיה תמיד שאחריו לא יוכלו להקריב מוסף או יהיה תמיד מפני שלא יבואו העדים והם הקריבו בדרך תנאי והקלקול נמצא שהיה בשיר. אע&quot;פ שזה הוא קצת דחוק בדברי רבינו ז&quot;ל ומה גם כי לא הזכיר כלל מענין השיר אלא שצריך לדחוק ולישבו בלשונו אבל מה אעשה כי לא ראיתי ישוב אחר בלשונו ז&quot;ל:</p>
               </div>
             </div>
@@ -683,13 +847,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-6-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-6-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:6:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-6-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-6">Mishneh Torah, Sanctification of the New Month 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאִם הִגִּיעַ מִנְחָה וְלֹא בָּאוּ עֵדִים עוֹשִׂין תָּמִיד שֶׁל בֵּין הָעַרְבַּיִם. וְאִם בָּאוּ עֵדִים מִן הַמִּנְחָה וּלְמַעְלָה נוֹהֲגִין אוֹתוֹ הַיּוֹם קֹדֶשׁ וּלְמָחָר קֹדֶשׁ וּמַקְרִיבִין מוּסָף לְמָחָר לְפִי שֶׁלֹּא הָיוּ מְקַדְּשִׁין אוֹתוֹ אַחַר מִנְחָה. מִשֶּׁחָרַב בֵּית הַמִּקְדָּשׁ הִתְקִין רַבָּן יוֹחָנָן בֵּן זַכַּאי וּבֵית דִּינוֹ שֶׁיִּהְיוּ מְקַבְּלִין עֵדוּת הַחֹדֶשׁ כָּל הַיּוֹם כֻּלּוֹ וַאֲפִלּוּ בָּאוּ עֵדִים יוֹם שְׁלֹשִׁים בְּסוֹף הַיּוֹם סָמוּךְ לִשְׁקִיעַת הַחַמָּה מְקַבְּלִין עֵדוּתָן וּמְקַדְּשִׁין יוֹם שְׁלֹשִׁים בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפילו באו עדים יום שלשים בסוף היום סמוך לשקיעת החמה מקבלין עדותן.</strong> קשה דלמה לי סמוך לשקיעת החמה כל זמן שלא נראה כוכב אחד הוא יום כמ&quot;ש לעיל בסוף הפרק אם עדיין לא יצא כוכב ליל שלשים ב&quot;ד אומרים מקודש וכו׳. ולא שייך כאן התירוץ שתירץ מהר&quot;ל ן׳ חביב ז&quot;ל על מה שהקשה מדברי רבינו ז&quot;ל מדידיה אדידיה שמ&quot;ש כאן בפרק ב׳ דכשלא נראה כוכב אחד הוי יום עם מ&quot;ש בהלכות שבת דמשקיעת החמה הוי לילה וכתב שם אחר שהאריך בתירוץ הקושיא עם סוגית הגמרא וז&quot;ל גם דברי הרמב&quot;ם ז&quot;ל מבוארים עפ&quot;ז ודעתו שלענין שבת וכל דבר חומרא כמו בזב בין השמשות מתחיל משתשקע החמה אע&quot;פ שלא ראה המביט שני כוכבים כיון שהדבר תלוי בכל אחד ואחד מישראל יש לנו לומר כי הגיע זמן ביה&quot;ש וקוצר ראותו גרם שלא ראה הכוכבים. אמנם בענין קדוש החדש שהדבר מסור לב&quot;ד לבד אם ראו הם הירח ולא יצאו כוכבים יכולים הם לקדשו כי הרי הוא יום כו׳ ע&quot;כ. ומבואר הוא דאין זה החילוק שייך כאן דהכא נמי קידוש החדש הוא ואמאי בעינן סמוך לשקיעת החמה וצ&quot;ע:</p>
               </div>
             </div>
@@ -699,13 +868,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-7-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-7-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:7:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-7-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-7">Mishneh Torah, Sanctification of the New Month 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁמְּעַבְּרִין בֵּית דִּין אֶת הַחֹדֶשׁ מִפְּנֵי שֶׁלֹּא בָּאוּ עֵדִים כָּל יוֹם שְׁלֹשִׁים הָיוּ עוֹלִין לְמָקוֹם מוּכָן וְעוֹשִׂין בּוֹ סְעֻדָּה בְּיוֹם אֶחָד וּשְׁלֹשִׁים שֶׁהוּא רֹאשׁ חֹדֶשׁ. וְאֵין עוֹלִין לְשָׁם בַּלַּיְלָה אֶלָּא בַּנֶּשֶׁף קֹדֶם עֲלוֹת הַשֶּׁמֶשׁ. וְאֵין עוֹלִין לִסְעֻדָּה זוֹ פָּחוֹת מֵעֲשָׂרָה. וְאֵין עוֹלִין לָהּ אֶלָּא בְּפַת דָּגָן וְקִטְנִית. וְאוֹכְלִין בְּעֵת הַסְּעֻדָּה. וְזוֹ הִיא סְעֻדַּת מִצְוָה שֶׁל עִבּוּר הַחֹדֶשׁ הָאֲמוּרָה בְּכָל מָקוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשמעברין ב״ד את החדש וכו׳.</strong> פ״ק דסנהדרין (דף י&quot;ב) ופרק בן סורר (סנהדרין דף ע׳:):</p>
               </div>
             </div>
@@ -715,13 +889,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-8-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-8-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-8-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:8:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:8:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-8-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-8">Mishneh Torah, Sanctification of the New Month 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּרִאשׁוֹנָה כְּשֶׁהָיוּ בֵּית דִּין מְקַדְּשִׁין אֶת הַחֹדֶשׁ הָיוּ מַשִּׂיאִין מַשּׂוּאוֹת בְּרָאשֵׁי הֶהָרִים כְּדֵי שֶׁיֵּדְעוּ הָרְחוֹקִים. מִשֶּׁקִּלְקְלוּ הַכּוּתִים שֶׁהָיוּ מַשִּׂיאִין מַשּׂוּאוֹת כְּדֵי לְהַטְעוֹת אֶת הָעָם הִתְקִינוּ שֶׁיְּהוּ שְׁלוּחִים יוֹצְאִין וּמוֹדִיעִין לָרַבִּים. וּשְׁלוּחִים אֵלּוּ אֵינָן מְחַלְּלִין אֶת יוֹם טוֹב וְלֹא אֶת יוֹם הַכִּפּוּרִים וְאֵין צָרִיךְ לוֹמַר שַׁבָּת שֶׁאֵין מְחַלְּלִין אֶת הַשַּׁבָּת לְקַיְּמוֹ אֶלָּא לְקַדְּשׁוֹ בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בראשונה כשהיו בית דין וכו׳.</strong> בפרק אם אינם מכירין משנה (דף כ&quot;ב:):</p>
               </div>
             </div>
@@ -731,13 +910,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-8-2" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-8-2" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-8-2" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:8:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:8:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-8-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-8">Mishneh Torah, Sanctification of the New Month 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּרִאשׁוֹנָה כְּשֶׁהָיוּ בֵּית דִּין מְקַדְּשִׁין אֶת הַחֹדֶשׁ הָיוּ מַשִּׂיאִין מַשּׂוּאוֹת בְּרָאשֵׁי הֶהָרִים כְּדֵי שֶׁיֵּדְעוּ הָרְחוֹקִים. מִשֶּׁקִּלְקְלוּ הַכּוּתִים שֶׁהָיוּ מַשִּׂיאִין מַשּׂוּאוֹת כְּדֵי לְהַטְעוֹת אֶת הָעָם הִתְקִינוּ שֶׁיְּהוּ שְׁלוּחִים יוֹצְאִין וּמוֹדִיעִין לָרַבִּים. וּשְׁלוּחִים אֵלּוּ אֵינָן מְחַלְּלִין אֶת יוֹם טוֹב וְלֹא אֶת יוֹם הַכִּפּוּרִים וְאֵין צָרִיךְ לוֹמַר שַׁבָּת שֶׁאֵין מְחַלְּלִין אֶת הַשַּׁבָּת לְקַיְּמוֹ אֶלָּא לְקַדְּשׁוֹ בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושלוחים אלו אין מחללין וכו׳.</strong> ברייתא בפ&quot;ק (דף כ&quot;א:) יכול כשם שמחללין עד שיתקדשו כך מחללין עד שיתקיימו תלמוד לומר אשר תקראו אותם וכו׳:</p>
               </div>
             </div>
@@ -747,13 +931,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:9:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-9">Mishneh Torah, Sanctification of the New Month 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַל שִׁשָּׁה חֳדָשִׁים הָיוּ שְׁלוּחִים יוֹצְאִין. עַל נִיסָן מִפְּנֵי הַפֶּסַח. וְעַל אָב מִפְּנֵי הַתַּעֲנִית. וְעַל אֱלוּל מִפְּנֵי רֹאשׁ הַשָּׁנָה. כְּדֵי שֶׁיֵּשְׁבוּ מְצַפִּין בְּיוֹם שְׁלֹשִׁים לֶאֱלוּל אִם נוֹדַע לָהֶם שֶׁקִּדְּשׁוּ בֵּית דִּין יוֹם שְׁלֹשִׁים נוֹהֲגִים אוֹתוֹ הַיּוֹם קֹדֶשׁ בִּלְבַד. וְאִם לֹא נוֹדַע לָהֶם נוֹהֲגִים יוֹם שְׁלֹשִׁים קֹדֶשׁ וְיוֹם אֶחָד וּשְׁלֹשִׁים קֹדֶשׁ עַד שֶׁיָּבוֹאוּ לָהֶם שְׁלוּחֵי תִּשְׁרֵי. וְעַל תִּשְׁרֵי מִפְּנֵי תַּקָּנַת הַמּוֹעֲדוֹת. וְעַל כִּסְלֵו מִפְּנֵי חֲנֻכָּה. וְעַל אֲדָר מִפְּנֵי הַפּוּרִים. וּבִזְמַן שֶׁבֵּית הַמִּקְדָּשׁ קַיָּם יוֹצְאִין אַף עַל אִיָּר מִפְּנֵי פֶּסַח קָטָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>על ששה חדשים היו שלוחין יוצאין וכו׳.</strong> משנה בפ&quot;ק (דף י&quot;ח:):</p>
               </div>
             </div>
@@ -763,13 +952,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-2" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-2" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-2" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:9:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:9:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:9:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-9">Mishneh Torah, Sanctification of the New Month 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַל שִׁשָּׁה חֳדָשִׁים הָיוּ שְׁלוּחִים יוֹצְאִין. עַל נִיסָן מִפְּנֵי הַפֶּסַח. וְעַל אָב מִפְּנֵי הַתַּעֲנִית. וְעַל אֱלוּל מִפְּנֵי רֹאשׁ הַשָּׁנָה. כְּדֵי שֶׁיֵּשְׁבוּ מְצַפִּין בְּיוֹם שְׁלֹשִׁים לֶאֱלוּל אִם נוֹדַע לָהֶם שֶׁקִּדְּשׁוּ בֵּית דִּין יוֹם שְׁלֹשִׁים נוֹהֲגִים אוֹתוֹ הַיּוֹם קֹדֶשׁ בִּלְבַד. וְאִם לֹא נוֹדַע לָהֶם נוֹהֲגִים יוֹם שְׁלֹשִׁים קֹדֶשׁ וְיוֹם אֶחָד וּשְׁלֹשִׁים קֹדֶשׁ עַד שֶׁיָּבוֹאוּ לָהֶם שְׁלוּחֵי תִּשְׁרֵי. וְעַל תִּשְׁרֵי מִפְּנֵי תַּקָּנַת הַמּוֹעֲדוֹת. וְעַל כִּסְלֵו מִפְּנֵי חֲנֻכָּה. וְעַל אֲדָר מִפְּנֵי הַפּוּרִים. וּבִזְמַן שֶׁבֵּית הַמִּקְדָּשׁ קַיָּם יוֹצְאִין אַף עַל אִיָּר מִפְּנֵי פֶּסַח קָטָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועל אלול מפני ר&quot;ה.</strong> פירש&quot;י ז&quot;ל מודיעים מתי התחיל אלול ועושים ר&quot;ה ביום שלשים לאלול בגולה דרוב שנים אין אלול מעובר ואע&quot;פ שספק הוא בידם שמא יעברוהו ב&quot;ד א&quot;א להם לדעת ע&quot;כ הולכים אחר רוב השנים ואם לא ידעו מתי התחיל אלול לא ידעו יום שלשים שלו ע&quot;כ, משמע מדברי רש&quot;י ז&quot;ל דס&quot;ל דבני גולה כיון דידעו יום ר&quot;ח אלול לא היו עושים ר&quot;ה אלא יום אחד והיו סומכים על שלעולם אין אלול מעובר. אבל רבינו ז&quot;ל לא ס&quot;ל הכי דלעולם היו עושים ר&quot;ה [שני ימים] וכן כתב בפ&quot;ה לקמן יו&quot;ט של ר&quot;ה בזמן שהיו קובעים ע&quot;פ הראיה היו רוב בני ארץ ישראל עושים אותו שני ימים מספק לפי שלא היו יודעים יום שקבעו ב&quot;ד את החדש שאין השלוחים יוצאים ביו&quot;ט ע&quot;כ. וכ&quot;ת א&quot;כ כיון דלדעת רבינו ז&quot;ל לעולם היו עושים שני ימים אם כן מה לנו לידיעת ר&quot;ח. וי&quot;ל דיש ספק באב ואלול אם שניהם מעוברין או שניהם חסרים או אחד מלא ואחד חסר ואם שניהם מעוברים יום ס&quot;א הוי ר&quot;ח תשרי ואם שניהם חסרים יום חמשים ותשע הוי ר&quot;ח תשרי ואם אחד חסר ואחד מלא הוי יום ששים ר&quot;ח תשרי וכשיודע לנו יום ר&quot;ח אלול יצאנו מזה הספק דחדש אב ונשאר לנו ספק אם אלול מעובר או לא ועבדינן יום שלשים ויום שלשים ואחד ר&quot;ח ויצאנו מידי ספק אבל אם לא היינו יודעים ר&quot;ח אלול היינו עושין ר&quot;ח תשרי שלשה ימים יום נ&quot;ט ויום ס׳ ויום ס&quot;א לצאת מידי כל ספק כאשר כתבתי להכי מועיל לנו ידיעת ר&quot;ח אלול. זה נראה טעם לרבינו ז&quot;ל. אבל קשה מ&quot;ש כדי שישבו מצפים ביום ל׳ כלומר אם יודע להם שקדשו את החדש ואיך אפשר למקומות הרחוקים לידע זה כיון דאין השלוחים יוצאים בו ביום שהוא יו&quot;ט. ואולי י&quot;ל דמ&quot;ש אם נודע להם היינו לעיירות שהם בתוך תחום שבת שיוכלו השלוחים לילך שם ולזה אמר כיון שידעו ר&quot;ח אלול יצפו ביום שלשים העיירות שאפשר להם לבא השמועה ביו&quot;ט שהם בתוך התחום יעשו ל׳ והשאר יעשו יום שלשים ויום ל&quot;א אבל אם לא היו יודעים ר&quot;ח אלול היו צריכים לעשות שלשה ימים כאשר כתבתי מפני הספק:</p>
               </div>
             </div>
@@ -779,13 +973,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-3" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-3" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-3" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:9:3">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:9:3</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-9-3" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:9:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-9">Mishneh Torah, Sanctification of the New Month 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַל שִׁשָּׁה חֳדָשִׁים הָיוּ שְׁלוּחִים יוֹצְאִין. עַל נִיסָן מִפְּנֵי הַפֶּסַח. וְעַל אָב מִפְּנֵי הַתַּעֲנִית. וְעַל אֱלוּל מִפְּנֵי רֹאשׁ הַשָּׁנָה. כְּדֵי שֶׁיֵּשְׁבוּ מְצַפִּין בְּיוֹם שְׁלֹשִׁים לֶאֱלוּל אִם נוֹדַע לָהֶם שֶׁקִּדְּשׁוּ בֵּית דִּין יוֹם שְׁלֹשִׁים נוֹהֲגִים אוֹתוֹ הַיּוֹם קֹדֶשׁ בִּלְבַד. וְאִם לֹא נוֹדַע לָהֶם נוֹהֲגִים יוֹם שְׁלֹשִׁים קֹדֶשׁ וְיוֹם אֶחָד וּשְׁלֹשִׁים קֹדֶשׁ עַד שֶׁיָּבוֹאוּ לָהֶם שְׁלוּחֵי תִּשְׁרֵי. וְעַל תִּשְׁרֵי מִפְּנֵי תַּקָּנַת הַמּוֹעֲדוֹת. וְעַל כִּסְלֵו מִפְּנֵי חֲנֻכָּה. וְעַל אֲדָר מִפְּנֵי הַפּוּרִים. וּבִזְמַן שֶׁבֵּית הַמִּקְדָּשׁ קַיָּם יוֹצְאִין אַף עַל אִיָּר מִפְּנֵי פֶּסַח קָטָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועל אדר מפני הפורים.</strong> תימה דבגמרא (דף י&quot;ט:) אמרו ואילו נתעברה השנה יוצאים אף על אדר שני מפני הפורים לא קתני מתני׳ דלא כר׳ דתניא רבי אומר אם נתעברה השנה יוצאין אף על אדר השני מפני הפורים ואמרו שם בגמ׳ דפליגי דרבי סבר כר׳ שמעון דעיבור שנה רצו חדש רצו ל׳ יום ורבנן סברי ל׳ יום דוקא. ורבינו ז&quot;ל פסק בסוף פ&quot;ד דרצו חדש רצו ל׳ יום והוי כר&quot;ש א&quot;כ היל&quot;ל כאן דיוצאין על אדר השני מפני הפורים וצ&quot;ע:</p>
               </div>
             </div>
@@ -795,13 +994,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-10-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-10-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:10:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-10-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-10">Mishneh Torah, Sanctification of the New Month 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלוּחֵי נִיסָן וּשְׁלוּחֵי תִּשְׁרֵי אֵין יוֹצְאִין אֶלָּא בְּיוֹם רֹאשׁ חֹדֶשׁ אַחַר שֶׁתַּעֲלֶה הַשֶּׁמֶשׁ עַד שֶׁיִּשְׁמְעוּ מִפִּי בֵּית דִּין מְקֻדָּשׁ. וְאִם קִדְּשׁוּ בֵּית דִּין בְּסוֹף יוֹם תִּשְׁעָה וְעֶשְׂרִים כְּמוֹ שֶׁאָמַרְנוּ וְשָׁמְעוּ מִפִּי בֵּית דִּין מְקֻדָּשׁ יוֹצְאִין מִבָּעֶרֶב. וּשְׁלוּחֵי שְׁאָר הַשִּׁשָּׁה חֳדָשִׁים יֵשׁ לָהֶם לָצֵאת מִבָּעֶרֶב אַחַר שֶׁנִּרְאָה הַיָּרֵחַ אַף עַל פִּי שֶׁעֲדַיִן לֹא קִדְּשׁוּ בֵּית דִּין אֶת הַחֹדֶשׁ הוֹאִיל וְנִרְאֶה הַחֹדֶשׁ יָצְאוּ שֶׁהֲרֵי לְמָחָר בְּוַדַּאי מְקַדְּשִׁין אוֹתוֹ בֵּית דִּין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלוחי ניסן ושלוחי תשרי וכו׳.</strong> בפרק קמא (דף כ&quot;א:) אמרו על כולן יוצאין מבערב על ניסן ועל תשרי עד שישמעו מפי ב&quot;ד מקודש. ומ&quot;ש שיוצאין בר&quot;ח לא נקט הכי בדוקא אלא משום ניסן אבל בתשרי ודאי שאין יכולין לצאת דהוי יו&quot;ט וכבר עמד על זה המפרש ז&quot;ל:</p>
               </div>
             </div>
@@ -811,13 +1015,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-12-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-12-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:12:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-12-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-12">Mishneh Torah, Sanctification of the New Month 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ מְקוֹמוֹת שֶׁהָיוּ מַגִּיעִין אֲלֵיהֶם שְׁלוּחֵי נִיסָן וְלֹא הָיוּ מַגִּיעִין לָהֶן שְׁלוּחֵי תִּשְׁרֵי. וּמִן הַדִּין הָיָה שֶׁיַּעֲשׂוּ פֶּסַח יוֹם אֶחָד שֶׁהֲרֵי הִגִּיעוּ לָהֶן שְׁלוּחִין וְיָדְעוּ בְּאֵי זֶה יוֹם נִקְבַּע רֹאשׁ חֹדֶשׁ. וְיַעֲשׂוּ יוֹם טוֹב שֶׁל חַג הַסֻּכּוֹת שְׁנֵי יָמִים שֶׁהֲרֵי לֹא הִגִּיעוּ אֲלֵיהֶן הַשְּׁלוּחִין. וּכְדֵי שֶׁלֹּא לַחֲלֹק בַּמּוֹעֲדוֹת הִתְקִינוּ חֲכָמִים שֶׁכָּל מָקוֹם שֶׁאֵין שְׁלוּחֵי תִּשְׁרֵי מַגִּיעִין שָׁם עוֹשִׂין שְׁנֵי יָמִים אֲפִלּוּ יוֹם טוֹב שֶׁל עֲצֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש מקומות שהיו מגיעין וכו׳.</strong> בפרק קמא (דף כ&quot;א) מכריז רבי יוחנן כל היכא דמטו שלוחי ניסן ולא מטו שלוחי תשרי ליעבדו תרי יומי גזרה ניסן אטו תשרי:</p>
               </div>
             </div>
@@ -827,13 +1036,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-14-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-14-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-14-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:14:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:14:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-14-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-14">Mishneh Torah, Sanctification of the New Month 3:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַשְּׁלוּחִין צְרִיכִין לִהְיוֹתָן שְׁנַיִם אֶלָּא אֲפִלּוּ אֶחָד נֶאֱמָן. וְלֹא שָׁלִיחַ בִּלְבַד אֶלָּא אֲפִלּוּ תַּגָּר מִשְּׁאָר הָעָם שֶׁבָּא כְּדַרְכּוֹ וְאָמַר אֲנִי שָׁמַעְתִּי מִפִּי בֵּית דִּין שֶׁקִּדְּשׁוּ אֶת הַחֹדֶשׁ בְּיוֹם פְּלוֹנִי נֶאֱמָן וּמְתַקְּנִין אֶת הַמּוֹעֲדוֹת עַל פִּיו. שֶׁדָּבָר זֶה דָּבָר הֶעָשׂוּי לְהִגָּלוֹת הוּא וְעֵד אֶחָד כָּשֵׁר נֶאֱמָן עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין השלוחין צריכים להיות שנים אלא אפילו אחד וכו׳.</strong> ריש פרק אם אינן מכירין (ראש השנה דף כ&quot;ב:) תניא וכו׳ בא אחד מסוף העולם ואמר קדשו ב״ד את החדש נאמן ואמרו שם טעמא משום דמילתא דעבידא לאיגלויי לא משקרי ביה אינשי:</p>
               </div>
             </div>
@@ -843,13 +1057,18 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-15-1" data-unit data-lexical-unit>
+          <section class="unit" id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-15-1" data-unit data-lexical-unit data-unit-id="lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-15-1" data-source-ref="Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:15:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:15:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-3-15-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Sanctification of the New Month 3:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sanctification-of-the-new-month/#mishneh-torah-sanctification-of-the-new-month-3-15">Mishneh Torah, Sanctification of the New Month 3:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין שֶׁיָּשְׁבוּ כָּל יוֹם שְׁלֹשִׁים וְלֹא בָּאוּ עֵדִים וְהִשְׁכִּימוּ בַּנֶּשֶׁף וְעִבְּרוּ אֶת הַחֹדֶשׁ כְּמוֹ שֶׁבֵּאַרְנוּ בְּפֶרֶק זֶה. וְאַחַר אַרְבָּעָה אוֹ חֲמִשָּׁה יָמִים בָּאוּ עֵדִים רְחוֹקִים וְהֵעִידוּ שֶׁרָאוּ אֶת הַחֹדֶשׁ בִּזְמַנּוֹ שֶׁהוּא לֵיל שְׁלֹשִׁים. וַאֲפִלּוּ בָּאוּ בְּסוֹף הַחֹדֶשׁ. מְאַיְּמִין עֲלֵיהֶן אִיּוּם גָּדוֹל וּמַטְרִיפִים אוֹתָם בִּשְׁאֵלוֹת וּמַטְרִיחִין עֲלֵיהֶן בִּבְדִיקוֹת וּמְדַקְדְּקִין בְּעֵדוּת וּמִשְׁתַּדְּלִין בֵּית דִּין שֶׁלֹּא יְקַדְּשׁוּ חֹדֶשׁ זֶה הוֹאִיל וְיָצָא שְׁמוֹ מְעֻבָּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בית דין שישבו כל יום ל׳ ולא באו עדים וכו׳.</strong> בפ&quot;ק (דף כ׳) הקשו בגמ׳ על הא דאמרינן התם דמעברינן לאלול משום מתיא וירקיא איני והתני רבה בר שמואל יכול כשם שמעברין את השנה לצורך כך מעברין את החדש לצורך ת&quot;ל החדש הזה לכם ראש חדשים כזה ראה וקדש. אמר רב ל&quot;ק כאן לעברו כאן לקדשו וה&quot;ק יכול כשם שמעברין את השנה ואת החדש לצורך כך מקדשין את החדש לצורך ת&quot;ל החדש הזה וכו׳ וכי הא דאמר ריב&quot;ל מאיימין על העדים על החדש וכו׳ ואין מאיימין וכו׳ על שלא נראה בזמנו לקדשו איני והא שלח ליה ר׳ יהודה נשיאה לר׳ אמי הוו יודעין שכל ימיו של ר׳ יוחנן היה מלמדנו מאיימין על העדים על החדש שלא נראה בזמנו לקדשו אע&quot;פ שלא ראוהו יאמרו ראינו אמר אביי ל&quot;ק הא בניסן ותשרי [הא בשאר ירחי] רבה אמר הא דתני רבה בר שמואל אחרים היא דתניא אחרים אומרים אין בין עצרת לעצרת ואין בין ר&quot;ה לר&quot;ה אלא ד׳ ימים בלבד וכו׳ רב דימי מנהרדעא מתני איפכא מאיימין על העדים על החדש שלא נראה בזמנו לקדשו ואין מאיימין על העדים על החדש שנראה בזמנו לעברו מ&quot;ט האי מחזי כשיקרא האי לא מחזי כשיקרא ע&quot;כ זו היא סוגיית הגמרא. ופירש&quot;י ז&quot;ל מאיימין על העדים על החדש שנראה בזמנו ביום ל׳ שיחרישו בשביל לעברו. ואין מאיימין ביום ל׳ על העדים שלא ראוהו ואנן צריכין לקדשו היום כדי להפריד שבת מיה&quot;כ שיאמרו ראינו ויעידו שקר. היה מלמדנו מאיימין וכו׳ אם אנו צריכין לעשותו חסר. בניסן ותשרי שהמועדים תלויין בהם מקדשין לצורך וכו׳. ובאמת אין שיטת רבינו ז&quot;ל דומה לשיטת רש&quot;י ז&quot;ל דלפי פירושו של רש&quot;י ז&quot;ל מ&quot;ד מאיימין על העדים לעברו הוא לומר שלא ראו אע&quot;פ שראו. ורבינו ז&quot;ל לא ס&quot;ל הכי דודאי אית ליה דאם ראו את החדש בזמנו ודאי שלא יעברוהו בין לצורך בין שלא לצורך ולא נאמר עיבור לצורך אלא היכא דנתעבר מתחילה בטעות דאז אם הוצרכו לעבר כיון דכבר נתעבר בטעות מוקמינן ליה אחזקתיה. א&quot;נ כדכתב בפרק י&quot;ח וז&quot;ל וכן זה שאמרו חכמים מעברין את החדש לצורך הוא בחדשים אלו שמעברים אותן לפי חשבון ועושים אחד מלא ואחד חסר ויש להם לעבר חדש אחר חדש או לחסר בזה הוא שמעברין לצורך מפני שלא נראה הירח בזמנו אבל כשנראה הירח בזמנו שהוא תחילת היותו אחר שנתקבץ עם השמש מקדשין לעולם ע&quot;כ. ולכך פירש הלכה בדרך אחרת דאיירי הכא דכבר עיברו ב&quot;ד את החדש ועתה באו עדים לומר שראוהו בזמנו ולסתור העבור. וכן בענין הקידוש הוא בהפך שבאו עדים מתחילה שראוהו בזמנו וקדשוהו ואח&quot;כ בא סתירה לעדים או הזמה או הכחשה או דבר מבטל עדותן ובהא שקלא וטריא בגמרא, לדעת רבינו ז&quot;ל דר׳ יהושע אמר מאיימין על העדים היכא שכבר עיברו את החדש ובאו עדים על החדש שראוהו בזמנו מאיימין עליהם לסתור דבריהם שלא יעמדו בדבריהם לעברו כלומר כדי שהעיבור שעשה יהיה מקויים וכשהוא בהפך שעשו קידוש ובאו עדים לומר שלא נראה בזמנו כלומר שהעדות הראשון של קידוש שנראה בזמנו הוא שקר והם באים לסותרו בהכחשה או בהזמה אין מאיימין עליהם כדי שהקידוש שעשו יהא קיים. וצריך לתת טעם לר׳ יהושע לפי פירוש זה. ונ&quot;ל טעמו דבעיבור החדש כיון דעשו סעודה בעיבור כדכתב רבינו ז&quot;ל לעיל איפרסמא מילתא טפי ואיכא טפי זילותא דבי דינא לסתור מה שעשו. וז&quot;ש רבינו ז&quot;ל שכבר יצא שמו שהוא מעובר כלומר אפרסמא מילתא טפי משא&quot;כ בקידוש דלא איפרסמא כ&quot;כ ולזה מאיימין בעיבור ולא בקידוש. אבל אם עמדו בדבריהם ודאי דסותרין אפילו העיבור. וזה הדין שהזכיר רבינו ז&quot;ל בתחלת דבריו ב&quot;ד שישבו וכו׳ עוד אמרו הואיל ונראה הירח בלילו. ומשום דהקשה בגמרא על הא דריב&quot;ל מהא דר׳ יוחנן דאמר מאיימין על העדים על החדש שלא נראה בזמנו אוקמוה בגמרא דהא דריב&quot;ל איירי בשאר חדשים אבל בניסן ותשרי מאיימין על הקידוש. ומשמע ליה לרבינו ז&quot;ל דלא זו בלבד חלוק ניסן ותשרי משאר חדשים בענין הקידוש אלא בענין העיבור נמי הוא חלוק דבניסן אין מאיימין על העיבור וטעמא דכיון דר׳ יוחנן דאיירי בניסן ותשרי כדאוקימו בגמרא קאמר שהיה מלמדם לאיים על הקידוש ולא הזכיר ג&quot;כ איום על העיבור משמע דלית ליה בניסן ותשרי איום על העיבור וטעמא כיון דבניסן ותשרי איכא תקנת מועדות דקודם חצי החדש איירי כדכתב רבינו ז&quot;ל לא משגחינן בזילותא דבי דינא אלא לעולם אנו מקיימין הקידוש מפני שהוא עדות שראה הירח בזמנו ועיבור הוא דנראה שלא בזמנו וטפי עדיף לאוקמי דנראה בזמנו כי אורחיה מלומר דלא נראה בזמנו אלא שלא בזמנו דלאו אורחיה וצריך לקדש החדש ולתקן המועדות. זו היא סברת אחד מהחכמים דסובר דמעברין את החדש לצורך כלומר היכא שעיברה מתחלה ואח&quot;כ סתרו העיבור אם יש טעם לעברו מוקמינן ליה אחזקתיה וז&quot;ש בגמרא לדעת רבינו ז&quot;ל. וכי הא דאמר ריב&quot;ל, דאילו הא דאמרינן דמעברין לצורך היינו כריב&quot;ל שעברוהו מתחלה ב&quot;ד בטעות אז כשהוצרכו ב&quot;ד מוקמינן ליה אחזקתיה אבל לא שיעברוהו מתחלה שלא לצורך. וא&quot;כ נמצא לפי זה דבניסן ותשרי קודם חצי החדש מאיימין על הקידוש ולא על העיבור לזה אמר רבינו ז&quot;ל דאפילו מי שסובר דמעברין את החדש לצורך בניסן ותשרי מודה כדתריץ בגמרא דמוקי מילתא דמאיימין על הקידוש ולא על העיבור בניסן ותשרי. וטעם החכמים החולקים שכתב רבינו ז&quot;ל דאית להו דבכל גוונא אין מעברין לצורך הוא משום דס&quot;ל כתירוצא בתרא דתריץ רבא דרבה בר שמואל ס&quot;ל דבכל גוונא אין מעברין את החדש לצורך ואתי כסברת אחרים והם פסקו כאחרים משום ברייתא דרבה בר שמואל אבל החכמים האחרים חולקין ופוסקין כתירוצא דאביי ומודו בניסן ותשרי כדכתב רבינו ז&quot;ל. ועם מ&quot;ש אע&quot;פ שהענין קצת דחוק נתיישבו כל דברי רבינו ז&quot;ל ודינין שהם יוצאים מן הגמרא שלפי שיטת רש&quot;י ז&quot;ל אין להם מקום. גם מ&quot;ש שאין מאיימין על העיבור גבי ניסן ותשרי ולעיל כתב שמאיימין על העיבור ובגמ׳ משמע דאין הפרש בין ניסן ותשרי לשאר חדשים אלא לענין הקידוש. וכבר כתבתי טעמו. הגם כי בעיני הוא דחוק. והתימה על המפרש שכתב שדברים אלו לא רצה לבארם מפני שהם מבוארים ואיך לא שת לבו לסוגית הגמרא כי לכאורה אין מקום לפי דברי רבינו ז&quot;ל ומה שנראה לעניות דעתי כתבתי: <strong>סליקו להו הלכות קידוש החדש בס&quot;ד</strong></p>
               </div>
             </div>
@@ -860,721 +1079,55 @@
             </nav>
           </section>
         <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
-      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button></div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
-  <script>
-    (async () => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const configNode = document.querySelector("[data-lexical-config]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const chunkPromises = new Map();
-      const sourceRows = new Map();
-      let manifestPromise = null;
-      const hud = document.querySelector("[data-lexical-hud]");
-      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
-      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
-      const localSourceUrlMap = {
-        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
-        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
-        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
-        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
-        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
-        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
-      };
-      const resolveSourceUrl = (url) => {
-        const raw = String(url || "").trim();
-        if (!raw) return "";
-        if (/^(https?:|mailto:)/i.test(raw)) return raw;
-        const mapped = localSourceUrlMap[raw];
-        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
-        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
-        return "";
-      };
-      const fetchJson = async (url, base = document.baseURI) => {
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const loadOccurrences = async () => {
-        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
-        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
-        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
-        return occurrences;
-      };
-      const loadManifest = async () => {
-        if (!lexicalConfig.manifest_url) return null;
-        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
-        return manifestPromise;
-      };
-      const resolveSourceRows = (ids, inlineRows) => {
-        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
-        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
-      };
-      const cacheChunk = (chunk) => {
-        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
-        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
-        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
-          lexiconEntries.set(entry.entry_id, {
-            ...entry,
-            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
-            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
-          });
-        });
-        return chunk;
-      };
-      const loadChunk = async (chunkId) => {
-        if (!chunkId) return null;
-        if (!chunkPromises.has(chunkId)) {
-          chunkPromises.set(chunkId, (async () => {
-            const manifest = await loadManifest();
-            if (!manifest) return null;
-            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
-            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
-            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
-            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
-          })());
-        }
-        return chunkPromises.get(chunkId);
-      };
-      const loadTokenRow = async (tokenIndexId) => {
-        if (!tokenIndexId) return {};
-        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
-        const manifest = await loadManifest();
-        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
-        if (chunkId) await loadChunk(chunkId);
-        return tokenRows.get(tokenIndexId) || {};
-      };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalEntry = "";
-        span.dataset.lexicalStatus = "pending";
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        return span;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      const loadedOccurrences = await loadOccurrences();
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
-        });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
-      let activeHudButton = null;
-      if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const positionHudNearButton = (button) => {
-        if (!button || hud.hidden) return;
-        const rect = button.getBoundingClientRect();
-        const margin = 12;
-        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
-        hud.style.width = width + "px";
-        const preferredLeft = rect.right - width;
-        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
-        const below = window.innerHeight - rect.bottom - margin;
-        const above = rect.top - margin;
-        const openAbove = below < 280 && above > below;
-        const available = Math.max(220, (openAbove ? above : below) - margin);
-        hud.style.maxHeight = Math.min(560, available) + "px";
-        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
-        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
-        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
-        hud.style.left = left + "px";
-        hud.style.top = top + "px";
-      };
-      const scheduleHudPosition = () => {
-        if (!activeHudButton || hud.hidden) return;
-        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
-      };
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const setRowHidden = (root, selector, hidden) => {
-        const row = root.querySelector(selector);
-        if (row) row.hidden = Boolean(hidden);
-      };
-      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
-      const cleanStrictRenderings = (values) => {
-        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
-        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
-        return [...new Set(raw.filter((value) => {
-          if (value.length > 64) return false;
-          if (/[()]/.test(value)) return false;
-          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
-          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
-          return true;
-        }))];
-      };
-      const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
-      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
-      const isAramaicView = (view) => {
-        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
-        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
-        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
-      };
-      const strictEntriesForView = (view) => {
-        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
-        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
-        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
-          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
-          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
-        });
-      };
-      const getStrictBuckets = (view) => {
-        const topLevel = getStrictRenderings(view);
-        const strictEntries = strictEntriesForView(view);
-        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
-        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
-      };
-      const strictEntryKeys = (view) => {
-        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
-      };
-      const appendRenderings = (node, values) => {
-        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
-        if (!filtered.length) { node.append("N/A"); return; }
-        if (filtered.length === 1) { node.append(filtered[0]); return; }
-        const ul = document.createElement("ul");
-        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderBreakdown = (root, view) => {
-        const node = root.querySelector("[data-hud-breakdown]");
-        if (!node) return;
-        node.replaceChildren();
-        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
-        if (!rows.length) { node.textContent = ""; return; }
-        const list = document.createElement("div");
-        list.className = "breakdown-list";
-        rows.forEach((row) => {
-          const section = document.createElement("section");
-          section.className = "breakdown-row";
-          const head = document.createElement("p");
-          const hebrew = document.createElement("strong");
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
-          head.appendChild(hebrew);
-          section.appendChild(head);
-          const renderings = document.createElement("div");
-          appendRenderings(renderings, row.strict_renderings || []);
-          section.appendChild(renderings);
-          list.appendChild(section);
-        });
-        node.appendChild(list);
-      };
-      const isRelatedEntry = (entry) => {
-        const relation = String(entry.relation_label || "").toLowerCase();
-        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
-      };
-      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
-      const isNoisyAlternateEntry = (entry) => {
-        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
-        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
-      };
-      const renderEntryList = (entries, roleLabel) => {
-        const list = document.createElement("div");
-        list.className = "lexical-entry-list";
-        const groupedEntries = new Map();
-        entries.forEach((entry) => {
-          const spelling = entry.lemma || entry.match_key || "N/A";
-          const key = `${entry.context_role || "entry"}|${spelling}`;
-          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
-          const group = groupedEntries.get(key);
-          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
-        });
-        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
-        sorted.forEach((entry) => {
-          const card = document.createElement("section");
-          card.className = "lexical-entry";
-          const title = document.createElement("h3");
-          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
-          title.append(role, ": ");
-          const spelling = document.createElement("span");
-          spelling.className = "entry-hebrew";
-          spelling.lang = "he";
-          spelling.dir = "rtl";
-          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
-          title.appendChild(spelling);
-          const meta = document.createElement("p");
-          meta.className = "entry-meta";
-          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
-          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
-          const renderings = document.createElement("div");
-          const renderLabel = document.createElement("p");
-          renderLabel.className = "entry-label";
-          renderLabel.textContent = "Strict renderings";
-          renderings.appendChild(renderLabel);
-          appendRenderings(renderings, entry.strict_renderings || []);
-          card.append(title, meta, renderings);
-          list.appendChild(card);
-        });
-        return list;
-      };
-      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const sourceRowsByKey = (view) => {
-        const map = new Map();
-        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
-        return map;
-      };
-      const sourceRowsForEntry = (view, entry) => {
-        const map = sourceRowsByKey(view);
-        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
-        return row ? [row] : [];
-      };
-      const cleanTransliteration = (value) => {
-        const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
-      };
-      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
-      const sourceQualityScore = (rows) => {
-        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
-        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
-        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
-        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
-        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
-        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
-        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
-        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
-        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
-        return { delta: -10, reason: "missing source row" };
-      };
-      const parserScore = (view) => {
-        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
-        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
-        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
-        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
-        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
-        return { delta: 0, reason: "" };
-      };
-      const applyDisplayBoost = (status, rawScore, view) => {
-        return { score: rawScore, reasons: [] };
-      };
-      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
-        const reasons = [];
-        let score = 0;
-        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
-        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
-        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
-        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
-        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else { score = 84; reasons.push("strict Hebrew row"); }
-        const rendered = cleanStrictRenderings(renderings || []);
-        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
-        const sourceQuality = sourceQualityScore(rows);
-        score += sourceQuality.delta;
-        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
-        const view = evidence.view || {};
-        const entry = evidence.entry || {};
-        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
-        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
-        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
-        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
-        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
-        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
-        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
-        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
-        const parser = parserScore(view);
-        score += evidence.surfaceClaim ? parser.delta : 0;
-        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
-        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
-        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
-        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
-        const display = applyDisplayBoost(status, rawScore, view);
-        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
-      };
-      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
-      const uniqueClaims = (claims) => {
-        const seen = new Set();
-        return cleanValues(claims).filter((claim) => {
-          const key = claimRowKey(claim);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
-        const sourceRows = cleanValues(rows);
-        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
-        const cleanRenderings = cleanStrictRenderings(renderings || []);
-        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
-        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
-      };
-      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
-      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
-      const displayLicense = (row) => {
-        const license = String(row && row.license || "").trim();
-        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
-        return license || "N/A";
-      };
-      const sourceSummary = (rows) => {
-        const cleanRows = cleanValues(rows);
-        if (!cleanRows.length) return null;
-        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
-        const licenses = uniqueValues(cleanRows.map(displayLicense));
-        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
-        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
-      };
-      const DISPLAY_THRESHOLD = 50;
-      const MAX_VISIBLE_CLAIMS = 5;
-      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
-      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
-      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
-      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
-      const appendClaimCard = (list, claim) => {
-        const card = document.createElement("section");
-        card.className = "claim-row";
-        const head = document.createElement("div");
-        head.className = "claim-row-head";
-        const badge = document.createElement("span");
-        badge.className = "claim-status";
-        const confidence = claimConfidence(claim);
-        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
-        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
-        const hebrew = document.createElement("strong");
-        hebrew.className = "claim-hebrew";
-        hebrew.lang = "he";
-        hebrew.dir = "rtl";
-        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(badge, hebrew);
-        card.appendChild(head);
-        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
-        const renderings = document.createElement("p");
-        renderings.className = "claim-renderings";
-        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
-        card.appendChild(renderings);
-        const source = sourceSummary(claim.rows);
-        if (source) {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = `Source: ${source.source}`;
-          const licenseLine = document.createElement("p");
-          licenseLine.className = "claim-license";
-          licenseLine.textContent = `License: ${source.license}`;
-          card.append(sourceLine, licenseLine);
-        } else if (claim.status === "Caution") {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = "Source: metadata incomplete";
-          card.appendChild(sourceLine);
-        }
-        list.appendChild(card);
-      };
-      const appendClaimsUnderDetails = (parent, label, claims) => {
-        if (!claims.length) return;
-        const details = document.createElement("details");
-        details.className = "other-entries";
-        const summary = document.createElement("summary");
-        summary.textContent = label;
-        const box = document.createElement("div");
-        box.className = "claim-row-list";
-        claims.forEach((claim) => appendClaimCard(box, claim));
-        details.append(summary, box);
-        parent.appendChild(details);
-      };
-      const appendClaimRows = (node, claims) => {
-        if (!node) return;
-        node.replaceChildren();
-        const rows = sortClaimsForDisplay(claims);
-        if (!rows.length) { node.textContent = "N/A"; return; }
-        const list = document.createElement("div");
-        list.className = "claim-row-list";
-        const displayRows = rows.filter(isDisplayableClaim);
-        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
-        const visibleRows = displayRows.length ? displayRows : lowRows;
-        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
-        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
-        if (!visibleRows.length) { node.textContent = "N/A"; return; }
-        node.appendChild(list);
-      };
-      const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [] };
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) {
-          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
-          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
-          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
-        }
-        strictEntriesForView(view).forEach((entry) => {
-          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
-          const bucket = strictBuckets[bucketName] || [];
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (!renderings.length) return;
-          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
-        });
-        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
-          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-        }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
-      };
-      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
-      const uniqueSourceGroups = (groups) => {
-        const seen = new Set();
-        return cleanValues(groups).filter((group) => {
-          if (!group.rows.length) return false;
-          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
-      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
-      };
-      const appendSecondarySources = (container, view, entries, label) => {
-        const groups = sourceGroupsForEntries(view, entries);
-        if (!groups.length) return;
-        const sourceDetails = document.createElement("details");
-        sourceDetails.className = "source-details";
-        const sourceSummary = document.createElement("summary");
-        sourceSummary.textContent = label;
-        const sourceBox = document.createElement("div");
-        sourceDetails.append(sourceSummary, sourceBox);
-        renderSourceGroups(sourceBox, groups);
-        container.appendChild(sourceDetails);
-      };
-      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
-        const potentialNode = root.querySelector("[data-hud-potential]");
-        const relatedNode = root.querySelector("[data-hud-related]");
-        const cautionNode = root.querySelector("[data-hud-caution]");
-        const result = { potential: [], related: [], caution: [] };
-        if (!potentialNode || !relatedNode || !cautionNode) return result;
-        potentialNode.replaceChildren();
-        relatedNode.replaceChildren();
-        cautionNode.replaceChildren();
-        if (!hasLexicalEntry) {
-          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
-          setRowHidden(root, "[data-hud-potential-row]", false);
-          setRowHidden(root, "[data-hud-related-row]", true);
-          setRowHidden(root, "[data-hud-caution-row]", true);
-          appendClaimRows(potentialNode, result.potential);
-          return result;
-        }
-        const entries = cleanValues(view.possible_entries);
-        const strictKeys = strictEntryKeys(view);
-        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
-        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
-        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
-        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
-        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
-        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
-        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
-        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
-        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
-        result.potential.push(...keepForDisplay(visiblePotentialClaims));
-        result.related.push(...keepForDisplay(visibleRelatedClaims));
-        result.caution.push(...keepForDisplay(cautionClaims));
-        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
-        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
-        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
-        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
-        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
-        if (result.related.length) appendClaimRows(relatedNode, result.related);
-        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
-        return result;
-      };
-      const renderSourceRow = (row) => {
-        const title = document.createElement("p");
-        const strong = document.createElement("strong");
-        const sourceHref = resolveSourceUrl(row.source_url);
-        if (sourceHref) {
-          const link = document.createElement("a");
-          link.href = sourceHref;
-          link.textContent = row.source_name || "Source";
-          strong.appendChild(link);
-        } else {
-          strong.textContent = row.source_name || "Source";
-        }
-        title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
-        return title;
-      };
-      const renderSourceGroups = (sourceBox, groups) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        const sourceGroups = cleanValues(groups);
-        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceGroups.forEach((group) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const claim = document.createElement("p");
-          claim.className = "source-claim";
-          claim.append("For ");
-          const lemma = document.createElement("span");
-          lemma.lang = "he";
-          lemma.dir = "rtl";
-          lemma.textContent = group.label || "Lexical claim";
-          claim.appendChild(lemma);
-          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
-          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
-          section.appendChild(claim);
-          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
-          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
-          sourceBox.appendChild(section);
-        });
-      };
-      const buildWordView = async (button) => {
-        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
-      };
-      const renderWord = async (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        activeHudButton = button;
-        if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        button.setAttribute("aria-pressed", "true");
-        hud.hidden = false;
-        positionHudNearButton(button);
-        setText(hud, "[data-hud-word]", button.textContent.trim());
-        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-        setRowHidden(hud, "[data-hud-caution-row]", true);
-        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        renderBreakdown(hud, {});
-        renderPotentialAndRelatedEntries(hud, {}, false, false);
-        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
-        try {
-          const view = await buildWordView(button);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          setText(hud, "[data-hud-word]", view.hebrew_word);
-          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
-          renderBreakdown(hud, view);
-          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
-          const details = hud.querySelector("details");
-          if (details) details.open = false;
-          positionHudNearButton(button);
-        } catch (error) {
-          console.error(error);
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          positionHudNearButton(button);
-        }
-      };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          activeHudButton = null;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
-      });
-      window.addEventListener("resize", scheduleHudPosition);
-      window.addEventListener("scroll", scheduleHudPosition, true);
-    })();
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month.manifest.json","occurrence_url":"../../data/lexical/occurrences/lechem-mishneh-on-mishneh-torah-sanctification-of-the-new-month.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
   </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
 </body>
 </html>
