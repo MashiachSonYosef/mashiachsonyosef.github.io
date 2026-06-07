@@ -121,6 +121,27 @@ function isUsageEvidenceCard(card) {
   return routeFields.some((value) => usageEvidenceRouteTypes.has(value)) || Boolean(card.usage_note || card.frame_label);
 }
 
+function isFormReferenceCard(card) {
+  if (!card) return false;
+  const routeFields = [card.route_type, card.answer_role, card.meaning_quality, card.match_type]
+    .map((value) => String(value || '').toLowerCase().replace(/[\s-]+/g, '_'))
+    .filter(Boolean);
+  return routeFields.includes('form') || routeFields.includes('form_reference') || routeFields.includes('inflected_form');
+}
+
+function isFormReferenceDisplay(text) {
+  const normalized = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!normalized) return false;
+  return [
+    /^form of\b/i,
+    /:\s*form of\b/i,
+    /\b(?:singular|plural|dual)(?:\s+\S+){0,6}\s+form of\b/i,
+    /\b(?:construct state|absolute state|infinitive(?: absolute| construct)?|bare infinitive|participle)\b.*\bof\b/i,
+    /^(?:first|second|third)-person\b.*\bof\b/i,
+    /\bvav-consecutive\b.*\bof\b/i,
+  ].some((pattern) => pattern.test(normalized));
+}
+
 function routeRenderings(card) {
   if (!card) return [];
   if (isUsageEvidenceCard(card)) {
@@ -133,6 +154,25 @@ function routeRenderings(card) {
   const meaningClaim = firstPresentValue([card.meaning_claim]);
   if (meaningClaim) values.push(meaningClaim);
   return values;
+}
+
+function answerTextKey(card) {
+  return routeRenderings(card)
+    .map((line) => String(line || '').replace(/\s+/g, ' ').trim().toLowerCase())
+    .filter(Boolean)
+    .join(' | ');
+}
+
+function hasCloseAmbiguousPrehudPeer(primary, cards) {
+  if (!primary) return false;
+  const topScore = routeScore(primary);
+  const topRelation = primary.lookup_relation || 'exact';
+  const close = cards.filter((card) => (
+    (card.lookup_relation || 'exact') === topRelation
+    && Math.abs(routeScore(card) - topScore) <= 6
+  ));
+  const meanings = new Set(close.map(answerTextKey).filter(Boolean));
+  return meanings.size > 1;
 }
 
 function routeScore(card) {
@@ -263,13 +303,17 @@ function bestRouteCardForToken(row, routeLookup) {
         lookup_penalty: candidate.penalty,
       };
       if (isUsageEvidenceCard(enriched)) return;
+      if (isFormReferenceCard(enriched)) return;
       if (!productionSections.has(routeSection(enriched))) return;
       if (!routeRenderings(enriched).length) return;
+      if (routeRenderings(enriched).some(isFormReferenceDisplay)) return;
       if (!publicSourceRow(enriched)) return;
       cards.push(enriched);
     });
   }
-  return cards.sort(compareRouteCards)[0] || null;
+  const selected = cards.sort(compareRouteCards)[0] || null;
+  if (hasCloseAmbiguousPrehudPeer(selected, cards)) return null;
+  return selected;
 }
 
 function hintFromCard(tokenId, row, card) {

@@ -37,7 +37,17 @@ jobs:
             /tanakh/exodus/index.html
             /tanakh/ezra/index.html
             /tanakh/genesis/index.html
+            /tanakh/hosea/index.html
+            /tanakh/i-kings/index.html
+            /tanakh/i-samuel/index.html
+            /tanakh/ii-kings/index.html
+            /tanakh/ii-samuel/index.html
+            /tanakh/isaiah/index.html
+            /tanakh/jeremiah/index.html
             /tanakh/jonah/index.html
+            /tanakh/joel/index.html
+            /tanakh/joshua/index.html
+            /tanakh/judges/index.html
             /tanakh/leviticus/index.html
             /tanakh/malachi/index.html
             /tanakh/nehemiah/index.html
@@ -59,8 +69,28 @@ jobs:
             /data/lexical/ezra-chunks
             /data/lexical/genesis.manifest.json
             /data/lexical/genesis-chunks
+            /data/lexical/hosea.manifest.json
+            /data/lexical/hosea-chunks
+            /data/lexical/i-kings.manifest.json
+            /data/lexical/i-kings-chunks
+            /data/lexical/i-samuel.manifest.json
+            /data/lexical/i-samuel-chunks
+            /data/lexical/ii-kings.manifest.json
+            /data/lexical/ii-kings-chunks
+            /data/lexical/ii-samuel.manifest.json
+            /data/lexical/ii-samuel-chunks
+            /data/lexical/isaiah.manifest.json
+            /data/lexical/isaiah-chunks
+            /data/lexical/jeremiah.manifest.json
+            /data/lexical/jeremiah-chunks
             /data/lexical/jonah.manifest.json
             /data/lexical/jonah-chunks
+            /data/lexical/joel.manifest.json
+            /data/lexical/joel-chunks
+            /data/lexical/joshua.manifest.json
+            /data/lexical/joshua-chunks
+            /data/lexical/judges.manifest.json
+            /data/lexical/judges-chunks
             /data/lexical/leviticus.manifest.json
             /data/lexical/leviticus-chunks
             /data/lexical/malachi.manifest.json
@@ -85,7 +115,17 @@ jobs:
             /data/lexical/occurrences/exodus.json
             /data/lexical/occurrences/ezra.json
             /data/lexical/occurrences/genesis.json
+            /data/lexical/occurrences/hosea.json
+            /data/lexical/occurrences/i-kings.json
+            /data/lexical/occurrences/i-samuel.json
+            /data/lexical/occurrences/ii-kings.json
+            /data/lexical/occurrences/ii-samuel.json
+            /data/lexical/occurrences/isaiah.json
+            /data/lexical/occurrences/jeremiah.json
             /data/lexical/occurrences/jonah.json
+            /data/lexical/occurrences/joel.json
+            /data/lexical/occurrences/joshua.json
+            /data/lexical/occurrences/judges.json
             /data/lexical/occurrences/leviticus.json
             /data/lexical/occurrences/malachi.json
             /data/lexical/occurrences/nehemiah.json
@@ -122,7 +162,17 @@ jobs:
             .site/tanakh/exodus \
             .site/tanakh/ezra \
             .site/tanakh/genesis \
+            .site/tanakh/hosea \
+            .site/tanakh/i-kings \
+            .site/tanakh/i-samuel \
+            .site/tanakh/ii-kings \
+            .site/tanakh/ii-samuel \
+            .site/tanakh/isaiah \
+            .site/tanakh/jeremiah \
             .site/tanakh/jonah \
+            .site/tanakh/joel \
+            .site/tanakh/joshua \
+            .site/tanakh/judges \
             .site/tanakh/leviticus \
             .site/tanakh/malachi \
             .site/tanakh/nehemiah \
@@ -142,7 +192,7 @@ jobs:
           cp -a assets/css/reader-workbench.css .site/assets/css/
           cp -a assets/js/reader-workbench.js .site/assets/js/
           cp -a orot/index.html .site/orot/
-          for work in amos deuteronomy esther exodus ezra genesis jonah leviticus malachi nehemiah numbers obadiah ruth zechariah zephaniah; do
+          for work in amos deuteronomy esther exodus ezra genesis hosea i-kings i-samuel ii-kings ii-samuel isaiah jeremiah jonah joel joshua judges leviticus malachi nehemiah numbers obadiah ruth zechariah zephaniah; do
             cp -a "tanakh/$work/index.html" ".site/tanakh/$work/"
             cp -a "data/lexical/$work.manifest.json" .site/data/lexical/
             cp -a "data/lexical/$work-chunks" .site/data/lexical/

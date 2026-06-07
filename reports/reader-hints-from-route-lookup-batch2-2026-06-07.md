@@ -7,9 +7,9 @@
 
 | work | output | total token occurrences | hint count | skipped no route | skipped source/license |
 | --- | --- | ---: | ---: | ---: | ---: |
-| esther | `data/lexical/reader-hints/esther.json` | 2654 | 1744 | 291 | 0 |
-| ezra | `data/lexical/reader-hints/ezra.json` | 3538 | 2009 | 795 | 0 |
-| nehemiah | `data/lexical/reader-hints/nehemiah.json` | 4822 | 3187 | 755 | 0 |
-| obadiah | `data/lexical/reader-hints/obadiah.json` | 249 | 199 | 39 | 0 |
-| malachi | `data/lexical/reader-hints/malachi.json` | 789 | 614 | 76 | 0 |
+| esther | `data/lexical/reader-hints/esther.json` | 2654 | 975 | 1294 | 0 |
+| ezra | `data/lexical/reader-hints/ezra.json` | 3538 | 1107 | 2002 | 0 |
+| nehemiah | `data/lexical/reader-hints/nehemiah.json` | 4822 | 1848 | 2453 | 0 |
+| obadiah | `data/lexical/reader-hints/obadiah.json` | 249 | 118 | 124 | 0 |
+| malachi | `data/lexical/reader-hints/malachi.json` | 789 | 354 | 374 | 0 |
 

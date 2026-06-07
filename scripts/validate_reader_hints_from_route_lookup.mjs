@@ -24,6 +24,12 @@ const requiredHintFields = [
 const disallowedPrehudDisplays = [
   /^observed usage only$/i,
   /^usage context only/i,
+  /^form of /i,
+  /:\s*form of\b/i,
+  /\b(?:singular|plural|dual)(?:\s+\S+){0,6}\s+form of\b/i,
+  /\b(?:construct state|absolute state|infinitive(?: absolute| construct)?|bare infinitive|participle)\b.*\bof\b/i,
+  /^(?:first|second|third)-person\b.*\bof\b/i,
+  /\bvav-consecutive\b.*\bof\b/i,
 ];
 
 function parseArgs(argv) {
@@ -71,7 +77,7 @@ function validateWork(work, dir) {
     if (hint.status !== 'reader_hint_not_translation') errors.push(`${tokenId}: status must be reader_hint_not_translation`);
     if (hint.score_source !== 'route_card_score') errors.push(`${tokenId}: score_source must be route_card_score`);
     if (disallowedPrehudDisplays.some((pattern) => pattern.test(String(hint.display || '').trim()))) {
-      errors.push(`${tokenId}: usage-only evidence must stay HUD-only/TBD, not pre-HUD`);
+      errors.push(`${tokenId}: usage-only or morphology/form-reference evidence must stay HUD-only/TBD, not pre-HUD`);
     }
   });
 

@@ -148,6 +148,21 @@
     return raw.replace(/\.$/, '');
   }
 
+  function isUnsafePrehudDisplay(value) {
+    const text = String(value || '').replace(/\s+/g, ' ').trim();
+    if (!text) return false;
+    return [
+      /^observed usage only$/i,
+      /^usage context only/i,
+      /^form of\b/i,
+      /:\s*form of\b/i,
+      /\b(?:singular|plural|dual)(?:\s+\S+){0,6}\s+form of\b/i,
+      /\b(?:construct state|absolute state|infinitive(?: absolute| construct)?|bare infinitive|participle)\b.*\bof\b/i,
+      /^(?:first|second|third)-person\b.*\bof\b/i,
+      /\bvav-consecutive\b.*\bof\b/i,
+    ].some((pattern) => pattern.test(text));
+  }
+
   function firstNumericValue(values) {
     for (const value of values) {
       if (value === undefined || value === null || value === '') continue;
@@ -200,6 +215,8 @@
       row?.gloss,
     ]);
     if (!tokenId || !display) return null;
+    const inlineDisplay = firstPresentValue([row?.inline_display, row?.short_display]) || inlineHintDisplay(display);
+    if (isUnsafePrehudDisplay(display) || isUnsafePrehudDisplay(inlineDisplay)) return null;
     const matchPercent = firstNumericValue([
       row?.route_score_percent,
       counterpart.route_score_percent,
@@ -215,7 +232,7 @@
     return {
       token_id: tokenId,
       display,
-      inline_display: firstPresentValue([row?.inline_display, row?.short_display]) || inlineHintDisplay(display),
+      inline_display: inlineDisplay,
       label: firstPresentValue([row?.label, counterpart.label]),
       match_percent: matchPercent,
       route_card_id: routeCardId,
@@ -1475,12 +1492,21 @@
     glossCell.setAttribute('tabindex', '0');
     glossCell.setAttribute('aria-label', `Open Route HUD for ${surface}`);
     rowNode.appendChild(glossCell);
+    const metaCell = createElement('div', 'prehud-meta');
     const matchCell = createElement('div', 'prehud-match', 'TBD');
     matchCell.dataset.matchText = 'TBD';
     matchCell.setAttribute('role', 'button');
     matchCell.setAttribute('tabindex', '0');
     matchCell.setAttribute('aria-label', `Open Route HUD for ${surface}`);
-    rowNode.appendChild(matchCell);
+    if (sectionTopId) {
+      const returnLink = createElement('a', 'prehud-return-link', 'Section top');
+      returnLink.href = `#${sectionTopId}`;
+      returnLink.setAttribute('aria-label', `Back to section top for ${surface}`);
+      returnLink.addEventListener('click', (event) => event.stopPropagation());
+      metaCell.appendChild(returnLink);
+    }
+    metaCell.appendChild(matchCell);
+    rowNode.appendChild(metaCell);
     const openHudFromRow = (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -1499,15 +1525,6 @@
     glossCell.addEventListener('keydown', openHudFromKeyboard);
     matchCell.addEventListener('click', openHudFromRow);
     matchCell.addEventListener('keydown', openHudFromKeyboard);
-    if (sectionTopId) {
-      const returnCell = createElement('div', 'prehud-row-return');
-      const returnLink = createElement('a', 'prehud-return-link', 'Section top');
-      returnLink.href = `#${sectionTopId}`;
-      returnLink.setAttribute('aria-label', `Back to section top for ${surface}`);
-      returnLink.addEventListener('click', (event) => event.stopPropagation());
-      returnCell.appendChild(returnLink);
-      rowNode.appendChild(returnCell);
-    }
     applyReaderHint(word, hint);
     return rowNode;
   }
