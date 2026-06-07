@@ -1008,9 +1008,38 @@
     panel.appendChild(section);
   }
 
+  function validatedHudCards(cards, config) {
+    const rows = cleanValues(cards);
+    if (!config?.hud_validated_only) return rows;
+    return rows.filter((card) => (
+      isAnswerEligible(card)
+      && (config.hud_allow_lemma_only === true || routeSection(card) !== 'lemma')
+    ));
+  }
+
+  function renderNoValidatedHudPanel(panel, clickedForm) {
+    panel.replaceChildren();
+    const selected = createElement('div', 'route-selected-token', normalizeHebrewDisplay(clickedForm || ''));
+    selected.lang = 'he';
+    selected.dir = 'rtl';
+    panel.appendChild(selected);
+    const section = createElement('section', 'route-section-card route-answer-card');
+    const title = createElement('div', 'route-section-title');
+    title.appendChild(createElement('h3', '', 'TBD'));
+    title.appendChild(createElement('span', '', 'no validated definition'));
+    section.appendChild(title);
+    section.appendChild(createElement('p', 'placeholder', 'No validated definition for this token yet.'));
+    panel.appendChild(section);
+  }
+
   function renderRouteHudPanel(panel, button, clickedForm, normalized, cards, lookupCandidates, config) {
     panel.replaceChildren();
-    const sourceNotes = buildSourceNotes(cards);
+    const visibleCards = validatedHudCards(cards, config);
+    if (config?.hud_hide_unvalidated_routes && !visibleCards.length) {
+      renderNoValidatedHudPanel(panel, clickedForm || normalized || '');
+      return;
+    }
+    const sourceNotes = buildSourceNotes(visibleCards);
     const selected = createElement('div', 'route-selected-token', normalizeHebrewDisplay(clickedForm || normalized || ''));
     selected.lang = 'he';
     selected.dir = 'rtl';
@@ -1020,14 +1049,14 @@
     picker.appendChild(createElement('strong', '', 'Choose a study gloss'));
     picker.appendChild(createElement('p', 'placeholder', 'Selections are local study notes, not translations.'));
     const optionList = createElement('div', 'reader-gloss-options');
-    const answerCandidates = cards.filter(isAnswerEligible).sort(compareRouteCards);
-    const displayChoices = answerCandidates.length ? answerCandidates.slice(0, 8) : cards.filter((card) => routeRenderings(card).length).sort(compareRouteCards).slice(0, 8);
+    const answerCandidates = visibleCards.filter(isAnswerEligible).sort(compareRouteCards);
+    const displayChoices = answerCandidates.length ? answerCandidates.slice(0, 8) : visibleCards.filter((card) => routeRenderings(card).length).sort(compareRouteCards).slice(0, 8);
     displayChoices.forEach((card) => renderGlossChoice(optionList, button, card, config));
     if (!displayChoices.length) optionList.appendChild(createElement('p', 'placeholder', 'No selectable definition option for this token yet.'));
     picker.appendChild(optionList);
     panel.appendChild(picker);
 
-    const generatedRows = lookupCandidateTreatments(lookupCandidates);
+    const generatedRows = config?.hud_hide_unvalidated_routes ? [] : lookupCandidateTreatments(lookupCandidates);
     if (generatedRows.length) {
       const treatment = createElement('section', 'route-treatment-card');
       treatment.appendChild(createElement('strong', '', 'Form treatment'));
@@ -1035,7 +1064,7 @@
       panel.appendChild(treatment);
     }
 
-    const { answerCard, answerState, ambiguityCount } = selectRouteAnswer(cards);
+    const { answerCard, answerState, ambiguityCount } = selectRouteAnswer(visibleCards);
     const answerSection = createElement('section', 'route-section-card route-answer-card');
     const answerTitle = createElement('div', 'route-section-title');
     answerTitle.appendChild(createElement('h3', '', answerState === 'ambiguous' ? 'Definition candidates' : 'Definition'));
@@ -1046,7 +1075,7 @@
     panel.appendChild(answerSection);
 
     const bySection = new Map();
-    cards.filter((card) => card !== answerCard).forEach((card) => {
+    visibleCards.filter((card) => card !== answerCard).forEach((card) => {
       const section = routeSection(card);
       if (!bySection.has(section)) bySection.set(section, []);
       bySection.get(section).push(card);
@@ -1058,10 +1087,12 @@
       .sort((a, b) => (routeSectionRank.get(a) ?? 9) - (routeSectionRank.get(b) ?? 9))
       .forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap));
 
-    const lookup = createElement('details', 'route-audit-card');
-    lookup.appendChild(createElement('summary', '', `Lookup keys (${lookupCandidates.length})`));
-    lookup.appendChild(createElement('p', 'placeholder', `Normalized key: ${normalized || 'N/A'} | Cards: ${cards.length} | Lookup keys: ${lookupCandidates.map((item) => `${item.key}${item.relation === 'exact' ? '' : ` (${item.relation})`}`).join(', ') || 'none'}`));
-    panel.appendChild(lookup);
+    if (!config?.hud_hide_unvalidated_routes) {
+      const lookup = createElement('details', 'route-audit-card');
+      lookup.appendChild(createElement('summary', '', `Lookup keys (${lookupCandidates.length})`));
+      lookup.appendChild(createElement('p', 'placeholder', `Normalized key: ${normalized || 'N/A'} | Cards: ${cards.length} | Lookup keys: ${lookupCandidates.map((item) => `${item.key}${item.relation === 'exact' ? '' : ` (${item.relation})`}`).join(', ') || 'none'}`));
+      panel.appendChild(lookup);
+    }
     appendSourceFootnotes(panel, sourceNotes.notes, config);
   }
 

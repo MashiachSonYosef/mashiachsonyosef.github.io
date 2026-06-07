@@ -4,6 +4,8 @@ import path from "node:path";
 const root = process.cwd();
 const catalogPath = path.join(root, "data/site/hebrew-workbench-catalog.json");
 const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
+const featuredCorpus = (catalog.corpora || []).find((corpus) => corpus.id === "featured") || null;
+const corpusBuckets = (catalog.corpora || []).filter((corpus) => corpus.id !== "featured");
 
 const escapeHtml = (value) => String(value ?? "")
   .replace(/&/g, "&amp;")
@@ -39,6 +41,29 @@ ${workLinks(works)}
 function downloadLink(download) {
   return `
         <a class="download-link" href="${escapeAttr(download.href)}" download>${escapeHtml(download.label)}</a>`;
+}
+
+function downloadsSection(downloads = []) {
+  if (!downloads.length) return "";
+  return `
+    <footer class="downloads" aria-labelledby="downloads-title">
+      <h2 id="downloads-title">${escapeHtml(catalog.downloads_heading)}</h2>
+      <div class="download-list">
+${downloads.map(downloadLink).join("\n")}
+      </div>
+    </footer>`;
+}
+
+function featuredSection(corpus) {
+  const works = Array.isArray(corpus?.works) ? corpus.works : [];
+  if (!works.length) return "";
+  return `
+    <section aria-labelledby="featured-title">
+      <h2 id="featured-title">${escapeHtml(corpus.label || "Featured")}</h2>
+      <div class="work-list featured-list">
+${workLinks(works)}
+      </div>
+    </section>`;
 }
 
 const html = `<!DOCTYPE html>
@@ -212,16 +237,12 @@ const html = `<!DOCTYPE html>
     <section aria-labelledby="corpus-title">
       <h2 id="corpus-title">${escapeHtml(catalog.corpus_heading)}</h2>
       <div class="corpus-grid">
-${catalog.corpora.map(corpusCard).join("\n")}
+${corpusBuckets.map(corpusCard).join("\n")}
       </div>
     </section>
 
-    <footer class="downloads" aria-labelledby="downloads-title">
-      <h2 id="downloads-title">${escapeHtml(catalog.downloads_heading)}</h2>
-      <div class="download-list">
-${(catalog.downloads || []).map(downloadLink).join("\n")}
-      </div>
-    </footer>
+${featuredSection(featuredCorpus)}
+${downloadsSection(catalog.downloads || [])}
   </main>
 </body>
 </html>
@@ -230,6 +251,6 @@ ${(catalog.downloads || []).map(downloadLink).join("\n")}
 fs.writeFileSync(path.join(root, "index.html"), html, "utf8");
 console.log(JSON.stringify({
   generated: "index.html",
-  corpora: catalog.corpora.length,
-  featured_works: (catalog.corpora.find((corpus) => corpus.id === "featured")?.works || []).length,
+  corpora: corpusBuckets.length,
+  featured_works: (featuredCorpus?.works || []).length,
 }, null, 2));

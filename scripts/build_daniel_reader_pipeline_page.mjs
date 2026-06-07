@@ -128,90 +128,31 @@ function codepointKey(value, prefixLength) {
 }
 
 function buildScopedRouteLookup() {
-  const prefixLength = Number(routeLookupManifest.prefix_length || 3);
-  const shardByKey = new Map((routeLookupManifest.shards || []).map((shard) => [shard.shard, shard]));
-  const candidateKeysByShard = new Map();
-
-  for (const row of tokenIndex.forms || []) {
-    lookupCandidatesFor(row.surface_word, row.normalized_word).forEach((candidate) => {
-      const shardKey = codepointKey(candidate.key, prefixLength);
-      if (!candidateKeysByShard.has(shardKey)) candidateKeysByShard.set(shardKey, new Set());
-      candidateKeysByShard.get(shardKey).add(candidate.key);
-    });
-  }
-
   const targetDir = path.join(root, "data/definitions/hud-route-lookup-daniel");
   fs.rmSync(targetDir, { recursive: true, force: true });
   fs.mkdirSync(path.join(targetDir, "shards"), { recursive: true });
 
-  const scopedShards = [];
-  const missingShards = [];
-  let candidateKeyCount = 0;
-  let candidateKeysWithRoutes = 0;
-
-  [...candidateKeysByShard.entries()].sort(([a], [b]) => a.localeCompare(b)).forEach(([shardKey, candidateKeys]) => {
-    candidateKeyCount += candidateKeys.size;
-    const shard = shardByKey.get(shardKey);
-    if (!shard?.path) {
-      missingShards.push(shardKey);
-      return;
-    }
-    const sourcePath = path.join(root, "data/definitions/hud-route-lookup", shard.path);
-    const targetPath = path.join(targetDir, shard.path);
-    if (!fs.existsSync(sourcePath)) {
-      missingShards.push(shardKey);
-      return;
-    }
-    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-    const sourceShard = readJson(path.relative(root, sourcePath));
-    const routesByNormalized = {};
-    for (const key of candidateKeys) {
-      const routes = sourceShard.routes_by_normalized?.[key];
-      if (Array.isArray(routes) && routes.length) {
-        routesByNormalized[key] = routes;
-        candidateKeysWithRoutes += 1;
-      }
-    }
-    const tokenCount = Object.keys(routesByNormalized).length;
-    if (!tokenCount) return;
-    const cardCount = Object.values(routesByNormalized).reduce((sum, routes) => sum + routes.length, 0);
-    const scopedShard = {
-      schema_version: sourceShard.schema_version || 1,
-      shard: shardKey,
-      token_count: tokenCount,
-      card_count: cardCount,
-      routes_by_normalized: routesByNormalized,
-    };
-    fs.writeFileSync(targetPath, JSON.stringify(scopedShard), "utf8");
-    scopedShards.push({
-      ...shard,
-      token_count: tokenCount,
-      card_count: cardCount,
-      byte_length: fs.statSync(targetPath).size,
-    });
-  });
-
   const scopedManifest = {
-    ...routeLookupManifest,
+    schema_version: routeLookupManifest.schema_version || 1,
+    prefix_length: routeLookupManifest.prefix_length || 3,
     public_lookup: "data/definitions/hud-route-lookup-daniel",
     scoped_from: work.globalRouteLookupPath,
     scope_work_id: work.id,
-    scope_strategy: "Daniel page-scoped shard subset generated from token-index lookup candidates.",
+    scope_strategy: "Fail closed: Daniel public HUD exposes zero route cards until validated definition rows are promoted.",
     counts: {
-      ...(routeLookupManifest.counts || {}),
       source_shard_count: routeLookupManifest.counts?.shard_count || (routeLookupManifest.shards || []).length,
-      shard_count: scopedShards.length,
-      missing_candidate_shard_count: missingShards.length,
-      candidate_key_count: candidateKeyCount,
-      candidate_keys_with_routes: candidateKeysWithRoutes,
-      candidate_keys_without_routes: candidateKeyCount - candidateKeysWithRoutes,
-      card_count: scopedShards.reduce((sum, shard) => sum + Number(shard.card_count || 0), 0),
-      token_count: scopedShards.reduce((sum, shard) => sum + Number(shard.token_count || 0), 0),
-      byte_length: scopedShards.reduce((sum, shard) => sum + Number(shard.byte_length || 0), 0),
-      max_shard_bytes: scopedShards.reduce((max, shard) => Math.max(max, Number(shard.byte_length || 0)), 0),
+      shard_count: 0,
+      missing_candidate_shard_count: 0,
+      candidate_key_count: 0,
+      candidate_keys_with_routes: 0,
+      candidate_keys_without_routes: 0,
+      card_count: 0,
+      token_count: 0,
+      byte_length: 0,
+      max_shard_bytes: 0,
     },
-    shards: scopedShards,
-    missing_candidate_shards: missingShards,
+    shards: [],
+    missing_candidate_shards: [],
   };
 
   writeText(work.routeLookupPath, `${JSON.stringify(scopedManifest, null, 2)}\n`);
@@ -239,7 +180,6 @@ const unitHtml = (unit) => {
             <div class="lexical-slot" data-lexical-slot></div>
             <nav class="unit-nav" aria-label="Unit navigation">
               <a href="#work-top">Back to top</a>
-              <a href="#${escapeAttr(chapterId(unit.chapter_number || 1))}">Back to chapter start</a>
             </nav>
           </section>`;
 };
@@ -258,6 +198,9 @@ const config = {
   manifest_url: "../../data/lexical/daniel.manifest.json",
   occurrence_url: "../../data/lexical/occurrences/daniel.json",
   hud_route_lookup_manifest_url: "../../data/definitions/hud-route-lookup-daniel/manifest.json",
+  hud_validated_only: true,
+  hud_hide_unvalidated_routes: true,
+  hud_allow_lemma_only: false,
   root_href: "../../",
 };
 
@@ -352,33 +295,36 @@ const html = `<!DOCTYPE html>
 
     .layout {
       display: grid;
-      grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
       align-items: start;
-      padding-top: 24px;
+      padding-top: 18px;
     }
 
     .toc {
-      position: sticky;
-      top: 14px;
       border: 1px solid var(--line);
       background: var(--panel);
-      padding: 12px;
-      display: grid;
-      gap: 8px;
+      padding: 10px 12px;
     }
 
     .toc h2 {
-      margin: 0 0 4px;
+      margin: 0 0 8px;
       font-size: 1rem;
       color: var(--text);
+    }
+
+    .toc-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
     }
 
     .toc a {
       color: var(--muted);
       text-decoration: none;
-      border-top: 1px solid var(--line);
-      padding-top: 8px;
+      border: 1px solid var(--line);
+      padding: 5px 7px;
+      font-size: 0.9rem;
     }
 
     .toc a:hover,
@@ -567,10 +513,6 @@ const html = `<!DOCTYPE html>
         grid-template-columns: 1fr;
       }
 
-      .toc {
-        position: static;
-      }
-
       .unit {
         padding: 12px;
       }
@@ -589,7 +531,9 @@ const html = `<!DOCTYPE html>
     </header>
     <div class="layout">
       <aside class="toc" aria-label="Chapters">
-        <h2>Chapters</h2>${tocHtml}
+        <h2>Chapters</h2>
+        <div class="toc-links">${tocHtml}
+        </div>
       </aside>
       <article class="work">
 ${chapterHtml}
