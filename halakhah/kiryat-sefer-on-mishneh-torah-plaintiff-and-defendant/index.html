@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -31,6 +38,11 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -47,6 +59,7 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -80,48 +93,48 @@
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-field-row { display: contents; }
-    .lexical-field-row[hidden] { display: none; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .breakdown-list { display: grid; gap: 8px; }
-    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
-    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
-    .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
-    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
-    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
-    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
-    .lexical-entry .entry-hebrew { color: var(--hebrew); }
-    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
-    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
     .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
-    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; }
-    .other-entries { margin-top: 12px; }
-    .claim-row-list details { margin-top: 8px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
-    .source-claim { color: var(--text); margin: 0 0 6px; }
-    .source-claim span { color: var(--hebrew); }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
-    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
     .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
@@ -135,20 +148,23 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
 <body>
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
-        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-        <h1>Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant</h1>
-        <p class="work-label">Commentary on Mishneh Torah, Plaintiff and Defendant</p>
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Mishneh Torah, Plaintiff and Defendant</p>
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/">Open Mishneh Torah, Plaintiff and Defendant</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
@@ -156,19 +172,27 @@
             <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
-        <p class="meta">38 total source units | imported 2026-05-21</p>
-        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>393 matched</strong> / 933 unique forms.</p>
+          <p class="hero-summary">
+            <span>38 source units</span>
+            <span>933 HUD forms</span>
+            <span>imported 2026-05-21</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -310,13 +334,18 @@
         </nav>
         <article>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-1">Chapter 1</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-1-1">Mishneh Torah, Plaintiff and Defendant 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַטוֹעֵן אֶת חֲבֵרוֹ בְּמִטַּלְטְלִין וְהוֹדָה לוֹ בְּמִקְצָת הֲרֵי זֶה מְשַׁלֵּם מַה שֶּׁהוֹדָה בּוֹ וְנִשְׁבָּע עַל הַשְּׁאָר מִן הַתּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ח)</span> &quot;אֲשֶׁר יֹאמַר כִּי הוּא זֶה&quot;. וְכֵן אִם כָּפַר בַּכּל וְאוֹמֵר לֹא הָיוּ דְּבָרִים מֵעוֹלָם וְעֵד אֶחָד מֵעִיד [שֶׁהוּא חַיָּב לוֹ] הֲרֵי זֶה נִשְׁבָּע מִן הַתּוֹרָה. ומִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁכָּל מָקוֹם שֶׁשְּׁנַיִם מְחַיְּבִין אוֹתוֹ מָמוֹן אֶחָד מְחַיְּבוֹ שְׁבוּעָה. וְכֵן לָמְדוּ מִפִּי הַשְּׁמוּעָה שֶׁעֵד אֶחָד לְכָל עָוֹן וּלְכָל חַטָּאת אֵינוֹ קָם אֲבָל קָם הוּא לִשְׁבוּעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות רך </strong> לדון בדיני טוען ונטען דכתיב על כל דבר פשע וגו׳ אשר יאמר כי הוא זה ולשון מכלתא כי הוא זה עד שיודה במקצת ובזה יכנס כל מה שהוא נופל בין בני אדם מהתביעות קצתם על קצתם שיכנס בהם ההודאה או הכפירה כן כתב הרב ז&quot;ל בספר המצות אשר לו מצוה רמ&quot;ו וכדתנן ריש פרק שבועת הדיינים דבעינן הודאה לשבועת הדיינים שלמדוה מאשר יאמר כי הוא זה וכתיב עליו ונקרב בעל הבית אל האלהים אם לא שלח ידו דהיינו שבועה וכן אם כפר בכל ועד אחד מעיד הרי זה נשבע מן התורה וכדאמרינן התם בגמרא לא יקום עד אחד באיש לכל עון ולכל חטאת לכל עון ולכל חטאת הוא דאינו קם אבל קם הוא לשבועה דכל מקום ששנים מחייבין אותו ממון אחד מחייבו שבועה כדתניא התם ושומר נמי חייב שבועה כדכתיב שבועת ה׳ תהיה בין שניהם וכל אלו הג׳ נשבעין ונפטרין מלשלם דכתיב ולקח בעליו ולא ישלם רישיה דקרא שבועת ה׳ תהיה בין שניהם ולקח בעליו את השבועה ולא ישלם הנתבע שוב כלום.</p>
               </div>
             </div>
@@ -326,13 +355,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-3-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-3-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-1-3">Mishneh Torah, Plaintiff and Defendant 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַטּוֹעֵן מִטַּלְטְלִין עַל חֲבֵרוֹ וְכָפַר בַּכּל וְאָמַר לֹא הָיוּ דְּבָרִים מֵעוֹלָם. אוֹ שֶׁהוֹדָה בְּמִקְצָת וּנְתָנוֹ מִיָּד וְאָמַר אֵין לְךָ בְּיָדִי אֶלָּא זֶה וְהֵילָךְ. אוֹ שֶׁאָמַר אֱמֶת שֶׁהָיָה לְךָ אֶצְלִי אֲבָל מָחַלְתָּ לִי אוֹ נָתַתָּ לִי אוֹ מָכַרְתָּ לִי אוֹ הֶחְזַרְתִּי לְךָ. אוֹ שֶׁטְּעָנוֹ חִטִּים וְהוֹדָה לוֹ בִּשְׂעוֹרִים. בְּכָל אֵלּוּ פָּטוּר מִשְּׁבוּעַת הַתּוֹרָה. אֲבָל חַכְמֵי הַגְּמָרָא תִּקְּנוּ שֶׁיִּשָּׁבַע הַנִּתְבָּע בְּכָל אֵלּוּ שְׁבוּעַת הֶסֵּת וְיִפָּטֵר. וְאֵינוֹ כְּעֵין שֶׁל תּוֹרָה לְפִי שֶׁאֵין בָּהֶן נְקִיטַת חֵפֶץ. וּכְבָר בֵּאַרְנוּ דֶּרֶךְ שְׁבוּעָה שֶׁל תּוֹרָה וְדֶרֶךְ שְׁבוּעַת הֶסֵּת בְּהִלְכוֹת שְׁבוּעוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כופר </strong> בכל אינו חייב שבועה מן התורה דבעינא כי הוא זה שמודה במקצת ואם נתן מיד מה שהודה בו אינו חייב שבועה כרב ששת פרק קמא דמציעא דכיון דאמר ליה הילך כמאן דנקיט להו מלוה דמי ולא הוי מודה מקצת. טענו חטים והודה בשעורים פטור משבועת התורה דבעיא הודאה ממין הטענה כדמשמע מקרא דכתיב כי הוא זה וטענת מחלת לי&#160;וכו׳ הוי נמי כופר בכל ופטור משבועת התורה.</p>
               </div>
             </div>
@@ -342,13 +376,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-4-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-4-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-1-4">Mishneh Torah, Plaintiff and Defendant 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁנִּתְחַיֵּב שְׁבוּעָה מִן הַתּוֹרָה הֲרֵי זֶה נִשְׁבָּע וְנִפְטָר. וְאִם לֹא רָצָה לְהִשָּׁבַע יוֹרְדִין לִנְכָסָיו וְגוֹבִין מֵהֶם כָּל מַה שֶּׁתָּבַע חֲבֵרוֹ עָלָיו. שֶׁהֲרֵי הַתּוֹבֵעַ אוֹמֵר לוֹ אֵינִי זָז מִדִּין תּוֹרָה אוֹ הִשָּׁבַע אוֹ תֵּן לִי. וְיֵשׁ לוֹ לְהַחֲרִים עַל מִי שֶׁטָּעַן עָלָיו דָּבָר שֶׁאֵינוֹ כֵּן וְנוֹתֵן. אֲבָל מִי שֶׁנִּתְחַיֵּב שְׁבוּעָה מִדִּבְרֵיהֶן אִם הָיָה מִן הַנִּשְׁבָּעִין וְנוֹטְלִין אֵינוֹ יָכוֹל לְהַפֵּךְ אֶת הַשְּׁבוּעָה שֶׁהֲרֵי הַנִּתְבָּע אוֹמֵר לוֹ הִשָּׁבַע וְטל כְּמוֹ שֶׁתִּקְּנוּ לְךָ. וְאִם לֹא רָצָה לְהִשָּׁבַע יֵלֵךְ לוֹ. וְהוֹרוּ רַבּוֹתַי שֶׁאִם אָמַר הַתּוֹבֵעַ אֵינִי רוֹצֶה בְּתַקָּנָה זוֹ שֶׁתִּקְּנוּ לִי חֲכָמִים אֶלָּא הֲרֵינִי כִּשְׁאָר הַתּוֹבְעִים הֲרֵי זֶה מַשְׁבִּיעַ אֶת הַנִּתְבָּע הֶסֵּת. וְאִם רָצָה לְהָפְכָהּ עַל הַתּוֹבֵעַ מְחַיְּבִין אֶת הַתּוֹבֵעַ לְהִשָּׁבַע אוֹ יֵלֵךְ לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שלא רצה לישבע שבועת התורה גובין ממנו כל מה שתבע חברו. שבועת התורה אין מהפכין אותה כיון שהתורה הטילה שבועה עליו.</p>
               </div>
             </div>
@@ -358,13 +397,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-13-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-13-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-13-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:13:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-1-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-1-13">Mishneh Torah, Plaintiff and Defendant 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁנִּתְחַיֵּב שְׁבוּעָה אֲפִלּוּ הֶסֵּת וְהִתְחִיל הַתּוֹבֵעַ לְגַלְגֵּל עָלָיו דְּבָרִים אֲחֵרִים שֶׁלֹּא טָעַן אוֹתָם. וְרָאָה הַנִּתְבָּע כָּךְ וְאָמַר אֵינִי רוֹצֶה לְהִשָּׁבַע אֶלָּא הֲרֵינִי מְשַׁלֵּם הַטַּעֲנָה הָרִאשׁוֹנָה שֶׁנִּתְחַיַּבְתִּי עַל כְּפִירָתָהּ שְׁבוּעָה. אֵין שׁוֹמְעִין לוֹ אֶלָּא אוֹמְרִים לַנִּתְבָּע אוֹ תֵּן לוֹ כָּל מַה שֶּׁגִּלְגֵּל עָלֶיךָ מִטְּעָנוֹת הַוַּדָּאִיּוֹת אוֹ הִשָּׁבַע וְהִפָּטֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גלגול </strong> שבועה מן התורה כדילפינן מדכתיב בסוטה אמן אמן אמן מאיש זה אמן מאיש אחר אמן שלא שטיתי ארוסה ונשואה וכו׳ דאי מגלגול דאיש אחד ה&quot;א הני מילי בדברים שראוי להשביע עליהם בעלמא דומיא דאיש אחד שראוי להשביע עליו אם קנא לה ממנו אבל בדברים שאין ראוי להשביע עליהם כלל כגון קרקעות הוה אמינא דאין מגלגלין קמ&quot;ל ארוסה שאף על פי שאין ראוי להשביעה מצד עצמה לעולם כדמפרש התם אפילו הכי מגלגלין ומסברא אית לן דמיתורא דאמן אמן נפיק לן אפילו כהאי גוונא ולא מפלגי בין דברים שדרכן להשביע לדברים שאין דרכן להשביע וכדאמר׳ בירושלמי כמו שהביא הר&quot;ן ז&quot;ל אשכחן איסורא דאוריתא ממונא מנא לן תנא דבי רבי ישמעאל קל וחומר ומה סוטה שלא ניתנה לישבע בעד אחד מגלגלין ממון שניתן לישבע בעד אחד אינו דין שמגלגלין אשכחן טענת ודאי שמא מנא לן נאמרה שבועה בפנים ושבועה מבחוץ מה שבועה שבפנים עשה בה ספק כודאי אף שבחוץ כן:</p>
               </div>
             </div>
@@ -375,13 +419,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-2">Chapter 2</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 2:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-2-1">Mishneh Torah, Plaintiff and Defendant 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל חָשׁוּד עַל הַשְּׁבוּעָה אֵין מַשְׁבִּיעִין אוֹתוֹ לֹא שְׁבוּעַת הַתּוֹרָה וְלֹא שְׁבוּעָה מִדִּבְרֵיהֶם וְלֹא שְׁבוּעַת הֶסֵּת. וַאֲפִלּוּ רָצָה הַתּוֹבֵעַ אֵין שׁוֹמְעִין לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> חשוד על השבועה אין משביעין אותו וכיון דלא משביעים ליה דידעינן דהוא חשוד וישבע לשקר חזרה שבועה למקומה כדתנן במתני׳ פרק כל הנשבעין וכרבותינו שבארץ ישראל דמפרשי חזרה שבועה למחוייב לה על זה שהודה במקצת וכיון שאינו יכול לישבע דהוא חשוד ישלם דהכי משמע קרא שבועת ה׳ תהיה בין שניהם היכא דמצי משתבע והיכא דלא מצי משלם וכתבו בתוספות פרק הגוזל דמדרבנן הוא דמיפסל.</p>
               </div>
             </div>
@@ -391,13 +440,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-3-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-3-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 2:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 2:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-2-3">Mishneh Torah, Plaintiff and Defendant 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָדָם נַעֲשֶׂה חָשׁוּד עַד שֶׁיָּבוֹאוּ עָלָיו עֵדִים שֶׁהוּא עָבַר עֲבֵרָה שֶׁנִּפְסַל בָּהּ. אֲבָל הַמּוֹדֶה מִפִּי עַצְמוֹ שֶׁהוּא חָשׁוּד וְשֶׁעָבַר עֲבֵרָה שֶׁנִּפְסַל בָּהּ. אַף עַל פִּי שֶׁחוֹשְׁשִׁין לוֹ וְאֵין רָאוּי לַעֲשׂוֹתוֹ עֵד בַּתְּחִלָּה. אִם נִתְחַיֵּב שְׁבוּעָה מַשְׁבִּיעִין אוֹתוֹ שֶׁהֲרֵי אוֹמְרִים לוֹ אִם אֱמֶת אַתָּה אוֹמֵר הִשָּׁבַע וְלֹא מִפְּנֵי שֶׁעָבַרְתָּ עֲבֵרָה אָסוּר לְךָ לְהִשָּׁבַע בֶּאֱמֶת. וְאִם שֶׁקֶר אַתָּה אוֹמֵר הוֹדֵה לְבַעַל דִּינְךָ. אֲבָל הַנֶּחְשָׁד בְּעֵדִים אֵין אָנוּ מַאֲמִינִים אוֹתוֹ שֶׁיִּשָּׁבַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> אדם נעשה חשוד על פי עצמו כדאמר רבא פרק דיני ממונות דאדם קרוב אצל עצמו דהא אין יכול לפסול עצמו על פיו דהא אין קרוב מעיד לא לזכות ולא לחובה כדילפינן בדוכתיה ואדם קרוב הוא אצל עצמו.</p>
               </div>
             </div>
@@ -407,13 +461,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-9-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-9-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 2:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 2:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-2-9">Mishneh Torah, Plaintiff and Defendant 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁנִּתְחַיֵּב שְׁבוּעָה בֵּין שֶׁל תּוֹרָה בֵּין שֶׁל דִּבְרֵיהֶם וְנִשְׁבַּע וְנָטַל אוֹ נִשְׁבַּע וְנִפְטַר. וְאַחַר כָּךְ בָּאוּ עָלָיו עֵדִים שֶׁהוּא חָשׁוּד. אֵין שְׁבוּעָתוֹ שֶׁנִּשְׁבַּע כְּלוּם וְיֵשׁ לְבַעַל דִּינוֹ לְהוֹצִיא מִיָּדוֹ מַה שֶּׁנָּטַל אוֹ יִשָּׁבַע זֶה שֶׁכְּנֶגְדוֹ וְיִטּל מִמֶּנּוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשבע </strong> ובאו עדים שהוא חשוד או שנשבע לשקר מוציאין מידו מה שנטל כל שלא שב בתשובה:</p>
               </div>
             </div>
@@ -424,13 +483,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-3">Chapter 3</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-3-1">Mishneh Torah, Plaintiff and Defendant 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מוֹדֶה בְּמִקְצָת חַיָּב שְׁבוּעָה מִן הַתּוֹרָה עַד שֶׁיּוֹדֶה בִּפְרוּטָה אוֹ יֶתֶר וְיִכְפֹּר בִּשְׁתֵּי מָעִין כֶּסֶף אוֹ יֶתֶר. וְכַמָּה הִיא פְּרוּטָה מִשְׁקַל חֲצִי שְׂעוֹרָה שֶׁל כֶּסֶף נָקִי. וְכַמָּה הֵם שְׁתֵּי מָעִין מִשְׁקַל שְׁתַּיִם וּשְׁלֹשִׁים שְׂעוֹרוֹת כֶּסֶף מְזֻקָּק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> מודה במקצת חייב שבועה מן התורה עד שיודה בפרוטה או יתר ויכפור בשתי מעין כסף או יתר וכדילפינן התם ריש פ׳ שבועת הדיינין דכתיב כי יתן איש אל רעהו כסף או כלים לשמור כי יתן איש תחלת נתינה ב׳ כסף ועלה קאי כי הוא זה דבר חשוב ושיערו חכמים שמעה כסף דבר חשוב הוא וכתיב כלים מה כלים שנים אף כסף שנים וקאמר רחמנא כי הוא זה על זה באה השבועה כשיאמר כי הוא זה ורב דהלכתא כוותיה הכי קאמר כסף כי אתא מעיקרא לכפירה הוא דאתא ולאו לתחלת טענה דאם כן ליכתוב רחמנא כי יתן איש אל רעהו כלים לשמור ואנא אמינא אף כלים שנים והוה ליה כסף נמי בהא כללא כסף דכתב רחמנא למה לי אם אינו ענין לטענה תנהו ענין לכפירה דבעיא כפירה ב׳ מעין כסף דומיא דכלים דהוו שנים והודאה בעיא בפרוטה דבבציר מפרוטה לאו הודאה היא כיון דלא הוי ממון והאי כסף דאמרינן דהוי ב׳ מעין כסף ולא מטבע כסף אחר משום דאמרינן בירושלמי סוף מטבע כסף מעה כלומר שכיון שאמרה תורה כסף כדכתי׳ כי יתן איש אל רעהו כסף או כלים ואי אתה מוצא מטבע כסף מוזכר בתורה פחות ממעה שהיא גרה כדמתרגמינן עשרים גרה השקל עשרין מעין אין לך לחייב בפחות ממטבע זה וכתיב כלים דהוו שנים אף כסף שנים כדא׳ וכתב הרב ז&quot;ל ולפי שזה שהצריכו להיות כפירת הטענה ב׳ כסף היא מדבריהם עשו אותה ב׳ כסף של ירושלם שהן ב׳ מעין ולא עשו אותה ב׳ שקלים דמשמע דכפירה ב׳ כסף לא הויא אלא מדרבנן ובגמרא ילפינן לה מקרא כדאמרינן לעיל והרב עצמו ז&quot;ל בראש הפרק כתב אין מודה מקצת חייב מן התורה עד שיודה בפרוטה ויכפור בשתי מעין כסף דמשמע דסבירא ליה דהודאת פרוטה וכפירת ב׳ מעין הוו דאוריתא ואפשר לומר שמה שכתב בראש הפרק אין מודה במקצת חייב שבועה מן התורה עד שיודה בפרוטה וכו׳ לא קאי אלא אעד שיודה בפרוט׳ כדדייק לישניה דנקיט אין מודה במקצת חייב וכו׳ ולא נקט נמי כופר במקצת דבהודאה דנפיק מדכתיב כי הוא זה משמע פשטיה דקרא דהוי לפחות פרוטה דבציר מינה לא הוי ממון אבל בכפירה אי בעיא שתי מעין או שתי שקלים לא הוי אלא מדרבנן כדקאמר הכא ולפי שזה שהצריכו להיות כפירת הטענה ב׳ כסף היא מדבריהם וכו׳ ולא הזכיר הודאה פרוטה ונראה לי דהאי דרשא דתנהו ענין לכפירה דבעיא ב׳ מעין דהוי אסמכתא ואפשר עוד לומר דהודאה וכפירה הוי מן התורה כמו שכתב בראש הפרק ומה שכתב כאן בכפירת הטענה ב׳ כסף שהיא מדבריהם רוצה לומר שלמדוה חכמים בהיקש׳ וכמה כלים וכו׳ דהנלמד משלש עשרה מדות שהתורה נדרשת בהם או בהיקש קרוי לדעתו מדרבנן כמו שהשריש בי&quot;ד עקרים שבספר המצוה שלו ואפילו הכי דינם מן התורה וכמו שפירש&#160;דבריו הרב ר׳ שמעון בר צמח ז&quot;ל בפי׳ האזהרות אשר לו.</p>
               </div>
             </div>
@@ -440,13 +504,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-5-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-5-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-3-5">Mishneh Torah, Plaintiff and Defendant 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים בְּכֶסֶף אוֹ בְּמִינֵי סְחוֹרוֹת וּפֵרוֹת וְכַיּוֹצֵא בָּהֶן. אֲבָל הַכֵּלִים אֵין מְשַׁעֲרִין אֶת דְּמֵיהֶן וַאֲפִלּוּ הֵן עֶשֶׂר מְחָטִין בִּפְרוּטָה וּטְעָנוֹ שְׁתֵּי מְחָטִין הוֹדָה בְּאַחַת וְכָפַר בְּאַחַת חַיָּב. שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;כֶּסֶף אוֹ כֵלִים&quot; כָּל הַכֵּלִים כְּכֶסֶף. טְעָנוֹ כֶּסֶף וְכֵלִים וְהוֹדָה בַּכֵּלִים וְכָפַר בַּכֶּסֶף אִם יֵשׁ בַּכְּפִירָה שְׁתֵּי מָעִין חַיָּב וְאִם לָאו פָּטוּר. הוֹדָה בַּכֶּסֶף וְכָפַר בַּכֵּלִים אִם הוֹדָה בִּפְרוּטָה חַיָּב. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כלים </strong> אין משערין את דמיהם אפילו עשר מחטין בפרוטה וטוענו ב׳ מחטין והודה באחד וכפר באחד חייב שבועה מן התורה דכתיב כסף או כלים כל הכלים ככסף ואמרינן התם לפיכך יצאו כלים למה שהן להתחייב עליהן בכל שהן דהוה ליה למכתב כי יתן איש אל רעהו כספים ואנא אמינא מה כספים שנים וכו׳ אלא כתב כלים לומר דהוי דבר חשוב שראוי לעשות בו מלאכה ובא למעט כלי גרוע כגון מרוקא שהוא גרעין תמרה שמחליקין בו את הקלף. טענו כסף וכלים והודה באחד מהם וכפר באחר בדינו חייב.</p>
               </div>
             </div>
@@ -456,13 +525,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-6-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-6-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-3-6">Mishneh Torah, Plaintiff and Defendant 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֵעִיד עָלָיו עֵד אֶחָד אֲפִלּוּ לֹא כָּפַר אֶלָּא פְּרוּטָה הֲרֵי זֶה נִשְׁבָּע שֶׁכָּל מִי שֶׁשְּׁנַיִם מְחַיְּבִים אוֹתוֹ מָמוֹן אֶחָד מְחַיְּבוֹ שְׁבוּעָה. כֵּיצַד. פְּרוּטָה אוֹ שְׁוֵה פְּרוּטָה יֵשׁ לִי בְּיָדְךָ אֵין לְךָ בְּיָדִי כְּלוּם וְעֵד אֶחָד מֵעִיד שֶׁיֵּשׁ לוֹ הֲרֵי זֶה נִשְׁבָּע. וְכֵן בִּשְׁבוּעַת הַשּׁוֹמְרִים אֲפִלּוּ הִפְקִיד אֶצְלוֹ פְּרוּטָה אוֹ שְׁוֵה פְּרוּטָה וְטָעַן שֶׁאָבְדָה נִשְׁבָּע. וְכָל פָּחוֹת מִפְּרוּטָה אֵינוֹ מָמוֹן וְאֵין בֵּית דִּין נִזְקָקִין לוֹ. וְכֵן כָּל הַנִּשְׁבָּעִין וְנוֹטְלִין נִשְׁבָּעִין וְנוֹטְלִין מִפְּרוּטָה וָמַעְלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העיד </strong> עליו עד אחד כשכפר פרוטה חייב שבועת עד א׳ וכן שבועת שומרים לא הויא בבציר מפרוטה דלא הוי ממון.</p>
               </div>
             </div>
@@ -472,13 +546,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-8-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-8-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-8-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:8:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-3-8">Mishneh Torah, Plaintiff and Defendant 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מוֹדֶה בְּמִקְצָת חַיָּב שְׁבוּעָה עַד שֶׁתִּהְיֶה הוֹדָיָה מִמִּין הַטַּעֲנָה. כֵּיצַד. כּוֹר חִטִּים יֵשׁ לִי בְּיָדְךָ אֵין לְךָ בְּיָדִי אֶלָּא לֶתֶךְ חִטִּים חַיָּב. אֲבָל אִם אָמַר לוֹ אֵין לְךָ בְּיָדִי אֶלָּא כּוֹר שֶׁל שְׂעוֹרִים פָּטוּר שֶׁהַמִּין שֶׁטְּעָנוֹ לֹא הוֹדָה לוֹ בּוֹ וְהַמִּין שֶׁהוֹדָה לוֹ בּוֹ לֹא טְעָנוֹ. דִּינַר זָהָב יֵשׁ לִי בְּיָדְךָ פִּקָּדוֹן לֹא הִפְקַדְתָּ אֶצְלִי אֶלָּא דִּינַר כֶּסֶף. מָעָה כֶּסֶף הִפְקַדְתִּי אֶצְלְךָ לֹא הִפְקַדְתָּ אֶצְלִי אֶלָּא פְּרוּטָה פָּטוּר שֶׁטְּעָנוֹ מִין אֶחָד וְהוֹדָה לוֹ בְּמִין אַחֵר. וְכֵן אִם אָמַר לוֹ עֲשָׂרָה דִּינָרִים מִצְרִיּוֹת הִפְקַדְתִּי אֶצְלְךָ לֹא הִפְקַדְתָּ אֶצְלִי אֶלָּא עֲשָׂרָה צוֹרִיּוֹת פָּטוּר. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טענו </strong> חטים והודה לו בשעורים פטור וכדאמ׳ לעיל פרק א׳ דבעיא הודאה ממין הטענה וכן כל שאינו ממין הטענה. טענו ב׳ מינים והודה לו בא׳ מהם הוי הודאה ממין הטענה ונשבע ואפילו לא הספיק לטעון המין הב׳ כשהודה בו הנטען בערמה חייב כאלו טענו מעיקרא שתי מינין. הלואה או פקדון או נזק הכל מין אחד הוא לענין שבועה:</p>
               </div>
             </div>
@@ -489,13 +568,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-4">Chapter 4</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-4-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-4-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-4-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 4:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-4-1">Mishneh Torah, Plaintiff and Defendant 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מוֹדֶה בְּמִקְצָת חַיָּב שְׁבוּעָה מִן הַתּוֹרָה עַד שֶׁיִּטְעָנֶנּוּ בְּדָבָר שֶׁבְּמִדָּה אוֹ בְּמִשְׁקָל אוֹ בְּמִנְיָן וְיוֹדֶה לוֹ בְּדָבָר שֶׁבְּמִדָּה אוֹ שֶׁבְּמִשְׁקָל אוֹ שֶׁבְּמִנְיָן. כֵּיצַד. עֲשָׂרָה דִּינָרִין יֵשׁ לִי בְּיָדְךָ אֵין לְךָ בְּיָדִי אֶלָּא חֲמִשָּׁה. כּוֹר חִטִּים יֵשׁ לִי בְּיָדְךָ אֵין לְךָ בְּיָדִי אֶלָּא לֶתֶךְ. שְׁתֵּי לִיטְרִין שֶׁל מֶשִׁי יֵשׁ לִי בְּיָדְךָ אֵין לְךָ בְּיָדִי אֶלָּא רוֹטֶל הֲרֵי זֶה חַיָּב. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. אֲבָל אָמַר לוֹ כִּיס מָלֵא דִּינָרִין מָסַרְתִּי לְךָ לֹא מָסַרְתָּ לִי אֶלָּא חֲמִשִּׁים. מֵאָה דִּינָרִין מָסַרְתִּי לְךָ לֹא מָסַרְתָּ לִי אֶלָּא צְרוֹר שֶׁל דִּינָרִין וְלֹא מָנִיתָ אוֹתָן בְּפָנַי וְאֵינִי יוֹדֵעַ מֶה הָיָה בּוֹ וּמַה שֶּׁהִנַּחְתָּ אַתָּה נוֹטֵל הֲרֵי זֶה פָּטוּר. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> מודה במקצת חייב שבועה עד שיטעננו בדבר שבמדה או משקל או מנין ויודה לו בקצת מה שטענו כדאמרינן התם פרק שבועת הדיינים דף מ&quot;ג ופירש ריב&quot;א דנפקא לן מההיא דדרשי׳ בריש מרובה שלמה למעוטי דבר שאינו מסוים והיינו שלא במשקל ומדה ומנין ובמכלתא מפיק לה מכסף או כלים מה כסף דבר שבמנין אף כל וכו׳.</p>
               </div>
             </div>
@@ -505,13 +589,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-4-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-4-4-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-4-4-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 4:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 4:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-4-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-4-4">Mishneh Torah, Plaintiff and Defendant 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מוֹדֶה בְּמִקְצָת חַיָּב שְׁבוּעָה עַד שֶׁיּוֹדֶה בְּדָבָר שֶׁאֶפְשָׁר לוֹ לִכְפֹּר בּוֹ. כֵּיצַד. מִי שֶׁטָּעַן חֲבֵרוֹ וְאָמַר מֵאָה דִּינָרִין יֵשׁ לִי אֶצְלְךָ חֲמִשִּׁים שֶׁבִּשְׁטָר זֶה וַחֲמִשִּׁים בְּלֹא שְׁטָר. אֵין לְךָ בְּיָדִי אֶלָּא חֲמִשִּׁים שֶׁבַּשְּׁטָר אֵין זֶה מוֹדֶה בְּמִקְצָת שֶׁהַשְּׁטָר לֹא תּוֹעִיל בּוֹ כְּפִירָתוֹ וַהֲרֵי כָּל נְכָסָיו מְשֻׁעְבָּדִין בּוֹ וַאֲפִלּוּ כָּפַר בּוֹ הָיָה חַיָּב לְשַׁלֵּם. לְפִיכָךְ נִשְׁבָּע הֶסֵּת עַל הַחֲמִשִּׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הודה </strong> במה שלא היה יכול לכפור כמו בחוב שבשטר לא הוי מודה מקצת דלא חייבו הכתוב שבועה במה שכפר אלא מפני שהודה ומה שהודה לא הויא הודאה כיון שלא היה יכול לכפור כדא׳. כל שחייב שבועה בשאר הפרק הוי משום מודה מקצת וכל שאינו יכול לישבע במודה מקצת משלם כדילפינן לעיל מדכתיב שבועת ה׳ תהיה בין שניהם וגו׳ והיכא דאינו יכול לישבע משלם:</p>
               </div>
             </div>
@@ -522,13 +611,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-5">Chapter 5</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-5-1">Mishneh Torah, Plaintiff and Defendant 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלוּ דְּבָרִים שֶׁאֵין נִשְׁבָּעִין עֲלֵיהֶן מִן הַתּוֹרָה. הַקַּרְקָעוֹת וְהָעֲבָדִים וְהַשְּׁטָרוֹת וְהַהֶקְדֵּשׁוֹת. אַף עַל פִּי שֶׁהוֹדָה בְּמִקְצָת אוֹ שֶׁיֵּשׁ עָלָיו עֵד אֶחָד אוֹ שֶׁשָּׁמַר וְטָעַן טַעֲנַת הַשּׁוֹמְרִין הֲרֵי זֶה פָּטוּר. שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;כִּי יִתֵּן אִישׁ אֶל רֵעֵהוּ&quot; פְּרָט לְהֶקְדֵּשׁ. כֶּסֶף אוֹ כֵּלִים פְּרָט לְקַרְקָעוֹת וְלַעֲבָדִים שֶׁהֻקְּשׁוּ לְקַרְקָעוֹת. וְכֵן יָצְאוּ שְׁטָרוֹת שֶׁאֵין גּוּפָן מָמוֹן כְּכֶסֶף וּכְכֵלִים וְאֵינָן אֶלָּא לָרְאָיָה שֶׁבָּהֶן. וְעַל כֻּלָּן נִשְׁבָּע שְׁבוּעַת הֶסֵּת אִם הָיְתָה שָׁם טַעֲנַת וַדַּאי. חוּץ מִן הַהֶקְדֵּשׁוֹת שֶׁאַף עַל פִּי שֶׁאֵינוֹ חַיָּב עֲלֵיהֶם שְׁבוּעָה מִן הַתּוֹרָה תִּקְּנוּ חֲכָמִים שֶׁיִּשָּׁבַע עֲלֵיהֶם כְּעֵין שֶׁל תּוֹרָה כְּדֵי שֶׁלֹּא יְזַלְזְלוּ בַּהֶקְדֵּשׁוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלו </strong> דברים שאין נשבעין עליהן מן התורה הקדשות דכתיב כי יתן איש אל רעהו פרט להקדש כסף או כלים פרט לקרקעות ולעבדים שהוקשו להם ושטרות אין גופן ממון ככסף וכלים וכדא׳ התם פרק שבועת הדיינים גבי שומרין והכא נמי כתיב כי הוא זה דמיירי במודה מקצת וכן שבועה על ידי עד אחד נתמעטו קרקעות וחבריהם כשם שנתמעטו בשבועת שומרים ושבועה מודה מקצת והיינו טעמא משום דכל ששנים מחייבין אותו ממון אחד מחייבו שבועה ואם העידו ב׳ על שומר חנם שפשע חייב ובקרקעות פטור וכשם שהורע כחן של שנים עדים בתשלומין לגבי שומרים בקרקעות הורע כח האחד לענין שבועה וכמו שהאריך הר&quot;ן ז&quot;ל פרק שבועת הדינים.</p>
               </div>
             </div>
@@ -538,13 +632,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-3-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-3-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-5-3">Mishneh Torah, Plaintiff and Defendant 5:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טְעָנוֹ כֵּלִים וְקַרְקָעוֹת בֵּין שֶׁהוֹדָה בְּכָל הַקַּרְקָעוֹת וְכָפַר בְּכָל הַכֵּלִים בֵּין שֶׁהוֹדָה בְּכָל הַכֵּלִים וְכָפַר בְּכָל הַקַּרְקָעוֹת בֵּין שֶׁהוֹדָה בְּמִקְצָת הַקַּרְקָעוֹת וְכָפַר בְּמִקְצָתָן עִם כָּל הַכֵּלִים. בְּכָל אֵלּוּ נִשְׁבָּע הֶסֵּת. אֲבָל אִם הוֹדָה בְּמִקְצָת כֵּלִים וְכָפַר בְּמִקְצָתָן עִם כָּל הַקַּרְקָעוֹת מִתּוֹךְ שֶׁהוּא חַיָּב שְׁבוּעָה עַל מִקְצָת הַכֵּלִים שֶׁכָּפַר בָּהֶן נִשְׁבָּע אַף עַל הַקַּרְקָעוֹת שֶׁטְּעָנוֹ עִמָּהֶן שֶׁהַכּל טַעֲנָה אַחַת. וְכֵן הַדִּין בִּטְעָנוֹ כֵּלִים וַעֲבָדִים אוֹ כֵּלִים וּשְׁטָרוֹת הַכּל דִּין אֶחָד הוּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טענו </strong> כלים וקרקעות אם יש כפירה והודאה בכלים חייב שבועה אף הקרקעות ע&quot;י גלגול.</p>
               </div>
             </div>
@@ -554,13 +653,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-4-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-4-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-5-4">Mishneh Torah, Plaintiff and Defendant 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טְעָנוֹ עֲנָבִים הָעוֹמְדוֹת לִבָּצֵר וּתְבוּאָה יְבֵשָׁה הָעוֹמֶדֶת לְהִקָּצֵר וְהוֹדָה בְּמִקְצָתָן וְכָפַר בְּמִקְצָתָן הֲרֵי זֶה נִשְׁבָּע עֲלֵיהֶם כִּשְׁאָר הַמִּטַּלְטְלִין. וְהוּא שֶׁאֵינָן צְרִיכִין לַקַּרְקַע שֶׁכָּל הָעוֹמֵד לְהִבָּצֵר הֲרֵי הוּא כְּבָצוּר לְעִנְיַן כְּפִירָה וְהוֹדָיָה. אֲבָל אִם הָיוּ צְרִיכִים לַקַּרְקַע הֲרֵי הֵן כְּקַרְקַע לְכָל דָּבָר וְאֵין נִשְׁבָּעִין עֲלֵיהֶן אֶלָּא הֶסֵּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ענבים </strong> העומדות ליבצר וכיוצא בהן הוו כמטלטלין ואם צריכין לקרקע הרי הן כקרקע כיון שצריכות לו. שכירות קרקע אחר הזמן הוי כתביעת ממון.</p>
               </div>
             </div>
@@ -570,13 +674,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-9-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-9-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-5-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-5-9">Mishneh Torah, Plaintiff and Defendant 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין נִשְׁבָּעִין עַל טַעֲנַת חֵרֵשׁ שׁוֹטֶה וְקָטָן. אֶחָד הַבָּא בְּטַעֲנַת עַצְמוֹ אוֹ בְּטַעֲנַת אָבִיו. לְפִי שֶׁזֶּה הַמִּקְצָת שֶׁהוֹדָה בּוֹ לַקָּטָן אֵינוֹ אֶלָּא כְּמֵשִׁיב אֲבֵדָה. וְכֵן אִם כָּפַר בַּכּל וּבָא עֵד אֶחָד וְהֵעִיד לַקָּטָן אֵינוֹ נִשְׁבָּע. שֶׁזֶּה עֵד אֶחָד וְאֵין שָׁם תּוֹבֵעַ שֶׁתְּבִיעַת קָטָן אֵינָהּ תְּבִיעָה גְּמוּרָה. נִמְצֵאתָ אוֹמֵר קָטָן שֶׁאָמַר לְגָדוֹל מָנֶה לִי בְּיָדְךָ. אוֹ אַבָּא הָיָה לוֹ בְּיָדְךָ. וְהַלָּה אוֹמֵר אֵין לְךָ בְּיָדִי אֶלָּא חֲמִשִּׁים אוֹ אֵין לְךָ בְּיָדִי כְּלוּם. וְעֵד אֶחָד מְעִידוֹ שֶׁיֵּשׁ לוֹ הֲרֵי זֶה פָּטוּר מִשְּׁבוּעַת הַתּוֹרָה. אֲבָל אִם שָׁמַר לְקָטָן וְטָעַן שֶׁאָבַד הֲרֵי זֶה נִשְׁבָּע שְׁבוּעַת הַשּׁוֹמְרִין לְפִי שֶׁאֵינוֹ נִשְׁבָּע מֵחֲמַת טַעֲנָה. וְכֵן אִם הוֹדָה שֶׁהָיָה שֻׁתָּף לְקָטָן אוֹ אַפּוֹטְרוֹפּוֹס עָלָיו יַעֲמִידוּ בֵּית דִּין אַפּוֹטְרוֹפּוֹס לַקָּטָן וְיִשָּׁבַע הַשֻׁתָּף וְכַיּוֹצֵא בּוֹ בְּטַעֲנַת שֶׁמָּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> נשבעין על טענת קטן דאיש כתיב בפרשה בשבועת שומרים ומודה מקצת וכן בעד אחד לא יקום עד אחד באיש וכן טענת חרש ושוטה אינם כלום:</p>
               </div>
             </div>
@@ -587,13 +696,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-6">Chapter 6</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-6-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-6-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-6-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 6:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-6-1">Mishneh Torah, Plaintiff and Defendant 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּעֲלֵי דִּינִין שֶׁבָּאוּ לְבֵית דִּין טָעַן הָאֶחָד וְאָמַר מָנֶה יֵשׁ לִי אֵצֶל זֶה שֶׁהִלְוֵיתִיו אוֹ שֶׁהִפְקַדְתִּי אֶצְלוֹ אוֹ שֶׁגָּזַל מִמֶּנִּי אוֹ שֶׁיֵּשׁ לִי אֶצְלוֹ בְּשָׂכָר וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְהֵשִׁיב הַנִּטְעָן וְאָמַר אֵינִי חַיָּב כְּלוּם אוֹ אֵין לְךָ בְּיָדִי כְּלוּם אוֹ שֶׁקֶר אַתָּה טוֹעֵן. אֵין זוֹ תְּשׁוּבָה נְכוֹנָה אֶלָּא אוֹמְרִים בֵּית דִּין לַנִּטְעָן הָשֵׁב עַל טַעֲנָתוֹ וּפָרֵשׁ הַתְּשׁוּבָה כְּמוֹ שֶׁפֵּרֵשׁ זֶה טַעֲנָתוֹ וֶאֱמֹר אִם לָוִיתָ מִמֶּנּוּ אִם לֹא לָוִיתָ. הִפְקִיד אֶצְלְךָ אוֹ לֹא הִפְקִיד. גְּזַלְתּוֹ אוֹ לֹא גְּזַלְתּוֹ. שְׂכַרְתּוֹ אוֹ לֹא שְׂכַרְתּוֹ. וְכֵן שְׁאָר הַטְּעָנוֹת. וּמִפְּנֵי מָה אֵין מְקַבְּלִים מִמֶּנּוּ תְּשׁוּבָה זוֹ. שֶׁמָּא טוֹעֶה הוּא בְּדַעְתּוֹ וְיָבוֹא לְהִשָּׁבַע עַל שֶׁקֶר שֶׁהֲרֵי אֶפְשָׁר שֶׁהִלְוָהוּ כְּמוֹ שֶׁטָּעַן וְהֶחְזִיר זֶה אֶת הַחוֹב לִבְנוֹ אוֹ לְאִשְׁתּוֹ אוֹ שֶׁנָּתַן לוֹ בְּמַתָּנָה כְּנֶגֶד הַחוֹב וִידַמֶּה בְּדַעְתּוֹ שֶׁנִּפְטַר מִן הַחוֹב. לְפִיכָךְ אוֹמְרִים לוֹ הֵיאַךְ תֹּאמַר אֵינִי חַיָּב כְּלוּם שֶׁמָּא אַתָּה מִתְחַיֵּב מִן הַדִּין לְשַׁלֵּם וְאֵין אַתָּה יוֹדֵעַ אֶלָּא הוֹדַע לַדַּיָּנִין פֵּרוּשׁ הַדְּבָרִים וְהֵם יוֹדִיעוּךָ אִם אַתָּה חַיָּב אוֹ אֵין אַתָּה חַיָּב. וַאֲפִלּוּ הָיָה חָכָם גָּדוֹל אוֹמְרִים לוֹ אֵין לְךָ הֶפְסֵד שֶׁתָּשִׁיב עַל טַעֲנָתוֹ וְתוֹדִיעֶנּוּ כֵּיצַד אֵין אַתָּה חַיָּב לוֹ מִפְּנֵי שֶׁלֹּא הָיוּ דְּבָרִים מֵעוֹלָם אוֹ מִפְּנֵי שֶׁהָיוּ וְהֶחֱזַרְתָּ לוֹ שֶׁהֲרֵי אָנוּ דָּנִין בְּמִתּוֹךְ שֶׁיָּכוֹל לוֹמַר בְּכָל מָקוֹם. וְכֵן אִם טָעַן הַטּוֹעֵן וְאָמַר זֶה חַיָּב לִי מָנֶה. אוֹ מָנֶה יֵשׁ לִי אֶצְלוֹ. אוֹמְרִים לוֹ מֵאֵי זֶה פָּנִים. הִלְוֵיתָ אוֹתוֹ. אוֹ הִפְקַדְתָּ אֶצְלוֹ. אוֹ הִזִּיק מָמוֹנְךָ. אֱמֹר הֵיאַךְ נִתְחַיֵּב לְךָ. שֶׁהֲרֵי אֶפְשָׁר שֶׁיִּדְמֶה לוֹ שֶׁהוּא חַיָּב לוֹ וְהוּא אֵינוֹ חַיָּב כְּגוֹן שֶׁחֲשָׁדוֹ שֶׁגְּנָבוֹ אוֹ שֶׁאָמַר לוֹ שֶׁאֶתֵּן לְךָ מָנֶה וְכַיּוֹצֵא בָּזֶה. הֲרֵי שֶׁטָּעַן עָלָיו שֶׁהִלְוָהוּ מָנֶה וְהֵשִׁיב זֶה וְאָמַר לוֹ לֹא הָיוּ דְּבָרִים מֵעוֹלָם וְאַחַר כָּךְ הֵבִיא הַטּוֹעֵן עֵדִים שֶׁהִלְוָהוּ בִּפְנֵיהֶם וְחָזַר הַנִּטְעָן וְאָמַר כֵּן הָיָה וְלָוִיתִי וּפָרַעְתִּי אֵין מְקַבְּלִין מִמֶּנּוּ אֶלָּא הֻחְזַק כַּפְרָן וּמְשַׁלֵּם. אֲבָל אִם הֵשִׁיב אֵינִי חַיָּב אוֹ אֵין לְךָ בְּיָדִי כְּלוּם אוֹ שֶׁקֶר אַתָּה טוֹעֵן. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְהָלַךְ הַתּוֹבֵעַ וְהֵבִיא עֵדִים שֶׁהִלְוָהוּ בִּפְנֵיהֶם וְאָמַר (הַנִּתְבָּע) כֵּן הָיָה אֲבָל הֶחְזַרְתִּי לוֹ פִּקְדוֹנוֹ אוֹ פְּרַעְתִּיו חוֹבוֹ לֹא הֻחְזַק כַּפְרָן וְנִשְׁבָּע הֶסֵּת וְנִפְטָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>התובע </strong> והנתבע חייבין לברר טענותיהם כדי שהדיינים ידונו ביניהם בצדק. כל שהוחזק כפרן בב&quot;ד בטענתו משלם שכיון שבאו עדים והכחישו טענתו נשארה טענת התובע אמיתית.</p>
               </div>
             </div>
@@ -603,13 +717,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-6-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-6-6-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-6-6-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 6:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 6:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-6-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 6:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-6-6">Mishneh Torah, Plaintiff and Defendant 6:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמַר לוֹ בִּפְנֵי עֵדִים מָנֶה לִי בְּיָדְךָ אָמַר לוֹ הֵן. לְמָחָר תְּבָעוֹ בְּדִין וְהֵבִיא עֵדִים וְאָמַר מְשַׁטֶּה הָיִיתִי בְּךָ וְאֵין לְךָ בְּיָדִי כְּלוּם. פָּטוּר וְנִשְׁבָּע הֶסֵּת שֶׁאֵין בְּיָדוֹ כְּלוּם. וַאֲפִלּוּ אָמַר לֹא הָיוּ דְּבָרִים מֵעוֹלָם שֶׁהֲרֵי לֹא אָמַר לָהֶם אַתֶּם עֵדַי וְדָבָר שֶׁאֵינוֹ עֵדוּת אֵין אָדָם זוֹכְרוֹ. וּלְפִיכָךְ אִם אָמַר לֹא הָיוּ דְּבָרִים מֵעוֹלָם לֹא הֻחְזַק כַּפְרָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הודאה שלא אמר התובע או הנתבע אתם עדי יכול הנתבע להכחיש או לומר משטה הייתי או שלא להראות עצמו עשיר:</p>
               </div>
             </div>
@@ -620,13 +739,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-7">Chapter 7</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-7-1">Mishneh Torah, Plaintiff and Defendant 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹדֶה בִּפְנֵי שְׁנַיִם שֶׁיֵּשׁ לִפְלוֹנִי אֶצְלוֹ מָנֶה וְאָמַר לָהֶן בְּדֶרֶךְ הוֹדָיָה לֹא דֶּרֶךְ שִׂיחָה. אַף עַל פִּי שֶׁלֹּא אָמַר אַתֶּם עֵדַי וְאַף עַל פִּי שֶׁאֵין הַתּוֹבֵעַ עִמּוֹ הֲרֵי זֶה עֵדוּת. תְּבָעוֹ בְּדִין אִם אָמַר לֹא הָיוּ דְּבָרִים מֵעוֹלָם אֵין שׁוֹמְעִין לוֹ וּמְשַׁלֵּם עַל פִּיהֶם. וְאִם הָיָה עֵד אֶחָד נִשְׁבָּע הוֹאִיל וְאָמַר דֶּרֶךְ הוֹדָיָה. טָעַן כְּשֶׁבָּאוּ אֵלּוּ הָעֵדִים וְאָמַר שֶׁלֹּא לְהַשְׂבִּיעַ אֶת עַצְמִי הוֹדֵיתִי נֶאֱמָן וְנִשְׁבָּע הֶסֵּת. וְאִם כְּשֶׁהוֹדָה בִּפְנֵיהֶם הָיָה הַתּוֹבֵעַ עִמּוֹ אֵינוֹ יָכוֹל לִטְעֹן וְלוֹמַר כְּדֵי לְהַרְאוֹת שֶׁאֵינִי עָשִׁיר הוֹדֵיתִי. אֲבָל אִם טָעַן שֶׁנָּתַן נֶאֱמָן וְנִשְׁבָּע הֶסֵּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הודה </strong> בפני שנים דרך הודאה אינו יכול לומר משטה הייתי אבל יכול לומר שלא להראות עצמי עשיר הודיתי.</p>
               </div>
             </div>
@@ -636,13 +760,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-5-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-5-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-7-5">Mishneh Torah, Plaintiff and Defendant 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר בֵּאַרְנוּ שֶׁהוֹדָיָה בְּבֵית דִּין אוֹ עֵדוּת בְּבֵית דִּין כְּמִלְוֶה הַכְּתוּבָה בִּשְׁטָר וּלְפִיכָךְ כּוֹתְבִין וְנוֹתְנִין לְבַעַל דִּינוֹ. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁלֹּא קִבֵּל אֶת הַדִּין עַד שֶׁשָּׁלְחוּ וֶהֱבִיאוּהוּ כְּמוֹ שֶׁבֵּאַרְנוּ. אֲבָל שְׁנַיִם שֶׁבָּאוּ לְדִין וְתָבַע אֶחָד מֵהֶן אֶת חֲבֵרוֹ וְאָמַר מָנֶה לִי בְּיָדְךָ וְאָמַר לוֹ הַנִּתְבָּע הֵן יֵשׁ לְךָ בְּיָדִי. בֵּין שֶׁאָמְרוּ הַדַּיָּנִין חַיָּב אַתָּה לִתֵּן לוֹ בֵּין שֶׁאָמְרוּ צֵא תֵּן לוֹ וְיָצָא וְאָמַר פָּרַעְתִּי נֶאֱמָן וְיִשָּׁבַע הֶסֵּת שֶׁפְּרָעוֹ. לְפִיכָךְ אִם חָזַר הַתּוֹבֵעַ לַדַּיָּנִים וְאָמַר כִּתְבוּ לִי הוֹדָיָתִי אֵין כּוֹתְבִין לוֹ שֶׁמָּא פְּרָעוֹ. וְכֵן מִי שֶׁנִּתְחַיֵּב שְׁבוּעָה בְּבֵית דִּין וְיָצָא וְאָמַר נִשְׁבַּעְתִּי נֶאֱמָן וְאֵין מַשְׁבִּיעִין אוֹתוֹ שֶׁנִּשְׁבַּע. הָיוּ הָעֵדִים מְעִידִין אוֹתוֹ שֶׁלֹּא נִשְׁבַּע הֻחְזַק כַּפְרָן לְאוֹתָהּ שְׁבוּעָה וְאֵינוֹ נֶאֱמָן לְעוֹלָם לוֹמַר נִשְׁבַּעְתִּי עַד שֶׁיּוֹדֶה לוֹ בַּעַל דִּינוֹ אוֹ יָבִיא עֵדִים שֶׁנִּשְׁבַּע בִּפְנֵיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> עדות או הודיה בב&quot;ד הויא כמלוה הכתובה בשטר לענין שאינו יכול לומר פרעתי היכא דלא הוה ציית דינא דחזקה הוא שלא פרע.</p>
               </div>
             </div>
@@ -652,13 +781,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-7-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-7-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-7-7">Mishneh Torah, Plaintiff and Defendant 7:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהוֹדָה בְּבֵית דִּין שֶׁאֲנִי חַיָּב לְזֶה הַתּוֹבֵעַ מָנֶה וְאַחַר כָּךְ אָמַר נִזְכַּרְתִּי שֶׁפָּרַעְתִּי לוֹ חוֹבוֹ זֶה שֶׁהוֹדֵיתִי בּוֹ וַהֲרֵי עֵדִים. הֲרֵי זֶה עֵדוּת מוֹעֶלֶת וְעוֹשִׂין עַל פִּיהֶם שֶׁהֲרֵי לֹא הִכְחִישׁ עֵדָיו וְאֵינוֹ כְּאוֹמֵר לֹא לָוִיתִי מֵעוֹלָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הודה </strong> שחייב ואחר כך אמר נזכרתי שפרעתי והרי העדים הרי זו עדות מועלת.</p>
               </div>
             </div>
@@ -668,13 +802,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-8-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-8-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-8-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:8:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-7-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-7-8">Mishneh Torah, Plaintiff and Defendant 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ לַטּוֹעֵן בְּבֵית דִּין לַחְזֹר וְלִטְעֹן טַעֲנָה אַחֶרֶת לְהַכְחִישׁ הַטַּעֲנָה הָרִאשׁוֹנָה וְסוֹמְכִין עַל טַעֲנָתוֹ הָאַחֲרוֹנָה. וְאַף עַל פִּי שֶׁלֹּא נָתַן אֲמַתְלָא לַטַּעֲנָה הָרִאשׁוֹנָה. וְאַף עַל פִּי שֶׁיָּצָא מִבֵּית דִּין וְחָזַר יֵשׁ לַחְזֹר וְלִטְעֹן וּלְהַפֵּךְ כָּל הַטְּעָנוֹת שֶׁיִּרְצֶה עַד שֶׁיָּבוֹאוּ עֵדִים. אֲבָל מֵאַחַר שֶׁיָּבוֹאוּ עֵדִים וְיַכְחִישׁוּ טַעֲנָתוֹ הָאַחֲרוֹנָה שֶׁסָּמַךְ עָלֶיהָ אֵינוֹ יָכוֹל לְהַשִּׁיאוֹ לְטַעֲנָה אַחֶרֶת אֶלָּא אִם כֵּן נָתַן אֲמַתְלָא לַטַּעֲנָה שֶׁסָּמַךְ עָלֶיהָ. וְיֵשׁ בְּמַשְׁמָעָהּ כְּמוֹ שֶׁהִשִּׁיא בְּזֹאת הַטַּעֲנָה הָאַחֶרֶת. וְהוּא שֶׁלֹּא יָצָא מִבֵּית דִּין. אֲבָל אִם יָצָא מִבֵּית דִּין אֵינוֹ יָכוֹל לַחְזֹר וְלִטְעֹן אַחַר שֶׁבָּאוּ עֵדִים. שֶׁמָּא אֲנָשִׁים רָעִים לִמְּדוּהוּ טְעָנוֹת שֶׁל שֶׁקֶר. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש </strong> לטוען לחזור ולטעון טענה אחרת בב&quot;ד כל שלא באו עדים והכחישוהו על טענתו האחרונה ולא יצא מבית דין:</p>
               </div>
             </div>
@@ -685,13 +824,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-8">Chapter 8</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-8-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-8-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-8-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 8:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 8:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-8-1">Mishneh Torah, Plaintiff and Defendant 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמִּטַּלְטְלִין בְּחֶזְקַת זֶה שֶׁהֵן תַּחַת יָדוֹ. אַף עַל פִּי שֶׁהֵבִיא הַתּוֹבֵעַ עֵדִים שֶׁהַמִּטַּלְטְלִין הַלָּלוּ יְדוּעִין לוֹ. כֵּיצַד. בֶּגֶד זֶה אוֹ כְּלִי זֶה שֶׁבְּיָדְךָ אוֹ שֶׁבְּתוֹךְ בֵּיתְךָ שֶׁלִּי הוּא. אוֹ הִפְקַדְתִּיהוּ אֶצְלְךָ. אוֹ הִשְׁאַלְתִּיהוּ לְךָ. וַהֲרֵי הָעֵדִים שֶׁהֵן יוֹדְעִין אוֹתוֹ מִקֹּדֶם בִּרְשׁוּתִי. וְהַנִּתְבָּע אוֹמֵר לֹא כִּי אֶלָּא אַתָּה מְכַרְתּוֹ לִי אוֹ נְתַתּוֹ לִי בְּמַתָּנָה. הֲרֵי זֶה הַנִּתְבָּע נִשְׁבָּע הֶסֵּת וְנִפְטָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> המטלטלין בחזקת זה שהן תחת ידו הן אפילו הביא התובע עדים שמטלטלים הללו ידועין לו שמא נתנם או מכרם. ואם היו דברים העשוים להשאיל ולהשכיר והיו נראים ביד מי שהם עתה הרי התובע נוטל כליו והולך כיון שיש לו עדים שהם ידועים לו והן עשוים להשאיל ולהשכיר ואם לא טען עליהן שאלה או שכירות אלא שנגנבו ממנו אינו מוציאם מיד מי שהם. נזקקין לתובע תחלה כדילפינן בב&quot;ק:</p>
               </div>
             </div>
@@ -702,13 +846,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-9">Chapter 9</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 9:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 9:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-9-1">Mishneh Torah, Plaintiff and Defendant 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאֻמָּן אֵין לוֹ חֲזָקָה בַּכֵּלִים שֶׁתַּחַת יָדוֹ. אֶחָד כֵּלִים הָעֲשׂוּיִים לְהַשְׁאִיל וּלְהַשְׂכִּיר וְאֶחָד שְׁאָר כֵּלִים. כֵּיצַד. רָאָה כֶּלְיוֹ בְּיַד הָאֻמָּן וְהֵבִיא עֵדִים שֶׁהֵן יוֹדְעִין שֶׁהַכְּלִי זֶה שֶׁלּוֹ וְהוּא טוֹעֵן וְאוֹמֵר לְתַקֵּן נְתַתִּיו לְךָ. וְהָאֻמָּן אוֹמֵר לֹא בָּא לְיָדִי אֶלָּא בִּמְכִירָה אוֹ מַתָּנָה. אוֹ שֶׁטָּעַן אַתָּה נְתַתּוֹ לִי אַתָּה מְכַרְתּוֹ לִי אַחַר שֶׁבָּא לְיָדִי לְתַקְּנוֹ. אַף עַל פִּי שֶׁמְּסָרוֹ לוֹ שֶׁלֹּא בְּעֵדִים בַּעַל הַכְּלִי נֶאֱמָן וּמוֹצִיאִין אוֹתוֹ מִיַּד הָאֻמָּן וְיִשָּׁבַע בַּעַל הַבַּיִת הֶסֵּת עַל טַעֲנָתוֹ. וְיֵשׁ גְּאוֹנִים שֶׁדָּנוּ אַף עַל פִּי שֶׁלֹּא הֵבִיא בַּעַל הַבַּיִת עֵדִים שֶׁזֶּה הַכְּלִי שֶׁלּוֹ הוֹאִיל וְרָאָה כֶּלְיוֹ בְּיַד הָאֻמָּן וַהֲרֵי הָאֻמָּן מוֹדֶה לוֹ שֶׁהָיָה שֶׁלּוֹ וּמְכָרוֹ לוֹ נֶאֱמָן. אֲבָל אִם אָמַר לֹא הָיוּ דְּבָרִים מֵעוֹלָם וְשֶׁלִּי הוּא הַכְּלִי נֶאֱמָן הָאֻמָּן וְנִשְׁבָּע הֶסֵּת. וְאִם הֵבִיא בַּעַל הַבַּיִת עֵדִים שֶׁהַכְּלִי הַזֶּה יָדוּעַ לוֹ אֵין הָאֻמָּן נֶאֱמָן. וְדִין זֶה פֶּלֶא הוּא בְּעֵינַי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אומן </strong> אין לו חזקה אפי׳ בכלים שאינם עשויין להשאיל ולהשכיר בדאיכא עדי ראיה ויש לבעל הבית עדים שהם ידועים לו.</p>
               </div>
             </div>
@@ -718,13 +867,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-9">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-4-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-4-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 9:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 9:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 9:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-9-4">Mishneh Torah, Plaintiff and Defendant 9:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁנִּכְנַס לְבֵיתוֹ שֶׁל חֲבֵרוֹ בִּפְנֵי בַּעַל הַבַּיִת וְיָצָא וְכֵלִים טְמוּנִין תַּחַת כְּנָפָיו וְהָעֵדִים רוֹאִין אוֹתוֹ. וּלְאַחַר זְמַן תְּבָעוֹ בַּעַל הַבַּיִת וְאָמַר לוֹ הַחְזֵר לִי כֵּלִים שֶׁהִשְׁאַלְתִּיךָ וַהֲרֵי הָעֵדִים וְהוּא אוֹמֵר לְקוּחִין הֵן בְּיָדִי אֵינוֹ נֶאֱמָן. וְנִשְׁבָּע בַּעַל הַבַּיִת הֶסֵּת עַל טַעֲנָתוֹ שֶׁלֹּא מְכָרָן וְלֹא נְתָנָן וְיַחֲזִירוּ בֵּית דִּין הַכֵּלִים לְבַעַל הַבַּיִת. בַּמֶּה דְּבָרִים אֲמוּרִים בְּבַעַל הַבַּיִת שֶׁאֵינוֹ עָשׂוּי לִמְכֹּר אֶת כֵּלָיו. וְזֶה שֶׁהוֹצִיא הַכֵּלִים תַּחַת כְּנָפָיו אֵין דַּרְכּוֹ לְהַצְנִיעַ. וְאוֹתָן הַכֵּלִים אֵין דֶּרֶךְ בְּנֵי אָדָם לְהַצְנִיעָן. לְפִיכָךְ חַיָּב לְהַחְזִיר לְפִי שֶׁלֹּא הִצְנִיעָן אֶלָּא לִכְפֹּר בָּהֶן. אֲבָל בַּעַל הַבַּיִת הֶעָשׂוּי לִמְכֹּר אֶת כֵּלָיו אַף עַל פִּי שֶׁאֵין זֶה צָנוּעַ וְאֵין דֶּרֶךְ אוֹתָן הַכֵּלִים לְהַטְמִינָן תַּחַת הַכְּנָפַיִם הֲרֵי זֶה נִשְׁבָּע הֶסֵּת שֶׁהֵן לְקוּחִין בְּיָדוֹ. וְכֵן אִם יָצָא בָּהֶן מְגֻלִּין בִּפְנֵי עֵדִים אַף עַל פִּי שֶׁאֵין בַּעַל הַבַּיִת עָשׂוּי לִמְכֹּר אֶת כֵּלָיו הֲרֵי זֶה נֶאֱמָן לוֹמַר לְקוּחִין הֵן בְּיָדִי. שֶׁמָּא נִצְטָרְכוּ לוֹ מָעוֹת וּמָכַר. וּבִלְבַד שֶׁלֹּא יִהְיוּ מִדְּבָרִים הָעֲשׂוּיִים לְהַשְׁאִיל וּלְהַשְׂכִּיר. אֲבָל דְּבָרִים הָעֲשׂוּיִין לְהַשְׁאִיל וּלְהַשְׂכִּיר לְעוֹלָם הֵן בְּחֶזְקַת בַּעֲלֵיהֶן כְּמוֹ שֶׁבֵּאַרְנוּ. וְאַף עַל פִּי שֶׁהוֹצִיאָן מְגֻלִּין וְאַף עַל פִּי שֶׁבַּעַל הַבַּיִת הַזֶּה עָשׂוּי לִמְכֹּר אֶת כֵּלָיו הוֹאִיל וְיֵשׁ לוֹ עֵדִים שֶׁזֶּה הַכְּלִי עָשׂוּי לְהַשְׁאִיל וּלְהַשְׂכִּיר בִּלְבַד יָדוּעַ הוּא לוֹ מוֹצִיאִין אוֹתָן מִיַּד זֶה עַל כָּל פָּנִים עַד שֶׁיָּבִיא רְאָיָה שֶׁמְּכָרוֹ לוֹ אוֹ נְתָנוֹ לוֹ בְּמַתָּנָה כְּדִין קַרְקָעוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שנכנס לביתו של חברו וכו׳ נראה דהא אינו נאמן משום דהוי חזקה שהשאילם לו כיון שאין עשוי למכור כליו ואין דרכו של מוציא להצניע הכלים תחת כנפיו והכלים עצמן אין דרך בני אדם להצניעם. ואם הם כלים העשויים להשאיל בכל גוונא אינו נאמן המוציא ואפילו יורש שלו וכן גוזל דקלו של פלוני שאמר שמכרו לו או יורד לתוך שדהו וכו׳ הוי חזקה שאין אדם מעיז פניו לאכול פירות שאינם שלו וחזקה מדאוריתא כדילפינן בדוכתא.</p>
               </div>
             </div>
@@ -734,13 +888,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-9">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-7-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-7-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 9:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 9:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-9-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 9:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-9-7">Mishneh Torah, Plaintiff and Defendant 9:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנַיִם שֶׁהָיוּ אוֹחֲזִין בִּכְלִי אֶחָד אוֹ שֶׁהָיוּ רוֹכְבִין עַל גַּבֵּי בְּהֵמָה אַחַת. אוֹ שֶׁהָיָה אֶחָד רוֹכֵב וְאֶחָד מַנְהִיג. אוֹ יוֹשְׁבִין בְּצַד עֲרֵמָה שֶׁל חִטִּים וּמֻנָּחוֹת בְּסִמְטָא אוֹ בְּחָצֵר שֶׁל שְׁנֵיהֶם. זֶה אוֹמֵר הַכּל שֶׁלִּי וְזֶה אוֹמֵר הַכּל שֶׁלִּי. כָּל אֶחָד מִשְּׁנֵיהֶן נִשְׁבָּע בִּנְקִיטַת חֵפֶץ שֶׁאֵין לוֹ בְּזֶה הַדָּבָר פָּחוֹת מֵחֶצְיוֹ וְיַחְלֹקוּ. וּשְׁבוּעָה זוֹ תַּקָּנַת חֲכָמִים הִיא כְּדֵי שֶׁלֹּא יִהְיֶה כָּל אֶחָד תּוֹפֵס בְּטַלִּיתוֹ שֶׁל חֲבֵרוֹ וְנוֹטֵל בְּלֹא שְׁבוּעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנים </strong> מוחזקים בדבר א׳ מה&quot;ת חולקין ושבועה מתקנת חכמים:</p>
               </div>
             </div>
@@ -751,13 +910,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-10">Chapter 10</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-10-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-10-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-10-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 10:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 10:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-10-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 10:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-10-1">Mishneh Torah, Plaintiff and Defendant 10:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּהֵמָה אוֹ חַיָּה שֶׁאֵינָהּ שְׁמוּרָה אֶלָּא מְהַלֶּכֶת בְּכָל מָקוֹם וְרוֹעָה. אֵינָהּ בְּחֶזְקַת זֶה שֶׁתְּפָסָהּ מֵאַחַר שֶׁהִיא יְדוּעָה לַבְּעָלִים. כֵּיצַד. הֵבִיא הַתּוֹבֵעַ עֵדִים שֶׁהַבְּהֵמָה הַזֹּאת יְדוּעָה לוֹ וְזֶה הַתּוֹפֵס טוֹעֵן אַתָּה נְתַתָּהּ לִי אַתָּה מְכַרְתָּהּ לִי אֵינוֹ נֶאֱמָן. שֶׁאֵין הֱיוֹתָהּ תַּחַת יָדוֹ רְאָיָה שֶׁהֲרֵי הִיא הָלְכָה מֵעַצְמָהּ וְנִכְנְסָה בִּרְשׁוּתוֹ. לְפִיכָךְ אִם לֹא הֵבִיא רְאָיָה תַּחְזֹר הַבְּהֵמָה לִבְעָלֶיהָ וְיִשָּׁבַע הֶסֵּת עַל טַעֲנָה זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגודרות </strong> אין להם חזקה כדאמר ר&quot;ל פרק חזקת כיון שהיא הולכת מעצמה ולכך אם לא הביא ראיה תחזור הבהמה לבעליה ואם היתה שמורה או מסורה לרועה הרי היא בחזקתו וכן העבד אם החזיק ונשתמש בו שלש שנים הוי בחזקתו:</p>
               </div>
             </div>
@@ -768,13 +932,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-11">Chapter 11</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-11-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-11-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-11-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 11:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 11:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-11-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 11:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-11-1">Mishneh Torah, Plaintiff and Defendant 11:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַקַּרְקָעוֹת הַיְדוּעוֹת לבַעְלֵיהֶן אַף עַל פִּי שֶׁהֵן עַתָּה תַּחַת יַד אֲחֵרִים הֲרֵי הֵן בְּחֶזְקַת בַּעְלֵיהֶן. כֵּיצַד. רְאוּבֵן שֶׁהָיָה מִשְׁתַּמֵּשׁ בֶּחָצֵר כְּדֶרֶךְ שֶׁהָעָם מִשְׁתַּמְּשִׁין בְּחַצְרוֹתֵיהֶן. דָּר בָּהּ וּמַשְׂכִּירָהּ לַאֲחֵרִים וּבוֹנֶה וְסוֹתֵר. וְאַחַר זְמַן בָּא שִׁמְעוֹן וְטָעַן עָלָיו וְאָמַר לוֹ חָצֵר זוֹ שֶׁתַּחַת יָדְךָ שֶׁלִּי הִיא וּשְׂכוּרָה הִיא בְּיָדְךָ אוֹ שְׁאוּלָה. וֶהֱשִׁיבוֹ רְאוּבֵן שֶׁלְּךָ הָיְתָה וְאַתָּה מְכַרְתָּהּ לִי אוֹ נְתַתָּהּ לִי בְּמַתָּנָה. אִם אֵין עֵדִים לְשִׁמְעוֹן שֶׁהָיְתָה יְדוּעָה לוֹ נִשְׁבָּע רְאוּבֵן הֶסֵּת וְיַעֲמֹד בִּמְקוֹמוֹ. אֲבָל אִם הֵבִיא שִׁמְעוֹן עֵדִים שֶׁחָצֵר זוֹ שֶׁלּוֹ הָיְתָה הֲרֵי הִיא בְּחֶזְקַת שִׁמְעוֹן וְאוֹמְרִין לִרְאוּבֵן הָבֵא רְאָיָה שֶׁמְּכָרָהּ לְךָ אוֹ נְתָנָהּ לְךָ. וְאִם לֹא הֵבִיא רְאָיָה מְסַלְּקִין אוֹתוֹ מִמֶּנָּה וּמַחֲזִיקִין אוֹתָהּ לְשִׁמְעוֹן אַף עַל פִּי שֶׁאֵין רְאוּבֵן מוֹדֶה לְשִׁמְעוֹן שֶׁהִיא הָיְתָה שֶׁלּוֹ שֶׁהֲרֵי יֵשׁ עֵדִים לְשִׁמְעוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקרקעות </strong> בחזקת בעליהן עד שיביא ראיה המחזיק שלקחם ואם החזיק בה ג׳ שנים רצופות אינו צריך להביא ראיה דעד ג׳ שנים חזקה דמזדהר איניש בשטרא טפי לא וחזקה היא גם כן שאם לא מכרה לו לא היה מניחה שלש שנים בידו והיה מוחה בו. וצריך מחאה כל סוף שלש שנים ואם הביא המחזיק עדים שבעל השדה קבץ הפירות ונתן לו לאלתר הויא חזקה כל שלא אמר לפירות הורדתיו דחזקה הוא שאם לא מכרה לא היה משמשו בשדה:</p>
               </div>
             </div>
@@ -785,13 +954,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-12">Chapter 12</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-12-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-12-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-12-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 12:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 12:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-12-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 12:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-12-1">Mishneh Torah, Plaintiff and Defendant 12:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁלֹשׁ שָׁנִים שֶׁאָמַרְנוּ מִיּוֹם לְיוֹם אֲפִלּוּ הָיוּ חֲסֵרִים יוֹם אֶחָד לֹא הֶחֱזִיק וּמְסַלְּקִין אוֹתוֹ מִמֶּנָּה. בַּמֶּה דְּבָרִים אֲמוּרִים בְּקַרְקָעוֹת שֶׁהֵן עוֹשִׂין פֵּרוֹת תָּמִיד כְּגוֹן הַבָּתִּים וְהַחֲצֵרוֹת וְהַבּוֹרוֹת וְהַשִּׁיחִין וְהַמְּעָרוֹת וְהַחֲנֻיּוֹת וְהַפֻּנְדָּקוֹת וְהַמֶּרְחֲצָאוֹת וְהַשׁוֹבָכוֹת וּבָתֵּי הַבַּדִּין וּשְׂדֵה בֵּית הַשְּׁלָחִין שֶׁמַּשְׁקִין אוֹתָה תָּמִיד וְזוֹרְעִין בָּהּ וְנוֹטְעִין וְהַגַּנּוֹת וְהַפַּרְדֵּסִין. וְכֵן עֲבָדִים הַמְהַלְּכִין כְּמוֹ שֶׁבֵּאַרְנוּ. אֲבָל שְׂדֵה הַבַּעַל שֶׁהִיא שׁוֹתָה מִמֵּי גְּשָׁמִים בִּלְבַד וּשְׂדֵה אִילָן אֵינָהּ מִיּוֹם לְיוֹם אֶלָּא כֵּיוָן שֶׁאָכְלוּ שָׁלֹשׁ תְּבוּאוֹת מִמִּין אֶחָד הֲרֵי אֵלּוּ כְּשָׁלֹשׁ שָׁנִים. כֵּיצַד. הָיְתָה שְׂדֵה תְּמָרִים וְגָדַר שָׁלֹשׁ גְּדֵרוֹת אוֹ שְׂדֵה עֲנָבִים וּבָצַר שָׁלֹשׁ בְּצִירוֹת אוֹ שְׂדֵה זֵיתִים וּמָסַק שָׁלֹשׁ מְסִיקוֹת הֲרֵי אֵלּוּ כְּשָׁלֹשׁ שָׁנִים וְהֶחֱזִיק. וַאֲפִלּוּ הָיוּ הָאִילָנוֹת רְצוּפִין וְלֹא הָיָה בֵּינֵיהֶן הַרְחָקָה כָּרָאוּי שֶׁהֲרֵי סוֹפָן לִיבַשׁ הוֹאִיל וְאוֹכְלָן שָׁלֹשׁ תְּבוּאוֹת הֶחֱזִיק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הנאמר בפרק זה שהוא חזקה אין לבעלים הראשונים זכות דחזקה היא שאלו היתה שלו היה מוחה בו וכדאמרינן:</p>
               </div>
             </div>
@@ -802,13 +976,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-13">Chapter 13</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-13-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-13-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-13-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 13:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 13:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-13-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 13:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-13-1">Mishneh Torah, Plaintiff and Defendant 13:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ שֶׁאֵין מַעֲמִידִין הַקַּרְקַע בְּיָדָן אַף עַל פִּי שֶׁאֲכָלוּם שָׁלֹשׁ שָׁנִים. הָאֻמָּנִין וְהָאֲרִיסִין וְהָאַפּוֹטְרוֹפִּין וְהַשֻּׁתָּפִין וְהָאִישׁ בְּנִכְסֵי אִשְׁתּוֹ וְהָאִשָּׁה בְּנִכְסֵי בַּעְלָהּ וּבֵן בְּנִכְסֵי אָבִיו וְהָאָב בְּנִכְסֵי הַבֵּן. שֶׁכָּל אֶחָד מֵאֵלּוּ אֵין מַקְפִּידִין זֶה עַל זֶה. לְפִיכָךְ אֵין אֲכִילָתָן רְאָיָה אַף עַל פִּי שֶׁלֹּא מִחוּ בָּהֶן הַבְּעָלִים אֶלָּא תַּחְזֹר הַקַּרְקַע לַבְּעָלִים שֶׁהֵבִיאוּ רְאָיָה שֶׁזֹּאת הַקַּרְקַע יְדוּעָה לָהֶן וְיִשָּׁבַע הֶסֵּת שֶׁלֹּא מְכָרוֹ וְשֶׁלֹּא נְתָנוֹ כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> מי שאין מקפידין עליו אם אכל אין אכילתו ראיה אפי׳ לא מיחו בו דחזקה היא שאין אדם מקפיד&#160;על אומנין ואריסין וחבריהם:</p>
               </div>
             </div>
@@ -819,13 +998,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-14">Chapter 14</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-14-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-14-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-14-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 14:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 14:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-14-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 14:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-14-1">Mishneh Torah, Plaintiff and Defendant 14:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אֵלּוּ שֶׁאֵין אֲכִילָתָן רְאָיָה אִם הֵבִיאוּ עֵדִים שֶׁמָּכְרוּ לָהֶם הַבְּעָלִים שָׂדֶה זוֹ אוֹ נְתָנוּהָ לָהֶן בְּמַתָּנָה רְאָיָתָן רְאָיָה. חוּץ מִן הַגַּזְלָן וְהַבַּעַל בְּנִכְסֵי אִשְׁתּוֹ. בְּאֵי זֶה נְכָסִים אָמְרוּ בְּנִכְסֵי צֹאן בַּרְזֶל אוֹ בְּשָׂדֶה שֶׁיִּחֵד לָהּ בִּכְתֻבָּתָהּ וּבְשָׂדֶה שֶׁכָּתַב לָהּ בִּכְתֻבָּתָהּ וּבְשָׂדֶה שֶׁנָּתַן לָהּ בְּשׁוּם מִשֶּׁלּוֹ. אֲבָל בְּנִכְסֵי מְלוֹג יֵשׁ לוֹ רְאָיָה כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת אִישׁוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> שאין אכילתן שלש שנים ראיה אם הביאו עדים לטענתן ראייתן ראיה חוץ מן הגזלן&#160;והבעל&#160;בנכסי&#160;אשתו וכן הגוי והבא מחמת הגוי הרי הוא כגוי ואין מחזיקין בנכסי קטן וכן בורח מחמת נפשות וכל חזקה שאין עמה טענה אינה חזקה וכן נמצא שטרו בטל דסברא הוא דאין חזקתן חזקה:</p>
               </div>
             </div>
@@ -836,13 +1020,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-15">Chapter 15</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 15:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 15:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 15:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-15-1">Mishneh Torah, Plaintiff and Defendant 15:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁעִרְעֵר עַל שָׂדֶה זוֹ וְהֵבִיא עֵדִים שֶׁהִיא יְדוּעָה לוֹ וְהֵבִיא זֶה שֶׁבְּתוֹכָהּ שְׁטָר שֶׁלְּקָחָהּ מִמֶּנּוּ וְהֵבִיא עֵדִים שֶׁאֲכָלָהּ שְׁנֵי חֲזָקָה. אוֹמְרִים לוֹ בַּתְּחִלָּה קַיֵּם שְׁטָרְךָ. אִם נִתְקַיֵּם הֲרֵי טוֹב וְיָדוּן בַּשְּׁטָר. וְאִם אִי אֶפְשָׁר לוֹ לְקַיְּמוֹ סוֹמְכִין עַל עֵדֵי חֲזָקָה וְיִשָּׁבַע הֶסֵּת שֶׁלְּקָחָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שהחזיק בשדה שלש שנים או שהיה לו שטר שלקחה מהמערער עליו הרי היא בחזקתו. כל המחזיר פירות שאכל הוי משום דאיגלאי מילתא שלא היתה השדה שלו.</p>
               </div>
             </div>
@@ -852,13 +1041,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-15">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-4-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-4-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 15:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 15:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 15:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-15-4">Mishneh Torah, Plaintiff and Defendant 15:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנַיִם שֶׁהָיוּ עוֹרְרִין עַל הַשָּׂדֶה זֶה אוֹמֵר שֶׁלִּי וְזֶה אוֹמֵר שֶׁלִּי וְאֵין לְאֶחָד מֵהֶן רְאָיָה. אוֹ שֶׁהֵבִיא כָּל אֶחָד מֵהֶם עֵדִים שֶׁהִיא שֶׁלּוֹ אוֹ שֶׁל אֲבוֹתָיו אוֹ שֶׁהֵבִיא כָּל אֶחָד מִשְּׁנֵיהֶם עֵדִים שֶׁאֲכָלָהּ שְׁנֵי חֲזָקָה וְהַשָּׁנִים שֶׁהֵעִידוּ בָּהֶן אֵלּוּ הֵן הַשָּׁנִים עַצְמָן שֶׁהֵעִידוּ בָּהֶן אֵלּוּ. מַנִּיחִין אוֹתָהּ בִּידֵיהֶן וְכָל הַמִּתְגַּבֵּר יֵרֵד בָּהּ וְיִהְיֶה הָאַחֵר מוֹצִיא מִיָּדוֹ וְעָלָיו הָרְאָיָה. וְאִם בָּא שְׁלִישִׁי וְתָקַף עֲלֵיהֶן וְיָרַד לְתוֹכָהּ מְסַלְּקִין אוֹתוֹ מִמֶּנָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנים </strong> עוררין על השדה כל דאלים גבר כיון ששניהם שוין בה בראיות כל דאלים גבר ותהיה בידו עד שיברר המערער שהיא שלו ולא אמרינן יחלוקו כדאמרינן בעלמא משום דאיכא למיקם עלה דמילתא שמא יבואו עדים.</p>
               </div>
             </div>
@@ -868,13 +1062,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-15">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-6-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-6-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 15:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 15:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-15-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 15:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-15-6">Mishneh Torah, Plaintiff and Defendant 15:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זֶה אוֹמֵר שֶׁל אֲבוֹתַי וְזֶה אוֹמֵר שֶׁל אֲבוֹתַי זֶה הֵבִיא עֵדִים שֶׁהִיא שֶׁל אֲבוֹתָיו וְזֶה הֵבִיא עֵדִים שֶׁאֲכָלָהּ שְׁנֵי חֲזָקָה תַּחְזֹר לָזֶה שֶׁהֵבִיא עֵדִים שֶׁהִיא שֶׁל אֲבוֹתָיו וְיַחְזִיר הַפֵּרוֹת שֶׁאָכַל. שֶׁהֲרֵי לֹא טָעַן כְּלוּם וְאֵין אֲכִילָתוֹ רְאָיָה שֶׁכָּל חֲזָקָה שֶׁאֵין עִמָּהּ טַעֲנָה עַל הַבְּעָלִים אֵינָהּ כְּלוּם. חָזַר זֶה הַמַּחֲזִיק וְאָמַר כֵּן שֶׁל אֲבוֹתֶיךָ הָיְתָה וְאַתָּה מְכַרְתָּהּ לִי וְזֶה שֶׁטָּעַנְתִּי תְּחִלָּה שֶׁהִיא שֶׁל אֲבוֹתַי כְּלוֹמַר שֶׁאֲנִי סוֹמֵךְ עָלֶיהָ וַהֲרֵי הִיא שֶׁלִּי כְּשֶׁל אֲבוֹתַי. אוֹ שֶׁאָמַר שֶׁל אֲבוֹתַי שֶׁלְּקָחוּהָ מֵאֲבוֹתֶיךָ הֲרֵי זוֹ טַעֲנָה נְכוֹנָה שֶׁהֲרֵי נָתַן אֲמַתְלָא לִדְבָרָיו הָרִאשׁוֹנִים וּמַעֲמִידִין אוֹתָהּ בְּיָדוֹ. וְאִם טָעַן בַּתְּחִלָּה וְאָמַר שֶׁל אֲבוֹתַי וְלֹא שֶׁל אֲבוֹתֶיךָ אֵין שׁוֹמְעִין לוֹ בְּטַעֲנָה זוֹ הָאַחֶרֶת. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> חזקה שאין עמה טענה אינה חזקה. כל מי שמעמידין השדה בידו אינו משום חזקה וסברא דהוי שלו:</p>
               </div>
             </div>
@@ -885,13 +1084,18 @@
             </nav>
           </section>
           <h4 id="chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-16">Chapter 16</h4>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-1-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-1-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 16:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 16:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 16:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-16-1">Mishneh Torah, Plaintiff and Defendant 16:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רְאוּבֵן שֶׁמָּכַר לְשִׁמְעוֹן שָׂדֶה וְהָיָה לֵוִי מֵעֵדֵי הַשְּׁטָר וּבָא לֵוִי לְעַרְעֵר עַל הַשָּׂדֶה וְלִטְעֹן שֶׁרְאוּבֵן גָּזַל אוֹתָהּ מִמֶּנּוּ. אֵין שׁוֹמְעִין לוֹ וְאֵין מַשְׁגִּיחִין עַל רְאָיוֹת שֶׁיָּבִיא עַל אוֹתָהּ שָׂדֶה וַהֲרֵי אִבֵּד כָּל זְכוּתוֹ שֶׁאוֹמֵר לוֹ הֵיאַךְ תָּעִיד עַל הַמֶּכֶר וְתָבוֹא וּתְעַרְעֵר. וְכֵן אִם הֵעִיד לֵוִי בִּשְׁטָר שֶׁכָּתוּב בּוֹ הַשָּׂדֶה פְּלוֹנִי שֶׁל רְאוּבֵן מִצַּד מִזְרָח אוֹ מַעֲרָב הוֹאִיל וְעָשָׂה הַשָּׂדֶה סִימָן לְאַחֵר וְהֵעִיד בַּשְּׁטָר אִבֵּד אֶת זְכוּתוֹ וְאֵינוֹ יָכוֹל לַחְזֹר וּלְעַרְעֵר שֶׁאוֹמְרִים לוֹ הֵיאַךְ תָּעִיד בִּשְׁטָר זֶה שֶׁכָּתוּב בּוֹ הַשָּׂדֶה הַזֹּאת מִצַּד פְּלוֹנִי וְתַחְזֹר וּתְעַרְעֵר עָלֶיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שהעיד במכר השדה או במכר סברא היא שאין לו בה כלום באכילת פירות.</p>
               </div>
             </div>
@@ -901,13 +1105,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-16">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-6-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-6-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 16:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 16:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 16:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-16-6">Mishneh Torah, Plaintiff and Defendant 16:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ שְׁנֵי עֵדִים מְעִידִים עַל שִׁמְעוֹן שֶׁאֲכָלָהּ פָּחוֹת מִשְּׁנֵי חֲזָקָה יַחְזִיר כָּל הַפֵּרוֹת שֶׁאָכַל וַאֲפִלּוּ הָיָה עֵד אֶחָד חַיָּב לְהַחְזִיר עַל פִּיו שֶׁהֲרֵי אֵינוֹ מַכְחִישׁ הָעֵד אֶלָּא אוֹמֵר אֱמֶת הֵעִיד וְאָכַלְתִּי שְׁתֵּי שָׁנִים וְשֶׁלִּי אָכַלְתִּי. נִמְצָא מְחֻיָּב שְׁבוּעָה וְאֵינוֹ יָכוֹל לְהִשָּׁבַע וּמְשַׁלֵּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שהוא מחוייב שבועה ואינו יכול לישבע משלם דפירות שאכל מטלטלין נינהו והיה חייב שבועה מן התורה בעד אחד ואינו יכול ולכך משלם.</p>
               </div>
             </div>
@@ -917,13 +1126,18 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-text-16">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-9-1" data-unit data-lexical-unit data-unit-id="kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-9-1" data-source-ref="Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 16:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 16:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-16-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Plaintiff and Defendant 16:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-plaintiff-and-defendant/#mishneh-torah-plaintiff-and-defendant-16-9">Mishneh Torah, Plaintiff and Defendant 16:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָסוּר לָאָדָם לִטְעֹן טַעֲנַת שֶׁקֶר כְּדֵי לְעַוֵּת הַדִּין אוֹ כְּדֵי לְעַכְּבוֹ. כֵּיצַד. הָיָה נוֹשֶׁה בַּחֲבֵרוֹ מָנֶה לֹא יִטְעָנֶנּוּ מָאתַיִם כְּדֵי שֶׁיּוֹדֶה בְּמָנֶה וְיִתְחַיֵּב שְׁבוּעָה. הָיָה נוֹשֶׁה מָנֶה וּטְעָנוֹ מָאתַיִם לֹא יֹאמַר אֶכְפֹּר הַכּל בְּבֵית דִּין וְאוֹדֶה לוֹ בְּמָנֶה בֵּינִי לְבֵינוֹ כְּדֵי שֶׁלֹּא אֶתְחַיֵּב לוֹ שְׁבוּעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור </strong> לטעון טענת שקר כדכתיב מדבר שקר תרחק:</p>
               </div>
             </div>
@@ -934,721 +1148,55 @@
             </nav>
           </section>
         <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
-      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button></div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
-  <script>
-    (async () => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const configNode = document.querySelector("[data-lexical-config]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const chunkPromises = new Map();
-      const sourceRows = new Map();
-      let manifestPromise = null;
-      const hud = document.querySelector("[data-lexical-hud]");
-      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
-      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
-      const localSourceUrlMap = {
-        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
-        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
-        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
-        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
-        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
-        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
-      };
-      const resolveSourceUrl = (url) => {
-        const raw = String(url || "").trim();
-        if (!raw) return "";
-        if (/^(https?:|mailto:)/i.test(raw)) return raw;
-        const mapped = localSourceUrlMap[raw];
-        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
-        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
-        return "";
-      };
-      const fetchJson = async (url, base = document.baseURI) => {
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const loadOccurrences = async () => {
-        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
-        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
-        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
-        return occurrences;
-      };
-      const loadManifest = async () => {
-        if (!lexicalConfig.manifest_url) return null;
-        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
-        return manifestPromise;
-      };
-      const resolveSourceRows = (ids, inlineRows) => {
-        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
-        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
-      };
-      const cacheChunk = (chunk) => {
-        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
-        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
-        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
-          lexiconEntries.set(entry.entry_id, {
-            ...entry,
-            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
-            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
-          });
-        });
-        return chunk;
-      };
-      const loadChunk = async (chunkId) => {
-        if (!chunkId) return null;
-        if (!chunkPromises.has(chunkId)) {
-          chunkPromises.set(chunkId, (async () => {
-            const manifest = await loadManifest();
-            if (!manifest) return null;
-            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
-            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
-            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
-            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
-          })());
-        }
-        return chunkPromises.get(chunkId);
-      };
-      const loadTokenRow = async (tokenIndexId) => {
-        if (!tokenIndexId) return {};
-        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
-        const manifest = await loadManifest();
-        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
-        if (chunkId) await loadChunk(chunkId);
-        return tokenRows.get(tokenIndexId) || {};
-      };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalEntry = "";
-        span.dataset.lexicalStatus = "pending";
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        return span;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      const loadedOccurrences = await loadOccurrences();
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
-        });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
-      let activeHudButton = null;
-      if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const positionHudNearButton = (button) => {
-        if (!button || hud.hidden) return;
-        const rect = button.getBoundingClientRect();
-        const margin = 12;
-        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
-        hud.style.width = width + "px";
-        const preferredLeft = rect.right - width;
-        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
-        const below = window.innerHeight - rect.bottom - margin;
-        const above = rect.top - margin;
-        const openAbove = below < 280 && above > below;
-        const available = Math.max(220, (openAbove ? above : below) - margin);
-        hud.style.maxHeight = Math.min(560, available) + "px";
-        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
-        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
-        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
-        hud.style.left = left + "px";
-        hud.style.top = top + "px";
-      };
-      const scheduleHudPosition = () => {
-        if (!activeHudButton || hud.hidden) return;
-        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
-      };
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const setRowHidden = (root, selector, hidden) => {
-        const row = root.querySelector(selector);
-        if (row) row.hidden = Boolean(hidden);
-      };
-      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
-      const cleanStrictRenderings = (values) => {
-        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
-        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
-        return [...new Set(raw.filter((value) => {
-          if (value.length > 64) return false;
-          if (/[()]/.test(value)) return false;
-          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
-          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
-          return true;
-        }))];
-      };
-      const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
-      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
-      const isAramaicView = (view) => {
-        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
-        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
-        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
-      };
-      const strictEntriesForView = (view) => {
-        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
-        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
-        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
-          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
-          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
-        });
-      };
-      const getStrictBuckets = (view) => {
-        const topLevel = getStrictRenderings(view);
-        const strictEntries = strictEntriesForView(view);
-        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
-        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
-      };
-      const strictEntryKeys = (view) => {
-        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
-      };
-      const appendRenderings = (node, values) => {
-        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
-        if (!filtered.length) { node.append("N/A"); return; }
-        if (filtered.length === 1) { node.append(filtered[0]); return; }
-        const ul = document.createElement("ul");
-        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderBreakdown = (root, view) => {
-        const node = root.querySelector("[data-hud-breakdown]");
-        if (!node) return;
-        node.replaceChildren();
-        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
-        if (!rows.length) { node.textContent = ""; return; }
-        const list = document.createElement("div");
-        list.className = "breakdown-list";
-        rows.forEach((row) => {
-          const section = document.createElement("section");
-          section.className = "breakdown-row";
-          const head = document.createElement("p");
-          const hebrew = document.createElement("strong");
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
-          head.appendChild(hebrew);
-          section.appendChild(head);
-          const renderings = document.createElement("div");
-          appendRenderings(renderings, row.strict_renderings || []);
-          section.appendChild(renderings);
-          list.appendChild(section);
-        });
-        node.appendChild(list);
-      };
-      const isRelatedEntry = (entry) => {
-        const relation = String(entry.relation_label || "").toLowerCase();
-        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
-      };
-      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
-      const isNoisyAlternateEntry = (entry) => {
-        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
-        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
-      };
-      const renderEntryList = (entries, roleLabel) => {
-        const list = document.createElement("div");
-        list.className = "lexical-entry-list";
-        const groupedEntries = new Map();
-        entries.forEach((entry) => {
-          const spelling = entry.lemma || entry.match_key || "N/A";
-          const key = `${entry.context_role || "entry"}|${spelling}`;
-          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
-          const group = groupedEntries.get(key);
-          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
-        });
-        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
-        sorted.forEach((entry) => {
-          const card = document.createElement("section");
-          card.className = "lexical-entry";
-          const title = document.createElement("h3");
-          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
-          title.append(role, ": ");
-          const spelling = document.createElement("span");
-          spelling.className = "entry-hebrew";
-          spelling.lang = "he";
-          spelling.dir = "rtl";
-          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
-          title.appendChild(spelling);
-          const meta = document.createElement("p");
-          meta.className = "entry-meta";
-          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
-          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
-          const renderings = document.createElement("div");
-          const renderLabel = document.createElement("p");
-          renderLabel.className = "entry-label";
-          renderLabel.textContent = "Strict renderings";
-          renderings.appendChild(renderLabel);
-          appendRenderings(renderings, entry.strict_renderings || []);
-          card.append(title, meta, renderings);
-          list.appendChild(card);
-        });
-        return list;
-      };
-      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const sourceRowsByKey = (view) => {
-        const map = new Map();
-        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
-        return map;
-      };
-      const sourceRowsForEntry = (view, entry) => {
-        const map = sourceRowsByKey(view);
-        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
-        return row ? [row] : [];
-      };
-      const cleanTransliteration = (value) => {
-        const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
-      };
-      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
-      const sourceQualityScore = (rows) => {
-        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
-        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
-        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
-        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
-        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
-        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
-        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
-        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
-        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
-        return { delta: -10, reason: "missing source row" };
-      };
-      const parserScore = (view) => {
-        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
-        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
-        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
-        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
-        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
-        return { delta: 0, reason: "" };
-      };
-      const applyDisplayBoost = (status, rawScore, view) => {
-        return { score: rawScore, reasons: [] };
-      };
-      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
-        const reasons = [];
-        let score = 0;
-        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
-        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
-        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
-        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
-        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else { score = 84; reasons.push("strict Hebrew row"); }
-        const rendered = cleanStrictRenderings(renderings || []);
-        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
-        const sourceQuality = sourceQualityScore(rows);
-        score += sourceQuality.delta;
-        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
-        const view = evidence.view || {};
-        const entry = evidence.entry || {};
-        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
-        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
-        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
-        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
-        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
-        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
-        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
-        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
-        const parser = parserScore(view);
-        score += evidence.surfaceClaim ? parser.delta : 0;
-        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
-        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
-        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
-        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
-        const display = applyDisplayBoost(status, rawScore, view);
-        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
-      };
-      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
-      const uniqueClaims = (claims) => {
-        const seen = new Set();
-        return cleanValues(claims).filter((claim) => {
-          const key = claimRowKey(claim);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
-        const sourceRows = cleanValues(rows);
-        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
-        const cleanRenderings = cleanStrictRenderings(renderings || []);
-        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
-        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
-      };
-      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
-      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
-      const displayLicense = (row) => {
-        const license = String(row && row.license || "").trim();
-        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
-        return license || "N/A";
-      };
-      const sourceSummary = (rows) => {
-        const cleanRows = cleanValues(rows);
-        if (!cleanRows.length) return null;
-        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
-        const licenses = uniqueValues(cleanRows.map(displayLicense));
-        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
-        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
-      };
-      const DISPLAY_THRESHOLD = 50;
-      const MAX_VISIBLE_CLAIMS = 5;
-      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
-      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
-      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
-      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
-      const appendClaimCard = (list, claim) => {
-        const card = document.createElement("section");
-        card.className = "claim-row";
-        const head = document.createElement("div");
-        head.className = "claim-row-head";
-        const badge = document.createElement("span");
-        badge.className = "claim-status";
-        const confidence = claimConfidence(claim);
-        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
-        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
-        const hebrew = document.createElement("strong");
-        hebrew.className = "claim-hebrew";
-        hebrew.lang = "he";
-        hebrew.dir = "rtl";
-        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(badge, hebrew);
-        card.appendChild(head);
-        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
-        const renderings = document.createElement("p");
-        renderings.className = "claim-renderings";
-        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
-        card.appendChild(renderings);
-        const source = sourceSummary(claim.rows);
-        if (source) {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = `Source: ${source.source}`;
-          const licenseLine = document.createElement("p");
-          licenseLine.className = "claim-license";
-          licenseLine.textContent = `License: ${source.license}`;
-          card.append(sourceLine, licenseLine);
-        } else if (claim.status === "Caution") {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = "Source: metadata incomplete";
-          card.appendChild(sourceLine);
-        }
-        list.appendChild(card);
-      };
-      const appendClaimsUnderDetails = (parent, label, claims) => {
-        if (!claims.length) return;
-        const details = document.createElement("details");
-        details.className = "other-entries";
-        const summary = document.createElement("summary");
-        summary.textContent = label;
-        const box = document.createElement("div");
-        box.className = "claim-row-list";
-        claims.forEach((claim) => appendClaimCard(box, claim));
-        details.append(summary, box);
-        parent.appendChild(details);
-      };
-      const appendClaimRows = (node, claims) => {
-        if (!node) return;
-        node.replaceChildren();
-        const rows = sortClaimsForDisplay(claims);
-        if (!rows.length) { node.textContent = "N/A"; return; }
-        const list = document.createElement("div");
-        list.className = "claim-row-list";
-        const displayRows = rows.filter(isDisplayableClaim);
-        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
-        const visibleRows = displayRows.length ? displayRows : lowRows;
-        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
-        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
-        if (!visibleRows.length) { node.textContent = "N/A"; return; }
-        node.appendChild(list);
-      };
-      const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [] };
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) {
-          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
-          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
-          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
-        }
-        strictEntriesForView(view).forEach((entry) => {
-          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
-          const bucket = strictBuckets[bucketName] || [];
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (!renderings.length) return;
-          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
-        });
-        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
-          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-        }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
-      };
-      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
-      const uniqueSourceGroups = (groups) => {
-        const seen = new Set();
-        return cleanValues(groups).filter((group) => {
-          if (!group.rows.length) return false;
-          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
-      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
-      };
-      const appendSecondarySources = (container, view, entries, label) => {
-        const groups = sourceGroupsForEntries(view, entries);
-        if (!groups.length) return;
-        const sourceDetails = document.createElement("details");
-        sourceDetails.className = "source-details";
-        const sourceSummary = document.createElement("summary");
-        sourceSummary.textContent = label;
-        const sourceBox = document.createElement("div");
-        sourceDetails.append(sourceSummary, sourceBox);
-        renderSourceGroups(sourceBox, groups);
-        container.appendChild(sourceDetails);
-      };
-      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
-        const potentialNode = root.querySelector("[data-hud-potential]");
-        const relatedNode = root.querySelector("[data-hud-related]");
-        const cautionNode = root.querySelector("[data-hud-caution]");
-        const result = { potential: [], related: [], caution: [] };
-        if (!potentialNode || !relatedNode || !cautionNode) return result;
-        potentialNode.replaceChildren();
-        relatedNode.replaceChildren();
-        cautionNode.replaceChildren();
-        if (!hasLexicalEntry) {
-          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
-          setRowHidden(root, "[data-hud-potential-row]", false);
-          setRowHidden(root, "[data-hud-related-row]", true);
-          setRowHidden(root, "[data-hud-caution-row]", true);
-          appendClaimRows(potentialNode, result.potential);
-          return result;
-        }
-        const entries = cleanValues(view.possible_entries);
-        const strictKeys = strictEntryKeys(view);
-        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
-        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
-        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
-        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
-        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
-        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
-        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
-        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
-        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
-        result.potential.push(...keepForDisplay(visiblePotentialClaims));
-        result.related.push(...keepForDisplay(visibleRelatedClaims));
-        result.caution.push(...keepForDisplay(cautionClaims));
-        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
-        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
-        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
-        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
-        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
-        if (result.related.length) appendClaimRows(relatedNode, result.related);
-        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
-        return result;
-      };
-      const renderSourceRow = (row) => {
-        const title = document.createElement("p");
-        const strong = document.createElement("strong");
-        const sourceHref = resolveSourceUrl(row.source_url);
-        if (sourceHref) {
-          const link = document.createElement("a");
-          link.href = sourceHref;
-          link.textContent = row.source_name || "Source";
-          strong.appendChild(link);
-        } else {
-          strong.textContent = row.source_name || "Source";
-        }
-        title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
-        return title;
-      };
-      const renderSourceGroups = (sourceBox, groups) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        const sourceGroups = cleanValues(groups);
-        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceGroups.forEach((group) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const claim = document.createElement("p");
-          claim.className = "source-claim";
-          claim.append("For ");
-          const lemma = document.createElement("span");
-          lemma.lang = "he";
-          lemma.dir = "rtl";
-          lemma.textContent = group.label || "Lexical claim";
-          claim.appendChild(lemma);
-          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
-          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
-          section.appendChild(claim);
-          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
-          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
-          sourceBox.appendChild(section);
-        });
-      };
-      const buildWordView = async (button) => {
-        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
-      };
-      const renderWord = async (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        activeHudButton = button;
-        if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        button.setAttribute("aria-pressed", "true");
-        hud.hidden = false;
-        positionHudNearButton(button);
-        setText(hud, "[data-hud-word]", button.textContent.trim());
-        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-        setRowHidden(hud, "[data-hud-caution-row]", true);
-        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        renderBreakdown(hud, {});
-        renderPotentialAndRelatedEntries(hud, {}, false, false);
-        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
-        try {
-          const view = await buildWordView(button);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          setText(hud, "[data-hud-word]", view.hebrew_word);
-          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
-          renderBreakdown(hud, view);
-          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
-          const details = hud.querySelector("details");
-          if (details) details.open = false;
-          positionHudNearButton(button);
-        } catch (error) {
-          console.error(error);
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          positionHudNearButton(button);
-        }
-      };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          activeHudButton = null;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
-      });
-      window.addEventListener("resize", scheduleHudPosition);
-      window.addEventListener("scroll", scheduleHudPosition, true);
-    })();
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-plaintiff-and-defendant.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
   </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
 </body>
 </html>
