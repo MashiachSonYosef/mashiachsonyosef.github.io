@@ -1,0 +1,90 @@
+{
+  "artifact_type": "agent10_full_corpus_batch_flagship_render_staging_packet",
+  "agent": "A10",
+  "batch": "Batch76",
+  "corpus_family": "Tosefta",
+  "status": "ready_for_a14_review_staging",
+  "baseline_head": "50aa791e8",
+  "prior_checkpoint": "Batch60 through Batch65 corpus closures pushed by A14 at aea61fc1b; Batch66-69 sent to A14; Batch70-73 sent to A14; Batch74-75 sent to A14 as Tosefta continuation.",
+  "direct_render_contract": {
+    "canonical_hud_behavior": "A10/Orot Route HUD behavior preserved",
+    "reader_layout_mode": "prehud_rows",
+    "source_visible_clickable": true,
+    "prehud_gate": "fail_closed_quiet_TBD_unless_safe_route_backed_hint_exists",
+    "featured_policy": "No Featured additions; Orot remains only Featured",
+    "shared_files_changed": false
+  },
+  "changed_files": [
+    "tosefta/tosefta-challah/index.html",
+    "tosefta/tosefta-chullin/index.html",
+    "tosefta/tosefta-demai/index.html",
+    "tosefta/tosefta-eduyot/index.html",
+    "tosefta/tosefta-eruvin/index.html",
+    "tosefta/tosefta-gittin/index.html",
+    "tosefta/tosefta-horayot/index.html",
+    "tosefta/tosefta-kelim-batra/index.html",
+    "tosefta/tosefta-kelim-kamma/index.html",
+    "tosefta/tosefta-kelim-metzia/index.html",
+    "tosefta/tosefta-keritot/index.html",
+    "tosefta/tosefta-ketubot/index.html",
+    "tosefta/tosefta-kiddushin/index.html",
+    "tosefta/tosefta-kilayim/index.html",
+    "tosefta/tosefta-maaser-sheni/index.html",
+    "tosefta/tosefta-maasrot/index.html",
+    "tosefta/tosefta-makhshirin/index.html",
+    "tosefta/tosefta-makkot/index.html",
+    "tosefta/tosefta-megillah/index.html",
+    "tosefta/tosefta-meilah/index.html"
+  ],
+  "counts": {
+    "pages": 20,
+    "token_rows": 75122,
+    "configured_hint_rows": 0,
+    "expected_quiet_tbd_rows": 75122,
+    "remaining_tosefta_targets_after_batch": 31
+  },
+  "validators": [
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page <20 Batch76 pages>",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- <20 Batch76 pages>",
+      "timeout_ms": 60000,
+      "result": "passed_with_crlf_warnings_only"
+    },
+    {
+      "command": "node <Batch76 source/config/asset guard>",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "details": {
+        "pages": 20,
+        "token_rows": 75122,
+        "configured_hint_rows": 0,
+        "expected_quiet_tbd_rows": 75122
+      }
+    },
+    {
+      "command": "packet JSON parse after write",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- reports/agent10-full-corpus-batch76-tosefta-flagship-render-staging-packet-2026-06-07.md reports/agent10-full-corpus-batch76-tosefta-flagship-render-staging-packet-2026-06-07.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "blockers": [],
+  "a14_next_action": [
+    "review/stage/commit/push Batch76 Tosefta if A14 validation agrees",
+    "add/verify normal corpus links and deploy carry rules in A14 lane",
+    "return checkpoint or exact blocker; A10 can continue Tosefta targets next"
+  ],
+  "boundary": [
+    "render/preHUD staging evidence only",
+    "no QA/source/license/legal/Definition/product/answer/accepted-text acceptance",
+    "no publication/release/public-runtime acceptance"
+  ]
+}
