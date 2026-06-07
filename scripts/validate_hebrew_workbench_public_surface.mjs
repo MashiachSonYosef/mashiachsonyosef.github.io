@@ -81,6 +81,7 @@ requireMatch("Daniel must declare route HUD panel", html.includes("data-route-hu
 requireMatch("Daniel must render lexical units", html.includes("data-lexical-unit"));
 requireMatch("Daniel must keep Orot-style popout HUD shell", /\.lexical-hud \{[\s\S]*?position: fixed;[\s\S]*?width: calc\(100vw - 24px\);/.test(html) && !/\.lexical-hud \{[\s\S]*?inset: 0;/.test(html));
 requireMatch("Daniel must keep Hebrew forms visibly clickable", /\.lexical-word \{[\s\S]*?cursor: pointer;[\s\S]*?text-decoration: underline;/.test(html));
+requireMatch("Reader runtime must render Hebrew tokens as HUD hyperlinks", read("assets/js/reader-workbench.js").includes("createElement('a', 'lexical-word')") && read("assets/js/reader-workbench.js").includes("span.href = '#route-hud-panel'") && read("assets/js/reader-workbench.js").includes("event.preventDefault();"));
 requireMatch("Daniel must use one-token-per-row pre-HUD mode", html.includes('"reader_layout_mode":"prehud_rows"'));
 requireMatch("Daniel must keep compact Hebrew source above pre-HUD rows", html.includes('class="hebrew hebrew-source lexical-inline"'));
 requireMatch("Reader runtime must render pre-HUD rows from token occurrences", read("assets/js/reader-workbench.js").includes("function makePrehudRow") && read("assets/css/reader-workbench.css").includes(".reader-token-wrap.prehud-row"));

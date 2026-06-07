@@ -1340,9 +1340,9 @@
   }
 
   function makeLexicalWord(text, tokenIndexId, ordinal, config, tokenIndexIds = []) {
-    const span = createElement('span', 'lexical-word');
+    const span = createElement('a', 'lexical-word');
+    span.href = '#route-hud-panel';
     span.lang = 'he';
-    span.role = 'button';
     span.tabIndex = 0;
     span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
     span.dataset.lexicalIndex = tokenIndexId || '';
@@ -1526,6 +1526,7 @@
     document.addEventListener('click', (event) => {
       const button = event.target.closest('[data-lexical-token]');
       if (button) {
+        event.preventDefault();
         renderWord(button);
         return;
       }
