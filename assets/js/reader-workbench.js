@@ -25,8 +25,9 @@
     ['subphrase_evidence', 4],
     ['biblical_paraphrase_evidence', 5],
     ['citable_paraphrase_evidence', 6],
-    ['phrase_evidence', 7],
-    ['audit', 8],
+    ['usage_evidence', 7],
+    ['phrase_evidence', 8],
+    ['audit', 9],
   ]);
   const routeSectionTitles = new Map([
     ['strict_hebrew', 'Strict Hebrew matches'],
@@ -36,7 +37,8 @@
     ['subphrase_evidence', 'Subphrase evidence'],
     ['biblical_paraphrase_evidence', 'Biblical definition/paraphrase matches'],
     ['citable_paraphrase_evidence', 'Citable definition/paraphrase matches'],
-    ['phrase_evidence', 'Usage evidence'],
+    ['usage_evidence', 'Usage evidence'],
+    ['phrase_evidence', 'Licensed phrase uses'],
   ]);
   const usageEvidenceRouteTypes = new Set([
     'usage_evidence',
@@ -258,14 +260,50 @@
     }
   }
 
+  function tokenWrapFor(button) {
+    return button ? (button.closest('.reader-token-wrap') || button.parentElement) : null;
+  }
+
+  function findTokenGlossLine(button) {
+    const wrap = tokenWrapFor(button);
+    return wrap ? wrap.querySelector('.reader-gloss-line') : null;
+  }
+
+  function ensureTokenGlossLine(button) {
+    const wrap = tokenWrapFor(button);
+    if (!wrap) return null;
+    let line = findTokenGlossLine(button);
+    if (line) return line;
+    line = createElement('span', 'reader-gloss-line');
+    const slot = wrap.querySelector('.prehud-gloss') || wrap;
+    slot.appendChild(line);
+    return line;
+  }
+
+  function setTokenGlossDisplay(button, display, matchPercent, placeholder = false) {
+    const line = ensureTokenGlossLine(button);
+    const text = display ? formatGlossLine(display, matchPercent) : 'TBD';
+    if (line) {
+      line.textContent = text;
+      line.dataset.glossPlaceholder = placeholder ? 'true' : 'false';
+      line.dataset.glossText = display || '';
+    }
+    const wrap = tokenWrapFor(button);
+    const match = wrap ? wrap.querySelector('[data-match-text]') : null;
+    if (match) {
+      const percent = Number(matchPercent ?? NaN);
+      match.textContent = display && Number.isFinite(percent) ? `${percent}%` : 'TBD';
+      match.dataset.matchText = match.textContent;
+    }
+    return line;
+  }
+
   function applyReaderHint(button, hint) {
     if (!button || !hint) return;
-    const line = button.closest('.reader-token-wrap')?.querySelector(':scope > .reader-gloss-line');
-    if (!line) return;
     const display = hint.inline_display || inlineHintDisplay(hint.display);
     if (!display) return;
-    line.textContent = formatGlossLine(display, hint.match_percent);
-    line.dataset.glossPlaceholder = 'false';
+    const line = setTokenGlossDisplay(button, display, hint.match_percent, false);
+    if (!line) return;
     line.dataset.glossLabel = hint.label || '';
     button.dataset.readerHint = line.textContent;
     button.dataset.readerHintLabel = hint.label || '';
@@ -720,7 +758,15 @@
 
   function appendSourceFootnotes(panel, notes, config) {
     const cleanNotes = cleanValues(notes);
-    if (!cleanNotes.length) return;
+    if (!cleanNotes.length) {
+      if (!config?.hud_show_empty_source_licenses && !config?.hud_hide_unvalidated_routes) return;
+      const details = createElement('details', 'source-footnotes route-source-card');
+      details.open = true;
+      details.appendChild(createElement('summary', '', 'Sources and licenses (0)'));
+      details.appendChild(createElement('p', 'placeholder', 'No licensed definition source selected yet.'));
+      panel.appendChild(details);
+      return;
+    }
     const details = createElement('details', 'source-footnotes route-source-card');
     details.open = true;
     details.appendChild(createElement('summary', '', `Sources and licenses (${cleanNotes.length})`));
@@ -744,17 +790,8 @@
 
   function applySelectionToToken(button, selection) {
     if (!button) return;
-    const wrap = button.closest('.reader-token-wrap') || button.parentElement;
-    let line = wrap && wrap.querySelector(':scope > .reader-gloss-line');
-    if (!line && wrap) {
-      line = createElement('span', 'reader-gloss-line');
-      wrap.appendChild(line);
-    }
     const selectedDefinition = selection?.selected_definition || '';
-    if (line) {
-      line.textContent = selectedDefinition ? formatGlossLine(selectedDefinition, selection?.match_percent ?? selection?.confidence_percent) : 'TBD';
-      line.dataset.glossPlaceholder = selectedDefinition ? 'false' : 'true';
-    }
+    setTokenGlossDisplay(button, selectedDefinition, selection?.match_percent ?? selection?.confidence_percent, !selectedDefinition);
     button.dataset.glossSelected = selection ? 'true' : 'false';
     button.dataset.selectedGloss = selection?.selected_definition || '';
   }
@@ -1011,15 +1048,21 @@
     parent.appendChild(article);
   }
 
-  function appendRouteSection(panel, sectionId, cards, sourceCardMap) {
+  function appendRouteSection(panel, sectionId, cards, sourceCardMap, options = {}) {
+    const cleanCards = cleanValues(cards);
     const section = createElement('section', 'route-section-card');
     const title = createElement('div', 'route-section-title');
     title.appendChild(createElement('h3', '', routeSectionTitles.get(sectionId) || sectionId));
-    title.appendChild(createElement('span', '', `${cards.length} route${cards.length === 1 ? '' : 's'}`));
+    title.appendChild(createElement('span', '', `${cleanCards.length} route${cleanCards.length === 1 ? '' : 's'}`));
     section.appendChild(title);
-    if (!cards.length) return;
-    const lane = createElement('div', cards.length > 1 ? 'claim-row-list hud-card-lane' : 'claim-row-list');
-    cards.sort(compareRouteCards).forEach((card, index) => appendRouteCard(lane, card, 'evidence', index + 1, sourceCardMap ? sourceCardMap.get(card) : []));
+    if (!cleanCards.length) {
+      if (!options.appendEmpty) return;
+      section.appendChild(createElement('p', 'placeholder', options.emptyText || `${routeSectionTitles.get(sectionId) || sectionId} not found for this token.`));
+      panel.appendChild(section);
+      return;
+    }
+    const lane = createElement('div', cleanCards.length > 1 ? 'claim-row-list hud-card-lane' : 'claim-row-list');
+    cleanCards.sort(compareRouteCards).forEach((card, index) => appendRouteCard(lane, card, 'evidence', index + 1, sourceCardMap ? sourceCardMap.get(card) : []));
     section.appendChild(lane);
     panel.appendChild(section);
   }
@@ -1044,7 +1087,7 @@
   function appendPlaceholderHudSection(panel) {
     const section = createElement('section', 'route-section-card route-answer-card');
     const title = createElement('div', 'route-section-title');
-    title.appendChild(createElement('h3', '', 'TBD'));
+    title.appendChild(createElement('h3', '', 'Definition'));
     title.appendChild(createElement('span', '', 'no validated definition'));
     section.appendChild(title);
     section.appendChild(createElement('p', 'placeholder', 'No validated definition for this token yet.'));
@@ -1074,18 +1117,16 @@
   }
 
   function appendLemmaHudSection(panel, tokenRow) {
+    const rows = lemmaRowsFromToken(tokenRow);
+    if (!rows.length) {
+      return;
+    }
+
     const section = createElement('section', 'route-section-card hud-study-card');
     const title = createElement('div', 'route-section-title');
     title.appendChild(createElement('h3', '', 'Lemma'));
-    title.appendChild(createElement('span', '', tokenRow?.status || 'unmatched'));
+    title.appendChild(createElement('span', '', tokenRow?.status || 'reference'));
     section.appendChild(title);
-
-    const rows = lemmaRowsFromToken(tokenRow);
-    if (!rows.length) {
-      section.appendChild(createElement('p', 'placeholder', 'No lemma match in the current token manifest.'));
-      panel.appendChild(section);
-      return;
-    }
 
     const list = createElement('ul', 'hud-lemma-list');
     rows.forEach((row) => {
@@ -1108,7 +1149,7 @@
     const refs = cleanValues(crossmatch?.refs);
     const total = Number(crossmatch?.occurrence_count || refs.length || 0);
     const title = createElement('div', 'route-section-title');
-    title.appendChild(createElement('h3', '', 'Hebrew crossmatches'));
+    title.appendChild(createElement('h3', '', 'Same Hebrew form in Daniel'));
     title.appendChild(createElement('span', '', total ? `${total} occurrence${total === 1 ? '' : 's'}` : 'none'));
     section.appendChild(title);
 
@@ -1133,37 +1174,34 @@
     panel.appendChild(section);
   }
 
-  function renderStudyHudFrame(panel, clickedForm, normalized, tokenRow, crossmatch) {
+  function renderStudyHudFrame(panel, clickedForm, normalized, tokenRow, crossmatch, config) {
     panel.replaceChildren();
     appendSelectedHudToken(panel, clickedForm, normalized);
     appendPlaceholderHudSection(panel);
+    appendRouteSection(panel, 'strict_hebrew', [], null, { appendEmpty: true, emptyText: 'Strict Hebrew matches not found for this token.' });
+    appendRouteSection(panel, 'strict_aramaic', [], null, { appendEmpty: true, emptyText: 'Strict Aramaic matches not found for this token.' });
     appendLemmaHudSection(panel, tokenRow);
     appendCrossmatchHudSection(panel, crossmatch);
+    appendSourceFootnotes(panel, [], config);
   }
 
   function renderRouteHudPanel(panel, button, clickedForm, normalized, cards, lookupCandidates, config, tokenRow, crossmatch) {
     panel.replaceChildren();
     const visibleCards = validatedHudCards(cards, config);
-    if (config?.hud_hide_unvalidated_routes && !visibleCards.length) {
-      renderStudyHudFrame(panel, clickedForm || normalized || '', normalized, tokenRow, crossmatch);
-      return;
-    }
     const sourceNotes = buildSourceNotes(visibleCards);
     appendSelectedHudToken(panel, clickedForm || normalized || '', normalized);
-    appendPlaceholderHudSection(panel);
-    appendLemmaHudSection(panel, tokenRow);
-    appendCrossmatchHudSection(panel, crossmatch);
 
-    const picker = createElement('section', 'route-section-card reader-picker-intro');
-    picker.appendChild(createElement('strong', '', 'Choose a study gloss'));
-    picker.appendChild(createElement('p', 'placeholder', 'Selections are local study notes, not translations.'));
-    const optionList = createElement('div', 'reader-gloss-options');
     const answerCandidates = visibleCards.filter(isAnswerEligible).sort(compareRouteCards);
     const displayChoices = answerCandidates.length ? answerCandidates.slice(0, 8) : visibleCards.filter((card) => routeRenderings(card).length).sort(compareRouteCards).slice(0, 8);
-    displayChoices.forEach((card) => renderGlossChoice(optionList, button, card, config));
-    if (!displayChoices.length) optionList.appendChild(createElement('p', 'placeholder', 'No selectable definition option for this token yet.'));
-    picker.appendChild(optionList);
-    panel.appendChild(picker);
+    if (displayChoices.length) {
+      const picker = createElement('section', 'route-section-card reader-picker-intro');
+      picker.appendChild(createElement('strong', '', 'Choose a study gloss'));
+      picker.appendChild(createElement('p', 'placeholder', 'Selections are local study notes, not translations.'));
+      const optionList = createElement('div', 'reader-gloss-options');
+      displayChoices.forEach((card) => renderGlossChoice(optionList, button, card, config));
+      picker.appendChild(optionList);
+      panel.appendChild(picker);
+    }
 
     const generatedRows = config?.hud_hide_unvalidated_routes ? [] : lookupCandidateTreatments(lookupCandidates);
     if (generatedRows.length) {
@@ -1174,14 +1212,18 @@
     }
 
     const { answerCard, answerState, ambiguityCount } = selectRouteAnswer(visibleCards);
-    const answerSection = createElement('section', 'route-section-card route-answer-card');
-    const answerTitle = createElement('div', 'route-section-title');
-    answerTitle.appendChild(createElement('h3', '', answerState === 'ambiguous' ? 'Definition candidates' : 'Definition'));
-    answerTitle.appendChild(createElement('span', '', answerCard ? `${routeScore(answerCard)}% ${answerCard.lookup_relation === 'exact' ? 'direct' : answerCard.lookup_relation}` : (answerState === 'ambiguous' ? `${ambiguityCount || 2} options` : 'not answer-eligible')));
-    answerSection.appendChild(answerTitle);
-    if (answerCard) appendRouteCard(answerSection, answerCard, 'answer', 0, sourceNotes.cardMap.get(answerCard));
-    else answerSection.appendChild(createElement('p', 'placeholder', answerState === 'ambiguous' ? 'Ambiguous; compare options above and evidence below.' : 'No definition yet.'));
-    panel.appendChild(answerSection);
+    if (answerCard || answerState === 'ambiguous') {
+      const answerSection = createElement('section', 'route-section-card route-answer-card');
+      const answerTitle = createElement('div', 'route-section-title');
+      answerTitle.appendChild(createElement('h3', '', answerState === 'ambiguous' ? 'Definition candidates' : 'Definition'));
+      answerTitle.appendChild(createElement('span', '', answerCard ? `${routeScore(answerCard)}% ${answerCard.lookup_relation === 'exact' ? 'direct' : answerCard.lookup_relation}` : `${ambiguityCount || 2} options`));
+      answerSection.appendChild(answerTitle);
+      if (answerCard) appendRouteCard(answerSection, answerCard, 'answer', 0, sourceNotes.cardMap.get(answerCard));
+      else answerSection.appendChild(createElement('p', 'placeholder', 'Ambiguous; compare options above and evidence below.'));
+      panel.appendChild(answerSection);
+    } else {
+      appendPlaceholderHudSection(panel);
+    }
 
     const bySection = new Map();
     visibleCards.filter((card) => card !== answerCard).forEach((card) => {
@@ -1189,12 +1231,18 @@
       if (!bySection.has(section)) bySection.set(section, []);
       bySection.get(section).push(card);
     });
-    ['strict_hebrew', 'strict_aramaic', 'morphology', 'lemma', 'subphrase_evidence', 'biblical_paraphrase_evidence', 'citable_paraphrase_evidence', 'phrase_evidence']
-      .forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap));
+    ['strict_hebrew', 'strict_aramaic', 'morphology', 'lemma', 'subphrase_evidence', 'biblical_paraphrase_evidence', 'citable_paraphrase_evidence', 'usage_evidence', 'phrase_evidence']
+      .forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap, {
+        appendEmpty: section === 'strict_hebrew' || section === 'strict_aramaic',
+        emptyText: `${routeSectionTitles.get(section) || section} not found for this token.`,
+      }));
     [...bySection.keys()]
       .filter((section) => !routeSectionTitles.has(section))
       .sort((a, b) => (routeSectionRank.get(a) ?? 9) - (routeSectionRank.get(b) ?? 9))
       .forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap));
+
+    appendLemmaHudSection(panel, tokenRow);
+    appendCrossmatchHudSection(panel, crossmatch);
 
     if (!config?.hud_hide_unvalidated_routes) {
       const lookup = createElement('details', 'route-audit-card');
@@ -1291,8 +1339,7 @@
     return { tokenIndexId, tokenIndexIds: tokenIndexId ? [tokenIndexId] : [] };
   }
 
-  function makeWordSpan(text, tokenIndexId, ordinal, config, tokenIndexIds = []) {
-    const wrap = createElement('span', 'reader-token-wrap');
+  function makeLexicalWord(text, tokenIndexId, ordinal, config, tokenIndexIds = []) {
     const span = createElement('span', 'lexical-word');
     span.lang = 'he';
     span.role = 'button';
@@ -1312,11 +1359,46 @@
     span.setAttribute('aria-pressed', 'false');
     const surface = createElement('span', 'lexical-word-surface', normalizeHebrewDisplay(text));
     span.appendChild(surface);
+    return span;
+  }
+
+  function makeWordSpan(text, tokenIndexId, ordinal, config, tokenIndexIds = []) {
+    const wrap = createElement('span', 'reader-token-wrap');
+    const span = makeLexicalWord(text, tokenIndexId, ordinal, config, tokenIndexIds);
     wrap.appendChild(span);
     const glossLine = createElement('span', 'reader-gloss-line', 'TBD');
     glossLine.dataset.glossPlaceholder = 'true';
+    glossLine.dataset.glossText = '';
     wrap.appendChild(glossLine);
     return wrap;
+  }
+
+  function surfaceFromTokenRow(row, fallback) {
+    return normalizeHebrewDisplay(firstPresentValue([
+      row?.surface_word,
+      row?.hebrew_word,
+      row?.normalized_word,
+      fallback,
+    ]));
+  }
+
+  function makePrehudRow(row, tokenIndexId, ordinal, config) {
+    const rowNode = createElement('div', 'prehud-row reader-token-wrap');
+    rowNode.dataset.tokenRowId = tokenIndexId || '';
+    const surface = surfaceFromTokenRow(row, tokenIndexId);
+    const wordCell = createElement('div', 'prehud-word');
+    wordCell.appendChild(makeLexicalWord(surface, tokenIndexId, ordinal, config, tokenIndexId ? [tokenIndexId] : []));
+    rowNode.appendChild(wordCell);
+    const glossCell = createElement('div', 'prehud-gloss');
+    const glossLine = createElement('span', 'reader-gloss-line', 'TBD');
+    glossLine.dataset.glossPlaceholder = 'true';
+    glossLine.dataset.glossText = '';
+    glossCell.appendChild(glossLine);
+    rowNode.appendChild(glossCell);
+    const matchCell = createElement('div', 'prehud-match', 'TBD');
+    matchCell.dataset.matchText = 'TBD';
+    rowNode.appendChild(matchCell);
+    return rowNode;
   }
 
   function wrapTextNode(node, tokenIds, state, config) {
@@ -1337,6 +1419,26 @@
   }
 
   async function wrapParagraph(paragraph, tokenIds, config, loadTokenRow) {
+    if (config?.reader_layout_mode === 'prehud_rows') {
+      const unit = paragraph.closest('[data-lexical-unit]');
+      const slot = unit ? unit.querySelector('[data-lexical-slot]') : null;
+      if (!slot || !Array.isArray(tokenIds) || !tokenIds.length) return;
+      paragraph.classList.add('hebrew-source');
+      if (!slot.dataset.prehudRowsInitialized) {
+        slot.replaceChildren();
+        slot.dataset.prehudRowsInitialized = 'true';
+      }
+      const group = createElement('div', 'prehud-rows');
+      group.dataset.lexicalParagraphRows = paragraph.dataset.lexicalParagraph || '';
+      const rows = typeof loadTokenRow === 'function'
+        ? await Promise.all(tokenIds.map((tokenId) => loadTokenRow(tokenId).catch(() => ({}))))
+        : tokenIds.map(() => ({}));
+      tokenIds.forEach((tokenId, index) => {
+        group.appendChild(makePrehudRow(rows[index], tokenId, index + 1, config));
+      });
+      slot.appendChild(group);
+      return;
+    }
     const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
     const textNodes = [];
     while (walker.nextNode()) textNodes.push(walker.currentNode);

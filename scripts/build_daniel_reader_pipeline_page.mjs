@@ -230,7 +230,7 @@ const unitHtml = (unit) => {
   const unitId = String(unit.unit_id || unit.anchor_id || `daniel-${unit.sequence || ""}`);
   const sourceRef = String(unit.source_ref || unit.sefaria_ref || unitId);
   const paragraphs = (Array.isArray(unit.hebrew) ? unit.hebrew : []).map((paragraph, index) => `
-              <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="${index}">${escapeHtml(paragraph)}</p>`).join("");
+              <p class="hebrew hebrew-source lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="${index}">${escapeHtml(paragraph)}</p>`).join("");
   return `
           <section class="unit" id="${escapeAttr(unit.anchor_id || unitId)}" data-unit data-lexical-unit data-unit-id="${escapeAttr(unitId)}" data-source-ref="${escapeAttr(sourceRef)}">
             <div class="unit-head">
@@ -266,6 +266,8 @@ const config = {
   hud_validated_only: true,
   hud_hide_unvalidated_routes: true,
   hud_allow_lemma_only: false,
+  hud_show_empty_source_licenses: true,
+  reader_layout_mode: "prehud_rows",
   root_href: "../../",
 };
 
@@ -310,7 +312,7 @@ const html = `<!DOCTYPE html>
     a { color: inherit; }
 
     .reader-shell {
-      width: min(1240px, calc(100% - 32px));
+      width: min(1440px, calc(100% - 32px));
       margin: 0 auto;
       padding: 28px 0 88px;
     }
@@ -451,10 +453,16 @@ const html = `<!DOCTYPE html>
 
     .hebrew {
       color: var(--hebrew);
-      font-size: clamp(1.45rem, 2.5vw, 2.15rem);
-      line-height: 2.25;
+      font-size: 1.16rem;
+      line-height: 1.55;
       margin: 0;
       overflow-wrap: anywhere;
+    }
+
+    .hebrew-source {
+      font-size: 1.08rem;
+      line-height: 1.6;
+      opacity: 0.82;
     }
 
     .lexical-word {
@@ -514,14 +522,18 @@ const html = `<!DOCTYPE html>
 
     .lexical-hud {
       position: fixed;
-      inset: 0;
-      z-index: 40;
-      display: grid;
-      grid-template-rows: auto 1fr;
-      background: rgba(13, 13, 11, 0.97);
+      z-index: 1000;
+      width: calc(100vw - 24px);
+      max-width: calc(100vw - 24px);
+      left: 12px;
+      top: 12px;
+      max-height: calc(100vh - 24px);
+      border: 1px solid var(--line);
+      background: var(--panel-2);
       color: var(--text);
       padding: 16px;
       overflow: auto;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
     }
 
     .lexical-hud[hidden] {
@@ -665,6 +677,7 @@ const report = {
   occurrence_total_reported: occurrences.total_occurrences,
   selected_prehud_rows: 0,
   tbd_fallback_rows: occurrenceRows,
+  prehud_row_mode: "one_token_per_row",
   render_runtime: "shared_reader_workbench",
   shared_assets: [
     "assets/css/reader-workbench.css",

@@ -41,6 +41,64 @@
   background: rgba(214, 190, 138, 0.12);
 }
 
+.hebrew-source {
+  font-size: clamp(0.98rem, 1.4vw, 1.16rem);
+  line-height: 1.55;
+  opacity: 0.82;
+  border: 1px solid rgba(214, 190, 138, 0.16);
+  background: rgba(255, 255, 255, 0.018);
+  padding: 8px 10px;
+  margin-bottom: 10px;
+}
+
+.prehud-rows {
+  display: grid;
+  gap: 8px;
+}
+
+.reader-token-wrap.prehud-row {
+  display: grid;
+  grid-template-columns: minmax(4.8rem, 8rem) minmax(0, 1fr) minmax(4rem, auto);
+  gap: 10px;
+  align-items: center;
+  justify-items: stretch;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: 1px solid rgba(214, 190, 138, 0.18);
+  background: rgba(255, 255, 255, 0.018);
+  padding: 8px 10px;
+}
+
+.prehud-word {
+  min-width: 0;
+  text-align: right;
+}
+
+.prehud-word .lexical-word {
+  font-size: clamp(1.45rem, 2.4vw, 2.05rem);
+}
+
+.prehud-gloss {
+  min-width: 0;
+}
+
+.prehud-gloss .reader-gloss-line {
+  width: auto;
+  max-width: none;
+  color: var(--text);
+  font-size: 0.94rem;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.prehud-match {
+  color: var(--accent);
+  font-size: 0.82rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
 .reader-workbench-panel {
   display: grid;
   gap: 12px;
@@ -345,6 +403,15 @@
 }
 
 @media (max-width: 720px) {
+  .reader-token-wrap.prehud-row {
+    grid-template-columns: minmax(3.9rem, 5.8rem) minmax(0, 1fr);
+  }
+
+  .prehud-match {
+    grid-column: 2;
+    text-align: left;
+  }
+
   .lexical-hud .hud-head {
     margin: -12px -12px 12px;
     padding: 12px;
