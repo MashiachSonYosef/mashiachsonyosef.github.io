@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -31,6 +38,11 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -47,6 +59,7 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -80,48 +93,48 @@
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-field-row { display: contents; }
-    .lexical-field-row[hidden] { display: none; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .breakdown-list { display: grid; gap: 8px; }
-    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
-    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
-    .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
-    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
-    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
-    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
-    .lexical-entry .entry-hebrew { color: var(--hebrew); }
-    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
-    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
     .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
-    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; }
-    .other-entries { margin-top: 12px; }
-    .claim-row-list details { margin-top: 8px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
-    .source-claim { color: var(--text); margin: 0 0 6px; }
-    .source-claim span { color: var(--hebrew); }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
-    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
     .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
@@ -135,20 +148,23 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
 <body>
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
-        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-        <h1>Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday</h1>
-        <p class="work-label">Commentary on Mishneh Torah, Rest on a Holiday</p>
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Mishneh Torah, Rest on a Holiday</p>
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-rest-on-a-holiday/">Open Mishneh Torah, Rest on a Holiday</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
@@ -156,19 +172,27 @@
             <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
-        <p class="meta">44 total source units | imported 2026-05-21</p>
-        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>573 matched</strong> / 1899 unique forms.</p>
+          <p class="hero-summary">
+            <span>44 source units</span>
+            <span>1899 HUD forms</span>
+            <span>imported 2026-05-21</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -268,13 +292,18 @@
         </nav>
         <article>
           <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Chapter 1</h4>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-1-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-1-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-1">Mishneh Torah, Rest on a Holiday 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שֵׁשֶׁת יָמִים הָאֵלּוּ שֶׁאֲסָרָן הַכָּתוּב בַּעֲשִׂיַּת מְלָאכָה שֶׁהֵן רִאשׁוֹן וּשְׁבִיעִי שֶׁל פֶּסַח וְרִאשׁוֹן וּשְׁמִינִי שֶׁל חַג הַסֻּכּוֹת וּבְיוֹם חַג הַשָּׁבוּעוֹת וּבְאֶחָד לַחֹדֶשׁ הַשְּׁבִיעִי הֵן הַנִּקְרָאִין יָמִים טוֹבִים. וּשְׁבִיתַת כֻּלָּן שָׁוָה שֶׁהֵן אֲסוּרִין בְּכָל מְלֶאכֶת עֲבוֹדָה חוּץ מִמְּלָאכָה שֶׁהִיא לְצֹרֶךְ אֲכִילָה שֶׁנֶּאֱמַר <span class="source-small">(שמות יב טז)</span> &quot;אַךְ אֲשֶׁר יֵאָכֵל לְכָל נֶפֶשׁ&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהן אסורין בכל מלאכת עבודה כו׳.</strong> עי׳ הה&quot;מ ובלח&quot;מ הקשה למה לא כתב קרא בפ׳ בא מלאכת עבודה ותו לא צריך אך אשר יאכל לכ&quot;נ ע&quot;ש. ועי׳ בשבת דף קי&quot;ז בהא דגרסינן שם תנא דבי שמואל כל מלאכת עבודה ל&quot;ת יצאו תקיעת שופר ורדיית הפת ע&quot;ש בחידושי רשב&quot;א שהקשה מנ&quot;ל למעט בשבת ותירץ שם כיון דאינה מלאכה ביו&quot;ט גם בשבת לא חשיבא מלאכה דהא לא התיר הקרא אלא או&quot;נ בלבד והלכך כשמוציא הכתוב תקיעת שופר מכלל איסור מלאכת יו&quot;ט ש&quot;מ דאינה מלאכה ע&quot;כ, וא&quot;כ אי לא הוה כתב בפירוש אך אשר יאכל לכ&quot;נ הו&quot;א דבשבת אסור תקיעת שופר ורדיית הפת, ועע&quot;ש מ&quot;ש בשם הרמב&quot;ן ודו&quot;ק:</p>
               </div>
             </div>
@@ -284,13 +313,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-2-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-2-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-2">Mishneh Torah, Rest on a Holiday 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשּׁוֹבֵת מִמְּלֶאכֶת עֲבוֹדָה בְּאֶחָד מֵהֶן הֲרֵי קִיֵּם מִצְוַת עֲשֵׂה שֶׁהֲרֵי נֶאֱמַר בָּהֶן <span class="source-small">(ויקרא כג כד)</span> <span class="source-small">(ויקרא כג לט)</span> &quot;שַׁבָּתוֹן&quot; כְּלוֹמַר שְׁבֹת. וְכָל הָעוֹשֶׂה בְּאֶחָד מֵהֶן מְלָאכָה שֶׁאֵינָהּ לְצֹרֶךְ אֲכִילָה כְּגוֹן שֶׁבָּנָה אוֹ הָרַס אוֹ אָרַג וְכַיּוֹצֵא בָּאֵלּוּ הֲרֵי בִּטֵּל מִצְוַת עֲשֵׂה וְעָבַר עַל לֹא תַּעֲשֶׂה. שֶׁנֶּאֱמַר כָּל מְלֶאכֶת עֲבֹדָה לֹא תַעֲשׂוּ. <span class="source-small">(שמות יב טז)</span> &quot;כָּל מְלָאכָה לֹא יֵעָשֶׂה בָהֶם&quot;. וְאִם עָשָׂה בְּעֵדִים וְהַתְרָאָה לוֹקֶה מִן הַתּוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבתון כו׳.</strong> הכי איתא בגמרא ומה שלא אמרו בגמרא דבלא&quot;ה איכא עשה מדכתיב אך אשר יאכל לכ&quot;נ כו׳ משמע שאינו או&quot;נ אסור ולאו הבא מכלל עשה עשה הוא וכה&quot;ג הקשה מהרא&quot;ם למה לא מצינו גבי חמץ עשה מדכתיב שבעת ימים תאכל מצות ועמ&quot;ש בזה בס&quot;ד בפ&quot;א מהל׳ אישות דלאו הבא מכלל עשה אע&quot;ג דעשה הוא מ&quot;מ נדחית מפני עשה אחרת:</p>
               </div>
             </div>
@@ -300,13 +334,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-3-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-3-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-3">Mishneh Torah, Rest on a Holiday 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעוֹשֶׂה אֲבוֹת מְלָאכוֹת הַרְבֵּה בְּיוֹם טוֹב בְּהַתְרָאָה אַחַת כְּגוֹן שֶׁזָּרַע וּבָנָה וְסָתַר וְאָרַג בְּהַתְרָאָה אַחַת אֵינוֹ לוֹקֶה אֶלָּא אַחַת. חִלּוּק מְלָאכוֹת לְשַׁבָּת וְאֵין חִלּוּק מְלָאכוֹת לְיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ח&quot;מ לשבת וכו׳.</strong> והה&quot;מ כתב וענין ח&quot;מ לשבת הוא לענין חטאת ובשוגג וכו׳. נראה לענ&quot;ד הא דאמרינן בגמרא ח&quot;מ לשבת פי׳ בשבת משכחת לה חילוק מלאכות דהיינו בשוגג דכל הלימוד דיש ח&quot;מ לא מבעיא למאן דנפ&quot;ל מאחת מהנה דגבי חטאת כתיב א&quot;כ גלי קרא בחטאת דוקא ואפילו למ&quot;ד דנפקא מלא תבערו ג&quot;כ י&quot;ל דלא מצינו ח&quot;מ כ&quot;א לענין חטאת ואין ח&quot;מ ליו&quot;ט דביו&quot;ט לא משכחת ח&quot;מ דגבי לאוין לענין מלקות לא גלי רחמנא ח&quot;מ ונפ&quot;מ אפילו למ&quot;ד דלוקין על לאו שניתן לאזהרת מיתת ב&quot;ד גם גבי שבת ליכא ח&quot;מ לענין מלקות וכ&quot;נ מוכח מדברי התוס׳ ר&quot;פ אלו הן הלוקין דלר&quot;ש ב&quot;י דאמר טעמא דר&quot;ע דאין לוקין על חייבי מיתות ב&quot;ד משום כדי רשעתו ברשעה המסורה לב&quot;ד אם התרו בו למלקות גרידא גם ר&quot;ע מודה דלוקין א&quot;כ קשה לי מה שהקשה רש&quot;י בפסחים בסוגיא דהואיל על הא דתנן יש חורש תלם אחד למה לא תני שבת וכתב משום דשבת הוא לאו שניתן לאזהרת מיתת ב&quot;ד ואין לוקין ותירוצו עולה יפה אליבא דרבא אבל לרשב&quot;י לפמ&quot;ש התוס׳ הקושיא נשארת אמאי לא תני שבת. ולפום רהיטא קושית רש&quot;י חמורה דאי הוה נקט שבת הוה משכחת לה ט׳ דלא שייך לומר אין ח&quot;מ לשבת ולפמ&quot;ש מיושב דגם גבי שבת ליכא ח&quot;מ למלקות. ואי תקשה לך דעכ&quot;פ הו&quot;ל למתני שבת דשכיח יותר מיו&quot;ט. ז&quot;א דהא בשעה&quot;מ מביא מה שמקשה העולם איך יחול איסור יו&quot;ט על איסור שביעית וכתב בהל׳ שמיטה דמיירי בר&quot;ה א&quot;כ שפיר נקט סתם יו&quot;ט דאי הוה נקט שבת זה ל&quot;ש שיחול ר&quot;ה בשבת והארכתי בזה:</p>
               </div>
             </div>
@@ -316,13 +355,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-4-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-4-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:4:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-4">Mishneh Torah, Rest on a Holiday 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מְלָאכָה שֶׁחַיָּבִין עָלֶיהָ בְּשַׁבָּת אִם עָשָׂה אוֹתָהּ בְּיוֹם טוֹב שֶׁלֹּא לְצֹרֶךְ אֲכִילָה לוֹקֶה חוּץ מִן הַהוֹצָאָה מֵרְשׁוּת לִרְשׁוּת וְהַהַבְעָרָה שֶׁמִּתּוֹךְ שֶׁהֻתְּרָה הוֹצָאָה בְּיוֹם טוֹב לְצֹרֶךְ אֲכִילָה הֻתְּרָה שֶׁלֹּא לְצֹרֶךְ אֲכִילָה. לְפִיכָךְ מֻתָּר בְּיוֹם טוֹב לְהוֹצִיא קָטָן אוֹ סֵפֶר תּוֹרָה אוֹ מַפְתֵּחַ וְכַיּוֹצֵא בְּאֵלּוּ מֵרְשׁוּת לִרְשׁוּת. וְכֵן מֻתָּר לְהַבְעִיר אַף עַל פִּי שֶׁאֵינוֹ לְצֹרֶךְ אֲכִילָה. וּשְׁאָר מְלָאכוֹת כָּל שֶׁיֵּשׁ בּוֹ צֹרֶךְ אֲכִילָה מֻתָּר כְּגוֹן שְׁחִיטָה וַאֲפִיָּה וְלִישָׁה וְכַיּוֹצֵא בָּהֶן. וְכָל שֶׁאֵין בָּהֶן צֹרֶךְ אֲכִילָה אָסוּר כְּגוֹן כְּתִיבָה וַאֲרִיגָה וּבִנְיָן וְכַיּוֹצֵא בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מלאכה כו׳.</strong> עי׳ הה&quot;מ ומה שכתבתי בזה באריכות בש&quot;י מס׳ מגילה פ&quot;ק ד&quot;ה תני ושם במס׳ ביצה ד&quot;ה לא תיסור ולא תשרי ע&quot;ש:</p>
               </div>
             </div>
@@ -332,13 +376,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-6-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-6-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-6">Mishneh Torah, Rest on a Holiday 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִזֶּה הַטַּעַם עַצְמוֹ לֹא אָסְרוּ הַהוֹצָאָה בְּיוֹם טוֹב וְאַף עַל פִּי שֶׁכָּל הַהוֹצָאָה הִיא מְלָאכָה שֶׁאֶפְשָׁר לַעֲשׂוֹתָהּ מֵעֶרֶב יוֹם טוֹב וְלָמָּה לֹא אֲסָרוּהָ כְּדֵי לְהַרְבּוֹת בְּשִׂמְחַת יוֹם טוֹב וְיוֹלִיךְ וְיָבִיא כָּל מַה שֶּׁיִּרְצֶה וְיַשְׁלִים חֲפָצָיו וְלֹא יִהְיֶה כְּמִי שֶׁיָּדָיו אֲסוּרוֹת. אֲבָל שְׁאָר מְלָאכוֹת שֶׁאֶפְשָׁר לַעֲשׂוֹתָן מֵעֶרֶב יוֹם טוֹב הוֹאִיל וְיֵשׁ בָּהֶן עֵסֶק אֵין עוֹשִׂין אוֹתָן בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא אסרו ההוצאה ביו&quot;ט כו׳.</strong> הרי&quot;ו כתב בשם ר&quot;ת דמותר לשחוק בכדור בר&quot;ה וביש&quot;ש תמה ע&quot;ש מה מקום לשחוק הלזה להתירו וכתב בס׳ בינה לעתים בפרקין דדעת ר&quot;ת דאין בו אלא טלטול ברה&quot;ר דהכדור מונח ברה&quot;ר ואינו מוציאו מרה&quot;י לרה&quot;ר וד&quot;א בר&quot;ה הלכתא גמירי לה בשבת וקיי&quot;ל בכל י&quot;ג מדות שהתורה נדרשת בהן אין למדין מן הלכה ומלאכת יו&quot;ט ויוה&quot;כ ילפינן בנין אב משבת וא&quot;כ ליכא למילף יו&quot;ט משבת לענין העברת ד׳ אמות והניח בספק. ולי צ&quot;ע דבריו דא&quot;כ קשה הא דאמרינן במס׳ הוריות דף ד׳ ע&quot;א בהא דמקשה תלמודא ואמאי הוצאה הא כתיבא אל יצא איש ממקומו (כ&quot;ה הגירסא העיקרית ע&quot;ש) ומשני כגון דאמר הוצאה אסירא הכנסה שרי ולפ&quot;ד קשה אמאי לא משני הגמ׳ דהורה להם הוצאה אסור מרה&quot;י לרה&quot;ר אבל הוצאת ד&quot;א דג&quot;כ נקרא הוצאה דמקומו של אדם הוא ד&quot;א וזה לא מפורש בקרא אלא מהלכה ושפיר חייב. ועוד לפ&quot;מ דאמר שמואל בשבת ר&quot;פ הזורק דמקושש מעביר ד&quot;א ברה&quot;ר הוי ולדידיה מפורש בתורה מקרי דהא מקושש נתחייב עליה ואין מקום לספיקו כ&quot;א להחולקים שם אי תולש הוי או מעמר הוי ובגמ׳ שם קאמר נפ&quot;מ לכדאיסי וכו׳ ואמאי לא קאמר נ&quot;מ לשמואל יו&quot;כ ויו&quot;ט ג&quot;כ אסור העברת ד&quot;א משא&quot;כ לאינך. ודוחק לומר דתלמודא רצה למצוא נפקותא אי תולש הוי או מעמר הוי דהא אנן לא קיי&quot;ל כאיסי כמ&quot;ש בה&quot;ש פ&quot;ז ויותר הו&quot;ל לתלמודא למצוא נפקותא מה דנ&quot;מ לדידן. ועוד הא אמרינן במס׳ נזיר דף כ&quot;ה ע&quot;ב אי מהלכתא ה&quot;א הלכתא ואי אקרבה לא מיחייב וע&quot;ש בפי׳ המפרש ובתוס׳ שם ודו&quot;ק וא&quot;כ קשה אי הלכתא היא מנ&quot;ל לחייב מעביר ד&quot;א ברה&quot;ר בשבת. אלא נראה לענ&quot;ד ברור דכ&quot;מ דהלכה לא בא אלא לפרש קרא הוי כאילו נכתב בפירוש וחייב עליה וכענין ח&quot;י טריפות שנאמרו למשה מסיני וכן לא תאכל כל נבילה ובא הלמ&quot;מ ומפרש דנפסלה בשחיטה הוא בכלל נבילה וכן הכא נמי הלמ&quot;מ גילה דבכלל הקרא אל יצא איש ממקומו הוא העברת ד&quot;א והרי הוא כאילו נכתב מפורש ולא שייך לומר אין למידין מהלכה ועי׳ במס׳ ביצה דף כ׳ ע&quot;א בהא דאמר שם דלמא מעולת חובה גמירא ובתוס׳ מקשה שם דהוי דבר הבא מן ההיקש ורש&quot;י סובר כיון דכתיב כמשפט כאילו מפורש בקרא ע&quot;ש באס&quot;ז ודו&quot;ק. וכ&quot;מ בגמרא בהרבה מקומות דמקשה הגמ׳ כיון דהלכתא הוא קרא ל&quot;ל סוכה כ&quot;ז נדה ל&quot;ב ודומיהם ועי׳ בפי׳ הרע&quot;ב מס׳ זבחים פי&quot;ג גבי מנסך מי חג בחג מה שנתקשה שם בתוי&quot;ט ולפ&quot;ד יש מקום ליישב ועי׳ בתבו&quot;ש יו&quot;ד סי׳ כ&quot;ט ולפי&quot;ז אין חילוק כלל בין שבת ליו&quot;כ לענין מעביר ד&quot;א דכל כי האי חדושא הו&quot;ל לתנא לאשמועינן ולא למתני סתם אין בין יו&quot;כ לשבת, ובזה אפשר ליישב קושית התוס׳ מה דנקיט בכ&quot;מ גזירה שמא יעבירנו ד&quot;א ברה&quot;ר ולא נקיט גזירה שמא יוציאנו מרה&quot;י לרה&quot;ר דרצה תלמודא לאשמועינן דהעברת ד&quot;א הוצאה גמורה לחיובא מיחשב וגזרינן עליה כמו בכל איסורי שבת דלא תימא כיון דהלמ&quot;מ הוא אין לגזור עליה קמ&quot;ל ואין להאריך בזה:</p>
               </div>
             </div>
@@ -348,13 +397,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-10-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-10-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:10:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-10">Mishneh Torah, Rest on a Holiday 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְמַלְּאָה אִשָּׁה קְדֵרָה בָּשָׂר אַף עַל פִּי שֶׁאֵינָהּ צְרִיכָה אֶלָּא לַחֲתִיכָה אַחַת. מְמַלֵּא נַחְתּוֹם חָבִית שֶׁל מַיִם אַף עַל פִּי שֶׁאֵינוֹ צָרִיךְ אֶלָּא לְקִיתוֹן אֶחָד. וּמְמַלְּאָה אִשָּׁה תַּנּוּר פַּת אַף עַל פִּי שֶׁאֵינָהּ צְרִיכָה אֶלָּא לְכִכָּר אֶחָד. שֶׁבִּזְמַן שֶׁהַפַּת מְרֻבָּה בַּתַּנּוּר הִיא נֶאֱפֵית יָפֶה. וּמוֹלֵחַ אָדָם כַּמָּה חֲתִיכוֹת בָּשָׂר בְּבַת אַחַת אַף עַל פִּי שֶׁאֵינוֹ צָרִיךְ אֶלָּא לַחֲתִיכָה אַחַת. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהפת מרובה בתנור וכו׳.</strong> עי׳ בתוס׳ פסחים דף מ&quot;ו ד&quot;ה עד דיש חילוק בין התנורים כשאופה תחת הגחלים לא שייך פת נאפה יפה ועי׳ הה&quot;מ דיש עוד חילוק בין תנורים גדולים לקטנים ומה הוא התנור גדול כתב תנור המחזיק י&quot;ב עשרונים ולא נתפרש השיעור, ועי׳ בשו&quot;ת יד אלי׳ סי׳ כ&quot;ה שהשיעור הוא עם החלל התנור ד׳ על ד׳ טפחים ברום ד׳ טפחים שהוא בין הכל ס&quot;ד טפחים זה הוא השיעור שמחזיק י&quot;ב עשרונים:</p>
               </div>
             </div>
@@ -364,13 +418,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-13-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-13-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-13-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:13:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:13:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-13-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-13">Mishneh Torah, Rest on a Holiday 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אוֹפִין וּמְבַשְּׁלִין בְּיוֹם טוֹב כְּדֵי לְהַאֲכִיל כּוּתִים אוֹ כְּלָבִים שֶׁנֶּאֱמַר <span class="source-small">(שמות יב טז)</span> &quot;הוּא לְבַדּוֹ יֵעָשֶׂה לָכֶם&quot; לָכֶם וְלֹא לְכוּתִים לָכֶם וְלֹא לִכְלָבִים. לְפִיכָךְ מְזַמְּנִין אֶת הַכּוּתִי בְּשַׁבָּת וְאֵין מְזַמְּנִין אוֹתוֹ בְּיוֹם טוֹב גְּזֵרָה שֶׁמָּא יַרְבֶּה בִּשְׁבִילוֹ. אֲבָל אִם בָּא הַכּוּתִי מֵאֵלָיו אוֹכֵל עִמָּהֶן מַה שֶּׁהֵן אוֹכְלִין שֶׁכְּבָר הֱכִינוּהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או כלבים כו׳.</strong> עי׳ הה&quot;מ. ועי׳ במס׳ נזיר דף מ&quot;ח ע&quot;א שם גלי קרא דאין נפש בהמה במשמע כמבואר שם בין לת&quot;ק ובין לר&quot;י:</p>
               </div>
             </div>
@@ -380,13 +439,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-14-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-14-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-14-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:14:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:14:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-14-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-14">Mishneh Torah, Rest on a Holiday 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּהֵמָה שֶׁחֶצְיָהּ שֶׁל כּוּתִי וְחֶצְיָהּ שֶׁל יִשְׂרָאֵל מֻתָּר לְשָׁחֳטָהּ בְּיוֹם טוֹב שֶׁאִי אֶפְשָׁר לֶאֱכל מִמֶּנָּה כְּזַיִת בָּשָׂר בְּלֹא שְׁחִיטָה. אֲבָל עִסָּה שֶׁחֶצְיָהּ לְכוּתִים וְחֶצְיָהּ לְיִשְׂרָאֵל אָסוּר לֶאֱפוֹת אוֹתָהּ מִפְּנֵי שֶׁיָּכוֹל לְחַלֵּק הַבָּצֵק. בְּנֵי הַחַיִל שֶׁנָּתְנוּ קֶמַח לְיִשְׂרָאֵל לַעֲשׂוֹת לָהֶם פַּת בְּיוֹם טוֹב. אִם כְּשֶׁנּוֹתְנִין פַּת מִמֶּנָּה לְתִינוֹק אֵין מַקְפִּידִין מֻתָּר לֶאֱפוֹתוֹ לָהֶן בְּיוֹם טוֹב שֶׁכָּל פַּת וּפַת רָאוּי לַתִּינוֹק. עִסַּת הַכְּלָבִים בִּזְמַן שֶׁהָרוֹעִים אוֹכְלִין מִמֶּנָּה נֶאֱפֵית בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בני החיל כו׳ עיסת כו׳.</strong> עי׳ לח&quot;מ ועי׳ באס&quot;ז סתם עיסה כשטורח באפייתה עיקר כוונתו לרועים אלא שמטפל בהם לצורך כלבים כשלא יהא לו נבילה אבל כל שאפשר להיות לו לנבילה עיקר דעתו לרועים, ולפי סברת הר&quot;ח שהביא הה&quot;מ הי&quot;ג בלא&quot;ה לק&quot;מ דמה&quot;ת גם נפש בהמה במשמע. ובזה יובן פי׳ הגמ׳ בהא דמשני הואיל ואפשר לפייסן בנבילה ולמסקנא דאמר כגון דא&quot;ל נבילה משום דתליא בפלוגתא דתנאי:</p>
               </div>
             </div>
@@ -396,13 +460,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-16-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-16-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-16-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:16:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:16:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-16-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-16">Mishneh Torah, Rest on a Holiday 1:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רְחִיצָה וְסִיכָה הֲרֵי הֵן בִּכְלַל אֲכִילָה וּשְׁתִיָּה וְעוֹשִׂין אוֹתָן בְּיוֹם טוֹב שֶׁנֶּאֱמַר <span class="source-small">(שמות יב טז)</span> &quot;אַךְ אֲשֶׁר יֵאָכֵל לְכָל נֶפֶשׁ&quot; לְכָל שֶׁצָּרִיךְ הַגּוּף. לְפִיכָךְ מְחִמִּין חַמִּין בְּיוֹם טוֹב וְרוֹחֵץ בָּהֶן פָּנָיו יָדָיו וְרַגְלָיו. אֲבָל כָּל גּוּפוֹ אָסוּר מִשּׁוּם גְּזֵרַת מֶרְחָץ. וְחַמִּין שֶׁהוּחַמּוּ מֵעֶרֶב יוֹם טוֹב רוֹחֵץ בָּהֶן כָּל גּוּפוֹ בְּיוֹם טוֹב שֶׁלֹּא גָּזְרוּ עַל דָּבָר זֶה אֶלָּא בְּשַׁבָּת בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לכל שצריך הגוף וכו׳.</strong> גרסינן בירושלמי עלה דהך מתני׳ והוא שיהיה ראויה על דעתא דב&quot;ש והוא ששתה מהן, ורבינו לא הביא כלל דבעינן שיהיו המים ראויין לשתייה משום דס&quot;ל דתלמודא דבבלי פליג בזה אלא דטעמא דב&quot;ה מן הטעם שכתב רבינו פה ול&quot;צ לסברת מתוך ודחיק ליה לרבינו לפרש דתלמודא דבבלי פליג עם הירושלמי מקושיא שהקשה בס׳ אס&quot;ז לרבה דס&quot;ל בפ&quot;ק דביצה דל&quot;פ במתוך היאך יפרנס מתני׳ וב&quot;ה מתירין וע&quot;ש באס&quot;ז מ&quot;ש בשם הרמב&quot;ן דכ&quot;ע א&quot;ל מתוך והיינו בלצורך הגוף ולא פליג שם אלא בשלא לצורך הגוף משא&quot;כ בשוחט עולת נדבה ובמוציא את הקטן אע&quot;ג דהוא צ&quot;ק מ&quot;מ אינו צורך הגוף ובזה לא פליג הר&quot;ן ורבינו כנ&quot;ל ברור ועמ&quot;ש בס׳ ש&quot;י שם בסוגיא די&quot;ל דבבלי וירושלמי לא פליגי אהדדי ע&quot;ש:</p>
               </div>
             </div>
@@ -412,13 +481,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-18-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-18-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-18-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:18:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:18:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-18-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-18">Mishneh Torah, Rest on a Holiday 1:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. תַּרְנְגלֶת הָעוֹמֶדֶת לְגַדֵּל בֵּיצִים וְשׁוֹר הָעוֹמֵד לַחֲרִישָׁה וְיוֹנֵי שׁוֹבָךְ וּפֵרוֹת הָעוֹמְדִין לִסְחוֹרָה כָּל אֵלּוּ וְכַיּוֹצֵא בָּהֶן מֻקְצֶה הֵן וְאָסוּר לֶאֱכל מֵהֶן בְּיוֹם טוֹב עַד שֶׁיָּכִין אוֹתָם מִבָּעֶרֶב וְיַחֲשֹׁב עֲלֵיהֶם לַאֲכִילָה. אֲבָל בְּשַׁבָּת הַכּל מוּכָן אֵצֶל שַׁבָּת וְאֵינוֹ צָרִיךְ הֲכָנָה. וּכְשֵׁם שֶׁהַמֻּקְצֶה אָסוּר בְּיוֹם טוֹב כָּךְ הַנּוֹלָד אָסוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כך הנולד אסור.</strong> עמ&quot;ש בזה בש&quot;י ריש ביצה:</p>
               </div>
             </div>
@@ -428,13 +502,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-20-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-20-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-20-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:20:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:20:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-20-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-20">Mishneh Torah, Rest on a Holiday 1:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּכְשֵׁם שֶׁאָסוּר לְאָכְלָהּ כָּךְ אָסוּר לְטַלְטְלָהּ וַאֲפִלּוּ נִתְעָרְבָה בְּאֶלֶף כֻּלָּן אֲסוּרוֹת שֶׁהֲרֵי לְמָחָר יֻתְּרוּ הַכּל וְכָל דָּבָר שֶׁיֵּשׁ לוֹ מַתִּירִין אֲפִלּוּ בְּאֶלֶף אֲלָפִים אֵינוֹ בָּטֵל. הַשּׁוֹחֵט תַּרְנְגלֶת בְּיוֹם טוֹב וּמָצָא בָּהּ בֵּיצִים גְּמוּרוֹת הֲרֵי אֵלּוּ מֻתָּרוֹת. שֶׁאֵין זֶה דָּבָר מָצוּי תָּמִיד וְדָבָר שֶׁאֵינוֹ מָצוּי אֶלָּא אַקְרַאי בְּעָלְמָא לֹא גָּזְרוּ בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל דבר שיל&quot;מ כו׳.</strong> גרסינן בגמ׳ דף ז׳ אמר ר&quot;ח בריה דר&quot;נ בדק בקינם של תרנגולין מעיו&quot;ט ולא מצא בה ביצים ולמחר השכים ומצא בה ביצים מותרות בידוע דמאתמול אתילידו אע&quot;ג דבדק מעיו&quot;ט אימור לא בדק יפה יפה ואע&quot;ג דבדק יפה אימר יצא רובא וחזרה ומותרת ומביאו בהלכות וכתב הר&quot;ן שם ומהא משמע דאפילו בדשיל&quot;מ בדרבנן אזלינן בתר רובא משום דלא אתחזיק איסורא. ותוכן כוונת הר&quot;ן משום דזה הוא מילתא דל&quot;ש והוי כמו מיעוטא ולכך מקילין אפילו בדשיל&quot;מ אבל לדברי רבינו פה נראה בדשיל&quot;מ החמירו בכ&quot;ע וסובר רבינו דלר&quot;א דאמר כל דשיל&quot;מ ל&quot;ב אפי׳ באלף אלפים כיון דיש לו היתר בעולם מחמירין בכ&quot;מ וא&quot;כ גם דינו דר&quot;מ ליתא לדידן ומש&quot;ה לא הביא רבינו פה דין זה ובס׳ בינה לעתים תמה על רבינו. שוב מצאתי שגם הצל&quot;ח במס׳ ביצה נחית לזה והנאני. ועי׳ בפ&quot;ד הל׳ כ&quot;ד בהה&quot;מ מ&quot;ש בשם הרשב&quot;א והן הן הדברים שכתבתי:</p>
               </div>
             </div>
@@ -444,13 +523,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-23-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-23-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-23-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:23:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:23:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-1-23-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 1:23:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-1-23">Mishneh Torah, Rest on a Holiday 1:23</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. הַמֵּת בְּיוֹם טוֹב רִאשׁוֹן יִתְעַסְּקוּ בִּקְבוּרָתוֹ הַכּוּתִים וּבְיוֹם טוֹב שֵׁנִי יִתְעַסְּקוּ בּוֹ יִשְׂרָאֵל. וְעוֹשִׂין לוֹ כָּל צְרָכָיו כְּגוֹן עֲשִׂיַּת הַמִּטָּה וּתְפִירַת הַתַּכְרִיכִין וּקְצִיצַת הַבְּשָׂמִים וְכָל כַּיּוֹצֵא בָּזֶה. שֶׁיּוֹם טוֹב שֵׁנִי לְגַבֵּי הַמֵּת כְּחל הוּא חָשׁוּב וַאֲפִלּוּ בִּשְׁנֵי יָמִים טוֹבִים שֶׁל רֹאשׁ הַשָּׁנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד וכו׳.</strong> עי׳ בהגה&quot;מ באיזה מת דברו חכמים אם בגדול או גם בנפל ועי׳ ש&quot;ע א&quot;ח סי׳ תקכ&quot;ו סעיף ט׳ ובמ&quot;א שם מ&quot;ש דנפל חייב בקבורה ועי׳ בס׳ בינה לעתים שהשיג עליו:</p>
               </div>
             </div>
@@ -461,13 +545,18 @@
             </nav>
           </section>
           <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-2">Chapter 2</h4>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-1-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-1-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-2-1">Mishneh Torah, Rest on a Holiday 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶפְרוֹחַ שֶׁנּוֹלַד בְּיוֹם טוֹב אָסוּר מִפְּנֵי שֶׁהוּא מֻקְצֶה. וְעֵגֶל שֶׁנּוֹלַד בְּיוֹם טוֹב אִם הָיְתָה אִמּוֹ עוֹמֶדֶת לַאֲכִילָה מֻתָּר מִפְּנֵי שֶׁהוּא מוּכָן עַל גַּבֵּי אִמּוֹ וְאִלּוּ שָׁחַט אִמּוֹ הָיָה זֶה שֶׁבְּמֵעֶיהָ מֻתָּר בְּיוֹם טוֹב אַף עַל פִּי שֶׁלֹּא נוֹלַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפרוח שנולד ביו&quot;ט וכו׳.</strong> והיינו כרב ור&quot;י חולק ומתיר וביש&quot;ש הקשה למה פסק רבינו כרב הא קיי&quot;ל רב ור&quot;י הלכה כר&quot;י אע&quot;ג דתניא כותיה דרב הא תניא נמי כוותיה דר&quot;י. ואפשר לי לומר דלכאורה גוף סברת ר&quot;י שמתיר מטעם הואיל ומתיר עצמו בשחיטה ופירש&quot;י הואיל ומתיר עצמו בלידתו להיות נשחט מה שלא היה לפני לידתו אף מוקצה התיר א&quot;ע בלידתו דמיגו דאיתקן להא איתקן נמי להא וטעם זה קשה להבין לפי פשוטו ולעד&quot;נ ע&quot;פ גירסת רש&quot;י במס׳ שבת דף קכ&quot;א צואה של קטן והא חזיא לכלבים ותנן מחתכין את הנבילה לפני הכלבים וכ&quot;ת נולד הוא והא תניא נהרות וכו׳ אלמא כיון דהכי אורחייהו דעתיה עלויה ה&quot;נ כיון דאורחייהו בהכי דעתיה עלויה וכתב בחידושי הרשב&quot;א שם יש מקשים מהא דאמרינן ריש ביצה אי בתרנגולת העומדת לג&quot;ב נולד הוא ומאי קושיא הא כיון דאורחא הכי דעתיה עלויה כו׳, וי&quot;ל לדברי רש&quot;י דהתם כיון דאגידא באמה כגופה דמיא וכיון דאמה אסורה איהי נמי אסורה ע&quot;כ, ולפי סברת רש&quot;י גם באפרוח י&quot;ל דלא הוי מוקצה כיון דאורחא בהכי דכבר ידוע ימי ישיבת התרנגולת על הביצים שיבוא ממנה אפרוח ע&quot;כ צ&quot;ל לפי סברת רש&quot;י כיון שיצא האפרוח מהביצה והביצה אסורה אפרוח היוצא ממנה גם כן אסור אלא דאינו דומה לביצה דביצה היא מגוף התרנגולת כאחד מאבריה ושייך לומר דשדיא הטפל בתר העיקר אבל האפרוח שיצא מהביצה ונעשה בריה לעצמה להיות ניתר בשחיטה אין סברא לומר דשדיא בתר הביצה האפרוח וגם אין סברא לומר דשדיא האפרוח בתר התרנגולת כיון דאפסיקיה גוש אחר וזה הוא כוונת ר&quot;י הואיל ומתיר עצמו בשחיטה שהוא גוף בפ&quot;ע לא שייך לומר דשדיא בתר הביצה שהיא האם שלה והמעיין היטב ומדקדק בדברי רש&quot;י אפשר לכוין דבריו לדברינו, ועיין בחי׳ רשב&quot;א שם שכתב דהגי׳ שלפנינו בגמ׳ אינו כגי׳ רש&quot;י ולא ס&quot;ל לתלמודא דידן סברא זו דכל דאורחא בהכי דעתיה עלויה רק בירושלמי משמע כדברי רש&quot;י וא&quot;כ בהא פליגי רב ור&quot;י דר&quot;י סבר כהירושלמי וסתם ירושלמי הוא ר&quot;י ורב ס&quot;ל כגי׳ תלמודא דידן דלית להו סברא זו וא&quot;כ ליתא לסברת ר&quot;י ומש&quot;ה פסק רבינו כרב:<br><strong> ומ&quot;ש </strong> הה&quot;מ ואפילו ביומו מותר לחולה וכן עיקר פי׳ אם שחטו לעגל הזה לחולה שיש בו סכנה דמותר לבריא לאכול ממנו באומצא כמ&quot;ש רבינו בפ&quot;ב מהל׳ שבת וע&quot;ש בהה&quot;מ שיש מי שסובר ובלבד שלא יהיה בדבר הזה מוקצה וכ&quot;כ רש&quot;י חולין דף ט&quot;ז אבל חולה שאין בו סכנה מותר לאכול אפילו ביומו אע&quot;פ שיש בו מוקצה ועיין לח&quot;מ ומ&quot;ל ומה שכתב בזה בס׳ בל&quot;ע צ&quot;ע ע&quot;ש:</p>
               </div>
             </div>
@@ -477,13 +566,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-4-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-4-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:4:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-2-4">Mishneh Torah, Rest on a Holiday 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכוֹר שֶׁנּוֹלַד וּמוּמוֹ עִמּוֹ הֲרֵי זֶה מוּכָן וְאֵין מְבַקְּרִים אוֹתוֹ בְּיוֹם טוֹב. וְאִם עָבַר וְרָאָה מוּמוֹ וּבִקְּרוֹ וְהִתִּירוֹ הֲרֵי זֶה שׁוֹחֵט וְאוֹכֵל. בְּכוֹר שֶׁנָּפַל לַבּוֹר עוֹשֶׂה לוֹ פַּרְנָסָה בִּמְקוֹמוֹ שֶׁהֲרֵי אֵינוֹ יָכוֹל לְהַעֲלוֹתוֹ מִפְּנֵי שֶׁאֵינוֹ רָאוּי לִשְׁחִיטָה בְּיוֹם טוֹב. <span class="source-small">(ויקרא כב כח)</span> &quot;אוֹתוֹ וְאֶת בְּנוֹ&quot; שֶׁנָּפְלוּ לַבּוֹר מַעֲלֶה אֶת הָרִאשׁוֹן עַל מְנָת לְשָׁחֳטוֹ וְאֵינוֹ שׁוֹחֲטוֹ. וּמַעֲרִים וּמַעֲלֶה אֶת הַשֵּׁנִי עַל מְנָת לְשָׁחֳטוֹ וְשׁוֹחֵט אֶת אֵי זֶה מֵהֶן שֶׁיִּרְצֶה. מִשּׁוּם צַעַר בַּעֲלֵי חַיִּים הִתִּירוּ לְהַעֲרִים. בֶּהֱמַת חֻלִּין שֶׁנָּפְלָה מִן הַגַּג וְעָמְדָה מֵעֵת לְעֵת וַהֲרֵי הִיא צְרִיכָה בְּדִיקָה שׁוֹחֲטִין אוֹתָהּ בְּיוֹם טוֹב וְתִבָּדֵק אֶפְשָׁר שֶׁתִּמָּצֵא כְּשֵׁרָה וְתֵאָכֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אותו ואת בנו כו׳.</strong> עי׳ הה&quot;מ מ&quot;ש בשם הירושלמי ועי׳ בק&quot;ע ביצה דף ז׳ ע&quot;ב ד&quot;ה אע&quot;פ שפי׳ כוונת הירושלמי בדרך אחר וחולק שם עם המג&quot;א סימן תצ&quot;ח ס&quot;ק ק׳ במה שהתיר אם נפלו שאינם או&quot;ב כיון שראויין כולן לשחיטה אע&quot;פ שאינו שוחט אחד מהן ע&quot;ש:</p>
               </div>
             </div>
@@ -493,13 +587,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-6-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-6-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-2-6">Mishneh Torah, Rest on a Holiday 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זִמֵּן שְׁחוֹרִים וּלְבָנִים וּמָצָא שְׁחוֹרִים בִּמְקוֹם לְבָנִים וּלְבָנִים בִּמְקוֹם שְׁחוֹרִים אֲסוּרִים שֶׁאֲנִי אוֹמֵר שֶׁמָּא אוֹתָן שֶׁזִּמֵּן פָּרְחוּ לָהֶן וְאֵלּוּ אֲחֵרִים הֵן וְכָל סָפֵק מוּכָן אָסוּר. זִמֵּן שְׁנַיִם וּמָצָא שְׁלֹשָׁה הַכּל אָסוּר. שְׁלֹשָׁה וּמָצָא שְׁנַיִם מֻתָּרִין. זִמֵּן בְּתוֹךְ הַקֵּן וּמָצָא לִפְנֵי הַקֵּן אִם אֵין שָׁם בַּקֵּן אֶלָּא הֵן וְאֵינָן יְכוֹלִין לִפְרֹחַ אַף עַל פִּי שֶׁיֵּשׁ שָׁם קֵן אַחֵר בְּקֶרֶן זָוִית בְּתוֹךְ חֲמִשִּׁים אַמָּה הֲרֵי אֵלּוּ מֻתָּרִין שֶׁאֵין הַמְדַדֶּה מְדַדֶּה אֶלָּא כְּנֶגֶד קִנּוֹ בְּשָׁוֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זימן שחורים כו׳.</strong> עי׳ הה&quot;מ מה שמקשה על הרשב&quot;א שא&quot;כ ס׳ ביצה למה היא אסורה ועי׳ במרדכי פ׳ א&quot;צ שכתב וי&quot;ל אע&quot;ג דספק תחומין הוא ג&quot;כ דשיל&quot;מ ל&quot;ד לביצה דהתם כי מוקמת לה אחזקה הרי לא נולדו ולפי&quot;ז מיושב קושית הה&quot;מ וכבר הארכתי בזה בש&quot;י בריש ביצה ד&quot;ה נושרין ע&quot;ש:</p>
               </div>
             </div>
@@ -509,13 +608,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-7-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-7-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:7:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-7-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-2-7">Mishneh Torah, Rest on a Holiday 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דָּגִים שֶׁבְּבֵיבָרִין גְּדוֹלִים וְכֵן חַיָּה וָעוֹף שֶׁבְּבֵיבָרִין גְּדוֹלִים כָּל שֶׁהוּא מְחֻסַּר צִידָה עַד שֶׁאוֹמְרִים הָבֵא מְצוּדָה וּנְצוּדֶנּוּ הֲרֵי זֶה מֻקְצֶה וְאֵין צָדִין אוֹתָן בְּיוֹם טוֹב וְאִם צָד לֹא יֹאכְלוֹ. וְכָל שֶׁאֵינוֹ צָרִיךְ מְצוּדָה הֲרֵי זֶה מוּכָן וְצָדִין אוֹתוֹ בְּיוֹם טוֹב וְאוֹכְלִין אוֹתוֹ. וְכֵן חַיָּה שֶׁקִּנְּנָה בְּפַרְדֵּס הַסָּמוּךְ לָעִיר יְלָדֶיהָ כְּשֶׁהֵן קְטַנִּים שֶׁאֵינָן צְרִיכִין צִידָה אֵינָם צְרִיכִים זִמּוּן מִפְּנֵי שֶׁדַּעְתּוֹ עֲלֵיהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דגים כו׳.</strong> עמ&quot;ש בזה רפ&quot;ז מהל׳ שבת:</p>
               </div>
             </div>
@@ -525,13 +629,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-9-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-9-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:9:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-2-9">Mishneh Torah, Rest on a Holiday 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּיִת שֶׁהִיא מָלֵא פֵּרוֹת מוּכָנִין וְנִפְחַת נוֹטֵל מִמְּקוֹם הַפְּחָת. הָעוֹמֵד עַל הַמֻּקְצֶה מֵעֶרֶב יוֹם טוֹב בַּשָּׁנָה הַשְּׁבִיעִית שֶׁכָּל הַפֵּרוֹת הֶפְקֵר צָרִיךְ שֶׁיִּרְשֹׁם וְיֹאמַר מִכָּאן וְעַד כָּאן אֲנִי נוֹטֵל וְאִם לֹא רָשַׁם לֹא יִטּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העומד על המוקצה כו׳.</strong> כתב הה&quot;מ שאין מוקצה בשבת, עי׳ לח&quot;מ וכן הבין הרא&quot;ש בסוף ביצה במ&quot;ש שם ראיה לפסק רבינו מהא דאמרינן ביצה דף ד׳ אי בתרנגולת העומדת לג&quot;ב היא ואמה אסורה ע&quot;ש פירש&quot;י ובמהרמ&quot;ל, והרא&quot;ש דעתו דקושית הגמ׳ מהלכתא ועמ&quot;ש בזה בש&quot;י מס׳ שבת דף י&quot;א ע&quot;א ד&quot;ה לא ס&quot;ד וע&quot;ע מ&quot;ש במתני׳ דבית שנפחת בש&quot;י:</p>
               </div>
             </div>
@@ -541,13 +650,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-12-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-12-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:12:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-2-12">Mishneh Torah, Rest on a Holiday 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מְבַקְּעִין עֵצִים מִסַּוַואר שֶׁל קוֹרוֹת מִפְּנֵי שֶׁהֵן מֻקְצֶה. וְלֹא מִן הַקּוֹרָה שֶׁנִּשְׁבְּרָה בְּיוֹם טוֹב מִפְּנֵי שֶׁהִיא נוֹלָד. וְכֵן כֵּלִים שֶׁנִּשְׁבְּרוּ בְּיוֹם טוֹב אֵין מַסִּיקִין בָּהֶן מִפְּנֵי שֶׁהֵן נוֹלָד. אֲבָל מַסִּיקִין בְּכֵלִים שְׁלֵמִים אוֹ בְּכֵלִים שֶׁנִּשְׁבְּרוּ מֵעֶרֶב יוֹם טוֹב שֶׁהֲרֵי הוּכְנוּ לִמְלָאכָה אַחֶרֶת מִבָּעֶרֶב. כַּיּוֹצֵא בּוֹ אֱגוֹזִים וּשְׁקֵדִים שֶׁאֲכָלָן מֵעֶרֶב יוֹם טוֹב מַסִּיקִין בִּקְלִפֵּיהֶן בְּיוֹם טוֹב. וְאִם אֲכָלָן בְּיוֹם טוֹב אֵין מַסִּיקִין בִּקְלִפֵּיהֶן. וְיֵשׁ נֻסְחָאוֹת שֶׁיֵּשׁ בָּהֶן שֶׁאִם אֲכָלָן מִבָּעֶרֶב אֵין מַסִּיקִין בִּקְלִפֵּיהֶן שֶׁהֲרֵי הֻקְצוּ וְאִם אֲכָלָן בְּיוֹם טוֹב מַסִּיקִין מִפְּנֵי שֶׁהֵן מוּכָנִין עַל גַּב הָאֹכֶל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויש נוסחאות כו׳.</strong> להסביר סברת נוסחא זאת י&quot;ל ע&quot;פ גירסת רש&quot;י שהבאתי בהל׳ א׳ כל מידי דאורחא בהכי דעתיה עלויה לא הוי נולד והרגיש שם בחי׳ רשב&quot;א מהך דקליפי אגוזים אמאי הרי דעתו עלויה וע&quot;פ נוסחא זו באמת מותר מה&quot;ט משא&quot;כ אם אכל מערב והניח הקליפה ולא הזמינם להסקה גלי דעתיה דאקצינהו וגם לפי סברא זו יש מקום לומר כיון דהסיק בכלים אע&quot;ג דנעשו בתר הכי אחליק בהו פורתא שברי כלים כיון דאורחא בהכי דעתיה עלויה, ועי׳ הה&quot;מ שאין נוסחא זו עיקרית וכמ&quot;ש לעיל דהעיקר כגי׳ שלפנינו כדמסיק בחי׳ רשב&quot;א שם:</p>
               </div>
             </div>
@@ -557,13 +671,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-18-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-18-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-18-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:18:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:18:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-2-18-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 2:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-2-18">Mishneh Torah, Rest on a Holiday 2:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּכְנִיס עָפָר מֵעֶרֶב יוֹם טוֹב אִם יִחֵד לוֹ בַּחֲצֵרוֹ קֶרֶן זָוִית הֲרֵי זֶה מוּכָן וּמֻתָּר לְטַלְטְלוֹ וְלַעֲשׂוֹת בּוֹ כָּל צְרָכָיו. וְכֵן אֵפֶר שֶׁהֻסַּק מֵעֶרֶב יוֹם טוֹב מוּכָן. וְשֶׁהֻסַּק בְּיוֹם טוֹב כָּל זְמַן שֶׁהוּא חַם כְּדֵי לִצְלוֹת בּוֹ בֵּיצָה מֻתָּר לְטַלְטְלוֹ שֶׁעֲדַיִן אֵשׁ הוּא. וְאִם לָאו אָסוּר לְטַלְטְלוֹ מִפְּנֵי שֶׁהוּא נוֹלָד. מִי שֶׁהָיָה לוֹ דֶּקֶר נָעוּץ מֵעֶרֶב יוֹם טוֹב וְנִתְּקוֹ בְּיוֹם טוֹב וְהֶעֱלָה עָפָר אִם הָיָה אוֹתוֹ עָפָר תִּיחוֹחַ הֲרֵי זֶה מְכַסֶּה בּוֹ וּמְטַלְטְלוֹ. אֲבָל אִם הֶעֱלָה גּוּשׁ עָפָר הֲרֵי זֶה לֹא יִכְתּשׁ אוֹתוֹ בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כ&quot;ז שהוא חם.</strong> עי׳ תוס׳ ביצה דף ח׳ ד&quot;ה אמר ר&quot;י דאפילו ר&quot;ש בהאי נולד מודה דהוי כמו מיא בעיבא. וקצת ל&quot;ד דהא גם כשנקרא אפר מותר כשעדיין חם, ולפ&quot;ד רבינו פה י&quot;ל טעם אחר דמודה בה ר&quot;ש דמעיקרא נקרא אש והשתא אפר. ומה שדחקו להו לומר כן נראה משום בתוס׳ כ׳ בשבת י&quot;ט ע&quot;ב דרב דס&quot;ל שבת קי&quot;ח ע&quot;א במוקצה לטלטל כר&quot;ש היינו אפילו בדבר דלא שייך אכילה אלא טלטול ודלא כמ&quot;ש בח&quot;ר דדוקא במידי דשייך אכילה בטלטול סובר רב דיש להחמיר באכילה משא&quot;כ במידי דלא שייך אלא טלטול והתוס׳ לטעמייהו אזלו ולדברי התוס׳ יש ראיה דאל&quot;כ מאי חידש רב על הברייתא אלא דקמ&quot;ל דגם ר&quot;ש מודה ועי׳ ביצה דף ל&quot;ג ע&quot;א ברש&quot;י ולפ&quot;ד ליתא לדברי מהרש&quot;א שם ושם בא&quot;ד מביאו התוס׳ בשם הירושלמי דבדיעבד מכסים בהסיק ביו&quot;ט ורבינו פה לא מחלק בהכי ועי׳ פר&quot;ח סי׳ תנ&quot;ח. ונראה לפמ&quot;ש שדחק עצמו המהרש&quot;א למה התירו משום שמחת יו&quot;ט ואי אמרינן דלא כהירושלמי אפשר לומר דגמרא מיירי בדיעבד וס&quot;ל לרבינו דבבלי חולק בזה עם הירושלמי:</p>
               </div>
             </div>
@@ -574,13 +693,18 @@
             </nav>
           </section>
           <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-3">Chapter 3</h4>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-2-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-2-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-3-2">Mishneh Torah, Rest on a Holiday 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן הַשּׁוֹחֵט חַיָּה וָעוֹף מֵעֶרֶב יוֹם טוֹב לֹא יְכַסֶּה דָּמָם בְּיוֹם טוֹב. שָׁחַט בְּהֵמָה חַיָּה וָעוֹף בְּיוֹם טוֹב וְנִתְעָרֵב דָּמָם לֹא יְכַסֶּה אוֹתוֹ עַד לָעֶרֶב. וְאִם הָיָה לוֹ עָפָר מוּכָן אוֹ אֵפֶר וְיָכוֹל לְכַסּוֹת הַכּל בִּדְקִירָה אַחַת הֲרֵי זֶה יְכַסֵּהוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונתערב דמם וכו׳.</strong> וטעמא משום דמטלטל טרחא יתירא, ונראה דאם לקח אדם בידו עפר שאינו מוכן ע&quot;י שכחה או באיזה אופן שיהיה כיון שהמוקצה בידו כבר ורשאי להניחה בכ&quot;מ שירצה מותר לכסות בזה העפר את התערובות משא&quot;כ בספק חיה ספק בהמה המבואר במ&quot;א אפילו אם כבר ישנו בידו באופן שכתבתי ג&quot;כ אסור לכסות בו משום שיבואו הרואים להתיר חלבו שלא ידע הרואה שזה בא לידו בשוגג כ&quot;א יסבור שזה הוא חיה ודאי ובזה מתורץ קושית הלח&quot;מ ועי׳ ש&quot;ך יו&quot;ד סי׳ כ&quot;ח:</p>
               </div>
             </div>
@@ -590,13 +714,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-3-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-3-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-3-3">Mishneh Torah, Rest on a Holiday 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹחֵט בְּהֵמָה בְּיוֹם טוֹב מֻתָּר לוֹ לִתְלֹשׁ צֶמֶר לִמְקוֹם הַסַּכִּין בְּיָדוֹ. וּבִלְבַד שֶׁלֹּא יְזִיזֶנּוּ מִמְּקוֹמוֹ אֶלָּא יִשָּׁאֵר שָׁם מְסֻבָּךְ כִּשְׁאָר צֶמֶר הַצַּוָּאר. אֲבָל בְּעוֹף לֹא יִמְרֹט מִפְּנֵי שֶׁהוּא דַּרְכּוֹ וְנִמְצָא תּוֹלֵשׁ בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השוחט בהמה בי&quot;ט וכו׳.</strong> עי׳ היטב בל&quot;מ וצ&quot;ע אם רבינו מפרש כן א&quot;כ קושית התוס׳ בכורות כ&quot;ד ד&quot;ה והיינו נשארת דלמה לא קמבעי ליה לענין בכור. ובאמת ליישב קושית התוס׳ י&quot;ל דלרבותא נקט האבעיא בי&quot;ט משום דאי הוה קמבעיא ליה גבי בכור ה&quot;א דביו&quot;ט אין כאן ספק דודאי מותר משום דשא&quot;מ משא&quot;כ גבי בכור מספקא ליה משום די&quot;ל דשא&quot;מ לא הותר כ&quot;א בשבת משום דמלאכת מחשבת אסרה תורה ויו&quot;ט ילפינן משבת משא&quot;כ בשאר איסורים י&quot;ל דדשא&quot;מ אסור דהא מהך טעמא פסק בשאלתות דשא&quot;מ בשאר איסורים אסור כר&quot;י וכמ&quot;ש התוס׳ בשמו שבת דף ק&quot;י ע&quot;ב ד&quot;ה תלמוד וכו׳ ולכ&quot;ע גבי שבת גם לר&quot;י דס&quot;ל דשא&quot;מ אסור אינו אלא מדרבנן וכמ&quot;ש ברפ&quot;א משא&quot;כ גבי שאר איסורים לר&quot;י יש בו איסור תורה גם באינו מתכוין ומש&quot;ה מבעי ליה ביו&quot;ט ולרבותא נקט הכי. אמנם בעיקר פירוש דברי התוס׳ שם יש סתירה מתחילת דבריהם לסוף דבריהם, וכבר הארכתי בזה בספרי ש&quot;י במס׳ ביצה דף ז׳ ע&quot;א ד&quot;ה ולא מקרצפין ולפמ&quot;ש שם עולה פסק רבינו על נכון קחנו משם:</p>
               </div>
             </div>
@@ -606,13 +735,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-8-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-8-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-8-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:8:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:8:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-3-8">Mishneh Torah, Rest on a Holiday 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֻתָּר לָלוּשׁ עִסָּה גְּדוֹלָה בְּיוֹם טוֹב. וְהַלָּשׁ עִסָּה מֵעֶרֶב יוֹם טוֹב אֵינוֹ מַפְרִישׁ מִמֶּנָּה חַלָּה בְּיוֹם טוֹב. וְאִם לָשָׁהּ בְּיוֹם טוֹב מַפְרִישׁ מִמֶּנָּה חַלָּה וְנוֹתְנָהּ לַכֹּהֵן. וְאִם הָיְתָה עִסָּה טְמֵאָה אוֹ שֶׁנִּטְמֵאת הַחַלָּה לֹא יְבַשֵּׁל אֶת הַחַלָּה שֶׁאֵין מְבַשְּׁלִין בְּיוֹם טוֹב אֶלָּא לֶאֱכל וְזוֹ לִשְׂרֵפָה עוֹמֶדֶת. וְכֵן אֵין שׂוֹרְפִין אוֹתָהּ בְּיוֹם טוֹב שֶׁאֵין שׂוֹרְפִין קָדָשִׁים שֶׁנִּטְמְאוּ בְּיוֹם טוֹב. שֶׁשְּׂרֵפַת קָדָשִׁים שֶׁנִּטְמְאוּ מִצְוַת עֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ז יט)</span> &quot;בָּאֵשׁ יִשָּׂרֵף&quot; וַעֲשִׂיַּת מְלָאכָה שֶׁאֵינָהּ לְצֹרֶךְ אֲכִילָה וְכַיּוֹצֵא בָּהֶן עֲשֵׂה וְלֹא תַּעֲשֶׂה וְאֵין עֲשֵׂה דּוֹחֶה אֶת לֹא תַּעֲשֶׂה וַעֲשֵׂה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והלש עיסה מעיו&quot;ט.</strong> עי׳ השגת הראב&quot;ד ועמ&quot;ש פכ&quot;ג מהל׳ שבת הי&quot;ד. ומ&quot;ש ואין עשה דוחה ל&quot;ת ועשה יש לדקדק דבפי&quot;ט מהל׳ פסולי המוקדשין הל׳ ה׳ כתב רבינו דין דאין שורפין קדשים ביו&quot;ט ולא כתב שום טעם כמ&quot;ש הכא ואין זה דרכו לסמוך, וע&quot;ק לי דבפ&quot;א מהל׳ תמידין כתב רבינו דרשא דאביי דעולת שבת בשבתו. ונ&quot;ל ליישב דברי רבינו דהנה לכל הטעמים דאמרינן בגמ׳ עולת שבת בשבתו ולתנא דבי חזקיה בוקר שני לשריפתו ומדרשא דהוא לבדו יעשה לכם לכל הלמודים אם עבר ע&quot;ז ושרף את הקדשים אינו עובר כ&quot;א בלאו הבא מכלל עשה משא&quot;כ לשנויא דר&quot;א דיו&quot;ט עשה ול&quot;ת הוא א&quot;כ לשיטת הריב&quot;א סוף חולין וז&quot;פ א&quot;ע דהל&quot;ת נדחה א&quot;כ גם לר&quot;א אינו עובר כ&quot;א בעשה משא&quot;כ אי לא אמרי׳ כשיטת הריב&quot;א א&quot;כ לר&quot;א עובר בעשה ול&quot;ת, ונפ&quot;מ לפמ&quot;ש במל&quot;מ בפ&quot;א מהל׳ יו&quot;ט דין י&quot;ז דמשמע שם גבי עשה לא עבדי׳ הרחקה משא&quot;כ בל&quot;ת ומכ&quot;ש אם יש כאן עשה ול&quot;ת וא&quot;כ לר&quot;א אי לא אמרי׳ כשיטת הריב&quot;א יש למעבד הרחקה משא&quot;כ לאידך מ&quot;ד דאין כאן כ&quot;א איסור עשה לא שייך למיעבד הרחקה. והנה התוס׳ כתב בשבת דף כ&quot;ד ע&quot;ב ד&quot;ה לפי אמאי לא שורפין תרומה דהא יכול ליהנות בשעת שריפתו כו׳ ואומר ריב&quot;א דודאי גרע כו׳ ור&quot;י אומר לפי שאין שורפין קדשים ביו&quot;ט פי׳ גזרו תרומה אטו קדשים ע&quot;ש. ונראה דריב&quot;א לטעמיה אזיל דס&quot;ל דהל&quot;ת בכ&quot;ע נדחה א&quot;כ מש&quot;ה לא בעי לפרש כדפי׳ הר&quot;י מצד גזירה דלמה לן למיעבד הרחקה כיון דבשריפת קדשים גופא אין כאן אלא איסור עשה אליבא דכ&quot;ע ור&quot;י סובר דיש כאן עשה ול&quot;ת ושפיר עבדי׳ הרחקה. והנה רבינו אי ס&quot;ל כדעת הריב&quot;א כבר האריכו בזה האחרונים ואני בארתי בהל׳ גזילה ואבידה פי&quot;א ה&quot;ח שדעת רבינו דלא כדעת הריב&quot;א ומעתה דברי רבינו נכונים דשם בהל׳ פסולי המוקדשים דלא כתב כ&quot;א דאסור לשרוף פסולי המוקדשים ל&quot;צ ליתן טעם דבכ&quot;מ אסור מדרשא דעולת שבת. אבל פה כתב רבינו וכן אין שורפין שקאי אחלה שהיינו תרומה וכתב הטעם שאין שורפין קדשים ביו&quot;ט ופי׳ רבינו כמ&quot;ש הר&quot;י משום גזירה והיה קשה לי׳ לרבינו אם לא היה כאן כ&quot;א איסור עשה ודאי דלא עבדו רבנן הרחקה יתירא לגזור תרומה אטו קדשים מש&quot;ה שיכל רבינו וכתב הטעם שאין עשה דוחה ל&quot;ת ועשה פי׳ ונשאר העשה ול&quot;ת ושפיר עבדינן הרחקה כנ&quot;ל:</p>
               </div>
             </div>
@@ -622,13 +756,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-11-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-11-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-11-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:11:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:11:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-11-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-3-11">Mishneh Torah, Rest on a Holiday 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תַּנּוּר וְכִירַיִם חֲדָשִׁים אֵין סָכִין אוֹתָן בְּשֶׁמֶן בְּיוֹם טוֹב. וְאֵין טָשִׁין אוֹתָן בְּמַטְלִית. וְאֵין מְפִיגִין אוֹתָן בְּצוֹנֵן כְּדֵי לְחָסְמָן וְאִם בִּשְׁבִיל לֶאֱפוֹת בָּהֶן מֻתָּר. אֵין מְלַבְּנִין אֶת הָאֲבָנִים לִצְלוֹת אוֹ לֶאֱפוֹת עֲלֵיהֶן מִפְּנֵי שֶׁמְּחַסְּמָן. וּמַסִּיקִין וְאוֹפִין בְּפוּרְנִי וּמְחִמִּין חַמִּין בְּאַנְטִיכִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מלבנין את האבנים.</strong> עי׳ הה&quot;מ שדעת רבינו שלא לחלק בין חדשים לישנים ומ&quot;ש המ&quot;מ בפ&quot;ט מהל׳ שבת שם דאין חייב כ&quot;א בקדירה חדשה כבר כ׳ בס׳ בל&quot;ע דהעיקר כמ&quot;ש בשו&quot;ת ח&quot;י בשם הגאון מהר&quot;ל דבישנה אינו אלא ספק חיסום ואסור עכ&quot;פ אבל אינו חייב חטאת כ&quot;א בקדירה חדשה ע&quot;ש, ונראה דלפי שיטת מהר&quot;ל אין כאן ספק כ&quot;א אם לא נתיישן שלא צלה או אפה בו פעמים רבות אז יש ספק אבל אם צלה בו הרבה פעמים עד שנראה שא&quot;צ חיסום כלל מותר לכ&quot;ע, ובזה י&quot;ל הא דנקט חדשה להורות בא דכ&quot;ז שיש ספק אי החיסום מועיל עדיין הוי בכלל חדשה ובזה מיושב מה שתמה שם בס׳ בל&quot;ע לדעת הר&quot;ן דמכשירי או&quot;נ שא&quot;א לעשותן מעיו&quot;ט מותר ביו&quot;ט א&quot;כ בישנים מה הו&quot;ל למיעבד כיון דבכל פעם איכא חיסום ולפמ&quot;ש א&quot;ש:</p>
               </div>
             </div>
@@ -638,13 +777,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-14-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-14-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-14-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:14:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:14:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-3-14-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 3:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-3-14">Mishneh Torah, Rest on a Holiday 3:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקֶּמַח אַף עַל פִּי שֶׁרִקְּדוֹ מֵעֶרֶב יוֹם טוֹב וְהֵסִיר מִמֶּנּוּ הַסֻּבִּין אֵין מְרַקְּדִין אוֹתוֹ פַּעַם שְׁנִיָּה בְּיוֹם טוֹב אֶלָּא אִם כֵּן נָפַל בְּתוֹכוֹ צְרוֹר אוֹ קֵיסָם וְכַיּוֹצֵא בָּהֶם. וְאִם שִׁנָּה מֻתָּר. כֵּיצַד. כְּגוֹן שֶׁיְּרַקֵּד מֵאֲחוֹרֵי הַנָּפָה אוֹ שֶׁרִקֵּד עַל גַּבֵּי הַשֻּׁלְחָן וְכַיּוֹצֵא בְּשִׁנּוּי זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקמח כו׳.</strong> עי׳ מ&quot;מ מ&quot;ש בדעת הראב&quot;ד שאסור ליטול הצרור ביד וכ׳ בס׳ בל&quot;ע דאע&quot;ג דקיי&quot;ל דמותר לברור ביו&quot;ט לאכול היינו בקטניות דלא סגי בלא&quot;ה אבל כאן יכול לעשות באופן אחר שיפול הצרור ממילא וע&quot;ש מ&quot;ש על מה שאוסר המהר&quot;ל לאסור בטחינת המצות לברור פרורים גדולים דהוי בורר ע&quot;ש, ועי׳ בא&quot;ח סי׳ שי&quot;ט ובברכי יוסף שם, ומ&quot;ש בהל׳ שבת פכ&quot;א:</p>
               </div>
             </div>
@@ -655,13 +799,18 @@
             </nav>
           </section>
           <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-4">Chapter 4</h4>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-1-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-1-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-4-1">Mishneh Torah, Rest on a Holiday 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מוֹצִיאִין אֶת הָאֵשׁ לֹא מִן הָעֵצִים וְלֹא מִן הָאֲבָנִים וְלֹא מִן הַמַּתָּכוֹת. כְּגוֹן שֶׁחוֹכְכִין אוֹתָן זוֹ בָּזוֹ אוֹ מַכִּין זוֹ בָּזוֹ עַד שֶׁתֵּצֵא הָאֵשׁ. וְכֵן הַנֵּפְט הַחַד בְּיוֹתֵר שֶׁהוּא בְּמַיִם שֶׁמְּנִידִין אוֹתָם עַד שֶׁיִּדָּלֵק. אוֹ כְּלִי זַךְ קָשֶׁה אוֹ זְכוּכִית מְלֵאָה מַיִם שֶׁמַּנִּיחִין אוֹתָהּ כְּנֶגֶד עֵין הַשֶּׁמֶשׁ עַד שֶׁיַּחֲזֹר נָגְהָהּ לַפִּשְׁתָּן וְכַיּוֹצֵא בּוֹ וְיִדְלַק. כָּל זֶה וְכַיּוֹצֵא בּוֹ אָסוּר בְּיוֹם טוֹב. שֶׁלֹּא הֻתַּר בְּיוֹם טוֹב אֶלָּא לְהַבְעִיר מֵאֵשׁ מְצוּיָה. אֲבָל לְהַמְצִיא אֵשׁ אָסוּר שֶׁהֲרֵי אֶפְשָׁר לְהַמְצִיא אוֹתָהּ מִבָּעֶרֶב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מוציאין כו׳.</strong> עי׳ הה&quot;מ דאם הוציא האש מותר להשתמש עי׳ בט&quot;ז סי׳ תק&quot;ב שהקשה מה בין זה למעשר ומבשל בשבת במזיד דאסור ועי׳ בא&quot;ר ובשו&quot;ת רדב&quot;ז בלשונות הרמב&quot;ם ססי׳ ק&quot;נ ובברכי יוסף סי׳ תק&quot;ב אם היה במאסר או במדבר ולא נזדמן לו עד יו&quot;ט מותר להוציא אש ביו&quot;ט:</p>
               </div>
             </div>
@@ -671,13 +820,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-2-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-2-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-4-2">Mishneh Torah, Rest on a Holiday 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁהֻתְּרָה הַבְעָרָה בְּיוֹם טוֹב שֶׁלֹּא לְצֹרֶךְ אָסוּר לְכַבּוֹת אֶת הָאֵשׁ אֲפִלּוּ הֻבְעֲרָה לְצֹרֶךְ אֲכִילָה. שֶׁהַכִּבּוּי מְלָאכָה שֶׁאֵין בּוֹ צֹרֶךְ אֲכִילָה כְּלָל. וּכְשֵׁם שֶׁאֵין מְכַבִּים אֶת הָאֵשׁ כָּךְ אֵין מְכַבִּים אֶת הַנֵּר וְאִם כִּבָּה לוֹקֶה כְּמִי שֶׁאָרַג אוֹ בָּנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לוקה כמי שארג או בנה.</strong> בתוס׳ פ׳ המצניע דף צ&quot;ה כתב דבנין אינו לוקה ביו&quot;ט משום מתוך ורבינו לטעמיה אזיל ולפי שיטת הירושלמי דמגבן חייב משום לש גם לפי שיטת התוס׳ דאמרינן מתוך בכה&quot;ג כאן שהותרה מלאכה לצורך או&quot;נ אמרינן מתוך לוקה בבונה ביו&quot;ט דלא מצינו בנין שהותר באו&quot;נ. והתוס׳ כ׳ את זאת לפום גמ׳ דידן דמגבן חייב משום בונה וגם רבינו כ&quot;כ בפ&quot;ז מהל׳ שבת:</p>
               </div>
             </div>
@@ -687,13 +841,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-6-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-6-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-4-6">Mishneh Torah, Rest on a Holiday 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מְעַשְּׁנִין בִּקְטֹרֶת בְּיוֹם טוֹב מִפְּנֵי שֶׁהוּא מְכַבֶּה. וַאֲפִלּוּ לְהָרִיחַ בָּהּ. וְאֵין צָרִיךְ לוֹמַר לְגַמֵּר אֶת הַבַּיִת וְאֶת הַכֵּלִים שֶׁהוּא אָסוּר. וּמֻתָּר לְעַשֵּׁן תַּחַת הַפֵּרוֹת כְּדֵי שֶׁיֻּכְשְׁרוּ לַאֲכִילָה כְּמוֹ שֶׁמֻּתָּר לִצְלוֹת בָּשָׂר עַל הָאֵשׁ. וּמְמַתְּקִין אֶת הַחַרְדָּל בְּגַחֶלֶת שֶׁל מַתֶּכֶת אֲבָל לֹא בְּגַחֶלֶת שֶׁל עֵץ מִפְּנֵי שֶׁהוּא מְכַבֶּה. וְאֵין מְכַבִּין אֶת הָאֵשׁ כְּדֵי שֶׁלֹּא תִּתְעַשֵּׁן הַקְּדֵרָה אוֹ הַבַּיִת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מעשנין מפני שהוא מכבה.</strong> עי׳ ברי&quot;ף ס&quot;פ יו&quot;ט דגרס דבשרא אגומרי ליכא כבוי וכתב הר&quot;ן מפני שסופו להבעיר ועי׳ בר&quot;ן שם מה שפירש לשיטת רש&quot;י ודו&quot;ק ועי׳ בלח&quot;מ:</p>
               </div>
             </div>
@@ -703,13 +862,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-17-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-17-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-17-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:17:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:17:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-4-17-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 4:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-4-17">Mishneh Torah, Rest on a Holiday 4:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּלִי שֶׁנִּטְמָא מֵעֶרֶב יוֹם טוֹב אֵין מַטְבִּילִין אוֹתוֹ בְּיוֹם טוֹב גְּזֵרָה שֶׁמָּא יַשְׁהֶה אוֹתוֹ בְּטֻמְאָתוֹ. וְאִם הָיָה צָרִיךְ לְהַטְבִּיל מַיִם שֶׁבּוֹ מַטְבִּיל אֶת הַכְּלִי בְּמֵימָיו וְאֵינוֹ חוֹשֵׁשׁ. כְּלִי שֶׁהָיָה טָהוֹר לִתְרוּמָה וְרָצָה לְהַטְבִּילוֹ לְקֹדֶשׁ מֻתָּר לְהַטְבִּילוֹ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה מִטְּבִילוֹת מַעֲלוֹת שְׁאָר הַטֻּמְאוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כלי שנטמא מעיו&quot;ט.</strong> עמ&quot;ש פכ&quot;ג מהל׳ שבת ה&quot;ח ועי׳ בש&quot;י ביצה עלה דהך מתני׳ ד&quot;ה אבל לא מטבילין:</p>
               </div>
             </div>
@@ -720,13 +884,18 @@
             </nav>
           </section>
           <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-5">Chapter 5</h4>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-4-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-4-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:4:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-5-4">Mishneh Torah, Rest on a Holiday 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מוֹלִיכִין אֶת הַסֻּלָּם שֶׁל שׁוֹבָךְ מִשּׁוֹבָךְ לְשׁוֹבָךְ בִּרְשׁוּת הָרַבִּים שֶׁמָּא יֹאמְרוּ לְתַקֵּן גַּגּוֹ הוּא מוֹלִיכוֹ. אֲבָל בִּרְשׁוּת הַיָּחִיד מוֹלִיכוֹ. אַף עַל פִּי שֶׁכָּל מָקוֹם שֶׁאָסְרוּ חֲכָמִים מִפְּנֵי מַרְאִית הָעַיִן אֲפִלּוּ בְּחַדְרֵי חֲדָרִים אָסוּר כָּאן הִתִּירוּ מִפְּנֵי שִׂמְחַת יוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מוליכין וכו׳.</strong> עיין השגת הראב&quot;ד. והנה טעם זה שכתב רבינו דלהטיח גגו הוא צריך והוי בונה ולפי שיטת התוס׳ שבת צ&quot;ה שהבאתי בפ&quot;ד בבונה ממש אינו אסור כ&quot;א מדרבנן והוי מ&quot;ע בדרבנן ולשיטת הסוברים דבדרבנן לא אסרינן בח&quot;ח א&quot;כ מאי מקשה תלמודא מהא דאמר ר&quot;י אמר רב ולשיטת רבינו דחולק על התוס׳ א&quot;ש. והנה לפי פשטות הגמרא משמע כפירש&quot;י דטעמא דב&quot;ה דמתירין משום דשובכו מוכיח עליו וזה ניחא ומסתבר אם ליכא כאן חשש איסור תורה שפיר איכא מקום לומר סברת שובכו מוכיח עליו אבל אם יש לחוש מפני הרואים איסור דאורייתא אין סברא לומר דמשום דשובכו מוכיח עליו מתירין אפילו ברה&quot;ר ובזה נראה הא דאמר ר&quot;י שם בגמ׳ דף ט׳ ע&quot;ב מוחלפת השיטה דלא מ&quot;ל סברת שובכו מוכיח משום דר&quot;י לטעמיה דסתם ירושלמי הוא ר&quot;י ושם אמרינן דמגבן חייב משום לש לדידיה איכא איסור תורה ומש&quot;ה קאמר הטעם דמותר משום שמחת יו&quot;ט ואין מתירין אותו אלא ברה&quot;י הא דמסיק שם שא&quot;ה משום דשובכו מוכיח היינו משום דסובר דמגבן חייב משום בונה וא&quot;ל מתוך בכל הדברים. ומעתה דברי רבינו מיושבים כיון דהוא ס&quot;ל דלא אמרינן מתוך אלא בהוצאה והבערה ויש כאן איסור תורה ור&quot;י הא ס&quot;ל כיון דיש איסור תורה לא סמכינן להתיר ברה&quot;ר משום סברת שובכו מוכיח עליו ושפיר פסק רבינו כר&quot;י דא&quot;ל אע&quot;ג דבכ&quot;מ אמרינן כל דבר שאסרו חכמים משום מ&quot;ע אפילו בחח&quot;א משום שמחת יו&quot;ט מתירין הכא ברה&quot;י ועי׳ בהרב המאירי ומ&quot;ש בש&quot;י בסוגיא זו ודו&quot;ק קצרתי:</p>
               </div>
             </div>
@@ -736,13 +905,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-10-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-10-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:10:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-5-10">Mishneh Torah, Rest on a Holiday 5:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֶפְצֵי הֶפְקֵר הֲרֵי הֵן כְּרַגְלֵי מִי שֶׁזָּכָה בָּהֶן. וְחֶפְצֵי הַכּוּתִים קוֹנִין שְׁבִיתָה בִּמְקוֹמָן וְיֵשׁ לָהֶן אַלְפַּיִם אַמָּה לְכָל רוּחַ מִמְּקוֹמָן גְּזֵרָה בְּעָלִים כּוּתִים מִשּׁוּם בְּעָלִים יִשְׂרָאֵל. פֵּרוֹת שֶׁיָּצְאוּ חוּץ לִמְקוֹמָן וְחָזְרוּ אֲפִלּוּ בְּמֵזִיד לֹא הִפְסִידוּ אֶת מְקוֹמָן מִפְּנֵי שֶׁהֵן כְּאָדָם שֶׁיָּצָא בְּאֹנֶס וְחָזַר בְּאֹנֶס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חפצי הפקר ה&quot;ה כרגלי מי שזכה בהן.</strong> פי׳ הדבר כפשוטו כיון שזכה בשם זה אפילו נתן אח&quot;כ לאחרים הרי הוא כרגלי הבעלים הראשונים וכ&quot;כ רש&quot;י ותוס׳, והריטב&quot;א בעירובין הביא שיטת הראב&quot;ד שלא אמרינן שזכה בהן הראשון אלא בעודו ברשותו אבל כיון שנתנו לאחרים הרי הן כרגלי מי שנתנו לו וסברתו ביאר שם הריטב&quot;א דכיון דלא קנו שביתה לעצמן הכניסם בכלל נכסיו מיהת בעודן ברשותו וכשחזר ונתנו לאחר נתבטל שביתתו וקנו שביתה כרגלי מי שבא לידו עתה ע&quot;כ, וא&quot;כ בהך סברא אי קיי&quot;ל כרבנן בזה הוי קולא דהרי הוא כרגלי כל מי שבא לידו משא&quot;כ אי קיי&quot;ל כריב&quot;ז דחפצי הפקר קונין שביתה במקומם הרי הוא חומרא, ומעתה השגת הראב&quot;ד בכאן על רבינו נראה דדעתו להשיג על מה דמשמע מדברי רבינו דדעתו כשיטת רש&quot;י ותוס׳ שהבאתי וע&quot;ז השיג כיון דקיי&quot;ל כריב&quot;נ להקל א&quot;כ גם בזה היה לנו לפסוק להקל ולימא שיהיה כרגלי כל מי שבא לידו עתה ובזה יפה כתב הראב&quot;ד שלא הביא בהלכות מחלוקת דר&quot;נ כיון דהם ע&quot;כ סוברים דזכה בהם הראשון לבד מי שהגביהו וכמ&quot;ש הריטב&quot;א שם. והא דלא אמר הראב&quot;ד בפשיטות אף אם קיי&quot;ל כרבנן מ&quot;מ מודים בכה&quot;ג משום דבא להוכיח סברתו שזה הוא שאמרו בגמ׳ להקל אבל לא להחמיר דוק היטב:</p>
               </div>
             </div>
@@ -752,13 +926,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-14-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-14-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-14-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:14:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:14:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-14-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-5-14">Mishneh Torah, Rest on a Holiday 5:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בּוֹר שֶׁל יָחִיד כְּרַגְלֵי בְּעָלָיו. וְשֶׁל אוֹתָהּ הָעִיר כְּרַגְלֵי אַנְשֵׁי אוֹתָהּ הָעִיר. וְשֶׁל עוֹלֵי בָּבֶל שֶׁהֵן מְסוּרִין לַכּל כְּרַגְלֵי הַמְמַלֵּא מֵהֶן שֶׁכָּל מִי שֶׁמִּלֵּא מֵהֶן מוֹלִיכָן לְמָקוֹם שֶׁהוּא מְהַלֵּךְ. נְהָרוֹת הַמּוֹשְׁכִין וּמַעֲיָנוֹת הַנּוֹבְעִין כְּרַגְלֵי כָּל אָדָם וְאִם הָיוּ בָּאִין מִחוּץ לַתְּחוּם לְתוֹךְ הַתְּחוּם מְמַלְּאִין מֵהֶן בְּשַׁבָּת וְאֵין צָרִיךְ לוֹמַר בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בור של יחיד וכו׳.</strong> עי׳ השגת הראב&quot;ד ועי׳ מ&quot;ש לעיל הל׳ י׳. ומ&quot;ש הה&quot;מ בשם הרשב&quot;א עמ&quot;ש בזה בש&quot;י סוף ביצה. גם מ&quot;ש הראב&quot;ד בהל׳ ט&quot;ו הכל סובב והולך למקום אחד למ&quot;ש הריטב&quot;א שם בשם הראב&quot;ד וע&quot;ש היטב:</p>
               </div>
             </div>
@@ -768,13 +947,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-20-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-20-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-20-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:20:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:20:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-5-20-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 5:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-5-20">Mishneh Torah, Rest on a Holiday 5:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן הָאִשָּׁה שֶׁשָּׁאֲלָה מֵחֲבֶרְתָּהּ מַיִם אוֹ מֶלַח וְלָשָׁה בָּהֶן עִסָּתָהּ אוֹ בִּשְּׁלָה בָּהֶן תַּבְשִׁיל הֲרֵי הָעִסָּה אוֹ הַתַּבְשִׁיל כְּרַגְלֵי שְׁתֵּיהֶן. וְכֵן שְׁנַיִם שֶׁלָּקְחוּ בְּהֵמָה בְּשֻׁתָּפוּת וְשָׁחֲטוּ בְּיוֹם טוֹב אַף עַל פִּי שֶׁלָּקַח כָּל אֶחָד מְנָתוֹ הֲרֵי כָּל הַבָּשָׂר כְּרַגְלֵי שְׁנֵיהֶן. אֲבָל אִם לָקְחוּ חָבִית בְּשֻׁתָּפוּת וְחָלְקוּ אוֹתָהּ בְּיוֹם טוֹב הֲרֵי חֶלְקוֹ שֶׁל כָּל אֶחָד כְּרַגְלָיו. הוֹאִיל וּתְחוּמִין מִדִּבְרֵי סוֹפְרִים יֵשׁ בְּרֵרָה בָּהֶן וְנַחְשֹׁב כְּאִלּוּ חֵלֶק שֶׁהִגִּיעַ לָזֶה הָיָה בָּרוּר לוֹ וּמֻבְדָּל בֶּחָבִית מֵעֶרֶב יוֹם טוֹב וּכְאִלּוּ לֹא הָיָה מְעֹרָב. וְאֵין אַתָּה יָכוֹל לוֹמַר כֵּן בִּבְהֵמָה שֶׁחֵלֶק זֶה שֶׁהִגִּיעוֹ אֲפִלּוּ נַחְשֹׁב אוֹתוֹ שֶׁהָיָה מֻבְדָּל בִּבְהֵמָה מֵעֶרֶב יוֹם טוֹב וּכְאִלּוּ הָיָה בָּרוּר הֲרֵי יָנַק מֵחֶלְקוֹ שֶׁל חֲבֵרוֹ כְּשֶׁהָיְתָה הַבְּהֵמָה קַיֶּמֶת שֶׁכָּל אֵיבָרֶיהָ יוֹנְקִין זֶה מִזֶּה וְנִמְצָא כָּל אֵיבָר וְאֵיבָר מְעֹרָב מֵחֶלְקוֹ וְחֵלֶק חֲבֵרוֹ. לְפִיכָךְ הֵן כְּרַגְלֵי שְׁנֵיהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן שנים שלקחו בהמה בשותפות וכו׳.</strong> כ׳ הה&quot;מ ויש מי שהתיר אפילו בהמה דלא חיישינן ליניקת תחומין וכו׳. ונראה אם אמרינן דתחומין בכ&quot;ע מדרבנן אפילו י&quot;ב מיל א&quot;כ מוקצה חמיר מניה דהוי כעין דאורייתא וכמ&quot;ש בתוס׳ ישנים ריש ביצה משא&quot;כ אי תחומין י&quot;ב מיל מה&quot;ת א&quot;כ גם תחומין מיחשב עיקרו דאורייתא וא&quot;כ רבינו דס&quot;ל תחומין י&quot;ב מיל מה&quot;ת ואם לאיסור תחומין לא חששו לא ה&quot;ל לחוש ג&quot;כ לאיסור מוקצה וצ&quot;ל דמוקצה חמיר טפי ולפמ&quot;ש הפ&quot;י הא דקיי&quot;ל בדרבנן יש ברירה היינו משום דספק הלכה היא אי קי&quot;ל כמ&quot;ד י&quot;ב אי כמ&quot;ד אין ברירה וה&quot;ל ספיקא דרבנן א&quot;כ שפיר שתק רב ולא חש לקושית רב כהנא ור&quot;א וא&quot;כ יפה פסק רבינו ודלא כמ&quot;ש היש&quot;ש ב&quot;ק בדיני ברירה ואפשר טעם המתירין דלאיסור מוקצה לא חיישינן ע&quot;פ גירסת בעלי תוס׳ שבת דף קכ&quot;א דדבר שדרכו בכך אין בו איסור מוקצה עמ&quot;ש בפ&quot;ב ה&quot;א:</p>
               </div>
             </div>
@@ -785,13 +969,18 @@
             </nav>
           </section>
           <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-6">Chapter 6</h4>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-1-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-1-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 6:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 6:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-6-1">Mishneh Torah, Rest on a Holiday 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹם טוֹב שֶׁחָל לִהְיוֹת עֶרֶב שַׁבָּת אֵין אוֹפִין וּמְבַשְּׁלִין בְּיוֹם טוֹב מַה שֶּׁהוּא אוֹכֵל לְמָחָר בְּשַׁבָּת. וְאִסּוּר זֶה מִדִּבְרֵי סוֹפְרִים כְּדֵי שֶׁלֹּא יָבֹא לְבַשֵּׁל מִיּוֹם טוֹב לְחל. שֶׁקַּל וָחֹמֶר הוּא לְשַׁבָּת אֵינוֹ מְבַשֵּׁל כָּל שֶׁכֵּן לְחל. לְפִיכָךְ אִם עָשָׂה תַּבְשִׁיל מֵעֶרֶב יוֹם טוֹב שֶׁיִּהְיֶה סוֹמֵךְ עָלָיו וּמְבַשֵּׁל וְאוֹפֶה בְּיוֹם טוֹב לְשַׁבָּת הֲרֵי זֶה מֻתָּר. וְתַבְשִׁיל שֶׁסּוֹמֵךְ עָלָיו הוּא הַנִּקְרָא עֵרוּבֵי תַּבְשִׁילִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כדי שלא יבא לבשל.</strong> רבינו פסק כר&quot;א ורבא אמר הטעם כדי שיברור עי׳ הה&quot;מ ועי׳ בהרא&quot;ש שכתב נפ&quot;מ לערב קודם עיו&quot;ט ויו&quot;ט של סוכות שחל להיות בה׳ בשבת יכול לערב עירוב אחד לשבת זו ולשבת הבא ובכלבו כ׳ דלשון משנתנו לא משמע הכי ואפשר למצוא נפקותא אחרינא ע&quot;פ מ&quot;ש רבינו בפרקין הט&quot;ו שאין אדם מערב ומתנה בזה&quot;ז לא ע&quot;ת ולא ע&quot;ח ולא ש&quot;מ ע&quot;ש הטעם. והר&quot;ן והראב&quot;ד חלקו עליו ובהר&quot;ן ביאר הטעם שאין לנו להחמיר יותר בזה&quot;ז כיון דאינהו הוו מצו מתנו אנן נמי מתנינן ע&quot;ש בפ&quot;ק דיו&quot;ט. והנה סברת הר&quot;ן נכונה מאוד לטעם דרבא כדי שיברור ואמרינן בגמרא דאפילו ביו&quot;ט נמי אלא כדי שלא יפשע גזרו והיכא דשכח מלערב ואתני ביו&quot;ט ודאי דרשאי דאין שייך כאן סברת רבינו דלדידן היום ודאי יו&quot;ט מה&quot;ת דמאי הוי משא&quot;כ לטעמא דר&quot;א מסתבר יותר סברת רבינו וא&quot;כ רבא ור&quot;א בהא פליגי מש&quot;ה נאיד ר&quot;א מטעמיה דרבא משום דקשה לי׳ דלמה לא רמז לנו המתני׳ דיש אופן ותקנה להניח ע&quot;ת מיו&quot;ט לחבירו א&quot;ו דהטעם הוא שלא יאמרו וכו׳ א&quot;כ סברת רבינו א&quot;ש. ובזה מיושב קושית הר&quot;ן על רבינו שכתב ואין דברי רבינו מחוורין דרבא דאמר להך דינא מסתברא דלדידיה הוא דאמר ואע&quot;ג דבקי בקביעא דירחא, ומן האמור מיושב דודאי לשיטת רבא מודה רבינו דאין לנו להחמיר ורבינו פסק כר&quot;א. ונראה לי ראיה לדברי רבינו מהך דרבא גופא דקשה מפני מה נקיט רבא דינו בעירובי תבשילין ולא נקט עירובי חצירות ושת&quot;מ א&quot;ו הן הן הדברים שכתבתי דרבא גופא לא קאמר דינו אלא בע&quot;ת משום דלדידיה גם ביו&quot;ט יכול להניח מצד הדין וכמ&quot;ש ועמ&quot;ש בזה בש&quot;י ר&quot;פ יו&quot;ט ד&quot;ה אינו:</p>
               </div>
             </div>
@@ -801,13 +990,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-12-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-12-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 6:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 6:12:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 6:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-6-12">Mishneh Torah, Rest on a Holiday 6:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּיּוֹצֵא בּוֹ הָיוּ לְפָנָיו שְׁתֵּי כַּלְכָּלוֹת שֶׁל טֶבֶל בְּיוֹם טוֹב רִאשׁוֹן אוֹמֵר אִם הַיּוֹם חֹל תִּהְיֶה זוֹ תְּרוּמָה עַל זוֹ וְאִם הַיּוֹם קֹדֶשׁ אֵין בִּדְבָרַי כְּלוּם. וְקוֹרֵא עָלֶיהָ שֵׁם וּמַנִּיחָהּ. וּלְמָחָר בַּשֵּׁנִי חוֹזֵר וְאוֹמֵר אִם הַיּוֹם קֹדֶשׁ אֵין בִּדְבָרַי כְּלוּם וְאִם הַיּוֹם חֹל תִּהְיֶה זוֹ תְּרוּמָה עַל זוֹ וְקוֹרֵא עָלֶיהָ שֵׁם וּמַנִּיחָהּ כְּדֶרֶךְ שֶׁקָּרָא עָלֶיהָ בָּרִאשׁוֹן. וּמַנִּיחַ אֶת זוֹ שֶׁקָּרָא עָלֶיהָ שֵׁם תְּרוּמָה וְאוֹכֵל אֶת הַשְּׁנִיָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיוצא בו וכו׳.</strong> עמ&quot;ש הה&quot;מ בשם בעל העיטור ומסתבר טעמיה לדידן דבקיאינן בקביעא דירחא ויום הראשון הוא מה&quot;ת משא&quot;כ בזמן שהיו ב&quot;ד מקדשין ע&quot;פ הראייה ואפשר דהכא כ&quot;ע מודו אפילו להראב&quot;ד שבהל׳ י&quot;ד משום סברת שבות קרובה ועי׳ ברכי יוסף א&quot;ח סי׳ תקכ&quot;ב שכתב בשם הרדב&quot;ז בתשובה סי׳ תקצ&quot;ד מיני עופות ומיני בשר שאם יבשלום ביום שחיטתם אינם יפים לאכילה כמו הנשחטים מאתמול מותר לשוחטן ביום ראשון ע&quot;ש וכל כיוצא בזה. ועי׳ שו&quot;ת רשב&quot;א ח&quot;ג סי׳ רע&quot;ד:</p>
               </div>
             </div>
@@ -817,13 +1011,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-15-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-15-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-15-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 6:15:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 6:15:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-6-15-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 6:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-6-15">Mishneh Torah, Rest on a Holiday 6:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּלְפִיכָךְ אֲנִי אוֹמֵר שֶׁאֵין מְעָרֵב אָדָם וּמַתְנֶה בַּזְּמַן הַזֶּה לֹא עֵרוּבֵי תַּבְשִׁילִין וְלֹא עֵרוּבֵי חֲצֵרוֹת וְלֹא שִׁתּוּפֵי מְבוֹאוֹת וְאֵינוֹ מְעַשֵּׂר הַטֶּבֶל עַל תְּנַאי אֶלָּא הַכּל מֵעֶרֶב יוֹם טוֹב בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולפיכך אני אומר וכו׳.</strong> עי׳ מה שהקשה הר&quot;ן על דברי רבינו מביאו הב&quot;י סי׳ תקכ&quot;ז מה שהקשה מרבא ועי׳ בס׳ ברכי יוסף או&quot;ח סי׳ קכ&quot;ד שתמה על הר&quot;ן דמבואר בדברי רבינו דרבא היה סומך על קביעת א&quot;י בזמנו ע&quot;ש:</p>
               </div>
             </div>
@@ -834,13 +1033,18 @@
             </nav>
           </section>
           <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-7">Chapter 7</h4>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-1-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-1-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-7-1">Mishneh Torah, Rest on a Holiday 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֻלוֹ שֶׁל מוֹעֵד אַף עַל פִּי שֶׁלֹּא נֶאֱמַר בּוֹ <span class="source-small">(ויקרא כג כד)</span> <span class="source-small">(ויקרא כג לט)</span> &quot;שַׁבָּתוֹן&quot; הוֹאִיל וְנִקְרָא <span class="source-small">(ויקרא כג ז)</span> &quot;מִקְרָא קֹדֶשׁ&quot; וַהֲרֵי הוּא זְמַן חֲגִיגָה בַּמִּקְדָּשׁ אָסוּר בַּעֲשִׂיַּת מְלָאכָה כְּדֵי שֶׁלֹּא יִהְיֶה כִּשְׁאָר יְמֵי הַחל שֶׁאֵין בָּהֶן קְדֻשָּׁה כְּלָל. וְהָעוֹשֶׂה בּוֹ מְלָאכָה הָאֲסוּרָה מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת מִפְּנֵי שֶׁאִסּוּרוֹ מִדִּבְרֵי סוֹפְרִים. וְלֹא כָּל מְלֶאכֶת עֲבוֹדָה אֲסוּרָה בּוֹ כְּיוֹם טוֹב שֶׁסּוֹף הָעִנְיָן בַּדְּבָרִים שֶׁנֶּאֶסְרוּ בּוֹ כְּדֵי שֶׁלֹּא יִהְיֶה כְּיוֹם חֹל לְכָל דָּבָר. לְפִיכָךְ יֵשׁ מְלָאכוֹת אֲסוּרוֹת בּוֹ וְיֵשׁ מְלָאכוֹת מֻתָּרוֹת בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חש&quot;מ וכו׳ מפני שאיסור מד&quot;ס וכו׳.</strong> עי׳ הה&quot;מ ועי׳ בפ&quot;א מהל׳ חגיגה הל׳ י׳ מ&quot;ש רבינו אלה תעשו לה׳ במועדיכם מכלל שקריבין ברגל והוא מהגמ׳ רפ&quot;ב דתמורה ומשמע מזה מדאצטריך קרא להתיר להקריב בחה&quot;מ דמלאכת חה&quot;מ מה&quot;ת ועי׳ בצל&quot;ח ביצה דף כ׳ ועמ&quot;ש בס&quot;ד שם:</p>
               </div>
             </div>
@@ -850,13 +1054,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-2-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-2-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-7-2">Mishneh Torah, Rest on a Holiday 7:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ הֵן. כָּל מְלָאכָה שֶׁאִם לֹא יַעֲשֶׂה אוֹתָהּ בַּמּוֹעֵד יִהְיֶה שָׁם הֶפְסֵד הַרְבֵּה עוֹשִׂין אוֹתָהּ. וּבִלְבַד שֶׁלֹּא יִהְיֶה בָּהּ טֹרַח הַרְבֵּה. כֵּיצַד. מַשְׁקִין בֵּית הַשְּׁלָחִין בַּמּוֹעֵד אֲבָל לֹא בֵּית הַמַּשְׁקֶה. שֶׁאִם לֹא יַשְׁקֶה בֵּית הַשְּׁלָחִין וְהִיא הָאָרֶץ הַצְּמֵאָה יִפָּסְדוּ בּוֹ הָאִילָנוֹת שֶׁבָּהּ. וּכְשֶׁהוּא מַשְׁקֶה אוֹתָהּ לֹא יִדְלֶה וְיַשְׁקֶה מִן הַבְּרֵכָה אוֹ מִמֵּי הַגְּשָׁמִים מִפְּנֵי שֶׁהוּא טֹרַח גָּדוֹל. אֲבָל מַשְׁקֶה הוּא מִן הַמַּעְיָן בֵּין שֶׁהָיָה בֵּין שֶׁיָּצָא לְכַתְּחִלָּה מַמְשִׁיכוֹ וּמַשְׁקֶה בּוֹ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא ידלה וישקה וכו׳.</strong> עמ&quot;ש בזה בש&quot;י רמ&quot;ק ד&quot;ה וחכמים מתירין באריכות:</p>
               </div>
             </div>
@@ -866,13 +1075,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-3-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-3-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-7-3">Mishneh Torah, Rest on a Holiday 7:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הוֹפֵךְ אָדָם אֶת זֵיתָיו בַּמּוֹעֵד וְטוֹחֵן אוֹתָן וְדוֹרֵךְ אוֹתָן וּמְמַלֵּא הֶחָבִיּוֹת וְגַף אוֹתָן כְּדֶרֶךְ שֶׁהוּא עוֹשֶׂה בְּחל. כָּל שֶׁיֵּשׁ בּוֹ הֶפְסֵד אִם לֹא נַעֲשָׂה עוֹשֵׂהוּ כְּדַרְכּוֹ וְאֵינוֹ צָרִיךְ שִׁנּוּי. וְכֵן מַכְנִיס אָדָם פֵּרוֹתָיו מִפְּנֵי הַגַּנָּבִים וּבִלְבַד שֶׁיַּכְנִיסֵם בְּצִנְעָה. וְשׁוֹלֶה פִּשְׁתָּנוֹ מִן הַמִּשְׁרֶה בִּשְׁבִיל שֶׁלֹּא תֹּאבַד. וְכֵן כֶּרֶם שֶׁהִגִּיעַ זְמַנּוֹ לְהִבָּצֵר בַּמּוֹעֵד בּוֹצְרִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הופך אדם את זיתיו וכו׳.</strong> באתרא דמרן אפשר שגם הפוכו הוא דבר אבוד והכל לפי המקום והזמן ועי׳ ריטב&quot;א שכתב על רבינו שמא הוא מדבר בהפוכות שניות ועי׳ בש&quot;ע או&quot;ח סי׳ תקל&quot;ח:</p>
               </div>
             </div>
@@ -882,13 +1096,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-13-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-13-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-13-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:13:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:13:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-13-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-7-13">Mishneh Torah, Rest on a Holiday 7:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאָסוּר לִכְתֹּב בַּמּוֹעֵד אֲפִלּוּ סְפָרִים תְּפִלִּין וּמְזוּזוֹת. וְאֵין מַגִּיהִין אֲפִלּוּ אוֹת אַחַת בְּסֵפֶר הָעֲזָרָה מִפְּנֵי שֶׁזּוֹ מְלָאכָה שֶׁאֵינָהּ לְצֹרֶךְ הַמּוֹעֵד. אֲבָל כּוֹתֵב אָדָם תְּפִלִּין וּמְזוּזָה לְעַצְמוֹ וְטוֹוֶה תְּכֵלֶת לְבִגְדוֹ. וְאִם אֵין לוֹ מַה יֹּאכַל כּוֹתֵב וּמוֹכֵר לַאֲחֵרִים כְּדֵי פַּרְנָסָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מטווה תכלת לבגדו.</strong> עי׳ שו&quot;ת מנחם עזריה סי׳ ק&quot;ח:</p>
               </div>
             </div>
@@ -898,13 +1117,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-16-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-16-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-16-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:16:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:16:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-16-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-7-16">Mishneh Torah, Rest on a Holiday 7:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין רוֹאִין אֶת הַנְּגָעִים בַּמּוֹעֵד שֶׁמָּא יִמָּצֵא טָמֵא וְנִמְצָא חַגּוֹ נֶהֱפָךְ לְאֵבֶל. וְאֵין נוֹשְׂאִין נָשִׁים וְלֹא מְיַבְּמִין בַּמּוֹעֵד כְּדֵי שֶׁלֹּא תִּשְׁתַּכֵּחַ שִׂמְחַת הֶחָג בְּשִׂמְחַת הַנִּשּׂוּאִין. אֲבָל מַחֲזִיר אֶת גְּרוּשָׁתוֹ. וּמְאָרְסִין נָשִׁים בַּמּוֹעֵד. וּבִלְבַד שֶׁלֹּא יַעֲשֶׂה סְעֻדַּת אֵרוּסִין וְלֹא סְעֻדַּת נִשּׂוּאִין. שֶׁלֹּא יְעָרֵב שִׂמְחָה אַחֶרֶת בְּשִׂמְחַת הֶחָג:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל מחזיר את גרושתו.</strong> אמרינן בירושלמי פ&quot;ק דמ&quot;ק אבל מן האירוסין אסור. ועי׳ ב&quot;י א&quot;ח סי׳ תקמ&quot;ו ויש מי שכתב דתלמודא דידן חולק וסובר אף מן האירוסין מחזיר ועי׳ ברכי יוסף שם ומ&quot;ש בש&quot;י שם:</p>
               </div>
             </div>
@@ -914,13 +1138,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-20-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-20-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-20-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:20:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:20:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-7-20-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 7:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-7-20">Mishneh Torah, Rest on a Holiday 7:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֻתָּר לִטּל שָׂפָה בְּחֻלּוֹ שֶׁל מוֹעֵד. וְלִטּל צִפָּרְנַיִם וַאֲפִלּוּ בִּכְלִי. וּמַעֲבֶרֶת הָאִשָּׁה שֵׂעָר מִבֵּית הַשֶּׁחִי וּמִבֵּית הָעֶרְוָה בֵּין בַּיָּד בֵּין בִּכְלִי. וְעוֹשָׂה כָּל תַּכְשִׁיטֶיהָ בַּמּוֹעֵד. כּוֹחֶלֶת וּפוֹקֶסֶת וּמַעֲבֶרֶת סְרָק עַל פָּנֶיהָ וְטוֹפֶלֶת עַצְמָהּ בְּסִיד וְכַיּוֹצֵא בּוֹ וְהוּא שֶׁתּוּכַל לְקַפְּלוֹ בַּמּוֹעֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מותר ליטול שפה.</strong> בירושלמי ריש א&quot;מ גרסי׳ שפה כנטילת צפרנים לכל דבר. ובק&quot;ע הקשה על הרמ&quot;א או&quot;ח סי׳ תקל&quot;ב דבשפה מתיר ובצפרנים אוסר ע&quot;ש. ומ&quot;ש הה&quot;מ דבמועד מקילין בכל גוונא והרב הגאון מהר&quot;א ווילנא תמה עליו דהרי כתב רבינו פ&quot;ו מהל׳ אבל דאסור בשפה וא&quot;כ ס&quot;ל ע&quot;כ דבחה&quot;מ בעינן מעכב אכילה ע&quot;ש. ולי נראה דהא בגמ׳ אמרינן דף ח&quot;י ואם בקשו ממנו שפה התיר להם ושמואל אמר אף בקשו ממנו שפה והתיר להם אמר ר&quot;א ובשפה המעכבת, ויל&quot;ד איך אמר אילו בקשו שפה התיר להם מנא ידעו וע&quot;כ דסברא פשוטה היא דמותר אפילו בתוך ז׳ והיינו בשפה המעכבת דאס&quot;ד דבתוך ז׳ אסור גם בשפתו המעכבת אזי יש מקום עוד לספק דלמא החמירו ועי׳ בתוס׳ שם ד&quot;ה בקשו דוקא תוך ז׳ ומדברי הריטב&quot;א לא משמע הכי דמתיר בצפרנים תוך ז׳ וע&quot;ש בתוספות ד&quot;ה בגנוסטרא וא&quot;כ רב דאמר שפה כנטילת צפרנים כמ&quot;ד דלא שאלו וידעו דהיתר להם היינו משום דסברא פשוטה היא דבשפה המעכבת לא אסרו אפילו תוך ז׳ ולמ&quot;ד דשאלו והתיר י&quot;ל דס&quot;ל דאחר ז׳ סברא חיצונה ותוך ז׳ אפשר דאסור ורבינו אע&quot;ג דכתב באבל דאסור בשפה היינו באין מעכבת אבל במעכב לא צריך לאשמועינן כמ&quot;ד דלא שאלו וממילא נשמע מה דכתב בהה&quot;מ דמותר ע&quot;כ מיירי אפילו באינו מעכב ולפי&quot;ז מיושב דעת הה&quot;מ ולא נעלם ממנו דברי רבינו המפורשים ועי׳ בש&quot;י:</p>
               </div>
             </div>
@@ -931,13 +1160,18 @@
             </nav>
           </section>
           <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-8">Chapter 8</h4>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-2-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-2-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 8:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 8:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-8-2">Mishneh Torah, Rest on a Holiday 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֲרוּגָה שֶׁחֶצְיָהּ נָמוּךְ וְחֶצְיָהּ גָּבוֹהַּ לֹא יִדְלֶה מִמָּקוֹם נָמוּךְ לְהַשְׁקוֹת מָקוֹם גָּבוֹהַּ מִפְּנֵי שֶׁהוּא טֹרַח גָּדוֹל. וּמֻתָּר לִדְלוֹת מַיִם לְהַשְׁקוֹת הַיְרָקוֹת כְּדֵי לְאָכְלָן בַּמּוֹעֵד. וְאִם בִּשְׁבִיל לְיַפּוֹתָן אָסוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כדי לאכלן במועד.</strong> כ׳ הריטב&quot;א פי׳ שעומדים ראויין לאכילה למכור מדלין להשקותן ולא סוף דבר שזה ממש צריך לאכלן דאל&quot;כ פשיטא ע&quot;ש. וכ&quot;מ קצת בגמ׳ דף י&quot;א בל&quot;ב דרבא דשרי למיצד ולמימלח ועי׳ בש&quot;ע או&quot;ח סי׳ תקל&quot;ג ס&quot;ד ומ&quot;ש בזה בש&quot;י רפ&quot;ק דמ&quot;ק:</p>
               </div>
             </div>
@@ -947,13 +1181,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-6-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-6-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 8:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 8:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 8:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-8-6">Mishneh Torah, Rest on a Holiday 8:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֹּתֶל גִּנָּה שֶׁנָּפַל בּוֹנֵהוּ מַעֲשֵׂה הֶדְיוֹט אוֹ גּוֹדֵר אוֹתוֹ בְּקָנִים וְגֹמֶא וְכַיּוֹצֵא בָּהֶן. וְכֵן אִם עָשָׂה מַעֲקֶה לַגַּג בּוֹנֶה אוֹתוֹ מַעֲשֵׂה הֶדְיוֹט. אֲבָל כֹּתֶל חָצֵר שֶׁנָּפַל בּוֹנֵהוּ כְּדַרְכּוֹ. וְאִם הָיָה גּוֹהֶה סוֹתְרוֹ מִפְּנֵי הַסַּכָּנָה וּבוֹנֵהוּ כְּדַרְכּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם היה גוהה סותרו וכו׳.</strong> וכתב בהגה&quot;מ בירושלמי מפרש דהתירו סופן משום תחילתן והא דלא חשיב ליה במס׳ ביצה בהדי הנך ג׳ דהתירו סופן משום תחילתן משום דלא חשיב אלא הנך דאיירי ביו&quot;ט ולא בחה&quot;מ וכו׳. ועי׳ בשירי קרבן מ&quot;ק דף ב׳ ע&quot;א ד&quot;ה התירו. ול&quot;נ עיקר כמ&quot;ש הט&quot;ז בי&quot;ד סי׳ רס&quot;ז דעולא לא חשב כ&quot;א היכא דאין הסברא פשוטה ואיכא מקום לטעות ע&quot;ש וה&quot;נ מסברא חיצונה ידענו וק&quot;ל:</p>
               </div>
             </div>
@@ -963,13 +1202,18 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-21-1" data-unit data-lexical-unit>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-21-1" data-unit data-lexical-unit data-unit-id="kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-21-1" data-source-ref="Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 8:21:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 8:21:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-8-21-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Rest on a Holiday 8:21:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-a-holiday/#mishneh-torah-rest-on-a-holiday-8-21">Mishneh Torah, Rest on a Holiday 8:21</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מוֹלִיכִין וּמְבִיאִין כֵּלִים מִבֵּית הָאֻמָּן בְּאַרְבָּעָה עָשָׂר אַחַר חֲצוֹת אַף עַל פִּי שֶׁאֵינָן לְצֹרֶךְ הַמּוֹעֵד. וְגוֹרְפִין זֶבֶל מִתַּחַת רַגְלֵי בְּהֵמָה וּמוֹצִיאִים אוֹתוֹ לָאַשְׁפָּה. וּמוֹשִׁיבִין שׁוֹבָכִין לַתַּרְנְגוֹלִים. תַּרְנְגֹלֶת שֶׁיָּשְׁבָה עַל הַבֵּיצִים שְׁלֹשָׁה יָמִים אוֹ יֶתֶר וּמֵתָה מוֹשִׁיבִין אַחֶרֶת תַּחְתֶּיהָ בְּאַרְבָּעָה עָשָׂר כְּדֵי שֶׁלֹּא יִפָּסְדוּ הַבֵּיצִים. וּבַמּוֹעֵד אֵין מוֹשִׁיבִין. אֲבָל אִם בָּרְחָה בַּמּוֹעֵד מֵעַל הַבֵּיצִים מַחְזִירִין אוֹתָהּ לִמְקוֹמָהּ: סְלִיקוּ לְהוּ הִלְכוֹת שְׁבִיתַת יוֹם טוֹב</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומושיבין שובכין לתרנגולים וכו׳.</strong> עי׳ הה&quot;מ וכ&quot;מ ובירושלמי פסחים ס&quot;פ מקום שנהגו ובש&quot;י שם:</p>
               </div>
             </div>
@@ -980,721 +1224,55 @@
             </nav>
           </section>
         <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
-      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button></div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
-  <script>
-    (async () => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const configNode = document.querySelector("[data-lexical-config]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const chunkPromises = new Map();
-      const sourceRows = new Map();
-      let manifestPromise = null;
-      const hud = document.querySelector("[data-lexical-hud]");
-      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
-      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
-      const localSourceUrlMap = {
-        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
-        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
-        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
-        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
-        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
-        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
-      };
-      const resolveSourceUrl = (url) => {
-        const raw = String(url || "").trim();
-        if (!raw) return "";
-        if (/^(https?:|mailto:)/i.test(raw)) return raw;
-        const mapped = localSourceUrlMap[raw];
-        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
-        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
-        return "";
-      };
-      const fetchJson = async (url, base = document.baseURI) => {
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const loadOccurrences = async () => {
-        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
-        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
-        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
-        return occurrences;
-      };
-      const loadManifest = async () => {
-        if (!lexicalConfig.manifest_url) return null;
-        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
-        return manifestPromise;
-      };
-      const resolveSourceRows = (ids, inlineRows) => {
-        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
-        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
-      };
-      const cacheChunk = (chunk) => {
-        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
-        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
-        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
-          lexiconEntries.set(entry.entry_id, {
-            ...entry,
-            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
-            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
-          });
-        });
-        return chunk;
-      };
-      const loadChunk = async (chunkId) => {
-        if (!chunkId) return null;
-        if (!chunkPromises.has(chunkId)) {
-          chunkPromises.set(chunkId, (async () => {
-            const manifest = await loadManifest();
-            if (!manifest) return null;
-            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
-            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
-            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
-            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
-          })());
-        }
-        return chunkPromises.get(chunkId);
-      };
-      const loadTokenRow = async (tokenIndexId) => {
-        if (!tokenIndexId) return {};
-        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
-        const manifest = await loadManifest();
-        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
-        if (chunkId) await loadChunk(chunkId);
-        return tokenRows.get(tokenIndexId) || {};
-      };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalEntry = "";
-        span.dataset.lexicalStatus = "pending";
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        return span;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      const loadedOccurrences = await loadOccurrences();
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
-        });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
-      let activeHudButton = null;
-      if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const positionHudNearButton = (button) => {
-        if (!button || hud.hidden) return;
-        const rect = button.getBoundingClientRect();
-        const margin = 12;
-        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
-        hud.style.width = width + "px";
-        const preferredLeft = rect.right - width;
-        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
-        const below = window.innerHeight - rect.bottom - margin;
-        const above = rect.top - margin;
-        const openAbove = below < 280 && above > below;
-        const available = Math.max(220, (openAbove ? above : below) - margin);
-        hud.style.maxHeight = Math.min(560, available) + "px";
-        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
-        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
-        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
-        hud.style.left = left + "px";
-        hud.style.top = top + "px";
-      };
-      const scheduleHudPosition = () => {
-        if (!activeHudButton || hud.hidden) return;
-        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
-      };
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const setRowHidden = (root, selector, hidden) => {
-        const row = root.querySelector(selector);
-        if (row) row.hidden = Boolean(hidden);
-      };
-      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
-      const cleanStrictRenderings = (values) => {
-        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
-        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
-        return [...new Set(raw.filter((value) => {
-          if (value.length > 64) return false;
-          if (/[()]/.test(value)) return false;
-          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
-          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
-          return true;
-        }))];
-      };
-      const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
-      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
-      const isAramaicView = (view) => {
-        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
-        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
-        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
-      };
-      const strictEntriesForView = (view) => {
-        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
-        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
-        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
-          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
-          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
-        });
-      };
-      const getStrictBuckets = (view) => {
-        const topLevel = getStrictRenderings(view);
-        const strictEntries = strictEntriesForView(view);
-        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
-        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
-      };
-      const strictEntryKeys = (view) => {
-        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
-      };
-      const appendRenderings = (node, values) => {
-        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
-        if (!filtered.length) { node.append("N/A"); return; }
-        if (filtered.length === 1) { node.append(filtered[0]); return; }
-        const ul = document.createElement("ul");
-        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderBreakdown = (root, view) => {
-        const node = root.querySelector("[data-hud-breakdown]");
-        if (!node) return;
-        node.replaceChildren();
-        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
-        if (!rows.length) { node.textContent = ""; return; }
-        const list = document.createElement("div");
-        list.className = "breakdown-list";
-        rows.forEach((row) => {
-          const section = document.createElement("section");
-          section.className = "breakdown-row";
-          const head = document.createElement("p");
-          const hebrew = document.createElement("strong");
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
-          head.appendChild(hebrew);
-          section.appendChild(head);
-          const renderings = document.createElement("div");
-          appendRenderings(renderings, row.strict_renderings || []);
-          section.appendChild(renderings);
-          list.appendChild(section);
-        });
-        node.appendChild(list);
-      };
-      const isRelatedEntry = (entry) => {
-        const relation = String(entry.relation_label || "").toLowerCase();
-        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
-      };
-      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
-      const isNoisyAlternateEntry = (entry) => {
-        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
-        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
-      };
-      const renderEntryList = (entries, roleLabel) => {
-        const list = document.createElement("div");
-        list.className = "lexical-entry-list";
-        const groupedEntries = new Map();
-        entries.forEach((entry) => {
-          const spelling = entry.lemma || entry.match_key || "N/A";
-          const key = `${entry.context_role || "entry"}|${spelling}`;
-          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
-          const group = groupedEntries.get(key);
-          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
-        });
-        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
-        sorted.forEach((entry) => {
-          const card = document.createElement("section");
-          card.className = "lexical-entry";
-          const title = document.createElement("h3");
-          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
-          title.append(role, ": ");
-          const spelling = document.createElement("span");
-          spelling.className = "entry-hebrew";
-          spelling.lang = "he";
-          spelling.dir = "rtl";
-          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
-          title.appendChild(spelling);
-          const meta = document.createElement("p");
-          meta.className = "entry-meta";
-          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
-          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
-          const renderings = document.createElement("div");
-          const renderLabel = document.createElement("p");
-          renderLabel.className = "entry-label";
-          renderLabel.textContent = "Strict renderings";
-          renderings.appendChild(renderLabel);
-          appendRenderings(renderings, entry.strict_renderings || []);
-          card.append(title, meta, renderings);
-          list.appendChild(card);
-        });
-        return list;
-      };
-      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const sourceRowsByKey = (view) => {
-        const map = new Map();
-        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
-        return map;
-      };
-      const sourceRowsForEntry = (view, entry) => {
-        const map = sourceRowsByKey(view);
-        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
-        return row ? [row] : [];
-      };
-      const cleanTransliteration = (value) => {
-        const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
-      };
-      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
-      const sourceQualityScore = (rows) => {
-        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
-        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
-        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
-        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
-        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
-        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
-        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
-        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
-        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
-        return { delta: -10, reason: "missing source row" };
-      };
-      const parserScore = (view) => {
-        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
-        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
-        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
-        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
-        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
-        return { delta: 0, reason: "" };
-      };
-      const applyDisplayBoost = (status, rawScore, view) => {
-        return { score: rawScore, reasons: [] };
-      };
-      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
-        const reasons = [];
-        let score = 0;
-        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
-        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
-        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
-        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
-        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else { score = 84; reasons.push("strict Hebrew row"); }
-        const rendered = cleanStrictRenderings(renderings || []);
-        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
-        const sourceQuality = sourceQualityScore(rows);
-        score += sourceQuality.delta;
-        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
-        const view = evidence.view || {};
-        const entry = evidence.entry || {};
-        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
-        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
-        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
-        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
-        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
-        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
-        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
-        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
-        const parser = parserScore(view);
-        score += evidence.surfaceClaim ? parser.delta : 0;
-        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
-        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
-        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
-        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
-        const display = applyDisplayBoost(status, rawScore, view);
-        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
-      };
-      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
-      const uniqueClaims = (claims) => {
-        const seen = new Set();
-        return cleanValues(claims).filter((claim) => {
-          const key = claimRowKey(claim);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
-        const sourceRows = cleanValues(rows);
-        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
-        const cleanRenderings = cleanStrictRenderings(renderings || []);
-        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
-        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
-      };
-      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
-      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
-      const displayLicense = (row) => {
-        const license = String(row && row.license || "").trim();
-        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
-        return license || "N/A";
-      };
-      const sourceSummary = (rows) => {
-        const cleanRows = cleanValues(rows);
-        if (!cleanRows.length) return null;
-        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
-        const licenses = uniqueValues(cleanRows.map(displayLicense));
-        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
-        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
-      };
-      const DISPLAY_THRESHOLD = 50;
-      const MAX_VISIBLE_CLAIMS = 5;
-      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
-      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
-      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
-      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
-      const appendClaimCard = (list, claim) => {
-        const card = document.createElement("section");
-        card.className = "claim-row";
-        const head = document.createElement("div");
-        head.className = "claim-row-head";
-        const badge = document.createElement("span");
-        badge.className = "claim-status";
-        const confidence = claimConfidence(claim);
-        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
-        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
-        const hebrew = document.createElement("strong");
-        hebrew.className = "claim-hebrew";
-        hebrew.lang = "he";
-        hebrew.dir = "rtl";
-        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(badge, hebrew);
-        card.appendChild(head);
-        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
-        const renderings = document.createElement("p");
-        renderings.className = "claim-renderings";
-        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
-        card.appendChild(renderings);
-        const source = sourceSummary(claim.rows);
-        if (source) {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = `Source: ${source.source}`;
-          const licenseLine = document.createElement("p");
-          licenseLine.className = "claim-license";
-          licenseLine.textContent = `License: ${source.license}`;
-          card.append(sourceLine, licenseLine);
-        } else if (claim.status === "Caution") {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = "Source: metadata incomplete";
-          card.appendChild(sourceLine);
-        }
-        list.appendChild(card);
-      };
-      const appendClaimsUnderDetails = (parent, label, claims) => {
-        if (!claims.length) return;
-        const details = document.createElement("details");
-        details.className = "other-entries";
-        const summary = document.createElement("summary");
-        summary.textContent = label;
-        const box = document.createElement("div");
-        box.className = "claim-row-list";
-        claims.forEach((claim) => appendClaimCard(box, claim));
-        details.append(summary, box);
-        parent.appendChild(details);
-      };
-      const appendClaimRows = (node, claims) => {
-        if (!node) return;
-        node.replaceChildren();
-        const rows = sortClaimsForDisplay(claims);
-        if (!rows.length) { node.textContent = "N/A"; return; }
-        const list = document.createElement("div");
-        list.className = "claim-row-list";
-        const displayRows = rows.filter(isDisplayableClaim);
-        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
-        const visibleRows = displayRows.length ? displayRows : lowRows;
-        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
-        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
-        if (!visibleRows.length) { node.textContent = "N/A"; return; }
-        node.appendChild(list);
-      };
-      const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [] };
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) {
-          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
-          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
-          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
-        }
-        strictEntriesForView(view).forEach((entry) => {
-          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
-          const bucket = strictBuckets[bucketName] || [];
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (!renderings.length) return;
-          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
-        });
-        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
-          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-        }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
-      };
-      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
-      const uniqueSourceGroups = (groups) => {
-        const seen = new Set();
-        return cleanValues(groups).filter((group) => {
-          if (!group.rows.length) return false;
-          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
-      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
-      };
-      const appendSecondarySources = (container, view, entries, label) => {
-        const groups = sourceGroupsForEntries(view, entries);
-        if (!groups.length) return;
-        const sourceDetails = document.createElement("details");
-        sourceDetails.className = "source-details";
-        const sourceSummary = document.createElement("summary");
-        sourceSummary.textContent = label;
-        const sourceBox = document.createElement("div");
-        sourceDetails.append(sourceSummary, sourceBox);
-        renderSourceGroups(sourceBox, groups);
-        container.appendChild(sourceDetails);
-      };
-      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
-        const potentialNode = root.querySelector("[data-hud-potential]");
-        const relatedNode = root.querySelector("[data-hud-related]");
-        const cautionNode = root.querySelector("[data-hud-caution]");
-        const result = { potential: [], related: [], caution: [] };
-        if (!potentialNode || !relatedNode || !cautionNode) return result;
-        potentialNode.replaceChildren();
-        relatedNode.replaceChildren();
-        cautionNode.replaceChildren();
-        if (!hasLexicalEntry) {
-          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
-          setRowHidden(root, "[data-hud-potential-row]", false);
-          setRowHidden(root, "[data-hud-related-row]", true);
-          setRowHidden(root, "[data-hud-caution-row]", true);
-          appendClaimRows(potentialNode, result.potential);
-          return result;
-        }
-        const entries = cleanValues(view.possible_entries);
-        const strictKeys = strictEntryKeys(view);
-        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
-        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
-        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
-        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
-        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
-        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
-        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
-        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
-        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
-        result.potential.push(...keepForDisplay(visiblePotentialClaims));
-        result.related.push(...keepForDisplay(visibleRelatedClaims));
-        result.caution.push(...keepForDisplay(cautionClaims));
-        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
-        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
-        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
-        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
-        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
-        if (result.related.length) appendClaimRows(relatedNode, result.related);
-        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
-        return result;
-      };
-      const renderSourceRow = (row) => {
-        const title = document.createElement("p");
-        const strong = document.createElement("strong");
-        const sourceHref = resolveSourceUrl(row.source_url);
-        if (sourceHref) {
-          const link = document.createElement("a");
-          link.href = sourceHref;
-          link.textContent = row.source_name || "Source";
-          strong.appendChild(link);
-        } else {
-          strong.textContent = row.source_name || "Source";
-        }
-        title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
-        return title;
-      };
-      const renderSourceGroups = (sourceBox, groups) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        const sourceGroups = cleanValues(groups);
-        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceGroups.forEach((group) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const claim = document.createElement("p");
-          claim.className = "source-claim";
-          claim.append("For ");
-          const lemma = document.createElement("span");
-          lemma.lang = "he";
-          lemma.dir = "rtl";
-          lemma.textContent = group.label || "Lexical claim";
-          claim.appendChild(lemma);
-          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
-          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
-          section.appendChild(claim);
-          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
-          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
-          sourceBox.appendChild(section);
-        });
-      };
-      const buildWordView = async (button) => {
-        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
-      };
-      const renderWord = async (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        activeHudButton = button;
-        if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        button.setAttribute("aria-pressed", "true");
-        hud.hidden = false;
-        positionHudNearButton(button);
-        setText(hud, "[data-hud-word]", button.textContent.trim());
-        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-        setRowHidden(hud, "[data-hud-caution-row]", true);
-        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        renderBreakdown(hud, {});
-        renderPotentialAndRelatedEntries(hud, {}, false, false);
-        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
-        try {
-          const view = await buildWordView(button);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          setText(hud, "[data-hud-word]", view.hebrew_word);
-          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
-          renderBreakdown(hud, view);
-          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
-          const details = hud.querySelector("details");
-          if (details) details.open = false;
-          positionHudNearButton(button);
-        } catch (error) {
-          console.error(error);
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          positionHudNearButton(button);
-        }
-      };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          activeHudButton = null;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
-      });
-      window.addEventListener("resize", scheduleHudPosition);
-      window.addEventListener("scroll", scheduleHudPosition, true);
-    })();
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday.manifest.json","occurrence_url":"../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-rest-on-a-holiday.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
   </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
 </body>
 </html>
