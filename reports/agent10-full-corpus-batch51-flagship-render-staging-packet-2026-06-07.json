@@ -1,0 +1,98 @@
+{
+  "artifact_type": "agent10_full_corpus_batch51_flagship_render_staging_packet",
+  "status": "BATCH51_1_READY_LITURGY_CLOSURE_DIRECT_RENDER_CONTRACT_STATIC_VALIDATED",
+  "generated_by": "Agent 10",
+  "generated_at": "2026-06-07T17:41:02.092Z",
+  "scope": "page_only_full_corpus_render_churn_liturgy_closure",
+  "purpose": "Close the remaining Liturgy corpus page target under the A10 flagship Route HUD/book-page contract for A14 review/staging.",
+  "baseline": {
+    "latest_known_pushed_head_before_packet": "1997fddac",
+    "prior_confirmed_checkpoint": "Batch48 and Batch49 Kabbalah closure pushed by A14 at 1997fddac",
+    "pending_prior_packet": "Batch50 Liturgy sent by A10; not yet reflected in local pushed head at packet-writing time",
+    "selected_corpus_family": "liturgy",
+    "prior_batch_anchor": "liturgy/siddur-edot-hamizrach/index.html"
+  },
+  "corpus_closure": {
+    "corpus": "liturgy",
+    "label": "Liturgy",
+    "closure_reason": "Only 1 sorted Liturgy page target remained after the Batch50 anchor.",
+    "last_page": "liturgy/siddur-sefard/index.html",
+    "skipped_no_index_directories": [],
+    "next_candidate_family_after_checkpoint": "musar or midrash, pending explicit next-family selection from current tree/order"
+  },
+  "contract": {
+    "canonical_hud_behavior": "preserve existing shared A10 Route HUD behavior; do not fork HUD runtime",
+    "page_visibility": "source-visible/clickable pages are allowed even with zero configured definition hints",
+    "prehud_rule": "reader_layout_mode=prehud_rows; preHUD remains quiet TBD unless safe route-backed hint exists",
+    "unsafe_prehud_gate": "no usage-only, form-reference, or morphology display text in preHUD",
+    "featured_rule": "no Featured additions; Orot remains the only Featured work",
+    "shared_file_rule": "no shared CSS/runtime files in this page-only packet"
+  },
+  "batch": [
+    {
+      "index": 1,
+      "work": "Siddur Sefard",
+      "page": "liturgy/siddur-sefard/index.html",
+      "token_rows": 195026,
+      "configured_hint_rows": 0,
+      "expected_tbd_rows": 195026,
+      "reader_layout_mode": "prehud_rows",
+      "reader_hint_path": null,
+      "state": "stage_candidate_static_validated"
+    }
+  ],
+  "totals": {
+    "pages": 1,
+    "token_rows": 195026,
+    "configured_hint_rows": 0,
+    "expected_tbd_rows": 195026
+  },
+  "changed_files": [
+    "liturgy/siddur-sefard/index.html",
+    "reports/agent10-full-corpus-batch51-flagship-render-staging-packet-2026-06-07.md",
+    "reports/agent10-full-corpus-batch51-flagship-render-staging-packet-2026-06-07.json"
+  ],
+  "shared_files_changed": [],
+  "featured_additions": [],
+  "validators": [
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page <1 Batch51 pages>",
+      "timeout": "120000ms",
+      "result": "passed: Route HUD page validation passed for 1 page(s)."
+    },
+    {
+      "command": "git diff --check -- <1 Batch51 pages>",
+      "timeout": "60000ms",
+      "result": "passed: no whitespace errors"
+    },
+    {
+      "command": "node <Batch51 source/config/asset guard>",
+      "timeout": "60000ms",
+      "result": "passed: 1 pages; 195026 token rows; 0 configured hint rows; 195026 expected quiet TBD rows"
+    },
+    {
+      "command": "node -e JSON.parse(fs.readFileSync('reports/agent10-full-corpus-batch51-flagship-render-staging-packet-2026-06-07.json','utf8'))",
+      "timeout": "30000ms",
+      "result": "passed: packet JSON parsed after write"
+    }
+  ],
+  "process_timeouts": [],
+  "proof": {
+    "static_validator_gate": "passed",
+    "browser_proof": "skipped by owner preference for routine batches; static gate used",
+    "source_clickable": "preserved by existing page shell/runtime markers and validate_route_hud_page gate",
+    "route_hud_panel": "present on every scoped page",
+    "old_hud_marker_guard": "passed: no <big> or escaped old marker leak detected by scoped guard",
+    "shared_delta": "none",
+    "featured": "unchanged: Orot only"
+  },
+  "exact_blockers": [],
+  "a14_next_action": [
+    "Review Batch51 Liturgy closure packet and changed page file.",
+    "Stage/commit/push only if A14 validation agrees, likely together with pending Batch50 or after it.",
+    "Add/verify normal corpus link and deploy carry rules in A14 lane; do not add Featured entries.",
+    "Return checkpoint or exact blocker; A10 can select the next corpus family after checkpoint."
+  ],
+  "stop_condition": "A14 reviews/stages/pushes Batch51 Liturgy closure or returns exact blocker; Agent 10 selects next corpus family only after checkpoint or explicit continuation.",
+  "boundary": "render/preHUD staging evidence only; no QA/source/license/legal/Definition/product/answer/accepted-text acceptance; no publication/release/public-runtime acceptance."
+}
