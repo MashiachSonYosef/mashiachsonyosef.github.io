@@ -1,0 +1,89 @@
+{
+  "artifact_type": "agent10_malachi_prehud_reader_hint_fix_a14_addendum",
+  "status": "FIXED_LOCAL_PREVIEW_READY_FOR_A14_REVIEW",
+  "issue": "Malachi HUD populated from route lookup, but pre-HUD had no reader_hint_url and therefore stayed TBD.",
+  "files_changed": [
+    "scripts/build_reader_hints_from_route_lookup.mjs",
+    "scripts/validate_reader_hints_from_route_lookup.mjs",
+    "data/lexical/reader-hints/esther.json",
+    "data/lexical/reader-hints/ezra.json",
+    "data/lexical/reader-hints/nehemiah.json",
+    "data/lexical/reader-hints/obadiah.json",
+    "data/lexical/reader-hints/malachi.json",
+    "tanakh/esther/index.html",
+    "tanakh/ezra/index.html",
+    "tanakh/nehemiah/index.html",
+    "tanakh/obadiah/index.html",
+    "tanakh/malachi/index.html",
+    "reports/reader-hints-from-route-lookup-batch2-2026-06-07.md"
+  ],
+  "counts": {
+    "esther": {
+      "token_occurrences": 2654,
+      "unique_hint_rows": 1831
+    },
+    "ezra": {
+      "token_occurrences": 3538,
+      "unique_hint_rows": 2240
+    },
+    "nehemiah": {
+      "token_occurrences": 4822,
+      "unique_hint_rows": 3376
+    },
+    "obadiah": {
+      "token_occurrences": 249,
+      "unique_hint_rows": 214
+    },
+    "malachi": {
+      "token_occurrences": 789,
+      "unique_hint_rows": 634,
+      "browser_hydrated_occurrence_rows": 733,
+      "browser_tbd_rows": 56
+    }
+  },
+  "validators": [
+    {
+      "command": "node scripts/build_reader_hints_from_route_lookup.mjs --works=esther,ezra,nehemiah,obadiah,malachi --report=reports/reader-hints-from-route-lookup-batch2-2026-06-07.md",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_reader_hints_from_route_lookup.mjs --works=esther,ezra,nehemiah,obadiah,malachi",
+      "result": "passed"
+    },
+    {
+      "command": "node --check scripts/build_reader_hints_from_route_lookup.mjs; node --check scripts/validate_reader_hints_from_route_lookup.mjs",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_route_hud_page.mjs tanakh/esther/index.html; node scripts/validate_route_hud_page.mjs tanakh/ezra/index.html; node scripts/validate_route_hud_page.mjs tanakh/nehemiah/index.html; node scripts/validate_route_hud_page.mjs tanakh/obadiah/index.html; node scripts/validate_route_hud_page.mjs tanakh/malachi/index.html",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- scoped changed files",
+      "result": "passed_with_crlf_warnings_only"
+    }
+  ],
+  "browser_proof": {
+    "url": "http://127.0.0.1:8801/tanakh/malachi/",
+    "rows": 789,
+    "populated_rows": 733,
+    "tbd_rows": 56,
+    "passage_links": 789,
+    "tok_leak_visible": false,
+    "hud_click_token": "tok-5f91d47feb59",
+    "hud_open": true,
+    "source_license_visible": true,
+    "scroll_lock_active": true
+  },
+  "boundary": [
+    "reader convenience candidate hints only",
+    "not translation output",
+    "not accepted gloss/text",
+    "not Definition authority",
+    "not answer acceptance",
+    "not source/license/legal acceptance",
+    "no Orot mutation",
+    "no deploy/release/publication claim"
+  ],
+  "a14_next_action": "Review and, if approved, stage the changed batch2 hint artifacts/page config alongside the existing flagship packet."
+}

@@ -95,6 +95,7 @@ jobs:
             /data/lexical/occurrences/ruth.json
             /data/lexical/occurrences/zechariah.json
             /data/lexical/occurrences/zephaniah.json
+            /data/lexical/reader-hints
             /data/lexical/source-layers
             /data/public-hud/amos
             /data/public-hud/deuteronomy
@@ -135,6 +136,7 @@ jobs:
             .site/data/definitions \
             .site/data/lexical \
             .site/data/lexical/occurrences \
+            .site/data/lexical/reader-hints \
             .site/data/public-hud
           cp -a .nojekyll 404.html index.html .site/
           cp -a assets/css/reader-workbench.css .site/assets/css/
@@ -145,6 +147,9 @@ jobs:
             cp -a "data/lexical/$work.manifest.json" .site/data/lexical/
             cp -a "data/lexical/$work-chunks" .site/data/lexical/
             cp -a "data/lexical/occurrences/$work.json" .site/data/lexical/occurrences/
+            if [ -f "data/lexical/reader-hints/$work.json" ]; then
+              cp -a "data/lexical/reader-hints/$work.json" .site/data/lexical/reader-hints/
+            fi
             if [ -d "data/public-hud/$work" ]; then
               cp -a "data/public-hud/$work" .site/data/public-hud/
             fi
