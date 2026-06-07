@@ -1,0 +1,81 @@
+{
+  "artifact_type": "agent10_full_corpus_batch_flagship_render_staging_packet",
+  "agent": "A10",
+  "batch": "Batch78",
+  "corpus_family": "Tosefta",
+  "status": "ready_for_a14_review_staging_tosefta_closure",
+  "baseline_head": "75cbae868",
+  "prior_checkpoint": "Batch60 through Batch65 corpus closures pushed by A14 at aea61fc1b; Batch66-69 sent to A14; Batch70-73 sent to A14; Batch74-77 sent to A14 as Tosefta continuation.",
+  "direct_render_contract": {
+    "canonical_hud_behavior": "A10/Orot Route HUD behavior preserved",
+    "reader_layout_mode": "prehud_rows",
+    "source_visible_clickable": true,
+    "prehud_gate": "fail_closed_quiet_TBD_unless_safe_route_backed_hint_exists",
+    "featured_policy": "No Featured additions; Orot remains only Featured",
+    "shared_files_changed": false
+  },
+  "changed_files": [
+    "tosefta/tosefta-sukkah/index.html",
+    "tosefta/tosefta-taanit/index.html",
+    "tosefta/tosefta-tahorot/index.html",
+    "tosefta/tosefta-temurah/index.html",
+    "tosefta/tosefta-terumot/index.html",
+    "tosefta/tosefta-tevul-yom/index.html",
+    "tosefta/tosefta-yadayim/index.html",
+    "tosefta/tosefta-yevamot/index.html",
+    "tosefta/tosefta-yoma/index.html",
+    "tosefta/tosefta-zavim/index.html",
+    "tosefta/tosefta-zevachim/index.html"
+  ],
+  "counts": {
+    "pages": 11,
+    "token_rows": 50877,
+    "configured_hint_rows": 0,
+    "expected_quiet_tbd_rows": 50877,
+    "remaining_tosefta_targets_after_batch": 0
+  },
+  "validators": [
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page <11 Batch78 pages>",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- <11 Batch78 pages>",
+      "timeout_ms": 60000,
+      "result": "passed_with_crlf_warnings_only"
+    },
+    {
+      "command": "node <Batch78 source/config/asset guard>",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "details": {
+        "pages": 11,
+        "token_rows": 50877,
+        "configured_hint_rows": 0,
+        "expected_quiet_tbd_rows": 50877
+      }
+    },
+    {
+      "command": "packet JSON parse after write",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- reports/agent10-full-corpus-batch78-tosefta-closure-flagship-render-staging-packet-2026-06-07.md reports/agent10-full-corpus-batch78-tosefta-closure-flagship-render-staging-packet-2026-06-07.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "blockers": [],
+  "a14_next_action": [
+    "review/stage/commit/push Batch78 Tosefta closure if A14 validation agrees",
+    "add/verify normal corpus links and deploy carry rules in A14 lane",
+    "return checkpoint or exact blocker; A10 can run final corpus coverage scan"
+  ],
+  "boundary": [
+    "render/preHUD staging evidence only",
+    "no QA/source/license/legal/Definition/product/answer/accepted-text acceptance",
+    "no publication/release/public-runtime acceptance"
+  ]
+}
