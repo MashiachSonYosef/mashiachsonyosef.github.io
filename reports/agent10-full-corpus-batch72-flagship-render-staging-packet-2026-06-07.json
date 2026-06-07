@@ -1,0 +1,90 @@
+{
+  "artifact_type": "agent10_full_corpus_batch_flagship_render_staging_packet",
+  "agent": "A10",
+  "batch": "Batch72",
+  "corpus_family": "Mishnah",
+  "status": "ready_for_a14_review_staging",
+  "baseline_head": "5fd65f03c",
+  "prior_checkpoint": "Batch60 through Batch65 corpus closures pushed by A14 at aea61fc1b; Batch66-69 packets sent to A14 for review/staging; Batch70-71 sent to A14 as Mishnah continuation.",
+  "direct_render_contract": {
+    "canonical_hud_behavior": "A10/Orot Route HUD behavior preserved",
+    "reader_layout_mode": "prehud_rows",
+    "source_visible_clickable": true,
+    "prehud_gate": "fail_closed_quiet_TBD_unless_safe_route_backed_hint_exists",
+    "featured_policy": "No Featured additions; Orot remains only Featured",
+    "shared_files_changed": false
+  },
+  "changed_files": [
+    "mishnah/mishnah-orlah/index.html",
+    "mishnah/mishnah-parah/index.html",
+    "mishnah/mishnah-peah/index.html",
+    "mishnah/mishnah-pesachim/index.html",
+    "mishnah/mishnah-rosh-hashanah/index.html",
+    "mishnah/mishnah-sanhedrin/index.html",
+    "mishnah/mishnah-shabbat/index.html",
+    "mishnah/mishnah-shekalim/index.html",
+    "mishnah/mishnah-sheviit/index.html",
+    "mishnah/mishnah-shevuot/index.html",
+    "mishnah/mishnah-sotah/index.html",
+    "mishnah/mishnah-sukkah/index.html",
+    "mishnah/mishnah-taanit/index.html",
+    "mishnah/mishnah-tahorot/index.html",
+    "mishnah/mishnah-tamid/index.html",
+    "mishnah/mishnah-temurah/index.html",
+    "mishnah/mishnah-terumot/index.html",
+    "mishnah/mishnah-tevul-yom/index.html",
+    "mishnah/mishnah-yadayim/index.html",
+    "mishnah/mishnah-yevamot/index.html"
+  ],
+  "counts": {
+    "pages": 20,
+    "token_rows": 60973,
+    "configured_hint_rows": 0,
+    "expected_quiet_tbd_rows": 60973,
+    "remaining_mishnah_targets_after_batch": 3
+  },
+  "validators": [
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page <20 Batch72 pages>",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- <20 Batch72 pages>",
+      "timeout_ms": 60000,
+      "result": "passed_with_crlf_warnings_only"
+    },
+    {
+      "command": "node <Batch72 source/config/asset guard>",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "details": {
+        "pages": 20,
+        "token_rows": 60973,
+        "configured_hint_rows": 0,
+        "expected_quiet_tbd_rows": 60973
+      }
+    },
+    {
+      "command": "packet JSON parse after write",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- reports/agent10-full-corpus-batch72-flagship-render-staging-packet-2026-06-07.md reports/agent10-full-corpus-batch72-flagship-render-staging-packet-2026-06-07.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "blockers": [],
+  "a14_next_action": [
+    "review/stage/commit/push Batch72 Mishnah if A14 validation agrees",
+    "add/verify normal corpus links and deploy carry rules in A14 lane",
+    "return checkpoint or exact blocker; A10 can finish Mishnah closure next"
+  ],
+  "boundary": [
+    "render/preHUD staging evidence only",
+    "no QA/source/license/legal/Definition/product/answer/accepted-text acceptance",
+    "no publication/release/public-runtime acceptance"
+  ]
+}
