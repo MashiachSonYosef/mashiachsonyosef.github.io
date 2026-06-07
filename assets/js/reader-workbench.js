@@ -129,6 +129,7 @@
     lexicalRootUrl(config),
   );
   const readerHintsUrl = (config) => config.reader_hints_url || config.reader_hint_url || '';
+  const hebrewCrossmatchIndexUrl = (config) => config.hebrew_crossmatch_url || config.hebrew_crossmatches_url || '';
   const resolveSourceUrl = (url, config) => {
     const raw = String(url || '').trim();
     if (!raw) return '';
@@ -625,6 +626,21 @@
     return [...candidates.values()];
   }
 
+  function crossmatchesFromIndex(index, normalized, currentRef) {
+    const key = normalizeHebrewKey(normalized || '');
+    const row = index?.matches_by_normalized?.[key] || null;
+    if (!row) return { normalized_word: key, occurrence_count: 0, refs: [], surface_forms: [] };
+    const current = String(currentRef || '').trim();
+    const refs = cleanValues(row.refs).filter((ref) => {
+      const refName = String(ref.source_ref || ref.anchor_id || '').trim();
+      return refName && refName !== current;
+    });
+    return {
+      ...row,
+      refs,
+    };
+  }
+
   function codepointKey(value, prefixLength) {
     const chars = [...String(value || '')].slice(0, prefixLength);
     if (!chars.length) return 'empty';
@@ -1017,12 +1033,15 @@
     ));
   }
 
-  function renderNoValidatedHudPanel(panel, clickedForm) {
-    panel.replaceChildren();
+  function appendSelectedHudToken(panel, clickedForm, normalized) {
     const selected = createElement('div', 'route-selected-token', normalizeHebrewDisplay(clickedForm || ''));
     selected.lang = 'he';
     selected.dir = 'rtl';
     panel.appendChild(selected);
+    if (normalized) panel.appendChild(createElement('p', 'hud-token-key', `normalized: ${normalized}`));
+  }
+
+  function appendPlaceholderHudSection(panel) {
     const section = createElement('section', 'route-section-card route-answer-card');
     const title = createElement('div', 'route-section-title');
     title.appendChild(createElement('h3', '', 'TBD'));
@@ -1032,18 +1051,108 @@
     panel.appendChild(section);
   }
 
-  function renderRouteHudPanel(panel, button, clickedForm, normalized, cards, lookupCandidates, config) {
+  function lemmaRowsFromToken(tokenRow) {
+    const rows = [];
+    const entry = tokenRow?.lexicon_entry || {};
+    cleanValues(entry.possible_entries).forEach((candidate) => {
+      const lemma = firstPresentValue([candidate.lemma, candidate.match_key, candidate.entry_key]);
+      const source = [candidate.source_name, candidate.source_id].filter(Boolean).join(' ');
+      const relation = firstPresentValue([candidate.relation_label, candidate.context_role]);
+      if (!lemma && !source && !relation) return;
+      rows.push({ lemma, source, relation });
+    });
+    if (!rows.length && tokenRow?.lexicon_entry_id) {
+      rows.push({ lemma: tokenRow.lexicon_entry_id, source: 'token manifest', relation: tokenRow.status || 'matched' });
+    }
+    const seen = new Set();
+    return rows.filter((row) => {
+      const key = `${row.lemma}|${row.source}|${row.relation}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).slice(0, 8);
+  }
+
+  function appendLemmaHudSection(panel, tokenRow) {
+    const section = createElement('section', 'route-section-card hud-study-card');
+    const title = createElement('div', 'route-section-title');
+    title.appendChild(createElement('h3', '', 'Lemma'));
+    title.appendChild(createElement('span', '', tokenRow?.status || 'unmatched'));
+    section.appendChild(title);
+
+    const rows = lemmaRowsFromToken(tokenRow);
+    if (!rows.length) {
+      section.appendChild(createElement('p', 'placeholder', 'No lemma match in the current token manifest.'));
+      panel.appendChild(section);
+      return;
+    }
+
+    const list = createElement('ul', 'hud-lemma-list');
+    rows.forEach((row) => {
+      const item = createElement('li');
+      const lemma = createElement('span', 'hud-hebrew-text', normalizeHebrewDisplay(row.lemma || ''));
+      lemma.lang = 'he';
+      lemma.dir = 'rtl';
+      item.appendChild(lemma);
+      const meta = [row.source, row.relation].filter(Boolean).join(' | ');
+      if (meta) item.appendChild(createElement('small', '', meta));
+      list.appendChild(item);
+    });
+    section.appendChild(list);
+    section.appendChild(createElement('small', 'hud-study-note', 'lemma only; not a selected definition'));
+    panel.appendChild(section);
+  }
+
+  function appendCrossmatchHudSection(panel, crossmatch) {
+    const section = createElement('section', 'route-section-card hud-study-card');
+    const refs = cleanValues(crossmatch?.refs);
+    const total = Number(crossmatch?.occurrence_count || refs.length || 0);
+    const title = createElement('div', 'route-section-title');
+    title.appendChild(createElement('h3', '', 'Hebrew crossmatches'));
+    title.appendChild(createElement('span', '', total ? `${total} occurrence${total === 1 ? '' : 's'}` : 'none'));
+    section.appendChild(title);
+
+    if (refs.length) {
+      const list = createElement('ul', 'hud-crossmatch-list');
+      refs.slice(0, 16).forEach((ref) => {
+        const item = createElement('li');
+        const link = createElement('a', '', ref.source_ref || ref.anchor_id || 'reference');
+        if (ref.anchor_id) link.href = `#${ref.anchor_id}`;
+        item.appendChild(link);
+        if (Number(ref.count || 0) > 1) item.appendChild(createElement('small', '', `${ref.count}x`));
+        list.appendChild(item);
+      });
+      section.appendChild(list);
+      if (refs.length > 16) section.appendChild(createElement('small', 'hud-study-note', `+${refs.length - 16} more references`));
+      section.appendChild(createElement('small', 'hud-study-note', 'same Hebrew form only; not a definition'));
+    } else {
+      section.appendChild(createElement('p', 'placeholder', 'No other Daniel passage uses this normalized Hebrew form.'));
+      section.appendChild(createElement('small', 'hud-crossmatch-empty', 'hebrew matches not found'));
+    }
+
+    panel.appendChild(section);
+  }
+
+  function renderStudyHudFrame(panel, clickedForm, normalized, tokenRow, crossmatch) {
+    panel.replaceChildren();
+    appendSelectedHudToken(panel, clickedForm, normalized);
+    appendPlaceholderHudSection(panel);
+    appendLemmaHudSection(panel, tokenRow);
+    appendCrossmatchHudSection(panel, crossmatch);
+  }
+
+  function renderRouteHudPanel(panel, button, clickedForm, normalized, cards, lookupCandidates, config, tokenRow, crossmatch) {
     panel.replaceChildren();
     const visibleCards = validatedHudCards(cards, config);
     if (config?.hud_hide_unvalidated_routes && !visibleCards.length) {
-      renderNoValidatedHudPanel(panel, clickedForm || normalized || '');
+      renderStudyHudFrame(panel, clickedForm || normalized || '', normalized, tokenRow, crossmatch);
       return;
     }
     const sourceNotes = buildSourceNotes(visibleCards);
-    const selected = createElement('div', 'route-selected-token', normalizeHebrewDisplay(clickedForm || normalized || ''));
-    selected.lang = 'he';
-    selected.dir = 'rtl';
-    panel.appendChild(selected);
+    appendSelectedHudToken(panel, clickedForm || normalized || '', normalized);
+    appendPlaceholderHudSection(panel);
+    appendLemmaHudSection(panel, tokenRow);
+    appendCrossmatchHudSection(panel, crossmatch);
 
     const picker = createElement('section', 'route-section-card reader-picker-intro');
     picker.appendChild(createElement('strong', '', 'Choose a study gloss'));
@@ -1294,9 +1403,13 @@
       const rowSurfaceNormalized = normalizeHebrewKey(tokenRow.surface_word || '');
       const normalized = rowSurfaceNormalized && rowSurfaceNormalized === clickedNormalized ? (tokenRow.normalized_word || clickedNormalized) : clickedNormalized;
       button.dataset.normalized = normalized;
-      const routeLookup = await siteApi.loadRouteCardsForToken(clickedForm, normalized);
+      const currentRef = unit.dataset.sourceRef || unit.dataset.unitId || unit.id || '';
+      const [routeLookup, crossmatch] = await Promise.all([
+        siteApi.loadRouteCardsForToken(clickedForm, normalized),
+        siteApi.loadCrossmatchesForToken(normalized, currentRef),
+      ]);
       if (button.getAttribute('aria-pressed') !== 'true') return;
-      if (panel) renderRouteHudPanel(panel, button, clickedForm, normalized, routeLookup.cards, routeLookup.candidates, siteApi.config);
+      if (panel) renderRouteHudPanel(panel, button, clickedForm, normalized, routeLookup.cards, routeLookup.candidates, siteApi.config, tokenRow, crossmatch);
       positionHudNearButton(button);
     } catch (error) {
       console.error(error);
@@ -1351,6 +1464,7 @@
     const routeShardPromises = new Map();
     let manifestPromise = null;
     let routeManifestPromise = null;
+    let crossmatchPromise = null;
 
     const loadOccurrences = async () => {
       if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
@@ -1392,13 +1506,35 @@
       }
       return chunkPromises.get(chunkId);
     };
+    const enrichTokenRow = (row) => {
+      if (!row || typeof row !== 'object') return {};
+      return {
+        ...row,
+        lexicon_entry: row.lexicon_entry_id ? (lexiconEntries.get(row.lexicon_entry_id) || null) : null,
+      };
+    };
     const loadTokenRow = async (tokenIndexId) => {
       if (!tokenIndexId) return {};
-      if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+      if (tokenRows.has(tokenIndexId)) return enrichTokenRow(tokenRows.get(tokenIndexId));
       const manifest = await loadManifest();
       const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : '';
       if (chunkId) await loadChunk(chunkId);
-      return tokenRows.get(tokenIndexId) || {};
+      return enrichTokenRow(tokenRows.get(tokenIndexId));
+    };
+    const loadCrossmatchIndex = async () => {
+      const url = hebrewCrossmatchIndexUrl(config);
+      if (!url) return null;
+      if (!crossmatchPromise) {
+        crossmatchPromise = fetchOptionalJson(url, lexicalRootUrl(config)).catch((error) => {
+          console.warn(error);
+          return null;
+        });
+      }
+      return crossmatchPromise;
+    };
+    const loadCrossmatchesForToken = async (normalized, currentRef) => {
+      const index = await loadCrossmatchIndex();
+      return crossmatchesFromIndex(index, normalized, currentRef);
     };
     const loadRouteManifest = async () => {
       if (!routeManifestPromise) routeManifestPromise = fetchJson(routeLookupManifestUrl(config));
@@ -1433,7 +1569,7 @@
       };
     };
 
-    siteApi = { config, loadTokenRow, loadRouteCardsForToken };
+    siteApi = { config, loadTokenRow, loadRouteCardsForToken, loadCrossmatchesForToken };
     setupWorkbenchPanel();
     bindSiteEvents(hud);
     await waitForIdle();

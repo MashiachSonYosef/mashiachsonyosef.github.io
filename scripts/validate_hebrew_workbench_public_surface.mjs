@@ -67,6 +67,7 @@ requireMatch("root must not expose Ezekiel", !/Ezekiel|ezekiel/.test(indexHtml))
 const html = read("tanakh/daniel/index.html");
 const report = readJson("reports/daniel-reader-pipeline-page-report.json");
 const occurrences = readJson("data/lexical/occurrences/daniel.json");
+const crossmatches = readJson("data/lexical/crossmatches/daniel.json");
 const scopedRouteLookup = readJson("data/definitions/hud-route-lookup-daniel/manifest.json");
 const occurrenceRows = occurrenceRowCount(occurrences);
 
@@ -87,16 +88,21 @@ requireMatch("Daniel report must use shared runtime", report.render_runtime === 
 requireMatch("Daniel report row count must match occurrences", report.token_rows === occurrenceRows && report.occurrence_total_reported === occurrences.total_occurrences);
 requireMatch("Daniel unresolved rows must remain TBD until validated definitions exist", report.tbd_fallback_rows === report.token_rows && report.selected_prehud_rows === 0);
 requireMatch("Daniel HUD must fail closed before validated definitions", html.includes('"hud_validated_only":true') && html.includes('"hud_hide_unvalidated_routes":true') && html.includes('"hud_allow_lemma_only":false'));
+requireMatch("Daniel must publish Hebrew crossmatch index to the HUD", html.includes('"hebrew_crossmatch_url":"../../data/lexical/crossmatches/daniel.json"'));
 requireMatch("Daniel must keep actual book CSV at bottom of book page", html.includes("../../data/public-lexical/by-work/daniel-token-claims-min60.csv"));
 requireMatch("Daniel must point to page-scoped route lookup", html.includes("../../data/definitions/hud-route-lookup-daniel/manifest.json"));
 requireMatch("Daniel scoped route lookup must expose zero public route shards before validation", scopedRouteLookup.scope_work_id === "daniel" && scopedRouteLookup.counts?.shard_count === 0);
 requireMatch("Daniel scoped route lookup must expose zero public route cards before validation", scopedRouteLookup.counts?.card_count === 0 && scopedRouteLookup.counts?.candidate_keys_with_routes === 0);
+requireMatch("Daniel crossmatch index must be scoped to Daniel", crossmatches.artifact_type === "hebrew_crossmatch_index" && crossmatches.work_id === "daniel");
+requireMatch("Daniel 1:1 first word must have Hebrew crossmatch refs", (crossmatches.matches_by_normalized?.["בשנת"]?.refs || []).some((ref) => ref.source_ref === "Daniel 7:1"));
+requireMatch("Reader runtime must show no-match message for empty Hebrew crossmatches", read("assets/js/reader-workbench.js").includes("hebrew matches not found"));
 
 [
   "/assets/css/reader-workbench.css",
   "/assets/js/reader-workbench.js",
   "/data/lexical/daniel.manifest.json",
   "/data/lexical/daniel-chunks",
+  "/data/lexical/crossmatches/daniel.json",
   "/data/lexical/occurrences/daniel.json",
   "/data/definitions/hud-route-lookup-daniel/manifest.json",
 ].forEach((requiredPath) => {

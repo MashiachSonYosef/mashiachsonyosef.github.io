@@ -34,6 +34,7 @@ const work = {
   occurrencePath: "data/lexical/occurrences/daniel.json",
   manifestPath: "data/lexical/daniel.manifest.json",
   tokenIndexPath: "data/lexical/token-indexes/tanakh/daniel.json",
+  crossmatchPath: "data/lexical/crossmatches/daniel.json",
   globalRouteLookupPath: "data/definitions/hud-route-lookup/manifest.json",
   routeLookupPath: "data/definitions/hud-route-lookup-daniel/manifest.json",
   csvPath: "data/public-lexical/by-work/daniel-token-claims-min60.csv",
@@ -127,6 +128,69 @@ function codepointKey(value, prefixLength) {
   return chars.map((char) => char.codePointAt(0).toString(16).padStart(4, "0")).join("-");
 }
 
+function buildHebrewCrossmatchIndex() {
+  const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+  const rowsByNormalized = new Map();
+
+  Object.entries(occurrences.units || {}).forEach(([unitId, unit]) => {
+    const sourceRef = String(unit.source_ref || unitId);
+    const anchorId = String(unit.anchor_id || unitId);
+    const unitCounts = new Map();
+    const unitSurfaces = new Map();
+
+    (unit.paragraphs || []).forEach((paragraph) => {
+      (paragraph.token_index_ids || []).forEach((tokenId) => {
+        const row = tokenRows.get(tokenId);
+        const normalized = normalizeHebrewKey(row?.normalized_word || row?.surface_word || "");
+        if (!normalized) return;
+        unitCounts.set(normalized, (unitCounts.get(normalized) || 0) + 1);
+        if (!unitSurfaces.has(normalized)) unitSurfaces.set(normalized, new Set());
+        if (row?.surface_word) unitSurfaces.get(normalized).add(normalizeHebrewDisplay(row.surface_word));
+      });
+    });
+
+    unitCounts.forEach((count, normalized) => {
+      if (!rowsByNormalized.has(normalized)) {
+        rowsByNormalized.set(normalized, {
+          normalized_word: normalized,
+          surface_forms: new Set(),
+          refs: [],
+          occurrence_count: 0,
+        });
+      }
+      const entry = rowsByNormalized.get(normalized);
+      entry.occurrence_count += count;
+      (unitSurfaces.get(normalized) || new Set()).forEach((surface) => entry.surface_forms.add(surface));
+      entry.refs.push({ source_ref: sourceRef, anchor_id: anchorId, count });
+    });
+  });
+
+  const matchesByNormalized = {};
+  [...rowsByNormalized.entries()]
+    .sort(([left], [right]) => left.localeCompare(right, "he"))
+    .forEach(([normalized, row]) => {
+      matchesByNormalized[normalized] = {
+        normalized_word: row.normalized_word,
+        occurrence_count: row.occurrence_count,
+        surface_forms: [...row.surface_forms].sort((left, right) => left.localeCompare(right, "he")).slice(0, 8),
+        refs: row.refs,
+      };
+    });
+
+  const crossmatchIndex = {
+    schema_version: 1,
+    artifact_type: "hebrew_crossmatch_index",
+    work_id: work.id,
+    generated_at: new Date().toISOString(),
+    match_scope: "same normalized Hebrew form inside Daniel",
+    normalized_key_count: Object.keys(matchesByNormalized).length,
+    matches_by_normalized: matchesByNormalized,
+  };
+
+  writeText(work.crossmatchPath, `${JSON.stringify(crossmatchIndex, null, 2)}\n`);
+  return crossmatchIndex;
+}
+
 function buildScopedRouteLookup() {
   const targetDir = path.join(root, "data/definitions/hud-route-lookup-daniel");
   fs.rmSync(targetDir, { recursive: true, force: true });
@@ -197,6 +261,7 @@ const tocHtml = chapters.map((chapter) => `
 const config = {
   manifest_url: "../../data/lexical/daniel.manifest.json",
   occurrence_url: "../../data/lexical/occurrences/daniel.json",
+  hebrew_crossmatch_url: "../../data/lexical/crossmatches/daniel.json",
   hud_route_lookup_manifest_url: "../../data/definitions/hud-route-lookup-daniel/manifest.json",
   hud_validated_only: true,
   hud_hide_unvalidated_routes: true,
@@ -206,6 +271,7 @@ const config = {
 
 const sourceUnit = units[0] || {};
 const occurrenceRows = countOccurrenceRows();
+const hebrewCrossmatches = buildHebrewCrossmatchIndex();
 const scopedRouteLookup = buildScopedRouteLookup();
 const configJson = JSON.stringify(config).replace(/</g, "\\u003c");
 
@@ -605,6 +671,7 @@ const report = {
     "assets/js/reader-workbench.js",
     work.manifestPath,
     work.occurrencePath,
+    work.crossmatchPath,
     work.routeLookupPath,
   ],
   lexical_manifest_chunks: (manifest.chunks || []).map((chunk) => chunk.url),
@@ -614,6 +681,11 @@ const report = {
     shard_count: scopedRouteLookup.counts.shard_count,
     missing_candidate_shard_count: scopedRouteLookup.counts.missing_candidate_shard_count,
     byte_length: scopedRouteLookup.counts.byte_length,
+  },
+  hebrew_crossmatches: {
+    path: work.crossmatchPath,
+    normalized_key_count: hebrewCrossmatches.normalized_key_count,
+    match_scope: hebrewCrossmatches.match_scope,
   },
   a10_baseline_markers: {
     data_lexical_config: true,
