@@ -1,0 +1,32 @@
+{
+  "artifact_type": "agent10_source_passage_rtl_link_visual_fix_packet",
+  "status": "SOURCE_PASSAGE_RTL_LINK_FIX_READY_SEPARATE_FROM_BATCH13",
+  "purpose": "Fix canonical A10/Orot source-passage hyperlink visual order so linked Hebrew passage tokens keep RTL flow while still jumping to preHUD rows.",
+  "changed_files": [
+    "assets/css/reader-workbench.css"
+  ],
+  "excluded_from_batch13": true,
+  "exact_change": {
+    "selector": ".prehud-passage-token",
+    "properties": {
+      "direction": "inherit",
+      "unicode-bidi": "normal"
+    }
+  },
+  "proof": {
+    "before": "Orot first passage token ERETZ measured at left=372/right=393 inside paragraph right=1228; wrong left-to-right token flow.",
+    "after": "Orot first passage token ERETZ measured at left=1198/right=1219 inside paragraph right=1228; correct right-edge RTL flow.",
+    "browser_url": "http://127.0.0.1:8801/orot/"
+  },
+  "validators": [
+    "node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/ruth/index.html --page halakhah/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary/index.html --page halakhah/kessef-mishneh-on-mishneh-torah-sheqel-dues/index.html => passed",
+    "git diff --check -- assets/css/reader-workbench.css => passed with CRLF warning only"
+  ],
+  "a14_next_action": "Review/stage this shared CSS visual fix separately from Batch13. It should not be mixed into a render batch unless A14/owner explicitly accepts this shared visual fix packet.",
+  "boundary": [
+    "visual/render behavior fix only",
+    "no HUD card redesign",
+    "no source/license/legal/Definition/product/answer/accepted-text acceptance",
+    "no publication/release/public-runtime acceptance"
+  ]
+}
