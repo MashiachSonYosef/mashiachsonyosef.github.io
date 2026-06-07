@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -31,6 +38,11 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -47,6 +59,7 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -80,48 +93,48 @@
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-field-row { display: contents; }
-    .lexical-field-row[hidden] { display: none; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .breakdown-list { display: grid; gap: 8px; }
-    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
-    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
-    .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
-    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
-    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
-    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
-    .lexical-entry .entry-hebrew { color: var(--hebrew); }
-    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
-    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
     .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
-    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; }
-    .other-entries { margin-top: 12px; }
-    .claim-row-list details { margin-top: 8px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
-    .source-claim { color: var(--text); margin: 0 0 6px; }
-    .source-claim span { color: var(--hebrew); }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
-    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
     .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
@@ -135,20 +148,23 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
 <body>
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
-        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-        <h1>Benei Binyamin on Mishneh Torah, Sabbath</h1>
-        <p class="work-label">Commentary on Mishneh Torah, Sabbath</p>
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Benei Binyamin on Mishneh Torah, Sabbath<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Mishneh Torah, Sabbath</p>
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-sabbath/">Open Mishneh Torah, Sabbath</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
@@ -156,19 +172,27 @@
             <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
-        <p class="meta">43 total source units | imported 2026-05-21</p>
-        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>338 matched</strong> / 1051 unique forms.</p>
+          <p class="hero-summary">
+            <span>43 source units</span>
+            <span>1051 HUD forms</span>
+            <span>imported 2026-05-21</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Benei Binyamin on Mishneh Torah, Sabbath <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Benei Binyamin on Mishneh Torah, Sabbath <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Benei Binyamin on Mishneh Torah, Sabbath <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Benei Binyamin on Mishneh Torah, Sabbath <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -303,13 +327,18 @@
         </nav>
         <article>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-1">Chapter 1</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-1-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-1-1-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-1-1-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 1:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 1:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-1-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-1-1">Mishneh Torah, Sabbath 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁבִיתָה בַּשְּׁבִיעִי מִמְּלָאכָה מִצְוַת עֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(שמות לד כא)</span> &quot;וּבַיּוֹם הַשְּׁבִיעִי תִּשְׁבֹּת&quot;. וְכָל הָעוֹשֶׂה בּוֹ מְלָאכָה בִּטֵּל מִצְוַת עֲשֵׂה וְעָבַר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים ה יד)</span> &quot;לֹא תַעֲשֶׂה כָל מְלָאכָה&quot;. וּמַה הוּא חַיָּב עַל עֲשִׂיַּת מְלָאכָה. אִם עָשָׂה בִּרְצוֹנוֹ בְּזָדוֹן חַיָּב כָּרֵת. וְאִם הָיוּ שָׁם עֵדִים וְהַתְרָאָה נִסְקָל. וְאִם עָשָׂה בִּשְׁגָגָה חַיָּב קָרְבַּן חַטָּאת קְבוּעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שביתה </strong>
 <strong> בשביעי ממלאכה מ&quot;ע היא שנאמר וביוה&quot;ש תשבות. </strong> כ&quot;כ ג&quot;כ התוס׳ שבת ע׳ א׳ ד&quot;ה אבל דזהו עשה דשבת וע&quot;ש במהר&quot;ם לובלין קל&quot;ב ב׳. שלא זכר דברי התוס׳ ויבינו. ומסתברא כן דלא גרע מיו&quot;ט לפ&quot;מ דקיי&quot;ל שבתון עשה הוא ומ&quot;ש הוא ז&quot;ל מזכור ושמור ז&quot;א דלקידוש היום קאי כמ&quot;ש בברכות כ׳ ב׳. וכפ׳ רבינו ספכ&quot;ט. שו&quot;מ בהקובץ מש&quot;כ בזה. ונ&quot;ל מה שהוסיף רבינו ממלאכה דבאמת גם מדיבור צריך לשבות כמש&quot;ל פכ&quot;ד ה&quot;ד ובירושלמי פט&quot;ו ה&quot;ב דשבת דרש ר&quot;א שבת ל&quot;ד שבות כ&quot;ד. מה הקב&quot;ה שבת ממאמר א&quot;ל אתה שבות ממאמר וזה דייק וגריס לכתוב שהשביתה ממלאכה הוא מ&quot;ע מה&quot;ת ומהדיבור היא ודו&quot;ק:</p>
               </div>
@@ -320,13 +349,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-1-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-1-2-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-1-2-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 1:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 1:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-1-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-1-2">Mishneh Torah, Sabbath 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מָקוֹם שֶׁנֶּאֱמַר בְּהִלְכוֹת שַׁבָּת שֶׁהָעוֹשֶׂה דָּבָר זֶה חַיָּב הֲרֵי זֶה חַיָּב כָּרֵת. וְאִם הָיוּ שָׁם עֵדִים וְהַתְרָאָה חַיָּב סְקִילָה. וְאִם הָיָה שׁוֹגֵג חַיָּב חַטָּאת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[במ&quot;מ </strong> ומהם בפ׳ תולין לוקין מ&quot;מ מדרבנן. לא נמצא לפנינו ל׳ זה ואולי צ&quot;ל חולין קמ&quot;א ב׳. ע&quot;ש או דכוונתו למ&quot;ש רב יוסף בשבת קל&quot;ח א׳. דחייב וא׳ אביי מדרבנן ויו&quot;נ דכוונתו למש&quot;ש קל&quot;ח ב׳. דא׳ שם אלא מעתה שרבב בגלימא ה&quot;נ דחייב וס&quot;ל דאינו רק מדרבנן דהא דסייאנא תניא שם רק אסור וכן העתיק באמת המ&quot;מ פכ&quot;ב הל&quot;א ל׳ דמחייב ולא כהגרי&quot;ב שהגיה בגמ׳ דאסור]:</p>
               </div>
             </div>
@@ -337,13 +371,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-2">Chapter 2</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-2-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-2-3-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-2-3-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 2:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 2:3:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-2-3-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-2-3">Mishneh Torah, Sabbath 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁעוֹשִׂים דְּבָרִים הָאֵלּוּ אֵין עוֹשִׂין אוֹתָן לֹא עַל יְדֵי נָכְרִים וְלֹא עַל יְדֵי קְטַנִּים וְלֹא עַל יְדֵי עֲבָדִים וְלֹא עַל יְדֵי נָשִׁים כְּדֵי שֶׁלֹּא תְּהֵא שַׁבָּת קַלָּה בְּעֵינֵיהֶם. אֶלָּא עַל יְדֵי גְּדוֹלֵי יִשְׂרָאֵל וְחַכְמֵיהֶם. וְאָסוּר לְהִתְמַהְמֵהַּ בְּחִלּוּל שַׁבָּת לְחוֹלֶה שֶׁיֵּשׁ בּוֹ סַכָּנָה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יח ה)</span> &quot;אֲשֶׁר יַעֲשֶׂה אוֹתָם הָאָדָם וָחַי בָּהֶם&quot; וְלֹא שֶׁיָּמוּת בָּהֶם. הָא לָמַדְתָּ שֶׁאֵין מִשְׁפְּטֵי הַתּוֹרָה נְקָמָה בָּעוֹלָם אֶלָּא רַחֲמִים וְחֶסֶד וְשָׁלוֹם בָּעוֹלָם. וְאִלּוּ הָאֶפִּיקוֹרוֹסִים שֶׁאוֹמְרִים שֶׁזֶּה חִלּוּל שַׁבָּת וְאָסוּר עֲלֵיהֶן הַכָּתוּב אוֹמֵר <span class="source-small">(יחזקאל כ כה)</span> &quot;גַּם אֲנִי נָתַתִּי לָהֶם חֻקִּים לֹא טוֹבִים וּמִשְׁפָּטִים לֹא יִחְיוּ בָּהֶם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלא </strong>
 <strong> ע&quot;י גדולי ישראל וחכמיהם. </strong> עי׳ כ&quot;מ. אך בירושלמי פט&quot;ז ה&quot;ח וביומא פ&quot;ח ה&quot;ה. מ׳ כפשטות ד׳ רבינו ע&quot;ש ובש&quot;ק:</p>
               </div>
@@ -354,13 +393,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-2-11-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-2-11-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-2-11-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 2:11:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 2:11:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-2-11-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-2-11">Mishneh Torah, Sabbath 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַיּוֹלֶדֶת כְּשֶׁכּוֹרַעַת לֵילֵד הֲרֵי הִיא בְּסַכָּנַת נְפָשׁוֹת וּמְחַלְּלִין עָלֶיהָ אֶת הַשַּׁבָּת. קוֹרְאִין לָהּ חֲכָמָה מִמָּקוֹם לְמָקוֹם וְחוֹתְכִים אֶת הַטַּבּוּר וְקוֹשְׁרִין אוֹתוֹ. וְאִם הָיְתָה צְרִיכָה לְנֵר בְּשָׁעָה שֶׁהִיא צוֹעֶקֶת בַּחֲבָלֶיהָ מַדְלִיקִין לָהּ אֶת הַנֵּר. וַאֲפִלּוּ הָיְתָה סוּמָא מִפְּנֵי שֶׁדַּעְתָּהּ מִתְיַשֶּׁבֶת עָלֶיהָ בַּנֵּר וְאַף עַל פִּי שֶׁאֵינָהּ רוֹאָה. וְאִם הָיְתָה צְרִיכָה לְשֶׁמֶן וְכַיּוֹצֵא בּוֹ מְבִיאִין לָהּ. וְכָל שֶׁאֶפְשָׁר לְשַׁנּוֹת מְשַׁנִּין בִּשְׁעַת הֲבָאָה כְּגוֹן שֶׁתָּבִיא לָהּ חֲבֶרְתָּהּ כְּלִי תָּלוּי בִּשְׂעָרָהּ. וְאִם אִי אֶפְשָׁר מְבִיאָה כְּדַרְכָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[בתו&quot;ד </strong> הכ&quot;מ וא&quot;כ מוטב לעשות הוצאה ע&quot;י שינוי כו׳. צ&quot;ע דהא מוסיף באיסור הוצאה בהוצאת הכלי ואף שהוא כלאחר יד מ&quot;מ שבות הוה ומ&quot;ל שבות זה משבות דסחיטה והרי בדאוריי׳ אסור להרבות בשיעור ע&quot;ל ה&quot;ח בכ&quot;מ וה&quot;נ בשבותים ואולי זהו מב׳ מיני מלאכות. ודכוותה בדאורייתא חייב עכאו&quot;א משא&quot;כ במרבה בשיעור ה&quot;ל כב׳ זיתי חלב בהעלם א׳. וה&quot;נ בשני שבותים ודו&quot;ק]. ולי בנו ותלמידו נראה דתלי בפלוגתת הראשונים המובא בטושו&quot;ע א&quot;ח סי׳ שי&quot;א אם הוצאת המת לכרמלית צריך ככר ותינוק. או טוב למעט בהוצאה מלעבור על שבות בטלטול. ושיטת רבינו ספכ&quot;ו מ׳ דלמעט בהוצאה עדיף כמש&quot;כ הרמב&quot;ן ז&quot;ל לדעתו בס׳ תה&quot;א ומובא בטור שם וא&quot;כ הוא קצת סתירה:</p>
               </div>
             </div>
@@ -370,13 +414,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-2-13-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-2-13-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-2-13-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 2:13:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 2:13:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-2-13-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-2-13">Mishneh Torah, Sabbath 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חַיָּה מִשֶּׁיַּתְחִיל הַדָּם לִהְיוֹת שׁוֹתֵת עַד שֶׁתֵּלֵד וְאַחַר שֶׁתֵּלֵד עַד שְׁלֹשָׁה יָמִים מְחַלְּלִין עָלֶיהָ אֶת הַשַּׁבָּת וְעוֹשִׂין לָהּ כָּל צְרָכֶיהָ. בֵּין שֶׁאָמְרָה צְרִיכָה אֲנִי בֵּין שֶׁאָמְרָה אֵינִי צְרִיכָה. וּמִשְּׁלֹשָׁה עַד שִׁבְעָה אִם אָמְרָה אֵינִי צְרִיכָה אֵין מְחַלְּלִין עָלֶיהָ אֶת הַשַּׁבָּת. וְאִם שָׁתְקָה וְאֵין צָרִיךְ לוֹמַר אִם אָמְרָה צְרִיכָה אֲנִי שֶׁמְּחַלְּלִין עָלֶיהָ אֶת הַשַּׁבָּת. וּמִשִּׁבְעָה וְעַד שְׁלֹשִׁים יוֹם הֲרֵי הִיא כְּחוֹלָה שֶׁאֵין בּוֹ סַכָּנָה וַאֲפִלּוּ אָמְרָה צְרִיכָה אֲנִי אֵין עוֹשִׂין לָהּ מְלָאכָה אֶלָּא עַל יְדֵי נָכְרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[ה&quot;ל </strong> לכ&quot;מ להקדים דבריו בהלכה י&quot;א במש&quot;ש וחותכין את הטבור ע&quot;ש]:</p>
               </div>
             </div>
@@ -386,13 +435,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-2-25-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-2-25-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-2-25-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 2:25:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 2:25:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-2-25-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 2:25:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-2-25">Mishneh Torah, Sabbath 2:25</a></p>
+                <p class="hebrew" lang="he" dir="rtl">צָרִין עַל עֲיָרוֹת הָעוֹבְדֵי כּוֹכָבִים וּמַזָּלוֹת שְׁלֹשָׁה יָמִים קֹדֶם לַשַּׁבָּת. וְעוֹשִׂין עִמָּהֶן מִלְחָמָה בְּכָל יוֹם וָיוֹם וַאֲפִלּוּ בְּשַׁבָּת עַד שֶׁכּוֹבְשִׁין אוֹתָהּ וְאַף עַל פִּי שֶׁהִיא מִלְחֶמֶת הָרְשׁוּת. מִפִּי הַשְּׁמוּעָה לָמְדוּ <span class="source-small">(דברים כ כ)</span> &quot;עַד רִדְתָּהּ&quot; וַאֲפִלּוּ בְּשַׁבָּת. וְאֵין צָרִיךְ לוֹמַר בְּמִלְחֶמֶת מִצְוָה. וְלֹא כָּבַשׁ יְהוֹשֻׁעַ יְרִיחוֹ אֶלָּא בְּשַׁבָּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואצ&quot;ל </strong>
 <strong> במלחמת מצוה. </strong> עי׳ כ&quot;מ מד׳ הירושלמי ומדברי רבינו ל&quot;מ כן דאפילו לכתחלה מותר. ובאמת צ&quot;ע דכיון דאלקיי&quot;ש מהי תיתי יותר להתחיל בשבת והרי פק&quot;נ עצמה אינה רק דחוי אצל שבת כמש&quot;ל:</p>
               </div>
@@ -404,13 +458,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-3">Chapter 3</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-3-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-3-4-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-3-4-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 3:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 3:4:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-3-4-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-3-4">Mishneh Torah, Sabbath 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. תַּבְשִׁיל שֶׁלֹּא בָּשֵׁל כָּל צָרְכּוֹ וְחַמִּין שֶׁלֹּא הוּחַמּוּ כָּל צָרְכָּן אוֹ תַּבְשִׁיל שֶׁבָּשֵׁל כָּל צָרְכּוֹ וְכָל זְמַן שֶׁמִּצְטַמֵּק הוּא יָפֶה לוֹ אֵין מַשְהִין אוֹתוֹ עַל גַּבֵּי הָאֵשׁ בְּשַׁבָּת אַף עַל פִּי שֶׁהֻנַּח מִבְּעוֹד יוֹם גְּזֵרָה שֶׁמָּא יַחְתֶּה בַּגֶּחָלִים כְּדֵי לְהַשְׁלִים בִּשּׁוּלוֹ אוֹ כְּדֵי לְצַמְּקוֹ. לְפִיכָךְ אִם גָּרַף הָאֵשׁ אוֹ שֶׁכִּסָּה אֵשׁ הַכִּירָה בְּאֵפֶר אוֹ בִּנְעֹרֶת פִּשְׁתָּן הַדַּקָּה אוֹ שֶׁעָמְמוּ הַגֶּחָלִים שֶׁהֲרֵי הֵן כִּמְכֻסּוֹת בְּאֵפֶר אוֹ שֶׁהִסִּיקוּהָ בְּקַשׁ אוֹ בִּגְבָבָא אוֹ בִּגְלָלֵי בְּהֵמָה דַּקָּה שֶׁהֲרֵי אֵין שָׁם גֶּחָלִים בּוֹעֲרוֹת הֲרֵי זֶה מֻתָּר לִשְׁהוֹת עָלֶיהָ. שֶׁהֲרֵי הִסִּיחַ דַּעְתּוֹ מִזֶּה הַתַּבְשִׁיל וְאֵין גּוֹזְרִין שֶׁמָּא יַחְתֶּה בָּאֵשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכ&quot;ז </strong>
 <strong> שמצטמק לו הוא יפה לו.</strong> לו&quot;מ מרבותינו ה&quot;א דענין מצטמק ויפה לו הוא אף אם אינו יפה בטעם רק שהוא יפה לבריאות ג&quot;כ מיקרי מצטמק ויפה לו שאסור מה&quot;ט דשמא יחתה. ואדרבה יש לחוש יותר מהטוב לבריאות ואם הוא מתוק לחיך. כמש&quot;ל פ&quot;ד מדיעות דהוא המובחר וחילא דידי מהא דמיבעיא לן מכלל דביצים מצומקות יפה להן נינהו אין דאר&quot;ח פ&quot;א נתארחתי אני ואבא למק&quot;א והביאו לנו ביצים מצומקות כעוזרדין וכו׳. ולכאורה מאי ראי׳ היא והלא חיך אוכל יטעם. אבל להאמור נ&quot;ל דהס׳ הוא אם הוא יפה לבריאות ולזה הביא מר׳ חנינא בר׳ חמא שהיה רופא כמ&quot;ש ביומא מ&quot;ט א. וידע שהוא טוב לבריאות ובירושלמי הגי׳ אני ואבא והוא ר׳ חנינא ואף שמסיים שם בירושלמי וטעמן יפה. יל&quot;פ ג&quot;כ יפה לבריאות ע׳ כה&quot;ג לר&quot;ח ב&quot;ח עצמו בברכות מ׳ א׳. וע&quot;ש מ&quot;ד ב׳. נ&quot;א א׳. שבת קנ&quot;א סע&quot;ב. ובכ&quot;מ בל׳ חז&quot;ל יפה שהכוונה טוב לבריאות. ונ&quot;ל דמ&quot;ש בשבת ע&quot;ז ב׳. כוס יפה ומפרש כוס של ברכה הוא ג&quot;כ מה&quot;ט דכוס של ברכה מצטרף לטובה ולא לרעה פסחים ק&quot;ט ב׳. וע&quot;ש בפסחים ק&quot;ח ב׳. ברשב&quot;ם ד&quot;ה אר&quot;י [אך לרבינו שכל כוס של ברכה בכלל ול&quot;ד בהמ&quot;ז אאל&quot;כ]:</p>
               </div>
@@ -421,13 +480,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-3-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-3-10-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-3-10-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 3:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 3:10:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-3-10-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-3-10">Mishneh Torah, Sabbath 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל שֶׁמֻּתָּר לִשְׁהוֹתוֹ עַל גַּבֵּי הָאֵשׁ כְּשֶׁנּוֹטְלִים אוֹתוֹ בְּשַׁבָּת אָסוּר לְהַחֲזִירוֹ לִמְקוֹמוֹ. וְאֵין מַחְזִירִין לְעוֹלָם אֶלָּא עַל גַּבֵּי כִּירָה גְּרוּפָה אוֹ מְכֻסָּה אוֹ בְּכִירָה וְכֻפָּח שֶׁהֻסְּקוּ בְּקַשׁ וּגְבָבָא. וְהוּא שֶׁלֹּא הִנִּיחַ הַקְּדֵרָה עַל גַּבֵּי הַקַּרְקַע אֲבָל מִשֶּׁהִנִּיחָה עַל גַּבֵּי קַרְקַע אֵין מַחְזִירִין אוֹתָהּ. וַאֲפִלּוּ עַל גַּבֵּי כִּירָה גְּרוּפָה אוֹ מְכֻסָּה. וְאֵין מַחְזִירִין לַתַּנּוּר וְלֹא לְכֻפָּח שֶׁהֻסְּקוּ בְּגֶפֶת אוֹ בְּעֵצִים אַף עַל פִּי שֶׁגָּרַף אוֹ כִּסָּה מִפְּנֵי שֶׁהֶבְלָן חַם בְּיוֹתֵר. וְכָל שֶׁאֵין מַחְזִירִין עָלָיו אֵין סוֹמְכִין לוֹ בְּשַׁבָּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[במ&quot;מ </strong> ד&quot;ה ואין או השליך בתוכו אבר חי. זהו ג&quot;כ פשיטא דה&quot;ה מבשל להאבר החי וכמש&quot;ל ד&quot;ה ודע וצע&quot;ק]:</p>
               </div>
             </div>
@@ -438,13 +502,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-5">Chapter 5</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-1-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-5-1-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 5:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 5:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-5-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-5-1">Mishneh Torah, Sabbath 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַדְלָ [קַ] ת נֵר בְּשַׁבָּת אֵינָהּ רְשׁוּת אִם רָצָה מַדְלִיק וְאִם רָצָה אֵינוֹ מַדְלִיק. וְלֹא מִצְוָה שֶׁאֵינוֹ חַיָּב לִרְדֹּף אַחֲרֶיהָ עַד שֶׁיַּעֲשֶׂנָה כְּגוֹן עֵרוּבֵי חֲצֵרוֹת אוֹ נְטִילַת יָדַיִם לַאֲכִילָה אֶלָּא זֶה חוֹבָה. וְאֶחָד אֲנָשִׁים וְאֶחָד נָשִׁים חַיָּבִין לִהְיוֹת בְּבָתֵּיהֶן נֵר דָּלוּק בְּשַׁבָּת. אֲפִלּוּ אֵין לוֹ מַה יֹּאכַל שׁוֹאֵל עַל הַפְּתָחִים וְלוֹקֵחַ שֶׁמֶן וּמַדְלִיק אֶת הַנֵּר שֶׁזֶּה בִּכְלַל עֹנֶג שַׁבָּת. וְחַיָּב לְבָרֵךְ קֹדֶם הַדְלָקָה בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לְהַדְלִיק נֵר שֶׁל שַׁבָּת. כְּדֶרֶךְ שֶׁמְּבָרֵךְ עַל כָּל הַדְּבָרִים שֶׁהוּא חַיָּב בָּהֶם מִדִּבְרֵי סוֹפְרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[אלא </strong>
 <strong> זה חובה א׳ אנשים וא׳ נשים. </strong> ע&quot;ל פ&quot;ג משב&quot;ע ה&quot;י] ור&quot;ל דמשם מוכח כן דהוא חובה אף אם א&quot;צ לאכילתו מהא דצריך להדליק ביוה&quot;כ שחל בשבת. ול&quot;נ די&quot;ל ג&quot;כ בק&quot;ו מקידוש היום עי׳ מגילה כ&quot;ז ב׳. פ&quot;א מכרה כיפה שבראשה והביאה לי יין לקה&quot;י וא&quot;כ ק&quot;ו לנר דנר עדיף מקה&quot;י. ועי׳ בפ&quot;ז מחו&quot;מ דמבואר בד׳ כוסות הדין כן מהמשנה והרי קידוש היום הוא מד׳ כוסות וק&quot;ו לנר וכן ילה&quot;ר מהא דאין מדליקין בעטרן מפני כה&quot;ש שמא יניחנו ויצא. מ׳ דאף בלא סעודה הדין כן דהא קיי&quot;ל דיכול להתפלל ש&quot;ש בע&quot;ש כמש&quot;ל פ&quot;ג מתפלה ה׳ אך מרש&quot;י שם מ׳ דמשום סעודה הוא שצריך נר לשבת ע&quot;ש ואולי ס&quot;ל דאף שמתפלל מ&quot;מ אסור לאכול עד הלילה. וע׳ או&quot;ח סרס&quot;ז ובמג&quot;א שם וע&quot;ל פכ&quot;ט הי&quot;א וכמש&quot;ל ה&quot;י דחובה לישב אצל הנר מ׳ אף שכבר אכל ומוכרח כן מדנר ביתו עדיף והרי יכול הוא לאכול מבעו&quot;י או להשלים סעודת הלילה למחר. עי׳ תוס׳ פסחים ק&quot;א א׳. ד&quot;ה ובקידושא ואולי יסבור רש&quot;י ז&quot;ל דאין הלכה כרשב&quot;א בפסחים נ&quot;ג סע&quot;ב. ורבינו פ׳ כן ע&quot;פ הירושלמי שם שמבואר ההלכה כוותי׳ ואה&quot;נ לרש&quot;י דאם אוכל מבעו&quot;י הדלקתן הוא רשות וי&quot;ל בזה רב ור&quot;ה לשיטתייהו עי׳ היטב בגמ׳ כ&quot;ה ב׳. ובברכות כ&quot;ז א׳ ב׳. ופסחים ק&quot;א א׳. והדבר מובן להמעיין היטב:</p>
               </div>
@@ -455,13 +524,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-1-2" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-1-2" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-5-1-2" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 5:1:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 5:1:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-5-1-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 5:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-5-1">Mishneh Torah, Sabbath 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַדְלָ [קַ] ת נֵר בְּשַׁבָּת אֵינָהּ רְשׁוּת אִם רָצָה מַדְלִיק וְאִם רָצָה אֵינוֹ מַדְלִיק. וְלֹא מִצְוָה שֶׁאֵינוֹ חַיָּב לִרְדֹּף אַחֲרֶיהָ עַד שֶׁיַּעֲשֶׂנָה כְּגוֹן עֵרוּבֵי חֲצֵרוֹת אוֹ נְטִילַת יָדַיִם לַאֲכִילָה אֶלָּא זֶה חוֹבָה. וְאֶחָד אֲנָשִׁים וְאֶחָד נָשִׁים חַיָּבִין לִהְיוֹת בְּבָתֵּיהֶן נֵר דָּלוּק בְּשַׁבָּת. אֲפִלּוּ אֵין לוֹ מַה יֹּאכַל שׁוֹאֵל עַל הַפְּתָחִים וְלוֹקֵחַ שֶׁמֶן וּמַדְלִיק אֶת הַנֵּר שֶׁזֶּה בִּכְלַל עֹנֶג שַׁבָּת. וְחַיָּב לְבָרֵךְ קֹדֶם הַדְלָקָה בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לְהַדְלִיק נֵר שֶׁל שַׁבָּת. כְּדֶרֶךְ שֶׁמְּבָרֵךְ עַל כָּל הַדְּבָרִים שֶׁהוּא חַיָּב בָּהֶם מִדִּבְרֵי סוֹפְרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחייב </strong>
 <strong> לברך. </strong> מש&quot;כ הגהמ&quot;י מד׳ ירושלמי פ׳ הרואה ועי׳ הקובץ. ואני לא מצאתי שם דבר לפנינו:</p>
               </div>
@@ -472,13 +546,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-4-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-5-4-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 5:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 5:4:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-5-4-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-5-4">Mishneh Torah, Sabbath 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִשֶּׁתִּשְׁקַע הַחַמָּה עַד שֶׁיֵּרָאוּ שְׁלֹשָׁה כּוֹכָבִים בֵּינוֹנִים הוּא הַזְּמַן הַנִּקְרָא בֵּין הַשְּׁמָשׁוֹת בְּכָל מָקוֹם. וְהוּא סָפֵק מִן הַיּוֹם סָפֵק מִן הַלַּיְלָה וְדָנִין בּוֹ לְהַחֲמִיר בְּכָל מָקוֹם. וּלְפִיכָךְ אֵין מַדְלִיקִין בּוֹ. וְהָעוֹשֶׂה מְלָאכָה בֵּין הַשְּׁמָשׁוֹת בְּעֶרֶב שַׁבָּת וּבְמוֹצָאֵי שַׁבָּת בְּשׁוֹגֵג חַיָּב חַטָּאת מִכָּל מָקוֹם. וְכוֹכָבִים אֵלּוּ לֹא גְּדוֹלִים הַנִּרְאִים בַּיּוֹם וְלֹא קְטַנִּים שֶׁאֵין נִרְאִין אֶלָּא בַּלַּיְלָה אֶלָּא בֵּינוֹנִים. וּמִשֶׁיֵּרָאוּ שְׁלֹשָׁה כּוֹכָבִים אֵלּוּ הַבֵּינוֹנִים הֲרֵי זֶה לַיְלָה וַדַּאי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[עי׳ </strong> לח&quot;מ ובימיו לא נדפס שטמ&quot;ק לכתובות ואנחנו זכינו לאורו. ושם דף י&quot;ג מביא דברי ר&quot;ת דבאמת לא חזרו כלל חכמי ישראל ע&quot;ש והובא בהגהות הגרע&quot;א ז&quot;ל בפסחים צ&quot;ד ב׳. ובזה א&quot;ש ד׳ רש&quot;י ספ&quot;ב דפסחים ע&quot;ש בהרא&quot;ש]:</p>
               </div>
             </div>
@@ -488,13 +567,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-12-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-5-12-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 5:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 5:12:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-5-12-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 5:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-5-12">Mishneh Torah, Sabbath 5:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לֹא יִתֵּן אָדָם כְּלִי מְנֻקָּב מָלֵא שֶׁמֶן עַל פִּי הַנֵּר בִּשְׁבִיל שֶׁיְּהֵא מְנַטֵּף. וְלֹא יְמַלֵּא קְעָרָה שֶׁמֶן וְיִתְּנֶנָּה בְּצַד הַנֵּר וְיִתֵּן רֹאשׁ הַפְּתִילָה לְתוֹכָהּ בִּשְׁבִיל שֶׁתְּהֵא שׁוֹאֶבֶת. גְּזֵרָה שֶׁמָּא יִקַּח מִן הַשֶּׁמֶן שֶׁבַּכְּלִי שֶׁהֲרֵי לֹא נִמְאַס בַּנֵּר. וְאָסוּר לֵהָנוֹת בְּשַׁבָּת מִן הַשֶּׁמֶן שֶׁהֻדְלַק בּוֹ וַאֲפִלּוּ כָּבְתָה הַנֵּר וַאֲפִלּוּ נָטַף מִן הַנֵּר מִפְּנֵי שֶׁהוּא מֻקְצֶה מֵחֲמַת אִסּוּר. וְאִם חִבֵּר הַכְּלִי שֶׁיֵּשׁ בּוֹ הַשֶּׁמֶן אֶל הַנֵּר בְּסִיד וּבְחַרְסִית וְכַיּוֹצֵא בָּהֶן מֻתָּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפני </strong>
 <strong> שהוא מוקצה. </strong> לפז&quot;ק דלא פריך מידי בפסחים י&quot;א א׳. די&quot;ל דהתם הוא איסור דאורייתא משא&quot;כ הכא במוקצה דרבנן לא חששו כ&quot;כ. ואולי י&quot;ל דבאיסורי שבת דחמירי שאני. עמש&quot;ל פ&quot;ב ממילה ה&quot;י בס&quot;ד. וי&quot;ל דפריך לריו&quot;ח בערובין פ&quot;ו ב׳. אולם דברי רבינו הם ע&quot;פ הירושלמי ע&quot;ש פ&quot;ב ה&quot;ד שמבואר הטעם משום מוקצה. וע&quot;ש בגה&quot;ש:</p>
               </div>
@@ -505,13 +589,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-21-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-5-21-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-5-21-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 5:21:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 5:21:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-5-21-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 5:21:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-5-21">Mishneh Torah, Sabbath 5:21</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹם הַכִּפּוּרִים שֶׁחָל לִהְיוֹת בְּעֶרֶב שַׁבָּת לֹא הָיוּ תּוֹקְעִין. חָל לִהְיוֹת בְּמוֹצָאֵי שַׁבָּת לֹא תּוֹקְעִין וְלֹא מַבְדִּילִין. יוֹם טוֹב שֶׁחָל לִהְיוֹת בְּעֶרֶב שַׁבָּת תּוֹקְעִין וְלֹא מַבְדִּילִין. חָל לִהְיוֹת לְאַחַר הַשַּׁבָּת מַבְדִּילִין וְלֹא תּוֹקְעִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[חל </strong>
 <strong> מו&quot;ש. </strong> עי׳ לח&quot;מ פ&quot;א מחו&quot;מ ה&quot;ז ד&quot;ה אבל]:</p>
               </div>
@@ -523,13 +612,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-6">Chapter 6</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-6-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-6-3-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-6-3-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 6:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 6:3:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-6-3-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-6-3">Mishneh Torah, Sabbath 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. נָכְרִי שֶׁהִדְלִיק אֶת הַנֵּר מִשְׁתַּמֵּשׁ לְאוֹרוֹ יִשְׂרָאֵל וְאִם בִּשְׁבִיל יִשְׂרָאֵל אָסוּר. עָשָׂה נָכְרִי כֶּבֶשׁ לֵירֵד בּוֹ מִן הַסְּפִינָה יֵרֵד אַחֲרָיו יִשְׂרָאֵל וְאִם בִּשְׁבִיל יִשְׂרָאֵל אָסוּר. מִלֵּא מַיִם לְהַשְׁקוֹת בְּהֶמְתּוֹ מַשְׁקֶה אַחֲרָיו יִשְׂרָאֵל וְאִם בִּשְׁבִיל יִשְׂרָאֵל אָסוּר. לִקֵּט עֲשָׂבִים לְהַאֲכִיל לִבְהֶמְתּוֹ מַנִּיחַ יִשְׂרָאֵל בְּהֶמְתּוֹ לֶאֱכל מֵהֶן. וְהוּא שֶׁלֹּא יְהֵא אוֹתוֹ הַנָּכְרִי מַכִּיר לְאוֹתוֹ יִשְׂרָאֵל שֶׁמָּא יַרְבֶּה בִּמְלַאכְתּוֹ בִּשְׁבִילוֹ וְנִמְצָא עוֹשֶׂה בִּשְׁבִיל יִשְׂרָאֵל. וְכֵן כָּל דָּבָר שֶׁאֶפְשָׁר לְהַרְבּוֹת בּוֹ לֹא יֵהָנֶה בּוֹ בְּשַׁבָּת אֶלָּא אִם כֵּן אֵינוֹ מַכִּירוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מה </strong> שתמה הכ&quot;מ ע&quot;ד הרמ&quot;ך דדברי רבינו מבוארים במשנה תמוה דבמשנה אינו מבואר כלל שאסור גם לישראל אחר רק תוס׳ כ&quot;כ ואולי ר&quot;ל דכמו כן יל&quot;פ גם בדעת רבינו אלא דלהלן בהלכה כ&quot;ג מבואר להדיא דאסור אף לאחר:</p>
               </div>
             </div>
@@ -539,13 +633,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-6-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-6-6-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-6-6-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 6:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 6:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-6-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 6:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-6-6">Mishneh Torah, Sabbath 6:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָכְרִי שֶׁהֵבִיא חֲלִילִין בְּשַׁבָּת לְמֵת אַף עַל פִּי שֶׁהֱבִיאָן מִצַּד הַחוֹמָה יַמְתִּין לְמוֹצָאֵי שַׁבָּת בִּכְדֵי שֶׁיָּבוֹא מִמָּקוֹם קָרוֹב וְאַחַר כָּךְ יִסְפְּדוּ בָּהֶן. שֶׁמָּא בַּלַּיְלָה הֱבִיאוּם מִמָּקוֹם אַחֵר עַד הַחוֹמָה וּבַבֹּקֶר נִכְנְסוּ בָּהֶן. וְאִם יָדַע בְּוַדַּאי שֶׁמִּמָּקוֹם פְּלוֹנִי הֱבִיאוּם בְּשַׁבָּת יַמְתִּין בִּכְדֵי שֶׁיָּבוֹאוּ מֵאוֹתוֹ מָקוֹם אַחַר הַשַּׁבָּת. וְהוּא שֶׁלֹּא יְהֵא הַדָּבָר בִּסְרַטְיָא גְּדוֹלָה כְּמוֹ שֶׁאָמַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עי׳ </strong> כ&quot;מ ובט&quot;ז סשכ&quot;ה סק&quot;ז הקשה זה מעצמו ותי׳ משום דשיל&quot;מ ואולי ס&quot;ל להרמ&quot;ך כתוס׳ ערובין מ&quot;ה ב׳. דבערוב הקילו ועי׳ ביצה ל&quot;ט א׳. והארכתי במקומו בס&quot;ד:</p>
               </div>
             </div>
@@ -556,13 +655,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-8">Chapter 8</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-1-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-8-1-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 8:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 8:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-8-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-8-1">Mishneh Torah, Sabbath 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַחוֹרֵשׁ כָּל שֶׁהוּא חַיָּב. הַמְנַכֵּשׁ בְּעִקְּרֵי הָאִילָנוֹת וְהַמְקַרְסֵם עֲשָׂבִים אוֹ הַמְזָרֵד אֶת הַשָּׂרִיגִים כְּדֵי לְיַפּוֹת אֶת הַקַּרְקַע הֲרֵי זֶה תּוֹלֶדֶת חוֹרֵשׁ וּמִשֶּׁיַּעֲשֶׂה כָּל שֶׁהוּא חַיָּב. וְכֵן הַמַּשְׁוֶה פְּנֵי הַשָּׂדֶה כְּגוֹן שֶׁהִשְׁפִּיל הַתֵּל וְרִדְּדוֹ אוֹ מִלֵּא הַגַּיְא חַיָּב מִשּׁוּם חוֹרֵשׁ. וְשִׁעוּרוֹ כָּל שֶׁהוּא. וְכֵן כָּל הַמַּשְׁוֶה גֻּמּוֹת שִׁעוּרוֹ כָּל שֶׁהוּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[בכ&quot;מ </strong> ואפשר שטעמו כו׳ עי׳ כ&quot;מ ספ&quot;ד מבכורות מה שרמז לת׳ הרשב&quot;א סש&quot;א. ומש&quot;כ א&quot;נ החמירו בספיקו ע&quot;ל פ&quot;ג ה&quot;י וכר&quot;מ וצ&quot;ע]:</p>
               </div>
             </div>
@@ -572,13 +676,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-3-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-8-3-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 8:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 8:3:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-8-3-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 8:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-8-3">Mishneh Torah, Sabbath 8:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹצֵר כִּגְרוֹגֶרֶת חַיָּב. וְתוֹלֵשׁ תּוֹלֶדֶת קוֹצֵר הוּא. וְכָל הָעוֹקֵר דָּבָר מִגִּדּוּלוֹ חַיָּב מִשּׁוּם קוֹצֵר. לְפִיכָךְ צְרוֹר שֶׁעָלוּ בּוֹ עֲשָׂבִים וּכְשׁוּת שֶׁעָלָה בַּסְּנֶה וַעֲשָׂבִים שֶׁצָּמְחוּ עַל גַּב הֶחָבִית. הַתּוֹלֵשׁ מֵהֶן חַיָּב שֶׁזֶּה הוּא מְקוֹם גִּדּוּלָן. אֲבָל הַתּוֹלֵשׁ מֵעָצִיץ שֶׁאֵינוֹ נָקוּב פָּטוּר מִפְּנֵי שֶׁאֵין זֶה מְקוֹם גִּדּוּלוֹ. וְעָצִיץ נָקוּב בִּכְדֵי שֹׁרֶשׁ קָטָן הֲרֵי הוּא כְּאֶרֶץ וְהַתּוֹלֵשׁ מִמֶּנּוּ חַיָּב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong>
 <strong> העוקר דבר מגידולו חייב משום קוצר. </strong> ע׳ מ&quot;מ ועש&quot;ה בגמ׳. וע׳ ירושלמי פ&quot;ז כ&quot;ח א׳ א׳. שם כל שאתה מבדילו מחיותו חייב משום קוצר:</p>
               </div>
@@ -589,13 +698,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-5-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-8-5-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 8:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 8:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-8-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 8:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-8-5">Mishneh Torah, Sabbath 8:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַתּוֹלֵשׁ עֻלְשִׁין הַמְזָרֵד זְרָדִין. אִם לַאֲכִילָה שִׁעוּרוֹ כִּגְרוֹגֶרֶת. וְאִם לִבְהֵמָה שִׁעוּרוֹ כִּמְלוֹא פִּי גְּדִי. וְאִם לְהַסָּקָה שִׁעוּרוֹ כְּדֵי לְבַשֵּׁל בֵּיצָה. הַמְעַמֵּר אֳכָלִין אִם לַאֲכִילָה שִׁעוּרוֹ כִּגְרוֹגֶרֶת. וְאִם עִמֵּר לִבְהֵמָה שִׁעוּרוֹ כִּמְלוֹא פִּי גְּדִי. וְאִם לְהַסָּקָה שִׁעוּרוֹ כְּדֵי לְבַשֵּׁל בֵּיצָה. וּבֵיצָה הָאֲמוּרָה בְּכָל מָקוֹם הִיא בֵּיצָה בֵּינוֹנִית שֶׁל תַּרְנְגוֹלִין. וְכָל מָקוֹם שֶׁנֶּאֱמַר כְּדֵי לְבַשֵּׁל בֵּיצָה הוּא כְּדֵי לְבַשֵּׁל כִּגְרוֹגֶרֶת מִבֵּיצָה וּגְרוֹגֶרֶת אֶחָד מִשְּׁלֹשָׁה בְּבֵיצָה. וְאֵין עִמּוּר אֶלָּא בְּגִדּוּלֵי קַרְקַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המעמר </strong>
 <strong> אוכלים. </strong> עי׳ מ&quot;מ ובש&quot;ק פ&quot;ז כ&quot;ט א׳ ד&quot;ה כו׳ ועי׳ כ&quot;מ מ&quot;ש בשם הרמ&quot;ך תמוה מאד ששתק לו דהא רבינו ז&quot;ל לשיטתי׳ שפסק כריב&quot;ב. ע&quot;ל פ&quot;א מערובין ה&quot;ט ושם הוא לדעת ר&quot;ש:</p>
               </div>
@@ -606,13 +720,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-15-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-15-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-8-15-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 8:15:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 8:15:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-8-15-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 8:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-8-15">Mishneh Torah, Sabbath 8:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַטּוֹחֵן כִּגְרוֹגֶרֶת חַיָּב. וְכָל הַשּׁוֹחֵק תַּבְלִין וְסַמָּנִין בְּמַכְתֶּשֶׁת הֲרֵי זֶה טוֹחֵן וְחַיָּב. הַמְחַתֵּךְ יָרָק תָּלוּשׁ הֲרֵי זֶה תּוֹלֶדֶת טוֹחֵן. וְכֵן הַנּוֹסֵר עֵצִים לֵהָנוֹת בִּנְסֹרֶת שֶׁלָּהֶן אוֹ הַשָּׁף לָשׁוֹן שֶׁל מַתֶּכֶת חַיָּב מִשֶּׁיָּשׁוּף כָּל שֶׁהוּא. אֲבָל הַמְחַתֵּךְ עֵצִים אֵינוֹ חַיָּב עַד שֶׁיְּדַקְדֵּק מֵהֶן כְּדֵי לְבַשֵּׁל כִּגְרוֹגֶרֶת מִבֵּיצָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong>
 <strong> השוחק תבלין. </strong> תלמוד ערוך הוא בירושלמי פ&quot;ז כ&quot;ט א׳:</p>
               </div>
@@ -623,13 +742,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-16-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-8-16-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-8-16-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 8:16:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 8:16:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-8-16-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 8:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-8-16">Mishneh Torah, Sabbath 8:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְרַקֵּד כִּגְרוֹגֶרֶת חַיָּב. הַלָּשׁ כִּגְרוֹגֶרֶת חַיָּב הַמְגַבֵּל אֶת הֶעָפָר הֲרֵי זֶה תּוֹלֶדֶת לָשׁ. וְכַמָּה שִׁעוּרוֹ כְּדֵי לַעֲשׂוֹת פִּי כּוּר שֶׁל צוֹרְפֵי זָהָב. וְאֵין גִּבּוּל בְּאֵפֶר וְלֹא בְּחוֹל הַגַּס וְלֹא בְּמֻרְסָן וְלֹא בְּכַיּוֹצֵא בָּהֶן. וְהַנּוֹתֵן זֶרַע שֻׁמְשְׁמִין אוֹ זֶרַע פִּשְׁתָּן וְכַיּוֹצֵא בָּהֶן בְּמַיִם חַיָּב מִשּׁוּם לָשׁ. מִפְּנֵי שֶׁהֵן מִתְעָרְבִין וְנִתְלִין זֶה בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong>
 <strong> גיבול באפר. </strong> עי׳ השגת הראב&quot;ד ונלה&quot;ר לשי׳ רבינו ממש&quot;ל פכ&quot;ג הי&quot;ד דאין מקדשין מי חטאת בשבת משום שבות ות&quot;ל דה&quot;ל מלאכה גמורה דהא קידוש מ&quot;ח היא נתינת אפר ע&quot;ג מים כמבואר בכ&quot;מ וא&quot;כ ה&quot;ל מלאכה גמורה א&quot;ו כדברי רבינו. אולם באמת לא הראינו נו&quot;כ מקורו ובל&quot;ס הוא באיזה ברייתא שאין אתנו ומיהו י&quot;ל בנקל בכ&quot;א:</p>
               </div>
@@ -641,13 +765,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-9">Chapter 9</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-9-8-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-9-8-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-9-8-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 9:8:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 9:8:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-9-8-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 9:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-9-8">Mishneh Torah, Sabbath 9:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנּוֹטֵל צִפָּרְנָיו אוֹ שְׂעָרוֹ אוֹ שְׂפָמוֹ אוֹ זְקָנוֹ הֲרֵי זֶה תּוֹלֶדֶת גּוֹזֵז וְחַיָּב. וְהוּא שֶׁיִּטּל בִּכְלִי. אֲבָל אִם נְטָלָן בְּיָדוֹ בֵּין לוֹ בֵּין לְאַחֵר פָּטוּר. וְכֵן הַחוֹתֵךְ יַבֶּלֶת מִגּוּפוֹ בֵּין בְּיָד בֵּין בִּכְלִי פָּטוּר בֵּין לוֹ בֵּין לְאַחֵר. וּמֻתָּר לַחְתֹּךְ יַבֶּלֶת בַּמִּקְדָּשׁ בְּיָד אֲבָל לֹא בִּכְלִי. וְאִם הָיְתָה יְבֵשָׁה חוֹתְכָהּ אַף בִּכְלִי וְעוֹבֵד עֲבוֹדָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong>
 <strong> היתה יבשה חותכה אף בכלי ועובד עבודה. </strong> מ׳ דמיירי רק בכהן העובד. ונראה שהוא עפ&quot;ד הירושלמי דא׳ שם משום קלקול פייסות ע&quot;ש בערובין ולא כדברי הש&quot;ך שם ועי׳ גר&quot;ש פסחים פ&quot;ו ה&quot;א:</p>
               </div>
@@ -658,13 +787,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-9">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-9-19-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-9-19-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-9-19-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 9:19:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 9:19:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-9-19-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 9:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-9-19">Mishneh Torah, Sabbath 9:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְדַקְדֵּק אֶת הַחוּטִין וּמַפְרִידָן בְּעֵת הָאֲרִיגָה הֲרֵי זֶה תּוֹלֶדֶת אוֹרֵג. וְכֵן הַקּוֹלֵעַ אֶת הַנִּימִין הֲרֵי זֶה תּוֹלֶדֶת אוֹרֵג וְשִׁעוּרוֹ מִשֶּׁיַּעֲשֶׂה קְלִיעָה בְּאֹרֶךְ שְׁתֵּי אֶצְבָּעוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong>
 <strong> הקולע. </strong> ירושלמי ספ&quot;י ר&quot;ח בשם ריו&quot;ח הקולע שלש נימין באדם חייב משום אורג. ועי׳ תוס׳ צ&quot;ד ב׳. ד&quot;ה וכו׳:</p>
               </div>
@@ -676,13 +810,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-10">Chapter 10</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-10-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-10-9-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-10-9-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 10:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 10:9:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-10-9-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 10:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-10-9">Mishneh Torah, Sabbath 10:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַתּוֹפֵר שְׁתֵּי תְּפִירוֹת חַיָּב. וְהוּא שֶׁקָּשַׁר רָאשֵׁי הַחוּט מִכָּאן וּמִכָּאן כְּדֵי שֶׁתַּעֲמֹד הַתְּפִירָה וְלֹא תִּשָּׁמֵט. אֲבָל אִם תָּפַר יֶתֶר עַל שְׁתֵּי תְּפִירוֹת אַף עַל פִּי שֶׁלֹּא קָשַׁר חַיָּב שֶׁהֲרֵי מִתְקַיֶּמֶת הַתְּפִירָה. וְהַמּוֹתֵחַ חוּט שֶׁל תְּפִירָה בְּשַׁבָּת חַיָּב מִפְּנֵי שֶׁהוּא מִצָּרְכֵי הַתְּפִירָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל </strong>
 <strong> אם תפר יותר מב׳ תפירות. </strong> לא הראו נו&quot;כ מקור לזה ועי׳ ח&quot;ס חא&quot;ח סי׳ א׳:</p>
               </div>
@@ -693,13 +832,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-10">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-10-22-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-10-22-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-10-22-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 10:22:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 10:22:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-10-22-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 10:22:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-10-22">Mishneh Torah, Sabbath 10:22</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְשַׁלֵּחַ כְּלָבִים כְּדֵי שֶׁיָּצוּדוּ צְבָאִים וְאַרְנָבִים וְכַיּוֹצֵא בָּהֶן וּבָרַח הַצְּבִי מִפְּנֵי הַכֶּלֶב וְהָיָה הוּא רוֹדֵף אַחַר הַצְּבִי אוֹ שֶׁעָמַד בְּפָנָיו וְהִבְהִילוֹ עַד שֶׁהִגִּיעַ הַכֶּלֶב וּתְפָשׂוֹ הֲרֵי זֶה תּוֹלֶדֶת הַצָּד וְחַיָּב. וְכֵן הָעוֹשֶׂה כַּדֶּרֶךְ הַזּוֹ בְּעוֹפוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והיה </strong>
 <strong> הוא רודף כו׳. </strong> עי׳ מג&quot;א סשט&quot;ז סק&quot;ד דבא&quot;א אינו חייב ויל&quot;ע דה&quot;ל ב׳ שעשאוה. וצ&quot;ל דאה&quot;נ רבינו לשיטתי׳ בפ&quot;א ה&quot;ז כסמ&quot;ש דלא כר&quot;ש ולר&quot;ש באמת פטור:</p>
               </div>
@@ -711,13 +855,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-11">Chapter 11</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-11-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-11-6-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-11-6-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 11:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 11:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-11-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 11:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-11-6">Mishneh Torah, Sabbath 11:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְפָרֵק דּוּכְסוּסְטוּס מֵעַל הַקְּלָף הֲרֵי זֶה תּוֹלֶדֶת מַפְשִׁיט וְחַיָּב. (הַמְפָרֵק מִן הָעוֹר כְּדֵי לַעֲשׂוֹת קָמֵעַ חַיָּב). הַדּוֹרֵס עַל הָעוֹר בְּרַגְלוֹ עַד שֶׁיִּתְקַשֶּׁה אוֹ הַמְרַכְּכוֹ בְּיָדוֹ וּמוֹשְׁכוֹ וּמַשְׁוֶה אוֹתוֹ כְּדֶרֶךְ שֶׁהָרַצְעָנִין עוֹשִׂין הֲרֵי זֶה תּוֹלֶדֶת מְעַבֵּד וְחַיָּב. הַמּוֹרֵט נוֹצָה מִן הָאֶבְרָה הֲרֵי זֶה תּוֹלֶדֶת מוֹחֵק וְחַיָּב. וְכֵן הַמְמָרֵחַ רְטִיָּה כָּל שֶׁהוּא אוֹ שַׁעֲוָה אוֹ זֶפֶת וְכַיּוֹצֵא בָּהֶן מִדְּבָרִים הַמִּתְמָרְחִין עַד שֶׁיַּחֲלִיק פְּנֵיהֶם חַיָּב מִשּׁוּם מוֹחֵק. וְכֵן הַשָּׁף בְּיָדוֹ עַל הָעוֹר הַמָּתוּחַ בֵּין הָעַמּוּדִים חַיָּב מִשּׁוּם מוֹחֵק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפרק </strong>
 <strong> דוכסוסטוס. </strong> לכאורה ה&quot;ל לחייב גם משום קורע ע&quot;ל פ&quot;ז הי&quot;א. ואולי מה שהיא מתולדתו מחובר ל&quot;ש משום קורע וצ&quot;ע:</p>
               </div>
@@ -728,13 +877,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-11-6-2" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-11-6-2" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-11-6-2" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 11:6:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 11:6:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-11-6-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 11:6:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-11-6">Mishneh Torah, Sabbath 11:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְפָרֵק דּוּכְסוּסְטוּס מֵעַל הַקְּלָף הֲרֵי זֶה תּוֹלֶדֶת מַפְשִׁיט וְחַיָּב. (הַמְפָרֵק מִן הָעוֹר כְּדֵי לַעֲשׂוֹת קָמֵעַ חַיָּב). הַדּוֹרֵס עַל הָעוֹר בְּרַגְלוֹ עַד שֶׁיִּתְקַשֶּׁה אוֹ הַמְרַכְּכוֹ בְּיָדוֹ וּמוֹשְׁכוֹ וּמַשְׁוֶה אוֹתוֹ כְּדֶרֶךְ שֶׁהָרַצְעָנִין עוֹשִׂין הֲרֵי זֶה תּוֹלֶדֶת מְעַבֵּד וְחַיָּב. הַמּוֹרֵט נוֹצָה מִן הָאֶבְרָה הֲרֵי זֶה תּוֹלֶדֶת מוֹחֵק וְחַיָּב. וְכֵן הַמְמָרֵחַ רְטִיָּה כָּל שֶׁהוּא אוֹ שַׁעֲוָה אוֹ זֶפֶת וְכַיּוֹצֵא בָּהֶן מִדְּבָרִים הַמִּתְמָרְחִין עַד שֶׁיַּחֲלִיק פְּנֵיהֶם חַיָּב מִשּׁוּם מוֹחֵק. וְכֵן הַשָּׁף בְּיָדוֹ עַל הָעוֹר הַמָּתוּחַ בֵּין הָעַמּוּדִים חַיָּב מִשּׁוּם מוֹחֵק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[או </strong>
 <strong> המרככו בידו.</strong> ע&quot;ל פכ&quot;ג ה&quot;י שכ׳ המרכך בשמן חייב וחידוש של&quot;כ כן ד&quot;ז]:</p>
               </div>
@@ -745,13 +899,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-11-16-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-11-16-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-11-16-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 11:16:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 11:16:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-11-16-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 11:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-11-16">Mishneh Torah, Sabbath 11:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכּוֹתֵב עַל בְּשָׂרוֹ חַיָּב מִפְּנֵי שֶׁהוּא עוֹר אַף עַל פִּי שֶׁחֲמִימוּת בְּשָׂרוֹ מַעֲבֶרֶת הַכְּתָב לְאַחַר זְמַן הֲרֵי זֶה דּוֹמֶה לִכְתָב שֶׁנִּמְחַק. אֲבָל הַמְשָׂרֵט עַל בְּשָׂרוֹ צוּרַת כְּתָב פָּטוּר. הַקּוֹרֵעַ עַל הָעוֹר כְּתַבְנִית כְּתָב חַיָּב מִשּׁוּם כּוֹתֵב. הָרוֹשֵׁם עַל הָעוֹר כְּתַבְנִית כְּתָב פָּטוּר. הַמַּעֲבִיר דְּיוֹ עַל גַּבֵּי סִקְרָא חַיָּב שְׁתַּיִם אַחַת מִשּׁוּם כּוֹתֵב וְאַחַת מִשּׁוּם מוֹחֵק. הֶעֱבִיר דְּיוֹ עַל גַּבֵּי דְּיוֹ וְסִקְרָא עַל גַּבֵּי סִקְרָא אוֹ סִקְרָא עַל גַּבֵּי דְּיוֹ פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המעביר </strong>
 <strong> דיו ע&quot;ג סקרא. </strong> עי׳ מ&quot;מ ואפ&quot;ל דר&quot;י א&quot;ל לר&quot;ל וכי מפני שאנו מדמין נ&quot;מ וע&quot;ש ברש&quot;י שכ׳ להביא חולין לעזרה ואזיל לשי׳ דס&quot;ל חובע&quot;ז דאורייתא. עי׳ נזיר כ&quot;ט א׳. ור&quot;ל ס&quot;ל דרבנן ע&quot;ש וא&quot;כ גם לרבינו לשי׳ דס&quot;ל דאו׳ עי׳ בפ&quot;ב משחיטה ע&quot;כ פסק שלא להביא ועי׳ שבת ע&quot;א א׳ מ&quot;ד בין לקולא בין לחומר׳ ע&quot;ש ברש&quot;י ושם לר&quot;ל קיימינן ויל&quot;ע בכ&quot;מ לענין ס׳ בהבאת קרבן. וע׳ ירוש׳ פי&quot;ב ה&quot;ד:</p>
               </div>
@@ -762,13 +921,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-11-17-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-11-17-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-11-17-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 11:17:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 11:17:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-11-17-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 11:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-11-17">Mishneh Torah, Sabbath 11:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רוֹשֵׁם תּוֹלֶדֶת כּוֹתֵב הוּא. כֵּיצַד. הָרוֹשֵׁם רְשָׁמִים וְצוּרוֹת בְּכֹתֶל וּבְשָׁשַׁר וְכַיּוֹצֵא בָּהֶן כְּדֶרֶךְ שֶׁהַצַּיָּרִין רוֹשְׁמִים הֲרֵי זֶה חַיָּב מִשּׁוּם כּוֹתֵב. וְכֵן הַמּוֹחֵק אֶת הָרִשּׁוּם לְתַקֵּן הֲרֵי זֶה תּוֹלֶדֶת מוֹחֵק וְחַיָּב. הַמְשַׂרְטֵט כְּדֵי לִכְתֹּב שְׁתֵּי אוֹתִיּוֹת תַּחַת אוֹתוֹ שִׂרְטוּט חַיָּב. חָרָשֵׁי הָעֵצִים שֶׁמַּעֲבִירִין חוּט שֶׁל סִקְרָא עַל גַּבֵּי הַקּוֹרָה כְּדֵי שֶׁיִּנְסֹר בְּשָׁוֶה הֲרֵי זֶה תּוֹלֶדֶת מְשַׂרְטֵט. וְכֵן הַגַּבָּלִים שֶׁעוֹשִׂים כֵּן בַּאֲבָנִים כְּדֵי שֶׁיְּפַצֵּל הָאֶבֶן בְּשָׁוֶה. וְאֶחָד הַמְשַׂרְטֵט בְּצֶבַע אוֹ בְּלֹא צֶבַע הֲרֵי זֶה חַיָּב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרושם </strong>
 <strong> כו׳ וצורות. </strong> ירושלמי פ&quot;א כ&quot;ט ב׳. ע&quot;ש להדיא כן:</p>
               </div>
@@ -780,13 +944,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-12">Chapter 12</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-12-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-12-3-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-12-3-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 12:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 12:3:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-12-3-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 12:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-12-3">Mishneh Torah, Sabbath 12:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּלֵקָה שֶׁנָּפְלָה בְּשַׁבָּת הַמְכַבֶּה אוֹתָהּ מִפְּנֵי אִבּוּד מָמוֹן חַיָּב שֶׁאֵין אִבּוּד מָמוֹן דּוֹחֶה שַׁבָּת אֶלָּא אִבּוּד נְפָשׁוֹת. לְפִיכָךְ יֵצְאוּ בְּנֵי אָדָם כְּדֵי שֶׁלֹּא יָמוּתוּ וְיַנִּיחוּ הָאֵשׁ תְּלַהֵט וַאֲפִלּוּ שׂוֹרֶפֶת כָּל דִּירָתוֹ כֻּלָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך </strong>
 <strong> יצאו ב&quot;א כדי שלא ימותו. </strong> כ&quot;כ רבינו להשמיענו שלא יטעו ח&quot;ו שלא לצאת בכדי שיוכלו לכבות משום פ&quot;נ שלהם וקרוב לזה עי׳ מנחות ס&quot;ד א׳ ויומא פ&quot;ד ב׳ וע&quot;ל פ&quot;ב הט&quot;ז קיי&quot;ל דלכתחלה ח&quot;ו לעשות כן והעושה כן ה&quot;ז מחלל שבת גמור בשאט נפש:</p>
               </div>
@@ -798,13 +967,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-14">Chapter 14</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-14-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-14-1-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-14-1-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 14:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 14:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-14-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 14:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-14-1">Mishneh Torah, Sabbath 14:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבַע רְשׁוּיוֹת לְשַׁבָּת. רְשׁוּת הַיָּחִיד וּרְשׁוּת הָרַבִּים וְכַרְמְלִית וּמְקוֹם פְּטוֹר. אֵי זוֹ הִיא רְשׁוּת הָרַבִּים מִדְבָּרוֹת וַעֲיָרוֹת וּשְׁוָקִים וּדְרָכִים הַמְפֻלָּשִׁין לָהֶן. וּבִלְבַד שֶׁיִּהְיֶה רֹחַב הַדֶּרֶךְ שֵׁשׁ עֶשְׂרֵה אַמָּה וְלֹא יִהְיֶה עָלָיו תִּקְרָה. וְאֵי זוֹ רְשׁוּת הַיָּחִיד תֵּל שֶׁגָּבוֹהַּ עֲשָׂרָה טְפָחִים וְרָחָב אַרְבָּעָה טְפָחִים עַל אַרְבָּעָה טְפָחִים אוֹ יֶתֶר עַל כֵּן. וְכֵן חָרִיץ שֶׁהוּא עָמֹק עֲשָׂרָה וְרָחָב אַרְבָּעָה עַל אַרְבָּעָה אוֹ יֶתֶר עַל כֵּן. וְכֵן מָקוֹם שֶׁהוּא מֻקָּף אַרְבַּע מְחִצּוֹת גָּבְהָן עֲשָׂרָה וּבֵינֵיהֶן אַרְבָּעָה עַל אַרְבָּעָה אוֹ יֶתֶר עַל כֵּן אֲפִלּוּ יֵשׁ בּוֹ כַּמָּה מִילִין אִם הֻקַּף לְדִירָה כְּגוֹן מְדִינָה הַמֻּקֶּפֶת חוֹמָה שֶׁדַּלְתוֹתֶיהָ נִנְעָלוֹת בַּלַּיְלָה וּמְבוֹאוֹת שֶׁיֵּשׁ לָהֶן שְׁלֹשָׁה כְּתָלִים וְלֶחִי בְּרוּחַ רְבִיעִית. וְכֵן חָצֵר וְדִיר וְסַהַר שֶׁהֻקְּפוּ לְדִירָה כֻּלָּן רְשׁוּת הַיָּחִיד גְּמוּרָה הֵן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא </strong> זכר רבינו דצריך ששים רבוא להיות רה&quot;ר. עי׳ מ&quot;מ וזה לי קרוב (לארבעה) [לארבעים] שנה הבאתי ראיה מהא דערובין ו׳ ב׳. ד&quot;א רבא שם על מחוזא אלמלי דלתותי׳ נעולות בלילה חייבין עליה משום רה&quot;ר ומחוזא בבבל היא והרי אמרו בברכות נ&quot;ט א׳. אין אוכלסא בבבל ואין אוכלסא פחות מס&quot;ר כמבואר בברכות נ&quot;ח א׳. ואיך משכ&quot;ל רה&quot;ר בבבל או דל&quot;צ תנאי זה לרה&quot;ר כשי׳ רבינו. והיא ראיה נפלאה תלי&quot;ת. וכאאמו&quot;ר הנז&quot;ל הקשה להסוברים דבזה&quot;ז ליכא רה&quot;ר. איך נפרש גזירה דשמא יעבירנו לבטל מצות שופר ולולב דאורייתא משום גזירה דרבנן ושפת&quot;י. ואחז&quot;ר הראני כ&quot;א הרה&quot;ג זצ&quot;ל שבס׳ גאון יעקב על ערובין שנדפס מחדש הביא ראייתו מערובין שם בשם מר&quot;ן הגר&quot;א ז&quot;ל ועד בשחק שחדשתי זאת בילדותי בטרם נדפס הגאון יעקב ושמחתי על חלקי שהייתי בר מזלי׳ בזה:</p>
               </div>
             </div>
@@ -814,13 +988,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-14">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-14-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-14-6-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-14-6-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 14:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 14:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-14-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 14:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-14-6">Mishneh Torah, Sabbath 14:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בּוֹר שֶׁבְּכַרְמְלִית הֲרֵי הוּא כְּכַרְמְלִית אֲפִלּוּ עָמֹק מֵאָה אַמָּה אִם אֵין בּוֹ אַרְבָּעָה. רְשׁוּת הָרַבִּים שֶׁהָיְתָה עָלֶיהָ תִּקְרָה אוֹ שֶׁאֵין בְּרָחְבָּהּ ט&quot;ז אַמָּה הֲרֵי הִיא כְּכַרְמְלִית. אִצְטַבָּא שֶׁבֵּין הָעַמּוּדִים הָעוֹמְדִים בִּרְשׁוּת הָרַבִּים הֲרֵי הִיא כְּכַרְמְלִית. וְצִדֵּי רְשׁוּת הָרַבִּים כְּכַרְמְלִית. אֲבָל בֵּין הָעַמּוּדִים הוֹאִיל וְרַבִּים דּוֹרְסִין בֵּינֵיהֶן הֲרֵי הֵן רְשׁוּת הָרַבִּים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אצטבא </strong>
 <strong> שבין העמודים. </strong> עי׳ מ&quot;מ ובש&quot;ק פ&quot;א ה&quot;א ד&quot;ה (סטטיות) [סמטיות]:</p>
               </div>
@@ -832,13 +1011,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-16">Chapter 16</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-16-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-16-10-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-16-10-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 16:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 16:10:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-16-10-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 16:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-16-10">Mishneh Torah, Sabbath 16:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רְחָבָה שֶׁאֲחוֹרֵי בָּתִּים יְתֵרָה עַל בֵּית סָאתַיִם אֵין מְטַלְטְלִין בָּהּ אֶלָּא בְּאַרְבַּע. וַאֲפִלּוּ הָיָה פֶּתַח הַבַּיִת פָּתוּחַ לְתוֹכָהּ. וְאִם פָּתַח הַפֶּתַח לְשָׁם וְאַחַר כָּךְ הִקִּיפָה הֲרֵי זוֹ כְּמֻקֶּפֶת לְדִירָה וּמֻתָּר לְטַלְטֵל בְּכֻלָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השמיט </strong> רבינו דאם הוא רובו אפילו פחות מב&quot;ס אסור לטלטל בכולו דהמיעוט שלא נזרע בטל לגבי רובא וה&quot;ל ככולו נזרע ונעשה יותר מב&quot;ס כדאי׳ בגמ׳ וצ&quot;ע. ועי׳ מג&quot;א סשס&quot;ח סקי&quot;א:</p>
               </div>
             </div>
@@ -848,13 +1032,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-16">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-16-19-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-16-19-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-16-19-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 16:19:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 16:19:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-16-19-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 16:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-16-19">Mishneh Torah, Sabbath 16:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">צוּרַת פֶּתַח הָאֲמוּרָה בְּכָל מָקוֹם הִיא אֲפִלּוּ קָנֶה וְכַיּוֹצֵא בּוֹ מִכָּאן וְקָנֶה מִכָּאן וְקָנֶה עַל גַּבֵּיהֶן. גֹּבַהּ שְׁנֵי הַלְּחָיַיִם עֲשָׂרָה טְפָחִים אוֹ יֶתֶר וְהַקָּנֶה וְכַיּוֹצֵא בּוֹ שֶׁעַל גַּבֵּיהֶן אַף עַל פִּי שֶׁאֵינוֹ נוֹגֵעַ בִּשְׁנֵי הַלְּחָיַיִם אֶלָּא יֵשׁ בֵּינֵיהֶן כַּמָּה אַמּוֹת הוֹאִיל וְגֹבַהּ הַלְּחָיַיִם עֲשָׂרָה הֲרֵי זוֹ צוּרַת פֶּתַח. וְצוּרַת פֶּתַח שֶׁאָמְרוּ צְרִיכָה שֶׁתְּהֵא בְּרִיאָה לְקַבֵּל דֶּלֶת אֲפִלּוּ דֶּלֶת שֶׁל קַשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[במ&quot;מ] </strong> ופסקו בהלכות כר&quot;נ. בגמ׳ מוכח דהלכה כר&quot;נ מהא דכיפה דבסמוך ה&quot;כ ע&quot;ש:</p>
               </div>
             </div>
@@ -864,13 +1053,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-16">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-16-22-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-16-22-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-16-22-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 16:22:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 16:22:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-16-22-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 16:22:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-16-22">Mishneh Torah, Sabbath 16:22</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְחִצָּה הָעוֹמֶדֶת מֵאֵלֶיהָ הֲרֵי זוֹ כְּשֵׁרָה. וּמְחִצָּה הַנַּעֲשֵׂית בְּשַׁבָּת הֲרֵי זוֹ מְחִצָּה. וְאִם נַעֲשֵׂית בִּשְׁגָגָה מֻתָּר לְטַלְטֵל בָּהּ בְּאוֹתָהּ שַׁבָּת. וְהוּא שֶׁתֵּעָשֶׂה שֶׁלֹּא לְדַעַת הַמְּטַלְטֵל. אֲבָל אִם נִתְכַּוֵּן אָדָם לְזוֹ הַמְּחִצָּה שֶׁתֵּעָשֶׂה בְּשַׁבָּת כְּדֵי לְטַלְטֵל בָּהּ אַף עַל פִּי שֶׁעָשָׂה אוֹתָהּ הָעוֹשֶׂה בִּשְׁגָגָה אָסוּר לְטַלְטֵל בָּהּ בְּאוֹתָהּ שַׁבָּת. וְכֵן אִם נַעֲשֵׂית בְּמֵזִיד אַף עַל פִּי שֶׁלֹּא נִתְכַּוֵּן זֶה לְטַלְטֵל בָּהּ הֲרֵי זֶה אָסוּר לְטַלְטֵל בָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והוא </strong>
 <strong> שלא נתכוון. </strong> עי׳ ירושלמי רפי&quot;ט ורפ&quot;ו דפסחים במה שנחלקו ר&quot;א ור&quot;ס. ופריך שם ויביאוהו ע&quot;י חולה כו׳ וצ&quot;ל משום מצוה שאני ואולי אפי׳ לדעת שרי דל&quot;ש לקנוס כשעושה משום מצוה. עי׳ גיטין נ&quot;ג א׳. וע&quot;כ אפשר אפילו לכתחילה ומכ&quot;ש במקום הקרבת קרבן וצע&quot;ק:</p>
               </div>
@@ -882,13 +1076,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-17">Chapter 17</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-17-8-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-17-8-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-17-8-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 17:8:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 17:8:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-17-8-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 17:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-17-8">Mishneh Torah, Sabbath 17:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חָצֵר שֶׁאָרְכָּהּ יֶתֶר עַל רָחְבָּהּ הֲרֵי הִיא כְּמָבוֹי וְנִתֶּרֶת בְּלֶחִי אוֹ קוֹרָה. וּמָבוֹי שֶׁאֵין בָּתִּים וַחֲצֵרוֹת פְּתוּחוֹת לְתוֹכוֹ כְּגוֹן שֶׁלֹּא הָיָה בּוֹ אֶלָּא בַּיִת אֶחָד אוֹ חָצֵר אַחַת וְכֵן מָבוֹי שֶׁאֵין בְּאָרְכּוֹ אַרְבַּע אַמּוֹת אֵינוֹ נִתָּר אֶלָּא בִּשְׁנֵי לְחָיַיִם אוֹ בְּפַס אַרְבָּעָה וּמַשֶּׁהוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[אלא </strong>
 <strong> בב׳ לחיים או בפס ד׳ ומשהו. </strong> צ&quot;ל אלא בב׳ לחיים ומשהו או בפס ד׳ ע&quot;ל ה&quot;ז כנ&quot;ל] [ומ&quot;ש הכ&quot;מ ה&quot;ז וכ&quot;כ הרשב&quot;א. ע&quot;ש בתשובה סי׳ תר&quot;א שלא כ׳ כלל ד&quot;ז. ונ&quot;ל שצ&quot;ל &quot;והטעם&quot; והכ&quot;מ הביא רק דהרשב&quot;א ס&quot;ל כשי׳ רבינו ומש&quot;כ והטעם הוא לפרש כוונת המאמר אין מבוי ניתר בלו&quot;ק כו׳ דאם אין בתים וחצרות פתוחין לתוכו דינו כחצר. ולא נימא דבעי צוה&quot;פ כמבוי מפולש וזה מ׳ שם ברשב&quot;א ודו&quot;ק]:</p>
               </div>
@@ -899,13 +1098,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-17">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-17-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-17-9-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-17-9-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 17:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 17:9:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-17-9-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 17:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-17-9">Mishneh Torah, Sabbath 17:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מָבוֹי שֶׁאֵין בְּרָחְבּוֹ שְׁלֹשָׁה טְפָחִים אֵינוֹ צָרִיךְ לֹא לֶחִי וְלֹא קוֹרָה וּמֻתָּר לְטַלְטֵל בְּכֻלּוֹ. שֶׁכָּל פָּחוֹת מִשְּׁלֹשָׁה הֲרֵי הוּא כְּלָבוּד. מָבוֹי שֶׁהֶכְשֵׁרוֹ בְּקוֹרָה אַף עַל פִּי שֶׁמֻּתָּר לְטַלְטֵל בְּכֻלּוֹ כִּרְשׁוּת הַיָּחִיד הַזּוֹרֵק מִתּוֹכוֹ לִרְשׁוּת הָרַבִּים אוֹ מֵרְשׁוּת הָרַבִּים לְתוֹכוֹ פָּטוּר. שֶׁהַקּוֹרָה מִשּׁוּם הֶכֵּר הִיא עֲשׂוּיָה. אֲבָל אִם הֶכְשֵׁרוֹ בְּלֶחִי הַזּוֹרֵק מִתּוֹכוֹ לִרְשׁוּת הָרַבִּים אוֹ מֵרְשׁוּת הָרַבִּים לְתוֹכוֹ חַיָּב שֶׁהַלֶּחִי הֲרֵי הוּא כִּמְחִצָּה בְּרוּחַ רְבִיעִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[אם </strong>
 <strong> אין בפתחו ג&quot;ט. </strong> פי׳ שהוא מתקצר הרוחב וכלה לצד רוח רביעית לר&quot;ה עד פחות מג׳ אצ&quot;כ אבל בג׳ צריך לחי או קורה]:</p>
               </div>
@@ -916,13 +1120,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-17">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-17-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-17-12-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-17-12-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 17:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 17:12:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-17-12-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 17:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-17-12">Mishneh Torah, Sabbath 17:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּכּל עוֹשִׂין לְחָיַיִם אֲפִלּוּ בְּדָבָר שֶׁיֵּשׁ בּוֹ רוּחַ חַיִּים וַאֲפִלּוּ בְּאִסּוּרֵי הֲנָיָה. עֲבוֹדָה זָרָה עַצְמָהּ אוֹ אֲשֵׁרָה שֶׁעָשָׂה אוֹתָהּ לֶחִי כָּשֵׁר שֶׁהַלֶּחִי עָבְיוֹ כָּל שֶׁהוּא. גֹּבַהּ הַלֶּחִי אֵין פָּחוֹת מֵעֲשָׂרָה טְפָחִים רָחְבּוֹ וְעָבְיוֹ כָּל שֶׁהוּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפילו </strong>
 <strong> באיסורי הנייה ע&quot;ז עצמה. </strong> ירושלמי פ&quot;ג ה׳ א׳. וע&quot;ש בש&quot;ק [מ&quot;ש המ&quot;מ בסוף ההלכה בשם הרשב&quot;א כתבו כבר רבינו עצמו בהכ&quot;ב]:</p>
               </div>
@@ -933,13 +1142,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-17">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-17-25-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-17-25-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-17-25-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 17:25:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 17:25:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-17-25-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 17:25:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-17-25">Mishneh Torah, Sabbath 17:25</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן שְׁתֵּי קוֹרוֹת הַמַּתְאִימוֹת לֹא בָּזוֹ כְּדֵי לְקַבֵּל אָרִיחַ וְלֹא בָּזוֹ כְּדֵי לְקַבֵּל אָרִיחַ אִם יֵשׁ בִּשְׁתֵּיהֶן כְּדֵי לְקַבֵּל אָרִיחַ אֵינוֹ צָרִיךְ לְהָבִיא קוֹרָה אַחֶרֶת. הָיְתָה אַחַת לְמַטָּה וְאַחַת לְמַעְלָה רוֹאִין אֶת הָעֶלְיוֹנָה כְּאִלּוּ הִיא לְמַטָּה וְהַתַּחְתּוֹנָה כְּאִלּוּ הִיא לְמַעְלָה. וּבִלְבַד שֶׁלֹּא תִּהְיֶה עֶלְיוֹנָה לְמַעְלָה מֵעֶשְׂרִים וְלֹא תַּחְתּוֹנָה לְמַטָּה מֵעֲשָׂרָה. וְלֹא יִהְיֶה בֵּינֵיהֶן שְׁלֹשָׁה טְפָחִים כְּשֶׁרוֹאִין אוֹתָהּ שֶׁיָּרְדָה זוֹ וְעָלְתָה זוֹ בְּכַוָּנָה עַד שֶׁיֵּעָשׂוּ זוֹ בְּצַד זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה </strong>
 <strong> א׳ למטה. </strong> עי׳ ש&quot;ק פ&quot;א דערובין ה&quot;ג:</p>
               </div>
@@ -951,13 +1165,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-sabbath-text-18">Chapter 18</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-1-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-18-1-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 18:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 18:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-18-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 18:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-18-1">Mishneh Torah, Sabbath 18:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹצִיא דָּבָר מֵרְשׁוּת הַיָּחִיד לִרְשׁוּת הרבִּים אוֹ מֵרְשׁוּת הָרַבִּים לִרְשׁוּת הַיָּחִיד אֵינוֹ חַיָּב עַד שֶׁיּוֹצִיא מִמֶּנּוּ שִׁעוּר שֶׁמּוֹעִיל כְּלוּם. וְאֵלּוּ הֵן שִׁעוּרֵי הַהוֹצָאָה. הַמּוֹצִיא אָכְלֵי אָדָם כִּגְרוֹגֶרֶת. וּמִצְטָרְפִין זֶה עִם זֶה. וְהוּא שֶׁיִּהְיֶה כִּגְרוֹגֶרֶת מִן הָאֹכֶל עַצְמוֹ חוּץ מִן הַקְּלִפִּים וְהַגַּרְעִינִין וְהָעֵקְצִין וְהַסֻּבִּין וְהַמֻּרְסָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מה </strong> שחקר המל&quot;מ. אם ח&quot;ש אסור בשאר איסורי תורה. נ&quot;ל דראייתו משבת ע&quot;ד אינו מוכרחת לומר דשם הוא מדאורייתא עש&quot;ה וע׳ פי׳ התוספתא עטור בכורים פ&quot;ד דביצה שה&quot;ר משם דאינו אלא משום שבות. אולם בהגהותי לא&quot;ח סש&quot;מ כ׳ בס&quot;ד דט&quot;ס הוא בתוספתא וא&quot;ר כלל וכמש&quot;כ בתשובה בס&quot;ד להוכיח ממקומות רבות בדחז&quot;ל דאף בכל אסו&quot;ת ח&quot;ש אסור מדאור׳ ואכמ&quot;ל:</p>
               </div>
             </div>
@@ -967,13 +1186,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-18">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-2-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-18-2-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 18:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 18:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-18-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 18:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-18-2">Mishneh Torah, Sabbath 18:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יַיִן כְּדֵי רֹבַע רְבִיעִית וְאִם הָיָה קָרוּשׁ בִּכְזַיִת. חֲלֵב בְּהֵמָה טְהוֹרָה כְּדֵי גְּמִיעָה וַחֲלֵב טְמֵאָה כְּדֵי לִכְחל עַיִן אַחַת. חֲלֵב אִשָּׁה וְלֹבֶן בֵּיצָה כְּדֵי לִתֵּן בִּמְשִׁיפָה. שֶׁמֶן כְּדֵי לָסוּךְ אֶצְבַּע קְטַנָּה שֶׁל רֶגֶל קָטָן בֶּן יוֹמוֹ. טַל כְּדֵי לָשׁוּף אֶת הַקִּילוֹרִין. וְקִילוֹר כְּדֵי לָשׁוּף בַּמַּיִם. וּמַיִם כְּדֵי לִרְחֹץ פְּנֵי מְדוּכָה. דְּבַשׁ כְּדֵי לִתֵּן עַל רֹאשׁ הַכָּתִית. דָּם וּשְׁאָר כָּל הַמַּשְׁקִין וְכָל הַשּׁוֹפְכִין כְּדֵי רְבִיעִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחלב </strong>
 <strong> טמאה כדי לכחול עין א׳. </strong> ירושלמי שם:</p>
               </div>
@@ -984,13 +1208,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-18">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-2-2" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-2-2" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-18-2-2" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 18:2:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 18:2:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-18-2-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 18:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-18-2">Mishneh Torah, Sabbath 18:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יַיִן כְּדֵי רֹבַע רְבִיעִית וְאִם הָיָה קָרוּשׁ בִּכְזַיִת. חֲלֵב בְּהֵמָה טְהוֹרָה כְּדֵי גְּמִיעָה וַחֲלֵב טְמֵאָה כְּדֵי לִכְחל עַיִן אַחַת. חֲלֵב אִשָּׁה וְלֹבֶן בֵּיצָה כְּדֵי לִתֵּן בִּמְשִׁיפָה. שֶׁמֶן כְּדֵי לָסוּךְ אֶצְבַּע קְטַנָּה שֶׁל רֶגֶל קָטָן בֶּן יוֹמוֹ. טַל כְּדֵי לָשׁוּף אֶת הַקִּילוֹרִין. וְקִילוֹר כְּדֵי לָשׁוּף בַּמַּיִם. וּמַיִם כְּדֵי לִרְחֹץ פְּנֵי מְדוּכָה. דְּבַשׁ כְּדֵי לִתֵּן עַל רֹאשׁ הַכָּתִית. דָּם וּשְׁאָר כָּל הַמַּשְׁקִין וְכָל הַשּׁוֹפְכִין כְּדֵי רְבִיעִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[כדי </strong>
 <strong> לסוך אצבע קטנה. </strong> עי׳ רש&quot;י ע&quot;ז ב׳ ד&quot;ה אבר]:</p>
               </div>
@@ -1001,13 +1230,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-18">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-7-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-18-7-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 18:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 18:7:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-18-7-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 18:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-18-7">Mishneh Torah, Sabbath 18:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹצִיא גַּרְעִינִין. אִם לַאֲכִילָה חָמֵשׁ. וְאִם לְהַסָּקָה הֲרֵי הֵן כְּעֵצִים. וְאִם לְחֶשְׁבּוֹן שְׁתַּיִם. וְאִם לִזְרִיעָה שְׁתַּיִם. הַמּוֹצִיא אֵזוֹב לְאֳכָלִים כִּגְרוֹגֶרֶת. לִבְהֵמָה כִּמְלֹא פִּי גְּדִי. לְעֵצִים כְּשִׁעוּר הָעֵצִים. לַהֲזָיָה כְּשִׁעוּר הֲזָיָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המוציא </strong>
 <strong> אזוב. </strong> ירושלמי פ&quot;ח ה&quot;ב וכבר העיר בזה הש&quot;ק:</p>
               </div>
@@ -1018,13 +1252,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sabbath-text-18">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-sabbath-18-9-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-sabbath-18-9-1" data-source-ref="Benei Binyamin on Mishneh Torah, Sabbath 18:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sabbath 18:9:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sabbath-18-9-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sabbath 18:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sabbath/#mishneh-torah-sabbath-18-9">Mishneh Torah, Sabbath 18:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹצִיא דְּיוֹ עַל הַקֻּלְמוֹס שִׁעוּרוֹ כְּדֵי לִכְתֹּב מִמֶּנּוּ שְׁתֵּי אוֹתִיּוֹת. אֲבָל אִם הוֹצִיא הַדְּיוֹ בִּפְנֵי עַצְמוֹ אוֹ בְּקֶסֶת צָרִיךְ שֶׁיִּהְיֶה בּוֹ יֶתֶר עַל זֶה כְּדֵי שֶׁיַּעֲלֶה מִמֶּנּוּ עַל הַקֻּלְמוֹס כְּדֵי לִכְתֹּב שְׁתֵּי אוֹתִיּוֹת. הָיָה בַּקֶּסֶת כְּדֵי אוֹת אַחַת וּבַקֻּלְמוֹס כְּדֵי אוֹת אַחַת אוֹ בַּדְּיוֹ לְבַדּוֹ כְּדֵי אוֹת אַחַת וּבַקֻּלְמוֹס כְּדֵי אוֹת אַחַת הֲרֵי זֶה סָפֵק. הוֹצִיא שְׁתֵּי אוֹתִיּוֹת וּכְתָבָן כְּשֶׁהוּא מְהַלֵּךְ חַיָּב. כְּתִיבָתָן זוֹ הִיא הַנָּחָתָן. הוֹצִיא אוֹת אַחַת וּכְתָבָהּ וְחָזַר וְהוֹצִיא אוֹת שְׁנִיָּה וּכְתָבָהּ פָּטוּר. שֶׁכְּבָר חָסְרָה הָאוֹת הָרִאשׁוֹנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עי׳ </strong> מ&quot;מ מש&quot;כ לרש&quot;י דרך אחרת. אולם רבינו כ&quot;כ ע&quot;פ הירושלמי כמש&quot;ש הש&quot;ק:</p>
               </div>
             </div>
@@ -1035,721 +1274,60 @@
             </nav>
           </section>
         <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-sabbath.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-sabbath-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/benei-binyamin-on-mishneh-torah-sabbath.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
-      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-sabbath.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-sabbath.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-sabbath.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
-  <script>
-    (async () => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const configNode = document.querySelector("[data-lexical-config]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const chunkPromises = new Map();
-      const sourceRows = new Map();
-      let manifestPromise = null;
-      const hud = document.querySelector("[data-lexical-hud]");
-      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
-      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
-      const localSourceUrlMap = {
-        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
-        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
-        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
-        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
-        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
-        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
-      };
-      const resolveSourceUrl = (url) => {
-        const raw = String(url || "").trim();
-        if (!raw) return "";
-        if (/^(https?:|mailto:)/i.test(raw)) return raw;
-        const mapped = localSourceUrlMap[raw];
-        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
-        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
-        return "";
-      };
-      const fetchJson = async (url, base = document.baseURI) => {
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const loadOccurrences = async () => {
-        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
-        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
-        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
-        return occurrences;
-      };
-      const loadManifest = async () => {
-        if (!lexicalConfig.manifest_url) return null;
-        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
-        return manifestPromise;
-      };
-      const resolveSourceRows = (ids, inlineRows) => {
-        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
-        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
-      };
-      const cacheChunk = (chunk) => {
-        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
-        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
-        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
-          lexiconEntries.set(entry.entry_id, {
-            ...entry,
-            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
-            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
-          });
-        });
-        return chunk;
-      };
-      const loadChunk = async (chunkId) => {
-        if (!chunkId) return null;
-        if (!chunkPromises.has(chunkId)) {
-          chunkPromises.set(chunkId, (async () => {
-            const manifest = await loadManifest();
-            if (!manifest) return null;
-            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
-            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
-            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
-            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
-          })());
-        }
-        return chunkPromises.get(chunkId);
-      };
-      const loadTokenRow = async (tokenIndexId) => {
-        if (!tokenIndexId) return {};
-        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
-        const manifest = await loadManifest();
-        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
-        if (chunkId) await loadChunk(chunkId);
-        return tokenRows.get(tokenIndexId) || {};
-      };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalEntry = "";
-        span.dataset.lexicalStatus = "pending";
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        return span;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      const loadedOccurrences = await loadOccurrences();
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
-        });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
-      let activeHudButton = null;
-      if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const positionHudNearButton = (button) => {
-        if (!button || hud.hidden) return;
-        const rect = button.getBoundingClientRect();
-        const margin = 12;
-        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
-        hud.style.width = width + "px";
-        const preferredLeft = rect.right - width;
-        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
-        const below = window.innerHeight - rect.bottom - margin;
-        const above = rect.top - margin;
-        const openAbove = below < 280 && above > below;
-        const available = Math.max(220, (openAbove ? above : below) - margin);
-        hud.style.maxHeight = Math.min(560, available) + "px";
-        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
-        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
-        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
-        hud.style.left = left + "px";
-        hud.style.top = top + "px";
-      };
-      const scheduleHudPosition = () => {
-        if (!activeHudButton || hud.hidden) return;
-        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
-      };
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const setRowHidden = (root, selector, hidden) => {
-        const row = root.querySelector(selector);
-        if (row) row.hidden = Boolean(hidden);
-      };
-      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
-      const cleanStrictRenderings = (values) => {
-        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
-        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
-        return [...new Set(raw.filter((value) => {
-          if (value.length > 64) return false;
-          if (/[()]/.test(value)) return false;
-          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
-          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
-          return true;
-        }))];
-      };
-      const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
-      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
-      const isAramaicView = (view) => {
-        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
-        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
-        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
-      };
-      const strictEntriesForView = (view) => {
-        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
-        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
-        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
-          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
-          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
-        });
-      };
-      const getStrictBuckets = (view) => {
-        const topLevel = getStrictRenderings(view);
-        const strictEntries = strictEntriesForView(view);
-        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
-        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
-      };
-      const strictEntryKeys = (view) => {
-        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
-      };
-      const appendRenderings = (node, values) => {
-        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
-        if (!filtered.length) { node.append("N/A"); return; }
-        if (filtered.length === 1) { node.append(filtered[0]); return; }
-        const ul = document.createElement("ul");
-        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderBreakdown = (root, view) => {
-        const node = root.querySelector("[data-hud-breakdown]");
-        if (!node) return;
-        node.replaceChildren();
-        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
-        if (!rows.length) { node.textContent = ""; return; }
-        const list = document.createElement("div");
-        list.className = "breakdown-list";
-        rows.forEach((row) => {
-          const section = document.createElement("section");
-          section.className = "breakdown-row";
-          const head = document.createElement("p");
-          const hebrew = document.createElement("strong");
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
-          head.appendChild(hebrew);
-          section.appendChild(head);
-          const renderings = document.createElement("div");
-          appendRenderings(renderings, row.strict_renderings || []);
-          section.appendChild(renderings);
-          list.appendChild(section);
-        });
-        node.appendChild(list);
-      };
-      const isRelatedEntry = (entry) => {
-        const relation = String(entry.relation_label || "").toLowerCase();
-        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
-      };
-      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
-      const isNoisyAlternateEntry = (entry) => {
-        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
-        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
-      };
-      const renderEntryList = (entries, roleLabel) => {
-        const list = document.createElement("div");
-        list.className = "lexical-entry-list";
-        const groupedEntries = new Map();
-        entries.forEach((entry) => {
-          const spelling = entry.lemma || entry.match_key || "N/A";
-          const key = `${entry.context_role || "entry"}|${spelling}`;
-          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
-          const group = groupedEntries.get(key);
-          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
-        });
-        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
-        sorted.forEach((entry) => {
-          const card = document.createElement("section");
-          card.className = "lexical-entry";
-          const title = document.createElement("h3");
-          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
-          title.append(role, ": ");
-          const spelling = document.createElement("span");
-          spelling.className = "entry-hebrew";
-          spelling.lang = "he";
-          spelling.dir = "rtl";
-          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
-          title.appendChild(spelling);
-          const meta = document.createElement("p");
-          meta.className = "entry-meta";
-          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
-          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
-          const renderings = document.createElement("div");
-          const renderLabel = document.createElement("p");
-          renderLabel.className = "entry-label";
-          renderLabel.textContent = "Strict renderings";
-          renderings.appendChild(renderLabel);
-          appendRenderings(renderings, entry.strict_renderings || []);
-          card.append(title, meta, renderings);
-          list.appendChild(card);
-        });
-        return list;
-      };
-      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const sourceRowsByKey = (view) => {
-        const map = new Map();
-        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
-        return map;
-      };
-      const sourceRowsForEntry = (view, entry) => {
-        const map = sourceRowsByKey(view);
-        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
-        return row ? [row] : [];
-      };
-      const cleanTransliteration = (value) => {
-        const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
-      };
-      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
-      const sourceQualityScore = (rows) => {
-        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
-        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
-        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
-        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
-        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
-        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
-        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
-        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
-        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
-        return { delta: -10, reason: "missing source row" };
-      };
-      const parserScore = (view) => {
-        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
-        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
-        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
-        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
-        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
-        return { delta: 0, reason: "" };
-      };
-      const applyDisplayBoost = (status, rawScore, view) => {
-        return { score: rawScore, reasons: [] };
-      };
-      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
-        const reasons = [];
-        let score = 0;
-        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
-        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
-        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
-        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
-        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else { score = 84; reasons.push("strict Hebrew row"); }
-        const rendered = cleanStrictRenderings(renderings || []);
-        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
-        const sourceQuality = sourceQualityScore(rows);
-        score += sourceQuality.delta;
-        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
-        const view = evidence.view || {};
-        const entry = evidence.entry || {};
-        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
-        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
-        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
-        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
-        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
-        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
-        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
-        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
-        const parser = parserScore(view);
-        score += evidence.surfaceClaim ? parser.delta : 0;
-        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
-        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
-        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
-        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
-        const display = applyDisplayBoost(status, rawScore, view);
-        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
-      };
-      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
-      const uniqueClaims = (claims) => {
-        const seen = new Set();
-        return cleanValues(claims).filter((claim) => {
-          const key = claimRowKey(claim);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
-        const sourceRows = cleanValues(rows);
-        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
-        const cleanRenderings = cleanStrictRenderings(renderings || []);
-        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
-        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
-      };
-      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
-      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
-      const displayLicense = (row) => {
-        const license = String(row && row.license || "").trim();
-        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
-        return license || "N/A";
-      };
-      const sourceSummary = (rows) => {
-        const cleanRows = cleanValues(rows);
-        if (!cleanRows.length) return null;
-        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
-        const licenses = uniqueValues(cleanRows.map(displayLicense));
-        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
-        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
-      };
-      const DISPLAY_THRESHOLD = 50;
-      const MAX_VISIBLE_CLAIMS = 5;
-      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
-      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
-      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
-      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
-      const appendClaimCard = (list, claim) => {
-        const card = document.createElement("section");
-        card.className = "claim-row";
-        const head = document.createElement("div");
-        head.className = "claim-row-head";
-        const badge = document.createElement("span");
-        badge.className = "claim-status";
-        const confidence = claimConfidence(claim);
-        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
-        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
-        const hebrew = document.createElement("strong");
-        hebrew.className = "claim-hebrew";
-        hebrew.lang = "he";
-        hebrew.dir = "rtl";
-        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(badge, hebrew);
-        card.appendChild(head);
-        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
-        const renderings = document.createElement("p");
-        renderings.className = "claim-renderings";
-        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
-        card.appendChild(renderings);
-        const source = sourceSummary(claim.rows);
-        if (source) {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = `Source: ${source.source}`;
-          const licenseLine = document.createElement("p");
-          licenseLine.className = "claim-license";
-          licenseLine.textContent = `License: ${source.license}`;
-          card.append(sourceLine, licenseLine);
-        } else if (claim.status === "Caution") {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = "Source: metadata incomplete";
-          card.appendChild(sourceLine);
-        }
-        list.appendChild(card);
-      };
-      const appendClaimsUnderDetails = (parent, label, claims) => {
-        if (!claims.length) return;
-        const details = document.createElement("details");
-        details.className = "other-entries";
-        const summary = document.createElement("summary");
-        summary.textContent = label;
-        const box = document.createElement("div");
-        box.className = "claim-row-list";
-        claims.forEach((claim) => appendClaimCard(box, claim));
-        details.append(summary, box);
-        parent.appendChild(details);
-      };
-      const appendClaimRows = (node, claims) => {
-        if (!node) return;
-        node.replaceChildren();
-        const rows = sortClaimsForDisplay(claims);
-        if (!rows.length) { node.textContent = "N/A"; return; }
-        const list = document.createElement("div");
-        list.className = "claim-row-list";
-        const displayRows = rows.filter(isDisplayableClaim);
-        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
-        const visibleRows = displayRows.length ? displayRows : lowRows;
-        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
-        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
-        if (!visibleRows.length) { node.textContent = "N/A"; return; }
-        node.appendChild(list);
-      };
-      const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [] };
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) {
-          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
-          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
-          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
-        }
-        strictEntriesForView(view).forEach((entry) => {
-          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
-          const bucket = strictBuckets[bucketName] || [];
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (!renderings.length) return;
-          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
-        });
-        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
-          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-        }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
-      };
-      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
-      const uniqueSourceGroups = (groups) => {
-        const seen = new Set();
-        return cleanValues(groups).filter((group) => {
-          if (!group.rows.length) return false;
-          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
-      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
-      };
-      const appendSecondarySources = (container, view, entries, label) => {
-        const groups = sourceGroupsForEntries(view, entries);
-        if (!groups.length) return;
-        const sourceDetails = document.createElement("details");
-        sourceDetails.className = "source-details";
-        const sourceSummary = document.createElement("summary");
-        sourceSummary.textContent = label;
-        const sourceBox = document.createElement("div");
-        sourceDetails.append(sourceSummary, sourceBox);
-        renderSourceGroups(sourceBox, groups);
-        container.appendChild(sourceDetails);
-      };
-      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
-        const potentialNode = root.querySelector("[data-hud-potential]");
-        const relatedNode = root.querySelector("[data-hud-related]");
-        const cautionNode = root.querySelector("[data-hud-caution]");
-        const result = { potential: [], related: [], caution: [] };
-        if (!potentialNode || !relatedNode || !cautionNode) return result;
-        potentialNode.replaceChildren();
-        relatedNode.replaceChildren();
-        cautionNode.replaceChildren();
-        if (!hasLexicalEntry) {
-          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
-          setRowHidden(root, "[data-hud-potential-row]", false);
-          setRowHidden(root, "[data-hud-related-row]", true);
-          setRowHidden(root, "[data-hud-caution-row]", true);
-          appendClaimRows(potentialNode, result.potential);
-          return result;
-        }
-        const entries = cleanValues(view.possible_entries);
-        const strictKeys = strictEntryKeys(view);
-        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
-        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
-        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
-        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
-        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
-        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
-        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
-        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
-        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
-        result.potential.push(...keepForDisplay(visiblePotentialClaims));
-        result.related.push(...keepForDisplay(visibleRelatedClaims));
-        result.caution.push(...keepForDisplay(cautionClaims));
-        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
-        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
-        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
-        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
-        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
-        if (result.related.length) appendClaimRows(relatedNode, result.related);
-        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
-        return result;
-      };
-      const renderSourceRow = (row) => {
-        const title = document.createElement("p");
-        const strong = document.createElement("strong");
-        const sourceHref = resolveSourceUrl(row.source_url);
-        if (sourceHref) {
-          const link = document.createElement("a");
-          link.href = sourceHref;
-          link.textContent = row.source_name || "Source";
-          strong.appendChild(link);
-        } else {
-          strong.textContent = row.source_name || "Source";
-        }
-        title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
-        return title;
-      };
-      const renderSourceGroups = (sourceBox, groups) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        const sourceGroups = cleanValues(groups);
-        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceGroups.forEach((group) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const claim = document.createElement("p");
-          claim.className = "source-claim";
-          claim.append("For ");
-          const lemma = document.createElement("span");
-          lemma.lang = "he";
-          lemma.dir = "rtl";
-          lemma.textContent = group.label || "Lexical claim";
-          claim.appendChild(lemma);
-          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
-          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
-          section.appendChild(claim);
-          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
-          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
-          sourceBox.appendChild(section);
-        });
-      };
-      const buildWordView = async (button) => {
-        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
-      };
-      const renderWord = async (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        activeHudButton = button;
-        if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        button.setAttribute("aria-pressed", "true");
-        hud.hidden = false;
-        positionHudNearButton(button);
-        setText(hud, "[data-hud-word]", button.textContent.trim());
-        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-        setRowHidden(hud, "[data-hud-caution-row]", true);
-        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        renderBreakdown(hud, {});
-        renderPotentialAndRelatedEntries(hud, {}, false, false);
-        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
-        try {
-          const view = await buildWordView(button);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          setText(hud, "[data-hud-word]", view.hebrew_word);
-          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
-          renderBreakdown(hud, view);
-          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
-          const details = hud.querySelector("details");
-          if (details) details.open = false;
-          positionHudNearButton(button);
-        } catch (error) {
-          console.error(error);
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          positionHudNearButton(button);
-        }
-      };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          activeHudButton = null;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
-      });
-      window.addEventListener("resize", scheduleHudPosition);
-      window.addEventListener("scroll", scheduleHudPosition, true);
-    })();
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-sabbath.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"benei-binyamin-on-mishneh-torah-sabbath","work_slug":"halakhah/benei-binyamin-on-mishneh-torah-sabbath","work_title":"Benei Binyamin on Mishneh Torah, Sabbath","manifest_url":"../../data/lexical/benei-binyamin-on-mishneh-torah-sabbath.manifest.json","occurrence_url":"../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-sabbath.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
   </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
 </body>
 </html>

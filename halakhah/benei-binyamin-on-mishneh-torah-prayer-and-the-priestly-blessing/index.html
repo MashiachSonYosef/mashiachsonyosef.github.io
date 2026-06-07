@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -31,6 +38,11 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -47,6 +59,7 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -80,48 +93,48 @@
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-field-row { display: contents; }
-    .lexical-field-row[hidden] { display: none; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .breakdown-list { display: grid; gap: 8px; }
-    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
-    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
-    .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
-    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
-    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
-    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
-    .lexical-entry .entry-hebrew { color: var(--hebrew); }
-    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
-    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
     .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
-    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; }
-    .other-entries { margin-top: 12px; }
-    .claim-row-list details { margin-top: 8px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
-    .source-claim { color: var(--text); margin: 0 0 6px; }
-    .source-claim span { color: var(--hebrew); }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
-    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
     .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
@@ -135,20 +148,23 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
 <body>
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
-        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-        <h1>Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing</h1>
-        <p class="work-label">Commentary on Mishneh Torah, Prayer and the Priestly Blessing</p>
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Mishneh Torah, Prayer and the Priestly Blessing</p>
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/">Open Mishneh Torah, Prayer and the Priestly Blessing</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
@@ -156,19 +172,27 @@
             <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
-        <p class="meta">45 total source units | imported 2026-05-21</p>
-        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>420 matched</strong> / 1213 unique forms.</p>
+          <p class="hero-summary">
+            <span>45 source units</span>
+            <span>1213 HUD forms</span>
+            <span>imported 2026-05-21</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -311,13 +335,18 @@
         </nav>
         <article>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Chapter 1</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-1-1">Mishneh Torah, Prayer and the Priestly Blessing 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לְהִתְפַּלֵּל בְּכָל יוֹם שֶׁנֶּאֱמַר <span class="source-small">(שמות כג כה)</span> ״וַעֲבַדְתֶּם אֵת ה׳‎ אֱלֹהֵיכֶם״. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁעֲבוֹדָה זוֹ הִיא תְּפִלָּה שֶׁנֶּאֱמַר <span class="source-small">(דברים יא יג)</span> ״וּלְעָבְדוֹ בְּכָל לְבַבְכֶם״ אָמְרוּ חֲכָמִים אֵי זוֹ הִיא עֲבוֹדָה שֶׁבַּלֵּב זוֹ תְּפִלָּה. וְאֵין מִנְיַן הַתְּפִלּוֹת מִן הַתּוֹרָה. וְאֵין מִשְׁנֶה הַתְּפִלָּה הַזֹּאת מִן הַתּוֹרָה. וְאֵין לַתְּפִלָּה זְמַן קָבוּעַ מִן הַתּוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע </strong>
 <strong> להתפלל בכ&quot;י.</strong> הרמב&quot;ן ז&quot;ל השיג ע&quot;ז. עכ&quot;מ. ובצל&quot;ח כ&quot;א א׳. וילה&quot;ר לד׳ רבינו ז&quot;ל מהא דבהכנ&quot;ס פטור ממזוזה לפי שהוא קודש. כיומא י&quot;א א׳ ופ&quot;ו ממזוזה ה&quot;ו. ומה קדושה איכא בבהכנ&quot;ס מה&quot;ת אם אין שום מצוה לתפלה. א&quot;ו דעיקר תפלה היא מדאורייתא. וא&quot;כ הוי עכ&quot;פ מקום מקודש. אף דמקום התפלה ובעשרה הוא דרבנן וע&quot;ש י&quot;ב א׳. ומש&quot;ל פ&quot;ו מיסוה&quot;ת ה&quot;ז בס&quot;ד. ואולי דכיון דעכ&quot;פ מדרבנן הוא קדוש אינו דומה לבית. דהוא רשות בעלמא. וכה&quot;ג ע׳ ברכות י&quot;א א׳. כי דרך מה דרך רשות. ומתמעט אף עובמ&quot;צ דרבנן דפטור וכמש&quot;כ במ&quot;א בס&quot;ד. וה&quot;נ דרשו במנחות ע&quot;א א׳ קצירכם ולא קציר מצוה ומתמעט לקוצר מפני האבל ובהמ&quot;ד. וטובא כה&quot;ג:</p>
               </div>
@@ -328,13 +357,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-3-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-3-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:3:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-3-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-1-3">Mishneh Torah, Prayer and the Priestly Blessing 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִם הָיָה רָגִיל מַרְבֶּה בִּתְחִנָּה וּבַקָּשָׁה וְאִם הָיָה עֲרַל שְׂפָתַיִם מְדַבֵּר כְּפִי יְכָלְתּוֹ וּבְכָל עֵת שֶׁיִּרְצֶה. וְכֵן מִנְיַן הַתְּפִלּוֹת כָּל אֶחָד כְּפִי יְכָלְתּוֹ. יֵשׁ מִתְפַּלֵּל פַּעַם אַחַת בְּיוֹם. וְיֵשׁ מִתְפַּלְּלִין פְּעָמִים הַרְבֵּה. וְהַכּל יִהְיוּ מִתְפַּלְּלִין נֹכַח הַמִּקְדָּשׁ בְּכָל מָקוֹם שֶׁיִּהְיֶה. וְכֵן הָיָה הַדָּבָר תָּמִיד מִמּשֶׁה רַבֵּנוּ וְעַד עֶזְרָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והכל </strong>
 <strong> יהיו מתפללין נוכח המקדש.</strong> לחד פי׳ שבכ&quot;מ צ&quot;ל שיהיו ע&quot;ש. ומ&quot;ש מברייתא דר&quot;א בשריה&quot;ג שזש&quot;ש עבדהו במקדשו. לע&quot;ד שם כפשוטו על עבודת הקרבנות שבמקדש. ועד לזה הספרי פ׳ עקב. ע&quot;פ ולעבדו בכל לבבכם עש&quot;ה. אבל דברי רבינו נ&quot;ל משלמה שאמר והתפללו אליך דרך ארצם. משמע לו לרבינו דהיה כבר דבר זה בימי מרע&quot;ה. ואתא שלמה ואסמכיה אקרא. וע׳ ברכות ל׳ א׳. ובירושלמי שם ספ&quot;ד:</p>
               </div>
@@ -345,13 +379,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-4-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-4-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:4:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-4-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-1-4">Mishneh Torah, Prayer and the Priestly Blessing 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיוָן שֶׁגָּלוּ יִשְׂרָאֵל בִּימֵי נְבוּכַדְנֶצַּר הָרָשָׁע נִתְעָרְבוּ בְּפָרַס וְיָוָן וּשְׁאָר הָאֻמּוֹת וְנוֹלְדוּ לָהֶם בָּנִים בְּאַרְצוֹת הַגּוֹיִם וְאוֹתָן הַבָּנִים נִתְבַּלְבְּלוּ שְׂפָתָם וְהָיְתָה שְׂפַת כָּל אֶחָד וְאֶחָד מְעֹרֶבֶת מִלְּשׁוֹנוֹת הַרְבֵּה וְכֵיוָן שֶׁהָיָה מְדַבֵּר אֵינוֹ יָכוֹל לְדַבֵּר כָּל צָרְכּוֹ בְּלָשׁוֹן אַחַת אֶלָּא בְּשִׁבּוּשׁ שֶׁנֶּאֱמַר <span class="source-small">(נחמיה יג כד)</span> ״וּבְנֵיהֶם חֲצִי מְדַבֵּר אַשְׁדּוֹדִית״ וְגוֹ׳‎ <span class="source-small">(נחמיה יג כד)</span> ״וְאֵינָם מַכִּירִים לְדַבֵּר יְהוּדִית וְכִלְשׁוֹן עַם וְעַם״. וּמִפְּנֵי זֶה כְּשֶׁהָיָה אֶחָד מֵהֶן מִתְפַּלֵּל תִּקְצַר לְשׁוֹנוֹ לִשְׁאל חֲפָצָיו אוֹ לְהַגִּיד שֶׁבַח הַקָּדוֹשׁ בָּרוּךְ הוּא בִּלְשׁוֹן הַקֹּדֶשׁ עַד שֶׁיֵּעָרְבוּ עִמָּהּ לְשׁוֹנוֹת אֲחֵרוֹת. וְכֵיוָן שֶׁרָאָה עֶזְרָא וּבֵית דִּינוֹ כָּךְ עָמְדוּ וְתִקְּנוּ לָהֶם שְׁמוֹנֶה עֶשְׂרֵה בְּרָכוֹת עַל הַסֵּדֶר. שָׁלֹשׁ רִאשׁוֹנוֹת שֶׁבַח לַה׳‎ וְשָׁלֹשׁ אַחֲרוֹנוֹת הוֹדָיָה. וְאֶמְצָעִיּוֹת יֵשׁ בָּהֶן שְׁאֵלַת כָּל הַדְּבָרִים שֶׁהֵן כְּמוֹ אָבוֹת לְכָל חֶפְצֵי אִישׁ וָאִישׁ וּלְצָרְכֵי הַצִּבּוּר כֻּלָּן, כְּדֵי שֶׁיִּהְיוּ עֲרוּכוֹת בְּפִי הַכּל וְיִלְמְדוּ אוֹתָן וְתִהְיֶה תְּפִלַּת אֵלּוּ הָעִלְּגִים תְּפִלָּה שְׁלֵמָה כִּתְפִלַּת בַּעֲלֵי הַלָּשׁוֹן הַצֶּחָה. וּמִפְּנֵי עִנְיָן זֶה תִּקְּנוּ כָּל הַבְּרָכוֹת וְהַתְּפִלּוֹת מְסֻדָּרוֹת בְּפִי כָּל יִשְׂרָאֵל כְּדֵי שֶׁיְּהֵא עִנְיַן כָּל בְּרָכָה עָרוּךְ בְּפִי הָעִלֵּג:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עי׳ </strong> כ&quot;מ ולח&quot;מ כ׳ שפסק כריב&quot;ח וע׳ ירושל׳ פ&quot;ד דברכות דריב&quot;ל גופיה א׳ תפלות מאבות למדום. משמע מזה דלדורות לא תקנו האבות רק חז&quot;ל תקנום ואסמכום אקרבנות. וא&quot;ש דל&quot;ק דריב&quot;ל אדריב&quot;ל. וע׳ פ&quot;ט ממלכים ה&quot;א. מבואר בד׳ רבינו דפוסק כריב&quot;ל. כ&quot;כ לי ש&quot;ב הרב המאה&quot;ג מהר&quot;ח נ&quot;ז שי׳ [הוא כעת הגאבד&quot;ק זידיק בזאמוט]:</p>
               </div>
             </div>
@@ -361,13 +400,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-6-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-6-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-1-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-1-6">Mishneh Torah, Prayer and the Priestly Blessing 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן הִתְקִינוּ שֶׁיְּהֵא אָדָם מִתְפַּלֵּל תְּפִלָּה אַחַת בַּלַּיְלָה שֶׁהֲרֵי אֵיבְרֵי תָּמִיד שֶׁל בֵּין הָעַרְבַּיִם מִתְעַכְּלִין וְהוֹלְכִין כָּל הַלַּיְלָה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ו ב)</span> ״הִיא הָעֹלָה״ וְגוֹ׳‎, כָּעִנְיָן שֶׁנֶּאֱמַר <span class="source-small">(תהילים נה יח)</span> ״עֶרֶב וָבֹקֶר וְצָהֳרַיִם אָשִׂיחָה וְאֶהֱמֶה וַיִּשְׁמַע קוֹלִי״. וְאֵין תְּפִלַּת עַרְבִית חוֹבָה כִּתְפִלַּת שַׁחֲרִית וּמִנְחָה. וְאַף עַל פִּי כֵן נָהֲגוּ כָּל יִשְׂרָאֵל בְּכָל מְקוֹמוֹת מוֹשְׁבוֹתֵיהֶם לְהִתְפַּלֵּל עַרְבִית וְקִבְּלוּהָ עֲלֵיהֶם כִּתְפִלַּת חוֹבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong>
 <strong> התקינו שיהא אדם מתפלל כו׳.</strong> ברכות ל&quot;א א׳:</p>
               </div>
@@ -379,13 +423,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-2">Chapter 2</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-2-14-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-2-14-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-2-14-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 2:14:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 2:14:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-2-14-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 2:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-2-14">Mishneh Torah, Prayer and the Priestly Blessing 2:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בִּימֵי הַתַּעֲנִית אֲפִלּוּ יָחִיד שֶׁהִתְעַנָּה מוֹסִיף בְּשׁוֹמֵעַ תְּפִלָּה עֲנֵנוּ וְכוּ׳‎. וּשְׁלִיחַ צִבּוּר אוֹמְרָהּ בְּרָכָה בִּפְנֵי עַצְמָהּ בֵּין גּוֹאֵל לְרוֹפֵא וְחוֹתֵם בָּהּ הָעוֹנֶה בְּעֵת צָרָה (וּמוֹשִׁיעַ). וְנִמְצָא מִתְפַּלֵּל עֶשְׂרִים בְּרָכוֹת. בְּתִשְׁעָה בְּאָב מוֹסִיפִין בְּבוֹנֵה יְרוּשָׁלָיִם רַחֵם יְיָ׳‎ אֱלֹהֵינוּ עָלֵינוּ וְעַל יִשְׂרָאֵל עַמֶּךָ וְעַל יְרוּשָׁלַיִם עִירֶךָ וְעַל הָעִיר הָאֲבֵלָה כוּ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחותם </strong>
 <strong> בה העונה בעת צרה.</strong> ירושלמי פ&quot;ד דברכות פ&quot;ג. ופ&quot;ג דתענית ה&quot;ב:</p>
               </div>
@@ -397,13 +446,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-3">Chapter 3</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 3:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 3:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-3-1">Mishneh Torah, Prayer and the Priestly Blessing 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תְּפִלַת הַשַּׁחַר מִצְוָתָהּ שֶׁיַּתְחִיל לְהִתְפַּלֵּל עִם הָנֵץ הַחַמָּה וּזְמַנָּהּ עַד סוֹף שָׁעָה רְבִיעִית שֶׁהִיא שְׁלִישִׁית הַיּוֹם. וְאִם עָבַר אוֹ טָעָה וְהִתְפַּלֵּל אַחַר אַרְבַּע עַד חֲצוֹת הַיּוֹם יָצָא יְדֵי חוֹבַת תְּפִלָּה. אֲבָל לֹא יָצָא יְדֵי חוֹבַת תְּפִלָּה בִּזְמַנָּהּ. שֶׁכְּשֵׁם שֶׁתְּפִלָּה מִצְוָה מִן הַתּוֹרָה כָּךְ מִצְוָה מִדִּבְרֵיהֶם לְהִתְפַּלֵּל אוֹתָהּ בִּזְמַנָּהּ כְּמוֹ שֶׁתִּקְנוּ לָנוּ חֲכָמִים וּנְבִיאִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong>
 <strong> עבר או טעה.</strong> כמדומני שבס׳ יד&quot;נ להגרי&quot;ש נ&quot;ז ז&quot;ל. ה&quot;ר מתענית ד׳ ב׳. ובס׳ קה&quot;י להגאון מקארלין מ&quot;ש מחביתי כה&quot;ג דמקריב מחצה מבערב. אם מת כה&quot;ג בשחרית והרי ה&quot;ל נראה ונדחה דאינו חוזר ונראה. א&quot;ו דאף לאחר ד&quot;ש הי׳ ראוי. וא&quot;כ לא נדחה כלל. ושניהם את&quot;י כעת:</p>
               </div>
@@ -414,13 +468,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-2" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-2" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-2" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 3:1:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 3:1:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 3:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-3-1">Mishneh Torah, Prayer and the Priestly Blessing 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תְּפִלַת הַשַּׁחַר מִצְוָתָהּ שֶׁיַּתְחִיל לְהִתְפַּלֵּל עִם הָנֵץ הַחַמָּה וּזְמַנָּהּ עַד סוֹף שָׁעָה רְבִיעִית שֶׁהִיא שְׁלִישִׁית הַיּוֹם. וְאִם עָבַר אוֹ טָעָה וְהִתְפַּלֵּל אַחַר אַרְבַּע עַד חֲצוֹת הַיּוֹם יָצָא יְדֵי חוֹבַת תְּפִלָּה. אֲבָל לֹא יָצָא יְדֵי חוֹבַת תְּפִלָּה בִּזְמַנָּהּ. שֶׁכְּשֵׁם שֶׁתְּפִלָּה מִצְוָה מִן הַתּוֹרָה כָּךְ מִצְוָה מִדִּבְרֵיהֶם לְהִתְפַּלֵּל אוֹתָהּ בִּזְמַנָּהּ כְּמוֹ שֶׁתִּקְנוּ לָנוּ חֲכָמִים וּנְבִיאִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שכשם </strong>
 <strong> שתפלה מצוה מן התורה רק מצוה מדבריהם להתפלל אותה בזמנה.</strong> ע׳ תוספתא רפ&quot;ב דברכות א׳ שם. כשם שקבעה תורה זמן לק&quot;ש. כך קבעו חכמים זמן לתפלה. והוא נגד ד׳ הכ&quot;מ פ&quot;א מק&quot;ש שכ׳ דזמן ק&quot;ש מדרבנן וכבר העיר המפרש שם. ולו&quot;מ נ&quot;ל דרבינו ז&quot;ל היה גורס בתוספתא כמש&quot;כ כאן. וא&quot;ש הלשון כאן ושם. טוב ומתוקן יותר. וע׳ כ&quot;מ פ&quot;א ה&quot;א שהביא תוספתא זו:</p>
               </div>
@@ -432,13 +491,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Chapter 4</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-4-2">Mishneh Torah, Prayer and the Priestly Blessing 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טָהֳרַת יָדַיִם כֵּיצַד. רוֹחֵץ יָדָיו בְּמַיִם עַד הַפֶּרֶק וְאַחַר כָּךְ יִתְפַּלֵּל. הָיָה מְהַלֵּךְ בַּדֶּרֶךְ וְהִגִּיעַ זְמַן תְּפִלָּה וְלֹא הָיָה לוֹ מַיִם. אִם הָיָה בֵּינוֹ וּבֵין הַמַּיִם אַרְבָּעָה מִילִין שֶׁהֵם שְׁמוֹנַת אֲלָפִים אַמָּה הוֹלֵךְ עַד מְקוֹם הַמַּיִם וְרוֹחֵץ וְאַחַר כָּךְ יִתְפַּלֵּל. הָיָה בֵּינוֹ וּבֵין הַמַּיִם יוֹתֵר עַל כֵּן מְקַנֵּחַ יָדָיו בִּצְרוֹר אוֹ בְּעָפָר אוֹ בְּקוֹרָה וּמִתְפַּלֵּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טהרת </strong>
 <strong> ידים כיצד כו׳ עד הפרק.</strong> הוא כמו נט&quot;י במקדש. שהכהנים מקדשים ידיהם כן. כמ&quot;ש בחולין ק&quot;ו ב׳. ובירושלמי פי&quot;ב דיבמות ה&quot;א והכל דין אחד הוא. ע&quot;ל פ&quot;ו מברכות ה&quot;ב. וא&quot;ש דברי ש&quot;ב בעל שו&quot;ת ושב הכהן מ&quot;ש לישב ד׳ רבינו. מהשגת הראב&quot;ד ה&quot;ג. וקושיית הקובץ אינה כלום ע&quot;ש. וע׳ נוב&quot;ת חא&quot;ח סי׳ ק&quot;מ:</p>
               </div>
@@ -449,13 +513,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-4-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-4-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:4:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-4-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-4-4">Mishneh Torah, Prayer and the Priestly Blessing 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַטְּמֵאִין רוֹחֲצִין יְדֵיהֶן בִּלְבַד כִּטְהוֹרִין וּמִתְפַּלְּלִים. אַף עַל פִּי שֶׁאֶפְשָׁר לָהֶם לִטְבּל וְלַעֲלוֹת מִטֻּמְאָתָן אֵין הַטְּבִילָה מְעַכֶּבֶת. וּכְבָר בֵּאַרְנוּ שֶׁעֶזְרָא תִּקֵּן שֶׁלֹּא יִקְרָא בַּעַל קֶרִי בִּלְבַד בְּדִבְרֵי תּוֹרָה עַד שֶׁיִּטְבּל. וּבֵית דִּין שֶׁעָמְדוּ אַחַר כֵּן הִתְקִינוּ אַף לִתְפִלָּה שֶׁלֹּא יִתְפַּלֵּל בַּעַל קֶרִי בִּלְבַד עַד שֶׁיִּטְבּל. וְלֹא מִפְּנֵי טֻמְאָה וְטָהֳרָה נָגְעוּ בָּהּ אֶלָּא כְּדֵי שֶׁלֹּא יִהְיוּ תַּלְמִידֵי חֲכָמִים מְצוּיִים אֵצֶל נְשׁוֹתֵיהֶן כְּתַרְנְגוֹלִים. וּמִפְּנֵי זֶה תִּקְּנוּ טְבִילָה לְבַעַל קֶרִי לְבַדּוֹ וְהוֹצִיאוּהוּ מִכְּלַל הַטְּמֵאִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכבר </strong>
 <strong> בארנו שעזרא תיקן.</strong> ע׳ כ&quot;מ וביותר תקשה מברכות י&quot;ח ב׳. ע׳ תוס׳ ב&quot;ק פ&quot;ב ב׳:</p>
               </div>
@@ -466,13 +535,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-9-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-9-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:9:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-9-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-4-9">Mishneh Torah, Prayer and the Priestly Blessing 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּתְפַּלֵּל וּמָצָא צוֹאָה בִּמְקוֹמוֹ הוֹאִיל וְחָטָא מִפְּנֵי שֶׁלֹּא בָּדַק עַד שֶׁלֹּא הִתְפַּלֵּל חוֹזֵר וּמִתְפַּלֵּל בְּמָקוֹם טָהוֹר. הָיָה עוֹמֵד בִּתְפִלָּה וּמָצָא צוֹאָה כְּנֶגְדּוֹ אִם יָכוֹל לְהַלֵּךְ לְפָנָיו כְּדֵי שֶׁיִּזְרְקֶנָּה לְאַחֲרָיו אַרְבַּע אַמּוֹת יְהַלֵּךְ וְאִם לָאו יְסַלְּקֶנָּה לַצְּדָדִין. וְאִם אֵינוֹ יָכוֹל יַפְסִיק. גְּדוֹלֵי הַחֲכָמִים לֹא הָיוּ מִתְפַּלְּלִים בְּבַיִת שֶׁיֵּשׁ בּוֹ שֵׁכָר וְלֹא בְּבַיִת שֶׁיֵּשׁ בּוֹ מוּרְיָיס בְּעֵת עִפּוּשׁוֹ מִפְּנֵי שֶׁרֵיחוֹ רַע אַף עַל פִּי שֶׁהַמָּקוֹם טָהוֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ע׳ </strong> ירושלמי פ&quot;ב דשבת ה&quot;ב מש&quot;ש לא אמרו אלא מפני כה&quot;ש שלא תאמר מפני שר&quot;ר טעון הרחק ד&quot;א וכו׳. ואולי מ&quot;מ ראוי להרחיק ממנו כמו ממורייס:</p>
               </div>
             </div>
@@ -482,13 +556,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-10-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-10-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:10:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-10-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-4-10">Mishneh Torah, Prayer and the Priestly Blessing 4:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּבָרִים הַחוֹפְזִים אוֹתוֹ כֵּיצַד. אִם הָיָה צָרִיךְ לִנְקָבָיו לֹא יִתְפַּלֵּל. וְכָל הַצָּרִיךְ לִנְקָבָיו וְהִתְפַּלֵּל תְּפִלָּתוֹ תּוֹעֵבָה וְחוֹזֵר וּמִתְפַּלֵּל אַחַר שֶׁיַּעֲשֶׂה צְרָכָיו. וְאִם יָכוֹל לְהַעֲמִיד עַצְמוֹ כְּדֵי פַּרְסָה תְּפִלָּתוֹ תְּפִלָּה. וְאַף עַל פִּי כֵן לְכַתְּחִלָּה לֹא יִתְפַּלֵּל עַד שֶׁיִּבְדֹּק עַצְמוֹ יָפֶה יָפֶה וְיִבְדֹק נְקָבָיו וְיָסִיר כִּיחוֹ וְנִיעוֹ וְכָל הַדָּבָר הַטּוֹרְדוֹ וְאַחַר כָּךְ יִתְפַּלֵּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ע&quot;ש </strong> בהגמ&quot;י מש&quot;כ דאפי׳ בד&quot;ת אסור והועתק כן בא&quot;ח ס&quot;ס צ&quot;ב. וק&quot;ל טובא משבת ל&quot;ג א׳ ומיבמות ס&quot;ד ב׳. אלא דגם בל&quot;ז קשה איך לא חששו לסכנתא דחמירא מאיסורא וכחולין ט׳ ב׳ והרי אין לך דבר שעומד בפני פ&quot;נ ומקרא מלא דיבר הכתוב וחי בהם ולא שימות בהם ובשכיח הזיקא ל&quot;ש ש&quot;מ א&quot;נ כפסחים ח׳ ב׳ וכ&quot;מ. ולדברי הגהמ&quot;י תקשה ביותר דכיון דאסור ל&quot;ה תו מצוה. ועי׳ ג&quot;כ בכורות מ&quot;ד ב׳ ופ&quot;ד מדיעות ה&quot;ה וצע&quot;ג. כאאמו&quot;ר ז&quot;ל:</p>
               </div>
             </div>
@@ -498,13 +577,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-15-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-15-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-15-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:15:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:15:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-15-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-4-15">Mishneh Torah, Prayer and the Priestly Blessing 4:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּוָּנַת הַלֵּב כֵּיצַד. כָּל תְּפִלָּה שֶׁאֵינָהּ בְּכַוָּנָה אֵינָהּ תְּפִלָּה. וְאִם הִתְפַּלֵּל בְּלֹא כַּוָּנָה חוֹזֵר וּמִתְפַּלֵּל בְּכַוָּנָה. מָצָא דַּעְתּוֹ מְשֻׁבֶּשֶׁת וְלִבּוֹ טָרוּד אָסוּר לוֹ לְהִתְפַּלֵּל עַד שֶׁתִּתְיַשֵּׁב דַּעְתּוֹ. לְפִיכָךְ הַבָּא מִן הַדֶּרֶךְ וְהוּא עָיֵף אוֹ מֵצֵר אָסוּר לוֹ לְהִתְפַּלֵּל עַד שֶׁתִּתְיַשֵּׁב דַּעְתּוֹ. אָמְרוּ חֲכָמִים יִשְׁהֶה שְׁלֹשָׁה יָמִים עַד שֶׁיָּנוּחַ וְתִתְקָרֵר דַּעְתּוֹ וְאַחַר כָּךְ יִתְפַּלֵּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מש&quot;כ </strong> הלח&quot;מ שהשמיט רבינו. לא זכר הא דלקמן רפ&quot;י שכ׳ להדיא:</p>
               </div>
             </div>
@@ -514,13 +598,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-19-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-19-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-19-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:19:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:19:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-4-19-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 4:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-4-19">Mishneh Torah, Prayer and the Priestly Blessing 4:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תְּפִלּוֹת הַפְּרָקִים כְּגוֹן תְּפִלַּת מוּסָף רֹאשׁ חֹדֶשׁ וּתְפִלַּת מוֹעֲדוֹת צָרִיךְ לְהַסְדִּיר תְּפִלָּתוֹ וְאַחַר כָּךְ עוֹמֵד וּמִתְפַּלֵּל כְּדֵי שֶׁלֹּא יִכָּשֵׁל בָּהּ. הָיָה מְהַלֵּךְ בִּמְקוֹם סַכָּנָה כְּגוֹן מְקוֹם גְּדוּדֵי חַיּוֹת וְלִסְטִים וְהִגִּיעַ זְמַן תְּפִלָּה מִתְפַּלֵּל בְּרָכָה אַחַת. וְזוֹ הִיא. צָרְכֵי עַמְּךָ יִשְׂרָאֵל מְרֻבִּים וְדַעְתָּם קְצָרָה. יְהִי רָצוֹן מִלְּפָנֶיךָ ה׳‎ אֱלֹהֵינוּ שֶׁתִּתֵּן לְכָל אֶחָד וְאֶחָד כְּדֵי פַּרְנָסָתוֹ וּלְכָל גְּוִיָּה וּגְוִיָּה דֵּי מַחְסוֹרָהּ וְהַטּוֹב בְּעֵינֶיךָ עֲשֵׂה בָּרוּךְ אַתָּה יְיָ׳‎ שׁוֹמֵעַ תְּפִלָּה. וּמִתְפַּלֵּל אוֹתָהּ בַּדֶּרֶךְ כְּשֶׁהוּא מְהַלֵּךְ, וְאִם יָכוֹל לַעֲמֹד עוֹמֵד. וּכְשֶׁהוּא מַגִּיעַ לְיִשּׁוּב וְתִתְקָרֵר דַּעְתּוֹ חוֹזֵר וּמִתְפַּלֵּל תְּפִלָּה כְּתַקָּנָתָהּ תְּשַׁע עֶשְׂרֵה בְּרָכוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ </strong> ד&quot;ה כתב, דהא איכא לפרושי כצ&quot;ל:</p>
               </div>
             </div>
@@ -531,13 +620,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-5">Chapter 5</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-5-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-5-5-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-5-5-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 5:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 5:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-5-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-5-5">Mishneh Torah, Prayer and the Priestly Blessing 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תִּקּוּן הַמַּלְבּוּשִׁים כֵּיצַד. מְתַקֵּן מַלְבּוּשָׁיו תְּחִלָּה וּמְצַיֵּן עַצְמוֹ וּמְהַדֵּר שֶׁנֶּאֱמַר הִשְׁתַּחֲווּ לַה׳‎ בְּהַדְרַת קֹדֶשׁ. וְלֹא יַעֲמֹד בִּתְפִלָּה בַּאֲפוּנְדָתוֹ, וְלֹא בְּרֹאשׁ מְגֻלֶּה, וְלֹא בְּרַגְלַיִם מְגֻלּוֹת אִם דֶּרֶךְ אַנְשֵׁי הַמָּקוֹם שֶׁלֹּא יַעַמְדוּ בִּפְנֵי הַגְּדוֹלִים אֶלָּא בְּבָתֵּי הָרַגְלַיִם. וּבְכָל מָקוֹם לֹא יֶאֱחֹז תְּפִלִּין בְּיָדוֹ וְסֵפֶר תּוֹרָה בִּזְרוֹעוֹ וְיִתְפַּלֵּל מִפְּנֵי שֶׁלִּבּוֹ טָרוּד בָּהֶן. וְלֹא יֶאֱחֹז כֵּלִים וּמָעוֹת בְּיָדוֹ. אֲבָל מִתְפַּלֵּל הוּא וְלוּלָב בְּיָדוֹ בִּימוֹת הֶחָג מִפְּנֵי שֶׁהוּא מִצְוַת הַיּוֹם. הָיָה מַשּׂוֹי עַל רֹאשׁוֹ וְהִגִּיעַ זְמַן תְּפִלָּה אִם הָיָה פָּחוֹת מֵאַרְבָּעָה קַבִּין מַפְשִׁילוֹ לַאֲחוֹרָיו וּמִתְפַּלֵּל בּוֹ. הָיָה אַרְבָּעָה קַבִּין מַנִּיחוֹ עַל גַּבֵּי קַרְקַע וְאַחַר כָּךְ יִתְפַּלֵּל. דֶּרֶךְ כָּל הַחֲכָמִים וְתַלְמִידֵיהֶם שֶׁלֹּא יִתְפַּלְּלוּ אֶלָּא כְּשֶׁהֵן עֲטוּפִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא </strong>
 <strong> באפונדתו.</strong> אולי נלמד מדאסור לכנס בו בהר הבית ובודאי הוא קלות ראש לעמוד כן בתפלה. ולא בראש מגולה משום הזכרת השם וע׳ באורי הגר&quot;א ז&quot;ל סי׳ צ&quot;א:</p>
               </div>
@@ -549,13 +643,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-6">Chapter 6</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-7-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-7-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 6:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 6:7:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-7-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 6:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-6-7">Mishneh Torah, Prayer and the Priestly Blessing 6:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁתְּפִלַּת עַרְבִית רְשׁוּת לֹא יָבוֹא אָדָם מִמְּלַאכְתּוֹ וְיֹאמַר אֹכַל מְעַט וְאִישַׁן קִמְעָא וְאַחַר כָּךְ אֶתְפַּלֵּל, שֶׁמָּא תֶּאֱנֹס אוֹתוֹ שֵׁנָה וְנִמְצָא יָשֵׁן כָּל הַלַּיְלָה, אֶלָּא מִתְפַּלֵּל עַרְבִית וְאַחַר כָּךְ אוֹכֵל וְשׁוֹתֶה אוֹ יָשֵׁן. וּמֻתָּר לְהִסְתַּפֵּר וְלִכָּנֵס לַמֶּרְחָץ סָמוּךְ לְשַׁחֲרִית מִפְּנֵי שֶׁלֹּא גָּזְרוּ אֶלָּא סָמוּךְ לַמִּנְחָה שֶׁהוּא דָּבָר הַמָּצוּי שֶׁרֹב הָעָם נִכְנָסִין שָׁם בַּיּוֹם. אֲבָל בַּשַּׁחַר דָּבָר שֶׁאֵינוֹ מָצוּי לֹא גָּזְרוּ בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ </strong>
 <strong> שת&quot;ע רשות </strong> ע&quot;ש בגמ׳ לחד לישנא קמ&quot;ל דס&quot;ל כמ&quot;ד חובה ואף די&quot;ל דרבינו פוסק כלישנא קמא משום אונס שינה. וכמש&quot;כ בעלי הכללים דהיכא דא׳ אב&quot;א ואב&quot;א ל&quot;ה כאיכא דאמרי. מ&quot;מ מנ&quot;ל לרבינו הא דהסייג הוא גם משום תפ&quot;ע. לפ&quot;מ דקיי&quot;ל דהיא רשות דדלמא הברייתא כמ&quot;ד חובה ולדידן דרשות הסייג הוא משום ק&quot;ש. וכיון דאין חיוב לסגל&quot;ת בערבית כמו בשחרית. י&quot;ל דמשום תפלת ערבית ל&quot;ש הסייג. ואולי מקורו מאדר&quot;נ פ&quot;ב שא׳ שם דעשו חכמים סייג לדבריהם. משמע דלאו משום ק&quot;ש דאורייתא הוא רק משום תפ&quot;ע. ועדיין צ&quot;ע דגם י&quot;ל דכמ&quot;ד חובה:</p>
               </div>
@@ -566,13 +665,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-9-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-9-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 6:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 6:9:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-9-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 6:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-6-9">Mishneh Torah, Prayer and the Priestly Blessing 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַמִּתְפַּלֵּל מַפְסִיק תְּפִלָּתוֹ אֶלָּא מִפְּנֵי סַכָּנַת נְפָשׁוֹת בִּלְבַד. וַאֲפִלּוּ מֶלֶךְ יִשְׂרָאֵל שׁוֹאֵל בִּשְׁלוֹמוֹ לֹא יְשִׁיבֶנּוּ. אֲבָל פּוֹסֵק הוּא לְמֶלֶךְ עוֹבֵד כּוֹכָבִים שֶׁמָּא יַהַרְגֶּנּוּ. הָיָה עוֹמֵד בַּתְּפִלָּה וְרָאָה מֶלֶךְ עוֹבְדֵי כּוֹכָבִים אוֹ אַנָּס בָּא כְּנֶגְדּוֹ יְקַצֵּר וְאִם אֵינוֹ יָכוֹל יַפְסִיק. וְכֵן אִם רָאָה נְחָשִׁים וְעַקְרַבִּים בָּאִים כְּנֶגְדּוֹ אִם הִגִּיעוּ אֵלָיו וְהָיָה דַּרְכָּן בְּאוֹתָן הַמְּקוֹמוֹת שֶׁהֵן מְמִיתִין פּוֹסֵק וּבוֹרֵחַ. וְאִם לֹא הָיָה דַּרְכָּן לְהָמִית אֵינוֹ פּוֹסֵק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong>
 <strong> אם ראה נחשים ועקרבים </strong> הוא דלא כר&quot;ש בגמ׳ וק&quot;נ פי&quot;ג דשבת שרבינו סמך על סוגיא דשם. ועמ&quot;ש בחי׳ בס&quot;ד:</p>
               </div>
@@ -583,13 +687,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-10-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-10-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 6:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 6:10:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-6-10-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 6:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-6-10">Mishneh Torah, Prayer and the Priestly Blessing 6:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָשִׁים וַעֲבָדִים וּקְטַנִּים חַיָּבִים בִּתְפִלָּה. וְכָל אִישׁ שֶׁפָּטוּר מִקְּרִיאַת שְׁמַע פָּטוּר מִן הַתְּפִלָּה. וְכָל הַמְלַוִּין אֶת הַמֵּת אַף עַל פִּי שֶׁאֵין לַמִּטָּה צֹרֶךְ בָּהֶן פְּטוּרִין מִן הַתְּפִלָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים </strong>
 <strong> עבדים וקטנים חייבין בתפלה. וכל איש שפטור מק&quot;ש פטור מן התפלה. </strong> לא נתבאר בדברי רבינו בחיובא דח&quot;ע וחב&quot;ח. ולפי הכלל שתולה תפלה בק&quot;ש. א&quot;כ י&quot;ל דכמו בק&quot;ש ה&quot;נ בתפלה. והנה בירושלמי פ&quot;ג ה&quot;ג דברכות א׳ שם נפ׳ מק&quot;ש מדכ׳ ולמדתם את בניכם. בניכם ולא בנותיכם. ועבדים פטורים מדכתיב שמע ישראל ה׳ אלקינו ה׳ אחד מי שאין לו אלא אדון אחד. יצא עבד שי&quot;ל אדון אחר [וכה&quot;ג דרשו בבבלי חגיגה ד׳ א׳. אך שם הוא מקרא דהאדון שהוא מיותר אבל דרשת הירושלמי הוא מהשם הקדוש כפי קריאתו ל׳ אדנות. וע׳ כה&quot;ג בירושלמי רפ&quot;ט דנזיר. ופ&quot;ק דקדושין סוף ה&quot;ב וילה&quot;ע דבזה שייך גם פלוגתת האמוראים במגילה י&quot;ד א׳. עבדי ד׳ ולא עבדי פרעה והארכתי במ&quot;א בס&quot;ד. דנ&quot;מ טובא לדינא] והקשו המפ׳ ת&quot;ל מג&quot;ש דלה לה. ותי׳ מר&quot;ן הגר&quot;א ז&quot;ל בשנ&quot;א פ&quot;ג דברכות. ובתורע&quot;א. ופ&quot;מ על הירושלמי כולם בסגנון אחד דנ&quot;מ לח&quot;ע וחב&quot;ח וכתי׳ הבבלי בחגיגה שם וא&quot;כ להירושלמי לאו כללא הוא דהרי ח&quot;ע וחב&quot;ח ודאי דחייב בתפלה וא&quot;כ מ&quot;ט כ׳ רבינו כל איש שפטור מק&quot;ש כו׳. וצ&quot;ל דס&quot;ל להלכה כהבבלי דלא מייתר קראי להכי וכפשטא דמילתא דנפ׳ משום מ&quot;ע שהזמ&quot;ג. א&quot;כ לצ&quot;ק לפטור לעבדים. וירושלמי לשיטתי׳ דס&quot;ל דנפ׳ מדכ׳ בניכם. א&quot;כ בכה&quot;ג לא נתמעטו עבדים. עי׳ מל&quot;מ פ&quot;י ממלכים. ומש&quot;ל פ&quot;א מת&quot;ת בס&quot;ד. ועיקר מחלוקתם כתבנו בס&quot;ד בתשובתי לענין תשלומין לק&quot;ש. דתליא בפ׳ הרמב&quot;ן עם רבינו אם ק&quot;ש הם ב׳ מצות או מצוה אחת די&quot;ל דק&quot;ש ל&quot;ה כלל מ&quot;ע שהז&quot;ג ולכן צ&quot;ק לפטור גם נשים. וכ&quot;א לשיטתי׳ אזיל ודברי מרן הגר&quot;א נשגבו ממני לפי שיטתו בשנ&quot;א פ&quot;א ופ&quot;ג דק&quot;ש א&quot;א להוציא לחבירו ואף הבקי א&quot;י להוציא לשאינו בקי ע&quot;ש והיא מד׳ הירושלמי פ&quot;ג מדכ׳ ושננתם שיהא כ&quot;א משנן בפיו (וע׳ בבאורו סי׳ צ&quot;ט סק&quot;י) א&quot;כ לל&quot;ק לפטור לח&quot;ע וחב&quot;ח ות&quot;ל דלא משכ׳ כלל דהא קיי&quot;ל לענין תקיעת שופר דח&quot;ע וחב&quot;ח אף לעצמו אינו מוציא. וצריך לשמוע תק&quot;ש מאחרים שא&quot;א להוציא אך משכ&quot;ל לחייבו עד שנצרך קרא לפוטרו. וק׳ מד׳ הירושלמי דידי׳ אדידי. והארכתי בזה שם בס&quot;ד. ואולם כללא דרבינו בל&quot;ז אינו מדוייק כ&quot;כ. ולשון הטוש&quot;ע סי׳ ק&quot;י מתוקן יותר ע&quot;ש:</p>
               </div>
@@ -601,13 +710,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-7">Chapter 7</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-2-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-2-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 7:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 7:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 7:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-7-2">Mishneh Torah, Prayer and the Priestly Blessing 7:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְקוֹרֵא פָּרָשָׁה רִאשׁוֹנָה מִקְּרִיאַת שְׁמַע וְיָשֵׁן. וַאֲפִלּוּ אִשְׁתּוֹ יְשֵׁנָה עִמּוֹ (קוֹרֵא פָּסוּק רִאשׁוֹן אוֹ פְּסוּקֵי רַחֲמִים וְאַחַר כָּךְ יִישַׁן). וְאִם אֲנָסַתּוּ שֵׁנָה קוֹרֵא אֲפִלּוּ פָּסוּק רִאשׁוֹן אוֹ פְּסוּקֵי רַחֲמִים וְאַחַר כָּךְ יִישַׁן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וקורא </strong>
 <strong> פ׳ ראשונה מק&quot;ש וישן ואפילו אשתו עמו.</strong> נ&quot;ל דלשון נקיה נקט. ור&quot;ל אף אם רוצה לשמ׳ מ&quot;מ יקרא ק&quot;ש וברכותי׳ וגם ברכת המפיל קודם ולא כדעת קצת האחרונים ז&quot;ל לאמר ברכת המפיל ופ׳ א׳ מק&quot;ש אח&quot;כ. וראיה מוכרחת לזה נ&quot;ל ברור מתקנת עזרא דאסורים היו לברך שום ברכה ולקרות ד&quot;ת כשהיה בע&quot;ק וא&quot;כ בודאי ברכו וקראו קודם וה&quot;נ גם לדידן דהא חזינן דהוא צורך הברכה ול&quot;ה הפסק:</p>
               </div>
@@ -618,13 +732,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-10-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-10-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 7:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 7:10:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-10-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 7:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-7-10">Mishneh Torah, Prayer and the Priestly Blessing 7:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּשְׁכִּים לִקְרֹא בַּתּוֹרָה קֹדֶם שֶׁיִּקְרָא קְרִיאַת שְׁמַע בֵּין קָרָא בַּתּוֹרָה שֶׁבִּכְתָב בֵּין קָרָא בַּתּוֹרָה שֶׁבְּעַל פֶּה נוֹטֵל יָדָיו תְּחִלָּה וּמְבָרֵךְ שָׁלֹשׁ בְּרָכוֹת וְאַחַר כָּךְ קוֹרֵא. וְאֵלּוּ הֵן. אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל דִּבְרֵי תוֹרָה. וְהַעֲרֶב נָא יְיָ׳‎ אֱלֹהֵינוּ אֶת דִּבְרֵי תוֹרָתְךָ בְּפִינוּ וּבְפִיפִּיּוֹת עַמְּךָ כָּל בֵּית יִשְׂרָאֵל וְנִהְיֶה אֲנַחְנוּ וְצֶאֱצָאֵינוּ וְצֶאֱצָאֵי עַמְּךָ יוֹדְעֵי שְׁמֶךָ וְעוֹסְקֵי תוֹרָתֶךָ לִשְׁמָהּ בָּרוּךְ אַתָּה יְיָ׳‎ הַמְלַמֵּד תּוֹרָה לְעַמּוֹ יִשְׂרָאֵל. בָּרוּךְ אַתָּה יְיָ׳‎ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר בָּחַר בָּנוּ מִכָּל הָעַמִּים וְנָתַן לָנוּ אֶת תּוֹרָתוֹ בָּרוּךְ אַתָּה יְיָ׳‎ נוֹתֵן הַתּוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עי׳ </strong> רמב&quot;ן ז&quot;ל שדעתו בס׳ המצות דבה&quot;ת הוא מ&quot;ע בפ&quot;ע. והש&quot;א בתשובה הכריח כמותו מנדרים פ&quot;א א׳ ע&quot;ש. אולם לא הי׳ עדיין במדינתו שיטה מקובצת על ב&quot;מ. ואנו זכינו לאורו. ושם דף פ&quot;ה ע&quot;ב מייתי ת׳ רבינו שמפרש מש&quot;ש שלא ברכו בתורה תחילה. היינו שקראו לכהן ע&quot;ה לפני ת&quot;ח [וכבר פי׳ כן האחרונים] וא&quot;כ אין מקום תפיסה לרבינו ז&quot;ל דלשיטתי׳ אזיל. מש&quot;ב הרר&quot;ח נ&quot;ז שליט&quot;א:</p>
               </div>
             </div>
@@ -634,13 +753,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-15-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-15-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-15-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 7:15:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 7:15:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-7-15-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 7:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-7-15">Mishneh Torah, Prayer and the Priestly Blessing 7:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּזְּמַן הַזֶּה שֶׁתִּקְּנוּ בִּרְכַּת הָאֶפִּיקוֹרוֹסִין בַּתְּפִלָּה וְהוֹסִיפוּ הַטּוֹב וְהַמֵּיטִיב בְּבִרְכַּת הַמָּזוֹן נִמְצְאוּ חָמֵשׁ בְּרָכוֹת יְתֵרוֹת. בְּשַׁבָּתוֹת וְיָמִים טוֹבִים שֶׁהַתְּפִלָּה שֶׁבַע בְּרָכוֹת, וְכֵן אִם לֹא נִתְחַיֵּב בִּשְׁאָר הַיָּמִים בְּכָל הַבְּרָכוֹת הָאֵלּוּ כְּגוֹן שֶׁלֹּא יָשַׁן כָּל הַלַּיְלָה וְלֹא הִתִּיר חֲגוֹרוֹ וְלֹא נִכְנַס לְבֵית הַכִּסֵּא וְכַיּוֹצֵא בְּאֵלּוּ, צָרִיךְ לְהַשְׁלִים מֵאָה בְּרָכוֹת מִן הַפֵּרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בזה&quot;ז </strong>
 <strong> שתקנו ברכת המינים. </strong> ע&quot;ל רפי&quot;ב. דכבר בימי ר&quot;ג היה זה ור&quot;מ שהיה אחר דורו י&quot;א י&quot;ח ברכות. ע׳ כ&quot;מ מהירושלמי. וכ&quot;ה בתוספתא שלהי ברכות. ואולי שגירת לישנא הוא מ&quot;ש י&quot;ח ברכות. כמו אצלינו. ועי׳ גם בסוטה ט&quot;ו ב׳ מש&quot;ש ר&quot;מ הניחו לי כו׳. וא&quot;ש גם בל&quot;ז:</p>
               </div>
@@ -652,13 +776,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-8">Chapter 8</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-2-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-2-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 8:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 8:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-8-2">Mishneh Torah, Prayer and the Priestly Blessing 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִצְוָה לָרוּץ לְבֵית הַכְּנֶסֶת שֶׁנֶּאֱמַר <span class="source-small">(הושע ו ג)</span> ״וְנֵדְעָה נִרְדְּפָה לָדַעַת אֶת יְיָ׳‎״. וּכְשֶׁיֵּצֵא מִבֵּית הַכְּנֶסֶת אַל יַפְסִיעַ פְּסִיעָה גַּסָּה אֶלָּא יֵלֵךְ מְעַט מְעַט. וּכְשֶׁיִּכָּנֵס בְּבֵית הַכְּנֶסֶת יִכָּנֵס שִׁעוּר שְׁנֵי פְּתָחִים וְאַחַר כָּךְ יִתְפַּלֵּל לְקַיֵּם מַה שֶּׁנֶּאֱמַר <span class="source-small">(משלי ח לד)</span> ״לִשְׁמֹר מְזוּזֹת פְּתָחָי״:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואח&quot;כ </strong>
 <strong> יתפלל לקיים מה שנ׳ לשמור מזוזות פתחי. </strong> כ&quot;ה בירושלמי פ&quot;ה ה&quot;א ובדב&quot;ר פ׳ תבוא מהך קרא. וכ&quot;ה ברי&quot;ף ורא&quot;ש בברכות גם בבבלי ומשם מבואר דפתחים ממש קאמר. וע׳ בטור שולחן ערוך סי׳ צ&quot;א:</p>
               </div>
@@ -669,13 +798,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-9-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-9-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 8:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 8:9:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-9-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 8:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-8-9">Mishneh Torah, Prayer and the Priestly Blessing 8:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלִיחַ צִבּוּר מוֹצִיא אֶת הָרַבִּים יְדֵי חוֹבָתָן. כֵּיצַד. בְּשָׁעָה שֶׁהוּא מִתְפַּלֵּל וְהֵם שׁוֹמְעִין וְעוֹנִין אָמֵן אַחַר כָּל בְּרָכָה וּבְרָכָה הֲרֵי הֵן כְּמִתְפַּלְּלִין. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁאֵינוֹ יוֹדֵעַ לְהִתְפַּלֵּל אֲבָל הַיּוֹדֵעַ אֵינוֹ יוֹצֵא יְדֵי חוֹבָתוֹ אֶלָּא בִּתְפִלַּת עַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ </strong> ד&quot;ה ודע. ע&quot;ש בגמ׳ כי ט&quot;ס יש כאן:</p>
               </div>
             </div>
@@ -685,13 +819,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-12-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-12-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 8:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 8:12:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-8-12-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 8:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-8-12">Mishneh Torah, Prayer and the Priestly Blessing 8:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן הָעִלֵּג כְּגוֹן מִי שֶׁקּוֹרֵא לְאָלֶ״ף עַיִ״ן אוֹ לְעַיִ״ן אָלֶ״ף וְכָל מִי שֶׁאֵינוֹ יָכוֹל לְהוֹצִיא אֶת הָאוֹתִיּוֹת כְּתִקּוּנָן אֵין מְמַנִּין אוֹתוֹ שְׁלִיחַ צִבּוּר. וְהָרַב מְמַנֶּה אֶחָד מִתַּלְמִידָיו לְהִתְפַּלֵּל לְפָנָיו בְּצִבּוּר. הַסּוּמָא פּוֹרֵס עַל שְׁמַע וְנַעֲשֶׂה שְׁלִיחַ צִבּוּר. אֲבָל מִי שֶׁכְּתֵפָיו מְגֻלּוֹת אַף עַל פִּי שֶׁהוּא פּוֹרֵס עַל שְׁמַע אֵינוֹ נַעֲשֶׂה שְׁלִיחַ צִבּוּר לִתְפִלָּה עַד שֶׁיִּהְיֶה עָטוּף:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והרב </strong>
 <strong> ממנה אחד מתלמידיו להתפלל לפניו בציבור.</strong> ע&quot;ל פי&quot;ב ה&quot;ו וע׳ א&quot;ח סי׳ נ&quot;ג סט&quot;ו. דש&quot;צ קבוע א&quot;צ ליטול רשות. ואאמו&quot;ר הגז&quot;ל הקשה מערכין י&quot;א ב׳. דמבואר דגם ש&quot;צ קבוע נוטל רשות. ואני מצאתי שכבר העיר בזה הגר&quot;א ז&quot;ל בבאוריו שם ובס׳ מו&quot;ק להגריעב&quot;ץ ובחוקות החיים ישבתי זה בס&quot;ד:</p>
               </div>
@@ -703,13 +842,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-9">Chapter 9</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-9-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-9-7-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-9-7-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 9:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 9:7:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-9-7-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 9:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-9-7">Mishneh Torah, Prayer and the Priestly Blessing 9:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁאָמַר בְּתַחֲנוּנִים מִי שֶׁרִחֵם עַל קַן צִפּוֹר שֶׁלֹּא לִקַּח הָאֵם עַל הַבָּנִים אוֹ שֶׁלֹּא לִשְׁחֹט אוֹתוֹ וְאֶת בְּנוֹ בְּיוֹם אֶחָד יְרַחֵם עָלֵינוּ וְכַיּוֹצֵא בְּעִנְיָן זֶה מְשַׁתְּקִין אוֹתוֹ. מִפְּנֵי שֶׁמִּצְוֹת אֵלּוּ גְּזֵרַת הַכָּתוּב הֵן וְאֵינָן רַחֲמִים. שֶׁאִלּוּ הָיוּ מִפְּנֵי רַחֲמִים לֹא הָיָה מַתִּיר לָנוּ שְׁחִיטָה כָּל עִקָּר. וְכֵן לֹא יַרְבֶּה בְּכִנּוּיִים שֶׁל שֵׁם וְיֹאמַר <span class="source-small">(דברים י יז)</span> ״הָאֵל הַגָּדוֹל הַגִּבּוֹר וְהַנּוֹרָא״ וְהֶחָזָק וְהָאַמִּיץ וְהָעִזּוּז. שֶׁאֵין כֹּחַ בָּאָדָם לְהַגִּיעַ בְּסוֹף שְׁבָחָיו. אֶלָּא אוֹמֵר מַה שֶּׁאָמַר משֶׁה רַבֵּנוּ עָלָיו הַשָּׁלוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או </strong>
 <strong> שלא לשחוט או&quot;ב ביום א׳.</strong> עי׳ בגמ׳ שם ובמגילה כ&quot;ה א׳. ובצל&quot;ח ברכות שם:</p>
               </div>
@@ -720,13 +864,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-9">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-9-13-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-9-13-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-9-13-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 9:13:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 9:13:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-9-13-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 9:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-9-13">Mishneh Torah, Prayer and the Priestly Blessing 9:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּשַׁבָּתוֹת וְיָמִים טוֹבִים כְּשֶׁגּוֹמֵר שְׁלִיחַ צִבּוּר תְּפִלַּת שַׁחֲרִית בְּקוֹל רָם אוֹמֵר קַדִּישׁ וְאַחַר כָּךְ <span class="source-small">(תהילים קמה א)</span> ״תְּהִלָּה לְדָוִד״ וְכוּ׳‎ וְאוֹמֵר קַדִּישׁ. וּמִתְפַּלְּלִין מוּסָף בְּלַחַשׁ וְאַחַר כָּךְ מִתְפַּלֵּל מוּסָף בְּקוֹל רָם כְּדֶרֶךְ שֶׁעָשָׂה בְּשַׁחֲרִית. וְאוֹמֵר קַדִּישׁ אַחַר תְּפִלַּת מוּסָף וְהָעָם נִפְטָרִין. וְאֵין אוֹמְרִין קְדֻשָּׁה וְתַחֲנוּנִים אַחַר תְּפִלַּת שַׁחֲרִית כִּשְׁאָר הַיָּמִים אֶלָּא אוֹמֵר אוֹתָהּ קֹדֶם תְּפִלַּת הַמִּנְחָה. כֵּיצַד. קוֹרֵא תְּהִלָּה לְדָוִד וְאוֹמֵר סֵדֶר הַיּוֹם וְדִבְרֵי תַּחֲנוּנִים וְאוֹמֵר קַדִּישׁ וּמִתְפַּלְּלִין מִנְחָה וְחוֹזֵר וּמַשְׁמִיעַ תְּפִלַּת מִנְחָה בְּקוֹל רָם וְאוֹמֵר קַדִּישׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואומר </strong>
 <strong> סדר היום.</strong> אולי צ&quot;ל סדר קדושה וכצ&quot;ל בהלכה שאחרי׳ וכמ&quot;ש בתחילה כן. וכלשון הגמ׳ שלהי סוטה. קדושה דסידרא:</p>
               </div>
@@ -738,13 +887,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-10">Chapter 10</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-10-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-10-3-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-10-3-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 10:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 10:3:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-10-3-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 10:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-10-3">Mishneh Torah, Prayer and the Priestly Blessing 10:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלִיחַ צִבּוּר שֶׁטָּעָה וְנִבְהַל וְלֹא יָדַע מֵהֵיכָן יַתְחִיל וְשָׁהָה שָׁעָה יַעֲמֹד אַחֵר תַּחְתָּיו. וְאִם טָעָה בְּבִרְכַּת הָאֶפִּקוֹרְסִין אֵין מַמְתִּינִין לוֹ אֶלָּא מִיָּד יַעֲמֹד אַחֵר תַּחְתָּיו שֶׁמָּא אֶפִּיקוֹרְסוּת נִזְרְקָה בּוֹ. וְהוּא שֶׁלֹּא הִתְחִיל בָּהּ אֲבָל אִם הִתְחִיל בָּהּ מַמְתִּינִין לוֹ שָׁעָה. וְלֹא יְהֵא הַשֵּׁנִי סַרְבָן בְּאוֹתָהּ שָׁעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong>
 <strong> טעה בברכת המינים א&quot;מ לו.</strong> בירושלמי פ&quot;ה דברכות פ&quot;ג אמר דאף בברכת מחיה המתים ובונה ירושלים א&quot;מ אותו. שמא מין הוא [ע&quot;ל פ&quot;ג מתשובה ה&quot;ו]. וע׳ תנחומא פ׳ ויקרא ומאוד תמוה לי שלא נזכר ד&quot;ז בפוסקים:</p>
               </div>
@@ -755,13 +909,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-10">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-10-14-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-10-14-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-10-14-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 10:14:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 10:14:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-10-14-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 10:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-10-14">Mishneh Torah, Prayer and the Priestly Blessing 10:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טָעָה וְלֹא הִזְכִּיר הַבְדָּלָה בְּחוֹנֵן הַדַּעַת מַשְׁלִים תְּפִלָּתוֹ וְאֵינוֹ צָרִיךְ לַחֲזֹר. וְכֵן מִי שֶׁלֹּא הִזְכִּיר עַל הַנִּסִּים בַּחֲנֻכָּה וּבְפוּרִים וַעֲנֵנוּ בִּתְפִלַּת תַּעֲנִית אֵינוֹ חוֹזֵר וּמִתְפַּלֵּל. אֶחָד יָחִיד וְאֶחָד שְׁלִיחַ צִבּוּר. וְאִם נִזְכַּר קֹדֶם שֶׁיַּעֲקֹר אֶת רַגְלָיו אוֹמֵר עֲנֵנוּ כִּי אַתָּה שׁוֹמֵעַ תְּפִלָּה פּוֹדֶה וּמַצִּיל בְּכָל עֵת צָרָה וְצוּקָה <span class="source-small">(תהילים יט טו)</span> ״יִהְיוּ לְרָצוֹן אִמְרֵי פִי״ וְגוֹ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ </strong> ד&quot;ה וכן. מש&quot;כ ומועדות. צ&quot;ל ומעמדות:</p>
               </div>
             </div>
@@ -772,13 +931,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-11">Chapter 11</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-5-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-5-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-11-5">Mishneh Torah, Prayer and the Priestly Blessing 11:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּתֵּי כְּנֵסִיּוֹת וּבָתֵּי מִדְרָשׁוֹת נוֹהֲגִין בָּהֶן כָּבוֹד וּמְכַבְּדִים אוֹתָן וּמַרְבִּיצִין אוֹתָן. וְנוֹהֲגִין כָּל יִשְׂרָאֵל בִּסְפָרַד וּבַמַּעֲרָב בְּשִׁנְעָר וּבְאֶרֶץ הַצְּבִי לְהַדְלִיק עֲשָׁשִׁיּוֹת בְּבָתֵּי כְּנֵסִיּוֹת וּלְהַצִּיעַ בְּקַרְקָעָן מַחְצְלָאוֹת כְּדֵי לֵישֵׁב עֲלֵיהֶם. וּבְעָרֵי אֱדוֹם יוֹשְׁבִין בָּהּ עַל הַכִּסְאוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונוהגין </strong>
 <strong> כל ישראל להדליק עששיות בבתי כנסיות.</strong> תרומות ספי&quot;א ופסחים נ&quot;ג ב׳ ועי׳ שם בירושלמי:</p>
               </div>
@@ -789,13 +953,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-9-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-9-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:9:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-9-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-11-9">Mishneh Torah, Prayer and the Priestly Blessing 11:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁצָּרִיךְ לִכָּנֵס לְבֵית הַכְּנֶסֶת לִקְרוֹת תִּינוֹק אוֹ חֲבֵרוֹ יִכָּנֵס וְיִקְרָא מְעַט אוֹ יֹאמַר שְׁמוּעָה וְאַחַר כָּךְ יִקְרָא חֲבֵרוֹ כְּדֵי שֶׁלֹּא יִכָּנֵס בִּשְׁבִיל חֲפָצָיו בִּלְבַד. וְאִם אֵינוֹ יוֹדֵעַ יֹאמַר לְתִינוֹק מִן הַתִּינוֹקוֹת קְרָא לִי הַפָּסוּק שֶׁאַתָּה קוֹרֵא בּוֹ. אוֹ יִשְׁהֶה מְעַט בְּבֵית הַכְּנֶסֶת וְאַחַר כָּךְ יֵצֵא. שֶׁהַיְשִׁיבָה שָׁם מֵעִסְקֵי הַמִּצְוֹת הִיא שֶׁנֶּאֱמַר <span class="source-small">(תהילים פד ה)</span> ״אַשְׁרֵי יוֹשְׁבֵי בֵיתֶךָ״ וְגוֹ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong>
 <strong> שצריך.</strong> נ&quot;ל שצ&quot;ל ומי ושייך להלכה שלפניה. דאסור ליכנס אלא לדבר מצוה. ולכן מי שצריך כו׳. וע&quot;כ לא יעשנו קפנדריא. ואח&quot;ז בהלכה י׳ חוזר רבינו לתחילת דבריו. וא&quot;ש מה שגמגם הכ&quot;מ בזה:</p>
               </div>
@@ -806,13 +975,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-12-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-12-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:12:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-12-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-11-12">Mishneh Torah, Prayer and the Priestly Blessing 11:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין סוֹתְרִין בֵּית הַכְּנֶסֶת כְּדֵי לִבְנוֹת אַחֵר בִּמְקוֹמוֹ אוֹ בְּמָקוֹם אַחֵר. אֲבָל בּוֹנִין אַחֵר וְאַחַר כָּךְ סוֹתְרִין זֶה. שֶׁמָּא יֶאֱרַע לָהֶם אֹנֶס וְלֹא יִבְנוּ. אֲפִלּוּ כֹּתֶל אֶחָד מִמֶּנּוּ בּוֹנֶה הֶחָדָשׁ בְּצַד הַיָּשָׁן וְאַחַר כָּךְ סוֹתֵר הַיָּשָׁן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ </strong> ד&quot;ה אין, &quot;אמר רבי&quot; נתהווה ט&quot;ס מר&quot;ת א&quot;ד. וצ&quot;ל איכא דאמרי ע&quot;ש:</p>
               </div>
             </div>
@@ -822,13 +996,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-11">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-12-2" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-12-2" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-12-2" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:12:2">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:12:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-11-12-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 11:12:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-11-12">Mishneh Torah, Prayer and the Priestly Blessing 11:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין סוֹתְרִין בֵּית הַכְּנֶסֶת כְּדֵי לִבְנוֹת אַחֵר בִּמְקוֹמוֹ אוֹ בְּמָקוֹם אַחֵר. אֲבָל בּוֹנִין אַחֵר וְאַחַר כָּךְ סוֹתְרִין זֶה. שֶׁמָּא יֶאֱרַע לָהֶם אֹנֶס וְלֹא יִבְנוּ. אֲפִלּוּ כֹּתֶל אֶחָד מִמֶּנּוּ בּוֹנֶה הֶחָדָשׁ בְּצַד הַיָּשָׁן וְאַחַר כָּךְ סוֹתֵר הַיָּשָׁן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפילו </strong>
 <strong> כותל אחד.</strong> נראה דרבינו מפרש זה במ&quot;ש בגמ׳ חזא תיוהא היינו שהיה צריך תיקון במקום אחד לבד. ומצד הסברא ג&quot;כ הוא כן:</p>
               </div>
@@ -840,13 +1019,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-12">Chapter 12</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-3-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-3-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 12:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 12:3:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-3-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 12:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-12-3">Mishneh Torah, Prayer and the Priestly Blessing 12:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין קוֹרִין בַּתּוֹרָה בְּצִבּוּר בְּפָחוֹת מֵעֲשָׂרָה אֲנָשִׁים גְּדוֹלִים בְּנֵי חוֹרִין. וְאֵין קוֹרִין פָּחוֹת מֵעֲשָׂרָה פְּסוּקִים. וַיְדַבֵּר עוֹלֶה מִן הַמִּנְיָן. וְלֹא יִהְיוּ הַקּוֹרִין פָּחוֹת מִשְּׁלֹשָׁה אֲנָשִׁים. וְאֵין מַתְחִילִין בְּפָרָשָׁה פָּחוֹת מִשְּׁלֹשָׁה פְּסוּקִים. וְאֵין מְשַׁיְּרִין בְּפָרָשָׁה פָּחוֹת מִשְּׁלֹשָׁה פְּסוּקִים. וְלֹא יִקְרָא הַקּוֹרֵא פָּחוֹת מִשְּׁלֹשָׁה פְּסוּקִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גדולים </strong>
 <strong> ובני חורין.</strong> מעובדא דר&quot;א ששחרר עבדו ברכות מ&quot;ז ב׳ וגיטין ל&quot;ח ב׳:</p>
               </div>
@@ -857,13 +1041,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-12">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-6-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-6-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 12:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 12:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 12:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-12-6">Mishneh Torah, Prayer and the Priestly Blessing 12:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַקּוֹרֵא בַּתּוֹרָה רַשַּׁאי לִקְרוֹת בַּתּוֹרָה עַד שֶׁיִּכְלֶה אָמֵן מִפִּי הַצִּבּוּר. קָרָא וְטָעָה אֲפִלּוּ בְּדִקְדּוּק אוֹת אַחַת מַחְזִירִין אוֹתוֹ עַד שֶׁיִּקְרָאֶנָּה בְּדִקְדּוּק. וְלֹא יִקְרְאוּ שְׁנַיִם בַּתּוֹרָה אֶלָּא הָאֶחָד לְבַדּוֹ. קָרָא וְנִשְׁתַּתֵּק יַעֲמֹד אַחֵר תַּחְתָּיו וְיַתְחִיל מִמָּקוֹם שֶׁהִתְחִיל הָרִאשׁוֹן שֶׁנִּשְׁתַּתֵּק וּמְבָרֵךְ בַּסּוֹף:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קרא </strong>
 <strong> ונשתתק.</strong> ע׳ מה&quot;פ על הירושלמי ספ&quot;ד באריכות:</p>
               </div>
@@ -874,13 +1063,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-12">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-16-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-16-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-16-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 12:16:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 12:16:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-12-16-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 12:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-12-16">Mishneh Torah, Prayer and the Priestly Blessing 12:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּמָּה הֵן הַקּוֹרְאִין. בְּשַׁבָּת בְּשַׁחֲרִית קוֹרְאִין שִׁבְעָה. וּבְיוֹם הַכִּפּוּרִים שִׁשָּׁה. וּבְיָמִים טוֹבִים חֲמִשָּׁה. אֵין פּוֹחֲתִין מֵהֶן אֲבָל מוֹסִיפִין עֲלֵיהֶם. בְּרָאשֵׁי חֳדָשִׁים וּבְחֻלּוֹ שֶׁל מוֹעֵד קוֹרִין אַרְבָּעָה. בְּשַׁבָּת וּבְיוֹם הַכִּפּוּרִים בְּמִנְחָה וּבְשֵׁנִי וּבַחֲמִישִׁי שֶׁל כָּל הַשָּׁנָה וּבַחֲנֻכָּה וּבְפוּרִים בְּשַׁחֲרִית וּבִימֵי הַתַּעֲנִית בְּשַׁחֲרִית וּבְמִנְחָה קוֹרִין שְׁלֹשָׁה. אֵין פּוֹחֲתִין מִמִּנְיַן זֶה וְאֵין מוֹסִיפִין עֲלֵיהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובימי </strong>
 <strong> התענית בשחרית.</strong> עי׳ כ&quot;מ ובב&quot;י סי׳ תקע&quot;ה ובבאורי הגר&quot;א ז&quot;ל שם וצל&quot;ע שם בד&quot;ק ז&quot;ל. ואכ&quot;מ:</p>
               </div>
@@ -892,13 +1086,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-13">Chapter 13</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-5-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-5-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-13-5">Mishneh Torah, Prayer and the Priestly Blessing 13:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הָעוֹלֶה לִקְרוֹת בַּתּוֹרָה פּוֹתֵחַ בְּדָבָר טוֹב וּמְסַיֵּם בְּדָבָר טוֹב. אֲבָל פָּרָשַׁת <span class="source-small">(דברים לב א)</span> ״הַאֲזִינוּ״ קוֹרֵא הָרִאשׁוֹן עַד <span class="source-small">(דברים לב ז)</span> ״זְכֹר יְמוֹת עוֹלָם״. וְהַשֵּׁנִי מַתְחִיל מִזְּכֹר יְמוֹת עוֹלָם עַד <span class="source-small">(דברים לב יג)</span> ״יַרְכִּבֵהוּ״. וְהַשְּׁלִישִׁי מִיַּרְכִּבֵהוּ עַד וַיַּרְא ה׳‎ וַיִּנְאָץ. וְהָרְבִיעִי מִן וַיַּרְא ה׳‎ וַיִּנְאָץ עַד <span class="source-small">(דברים לב כט)</span> ״לוּ חָכְמוּ״. וְהַחֲמִישִׁי מִן לוּ חָכְמוּ עַד <span class="source-small">(דברים לב מ)</span> ״כִּי אֶשָּׂא אֶל שָׁמַיִם יָדִי״. וְהַשִּׁשִּׁי מִכִּי אֶשָּׂא אֶל שָׁמַיִם יָדִי עַד סוֹף הַשִּׁירָה. וְלָמָּה פּוֹסְקִין בָּהּ בְּעִנְיָנוֹת אֵלּוּ מִפְּנֵי שֶׁהֵן תּוֹכָחָה כְּדֵי שֶׁיַּחְזְרוּ הָעָם בִּתְשׁוּבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong>
 <strong> העולה לקרות בתורה פותח בדבר טוב כו׳.</strong> ירושלמי מגילה פ&quot;ג ה&quot;ז. וע&quot;ש בבבלי ל&quot;א ב׳ קרוב לזה:</p>
               </div>
@@ -909,13 +1108,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-13">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-6-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-6-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-13-6">Mishneh Torah, Prayer and the Priestly Blessing 13:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁמוֹנָה פְּסוּקִים שֶׁבְּסוֹף הַתּוֹרָה מֻתָּר לִקְרוֹת אוֹתָם בְּבֵית הַכְּנֶסֶת בְּפָחוֹת מֵעֲשָׂרָה. אַף עַל פִּי שֶׁהַכּל תּוֹרָה הִיא וּמשֶׁה מִפִּי הַגְּבוּרָה אֲמָרָם הוֹאִיל וּמַשְׁמָעָן שֶׁהֵם אַחַר מִיתַת משֶׁה הֲרֵי נִשְׁתַּנּוּ וּלְפִיכָךְ מֻתָּר לְיָחִיד לִקְרוֹת אוֹתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ע׳ </strong> השגת הראב&quot;ד וכיון לירושלמי ספ&quot;ד דמגילה. אבל שם הוא למעליותא דומיא דשירת הים ועשרת הדברות. דא׳ שם שמברכים לפניהם ולאחריהם. ובבבלי ב&quot;ב ומנחות מ׳ להדיא דלוריעותא קאמר. וע׳ הקובץ בשם מורו ז&quot;ל. וא&quot;ש קצת. וע׳ תוס׳ שו&quot;ש. ובכ&quot;מ פי&quot;ב ה&quot;ו בשם הזוהר. ומש&quot;כ הכ&quot;מ לתרץ השגת הראב&quot;ד על רבינו תמוה מאד דזהו בכלל קריאת התורה וכ&quot;ד שצריך עשרה כן. ע&quot;ל פ&quot;ח ה&quot;ו. וקצת י&quot;ל לפי הנהוג גם אצלינו שהכל יוצאים בשמחת תורה בעת קריאת התורה לשמוח בביתו ולסעוד קצת וכ&quot;פ נשאר כמעט מנין מצומצם. ואולי הרבותא הכא דאפילו לכתחילה רשאי וצ&quot;ע:</p>
               </div>
             </div>
@@ -925,13 +1129,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-13">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-7-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-7-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:7:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-7-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-13-7">Mishneh Torah, Prayer and the Priestly Blessing 13:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְלָלוֹת שֶׁבְּתוֹרַת כֹּהֲנִים אֵין מַפְסִיקִין בָּהֶן אֶלָּא אֶחָד קוֹרֵא אוֹתָן מַתְחִיל בַּפָּסוּק שֶׁלִּפְנֵיהֶם וּמְסַיֵּם בַּפָּסוּק שֶׁל אַחֲרֵיהֶם. וּקְלָלוֹת שֶׁבְּמִשְׁנֵה תּוֹרָה אִם רָצָה לִפְסֹק בָּהֶן פּוֹסֵק וּכְבָר נָהֲגוּ הָעָם שֶׁלֹּא לִפְסֹק בָּהֶן אֶלָּא אֶחָד קוֹרֵא אוֹתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ש </strong> הכ&quot;מ בשם הר׳ מנוח. דבירושלמי גרסינן כמנהגינו. ל&quot;נ לפנינו ובאמת הוא בבבלי שם ל&quot;א ב׳. וע&quot;ש מ&quot;ש רש&quot;י פי׳ בגמגום במרוצה ובקושי ואינו מובן לשון זה. ועי׳ ברכות כ&quot;ב א׳:</p>
               </div>
             </div>
@@ -941,13 +1150,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-13">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-22-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-22-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-22-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:22:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:22:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-13-22-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 13:22:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-13-22">Mishneh Torah, Prayer and the Priestly Blessing 13:22</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל פָּרָשָׁה מֵאַרְבַּע פָּרָשִׁיּוֹת הָאֵלּוּ אֶחָד קוֹרֵא אוֹתָהּ בְּסֵפֶר שֵׁנִי אַחַר שֶׁקּוֹרִין סֵדֶר אוֹתָהּ שַׁבָּת בַּסֵּפֶר שֶׁהוֹצִיאוּ רִאשׁוֹן. חָל רֹאשׁ חֹדֶשׁ אֲדָר לִהְיוֹת בְּשַׁבָּת וְהָיָה סֵדֶר אוֹתָהּ שַׁבָּת בִּ <span class="source-small">(שמות כז כ)</span> ״וְאַתָּה תְּצַוֶּה״ קוֹרִין שִׁשָּׁה מִוְּאַתָּה תְּצַוֶּה עַד <span class="source-small">(שמות ל יח)</span> ״וְעָשִׂיתָ כִּיּוֹר נְחשֶׁת״ וְהַשְּׁבִיעִי חוֹזֵר וְקוֹרֵא מִכִּי תִשָּׂא עַד וְעָשִׂיתָ כִּיּוֹר. וְאִם הָיָה סֵדֶר אוֹתָהּ שַׁבָּת כִּי תִשָּׂא עַצְמוֹ קוֹרִין שִׁשָּׁה מִכִּי תִשָּׂא עַד <span class="source-small">(שמות לה א)</span> ״וַיַּקְהֵל״ וְהַשְּׁבִיעִי חוֹזֵר וְקוֹרֵא בְּסֵפֶר שֵׁנִי מִכִּי תִשָּׂא עַד וְעָשִׂיתָ כִּיּוֹר נְחשֶׁת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חל </strong>
 <strong> ר&quot;ח אדר להיות בשבת כו׳ בואתה תצוה כו׳. </strong> כ&quot;ה גי׳ הרי&quot;ף שלא כגי׳ שלנו וצע&quot;ג. עי׳ ק&quot;נ פ&quot;ד דמגילה אות ל&quot;ז:</p>
               </div>
@@ -959,13 +1173,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-14">Chapter 14</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-14-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-14-3-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-14-3-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 14:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 14:3:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-14-3-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 14:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-14-3">Mishneh Torah, Prayer and the Priestly Blessing 14:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד הִיא נְשִׂיאַת כַּפַּיִם בַּגְּבוּלִין. בְּעֵת שֶׁיַּגִּיעַ שְׁלִיחַ צִבּוּר לַעֲבוֹדָה כְּשֶׁיֹּאמַר רְצֵה כָּל הַכֹּהֲנִים הָעוֹמְדִים בְּבֵית הַכְּנֶסֶת נֶעֱקָרִין מִמְּקוֹמָן וְהוֹלְכִין וְעוֹלִין לַדּוּכָן וְעוֹמְדִים שָׁם פְּנֵיהֶם לַהֵיכָל וַאֲחוֹרֵיהֶם כְּלַפֵּי הָעָם וְאֶצְבְּעוֹתֵיהֶם כְּפוּפוֹת לְתוֹךְ כַּפֵּיהֶם עַד שֶׁיַּשְׁלִים שְׁלִיחַ צִבּוּר הַהוֹדָאָה וּמַחְזִירִין פְּנֵיהֶם כְּלַפֵּי הָעָם וּפוֹשְׁטִין אֶצְבְּעוֹתֵיהֶן וּמַגְבִּיהִין יְדֵיהֶם כְּנֶגֶד כִּתְפֵיהֶם וּמַתְחִילִין <span class="source-small">(במדבר ו כד)</span> ״יְבָרֶכְךָ״. וּשְׁלִיחַ צִבּוּר מַקְרֵא אוֹתָם מִלָּה מִלָּה וְהֵם עוֹנִין שֶׁנֶּאֱמַר <span class="source-small">(במדבר ו כג)</span> ״אָמוֹר לָהֶם״ עַד שֶׁיֹּאמַר. כְּשֶׁמַּשְׁלִימִין פָּסוּק רִאשׁוֹן כָּל הָעָם עוֹנִין אָמֵן. וְחוֹזֵר שְׁלִיחַ צִבּוּר וּמַקְרֵא אוֹתָן פָּסוּק שֵׁנִי מִלָּה מִלָּה וְהֵם עוֹנִים עַד שֶׁמַּשְׁלִימִין פָּסוּק שֵׁנִי וְכָל הָעָם עוֹנִין אָמֵן. וְכֵן בְּפָסוּק שְׁלִישִׁי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואצבעותיהם </strong>
 <strong> כפופות כו׳ ומחזירים פניהם כו׳. </strong> נלמד כ&quot;ז ממש&quot;ל ה&quot;ו:</p>
               </div>
@@ -976,13 +1195,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-14">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-14-14-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-14-14-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-14-14-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 14:14:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 14:14:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-14-14-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 14:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-14-14">Mishneh Torah, Prayer and the Priestly Blessing 14:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמִּקְדָּשׁ מְבָרְכִין בִּרְכַּת כֹּהֲנִים פַּעַם אַחַת בְּיוֹם אַחַר תָּמִיד שֶׁל שַׁחַר. בָּאִין וְעוֹמְדִין עַל מַעֲלוֹת הָאוּלָם וּמְבָרְכִין כְּדֶרֶךְ שֶׁאָמַרְנוּ. אֲבָל בַּמְּדִינָה מְבָרְכִין אוֹתָהּ אַחַר כָּל תְּפִלָּה חוּץ מִמִּנְחָה כְּמוֹ שֶׁאָמַרְנוּ. בְּכָל מָקוֹם מִשְׁתַּדְּלִין שֶׁיִּהְיֶה הַמַּקְרֵא אוֹתָן יִשְׂרָאֵל שֶׁנֶּאֱמַר <span class="source-small">(במדבר ו כג)</span> ״אָמוֹר לָהֶם״ מִכְּלָל שֶׁאֵין הַמַּקְרֵא מֵהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מכל </strong> דברי רבינו אלו מבואר להדיא כד׳ אא&quot;ז הלבוש ז&quot;ל דאפילו במדינה הוא מ&quot;ע מה&quot;ת לישא כפיהם ולא כמש&quot;כ הג&quot;ר יעב&quot;ץ ז&quot;ל במו&quot;ק של&quot;ו דהוא מדרבנן. וכמש&quot;כ אנחנו בקונטרס הר המור בס&quot;ד להשיב ע&quot;ז ממנחות י&quot;ח ב׳ חולין קל&quot;ג א׳. דחשיב ט&quot;ו עבודות לכהנים ובינייהו נ&quot;כ בגבולין. וע׳ סוטה ל&quot;ח א׳ יליף מקרא דבמקדש לחוד הוא דמברכינן בשם המיוחד ולא בגבולין. וע׳ כתובות כ&quot;ה ב׳. וביותר מבואר כן בירושלמי פ&quot;ג דברכות ה&quot;א ופ&quot;ז דנזיר ה&quot;א דמ&quot;ד שם דעשה דנ&quot;כ דוחה לטומאת כהנים ככל עדל&quot;ת [וא&quot;ל מזה ראי׳ להראב&quot;ד פ&quot;ה מנזירות דבזה&quot;ז ע&quot;כ הוא רק מדרבנן. דהא בימי האמוראים היה להם אפר פרה והיו יכולים ליטהר ויל&quot;ד] ומה שהכריחו לזה מהא דש&quot;ץ כהן אינו רשאי להפסיק. אינו ראיה כלל כמש&quot;ש בס&quot;ד. ודברי רבינו נכונים:</p>
               </div>
             </div>
@@ -993,13 +1217,18 @@
             </nav>
           </section>
           <h4 id="chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-15">Chapter 15</h4>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-3-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-3-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:3:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-3-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-15-3">Mishneh Torah, Prayer and the Priestly Blessing 15:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעֲבֵרָה כֵּיצַד. כֹּהֵן שֶׁהָרַג אֶת הַנֶּפֶשׁ אַף עַל פִּי שֶׁעָשָׂה תְּשׁוּבָה לֹא יִשָּׂא אֶת כַּפָּיו שֶׁנֶּאֱמַר <span class="source-small">(ישעיה א טו)</span> ״יְדֵיכֶם דָּמִים מָלֵאוּ״ וּכְתִיב <span class="source-small">(ישעיה א טו)</span> ״וּבְפָרִשְׂכֶם כַּפֵּיכֶם״ וְגוֹ׳‎. וְכֹהֵן שֶׁעָבַד כּוֹכָבִים בֵּין בְּאֹנֶס בֵּין בִּשְׁגָגָה אַף עַל פִּי שֶׁעָשָׂה תְּשׁוּבָה אֵינוֹ נוֹשֵׂא אֶת כַּפָּיו לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(מלכים ב כג ט)</span> ״אַךְ לֹא יַעֲלוּ כֹּהֲנֵי הַבָּמוֹת״ וְגוֹ׳‎. וּבְרָכָה כַּעֲבוֹדָה הִיא שֶׁנֶּאֱמַר <span class="source-small">(דברים י ח)</span> ״לְשָׁרְתוֹ וּלְבָרֵךְ בִּשְׁמוֹ״. וְכֵן כֹּהֵן שֶׁהֵמִיר לְעַכּוּ״ם אַף עַל פִּי שֶׁחָזַר בּוֹ אֵינוֹ נוֹשֵׂא אֶת כַּפָּיו לְעוֹלָם. וּשְׁאָר הָעֲבֵרוֹת אֵין מוֹנְעִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכהן </strong>
 <strong> שעבד ע&quot;ז בין באונס כו׳.</strong> ע׳ כ&quot;מ והוא תלמוד ערוך בע&quot;ז נ&quot;ד א׳. עש&quot;ה:</p>
               </div>
@@ -1010,13 +1239,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-15">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-5-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-5-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-15-5">Mishneh Torah, Prayer and the Priestly Blessing 15:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טֻמְאַת הַיָּדַיִם כֵּיצַד. כֹּהֵן שֶׁלֹּא נָטַל אֶת יָדָיו לֹא יִשָּׂא אֶת כַּפָּיו אֶלָּא נוֹטֵל אֶת יָדָיו עַד הַפֶּרֶק כְּדֶרֶךְ שֶׁמְּקַדְּשִׁין לַעֲבוֹדָה וְאַחַר כָּךְ מְבָרֵךְ שֶׁנֶּאֱמַר <span class="source-small">(תהילים קלד ב)</span> ״שְׂאוּ יְדֵכֶם קֹדֶשׁ וּבָרַכוּ אֶת יְיָ׳‎״. וְהֶחָלָל אֵינוֹ נוֹשֵׂא אֶת כַּפָּיו לְפִי שֶׁאֵינוֹ בְּכִהוּנוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלא </strong>
 <strong> נוטל את ידיו עד הפרק.</strong> חולין ק&quot;ז א׳. וירושלמי יבמות:
 <strong> והחלל אינו נושא כפיו.</strong> עכ&quot;מ. ועדיפא הל&quot;ל מהא דפי&quot;ד ה&quot;ו דתיקן ריב&quot;ז שלא יעלו בסנדליהם שמא תפסק ויאמרו ב&quot;ג וב&quot;ח הוא. וע׳ כתובות כ&quot;ה י&quot;ב. ויל&quot;ע קצת אם עלה אם ירד. די&quot;ל כמו בעבודה. דאם עבד לא חלל ואפילו לאחר שנודע כשי׳ רבינו פ&quot;ו מבמ&quot;ק ה&quot;י. או י&quot;ל דכאן קודם שנשא כפיו הרי לא עבד עדיין. ותו דנ&quot;ל דגם בעבודה גומר באמצע כשהתחיל ויל&quot;ע בזה. ובאמת ילה&quot;ק דבכל דבר בנ&quot;כ הוא לכתחילה מה שבעבודה הוא בדיעבד. וא&quot;כ לפ&quot;ז בנ&quot;כ ישא כפיו לכתחילה. וצ&quot;ל דש&quot;ה דכתי׳ בני אהרן הכהנים. וכמדומני שבס׳ מו&quot;ק עמד בזה ואת&quot;י כעת:</p>
@@ -1028,13 +1262,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-15">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-6-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-6-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-15-6">Mishneh Torah, Prayer and the Priestly Blessing 15:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֹּהֵן שֶׁלֹּא הָיָה לוֹ דָּבָר מִכָּל אֵלּוּ הַדְּבָרִים הַמּוֹנְעִין נְשִׂיאַת כַּפַּיִם אַף עַל פִּי שֶׁאֵינוֹ חָכָם וְאֵינוֹ מְדַקְדֵּק בְּמִצְוֹת אוֹ שֶׁהָיוּ הַבְּרִיּוֹת מְרַנְּנִים אַחֲרָיו אוֹ שֶׁלֹּא הָיָה מַשָּׂאוֹ וּמַתָּנוֹ בְּצֶדֶק הֲרֵי זֶה נוֹשֵׂא אֶת כַּפָּיו וְאֵין מוֹנְעִין אוֹתוֹ לְפִי שֶׁזּוֹ מִצְוַת עֲשֵׂה עַל כָּל כֹּהֵן וְכֹהֵן שֶׁרָאוּי לִנְשִׂיאַת כַּפַּיִם וְאֵין אוֹמְרִים לְאָדָם רָשָׁע הוֹסֵף רֶשַׁע וְהִמָּנַע מִן הַמִּצְוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong>
 <strong> מונעין אותו שא&quot;א לאדם רשע הוסף כו׳.</strong> ע׳ ב&quot;ק ס&quot;ט א׳. קדושין כ׳ ב׳. ובש&quot;ך ודגמ&quot;ר וגליון רש&quot;א יו&quot;ד סי׳ קנ&quot;א ודו&quot;ק. כ&quot;א הרה&quot;ג שליט&quot;א. וק&quot;ק מלאו דכל ב&quot;נ לא יאכל בו ואף שנמנה על הפסח דאל&quot;כ ת&quot;ל משום איסור שלא למנויו ואולי נ&quot;מ משום מלקות ועמ&quot;ש במקומו בס&quot;ד. וע׳ תוס׳ פסחים כ&quot;ח ב׳:</p>
               </div>
@@ -1045,13 +1284,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-15">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-7-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-7-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:7:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-7-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-15-7">Mishneh Torah, Prayer and the Priestly Blessing 15:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַל תִּתְמַהּ וְתֹאמַר וּמַה תּוֹעִיל בִּרְכַּת הֶדְיוֹט זֶה. שֶׁאֵין קִבּוּל הַבְּרָכָה תָּלוּי בַּכֹּהֲנִים אֶלָּא בְּהַקָּדוֹשׁ בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ו כז)</span> ״וְשָׂמוּ אֶת שְׁמִי עַל בְּנֵי יִשְׂרָאֵל וַאֲנִי אֲבָרַכֶם״. הַכֹּהֲנִים עוֹשִׂים מִצְוָתָן שֶׁנִּצְטַוּוּ בָּהּ וְהַקָּדוֹשׁ בָּרוּךְ הוּא בְרַחֲמָיו מְבָרֵךְ אֶת יִשְׂרָאֵל כְּחֶפְצוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואל </strong>
 <strong> תתמה כו׳. </strong> ע&quot;ש בירושלמי גיטין וברכות ספ&quot;ה ולכאורה תלוי זה בד׳ דר&quot;ע ורי&quot;ש בחולין מ&quot;ט א׳. מהנ&quot;ל:</p>
               </div>
@@ -1062,13 +1306,18 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-text-15">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-10-1" data-unit data-lexical-unit data-unit-id="benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-10-1" data-source-ref="Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:10:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-15-10-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing 15:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-15-10">Mishneh Torah, Prayer and the Priestly Blessing 15:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">צִבּוּר שֶׁלֹּא הָיָה בָּהֶן כֹּהֵן אֶלָּא שְׁלִיחַ צִבּוּר לְבַדּוֹ לֹא יִשָּׂא אֶת כַּפָּיו. וְאִם הָיְתָה הַבְטָחָתוֹ שֶׁהוּא נוֹשֵׂא אֶת כַּפָּיו וְחוֹזֵר לִתְפִלָּתוֹ רַשַּׁאי. וְאִם אֵין לָהֶם כֹּהֵן כְּלָל כְּשֶׁיַּגִּיעַ שְׁלִיחַ צִבּוּר לְשִׂים שָׁלוֹם אוֹמֵר אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ בָּרְכֵנוּ בַּבְּרָכָה הַמְשֻׁלֶּשֶׁת בַּתּוֹרָה הַכְּתוּבָה עַל יְדֵי משֶׁה עַבְדְּךָ הָאֲמוּרָה מִפִּי אַהֲרֹן וּבָנָיו כֹּהֲנִים עַם קְדוֹשֶׁךָ כָּאָמוּר <span class="source-small">(במדבר ו כד)</span> ״יְבָרֶכְךָ יְיָ׳‎ וְיִשְׁמְרֶךָ״ <span class="source-small">(במדבר ו כה)</span> ״יָאֵר יְיָ׳‎ פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ״ <span class="source-small">(במדבר ו כו)</span> ״יִשָּׂא יְיָ׳‎ פָּנָיו אֵלֶיךָ וְיָשֵׂם לְךָ שָׁלוֹם״ <span class="source-small">(במדבר ו כז)</span> ״וְשָׂמוּ אֶת שְׁמִי עַל בְּנֵי יִשְׂרָאֵל וַאֲנִי אֲבָרַכֶם״. וְאֵין הָעָם עוֹנִין אָמֵן. וּמַתְחִיל וְאוֹמֵר שִׂים שָׁלוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong>
 <strong> היתה הבטחתו.</strong> והוא בנד פורתא. כ&quot;א להדיא בסוטה ל&quot;ח ב׳. וכמש&quot;ל הי&quot;א. ולפלא שלא נזכר כלל ד&quot;ז בפוסקים רו&quot;א. אאמו&quot;ר הגז&quot;ל בחידושיו למשניות:</p>
               </div>
@@ -1080,721 +1329,60 @@
             </nav>
           </section>
         <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
-      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
-  <script>
-    (async () => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const configNode = document.querySelector("[data-lexical-config]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const chunkPromises = new Map();
-      const sourceRows = new Map();
-      let manifestPromise = null;
-      const hud = document.querySelector("[data-lexical-hud]");
-      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
-      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
-      const localSourceUrlMap = {
-        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
-        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
-        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
-        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
-        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
-        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
-      };
-      const resolveSourceUrl = (url) => {
-        const raw = String(url || "").trim();
-        if (!raw) return "";
-        if (/^(https?:|mailto:)/i.test(raw)) return raw;
-        const mapped = localSourceUrlMap[raw];
-        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
-        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
-        return "";
-      };
-      const fetchJson = async (url, base = document.baseURI) => {
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const loadOccurrences = async () => {
-        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
-        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
-        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
-        return occurrences;
-      };
-      const loadManifest = async () => {
-        if (!lexicalConfig.manifest_url) return null;
-        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
-        return manifestPromise;
-      };
-      const resolveSourceRows = (ids, inlineRows) => {
-        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
-        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
-      };
-      const cacheChunk = (chunk) => {
-        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
-        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
-        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
-          lexiconEntries.set(entry.entry_id, {
-            ...entry,
-            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
-            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
-          });
-        });
-        return chunk;
-      };
-      const loadChunk = async (chunkId) => {
-        if (!chunkId) return null;
-        if (!chunkPromises.has(chunkId)) {
-          chunkPromises.set(chunkId, (async () => {
-            const manifest = await loadManifest();
-            if (!manifest) return null;
-            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
-            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
-            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
-            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
-          })());
-        }
-        return chunkPromises.get(chunkId);
-      };
-      const loadTokenRow = async (tokenIndexId) => {
-        if (!tokenIndexId) return {};
-        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
-        const manifest = await loadManifest();
-        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
-        if (chunkId) await loadChunk(chunkId);
-        return tokenRows.get(tokenIndexId) || {};
-      };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalEntry = "";
-        span.dataset.lexicalStatus = "pending";
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        return span;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      const loadedOccurrences = await loadOccurrences();
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
-        });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
-      let activeHudButton = null;
-      if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const positionHudNearButton = (button) => {
-        if (!button || hud.hidden) return;
-        const rect = button.getBoundingClientRect();
-        const margin = 12;
-        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
-        hud.style.width = width + "px";
-        const preferredLeft = rect.right - width;
-        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
-        const below = window.innerHeight - rect.bottom - margin;
-        const above = rect.top - margin;
-        const openAbove = below < 280 && above > below;
-        const available = Math.max(220, (openAbove ? above : below) - margin);
-        hud.style.maxHeight = Math.min(560, available) + "px";
-        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
-        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
-        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
-        hud.style.left = left + "px";
-        hud.style.top = top + "px";
-      };
-      const scheduleHudPosition = () => {
-        if (!activeHudButton || hud.hidden) return;
-        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
-      };
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const setRowHidden = (root, selector, hidden) => {
-        const row = root.querySelector(selector);
-        if (row) row.hidden = Boolean(hidden);
-      };
-      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
-      const cleanStrictRenderings = (values) => {
-        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
-        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
-        return [...new Set(raw.filter((value) => {
-          if (value.length > 64) return false;
-          if (/[()]/.test(value)) return false;
-          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
-          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
-          return true;
-        }))];
-      };
-      const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
-      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
-      const isAramaicView = (view) => {
-        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
-        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
-        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
-      };
-      const strictEntriesForView = (view) => {
-        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
-        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
-        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
-          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
-          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
-        });
-      };
-      const getStrictBuckets = (view) => {
-        const topLevel = getStrictRenderings(view);
-        const strictEntries = strictEntriesForView(view);
-        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
-        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
-      };
-      const strictEntryKeys = (view) => {
-        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
-      };
-      const appendRenderings = (node, values) => {
-        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
-        if (!filtered.length) { node.append("N/A"); return; }
-        if (filtered.length === 1) { node.append(filtered[0]); return; }
-        const ul = document.createElement("ul");
-        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderBreakdown = (root, view) => {
-        const node = root.querySelector("[data-hud-breakdown]");
-        if (!node) return;
-        node.replaceChildren();
-        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
-        if (!rows.length) { node.textContent = ""; return; }
-        const list = document.createElement("div");
-        list.className = "breakdown-list";
-        rows.forEach((row) => {
-          const section = document.createElement("section");
-          section.className = "breakdown-row";
-          const head = document.createElement("p");
-          const hebrew = document.createElement("strong");
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
-          head.appendChild(hebrew);
-          section.appendChild(head);
-          const renderings = document.createElement("div");
-          appendRenderings(renderings, row.strict_renderings || []);
-          section.appendChild(renderings);
-          list.appendChild(section);
-        });
-        node.appendChild(list);
-      };
-      const isRelatedEntry = (entry) => {
-        const relation = String(entry.relation_label || "").toLowerCase();
-        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
-      };
-      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
-      const isNoisyAlternateEntry = (entry) => {
-        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
-        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
-      };
-      const renderEntryList = (entries, roleLabel) => {
-        const list = document.createElement("div");
-        list.className = "lexical-entry-list";
-        const groupedEntries = new Map();
-        entries.forEach((entry) => {
-          const spelling = entry.lemma || entry.match_key || "N/A";
-          const key = `${entry.context_role || "entry"}|${spelling}`;
-          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
-          const group = groupedEntries.get(key);
-          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
-        });
-        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
-        sorted.forEach((entry) => {
-          const card = document.createElement("section");
-          card.className = "lexical-entry";
-          const title = document.createElement("h3");
-          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
-          title.append(role, ": ");
-          const spelling = document.createElement("span");
-          spelling.className = "entry-hebrew";
-          spelling.lang = "he";
-          spelling.dir = "rtl";
-          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
-          title.appendChild(spelling);
-          const meta = document.createElement("p");
-          meta.className = "entry-meta";
-          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
-          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
-          const renderings = document.createElement("div");
-          const renderLabel = document.createElement("p");
-          renderLabel.className = "entry-label";
-          renderLabel.textContent = "Strict renderings";
-          renderings.appendChild(renderLabel);
-          appendRenderings(renderings, entry.strict_renderings || []);
-          card.append(title, meta, renderings);
-          list.appendChild(card);
-        });
-        return list;
-      };
-      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const sourceRowsByKey = (view) => {
-        const map = new Map();
-        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
-        return map;
-      };
-      const sourceRowsForEntry = (view, entry) => {
-        const map = sourceRowsByKey(view);
-        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
-        return row ? [row] : [];
-      };
-      const cleanTransliteration = (value) => {
-        const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
-      };
-      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
-      const sourceQualityScore = (rows) => {
-        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
-        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
-        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
-        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
-        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
-        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
-        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
-        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
-        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
-        return { delta: -10, reason: "missing source row" };
-      };
-      const parserScore = (view) => {
-        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
-        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
-        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
-        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
-        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
-        return { delta: 0, reason: "" };
-      };
-      const applyDisplayBoost = (status, rawScore, view) => {
-        return { score: rawScore, reasons: [] };
-      };
-      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
-        const reasons = [];
-        let score = 0;
-        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
-        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
-        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
-        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
-        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else { score = 84; reasons.push("strict Hebrew row"); }
-        const rendered = cleanStrictRenderings(renderings || []);
-        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
-        const sourceQuality = sourceQualityScore(rows);
-        score += sourceQuality.delta;
-        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
-        const view = evidence.view || {};
-        const entry = evidence.entry || {};
-        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
-        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
-        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
-        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
-        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
-        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
-        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
-        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
-        const parser = parserScore(view);
-        score += evidence.surfaceClaim ? parser.delta : 0;
-        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
-        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
-        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
-        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
-        const display = applyDisplayBoost(status, rawScore, view);
-        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
-      };
-      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
-      const uniqueClaims = (claims) => {
-        const seen = new Set();
-        return cleanValues(claims).filter((claim) => {
-          const key = claimRowKey(claim);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
-        const sourceRows = cleanValues(rows);
-        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
-        const cleanRenderings = cleanStrictRenderings(renderings || []);
-        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
-        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
-      };
-      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
-      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
-      const displayLicense = (row) => {
-        const license = String(row && row.license || "").trim();
-        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
-        return license || "N/A";
-      };
-      const sourceSummary = (rows) => {
-        const cleanRows = cleanValues(rows);
-        if (!cleanRows.length) return null;
-        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
-        const licenses = uniqueValues(cleanRows.map(displayLicense));
-        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
-        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
-      };
-      const DISPLAY_THRESHOLD = 50;
-      const MAX_VISIBLE_CLAIMS = 5;
-      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
-      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
-      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
-      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
-      const appendClaimCard = (list, claim) => {
-        const card = document.createElement("section");
-        card.className = "claim-row";
-        const head = document.createElement("div");
-        head.className = "claim-row-head";
-        const badge = document.createElement("span");
-        badge.className = "claim-status";
-        const confidence = claimConfidence(claim);
-        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
-        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
-        const hebrew = document.createElement("strong");
-        hebrew.className = "claim-hebrew";
-        hebrew.lang = "he";
-        hebrew.dir = "rtl";
-        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(badge, hebrew);
-        card.appendChild(head);
-        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
-        const renderings = document.createElement("p");
-        renderings.className = "claim-renderings";
-        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
-        card.appendChild(renderings);
-        const source = sourceSummary(claim.rows);
-        if (source) {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = `Source: ${source.source}`;
-          const licenseLine = document.createElement("p");
-          licenseLine.className = "claim-license";
-          licenseLine.textContent = `License: ${source.license}`;
-          card.append(sourceLine, licenseLine);
-        } else if (claim.status === "Caution") {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = "Source: metadata incomplete";
-          card.appendChild(sourceLine);
-        }
-        list.appendChild(card);
-      };
-      const appendClaimsUnderDetails = (parent, label, claims) => {
-        if (!claims.length) return;
-        const details = document.createElement("details");
-        details.className = "other-entries";
-        const summary = document.createElement("summary");
-        summary.textContent = label;
-        const box = document.createElement("div");
-        box.className = "claim-row-list";
-        claims.forEach((claim) => appendClaimCard(box, claim));
-        details.append(summary, box);
-        parent.appendChild(details);
-      };
-      const appendClaimRows = (node, claims) => {
-        if (!node) return;
-        node.replaceChildren();
-        const rows = sortClaimsForDisplay(claims);
-        if (!rows.length) { node.textContent = "N/A"; return; }
-        const list = document.createElement("div");
-        list.className = "claim-row-list";
-        const displayRows = rows.filter(isDisplayableClaim);
-        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
-        const visibleRows = displayRows.length ? displayRows : lowRows;
-        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
-        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
-        if (!visibleRows.length) { node.textContent = "N/A"; return; }
-        node.appendChild(list);
-      };
-      const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [] };
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) {
-          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
-          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
-          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
-        }
-        strictEntriesForView(view).forEach((entry) => {
-          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
-          const bucket = strictBuckets[bucketName] || [];
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (!renderings.length) return;
-          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
-        });
-        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
-          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-        }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
-      };
-      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
-      const uniqueSourceGroups = (groups) => {
-        const seen = new Set();
-        return cleanValues(groups).filter((group) => {
-          if (!group.rows.length) return false;
-          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
-      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
-      };
-      const appendSecondarySources = (container, view, entries, label) => {
-        const groups = sourceGroupsForEntries(view, entries);
-        if (!groups.length) return;
-        const sourceDetails = document.createElement("details");
-        sourceDetails.className = "source-details";
-        const sourceSummary = document.createElement("summary");
-        sourceSummary.textContent = label;
-        const sourceBox = document.createElement("div");
-        sourceDetails.append(sourceSummary, sourceBox);
-        renderSourceGroups(sourceBox, groups);
-        container.appendChild(sourceDetails);
-      };
-      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
-        const potentialNode = root.querySelector("[data-hud-potential]");
-        const relatedNode = root.querySelector("[data-hud-related]");
-        const cautionNode = root.querySelector("[data-hud-caution]");
-        const result = { potential: [], related: [], caution: [] };
-        if (!potentialNode || !relatedNode || !cautionNode) return result;
-        potentialNode.replaceChildren();
-        relatedNode.replaceChildren();
-        cautionNode.replaceChildren();
-        if (!hasLexicalEntry) {
-          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
-          setRowHidden(root, "[data-hud-potential-row]", false);
-          setRowHidden(root, "[data-hud-related-row]", true);
-          setRowHidden(root, "[data-hud-caution-row]", true);
-          appendClaimRows(potentialNode, result.potential);
-          return result;
-        }
-        const entries = cleanValues(view.possible_entries);
-        const strictKeys = strictEntryKeys(view);
-        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
-        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
-        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
-        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
-        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
-        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
-        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
-        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
-        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
-        result.potential.push(...keepForDisplay(visiblePotentialClaims));
-        result.related.push(...keepForDisplay(visibleRelatedClaims));
-        result.caution.push(...keepForDisplay(cautionClaims));
-        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
-        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
-        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
-        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
-        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
-        if (result.related.length) appendClaimRows(relatedNode, result.related);
-        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
-        return result;
-      };
-      const renderSourceRow = (row) => {
-        const title = document.createElement("p");
-        const strong = document.createElement("strong");
-        const sourceHref = resolveSourceUrl(row.source_url);
-        if (sourceHref) {
-          const link = document.createElement("a");
-          link.href = sourceHref;
-          link.textContent = row.source_name || "Source";
-          strong.appendChild(link);
-        } else {
-          strong.textContent = row.source_name || "Source";
-        }
-        title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
-        return title;
-      };
-      const renderSourceGroups = (sourceBox, groups) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        const sourceGroups = cleanValues(groups);
-        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceGroups.forEach((group) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const claim = document.createElement("p");
-          claim.className = "source-claim";
-          claim.append("For ");
-          const lemma = document.createElement("span");
-          lemma.lang = "he";
-          lemma.dir = "rtl";
-          lemma.textContent = group.label || "Lexical claim";
-          claim.appendChild(lemma);
-          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
-          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
-          section.appendChild(claim);
-          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
-          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
-          sourceBox.appendChild(section);
-        });
-      };
-      const buildWordView = async (button) => {
-        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
-      };
-      const renderWord = async (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        activeHudButton = button;
-        if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        button.setAttribute("aria-pressed", "true");
-        hud.hidden = false;
-        positionHudNearButton(button);
-        setText(hud, "[data-hud-word]", button.textContent.trim());
-        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-        setRowHidden(hud, "[data-hud-caution-row]", true);
-        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        renderBreakdown(hud, {});
-        renderPotentialAndRelatedEntries(hud, {}, false, false);
-        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
-        try {
-          const view = await buildWordView(button);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          setText(hud, "[data-hud-word]", view.hebrew_word);
-          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
-          renderBreakdown(hud, view);
-          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
-          const details = hud.querySelector("details");
-          if (details) details.open = false;
-          positionHudNearButton(button);
-        } catch (error) {
-          console.error(error);
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          positionHudNearButton(button);
-        }
-      };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          activeHudButton = null;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
-      });
-      window.addEventListener("resize", scheduleHudPosition);
-      window.addEventListener("scroll", scheduleHudPosition, true);
-    })();
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing","work_slug":"halakhah/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing","work_title":"Benei Binyamin on Mishneh Torah, Prayer and the Priestly Blessing","manifest_url":"../../data/lexical/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json","occurrence_url":"../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-prayer-and-the-priestly-blessing.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
   </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
 </body>
 </html>
