@@ -19,6 +19,15 @@ const escapeHtml = (value) => String(value ?? "")
 
 const escapeAttr = escapeHtml;
 
+const stripInlineSourceMarkup = (value) => String(value ?? "")
+  .replace(/<[^>]*>/g, "")
+  .replace(/&lt;[^&]*?&gt;/gi, "")
+  .replace(/&nbsp;|&#160;|\u00a0/gi, " ")
+  .replace(/&thinsp;|&#8201;|\u2009/gi, " ")
+  .replace(/&ensp;|&emsp;|&#8194;|&#8195;/gi, " ")
+  .replace(/\s+/g, " ")
+  .trim();
+
 const workArg = process.argv.find((arg) => arg.startsWith("--work="));
 const workId = (workArg ? workArg.slice("--work=".length) : "daniel").trim();
 
@@ -230,7 +239,7 @@ const unitHtml = (unit) => {
   const unitId = String(unit.unit_id || unit.anchor_id || `daniel-${unit.sequence || ""}`);
   const sourceRef = String(unit.source_ref || unit.sefaria_ref || unitId);
   const paragraphs = (Array.isArray(unit.hebrew) ? unit.hebrew : []).map((paragraph, index) => `
-              <p class="hebrew hebrew-source lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="${index}">${escapeHtml(paragraph)}</p>`).join("");
+              <p class="hebrew hebrew-source lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="${index}">${escapeHtml(stripInlineSourceMarkup(paragraph))}</p>`).join("");
   return `
           <section class="unit" id="${escapeAttr(unit.anchor_id || unitId)}" data-unit data-lexical-unit data-unit-id="${escapeAttr(unitId)}" data-source-ref="${escapeAttr(sourceRef)}">
             <div class="unit-head">
@@ -359,6 +368,37 @@ const html = `<!DOCTYPE html>
       margin: 0;
       font-size: clamp(2.3rem, 8vw, 4.4rem);
       line-height: 0.98;
+    }
+
+    .hero-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin: 12px 0 0;
+    }
+
+    .hero-summary span {
+      border: 1px solid rgba(214, 190, 138, 0.14);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 2px 7px;
+    }
+
+    .hero-notes {
+      border-top: 1px solid var(--line);
+      margin-top: 12px;
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .hero-notes ol {
+      margin: 0;
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 5px;
     }
 
     .layout {
@@ -520,57 +560,6 @@ const html = `<!DOCTYPE html>
       padding: 6px 8px;
     }
 
-    .lexical-hud {
-      position: fixed;
-      z-index: 1000;
-      width: calc(100vw - 24px);
-      max-width: calc(100vw - 24px);
-      left: 12px;
-      top: 12px;
-      max-height: calc(100vh - 24px);
-      border: 1px solid var(--line);
-      background: var(--panel-2);
-      color: var(--text);
-      padding: 16px;
-      overflow: auto;
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
-    }
-
-    .lexical-hud[hidden] {
-      display: none;
-    }
-
-    .hud-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 12px;
-      margin-bottom: 12px;
-    }
-
-    .hud-head h2 {
-      margin: 0;
-      font-size: 1.25rem;
-    }
-
-    .hud-close {
-      border: 1px solid var(--line-2);
-      background: var(--panel);
-      color: var(--accent);
-      padding: 8px 10px;
-      font: inherit;
-      cursor: pointer;
-    }
-
-    .route-hud-panel {
-      display: grid;
-      gap: 12px;
-      min-width: 0;
-      align-content: start;
-    }
-
     .placeholder {
       color: var(--muted);
       margin: 0;
@@ -606,6 +595,17 @@ const html = `<!DOCTYPE html>
     <header class="hero">
       <p class="kicker">${escapeHtml(work.section)}</p>
       <h1>${escapeHtml(work.label)}</h1>
+      <p class="hero-summary">
+        <span>${units.length} source units</span>
+        <span>${occurrenceRows} token rows</span>
+        <span>${chapters.length} chapters</span>
+      </p>
+      <div class="hero-notes" aria-label="Header source notes">
+        <ol>
+          <li>Hebrew source: ${escapeHtml(sourceUnit.version_title || "source package")} (${escapeHtml(sourceUnit.license || "license metadata pending")}).</li>
+          <li>Route HUD uses the shared A10 reader workbench runtime; Daniel pre-HUD rows remain fail-closed to TBD until safe route-backed hints exist.</li>
+        </ol>
+      </div>
     </header>
     <div class="layout">
       <aside class="toc" aria-label="Chapters">
