@@ -21,6 +21,10 @@ const requiredHintFields = [
   'route_score_percent',
   'score_source',
 ];
+const disallowedPrehudDisplays = [
+  /^observed usage only$/i,
+  /^usage context only/i,
+];
 
 function parseArgs(argv) {
   const args = { works: DEFAULT_WORKS, dir: DEFAULT_DIR };
@@ -66,6 +70,9 @@ function validateWork(work, dir) {
     if (hint.candidate_status !== 'candidate_not_authority') errors.push(`${tokenId}: candidate_status must be candidate_not_authority`);
     if (hint.status !== 'reader_hint_not_translation') errors.push(`${tokenId}: status must be reader_hint_not_translation`);
     if (hint.score_source !== 'route_card_score') errors.push(`${tokenId}: score_source must be route_card_score`);
+    if (disallowedPrehudDisplays.some((pattern) => pattern.test(String(hint.display || '').trim()))) {
+      errors.push(`${tokenId}: usage-only evidence must stay HUD-only/TBD, not pre-HUD`);
+    }
   });
 
   assert(!errors.length, `${relativePath} failed validation:\n${errors.slice(0, 40).join('\n')}${errors.length > 40 ? `\n... ${errors.length - 40} more` : ''}`);

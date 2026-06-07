@@ -86,7 +86,7 @@ html.route-hud-open body {
 
 .reader-token-wrap.prehud-row {
   display: grid;
-  grid-template-columns: minmax(4rem, 6.6rem) minmax(0, 1fr) minmax(3.4rem, auto);
+  grid-template-columns: minmax(4rem, 6.6rem) minmax(0, 1fr) minmax(3.4rem, auto) minmax(4.7rem, auto);
   gap: 8px;
   align-items: start;
   justify-items: stretch;
@@ -169,6 +169,32 @@ html.route-hud-open body {
   background: rgba(214, 190, 138, 0.06);
   padding: 3px 5px;
   justify-self: end;
+}
+
+.prehud-row-return {
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.prehud-return-link {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.16em;
+  border: 1px solid rgba(214, 190, 138, 0.18);
+  background: rgba(255, 255, 255, 0.018);
+  padding: 3px 5px;
+}
+
+.prehud-return-link:hover,
+.prehud-return-link:focus {
+  color: var(--accent);
+  border-color: rgba(214, 190, 138, 0.36);
+  background: rgba(214, 190, 138, 0.055);
+  outline: none;
 }
 
 .reader-token-wrap.prehud-row:hover .prehud-word .lexical-word,
@@ -490,6 +516,11 @@ html.route-hud-open body {
   .prehud-match {
     grid-column: 2;
     text-align: left;
+  }
+
+  .prehud-row-return {
+    grid-column: 2;
+    justify-self: start;
   }
 
   .lexical-hud .hud-head {

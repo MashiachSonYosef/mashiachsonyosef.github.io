@@ -262,6 +262,7 @@ function bestRouteCardForToken(row, routeLookup) {
         lookup_relation: candidate.relation,
         lookup_penalty: candidate.penalty,
       };
+      if (isUsageEvidenceCard(enriched)) return;
       if (!productionSections.has(routeSection(enriched))) return;
       if (!routeRenderings(enriched).length) return;
       if (!publicSourceRow(enriched)) return;

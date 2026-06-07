@@ -1454,7 +1454,7 @@
     paragraph.dataset.prehudPassageLinksInitialized = 'true';
   }
 
-  function makePrehudRow(row, tokenIndexId, ordinal, config, hint, fallbackSurface = '', rowId = '') {
+  function makePrehudRow(row, tokenIndexId, ordinal, config, hint, fallbackSurface = '', rowId = '', sectionTopId = '') {
     const rowNode = createElement('div', 'prehud-row reader-token-wrap');
     rowNode.dataset.tokenRowId = tokenIndexId || '';
     if (rowId) {
@@ -1499,6 +1499,15 @@
     glossCell.addEventListener('keydown', openHudFromKeyboard);
     matchCell.addEventListener('click', openHudFromRow);
     matchCell.addEventListener('keydown', openHudFromKeyboard);
+    if (sectionTopId) {
+      const returnCell = createElement('div', 'prehud-row-return');
+      const returnLink = createElement('a', 'prehud-return-link', 'Section top');
+      returnLink.href = `#${sectionTopId}`;
+      returnLink.setAttribute('aria-label', `Back to section top for ${surface}`);
+      returnLink.addEventListener('click', (event) => event.stopPropagation());
+      returnCell.appendChild(returnLink);
+      rowNode.appendChild(returnCell);
+    }
     applyReaderHint(word, hint);
     return rowNode;
   }
@@ -1540,7 +1549,7 @@
       linkPrehudParagraphTokens(paragraph, rowIds);
       tokenIds.forEach((tokenId, index) => {
         const hint = readerHints instanceof Map ? readerHints.get(tokenId) : null;
-        group.appendChild(makePrehudRow(rows[index], tokenId, index + 1, config, hint, visibleTokens[index] || '', rowIds[index] || ''));
+        group.appendChild(makePrehudRow(rows[index], tokenId, index + 1, config, hint, visibleTokens[index] || '', rowIds[index] || '', unit?.id || ''));
       });
       slot.appendChild(group);
       return;
