@@ -1,0 +1,99 @@
+{
+  "artifact_type": "agent10_book_hud_batch1_orot_ruth_style_handoff",
+  "status": "preview_ready_for_owner_and_a14_review",
+  "boundary": {
+    "publication_release_claim": false,
+    "qa_acceptance": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_acceptance": false,
+    "accepted_text": false,
+    "route_shard_mutation": false,
+    "public_runtime_acceptance": false
+  },
+  "shared_files": [
+    "assets/css/reader-workbench.css",
+    "assets/js/reader-workbench.js"
+  ],
+  "flagship_or_examples": [
+    "orot/index.html",
+    "tanakh/ruth/index.html"
+  ],
+  "batch1_pages": [
+    "tanakh/deuteronomy/index.html",
+    "tanakh/genesis/index.html",
+    "tanakh/exodus/index.html",
+    "tanakh/leviticus/index.html",
+    "tanakh/numbers/index.html",
+    "tanakh/jonah/index.html",
+    "tanakh/amos/index.html",
+    "tanakh/zechariah/index.html",
+    "tanakh/zephaniah/index.html"
+  ],
+  "changes": [
+    "Resting clickable affordance for pre-HUD Hebrew token, gloss/TBD cell, and match/TBD cell.",
+    "Compact header and collapsed source/license disclosure on Batch 1 pages.",
+    "reader_layout_mode=prehud_rows added to Batch 1 page configs.",
+    "Known safe generated Hebrew marker cleanup on Ruth and Batch 1 page bodies."
+  ],
+  "validation": [
+    {
+      "command": "node --check assets/js/reader-workbench.js",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/ruth/index.html --page tanakh/deuteronomy/index.html --page tanakh/genesis/index.html --page tanakh/exodus/index.html --page tanakh/leviticus/index.html --page tanakh/numbers/index.html --page tanakh/jonah/index.html --page tanakh/amos/index.html --page tanakh/zechariah/index.html --page tanakh/zephaniah/index.html",
+      "result": "Route HUD page validation passed for 11 page(s)."
+    },
+    {
+      "command": "git diff --check -- assets/css/reader-workbench.css assets/js/reader-workbench.js orot/index.html tanakh/ruth/index.html tanakh/deuteronomy/index.html tanakh/genesis/index.html tanakh/exodus/index.html tanakh/leviticus/index.html tanakh/numbers/index.html tanakh/jonah/index.html tanakh/amos/index.html tanakh/zechariah/index.html tanakh/zephaniah/index.html index.html",
+      "result": "passed; CRLF replacement warnings only"
+    },
+    {
+      "command": "safe marker scan over Orot/Ruth/Batch 1",
+      "result": "zero remaining escaped thinsp or escaped generated span marker hits in checked files"
+    }
+  ],
+  "browser_proof": [
+    {
+      "url": "http://127.0.0.1:8802/tanakh/deuteronomy/",
+      "reader_layout_mode": "prehud_rows",
+      "observed_prehud_rows": 10507,
+      "sample": "Hebrew token / full wrapped gloss / 94%",
+      "tok_leak_sampled": false,
+      "route_hud_opens": true,
+      "scroll_lock": true,
+      "source_license_inspectable": true
+    },
+    {
+      "url": "http://127.0.0.1:8802/tanakh/zephaniah/",
+      "reader_layout_mode": "prehud_rows",
+      "observed_prehud_rows": 674,
+      "sample": "Hebrew token / TBD / TBD",
+      "tok_leak_sampled": false,
+      "bad_hebrew_marker_visible": false
+    }
+  ],
+  "process_timeouts": [
+    {
+      "process_timeout": true,
+      "command": "targeted Select-String loop over 9 page files for config/header inspection",
+      "timeout": "12000ms",
+      "partial_output_or_artifact": "partial page/header evidence printed through Exodus",
+      "next_safe_action": "replaced with narrower raw-file config check over exact target list"
+    },
+    {
+      "process_timeout": true,
+      "command": "paired Get-Content CSS excerpt plus git status check",
+      "timeout": "10000ms",
+      "partial_output_or_artifact": "CSS excerpt partial; git status completed separately",
+      "next_safe_action": "reran smaller targeted reads and proceeded only after validators passed"
+    }
+  ],
+  "a14_callback": "A10_BOOK_HUD_BATCH1_HANDOFF | status=preview_ready_for_owner_and_a14_review | files=assets/css/reader-workbench.css, assets/js/reader-workbench.js, orot/index.html, tanakh/ruth/index.html, tanakh/deuteronomy/index.html, tanakh/genesis/index.html, tanakh/exodus/index.html, tanakh/leviticus/index.html, tanakh/numbers/index.html, tanakh/jonah/index.html, tanakh/amos/index.html, tanakh/zechariah/index.html, tanakh/zephaniah/index.html, index.html | validated=node --check assets/js/reader-workbench.js; validate_route_hud_page passed for 11 pages; git diff --check no whitespace errors except CRLF warnings | preview=http://127.0.0.1:8802/orot/, http://127.0.0.1:8802/tanakh/ruth/, http://127.0.0.1:8802/tanakh/deuteronomy/, http://127.0.0.1:8802/tanakh/zephaniah/ | owner boundary=Orot/Ruth are flagship/examples; Batch 1 is owner-review batch before the next 5-page approval batch | A14 action=review and prepare push/publish packet only after owner approval; do not rewrite canonical book/HUD behavior | boundary=no source/license/legal/Definition/product/answer/release acceptance; no accepted gloss/text; no publication readiness claim",
+  "routing_blocker": {
+    "status": "a14_thread_delivery_blocker",
+    "detail": "Current session exposes no callable thread-send tool after discovery; packet is preserved for A14/local handoff."
+  },
+  "stop_condition": "Owner/A14 review of Orot, Ruth, and Batch 1 preview pages; no next batch until owner approves this batch."
+}

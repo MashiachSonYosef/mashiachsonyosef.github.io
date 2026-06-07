@@ -11,18 +11,19 @@
     a { color: var(--accent); }
     main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
     h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
-    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h1 { font-size: clamp(1.65rem, 3.8vw, 3rem); line-height: 1.05; letter-spacing: 0.01em; margin-bottom: 10px; }
     h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
     h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero { min-width: 0; padding: 18px 20px 14px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; gap: 10px; align-items: start; }
     .hero-main { min-width: 0; }
-    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
     .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
     .hero-summary span { min-width: 0; max-width: 100%; overflow-wrap: anywhere; border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
-    .hero-notes { min-width: 0; max-width: 100%; overflow-wrap: anywhere; border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes { min-width: 0; max-width: 100%; overflow-wrap: anywhere; color: var(--muted); font-size: 0.72rem; line-height: 1.35; }
+    .hero-notes summary { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; color: var(--accent); border: 1px solid rgba(214,190,138,0.2); background: rgba(214,190,138,0.06); padding: 3px 7px; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .hero-notes[open] summary { margin-bottom: 8px; }
     .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
     .hero-notes a { overflow-wrap: anywhere; word-break: break-word; }
     .hero-notes li { min-width: 0; max-width: 100%; padding-left: 0.1rem; overflow-wrap: anywhere; word-break: break-word; }
@@ -159,18 +160,19 @@
       <div class="hero" id="work-top">
         <div class="hero-main">
           <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-          <h1>Amos<sup class="hero-ref">1</sup></h1>
+          <h1>Amos</h1>
           <p class="hero-summary">
             <span>146 source units</span>
             <span>1437 HUD forms</span>
             <span>imported 2026-05-08</span>
           </p>
         </div>
-        <div class="hero-notes" aria-label="Header source notes">
+        <details class="hero-notes" aria-label="Header source notes">
+          <summary>Source / license</summary>
           <ol>
             <li>Hebrew version: Miqra according to the Masorah | Version source: <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94">he.wikisource.org</a> | Digitization: Sefaria API | License: CC-BY-SA</li>
           </ol>
-        </div>
+        </details>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -395,7 +397,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דִּבְרֵ֣י עָמ֔וֹס אֲשֶׁר־הָיָ֥ה בַנֹּקְדִ֖ים מִתְּק֑וֹעַ אֲשֶׁר֩ חָזָ֨ה עַל־יִשְׂרָאֵ֜ל בִּימֵ֣י&amp;thinsp;<strong>׀</strong> עֻזִּיָּ֣ה מֶלֶךְ־יְהוּדָ֗ה וּבִימֵ֞י יָרׇבְעָ֤ם בֶּן־יוֹאָשׁ֙ מֶ֣לֶךְ יִשְׂרָאֵ֔ל שְׁנָתַ֖יִם לִפְנֵ֥י הָרָֽעַשׁ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">דִּבְרֵ֣י עָמ֔וֹס אֲשֶׁר־הָיָ֥ה בַנֹּקְדִ֖ים מִתְּק֑וֹעַ אֲשֶׁר֩ חָזָ֨ה עַל־יִשְׂרָאֵ֜ל בִּימֵ֣י&thinsp;<strong>׀</strong> עֻזִּיָּ֣ה מֶלֶךְ־יְהוּדָ֗ה וּבִימֵ֞י יָרׇבְעָ֤ם בֶּן־יוֹאָשׁ֙ מֶ֣לֶךְ יִשְׂרָאֵ֔ל שְׁנָתַ֖יִם לִפְנֵ֥י הָרָֽעַשׁ׃</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -411,7 +413,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּאמַ֓ר&amp;thinsp;<strong>׀</strong> יְהֹוָה֙ מִצִּיּ֣וֹן יִשְׁאָ֔ג וּמִירוּשָׁלַ֖͏ִם יִתֵּ֣ן קוֹל֑וֹ וְאָֽבְלוּ֙ נְא֣וֹת הָרֹעִ֔ים וְיָבֵ֖שׁ רֹ֥אשׁ הַכַּרְמֶֽל׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּאמַ֓ר&thinsp;<strong>׀</strong> יְהֹוָה֙ מִצִּיּ֣וֹן יִשְׁאָ֔ג וּמִירוּשָׁלַ֖͏ִם יִתֵּ֣ן קוֹל֑וֹ וְאָֽבְלוּ֙ נְא֣וֹת הָרֹעִ֔ים וְיָבֵ֖שׁ רֹ֥אשׁ הַכַּרְמֶֽל׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -459,7 +461,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשָֽׁבַרְתִּי֙ בְּרִ֣יחַ דַּמֶּ֔שֶׂק וְהִכְרַתִּ֤י יוֹשֵׁב֙ מִבִּקְעַת־אָ֔וֶן וְתוֹמֵ֥ךְ שֵׁ֖בֶט מִבֵּ֣ית עֶ֑דֶן וְגָל֧וּ עַם־אֲרָ֛ם קִ֖ירָה אָמַ֥ר יְהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשָֽׁבַרְתִּי֙ בְּרִ֣יחַ דַּמֶּ֔שֶׂק וְהִכְרַתִּ֤י יוֹשֵׁב֙ מִבִּקְעַת־אָ֔וֶן וְתוֹמֵ֥ךְ שֵׁ֖בֶט מִבֵּ֣ית עֶ֑דֶן וְגָל֧וּ עַם־אֲרָ֛ם קִ֖ירָה אָמַ֥ר יְהֹוָֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -507,7 +509,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִכְרַתִּ֤י יוֹשֵׁב֙ מֵֽאַשְׁדּ֔וֹד וְתוֹמֵ֥ךְ שֵׁ֖בֶט מֵֽאַשְׁקְל֑וֹן וַהֲשִׁיב֨וֹתִי יָדִ֜י עַל־עֶקְר֗וֹן וְאָֽבְדוּ֙ שְׁאֵרִ֣ית פְּלִשְׁתִּ֔ים אָמַ֖ר אֲדֹנָ֥י יֱהֹוִֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִכְרַתִּ֤י יוֹשֵׁב֙ מֵֽאַשְׁדּ֔וֹד וְתוֹמֵ֥ךְ שֵׁ֖בֶט מֵֽאַשְׁקְל֑וֹן וַהֲשִׁיב֨וֹתִי יָדִ֜י עַל־עֶקְר֗וֹן וְאָֽבְדוּ֙ שְׁאֵרִ֣ית פְּלִשְׁתִּ֔ים אָמַ֖ר אֲדֹנָ֥י יֱהֹוִֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -539,7 +541,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשִׁלַּ֥חְתִּי אֵ֖שׁ בְּח֣וֹמַת צֹ֑ר וְאָכְלָ֖ה אַרְמְנוֹתֶֽיהָ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשִׁלַּ֥חְתִּי אֵ֖שׁ בְּח֣וֹמַת צֹ֑ר וְאָכְלָ֖ה אַרְמְנוֹתֶֽיהָ׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -571,7 +573,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשִׁלַּ֥חְתִּי אֵ֖שׁ בְּתֵימָ֑ן וְאָכְלָ֖ה אַרְמְנ֥וֹת בׇּצְרָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשִׁלַּ֥חְתִּי אֵ֖שׁ בְּתֵימָ֑ן וְאָכְלָ֖ה אַרְמְנ֥וֹת בׇּצְרָֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -619,7 +621,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָלַ֥ךְ מַלְכָּ֖ם בַּגּוֹלָ֑ה ה֧וּא וְשָׂרָ֛יו יַחְדָּ֖ו אָמַ֥ר יְהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָלַ֥ךְ מַלְכָּ֖ם בַּגּוֹלָ֑ה ה֧וּא וְשָׂרָ֛יו יַחְדָּ֖ו אָמַ֥ר יְהֹוָֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -668,7 +670,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִכְרַתִּ֥י שׁוֹפֵ֖ט מִקִּרְבָּ֑הּ וְכׇל־שָׂרֶ֛יהָ אֶהֱר֥וֹג עִמּ֖וֹ אָמַ֥ר יְהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִכְרַתִּ֥י שׁוֹפֵ֖ט מִקִּרְבָּ֑הּ וְכׇל־שָׂרֶ֛יהָ אֶהֱר֥וֹג עִמּ֖וֹ אָמַ֥ר יְהֹוָֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -700,7 +702,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשִׁלַּ֥חְתִּי אֵ֖שׁ בִּֽיהוּדָ֑ה וְאָכְלָ֖ה אַרְמְנ֥וֹת יְרוּשָׁלָֽ͏ִם׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְשִׁלַּ֥חְתִּי אֵ֖שׁ בִּֽיהוּדָ֑ה וְאָכְלָ֖ה אַרְמְנ֥וֹת יְרוּשָׁלָֽ͏ִם׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -876,7 +878,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַמִּ֥יץ לִבּ֖וֹ בַּגִּבּוֹרִ֑ים עָר֛וֹם יָנ֥וּס בַּיּוֹם־הַה֖וּא נְאֻם־יְהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַמִּ֥יץ לִבּ֖וֹ בַּגִּבּוֹרִ֑ים עָר֛וֹם יָנ֥וּס בַּיּוֹם־הַה֖וּא נְאֻם־יְהֹוָֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1037,7 +1039,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְלֹא־יָדְע֥וּ עֲשׂוֹת־נְכֹחָ֖ה נְאֻם־יְהֹוָ֑ה הָא֥וֹצְרִ֛ים חָמָ֥ס וָשֹׁ֖ד בְּאַרְמְנוֹתֵיהֶֽם׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְלֹא־יָדְע֥וּ עֲשׂוֹת־נְכֹחָ֖ה נְאֻם־יְהֹוָ֑ה הָא֥וֹצְרִ֛ים חָמָ֥ס וָשֹׁ֖ד בְּאַרְמְנוֹתֵיהֶֽם׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1117,7 +1119,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִכֵּיתִ֥י בֵית־הַחֹ֖רֶף עַל־בֵּ֣ית הַקָּ֑יִץ וְאָבְד֞וּ בָּתֵּ֣י הַשֵּׁ֗ן וְסָפ֛וּ בָּתִּ֥ים רַבִּ֖ים נְאֻם־יְהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִכֵּיתִ֥י בֵית־הַחֹ֖רֶף עַל־בֵּ֣ית הַקָּ֑יִץ וְאָבְד֞וּ בָּתֵּ֣י הַשֵּׁ֗ן וְסָפ֛וּ בָּתִּ֥ים רַבִּ֖ים נְאֻם־יְהֹוָֽה׃&nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1262,7 +1264,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִכֵּ֣יתִי אֶתְכֶם֮ בַּשִּׁדָּפ֣וֹן וּבַיֵּרָקוֹן֒ הַרְבּ֨וֹת גַּנּוֹתֵיכֶ֧ם וְכַרְמֵיכֶ֛ם וּתְאֵנֵיכֶ֥ם וְזֵיתֵיכֶ֖ם יֹאכַ֣ל הַגָּזָ֑ם וְלֹא־שַׁבְתֶּ֥ם עָדַ֖י נְאֻם־יְהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִכֵּ֣יתִי אֶתְכֶם֮ בַּשִּׁדָּפ֣וֹן וּבַיֵּרָקוֹן֒ הַרְבּ֨וֹת גַּנּוֹתֵיכֶ֧ם וְכַרְמֵיכֶ֛ם וּתְאֵנֵיכֶ֥ם וְזֵיתֵיכֶ֖ם יֹאכַ֣ל הַגָּזָ֑ם וְלֹא־שַׁבְתֶּ֥ם עָדַ֖י נְאֻם־יְהֹוָֽה׃&nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1326,7 +1328,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֡י הִנֵּה֩ יוֹצֵ֨ר הָרִ֜ים וּבֹרֵ֣א ר֗וּחַ וּמַגִּ֤יד לְאָדָם֙ מַה־שֵּׂח֔וֹ עֹשֵׂ֥ה שַׁ֙חַר֙ עֵיפָ֔ה וְדֹרֵ֖ךְ עַל־בָּ֣מֳתֵי אָ֑רֶץ יְהֹוָ֥ה אֱלֹהֵֽי־צְבָא֖וֹת שְׁמֽוֹ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֡י הִנֵּה֩ יוֹצֵ֨ר הָרִ֜ים וּבֹרֵ֣א ר֗וּחַ וּמַגִּ֤יד לְאָדָם֙ מַה־שֵּׂח֔וֹ עֹשֵׂ֥ה שַׁ֙חַר֙ עֵיפָ֔ה וְדֹרֵ֖ךְ עַל־בָּ֣מֳתֵי אָ֑רֶץ יְהֹוָ֥ה אֱלֹהֵֽי־צְבָא֖וֹת שְׁמֽוֹ׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1567,7 +1569,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שִׂנְאוּ־רָע֙ וְאֶ֣הֱבוּ ט֔וֹב וְהַצִּ֥יגוּ בַשַּׁ֖עַר מִשְׁפָּ֑ט אוּלַ֗י יֶחֱנַ֛ן יְהֹוָ֥ה אֱלֹהֵֽי־צְבָא֖וֹת שְׁאֵרִ֥ית יוֹסֵֽף׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שִׂנְאוּ־רָע֙ וְאֶ֣הֱבוּ ט֔וֹב וְהַצִּ֥יגוּ בַשַּׁ֖עַר מִשְׁפָּ֑ט אוּלַ֗י יֶחֱנַ֛ן יְהֹוָ֥ה אֱלֹהֵֽי־צְבָא֖וֹת שְׁאֵרִ֥ית יוֹסֵֽף׃&nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1599,7 +1601,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּבְכׇל־כְּרָמִ֖ים מִסְפֵּ֑ד כִּֽי־אֶעֱבֹ֥ר בְּקִרְבְּךָ֖ אָמַ֥ר יְהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּבְכׇל־כְּרָמִ֖ים מִסְפֵּ֑ד כִּֽי־אֶעֱבֹ֥ר בְּקִרְבְּךָ֖ אָמַ֥ר יְהֹוָֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1759,7 +1761,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִגְלֵיתִ֥י אֶתְכֶ֖ם מֵהָ֣לְאָה לְדַמָּ֑שֶׂק אָמַ֛ר יְהֹוָ֥ה אֱלֹהֵֽי־צְבָא֖וֹת שְׁמֽוֹ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהִגְלֵיתִ֥י אֶתְכֶ֖ם מֵהָ֣לְאָה לְדַמָּ֑שֶׂק אָמַ֛ר יְהֹוָ֥ה אֱלֹהֵֽי־צְבָא֖וֹת שְׁמֽוֹ׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1920,7 +1922,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּנְשָׂא֞וֹ דּוֹד֣וֹ וּמְסָֽרְפ֗וֹ לְהוֹצִ֣יא עֲצָמִים֮ מִן־הַבַּיִת֒ וְאָמַ֞ר לַאֲשֶׁ֨ר בְּיַרְכְּתֵ֥י הַבַּ֛יִת הַע֥וֹד עִמָּ֖ךְ וְאָמַ֣ר אָ֑פֶס וְאָמַ֣ר הָ֔ס כִּ֛י לֹ֥א לְהַזְכִּ֖יר בְּשֵׁ֥ם יְהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּנְשָׂא֞וֹ דּוֹד֣וֹ וּמְסָֽרְפ֗וֹ לְהוֹצִ֣יא עֲצָמִים֮ מִן־הַבַּיִת֒ וְאָמַ֞ר לַאֲשֶׁ֨ר בְּיַרְכְּתֵ֥י הַבַּ֛יִת הַע֥וֹד עִמָּ֖ךְ וְאָמַ֣ר אָ֑פֶס וְאָמַ֣ר הָ֔ס כִּ֛י לֹ֥א לְהַזְכִּ֖יר בְּשֵׁ֥ם יְהֹוָֽה׃&nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1984,7 +1986,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֡י הִנְנִי֩ מֵקִ֨ים עֲלֵיכֶ֜ם בֵּ֣ית יִשְׂרָאֵ֗ל נְאֻם־יְהֹוָ֛ה אֱלֹהֵ֥י הַצְּבָא֖וֹת גּ֑וֹי וְלָחֲצ֥וּ אֶתְכֶ֛ם מִלְּב֥וֹא חֲמָ֖ת עַד־נַ֥חַל הָעֲרָבָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּ֡י הִנְנִי֩ מֵקִ֨ים עֲלֵיכֶ֜ם בֵּ֣ית יִשְׂרָאֵ֗ל נְאֻם־יְהֹוָ֛ה אֱלֹהֵ֥י הַצְּבָא֖וֹת גּ֑וֹי וְלָחֲצ֥וּ אֶתְכֶ֛ם מִלְּב֥וֹא חֲמָ֖ת עַד־נַ֥חַל הָעֲרָבָֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2081,7 +2083,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נִחַ֥ם יְהֹוָ֖ה עַל־זֹ֑את גַּם־הִיא֙ לֹ֣א תִֽהְיֶ֔ה אָמַ֖ר אֲדֹנָ֥י יֱהֹוִֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נִחַ֥ם יְהֹוָ֖ה עַל־זֹ֑את גַּם־הִיא֙ לֹ֣א תִֽהְיֶ֔ה אָמַ֖ר אֲדֹנָ֥י יֱהֹוִֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2129,7 +2131,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְנָשַׁ֙מּוּ֙ בָּמ֣וֹת יִשְׂחָ֔ק וּמִקְדְּשֵׁ֥י יִשְׂרָאֵ֖ל יֶחֱרָ֑בוּ וְקַמְתִּ֛י עַל־בֵּ֥ית יָרׇבְעָ֖ם בֶּחָֽרֶב׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְנָשַׁ֙מּוּ֙ בָּמ֣וֹת יִשְׂחָ֔ק וּמִקְדְּשֵׁ֥י יִשְׂרָאֵ֖ל יֶחֱרָ֑בוּ וְקַמְתִּ֛י עַל־בֵּ֥ית יָרׇבְעָ֖ם בֶּחָֽרֶב׃&nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2161,7 +2163,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּי־כֹה֙ אָמַ֣ר עָמ֔וֹס בַּחֶ֖רֶב יָמ֣וּת יָרׇבְעָ֑ם וְיִ֨שְׂרָאֵ֔ל גָּלֹ֥ה יִגְלֶ֖ה מֵעַ֥ל אַדְמָתֽוֹ׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כִּי־כֹה֙ אָמַ֣ר עָמ֔וֹס בַּחֶ֖רֶב יָמ֣וּת יָרׇבְעָ֑ם וְיִ֨שְׂרָאֵ֔ל גָּלֹ֥ה יִגְלֶ֖ה מֵעַ֥ל אַדְמָתֽוֹ׃&nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2257,7 +2259,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לָכֵ֞ן כֹּה־אָמַ֣ר יְהֹוָ֗ה אִשְׁתְּךָ֞ בָּעִ֤יר תִּזְנֶה֙ וּבָנֶ֤יךָ וּבְנֹתֶ֙יךָ֙ בַּחֶ֣רֶב יִפֹּ֔לוּ וְאַדְמָתְךָ֖ בַּחֶ֣בֶל תְּחֻלָּ֑ק וְאַתָּ֗ה עַל־אֲדָמָ֤ה טְמֵאָה֙ תָּמ֔וּת וְיִ֨שְׂרָאֵ֔ל גָּלֹ֥ה יִגְלֶ֖ה מֵעַ֥ל אַדְמָתֽוֹ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לָכֵ֞ן כֹּה־אָמַ֣ר יְהֹוָ֗ה אִשְׁתְּךָ֞ בָּעִ֤יר תִּזְנֶה֙ וּבָנֶ֤יךָ וּבְנֹתֶ֙יךָ֙ בַּחֶ֣רֶב יִפֹּ֔לוּ וְאַדְמָתְךָ֖ בַּחֶ֣בֶל תְּחֻלָּ֑ק וְאַתָּ֗ה עַל־אֲדָמָ֤ה טְמֵאָה֙ תָּמ֔וּת וְיִ֨שְׂרָאֵ֔ל גָּלֹ֥ה יִגְלֶ֖ה מֵעַ֥ל אַדְמָתֽוֹ׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2306,7 +2308,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהֵילִ֜ילוּ שִׁיר֤וֹת הֵיכָל֙ בַּיּ֣וֹם הַה֔וּא נְאֻ֖ם אֲדֹנָ֣י יֱהֹוִ֑ה רַ֣ב הַפֶּ֔גֶר בְּכׇל־מָק֖וֹם הִשְׁלִ֥יךְ הָֽס׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהֵילִ֜ילוּ שִׁיר֤וֹת הֵיכָל֙ בַּיּ֣וֹם הַה֔וּא נְאֻ֖ם אֲדֹנָ֣י יֱהֹוִ֑ה רַ֣ב הַפֶּ֔גֶר בְּכׇל־מָק֖וֹם הִשְׁלִ֥יךְ הָֽס׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2322,7 +2324,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שִׁמְעוּ־זֹ֕את הַשֹּׁאֲפִ֖ים אֶבְי֑וֹן וְלַשְׁבִּ֖ית &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(ענוי)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[עֲנִיֵּי־]&lt;/span&gt;&lt;/span&gt;אָֽרֶץ׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שִׁמְעוּ־זֹ֕את הַשֹּׁאֲפִ֖ים אֶבְי֑וֹן וְלַשְׁבִּ֖ית &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(ענוי)</span> &lt;span class=&quot;mam-kq-q&quot;&gt;[עֲנִיֵּי־]</span></span>אָֽרֶץ׃</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2386,7 +2388,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַ֤עַל זֹאת֙ לֹא־תִרְגַּ֣ז הָאָ֔רֶץ וְאָבַ֖ל כׇּל־יוֹשֵׁ֣ב בָּ֑הּ וְעָלְתָ֤ה כָאֹר֙ כֻּלָּ֔הּ וְנִגְרְשָׁ֥ה &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(ונשקה)&lt;/span&gt; &lt;span class=&quot;mam-kq-q&quot;&gt;[וְנִשְׁקְעָ֖ה]&lt;/span&gt;&lt;/span&gt; כִּיא֥וֹר מִצְרָֽיִם׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַ֤עַל זֹאת֙ לֹא־תִרְגַּ֣ז הָאָ֔רֶץ וְאָבַ֖ל כׇּל־יוֹשֵׁ֣ב בָּ֑הּ וְעָלְתָ֤ה כָאֹר֙ כֻּלָּ֔הּ וְנִגְרְשָׁ֥ה &lt;span class=&quot;mam-kq&quot;&gt;&lt;span class=&quot;mam-kq-k&quot;&gt;(ונשקה)</span> &lt;span class=&quot;mam-kq-q&quot;&gt;[וְנִשְׁקְעָ֖ה]</span></span> כִּיא֥וֹר מִצְרָֽיִם׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2402,7 +2404,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָיָ֣ה&amp;thinsp;<strong>׀</strong> בַּיּ֣וֹם הַה֗וּא נְאֻם֙ אֲדֹנָ֣י יֱהֹוִ֔ה וְהֵבֵאתִ֥י הַשֶּׁ֖מֶשׁ בַּֽצׇּהֳרָ֑יִם וְהַחֲשַׁכְתִּ֥י לָאָ֖רֶץ בְּי֥וֹם אֽוֹר׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָיָ֣ה&thinsp;<strong>׀</strong> בַּיּ֣וֹם הַה֗וּא נְאֻם֙ אֲדֹנָ֣י יֱהֹוִ֔ה וְהֵבֵאתִ֥י הַשֶּׁ֖מֶשׁ בַּֽצׇּהֳרָ֑יִם וְהַחֲשַׁכְתִּ֥י לָאָ֖רֶץ בְּי֥וֹם אֽוֹר׃</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2418,7 +2420,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָפַכְתִּ֨י חַגֵּיכֶ֜ם לְאֵ֗בֶל וְכׇל־שִֽׁירֵיכֶם֙ לְקִינָ֔ה וְהַעֲלֵיתִ֤י עַל־כׇּל־מׇתְנַ֙יִם֙ שָׂ֔ק וְעַל־כׇּל־רֹ֖אשׁ קׇרְחָ֑ה וְשַׂמְתִּ֙יהָ֙ כְּאֵ֣בֶל יָחִ֔יד וְאַחֲרִיתָ֖הּ כְּי֥וֹם מָֽר׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְהָפַכְתִּ֨י חַגֵּיכֶ֜ם לְאֵ֗בֶל וְכׇל־שִֽׁירֵיכֶם֙ לְקִינָ֔ה וְהַעֲלֵיתִ֤י עַל־כׇּל־מׇתְנַ֙יִם֙ שָׂ֔ק וְעַל־כׇּל־רֹ֖אשׁ קׇרְחָ֑ה וְשַׂמְתִּ֙יהָ֙ כְּאֵ֣בֶל יָחִ֔יד וְאַחֲרִיתָ֖הּ כְּי֥וֹם מָֽר׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2434,7 +2436,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנֵּ֣ה&amp;thinsp;<strong>׀</strong> יָמִ֣ים בָּאִ֗ים נְאֻם֙ אֲדֹנָ֣י יֱהֹוִ֔ה וְהִשְׁלַחְתִּ֥י רָעָ֖ב בָּאָ֑רֶץ לֹא־רָעָ֤ב לַלֶּ֙חֶם֙ וְלֹא־צָמָ֣א לַמַּ֔יִם כִּ֣י אִם־לִשְׁמֹ֔עַ אֵ֖ת דִּבְרֵ֥י יְהֹוָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנֵּ֣ה&thinsp;<strong>׀</strong> יָמִ֣ים בָּאִ֗ים נְאֻם֙ אֲדֹנָ֣י יֱהֹוִ֔ה וְהִשְׁלַחְתִּ֥י רָעָ֖ב בָּאָ֑רֶץ לֹא־רָעָ֤ב לַלֶּ֙חֶם֙ וְלֹא־צָמָ֣א לַמַּ֔יִם כִּ֣י אִם־לִשְׁמֹ֔עַ אֵ֖ת דִּבְרֵ֥י יְהֹוָֽה׃</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2482,7 +2484,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַנִּשְׁבָּעִים֙ בְּאַשְׁמַ֣ת שֹֽׁמְר֔וֹן וְאָמְר֗וּ חֵ֤י אֱלֹהֶ֙יךָ֙ דָּ֔ן וְחֵ֖י דֶּ֣רֶךְ בְּאֵֽר־שָׁ֑בַע וְנָפְל֖וּ וְלֹא־יָק֥וּמוּ עֽוֹד׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַנִּשְׁבָּעִים֙ בְּאַשְׁמַ֣ת שֹֽׁמְר֔וֹן וְאָמְר֗וּ חֵ֤י אֱלֹהֶ֙יךָ֙ דָּ֔ן וְחֵ֖י דֶּ֣רֶךְ בְּאֵֽר־שָׁ֑בַע וְנָפְל֖וּ וְלֹא־יָק֥וּמוּ עֽוֹד׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2579,7 +2581,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַבּוֹנֶ֤ה בַשָּׁמַ֙יִם֙ &lt;span class=&quot;mam-kq-trivial&quot;&gt;מַעֲלוֹתָ֔ו&lt;/span&gt; וַאֲגֻדָּת֖וֹ עַל־אֶ֣רֶץ יְסָדָ֑הּ הַקֹּרֵ֣א לְמֵֽי־הַיָּ֗ם וַֽיִּשְׁפְּכֵ֛ם עַל־פְּנֵ֥י הָאָ֖רֶץ יְהֹוָ֥ה שְׁמֽוֹ׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הַבּוֹנֶ֤ה בַשָּׁמַ֙יִם֙ &lt;span class=&quot;mam-kq-trivial&quot;&gt;מַעֲלוֹתָ֔ו</span> וַאֲגֻדָּת֖וֹ עַל־אֶ֣רֶץ יְסָדָ֑הּ הַקֹּרֵ֣א לְמֵֽי־הַיָּ֗ם וַֽיִּשְׁפְּכֵ֛ם עַל־פְּנֵ֥י הָאָ֖רֶץ יְהֹוָ֥ה שְׁמֽוֹ׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2611,7 +2613,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנֵּ֞ה עֵינֵ֣י&amp;thinsp;<strong>׀</strong> אֲדֹנָ֣י יֱהֹוִ֗ה בַּמַּמְלָכָה֙ הַֽחַטָּאָ֔ה וְהִשְׁמַדְתִּ֣י אֹתָ֔הּ מֵעַ֖ל פְּנֵ֣י הָאֲדָמָ֑ה אֶ֗פֶס כִּ֠י לֹ֣א הַשְׁמֵ֥יד אַשְׁמִ֛יד אֶת־בֵּ֥ית יַעֲקֹ֖ב נְאֻם־יְהֹוָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִנֵּ֞ה עֵינֵ֣י&thinsp;<strong>׀</strong> אֲדֹנָ֣י יֱהֹוִ֗ה בַּמַּמְלָכָה֙ הַֽחַטָּאָ֔ה וְהִשְׁמַדְתִּ֣י אֹתָ֔הּ מֵעַ֖ל פְּנֵ֣י הָאֲדָמָ֑ה אֶ֗פֶס כִּ֠י לֹ֣א הַשְׁמֵ֥יד אַשְׁמִ֛יד אֶת־בֵּ֥ית יַעֲקֹ֖ב נְאֻם־יְהֹוָֽה׃</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2675,7 +2677,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לְמַ֨עַן יִֽירְשׁ֜וּ אֶת־שְׁאֵרִ֤ית אֱדוֹם֙ וְכׇל־הַגּוֹיִ֔ם אֲשֶׁר־נִקְרָ֥א שְׁמִ֖י עֲלֵיהֶ֑ם נְאֻם־יְהֹוָ֖ה עֹ֥שֶׂה זֹּֽאת׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לְמַ֨עַן יִֽירְשׁ֜וּ אֶת־שְׁאֵרִ֤ית אֱדוֹם֙ וְכׇל־הַגּוֹיִ֔ם אֲשֶׁר־נִקְרָ֥א שְׁמִ֖י עֲלֵיהֶ֑ם נְאֻם־יְהֹוָ֖ה עֹ֥שֶׂה זֹּֽאת׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -2752,7 +2754,7 @@
     </div>
   </section>
   <script type="application/json" data-lexical-occurrences data-src="../../data/public-hud/amos/occurrences.json">{}</script>
-  <script type="application/json" data-lexical-config>{"work_id":"amos","work_slug":"tanakh/amos","work_title":"Amos","manifest_url":"../../data/public-hud/amos/manifest.json","occurrence_url":"../../data/public-hud/amos/occurrences.json","reader_hint_url":"../../data/public-hud/amos/reader-hints.json","hud_route_lookup_manifest_url":"../../data/public-hud/amos/route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"amos","work_slug":"tanakh/amos","work_title":"Amos","manifest_url":"../../data/public-hud/amos/manifest.json","occurrence_url":"../../data/public-hud/amos/occurrences.json","reader_hint_url":"../../data/public-hud/amos/reader-hints.json","hud_route_lookup_manifest_url":"../../data/public-hud/amos/route-lookup/manifest.json","reader_layout_mode":"prehud_rows","root_href":"../../"}</script>
   <script type="text/plain" data-hud-runtime-contract>
     selectRouteAnswer
     lookupCandidateTreatments

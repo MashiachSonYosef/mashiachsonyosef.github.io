@@ -11,18 +11,19 @@
     a { color: var(--accent); }
     main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
     h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
-    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h1 { font-size: clamp(1.65rem, 3.8vw, 3rem); line-height: 1.05; letter-spacing: 0.01em; margin-bottom: 10px; }
     h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
     h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero { min-width: 0; padding: 18px 20px 14px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; gap: 10px; align-items: start; }
     .hero-main { min-width: 0; }
-    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
     .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
     .hero-summary span { min-width: 0; max-width: 100%; overflow-wrap: anywhere; border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
-    .hero-notes { min-width: 0; max-width: 100%; overflow-wrap: anywhere; border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes { min-width: 0; max-width: 100%; overflow-wrap: anywhere; color: var(--muted); font-size: 0.72rem; line-height: 1.35; }
+    .hero-notes summary { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; color: var(--accent); border: 1px solid rgba(214,190,138,0.2); background: rgba(214,190,138,0.06); padding: 3px 7px; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .hero-notes[open] summary { margin-bottom: 8px; }
     .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
     .hero-notes a { overflow-wrap: anywhere; word-break: break-word; }
     .hero-notes li { min-width: 0; max-width: 100%; padding-left: 0.1rem; overflow-wrap: anywhere; word-break: break-word; }
@@ -159,18 +160,19 @@
       <div class="hero" id="work-top">
         <div class="hero-main">
           <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-          <h1>Jonah<sup class="hero-ref">1</sup></h1>
+          <h1>Jonah</h1>
           <p class="hero-summary">
             <span>48 source units</span>
             <span>525 HUD forms</span>
             <span>imported 2026-05-08</span>
           </p>
         </div>
-        <div class="hero-notes" aria-label="Header source notes">
+        <details class="hero-notes" aria-label="Header source notes">
+          <summary>Source / license</summary>
           <ol>
             <li>Hebrew version: Miqra according to the Masorah | Version source: <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94">he.wikisource.org</a> | Digitization: Sefaria API | License: CC-BY-SA</li>
           </ol>
-        </div>
+        </details>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -299,7 +301,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיָּ֤קׇם יוֹנָה֙ לִבְרֹ֣חַ תַּרְשִׁ֔ישָׁה מִלִּפְנֵ֖י יְהֹוָ֑ה וַיֵּ֨רֶד יָפ֜וֹ וַיִּמְצָ֥א אֳנִיָּ֣ה&amp;thinsp;<strong>׀</strong> בָּאָ֣ה תַרְשִׁ֗ישׁ וַיִּתֵּ֨ן שְׂכָרָ֜הּ וַיֵּ֤רֶד בָּהּ֙ לָב֤וֹא עִמָּהֶם֙ תַּרְשִׁ֔ישָׁה מִלִּפְנֵ֖י יְהֹוָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיָּ֤קׇם יוֹנָה֙ לִבְרֹ֣חַ תַּרְשִׁ֔ישָׁה מִלִּפְנֵ֖י יְהֹוָ֑ה וַיֵּ֨רֶד יָפ֜וֹ וַיִּמְצָ֥א אֳנִיָּ֣ה&thinsp;<strong>׀</strong> בָּאָ֣ה תַרְשִׁ֗ישׁ וַיִּתֵּ֨ן שְׂכָרָ֜הּ וַיֵּ֤רֶד בָּהּ֙ לָב֤וֹא עִמָּהֶם֙ תַּרְשִׁ֔ישָׁה מִלִּפְנֵ֖י יְהֹוָֽה׃</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -668,7 +670,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲנִ֗י בְּק֤וֹל תּוֹדָה֙ אֶזְבְּחָה־לָּ֔ךְ אֲשֶׁ֥ר נָדַ֖רְתִּי אֲשַׁלֵּ֑מָה יְשׁוּעָ֖תָה לַיהֹוָֽה׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַאֲנִ֗י בְּק֤וֹל תּוֹדָה֙ אֶזְבְּחָה־לָּ֔ךְ אֲשֶׁ֥ר נָדַ֖רְתִּי אֲשַׁלֵּ֑מָה יְשׁוּעָ֖תָה לַיהֹוָֽה׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -684,7 +686,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֥אמֶר יְהֹוָ֖ה לַדָּ֑ג וַיָּקֵ֥א אֶת־יוֹנָ֖ה אֶל־הַיַּבָּשָֽׁה׃&amp;nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיֹּ֥אמֶר יְהֹוָ֖ה לַדָּ֑ג וַיָּקֵ֥א אֶת־יוֹנָ֖ה אֶל־הַיַּבָּשָֽׁה׃&nbsp;&lt;span class=&quot;mam-spi-samekh&quot;&gt;{ס}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -894,7 +896,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֣ה יְהֹוָ֔ה קַח־נָ֥א אֶת־נַפְשִׁ֖י מִמֶּ֑נִּי כִּ֛י ט֥וֹב מוֹתִ֖י מֵחַיָּֽי׃&amp;nbsp;&lt;span class=&quot;mam-spi-pe&quot;&gt;{פ}&lt;/span&gt;<br></p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַתָּ֣ה יְהֹוָ֔ה קַח־נָ֥א אֶת־נַפְשִׁ֖י מִמֶּ֑נִּי כִּ֛י ט֥וֹב מוֹתִ֖י מֵחַיָּֽי׃&nbsp;<span class="mam-spi-pe">{פ}</span><br></p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -942,7 +944,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְמַ֣ן יְהֹוָֽה־אֱ֠לֹהִ֠ים קִיקָי֞וֹן וַיַּ֣עַל&amp;thinsp;<strong>׀</strong> מֵעַ֣ל לְיוֹנָ֗ה לִֽהְי֥וֹת צֵל֙ עַל־רֹאשׁ֔וֹ לְהַצִּ֥יל ל֖וֹ מֵרָֽעָת֑וֹ וַיִּשְׂמַ֥ח יוֹנָ֛ה עַל־הַקִּֽיקָי֖וֹן שִׂמְחָ֥ה גְדוֹלָֽה׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְמַ֣ן יְהֹוָֽה־אֱ֠לֹהִ֠ים קִיקָי֞וֹן וַיַּ֣עַל&thinsp;<strong>׀</strong> מֵעַ֣ל לְיוֹנָ֗ה לִֽהְי֥וֹת צֵל֙ עַל־רֹאשׁ֔וֹ לְהַצִּ֥יל ל֖וֹ מֵרָֽעָת֑וֹ וַיִּשְׂמַ֥ח יוֹנָ֛ה עַל־הַקִּֽיקָי֖וֹן שִׂמְחָ֥ה גְדוֹלָֽה׃</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -974,7 +976,7 @@
             </div>
             <div class="unit-grid">
               <div>
-                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְהִ֣י&amp;thinsp;<strong>׀</strong> כִּזְרֹ֣חַ הַשֶּׁ֗מֶשׁ וַיְמַ֨ן אֱלֹהִ֜ים ר֤וּחַ קָדִים֙ חֲרִישִׁ֔ית וַתַּ֥ךְ הַשֶּׁ֛מֶשׁ עַל־רֹ֥אשׁ יוֹנָ֖ה וַיִּתְעַלָּ֑ף וַיִּשְׁאַ֤ל אֶת־נַפְשׁוֹ֙ לָמ֔וּת וַיֹּ֕אמֶר ט֥וֹב מוֹתִ֖י מֵחַיָּֽי׃</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וַיְהִ֣י&thinsp;<strong>׀</strong> כִּזְרֹ֣חַ הַשֶּׁ֗מֶשׁ וַיְמַ֨ן אֱלֹהִ֜ים ר֤וּחַ קָדִים֙ חֲרִישִׁ֔ית וַתַּ֥ךְ הַשֶּׁ֛מֶשׁ עַל־רֹ֥אשׁ יוֹנָ֖ה וַיִּתְעַלָּ֑ף וַיִּשְׁאַ֤ל אֶת־נַפְשׁוֹ֙ לָמ֔וּת וַיֹּ֕אמֶר ט֥וֹב מוֹתִ֖י מֵחַיָּֽי׃</p>
               </div>
             </div>
             <div class="lexical-slot" data-lexical-slot></div>
@@ -1051,7 +1053,7 @@
     </div>
   </section>
   <script type="application/json" data-lexical-occurrences data-src="../../data/public-hud/jonah/occurrences.json">{}</script>
-  <script type="application/json" data-lexical-config>{"work_id":"jonah","work_slug":"tanakh/jonah","work_title":"Jonah","manifest_url":"../../data/public-hud/jonah/manifest.json","occurrence_url":"../../data/public-hud/jonah/occurrences.json","reader_hint_url":"../../data/public-hud/jonah/reader-hints.json","hud_route_lookup_manifest_url":"../../data/public-hud/jonah/route-lookup/manifest.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"jonah","work_slug":"tanakh/jonah","work_title":"Jonah","manifest_url":"../../data/public-hud/jonah/manifest.json","occurrence_url":"../../data/public-hud/jonah/occurrences.json","reader_hint_url":"../../data/public-hud/jonah/reader-hints.json","hud_route_lookup_manifest_url":"../../data/public-hud/jonah/route-lookup/manifest.json","reader_layout_mode":"prehud_rows","root_href":"../../"}</script>
   <script type="text/plain" data-hud-runtime-contract>
     selectRouteAnswer
     lookupCandidateTreatments
