@@ -33,18 +33,68 @@ jobs:
             /orot/index.html
             /tanakh/amos/index.html
             /tanakh/deuteronomy/index.html
+            /tanakh/esther/index.html
             /tanakh/exodus/index.html
+            /tanakh/ezra/index.html
             /tanakh/genesis/index.html
             /tanakh/jonah/index.html
             /tanakh/leviticus/index.html
+            /tanakh/malachi/index.html
+            /tanakh/nehemiah/index.html
             /tanakh/numbers/index.html
+            /tanakh/obadiah/index.html
             /tanakh/ruth/index.html
             /tanakh/zechariah/index.html
             /tanakh/zephaniah/index.html
             /data/definitions/hud-route-lookup
+            /data/lexical/amos.manifest.json
+            /data/lexical/amos-chunks
+            /data/lexical/deuteronomy.manifest.json
+            /data/lexical/deuteronomy-chunks
+            /data/lexical/esther.manifest.json
+            /data/lexical/esther-chunks
+            /data/lexical/exodus.manifest.json
+            /data/lexical/exodus-chunks
+            /data/lexical/ezra.manifest.json
+            /data/lexical/ezra-chunks
+            /data/lexical/genesis.manifest.json
+            /data/lexical/genesis-chunks
+            /data/lexical/jonah.manifest.json
+            /data/lexical/jonah-chunks
+            /data/lexical/leviticus.manifest.json
+            /data/lexical/leviticus-chunks
+            /data/lexical/malachi.manifest.json
+            /data/lexical/malachi-chunks
+            /data/lexical/nehemiah.manifest.json
+            /data/lexical/nehemiah-chunks
+            /data/lexical/numbers.manifest.json
+            /data/lexical/numbers-chunks
+            /data/lexical/obadiah.manifest.json
+            /data/lexical/obadiah-chunks
             /data/lexical/orot.manifest.json
             /data/lexical/orot-chunks
+            /data/lexical/ruth.manifest.json
+            /data/lexical/ruth-chunks
+            /data/lexical/zechariah.manifest.json
+            /data/lexical/zechariah-chunks
+            /data/lexical/zephaniah.manifest.json
+            /data/lexical/zephaniah-chunks
+            /data/lexical/occurrences/amos.json
+            /data/lexical/occurrences/deuteronomy.json
+            /data/lexical/occurrences/esther.json
+            /data/lexical/occurrences/exodus.json
+            /data/lexical/occurrences/ezra.json
+            /data/lexical/occurrences/genesis.json
+            /data/lexical/occurrences/jonah.json
+            /data/lexical/occurrences/leviticus.json
+            /data/lexical/occurrences/malachi.json
+            /data/lexical/occurrences/nehemiah.json
+            /data/lexical/occurrences/numbers.json
+            /data/lexical/occurrences/obadiah.json
             /data/lexical/occurrences/orot.json
+            /data/lexical/occurrences/ruth.json
+            /data/lexical/occurrences/zechariah.json
+            /data/lexical/occurrences/zephaniah.json
             /data/lexical/source-layers
             /data/public-hud/amos
             /data/public-hud/deuteronomy
@@ -67,11 +117,16 @@ jobs:
           mkdir -p .site/orot \
             .site/tanakh/amos \
             .site/tanakh/deuteronomy \
+            .site/tanakh/esther \
             .site/tanakh/exodus \
+            .site/tanakh/ezra \
             .site/tanakh/genesis \
             .site/tanakh/jonah \
             .site/tanakh/leviticus \
+            .site/tanakh/malachi \
+            .site/tanakh/nehemiah \
             .site/tanakh/numbers \
+            .site/tanakh/obadiah \
             .site/tanakh/ruth \
             .site/tanakh/zechariah \
             .site/tanakh/zephaniah \
@@ -85,9 +140,14 @@ jobs:
           cp -a assets/css/reader-workbench.css .site/assets/css/
           cp -a assets/js/reader-workbench.js .site/assets/js/
           cp -a orot/index.html .site/orot/
-          for work in amos deuteronomy exodus genesis jonah leviticus numbers ruth zechariah zephaniah; do
+          for work in amos deuteronomy esther exodus ezra genesis jonah leviticus malachi nehemiah numbers obadiah ruth zechariah zephaniah; do
             cp -a "tanakh/$work/index.html" ".site/tanakh/$work/"
-            cp -a "data/public-hud/$work" .site/data/public-hud/
+            cp -a "data/lexical/$work.manifest.json" .site/data/lexical/
+            cp -a "data/lexical/$work-chunks" .site/data/lexical/
+            cp -a "data/lexical/occurrences/$work.json" .site/data/lexical/occurrences/
+            if [ -d "data/public-hud/$work" ]; then
+              cp -a "data/public-hud/$work" .site/data/public-hud/
+            fi
           done
           cp -a data/lexical/orot.manifest.json .site/data/lexical/
           cp -a data/lexical/orot-chunks .site/data/lexical/
