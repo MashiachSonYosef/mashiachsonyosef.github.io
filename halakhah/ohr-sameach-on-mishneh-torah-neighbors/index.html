@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -31,6 +38,11 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -47,6 +59,7 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -80,48 +93,48 @@
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-field-row { display: contents; }
-    .lexical-field-row[hidden] { display: none; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .breakdown-list { display: grid; gap: 8px; }
-    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
-    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
-    .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
-    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
-    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
-    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
-    .lexical-entry .entry-hebrew { color: var(--hebrew); }
-    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
-    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
     .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
-    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; }
-    .other-entries { margin-top: 12px; }
-    .claim-row-list details { margin-top: 8px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
-    .source-claim { color: var(--text); margin: 0 0 6px; }
-    .source-claim span { color: var(--hebrew); }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
-    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
     .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
@@ -135,20 +148,23 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
 <body>
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
-        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-        <h1>Ohr Sameach on Mishneh Torah, Neighbors</h1>
-        <p class="work-label">Commentary on Mishneh Torah, Neighbors</p>
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Ohr Sameach on Mishneh Torah, Neighbors<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Mishneh Torah, Neighbors</p>
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-neighbors/">Open Mishneh Torah, Neighbors</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
@@ -156,19 +172,27 @@
             <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
-        <p class="meta">19 total source units | imported 2026-05-21</p>
-        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>672 matched</strong> / 2095 unique forms.</p>
+          <p class="hero-summary">
+            <span>19 source units</span>
+            <span>2095 HUD forms</span>
+            <span>imported 2026-05-21</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Ohr Sameach on Mishneh Torah, Neighbors <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Ohr Sameach on Mishneh Torah, Neighbors <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Ohr Sameach on Mishneh Torah, Neighbors <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Ohr Sameach on Mishneh Torah, Neighbors <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -267,13 +291,18 @@
         </nav>
         <article>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-1">Chapter 1</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-1-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-1-1-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-1-1-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 1:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 1:1:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-1-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-1-1">Mishneh Torah, Neighbors 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַקּוֹנֶה מֵחֲבֵרוֹ חֲצִי שָׂדֵהוּ. אוֹ שְׁנַיִם שֶׁקָּנוּ מֵאֶחָד שָׂדֶה. אוֹ שֶׁיָּרְשׁוּ. אוֹ שֶׁנִּתְּנָה לָהֶן בְּמַתָּנָה. אוֹ שֶׁהֶחְזִיקוּ בָּהּ מִן הַהֶפְקֵר. אוֹ נִכְסֵי גֵּר. כְּלָלוֹ שֶׁל דָּבָר כָּל שֶׁיֵּשׁ בֵּינֵיהֶם שֻׁתָּפוּת בַּקַּרְקַע וּבִקֵּשׁ אֶחָד מִן הַשֻּׁתָּפִין לַחֲלֹק וְלִטּל חֶלְקוֹ לְבַדּוֹ. אִם יֵשׁ בְּאוֹתָהּ קַרְקַע דִּין חֲלוּקָה כּוֹפֶה אֶת שְׁאָר הַשֻּׁתָּפִין וְחוֹלְקִין עִמּוֹ. וְאִם אֵין בָּהּ דִּין חֲלוּקָה אֵין אֶחָד מֵהֶן יָכוֹל לָכֹף אֶת חֲבֵרוֹ לַחֲלֹק. וְכֵן הַדִּין בְּמִטַּלְטְלִין. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁאֵין אֶחָד מֵהֶן מַכִּיר אֶת חֶלְקוֹ בַּמָּקוֹם שֶׁהֵן שֻׁתָּפִין בּוֹ אֶלָּא יַד כֻּלָּן מִשְׁתַּמֵּשׁ בְּכָל הַמָּקוֹם. אֲבָל אִם הָיָה אֶחָד מֵהֶן מַכִּיר חֶלְקוֹ אַף עַל פִּי שֶׁאֵין בָּהּ דִּין חֲלוּקָה כּוֹפֶה כָּל אֶחָד מֵהֶן אֶת חֲבֵרוֹ לְהַבְדִּיל בֵּין חֶלְקוֹ לְחֵלֶק חֲבֵרוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או שהחזיקו בה מן ההפקר:</strong><br><strong> נ&quot;ב </strong> מפורש בפירוש רבינו חננאל פ&quot;ק דב&quot;מ גבי יחלוקו לדמי דאם יש בו דין חלוקה כו׳ ואם לאו מעלין אותו בדמים:</p>
               </div>
             </div>
@@ -283,13 +312,18 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-neighbors-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-1-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-1-3-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-1-3-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 1:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 1:3:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-1-3-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-1-3">Mishneh Torah, Neighbors 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַשּׂוֹכֵר מֵחֲבֵרוֹ מִקְצָת חָצֵר. אוֹ שָׂדֶה שֶׁאֵין בָּהּ דִּין חֲלוּקָה. אוֹ שְׁנַיִם שֶׁשָּׂכְרוּ מָקוֹם אֶחָד בְּשֻׁתָּפוּת. כָּל אֶחָד מֵהֶן יָכוֹל לָכֹף אֶת חֲבֵרוֹ וְלוֹמַר לוֹ אוֹ שְׂכֹר מִמֶּנִּי חֶלְקִי אוֹ הַשְׂכִּיר לִי חֶלְקְךָ. וְאִם יֵשׁ בָּהּ דִּין חֲלוּקָה חוֹלְקִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד השוכר מחבירו מקצת חצר כו׳:</strong><br><strong> הנה </strong> בנתן מתנה לחבירו חצי חצר מסתפקנא אם מצי טעין המקבל מתנה גוד או איגוד, או מצי אמר הנותן אדעתא דתכריחנו ליקח וליתן דמים או למכור ולהסתלק מחצרי לא קא יהיבנא לך מתנה, דאימת קא יהיבנא לך אדעתא דתדור עמדי. ולכאורה נראה לפשוט מהא דמתיב ממשנתנו דמי שחציו עבד וחציו בן חורין עובד את רבו כו׳, ואם נאמר דבכה&quot;ג לא מצי טעין המקבל גוד או איגוד, א&quot;כ מאי פריך דילמא מיירי בשחרר רבו אותו לחציו והוא קיבל גט שחרור לחציו מידו, א&quot;כ אי לאו תיקון העולם מצי אמר אדעתא דתהיה עמדי בשותפות שחררינא לך, אדעתא דתיפוק כולא לחירות לא, אלא ע&quot;כ דאף בכה&quot;ג אמרינן גוד או איגוד, כש&quot;כ כאן דהנותן הא מצי לומר גוד או איגוד, לכן לא גרע כח המקבל מכח הנותן וכל זכות שיש לנותן במה ששייר יש ג&quot;כ למקבל בחצי שקיבל ומצי לומר גוד או איגוד:<br><strong> אולם </strong> יש לדחות דהך סוגיא אזלא אליבא דרב יוסף דסבר דלרבנן אין אדם יכול לשחרר חצי עבד לא בשטר ולא בכסף, ומוקי הגמרא משנתנו בעבד של שני שותפים וקם אחד ושחרר חציו, א&quot;כ שפיר פריך דנימא אגוד, וכן מסתברא דאין סברא כלל לומר דהוי סברה הגמרא דאמרינן אגוד היכי דליכא גוד בכה&quot;ג דנתן לו חציו וכמש&quot;ב ודוק. אמנם מכאן ראיה לפסק רבינו דאף בשנים שלקחו בשותפות אמרינן גוד או איגוד, דאל&quot;ה מאי פריך דילמא מיירי ששחרר חציו ומכר חציו בבת אחת דבכה&quot;ג אמר רבה דמהני לכ&quot;ע עי&quot;ש, ובכה&quot;ג מצי אמר דאדעתא דא קבלית גט שחרור דתהיה שותף בגופך עם פלוני, ואולי דסתמא מיירי בכל ענין לכן פריך מינה ודוק:</p>
               </div>
             </div>
@@ -299,13 +333,18 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-neighbors-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-1-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-1-4-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-1-4-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 1:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 1:4:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-1-4-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-1-4">Mishneh Torah, Neighbors 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵי זֶהוּ דִּין חֲלוּקָה. כָּל שֶׁאִלּוּ יְחַלֵּק לְפִי הַשֻּׁתָּפִין יַגִּיעַ לַפָּחוּת שֶׁבָּהֶם חֵלֶק שֶׁשֵּׁם הַכּל קָרוּי עָלָיו. אֲבָל אִם אֵין שֵׁם הַכּל נִקְרָא עַל הַחֵלֶק אֵין בָּהּ דִּין חֲלוּקָה. כֵּיצַד. כָּל חָצֵר שֶׁאֵין בָּהּ אַרְבַּע אַמּוֹת עַל אַרְבַּע אַמּוֹת אֵינָהּ קְרוּיָה חָצֵר. וְכָל שָׂדֶה שֶׁאֵין בָּהּ כְּדֵי זְרִיעַת תִּשְׁעָה קַבִּין אֵינָהּ קְרוּיָה שָׂדֶה. וְכָל גִּנָּה שֶׁאֵין בָּהּ כְּדֵי זְרִיעַת חֲצִי קַב אֵינָהּ קְרוּיָה גִּנָּה. וְכָל פַּרְדֵּס שֶׁאֵין בּוֹ כְּדֵי זְרִיעַת שְׁלֹשָׁה קַבִּין אֵינוֹ קָרוּי פַּרְדֵּס. לְפִיכָךְ אֵין חוֹלְקִין אֶת הֶחָצֵר עַד שֶׁיִּהְיֶה אַרְבַּע אַמּוֹת לְכָל אֶחָד וְאֶחָד מִן הַשֻּׁתָּפִין. וְלֹא אֶת הַשָּׂדֶה עַד שֶׁיִּהְיֶה בָּהּ כְּדֵי זְרִיעַת תִּשְׁעָה קַבִּין [לְכָל אֶחָד וְאֶחָד]. וְלֹא אֶת הַגִּנָּה עַד שֶׁיְּהֵא בָּהּ חֲצִי קַב לְכָל אֶחָד וְאֶחָד. וְלֹא אֶת הַפַּרְדֵּס עַד שֶׁיְּהֵא בּוֹ בֵּית שְׁלֹשָׁה קַבִּין לְכָל אֶחָד וְאֶחָד. בַּמֶּה דְּבָרִים אֲמוּרִים בְּאֶרֶץ יִשְׂרָאֵל וְכַיּוֹצֵא בָּהּ. אֲבָל בְּבָבֶל וְכַיּוֹצֵא בָּהּ אֵין חוֹלְקִין אֶת הַשָּׂדֶה עַד שֶׁיִּהְיֶה בָּהּ כְּדֵי חֲרִישַׁת יוֹם לָזֶה וַחֲרִישַׁת יוֹם לָזֶה. וְלֹא אֶת הַפַּרְדֵּס עַד שֶׁיִּהְיֶה בּוֹ שְׁלֹשִׁים וְשִׁשָּׁה אִילָנוֹת לָזֶה [וּשְׁלֹשִׁים וְשִׁשָּׁה אִילָנוֹת לָזֶה] כְּדֵי עֲבוֹדַת אָדָם אֶחָד בַּיּוֹם אֶחָד. וְשָׂדֶה שֶׁמַּשְׁקִין אוֹתָהּ בִּכְלִי עַד שֶׁיְּהֵא בָּהּ כְּדֵי שֶׁיְּמַלֵּא הַפּוֹעֵל יוֹם אֶחָד לָזֶה וְיוֹם אֶחָד לָזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא את הפרדס עד שיהיה (בה) [בו] ל&quot;ו אילנות כו׳:</strong><br><strong> בההמ&quot;ג </strong> והמחבר שכתב כו׳ י&quot;ל שכוונתו שה&quot;ה לשדה אילן כו׳ לא מצינו שם פרדס על כרם לבד ע&quot;כ, ומצאנו להיפך שם פרדס רק על שדה רמונים, וז&quot;ל הגמרא ב&quot;ב ז׳ ופסקה רבינו פרק כ&quot;ח הלכה י&quot;ד ממכירה, כרם שלי אני מוכר לך כו׳ אע&quot;פ שאין בו גפנים כו׳ פרדס אני מוכר לך אע&quot;פ שאין בו רמונים, הרי דפרדס הוא שדה רמונים, ורק הגמרא משוה דין כרם לדין רמונים אלמא שבכל שדה אילן כן הוא וכפסק רבינו ודוק:</p>
               </div>
             </div>
@@ -315,13 +354,18 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-neighbors-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-1-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-1-5-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-1-5-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 1:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 1:5:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-1-5-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-1-5">Mishneh Torah, Neighbors 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין חוֹלְקִין אֶת הַטְּרַקְלִין וְלֹא אֶת הַמּוֹרָן וְלֹא אֶת הַשּׁוֹבָךְ וְלֹא אֶת בֵּית הַבַּד וְלֹא אֶת הַמֶּרְחָץ וְלֹא אֶת הַטַּלִּית עַד שֶׁיְּהֵא בְּכָל חֵלֶק מֵהֶן כְּדֵי לָזֶה וּכְדֵי לָזֶה. אִם מֶרְחָץ חָלְקוּ עַד שֶׁיְּהֵא בְּכָל חֵלֶק מֵהֶן כְּדֵי מֶרְחָץ. וְאִם שׁוֹבָךְ עַד שֶׁיְּהֵא כָּל חֵלֶק שׁוֹבָךְ בִּפְנֵי עַצְמוֹ. וְכֵן בְּטַלִּית וּבִשְׁאָר כָּל הַדְּבָרִים. אֵין בָּהֶן כְּדֵי לָזֶה וּכְדֵי לָזֶה מַעֲלִין אוֹתוֹ בְּדָמִים וְיֵשׁ [לוֹ] לוֹמַר לַחֲבֵרוֹ אוֹ מְכֹר לִי אוֹ קְנֵה מִמֶּנִּי. אָמַר אֶחָד מֵהֶן חֲלֹק זֶה אַף עַל פִּי שֶׁאֵין הַחֲלָקִין שָׁוִים אֲנִי אֶטּל אֶת הַפָּחוּת וְטל אַתָּה אֶת הַיֶּתֶר אֵין שׁוֹמְעִין לוֹ שֶׁהֲרֵי אוֹמֵר לוֹ אֵין רְצוֹנִי לִקַּח מַתָּנָה. אֶלָּא הוֹאִיל וְאֵין בָּהּ דִּין חֲלוּקָה בְּשָׁוֶה הֲרֵי אָנוּ מַעֲלִין בְּדָמִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין שומעין לו כו׳:</strong><br><strong> תוספתא </strong> דב&quot;מ פרק י&quot;א, רשב&quot;ג אומר אין שומעין לו משום כבוד בית אבותיו, הנה לפירוש הגמרא בתוספתא דא לא אדע פשר דבר, דאם אומר טול אתה כשיעור ואני פחות מאי כבוד בית אבותיו איכא, ולפי מה דסליק אדעתיה דבגוד או איגוד פליגי אפשר דכוונתו דאם אומר טול אתה כשיעור ואני פחות, או אני אטול כשיעור ואתה פחות ואני אוסיף לך על הדמים, או תוסיף לי על הדמים וטול כשיעור ע&quot;ז אמר רשב&quot;ג דאם יאמר או אטול כשיעור ואוסיף לך על הדמים ואתה פחות או אגוד לגמרי לא מצי לכופו מפני כבוד בית אבותיו, ואם כה אפשר דשייכא מילתא דרשב&quot;ג בהא דאמר בפרק האשה שנפלו גבי נפלו לה עבדים ושפחות זקנים כו׳ לא ימכרו מפני שבח בית אביה, אבל לפי המסקנא לא ידענא איך לאוקמה, ואולי באומר טול אתה שעור או בדמי או במתנה או אטול כשיעור ואתה פחות ואוסיף לך בדמים, דלפ&quot;ז מצי אמר דמים לית לי, במתנה לא ניחא לי, וליתן לך כשיעור הך פחות דנשאר לדידי אין זה די לתשמישי ומפני כבוד ב&quot;א, אין זה בכלל לישנא דרשב&quot;ג וצריך ביאור, ועיין הרב המגיד וברא&quot;ש ודוק:</p>
               </div>
             </div>
@@ -332,13 +376,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-2">Chapter 2</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-2-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-2-12-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-2-12-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 2:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 2:12:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-2-12-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-2-12">Mishneh Torah, Neighbors 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאַחִין שֶׁחָלְקוּ הֲרֵי הֵן כְּלָקוֹחוֹת זֶה מִזֶּה. וְאֵין לָהֶם דֶּרֶךְ זֶה עַל זֶה. וְלֹא סֻלָּמוֹת זֶה עַל זֶה. וְלֹא חַלּוֹנוֹת זֶה עַל זֶה. וְלֹא אַמַּת הַמַּיִם זֶה עַל זֶה. שֶׁכֵּיוָן שֶׁחָלְקוּ לֹא נִשְׁאַר לְאֶחָד מֵהֶן זְכוּת בְּחֵלֶק חֲבֵרוֹ. לְפִיכָךְ יֵשׁ לוֹמַר לָאַחִין כְּשֶׁהָיְתָה הַשָּׂדֶה כֻּלָּהּ לְאֶחָד הָיָה מַעֲבִיר בָּהּ אַמַּת הַמַּיִם הַזֹּאת מִמָּקוֹם לְמָקוֹם אֲבָל עַתָּה שֶׁנַּעֲשֵׂית זֶה חֶלְקִי יֵשׁ לִי לְהָסִיר אַמַּת הַמַּיִם מֵעָלַי. וְכֵן סוֹתֵם הַחַלּוֹן הַמַּשְׁקִיף עַל חֶלְקוֹ וּבוֹנֶה בְּצַד הַסֻּלָּם אַף עַל פִּי שֶׁהוּא מְבַטֵּל תַּשְׁמִישׁוֹ. וְהוּא הַדִּין בִּשְׁנַיִם שֶׁקָּנוּ שָׂדֶה מֵאֶחָד וְחָלְקוּ לֹא נִשְׁאַר לְאֶחָד מֵהֶם זְכוּת בְּחֵלֶק חֲבֵרוֹ. וּמַפְסִיק אַמַּת הַמַּיִם מֵחֶלְקוֹ וְסוֹתֵם הַחַלּוֹנוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש לי להסיר אמת המים מעלי וכן סותם החלון:</strong><br><strong> נ&quot;ב </strong> ע&quot;ז כתב ראב&quot;ד לא נתחוורו דבריו כמו שהביא הרא&quot;ש בשם הראב&quot;ד דפליג ע&quot;ז, ולפנינו נדפס ההשגות בהלכה י&quot;א, ועיין לח&quot;מ:</p>
               </div>
             </div>
@@ -348,13 +397,18 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-neighbors-text-2">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-2-16-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-2-16-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-2-16-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 2:16:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 2:16:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-2-16-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-2-16">Mishneh Torah, Neighbors 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּמָּה גֹּבַהּ הַכֹּתֶל אֵין פָּחוֹת מֵאַרְבַּע אַמּוֹת. וְכֵן בְּגִנָּה כּוֹפֵהוּ לְהַבְדִּיל גִּנָּתוֹ מִגִּנַּת חֲבֵרוֹ בִּמְחִצָּה גְּבוֹהָה עֲשָׂרָה טְפָחִים. אֲבָל בְּבִקְעָה אֵין צָרִיךְ לְהַבְדִּיל בִּקְעָתוֹ מִבִּקְעַת חֲבֵרוֹ אֶלָּא בְּמָקוֹם שֶׁנָּהֲגוּ. רָצָה לְהַבְדִּיל בִּקְעָתוֹ מִבִּקְעַת חֲבֵרוֹ כּוֹנֵס לְתוֹךְ שֶׁלּוֹ וּבוֹנֶה וְעוֹשֶׂה חָזִית כְּמוֹ אַמָּה בְּסִיד מִבַּחוּץ כְּדֵי לְהוֹדִיעַ שֶׁהַכֹּתֶל שֶׁלּוֹ. לְפִיכָךְ אִם נָפַל הַכֹּתֶל הַמָּקוֹם וְהָאֲבָנִים שֶׁלּוֹ. וְאִם עָשׂוּ מִדַּעַת שְׁנֵיהֶם בּוֹנִים הַכֹּתֶל בָּאֶמְצַע וְעוֹשִׂין חֲזִית מִכָּאן וּמִכָּאן. לְפִיכָךְ אִם נָפַל הַכֹּתֶל הַמָּקוֹם וְהָאֲבָנִים שֶׁל שְׁנֵיהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך אם נפל הכותל המקום והאבנים של שניהן:</strong><br><strong> ההמ&quot;ג </strong> הביא הגמרא עיי&quot;ש, ושם בתוספות תוד&quot;ה לפיכך אם נפל הכותל כו׳ אבל הכא מעיקרא נולד הספק ואם היו באין לחלוק כו׳ היו חולקין בשוה מספק כו׳ הלכך אפילו נפל הכותל לרשותא דחד מנייהו לא יפסיד האחר כחו כו׳, ונראה בהבנת דבריהם עפ&quot;י מה שפרשו לקמן פרק חזקת (דף לג) סד&quot;ה לסוף אודי ליה דעל הפירות שאכל אינו נאמן במיגו לומר דאיהו קריב טפי כיון שהוא בא בטענה שהקרקע שלו ועל זה אינו נאמן דאיכא סהדי דפלוני קרוב ועליו ליכא סהדי לכן גם על הפירות אינו נאמן יעו&quot;ש, כן דוגמא דכאן לענין תפיסה דיהא מועיל תפיסת האבנים לומר שהכותל נבנה בחלקו הא איהו בא בטענה לומר שהמקום הוא שלו ובחלקו נבנה הכותל ועל זה המקום כבר פסקנו דהוא בחזקת שניהם מטעם דאין לאחד בו חזקה יותר מחבירו, וא&quot;כ כיון שהמקום הוא בחזקת שניהם תו לא מועיל טענתו שבחלקו נבנה הכותל גם על האבנים שהוא תפוס כעת בהם, וחזינא להאבנים כאילו מונחים במקום הכותל, והא דכתבו דשהו הרבה דאז הו&quot;א דנאמן במיגו אף דבהמקום ליכא מיגו והמקום נשאר בחזקת שניהם בכ&quot;ז לא דמי להלן דפרק חזקת דשם הלא נשאר ביד רב אידי משום דאיהו ודאי ומחזקינן בברור שכן הוא, אבל כאן הפסק דין חלוקה הוא מצד הספק ועוד דכאן נולד המיגו אחרי שנפלו לרשותו הוי מצי לטעון לקוח בידי והמיגו נעשה בהסבו לזה בידים שהשהה אותן הרבה ברשותו עד שהיה יכול לטעון לקוח בידי ודוק היטב:</p>
               </div>
             </div>
@@ -365,13 +419,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-3">Chapter 3</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-3-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-3-2-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-3-2-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 3:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 3:2:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-3-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-3-2">Mishneh Torah, Neighbors 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד מִן הַשֻּׁתָּפִין שֶׁבָּנָה הַכֹּתֶל שֶׁמַּבְדִּיל בֵּינוֹ וּבֵין חֲבֵרוֹ עַד אַרְבַּע אַמּוֹת וְתָבַע חֲבֵרוֹ לִתֵּן חֶלְקוֹ בָּהוֹצָאָה וְאָמַר נָתַתִּי חֶלְקִי. הֲרֵי זֶה בְּחֶזְקַת שֶׁנָּתַן וְנִשְׁבָּע הֶסֵּת שֶׁנָּתַן וְנִפְטָר עַד שֶׁיָּבִיא רְאָיָה הַתּוֹבֵעַ שֶׁלֹּא נָתַן. אֲבָל אִם בָּא לִתְבֹּעַ אוֹתוֹ לִתֵּן חֶלְקוֹ בְּהוֹצָאַת שְׁאָר הַגֹּבַהּ שֶׁהוֹסִיף עַל אַרְבַּע אַמּוֹת מִפְּנֵי שֶׁסָּמַךְ לוֹ אוֹ כְּנֶגְדּוֹ וְאָמַר נָתַתִּי אֵינוֹ נֶאֱמָן. אֶלָּא חֲבֵרוֹ נִשְׁבָּע בִּנְקִיטַת חֵפֶץ שֶׁלֹּא נָתַן לוֹ וְנוֹטֵל מִמֶּנּוּ כְּדִין כָּל הַנִּשְׁבָּעִין וְנוֹטְלִין. עַד שֶׁיָּבִיא רְאָיָה זֶה שֶׁנָּתַן לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשבע בנק&quot;ח שלא נתן לו:</strong><br><strong> ראה </strong> מש&quot;כ רבינו בהלכות גזלה פרק י׳ הלכה י&quot;א, וסברתו ברורה דכאן נחית על דעתא דיטול מעותיו בשבועה כמה הוציא ואפילו אם יוכל לומר יבואו ב&quot;ד וישומו וההוצאה גלויה בכ&quot;ז נחית דליטרח לאפוקי מעותיו בב&quot;ד לכן גם על טענת נתתי ג&quot;כ לא נפטר משבועה, אבל מלוה תו&quot;ז אטו מי הלוה מעותיו דלבעי לאשתבועי, וזה ברור, ותמה אני על הש&quot;ך אמאי לא העיר שהטור סימן שע&quot;ה סתם כדעת רבינו דצריך לשבע וליטול ומדוע לא העיר בעצמו שם, ועיין סימן קנ&quot;ח סעיף ח׳ בשו&quot;ע וטור:</p>
               </div>
             </div>
@@ -381,13 +440,18 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-neighbors-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-3-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-3-5-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-3-5-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 3:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 3:5:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-3-5-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-3-5">Mishneh Torah, Neighbors 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן שְׁנֵי בָּתִּים זֶה בְּצַד זֶה וְהָיוּ גַּגֵּיהֶן עֲשׂוּיִין לְדִירָה אֲפִלּוּ הָיוּ בִּשְׁנֵי צִדֵּי רְשׁוּת הָרַבִּים זֶה עוֹשֶׂה מַעֲקֶה לַחֲצִי גַּגּוֹ שֶׁהוּא דָּר בּוֹ וְזֶה עוֹשֶׂה מַעֲקֶה לַחֲצִי גַּגּוֹ. וְזֶה שֶׁלֹּא כְּנֶגֶד זֶה וּמַעֲדִיף כְּדֵי שֶׁלֹּא יִרְאוּ זֶה אֶת זֶה. וְאַף עַל פִּי שֶׁבְּנֵי רְשׁוּת הָרַבִּים רוֹאִין אוֹתוֹ יָכוֹל כָּל אֶחָד לוֹמַר לַחֲבֵרוֹ אֵלּוּ אֵין רוֹאִין אוֹתִי אֶלָּא בַּיּוֹם בְּעֵת שֶׁאֶעֱמֹד עַל גַּגִּי וְאַתָּה רוֹאֶה אוֹתִי תָּמִיד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן שני בתים זה בצד זה והיו גגיהן עשוין לדירה אפילו היו (ב׳) [בשני] צידי רשות הרבים זה עושה מעקה כו׳:</strong><br><strong> נראה </strong> משיטת רבינו דבפותח חלון לרה&quot;ר אף שכנגדו איכא בית וחלון אחר לא איכפת לן, דהא הוא לרה&quot;ר פותח ומאי חייש אם איכא נגדו חלון אחר, ושנינו בפירוש סוף חזקת אבל פותח הוא לרה&quot;ר פתח כנגד פתח וחלון כנגד חלון ועיין ההמ&quot;ג לקמן פרק ה׳ הלכה ו׳, ולכן פירש רבינו דמיירי בסמוך גג לגג ופותח חלון או בלא מעקה צופה ומביט מגג לגג ומזיק בראיתו מגגו לגג של חבירו, אע&quot;ג דהרה&quot;ר אצל שני הגגין או שהוא משני צדדי הגגין כמין ג&quot;ם, או שהגגין סמוכין ודבוקין ומשני עבריהם הולך רה&quot;ר, וקמ&quot;ל דאף ע&quot;ג דקא חזו ליה בני רה&quot;ר מצי אמר ע&quot;ז לא קפידנא דלא חזו ליה תמיד ועוד דאי בעינא גדרנא לצד של הרבים, אבל כשרשות הרבים מפסיק בין הגגין ודאי דמצי אמר ליה אנא לרה&quot;ר פתחנא, ואי דחזינא גבך מרחוק אנא הוינא כבני רה&quot;ר, ועוד שאינני מסתכל תמיד לרה&quot;ר, אבל בסמוך ודבוק גג לגג א&quot;כ הלא מצית קאי אצל גגי תמיד ואי דבני רה&quot;ר חזו לך הא מצית למיגדר מצד דילך אצל רה&quot;ר. ולפיכך הקדים רבינו, דלפ&quot;ז יקשה הא דרב נחמן דבגגין אין היזק ראיה ובעי רק מחיצת עשרה, לכן פירש דבגגין הראוים לדירה איכא היזק ראיה ואפילו היה בשני צידי רה&quot;ר פירוש שעובר משני עבריהם אבל לא שמפסיק בין הגגין, אולם כולהו רבוותא קדמאי פירשו שהרה&quot;ר מפסיק וכן פסק בשו&quot;ע, וכן הבין בהמ&quot;ג בדברי רבינו, ואח&quot;ז ראיתי בשו&quot;ת מהרי&quot;ט צהלון סימן רנ&quot;ג מש&quot;כ בזה עיי&quot;ש ודוק:</p>
               </div>
             </div>
@@ -398,13 +462,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-4">Chapter 4</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-4-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-4-10-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-4-10-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 4:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 4:10:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-4-10-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 4:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-4-10">Mishneh Torah, Neighbors 4:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁטַף נָהָר אֶת זֵיתָיו וּשְׁתָלָם בְּתוֹךְ שְׂדֵה חֲבֵרוֹ וְאָמַר הַלָּה זֵיתַי אֲנִי נוֹטֵל אֵין שׁוֹמְעִין לוֹ מִשּׁוּם יִשּׁוּב הָאָרֶץ אֶלָּא יַעַמְדוּ בִּמְקוֹמָן. וְאִם עֲקָרָן הַנָּהָר בְּגוּשֵׁיהֶן כְּשֶׁשְּׁתָלָן יַחְלְקוּ הַפֵּרוֹת בַּעַל הַשָּׂדֶה עִם בַּעַל הַזֵּיתִים כָּל שָׁלֹשׁ שָׁנִים וּלְאַחַר שָׁלֹשׁ הַכּל לְבַעַל הַשָּׂדֶה. וְאִם לֹא נֶעֶקְרוּ בְּגוּשֵׁיהֶן הַכּל לְבַעַל הַקַּרְקַע מִיָּד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שטף נהר [את] זיתיו ושתלן בתוך שדה חבירו ואמר הלה זיתי אני נוטל אין שומעין לו משום ישוב הארץ כו׳:</strong><br><strong> נראה </strong> דרבינו מפרש דלאו דוקא בארץ ישראל דהוא הדין בחו&quot;ל במקום שישראל מצוין, והא דאמר גבי הנוטע שדה שלא ברשות דמשום ישוב א&quot;י אינו בחו&quot;ל, אולי זה דוקא במקום שאין ישראל מצוים. וזה אין לומר דכוונת רבינו בארץ ישראל דוקא ונכלל זה בהא שכתב משום ישוב הארץ וסתמו בארץ ישראל, ז&quot;א דפוק עיין לקמן פרק י&quot;ד היה רוצה כו׳ ובן המצר רוצה לזרעה הלוקח זוכה משום ישוב הארץ, אטו התם ג&quot;כ בארץ ישראל, וחזינא דבכל מקום שישראל מצוים כייל רבינו בלשון ישוב הארץ, ומצאתי בשטמ&quot;ק שכתב הרמ&quot;ך והוה&quot;ד בחו&quot;ל אין שומעין לו דראוי שמה לבנות בתים כו׳ בנו בתים ונטעו כרמים ואולי דוקא בבל כו׳, כוון כמו שאמרו עשו בבל כארץ ישראל לענין גידול בהמה דקה, וכפי הנראה סבר דבעת שהיה ארץ ישראל ביד ישראל ואז היו מצוים כל ישראל להיות בארץ ישראל, בזה אמרו דבחו&quot;ל שומעין לו אם בא לעקור זיתיו, אבל השתא בגלות דכתיב בנו בתים כו׳ בזה גם בחו&quot;ל הדין כן וכמו שמצאנו בעשרה תקנות של יהושע דנוהגין אף בחו&quot;ל כמ&quot;ש סוף מרובה, סוף דבר כוונת רבינו ודאי כן הוא:<br><strong> וכיון </strong> שזכינו לזה א&quot;ש מש&quot;כ רבינו ואם לא נעקרו בגושיהן הכל לבעל הקרקע מיד, דתמוה הא נוהג ערלה, ולפ&quot;ז י&quot;ל דרבינו כתב בהלכות ערלה בפרק י׳ מהלכות מע&quot;ש ונ&quot;ר וז&quot;ל, הנוטע לרבים בתוך שדהו חייב בערלה שנאמר ונטעתם אפילו לרבים, בד&quot;א בארץ ישראל אבל בחו&quot;ל פטור, ולא ביארו מקורו, ופשוט משום דבהך משנה דתנן הנוטע לרבים חייב תנן ור׳ יהודה פוטר, וקיי&quot;ל בפרק כיצד מברכין דכל המיקל בארץ הלכה כמותו בחו&quot;ל אפילו בערלה, ומוכח דלכו&quot;ע אף למ&quot;ד דבחו&quot;ל הוי הלכה למשה מסיני ג&quot;כ קיי&quot;ל כהמיקל בחו&quot;ל, משום דמסיק כן על מר בר רב אשי יעו&quot;ש אמוראי בתראי דפסקי כר׳ יוחנן, וכיון שנזכר במשנה בדוכתין, הלכה כמותו בחו&quot;ל, וכיון שכן נראה דרבינו כתב בפירוש המשנה הא דתנן והעולה מאליו חייב בערלה ז&quot;ל, ובתנאי שיהיה צומח ברה&quot;י אבל עולה מאליו ברה&quot;ר אינו חייב בערלה וע&quot;ז אמרו בספרא ונטעתם פרט לעולה מאליו, וכן אמרו בפירוש בתוספתא העולה מאליו לרבים פטור מן הערלה [אף דלשיטת רבינו שם ובחיבורו הנוטע ברה&quot;ר וגם לרבים פטור ס&quot;ד אמינא דאם עלה מאליו ברה&quot;ר חייב דשאני תמן דהנוטע לא נתכוין לזכות בו והפקירו ונטעו ברה&quot;ר ודחוק ועיין ביאורי הגר&quot;א]. והנה זה א&quot;ש לשיטת רבנן, אבל לרבי יהודה דהנוטע לרבים פטור אף בנוטע בתוך שלו, כש&quot;כ שאם עלה ברה&quot;ר פטור דהא אף הנוטע בתוך שלו שיש לו רשות ליטע כרצונו ואם נטעו לרבים פטור כש&quot;כ העולה מאליו לרבים שפטור ועל מה דרשינן ונטעתם פרט לשעלה מאליו, וכיון דונטעתם ליחיד קאמר רחמנא א&quot;כ המיעוט ג&quot;כ ליחיד דעלה מאליו ליחיד פטור, ולפ&quot;ז כי קיימא לן כמותו בחו&quot;ל, תו אף בעלה מאליו ליחיד ג&quot;כ פטור בחו&quot;ל, ולפ&quot;ז א&quot;ש הא דתני ואם לא נעקרו בגושיהן כיון שהאילן במקומו שהיה נטוע תו הותר בו שעברו שנות ערלה, והשתא הוי כנטיעה חדשה במקום זה כמש&quot;כ רבינו או שעקר את כל האילן ממקומו ונטעו במקום אחר הר&quot;ז חייב בערלה, והכא ששטפן נהר ושתלן בתוך שדה חבירו הוי כנטוע מאליו וכמו עלה מאליו ופטור בחו&quot;ל משום ערלה, ולכן כתב הכל לבעל הקרקע מיד דאין בו משום ערלה, דהכא בחו&quot;ל מיירי ג&quot;כ כמו שפרשנו, ולא מצי אמר לבעל השדה אלו נטעת לא הוי לך פירי עד ג׳ שנים משום ערלה, דגם בעל האילנות אולי נטע לא הוי ליה פירי, אבל דמי עצים משלם ליה לבעל הזיתים ודוק. ולפי שיטת רבינו יש לפרש הא דאמר בירושלמי פ&quot;ק דערלה הלכה ב׳ רבי יאשיה מייתי נטיעות מחו&quot;ל בגושיהן ונציב לון בארץ דמיירי בנטועין לרבים דהלכה כר&quot;י בחו&quot;ל דפטורין מן הערלה ודוק:<br><strong> ובזה </strong> אמרתי ליישב מה שהביאו רבותינו בתוספות בע&quot;ג נ&quot;ט ובקדושין ל&quot;ו דמשום זה לא נהגו להפריש תרומ&quot;ע בזה&quot;ז בחו&quot;ל דקרקעות שלנו משועבדות הן לשרים ודינא דמלכותא שאם לא יתנו המס שיהיו משועבדות ביד העו&quot;ג ומשוקעות לו וכו׳ וקשה לר&quot;י כי גם בימי החכמים היה להן קרקעות לטסקא כדאמרינן מאן דלא יהיב טסקא וכו׳. ונראה ליישב דברי ר&quot;ת, דקרקע המשועבדת למסים הוי כבהמת ארנונא דחשיבא שותפות עו&quot;ג כן הכא הוי הקרקע כשותפות עו&quot;ג [וכן מצאתי בשו&quot;ת רשד&quot;ם חיו&quot;ד סי׳ קצ&quot;ב שכתב דהוי שותפות עו&quot;ג] והנה ר׳ אלעאי דסבר דראשית הגז אינו נוהג בחו&quot;ל שקלו וטרו אליביה אמוראי בתראי בפרק ראשית הגז דרבא אמר מודה ר׳ אלעאי בתרומה דבשותפות עו&quot;ג חייב, ומסיק אחר זה ר׳ חנינא מסורא ליתנהו להני כללי כו׳ אלא ש&quot;מ בתרומה נמי פוטר, וכיון דכל המיקל בארץ הלכה כמותו בחו&quot;ל סמכינן דהוי שותפות עו&quot;ג דמשועבד לטסקא ושותפות עו&quot;ג פטור מן התרומה, ובפרט דרב נחמן בר יצחק אמר נהוג עלמא כו׳ כר&quot;א בראשית הגז, ועיין בפ&quot;ק דשבת (דף י) ברש&quot;י בימי רב חסדא אכתי לא נהוג כר&quot;א ובימי רב נחמן בר יצחק נהוג כוותיה כו׳, ולכן השתא לפום המסקנא דר&quot;א פוטר שותפות עו&quot;ג בתרומה קיימא לן דהלכה כמותו בחו&quot;ל כיון שהוא מיקל בארץ, וזה מחוור בשיטת ר&quot;ת:<br><strong> ובזה </strong> א&quot;ש השמועה דפ&quot;ק דפסחים איכא דאמרי כו׳ בהמת ארנונא פטורה כו׳ ואף ע&quot;ג דמצי מסלק לה, דתמוה דהא תניא דחייבת, אך בברייתא תמן תניא בהמת המדבר כו׳ וגר שמת ואין לו יורשים פטורה כו׳ בהמת ארנונא חייבת, ואתיא לר׳ יהודה דמביא שם קודם בתוספתא דסובר דשותפות עו&quot;ג חייבת בבכורה וא&quot;כ העו&quot;ג אין לו רק חלק עשירית מן הבהמה ולכן חייבת, וקמ&quot;ל דאף עו&quot;ג דמצי תפיס עבור שאר בהמות לא דמיא לדבר המשועבד למלך דבפרק חזקת נ&quot;ה מיחשב כולא לראוי, אבל מכל מקום שותפות עו&quot;ג הוי ור׳ יהודה מחייב בבכורה, ונכון:</p>
               </div>
             </div>
@@ -415,13 +484,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-5">Chapter 5</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-5-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-5-9-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-5-9-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 5:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 5:9:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-5-9-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-5-9">Mishneh Torah, Neighbors 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִכָּאן אַתָּה לָמֵד שֶׁאֶחָד מִן הַשֻּׁתָּפִין שֶׁהֵבִיא אֶצְלוֹ לְבֵיתוֹ אַנְשֵׁי בַּיִת אַחֶרֶת יֵשׁ לַחֲבֵרוֹ לְעַכֵּב עָלָיו מִפְּנֵי שֶׁמַּרְבֶּה עָלָיו אֶת הַדֶּרֶךְ. וְכֵן הַמַּשְׂכִּיר בֵּיתוֹ לְבַעַל בַּיִת אֶחָד וְאַחַר כָּךְ הֵבִיא עִמּוֹ קְרוֹבָיו אוֹ מְיֻדָּעָיו לִשְׁכֹּן עִמּוֹ כְּאֶחָד בְּבַיִת זֶה הֲרֵי הַמַּשְׂכִּיר מְעַכֵּב עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מכאן אתה למד וכו׳:</strong><br><strong> בההמ&quot;ג </strong> ודעת הר&quot;א [ז&quot;ל] הוא שכל שאינו מרבה בפתחים או בבתים יכול להרבות דיורין ואפילו חלוקין, ובדבור שאח&quot;ז, וכן השוכר, זה נראה שאפילו הר&quot;א [ז&quot;ל] יודה בו כו׳ עי&quot;ש, ונתבאר כאן דשוין שותפין למשכיר לפום סברת רבינו ז&quot;ל, דדעת רבינו דאינו יכול להרבות דיורים ובהלכות שכירות פרק ה׳ הלכה ה׳ דמשכיר בית לחבירו משכיר לאחרים אם יש בני בית כמנין ביתו, אבל אם היו ארבעה לא ישכור לחמשה, הרי דימה רבינו שותפין למשכיר, ולדעת ההשגות כאן בשותפין יכול להרבות אפילו דיורין חלוקין שלתוך ביתו הוא מרבה, ומה שמרבה נכנסין ויוצאין בחצר, ע&quot;ז אינו מעכב, ובמשכיר סבר דאפילו לאיש אחר שמנין אנשיו כמנין ב&quot;ב אינו יכול להשכיר יעו&quot;ש בהלכות שכירות כש&quot;כ כאן שלא יכול להוסיף אנשים ודיורים, ולפלא על ההמ&quot;ג שלא הביא דברי ההשגות בהלכות שכירות וכתב אצל וכן השוכר זה נראה שאפילו הר&quot;א ז&quot;ל יודה בו והלא מפורש הוא שם ועדיפא מיניה, אולם כפי אשר ביאר שם סברתו ההמ&quot;ג אפשר לומר דכאן שאני דהשוכר דר עם דיורים המתוספים וישגיח עליה כמו הבעלים, ודחוק:</p>
               </div>
             </div>
@@ -432,13 +506,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-6">Chapter 6</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-6-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-6-12-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-6-12-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 6:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 6:12:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-6-12-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 6:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-6-12">Mishneh Torah, Neighbors 6:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֲנוּת שֶׁבֶּחָצֵר יְכוֹלִין הַשְּׁכֵנִים לִמְחוֹת בְּיָדוֹ וְלוֹמַר לוֹ אֵין אָנוּ יְכוֹלִין לִישֹׁן מִקּוֹל הַנִּכְנָסִים וְהַיּוֹצְאִין אֶלָּא עוֹשֶׂה מְלַאכְתּוֹ בַּחֲנוּתוֹ וּמוֹכֵר בַּשּׁוּק. אֲבָל אֵינָן יְכוֹלִין לִמְחוֹת בְּיָדוֹ וְלוֹמַר לוֹ אֵין אָנוּ יְכוֹלִין לִישֹׁן מִקּוֹל הַפַּטִּישׁ אוֹ מִקּוֹל הָרֵחָיִם שֶׁהֲרֵי הֶחֱזִיק לַעֲשׂוֹת כֵּן. וְכֵן יֵשׁ לוֹ לְלַמֵּד תִּינוֹקוֹת שֶׁל יִשְׂרָאֵל תּוֹרָה בְּתוֹךְ בֵּיתוֹ וְאֵין הַשֻּׁתָּפִין יְכוֹלִין לִמְחוֹת בְּיָדוֹ וְלוֹמַר לוֹ אֵין אָנוּ יְכוֹלִין לִישֹׁן מִקּוֹל הַתִּינוֹקוֹת שֶׁל בֵּית רַבָּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חנות שבחצר כו׳ אבל אי[נ]ן יכולין למחות בידו ולומר לו אין אנו יכולים לישן מקול הפטיש כו׳ שהרי החזיק לעשות כן:</strong><br><strong> דעת </strong> רבינו דוקא בהחזיק הא לא החזיק יכולין למחות גם על קול הפטיש והרחיים, ויצא לרבינו כן לפרש דבלא החזיק יכולין למחות, משום דאיהו גריס בברייתא בגמרא אחד מבני מבוי שאינו מפולש שביקש לעשות רופא אומן כו׳ בני מבוי מעכבין עליו, וכהגירסא העתיקה שהיתה לפני כל הראשונים, וא&quot;כ קשה טובא לאביי דאמר לעיל על רומיא דמ&quot;ש רישא מ&quot;ש סיפא, סיפא אתאן לחצר אחרת, אלמא דבני חצר אחרת אין יכולין לעכב, והכא אמר דיכולין בני מבוי לעכב [ועיין תוספות דמשו&quot;ה שינו הגירסא אחד מבני חצר] ולכך פירש רבינו, דמשנתנו בהחזיק מיירי, ולזה סבר אביי דבחצר אחרת אז אם החזיק אין יכולין למחות בידו ולומר איני יכול לישן כו׳ מפני קול התינוקות, אבל באותו חצר אפי׳ החזיק יכול למחות ולומר איני יכול לישן מקול הנכנסין כו׳ וכדמשמע לשון חנות שבחצר, דלא נקיט שביקש לעשות חנות וכמש&quot;כ הרשב&quot;א וכן מפורש בירושלמי הביאו הרשב&quot;א בשיטה, אבל בלא החזיק גם אביי מודה דאפילו בחצר אחרת מוחין בידו וכמו דתנא בברייתא אחד מבני מבוי שביקש לעשות בני מבוי מעכבין עליו, וכיון דהך דתנא ולא מקול התינוקות מיירי דוקא בהחזיק כן הא דתני ולא מקול הפטיש ודאי דמיירי ג&quot;כ בהחזיק דוקא הא בלא החזיק יכול למחות דבחדא בבא תנינהו, ואם תאמר אדרבא לרבא דסבר דולא מקול התינוקות מיירי בקול תינוקות של בית רבן, ושם אפילו לא החזיק מצוה ללמד בתוך ביתו, וה&quot;ה הך דקתני ואינו יכול למחות בידו כו׳ מקול הפטיש כו׳ מיירי ג&quot;כ אפילו לא החזיק כלל, זה אינו, דלרבא הך ולא מפני קול התינוקות לא קאי על רישא חנות שבחצר ומיירי ג&quot;כ בגוונא אחרינא בלא החזיק, ורישא מיירי בהחזיק כמו דתני חנות שבחצר, אבל לאביי דפירש דקול התינוקות המה הבאים לקנות יין ושמן וכל דבר הנמכר בחנות, א&quot;כ הוא חדא ענינא ומיירי בחדא גוונא שהיא חנות מכבר והחזיק בה כמו בתינוקות בחצר אחרת דמיירי דוקא בהחזיק. וסבר רבינו דרבא פליג על אביי דאף בחצר אחרת והחזיק בה ג&quot;כ יכולים למחות מפני רוב הנכנסין וכמו שפסק רבינו לקמן פרק י&quot;א הלכה ה׳ עיי&quot;ש, והך דפסק לעיל הלכה ח׳ כופין בני מבוי זא&quot;ז שלא להושיב ביניהן כו׳ ולא אחד מבעלי אומנות, היינו בלא החזיק לכן על כל בעלי אומנות מוחין ואינו רשאי לעשות מלאכתו ולמכור בשוק, דאיכא קול פטיש וכיו&quot;ב, אבל אם איכא אומן אחר באותה אומנות תו יכול אפילו בן מבוי אחר לבוא לקבוע לו מקום באותו מבוי, וזה הפירוש של ולשכנו אינו כופהו, וכתב עוד אבל אם גר ממדינה אחרת בא לעשות חנות בצד חנותו של זה כו׳ יש להן למנעו, נראה משום דפסק רבינו דאם יש אומן באותה אומנות בזה המבוי תו לא מעכבי מפני הנכנסים ומפני קול הפטיש וכיו&quot;ב, לזה אמר דאם יבוא גר מעיר אחרת, אז שלא באותו מבוי ודאי דאינו יכול לקבוע לו מקום משום ריבוי נכנסים ויוצאים דבמבוי שלהם ליכא אומן באותו אומנות, אבל באותו מבוי דכבר יש להם אומנות זו, אף עפ&quot;כ אסור ובני העיר מצו למחות בידו שאין לגר לקבוע פרנסתם ובני עירם קודמים, וזה שאמר בצד חנותו של זה הוא לרבותא דאף עפ&quot;י כן מונעים אותו, ומסתברא לשיטת רבינו, באם הוא נותן מנת המלך עמהם דאינם יכולים למנעו דוקא שכבר יש שם מרחץ באותו מבוי מצי בן עיר אחרת לקבוע לו מרחץ שאין משום רבוי נכנסים ויוצאים, אבל במבוי אחר שיש שם קפידא דקול נכנסין ויוצאין לא עדיף מן אחד מבני המבוי שגם כן מוחין בידו, וזה היפוך שיטת התוס׳ ורמב&quot;ן, אבל דעת רבינו נראה כדפרישית, ועיין סימן קנ&quot;ו ובסמ&quot;ע ס&quot;ק ט&quot;ז ודוק:<br><strong> ולשיטת </strong> החולקים על רבינו פירש מרן הגר&quot;א דהא דסברו דבני מבוי לא מצו מעכבי אפילו על רבוי דנכנסים כו׳ וכשיטה דגרסי אחד מבני חצר שביקש כו׳ וכאביי דבחצר אחרת שרי, זה דוקא על בני אותו מבוי הא לבן מבוי אחר מצו מעכבי, וא&quot;ש הא דנקט כופין בני מבואות זא&quot;ז שלא להושיב ביניהן לא כו׳ ולא אחד מבעלי אומניות, והוא לבן מבוי אחר דמעכבי משום רבוי נכנסים כו׳ ודוקא במבוי שאינו מפולש דאיכא משום רבוי דרך ור&quot;ה בריה דר&quot;י דבעי אבר מבואה אחרינא מי מצו מעכבי, היינו במבוי מפולש דליכא משום רבוי דרך ורק משום פסקת לחיותי יעו&quot;ש דזה באמת ראוי למי שאמרו רק שקיצר כדרכו עי&quot;ש ודוק:</p>
               </div>
             </div>
@@ -449,13 +528,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-7">Chapter 7</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-7-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-7-7-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-7-7-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 7:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 7:7:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-7-7-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 7:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-7-7">Mishneh Torah, Neighbors 7:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה חַלּוֹן קְטַנָּה שֶׁאֵין רֹאשׁוֹ שֶׁל אָדָם נִכְנָס מִמֶּנָּה וְהָיְתָה לְמַעְלָה מֵאַרְבַּע אַמּוֹת בַּעַל הֶחָצֵר יָכוֹל לִבְנוֹת כְּנֶגְדָּהּ וּבִצְדֶדֶיהָ שֶׁהֲרֵי טוֹעֵן וְאוֹמֵר לֹא הִנַּחְתִּיךָ לִפְתֹּחַ אֶלָּא מִפְּנֵי שֶׁהִיא קְטַנָּה וּגְבוֹהָה. אֲבָל שֶׁתַּחְזִיק עָלַי עַד שֶׁאַרְחִיק הַבִּנְיָן לֹא הִנַּחְתִּי. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁפְּתָחָהּ לְתַשְׁמִישׁ אוֹ כְּדֵי שֶׁיִּכָּנֵס בָּהּ הָרוּחַ. אֲבָל אִם פְּתָחָהּ לְאוֹרָה אֲפִלּוּ הָיְתָה קְטַנָּה בְּיוֹתֵר וּגְבוֹהָה בְּיוֹתֵר הוֹאִיל וְלֹא עִרְעֵר הֶחֱזִיק וְאֵין בַּעַל הֶחָצֵר יָכוֹל לִבְנוֹת כְּנֶגְדָּהּ אוֹ מִצְּדָדֶיהָ עַד שֶׁיַּרְחִיק אַרְבַּע אַמּוֹת כְּדֵי שֶׁלֹּא יַאֲפִיל עָלָיו שֶׁהֲרֵי מָחַל לוֹ עַל הָאוֹרָה. וְכֵן מִי שֶׁהָיְתָה לוֹ חַלּוֹן מֻחְזֶקֶת וּבָא חֲבֵרוֹ וּבָנָה כְּנֶגְדָּהּ אוֹ מִצְּדָדֶיהָ בְּלֹא הַרְחָקָה אוֹ סְתָמָהּ וְשָׁתַק בַּעַל הַחַלּוֹן אֵינוֹ יָכוֹל לַחְזֹר וּלְעַרְעֵר לִפְתֹּחַ הַחַלּוֹן אוֹ לְהַרְחִיק הַבִּנְיָן. שֶׁכֵּיוָן שֶׁשָּׁתַק מָחַל שֶׁאֵין אָדָם עָשׂוּי שֶׁסּוֹתְמִין אוֹרוֹ בְּפָנָיו וְשׁוֹתֵק אֶלָּא אִם כֵּן מָחַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהשגות. </strong> א&quot;א לפי דעתי יש הפרש בין סותם למאפיל כו׳:<br><strong> זכר </strong> לדבר, דבירושלמי אמר מכיון שאין לה חזקה אינה מביאה את הטומאה, ומזה למד רמב&quot;ן דהעשוי לאורה דיש לה חזקה הוא כשיעורו לטומאה במלא מקדח יעוין בחידושיו, וכן מצאנו לענין טומאה דאם ממעט החלון בכלי צריך שיבטלנו שם כדאמרו ריש פרק לא יחפור, ובסותם לגמרי כל החלון א&quot;צ לבטל כמש&quot;פ ר&quot;ת ור&quot;י בתוס׳ שם, והראב&quot;ד בפרק ט&quot;ו מהל׳ טו&quot;מ דאף בדעתו לפנותו סותם לכן בסותם לגמרי החלון לאלתר יש לו חזקה אבל במאפיל שבונה כנגדו הוי כממעט לענין טומאה בעי שלשים יום שאין דעתו לפנותו, וזה רמז רחוק ודוק:</p>
               </div>
             </div>
@@ -465,13 +549,18 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-neighbors-text-7">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-7-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-7-9-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-7-9-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 7:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 7:9:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-7-9-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 7:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-7-9">Mishneh Torah, Neighbors 7:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל בַּעַל הַחַלּוֹנוֹת שֶׁרָצָה לְשַׁנּוֹת מְקוֹם חַלּוֹנוֹ בֵּין לְמַעְלָה בֵּין לְמַטָּה אֲפִלּוּ הָיְתָה גְּדוֹלָה וְאָמַר אֶפְתַּח אַחֶרֶת קְטַנָּה וְאֶסְתֹּם זוֹ בַּעַל הֶחָצֵר מְעַכֵּב עָלָיו. וְכֵן אֵינוֹ יָכוֹל לְהַרְחִיב בַּחַלּוֹן כָּל שֶׁהוּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל בעל החלונות כו׳:</strong><br><strong> יעויין </strong> לח&quot;מ. ולדידי נראה דטעמא דכיון דנגד החלון אסור לבנות כותל א&quot;כ אינו יודע במשך הזמן היכן יצטרך להעמיד הכותל ולכן אם היה גבוה לא ישפילנו שלא יוכל לבנות כנגדו כותל נמוך וכן להיפוך, אבל לפ&quot;ז בחלון קטנה שאין יכול להכניס ראשו והיתה למטה יכול לשנות מקומו למעלה, כיון שחבירו יכול לבנות בחלון המצרי למעלה מד׳ אמות היכי דאינו עשוי לאורה, ולפ&quot;ז יהיה דינו כדין הסולם שבפרק ח׳ הלכה ד׳ יעו&quot;ש בההמ&quot;ג ודוק:</p>
               </div>
             </div>
@@ -482,13 +571,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-8">Chapter 8</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-8-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-8-3-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-8-3-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 8:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 8:3:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-8-3-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 8:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-8-3">Mishneh Torah, Neighbors 8:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה הַזִּיז שֶׁהוֹצִיא רָחְבּוֹ טֶפַח וּמָשׁוּךְ בַּאֲוִיר חֲצֵרוֹ שֶׁל חֲבֵרוֹ אַרְבָּעָה טְפָחִים וְלֹא מִחָה בּוֹ הֶחֱזִיק בּוֹ בְּאַרְבָּעָה עַל אַרְבָּעָה וְאִם רָצָה לְהַרְחִיב אֶת הַזִּיז עַד שֶׁיַּעֲשֶׂה אַרְבָּעָה עַל אַרְבָּעָה הֲרֵי זֶה מַרְחִיב וְאֵין בַּעַל הֶחָצֵר יָכוֹל לִבְנוֹת בַּאֲוִיר חֲצֵרוֹ תַּחַת הַזִּיז כְּלוּם אֶלָּא אִם כֵּן הִנִּיחַ לוֹ תַּחְתָּיו גֹּבַהּ אֲוִיר עֲשָׂרָה טְפָחִים כְּדֵי שֶׁיִּשְׁתַּמֵּשׁ בַּזִּיז:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה הזיז שהוציא רחבו טפח ומשוך כו׳ החזיק בו בד׳ על ד׳ ואם רצה להרחיב כו׳:</strong><br><strong> בהשגות </strong> א&quot;א איני מודה לו בזה אלא א&quot;כ בא מחמת טענה. והנה הראב&quot;ד ביאר שיטתו לעיל פרק ה׳ שכל אלו המחילות כמגדל תרנגולין וכיו&quot;ב בחצר שאינו שלו, אם רצה לבנות בית בחצירו בונה והחזקה בטילה מעיקרא, רק כל זמן שהחצר כך החזיק זה בתשמישו ולא יוכל למחות בפניו יעו&quot;ש, כן הכא בזיז פחות מטפח סבר הראב&quot;ד דלא החזיק כלל ויכול בעל החצר לחתוך אותו אם יצטרך, ובטפח החזיק שלא יוכל לחתוך אותו דהחזיק בכה&quot;ג כל זמן שהחצר כך דעל זה מחל אליו, אבל לא מסתברא להראב&quot;ד לומר דע&quot;י טענת מחילה יוציא משך ד׳ על ד׳ כיון דלשיטת הראב&quot;ד יכול לבנות בנין ולבטל את החזקה מאליה, רק שכל שהוא באופן זה החזיק, אבל יותר ממה שהחזיק ומחל לו לא מסתברא ליה, וכן שיועיל מחילה בשלא יסלק נזקין דאתו מגירי דיליה, וכן בפותח חלון לחצר חבירו דיכול לבנות והחלון נסתם מאליו, רק כ&quot;ז שהחצר כן החזיק בהחלון, אבל אם בנה בנין בחצר וסתם החלון יכול בטענת מחילה לבד ועיין לח&quot;מ ודוק:</p>
               </div>
             </div>
@@ -498,13 +592,18 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-neighbors-text-8">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-8-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-8-6-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-8-6-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 8:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 8:6:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-8-6-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 8:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-8-6">Mishneh Torah, Neighbors 8:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהוֹרִיד מֵי גַּגּוֹ עַל חֲצַר חֲבֵרוֹ וְלֹא מִחָה בּוֹ וְהֶחֱזִיק בְּדָבָר זֶה. אִם הַמַּיִם מְנַטְּפִין וְרָצָה לְקַבְּצָם לְמָקוֹם אֶחָד וְלַעֲשׂוֹתָם צִנּוֹר עוֹשֶׂה. וְכֵן אִם הָיוּ בָּאִין דֶּרֶךְ צִנּוֹר מִמָּקוֹם אַחֵר וְחִלְּקָן עַל רֹחַב הַכֹּתֶל וְהֶחֱזִירָן נוֹטְפִין עוֹשֶׂה. וַאֲפִלּוּ לִבְנוֹת עַל גַּגּוֹ כְּמִין צְרִיף עַד שֶׁיֵּרְדוּ הַמַּיִם בִּמְהֵרָה לַחֲצַר חֲבֵרוֹ בּוֹנֶה שֶׁהֲרֵי הֻחְזְקוּ מֵימָיו שֶׁל זֶה לֵירֵד לַחֲצַר חֲבֵרוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בההמ&quot;ג </strong> ומה ששנינו בתוספתא כו׳ לכביסה אין ממחין בידו לגשמים, לגשמים אין ממחין בידו לכביסה, התוס׳ לענין דיוטות המקלחות כו׳.<br><strong> נ&quot;ב </strong> בירושלמי ספ&quot;ק דב&quot;ב לענין דיוטות הגירסא היו עשוין לגשמים יכולין למחות בידם לכביסה, היו עשוין לכביסה אין יכולין למחות בידם לגשמים, וזה גירסא מחוורת, דאפושי היזיקא לא מפשינן יעו&quot;ש היטב ודוק:</p>
               </div>
             </div>
@@ -515,13 +614,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-10">Chapter 10</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-10-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-10-7-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-10-7-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 10:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 10:7:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-10-7-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 10:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-10-7">Mishneh Torah, Neighbors 10:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיָה לוֹ אִילָן בְּתוֹךְ שָׂדֵהוּ קָרוֹב לְבוֹר חֲבֵרוֹ אֵין בַּעַל הַבּוֹר יָכוֹל לְעַכֵּב עָלָיו וְלוֹמַר לוֹ הֲרֵי שָׁרְשֵׁי הָאִילָן נִכְנָסִים לַבּוֹר שֶׁלִּי וּמַפְסִידִין אוֹתוֹ שֶׁזֶּה נֵזֶק הַבָּא מֵאֵלָיו הוּא לְאַחַר זְמַן וּבְעֵת שֶׁנָּטַע אֵינוֹ מַזִּיקוֹ וּכְשֵׁם שֶׁזֶּה חוֹפֵר בְּתוֹךְ שֶׁלּוֹ כָּךְ זֶה נוֹטֵעַ בְּתוֹךְ שֶׁלּוֹ. וְכֵן רְאוּבֵן שֶׁחָפַר בּוֹר וְיָרַד וּמָצָא שָׁרְשֵׁי אִילָן שֶׁל שִׁמְעוֹן בְּתוֹךְ שָׂדֵהוּ קוֹצֵץ וְחוֹפֵר וְהָעֵצִים שֶׁלּוֹ. וְאִם הָיָה קָרוֹב לְאִילַן שִׁמְעוֹן בְּתוֹךְ שֵׁשׁ עֶשְׂרֵה אַמָּה הַשָּׁרָשִׁים שֶׁל שִׁמְעוֹן וְקוֹצְצָן וְנוֹתְנָן לוֹ. וְאִם אֵין צָרִיךְ לַחְפֹּר בּוֹר וְיָצְאוּ הַשָּׁרָשִׁים שֶׁל שִׁמְעוֹן בְּתוֹךְ שָׂדֵהוּ הֲרֵי הוּא מַעֲמִיק שְׁלֹשָׁה טְפָחִים כְּדֵי שֶׁלֹּא יְעַכֵּב הַמַּחֲרֵשָׁה וְכָל שֹׁרֶשׁ שֶׁמָּצָא בְּתוֹךְ שְׁלֹשָׁה טְפָחִים קוֹצְצוֹ וְאֵינוֹ חוֹשֵׁשׁ שֶׁמָּא יִבַשׁ הָאִילָן שֶׁל חֲבֵרוֹ שֶׁזֶּה בְּתוֹךְ שֶׁלּוֹ הוּא חוֹפֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרי הוא מעמיק ג׳ טפחים כו׳:</strong><br><strong> בתוספתא </strong> אילן העולה בין מן הגזע בין מן השרשין הרי אלו שלו ר׳ יהודה אומר מן הגזע שלו מן השרשין של בעל קרקע, כן הגירסא בתוספתא כת&quot;י דפוס צוקער מאנדיל, ולזו התוספתא כוונה הגמרא סוף ב&quot;מ ואזדו לטעמייהו דתניא אילן וכו׳ ולא גרסינן גבי מקח וממכר כגירסת תוס׳ בגיטין, וצ&quot;ל בתוספתא הרי אלו של בעל הקרקע, ולמקח וממכר לא דמי כלל יעוין בתוס׳ שם, וזה אמת למעיין שם:</p>
               </div>
             </div>
@@ -532,13 +636,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-11">Chapter 11</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-11-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-11-7-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-11-7-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 11:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 11:7:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-11-7-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 11:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-11-7">Mishneh Torah, Neighbors 11:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֶחֱזִיק בְּנֵזֶק שֶׁאֵין לוֹ חֲזָקָה כְּגוֹן עָשָׁן וּבֵית הַכִּסֵּא וְכַיּוֹצֵא בָּהֶן וְטָעַן הַמַּזִּיק שֶׁקָּנָה מִיָּדוֹ שֶׁל נִזָּק עַל הַמַּזִּיק לְהָבִיא רְאָיָה שֶׁקָּנוּ מִיָּדוֹ. וְאִם לֹא הֵבִיא יִשָּׁבַע הַנִּזָּק הֶסֵּת שֶׁלֹּא קָנוּ מִיָּדוֹ עַל כָּךְ וִיסַלֵּק זֶה הֶזֵּקוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהשגות </strong> א&quot;א והלא החופר בורות כו׳:<br><strong> לפי </strong> פירוש הרשב&quot;ם דהגמרא הוי מפרש הך דאין חזקה לנזיקין במזיק שדה חבירו ומשום זה טוען שקנה גוף השדה, אינו ענין לכאן דכאן הלא טוען שגוף השדה של פלוני רק שבא בטענת חזקה על הנזק, כל שההיזק קבוע אין לו חזקה, ולפי הר&quot;י מיגש ג&quot;כ לשנויא בתרא כל היכי דטעין על גוף הקרקע מההיזק אין לו חזקה רק דשקיל וטרי הגמרא על חזקת הנזק שעושה בשדה חבירו ובזה הוי חזקה לא באופן שעושה בשדהו והנזק מגיע לחבירו יעוין שו&quot;ע סימן קנ&quot;ה סעיף מ&quot;ב ובטור שם, רק ההשגות מפרש כהרמב&quot;ן דהגמרא מדמה זה לזה משום דלא קפיד אינש על נזקין יעו&quot;ש, ומסיק הגמרא דוקא בקוטרא כו׳ משום דמצי לומר כסבור אני שיכולני לקבל וכעת אין אני יכול לקבל ולאו משום דלא קפיד ומחיל, לפ&quot;ז משמע דבהיזק קבוע כמו חפירת בורות איכא חזקה, ולפ&quot;ז בנדנוד הכותל שלא שייך לומר כסבור אני שיכולני לקבל יש לו חזקה אבל רק בבא מחמת טענה ודוק:</p>
               </div>
             </div>
@@ -549,13 +658,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-12">Chapter 12</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-12-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-12-1-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-12-1-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 12:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 12:1:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-12-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 12:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-12-1">Mishneh Torah, Neighbors 12:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאַחִין אוֹ הַשֻּׁתָּפִין שֶׁבָּאוּ לַחֲלֹק אֶת הַשָּׂדֶה וְלִטּל כָּל אֶחָד חֶלְקוֹ. אִם הָיְתָה כֻּלָּהּ שָׁוָה וְאֵין שָׁם מָקוֹם טוֹב וּמָקוֹם רַע אֶלָּא הַכּל אֶחָד חוֹלְקִין לְפִי הַמִּדָּה בִּלְבַד. וְאִם אָמַר אֶחָד מֵהֶם תְּנוּ לִי חֶלְקִי מִצַּד זֶה כְּדֵי שֶׁיְּהֵא סָמוּךְ לְשָׂדֶה אַחֵר שֶׁלִּי וְיִהְיֶה הַכּל שָׂדֶה אַחַת שׁוֹמְעִין לוֹ וְכוֹפֶה אוֹתוֹ עַל זֶה שֶׁעִכּוּב בְּדָבָר זֶה מִדַּת סְדוֹם הִיא. אֲבָל אִם הָיָה חֵלֶק אֶחָד מִמֶּנָּה טוֹב אוֹ קָרוֹב לַנָּהָר יוֹתֵר אוֹ קָרוֹב לַדֶּרֶךְ וְשָׁמוּ אוֹתָהּ הַיָּפֶה כְּנֶגֶד הָרַע וְאָמַר תְּנוּ לִי בְּשׁוּמָא שֶׁלִּי מִצַּד זֶה אֵין שׁוֹמְעִין לוֹ אֶלָּא נוֹטֵל בְּגוֹרָל. אָמַר לָהֶם תְּנוּ לִי (בְּשׁוּמָא שֶׁלִּי מִצַּד זֶה) חֲצִי מִדָּתָהּ מִן הַצַּד הָרַע בְּלֹא שׁוּמָא וְטל אַתָּה מִן הַצַּד הַטּוֹב כְּדֵי שֶׁיִּהְיֶה חֶלְקִי סָמוּךְ לַשָּׂדֶה שֶׁלִּי. הוֹרוּ מִקְצָת הַגְּאוֹנִים שֶׁשּׁוֹמְעִין לוֹ. וְלָזֶה דַּעְתִּי נוֹטָה וְכֵן רָאוּי לָדוּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם היתה כולה שוה כו׳ אבל אם היה חלק אחד ממנה טוב כו׳:</strong><br><strong> ראה </strong> בההמ&quot;ג שיטות אחרות. ולדעתי יצא לרבינו מהא שפירש בפהמ&quot;ש דדמאי פ&quot;ו מ&quot;ח, שנים שקבלו שדה באריסות או שירשו או שנשתתפו, יכול הוא לומר טול אתה חטים שבמקום פלוני ואני חטים במקום פלוני כו׳ אבל לא יאמר לו טול אתה חטים כו׳ ואני שעורים כו׳, לשון רבינו, זה הדין שזכר שיהיו שני מינים מן החטה כו׳ שוים ולא יהיה ביניהם שום חילוף כו׳ אלא מקומותיהם ואז יהיה רשות כו׳ לומר לחבירו אחר שיין זה כמו היין ההוא, וזה קרוב למקומי ושלך קרוב למקומך כו׳ ואל תצריכוני שאקח אני הרחוק ממני כו׳ ולא יוכל חבירו למנוע ממנו שאין היזק עליו בדבר הזה, שהעיקר אצלנו כופין אותו על מדת סדום כו׳ יעו&quot;ש, ואם כי בהלכות מעשר פירש לענין שאסור למוכרה טבל יעו&quot;ש, מצאנו הרבה לרבינו שמביא בחיבורו שני פרושים שונים, ואף ע&quot;ג שתמן לא חלקו בגוף השדה רק בקמה ויין מסתברא דהכל חדא לענין חלוקה, אע&quot;ג דרבוותא החולקים עליו אפשר דלא אמרו רק בחלוקת שדות שלפעמים שאחת מתברכת יותר מחברתה, בכ&quot;ז משמע ממשנה דתמן שאף עפ&quot;י שלא הגיע זמנו לקצור ויכולה ללקות בשדפון וכיו&quot;ב, בכ&quot;ז יכול לומר טול כו׳ ואני אטול הסמוך למקומי ודוק:</p>
               </div>
             </div>
@@ -566,13 +680,18 @@
             </nav>
           </section>
           <h4 id="chapter-ohr-sameach-on-mishneh-torah-neighbors-text-13">Chapter 13</h4>
-          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-13-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-neighbors-13-1-1" data-unit data-lexical-unit data-unit-id="ohr-sameach-on-mishneh-torah-neighbors-13-1-1" data-source-ref="Ohr Sameach on Mishneh Torah, Neighbors 13:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Neighbors 13:1:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-neighbors-13-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Neighbors 13:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-neighbors/#mishneh-torah-neighbors-13-1">Mishneh Torah, Neighbors 13:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנּוֹתֵן מַתָּנָה אֵין בָּהּ דִּין בֶּן הַמֵּצַר. הָיָה כָּתוּב בִּשְׁטַר מתָּנָה שֶׁאַחֲרָיוּת מַתָּנָה זוֹ עַל הַנּוֹתֵן יֵשׁ בָּהּ דִּין בֶּן הַמֵּצַר הוֹאִיל וְיֵשׁ בָּהּ אַחֲרָיוּת מְכִירָה הִיא וְלֹא כָּתַב מַתָּנָה אֶלָּא לְבַטֵּל זְכוּת בֶּן הַמֵּצַר. וְכַמָּה נוֹתֵן לוֹ. מַה שֶּׁהִיא שָׁוָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שיטת </strong> רבינו בהלכות מצרנות נראה, דהלוקח אינו כשליח ממש לכל מילי, וזה הוא, חדא דכתב בהלכה י&quot;א, בע&quot;ח של מוכר שטרף השדה מיד המצרן, בעל המצרן חוזר וטורף מן הלוקח שסלקו, ואם דין שליח ממש יש לו איך טורף מיד הלוקח. עוד כתב, דפירות שאכל מקודם שבא וסלקו, שלו הוא אוכל ואין מחשבין, ואם איתא דשליח גמור הוי, הרי של מצרן קא אכיל, ואי משום דהוי כשכונה לו הלא באתרא דמסלקי אסור [ויש לדחות קצת] וכן דעת רבו הר&quot;י בן מיגש נראה דכולהו פירות דמצרן וכמו דמשמע מתשובתו בשיטה, ומשום זה כתב רבינו, דבן המצר שבא לסלק הלוקח וקודם שיסלקו מכר את השדה שיש לו על מיצר הנמכרת איבד את זכותו, היינו משום דלא הוי כשליח ממש, דנאמר דהשדה הנמכרת הוא שלו מכבר, וכיון שהיתה לקוחה ביד הקונה מן המוכר, שוב אין הלוקח החדש יכול לסלקו, דנאמר אדרבא הלוקח הראשון הוא מצרן לשדה הנמכרת מיד המצרן ומאי אלים השני מן הראשון, לכן נשאר כל אחד בשלו, ומש&quot;ה כתב דאם קנה הלוקח וקדם א׳ מהמצרנים וקנה מן הלוקח זביניה זבינא, ואם נאמר דשליח גמור הוי הרי כבר קנה בשליחות כולן ואיך נאמר דזביניה זבינא, אלא ע&quot;כ משום דקנויה לו וא&quot;כ תו איהו דקדם וזבין הוי זביניה זבינא כאלו קדים וזבין מיד המוכר בעצמו:<br><strong> ולפ&quot;ז </strong> מובן מש&quot;כ רבינו בפרק י&quot;ב הלכה י&quot;א הרי שטען הלוקח ואמר מפני המס וכיו&quot;ב מכר כו׳ על בעל המיצר להביא ראיה ואח&quot;כ יוציא מיד הלוקח כו׳ אפילו היה שם בדבר ספק אין הלוקח מסתלק אלא בראיה כו׳ לפיכך אם טען הלוקח ואמר גזלן אתה כו׳ וכן כל כיו&quot;ב, מעומק לשונו משמע דדוקא בכה&quot;ג שהוא מבטל ממנו בטענתו כל דין מצרנות שלו אם כן אמרינן ארעא בחזקת הלוקח, דהא כבר פירש דאינו כשליח ממש לכל מילי, אבל במקום דאף לפי טענת הלוקח יכול לסלקו, וכמו גבי קנה שוה מאתים במנה, הלוקח טוען דלאחר לא הוי זבין במקח זה, והמצרן טוען דלאחר ג&quot;כ הוי זבין בק׳ כיון דסו&quot;ס יש לו זכות מצרנות ויכול לסלקו שוב אוקים ממונא בחזקת מריה דהוי כמו דאמר לקמן (דף קי) ארעא לגוביינא קאי כו׳, כן משמע מלשון רבינו, ודלא כמש&quot;כ מרן בב&quot;י שדעת רבינו בזה כדעת הרא&quot;ש דנותן לו מאתים יעו&quot;ש ודוק:<br><strong> והנה </strong> הרמ&quot;ה הביאו הטור פוסק דבגוונא דטעין גזלן אתה כו׳ או שאומר שמפני המס מכר לו, בכ&quot;ז המצרן יכול לסלקו. וטעמו ראיתי בשו&quot;ת ר&quot;י בן לב שמביא חידושי רמ&quot;ה, דחזינן דמתנה דאית בה אחריות אמדינן דעתיה דודאי על מתנה לא קביל אחריות והיינו דרבנן חששו טובא להערמה, וא&quot;כ בכל טענות שטוען לא חזו חכמים לבטל מצרנות, דא&quot;כ יהיה הערמה בל&quot;מ יעו&quot;ש, ולפ&quot;ז הוא דוקא באופן דעל האי גברא היינו לוקח מוטל דין מצרנות ועשית הישר והטוב, רק שהספק הוא באופני המכירה אלמוהו חכמים לכח המצרן, אבל באופן שהספק אם הלוקח זכר או נקבה, דעל נקבה אינו מוטל כלל דין מצרנות ודאי דמודה דעל המצרן להביא ראיה, ודלא כמש&quot;כ בב&quot;י דלרמ&quot;ה בטומטום ואנדרוגינוס המצרן מסלקו וז&quot;א ודוק. והנה הר&quot;י בן לב שם הביא דברי רמ&quot;ה, דבאופן שחולקים הלוקח והמצרן אם לאחר הוי זבין במנה מה ששוה מאתים הדין עם הלוקח, דלאפוקי בלא מעות לא יפו חכמים כחו. ונראה דמזה אינו ראיה לדידן, דהרמ&quot;ה לטעמו אזיל שהביאו הטור שפוסק דאם הלוקח קא יהיב לה במתנה או מורית לבנו אין מסלקין אותם, א&quot;כ הך ארעא לאו לאפוקי קיימא ולא דמי להך דאמר ארעא לגוביינא קאי, ומחכמי פולין (סמ&quot;ע וב&quot;ח) נעלמו דברי הרמ&quot;ה שהביא הריב&quot;ל:<br><strong> ומה </strong> שכתב הטור ס&quot;ב דדעת רבינו דוקא חצר בחצר כו׳ הא בשדה וכרם מודה, הנה תראה מהמקור אשר ממנו נבעו דברי רבינו והוא תשובת רבו האב&quot;ן מיגש בשיטה יעו&quot;ש דעיקר טעמו דהוי כמו לגאול בקרוב ועדיפא מיניה, דנראה דלא מחלק:<br><strong> ויש </strong> להסתפק בהא דכתב רבינו בהלכה ד׳, דהמחליף חצר בבהמה או במטלטלין רואין דמי אותה הבהמה כו׳ ונותן לו בן המצר ומסלקו כו׳, דאם הוקרו הבהמה או המטלטלין משעת הקניה עד שעה שרוצה לסלקו, האם נאמר דהלוקח מצי אמר אימת אנא זבינא המטלטלין שלי דוקא שהיה לי בהם שדה אבל השתא לא בעינא למיזבן, וא&quot;כ תו בעי למיהב זוזי למוכר והמוכר יקנה בדמים אלו מטלטלין, א&quot;כ בעי למיהב ליה זוזי כמו דשוים האידנא המטלטלין, דהמוכר אינו צריך להפסיד, וכן משמע קצת מדברי ב&quot;י דלמוכר קא יהיב זוזי וליכא ליה פסידא דמצי לקנות מטלטלין יעו&quot;ש, או דלא שמענו דין סילוק מהמצרן רק להלוקח, וא&quot;כ אמרינן כי זבין הלוקח הך שדה המטלטלין היו שוים כך והוי השדה קנויה בשליחותו להמצרן בדמים שהיו שוים המטלטלים אז ומסלק ליה הנך דמים בשויא שהיה אז וכן משמע קצת מלשון רבינו וכן נראה:<br><strong> והנה </strong> מסתפינא לומר דלשון רבינו בה&quot;ט שכתב בן המצר שבא לסלק את הלוקח וקודם שיסלקו מכר לו את השדה שיש לו על המיצר אבד את זכותו, כוונתו דמכר לאותו לוקח שרוצה לסלקו השדה שעל המיצר, אך יש להסתפק אם כוונתו, דבמה שהוא מצרן היינו באותו שדה שמחמת מצרנותה רוצה לסלקו מכר לו ע&quot;ז קאמר דשוב אינו יכול לסלקו כיון שאין לו דין וטענת מצרנות, או כוונתו שמכר לו שדה אחרת שיש לו על מיצר שדה זו, ובכ&quot;ז נשאר עוד מצרן בשדה שניה שיש לו וקאמר דשוב אינו יכול לסלקו, כיון שהוא בעצמו מצרן עשאו ללוקח, או דכוונתו, דמכר לו שדה שיש לו על מיצר שדה שלו מצד אחר דאין לו זכות לעשותו מצרן מרוח זה ולסלקו מצד זה, דעדיפא טפי מנעשה שליח למכור כו׳, אמנם הטור העתיק דבריו בזה&quot;ל, וקודם שיסלקו מכר את השדה כו׳ ופירוש דמיירי דמכר לאיש אחר, שאינו יכול לסלק ללוקח, אולם לפי גירסת ספרינו &quot;ומכר לו&quot; משמע דלהלוקח קא זבין ודוק. והנה לפי מש&quot;כ, דאם מכר שדהו לאחר דאינו יכול הלוקח לסלקו ולא אמרינן מה מכר ראשון לשני כל זכות שתבוא לידו, וא&quot;כ זכות המצרנות ג&quot;כ מכר לו, משום דאידך לוקח יטעון על שדה הנמכרת מהמצרן דאיהו מצרן ולכן לא עדיף חד מחבריה, לפ&quot;ז אפשר דאם המצרן נותן שדהו לגברא אוחרי קודם שסילק ללוקח דלית ביה דינא דב&quot;מ, שוב אמרינן דלהמקבל מתנה יש זכות המצרן הנותן, ומצי לסלק ללוקח הראשון, והיה מיושב קושיית הסמ&quot;ע ס&quot;ק ל&quot;ה על הרמ&quot;ה, דכותב אורכתי אם מקנה כו׳ עיי&quot;ש והבן, אך המחוור דאין נפק&quot;מ דכיון דלא בעי למיהדר רק משום ועשית הישר והטוב א&quot;כ אין זה זכות דנאמר שבא לידו שמצי להקנות זה למקבל מתנה והוי כטובת הנאה לבד למ&quot;ד דלית בה ממון, אע&quot;ג דמצי למיתבע מיניה פירות שאכל אחר שהביא מעות לסלקו, בכ&quot;ז כיון דאינו רק משום הישר והטוב, אין זה דבר שהגיע לידו שיהא מצי להקנות ודוק:<br><strong> ושוב </strong> מצאתי ת&quot;ל, שכפי פירושי החדש בדברי רבינו בזה, דאם מכר המצרן שדה שלו ללוקח, תו לא מצי לסלקו מן השדה שלקח מקודם ולא אמרינן דכיון דנעשה כאילו בשליחותו קנאו הרי היא שלו מכבר, מצאתי כזאת להרשב&quot;א ח&quot;ג סימן קנ&quot;א הובא ביתה יוסף בסוף הסימן מחודש כ&quot;ט, באחד שמשלם מס לשמעון ושמעון מכר זה האדנות ליהודה, ואח&quot;כ מכר ראובן קרקע זו ליהודה, ובכ&quot;ז רוצה לסלקו מן המס בתורת ב&quot;מ יעו&quot;ש שעיקר טעמו משום דכל שמוכר קרקעו כמוחל על מצרנו כו׳, וזהו ממש דינא דרבינו לפי פירושי ומטעמא הנ&quot;ל דמשוה זו לנעשה שליח למכור דכולהו מטעם מחילה קא אתיין, וברור בס&quot;ד:<br><strong> והנה </strong> העיטור ורז&quot;ה כתבו, דיש מביאין ראיה מהך דקאמר לאשה וליתמי ולשותפי לית ביה משום דינא דבר מצרא, דאם אחד הוא עני ודחיקא ליה שעתא וצריך לאותו שדה, והמצרן הוא בריוח, דל&quot;ב משום דינא דב&quot;מ, והרמב&quot;ן במלחמות שחק ע&quot;ז דשאני אשה ויתמי דלית להו מאן דיעסוק בגינייהו, לא כן לוקח זה ילך ויקנה במקום אחר עי&quot;ש, ובאמת אין שום ראיה מהך, דבכל גווני ליכא בהו דינא דב&quot;מ, לא כן זה, האם יעשו חכמים דבריהם לשעורים, דיש מתרושש ויש מתעשר. אולם אמינא דיתכן, דרבוותא דמייתי ראיה סברי, דהך דקאמר לשותפי פירושו פשוט ע&quot;ד דאמר לאשה וליתמי ה&quot;נ לשותפי היינו אם הם קונים בשותפות ולא שהם שותפים עם המוכר רק שהם לקחו שדה בשותפות, וטעמא משום דאם תבטל המכר שמא לא יוכלו להתרצות אח&quot;כ לעשות שותפות לקנות שדה אחרת, ואדהכי והכי יבטל הסכם שניהם לקנות שדה בשותפות, דקדירה דבי שותפי כו׳ והתהות מצויה, לכן לא תקנו דינא דב&quot;מ, וא&quot;כ שפיר למדו מזה לענין עני ושעתא דחיקא ליה, ואם תאמר יקנה שדה אחרת, ב&quot;כ וב&quot;כ ילכו מעותיו ולא יהיה לו במה לקנות, אבל לא כן פסקו הפוסקים ובראשם רבינו בהלכה ח׳ אבל המוכר קרקע לשנים יש לבעל המיצר לסלק א׳ כו׳ יעו&quot;ש ודוק בכ&quot;ז:</p>
               </div>
             </div>
@@ -583,721 +702,55 @@
             </nav>
           </section>
         <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ohr-sameach-on-mishneh-torah-neighbors.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-neighbors-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/ohr-sameach-on-mishneh-torah-neighbors.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
-      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button></div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ohr-sameach-on-mishneh-torah-neighbors.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ohr-sameach-on-mishneh-torah-neighbors.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ohr-sameach-on-mishneh-torah-neighbors.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
-  <script>
-    (async () => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const configNode = document.querySelector("[data-lexical-config]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const chunkPromises = new Map();
-      const sourceRows = new Map();
-      let manifestPromise = null;
-      const hud = document.querySelector("[data-lexical-hud]");
-      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
-      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
-      const localSourceUrlMap = {
-        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
-        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
-        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
-        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
-        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
-        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
-      };
-      const resolveSourceUrl = (url) => {
-        const raw = String(url || "").trim();
-        if (!raw) return "";
-        if (/^(https?:|mailto:)/i.test(raw)) return raw;
-        const mapped = localSourceUrlMap[raw];
-        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
-        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
-        return "";
-      };
-      const fetchJson = async (url, base = document.baseURI) => {
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const loadOccurrences = async () => {
-        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
-        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
-        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
-        return occurrences;
-      };
-      const loadManifest = async () => {
-        if (!lexicalConfig.manifest_url) return null;
-        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
-        return manifestPromise;
-      };
-      const resolveSourceRows = (ids, inlineRows) => {
-        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
-        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
-      };
-      const cacheChunk = (chunk) => {
-        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
-        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
-        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
-          lexiconEntries.set(entry.entry_id, {
-            ...entry,
-            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
-            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
-          });
-        });
-        return chunk;
-      };
-      const loadChunk = async (chunkId) => {
-        if (!chunkId) return null;
-        if (!chunkPromises.has(chunkId)) {
-          chunkPromises.set(chunkId, (async () => {
-            const manifest = await loadManifest();
-            if (!manifest) return null;
-            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
-            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
-            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
-            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
-          })());
-        }
-        return chunkPromises.get(chunkId);
-      };
-      const loadTokenRow = async (tokenIndexId) => {
-        if (!tokenIndexId) return {};
-        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
-        const manifest = await loadManifest();
-        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
-        if (chunkId) await loadChunk(chunkId);
-        return tokenRows.get(tokenIndexId) || {};
-      };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalEntry = "";
-        span.dataset.lexicalStatus = "pending";
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        return span;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      const loadedOccurrences = await loadOccurrences();
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
-        });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
-      let activeHudButton = null;
-      if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const positionHudNearButton = (button) => {
-        if (!button || hud.hidden) return;
-        const rect = button.getBoundingClientRect();
-        const margin = 12;
-        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
-        hud.style.width = width + "px";
-        const preferredLeft = rect.right - width;
-        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
-        const below = window.innerHeight - rect.bottom - margin;
-        const above = rect.top - margin;
-        const openAbove = below < 280 && above > below;
-        const available = Math.max(220, (openAbove ? above : below) - margin);
-        hud.style.maxHeight = Math.min(560, available) + "px";
-        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
-        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
-        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
-        hud.style.left = left + "px";
-        hud.style.top = top + "px";
-      };
-      const scheduleHudPosition = () => {
-        if (!activeHudButton || hud.hidden) return;
-        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
-      };
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const setRowHidden = (root, selector, hidden) => {
-        const row = root.querySelector(selector);
-        if (row) row.hidden = Boolean(hidden);
-      };
-      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
-      const cleanStrictRenderings = (values) => {
-        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
-        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
-        return [...new Set(raw.filter((value) => {
-          if (value.length > 64) return false;
-          if (/[()]/.test(value)) return false;
-          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
-          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
-          return true;
-        }))];
-      };
-      const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
-      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
-      const isAramaicView = (view) => {
-        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
-        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
-        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
-      };
-      const strictEntriesForView = (view) => {
-        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
-        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
-        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
-          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
-          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
-        });
-      };
-      const getStrictBuckets = (view) => {
-        const topLevel = getStrictRenderings(view);
-        const strictEntries = strictEntriesForView(view);
-        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
-        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
-      };
-      const strictEntryKeys = (view) => {
-        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
-      };
-      const appendRenderings = (node, values) => {
-        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
-        if (!filtered.length) { node.append("N/A"); return; }
-        if (filtered.length === 1) { node.append(filtered[0]); return; }
-        const ul = document.createElement("ul");
-        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderBreakdown = (root, view) => {
-        const node = root.querySelector("[data-hud-breakdown]");
-        if (!node) return;
-        node.replaceChildren();
-        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
-        if (!rows.length) { node.textContent = ""; return; }
-        const list = document.createElement("div");
-        list.className = "breakdown-list";
-        rows.forEach((row) => {
-          const section = document.createElement("section");
-          section.className = "breakdown-row";
-          const head = document.createElement("p");
-          const hebrew = document.createElement("strong");
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
-          head.appendChild(hebrew);
-          section.appendChild(head);
-          const renderings = document.createElement("div");
-          appendRenderings(renderings, row.strict_renderings || []);
-          section.appendChild(renderings);
-          list.appendChild(section);
-        });
-        node.appendChild(list);
-      };
-      const isRelatedEntry = (entry) => {
-        const relation = String(entry.relation_label || "").toLowerCase();
-        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
-      };
-      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
-      const isNoisyAlternateEntry = (entry) => {
-        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
-        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
-      };
-      const renderEntryList = (entries, roleLabel) => {
-        const list = document.createElement("div");
-        list.className = "lexical-entry-list";
-        const groupedEntries = new Map();
-        entries.forEach((entry) => {
-          const spelling = entry.lemma || entry.match_key || "N/A";
-          const key = `${entry.context_role || "entry"}|${spelling}`;
-          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
-          const group = groupedEntries.get(key);
-          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
-        });
-        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
-        sorted.forEach((entry) => {
-          const card = document.createElement("section");
-          card.className = "lexical-entry";
-          const title = document.createElement("h3");
-          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
-          title.append(role, ": ");
-          const spelling = document.createElement("span");
-          spelling.className = "entry-hebrew";
-          spelling.lang = "he";
-          spelling.dir = "rtl";
-          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
-          title.appendChild(spelling);
-          const meta = document.createElement("p");
-          meta.className = "entry-meta";
-          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
-          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
-          const renderings = document.createElement("div");
-          const renderLabel = document.createElement("p");
-          renderLabel.className = "entry-label";
-          renderLabel.textContent = "Strict renderings";
-          renderings.appendChild(renderLabel);
-          appendRenderings(renderings, entry.strict_renderings || []);
-          card.append(title, meta, renderings);
-          list.appendChild(card);
-        });
-        return list;
-      };
-      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const sourceRowsByKey = (view) => {
-        const map = new Map();
-        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
-        return map;
-      };
-      const sourceRowsForEntry = (view, entry) => {
-        const map = sourceRowsByKey(view);
-        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
-        return row ? [row] : [];
-      };
-      const cleanTransliteration = (value) => {
-        const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
-      };
-      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
-      const sourceQualityScore = (rows) => {
-        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
-        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
-        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
-        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
-        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
-        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
-        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
-        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
-        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
-        return { delta: -10, reason: "missing source row" };
-      };
-      const parserScore = (view) => {
-        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
-        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
-        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
-        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
-        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
-        return { delta: 0, reason: "" };
-      };
-      const applyDisplayBoost = (status, rawScore, view) => {
-        return { score: rawScore, reasons: [] };
-      };
-      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
-        const reasons = [];
-        let score = 0;
-        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
-        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
-        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
-        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
-        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else { score = 84; reasons.push("strict Hebrew row"); }
-        const rendered = cleanStrictRenderings(renderings || []);
-        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
-        const sourceQuality = sourceQualityScore(rows);
-        score += sourceQuality.delta;
-        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
-        const view = evidence.view || {};
-        const entry = evidence.entry || {};
-        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
-        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
-        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
-        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
-        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
-        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
-        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
-        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
-        const parser = parserScore(view);
-        score += evidence.surfaceClaim ? parser.delta : 0;
-        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
-        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
-        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
-        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
-        const display = applyDisplayBoost(status, rawScore, view);
-        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
-      };
-      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
-      const uniqueClaims = (claims) => {
-        const seen = new Set();
-        return cleanValues(claims).filter((claim) => {
-          const key = claimRowKey(claim);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
-        const sourceRows = cleanValues(rows);
-        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
-        const cleanRenderings = cleanStrictRenderings(renderings || []);
-        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
-        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
-      };
-      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
-      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
-      const displayLicense = (row) => {
-        const license = String(row && row.license || "").trim();
-        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
-        return license || "N/A";
-      };
-      const sourceSummary = (rows) => {
-        const cleanRows = cleanValues(rows);
-        if (!cleanRows.length) return null;
-        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
-        const licenses = uniqueValues(cleanRows.map(displayLicense));
-        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
-        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
-      };
-      const DISPLAY_THRESHOLD = 50;
-      const MAX_VISIBLE_CLAIMS = 5;
-      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
-      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
-      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
-      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
-      const appendClaimCard = (list, claim) => {
-        const card = document.createElement("section");
-        card.className = "claim-row";
-        const head = document.createElement("div");
-        head.className = "claim-row-head";
-        const badge = document.createElement("span");
-        badge.className = "claim-status";
-        const confidence = claimConfidence(claim);
-        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
-        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
-        const hebrew = document.createElement("strong");
-        hebrew.className = "claim-hebrew";
-        hebrew.lang = "he";
-        hebrew.dir = "rtl";
-        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(badge, hebrew);
-        card.appendChild(head);
-        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
-        const renderings = document.createElement("p");
-        renderings.className = "claim-renderings";
-        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
-        card.appendChild(renderings);
-        const source = sourceSummary(claim.rows);
-        if (source) {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = `Source: ${source.source}`;
-          const licenseLine = document.createElement("p");
-          licenseLine.className = "claim-license";
-          licenseLine.textContent = `License: ${source.license}`;
-          card.append(sourceLine, licenseLine);
-        } else if (claim.status === "Caution") {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = "Source: metadata incomplete";
-          card.appendChild(sourceLine);
-        }
-        list.appendChild(card);
-      };
-      const appendClaimsUnderDetails = (parent, label, claims) => {
-        if (!claims.length) return;
-        const details = document.createElement("details");
-        details.className = "other-entries";
-        const summary = document.createElement("summary");
-        summary.textContent = label;
-        const box = document.createElement("div");
-        box.className = "claim-row-list";
-        claims.forEach((claim) => appendClaimCard(box, claim));
-        details.append(summary, box);
-        parent.appendChild(details);
-      };
-      const appendClaimRows = (node, claims) => {
-        if (!node) return;
-        node.replaceChildren();
-        const rows = sortClaimsForDisplay(claims);
-        if (!rows.length) { node.textContent = "N/A"; return; }
-        const list = document.createElement("div");
-        list.className = "claim-row-list";
-        const displayRows = rows.filter(isDisplayableClaim);
-        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
-        const visibleRows = displayRows.length ? displayRows : lowRows;
-        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
-        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
-        if (!visibleRows.length) { node.textContent = "N/A"; return; }
-        node.appendChild(list);
-      };
-      const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [] };
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) {
-          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
-          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
-          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
-        }
-        strictEntriesForView(view).forEach((entry) => {
-          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
-          const bucket = strictBuckets[bucketName] || [];
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (!renderings.length) return;
-          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
-        });
-        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
-          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-        }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
-      };
-      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
-      const uniqueSourceGroups = (groups) => {
-        const seen = new Set();
-        return cleanValues(groups).filter((group) => {
-          if (!group.rows.length) return false;
-          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
-      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
-      };
-      const appendSecondarySources = (container, view, entries, label) => {
-        const groups = sourceGroupsForEntries(view, entries);
-        if (!groups.length) return;
-        const sourceDetails = document.createElement("details");
-        sourceDetails.className = "source-details";
-        const sourceSummary = document.createElement("summary");
-        sourceSummary.textContent = label;
-        const sourceBox = document.createElement("div");
-        sourceDetails.append(sourceSummary, sourceBox);
-        renderSourceGroups(sourceBox, groups);
-        container.appendChild(sourceDetails);
-      };
-      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
-        const potentialNode = root.querySelector("[data-hud-potential]");
-        const relatedNode = root.querySelector("[data-hud-related]");
-        const cautionNode = root.querySelector("[data-hud-caution]");
-        const result = { potential: [], related: [], caution: [] };
-        if (!potentialNode || !relatedNode || !cautionNode) return result;
-        potentialNode.replaceChildren();
-        relatedNode.replaceChildren();
-        cautionNode.replaceChildren();
-        if (!hasLexicalEntry) {
-          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
-          setRowHidden(root, "[data-hud-potential-row]", false);
-          setRowHidden(root, "[data-hud-related-row]", true);
-          setRowHidden(root, "[data-hud-caution-row]", true);
-          appendClaimRows(potentialNode, result.potential);
-          return result;
-        }
-        const entries = cleanValues(view.possible_entries);
-        const strictKeys = strictEntryKeys(view);
-        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
-        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
-        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
-        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
-        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
-        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
-        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
-        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
-        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
-        result.potential.push(...keepForDisplay(visiblePotentialClaims));
-        result.related.push(...keepForDisplay(visibleRelatedClaims));
-        result.caution.push(...keepForDisplay(cautionClaims));
-        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
-        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
-        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
-        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
-        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
-        if (result.related.length) appendClaimRows(relatedNode, result.related);
-        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
-        return result;
-      };
-      const renderSourceRow = (row) => {
-        const title = document.createElement("p");
-        const strong = document.createElement("strong");
-        const sourceHref = resolveSourceUrl(row.source_url);
-        if (sourceHref) {
-          const link = document.createElement("a");
-          link.href = sourceHref;
-          link.textContent = row.source_name || "Source";
-          strong.appendChild(link);
-        } else {
-          strong.textContent = row.source_name || "Source";
-        }
-        title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
-        return title;
-      };
-      const renderSourceGroups = (sourceBox, groups) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        const sourceGroups = cleanValues(groups);
-        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceGroups.forEach((group) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const claim = document.createElement("p");
-          claim.className = "source-claim";
-          claim.append("For ");
-          const lemma = document.createElement("span");
-          lemma.lang = "he";
-          lemma.dir = "rtl";
-          lemma.textContent = group.label || "Lexical claim";
-          claim.appendChild(lemma);
-          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
-          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
-          section.appendChild(claim);
-          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
-          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
-          sourceBox.appendChild(section);
-        });
-      };
-      const buildWordView = async (button) => {
-        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
-      };
-      const renderWord = async (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        activeHudButton = button;
-        if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        button.setAttribute("aria-pressed", "true");
-        hud.hidden = false;
-        positionHudNearButton(button);
-        setText(hud, "[data-hud-word]", button.textContent.trim());
-        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-        setRowHidden(hud, "[data-hud-caution-row]", true);
-        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        renderBreakdown(hud, {});
-        renderPotentialAndRelatedEntries(hud, {}, false, false);
-        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
-        try {
-          const view = await buildWordView(button);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          setText(hud, "[data-hud-word]", view.hebrew_word);
-          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
-          renderBreakdown(hud, view);
-          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
-          const details = hud.querySelector("details");
-          if (details) details.open = false;
-          positionHudNearButton(button);
-        } catch (error) {
-          console.error(error);
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          positionHudNearButton(button);
-        }
-      };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          activeHudButton = null;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
-      });
-      window.addEventListener("resize", scheduleHudPosition);
-      window.addEventListener("scroll", scheduleHudPosition, true);
-    })();
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-neighbors.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/ohr-sameach-on-mishneh-torah-neighbors.manifest.json","occurrence_url":"../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-neighbors.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
   </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
 </body>
 </html>

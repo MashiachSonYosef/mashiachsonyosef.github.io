@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -31,6 +38,11 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -47,6 +59,7 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -80,48 +93,48 @@
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-field-row { display: contents; }
-    .lexical-field-row[hidden] { display: none; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .breakdown-list { display: grid; gap: 8px; }
-    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
-    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
-    .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
-    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
-    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
-    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
-    .lexical-entry .entry-hebrew { color: var(--hebrew); }
-    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
-    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
     .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
-    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; }
-    .other-entries { margin-top: 12px; }
-    .claim-row-list details { margin-top: 8px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
-    .source-claim { color: var(--text); margin: 0 0 6px; }
-    .source-claim span { color: var(--hebrew); }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
-    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
     .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
@@ -135,20 +148,23 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
 <body>
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
-        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-        <h1>Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing</h1>
-        <p class="work-label">Commentary on Mishneh Torah, Prayer and the Priestly Blessing</p>
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Mishneh Torah, Prayer and the Priestly Blessing</p>
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/">Open Mishneh Torah, Prayer and the Priestly Blessing</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
@@ -156,19 +172,27 @@
             <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
-        <p class="meta">10 total source units | imported 2026-05-21</p>
-        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>459 matched</strong> / 1176 unique forms.</p>
+          <p class="hero-summary">
+            <span>10 source units</span>
+            <span>1176 HUD forms</span>
+            <span>imported 2026-05-21</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -228,13 +252,18 @@
         </nav>
         <article>
           <h4 id="chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Chapter 1</h4>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-1-1">Mishneh Torah, Prayer and the Priestly Blessing 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לְהִתְפַּלֵּל בְּכָל יוֹם שֶׁנֶּאֱמַר <span class="source-small">(שמות כג כה)</span> ״וַעֲבַדְתֶּם אֵת ה׳‎ אֱלֹהֵיכֶם״. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁעֲבוֹדָה זוֹ הִיא תְּפִלָּה שֶׁנֶּאֱמַר <span class="source-small">(דברים יא יג)</span> ״וּלְעָבְדוֹ בְּכָל לְבַבְכֶם״ אָמְרוּ חֲכָמִים אֵי זוֹ הִיא עֲבוֹדָה שֶׁבַּלֵּב זוֹ תְּפִלָּה. וְאֵין מִנְיַן הַתְּפִלּוֹת מִן הַתּוֹרָה. וְאֵין מִשְׁנֶה הַתְּפִלָּה הַזֹּאת מִן הַתּוֹרָה. וְאֵין לַתְּפִלָּה זְמַן קָבוּעַ מִן הַתּוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה להתפלל בכל יום שנא׳ ועבדתם את ה׳ אלהיכם מפי השמועה למדו שעבודה זו היא תפלה וכו׳.</strong> ועי׳ בכ&quot;מ מ&quot;ש ליישב קושיית הרמב&quot;ן ע&quot;ד רבינו מסוגיא דבעל קרי ומסוגיא דסוכה דקרי לתפלה דרבנן דאיירי בשכבר התפלל תפלה אחת או שנשאר לו שהות ביום כדי לומר איזה תפלה קצרה דיוצא י&quot;ח מן התורה. ובשאגת אריה סי׳ י&quot;ד האריך לדחות דברי הכ&quot;מ ואינו כדאי. דמה שהקשה דאי איתא דתפלה מה&quot;ת היא אמאי לא חייבו חכמים ג&quot;כ לבעל קרי עכ&quot;פ להרהר ואנן אמרינן אמתני׳ דהיה עומד בתפלה ונזכר שהוא בעל קרי דאם לא התחיל לא יתחיל ומשמע דאע&quot;פ שלא התפלל כלל לא יתחיל. ולק&quot;מ דהא כתב הצל&quot;ח דכיון שלא נזכר עד שעמד בתפלה מסתמא כבר קרא ק&quot;ש וברכותיה וא&quot;כ יצא י&quot;ח תפלה מה&quot;ת דכמה בקשות יש בברכות של ק&quot;ש ומשו&quot;ה דייק שלא יתחיל אבל אם עדיין לא אמר שום בקשה י&quot;ל דקושטא דמהרהר איזה בקשה כדי לצאת י&quot;ח תפלה מן התורה וכמ&quot;ש הכסף משנה והא דלא קתני דין תפלה דמהרהר בה כי היכי דקתני דין ק&quot;ש ובהמ&quot;ז. י&quot;ל דלא פסיקא ליה דהתם אף שכבר קרא וברך פעם אחת מהרהר גם כשנתחייב אח&quot;כ משא&quot;כ בתפלה דכל שנפטר בתפלה קמא בפעם אחרת תו ליכא שום חיוב עליו בכל אותו מעת לעת עד למחר ועפ&quot;ז י&quot;ל ג&quot;כ ההיא דספק קרא וספק התפלל דחוזר משום ק&quot;ש ואינו חוזר משום תפלה כגון שנסתפק לו בק&quot;ש של פעם שני דהוי דאורייתא דכה&quot;ג בתפלה אינו מה&quot;ת. וכן י&quot;ל על פי זה מ&quot;ש השאגת אריה והפר&quot;ח מדתנן בפ&quot;ק דשבת מפסיקין לק&quot;ש ולא לתפלה דאיירי נמי בכה&quot;ג שכבר קרא ק&quot;ש פעם אחת ומפסיק משום פעם ב׳. ובתפלה כה&quot;ג הוי דרבנן ואינו מפסיק. ועוד י&quot;ל ההיא דשבת ע&quot;פ דברי הצל&quot;ח שכתבתי דכיון שמפסיק לק&quot;ש וקוראה בברכותיה ממילא יוצא בזה י&quot;ח תפלה מה&quot;ת ומשו&quot;ה אינו מפסיק לתפלה.<br><strong> ומה </strong> שהקשה הצל&quot;ח ע&quot;ד רבינו דאמאי בספק התפלל אינו חוזר ומתפלל דכיון דס&quot;ל דיש לתפלה עיקר מה&quot;ת א&quot;כ אפילו אי ודאי פשוט ליה שכבר התפלל תפילה קמא ויצא י&quot;ח מה&quot;ת ואין הספק אליו רק בחיוב דרבנן מ&quot;מ הו&quot;ל לחזור שהרי יש לו חזקת חיוב שבודאי היה חייב וספק לו אם נפטר ממנו וקיי&quot;ל דאין ספק מוציא מידי ודאי אפי׳ בדרבנן כל שיש לו עיקר בתורה. ואני אומר דהא לא קשיא כלל דהרי רבינו קושטא דסבר דאזלינן לקולא בדרבנן ואפי׳ יש לו עיקר בתורה והיה לו חזקת איסור וכמו שמבואר מדברי המל&quot;מ בפ&quot;ד דבכורות ובס׳ אבן העוזר ובס׳ מנחת יעקב ובסוף ספר סדרי טהרה וכן הוכחתי מהלכות תרומות. וא&quot;כ רבינו לשיטתו אתי שפיר דלא מחייב לחזור בספק התפלל. ובהכי אתי שפיר ג&quot;כ מ&quot;ש רבינו בפ&quot;ג דהלכות ק&quot;ש דין ט&quot;ו גבי ספק מי רגלים אפילו באשפה מותר לקרות. ואע&quot;פ שחזקת האשפה שהיא מקום הטינופת וא&quot;כ הרי יש לה חזקה של איסור. וגם יש לאיסור מי רגלים עיקר בתורה דכנגד העמוד מה&quot;ת אסור. ואפ&quot;ה עכשיו שנפלו לארץ ואינן אלא מדרבנן מקילין בספיקן ואף במקום שיש להן חזקת איסור.<br><strong> אלא </strong> לא זו דלא קשה אלא דאף זו לא קשה מה שהקשה הצל&quot;ח לדעת הפוסקים דס&quot;ל דאין ספק מוציא מידי ודאי אפילו בדרבנן בחזקת איסור וא&quot;כ אמאי אינו חוזר לדידהו בספק תפלה דרבנן או בספק קרא ק&quot;ש למ&quot;ד שהיא דרבנן הא יש לו חזקה של חיוב וספק אי נפטר. וכן הקשה בשו&quot;ת ר׳ עקיבא איגר סי׳ כ&quot;ה. ולק&quot;מ דהא כבר כתב בס׳ שער המלך בהלכות מקוואות שיש לחלק בין ספק איסור דרבנן ובין ביטול מצוה דרבנן דלא עביד איסורא כלל רק שביטל מצוה דרבנן והקילו בספיקו. ויישב בזה הא דלא מחמירין בספק קרא או התפלל מטעם דהוי ספק במעשה אי נעשה דקיי&quot;ל דאפי׳ בדרבנן אזלינן לחומרא בספק מעשה כמו בספק הינוח דעירוב וכמ&quot;ש המל&quot;מ בהל׳ בכורות שם. דהיינו דוקא בדבר של איסור ולא בדבר של עשיית מצוה. וה&quot;נ לעניין חזקה בדרבנן אף מאן דמחמיר לא מחמיר רק בדבר שיש בו משום איסור ולא בדבר שאין בו דררא דאיסורא כלל ורק משום מצוה תקנוה וכה&quot;ג כתב התוס׳ יו&quot;ט בריש פ&quot;ד דסוטה לחלק בין מה שאסרו חכמים משום גזירה של איסור דאורייתא דהוא בכלל שנאמר ושמרתם את משמרתי ודרשינן עשו משמרת למשמרתי. והוא חמור ממה שתקנו חכמים תקנה שלא מחמת גזירה של איסור. וע&quot;פ מ&quot;ש יש ליישב מה שהקשה בס׳ בינת אדם בהלכות לולב ע&quot;ד הר&quot;ן שכתב בפרק לולב [וערבה] דא&quot;צ ליטול הלולב בין השמשות של יום שני דיו&quot;ט דאינו אלא מדרבנן ושמא בין השמשות הוא לילה ואינו חייב והוי ספק דרבנן והרי הר&quot;ן גופיה סבר כדעת הפוסקים דמחמירין בספק דרבנן דאיתחזק איסורא. וה&quot;נ בין השמשות איתחזק איסורא דעדיין בחזקת יום עומד עתה ומספק לא מפקע וכדאיתא בסי׳ שמ&quot;ב ושפ&quot;ו וסי׳ תקס&quot;ב גבי תענית ציבור דרבנן. ולפי מ&quot;ש לק&quot;מ דדוקא בדבר שיש בו דררא דאיסורא הוא דמחמיר בספיקו משא&quot;כ בהך דלולב דאינה אלא מצוה וכנ&quot;ל.</p>
               </div>
             </div>
@@ -244,13 +273,18 @@
               <a href="#chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-1-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-1-4-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-1-4-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 1:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 1:4:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-1-4-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-1-4">Mishneh Torah, Prayer and the Priestly Blessing 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיוָן שֶׁגָּלוּ יִשְׂרָאֵל בִּימֵי נְבוּכַדְנֶצַּר הָרָשָׁע נִתְעָרְבוּ בְּפָרַס וְיָוָן וּשְׁאָר הָאֻמּוֹת וְנוֹלְדוּ לָהֶם בָּנִים בְּאַרְצוֹת הַגּוֹיִם וְאוֹתָן הַבָּנִים נִתְבַּלְבְּלוּ שְׂפָתָם וְהָיְתָה שְׂפַת כָּל אֶחָד וְאֶחָד מְעֹרֶבֶת מִלְּשׁוֹנוֹת הַרְבֵּה וְכֵיוָן שֶׁהָיָה מְדַבֵּר אֵינוֹ יָכוֹל לְדַבֵּר כָּל צָרְכּוֹ בְּלָשׁוֹן אַחַת אֶלָּא בְּשִׁבּוּשׁ שֶׁנֶּאֱמַר <span class="source-small">(נחמיה יג כד)</span> ״וּבְנֵיהֶם חֲצִי מְדַבֵּר אַשְׁדּוֹדִית״ וְגוֹ׳‎ <span class="source-small">(נחמיה יג כד)</span> ״וְאֵינָם מַכִּירִים לְדַבֵּר יְהוּדִית וְכִלְשׁוֹן עַם וְעַם״. וּמִפְּנֵי זֶה כְּשֶׁהָיָה אֶחָד מֵהֶן מִתְפַּלֵּל תִּקְצַר לְשׁוֹנוֹ לִשְׁאל חֲפָצָיו אוֹ לְהַגִּיד שֶׁבַח הַקָּדוֹשׁ בָּרוּךְ הוּא בִּלְשׁוֹן הַקֹּדֶשׁ עַד שֶׁיֵּעָרְבוּ עִמָּהּ לְשׁוֹנוֹת אֲחֵרוֹת. וְכֵיוָן שֶׁרָאָה עֶזְרָא וּבֵית דִּינוֹ כָּךְ עָמְדוּ וְתִקְּנוּ לָהֶם שְׁמוֹנֶה עֶשְׂרֵה בְּרָכוֹת עַל הַסֵּדֶר. שָׁלֹשׁ רִאשׁוֹנוֹת שֶׁבַח לַה׳‎ וְשָׁלֹשׁ אַחֲרוֹנוֹת הוֹדָיָה. וְאֶמְצָעִיּוֹת יֵשׁ בָּהֶן שְׁאֵלַת כָּל הַדְּבָרִים שֶׁהֵן כְּמוֹ אָבוֹת לְכָל חֶפְצֵי אִישׁ וָאִישׁ וּלְצָרְכֵי הַצִּבּוּר כֻּלָּן, כְּדֵי שֶׁיִּהְיוּ עֲרוּכוֹת בְּפִי הַכּל וְיִלְמְדוּ אוֹתָן וְתִהְיֶה תְּפִלַּת אֵלּוּ הָעִלְּגִים תְּפִלָּה שְׁלֵמָה כִּתְפִלַּת בַּעֲלֵי הַלָּשׁוֹן הַצֶּחָה. וּמִפְּנֵי עִנְיָן זֶה תִּקְּנוּ כָּל הַבְּרָכוֹת וְהַתְּפִלּוֹת מְסֻדָּרוֹת בְּפִי כָּל יִשְׂרָאֵל כְּדֵי שֶׁיְּהֵא עִנְיַן כָּל בְּרָכָה עָרוּךְ בְּפִי הָעִלֵּג:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עזרא ובית דינו תקנו שמונה עשרה ברכות על הסדר וכו׳. וכן תקנו שיהא מניין התפלות כמניין הקרבנות.</strong> מדברי הכ&quot;מ נראה דרבינו סבר רק כדאמר ר׳ יהושע בן לוי פרק תפילת השחר דתפלות כנגד תמידין תקנום ופליג אדר׳ יוסי בר חנינא דאמר אבות תקנום. ובעל לח&quot;מ כתב דודאי יש לפסוק כריב&quot;ח מפני שיישבו בגמ׳ אליביה ברייתא דתניא כריב&quot;ל דאע&quot;ג דאבות תקנום אסמכינהו רבנן אקרבנות וא&quot;כ אע&quot;פ שכתב רבינו שתקנו כנגד הקרבנות לא הוי דלא כריב&quot;ח וכו׳. ולפי דבריו אכתי הו&quot;ל לרבינו להזכיר בפירוש להא דריב&quot;ח ולא להשמיטו לגמרי. אבל באמת לא השמיטו כלל דסמך רבינו אמאי שכתב בפ&quot;ט מהל׳ מלכים אברהם התפלל שחרית ויצחק הוסיף תפלה אחרת לפנות היום ויעקב הוסיף להתפלל תפלת ערבית. ומזה מוכח שהתקינו ג&quot;כ לדורות וכמ&quot;ש מהרש&quot;א בחידושי אגדות ריש פרק תפלת השחר. וכן מבואר בהדיא בילקוט משלי כ&quot;ב. וא&quot;כ מבואר דהדין עם הלח&quot;מ דרבינו סבר כריב&quot;ח דסבר לתרווייהו. והנה מלבד ראיה זו שכתב הלח&quot;מ מסוגיא דברכות דיש לפסוק כריב&quot;ח יש לי עוד להביא ראיה מסוגיא דפ&quot;ד דתענית (דף כ&quot;ח ע&quot;א) דקרי התם לתפלת המנחה דבר תורה כנגד תפלת נעילה ופרש&quot;י כדאמרינן בברכות יצחק אבינו תיקן תפלת מנחה שנא׳ ויצא יצחק לשוח בשדה לפנות ערב והיינו ברייתא דתניא כוותיה דר׳ יוסי בר&quot;ח.</p>
               </div>
             </div>
@@ -261,13 +295,18 @@
             </nav>
           </section>
           <h4 id="chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-2">Chapter 2</h4>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-2-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-2-2-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-2-2-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 2:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 2:2:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-2-2-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-2-2">Mishneh Torah, Prayer and the Priestly Blessing 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכָל תְּפִלָּה שֶׁבְּכָל יוֹם מִתְפַּלֵּל אָדָם תְּשַׁע עֶשְׂרֵה בְּרָכוֹת אֵלּוּ עַל הַסֵּדֶר. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁמָּצָא דַּעְתּוֹ מְכֻוֶּנֶת וּלְשׁוֹנוֹ תְּמַהֵר לִקְרוֹת. אֲבָל אִם הָיָה טָרוּד וְדָחוּק אוֹ שֶׁקָּצְרָה לְשׁוֹנוֹ מֵהִתְפַּלֵּל יִתְפַּלֵּל שָׁלֹשׁ רִאשׁוֹנוֹת וּבְרָכָה אַחַת מֵעֵין כָּל הָאֶמְצָעִיּוֹת וְשָׁלֹשׁ אַחֲרוֹנוֹת וְיֵצֵא יְדֵי חוֹבָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל אם היה טרוד ודחוק או שקצרה לשונו יתפלל ג׳ ראשונות וכו׳.</strong> וכתב הכ&quot;מ ידוע דהלכה כר׳ עקיבא מחבירו. והוא תמוה דהא ר׳ אליעזר ור׳ יהושע רבותיו של ר&quot;ע היו כדמוכח להדיא במס׳ כלה ובכמה דוכתי. ונגד רבו איכא מ&quot;ד בפ׳ הכותב דלא קיי&quot;ל כוותיה דר&quot;ע. אלא י&quot;ל טעמו של רבינו דבערובין (דף ס&quot;ה) אמר רב כל שאין דעתו מיושבת עליו אל יתפלל ומשמע דהיינו כשיטת ר&quot;ע.</p>
               </div>
             </div>
@@ -278,13 +317,18 @@
             </nav>
           </section>
           <h4 id="chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Chapter 4</h4>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 4:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 4:2:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-4-2">Mishneh Torah, Prayer and the Priestly Blessing 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טָהֳרַת יָדַיִם כֵּיצַד. רוֹחֵץ יָדָיו בְּמַיִם עַד הַפֶּרֶק וְאַחַר כָּךְ יִתְפַּלֵּל. הָיָה מְהַלֵּךְ בַּדֶּרֶךְ וְהִגִּיעַ זְמַן תְּפִלָּה וְלֹא הָיָה לוֹ מַיִם. אִם הָיָה בֵּינוֹ וּבֵין הַמַּיִם אַרְבָּעָה מִילִין שֶׁהֵם שְׁמוֹנַת אֲלָפִים אַמָּה הוֹלֵךְ עַד מְקוֹם הַמַּיִם וְרוֹחֵץ וְאַחַר כָּךְ יִתְפַּלֵּל. הָיָה בֵּינוֹ וּבֵין הַמַּיִם יוֹתֵר עַל כֵּן מְקַנֵּחַ יָדָיו בִּצְרוֹר אוֹ בְּעָפָר אוֹ בְּקוֹרָה וּמִתְפַּלֵּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה מהלך בדרך והגיע זמן תפלה ולא היה לו מים אם היה בינו ובין המים ארבע מילין הולך עד מקום המים ורוחץ ואח&quot;כ מתפלל.</strong> וכתב הכ&quot;מ דרבינו גורס בפ׳ היה קורא דלייט ר&quot;ח אמאן דמהדר אמיא בעידן צלותא וה&quot;מ לק&quot;ש אבל לתפלה מהדר וכו׳. והנה קיצר בכאן ולא ביאר הטעם דאמאי מקילין בתפלה טפי ולא חיישינן בה לשיעבור זמנה כדחיישינן בק&quot;ש. והתוס׳ לא ניחא להו גירסא זו. אך סמך בעל כ&quot;מ ז&quot;ל על מ&quot;ש בהלכות ק&quot;ש פ&quot;ג דשם זכר הטעם דמקילין בתפלה. וכבר נתבאר שם עוד טעם נכון בשם המעדני יו&quot;ט דתפלה יש לה תשלומין משא&quot;כ בק&quot;ש. והבאתי ראיה לזה וביארתי הטעם עיי&quot;ש.</p>
               </div>
             </div>
@@ -294,13 +338,18 @@
               <a href="#chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-4-15-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-4-15-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-4-15-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 4:15:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 4:15:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-4-15-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 4:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-4-15">Mishneh Torah, Prayer and the Priestly Blessing 4:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּוָּנַת הַלֵּב כֵּיצַד. כָּל תְּפִלָּה שֶׁאֵינָהּ בְּכַוָּנָה אֵינָהּ תְּפִלָּה. וְאִם הִתְפַּלֵּל בְּלֹא כַּוָּנָה חוֹזֵר וּמִתְפַּלֵּל בְּכַוָּנָה. מָצָא דַּעְתּוֹ מְשֻׁבֶּשֶׁת וְלִבּוֹ טָרוּד אָסוּר לוֹ לְהִתְפַּלֵּל עַד שֶׁתִּתְיַשֵּׁב דַּעְתּוֹ. לְפִיכָךְ הַבָּא מִן הַדֶּרֶךְ וְהוּא עָיֵף אוֹ מֵצֵר אָסוּר לוֹ לְהִתְפַּלֵּל עַד שֶׁתִּתְיַשֵּׁב דַּעְתּוֹ. אָמְרוּ חֲכָמִים יִשְׁהֶה שְׁלֹשָׁה יָמִים עַד שֶׁיָּנוּחַ וְתִתְקָרֵר דַּעְתּוֹ וְאַחַר כָּךְ יִתְפַּלֵּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל תפלה שאינה בכוונה אינה תפלה ואם התפלל בלא כוונה חוזר ומתפלל בכוונה.</strong> וכתב הלח&quot;מ שאינו יודע למה לא הזכיר רבינו הא דאיתא בסוף פ׳ אין עומדין דאם אינו יכול לכוין את לבו בכולן יכוין באחת מהן משמע דלעיכובא לא בעי כוונה בכולן רק באחת מהן. ובחנם כתב כן דהרי זכרו רבינו לקמן בריש פ׳ י׳ מהלכות אלו וז&quot;ל מי שהתפלל ולא כוון את לבו יחזור ויתפלל בכוונה ואם כוון את לבו בברכה ראשונה שוב אינו צריך ע&quot;כ. [ומ&quot;ש בצל&quot;ח דאמאי השמיט רבינו דין תפלת הדרך שבפרק תפילת השחר כבר הרגיש בזה הב&quot;י בסי׳ ק&quot;י ובעל פר&quot;ח מיישבו ועיי&quot;ש].</p>
               </div>
             </div>
@@ -311,13 +360,18 @@
             </nav>
           </section>
           <h4 id="chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-6">Chapter 6</h4>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-6-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-6-9-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-6-9-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 6:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 6:9:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-6-9-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 6:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-6-9">Mishneh Torah, Prayer and the Priestly Blessing 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַמִּתְפַּלֵּל מַפְסִיק תְּפִלָּתוֹ אֶלָּא מִפְּנֵי סַכָּנַת נְפָשׁוֹת בִּלְבַד. וַאֲפִלּוּ מֶלֶךְ יִשְׂרָאֵל שׁוֹאֵל בִּשְׁלוֹמוֹ לֹא יְשִׁיבֶנּוּ. אֲבָל פּוֹסֵק הוּא לְמֶלֶךְ עוֹבֵד כּוֹכָבִים שֶׁמָּא יַהַרְגֶּנּוּ. הָיָה עוֹמֵד בַּתְּפִלָּה וְרָאָה מֶלֶךְ עוֹבְדֵי כּוֹכָבִים אוֹ אַנָּס בָּא כְּנֶגְדּוֹ יְקַצֵּר וְאִם אֵינוֹ יָכוֹל יַפְסִיק. וְכֵן אִם רָאָה נְחָשִׁים וְעַקְרַבִּים בָּאִים כְּנֶגְדּוֹ אִם הִגִּיעוּ אֵלָיו וְהָיָה דַּרְכָּן בְּאוֹתָן הַמְּקוֹמוֹת שֶׁהֵן מְמִיתִין פּוֹסֵק וּבוֹרֵחַ. וְאִם לֹא הָיָה דַּרְכָּן לְהָמִית אֵינוֹ פּוֹסֵק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין המתפלל מפסיק תפלתו אלא מפני סכנות נפשות בלבד וכו׳. אם ראה נחשים ועקרבים באים כנגדו אם הגיעו אליו והיה דרכן באותן המקומות שהן ממיתין פוסק ובורח וכו׳.</strong> לכאורה קשה דמנ&quot;ל לרבינו לחלק בזה בין המקומות אבל בין נחש לעקרב לא מחלק ובגמ׳ מחלק רב ששת בין נחש לעקרב אבל בין המקומות לא מחלק. ועוד דמשמע בגמ׳ דאין חילוק במקומות מדפריך על רב ששת מדתניא נפל לחפירה מליאה נחשים ועקרבים מעידין עליו ולא משני דברייתא איירי במקום שדרך הנחשים להזיק. וכן הקשה בס׳ זהב שיבה למהר&quot;ש אלגזי. אמנם אתי שפיר לפי מ&quot;ש בספרי משכיל לאיתן דהא הסוגיא בלא&quot;ה לכאורה תמוה דמאי אריא דמותיב מברייתא לרב ששת בדין נחש דתיפוק ליה ממתני׳ דקתני דלא יפסיק בשביל נחש ורב ששת לא אתא לאשמועינן רק דין עקרב דפוסק והיינו כברייתא וא&quot;כ בדין נחש הו&quot;ל לרומייא מתני׳ וברייתא אהדדי. אך מזה ראיה לדעת רבינו דיש לחלק בין מקומות דיש דגם עקרב אינו ממית ויש דגם נחש ממית ולכך בלא רב ששת ליכא לרמוייא מתניתין וברייתא דסתרי בנחש דאיכא למימר דלאו בחד מקום קאיירו. ומיהו לרב ששת מותיב שפיר דמדמפליג וחלק בין נחש לעקרב ש&quot;מ דס&quot;ל דבמקומות אין חילוק. וניחא ליה לרבינו למפסק כנראה מסתמא דגמ׳ דס&quot;ל לחלק בין מקומות ולא בין נחש לעקרב.</p>
               </div>
             </div>
@@ -328,13 +382,18 @@
             </nav>
           </section>
           <h4 id="chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-7">Chapter 7</h4>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-7-15-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-7-15-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-7-15-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 7:15:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 7:15:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-7-15-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 7:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-7-15">Mishneh Torah, Prayer and the Priestly Blessing 7:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּזְּמַן הַזֶּה שֶׁתִּקְּנוּ בִּרְכַּת הָאֶפִּיקוֹרוֹסִין בַּתְּפִלָּה וְהוֹסִיפוּ הַטּוֹב וְהַמֵּיטִיב בְּבִרְכַּת הַמָּזוֹן נִמְצְאוּ חָמֵשׁ בְּרָכוֹת יְתֵרוֹת. בְּשַׁבָּתוֹת וְיָמִים טוֹבִים שֶׁהַתְּפִלָּה שֶׁבַע בְּרָכוֹת, וְכֵן אִם לֹא נִתְחַיֵּב בִּשְׁאָר הַיָּמִים בְּכָל הַבְּרָכוֹת הָאֵלּוּ כְּגוֹן שֶׁלֹּא יָשַׁן כָּל הַלַּיְלָה וְלֹא הִתִּיר חֲגוֹרוֹ וְלֹא נִכְנַס לְבֵית הַכִּסֵּא וְכַיּוֹצֵא בְּאֵלּוּ, צָרִיךְ לְהַשְׁלִים מֵאָה בְּרָכוֹת מִן הַפֵּרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם לא נתחייב בכל הברכות האלו צריך להשלים מאה ברכות מן הפירות. כיצד אוכל מעט ירק מברך לפניו ולאחריו וחוזר ואוכל מעט מפרי זה ומברך לפניו ולאחריו.</strong> כתב הלח&quot;מ דרבינו לא קאמר אלא שאם אכל ירק ולא היה בדעתו לאכול יותר בעת ההיא אבל לכתחילה אסור לאכול מעט ולברך ברכה אחרונה כדי לגרום ברכה יתירה. וגם בס׳ מעשה רוקח כתב כן. ואינו מחוור דהרי רבינו כאן בא לומר איך לעשות כדי להשלים המאה ברכות לכתחילה ולפ&quot;ד הלח&quot;מ וס׳ הנזכר הא לא משכחת לה השלמה לכתחילה. ועוד דכתב רבינו בסוף הלכות ברכות לעולם יזהר אדם בברכה שאינה צריכה וירבה בברכה הצריכה. ומשמע דירבה לכתחילה בברכה הצריכה וא&quot;כ ה&quot;נ ירבה כדי להשלים חיוב מאה ברכות דאין לך צורך גדול מזה. ועיין בס׳ צל&quot;ח פ&quot;ו דברכות שהוכיח כן מהירושלמי וזהו דעת רבינו. [וכן מבואר בטור או&quot;ח ריש סימן ר&quot;צ וכה&quot;ג כתב הרא&quot;ש בתשובה הביאו ב&quot;י שם סי׳ רצ&quot;א גבי הפסקת סעודת שחרית של שבת לשנים דלא הוי מרבה בברכה שאינה צריכה כיון שעושה כן לכבוד שבת. מיהו כתב המ&quot;א בסוף סי׳ רט&quot;ו דלכתחילה יצוה לבני ביתו שלא יביאו לו כל המין בבת אחת. אבל מצאתי בס׳ ברכי יוסף באו&quot;ח סי׳ מ&quot;ו בשם תשובת מהר&quot;ש הלוי שהביא ראיה הנזכרת מתשובת הרא&quot;ש ודחי לה הרב דאיירי שלא יוכל לעשותה אח&quot;כ אבל מאה ברכות יוכל לקיים באנפי אחרינא ואיכא איסורא להרבות בברכות שא&quot;צ].</p>
               </div>
             </div>
@@ -345,13 +404,18 @@
             </nav>
           </section>
           <h4 id="chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-12">Chapter 12</h4>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-12-16-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-12-16-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-12-16-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 12:16:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 12:16:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-12-16-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 12:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-12-16">Mishneh Torah, Prayer and the Priestly Blessing 12:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּמָּה הֵן הַקּוֹרְאִין. בְּשַׁבָּת בְּשַׁחֲרִית קוֹרְאִין שִׁבְעָה. וּבְיוֹם הַכִּפּוּרִים שִׁשָּׁה. וּבְיָמִים טוֹבִים חֲמִשָּׁה. אֵין פּוֹחֲתִין מֵהֶן אֲבָל מוֹסִיפִין עֲלֵיהֶם. בְּרָאשֵׁי חֳדָשִׁים וּבְחֻלּוֹ שֶׁל מוֹעֵד קוֹרִין אַרְבָּעָה. בְּשַׁבָּת וּבְיוֹם הַכִּפּוּרִים בְּמִנְחָה וּבְשֵׁנִי וּבַחֲמִישִׁי שֶׁל כָּל הַשָּׁנָה וּבַחֲנֻכָּה וּבְפוּרִים בְּשַׁחֲרִית וּבִימֵי הַתַּעֲנִית בְּשַׁחֲרִית וּבְמִנְחָה קוֹרִין שְׁלֹשָׁה. אֵין פּוֹחֲתִין מִמִּנְיַן זֶה וְאֵין מוֹסִיפִין עֲלֵיהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובימי התענית בשחרית ובמנחה קורין שלשה.</strong> והקשה הכ&quot;מ דבפ&quot;ק דתענית משמע דלא קרינן אלא במנחה והניח בצ&quot;ע. והנה לפי דעת הכ&quot;מ עדיפא הו&quot;ל להקשות דרבינו גופיה כתב לההיא דתענית בסוף פ&quot;א מהלכות תענית ונמצאו דבריו סותרין זה את זה. אבל באמת אין עניין הא דכאן לדהתם דאיירי בתעניות שגוזרין על הצבור מחמת צרות רעב וכדומה דצריך לעיין בשחרית במילי דמתא ואין פנאי לקרות אבל כאן איירי בתעניות הקבועין בשנה על דברים שאירעו לאבותינו דבהן קורין בשחרית. וכ&quot;כ רבינו בפ&quot;ה מהל׳ תענית וכן בהלכות אלו לקמן פי&quot;ג והיינו טעמא דבהו א&quot;צ לעיין במילי דמתא. ושוב מצאתי אח&quot;כ שהרגיש בזה בספר מעשה רוקח ובספר מרכבת המשנה.</p>
               </div>
             </div>
@@ -362,13 +426,18 @@
             </nav>
           </section>
           <h4 id="chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-14">Chapter 14</h4>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-14-9-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-14-9-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-14-9-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 14:9:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 14:9:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-14-9-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 14:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-14-9">Mishneh Torah, Prayer and the Priestly Blessing 14:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד בִּרְכַּת כֹּהֲנִים בַּמִּקְדָּשׁ. הַכֹּהֲנִים עוֹלִין לַדּוּכָן אַחַר שֶׁיַּשְׁלִימוּ הַכֹּהֲנִים עֲבוֹדַת תָּמִיד שֶׁל שַׁחַר. וּמַגְבִּיהִין יְדֵיהֶם לְמַעְלָה עַל גַּבֵּי רָאשֵׁיהֶן וְאֶצְבְּעוֹתֵיהֶן פְּשׁוּטוֹת. חוּץ מִכֹּהֵן גָּדוֹל שֶׁאֵין מַגְבִּיהַּ יָדָיו לְמַעְלָה מִן הַצִּיץ. וְאֶחָד מַקְרֵא אוֹתָן מִלָּה מִלָּה כְּדֶרֶךְ שֶׁעוֹשִׂין בַּגְּבוּלִין עַד שֶׁיַּשְׁלִימוּ שְׁלֹשָׁה הַפְּסוּקִים. וְאֵין הָעָם עוֹנִין אַחַר כָּל פָּסוּק אֶלָּא עוֹשִׂין אוֹתָהּ בַּמִּקְדָּשׁ בְּרָכָה אַחַת. וּכְשֶׁיַּשְׁלִימוּ כָּל הָעָם עוֹנִים בָּרוּךְ יְיָ׳‎ אֱלֹהִים אֱלֹהֵי יִשְׂרָאֵל מִן הָעוֹלָם וְעַד הָעוֹלָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד ברכת כהנים במקדש וכו׳ וכשישלימו כל העם עונין ברוך ה׳ אלהים וגו׳.</strong> ובס׳ יד המלך תמה על רבינו דדוקא המברך אומר כך אבל העם עונין ברוך שם כבוד מלכותו לעולם ועד כדאיתא בתענית. ולי קשה טפי דרבינו עצמו כתב כן בהלכות תענית ודברי עצמו סותרין זה את זה. אחרי מופלג מצאתי שכבר הרגיש בזה בספר באר שבע. ונראה ליישב דס&quot;ל לרבינו לחלק בין ברכות דתעניות שאינן קבועות לברכות קבועות כמו ברכת כהנים. דדוקא גבי ברכות דתעניות תניא התם במס׳ תענית דהעם עונין בשכמל&quot;ו ולא כהמברך אבל בברכות קבועות שבכל יום מודה דהעם עונין ברוך ה׳ כהמברך. וטעמו של רבינו הוא משום דאיכא התם תנאי דפליגי וס&quot;ל דעונין ברוך ה׳ אפילו בתעניות וא&quot;כ אי אמרינן דאידך ברייתא דס&quot;ל דעונין בשכמל&quot;ו הוא בכל הברכות יהיה פלוגתא רחוקה ביניהם על כן ניחא ליה לרבינו לומר דלא פליגי רק בברכות שאינן קבועות אבל בברכות הקבועות מודה הך ברייתא לאית דאמרי דעונין בשוה להמברך. ויותר נראה לפי מ&quot;ש בסוטה בתוס׳ יו&quot;ט דבשכמל&quot;ו לא שייך לומר אלא כשהמברך אומר ברוך ה׳ אלהי ישראל שכן הוא תקנת עזרא אבל בברכת כהנים א&quot;א לכהנים להוסיף על מ&quot;ש בתורה וכיון שהם לא אמרו ברוך ה׳ לא היו העונין אומרים בשכמל&quot;ו. אבל מ&quot;מ ברוך ה׳ נראה לרבינו שהיו עונין דס&quot;ל דבזה לא פליגי ומודו להנך תנאי דס&quot;ל דכך היו עונין וזה דלא כמ&quot;ש רש&quot;י והתוספות בפשיטות בסוטה (דף מ׳ ע&quot;ב) דגם בברכת כהנים היו העם עונין בשכמל&quot;ו. ומה שהקשו התוס׳ שם דגם במקדש היו מפסיקין בענייתן הנ&quot;ל ואמאי קתני שהיה ברכה אחת ותירוצם דחוק עיי&quot;ש. אך אתי שפיר לפי מ&quot;ש רבינו כאן וכשישלימו כל העם עונין וכו׳ ומשמע דקושטא דבאמצע לא היו עונין שום דבר.<br><strong> ומה </strong> שהקשה המל&quot;מ על פירוש רש&quot;י בחומש שכתב וישא אהרן את ידיו ויברכם ברכת כהנים יברכך וכו׳ מדתניא בסוטה (דף ל&quot;ח) כה תברכו בנשיאות כפים או אינו אלא שלא בנשיאות כפים נאמר כאן כה תברכו ונאמר להלן וישא אהרן את ידיו אל העם ויברכם מה להלן בנשיאות כפים אף כאן בנשיאות כפים. ואי איתא דויברכם דכאן היה ברכת כהנים אמאי צריך למילף בגז&quot;ש מכאן לברכת כהנים שהיא בנשיאות כפים דתיפוק ליה מדהכא גופה שהיתה ברכת כהנים ונשא ידיו והניח בקושיא. ובחבורי על התורה כתבתי לתרץ ע&quot;פ מאי דאיתא בירושלמי בתענית שם מניין לנשיאות כפים כה תברכו את בני ישראל עד כאן בשחרית. במוסף מניין וישא אהרן את ידיו אל העם ויברכם וירד מעשות החטאת. ולפ&quot;ז אתי שפיר הא דאיצטריך בסוטה למילף בגז&quot;ש מכאן לברכת כהנים שתהא בנשיאות כפים אף בשחרית דאילו מדהכא דהיה בנשיאות כפים איירי בקרבנות דמוסף וכדי ללמד לברכת כהנים דשחרית דאיירי בפסוק כה תברכו שתהא ג&quot;כ בנשיאות כפים הוצרך למילף בגז&quot;ש].</p>
               </div>
             </div>
@@ -378,13 +447,18 @@
               <a href="#chapter-nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-text-14">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-14-11-1" data-unit data-lexical-unit>
+          <section class="unit" id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-14-11-1" data-unit data-lexical-unit data-unit-id="nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-14-11-1" data-source-ref="Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 14:11:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 14:11:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-14-11-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Prayer and the Priestly Blessing 14:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-prayer-and-the-priestly-blessing/#mishneh-torah-prayer-and-the-priestly-blessing-14-11">Mishneh Torah, Prayer and the Priestly Blessing 14:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין בִּרְכַּת כֹּהֲנִים נֶאֱמֶרֶת בְּכָל מָקוֹם אֶלָּא בִּלְשׁוֹן הַקֹּדֶשׁ שֶׁנֶּאֱמַר <span class="source-small">(במדבר ו כג)</span> ״כֹּה תְבָרַכוּ אֶת בְּנֵי יִשְׂרָאֵל״. כָּךְ לָמְדוּ מִפִּי הַשְּׁמוּעָה מִמּשֶׁה רַבֵּנוּ עָלָיו הַשָּׁלוֹם כֹּה תְּבָרְכוּ בַּעֲמִידָה. כֹּה תְּבָרְכוּ בִּנְשִׂיאַת כַּפַּיִם. כֹּה תְּבָרְכוּ בִּלְשׁוֹן הַקֹּדֶשׁ. כֹּה תְּבָרְכוּ פָּנִים כְּנֶגֶד פָּנִים. כֹּה תְּבָרְכוּ בְּקוֹל רָם. כֹּה תְּבָרְכוּ בְּשֵׁם הַמְפֹרָשׁ. וְהוּא שֶׁיִּהְיֶה בַּמִּקְדָּשׁ כְּמוֹ שֶׁאָמַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין ברכת כהנים נאמרה בכל מקום אלא בלשון הקודש שנאמר כה תברכו את בני ישראל.</strong> עיין בכ&quot;מ ולח&quot;מ שפירשו בכוונת רבינו דלאו ממשמעות דקרא יליף דכה הוא בלשון הקודש אלא מגז&quot;ש דשאר קראי יליף לה וכדאיתא בברייתא בסוטה (דף ל&quot;ח) ואני אומר דודאי כוונת רבינו הוא דלשון כה משמע דוקא לה&quot;ק והיינו כר׳ יהודה דקאמר בברייתא שם לת&quot;ק דיליף בגז&quot;ש מברכת לוים דהוא בלה&quot;ק דא&quot;צ הרי הוא אומר כה עד שיאמר בלשון הזה. וכתבו התוס׳ דרבנן לא משמע להו עיכובא מכה אלא מככה. והיינו כדאיתא שם בסוגיא (דף ל&quot;ג) דפליגי ר׳ יהודה ורבנן בהכי גבי חליצה דר&quot;י דריש תרתי כה וככה ללה&quot;ק וגם לחליצה ורקיקה שמעכב ורבנן לא דרשי תרווייהו רק עיכובא לחליצה ורקיקה ולה&quot;ק ילפי מגז&quot;ש מלוים. ובהלכות חליצה פ&quot;ד מבואר דרבינו יליף לשון הקדש מככה והיינו כר&quot;י. וא&quot;כ אזיל כאן לטעמיה דהתם דיליף לה&quot;ק מכה לחוד ושם יתבאר טעמו שפסק כדרשא דר׳ יהודה ועיי&quot;ש בס&quot;ד. וממ&quot;ש יתבאר לך דיפה עשה הט&quot;ז באו&quot;ח שכתב הלימוד דלה&quot;ק מכה והפמ&quot;ג בא והקשה דזה אינו אלא לר&quot;י. ולפ&quot;ד הו&quot;ל להקשות ג&quot;כ על רבינו בהלכות חליצה אך אתי שפיר כמ&quot;ש.</p>
               </div>
             </div>
@@ -395,721 +469,55 @@
             </nav>
           </section>
         <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
-      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button></div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
-  <script>
-    (async () => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const configNode = document.querySelector("[data-lexical-config]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const chunkPromises = new Map();
-      const sourceRows = new Map();
-      let manifestPromise = null;
-      const hud = document.querySelector("[data-lexical-hud]");
-      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
-      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
-      const localSourceUrlMap = {
-        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
-        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
-        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
-        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
-        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
-        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
-      };
-      const resolveSourceUrl = (url) => {
-        const raw = String(url || "").trim();
-        if (!raw) return "";
-        if (/^(https?:|mailto:)/i.test(raw)) return raw;
-        const mapped = localSourceUrlMap[raw];
-        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
-        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
-        return "";
-      };
-      const fetchJson = async (url, base = document.baseURI) => {
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const loadOccurrences = async () => {
-        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
-        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
-        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
-        return occurrences;
-      };
-      const loadManifest = async () => {
-        if (!lexicalConfig.manifest_url) return null;
-        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
-        return manifestPromise;
-      };
-      const resolveSourceRows = (ids, inlineRows) => {
-        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
-        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
-      };
-      const cacheChunk = (chunk) => {
-        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
-        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
-        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
-          lexiconEntries.set(entry.entry_id, {
-            ...entry,
-            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
-            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
-          });
-        });
-        return chunk;
-      };
-      const loadChunk = async (chunkId) => {
-        if (!chunkId) return null;
-        if (!chunkPromises.has(chunkId)) {
-          chunkPromises.set(chunkId, (async () => {
-            const manifest = await loadManifest();
-            if (!manifest) return null;
-            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
-            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
-            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
-            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
-          })());
-        }
-        return chunkPromises.get(chunkId);
-      };
-      const loadTokenRow = async (tokenIndexId) => {
-        if (!tokenIndexId) return {};
-        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
-        const manifest = await loadManifest();
-        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
-        if (chunkId) await loadChunk(chunkId);
-        return tokenRows.get(tokenIndexId) || {};
-      };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalEntry = "";
-        span.dataset.lexicalStatus = "pending";
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        return span;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      const loadedOccurrences = await loadOccurrences();
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
-        });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
-      let activeHudButton = null;
-      if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const positionHudNearButton = (button) => {
-        if (!button || hud.hidden) return;
-        const rect = button.getBoundingClientRect();
-        const margin = 12;
-        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
-        hud.style.width = width + "px";
-        const preferredLeft = rect.right - width;
-        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
-        const below = window.innerHeight - rect.bottom - margin;
-        const above = rect.top - margin;
-        const openAbove = below < 280 && above > below;
-        const available = Math.max(220, (openAbove ? above : below) - margin);
-        hud.style.maxHeight = Math.min(560, available) + "px";
-        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
-        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
-        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
-        hud.style.left = left + "px";
-        hud.style.top = top + "px";
-      };
-      const scheduleHudPosition = () => {
-        if (!activeHudButton || hud.hidden) return;
-        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
-      };
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const setRowHidden = (root, selector, hidden) => {
-        const row = root.querySelector(selector);
-        if (row) row.hidden = Boolean(hidden);
-      };
-      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
-      const cleanStrictRenderings = (values) => {
-        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
-        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
-        return [...new Set(raw.filter((value) => {
-          if (value.length > 64) return false;
-          if (/[()]/.test(value)) return false;
-          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
-          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
-          return true;
-        }))];
-      };
-      const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
-      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
-      const isAramaicView = (view) => {
-        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
-        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
-        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
-      };
-      const strictEntriesForView = (view) => {
-        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
-        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
-        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
-          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
-          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
-        });
-      };
-      const getStrictBuckets = (view) => {
-        const topLevel = getStrictRenderings(view);
-        const strictEntries = strictEntriesForView(view);
-        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
-        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
-      };
-      const strictEntryKeys = (view) => {
-        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
-      };
-      const appendRenderings = (node, values) => {
-        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
-        if (!filtered.length) { node.append("N/A"); return; }
-        if (filtered.length === 1) { node.append(filtered[0]); return; }
-        const ul = document.createElement("ul");
-        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderBreakdown = (root, view) => {
-        const node = root.querySelector("[data-hud-breakdown]");
-        if (!node) return;
-        node.replaceChildren();
-        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
-        if (!rows.length) { node.textContent = ""; return; }
-        const list = document.createElement("div");
-        list.className = "breakdown-list";
-        rows.forEach((row) => {
-          const section = document.createElement("section");
-          section.className = "breakdown-row";
-          const head = document.createElement("p");
-          const hebrew = document.createElement("strong");
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
-          head.appendChild(hebrew);
-          section.appendChild(head);
-          const renderings = document.createElement("div");
-          appendRenderings(renderings, row.strict_renderings || []);
-          section.appendChild(renderings);
-          list.appendChild(section);
-        });
-        node.appendChild(list);
-      };
-      const isRelatedEntry = (entry) => {
-        const relation = String(entry.relation_label || "").toLowerCase();
-        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
-      };
-      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
-      const isNoisyAlternateEntry = (entry) => {
-        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
-        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
-      };
-      const renderEntryList = (entries, roleLabel) => {
-        const list = document.createElement("div");
-        list.className = "lexical-entry-list";
-        const groupedEntries = new Map();
-        entries.forEach((entry) => {
-          const spelling = entry.lemma || entry.match_key || "N/A";
-          const key = `${entry.context_role || "entry"}|${spelling}`;
-          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
-          const group = groupedEntries.get(key);
-          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
-        });
-        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
-        sorted.forEach((entry) => {
-          const card = document.createElement("section");
-          card.className = "lexical-entry";
-          const title = document.createElement("h3");
-          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
-          title.append(role, ": ");
-          const spelling = document.createElement("span");
-          spelling.className = "entry-hebrew";
-          spelling.lang = "he";
-          spelling.dir = "rtl";
-          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
-          title.appendChild(spelling);
-          const meta = document.createElement("p");
-          meta.className = "entry-meta";
-          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
-          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
-          const renderings = document.createElement("div");
-          const renderLabel = document.createElement("p");
-          renderLabel.className = "entry-label";
-          renderLabel.textContent = "Strict renderings";
-          renderings.appendChild(renderLabel);
-          appendRenderings(renderings, entry.strict_renderings || []);
-          card.append(title, meta, renderings);
-          list.appendChild(card);
-        });
-        return list;
-      };
-      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const sourceRowsByKey = (view) => {
-        const map = new Map();
-        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
-        return map;
-      };
-      const sourceRowsForEntry = (view, entry) => {
-        const map = sourceRowsByKey(view);
-        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
-        return row ? [row] : [];
-      };
-      const cleanTransliteration = (value) => {
-        const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
-      };
-      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
-      const sourceQualityScore = (rows) => {
-        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
-        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
-        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
-        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
-        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
-        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
-        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
-        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
-        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
-        return { delta: -10, reason: "missing source row" };
-      };
-      const parserScore = (view) => {
-        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
-        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
-        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
-        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
-        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
-        return { delta: 0, reason: "" };
-      };
-      const applyDisplayBoost = (status, rawScore, view) => {
-        return { score: rawScore, reasons: [] };
-      };
-      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
-        const reasons = [];
-        let score = 0;
-        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
-        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
-        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
-        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
-        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else { score = 84; reasons.push("strict Hebrew row"); }
-        const rendered = cleanStrictRenderings(renderings || []);
-        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
-        const sourceQuality = sourceQualityScore(rows);
-        score += sourceQuality.delta;
-        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
-        const view = evidence.view || {};
-        const entry = evidence.entry || {};
-        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
-        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
-        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
-        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
-        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
-        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
-        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
-        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
-        const parser = parserScore(view);
-        score += evidence.surfaceClaim ? parser.delta : 0;
-        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
-        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
-        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
-        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
-        const display = applyDisplayBoost(status, rawScore, view);
-        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
-      };
-      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
-      const uniqueClaims = (claims) => {
-        const seen = new Set();
-        return cleanValues(claims).filter((claim) => {
-          const key = claimRowKey(claim);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
-        const sourceRows = cleanValues(rows);
-        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
-        const cleanRenderings = cleanStrictRenderings(renderings || []);
-        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
-        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
-      };
-      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
-      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
-      const displayLicense = (row) => {
-        const license = String(row && row.license || "").trim();
-        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
-        return license || "N/A";
-      };
-      const sourceSummary = (rows) => {
-        const cleanRows = cleanValues(rows);
-        if (!cleanRows.length) return null;
-        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
-        const licenses = uniqueValues(cleanRows.map(displayLicense));
-        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
-        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
-      };
-      const DISPLAY_THRESHOLD = 50;
-      const MAX_VISIBLE_CLAIMS = 5;
-      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
-      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
-      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
-      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
-      const appendClaimCard = (list, claim) => {
-        const card = document.createElement("section");
-        card.className = "claim-row";
-        const head = document.createElement("div");
-        head.className = "claim-row-head";
-        const badge = document.createElement("span");
-        badge.className = "claim-status";
-        const confidence = claimConfidence(claim);
-        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
-        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
-        const hebrew = document.createElement("strong");
-        hebrew.className = "claim-hebrew";
-        hebrew.lang = "he";
-        hebrew.dir = "rtl";
-        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(badge, hebrew);
-        card.appendChild(head);
-        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
-        const renderings = document.createElement("p");
-        renderings.className = "claim-renderings";
-        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
-        card.appendChild(renderings);
-        const source = sourceSummary(claim.rows);
-        if (source) {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = `Source: ${source.source}`;
-          const licenseLine = document.createElement("p");
-          licenseLine.className = "claim-license";
-          licenseLine.textContent = `License: ${source.license}`;
-          card.append(sourceLine, licenseLine);
-        } else if (claim.status === "Caution") {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = "Source: metadata incomplete";
-          card.appendChild(sourceLine);
-        }
-        list.appendChild(card);
-      };
-      const appendClaimsUnderDetails = (parent, label, claims) => {
-        if (!claims.length) return;
-        const details = document.createElement("details");
-        details.className = "other-entries";
-        const summary = document.createElement("summary");
-        summary.textContent = label;
-        const box = document.createElement("div");
-        box.className = "claim-row-list";
-        claims.forEach((claim) => appendClaimCard(box, claim));
-        details.append(summary, box);
-        parent.appendChild(details);
-      };
-      const appendClaimRows = (node, claims) => {
-        if (!node) return;
-        node.replaceChildren();
-        const rows = sortClaimsForDisplay(claims);
-        if (!rows.length) { node.textContent = "N/A"; return; }
-        const list = document.createElement("div");
-        list.className = "claim-row-list";
-        const displayRows = rows.filter(isDisplayableClaim);
-        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
-        const visibleRows = displayRows.length ? displayRows : lowRows;
-        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
-        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
-        if (!visibleRows.length) { node.textContent = "N/A"; return; }
-        node.appendChild(list);
-      };
-      const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [] };
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) {
-          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
-          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
-          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
-        }
-        strictEntriesForView(view).forEach((entry) => {
-          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
-          const bucket = strictBuckets[bucketName] || [];
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (!renderings.length) return;
-          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
-        });
-        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
-          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-        }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
-      };
-      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
-      const uniqueSourceGroups = (groups) => {
-        const seen = new Set();
-        return cleanValues(groups).filter((group) => {
-          if (!group.rows.length) return false;
-          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
-      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
-      };
-      const appendSecondarySources = (container, view, entries, label) => {
-        const groups = sourceGroupsForEntries(view, entries);
-        if (!groups.length) return;
-        const sourceDetails = document.createElement("details");
-        sourceDetails.className = "source-details";
-        const sourceSummary = document.createElement("summary");
-        sourceSummary.textContent = label;
-        const sourceBox = document.createElement("div");
-        sourceDetails.append(sourceSummary, sourceBox);
-        renderSourceGroups(sourceBox, groups);
-        container.appendChild(sourceDetails);
-      };
-      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
-        const potentialNode = root.querySelector("[data-hud-potential]");
-        const relatedNode = root.querySelector("[data-hud-related]");
-        const cautionNode = root.querySelector("[data-hud-caution]");
-        const result = { potential: [], related: [], caution: [] };
-        if (!potentialNode || !relatedNode || !cautionNode) return result;
-        potentialNode.replaceChildren();
-        relatedNode.replaceChildren();
-        cautionNode.replaceChildren();
-        if (!hasLexicalEntry) {
-          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
-          setRowHidden(root, "[data-hud-potential-row]", false);
-          setRowHidden(root, "[data-hud-related-row]", true);
-          setRowHidden(root, "[data-hud-caution-row]", true);
-          appendClaimRows(potentialNode, result.potential);
-          return result;
-        }
-        const entries = cleanValues(view.possible_entries);
-        const strictKeys = strictEntryKeys(view);
-        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
-        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
-        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
-        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
-        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
-        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
-        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
-        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
-        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
-        result.potential.push(...keepForDisplay(visiblePotentialClaims));
-        result.related.push(...keepForDisplay(visibleRelatedClaims));
-        result.caution.push(...keepForDisplay(cautionClaims));
-        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
-        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
-        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
-        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
-        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
-        if (result.related.length) appendClaimRows(relatedNode, result.related);
-        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
-        return result;
-      };
-      const renderSourceRow = (row) => {
-        const title = document.createElement("p");
-        const strong = document.createElement("strong");
-        const sourceHref = resolveSourceUrl(row.source_url);
-        if (sourceHref) {
-          const link = document.createElement("a");
-          link.href = sourceHref;
-          link.textContent = row.source_name || "Source";
-          strong.appendChild(link);
-        } else {
-          strong.textContent = row.source_name || "Source";
-        }
-        title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
-        return title;
-      };
-      const renderSourceGroups = (sourceBox, groups) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        const sourceGroups = cleanValues(groups);
-        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceGroups.forEach((group) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const claim = document.createElement("p");
-          claim.className = "source-claim";
-          claim.append("For ");
-          const lemma = document.createElement("span");
-          lemma.lang = "he";
-          lemma.dir = "rtl";
-          lemma.textContent = group.label || "Lexical claim";
-          claim.appendChild(lemma);
-          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
-          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
-          section.appendChild(claim);
-          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
-          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
-          sourceBox.appendChild(section);
-        });
-      };
-      const buildWordView = async (button) => {
-        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
-      };
-      const renderWord = async (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        activeHudButton = button;
-        if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        button.setAttribute("aria-pressed", "true");
-        hud.hidden = false;
-        positionHudNearButton(button);
-        setText(hud, "[data-hud-word]", button.textContent.trim());
-        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-        setRowHidden(hud, "[data-hud-caution-row]", true);
-        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        renderBreakdown(hud, {});
-        renderPotentialAndRelatedEntries(hud, {}, false, false);
-        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
-        try {
-          const view = await buildWordView(button);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          setText(hud, "[data-hud-word]", view.hebrew_word);
-          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
-          renderBreakdown(hud, view);
-          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
-          const details = hud.querySelector("details");
-          if (details) details.open = false;
-          positionHudNearButton(button);
-        } catch (error) {
-          console.error(error);
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          positionHudNearButton(button);
-        }
-      };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          activeHudButton = null;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
-      });
-      window.addEventListener("resize", scheduleHudPosition);
-      window.addEventListener("scroll", scheduleHudPosition, true);
-    })();
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json","occurrence_url":"../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
   </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
 </body>
 </html>
