@@ -21,10 +21,11 @@
     .hero-main { min-width: 0; }
     .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
     .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
-    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
-    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-summary span { min-width: 0; max-width: 100%; overflow-wrap: anywhere; border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { min-width: 0; max-width: 100%; overflow-wrap: anywhere; border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
     .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
-    .hero-notes li { padding-left: 0.1rem; }
+    .hero-notes a { overflow-wrap: anywhere; word-break: break-word; }
+    .hero-notes li { min-width: 0; max-width: 100%; padding-left: 0.1rem; overflow-wrap: anywhere; word-break: break-word; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -67,7 +68,7 @@
     .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
     .toc ul { list-style: none; padding: 0; margin: 0; }
     .toc li { margin: 0 0 7px; }
-    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc a { text-decoration: none; font-size: 0.94rem; overflow-wrap: anywhere; }
     .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
     .toc-start:hover, .toc-unit:hover { color: var(--accent); }
     .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
@@ -92,13 +93,10 @@
     .placeholder { color: #8c857c; }
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
-    .reader-token-wrap { display: inline-grid; grid-auto-rows: min-content; justify-items: center; align-items: start; vertical-align: baseline; gap: 0.02em; margin: 0 0.08em; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .reader-token-wrap .lexical-word { margin: 0; }
-    .reader-gloss-line { direction: ltr; unicode-bidi: isolate; color: var(--muted); font-size: 0.58em; font-weight: 600; line-height: 1.05; max-width: 12em; text-align: center; overflow-wrap: anywhere; opacity: 0.72; }
     .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
     .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .hud-badge { display: inline-block; max-width: 100%; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; white-space: normal; overflow-wrap: anywhere; }
     .lexical-slot { margin-top: 16px; }
     .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
@@ -151,8 +149,9 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding: 18px 14px 16px; } .hero-summary { display: grid; grid-template-columns: 1fr; } .hero-notes { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 12px; } h2 .hud-badge, h3 .hud-badge, summary .hud-badge { display: table; margin: 5px 0 0; } .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
+  <link rel="stylesheet" href="../assets/css/reader-workbench.css">
 </head>
 <body>
   <main>
@@ -165,7 +164,6 @@
             <span>416 source units</span>
             <span>17307 HUD forms</span>
             <span>imported 2026-04-27</span>
-            <span>Words read right to left</span>
           </p>
         </div>
         <div class="hero-notes" aria-label="Header source notes">
@@ -9830,776 +9828,54 @@
           </section>
         <div class="license-notice lexical-downloads">
           <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
-          <p class="export-actions"><a class="export-button" href="../data/lexical/orot.manifest.json">HUD token manifest</a><a class="export-button" href="../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+          <p class="export-actions"><a class="export-button" href="../data/public-hud/orot/manifest.json">HUD token manifest</a><a class="export-button" href="../data/public-hud/orot/route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button></div>
+  </section>
   <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
     <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
     <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
       <p class="placeholder">Click a Hebrew form to load route cards.</p>
     </div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../data/lexical/occurrences/orot.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../data/lexical/orot.manifest.json","occurrence_url":"../data/lexical/occurrences/orot.json","hud_route_lookup_manifest_url":"../data/definitions/hud-route-lookup/manifest.json","reader_hints_url":"../data/public-hud/orot/reader-hints.json","root_href":"../"}</script>
-  <script>
-    (async () => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const configNode = document.querySelector("[data-lexical-config]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const chunkPromises = new Map();
-      const routeShardPromises = new Map();
-      const sourceRows = new Map();
-      let manifestPromise = null;
-      let routeManifestPromise = null;
-      let readerHintsPromise = null;
-      const hud = document.querySelector("[data-lexical-hud]");
-      if (!hud) return;
-      const waitForIdle = () => new Promise((resolve) => {
-        if ("requestIdleCallback" in window) window.requestIdleCallback(resolve, { timeout: 250 });
-        else window.requestAnimationFrame(() => window.setTimeout(resolve, 0));
-      });
-      const toAbsoluteUrl = (url, base = document.baseURI || location.href) => new URL(url, base).toString();
-      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
-      const localSourceUrlMap = {
-        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
-        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
-        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
-        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
-        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
-        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
-      };
-      const resolveSourceUrl = (url) => {
-        const raw = String(url || "").trim();
-        if (!raw) return "";
-        if (/^(https?:|mailto:)/i.test(raw)) return raw;
-        const mapped = localSourceUrlMap[raw];
-        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
-        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
-        return "";
-      };
-      const fetchJson = async (url, base = document.baseURI || location.href) => {
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const fetchOptionalJson = async (url, base = document.baseURI || location.href) => {
-        if (!url) return null;
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (response.status === 404) return null;
-        if (!response.ok) throw new Error(`Unable to load optional lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const loadOccurrences = async () => {
-        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
-        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
-        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
-        return occurrences;
-      };
-      const loadManifest = async () => {
-        if (!lexicalConfig.manifest_url) return null;
-        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
-        return manifestPromise;
-      };
-      const routeLookupManifestUrl = () => toAbsoluteUrl(lexicalConfig.hud_route_lookup_manifest_url || "data/definitions/hud-route-lookup/manifest.json", lexicalRootUrl());
-      const loadRouteManifest = async () => {
-        if (!routeManifestPromise) routeManifestPromise = fetchJson(routeLookupManifestUrl());
-        return routeManifestPromise;
-      };
-      const resolveSourceRows = (ids, inlineRows) => {
-        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
-        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
-      };
-      const cacheChunk = (chunk) => {
-        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
-        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
-        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
-          lexiconEntries.set(entry.entry_id, {
-            ...entry,
-            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
-            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
-          });
-        });
-        return chunk;
-      };
-      const loadChunk = async (chunkId) => {
-        if (!chunkId) return null;
-        if (!chunkPromises.has(chunkId)) {
-          chunkPromises.set(chunkId, (async () => {
-            const manifest = await loadManifest();
-            if (!manifest) return null;
-            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
-            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
-            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
-            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
-          })());
-        }
-        return chunkPromises.get(chunkId);
-      };
-      const loadTokenRow = async (tokenIndexId) => {
-        if (!tokenIndexId) return {};
-        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
-        const manifest = await loadManifest();
-        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
-        if (chunkId) await loadChunk(chunkId);
-        return tokenRows.get(tokenIndexId) || {};
-      };
-      const codepointKey = (value, prefixLength) => {
-        const chars = [...String(value || "")].slice(0, prefixLength);
-        if (!chars.length) return "empty";
-        const first = chars[0].codePointAt(0);
-        if (first < 0x05d0 || first > 0x05ea) return "other";
-        return chars.map((char) => char.codePointAt(0).toString(16).padStart(4, "0")).join("-");
-      };
-      const loadRouteCards = async (normalized) => {
-        if (!normalized) return [];
-        const manifest = await loadRouteManifest();
-        const shardKey = codepointKey(normalized, Number(manifest.prefix_length || 2));
-        const shardInfo = (manifest.shards || []).find((shard) => shard.shard === shardKey);
-        if (!shardInfo || !shardInfo.path) return [];
-        if (!routeShardPromises.has(shardKey)) {
-          routeShardPromises.set(shardKey, fetchJson(shardInfo.path, routeLookupManifestUrl()));
-        }
-        const shard = await routeShardPromises.get(shardKey);
-        return (((shard || {}).routes_by_normalized || {})[normalized] || []).slice();
-      };
-      const addLookupCandidate = (map, key, relation, penalty = 0) => {
-        const normalized = normalizeHebrewKey(key);
-        if (!normalized || map.has(normalized)) return;
-        map.set(normalized, { key: normalized, relation, penalty });
-      };
-      const lookupCandidatesFor = (clickedForm, normalized) => {
-        const candidates = new Map();
-        addLookupCandidate(candidates, normalized || clickedForm, "exact", 0);
-        const primary = normalizeHebrewKey(normalized || clickedForm);
-        String(primary || "").split(/[\u05BE-]/).filter((part) => part && part !== primary).forEach((part) => addLookupCandidate(candidates, part, "maqaf component", 12));
-        const prefixPattern = /^[\u05D5\u05D1\u05DB\u05DC\u05DE\u05D4\u05E9]/;
-        for (let pass = 0; pass < 3; pass += 1) {
-          [...candidates.values()].slice().forEach((candidate) => {
-            if (candidate.key.length >= 4 && prefixPattern.test(candidate.key)) addLookupCandidate(candidates, candidate.key.slice(1), "prefix-stripped candidate", 20 + pass * 4);
-          });
-        }
-        [...candidates.values()].slice().forEach((candidate) => {
-          if (!candidate.key.endsWith("\u05D9\u05DE")) return;
-          const stem = candidate.key.slice(0, -2);
-          if (stem.endsWith("\u05D4") && stem.length >= 3) addLookupCandidate(candidates, `${stem.slice(0, -1)}\u05D5\u05D4\u05D9\u05DE`, "mater-expanded plural candidate", 14);
-        });
-        const suffixRules = [
-          { suffix: "\u05D9\u05DE", relation: "plural-suffix candidate", penalty: 18 },
-          { suffix: "\u05D5\u05EA", relation: "plural-suffix candidate", penalty: 18 },
-          { suffix: "\u05D9\u05D4", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\u05D9\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\u05D9\u05DB", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\u05D9\u05DB\u05DE", relation: "possessive-suffix candidate", penalty: 28 },
-          { suffix: "\u05D9\u05DB\u05E0", relation: "possessive-suffix candidate", penalty: 28 },
-          { suffix: "\u05D4\u05DE", relation: "possessive-suffix candidate", penalty: 28 },
-          { suffix: "\u05D4\u05E0", relation: "possessive-suffix candidate", penalty: 28 },
-          { suffix: "\u05E0\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\u05DB", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\u05D5", relation: "possessive-suffix candidate", penalty: 24 },
-          { suffix: "\u05D4", relation: "suffix-stripped candidate", penalty: 24 },
-          { suffix: "\u05D9", relation: "suffix-stripped candidate", penalty: 24 }
-        ];
-        [...candidates.values()].slice().forEach((candidate) => {
-          suffixRules.forEach((rule) => {
-            if (candidate.key.endsWith(rule.suffix) && candidate.key.length - rule.suffix.length >= 3) addLookupCandidate(candidates, candidate.key.slice(0, -rule.suffix.length), rule.relation, rule.penalty);
-          });
-        });
-        return [...candidates.values()];
-      };
-      const loadRouteCardsForToken = async (clickedForm, normalized) => {
-        const candidates = lookupCandidatesFor(clickedForm, normalized);
-        const rows = [];
-        for (const candidate of candidates) {
-          const cards = await loadRouteCards(candidate.key);
-          cards.forEach((card) => rows.push({ ...card, lookup_key: candidate.key, lookup_relation: candidate.relation, lookup_penalty: candidate.penalty }));
-        }
-        const seen = new Set();
-        return { candidates, cards: rows.filter((card) => { const key = `${card.card_id || ""}|${card.lookup_key || ""}`; if (seen.has(key)) return false; seen.add(key); return true; }) };
-      };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const readerHintsUrl = () => lexicalConfig.reader_hints_url || lexicalConfig.reader_hint_url || "";
-      const firstReaderHintValue = (values) => (Array.isArray(values) ? values : [values]).map((value) => String(value || "").replace(/\s+/g, " ").trim()).find(Boolean) || "";
-      const inlineHintDisplay = (value) => {
-        const raw = firstReaderHintValue([value]);
-        if (!raw) return "";
-        const compact = firstReaderHintValue([raw.split(/\s*;\s*/)[0], raw]);
-        if (compact.length <= 42) return compact.replace(/\.$/, "");
-        return `${compact.slice(0, 39).trimEnd()}...`;
-      };
-      const normalizeReaderHint = (row) => {
-        const counterpart = row && row.candidate_counterpart && typeof row.candidate_counterpart === "object" ? row.candidate_counterpart : {};
-        const tokenId = firstReaderHintValue([row && row.token_id, row && row.target_token_id, row && row.surface_token_id]);
-        const placeholderKind = firstReaderHintValue([row && row.placeholder_kind]);
-        const reviewState = firstReaderHintValue([row && row.review_state, row && row.display_state]);
-        const placeholderText = firstReaderHintValue([row && row.placeholder_text]);
-        const attributionNotice = firstReaderHintValue([row && row.attribution_notice]);
-        const isPendingReview = placeholderKind === "reader_hint_pending_review" || reviewState === "placeholder_pending_review" || reviewState === "pending_reader_hint_review";
-        if (tokenId && isPendingReview && placeholderText) {
-          const inlinePlaceholder = attributionNotice ? `${placeholderText} pending review (${attributionNotice})` : `${placeholderText} pending review`;
-          return {
-            token_id: tokenId,
-            display: placeholderText,
-            inline_display: inlinePlaceholder,
-            label: firstReaderHintValue([row && row.label, counterpart.label]),
-            match_percent: null,
-            placeholder_kind: placeholderKind,
-            review_state: reviewState
-          };
-        }
-        const display = firstReaderHintValue([row && row.inline_display, row && row.short_display, row && row.reader_hint, counterpart.inline_display, counterpart.display, row && row.display, row && row.definition, row && row.gloss]);
-        if (!tokenId || !display) return null;
-        const rawMatchPercent = row && row.match_percent !== undefined ? row.match_percent : counterpart.match_percent;
-        const matchPercent = Number.isFinite(Number(rawMatchPercent)) ? Number(rawMatchPercent) : null;
-        return {
-          token_id: tokenId,
-          display,
-          inline_display: firstReaderHintValue([row && row.inline_display, row && row.short_display]) || inlineHintDisplay(display),
-          label: firstReaderHintValue([row && row.label, counterpart.label]),
-          match_percent: matchPercent
-        };
-      };
-      const readerHintRows = (payload) => {
-        if (!payload || typeof payload !== "object") return [];
-        const rows = [];
-        if (payload.hints_by_token_id && typeof payload.hints_by_token_id === "object") {
-          Object.entries(payload.hints_by_token_id).forEach(([tokenId, hint]) => rows.push({ token_id: tokenId, ...(hint && typeof hint === "object" ? hint : { display: hint }) }));
-        }
-        if (payload.hints && typeof payload.hints === "object" && !Array.isArray(payload.hints)) {
-          Object.entries(payload.hints).forEach(([tokenId, hint]) => rows.push({ token_id: tokenId, ...(hint && typeof hint === "object" ? hint : { display: hint }) }));
-        }
-        [payload.hints, payload.reader_hints, payload.rows, payload.package_rows, payload.candidate_patch_rows].forEach((value) => {
-          if (Array.isArray(value)) rows.push(...value);
-        });
-        return rows;
-      };
-      const loadReaderHints = async () => {
-        const url = readerHintsUrl();
-        if (!url) return new Map();
-        if (!readerHintsPromise) {
-          readerHintsPromise = (async () => {
-            try {
-              const payload = await fetchOptionalJson(url, lexicalRootUrl());
-              const hints = new Map();
-              readerHintRows(payload).forEach((row) => {
-                const hint = normalizeReaderHint(row);
-                if (hint) hints.set(hint.token_id, hint);
-              });
-              return hints;
-            } catch (error) {
-              console.warn(error);
-              return new Map();
-            }
-          })();
-        }
-        return readerHintsPromise;
-      };
-      const applyReaderHint = (button, hint) => {
-        if (!button || !hint) return;
-        const line = button.closest(".reader-token-wrap")?.querySelector(":scope > .reader-gloss-line");
-        if (!line) return;
-        const display = hint.inline_display || inlineHintDisplay(hint.display);
-        if (!display) return;
-        line.textContent = Number.isFinite(hint.match_percent) ? `${display} ${Math.round(hint.match_percent)}%` : display;
-        line.dataset.glossPlaceholder = "false";
-        line.dataset.glossLabel = hint.label || "";
-        button.dataset.readerHint = line.textContent;
-        button.dataset.readerHintLabel = hint.label || "";
-      };
-      const applyReaderHints = async () => {
-        const hints = await loadReaderHints();
-        if (!hints.size) return;
-        document.querySelectorAll("[data-lexical-token]").forEach((button) => {
-          const tokenIds = String(button.dataset.lexicalTokenIds || button.dataset.lexicalIndex || "").split(/\s+/).filter(Boolean);
-          const hint = tokenIds.map((tokenId) => hints.get(tokenId)).find(Boolean);
-          applyReaderHint(button, hint);
-        });
-      };
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22\u05BE-]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const wrap = document.createElement("span");
-        wrap.className = "reader-token-wrap";
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalSurface = text || "";
-        span.dataset.lexicalEntry = "";
-        span.dataset.lexicalStatus = "pending";
-        span.dataset.lexicalTokenIds = tokenIndexId || "";
-        span.setAttribute("aria-haspopup", "dialog");
-        span.setAttribute("aria-controls", "route-hud-panel");
-        span.setAttribute("aria-expanded", "false");
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        const glossLine = document.createElement("span");
-        glossLine.className = "reader-gloss-line";
-        glossLine.dataset.glossPlaceholder = "true";
-        glossLine.textContent = "TBD";
-        wrap.append(span, glossLine);
-        return wrap;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      const hydrateLexicalWords = async () => {
-        await waitForIdle();
-        const loadedOccurrences = await loadOccurrences();
-        const tasks = [];
-        document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-          const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-          if (!unitData) return;
-          const paragraphsByIndex = new Map((unitData.paragraphs || []).map((item) => [Number(item.paragraph_index), item]));
-          unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-            const paragraphData = paragraphsByIndex.get(Number(paragraph.dataset.lexicalParagraph));
-            tasks.push({ paragraph, tokenIds: paragraphData ? (paragraphData.token_index_ids || []) : [] });
-          });
-        });
-        for (let index = 0; index < tasks.length; index += 24) {
-          tasks.slice(index, index + 24).forEach((task) => wrapParagraph(task.paragraph, task.tokenIds));
-          if (index + 24 < tasks.length) await waitForIdle();
-        }
-      };
-      hydrateLexicalWords().then(applyReaderHints).catch((error) => console.error(error));
-      let activeHudButton = null;
-      if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const positionHudNearButton = (button) => {
-        if (!button || hud.hidden) return;
-        const margin = 12;
-        const width = Math.max(320, window.innerWidth - margin * 2);
-        hud.style.width = width + "px";
-        const left = Math.max(margin, Math.round((window.innerWidth - width) / 2));
-        const available = Math.max(260, window.innerHeight - margin * 2);
-        hud.style.maxHeight = available + "px";
-        const top = margin;
-        hud.style.left = left + "px";
-        hud.style.top = top + "px";
-      };
-      const scheduleHudPosition = () => {
-        if (!activeHudButton || hud.hidden) return;
-        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
-      };
-      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const displayLicense = (row) => {
-        const license = String(row && row.license || "").trim();
-        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
-        return license || "N/A";
-      };
-      const firstPresentValue = (values) => cleanValues(values).map((value) => String(value || "").trim()).find(Boolean) || "";
-      const usageEvidenceRouteTypes = new Set(["usage_evidence", "workbench_usage", "workbench_usage_evidence", "workbench_usage_commentary", "biblical_workbench", "biblical_workbench_usage", "source_workbench_usage", "observed_usage"]);
-      const isUsageEvidenceCard = (card) => {
-        if (!card) return false;
-        const routeFields = [card.display_section, card.route_type, card.route_family, card.answer_role, card.meaning_quality].map((value) => String(value || "").toLowerCase().replace(/[\s-]+/g, "_")).filter(Boolean);
-        return routeFields.some((value) => usageEvidenceRouteTypes.has(value)) || Boolean(card.usage_note || card.frame_label);
-      };
-      const routeScore = (card) => {
-        const base = Number.isFinite(card.adjusted_score) ? card.adjusted_score : (Number.isFinite(card.raw_score) ? card.raw_score : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : 0));
-        const penalty = Number.isFinite(card.lookup_penalty) ? card.lookup_penalty : 0;
-        return Math.max(0, Math.round(base - penalty));
-      };
-      const routeScoreBasis = (card) => {
-        const parts = [];
-        if (Number.isFinite(card.raw_score)) parts.push(`raw ${card.raw_score}`);
-        if (Number.isFinite(card.score_handicap) && card.score_handicap) parts.push(`handicap ${card.score_handicap}`);
-        if (Number.isFinite(card.adjusted_score)) parts.push(`adjusted ${card.adjusted_score}`);
-        if (card.lookup_relation && card.lookup_relation !== "exact") parts.push(`${card.lookup_relation} -${card.lookup_penalty || 0}`);
-        if (card.source_ref) parts.push(card.source_ref);
-        return parts;
-      };
-      const routeRenderings = (card) => {
-        if (!card) return [];
-        if (isUsageEvidenceCard(card)) return [firstPresentValue([card.linked_route_definition, card.linked_definition, card.route_definition, card.route_definition_text]) || "observed usage only"];
-        const values = [];
-        const genericUsage = "Usage context only; no meaning is forced by this phrase row.";
-        const definition = firstPresentValue([card.definition]);
-        if (definition && definition !== genericUsage) values.push(definition);
-        const meaningClaim = firstPresentValue([card.meaning_claim]);
-        if (meaningClaim) values.push(meaningClaim);
-        return values;
-      };
-      const buildSourceNotes = (cards) => {
-        const noteMap = new Map();
-        const cardMap = new Map();
-        cleanValues(cards).forEach((card) => {
-          const indexes = [];
-          cleanValues(card.source_rows).forEach((row) => {
-            const key = sourceRowKey(row);
-            if (!key || key === "|") return;
-            if (!noteMap.has(key)) noteMap.set(key, { index: noteMap.size + 1, row });
-            indexes.push(noteMap.get(key).index);
-          });
-          const uniqueIndexes = uniqueValues(indexes).slice(0, 4);
-          if (uniqueIndexes.length) cardMap.set(card, uniqueIndexes);
-        });
-        return { cardMap, notes: [...noteMap.values()] };
-      };
-      const appendSourceRefs = (parent, indexes) => {
-        const cleanIndexes = uniqueValues(indexes);
-        if (!parent || !cleanIndexes.length) return;
-        const sup = document.createElement("sup");
-        sup.className = "source-note-index";
-        sup.textContent = cleanIndexes.join(",");
-        parent.appendChild(sup);
-      };
-      const appendSourceFootnotes = (panel, notes) => {
-        const cleanNotes = cleanValues(notes);
-        if (!cleanNotes.length) return;
-        const details = document.createElement("details");
-        details.className = "source-footnotes route-source-card";
-        const summary = document.createElement("summary");
-        summary.textContent = `Sources and licenses (${cleanNotes.length})`;
-        details.appendChild(summary);
-        cleanNotes.forEach(({ index, row }) => {
-          const line = document.createElement("p");
-          line.className = "source-footnote-row";
-          const marker = document.createElement("strong");
-          marker.textContent = `${index}. `;
-          line.appendChild(marker);
-          const sourceHref = resolveSourceUrl(row.source_url);
-          if (sourceHref) { const link = document.createElement("a"); link.href = sourceHref; link.textContent = row.source_name || "Source"; line.appendChild(link); }
-          else line.append(row.source_name || "Source");
-          line.append(` | ${row.source_id || "N/A"} | ${displayLicense(row)}`);
-          details.appendChild(line);
-        });
-        panel.appendChild(details);
-      };
-      const routeSectionTitles = new Map([
-        ["strict_hebrew", "Strict Hebrew matches"],
-        ["strict_aramaic", "Strict Aramaic matches"],
-        ["morphology", "Word-part breakdown"],
-        ["lemma", "Lemma matches"],
-        ["subphrase_evidence", "Subphrase evidence"],
-        ["biblical_paraphrase_evidence", "Biblical definition/paraphrase matches"],
-        ["citable_paraphrase_evidence", "Citable definition/paraphrase matches"],
-        ["usage_evidence", "Usage evidence"],
-        ["phrase_evidence", "Licensed phrase uses"],
-        ["audit", "Tiny checks only"]
-      ]);
-      const routeSectionRank = new Map([["strict_hebrew", 0], ["strict_aramaic", 1], ["morphology", 2], ["lemma", 3], ["subphrase_evidence", 4], ["biblical_paraphrase_evidence", 5], ["citable_paraphrase_evidence", 6], ["usage_evidence", 7], ["phrase_evidence", 8], ["audit", 9]]);
-      const answerCandidateSections = new Set(["strict_hebrew", "strict_aramaic", "morphology", "lemma", "subphrase_evidence", "biblical_paraphrase_evidence", "citable_paraphrase_evidence"]);
-      const placeholderSections = ["strict_hebrew", "strict_aramaic", "morphology", "lemma", "subphrase_evidence", "biblical_paraphrase_evidence", "citable_paraphrase_evidence", "usage_evidence", "phrase_evidence"];
-      const routeSection = (card) => isUsageEvidenceCard(card) ? "usage_evidence" : (card.display_section || card.route_type || "audit");
-      const rankCardParts = (card) => {
-        const adjusted = Number.isFinite(card.adjusted_score) ? card.adjusted_score : routeScore(card);
-        const raw = Number.isFinite(card.raw_score) ? card.raw_score : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : 0);
-        return [-(adjusted - (card.lookup_penalty || 0)), -raw, routeSectionRank.get(routeSection(card)) ?? 9, -(Number.isFinite(card.answer_score) ? card.answer_score : 0), String(card.card_id || "")];
-      };
-      const compareRouteCards = (leftCard, rightCard) => {
-        const left = rankCardParts(leftCard);
-        const right = rankCardParts(rightCard);
-        for (let index = 0; index < left.length; index += 1) { if (left[index] < right[index]) return -1; if (left[index] > right[index]) return 1; }
-        return 0;
-      };
-      const answerRoleAllowsDefinition = (role) => {
-        const cleanRole = String(role || "").toLowerCase().replace(/[\s-]+/g, "_");
-        return ["", "answer", "definition", "reader_answer", "primary_definition"].includes(cleanRole);
-      };
-      const cardHasAnswerContract = (card) => Object.prototype.hasOwnProperty.call(card || {}, "answer_eligible") || Object.prototype.hasOwnProperty.call(card || {}, "answer_role");
-      const cardHasDefinitionText = (card) => routeRenderings(card).some((line) => String(line || "").trim());
-      const isAnswerEligibleCard = (card) => {
-        if (!card || !answerCandidateSections.has(routeSection(card)) || !cardHasDefinitionText(card)) return false;
-        if (card.answer_eligible === false || !answerRoleAllowsDefinition(card.answer_role)) return false;
-        if (card.answer_eligible === true) return true;
-        if (cardHasAnswerContract(card)) return false;
-        return card.meaning_quality === "definition" && !["phrase_evidence", "subphrase_evidence"].includes(routeSection(card));
-      };
-      const answerTextKey = (card) => routeRenderings(card).map((line) => String(line || "").replace(/\s+/g, " ").trim().toLowerCase()).filter(Boolean).join(" | ");
-      const answerAmbiguity = (primary, candidates) => {
-        if (!primary) return { ambiguous: false, count: 0 };
-        const topScore = routeScore(primary);
-        const topRelation = primary.lookup_relation || "exact";
-        const close = candidates.filter((card) => (card.lookup_relation || "exact") === topRelation && Math.abs(routeScore(card) - topScore) <= 6);
-        const meanings = new Set(close.map(answerTextKey).filter(Boolean));
-        return { ambiguous: meanings.size > 1, count: meanings.size };
-      };
-      const selectRouteAnswer = (cards) => {
-        const candidates = cleanValues(cards).filter(isAnswerEligibleCard).sort(compareRouteCards);
-        const exactAnswer = candidates.filter((card) => (card.lookup_relation || "exact") === "exact").sort(compareRouteCards)[0];
-        const selected = exactAnswer || candidates[0] || null;
-        const ambiguity = answerAmbiguity(selected, candidates);
-        return { answerCard: ambiguity.ambiguous ? null : selected, answerCandidates: candidates, answerState: ambiguity.ambiguous ? "ambiguous" : (selected ? "definition" : "none"), ambiguityCount: ambiguity.count };
-      };
-      const displayHebrewKey = (value) => String(value || "")
-        .replace(/\u05DB$/u, "\u05DA")
-        .replace(/\u05DE$/u, "\u05DD")
-        .replace(/\u05E0$/u, "\u05DF")
-        .replace(/\u05E4$/u, "\u05E3")
-        .replace(/\u05E6$/u, "\u05E5");
-      const treatmentForLookup = (card) => {
-        if (!card || !card.lookup_key || !card.lookup_relation || card.lookup_relation === "exact") return "";
-        const key = displayHebrewKey(card.lookup_key);
-        if (card.lookup_relation === "mater-expanded plural candidate") return `Matched by plural-form treatment: also try ${key}.`;
-        if (card.lookup_relation === "plural-suffix candidate") return `Matched by plural suffix treatment: base candidate ${key}.`;
-        if (card.lookup_relation === "possessive-suffix candidate") return `Matched by possessive suffix treatment: base candidate ${key}.`;
-        if (card.lookup_relation === "suffix-stripped candidate") return `Matched by suffix-stripped treatment: base candidate ${key}.`;
-        if (card.lookup_relation === "prefix-stripped candidate") return `Matched by prefix treatment: base candidate ${key}.`;
-        if (card.lookup_relation === "maqaf component") return `Matched by maqaf component: ${key}.`;
-        return `Matched by ${card.lookup_relation}: ${key}.`;
-      };
-      const lookupTreatmentLabel = (relation) => {
-        if (relation === "mater-expanded plural candidate") return "plural form";
-        if (relation === "plural-suffix candidate") return "plural suffix";
-        if (relation === "possessive-suffix candidate") return "possessive suffix";
-        if (relation === "suffix-stripped candidate") return "suffix stripped";
-        if (relation === "prefix-stripped candidate") return "prefix stripped";
-        if (relation === "maqaf component") return "maqaf component";
-        return relation || "lookup";
-      };
-      const lookupCandidateTreatments = (lookupCandidates) => {
-        const rows = [];
-        const seen = new Set();
-        cleanValues(lookupCandidates).forEach((candidate) => {
-          if (!candidate || !candidate.key || !candidate.relation || candidate.relation === "exact") return;
-          const key = `${candidate.relation}|${candidate.key}`;
-          if (seen.has(key)) return;
-          seen.add(key);
-          rows.push({ text: `${lookupTreatmentLabel(candidate.relation)}: also check ${displayHebrewKey(candidate.key)}`, note: `generated lookup candidate${candidate.penalty ? `; rank penalty ${candidate.penalty}` : ""}, not final definition` });
-        });
-        return rows;
-      };
-      const tokenShapeNotes = (clickedForm, normalized) => {
-        const key = normalizeHebrewKey(normalized || clickedForm);
-        const notes = [];
-        if (key.endsWith("\u05D9\u05DE") && key.length > 3) {
-          const stem = key.slice(0, -2);
-          const expanded = stem.endsWith("\u05D4") ? `${stem.slice(0, -1)}\u05D5\u05D4\u05D9\u05DE` : "";
-          notes.push({ text: `${displayHebrewKey(stem)} + -\u05D9\u05DD = plural form candidate${expanded ? `; also try ${displayHebrewKey(expanded)}` : ""}`, note: "proposed morphology, not final definition" });
-        }
-        if (key.endsWith("\u05D5\u05EA") && key.length > 3) notes.push({ text: `${displayHebrewKey(key.slice(0, -2))} + -\u05D5\u05EA = plural form candidate`, note: "proposed morphology, not final definition" });
-        return notes;
-      };
-      const formTreatmentRows = (cards) => cleanValues(cards)
-        .filter((card) => /(?:plural|singular|dual|construct|defective spelling|form of|suffix|prefix)/i.test(`${card.definition || ""} ${card.meaning_claim || ""} ${card.match_type || ""}`))
-        .sort(compareRouteCards)
-        .slice(0, 4);
-      const appendTokenTreatmentCard = (panel, clickedForm, normalized, cards, lookupCandidates) => {
-        const notes = tokenShapeNotes(clickedForm, normalized);
-        const generatedRows = lookupCandidateTreatments(lookupCandidates);
-        const treatmentRows = formTreatmentRows(cards);
-        if (!notes.length && !generatedRows.length && !treatmentRows.length) return;
-        const section = document.createElement("section");
-        section.className = "route-treatment-card";
-        const title = document.createElement("strong");
-        title.textContent = "Form treatment";
-        section.appendChild(title);
-        [...notes, ...generatedRows].forEach((item) => { const line = document.createElement("p"); line.className = "route-treatment-line"; line.textContent = `${item.text} - ${item.note}`; section.appendChild(line); });
-        treatmentRows.forEach((card) => { const rendering = routeRenderings(card)[0]; if (!rendering) return; const line = document.createElement("p"); line.className = "route-treatment-line"; line.textContent = rendering; section.appendChild(line); });
-        panel.appendChild(section);
-      };
-      const appendPhraseLine = (card, parent) => {
-        const tokens = cleanValues(card.phrase_tokens);
-        const phraseText = firstPresentValue([card.phrase_hebrew, card.phrase_text_hebrew, card.phrase]);
-        if (!tokens.length && !phraseText) return;
-        const phrase = document.createElement("p");
-        phrase.className = "phrase-line";
-        phrase.lang = "he";
-        phrase.dir = "rtl";
-        if (!tokens.length) { phrase.textContent = normalizeHebrewDisplay(phraseText); parent.appendChild(phrase); return; }
-        tokens.forEach((token, index) => {
-          if (index) phrase.append(" ");
-          const span = document.createElement("span");
-          span.className = token.role === "focus-token" || token.role === "focus-part" ? "phrase-focus" : "phrase-context";
-          span.textContent = normalizeHebrewDisplay(token.surface || "");
-          phrase.appendChild(span);
-        });
-        parent.appendChild(phrase);
-      };
-      const appendUsageEvidenceDetails = (card, parent) => {
-        if (!isUsageEvidenceCard(card)) return;
-        const scoreParts = [];
-        if (Number.isFinite(card.raw_score)) scoreParts.push(`raw ${card.raw_score}`);
-        if (Number.isFinite(card.score_handicap) && card.score_handicap) scoreParts.push(`handicap ${card.score_handicap}`);
-        if (Number.isFinite(card.adjusted_score)) scoreParts.push(`adjusted ${card.adjusted_score}`);
-        if (Number.isFinite(card.confidence_percent)) scoreParts.push(`confidence ${card.confidence_percent}%`);
-        if (!scoreParts.length) scoreParts.push(`${routeScore(card)}%`);
-        const rows = [
-          ["Usage", card.usage_note],
-          ["Frame", card.frame_label],
-          ["Status", firstPresentValue([card.status, card.candidate_status, card.claim_status, card.display_status, card.confidence_band, card.answer_role])],
-          ["Score", scoreParts.join(" / ")],
-          ["Source", firstPresentValue([card.source_ref, card.ref, card.occurrence_ref])]
-        ].filter((row) => firstPresentValue([row[1]]));
-        if (!rows.length) return;
-        const box = document.createElement("div");
-        box.className = "usage-evidence-details";
-        rows.forEach(([labelText, value]) => { const line = document.createElement("p"); const label = document.createElement("strong"); label.textContent = `${labelText}: `; line.append(label, normalizeHebrewDisplay(String(value || ""))); box.appendChild(line); });
-        parent.appendChild(box);
-      };
-      const compactRelationLabel = (card) => {
-        const relation = card && card.lookup_relation && card.lookup_relation !== "exact" ? String(card.lookup_relation).replace(/ candidate$/i, "") : "direct";
-        return relation.replace(/-/g, " ");
-      };
-      const appendRouteCard = (parent, card, role = "evidence", order = 0, sourceIndexes = []) => {
-        const article = document.createElement("article");
-        article.className = `claim-row route-card ${role === "answer" ? "route-answer-card" : ""}`;
-        const cardHebrew = normalizeHebrewDisplay(card.hebrew || card.surface || "");
-        article.dataset.routeHebrew = cardHebrew;
-        if (role !== "answer") {
-          const head = document.createElement("div");
-          head.className = "claim-row-head";
-          const badge = document.createElement("span");
-          badge.className = "claim-status";
-          badge.textContent = order ? `#${order}` : "route";
-          const hebrew = document.createElement("strong");
-          hebrew.className = "claim-hebrew";
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = cardHebrew;
-          head.append(badge, hebrew);
-          article.appendChild(head);
-        }
-        const renderings = routeRenderings(card);
-        if (renderings.length) renderings.forEach((line, index) => { const p = document.createElement("p"); p.className = "claim-renderings"; p.textContent = normalizeHebrewDisplay(line); if (index === 0) appendSourceRefs(p, sourceIndexes); article.appendChild(p); });
-        else { article.dataset.evidenceOnly = "true"; }
-        const meta = document.createElement("p");
-        meta.className = "route-meta";
-        meta.textContent = [routeSectionTitles.get(routeSection(card)) || routeSection(card), `${routeScore(card)}%`, compactRelationLabel(card)].filter(Boolean).join(" | ");
-        article.dataset.routeMeta = meta.textContent;
-        if (role !== "answer") article.appendChild(meta);
-        const treatment = treatmentForLookup(card);
-        if (treatment) { const p = document.createElement("p"); p.className = "claim-treatment-line"; p.textContent = treatment; article.appendChild(p); }
-        appendPhraseLine(card, article);
-        appendUsageEvidenceDetails(card, article);
-        article.dataset.rankBasis = routeScoreBasis(card).join(" / ") || "No rank fields on this card.";
-        parent.appendChild(article);
-      };
-      const appendRouteSection = (panel, sectionId, cards, sourceCardMap) => {
-        const section = document.createElement("section");
-        section.className = "route-section-card";
-        const title = document.createElement("div");
-        title.className = "route-section-title";
-        const h3 = document.createElement("h3"); h3.textContent = routeSectionTitles.get(sectionId) || sectionId;
-        const count = document.createElement("span"); count.textContent = `${cards.length} route${cards.length === 1 ? "" : "s"}`;
-        title.append(h3, count);
-        section.appendChild(title);
-        if (!cards.length) return;
-        const lane = document.createElement("div"); lane.className = cards.length > 1 ? "claim-row-list hud-card-lane" : "claim-row-list";
-        cards.sort(compareRouteCards).forEach((card, index) => appendRouteCard(lane, card, "evidence", index + 1, sourceCardMap ? sourceCardMap.get(card) : []));
-        section.appendChild(lane);
-        panel.appendChild(section);
-      };
-      const renderRouteHudPanel = (panel, clickedForm, normalized, cards, lookupCandidates) => {
-        panel.replaceChildren();
-        const sourceNotes = buildSourceNotes(cards);
-        const selected = document.createElement("div"); selected.className = "route-selected-token"; selected.lang = "he"; selected.dir = "rtl"; selected.textContent = normalizeHebrewDisplay(clickedForm || normalized || ""); panel.appendChild(selected);
-        appendTokenTreatmentCard(panel, clickedForm, normalized, cards, lookupCandidates);
-        const { answerCard, answerState, ambiguityCount } = selectRouteAnswer(cards);
-        const answerSection = document.createElement("section"); answerSection.className = "route-section-card route-answer-card";
-        const answerTitle = document.createElement("div"); answerTitle.className = "route-section-title";
-        const answerH3 = document.createElement("h3"); answerH3.textContent = answerState === "ambiguous" ? "Definition candidates" : "Definition";
-        const answerMeta = document.createElement("span");
-        answerMeta.textContent = answerCard ? `${routeScore(answerCard)}% ${answerCard.lookup_relation === "exact" ? "direct" : answerCard.lookup_relation}` : (answerState === "ambiguous" ? `${ambiguityCount || 2} options` : "not answer-eligible");
-        answerTitle.append(answerH3, answerMeta); answerSection.appendChild(answerTitle);
-        if (answerCard) appendRouteCard(answerSection, answerCard, "answer", 0, sourceNotes.cardMap.get(answerCard)); else { const p = document.createElement("p"); p.className = "placeholder"; p.textContent = answerState === "ambiguous" ? "Ambiguous; compare evidence below." : "No definition yet."; answerSection.appendChild(p); }
-        panel.appendChild(answerSection);
-        const bySection = new Map();
-        cards.filter((card) => card !== answerCard).forEach((card) => { const section = routeSection(card); if (!bySection.has(section)) bySection.set(section, []); bySection.get(section).push(card); });
-        placeholderSections.forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap));
-        [...bySection.keys()].filter((section) => !placeholderSections.includes(section)).sort((a, b) => (routeSectionRank.get(a) ?? 9) - (routeSectionRank.get(b) ?? 9)).forEach((section) => appendRouteSection(panel, section, bySection.get(section) || [], sourceNotes.cardMap));
-        const lookup = document.createElement("details"); lookup.className = "route-audit-card";
-        const lookupTitle = document.createElement("summary"); lookupTitle.textContent = `Lookup keys (${lookupCandidates.length})`; lookup.appendChild(lookupTitle);
-        const lookupText = document.createElement("p"); lookupText.className = "placeholder"; lookupText.textContent = `Normalized key: ${normalized || "N/A"} | Cards: ${cards.length} | Lookup keys: ${lookupCandidates.map((item) => `${item.key}${item.relation === "exact" ? "" : ` (${item.relation})`}`).join(", ") || "none"}`; lookup.appendChild(lookupText);
-        panel.appendChild(lookup);
-        appendSourceFootnotes(panel, sourceNotes.notes);
-      };
-      const primaryWordText = (button) => button.dataset.lexicalSurface || button.querySelector(".lexical-word-surface")?.textContent?.trim() || button.textContent.trim();
-      const buildWordView = async (button) => {
-        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        return { ...tokenRow, hebrew_word: primaryWordText(button) || tokenRow.surface_word, source_rows: [], secondary_source_rows: [] };
-      };
-      const renderWord = async (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        if (activeHudButton && activeHudButton !== button) { activeHudButton.setAttribute("aria-pressed", "false"); activeHudButton.setAttribute("aria-expanded", "false"); }
-        activeHudButton = button;
-        if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        button.setAttribute("aria-pressed", "true");
-        button.setAttribute("aria-expanded", "true");
-        hud.hidden = false;
-        hud.focus({ preventScroll: true });
-        positionHudNearButton(button);
-        const panel = hud.querySelector("[data-route-hud-panel]");
-        if (panel) { const loading = document.createElement("p"); loading.className = "placeholder"; loading.textContent = "Loading route cards..."; panel.replaceChildren(loading); }
-        try {
-          const view = await buildWordView(button);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          const clickedForm = view.hebrew_word || view.surface_word || "Clicked form";
-          const hudTitle = hud.querySelector("#route-hud-title"); if (hudTitle) hudTitle.textContent = `Route HUD: ${normalizeHebrewDisplay(clickedForm || "")}`;
-          const clickedNormalized = normalizeHebrewKey(clickedForm);
-          const rowSurfaceNormalized = normalizeHebrewKey(view.surface_word || "");
-          const normalized = rowSurfaceNormalized && rowSurfaceNormalized === clickedNormalized ? (view.normalized_word || clickedNormalized) : clickedNormalized;
-          const routeLookup = await loadRouteCardsForToken(clickedForm, normalized);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          if (panel) renderRouteHudPanel(panel, clickedForm, normalized, routeLookup.cards, routeLookup.candidates);
-          positionHudNearButton(button);
-        } catch (error) {
-          console.error(error);
-          if (panel) { const errorNote = document.createElement("p"); errorNote.className = "placeholder"; errorNote.textContent = "New HUD route lookup failed for this click."; panel.replaceChildren(errorNote); }
-          positionHudNearButton(button);
-        }
-      };
-      const closeRouteHud = ({ restoreFocus = false } = {}) => {
-        const buttonToRestore = activeHudButton;
-        hud.hidden = true;
-        if (buttonToRestore) { buttonToRestore.setAttribute("aria-pressed", "false"); buttonToRestore.setAttribute("aria-expanded", "false"); }
-        activeHudButton = null;
-        if (restoreFocus && buttonToRestore) buttonToRestore.focus({ preventScroll: true });
-      };
-      document.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-lexical-token]");
-        if (button) { renderWord(button); return; }
-        if (!hud.hidden && !event.target.closest("[data-lexical-hud]")) closeRouteHud();
-      });
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && !hud.hidden) { event.preventDefault(); closeRouteHud({ restoreFocus: true }); return; }
-        if (event.key !== "Enter" && event.key !== " ") return;
-        const button = event.target.closest("[data-lexical-token]");
-        if (!button) return;
-        event.preventDefault();
-        renderWord(button);
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => closeRouteHud({ restoreFocus: true }));
-      });
-      window.addEventListener("resize", scheduleHudPosition);
-      window.addEventListener("scroll", scheduleHudPosition, true);
-    })();
+  <script type="application/json" data-lexical-occurrences data-src="../data/public-hud/orot/occurrences.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"orot","work_slug":"orot","work_title":"Orot","manifest_url":"../data/public-hud/orot/manifest.json","occurrence_url":"../data/public-hud/orot/occurrences.json","reader_hint_url":"../data/public-hud/orot/reader-hints.json","hud_route_lookup_manifest_url":"../data/public-hud/orot/route-lookup/manifest.json","root_href":"../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
   </script>
+  <script src="../assets/js/reader-workbench.js"></script>
 </body>
 </html>
