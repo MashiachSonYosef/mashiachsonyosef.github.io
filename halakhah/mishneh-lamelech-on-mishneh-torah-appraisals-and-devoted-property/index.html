@@ -17,7 +17,14 @@
     h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
     p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
     .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
-    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
     .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
     .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
     .license-notice strong { color: var(--text); font-weight: 400; }
@@ -31,6 +38,11 @@
     .work-card .meta { display: block; margin-top: 6px; }
     .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
     .library-stack { display: grid; gap: 14px; }
     .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
     .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
@@ -47,6 +59,7 @@
     .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
     .library-grid.direct { padding: 0; }
     .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
     @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
     .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
@@ -80,48 +93,48 @@
     .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .lexical-coverage strong { color: var(--text); font-weight: 400; }
     .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
-    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
     .lexical-slot { margin-top: 16px; }
-    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
     .lexical-hud[hidden] { display: none; }
-    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
     .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
     .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
     .hud-close:hover { color: var(--text); border-color: var(--accent); }
-    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
-    .lexical-field-row { display: contents; }
-    .lexical-field-row[hidden] { display: none; }
-    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
-    .lexical-fields dd { margin: 0; color: var(--text); }
-    .lexical-fields ul { margin: 0; padding-left: 18px; }
-    .breakdown-list { display: grid; gap: 8px; }
-    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
-    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
-    .breakdown-row p { margin: 0 0 4px; }
-    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
-    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
-    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
-    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
-    .lexical-entry .entry-hebrew { color: var(--hebrew); }
-    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
-    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
-    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
     .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
-    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
-    .claim-renderings { color: var(--text); margin: 0; }
-    .other-entries { margin-top: 12px; }
-    .claim-row-list details { margin-top: 8px; }
-    .source-details { margin-top: 16px; }
-    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
-    .source-row:first-child { border-top: 0; }
-    .source-row strong { color: var(--text); font-weight: 400; }
-    .source-claim { color: var(--text); margin: 0 0 6px; }
-    .source-claim span { color: var(--hebrew); }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
     .source-citation { overflow-wrap: anywhere; word-break: break-word; }
-    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
     .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
     .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
     details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
@@ -135,20 +148,23 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
 </head>
 <body>
   <main>
     <div class="shell">
       <div class="hero" id="work-top">
-        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
-        <h1>Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property</h1>
-        <p class="work-label">Commentary on Mishneh Torah, Appraisals and Devoted Property</p>
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Mishneh Torah, Appraisals and Devoted Property</p>
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/">Open Mishneh Torah, Appraisals and Devoted Property</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
@@ -156,19 +172,27 @@
             <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
-        <p class="meta">31 total source units | imported 2026-05-21</p>
-        <p class="meta source-citation">Hebrew version: Warsaw, 1881 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001763900/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
-        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>824 matched</strong> / 2649 unique forms.</p>
+          <p class="hero-summary">
+            <span>31 source units</span>
+            <span>2649 HUD forms</span>
+            <span>imported 2026-05-21</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Warsaw, 1881 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001763900/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
           <details class="toc-root" open>
             <summary>Contents</summary>
             <details class="toc-group">
-              <summary>Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property <span class="hud-badge">Lexical layer active</span></summary>
+              <summary>Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property <span class="hud-badge">Route HUD active</span></summary>
               <a class="toc-start" href="#work-top">Start</a>
               <details class="toc-section">
-                <summary>Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property <span class="hud-badge">Lexical layer active</span></summary>
+                <summary>Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property <span class="hud-badge">Route HUD active</span></summary>
                 <a class="toc-start" href="#work-top">Start section</a>
                 <details class="toc-chapter">
                   <summary>Chapter 1</summary>
@@ -249,13 +273,18 @@
         </nav>
         <article>
           <h4 id="chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-1">Chapter 1</h4>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-1-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-1-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 1:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 1:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-1-1">Mishneh Torah, Appraisals and Devoted Property 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעֲרָכִים הֵם נֵדֶר מִכְּלַל נִדְרֵי הֶקְדֵּשׁ. שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז ב)</span> &quot;אִישׁ כִּי יַפְלִא נֶדֶר בְּעֶרְכְּךָ נְפָשֹׁת לַה׳&quot;. לְפִיכָךְ חַיָּבִין עֲלֵיהֶן מִשּׁוּם <span class="source-small">(במדבר ל ג)</span> &quot;לֹא יַחֵל דְּבָרוֹ&quot; וְ<span class="source-small">(דברים כג כב)</span> &quot;לֹא תְאַחֵר לְשַׁלְּמוֹ&quot; וּמִשּׁוּם <span class="source-small">(במדבר ל ג)</span> &quot;כְּכָל הַיֹּצֵא מִפִּיו יַעֲשֶׂה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך חייבים עליהם משום בל יחל כו׳.</strong> הכי איתא בספרי דבנדרי גבוה נמי איכא משום לא יחל. ומדברי רבינו במנין המצות ל&quot;ת סי׳ קנ&quot;ז נראה דבזמן שעובר על לא תאחר דהיינו לאחר שלשה רגלים עובר על לא יחל. אך הרמב&quot;ן בהשגותיו מ&quot;ע סי׳ צ&quot;ד חולק עליו וס&quot;ל דמשום בל יחל אינו עובר עד שיעבור על הנדר ואי אפשר לקיימו ואין לבל יחל ענין ברגלים:</p>
               </div>
             </div>
@@ -265,13 +294,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-11-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-11-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-11-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 1:11:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 1:11:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-11-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 1:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-1-11">Mishneh Torah, Appraisals and Devoted Property 1:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַכּוּ&quot;ם שֶׁאָמַר דָּמַי עָלַי אוֹ דְּמֵי פְּלוֹנִי עָלַי נוֹתֵן כְּפִי נִדְרוֹ וְאֵינוֹ נוֹפֵל לַלִּשְׁכָּה שֶׁאֵין מְקַבְּלִין מִן הָעַכּוּ&quot;ם נְדָבָה אוֹ נֵדֶר לְחַזֵּק אֶת בֶּדֶק הַבַּיִת אוֹ בֶּדֶק יְרוּשָׁלַיִם שֶׁנֶּאֱמַר <span class="source-small">(עזרא ד ג)</span> &quot;לֹא לָכֶם וָלָנוּ לִבְנוֹת בַּיִת&quot; וְגוֹ׳. וְנֶאֱמַר <span class="source-small">(נחמיה ב כ)</span> &quot;וְלָכֶם אֵין חֵלֶק וּצְדָקָה וְזִכָּרוֹן בִּירוּשָׁלָיִם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עכו&quot;ם שאמר דמי עלי כו׳.</strong> ראיתי לבאר סוגיא אחת בפרק בתרא דנזיר דף ס&quot;ב דאמרינן איש כי יפליא נדר למה לי כו׳ ונראה דקושיא זו היא לכ&quot;ע בין למ&quot;ד דאיצטריך איש כי יפליא לומר דעכו&quot;ם מעריכין פריך שפיר למה לי קרא ת&quot;ל מהיקשא דערכין לנדרים וקי&quot;ל גבי נדרים מריבויא דאיש איש שהעכו&quot;ם נודרים כישראל וממילא שמעינן דנערכין וכן למ&quot;ד דבני ישראל מיעט שאין העכו&quot;ם מעריכין ואיש רבה שהעכו&quot;ם נערכין נמי תיקשי דלמה לי רבויא דאיש לומר שהעכו&quot;ם נערכים תיפוק לי דכיון דאיתקיש ערכין לנדרים וקי&quot;ל דגבי נדרים שוים הם עכו&quot;ם לישראל ממילא לא הוה מוקמינן מיעוטא דבני ישראל אלא לחד מלתא דהיינו למעט עכו&quot;ם דאין מעריכין. הכלל העולה דגבי ערכין כתיב חד מיעוט דהיינו בני ישראל וחד רבוי דהיינו איש איש ובזה נחלקו בפ&quot;ק דערכין ר&quot;מ ור&quot;י אם המיעוט הוא למעריכין או לנערכין דליכא למימר דהכל מיעט משום דהא איכא רבויא וע&quot;כ אתא לרבות איזה דבר ועל זה הקשו כאן דלמה לי רבוי דאיש תיפוק לי דכיון דאיתקיש ערכין לנדרים וגבי נדרים קי&quot;ל דשוים עכו&quot;ם לישראל א&quot;כ מיעוט דבני ישראל לא ממעטינן מיניה אלא חדא מלתא דכל מאי דמצינן להשוות עכו&quot;ם לישראל משוינן מאחר דהוקשו נדרים לערכין והוה ליה היקש זה כאילו כתיב רבוי גבי ערכין וכל זה הוא מתבאר בדברי התוס׳ שם ותירצו דאיצטריך איש לרבות מופלא סמוך לאיש והדר הקשו התינח למ&quot;ד דהוא מן התורה אלא למ&quot;ד מדרבנן איש כי יפליא למה לי ותירצו לאתויי מופלא סמוך לאיש דעכו&quot;ם דאע&quot;ג דמופלא סמוך לאיש בישראל הוי דרבנן בעכו&quot;ם הוי מן התורה, ואף שלכאורה דין זה הוא מתמיה כבר עמדו על זה התוס׳ ורש&quot;י יע&quot;ש, והדר הקשו דבשלמא למ&quot;ד דמיעוטא דבני ישראל הוא לומר דעכו&quot;ם אינם נערכים ומהיקשא שמעינן דמעריכין איצטריך כי יפליא לומר דמופלא עכו&quot;ם מעריך אבל למ&quot;ד דמיעוטא דישראל הוא לומר דעכו&quot;ם אינם מעריכים ומהיקשא שמעינן דנערכים א&quot;כ קרא דכי יפליא למאי אתא אם לומר דמופלא נערך הא פשיטא דהא אפי׳ בן חודש נערך ומשני אמר רב אדא בר אהבה לאתויי עכו&quot;ם גדול דאע&quot;ג דגדול הוא אינו יודע להפלות. והנראה מדברי רש&quot;י דתירוץ זה הוא לכ&quot;ע בין למ&quot;ד דעכו&quot;ם מעריכין ולא נערכין בין למ&quot;ד נערכין ולא מעריכין ואליבא דכ&quot;ע עכו&quot;ם גדול היודע להפלות מעריך ואם אינו יודע להפלות אף שהוא גדול אליבא דכ&quot;ע אינו מעריך ולא פליגי אלא בנערכין אלא דחד תנא אית ליה דמיעוטא דבני ישראל אתא למימר דבני ישראל נערכין ואין העכו&quot;ם נערכין יכול לא יהו מעריכין ת&quot;ל איש כלומר איש דגבי נדרים ואתא קרא דאיש כי יפליא למעט ולומר דאינו מעריך אלא ביודע להפלות ואף שהוא גדול. ואפשר ג&quot;כ לומר דכי קאמר ת&quot;ל איש הכוונה הוא על איש כי יפליא דכיון דאשמעינן קרא דבעינן בעכו&quot;ם יודע להפלות ממילא שמעינן דעכו&quot;ם מעריך. ואפשר שכיון באומרו ת&quot;ל איש על תרי איש דכתיבי דמחד שמעינן דמעריך ומאידך שמעינן דאם אינו יודע להפלות אינו מעריך ואידך תנא אית ליה דמיעוטא דבני ישראל הוא לומר ישראל מעריכין ואין העכו&quot;ם מעריכים יכול לא יהו נערכין ת&quot;ל איש וע&quot;כ האי איש הוא איש דכתיב גבי נדרים ומהיקשא דנדרים לערכין הוא דשמעינן לה ואתא קרא דכי יפליא לומר דלא ממעטינן מקרא אלא באינו יודע להפלות אבל יודע להפלות מעריך ולפי זה מ&quot;ד דעכו&quot;ם מעריכין קרא דאיש כי יפליא אתא למעט ולומר דעכו&quot;ם אינו מעריך אלא ביודע להפלות ומאי דאמרינן לאתויי לאו דוקא ומ&quot;ד דעכו&quot;ם אינן מעריכים ממיעוטא דבני ישראל קרא דכי יפליא אתי לרבות ולומר דאע&quot;ג דנתמעטו מקרא דבני ישראל מ&quot;מ בגדול היודע להפלות לא נתמעטו ומעריכין. ודע דלישנא דתלמודא דקאמר דאע&quot;ג דגדול הוא אם אינו יודע להפלות לא משמע דהאי איש אתא למעט. וראיתי להתוס׳ שכתבו וא&quot;ת והא גבי ערכין קיימינן ואפי׳ עכו&quot;ם גדול היודע להפלות אין מעריך וי&quot;ל דאם אינו ענין לערכין תנהו ענין לנדרים ע&quot;כ. ויש לתמוה דא&quot;כ נימא דקרא דכי יפליא אתא לאתויי מופלא סמוך לאיש דעכו&quot;ם וכ&quot;ת למ&quot;ד בני ישראל מעריכין ואין העכו&quot;ם מעריכים כי יפליא למה לי אם אינו ענין לערכין תנהו ענין לנדרים דמופלא סמוך לאיש דעכו&quot;ם נודר. וי&quot;ל כיון דע&quot;כ קרא לא מתוקמא כי אם באם אינו ענין ניחא ליה טפי לומר דקרא אתא למעט גבי עכו&quot;ם דאע&quot;ג שהוא גדול אם אינו יודע להפלות אינו נודר מלומר דאתא קרא לרבות מופלא סמוך לאיש דעכו&quot;ם דנודר דהוי מלתא דליתיה בישראל. ודע דסוגיא זו לא קיימא אליבא דהלכתא ומש&quot;ה לא הזכיר רבינו בחבורו כלל מסוגיא זו אם עכו&quot;ם גדול דאינו יודע להפלות אם מעריך או אם נודר. וטעמא דמלתא דסוגיא זו היא אליבא דמ&quot;ד דמופלא סמוך לאיש דרבנן ואייתר לן קרא דאיש כי יפליא. אבל לדידן דקי&quot;ל דהוי מן התורה איצטריך קרא דאיש כי יפליא לישראל ולרבות מופלא סמוך לאיש. ונ&quot;ל דגם גבי עכו&quot;ם מופלא סמוך לאיש נודר או מעריך למ&quot;ד דעכו&quot;ם מעריכים דכיון דנתרבו עכו&quot;ם לנדרים כישראל לכולא מלתא איתרבו. ועדיין הדבר צריך הכרע:</p>
               </div>
             </div>
@@ -281,13 +315,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-1">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-13-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-13-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-13-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 1:13:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 1:13:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-1-13-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-1-13">Mishneh Torah, Appraisals and Devoted Property 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגּוֹסֵס אֵין לוֹ לֹא עֵרֶךְ וְלֹא דָּמִים הוֹאִיל וְרֹב הַגּוֹסְסִין לְמִיתָה הֲרֵי הוּא כְּמֵת. וְכֵן מִי שֶׁנִּגְמַר דִּינוֹ בְּבֵית דִּין שֶׁל יִשְׂרָאֵל לְהָרְגוֹ עַל עֲבֵרָה שֶׁעָבַר וְהֶעֱרִיכוֹ אַחֵר אוֹ שֶׁהֶעֱרִיךְ עַצְמוֹ אוֹ שֶׁאָמַר דָּמַי עָלַי אוֹ שֶׁאָמַר אַחֵר דְּמֵי זֶה עָלַי אֵינוֹ חַיָּב כְּלוּם שֶׁזֶּה כְּמֵת הוּא וְהַמֵּת אֵין לוֹ עֵרֶךְ וְלֹא דָּמִים. וְעַל זֶה נֶאֱמַר <span class="source-small">(ויקרא כז כט)</span> &quot;כָּל חֵרֶם אֲשֶׁר יָחֳרַם מִן הָאָדָם לֹא יִפָּדֶה&quot; כְּלוֹמַר אֵין לוֹ פִּדְיוֹן אֶלָּא הֲרֵי הוּא כְּמֵת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגוסס אין לו ערך וכו׳.</strong> כתבו התוס׳ בפ&quot;ק דערכין (דף ד׳) דגוסס נודר ומעריך ומדברי רבינו בדין י&quot;ד נראה שחולק בזה ועיין בלח&quot;מ ובמ&quot;ש התוי&quot;ט עלה דמתני׳ (א&quot;ה עיין בס׳ גט פשוט סי׳ קכ&quot;א): וכן מי שנגמר דינו בב&quot;ד של ישראל כו׳. כתב מרן דאילו בב&quot;ד של כותים אפי׳ נגמר דינו לא חשיב מת כדאמרינן בפרק כל הגט. ואין דברי מהריק&quot;א ברורין ואגב שיטפא לא דק הרב דהתם בפ׳ כל הגט ללישנא בתרא דרב יוסף יוצא ליהרג בב&quot;ד של עכו&quot;ם נותנים עליו חומרי חיים וחומרי מתים אבל יוצא ליהרג בב&quot;ד של ישראל ודאי קטלי ליה ומשיאין את אשתו דודאי מת. אבל גבי ערכין אין הדבר תלוי אלא בגמר דין דכל שנגמר דינו בב&quot;ד של ישראל הרי הוא כמת ולכך דקדק רבינו לכתוב בב&quot;ד של ישראל דאי בב&quot;ד של עכו&quot;ם גמר דינם לא הוי כלום דעדיהן פסולים ודינם בטל. ועוד אני מוסיף דהכא גבי ערכין אפי׳ ברח מידם של ב&quot;ד ולא נהרג אין לו דמים ולא ערכים תדע לך דגוסס כתב רבינו בסמוך דאין לו ערך ואין לו דמים אע&quot;פ שחי אח&quot;כ משמע וה&quot;ה גבי נגמר דינו הלכך אין זווגם עולה יפה דיני ערכין לההיא דפ׳ כל הגט. ועיין במ&quot;ש הרא&quot;ם בפ׳ בחקותי על פסוק כל חרם אשר יחרם מן האדם שהולך על דרך הרב בכאן. ויותר קשה הוא מ&quot;ש שם דללישנא דר&quot;י דאמר ל&quot;ש אלא בב&quot;ד של ישראל אבל בב&quot;ד של עכו&quot;ם כיון שנגמר דינו ודאי קטלי ליה גם גבי ערכין אם נגמר דינו בב&quot;ד של עכו&quot;ם אינו בדין ערכין. ובאמת זו קשה מן הראשונה אטו ב&quot;ד של עכו&quot;ם וגמר דינם משוו ליה מת וצ&quot;ע. שמא תאמר כיון שנגמר בב&quot;ד של עכו&quot;ם ובודאי קטלי ליה אינו שוה כלום. זה אינו דהא לגבי ערכין אינו תלוי בזה דהא כתב רבינו לעיל שאפי׳ היה הנערך מוכה שחין וסומא וגידם נותן לפי שניו אע&quot;פ שאינו שוה כלום ודוק:</p>
               </div>
             </div>
@@ -298,13 +337,18 @@
             </nav>
           </section>
           <h4 id="chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-2">Chapter 2</h4>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-2-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-2-4-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-2-4-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 2:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 2:4:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-2-4-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-2-4">Mishneh Torah, Appraisals and Devoted Property 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹמֵר דְּמֵי רֹאשִׁי אוֹ כְּבֵדִי עָלַי אוֹ דְּמֵי רֹאשׁוֹ שֶׁל פְּלוֹנִי עָלַי אוֹ לִבּוֹ אוֹ כְּבֵדוֹ עָלַי נוֹתֵן דְּמֵי כֻּלּוֹ. וְכֵן הָאוֹמֵר דְּמֵי חֶצְיִי עָלַי נוֹתֵן דְּמֵי כֻּלּוֹ. אֲבָל הָאוֹמֵר חֲצִי דָּמַי עָלַי נוֹתֵן חֲצִי דָּמָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומר דמי ראשי או כבדי עלי כו׳ נותן דמי כולו.</strong> כתב הרא&quot;ם בפ׳ בחקותי ד&quot;ה ערכך כמו ערך וכפל הכפי&quot;ן לא ידעתי מאיזה לשון הוא. תימה והלא בת&quot;כ ומייתי לה בפ&quot;ק דערכין שנו בהדיא שהוא כ&quot;ף הכנוי דתניא בערכך ערך כל גופו הוא נותן ואינו נותן ערך איבריו. וראיתי בספר קצור המזרחי שהביא בשם הג&quot;א שבגמרא לא למדו אותו מן הכ&quot;ף של ערכך ערך כל גופך דא&quot;כ תיקשי כל אותן שא&quot;א למידרש הכי כגון גבי שדה אחוזה ומקדיש בית ובהמה דבכולן כתיב ערכך ולא שייך למידרש כך אלא מדהוצרך לכתוב נפשות לרבות אבר שהנשמה תלויה בו ש&quot;מ דסתם ערך ערך כל גופו משמע ולא ערך איבריו דאל&quot;כ נפשות למה לי לכך דרשו כן ע&quot;כ. ומלבד שאין תירוצו נכון משום דאף בדמים דפשיטא לן שנותן דמי איברים לא היינו יודעים שנדון בכבודו אלא משום דאיתקש דמים לערכין כדכתיב נדר בערכך נפשות וכדאיתא בפ׳ המקבל (דף קי&quot;ד) וא&quot;כ אי לאו דכתב קרא נפשות הוה אמינא דבערכין גם כן נותן ערך איבריו אבל אינו נדון בכבודו, זאת ועוד אחרת דאגמ׳ הקשו אהך דרשא דבערכך ערכך כולו הוא נותן ואינו נותן ערך איבריו והא אפיקתיה לערך סתם משמע דדרשא זו ממלת בערכך נפיק. וקושית הרא&quot;ם לא הבנתי אותה משום דודאי דלא נעלם מרש&quot;י סוגיא זו אלא שרש&quot;י הוקשה בוהיה ערכך דכ&quot;ף זו למאי איצטרך דהתיבה ערכך קמא אתא לדרשא אלא ערכך בתרא למה לי בכ&quot;ף הכנוי ותמהני על הרא&quot;ם דלמה לא הקשה רש&quot;י בערכך קמא שכפל הכפי&quot;ן מאיזה לשון הוא וצ&quot;ע:</p>
               </div>
             </div>
@@ -315,13 +359,18 @@
             </nav>
           </section>
           <h4 id="chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-3">Chapter 3</h4>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-3-13-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-3-13-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-3-13-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 3:13:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 3:13:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-3-13-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 3:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-3-13">Mishneh Torah, Appraisals and Devoted Property 3:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְרִישׁ עֶרְכּוֹ אוֹ דָּמָיו וְנִגְנְבוּ אוֹ אָבְדוּ אַף עַל פִּי שֶׁלֹּא אָמַר עָלַי חַיָּב בְּאַחֲרָיוּתָן עַד שֶׁיַּגִּיעוּ לְיַד הַגִּזְבָּר. שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז כג)</span> &quot;וְנָתַן אֶת הָעֶרְכְּךָ בַּיּוֹם הַהוּא קֹדֶשׁ לַה׳&quot; הֲרֵי הֵן חֻלִּין אַף עַל פִּי שֶׁהִפְרִישָׁן עַד שֶׁיַּגִּיעוּ לִידֵי הַגִּזְבָּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפריש ערכו או דמיו ונגנבו וכו׳.</strong> בפרק בתרא דחולין (דף קל&quot;ט):</p>
               </div>
             </div>
@@ -331,13 +380,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-3">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-3-14-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-3-14-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-3-14-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 3:14:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 3:14:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-3-14-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 3:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-3-14">Mishneh Torah, Appraisals and Devoted Property 3:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חַיָּבֵי עֲרָכִין וְדָמִים מְמַשְׁכְּנִין אוֹתָן וְלוֹקְחִין מֵהֶן בַּעַל כָּרְחָן מַה שֶּׁנָּדְרוּ וְאֵינָן חַיָּבִין לְהַחְזִיר לָהֶם הַמַּשְׁכּוֹן בַּיּוֹם אוֹ בַּלַּיְלָה. וּמוֹכְרִין כָּל הַנִּמְצָא לָהֶם מִן הַקַּרְקַע וּמִן הַמִּטַּלְטְלִין מִכְּסוּת וּכְלֵי תַּשְׁמִישׁ הַבַּיִת וַעֲבָדִים וּבְהֵמָה וְנִפְרָעִין מִן הַכּל. וְאֵין מוֹכְרִין לֹא כְּסוּת אִשְׁתּוֹ וְלֹא כְּסוּת בָּנָיו וְלֹא בְּגָדִים שֶׁצְּבָעָן לִשְׁמָן וְלֹא סַנְדָּלִים חֳדָשִׁים שֶׁלְּקָחָן לִשְׁמָן. וְכֵן הַמַּקְדִּישׁ כָּל נְכָסָיו לֹא הִקְדִּישׁ אֶת אֵלּוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואינן חייבין להחזיר להם המשכון כו׳.</strong> מציעא (דף קי&quot;ד):</p>
               </div>
             </div>
@@ -348,13 +402,18 @@
             </nav>
           </section>
           <h4 id="chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-4">Chapter 4</h4>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-2-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-2-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:2:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-2-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-4-2">Mishneh Torah, Appraisals and Devoted Property 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכַמָּה הוּא. כָּל מָקוֹם שֶׁרָאוּי לִזְרֹעַ בּוֹ חֹמֶר שְׂעוֹרִים וְיִזְרָעֶנּוּ בַּיָּד וְלֹא יְקָרֵב זְרִיעָתוֹ וְלֹא יְרַחֵק אוֹתָהּ. עֶרְכּוֹ חֲמִשִּׁים שְׁקָלִים לְכָל שְׁנֵי יוֹבֵל. וְאֵין שְׁנַת יוֹבֵל מִן הַמִּנְיָן. וְאֶחָד הַמַּקְדִּישׁ שָׂדֶה טוֹבָה שֶׁאֵין בְּכָל אֶרֶץ יִשְׂרָאֵל כְּמוֹתָהּ. אוֹ שָׂדֶה רָעָה שֶׁאֵין כָּמוֹהָ לְרֹעַ. כָּזֶה מַעֲרִיכִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין שנת היובל מן המנין.</strong> זה פשוט וכן פירש&quot;י רפ&quot;ו דערכין דכתיב משנת היובל ולא שנת היובל בכלל יע&quot;ש:</p>
               </div>
             </div>
@@ -364,13 +423,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-5-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-5-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:5:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-5-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-4-5">Mishneh Torah, Appraisals and Devoted Property 4:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד דֶּרֶךְ הַחֶשְׁבּוֹן בְּעֶרְכֵי שָׂדוֹת. הֲרֵי שֶׁהִקְדִּישׁ שְׂדֵה אֲחֻזָּתוֹ וְנִשְׁאַר לַיּוֹבֵל שְׁמוֹנֶה שָׁנִים חוּץ מִשְּׁנַת הַיּוֹבֵל שֶׁאֵינָהּ בַּחֶשְׁבּוֹן כְּמוֹ שֶׁבֵּאַרְנוּ. כָּל הָרוֹצֶה לִפְדּוֹתָהּ מִיַּד הֶקְדֵּשׁ נוֹתֵן לְכָל <span class="source-small">(ויקרא כז טז)</span> &quot;זֶרַע חֹמֶר שְׂעוֹרִים&quot; שְׁמוֹנָה סְלָעִים וּשְׁמוֹנֶה פּוּנְדְיוֹנוֹת. וְאִם רָצוּ הַבְּעָלִים לִפְדּוֹתָהּ נוֹתְנִין עֶשֶׂר סְלָעִים וַעֲשָׂרָה פּוּנְדְיוֹנוֹת לְפִי שֶׁהֵן מוֹסִיפִין חֹמֶשׁ. וְכֵן כָּל חֹמֶשׁ הָאָמוּר בַּתּוֹרָה צָרִיךְ שֶׁיְּהֵא הַקֶּרֶן עִם הַתּוֹסָפוֹת חֲמִשָּׁה נִמְצָא שֶׁהוֹסִיף רְבִיעַ הַקֶּרֶן. וְכֵן אִם פָּדְתָה אִשְׁתּוֹ שֶׁל מַקְדִּישׁ אוֹ אֶחָד מִיּוֹרְשָׁיו הֲרֵי אֵלּוּ מוֹסִיפִין חֹמֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אם פדתה אשתו של מקדיש וכו׳.</strong> וכן כתב בפ&quot;ה דין ג׳ ואם פדה אותן המקדיש או אשתו או יורשיו מוסיף חומש וכן כתב בפ&quot;ה דין ב׳ ואחד המקדיש עצמו או אשתו או היורש מוסיפים חומש כמו שביארנו. ודע שכל החלוקות הללו שנויות בת&quot;כ והנה גבי שדה אחוזה כתיב ואם גאל יגאל את השדה ודרשינן בת&quot;כ ואם גאל יגאל לרבות את האשה ואם גאל יגאל לרבות את היורש והני תרי דדריש חד הוא מוא&quot;ו הנוספת במלת ואם וחד מכפל הגאולות וכמ&quot;ש הרב בעל קרבן אהרן וכי האי גוונא אמרינן בריש תמורה גבי ואם המר ימיר דר&quot;מ דריש לאתויי אשה ויורש ואמרינן דחד דרש מהכפל וחד דרש מוא&quot;ו הנוספת בואם וכדאיתא התם ודרשא זו היא מ&quot;ש רבינו בפ&quot;ד דמיירי במקדיש שדה אחוזה וגבי מקדיש ביתו כתיב ואם המקדיש יגאל את ביתו ודרשינן בת&quot;כ ואם המקדיש יגאל לרבות את האשה ואם המקדיש יגאל לרבות את היורש והתם נמי איכא תרי רבויי וי&quot;ו נוספת ומלת המקדיש דהל&quot;ל ואם יגאל ודרשא זו היא מ&quot;ש רבינו בפ&quot;ה דמיירי במקדיש ביתו וגבי מקדיש שאר הדברים כתיב ואם גאל יגאלנה ודרשינן בת&quot;כ ואם גאל יגאלנה לרבות את האשה ואם גאל יגאלנה לרבות את היורש ודרשה זו היא מ&quot;ש רבינו בפ&quot;ז דשם מיירי בכלל ההקדשות ומרן בפ&quot;ד לא רמז לנו מקום דין זה ובפ&quot;ה כתב דבריש זבחים אמרו דגבי מעשר כתיב ואם גאל יגאל לרבות את היורש ע&quot;כ. ומ&quot;מ אף כפי דברי מרן דרבינו למד ממעשר להקדש עדיין לא תקן אשה מנין גם בפ&quot;ז לא כתב שם מרן כלל והאמת הוא מה שכתבנו. ודע דמאי דאמרינן לרבות את היורש אין הכוונה בחיי המקדיש וכההיא דאמרינן בפ&quot;ו דערכין (דף נ&quot;ה) גאלה בנו יוצאה לאביו ביובל אלמא דבנו כאיהו חשיב וכן פסק רבינו בפ&quot;ד דין כ׳ הכא לא שייך כלל חדא דהתם בנו דוקא ולא שום יורש אחר ואפי׳ בת והכא אחד מיורשיו קאמר ועוד דגבי מעשר שני נמי כתיב ואם גאל יגאל ודרשינן לרבות היורש והתם מיירי בלאחר מיתה וכמו שכתב רבינו בריש פ&quot;ה מה׳ מע&quot;ש והכי מוכח סוגית ההלכה פ&quot;ק דזבחים (דף ו׳) ומשנה ערוכה שנינו בפ&quot;ה דמעשר שני מ&quot;ד מערימין על מעשר שני כיצד אומר אדם לבנו ולבתו הגדולים כו׳ אלמא דבנו ובתו אינם מוסיפים חומש א&quot;כ גבי הקדש מאי דאמרינן לרבות היורש הוא לאחר שמת המקדיש דס&quot;ד דלא חייב הכתוב חומש אלא במקדיש עצמו ולא במי שבא לו בירושה קמ&quot;ל דמוסיף חומש ואשה דמרבינן הוא משום דחשיבא כגופו והוה ליה כאילו הוא פדה וצריך ליתן חומש. וא&quot;ת מנא לן דכי רבי קרא לאשה גבי חומש הוא בפודה הקדש של בעלה אימא דקרא לא אתא אלא לרבות פודה הקדש שלה דמוסיפה חומש וכי הא פשיטא ולמה לי קרא הא גבי תמורה אמרינן דאיצטריך קרא ואם המר ימיר לרבות האשה והתם מיירי בקרבן שהקדישה היא, הא לא קשיא כלל משום דהתם איצטריך למלקות דסד&quot;א כי כתיב איש ואשה כי יעשו מכל חטאת האדם הני מילי עונש דבין יחיד בין דציבור אבל תמורה לא ומש&quot;ה איצטריך לרבות אשה גבי תמורה וכדאיתא בריש פ&quot;ק דתמורה אבל הכא ע&quot;כ כי אתא קרא הוא לרבות בפודה הקדש של בעלה דמוסיפה חומש:</p>
               </div>
             </div>
@@ -380,13 +444,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-24-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-24-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-24-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:24:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:24:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-24-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:24:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-4-24">Mishneh Torah, Appraisals and Devoted Property 4:24</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁתֵּצֵא הַשָּׂדֶה לַכֹּהֲנִים בַּיּוֹבֵל תִּנָּתֵן לַכֹּהֲנִים שֶׁבַּמִּשְׁמָר שֶׁפָּגַע בּוֹ הַיּוֹבֵל. וְאִם הָיָה רֹאשׁ הַשָּׁנָה שֶׁל יוֹבֵל בְּשַׁבָּת שֶׁהֲרֵי מִשְׁמָר יוֹצֵא וּמִשְׁמָר נִכְנָס תִּנָּתֵן לַמִּשְׁמָר הַיּוֹצֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כשתצא השדה לכהנים ביובל וכו׳. הנה דברי רבינו הללו הם גמרא ערוכה בפ&quot;ח דערכין (דף כ&quot;ח) שדה היוצא לכהנים ביובל נותנה למשמר שפגע בו יובל איבעיא להו פגע בו בשבת מאי אמר רב חייא בר אמי משמיה דחולפנא נותנה למשמר היוצא ע&quot;כ. וראיתי לרש&quot;י שכתב פגע בו יובל בשבת דמשמרות מתחלפות וחל יוה&quot;כ בו ביום לאיזו יתן ע&quot;כ. והנה מה שתלה הדבר ביוה&quot;כ הוא משום דס&quot;ל דלית הלכתא כר׳ ישמעאל דאמר מראש השנה הוא דחייל יובל אלא כרבנן דפליגי עליה וס&quot;ל דמיום הכפורים חייל יובל וכדכתיב ביום הכפורים תעבירו שופר א&quot;כ אף שנאמר דרש&quot;י נמי ס&quot;ל דהלכתא כר׳ ישמעאל מ&quot;מ כיון שהנראה מסוגיא הוא דסתמא דתלמודא הוה ס&quot;ל דיובל מתחיל מיום הכפורים שהרי הקשו על הברייתא דקתני אחד יובל ואחד שביעית משמטין כאחד דיובל בתחלתו ביוה&quot;כ הוא משום הכי פירש רש&quot;י לבעיא דפגע בו יובל כפי הס&quot;ד אבל לעולם דלפי המסקנא דר׳ ישמעאל אית ליה דיובל מראש השנה מתחיל הכל תלוי במשמר שפגע בו ר&quot;ה של יובל. וראיתי להרב בעל לח&quot;מ שאחר שהביא כל הסוגיא ודברי רש&quot;י כתב משמע מסוגיא זו דלמ&quot;ד מר&quot;ה חל יובל ומאותה שעה משמט קרקעות וכו׳ (עיין בלח&quot;מ בד&quot;ה כשתצא). והנה הנראה מדבריו הוא דס&quot;ל דמ&quot;ש רבינו בפ&quot;י מה׳ שמיטה דין י&quot;ד מראש השנה עד יום הכפורים לא היו עבדים נפטרים לבתיהן ולא משתעבדין לאדוניהן ולא השדות חוזרות לבעליהן אלא עבדים אוכלים ושותים ושמחים ועטרותיהם בראשיהם כיון שהגיע יוה&quot;כ תקעו ב&quot;ד בשופר נפטרו עבדים לבתיהן וחזרו שדות לבעליהן ע&quot;כ, שכל זה הוא אליבא דמאן דפליג עליה דר׳ ישמעאל וס&quot;ל דיובל מר&quot;ה חייל אלא שאעפ&quot;כ מר&quot;ה לא היו העבדים משתעבדים לאדוניהם אבל לר׳ ישמעאל מר&quot;ה היו העבדים נפטרין לבתיהן והשדות חוזרות לבעליהן וכפי הנחה זו הקשה מה שהקשה ונדחק במ&quot;ש רבינו דיובל משמט בתחלתו דלאו דוקא אלא לאפוקי שביעית שאינו משמט כי אם בסופו אבל לעולם דיובל לא חייל כי אם מיוה&quot;כ. ואחרי בקשת המחילה הראויה איננו כאשר חשב אלא דרבינו פסק כר׳ ישמעאל דיובל מתחיל מר&quot;ה ולר׳ ישמעאל אף דיובל חייל מר&quot;ה אין העבדים נפטרים לבתיהן ולא השדות חוזרות לבעליהן עד שיגיע יוה&quot;כ ודבר זה הוא מבואר בפ&quot;ק דר&quot;ה (דף ה׳) שהקשו עלה דמתני׳ דקתני באחד בתשרי ר&quot;ה ליובלות יובלות באחד בתשרי הוא יובלות בעשרה הוא ותירצו הא מני ר׳ ישמעאל בנו של ר׳ יוחנן בן ברוקא היא דתניא וקדשתם את שנת החמשים שנה מה ת&quot;ל לפי שנאמר ביוה&quot;כ יכול לא תהא מתקדשת אלא מיוה&quot;כ ואילך ת&quot;ל וקדשתם את שנת החמשים מלמד שמתקדשת והולכת מתחלתה מכאן אמר ר׳ ישמעאל בנו של ר&quot;י בן ברוקא מר&quot;ה עד יוה&quot;כ לא היו נפטרין לבתיהן ולא משתעבדין לאדוניהן אלא אוכלין ושותין ושמחין ועטרותיהן בראשיהן כיון שהגיע יוה&quot;כ תקעו ב&quot;ד בשופר נפטרו עבדים לבתיהן ושדות חוזרות לבעליהן ע&quot;כ. הרי לך הדבר מבואר כמו שכתבנו דלר׳ ישמעאל אף שהיובל חייל מר&quot;ה דהא מתני׳ דבאחד בתשרי מוקמינן כר׳ ישמעאל וכן ברייתא דקתני שביעית ויובל משמטין כאחד מוקמינן לה בערכין כר׳ ישמעאל ואפ&quot;ה אית ליה דלא היו העבדים נפטרין לבתיהן ולא השדות חוזרות לבעליהן עד שיתקעו בשופר ביוה&quot;כ משום דגזירת הכתוב היא דכתיב תעבירו שופר והדר וקראתם דרור וכמו שפירש רש&quot;י בר&quot;ה ולרבנן דפליגי עליה דר׳ ישמעאל ס&quot;ל דיובל לא חייל עד יוה&quot;כ ועד יוה&quot;כ היו האדונים משתעבדים בעבדיהם וכמו שמתבאר מאותה סוגיא דר&quot;ה שכתבנו שהקשו ורבנן שנים אתה מקדש וכו׳. והשתא מתיישבים שפיר כל דברי רבינו דאיהו פסק כרבי ישמעאל משום דסתמא דמתני׳ דר&quot;ה דקתני באחד בתשרי ר&quot;ה ליובלות אתיא כר׳ ישמעאל וכן הברייתא שהביאו בערכין דקתני שהשמטה והיובל משמטין כאחד אתיא כר׳ ישמעאל וכדאוקמוה התם ומ&quot;ש דהיובל משמט בתחלתו הוא כפשוטו דהיינו מר&quot;ה וכדקאמר ר׳ ישמעאל ואפ&quot;ה לא היו עבדים נפטרין לבתיהן עד יוה&quot;כ משום דכתיב תעבירו שופר והדר וקראתם דרור וכן מה שפסק גבי שדה תנתן למשמר דהיינו למשמר שפגע בו ר&quot;ה של יובל הוא משום דפסק כר׳ ישמעאל דיובל חייל מר&quot;ה ואע&quot;ג דלא היו העבדים נפטרים ולא השדות חוזרות אלא ביוה&quot;כ שאני התם דקרא אמר תעבירו שופר וגו׳ וקראתם דרור וגו׳ ושבתם איש אל אחוזתו הרי דתלה הכתוב דרור העבדים וחזרת השדות לבעליהן בשופר אבל הכא גבי מקדיש שדהו דרחמנא אמר והיה השדה בצאתו ביובל לכהן תהיה אחוזתו הרי דהכתוב לא תלאו כי אם ביובל וכיון דיובל חייל מר&quot;ה מש&quot;ה המשמר שחל בו ר&quot;ה של יובל זכה בשדה. הן אמת שאם לא היו דברי רבינו הללו היה אפשר דאף לר׳ ישמעאל הכל תלוי במשמר שפגע בו יוה&quot;כ של יובל דכיון שאין השדות חוזרות לבעלים כי אם ביוה&quot;כ והכתוב עשה לכהנים גבי מקדיש שדהו הבעלים ויזכו הם בשדה וא&quot;כ בזמן שהבעלים זוכים בשדה דהיינו ביוה&quot;כ גם הכהנים זוכין בשדה דהיינו ביוה&quot;כ והוו אתו שפיר דברי רש&quot;י שתלה הדבר במשמר של יוה&quot;כ דיובל דס&quot;ל דלכ&quot;ע הדבר תלוי במשמר שחל בו יוה&quot;כ של יובל שאז השדות חוזרות לבעליהן אך מאחר שרבינו כתב בפירוש שהדבר תלוי במשמר שחל בו ר&quot;ה של יובל אף אנו נאמר דרש&quot;י ג&quot;כ ס&quot;ל הכי דלר׳ ישמעאל הדבר תלוי במשמר שחל בו ראש השנה של יובל וכסברת רבינו ולא נרבה מחלוקת ומה שפירש רש&quot;י דחל יום הכפורים של יובל בשבת הוא אליבא דרבנן דפליגי עליה דר׳ ישמעאל ומאי דנקט למילתיה אליבא דרבנן הוא מהטעמים שכתבנו לעיל והסמ&quot;ג כתב כדברי רבינו יע&quot;ש. וראיתי להרא&quot;ם בפרשת בחקותי ד&quot;ה קדש שכתב שמתחלקת לכהנים שבאותו משמר שיוה&quot;כ של יובל פוגע בו ע&quot;כ. ולא ידעתי מי הכניסו לרב לומר שהדבר תלוי ביוה&quot;כ הפך מ&quot;ש רבינו ואף שרש&quot;י כתב כן בפירוש ההלכה כבר כתבנו לעיל דאף רש&quot;י לא אמרה כי אם אליבא דרבנן דפליגי עליה דר׳ ישמעאל אבל אליבא דר׳ ישמעאל הדבר תלוי בר&quot;ה וכסברת רבינו. וכי תימא דהרב ס&quot;ל דמדתלה רש&quot;י הדבר ביוה&quot;כ אלמא דס&quot;ל דהלכתא כרבנן ומש&quot;ה תלה הדבר ביוה&quot;כ וכמו שצדדנו צד זה לעיל, זה אינו שהרי מדברי רש&quot;י בפ׳ בהר סיני מוכח דס&quot;ל כר׳ ישמעאל שהרי כתב וקדשתם בכניסתה מקדשים אותה בב&quot;ד כו׳ ומדכתב בכניסתה משמע דהיינו מאחד בתשרי וזהו אליבא דר׳ ישמעאל דאית ליה דמאחד בתשרי היו מקדשין וכן כתב שם הרא&quot;ם שדברי רש&quot;י הללו הם כר׳ ישמעאל ועוד כתב רש&quot;י שם יובל היא שנת החמשים שנה מה ת&quot;ל לפי שנאמר וקדשתם כו׳ והרואה סוגיית הגמרא בראש השנה יראה איך דברים אלו אינם כי אם אליבא דר׳ ישמעאל דאית ליה דאף דכתיב בעשור לחדש תעבירו מ&quot;מ השנה מתקדשת מתחלתה מש&quot;ה איצטריך קרא למעט דלא נימא שתהא מושכת והולכת עד יום הכפורים משנת נ&quot;א אבל לרבנן לא איצטריך קרא לזה וא&quot;כ כיון שהוכחנו מדברי רש&quot;י הללו דאית ליה דהלכתא כר׳ ישמעאל א&quot;כ ע&quot;כ לומר דמה שתלה רש&quot;י הדבר ביוה&quot;כ הוא משום דסתמא דתלמודא הוה ס&quot;ל דלכ&quot;ע היובל אינו מתחיל כי אם מיוה&quot;כ וכמו שכתבנו לעיל אבל לעולם דלפי האמת דקי&quot;ל כרבי ישמעאל הדבר תלוי בראש השנה וכדעת רבינו ולפי זה יש לתמוה על רבינו שתלה הדבר ביוה&quot;כ. והנראה אצלי הוא דס&quot;ל להרא&quot;ם החלוקה האחרת שכתבנו דאף לר׳ ישמעאל הכל תלוי במשמר שפגע בו יוה&quot;כ של יובל כיון שאין השדות חוזרות לבעליהן כי אם ביוה&quot;כ והכתוב עשה לכהנים במקדיש שדהו כבעלים ובזמן שהבעלים זוכים בשדה דהיינו ביוה&quot;כ באותו זמן ג&quot;כ זוכים הכהנים והכריחו לזה מדתלה רש&quot;י הדבר במשמר שפגע בו יוה&quot;כ של יובל וכבר כתבנו שאין מכאן הכרח לדבר זה ומה גם לאפושי פלוגתא בין רבינו ורש&quot;י. ודע דבגמרא עלה דההיא דאיבעיא להו פגע בו בשבת מאי אמרינן אמר רב נחמן בר יצחק תניא נמצאת אתה אומר אחד יובל ואחד שביעית משמטים כאחד כו׳ ופי׳ רש&quot;י תניא נמי הכי דבתר התחלה אזלינן ע&quot;כ. ויש לדקדק דמה ראיה הביא מברייתא זו דאית להו דיובל מתחיל מר&quot;ה מקרא דוקדשתם למה שנסתפקו היכא דחל יובל בשבת אם יזכה המשמר הנכנס ונראה דכוונת הסוגיא היא דהא ברייתא זו דקאמרה דיובל ושביעית משמטים כאחד ר׳ ישמעאל היא וכדאוקמוה בגמרא ור׳ ישמעאל אף דאית ליה דיובל מתחיל מר&quot;ה מ&quot;מ אית ליה דאינה נגמרת ההשמטה עד יוה&quot;כ וכמו שכתבנו לעיל ועל זה הוקשה לו לרב נחמן דהיכי קתני דשביעית ויובל משמטין כאחד והלא שביעית בין השמשות של ערב שנת היובל משמטת המלוה אבל היובל אינו משמט לגמרי העבדים והקרקעות עד יוה&quot;כ אלא ודאי דטעמא דברייתא הוא דכיון דמתחיל מר&quot;ה שפיר קרינן ביה משמטין כאחד משום דבתר התחלה אזלינן והיובל מתחיל מר&quot;ה והכא נמי בבעיין היכא דחל יובל בשבת דמשמר אחד מתחיל לעבוד ומשמר אחד גומר עבודת היום אזלינן בתר התחלה וזוכה משמר היוצא שברשותו התחיל היובל אמש ואע&quot;ג דברייתא זו אתיא כר׳ ישמעאל מ&quot;מ שמעינן מיניה דלרבנן אף שאין היובל מתחיל כי אם מיוה&quot;כ מ&quot;מ כיון שהיובל מתחיל מליל יוה&quot;כ זכה המשמר היוצא אם חל יוה&quot;כ של יובל בשבת משום דברשותו התחיל היובל דבתר התחלה אזלינן דהא בהאי מלתא דתני בברייתא דבתר התחלה אזלינן לא נחלק בו אדם ומה שנחלקו רבנן הוא משום דס&quot;ל דאפי׳ התחלה ליכא מר&quot;ה ואינו מתחיל היובל כי אם מיוה&quot;כ ומכאן מודעה רבא למה שכתבנו דלר׳ ישמעאל זוכה המשמר שחל בו ר&quot;ה של יובל דהא לדידיה בתר התחלה אזלינן וכי היכי דלמדנו מדבריו דזוכה משמר היוצא משום דברשותו התחיל היובל הכי נמי יש ללמוד מדבריו דזוכה המשמר שחל בו ר&quot;ה של יובל משום דברשותו התחיל היובל. ודע שכפי מה שעלה בדעת הרב בעל לחם משנה דלר׳ ישמעאל דאמר דמר&quot;ה חייל יובל היינו דמאותה שעה חוזרות השדות לבעליהן ועבדים נפטרו לבתיהן לא יכולתי ליישב סייעתא זו שמביא רנב&quot;י מברייתא זו לומר שנותן למשמר היוצא. עוד אפשר לפרש דברים כפשטן דצדדי הבעיא היא היכא דפגע היובל בשבת אם נאמר דנהי דיובל אינו כשמיטה דמשמט בסופו מ&quot;מ אינו משמט אלא בסוף אותו היום ועל זה הביא ראיה דמיד שהתחיל ר&quot;ה חל היובל וה&quot;ה למ&quot;ד דביוה&quot;כ תלוי היובל דמיד בין השמשות של יום הכפורים חל היובל ומש&quot;ה נותן למשמר היוצא דברשותו חל היובל. ומ&quot;מ אני מתקשה בדעת הרא&quot;ם שכתבנו לעיל דס&quot;ל דלדעת רש&quot;י אף דלר׳ ישמעאל אין הדבר תלוי כי אם במשמר שחל יוה&quot;כ של יובל דלא ימנע אי אזלינן בתר התחלת היובל מאיזה זמן שהתחיל א&quot;כ מר&quot;ה חייל יובל וינתן למשמר שפגע בו ר&quot;ה של יובל ואם טעמו הוא משום דכיון דעדיין הדבר תלוי עד יוה&quot;כ מש&quot;ה אינו נותן כי אם למשמר שפגע בו יוה&quot;כ של יובל היכי קאמר רש&quot;י דינתן למשמר היוצא משום דברשותו התחיל היובל אמש דנהי שהתחיל אמש מ&quot;מ אינו נגמר עד שיתקעו בשופר בעצומו של יום דודאי לא היו תוקעים בלילה כי אם ביום דומיא דתקיעת ראש השנה וכך הוא לר׳ ישמעאל ליל יוה&quot;כ כמו ר&quot;ה דבכולה היובל חל בהם אבל לא נגמר עד שיבא היום ויתקעו בשופר אבל לפי מה שכתבנו ניחא דלכ&quot;ע אזלינן בתר התחלת הדבר ולר׳ ישמעאל זוכה בו המשמר שחל בר&quot;ה של יובל משום דמר&quot;ה התחיל היובל ואם חל בשבת זוכה משמר היוצא משום דבין השמשות של ר&quot;ה התחיל היובל וברשות משמר היוצא התחיל היובל ומה שאינו נותן למשמר שחל בו ר&quot;ה הוא משום דלרבנן אינו מתחיל היובל מר&quot;ה כי אם מיוה&quot;כ וכמו שכתבנו. וקושיא זו שהקשינו להרא&quot;ם שייכא ג&quot;כ להרב לח&quot;מ דסבר דלמ&quot;ד דהיובל מתחיל מר&quot;ה ונגמר ביוה&quot;כ שינתן למשמר של יוה&quot;כ דא&quot;כ היכא דחל בשבת אמאי קאמר דינתן למשמר היוצא משום דמאמש התחיל היובל דנהי דהתחיל מ&quot;מ הרי עדיין לא נגמר עד שיתקעו ביוה&quot;כ. ודע שראיתי בירוש׳ בסוף מס׳ סוכה והובא ג&quot;כ שם בפ&quot;ד דתעניות הלכה ב׳ המה יסד דויד ושמואל הרואה באמונתם אומנות גדולה היתה שם שאין משמר נוטל ושונה בשדה אחוזה עד שיטול חבירו ע&quot;כ. ולא ידעתי כוונת הדברים וגם לא ראיתי לרבינו שהביא זה הירושלמי:</p>
               </div>
             </div>
@@ -396,13 +465,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-4">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-26-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-26-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-26-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:26:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:26:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-4-26-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 4:26:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-4-26">Mishneh Torah, Appraisals and Devoted Property 4:26</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד דִּין מַקְדִּישׁ שְׂדֵה מִקְנָתוֹ. שָׁמִין אוֹתָהּ בְּדָמֶיהָ וְרוֹאִין כַּמָּה הִיא שָׁוָה עַד הַיּוֹבֵל וּפוֹדֶה אוֹתָהּ כָּל מִי שֶׁיִּרְצֶה. וְאִם פָּדָה אוֹתָהּ הַמַּקְדִּישׁ אֵינוֹ מוֹסִיף חֹמֶשׁ וּפִדְיוֹנָהּ לְבֶדֶק הַבַּיִת כִּשְׁאָר עֲרָכִין וְדָמִים. וּכְשֶׁיַּגִּיעַ הַיּוֹבֵל תַּחְזֹר לַבְּעָלִים הָרִאשׁוֹנִים שֶׁמְּכָרוּהָ. בֵּין שֶׁנִּפְדֵית מִיַּד הַגִּזְבָּר וַהֲרֵי הִיא יוֹצְאָה מִיַּד אַחֵר. בֵּין שֶׁלֹּא נִפְדֵית וַהֲרֵי הִיא יוֹצְאָה מִיַּד הַהֶקְדֵּשׁ הֲרֵי זוֹ חוֹזֶרֶת לַמּוֹכֵר וְאֵינָהּ יוֹצְאָה לַכֹּהֲנִים שֶׁאֵין אָדָם מַקְדִּישׁ דָּבָר שֶׁאֵינוֹ שֶׁלּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד דין מקדיש שדה מקנתו כו׳.</strong> כתב רש&quot;י בפי׳ החומש פרשת בחקותי וז&quot;ל ואם את שדה מקנתו חילוק יש בין שדה מקנה לשדה אחוזה ששדה מקנה לא תתחלק לכהנים ביובל לפי שאינו יכול להקדישה אלא עד היובל שהרי ביובל היתה עתידה לצאת מידו ולשוב לבעלים לפיכך אם בא לגאלה יגאל בדמים הללו הקצובים לשדה אחוזה ואם לא יגאל וימכרנה גזבר לאחר או אם יגאל הוא בשנת היובל ישוב השדה לאשר קנהו מאתו אותו שהקדישה ע&quot;כ. והנה מ&quot;ש יגאל בדמים הללו הקצובים לשדה אחוזה לא ידעתי היכא רמיזא דדמים הקצובים בתורה לא נאמרו אלא בשדה אחוזה אבל שדה מקנה פודין אותה בשוייה כמה שוה עד היובל וכ&quot;כ ריש פ&quot;ד מערכין דין כ&quot;ו כיצד דין מקדיש שדה מקנתו שמין אותה בדמיה כו׳. הן אמת שרבינו כתב לעיל בדין י&quot;ט המקדיש שדה אחוזתו והגיע היובל ולא נפדית אלא הרי היא תחת יד הקדש הכהנים נותנים את דמיה כו׳ וכתב שם מרן ומצאתי כתוב דמיה הכתוב בתורה נ׳ סלעים ע&quot;כ (ומ&quot;ש בספרים שלשה הוא ט&quot;ס שנתחלף לו בין נו&quot;ן לגימ&quot;ל) הרי שכתב דמיה ופירושו הוא דמיה הקצובין בתורה ואם כן הכא נמי דכתב רבינו בדמיה הכוונה היא בדמיה הקצובין לה בתורה ונראה דהא ליתא לפי שכתב שמין אותה כו׳ ושומא לא שייך בדבר קצוב ועוד שכתב אחר כך בדין כ&quot;ז וז&quot;ל כל שדה ששמין אותה להקדש למכור אותה בדמיה מכריזין עליה ששים יום כו׳ ואי אמרת דגם שדה מקנה יש לו דמים קצובים בתורה א&quot;כ דין זה דהכרזה דששים יום לא שייך בפ׳ זה כלל דמלתא דפשיטא היא דהכרזה לא שייך במלתא דדמיו קצובים בתורה אלא ודאי דרבינו אדסמיך ליה קאי דהיינו אשדה מקנה ועלה קאי דיני הכרזה גם בההיא שכתב מרן מצאתי כתוב אף שרש&quot;י פירש כן בפירוש בסוגית הגמרא דאמרינן דר׳ יהודה גמר קדש קדש ממקדיש בית וכן פירש רבינו עובדיה במתני׳ מ&quot;מ נראה לי דסתמיות דברי רבינו היא דס&quot;ל דכהנים פודים בשויונה ונראה דאין כאן הכרזה שאפי׳ אם בא אחר להוסיף בדמים אין שומעין לו אלא שמים אותה כמה היא שוה ונותנים דמיה ותהיה אחוזה להם לפי שקצבה זו שנתנה תורה דחמשים שקל אינו אלא בפודה קודם היובל אבל כל שבא היובל ולא נפדה בטלה קצבת התורה ולא אזלינן אלא בתר שוייה ולא ידעתי כפי סברת רש&quot;י הגע עצמך שקרקע זה אינו שוה דמים הקצובים לו מן התורה הנאמר שהארץ לעולם תהיה עומדת ברשות ההקדש הא ודאי לא יתכן אלא ודאי דכיון שעבר יובל ולא נפדה שמין אותו ונותנים הכהנים דמיו ותהיה אחוזה להם ולסברת רש&quot;י יש לדקדק שכתב שהכהנים נותנים חמשים שקל לפי שדבר פשוט הוא שחמשים שקל הוא דוקא בהקדיש אחר היובל מיד וגאלה מיד צריך שיתן חמשים שקל אבל כל שנגאלה אחר שנים רואין כמה שנים יש משעת הפדיון עד שיבוא היובל ולפי ערכם יתן והנה הכא שלא נגאל נהי דלא מצינן למימר דניזיל בתר פדיון שהרי בזה לא היה פדיון אבל ניזיל בתר שעת ההקדש ואפשר דלעולם אזלינן בתר שעת ההקדש ומה שפירש חמשים שקל מלתא פסיקתא קאמר דהיינו היכא דהקדיש תיכף אחר היובל דהא קרא בהכי מיירי אבל לעולם דאם היה ההקדש י׳ שנים אחר היובל דנותן לפי הערך של ארבעים שנה שהרי אחר שיהיה גואל לפי ערך זה היה נותן ולמה יגרע כחו של כהן. ומיהו נ&quot;ל דלדעת רש&quot;י לעולם הכהנים נותנים חמשים שקלים דדוקא בפודה קודם היובל דחוזר לכהנים ביובל נתנה תורה קצבה לשנים שיש עד היובל אבל הכהנים שהיא אחוזה להם לעולם נותנים קצבה שלמה של נ׳ שקלים ואע&quot;פ שגם הבעלים כשפודים אינם נותנים אלא לפי חשבון השנים אע&quot;פ שאינה יוצאה מתחת ידיהם מ&quot;מ התורה לא חלקה בפדיון בין בעלים ובין אחרים אבל כהנים כשפודים שאין רשות לאחרים בה ונשארה להם לאחוזה צריכים ליתן קצבה שלמה דהיינו נ׳ שקלים ומ&quot;מ כבר כתבתי דלדעתי סברת רבינו היא דכהנים פודין אותה בשוייה. והנה נחזור לענינינו דסברת רש&quot;י הלזו שכתב גבי שדה מקנה דגואל לפי דמים הקצובים בשדה אחוזה לא ידעתי היכא רמיזא וכעת הדבר צריך אצלי תלמוד: <br><strong>ודע </strong>שמדברי רש&quot;י הללו היה נראה דלעולם שדה מקנה אינה חוזרת לבעלים הראשונים אלא היכא דנפדית או שמכרה הגזבר לאחר או שגאלה המקדיש אבל אם לא יצאת מתחת יד הקדש אינה יוצאה לבעלים הראשונים ואפשר שהטעם הוא משום דאין הקדש יוצא מידי פדיון אך קשה דכיון דאין אדם מקדיש דבר שאינו שלו כי נמי לא יצאה מיד הגזבר אמאי לא תחזור לבעלים הראשונים ורבינו כתב בפירוש ואפילו שלא נפדית והרי היא יוצאה מיד ההקדש ה&quot;ז חוזרת למוכר. וראיתי להתוספות בספ&quot;ו דערכין שכתבו שדה מקנה אינה יוצאה לכהנים ביובל שאין אדם מקדיש דבר שאינו שלו לפום ריהטא משמע אם גאל אחר מיד הגזבר לפני היובל ורש&quot;י פירש בפי׳ החומש שלו דאפילו לא גאלה אחר אלא שעדיין היא ביד הגזבר תצא בחנם ביובל לבעליה הראשונים אשר לו אחוזת הארץ ע&quot;כ. ונראה שגירסתם היתה בדברי רש&quot;י או אם לא נגאלה בשנת היובל כו׳ ומאי דלא נקט רש&quot;י אלא שתי חלוקות דהיינו היכא דמכרה לאחר או שלא נגאלה כלל והרי היא ביד הגזבר ולא נקט נמי היכא דגאלה המקדיש משום דפירושא דקרא שתחזור לבעלים הראשונים לא איצטריך להיכא שהוא ביד המקדיש דפשיטא שיחזירנה לאשר קנהו מאתו ודוקא היכא דהיא ביד הגזבר או שלקחה אחר מיד הגזבר איצטריך קרא לומר שתצא הקרקע לבעלים הראשונים והרא&quot;מ גירסתו היתה כגירסתנו ולא ידעתי למה לא נתעורר בכל מה שכתבנו:</p>
               </div>
             </div>
@@ -413,13 +487,18 @@
             </nav>
           </section>
           <h4 id="chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-5">Chapter 5</h4>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-4-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-4-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:4:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-4-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-5-4">Mishneh Torah, Appraisals and Devoted Property 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גְּאָלוֹ אַחֵר מִיַּד הַהֶקְדֵּשׁ אִם הָיָה בֵּית עָרֵי חוֹמָה וְקָם בְּיַד הַגּוֹאֵל שְׁנֵים עָשָׂר חֹדֶשׁ נֶחְלָט. וְאִם הָיָה בֵּית הַחֲצֵרִים וְהִגִּיעַ הַיּוֹבֵל וְהוּא בְּיַד הַגּוֹאֵל חוֹזֵר לִבְעָלָיו בַּיּוֹבֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גאלו אחר מיד ההקדש וכו׳.</strong> פ&quot;ח דערכין ל&quot;ג ופסק כרב הונא דתניא כוותיה:</p>
               </div>
             </div>
@@ -429,13 +508,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-5-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-5-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-5-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:5:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:5:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-5-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-5-5">Mishneh Torah, Appraisals and Devoted Property 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ בְּהֵמָה טְהוֹרָה תְּמִימָה לְבֶדֶק הַבַּיִת אַף עַל פִּי שֶׁעָבַר עַל עֲשֵׂה מַה שֶּׁעָשָׂה עָשׂוּי וְחָלָה קְדֻשָּׁה עָלֶיהָ וְנִפְדֵית כְּשֶׁהִיא תְּמִימָה. וּמַעֲרִיךְ אוֹתָהּ הַכֹּהֵן בְּדָמֶיהָ. וְהַדָּמִים יִפְּלוּ לְבֶדֶק הַבַּיִת. וְאֵין הַפּוֹדֶה אוֹתָהּ פּוֹדֶה אֶלָּא עַל מְנָת לְהַקְרִיבָהּ לַמִּזְבֵּחַ לְמַה שֶּׁהִיא רְאוּיָה. שֶׁכָּל דָּבָר הָרָאוּי לַמִּזְבֵּחַ אֵינוֹ יוֹצֵא מִידֵי מִזְבֵּחַ לְעוֹלָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש בהמה טהורה תמימה לבדק הבית כו׳ וכו׳.</strong> יש להסתפק בדין זה שכל דבר הראוי למזבח אינו יוצא מידי מזבח לעולם אם הוא מן התורה או מדרבנן. והנה ממ&quot;ש בדין ז׳ ועל זה נאמר ואם בהמה אשר יקריבו ממנה קרבן לה׳ כו׳ נראה דס&quot;ל שהוא מן התורה ויש לתמוה דמסוגיא דפ׳ המנחות (דף ק&quot;א) מוכח בהדיא דזה אינו אלא מדרבנן משום מומין דפסלי בבהמה דאפילו בדוקין שבעין פסיל מש&quot;ה גזרו רבנן שלא יהיו נפדין כי אם למזבח וכן כתבו התוס׳ בפ&quot;ו דזבחים (דף נ&quot;ט)דדין זה הוא מדרבנן והביאו ראיה זו שכתבנו. וראיתי להתוס׳ בפרק פרת חטאת (דף קי&quot;ג)שהקשו לרש&quot;י דרצה לומר דכי ממעטינן קדשי בדק הבית הוא אפי׳ בתמימים והביא ראיה מפרת חטאת שהיא תמימה ונתמעטה לפי שאינה ראויה לבא אל אהל מועד ועל זה הקשו עליו דאינה ראיה דשאני מתפיס תמימים דאמרינן בסוף תמורה דכל הראוי למזבח אינו יוצא מידי מזבח לעולם ע&quot;כ. ולפי מ&quot;ש שדין זה אינו אלא מדרבנן לא ידעתי מה הקשו לרש&quot;י דס&quot;ל דקרא מיעט אף התמימים דומיא דפרת חטאת. ואם כוונתם דאף בלא בקיאות זה עדיין יש לחלק בין פרת חטאת לקדשי בדק הבית התמימים מכל מקום הבקיאות שהביאו לא ידעתי לאיזה תכלית הוא:</p>
               </div>
             </div>
@@ -445,13 +529,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-6-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-6-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-6-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:6:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:6:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-6-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-5-6">Mishneh Torah, Appraisals and Devoted Property 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִנַּיִן שֶׁאָסוּר לְהַקְדִּישׁ תְּמִימִין לְבֶדֶק הַבַּיִת שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כב כג)</span> &quot;וְשׁוֹר וָשֶׂה שָׂרוּעַ וְקָלוּט נְדָבָה תַּעֲשֶׂה אֹתוֹ&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ נְדָבָה לְבֶדֶק הַבַּיִת. וְכֵן הַדְּבָרִים מַרְאִין שֶׁאֵינָהּ אֶלָּא קְדֻשַּׁת דָּמִים. שֶׁאֵין מַקְרִיבִין בַּעַל מוּם לַמִּזְבֵּחַ שֶׁנֶּאֱמַר אֹתוֹ <span class="source-small">(ויקרא כב כג)</span> &quot;אוֹתוֹ&quot; אַתָּה עוֹשֶׂה נְדָבָה לְבֶדֶק הַבַּיִת וְאֵין אַתָּה עוֹשֶׂה תְּמִימִים נְדָבָה לְבֶדֶק הַבַּיִת. וְלָאו הַבָּא מִכְּלַל עֲשֵׂה כַּעֲשֵׂה הוּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומנין שאסור להקדיש תמימים לבדק הבית כו׳.</strong> כתב מרן פ&quot;ק דתמורה אמרינן דעובר אף בל&quot;ת ואיני יודע למה השמיטו רבינו ובספרי איתא הכי דברי ר׳ יהודה וחכ&quot;א אין בו לא תעשה ופסק כחכמים ועיין בס&quot;פ כל שעה:</p>
               </div>
             </div>
@@ -461,13 +550,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-7-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-7-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-7-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:7:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:7:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-7-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-5-7">Mishneh Torah, Appraisals and Devoted Property 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ אֶת בְּהֶמְתּוֹ סְתָם אוֹ שֶׁהִקְדִּישׁ אֶת נְכָסָיו סְתָם רוֹאִין כָּל בְּהֵמָה תְּמִימָה הָרְאוּיָה לְהַקְרִיב עַל גַּבֵּי הַמִּזְבֵּחַ זְכָרִים יִמָּכְרוּ לְצָרְכֵי עוֹלוֹת וְיַקְרִיבוּ אוֹתָן עוֹלוֹת. וְהַנְּקֵבוֹת יִמָּכְרוּ לְצָרְכֵי שְׁלָמִים וְיַקְרִיבוּ אוֹתָן שְׁלָמִים. וְהַדָּמִים יִפְּלוּ לְבֶדֶק הַבַּיִת שֶׁסְּתָם הֶקְדֵּשׁוֹת לְבֶדֶק הַבַּיִת. וְעַל זֶה נֶאֱמַר <span class="source-small">(ויקרא כז ט)</span> &quot;וְאִם בְּהֵמָה אֲשֶׁר יַקְרִיבוּ מִמֶּנָּה קָרְבָּן לַה׳ כּל אֲשֶׁר יִתֵּן מִמֶּנּוּ לַה׳ יִהְיֶה קֹּדֶשׁ&quot; כְּלוֹמַר כָּל הָרָאוּי לְקָרְבָּן עַל גַּבֵּי הַמִּזְבֵּחַ יִקָּרֵב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש את בהמתו סתם כו׳.</strong> עיין בלח&quot;מ סוף פ&quot;ה מהלכות מעשה הקרבנות ובס׳ קרבן חגיגה סי׳ ע&quot;ב:</p>
               </div>
             </div>
@@ -477,13 +571,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-10-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-10-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:10:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-10-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-5-10">Mishneh Torah, Appraisals and Devoted Property 5:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִקְדִּישׁ נְכָסָיו סְתָם וְהָיְתָה בָּהֶן הַקְּטֹרֶת שֶׁנּוֹתְנִין לְאָמָּנִין בִּשְׂכָרָן עַד שֶׁיַּחְזְרוּ וְיִקְחוּ אוֹתָהּ כְּמוֹ שֶׁבֵּאַרְנוּ בִּשְׁקָלִים. הֲרֵי זוֹ תִּנָּתֵן לְאָמָּנִין בִּשְׂכָרָן כְּמוֹ שֶׁעוֹשִׂין בְּמוֹתַר הַקְּטֹרֶת. וְכֵן עוֹשִׂין אִם יֵשׁ בִּנְכָסָיו אֶחָד מִסַּמָּנֵי הַקְּטֹרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקדיש נכסיו סתם והיתה בהם הקטרת כו׳.</strong> דברי רבינו הם משנה ערוכה בפ&quot;ד דשקלים משנה ו׳ דמיירי בקטורת והכי אמרי׳ בפ&quot;ק דכריתות (דף ו׳) והתם מוקמינן לה באחד מסמני הקטרת ומשכחת לה נמי באותה שנותנין לאומנין בשכרן והכי מוקי לה בירוש׳ ומשום הכי כתב רבינו שתי האוקמתות:</p>
               </div>
             </div>
@@ -493,13 +592,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-12-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-12-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:12:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-12-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-5-12">Mishneh Torah, Appraisals and Devoted Property 5:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמַּקְדִּישׁ בְּהֵמָה בְּחַיֶּיהָ בֵּין טְהוֹרָה בֵּין טְמֵאָה בֵּין קָדְשֵׁי הַבַּיִת בֵּין קָדְשֵׁי מִזְבֵּחַ שֶׁנָּפַל בָּהֶן מוּם אוֹ תְּמִימָה הָרְאוּיָה לִקָּרֵב כְּמוֹ שֶׁיִּתְבָּאֵר הֲרֵי זוֹ צְרִיכָה הַעֲמָדָה בְּבֵית דִּין שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז יא)</span> &quot;וְהֶעֱמִיד אֶת הַבְּהֵמָה&quot;. לְפִיכָךְ אִם מֵתָה הַבְּהֵמָה קֹדֶם שֶׁתֵּעָרֵךְ וְתִפָּדֶה אֵין פּוֹדִין אוֹתָהּ אַחַר שֶׁמֵּתָה אֶלָּא תִּקָּבֵר. אֲבָל אִם הִקְדִּישׁ שְׁחוּטָה אוֹ נְבֵלָה לְבֶדֶק הַבַּיִת הֲרֵי זוֹ תִּפָּדֶה כִּשְׁאָר מִטַּלְטְלִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המקדיש בהמה בחייה וכו׳.</strong> עיין במ&quot;ש מרן לקמן רפ&quot;י מה׳ בכורים דין ב׳ ועיין במ&quot;ש התוס׳ בכורות (דף כ&quot;ו) ד&quot;ה התולש. ומ&quot;ש לפיכך אם מתה הבהמה קודם שתערך ותפדה כו׳ עיין בספ&quot;ה דמס׳ מעילה ובמ&quot;ש רבינו פ&quot;ו מה׳ מעילה דין ו׳ ועיין בתוס׳ פ׳ אחרון דתמורה (דף נ&quot;ג) ד&quot;ה כדתניא ועיין בתי&quot;ט פ&quot;ה דמעילה משנה ג׳ ודוק. כתבו התוס׳ ר&quot;פ ראשית הגז דאפי׳ העמיד והעריך כל שלאנפדית בחייה תקבר וכן הוא דעת רבינו דנקט ותפדה לאשמועינן דבעינן פדיה מחיים יע&quot;ש שיש ללמוד דגיזה דקדשים אף שהם מטלטלים אינן נפדים לפי שמתחלה היו מחוברים בבהמה שהיא בת העמדה והערכה:</p>
               </div>
             </div>
@@ -509,13 +613,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-13-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-13-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-13-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:13:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:13:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-13-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-5-13">Mishneh Torah, Appraisals and Devoted Property 5:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁחַט בָּהּ שְׁנַיִם אוֹ רֹב שְׁנַיִם וַעֲדַיִן הִיא מְפַרְכֶּסֶת הֲרֵי הִיא כְּחַיָּה לְכָל דְּבָרֶיהָ וְנֶעֱרֶכֶת וַהֲרֵי הִיא בִּכְלַל וְהֶעֱמִיד וְהֶעֱרִיךְ עַד שֶׁתָּמוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שחט בה שנים או רוב שנים כו׳.</strong> הכי איתא בפ&quot;ב דחולין (דף ל׳) וכ&quot;ת בעי העמדה והערכה והתנן שחט בה שנים או רוב שנים ועדיין היא מפרכסת הרי היא כחיה לכל דבריה אך התוס׳ פ׳ מרובה (דף ע&quot;ו) כתבו דאין העמדה והערכה לנשחטה כהלכתה וההיא דשחט בה שנים כו׳ מיירי בישראל בטמאה או בעכו&quot;ם בטהורה דאינה ניתרת באכילה זו וההיא דפ&quot;ב דחולין משום דלא שחט עדיין רוב שנים וכ&quot;כ בפ&quot;ה דבכורות (דף ל&quot;ב) ד&quot;ה הא לאחר שחיטה. ולפי זה ניחא ההיא דפ&quot;ק דשבועות (דף י&quot;א) דפריך הא בעינן העמדה והערכה וכ&quot;כ בר&quot;פ כסוי הדם (דף פ&quot;ד) ועיין בחידושי הרשב&quot;א שם. ודעת רבינו הוא כהראב&quot;ד שהביא שם הרשב&quot;א והרמב&quot;ן דחה דברי הראב&quot;ד כמבואר שם:</p>
               </div>
             </div>
@@ -525,13 +634,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-5">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-17-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-17-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-17-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:17:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:17:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-5-17-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 5:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-5-17">Mishneh Torah, Appraisals and Devoted Property 5:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן הָאוֹמֵר רֹאשׁ עֶבֶד זֶה אוֹ לֵב חֲמוֹר זֶה הֶקְדֵּשׁ לַמִּזְבֵּחַ אוֹ שֶׁאָמַר רֹאשִׁי הֶקְדֵּשׁ לַמִּזְבֵּחַ אֵינוֹ חַיָּב אֶלָּא בִּדְמֵי רֹאשׁוֹ וְרוֹאִין כַּמָּה יִשְׁוֶה אוֹתוֹ אֵיבָר אִלּוּ הָיָה נִמְכָּר וְיָבִיא בְּדָמָיו קָרְבָּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן האומר ראש עבד זה וכו׳.</strong> כתב מרן ע&quot;ד הראב&quot;ד אילו לא היה קשה אלא מעבד הו&quot;א דבעבד שלא קבל עליו מצות עסקינן דעכו&quot;ם הוא ואינו אסור בהנאה אלא ישראל. ועיין בתשובת הרשב&quot;א סי׳ שס&quot;ה ובס׳ ברכת הזבח דף ז׳ ע&quot;א ודוק. (א&quot;ה עיין במ&quot;ש הרב המחבר בפי&quot;ד מהלכות אבל יע&quot;ש באורך):</p>
               </div>
             </div>
@@ -542,13 +656,18 @@
             </nav>
           </section>
           <h4 id="chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Chapter 6</h4>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-1-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-1-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-1-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:1:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-1">Mishneh Torah, Appraisals and Devoted Property 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הָאוֹמֵר הֲרֵי זֶה הֶקְדֵּשׁ לְבֶדֶק הַבַּיִת אוֹ חֵרֶם לְבֶדֶק הַבַּיִת אוֹ חֵרֶם לַשָּׁמַיִם. וְכֵן בְּכָל נְכָסָיו אִם אָמַר כָּל נְכָסָיו הֶקְדֵּשׁ אוֹ חֵרֶם לְבֶדֶק הַבַּיִת אוֹ חֵרֶם לַשָּׁמָיִם הֲרֵי אֵלּוּ יִפְּלוּ לְבֶדֶק הַבַּיִת. אֲבָל אִם אָמַר חֵרֶם סְתָם הֲרֵי אֵלּוּ לַכֹּהֲנִים. שֶׁסְּתָם חֲרָמִים לַכֹּהֲנִים. שֶׁנֶּאֱמַר <span class="source-small">(במדבר יח יד)</span> &quot;כָּל חֵרֶם בְּיִשְׂרָאֵל לְךָ יִהְיֶה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל אם אמר חרם סתם הרי אלו לכהנים כו׳.</strong> מרן ז&quot;ל תמה דלמה פסק כרבנן דרב פסק כר׳ יהודה בן בתירא דאמר סתם חרמים לבדק הבית. ועיין בלח&quot;מ שכתב טעם נכון למה פסק כרבנן וכ&quot;כ הרב החינוך ועיין בס׳ ברכת הזבח דף קס&quot;א ע&quot;א. ול&quot;נ שטעמו הוא מההוא דאמרי׳ בתמורה (דף ל&quot;ב) א&quot;ר הונא קדשי מזבח שהתפיסו לחרמי כהנים לא עשה ולא כלום מ&quot;ט אמר קרא כל חרם קדש קדשים הוא לה׳ ורב ס&quot;ל כרבנן דמוקמי האי קרא בהתפסה דהקדש עילוי וס&quot;ל לרב הונא דהא דאמרינן מלמד שחל על קדשים היינו דוקא חרמים דלה׳ אבל לר׳ יהודה לא מתוקם האי דרשה דהא לדידיה קרא לאו בהתפסת עילוי מיירי שנמעט ממקרא התפסת חרמי כהנים וכ&quot;כ התוס׳ דהך דרשה הוי לרבנן וכן נראה מדברי רש&quot;י שכתב חרמי כהנים היינו סתם חרמים כו׳. ויש לדקדק בדבריו דמי הזקיקו לפסוק כרבנן אלא נראה דס&quot;ל דהך דרשה הוי דוקא אליבא דרבנן והוקשה לו מלישנא דחרמי כהנים דמשמע דסתמן לא הוי לכהנים לזה כתב דהיינו סתם חרמים וכיון דרב הונא פסק כרבנן פסק רבינו כוותיה ואע&quot;ג דרב הונא איתותב לא איתותב במה שפסק כרבנן דהא סתמא דתלמודא פריך והא רב הונא קרא קאמר ואי איתא דס&quot;ל דהלכתא כר׳ יהודה אימא דקרא לאו בהתפסה דהקדש עילוי מיירי וכר&quot;י וא&quot;כ אזדא לה דרשה דרב הונא. אלא ודאי דס&quot;ל דהלכתא כרבנן ומש&quot;ה פריך והא רב הונא קרא קאמר ועולא נמי דקאמר אמר קרא חרם כל חרם ע&quot;כ כרבנן ס&quot;ל דקרא מיירי בהתפסת הקדש עילוי ומרבה מכל אפי׳ חרמי כהנים. ודע דהרא&quot;ש פסק כר&quot;י הובאו דבריו בטוי&quot;ד סי׳ ש&quot;ו יע&quot;ש:</p>
               </div>
             </div>
@@ -558,13 +677,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-3-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-3-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-3-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:3:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:3:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-3-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-3">Mishneh Torah, Appraisals and Devoted Property 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכָל מִי שֶׁהֶחֱרִים אוֹ הִקְדִּישׁ כָּל נְכָסָיו לוֹקְחִין כָּל מַה שֶּׁיֵּשׁ לוֹ וַאֲפִילוּ תְּפִלִּין שֶׁבְּרֹאשׁוֹ. וְאֵין צָרִיךְ לוֹמַר כְּלֵי אֻמְּנוּתוֹ וּבְגָדָיו שֶׁהַכּל הֶקְדֵּשׁ אוֹ חֵרֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לוקחים כל מה שיש לו ואפי׳ תפילין שבראשו.</strong> ומיהו ס&quot;ת הוי בעיא דלא איפשיטא בפ׳ מי שמת (דף קנ&quot;א):</p>
               </div>
             </div>
@@ -574,13 +698,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-4-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-4-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-4-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:4:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:4:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-4-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-4">Mishneh Torah, Appraisals and Devoted Property 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַה בֵּין חֶרְמֵי כֹּהֲנִים לְחֶרְמֵי שָׁמַיִם. שֶׁחֶרְמֵי שָׁמַיִם הֶקְדֵּשׁ וְנִפְדִּין בְּשָׁוְיֵיהֶן וְיִפְּלוּ הַדָּמִים לְבֶדֶק הַבַּיִת וְיֵצְאוּ הַנְּכָסִים לְחֻלִּין. וְחֶרְמֵי כֹּהֲנִים אֵין לָהֶן פִּדְיוֹן לְעוֹלָם אֶלָּא נִתָּנִין לַכֹּהֲנִים כִּתְרוּמָה. וְעַל חֵרֶם כֹּהֲנִים הוּא אוֹמֵר <span class="source-small">(ויקרא כז כח)</span> &quot;לֹא יִמָּכֵר וְלֹא יִגָּאֵל&quot;. לֹא יִמָּכֵר לְאַחֵר וְלֹא יִגָּאֵל לַבְּעָלִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מה בין חרמי כהנים לחרמי שמים כו׳.</strong> כתבו התוס׳ מפ׳ בתרא דתמורה (דף ל&quot;ב) דחרמי בד&quot;ה בין באומר חפץ זה בין באומר הרי עלי מנה אבל בחרמי כהנים לא שייך כי אם באומר חפץ זה אבל באומר הרי עלי לחרמי כהנים לא אמר כלום יע&quot;ש. ואין לוקין על לאו זה לפי שלא עשה כלום שהרי לא קנה לוקח כן כתב רבינו פ&quot;ו דבכורות דין ח׳. עיין בפ&quot;ק דגיטין (דף י&quot;ב) שפירש&quot;י דלא חייל הקדש אפחות משוה פרוטה והתוספות והרשב&quot;א שם הקשו עליו וכתבו דהקדש חייל אפחות משוה פרוטה יע&quot;ש. (א&quot;ה עיין בני חיי בחדושיו לגיטין שהקשה על רש&quot;י מההיא דקדושין, ולק&quot;מ דשאני התם דאין אשה מתקדשת בפחות משוה פרוטה אבל בהקדש יש מקדיש פחות מש&quot;פ וזו היא ששנינו אחד המרבה כו׳ וזה דוקא אין דעתו שיחול על פחות כדי להיות לוה ואוכל ועושה ופורע וא&quot;א לו בענין אחר כדי להתפרנס):</p>
               </div>
             </div>
@@ -590,13 +719,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-8-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-8-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-8-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:8:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:8:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-8-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-8">Mishneh Torah, Appraisals and Devoted Property 6:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ קָדְשֵׁי מִזְבֵּחַ לְבֶדֶק הַבַּיִת הֲרֵי הַהֶקְדֵּשׁ חָל עֲלֵיהֶן וְתֵעָרֵךְ הַבְּהֵמָה וְתִפָּדֶה וְיִפְּלוּ דָּמֶיהָ לְבֶדֶק הַבַּיִת וְהַבְּהֵמָה תִּקָּרֵב לְמַה שֶּׁהָיְתָה בַּתְּחִלָּה. אֲבָל הַמַּקְדִּישׁ קָדְשֵׁי בֶּדֶק הַבַּיִת לַמִּזְבֵּחַ וְאָמַר הֲרֵי זֶה עוֹלָה אוֹ שְׁלָמִים אוֹ הֶחֱרִימָם לַכֹּהֲנִים לֹא עָשָׂה כְּלוּם וְאֵין הֶקְדֵּשׁ מִזְבֵּחַ וְלֹא הַחֵרֶם חָל עַל קָדְשֵׁי בֶּדֶק הַבַּיִת שֶׁאֵין אָדָם מַקְדִּישׁ דָּבָר שֶׁאֵינוֹ שֶׁלּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל המקדיש קדשי ב&quot;ה למזבח כו׳.</strong> בפ׳ בתרא דתמורה (דף (דף ל&quot;ב) קדשי ב&quot;ה שהתפיסו בין לקדשי מזבח בין לחרמי כהנים לא עשה ולא כלום ופירש רש&quot;י דגופייהו לא מיפקע מב&quot;ה וטובת הנאה לא שייכא בהו ע&quot;כ. ולא ביאר רש&quot;י למה לא יתן דמיהם היכא דהוו נדר כמו מתפיס קדשי מזבח לב&quot;ה. ואפשר דלא שייך בקדשי ב&quot;ה האי מלתא משום דמדאפרשיה נפטר מנדרו דדוקא באומר הרי עלי עולה כל כמה דלא זכה מזבח לא נפטר מחיובו אבל האומר הרי עלי לב&quot;ה מכי אפרשיה אף שלא בא לידי גזבר נפטר מחיובו דכל היכא דאיתיה בי גזא דרחמנא איתיה. ובחרמי כהנים אעיקרא דדינא לא שייך בהו נדר דהאומר הרי עלי לכהנים לא אמר כלום וכמ&quot;ש התוס׳ שם ד&quot;ה והאמר ומש&quot;ה לא הוצרך רש&quot;י לתת טעם בין במתפיס קדשי ב&quot;ה או חרמי כהנים אלא למה לא יתן כפי טובת הנאה. ונראה דרש&quot;י אזיל לשיטתיה דפירוש טובת הנאה הוא דרשאי ליטול דבר מועט מישראל חבירו כדי שיתן עולתו לבן בתו כהן והאי טובת הנאה לא שייך בקדשי ב&quot;ה. אך התוס׳ (דף ל&quot;א) הכריחו דפי׳ נותן בה טובתה הוא כמה אדם רוצה ליתן בשור זה לעולה ואע&quot;פ שאינו רשאי ולפי זה הקשו על רש&quot;י דגם בקדשי ב&quot;ה שייך טובת הנאה כמו קדשי מזבח וכתבו דטעמא דלא שייך התפסה בקדשי ב&quot;ה משום דבקדשי מזבח יש שם הבעלים לפדותה כשהוממו אבל בקדשי ב&quot;ה שהקדישו אין לבעלים עליהם יותר משאר בני אדם לפיכך אין בידו להתפיס ע&quot;כ. וכן רבינו כתב טעם התוס׳ לפי שבפי׳ נותן את טובתה כתב כדברי התוס׳. ונראה שדקדק רבינו לומר ה&quot;ז עולה או שלמים למעט האומר ה&quot;ז לעולה או לשלמים משום דכי קאמר הכי לדמי קאמר וכמ&quot;ש רבינו בפט&quot;ו מה׳ מעשה הקרבנות אמר הרי עלי בהמה טמאה הרי אלו עולה לא אמר כלום אמר אלו לעולה ימכרו ויביא בדמיהם עולה. וה&quot;נ דכוותה. ויש לדקדק למה לא כתב רבינו דחרמי כהנים שהתפיסו בין לקדשי מזבח בין לקדשי ב&quot;ה לא עשה ולא כלום וכדתניא בסוף תמורה. ונראה דחרמי כהנים פשיטא ליה דלא שייך בהו התפסה דהא ליכא טובת הנאה לבעלים שהרי בין קרקע בין מטלטלים נותנים לכהנים שבאותו משמר וכמ&quot;ש רבינו לעיל אך בקדשי ב&quot;ה דשייך טובת הנאה. וכמו שכתבנו לעיל הוצרך לכותבו ולתת טעם לפי שאין אדם מקדיש דבר שאינו שלו. ודע דלרש&quot;י מטלטלי דחרמי כהנים תלוי במחלוקת דלמאן דלא מקיש מטלטלין לקרקעות שייך ביה התפסה ונותן את טובתה כמו מקדיש קדשי מזבח. אך לדעת התוס׳ ורבינו אינו תלוי במחלוקת דלא מיבעיא טובת הנאה דקדשי מזבח דהא לא שייך בחרמי כהנים משום דליכא מצוה להחרים לכהנים וליכא למימר כמה אדם רוצה ליתן להחרים אלא אפי׳ טובת הנאה דמקדיש ברור ליתיה במקדיש חרמי כהנים משום דאין אדם מקדיש דבר שאינו שלו וכמו שביארו התוספות:</p>
               </div>
             </div>
@@ -606,13 +740,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-10-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-10-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-10-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:10:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:10:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-10-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-10">Mishneh Torah, Appraisals and Devoted Property 6:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ עוֹלָה לְבֶדֶק הַבַּיִת אֵין בָּהּ אֶלָּא עִכּוּב גִּזְבָּרִין בִּלְבַד. וּמִדִּבְרֵי סוֹפְרִים שֶׁלֹּא תִּשָּׁחֵט עַד שֶׁתִּפָּדֶה. לְפִיכָךְ אִם עָבַר וּשְׁחָטָהּ הֲרֵי זוֹ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש עולה לבדק הבית אין בה אלא עכוב גזברין בלבד כו׳.</strong> בסוף תמורה (דף ל&quot;ה) אמר עולא אמר קרא כל חרם ומי אמר עולא הכי והאמר עולא מתפיס עולה לב&quot;ה אין בה אלא עכוב גזברין בלבד מדרבנן וקרא למעילה אתא. ורש&quot;י פירש דמן התורה אינו חייב דמים בהתפסת קדשי מזבח בין לב&quot;ה בין לכהנים אלא מדרבנן וקרא לא אתא אלא למעילה ומן התורה ליכא כי אם עכוב גזברין שאינה קריבה עד שיבואו הגזברים ויעמדו על גבה כדאמרינן היאך קרבנו של אדם קרב והוא אינו עומד על גביו. והנה פירושו מתמיה דא&quot;כ אמאי אסיקו לרב הונא בתיובתא אימא דרב הונא מן התורה קאמר אך מדרבנן מודה דאיכא חיוב דמים ובברייתא דקתני קדשי מזבח שהתפיסו לחרמי כהנים מה שעשה עשוי הוי מדרבנן אבל התפיסן לקדשי ב&quot;ה איכא חיוב דמים מן התורה ומפיק לה מלה׳. ונראה שזו היא קושית התוס׳ שהקשו דא&quot;כ תיקשי ליה מתני׳ וברייתא דלעיל דאמר מקדישים אותה הקדש עילוי, ומאי קושיא אימא דרבנן, אלא כוונתם היא דא&quot;כ אמאי אסיקו לרב הונא בתיובתא. ואפשר היה לומר דאה&quot;נ דלפי האמת ליכא תיובתא לרב הונא אך בתחלה לא אסיק אדעתיה סתמא דתלמודא דמאי דתנינן הקדש עילוי הוי מדרבנן. עוד הקשו התוס׳ דבסוף ערכין דריש מקרא דכל חרם שהחרם חל על קדשי קדשים ועל קדשים קלים ובגמ׳ פריך לרבי יהודה דחרם חל על קדשים מנ&quot;ל ומשני ס&quot;ל כר׳ ישמעאל דמפיק ליה מקרא דתקדיש אלמא מן התורה הוא. ויש לדחוק ולומר דלעולם אף דנימא דליכא אלא עכוב גזברין איצטריך קרא לאשמועינן זה דשייך בהו התפסה והגזברים צריכים לעמוד על גבה כדין בעלים וחכמים לא היו גוזרים דמים ושיהא אסור לשחטה עד שתפדה אלא לפי שראו דמן התורה איכא התפסה דהא איכא עכוב גזברין ועמדו והוסיפו שצריך שיתן דמיה. אבל אי מן התורה לא הוה שייך בה שום התפסה אפי׳ לעכוב גזברין פשיטא שחכמים לא היו מתקנין שיתן הקדש עילוי. והנה אף דנימא דקרא דכל חרם איצטריך לה׳ דכתיב בסיפא דקרא הוי מיותר ולא יבצר מאחד משני חלוקות, או שנאמר דאתא קרא דלה׳ לרבות הקדש עילוי דאי לא הו&quot;א דליכא אלא עכוב גזברין בלבד קמ&quot;ל לה׳ דצריך ליתן העילוי לה׳, או דקרא דלה׳ אתא למעט חרמי כהנים דוקא לה׳ איכא התפסה ולפי דרשא זו אכתי לא ידענו במתפיס לב&quot;ה אי ס&quot;ל דאיכא הקדש עילוי מן התורה ממשמעות דכל חרם קדש קדשים ואייתר קרא דלה׳ למעט או דאעיקרא דדינא אף במתפיס לב&quot;ה ליכא כי אם עכוב גזברין ולא ניחא ליה למידרש קרא דלה׳ לרבות אלא למעט חרמי כהנים דפשטא דלה׳ למעט הוא וסוגיא דשמעתא הכי אזלה דרב הונא מיעט מלה׳ חרמי כהנים ולפי זה ליכא בהו התפסה כלל אפי׳ מדרבנן משום דכיון דמיעט להו קרא מדין התפסה לגמרי ממעט ואפשר ג&quot;כ דלרב הונא אף במתפיס לב&quot;ה ליכא התפסה אלא לעכוב גזברין וכיון שכן ע&quot;כ מתפיס לחרמי כהנים ליכא בזה אפי׳ עכוב גזברין וכיון שכן ליכא בהו עילוי דמים מדרבנן דכיון דאין להם שום התפסה מן התורה פשיטא דלא תקנו חז&quot;ל שום דבר. ולפי זה אותיבו לרב הונא מברייתא ואסיק בתיובתא ומקשה והא רב הונא קרא קאמר כלומר לה׳ דכתיב דבא למעט וניחא טפי לומר דבא למעט מלומר דבא לרבות אמר עולא אמר קרא כל חרם וכיון דבפירוש ריבה קרא חרמי כהנים להתפסה ע&quot;כ לה׳ לא אתא למעט אלא לרבות ופריך ומי אמר עולא דקרא אתא לרבות והא אמר עולא המתפיס עולה לב&quot;ה אין בה אלא עכוב גזברים וא&quot;כ ע&quot;כ קרא דלה׳ אתא למעט חרמי כהנים ומשני אלא ודאי דהקדש עילוי לא הוי אלא מדרבנן דקרא לא קאמר אלא עכוב גזברין וקרא דלה׳ אתא למעילה ומה שכתב רש&quot;י ועולא כי תרצה מדרבנן תרצה וקרא אסמכתא בעלמא לא קאי לדרשא דכל דהא אפי׳ לפי האמת איצטריך לרבות חרמי כהנים להתפסת עכוב גזברין אלא קאי אדרשא דלה׳ דהוה ס&quot;ד דאתא לרבות הקדש עילוי. ומכל מקום דוחק גדול הוא כל זה וצ&quot;ע. והתוס׳ פירשו דעולא הכי קאמר אין להקדש בגוף הבהמה אלא שהגזברים יעכבו אותה מלשוחטה עד שישומו אותה ואז יהיה דמי השומא לב&quot;ה אבל לא יוכלו לעכב עד שיפדנה משום דאין להקדש בגוף הבהמה כלום ועל זה הקשו בגמ׳ דכיון דעולא ס&quot;ל דאיכא התפסה במתפיס לחרמי כהנים א&quot;כ ע&quot;כ דהחרמים חלים על גוף הבהמה דאי לא לא שייך התפסה בחרמים דהא האומר הרי עלי לחרמי כהנים לא אמר כלום ומשני מדרבנן כלומר מדאורייתא אינו חל כלל על גוף הבהמה ומדרבנן הוא חל על גוף הבהמה ואסור לשוחטה ועיקר קרא ודאי אתא לומר שחל על קדש לכל הפחות להתחייב מטעם חוב, ולפי דרך זה המתרץ לא חידש שום דבר אלא דהמקשה היה סבור דאי אמרת דאין להקדש בגוף הבהמה א&quot;כ לא שייך התפסה בחרמי כהנים והמתרץ השיב דאפילו הכי גזרת הכתוב היא שאף על פי שאין להקדש בגוף הבהמה כלום שיתחייב מטעם חוב וכמו שכתבו בד&quot;ה גופא ולפי זה לא היה צריך לומר דמדרבנן חל על גוף הבהמה שהרי בזה לא הועיל כלל לתרץ מה שהקשה לעולא מדידיה לדידיה אלא דקושטא דמלתא קאמר דמדרבנן מיהא חל ההקדש על גוף הבהמה דזה מוכרח הוא כדי ליישב הברייתא דתני אסור לשוחטה עד שתפדה והא דקאמר וקרא למעילה הוא דאתא ולפי דברי התוס׳ קרא להתפסה אתא התלמוד לא קאי אלא אלה׳ דדריש רב הונא למעט לעולא למאי אתא כיון דדרש כל לרבות וקושיא זו אה&quot;נ דהיה יכול להקשות תיכף ומיד דקאמר אמר קרא כל חרם אלא שבתחלה הקשה לעולא מדידיה לדידיה ולבסוף פריך מיתורא דקרא. ואפשר נמי לומר דהשתא תגדל הקושיא ביותר דמנא לן חדוש זה דאע&quot;ג דאין ההקדש חל על גוף הבהמה שייך התפסה בחרמי כהנים היה לנו לדרוש לה׳ למעט וכמו שדרש רב הונא ומשני למעילה הוא דאתא לה׳ וקרא דכל ע&quot;כ רבה חרמי כהנים להתפסה וגזרת הכתוב היא. ויש להסתפק לפי האמת דאף דאין ההקדש חל על גוף הבהמה מ&quot;מ שייך התפסה מגזירת הכתוב שיתחייב משום חוב אדם האומר הרי עלי לחרמי כהנים מנה אם יתחייב מגזרת הכתוב מטעם חוב דהיא היא או דלמא חדוש הוא ואין לך בו אלא חדושו והיכא דאתמר אתמר ולזה דעתי נוטה: <br><strong>עוד </strong>כתבו התוס׳ בשם ר&quot;י דפריך תלמודא מעולא דאמר המתפיס עולה לב&quot;ה ולא אמר לחרמי כהנים ש&quot;מ דסבר דחרמי כהנים לא אמר כלום כרב הונא וקשיא לעולא דדרש מכל להתפיס מחרמי כהנים ומשני מדרבנן הוא דדרש מכל חרם דחרמי כהנים לא שייך בהו התפסה כי אם מדרבנן ולפי פי׳ זה ניחא סוגית הגמרא דקאמר לעולם דרבנן וקרא למעילה הוא דאתא. אך קשה דאכתי תיקשי לר&quot;י מה שהקשו בתחלת הדבור לרש&quot;י דהא תני בברייתא מחרימין אותם חרמי כהנים ובמתני׳ נמי תני ומחרימין אותם וכי תימא דהוי מדרבנן לרש&quot;י נמי לא תקשי דמוקי לה מדרבנן. ונראה דר&quot;י לא בא אלא לתרץ מה שהקשו דלפי האמת דרשינן בסוף ערכין מקרא התפסה לזה תירץ ר&quot;י דהיינו דוקא במתפיס לב&quot;ה אבל מה שהקשו ממתניתין ומברייתא לא קשה לר&quot;י דאיכא לאוקמינהו לפי המסקנא מדרבנן. ודע דאף לר&quot;י אין הקדש ב&quot;ה חל על הבהמה דהא קאמר אין בה אלא עכוב גזברין דמשמע דאתא למעט דבר אחר וזהו שהקשו בגמ׳ מדתניא אסור לשוחטה עד שתפדה ומש&quot;ה בחרמי כהנים ליכא התפסה מן התורה לר&quot;י דכיון דאין ההקדש חל על גוף הבהמה הוה ליה כאומר הרי עלי מנה לחרמי כהנים דלא אמר כלום וכי תימא מדרבנן מיהא ליחייב באומר הרי עלי מנה כמו מתפיס לחרמי כהנים הא ליתא משום דשאני מתפיס דכי היכי דתקנו במתפיס לב&quot;ה יהיה ההקדש חל על גופה דהא אסור לשוחטה הכי נמי תקנו במתפיס לחרמי כהנים ומש&quot;ה שייך בהו התפסה אבל באומר הרי עלי דליכא מידי שיחול עליו החרם פשיטא דלא אמר כלום אפי׳ מדרבנן. עוד כתבו התוס׳ דקשה לפי׳ ר&quot;י דמאי פריך תלמודא קדש קדשים כתיב הא האי קרא דקדש קדשים לא מיירי בחרמי כהנים לפי׳ ר&quot;י דהא עולא לא דרש כל לרבות חרמי כהנים ותירצו דסמיך אקרא אחרינא דכתיב והיה השדה בצאתו ביובל קדש לה׳ כשדה החרם וגו׳ וקודש קדשים דקאמר לאו דוקא אלא קודש לה׳ ואי לאו לה׳ דכתיב בקרא דכל חרם דהוא מיותר לא הוה שמעינן מקרא דקודש לה׳ מעילה והא דדרשינן מעילה מקרא דלה׳ אע&quot;ג דקרא לא איירי אלא בחרמי ב&quot;ה מ&quot;מ לה׳ קאי ארישא דקרא דכתיב לא ימכר ולא יגאל דפשיטא דמיירי בחרמי כהנים והתוס׳ לא הוקשה להם אלא מקדש קדשים דפירושו התפסה דלפי פי׳ ר&quot;י לא מיירי בחרמי כהנים. עוד כתבו דאפי׳ דלא דרש כל לרבות חרמי כהנים מ&quot;מ מודה דפשטיה דקרא דקדש קדשים קאי לחרמי כהנים דכתיב מקמיה לא ימכר ולא יגאל והיינו חרמי כהנים דאין להם פדיון דאלו חרמי ב&quot;ה אדרבא כל עיקרן לפדיון קיימי ומיהו מ&quot;מ היה צריך יתור לרבות להקדש עילוי משדה קדש לה׳ דמשמע דממעט להו אבל לענין מעילה מפשטה שמעינן ע&quot;כ. ולא ידעתי היכי ממעט קדש לה׳ הקדש עילוי לחרמי כהנים וגם בתירוץ דסמיך אקרא אחרינא יש לדקדק בדבריהם. ודע שדעת רבינו הוא כפי הפירוש הא׳ דתוס׳ דאפי׳ מתפיס לחרמי כהנים איכא הקדש עילוי מן התורה שהרי סתם וכתב מחרים אדם בין קדשי קדשים בין קדשים קלים בין חרמי כהנים בין חרמי ב&quot;ה ולא חלק ביניהם משמע שדינם שוה ולא אתא עולא ללמדנו אלא שאין ההקדש ולא החרם חל על גוף הבהמה. נמצא דשלש מחלוקות בדבר לרש&quot;י ליכא הקדש עילוי מן התורה אפי׳ במתפיס לב&quot;ה ולרבינו והתוס׳ איכא הקדש עילוי מן התורה אפי׳ מתפיס לחרמי כהנים ולר&quot;י במתפיס לב&quot;ה איכא הקדש עילוי מן התורה אבל במתפיס לחרמי כהנים ליכא הקדש עילוי כי אם מדרבנן:</p>
               </div>
             </div>
@@ -622,13 +761,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-12-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-12-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-12-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:12:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:12:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-12-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-12">Mishneh Torah, Appraisals and Devoted Property 6:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ נְדָבָה וְהֶחֱרִימָן כֵּיצַד פּוֹדִין אוֹתָן. אוֹמְדִים כַּמָּה אָדָם רוֹצֶה לִתֵּן בִּבְהֵמָה זוֹ לְהַעֲלוֹתָהּ עוֹלָה שֶׁאֵינוֹ חַיָּב בָּהּ. וְכָל הַנּוֹתֵן אוֹתוֹ שִׁעוּר יַקְרִיב בְּהֵמָה זוֹ נְדָבָה כְּמוֹ שֶׁהָיְתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו נדבה והחרימן כו׳ וכל הנותן אותו שיעור יקריב בהמה זו נדבה כמו שהיתה </strong> ע&quot;כ. נראה מדבריו דדוקא גבי נדר שחייב באחריותו כופין את המתפיס שיפדנה כיון שעל כל פנים צריך לקיים נדרו אבל בנדבה שכבר נפטר מחיובו אין כופין את המקדיש לפדות אלא כל הנותן שיעור טובת הנאה יקריבנה וכן גבי בכור כתב כן לפי שאינו חייב באחריותו וכן כתב הרב בעל לחם משנה ואף שרש&quot;י בסוף ערכין ובפ׳ יש בקדשי מזבח פירש דמקדיש נותן טובת הנאה פשיטא דמודה לרבינו דאם אינו רוצה לפדות אין כופין אלא דרש&quot;י אורחא דמלתא נקט דאם המקדיש ירצה להקריבה צריך ליתן כפי האומד של טובת הנאה. ויש להסתפק במה שכתבנו לעיל דאליבא דכ&quot;ע אין ההקדש חל על גוף הבהמה דאין דין זה אמור אלא בעולה ודומה לה אבל בשלמים אליבא דר&quot;י הגלילי דאמר ממון בעלים הוא אפשר דהקדש חל על גופה. והיה נראה להביא ראיה לזה מההיא דאמרינן בפ&quot;ח דפסחים דף צ׳ דהא דאמרי׳ המוכר עולתו ושלמיו דלא אמר כלום לא מיתוקמא כרבי יוסי משום דלדידיה המכר קיים בשלמים משום דממון בעלים הוא והיה נראה דכ&quot;ש במקדיש דחל. ואפשר לדחות ולומר דדוקא מכר מוציא מיד קדשי מזבח אבל הקדש לא משום דע&quot;כ לא אמרי׳ אמירתו לגבוה כמסירתו להדיוט אלא להוציאו מחולין לקודש אבל מקודש לקודש אפשר דלא וכההוא מ&quot;ד דלא טענינן ליתמי היכא דהוו יתומים מיתומים. וכן יש להסתפק אם יתרבה האומד בשלמים לפי שהבשר נאכל לבעלים ומלבד האומד דכמה אדם נותן להקריב דורון איכא נמי אומד דבשר ולבאר כל זה צריך להאריך בדברי ר׳ יוסי הגלילי מאימת הוו ממון בעלים אי קודם שחיטה או לאחר שחיטה והדבר צריך אריכות דברים ובמקום אחר הארכתי בזה. ודע דמדקאמר עולא המתפיס עולה לב&quot;ה נראה קצת מדלא קאמר המתפיס קדשי מזבח דדוקא נקט עולה אבל שלמים אפשר דהקדש חל על גוף הבהמה ונראה שהוא דקדוק נכון ונפקא מינה שיהיה ההקדש חל על גופיה שיתחייב המועל ב׳ מעילות אחת משום קדשי מזבח ואחת משום קדשי ב&quot;ה וכדאמרינן בפ׳ יש בקדשי מזבח ומועלין ב׳ מעילות. ודע דהא דלא אמרינן גבי נדבות אומד בבכור שהוא כמה נותן כדי שיתן לבן בתו כהן כתבו התוס׳ בפ׳ בתרא דבכורות דף כ&quot;ג ד&quot;ה הקדש דאומד דבכור לא שייך אלא בדבר הנאכל א&quot;כ גבי דבר שאין נדר ונידב שייכא טובת הנאה זו אבל בדבר הנידר ונידב שייכא אידך טובת הנאה ואין כונתם בדבר שאין נידר ונידב כגון חטאות ואשמות דאלו פשיטא דדין נדר יש להם שהרי חייב באחריותן כיון שהם קרבנות חובה אלא כונתם היא כגון בכור ומעשר דכיון דלא הוו דורון לא שייכא בהו אלא טובת הנאה דבן בתו כהן. ומאי דאיכא בין שני חלוקים הללו הוא מעשר בהמה דלפי הפי׳ הא׳ דינו כדין שלמי נדבה וכמ&quot;ש רבינו וכפי החלוק השני דינו כבכור. ויש לדקדק דהתינח דבדבר שאין נידר ונידב לא שייך אומד דכמה אדם נותן להעלות עולה שאינו חייב בה ומשום דאינו דורון אך בדבר הנידר ונידב אמאי לא שייך בה אומד דבכור וע&quot;כ צריכין אנו לטעם א׳ דאומד דבכור לא שייך אלא בדבר הנאכל לכהנים ומדכתב רבינו המחרים את המעשר הרי זה כמחרים שלמי נדבה לפי שאינו חייב באחריותו ע&quot;כ יש לדקדק דהוה ליה למימר הרי זה כמחרים קרבן נדבה ואי ס&quot;ל דבשלמים איכא אומד טפי אומד דכמה אדם נותן להקריב קרבן שאינו חייב והבשר נאכל לבעלים ניחא דדמה המעשר לשלמים לפי שהוא נאכל לבעלים. וראיתי להרא&quot;ם בפ׳ ראה בפסוק כל הבכור שכתב אבל מה שפירש פה מקדישו אתה הקדש עילוי נותן להקדש כפי טובת הנאה שבו ובפ׳ המקדיש את שדהו פירש מקדישו אתה הקדש עילוי להעלותו בדמים ויתן טובת הנאה לכהן צ&quot;ע. ולא ידעתי מאי קשיא ליה דפשיטא דאם התפיס לב&quot;ה העילוי לב&quot;ה ואם התפיס לחרמי כהנים העילוי לכהנים וכמ&quot;ש רבינו וכמו שפי׳ רש&quot;י בפ׳ יש בקדשי מזבח ובמקדיש אותה הקדש עילוי שייכי שני החלוקות שאף חרמי כהנים נקראים קדש שהרי יש בהם מעילה אליבא דכ&quot;ע. ורש&quot;י אגב דבאידך מתני׳ דמפיק להקדש עילוי מקרא דכל חרם פירש שהוא לכהן משום דקרא בסתם חרמים ואליבא דחכמים סתם חרמים לכהנים פירש נמי אידך מתני׳ דרבי ישמעאל דכותה דמיירי במקדיש לחרמי כהנים ובפי׳ התורה פירש כפשוטו דסתם קדשים לב&quot;ה ותקדש הוא לב&quot;ה ולפיכך פירש דטובת הנאה לב&quot;ה. וראיתי לרבינו נתן בעל הערוך שכתב בערך על עלה דמתני׳ דמחרים אדם את קדשיו אם נדר נותן דמיהן פי׳ שאמר שור זה עלי לעולה שחייב באחריותו וכיון דלא סגי דלא מקריב ליה נותן דמיו לב&quot;ה אם נדבה הוא אותם קדשי מזבח שהקדיש לעילוי כיון דלא אמר הרי עלי אלא אמר הרי זו עולה דאינו חייב באחריותה אינו נותן לב&quot;ה אלא דמי טובת הנאה ומהו טובתה כמה אדם כהן אחד ממשמר העובד באותו זמן רוצה ליתן לבעל השור שימתין לו עד זמן משמרתו ויתנהו לו כדי שיזכה בעורו שאינו רשאי כהן זה להעלותו אלא בזמן משמרתו וכמה שאותו הכהן רוצה ליתן כן הוא חייב ליתן לב&quot;ה ע&quot;כ דבריו. ופירושו תמוה דאומד זה לא נאמר במשנה כי אם גבי בכור אבל בנדבה אומדין כמה אדם רוצה ליתן להקריב דורון לקונו אע&quot;פ שאינו חייב ואף לגבי בכור נקט כמה אדם רוצה ליתן בבכור זה ליתנו לבן בתו או לבן אחותו ופי׳ רש&quot;י אבל בן בנו כהן או בן אחותו כהן דהא דיהיב להאי טובת הנאה הוי כהן לא מצי יהיב ליה אגרא. ואע&quot;ג דלאו משום דידיה יהיב ליה כיון דלדידיה נמי זה הבכור נראה ככהן המסייע בבית הגרנות כו׳ ולפ&quot;ז יש לתמוה היכי קאמר כמה אדם כהן כו׳. ואולי שדין זה לא נאמר אלא במתנות כהונה כמו תרומות ומעשרות ובכור וכדומה אבל ההקרבה שזוכה בעורה לא הוי מתנות כהונה ומותר להעלותה בדמים. עוד יש לדקדק דאומד זה דרבינו נתן לא הוי אלא לעולה דהוי העור לכהנים אבל שלמים דאין העור לכהנים לא למדנו היכי אמדינן ליה ואולי דגבי שלמים שייך נמי אומד זה משום חזה ושוק שזוכה הכהן א&quot;נ בשלמים צריך ליתן כל הדמים שהרי הבשר נאכל לבעלים ולא הוצרך לאומד זה דכתב רבינו נתן אלא לעולה שכולה כליל ובמתני׳ נמי לא נקט דינים אלו כי אם בעולה ומ&quot;מ פי׳ רבינו נתן צריך אצלי תלמוד:</p>
               </div>
             </div>
@@ -638,13 +782,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-19-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-19-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-19-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:19:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:19:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-19-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-19">Mishneh Torah, Appraisals and Devoted Property 6:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ יְדֵי עַבְדּוֹ כָּל הַיֶּתֶר עַל פַּרְנָסָתוֹ קֹדֶשׁ. וְכֵיצַד הוּא מִתְפַּרְנֵס עֶבֶד זֶה. לוֹוֶה וְאוֹכֵל וְעוֹשֶׂה וּפוֹרֵעַ. וְהוּא שֶׁיַּעֲשֶׂה פָּחוֹת פָּחוֹת מִשְּׁוֵה פְּרוּטָה וְיִפְרַע. שֶׁאִם עָשָׂה בִּפְרוּטָה רִאשׁוֹן רִאשׁוֹן קָנָה הֶקְדֵּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש ידי עבדו וכו׳.</strong> בפ&quot;ק דגיטין (דף י&quot;ב) ודוק:</p>
               </div>
             </div>
@@ -654,13 +803,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-20-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-20-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-20-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:20:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:20:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-20-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-20">Mishneh Torah, Appraisals and Devoted Property 6:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ אֶת עַצְמוֹ לֹא הִקְדִּישׁ אֶלָּא דָּמָיו וַהֲרֵי הוּא חַיָּב בִּדְמֵי עַצְמוֹ. וּמֻתָּר לוֹ לַעֲשׂוֹת וְלֶאֱכל שֶׁהֲרֵי לֹא נִתְקַדֵּשׁ גּוּפוֹ כְּעֶבֶד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש את עצמו לא הקדיש אלא דמיו וכו׳.</strong> בפ&quot;ד דגיטין (דף ל&quot;ט) מוקמינן לה כרבי מאיר דאית ליה אין אדם מוציא דבריו לבטלה, וצ&quot;ע דרבינו פסק בפ&quot;א מהלכות אלו דלא כרבי מאיר יע&quot;ש:</p>
               </div>
             </div>
@@ -670,13 +824,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-22-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-22-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-22-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:22:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:22:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-22-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:22:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-22">Mishneh Torah, Appraisals and Devoted Property 6:22</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָדָם מַקְדִּישׁ דָּבָר שֶׁאֵינוֹ בִּרְשׁוּתוֹ. כֵּיצַד. הָיָה לוֹ פִּקָּדוֹן בְּיַד אַחֵר וְכָפַר בּוֹ זֶה שֶׁהוּא אֶצְלוֹ אֵין הַבְּעָלִים יְכוֹלִין לְהַקְדִּישׁוֹ. אֲבָל אִם לֹא כָּפַר בּוֹ הֲרֵי הוּא בִּרְשׁוּת בְּעָלָיו בְּכָל מָקוֹם שֶׁהוּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין אדם מקדיש דבר שאינו ברשותו כו׳.</strong> מי שראה דבר של הפקר ואין אדם סמוך להפקר אלא הוא ואמר כשאזכה תהיה קדש הוי קדש כיון שבידו לזכות כ&quot;כ הרא&quot;ש והתוספות נדרים (דף ל&quot;ד):</p>
               </div>
             </div>
@@ -686,13 +845,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-30-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-30-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-30-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:30:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:30:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-30-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:30:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-30">Mishneh Torah, Appraisals and Devoted Property 6:30</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּשְׂכִּיר בַּיִת לַחֲבֵרוֹ וְחָזַר וְהִקְדִּישׁוֹ הֲרֵי זֶה קֹדֶשׁ וּפָקְעָה הַשְּׂכִירוּת. וְאִם דָּר בּוֹ הַשּׂוֹכֵר מָעַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם דר בו השוכר מעל.</strong> עיין במ&quot;ש רבינו בפ&quot;ה מה׳ מעילה דין ה׳ וצ&quot;ע:</p>
               </div>
             </div>
@@ -702,13 +866,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-33-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-33-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-33-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:33:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:33:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-33-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:33:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-33">Mishneh Torah, Appraisals and Devoted Property 6:33</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רְאָיָה לְדָבָר זֶה מַה שֶּׁאָמַר יַעֲקֹב אָבִינוּ <span class="source-small">(בראשית כח כב)</span> &quot;וְכל אֲשֶׁר תִּתֶּן לִי עַשֵּׂר אֲעַשְּׂרֶנּוּ לָךְ&quot; וְנֶאֱמַר <span class="source-small">(בראשית לא יג)</span> &quot;אֲשֶׁר נָדַרְתָּ לִּי שָׁם נֶדֶר&quot;. וַהֲרֵי הָאוֹמֵר לֹא אֶפָּטֵר מִן הָעוֹלָם עַד שֶׁאֶהֱיֶה נָזִיר חַיָּב לִנְהֹג בִּנְזִירוּת וְאַף עַל פִּי שֶׁעֲדַיִן לֹא נָדַר בְּנָזִיר. הוֹאִיל וְאָמַר שֶׁיִּדֹּר בְּנָזִיר חַיָּב לְהִנָּזֵר. וְזֶה כַּיּוֹצֵא בּוֹ וְכָזֶה רָאוּי לָדוּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראיה לדבר זה מ&quot;ש יעקב אבינו כו׳ והרי האומר לא אפטר מן העולם כו׳.</strong> מפשט דברי רבינו הללו נראה דס&quot;ל דהאומר לא אפטר מן העולם עד שאהיה נזיר אין הכונה שקיבל עליו נזירות ותלה הנזירות בזמן דהיינו קודם שיפטר מן העולם ולפי זה יהיה אסור לשתות יין מיד אלא כונתו היא שקבל עליו לקבל נזירות קודם שיפטר ואמרי׳ ליה דמיד יקבל עליו הנזירות שמא ימות כן פירש הרא&quot;ש בפ&quot;ק דנדרים (דף ג׳) ולפי זה דמה רבינו דין האומר הרי עלי להקדיש לאומר הרי עלי לקבל נזירות. ואי הוה ס&quot;ל כדברי התוס׳ שם דמשמע מדבריהם דכונתו היא הריני נזיר קודם שאפטר א&quot;כ נזיר דומה למקדיש מעכשיו ולא למקבל עליו להקדיש ולא היה רבינו משוה אותם אלא ודאי כדכתיבנא. הן אמת דמפשט דברי רבינו בריש הלכות נזירות שכתב ה&quot;ז נזיר מיד משמע דס&quot;ל כדברי התוס׳ דאי כדברי הרא&quot;ש הול&quot;ל ה&quot;ז חייב לקבל עליו נזירות מיד. ומ&quot;מ בין הכי ובין הכי אני תמיה בדברי רבינו דמה ענין נזיר לדבר שלא בא לעולם אי משום דתלה הנזירות בזמן הא ליתא דהא ודאי האומר הריני נזיר לאחר שנה פשיטא דחל עליו הנזירות ודכותה גבי הקדש האומר דבר זה יהיה הקדש לאחר שנה הוי הקדש. וגדולה מזו כתב רבינו שדה זו שמשכנתי לך לכשאפדנה ממך תהיה קדש משיפדה אותה היא הקדש שהרי בידו לפדותה ואפי׳ היתה ממושכנת לזמן קצוב שהרי בידו לפדותה לאחר הזמן, ואף דנימא דתנאי זה דקודם שאפטר מן העולם חשוב כדבר שלא בא לעולם מ&quot;מ כיון שבידו לקבל עליו נזירות מיד חל עליו אפי׳ שתלה אותו בדבר שלא בא לעולם וראיה לזה ממ&quot;ש רבינו באותו הפרק האומר לחבירו שדה זו שאני מוכר לך לכשאקחנה ממך תיקדש ה&quot;ז מקודשת לכשיקחנה שהרי עתה הוא בידו להקדישה. הרי שאע&quot;פ שתלה בדבר שאינו ברשותו דהוי כדבר שלא בא לעולם מ&quot;מ כיון שבידו להקדישה עכשיו חל אפי׳ בדבר שלא בא לעולם. וכבר השיגו הראב&quot;ד וכתב זו של נזיר אינה כלום שהרי בידו היא ועוד כי לא ידע מתי יפטר והרי הוא כאילו אמר הריני נזיר מיד. וכוונת דבריו בקושיא זו היא לומר דאף דנימא דהתולה לזמן חשוב כדבר שלא בא לעולם מ&quot;מ מה שאנו מחייבים אותו להנזר מיד הוא משום דאמדינן דעתיה דכיון דלא ידע מתי יפטר דעתיה הוא לקבל הנזירות מיד והו&quot;ל כאילו אמר הריני נזיר מיד. וראיתי למרן שהביא השגת הראב&quot;ד הלזו וכתב שדברי הראב&quot;ד הם טענה למה ינהוג הנזירות מיד ודברי רבינו הם טענה למה יתחייב בנזירות כלל דבשלא בא לעולם נדר נדר הנזירות שהרי לא נדר בנזיר וזה פשוט בדברי רבינו. ודבריו הם תמוהים בעיני שדברי הראב&quot;ד ברור מללו שהם טענה למה יתחייב בנזירות וצ&quot;ע:</p>
               </div>
             </div>
@@ -718,13 +887,18 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-6">Back to chapter/section start</a>
             </nav>
           </section>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-34-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-34-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-34-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:34:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:34:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-6-34-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 6:34:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-6-34">Mishneh Torah, Appraisals and Devoted Property 6:34</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֶקְדֵּשׁ טָעוּת אֵינוֹ הֶקְדֵּשׁ. כֵּיצַד. הָאוֹמֵר שׁוֹר שָׁחוֹר שֶׁיֵּצֵא מִבַּיִת רִאשׁוֹן הֲרֵי הוּא הֶקְדֵּשׁ וְיָצָא לָבָן אֵינוֹ הֶקְדֵּשׁ. דִּינָר זָהָב שֶׁיַּעֲלֶה בְּיָדִי רִאשׁוֹן הֲרֵי הוּא הֶקְדֵּשׁ וְעָלָה שֶׁל כֶּסֶף אֵינוֹ הֶקְדֵּשׁ. חָבִית שֶׁל יַיִן שֶׁתַּעֲלֶה בְּיָדִי רִאשׁוֹנָה הֶקְדֵּשׁ וְעָלָה שֶׁל שֶׁמֶן בֵּין שֶׁהַיַּיִן יָקָר מִן הַשֶּׁמֶן בְּאוֹתוֹ מָקוֹם אוֹ הַשֶּׁמֶן יָקָר מִן הַיַּיִן אֵינוֹ הֶקְדֵּשׁ. הִתְפִּיס בָּהּ אַחֶרֶת וְאָמַר זוֹ כָּזוֹ הֲרֵי הַשְּׁנִיָּה הֶקְדֵּשׁ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>התפיס בה אחרת ואמר זו כזו כו׳.</strong> כתב מרן דטעמיה דרבינו הוא משום דמדמי התפסה לתמורה וכי היכא דתמורה חלה אפי׳ בטעות ה&quot;נ התפסה ובירושלמי דנזיר פ&quot;ה אמרו בפירוש כ&quot;ע מודו שאין נשאל על תמורתו. ולא ידעתי לאיזה תכלית הביא מרן ז&quot;ל זה הירושלמי ודברי הירושלמי הם פשוטים בטעמם דכיון דקי&quot;ל דתמורה חלה בטעות פשיטא דלא שייך שאלה בתמורה דהא טעמא דב&quot;ש דקאמרי דאין שאלה בהקדש הוא משום דהקדש טעות הוי הקדש וב&quot;ה לא פליגי עליה אלא משום דס&quot;ל דהקדש טעות לא הוי הקדש וכדאיתא בפ׳ שום היתומים וכיון דתמורה חלה בטעות פשיטא דאין נשאלין עליה ומה ענין זה להתפסה שאנו דנין עליה אם חלה בטעות אם לא. והירושלמי הזה הו&quot;ל למרן להביאו בפ&quot;ד מה׳ נדרים דין ז׳. ובעיקר הדין שדמה רבינו התפסה לתמורה הדבר צריך תלמוד דלפי זה מי שאסר את הפת והתפיס דבר אחר בפת אותה ההתפסה חלה אפי׳ בטעות דומיא דתמורה דהא נדרים דין הקדש אית להו דהא קיי&quot;ל דיש מעילה בנדרים וכמ&quot;ש רבינו בפ&quot;ד מה׳ מעילה דין ט׳. וכיון שהוכחנו דבנדרים ההתפסה חלה אפי׳ בטעות מוכרחים אנו לומר דאין נשאלין בה דהא כבר הוכחנו לעיל דהא בהא תליא. וא&quot;כ דברי רבינו הללו סותרים למ&quot;ש בפ&quot;ד מה׳ נדרים דין י׳ נשאל על הבשר והותר בו לא הותר בפת דהיכי שייך שאלה גבי בשר כיון דאיסור הבשר חל אפי׳ בטעות. ואפשר לומר דשאני נדרים דעיקר איסורם הוא מכח התפיסה דהיינו שאוסר עליו אותו הנדר כקרבן וכדכתיב כי ידור נדר עד שידור בדבר הנדור ועליה קאמר קרא לא יחל אבל אחרים מוחלין לו ואין טעם לחלק בין עיקר הנדר למה שהתפיס בו כיון דכולהו מדין התפסה נגעו בה אבל גבי קרבן או סתם הקדש דעיקר הדבר לאו התפסה הוא אלא שמקדישו אז יש לחלק בין עיקר ההקדש למה שהתפיס בו ועדיין הדבר צריך תלמוד. ודע שהרב קרית ספר הבין כוונה אחרת בדברי רבינו והוא דאף בזו שהקדישה בטעות אם התפיס בה אחרת השניה קדש דאע&quot;ג דהיה סבור דראשונה קדש אפ&quot;ה השתא מיהא מקדיש להא אחריתי מדעתו שלא בטעות ואי הוה ידע דהראשונה אינה קדש היה מתפיס זו על בהמה שהיתה קדש ודאי או היה מתפיסה היא עצמה בלא התפסה ע&quot;כ. ודבריו תמוהים הם בעיני והרב לח&quot;מ הכריח כדברי מרן וכתב דל&quot;ג אלא התפיסה באחרת ולא גרסינן בה. שוב ראיתי בפ&quot;ה דנזיר (דף ל&quot;ב) דאמרי׳ לב&quot;ה נמי אע&quot;ג דאמרי תמורה בטעות הויא תמורה ה&quot;מ היכא דאיתיה לעיקר הקדש אבל היכא דמיתעקר עיקר הקדש תעקר נמי תמורה. ופי׳ התוס׳ בדף ל&quot;ג כגון אם הקדיש בהמה לעולה והביא בהמה אחרת ואמר זו תמורת זו ונשאל לחכם על הראשונה והתירו החכם לומר שאינה עולה תצא גם התמורה לעדר והוי כאילו אמר זו תמורת זו על בהמת חולין ע&quot;כ. ורואה אני שהדברים ק&quot;ו ומה התם דחל ההקדש שעה אחת אפ&quot;ה אמרי׳ דאם נשאל על הראשונה תצא התמורה לחולין הכא שלא חל ההקדש כלל על הראשונה לפי שהיתה בטעות לא כל שכן שאין כאן תמורה:</p>
               </div>
             </div>
@@ -735,13 +909,18 @@
             </nav>
           </section>
           <h4 id="chapter-mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-text-8">Chapter 8</h4>
-          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-8-2-1" data-unit data-lexical-unit>
+          <section class="unit" id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-8-2-1" data-unit data-lexical-unit data-unit-id="mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-8-2-1" data-source-ref="Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 8:2:1">
             <div class="unit-head">
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 8:2:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-8-2-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Appraisals and Devoted Property 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-appraisals-and-devoted-property/#mishneh-torah-appraisals-and-devoted-property-8-2">Mishneh Torah, Appraisals and Devoted Property 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין פּוֹדִין אֶת הַהֶקְדֵּשׁוֹת אֶלָּא בִּשְׁלֹשָׁה בְּקִיאִין. וְכֵן כְּשֶׁגּוֹבִין מִטַּלְטְלִין שֶׁמְּמַשְׁכְּנִין מֵחַיָּבֵי עֲרָכִין שָׁמִין אוֹתָן בִּשְׁלֹשָׁה. וּכְשֶׁמַּעֲרִיכִין בְּהֵמָה וְכַיּוֹצֵא בָּהּ מִשְּׁאָר מִטַּלְטְלִין שָׁמִין אוֹתָהּ בִּשְׁלֹשָׁה. אֲבָל כְּשֶׁמַּעֲרִיכִין אֶת הַקַּרְקָעוֹת אוֹ אִם הֻזְקְקוּ לִגְבּוֹת עֶרְכֵי אָדָם מִן הַקַּרְקַע שֶׁלּוֹ אֵין מַעֲרִיכִין אוֹתָן אֶלָּא בַּעֲשָׂרָה וְאֶחָד מֵהֶן כֹּהֵן שֶׁהֲרֵי <span class="source-small">(ויקרא כז ח)</span> &quot;כֹּהֵן&quot; כָּתוּב בַּפָּרָשָׁה. וְכֵן הָאוֹמֵר דָּמַי עָלַי אוֹ דְּמֵי פְּלוֹנִי עָלַי אוֹ דְּמֵי יָדִי אוֹ רַגְלִי עָלַי כְּשֶׁשָּׁמִין אוֹתוֹ כַּמָּה הוּא שָׁוֶה אוֹ כַּמָּה דְּמֵי יָדוֹ אוֹ רַגְלוֹ שָׁמִין בַּעֲשָׂרָה וְאֶחָד מֵהֶן כֹּהֵן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין פודין את ההקדשות אלא בג׳ בקיאים כו׳.</strong> לא ביאר רבינו עבדים אי סגי בג׳ או בעינן עשרה ובירושלמי פ&quot;ק דסנהדרין ובפרק הקורא עומד איתא דסגי בג׳ וכ&quot;כ התוספות בפ׳ הקורא עומד (דף כ&quot;ג) אך מדבריהם פ&quot;ק דסנהדרין (דף ט&quot;ז) נראה דס&quot;ל דאף בעבדים בעינן עשרה יע&quot;ש:       סליקו להו הלכות ערכין וחרמין בס&quot;ד</p>
               </div>
             </div>
@@ -752,721 +931,55 @@
             </nav>
           </section>
         <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property-token-claims-min60.csv" download>Token claims CSV</a></p>
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
         </div>
         </article>
       </div>
     </div>
   </main>
-  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
-    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
-    <dl class="lexical-fields">
-      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
-      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
-      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
-    </dl>
-    <details class="source-details">
-      <summary>Sources / licenses</summary>
-      <div data-hud-sources></div>
-    </details>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button></div>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
-  <script>
-    (async () => {
-      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
-      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
-      const configNode = document.querySelector("[data-lexical-config]");
-      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
-      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
-      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
-      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
-      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
-      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
-      const chunkPromises = new Map();
-      const sourceRows = new Map();
-      let manifestPromise = null;
-      const hud = document.querySelector("[data-lexical-hud]");
-      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
-      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
-      const localSourceUrlMap = {
-        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
-        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
-        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
-        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
-        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
-        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
-      };
-      const resolveSourceUrl = (url) => {
-        const raw = String(url || "").trim();
-        if (!raw) return "";
-        if (/^(https?:|mailto:)/i.test(raw)) return raw;
-        const mapped = localSourceUrlMap[raw];
-        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
-        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
-        return "";
-      };
-      const fetchJson = async (url, base = document.baseURI) => {
-        const response = await fetch(toAbsoluteUrl(url, base));
-        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
-        return response.json();
-      };
-      const loadOccurrences = async () => {
-        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
-        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
-        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
-        return occurrences;
-      };
-      const loadManifest = async () => {
-        if (!lexicalConfig.manifest_url) return null;
-        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
-        return manifestPromise;
-      };
-      const resolveSourceRows = (ids, inlineRows) => {
-        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
-        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
-      };
-      const cacheChunk = (chunk) => {
-        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
-        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
-        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
-          lexiconEntries.set(entry.entry_id, {
-            ...entry,
-            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
-            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
-          });
-        });
-        return chunk;
-      };
-      const loadChunk = async (chunkId) => {
-        if (!chunkId) return null;
-        if (!chunkPromises.has(chunkId)) {
-          chunkPromises.set(chunkId, (async () => {
-            const manifest = await loadManifest();
-            if (!manifest) return null;
-            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
-            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
-            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
-            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
-          })());
-        }
-        return chunkPromises.get(chunkId);
-      };
-      const loadTokenRow = async (tokenIndexId) => {
-        if (!tokenIndexId) return {};
-        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
-        const manifest = await loadManifest();
-        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
-        if (chunkId) await loadChunk(chunkId);
-        return tokenRows.get(tokenIndexId) || {};
-      };
-      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
-      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
-      const makeWordSpan = (text, tokenIndexId, ordinal) => {
-        const span = document.createElement("span");
-        span.className = "lexical-word";
-        span.lang = "he";
-        span.role = "button";
-        span.tabIndex = 0;
-        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
-        span.dataset.lexicalIndex = tokenIndexId || "";
-        span.dataset.lexicalEntry = "";
-        span.dataset.lexicalStatus = "pending";
-        span.setAttribute("aria-pressed", "false");
-        span.textContent = normalizeHebrewDisplay(text);
-        return span;
-      };
-      const wrapTextNode = (node, tokenIds, state) => {
-        const text = node.nodeValue;
-        const matches = Array.from(text.matchAll(hebrewTokenPattern));
-        if (!matches.length) return;
-        const fragment = document.createDocumentFragment();
-        let position = 0;
-        matches.forEach((match) => {
-          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
-          const tokenIndexId = tokenIds[state.index++];
-          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
-          position = match.index + match[0].length;
-        });
-        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
-        node.parentNode.replaceChild(fragment, node);
-      };
-      const wrapParagraph = (paragraph, tokenIds) => {
-        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-        const state = { index: 0 };
-        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
-      };
-      const loadedOccurrences = await loadOccurrences();
-      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
-        if (!unitData) return;
-        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
-          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
-          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
-          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
-        });
-      });
-      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
-      if (!buttons.length || !hud) return;
-      let activeHudButton = null;
-      if (hud.parentElement !== document.body) document.body.appendChild(hud);
-      const positionHudNearButton = (button) => {
-        if (!button || hud.hidden) return;
-        const rect = button.getBoundingClientRect();
-        const margin = 12;
-        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
-        hud.style.width = width + "px";
-        const preferredLeft = rect.right - width;
-        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
-        const below = window.innerHeight - rect.bottom - margin;
-        const above = rect.top - margin;
-        const openAbove = below < 280 && above > below;
-        const available = Math.max(220, (openAbove ? above : below) - margin);
-        hud.style.maxHeight = Math.min(560, available) + "px";
-        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
-        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
-        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
-        hud.style.left = left + "px";
-        hud.style.top = top + "px";
-      };
-      const scheduleHudPosition = () => {
-        if (!activeHudButton || hud.hidden) return;
-        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
-      };
-      const setText = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
-      };
-      const setList = (root, selector, value) => {
-        const node = root.querySelector(selector);
-        if (!node) return;
-        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
-        node.replaceChildren();
-        if (!values.length) { node.textContent = "N/A"; return; }
-        if (values.length === 1) { node.textContent = values[0]; return; }
-        const ul = document.createElement("ul");
-        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const setRowHidden = (root, selector, hidden) => {
-        const row = root.querySelector(selector);
-        if (row) row.hidden = Boolean(hidden);
-      };
-      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
-      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
-      const cleanStrictRenderings = (values) => {
-        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
-        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
-        return [...new Set(raw.filter((value) => {
-          if (value.length > 64) return false;
-          if (/[()]/.test(value)) return false;
-          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
-          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
-          return true;
-        }))];
-      };
-      const uniqueValues = (values) => [...new Set(cleanValues(values))];
-      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
-      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
-      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
-      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
-      const isAramaicView = (view) => {
-        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
-        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
-        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
-      };
-      const strictEntriesForView = (view) => {
-        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
-        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
-        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
-          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
-          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
-        });
-      };
-      const getStrictBuckets = (view) => {
-        const topLevel = getStrictRenderings(view);
-        const strictEntries = strictEntriesForView(view);
-        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
-        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
-        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
-        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
-      };
-      const strictEntryKeys = (view) => {
-        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
-      };
-      const appendRenderings = (node, values) => {
-        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
-        if (!filtered.length) { node.append("N/A"); return; }
-        if (filtered.length === 1) { node.append(filtered[0]); return; }
-        const ul = document.createElement("ul");
-        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
-        node.appendChild(ul);
-      };
-      const renderBreakdown = (root, view) => {
-        const node = root.querySelector("[data-hud-breakdown]");
-        if (!node) return;
-        node.replaceChildren();
-        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
-        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
-        if (!rows.length) { node.textContent = ""; return; }
-        const list = document.createElement("div");
-        list.className = "breakdown-list";
-        rows.forEach((row) => {
-          const section = document.createElement("section");
-          section.className = "breakdown-row";
-          const head = document.createElement("p");
-          const hebrew = document.createElement("strong");
-          hebrew.lang = "he";
-          hebrew.dir = "rtl";
-          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
-          head.appendChild(hebrew);
-          section.appendChild(head);
-          const renderings = document.createElement("div");
-          appendRenderings(renderings, row.strict_renderings || []);
-          section.appendChild(renderings);
-          list.appendChild(section);
-        });
-        node.appendChild(list);
-      };
-      const isRelatedEntry = (entry) => {
-        const relation = String(entry.relation_label || "").toLowerCase();
-        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
-      };
-      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
-      const isNoisyAlternateEntry = (entry) => {
-        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
-        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
-      };
-      const renderEntryList = (entries, roleLabel) => {
-        const list = document.createElement("div");
-        list.className = "lexical-entry-list";
-        const groupedEntries = new Map();
-        entries.forEach((entry) => {
-          const spelling = entry.lemma || entry.match_key || "N/A";
-          const key = `${entry.context_role || "entry"}|${spelling}`;
-          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
-          const group = groupedEntries.get(key);
-          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
-          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
-        });
-        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
-        sorted.forEach((entry) => {
-          const card = document.createElement("section");
-          card.className = "lexical-entry";
-          const title = document.createElement("h3");
-          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
-          title.append(role, ": ");
-          const spelling = document.createElement("span");
-          spelling.className = "entry-hebrew";
-          spelling.lang = "he";
-          spelling.dir = "rtl";
-          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
-          title.appendChild(spelling);
-          const meta = document.createElement("p");
-          meta.className = "entry-meta";
-          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
-          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
-          const renderings = document.createElement("div");
-          const renderLabel = document.createElement("p");
-          renderLabel.className = "entry-label";
-          renderLabel.textContent = "Strict renderings";
-          renderings.appendChild(renderLabel);
-          appendRenderings(renderings, entry.strict_renderings || []);
-          card.append(title, meta, renderings);
-          list.appendChild(card);
-        });
-        return list;
-      };
-      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
-      const sourceRowsByKey = (view) => {
-        const map = new Map();
-        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
-        return map;
-      };
-      const sourceRowsForEntry = (view, entry) => {
-        const map = sourceRowsByKey(view);
-        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
-        return row ? [row] : [];
-      };
-      const cleanTransliteration = (value) => {
-        const text = String(value || "").trim();
-        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
-      };
-      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
-      const sourceQualityScore = (rows) => {
-        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
-        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
-        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
-        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
-        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
-        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
-        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
-        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
-        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
-        return { delta: -10, reason: "missing source row" };
-      };
-      const parserScore = (view) => {
-        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
-        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
-        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
-        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
-        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
-        return { delta: 0, reason: "" };
-      };
-      const applyDisplayBoost = (status, rawScore, view) => {
-        return { score: rawScore, reasons: [] };
-      };
-      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
-        const reasons = [];
-        let score = 0;
-        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
-        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
-        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
-        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
-        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
-        else { score = 84; reasons.push("strict Hebrew row"); }
-        const rendered = cleanStrictRenderings(renderings || []);
-        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
-        const sourceQuality = sourceQualityScore(rows);
-        score += sourceQuality.delta;
-        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
-        const view = evidence.view || {};
-        const entry = evidence.entry || {};
-        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
-        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
-        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
-        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
-        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
-        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
-        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
-        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
-        const parser = parserScore(view);
-        score += evidence.surfaceClaim ? parser.delta : 0;
-        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
-        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
-        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
-        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
-        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
-        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
-        const display = applyDisplayBoost(status, rawScore, view);
-        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
-      };
-      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
-      const uniqueClaims = (claims) => {
-        const seen = new Set();
-        return cleanValues(claims).filter((claim) => {
-          const key = claimRowKey(claim);
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
-        const sourceRows = cleanValues(rows);
-        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
-        const cleanRenderings = cleanStrictRenderings(renderings || []);
-        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
-        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
-      };
-      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
-      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
-      const displayLicense = (row) => {
-        const license = String(row && row.license || "").trim();
-        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
-        return license || "N/A";
-      };
-      const sourceSummary = (rows) => {
-        const cleanRows = cleanValues(rows);
-        if (!cleanRows.length) return null;
-        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
-        const licenses = uniqueValues(cleanRows.map(displayLicense));
-        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
-        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
-      };
-      const DISPLAY_THRESHOLD = 50;
-      const MAX_VISIBLE_CLAIMS = 5;
-      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
-      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
-      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
-      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
-      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
-      const appendClaimCard = (list, claim) => {
-        const card = document.createElement("section");
-        card.className = "claim-row";
-        const head = document.createElement("div");
-        head.className = "claim-row-head";
-        const badge = document.createElement("span");
-        badge.className = "claim-status";
-        const confidence = claimConfidence(claim);
-        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
-        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
-        const hebrew = document.createElement("strong");
-        hebrew.className = "claim-hebrew";
-        hebrew.lang = "he";
-        hebrew.dir = "rtl";
-        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
-        head.append(badge, hebrew);
-        card.appendChild(head);
-        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
-        const renderings = document.createElement("p");
-        renderings.className = "claim-renderings";
-        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
-        card.appendChild(renderings);
-        const source = sourceSummary(claim.rows);
-        if (source) {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = `Source: ${source.source}`;
-          const licenseLine = document.createElement("p");
-          licenseLine.className = "claim-license";
-          licenseLine.textContent = `License: ${source.license}`;
-          card.append(sourceLine, licenseLine);
-        } else if (claim.status === "Caution") {
-          const sourceLine = document.createElement("p");
-          sourceLine.className = "claim-source";
-          sourceLine.textContent = "Source: metadata incomplete";
-          card.appendChild(sourceLine);
-        }
-        list.appendChild(card);
-      };
-      const appendClaimsUnderDetails = (parent, label, claims) => {
-        if (!claims.length) return;
-        const details = document.createElement("details");
-        details.className = "other-entries";
-        const summary = document.createElement("summary");
-        summary.textContent = label;
-        const box = document.createElement("div");
-        box.className = "claim-row-list";
-        claims.forEach((claim) => appendClaimCard(box, claim));
-        details.append(summary, box);
-        parent.appendChild(details);
-      };
-      const appendClaimRows = (node, claims) => {
-        if (!node) return;
-        node.replaceChildren();
-        const rows = sortClaimsForDisplay(claims);
-        if (!rows.length) { node.textContent = "N/A"; return; }
-        const list = document.createElement("div");
-        list.className = "claim-row-list";
-        const displayRows = rows.filter(isDisplayableClaim);
-        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
-        const visibleRows = displayRows.length ? displayRows : lowRows;
-        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
-        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
-        if (!visibleRows.length) { node.textContent = "N/A"; return; }
-        node.appendChild(list);
-      };
-      const strictClaimsForView = (view, strictBuckets) => {
-        const claims = { hebrew: [], aramaic: [] };
-        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
-        if (surfaceRenderings.length) {
-          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
-          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
-          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
-        }
-        strictEntriesForView(view).forEach((entry) => {
-          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
-          const bucket = strictBuckets[bucketName] || [];
-          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
-          if (!renderings.length) return;
-          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
-          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
-        });
-        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
-          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
-        }
-        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
-      };
-      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
-      const uniqueSourceGroups = (groups) => {
-        const seen = new Set();
-        return cleanValues(groups).filter((group) => {
-          if (!group.rows.length) return false;
-          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        });
-      };
-      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
-      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
-      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
-      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
-        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
-      };
-      const appendSecondarySources = (container, view, entries, label) => {
-        const groups = sourceGroupsForEntries(view, entries);
-        if (!groups.length) return;
-        const sourceDetails = document.createElement("details");
-        sourceDetails.className = "source-details";
-        const sourceSummary = document.createElement("summary");
-        sourceSummary.textContent = label;
-        const sourceBox = document.createElement("div");
-        sourceDetails.append(sourceSummary, sourceBox);
-        renderSourceGroups(sourceBox, groups);
-        container.appendChild(sourceDetails);
-      };
-      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
-        const potentialNode = root.querySelector("[data-hud-potential]");
-        const relatedNode = root.querySelector("[data-hud-related]");
-        const cautionNode = root.querySelector("[data-hud-caution]");
-        const result = { potential: [], related: [], caution: [] };
-        if (!potentialNode || !relatedNode || !cautionNode) return result;
-        potentialNode.replaceChildren();
-        relatedNode.replaceChildren();
-        cautionNode.replaceChildren();
-        if (!hasLexicalEntry) {
-          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
-          setRowHidden(root, "[data-hud-potential-row]", false);
-          setRowHidden(root, "[data-hud-related-row]", true);
-          setRowHidden(root, "[data-hud-caution-row]", true);
-          appendClaimRows(potentialNode, result.potential);
-          return result;
-        }
-        const entries = cleanValues(view.possible_entries);
-        const strictKeys = strictEntryKeys(view);
-        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
-        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
-        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
-        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
-        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
-        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
-        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
-        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
-        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
-        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
-        result.potential.push(...keepForDisplay(visiblePotentialClaims));
-        result.related.push(...keepForDisplay(visibleRelatedClaims));
-        result.caution.push(...keepForDisplay(cautionClaims));
-        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
-        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
-        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
-        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
-        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
-        if (result.related.length) appendClaimRows(relatedNode, result.related);
-        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
-        return result;
-      };
-      const renderSourceRow = (row) => {
-        const title = document.createElement("p");
-        const strong = document.createElement("strong");
-        const sourceHref = resolveSourceUrl(row.source_url);
-        if (sourceHref) {
-          const link = document.createElement("a");
-          link.href = sourceHref;
-          link.textContent = row.source_name || "Source";
-          strong.appendChild(link);
-        } else {
-          strong.textContent = row.source_name || "Source";
-        }
-        title.appendChild(strong);
-        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
-        return title;
-      };
-      const renderSourceGroups = (sourceBox, groups) => {
-        if (!sourceBox) return;
-        sourceBox.replaceChildren();
-        const sourceGroups = cleanValues(groups);
-        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
-        sourceGroups.forEach((group) => {
-          const section = document.createElement("div");
-          section.className = "source-row";
-          const claim = document.createElement("p");
-          claim.className = "source-claim";
-          claim.append("For ");
-          const lemma = document.createElement("span");
-          lemma.lang = "he";
-          lemma.dir = "rtl";
-          lemma.textContent = group.label || "Lexical claim";
-          claim.appendChild(lemma);
-          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
-          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
-          section.appendChild(claim);
-          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
-          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
-          sourceBox.appendChild(section);
-        });
-      };
-      const buildWordView = async (button) => {
-        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
-        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
-        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
-        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
-      };
-      const renderWord = async (button) => {
-        const unit = button.closest("[data-lexical-unit]");
-        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
-        if (!unit || !slot) return;
-        activeHudButton = button;
-        if (hud.parentElement !== document.body) document.body.appendChild(hud);
-        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        button.setAttribute("aria-pressed", "true");
-        hud.hidden = false;
-        positionHudNearButton(button);
-        setText(hud, "[data-hud-word]", button.textContent.trim());
-        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-        setRowHidden(hud, "[data-hud-caution-row]", true);
-        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
-        renderBreakdown(hud, {});
-        renderPotentialAndRelatedEntries(hud, {}, false, false);
-        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
-        try {
-          const view = await buildWordView(button);
-          if (button.getAttribute("aria-pressed") !== "true") return;
-          setText(hud, "[data-hud-word]", view.hebrew_word);
-          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
-          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
-          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
-          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
-          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
-          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
-          renderBreakdown(hud, view);
-          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
-          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
-          const details = hud.querySelector("details");
-          if (details) details.open = false;
-          positionHudNearButton(button);
-        } catch (error) {
-          console.error(error);
-          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
-          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
-          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
-          positionHudNearButton(button);
-        }
-      };
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          renderWord(button);
-        });
-        button.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
-        });
-      });
-      document.querySelectorAll("[data-hud-close]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const hud = button.closest("[data-lexical-hud]");
-          if (hud) hud.hidden = true;
-          activeHudButton = null;
-          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
-        });
-      });
-      window.addEventListener("resize", scheduleHudPosition);
-      window.addEventListener("scroll", scheduleHudPosition, true);
-    })();
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property.manifest.json","occurrence_url":"../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-appraisals-and-devoted-property.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","root_href":"../../","reader_layout_mode":"prehud_rows"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
   </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
 </body>
 </html>
