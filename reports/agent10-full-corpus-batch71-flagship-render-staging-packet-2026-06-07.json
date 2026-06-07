@@ -1,0 +1,90 @@
+{
+  "artifact_type": "agent10_full_corpus_batch_flagship_render_staging_packet",
+  "agent": "A10",
+  "batch": "Batch71",
+  "corpus_family": "Mishnah",
+  "status": "ready_for_a14_review_staging",
+  "baseline_head": "5fd65f03c",
+  "prior_checkpoint": "Batch60 through Batch65 corpus closures pushed by A14 at aea61fc1b; Batch66-69 packets sent to A14 for review/staging; Batch70 sent to A14 as Mishnah continuation.",
+  "direct_render_contract": {
+    "canonical_hud_behavior": "A10/Orot Route HUD behavior preserved",
+    "reader_layout_mode": "prehud_rows",
+    "source_visible_clickable": true,
+    "prehud_gate": "fail_closed_quiet_TBD_unless_safe_route_backed_hint_exists",
+    "featured_policy": "No Featured additions; Orot remains only Featured",
+    "shared_files_changed": false
+  },
+  "changed_files": [
+    "mishnah/mishnah-keritot/index.html",
+    "mishnah/mishnah-ketubot/index.html",
+    "mishnah/mishnah-kiddushin/index.html",
+    "mishnah/mishnah-kilayim/index.html",
+    "mishnah/mishnah-kinnim/index.html",
+    "mishnah/mishnah-maaser-sheni/index.html",
+    "mishnah/mishnah-maasrot/index.html",
+    "mishnah/mishnah-makhshirin/index.html",
+    "mishnah/mishnah-makkot/index.html",
+    "mishnah/mishnah-megillah/index.html",
+    "mishnah/mishnah-meilah/index.html",
+    "mishnah/mishnah-menachot/index.html",
+    "mishnah/mishnah-middot/index.html",
+    "mishnah/mishnah-mikvaot/index.html",
+    "mishnah/mishnah-moed-katan/index.html",
+    "mishnah/mishnah-nazir/index.html",
+    "mishnah/mishnah-nedarim/index.html",
+    "mishnah/mishnah-negaim/index.html",
+    "mishnah/mishnah-niddah/index.html",
+    "mishnah/mishnah-oholot/index.html"
+  ],
+  "counts": {
+    "pages": 20,
+    "token_rows": 58687,
+    "configured_hint_rows": 0,
+    "expected_quiet_tbd_rows": 58687,
+    "remaining_mishnah_targets_after_batch": 23
+  },
+  "validators": [
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page <20 Batch71 pages>",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- <20 Batch71 pages>",
+      "timeout_ms": 60000,
+      "result": "passed_with_crlf_warnings_only"
+    },
+    {
+      "command": "node <Batch71 source/config/asset guard>",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "details": {
+        "pages": 20,
+        "token_rows": 58687,
+        "configured_hint_rows": 0,
+        "expected_quiet_tbd_rows": 58687
+      }
+    },
+    {
+      "command": "packet JSON parse after write",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- reports/agent10-full-corpus-batch71-flagship-render-staging-packet-2026-06-07.md reports/agent10-full-corpus-batch71-flagship-render-staging-packet-2026-06-07.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    }
+  ],
+  "blockers": [],
+  "a14_next_action": [
+    "review/stage/commit/push Batch71 Mishnah if A14 validation agrees",
+    "add/verify normal corpus links and deploy carry rules in A14 lane",
+    "return checkpoint or exact blocker; A10 can continue Mishnah targets next"
+  ],
+  "boundary": [
+    "render/preHUD staging evidence only",
+    "no QA/source/license/legal/Definition/product/answer/accepted-text acceptance",
+    "no publication/release/public-runtime acceptance"
+  ]
+}
