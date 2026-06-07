@@ -60,6 +60,25 @@ html.route-hud-open body {
   margin-bottom: 8px;
 }
 
+.prehud-passage-token {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  background: rgba(214, 190, 138, 0.035);
+  padding: 0 1px;
+}
+
+.prehud-passage-token:hover,
+.prehud-passage-token:focus {
+  color: var(--accent);
+  background: rgba(214, 190, 138, 0.08);
+  outline: 1px solid rgba(214, 190, 138, 0.32);
+  outline-offset: 1px;
+}
+
 .prehud-rows {
   display: grid;
   gap: 6px;
@@ -81,7 +100,8 @@ html.route-hud-open body {
 }
 
 .reader-token-wrap.prehud-row:hover,
-.reader-token-wrap.prehud-row:focus-within {
+.reader-token-wrap.prehud-row:focus-within,
+.reader-token-wrap.prehud-row.prehud-row-targeted {
   border-color: rgba(214, 190, 138, 0.34);
   background: rgba(214, 190, 138, 0.04);
 }

@@ -167,6 +167,7 @@
   function normalizeReaderHint(row) {
     const counterpart = row?.candidate_counterpart && typeof row.candidate_counterpart === 'object' ? row.candidate_counterpart : {};
     const tokenId = firstPresentValue([row?.token_id, row?.target_token_id, row?.surface_token_id]);
+    const routeCardId = firstPresentValue([row?.route_card_id, counterpart.route_card_id]);
     const placeholderKind = firstPresentValue([row?.placeholder_kind]);
     const reviewState = firstPresentValue([row?.review_state, row?.display_state]);
     const placeholderText = firstPresentValue([row?.placeholder_text]);
@@ -200,6 +201,8 @@
     ]);
     if (!tokenId || !display) return null;
     const matchPercent = firstNumericValue([
+      row?.route_score_percent,
+      counterpart.route_score_percent,
       row?.match_percent,
       counterpart.match_percent,
       row?.confidence_percent,
@@ -215,6 +218,7 @@
       inline_display: firstPresentValue([row?.inline_display, row?.short_display]) || inlineHintDisplay(display),
       label: firstPresentValue([row?.label, counterpart.label]),
       match_percent: matchPercent,
+      route_card_id: routeCardId,
     };
   }
 
@@ -1383,9 +1387,80 @@
     ]));
   }
 
-  function makePrehudRow(row, tokenIndexId, ordinal, config, hint, fallbackSurface = '') {
+  function safeDomId(value) {
+    return String(value || '')
+      .replace(/[^A-Za-z0-9_-]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      || 'row';
+  }
+
+  function makePrehudRowId(unit, paragraph, ordinal, tokenIndexId) {
+    const unitId = safeDomId(unit?.id || unit?.dataset?.unitId || 'unit');
+    const paragraphId = safeDomId(paragraph?.dataset?.lexicalParagraph || '0');
+    return `prehud-${unitId}-${paragraphId}-${ordinal}-${safeDomId(tokenIndexId)}`;
+  }
+
+  function focusPrehudRow(rowId) {
+    const target = document.getElementById(rowId);
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.focus({ preventScroll: true });
+    target.classList.add('prehud-row-targeted');
+    window.setTimeout(() => target.classList.remove('prehud-row-targeted'), 1600);
+  }
+
+  function makePrehudPassageLink(text, rowId) {
+    const link = createElement('a', 'prehud-passage-token', normalizeHebrewDisplay(text));
+    link.href = `#${rowId}`;
+    link.lang = 'he';
+    link.dir = 'rtl';
+    link.dataset.prehudTarget = rowId;
+    link.setAttribute('aria-label', `Show gloss row for ${normalizeHebrewDisplay(text)}`);
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      focusPrehudRow(rowId);
+    });
+    return link;
+  }
+
+  function wrapPrehudPassageTextNode(node, rowIds, state) {
+    const text = node.nodeValue || '';
+    const matches = Array.from(text.matchAll(HEBREW_TOKEN_RE));
+    if (!matches.length) return;
+    const fragment = document.createDocumentFragment();
+    let position = 0;
+    matches.forEach((match) => {
+      if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+      const rowId = rowIds[state.ordinal] || '';
+      state.ordinal += 1;
+      fragment.appendChild(rowId ? makePrehudPassageLink(match[0], rowId) : document.createTextNode(match[0]));
+      position = match.index + match[0].length;
+    });
+    if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+    node.parentNode.replaceChild(fragment, node);
+  }
+
+  function linkPrehudParagraphTokens(paragraph, rowIds) {
+    if (!paragraph || paragraph.dataset.prehudPassageLinksInitialized === 'true') return;
+    const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (node.parentElement && node.parentElement.closest('a')) continue;
+      textNodes.push(node);
+    }
+    const state = { ordinal: 0 };
+    textNodes.forEach((node) => wrapPrehudPassageTextNode(node, rowIds, state));
+    paragraph.dataset.prehudPassageLinksInitialized = 'true';
+  }
+
+  function makePrehudRow(row, tokenIndexId, ordinal, config, hint, fallbackSurface = '', rowId = '') {
     const rowNode = createElement('div', 'prehud-row reader-token-wrap');
     rowNode.dataset.tokenRowId = tokenIndexId || '';
+    if (rowId) {
+      rowNode.id = rowId;
+      rowNode.tabIndex = -1;
+    }
     const surface = surfaceFromTokenRow(row, fallbackSurface || '');
     const wordCell = createElement('div', 'prehud-word');
     const word = makeLexicalWord(surface, tokenIndexId, ordinal, config, tokenIndexId ? [tokenIndexId] : []);
@@ -1461,9 +1536,11 @@
       const rows = typeof loadTokenRow === 'function'
         ? await Promise.all(tokenIds.map((tokenId) => loadTokenRow(tokenId).catch(() => ({}))))
         : tokenIds.map(() => ({}));
+      const rowIds = tokenIds.map((tokenId, index) => makePrehudRowId(unit, paragraph, index + 1, tokenId));
+      linkPrehudParagraphTokens(paragraph, rowIds);
       tokenIds.forEach((tokenId, index) => {
         const hint = readerHints instanceof Map ? readerHints.get(tokenId) : null;
-        group.appendChild(makePrehudRow(rows[index], tokenId, index + 1, config, hint, visibleTokens[index] || ''));
+        group.appendChild(makePrehudRow(rows[index], tokenId, index + 1, config, hint, visibleTokens[index] || '', rowIds[index] || ''));
       });
       slot.appendChild(group);
       return;

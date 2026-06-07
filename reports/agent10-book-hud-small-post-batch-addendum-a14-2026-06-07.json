@@ -1,0 +1,78 @@
+{
+  "artifact_type": "agent10_book_hud_small_post_batch_addendum_a14",
+  "status": "SMALL_UPDATE_READY_FOR_A14",
+  "changed_files": [
+    "assets/js/reader-workbench.js",
+    "assets/css/reader-workbench.css",
+    "data/public-hud/orot/reader-hints.json",
+    "data/public-hud/ruth/reader-hints.json",
+    "data/public-hud/deuteronomy/reader-hints.json",
+    "data/public-hud/genesis/reader-hints.json",
+    "data/public-hud/exodus/reader-hints.json",
+    "data/public-hud/leviticus/reader-hints.json",
+    "data/public-hud/numbers/reader-hints.json",
+    "data/public-hud/jonah/reader-hints.json",
+    "data/public-hud/amos/reader-hints.json",
+    "data/public-hud/zechariah/reader-hints.json",
+    "data/public-hud/zephaniah/reader-hints.json"
+  ],
+  "purpose": [
+    "Score consistency between pre-HUD and HUD for direct route-card reader hints.",
+    "Hebrew passage token jump-to-gloss-row behavior.",
+    "Definitions left visible with no one-off suppression."
+  ],
+  "definition_policy": {
+    "one_off_definition_suppression": false,
+    "future_removal_unit": "source_or_source_family_or_mechanically_tagged_policy_class",
+    "israel_definition_visible_for_now": true
+  },
+  "validation": [
+    {
+      "command": "node --check assets/js/reader-workbench.js",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page orot/index.html --page tanakh/ruth/index.html --page tanakh/deuteronomy/index.html --page tanakh/genesis/index.html --page tanakh/exodus/index.html --page tanakh/leviticus/index.html --page tanakh/numbers/index.html --page tanakh/jonah/index.html --page tanakh/amos/index.html --page tanakh/zechariah/index.html --page tanakh/zephaniah/index.html --page tanakh/esther/index.html --page tanakh/ezra/index.html --page tanakh/nehemiah/index.html --page tanakh/obadiah/index.html --page tanakh/malachi/index.html",
+      "result": "Route HUD page validation passed for 16 page(s)."
+    },
+    {
+      "command": "JSON parse check over 11 changed data/public-hud/*/reader-hints.json files",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- scoped changed runtime/style/reader-hints files",
+      "result": "passed; CRLF replacement warnings only"
+    }
+  ],
+  "browser_proof": {
+    "url": "http://127.0.0.1:8802/tanakh/ruth/",
+    "israel_prehud_percent": "80%",
+    "israel_hud_score_mentions": [
+      "80%"
+    ],
+    "israel_definition_visible": true,
+    "passage_token_links": 1132,
+    "hud_scroll_lock": true
+  },
+  "process_timeouts": [
+    {
+      "process_timeout": true,
+      "command": "first score-sync script over public HUD reader hints and route shards",
+      "timeout": "120000ms",
+      "partial_output_or_artifact": "partial edits to Orot/Ruth/Deuteronomy and partial progress",
+      "next_safe_action": "replaced with direct normalized-key route-card lookup; optimized pass completed successfully in 60000ms"
+    }
+  ],
+  "boundary": {
+    "publication_release_claim": false,
+    "qa_acceptance": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "product_answer_acceptance": false,
+    "accepted_text": false,
+    "route_shard_mutation": false,
+    "public_runtime_acceptance": false
+  },
+  "a14_next_action": "include this addendum with the 16-page preview staging packet; do not remove individual definitions; any future definition removal/demotion must be source/source-family/tag-policy based",
+  "stop_condition": "A14 includes this small addendum in the owner-checkable preview set and waits for the owner approval before 1400-work expansion."
+}
