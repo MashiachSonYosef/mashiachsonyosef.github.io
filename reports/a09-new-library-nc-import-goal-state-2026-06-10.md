@@ -1,6 +1,6 @@
 # A09 New Library / NC Import Goal State - 2026-06-10
 
-Status: `active_goal_state_not_finished`
+Status: `candidate_set_finished_or_blocked`
 
 Goal: finish or prove the remaining new-library import and NC/noncommercial lane work for the Hebrew workbench, producing usable output or exact blockers without acceptance overclaim.
 
@@ -46,20 +46,20 @@ The correct current shape is broader than the first pass: some new library lanes
 ## Importable Candidate Follow-Up
 
 - `reports/sefaria-safe-candidate-kabbalah-report.md` identifies 5 Kabbalah candidates as importable now but not configured:
-  - BePardes HaChasidut VeHakabbalah, Public Domain: config exists, source/page absent in live file check.
+  - BePardes HaChasidut VeHakabbalah, Public Domain: imported/rendered now; `data/sources/bepardes-hachasidut-vehakabbalah.json`, 1031 units, `chasidut/bepardes-hachasidut-vehakabbalah/index.html`.
   - Ohr Ne'erav, Public Domain: `data/sources/ohr-neerav.json` exists with 959 units and `kabbalah/ohr-neerav/index.html` exists.
-  - Ohr Penimi on Talmud Eser HaSefirot, Public Domain: config exists, source/page absent in live file check.
-  - Shuvi Shuvi HaShulamit, Public Domain, estimated 123 units: config exists, source/page absent in live file check.
-  - Talmud Eser HaSefirot, Public Domain: config exists, source/page absent in live file check.
+  - Ohr Penimi on Talmud Eser HaSefirot, Public Domain: imported/rendered now; `data/sources/ohr-penimi-on-talmud-eser-hasefirot.json`, 1655 units, `kabbalah/ohr-penimi-on-talmud-eser-hasefirot/index.html`.
+  - Shuvi Shuvi HaShulamit, Public Domain, estimated 123 units: imported/rendered now; `data/sources/shuvi-shuvi-hashulamit.json`, 123 units, `kabbalah/shuvi-shuvi-hashulamit/index.html`.
+  - Talmud Eser HaSefirot, Public Domain: still blocked; scoped single-work import timed out after 10 minutes with no source/overlay artifact.
 - `reports/sefaria-safe-candidate-oral-law-report.md` identifies 3 Oral Law candidates as importable now but not configured:
-  - A New Israeli Commentary on Pirkei Avot, CC-BY: config exists, source/page absent in live file check.
-  - Amudei Yerushalayim on Jerusalem Talmud Nedarim, Public Domain, estimated 18 units: config exists, source/page absent in live file check.
+  - A New Israeli Commentary on Pirkei Avot, CC-BY: imported/rendered now; `data/sources/a-new-israeli-commentary-on-pirkei-avot.json`, 1564 units, `mishnah/a-new-israeli-commentary-on-pirkei-avot/index.html`.
+  - Amudei Yerushalayim on Jerusalem Talmud Nedarim, Public Domain, estimated 18 units: imported/rendered now; `data/sources/amudei-yerushalayim-on-jerusalem-talmud-nedarim.json`, 18 units, `other/amudei-yerushalayim-on-jerusalem-talmud-nedarim/index.html`.
   - Avot DeRabbi Natan, Recension B, Public Domain: `data/sources/avot-derabbi-natan-recension-b.json` exists with 626 units and `midrash/avot-derabbi-natan-recension-b/index.html` exists.
 
 Live file check result:
 
-- present/imported from this candidate set: 2 works.
-- configured but still missing source/page output: 6 works.
+- present/imported/rendered from this candidate set: 7 works.
+- remaining source blocker from this candidate set: 1 work, `talmud-eser-hasefirot`.
 
 ## Not Finished / Blocked
 
@@ -98,13 +98,28 @@ Two broad searches across `reports`, `data/control`, and `data` timed out at 30 
 
 Next checks were narrowed to known artifacts and direct paths.
 
+Additional timeout rows:
+
+- `process_timeout | powershell -ExecutionPolicy Bypass -File scripts/import_sefaria_sources.ps1 -ConfigPath data/catalog/sefaria-safe-candidate-kabbalah-imports.json -SkipExisting | 10m | partial artifacts created for BePardes, Ohr Penimi, and Shuvi; Talmud Eser absent | next_safe_action: rerun only changed scope, single-work Talmud Eser`
+- `process_timeout | powershell -ExecutionPolicy Bypass -File scripts/import_sefaria_sources.ps1 -ConfigPath data/catalog/sefaria-safe-candidate-kabbalah-imports.json -OnlyWorkIds talmud-eser-hasefirot -SkipExisting | 10m | no source or overlay artifact for Talmud Eser | next_safe_action: do not retry same importer; needs segmented importer/cache/checkpoint strategy`
+- `process_timeout | npm run build | 10m | no completion output, new pages were not produced | next_safe_action: use targeted lexical/render pipeline`
+- `process_timeout | node scripts/validate_sources.mjs | 10m | no completion output | next_safe_action: targeted route-page and overlay-row validation for candidate set`
+
+Successful bounded commands:
+
+- `powershell -ExecutionPolicy Bypass -File scripts/import_sefaria_sources.ps1 -ConfigPath data/catalog/sefaria-safe-candidate-oral-law-imports.json -SkipExisting`
+- `node scripts/build_lexical_cache.mjs --work-id ... --report-path reports/a09-new-library-targeted-lexical-build-2026-06-10.md`
+- `powershell -ExecutionPolicy Bypass -File scripts/render_site.ps1 -WorkIds <single-work-id>` for BePardes, Ohr Penimi, Shuvi, A New Israeli Commentary, and Amudei Yerushalayim.
+- `node scripts/validate_route_hud_page.mjs --page ...` passed for 7 candidate pages.
+- targeted source-unit to overlay-row count check passed for 7 candidate pages.
+
 ## Recommended Next Work
 
-1. A09 should maintain this as the active goal until each candidate is either imported, rendered, or blocked with exact owner/next step.
-2. For usable output soon, prioritize importable-but-not-configured candidates with clear PD / CC-BY / CC0 metadata and schema support before NC / unknown-license / OCR lanes.
+1. Do not rerun the same Talmud Eser importer command. The next useful action is a segmented/checkpointed importer or a bounded cached import strategy for `talmud-eser-hasefirot`.
+2. For more usable output soon, continue prioritizing clear PD / CC-BY / CC0 metadata with schema support before NC / unknown-license / OCR lanes.
 3. A1-source lane should own any source/license/custody decision for candidate imports and NC/noncommercial classifications.
 4. A2 should only transform/readiness-package rows after exact A1/A7/A6/A10 boundary state exists; current NC/Klein rows remain zero-output.
-5. The immediate missing-library docket should be the 6 configured-but-absent candidates listed above, with per-work result: imported path, exact fetch/schema blocker, or exact source/license/custody blocker.
+5. The immediate missing-library docket is reduced to one source blocker: `talmud-eser-hasefirot`.
 
 ## Stop Condition
 
