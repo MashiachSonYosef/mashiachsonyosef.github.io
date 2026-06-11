@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "artifact_type": "reader_workbench_followup_targets",
+  "generated_at": "2026-06-01T04:45:00-04:00",
+  "owner": "Agent 4",
+  "status": "candidate_followup_targets_ready_for_agent6_packet",
+  "purpose": "Bound the next Reader Workbench follow-up evidence set after Agent 6 accepted the first eight representative pages only.",
+  "global_boundary": {
+    "mode": "local_only_guided_gloss_assembly",
+    "publication_status": "not_a_translation",
+    "publication_ready": false,
+    "accepted_translation_text": false,
+    "agent6_required_before_acceptance": true
+  },
+  "prior_agent6_verdict": {
+    "path": "reports/agent6-reader-workbench-expansion-verdict-2026-06-01.md",
+    "accepted_scope": "eight included representative pages only",
+    "excluded_scope": "broad rollout, deferred pages, publication readiness, accepted translation text"
+  },
+  "required_checks": [
+    "node scripts/validate_reader_workbench_followup_targets.mjs",
+    "node scripts/validate_reader_workbench_runtime.mjs",
+    "node scripts/validate_route_hud_page.mjs --page <each included page>",
+    "node scripts/validate_reader_workbench_expansion_sample.mjs --targets data/control/reader_workbench_followup_targets.json --work-id abudarham"
+  ],
+  "targets": [
+    {
+      "work_id": "rashi-on-genesis",
+      "work_slug": "tanakh/rashi-on-genesis",
+      "page_path": "tanakh/rashi-on-genesis/index.html",
+      "source_path": "data/sources/rashi-on-genesis.json",
+      "lane": "tanakh_commentary",
+      "include_in_next_followup": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Recovered deferred Tanakh commentary page; now has Reader Workbench import/export controls."
+    },
+    {
+      "work_id": "abudarham",
+      "work_slug": "halakhah/abudarham",
+      "page_path": "halakhah/abudarham/index.html",
+      "source_path": "data/sources/abudarham.json",
+      "lane": "halakhah_liturgy",
+      "include_in_next_followup": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Recovered deferred halakhah/liturgy page; now has Reader Workbench import/export controls."
+    },
+    {
+      "work_id": "ketem-paz-on-zohar",
+      "work_slug": "kabbalah/ketem-paz-on-zohar",
+      "page_path": "kabbalah/ketem-paz-on-zohar/index.html",
+      "source_path": "data/sources/ketem-paz-on-zohar.json",
+      "lane": "zohar_commentary_recovered",
+      "include_in_next_followup": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Recovered deferred Zohar commentary page; now has Reader Workbench import/export controls."
+    },
+    {
+      "work_id": "orot-ha-kodesh",
+      "work_slug": "rav-kook/orot-ha-kodesh",
+      "page_path": "rav-kook/orot-ha-kodesh/index.html",
+      "source_path": "data/sources/orot-ha-kodesh.json",
+      "lane": "modern_hebrew_thought",
+      "include_in_next_followup": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Recovered deferred modern Hebrew thought page; now has Reader Workbench import/export controls."
+    }
+  ],
+  "blocked_targets": [
+    {
+      "work_id": "beer-hagolah",
+      "page_path": "other/beer-hagolah/index.html",
+      "source_path": "data/sources/beer-hagolah.json",
+      "reason": "Source file remains outside tracked audit scope and the page still lacks Reader Workbench markers."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-06-01T04:56:24-04:00",
+  "artifact_type": "definition_workbench_plan",
+  "version": 1,
+  "owner": "Agent 7",
+  "status": "sample_data_contract_added_pending_agent5_packet",
+  "report": "reports/agent7-definition-workbench-ceo-plan-2026-06-01.md",
+  "product_goal": "Rank lexical validation work by occurrence leverage and authority risk instead of forcing reviewers to discover definition problems page by page.",
+  "boundaries": [
+    "not_translation",
+    "not_publication_readiness",
+    "not_unique_semantic_truth_without_review",
+    "no_translation_memory_writes",
+    "usage_rows_remain_usage_only"
+  ],
+  "existing_inputs": {
+    "token_inventory": {
+      "report": "reports/workbench-token-inventory.md",
+      "artifact": ".local-cache/workbench-evidence/token-inventory.json",
+      "tokens_jsonl": ".local-cache/workbench-evidence/token-inventory.tokens.jsonl",
+      "total_tokens": 57709552,
+      "distinct_normalized_tokens": 623000,
+      "include_untracked_sources": false
+    },
+    "public_route_lookup": {
+      "manifest": "data/definitions/hud-route-lookup/manifest.json",
+      "distinct_normalized_tokens": 175216,
+      "route_cards": 539661,
+      "shards": 7990
+    },
+    "definition_gap_queue": {
+      "report": "reports/definition-gap-queue-report.md",
+      "csv": ".local-cache/definition-routes/runs/wide-1m-sharded-2026-05-31/definition-gap-queue.csv",
+      "queue_rows": 5000,
+      "purpose": "rank frequent source tokens that still lack accepted citable definitions"
+    },
+    "definition_integrity_gate": {
+      "report": "reports/agent6-definition-integrity-gate-2026-06-01.md",
+      "status": "warn",
+      "multi_answer_normalized_tokens": 1901,
+      "distinct_answer_definition_conflicts": 1864,
+      "publication_status": "blocked_no_render"
+    },
+    "usage_navigation": {
+      "report": "reports/workbench-usage-concordance.md",
+      "rows": 2390,
+      "boundary": "usage_navigation_only_not_definition_authority"
+    },
+    "definition_workbench_sample": {
+      "builder": "scripts/build_definition_workbench_sample.mjs",
+      "validator": "scripts/validate_definition_workbench_sample.mjs",
+      "artifact": "data/definitions/definition-workbench-sample.json",
+      "report": "reports/definition-workbench-sample-report.md",
+      "rows": 200,
+      "status_counts": {
+        "conflicting": 96,
+        "proposed_only": 49,
+        "verified": 55
+      },
+      "multi_answer_rows": 96,
+      "rows_with_complete_source_license": 200,
+      "usage_link_status": "not_joined_in_sample_pending_agent3"
+    }
+  },
+  "mvp_views": [
+    {
+      "id": "definition_index",
+      "purpose": "rank forms by validation leverage",
+      "required_columns": [
+        "occurrence_count",
+        "surface_form",
+        "normalized_form",
+        "lemma_candidates",
+        "status",
+        "route_card_count",
+        "conflict_count"
+      ],
+      "filters": [
+        "missing",
+        "proposed_only",
+        "conflicting",
+        "most_frequent",
+        "recently_changed",
+        "low_confidence"
+      ]
+    },
+    {
+      "id": "definition_detail",
+      "purpose": "review one lexical decision with provenance and occurrence context",
+      "required_sections": [
+        "surface_forms",
+        "lemma_candidates",
+        "current_definition_cards",
+        "source_license_rows",
+        "occurrences",
+        "related_forms",
+        "alternate_glosses",
+        "authority_boundary"
+      ]
+    }
+  ],
+  "data_contract_required_fields": [
+    "token_key",
+    "normalized_form",
+    "top_surfaces",
+    "occurrence_count",
+    "work_count",
+    "route_card_count",
+    "answer_card_count",
+    "evidence_only_card_count",
+    "distinct_answer_definition_count",
+    "multi_answer",
+    "source_license_complete",
+    "usage_link_count",
+    "status"
+  ],
+  "allowed_statuses": [
+    "missing",
+    "proposed_only",
+    "verified",
+    "conflicting",
+    "low_confidence",
+    "unreviewed"
+  ],
+  "agent_routing": {
+    "agent5": "manage_as_planning_lane_and_prepare_narrow_packets",
+    "agent2": "own_route_definition_index_contract",
+    "agent3": "own_occurrence_and_usage_linkage_contract",
+    "agent4": "do_not_queue_until_data_contract_and_agent6_boundary_are_ready",
+    "agent6": "review_narrow_data_contract_packet_before_ui_rollout"
+  },
+  "agent6_packet_required_evidence": [
+    "machine_readable_sample_index",
+    "status_semantics",
+    "source_license_survivability",
+    "usage_not_definition_authority_proof",
+    "multi_answer_conflict_labeling",
+    "negative_translation_memory_write_path_proof"
+  ],
+  "next_action": "Agent 5 should use the 200-row sample to frame a narrow Definitions Workbench data-contract packet for Agent 2 and Agent 3 without routing Agent 4 yet."
+}

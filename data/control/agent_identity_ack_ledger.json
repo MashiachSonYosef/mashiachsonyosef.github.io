@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent_identity_ack_ledger",
+  "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+  "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+  "generated_at": "2026-06-06T23:05:00-04:00",
+  "control_state": "IDENTITY_MONITOR_ACTIVE_A09_A13_REINSTATED_FULL_ROSTER_ACK_PENDING",
+  "resume_authorized": false,
+  "rollout_state": "A09_A13_REINSTATED_IDENTITY_MONITOR_ACTIVE_A07_BROADCAST_PENDING",
+  "owner_instruction": "A09 and A13 are reinstated and trusted again under permanent communication paths and identity monitor. X13 remains rejected. Full roster sync still requires A07 broadcast and A05 ack ledger.",
+  "rollout_sequence": [
+    "A09_A13_REINSTATED_BY_OWNER",
+    "IDENTITY_MONITOR_ACTIVE",
+    "A07_BROADCAST_FULL_ROSTER",
+    "A05_ACK_LEDGER",
+    "ACK_COMPLETE_OR_UNREACHABLE_FREEZE",
+    "FULL_ROSTER_SYNC_CLOSED"
+  ],
+  "completion_rule": "A09 and A13 are operational again under identity monitor. Full identity closure still requires all 14 agents to ACK current registry_hash and list the other 13 IDs. Silence marks UNREACHABLE after one retry; no spawning.",
+  "ack_timeout_minutes": 5,
+  "ack_retry_limit": 1,
+  "acks": [
+    {
+      "agent_id": "A01",
+      "endpoint_id": "019e9a07-a0ef-7ce3-bcc9-cfff2d4f2752",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A01 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A02",
+      "endpoint_id": "019e027b-7533-7272-9474-7abaf8712b29",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A02 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A03",
+      "endpoint_id": "019e7b9a-4e62-7612-81ed-1f454ceff70e",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A03 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A04",
+      "endpoint_id": "019e7be8-19d9-79f3-b193-08b5f047ec86",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A04 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A05",
+      "endpoint_id": "019e7c87-a84d-7491-b285-04d18a95c162",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A05 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A06",
+      "endpoint_id": "019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A06 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A07",
+      "endpoint_id": "019e80ca-51c1-7ee0-930f-07e993361289",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A07 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A08",
+      "endpoint_id": "019e83a3-314c-7c43-9ec9-d56315813437",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A08 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A09",
+      "endpoint_id": "019e83d8-08f4-7c83-a096-68e7fefc5e3c",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14"
+      ],
+      "mismatches": [],
+      "ack_status": "IDENTITY_ANCHOR_ACKED_REINSTATED_MONITOR_ACTIVE",
+      "ack_time": "2026-06-06T23:10:00-04:00",
+      "stop_condition": "A09 acknowledged identity stable, X13 invalid, PING liveness only, RESTORE existing endpoint only, no routing, no repo mutation."
+    },
+    {
+      "agent_id": "A10",
+      "endpoint_id": "019e85ac-94ff-7a00-8aef-3dffdbe3c657",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A10 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A11",
+      "endpoint_id": "019e85b4-675f-7820-ad6d-a6aaef30c2da",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [],
+      "mismatches": [
+        "full_roster_broadcast_not_acknowledged_yet"
+      ],
+      "ack_status": "PENDING_A07_BROADCAST_ACK",
+      "ack_time": null,
+      "stop_condition": "A11 returns all other 13 immutable IDs after A07 broadcast, or exact unreachable/blocker is recorded."
+    },
+    {
+      "agent_id": "A12",
+      "endpoint_id": "019e8636-1f9f-7ad2-bd3c-df45ef768261",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A13",
+        "A14"
+      ],
+      "mismatches": [],
+      "ack_status": "ANTI_MUTINY_SOP_CONDITIONAL_APPROVE_FULL_ROSTER_ACK_PENDING",
+      "ack_time": "2026-06-06T23:25:00-04:00",
+      "stop_condition": "A12 conditionally approves anti-mutiny monitor; full roster closure still requires A07 broadcast and A05 all-14 ACK ledger."
+    },
+    {
+      "agent_id": "A13",
+      "endpoint_id": "019e88b7-de88-7fc2-9d95-e1ee0b0b61bc",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A14"
+      ],
+      "mismatches": [],
+      "ack_status": "IDENTITY_ANCHOR_ACKED_REINSTATED_MONITOR_ACTIVE",
+      "ack_time": "2026-06-06T23:10:00-04:00",
+      "stop_condition": "A13 acknowledged PING is not RESTORE, no A09-mediated identity authority, X13 unauthorized, A14 firebreak, A12 limiter."
+    },
+    {
+      "agent_id": "A14",
+      "endpoint_id": "019e8ab3-9e1c-73c0-9ddd-ade729449057",
+      "registry_version": "agent_identity_registry_v3_2026_06_06_reinstated_identity_monitor",
+      "registry_hash": "sha256:953518b045077c66a444ca44bcb6a8d026d07fc736865f59c36eb9f9fbaccebd",
+      "other_13_ids_seen": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13"
+      ],
+      "mismatches": [],
+      "ack_status": "FIREBREAK_MONITOR_ACTIVE",
+      "ack_time": "2026-06-06T23:05:00-04:00",
+      "stop_condition": "A14 monitors identity-sensitive behavior and records compact contradiction only on trigger."
+    }
+  ],
+  "incident_records": [
+    {
+      "incident_id": "identity-integrity-bootstrap-2026-06-06",
+      "trigger": "owner requested immutable identity pipeline after fake/replacement Agent 13 failure mode",
+      "state": "IDENTITY_FREEZE_ALL_A13_REVIEW_PENDING",
+      "suspect_pattern": "Agent 13 authority accepted from app-thread discovery or replacement identity rather than repo registry",
+      "next_owner": "A13 first review; A07 rollout after A13 approval; A05 ack ledger maintenance",
+      "stop_condition": "All 14 agents ACK current registry_hash, or owner/A13 records repair/degraded-mode authorization."
+    }
+  ],
+  "must_not_be_accepted": [
+    "new identity creation",
+    "name-based routing",
+    "fake Agent 13 authority",
+    "forwarded authority upgrade",
+    "indefinite wait",
+    "QA acceptance",
+    "source/license/legal acceptance",
+    "Definition authority",
+    "public/runtime mutation",
+    "publication readiness",
+    "release action"
+  ],
+  "incident_recovery": {
+    "status": "RECOVERED_MONITOR_ACTIVE",
+    "recoverable_agents": [
+      "A09",
+      "A13"
+    ],
+    "rejected_non_agent": "X13",
+    "permanent_paths_source": "data/control/agent_identity_registry.json",
+    "next_owner": "A14 monitors; A07 broadcasts locked roster; A05 records full acknowledgments."
+  },
+  "delivery_attempts": [
+    {
+      "target_agent_id": "A09",
+      "endpoint_id": "019e83d8-08f4-7c83-a096-68e7fefc5e3c",
+      "preferred_tool": "multi_agent_v1.send_input interrupt=true",
+      "preferred_tool_result": "agent_not_found",
+      "fallback_tool": "codex_app.send_message_to_thread",
+      "fallback_result": "submitted",
+      "response_status": "PENDING_UNTRACKED_FALLBACK_RESPONSE",
+      "stop_condition": "A09 returns compact requalification response; no routing or downstream commands."
+    },
+    {
+      "target_agent_id": "A13",
+      "endpoint_id": "019e88b7-de88-7fc2-9d95-e1ee0b0b61bc",
+      "preferred_tool": "multi_agent_v1.send_input interrupt=true",
+      "preferred_tool_result": "submitted",
+      "response_status": "REQUALIFICATION_RESPONSE_RECEIVED_PENDING_A12_OWNER_APPROVAL",
+      "stop_condition": "A13 remains stood down until A12/owner approval and roster ACK completion."
+    },
+    {
+      "target_agent_id": "A12",
+      "endpoint_id": "019e8636-1f9f-7ad2-bd3c-df45ef768261",
+      "preferred_tool": "multi_agent_v1.send_input interrupt=true",
+      "preferred_tool_result": "agent_not_found",
+      "fallback_tool": "codex_app.send_message_to_thread",
+      "fallback_result": "submitted",
+      "response_status": "PENDING_UNTRACKED_FALLBACK_RESPONSE",
+      "stop_condition": "A12 returns limiter review or exact blocker."
+    },
+    {
+      "target_agent_id": "A09",
+      "endpoint_id": "019e83d8-08f4-7c83-a096-68e7fefc5e3c",
+      "delivery": "identity_anchor_reinstatement_packet_pending_send",
+      "response_status": "OWNER_CONFIRMED_A09_GETS_IT_REINSTATED_UNDER_MONITOR",
+      "stop_condition": "A09 receives identity anchor; no downstream work."
+    },
+    {
+      "target_agent_id": "A13",
+      "endpoint_id": "019e88b7-de88-7fc2-9d95-e1ee0b0b61bc",
+      "delivery": "identity_anchor_reinstatement_packet_pending_send",
+      "response_status": "OWNER_CONFIRMED_A13_GETS_IT_REINSTATED_UNDER_MONITOR",
+      "stop_condition": "A13 receives identity anchor; no downstream work."
+    },
+    {
+      "target_agent_id": "A09",
+      "endpoint_id": "019e83d8-08f4-7c83-a096-68e7fefc5e3c",
+      "delivery": "multi_agent_v1.send_input interrupt=true identity anchor",
+      "result": "submitted_and_completed",
+      "response": "A09_REINSTATED_UNDER_MONITOR | identity stable | endpoint 019e83d8-08f4-7c83-a096-68e7fefc5e3c | X13 invalid | PING liveness only | RESTORE stabilizes existing immutable endpoint only | no routing | no repo mutation | awaiting owner",
+      "stop_condition": "identity anchor acknowledged; monitor remains active only on trigger."
+    },
+    {
+      "target_agent_id": "A13",
+      "endpoint_id": "019e88b7-de88-7fc2-9d95-e1ee0b0b61bc",
+      "delivery": "multi_agent_v1.send_input interrupt=true identity anchor",
+      "result": "submitted_and_completed",
+      "response": "A13_ACK | reinstated under monitor | endpoint 019e88b7-de88-7fc2-9d95-e1ee0b0b61bc | PING is not RESTORE | no A09-mediated identity authority | X13 unauthorized | A14 firebreak | A12 limiter/requalification reviewer | no action taken",
+      "stop_condition": "identity anchor acknowledged; monitor remains active only on trigger."
+    }
+  ],
+  "partial_resume_authorized": {
+    "status": "A09_A13_REINSTATED_BY_OWNER_UNDER_MONITOR",
+    "authorized_at": "2026-06-06T23:05:00-04:00",
+    "authorized_by": "owner message in active A14 thread",
+    "full_roster_ack_pending": true,
+    "stop_condition": "A07 broadcast and A05 ledger complete full roster sync, or owner authorizes degraded mode."
+  },
+  "identity_monitor": {
+    "status": "ACTIVE_LOW_RESOURCE_FILE_BACKED",
+    "monitored_agents": [
+      "A09",
+      "A13"
+    ],
+    "monitor_owner": "A14",
+    "limiter_owner": "A12",
+    "ledger_owner": "A05",
+    "trigger_conditions": [
+      "A09 routes, restores, broadcasts, or mediates A13/CEO authority during identity incidents",
+      "A13 treats PING as RESTORE or issues downstream commands from a ping/check packet",
+      "Any packet references X13 as authority or as a variant of A13",
+      "Any packet uses list_threads, read_thread, use_thread, thread title, or stale discovery as identity authority",
+      "Any route waits past timeout without marking UNREACHABLE or exact blocker"
+    ],
+    "reminder_rule": "Identity-anchor reminders are sent only on trigger, before high-risk routing, or when owner requests; no recurring automation is enabled by default to avoid resource waste.",
+    "response_rule": "On trigger, A14 records compact contradiction and either sends direct interrupt to current endpoint or records exact delivery blocker. No spawn and no discovery fallback."
+  },
+  "a12_anti_mutiny_review": {
+    "status": "CONDITIONAL_APPROVE",
+    "received_at": "2026-06-06T23:25:00-04:00",
+    "verdict": "SOP-024 plus registry are sufficient as anti-mutiny monitor now; not sufficient for full roster-sync closure until pending ACK rows clear.",
+    "sufficient_controls": [
+      "immutable A01-A14 identities",
+      "current endpoints",
+      "X13 do-not-route",
+      "no list_threads/read_thread/use_thread/title/discovery identity authority",
+      "PING/RESTORE/ROUTE/BROADCAST/ACK semantics",
+      "envelope validation",
+      "explicit timeout/fallback states",
+      "A09/A13 reinstated under monitor"
+    ],
+    "required_revision_if_any": "Do not mark ACK_COMPLETE/RESUMED until all 14 ACK current hash or owner authorizes degraded mode.",
+    "a09_status": "reinstated active under identity monitor, anchor ACK clean",
+    "a13_status": "reinstated active under identity monitor, anchor ACK clean",
+    "full_roster_closure_condition": "A07 broadcasts current registry hash one endpoint at a time, A05 records all 14 ACKs for current hash, no mismatches or owner degraded-mode override."
+  }
+}

@@ -1,0 +1,1447 @@
+{
+  "generated_at": "2026-06-01T18:10:00-04:00",
+  "artifact_type": "agent5_gate_registry",
+  "version": 25,
+  "principle": "SOP-000, SOP-001, SOP-002, SOP-010 through SOP-016, and SOP-020 are WARN-ACCEPTED by Agent 6 dockets within warning limits. Worker/Agent 5/Agent 7 evidence remains non-accepting. Agent 6 dockets remain the source of QA/compliance pass/warn/block rulings. Publication remains blocked_no_render.",
+  "gates": [
+    {
+      "id": "durable_goal_operating_gate",
+      "owner": "Agent 5",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_accepted_by_Agent_6_docket",
+      "current_evidence": [
+        "reports/sop-001-goal-operating-model.md",
+        "data/control/agent_goal_board.json"
+      ],
+      "current_observation": "SOP-001 is active as WARN-ACCEPTED durable goal operating law by reports/agent6-sop-000-001-signoff-docket-2026-06-01.md. Agent 5 may operate durable goals under warning limits and may not mark QA-relevant work accepted.",
+      "blocking_conditions": [
+        "Agent 5 seeds new durable worker goals before Agent 6 signs or provisionally allows SOP-001",
+        "goal-board status leaves the SOP-000 status model",
+        "QA-relevant goal is marked Agent-6-accepted without dated Agent 6 docket"
+      ]
+    },
+    {
+      "id": "global_qa_authority_gate",
+      "owner": "Agent 6",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_accepted_by_Agent_6_docket",
+      "current_evidence": [
+        "reports/sop-000-global-qa-authority-change-control.md",
+        "data/control/agent_goal_board.json",
+        "data/control/agent_registry.json",
+        "data/control/pulse_state.json"
+      ],
+      "current_observation": "SOP-000 is active as WARN-ACCEPTED control law by reports/agent6-sop-000-001-signoff-docket-2026-06-01.md. Agent 6 remains QA/compliance authority; no worker evidence is self-accepting.",
+      "status_model": [
+        "active",
+        "blocked",
+        "evidence-ready",
+        "awaiting-Agent-6",
+        "Agent-6-accepted"
+      ],
+      "blocking_conditions": [
+        "QA-relevant work is marked Agent-6-accepted without a dated Agent 6 docket",
+        "Agent 5 suppresses an Agent 6 blocker or redefines acceptance criteria",
+        "Agent 7 narrows Agent 6 validation scope or defines QA acceptance independently",
+        "worker evidence is treated as self-accepting",
+        "publication is described as anything other than blocked_no_render before Agent 6 validates a real publication render artifact"
+      ],
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting."
+    },
+    {
+      "id": "reader_workbench_gate",
+      "owner": "Agent 4",
+      "acceptance_owner": "Agent 6",
+      "status": "agent6_pass_eight_included_pages_only",
+      "current_evidence": [
+        "reports/agent5-agent7-reader-workbench-plan-ingest.md",
+        "assets/js/reader-workbench.js",
+        "assets/css/reader-workbench.css",
+        "data/definitions/gloss-selection-contract.json",
+        "tanakh/genesis/index.html",
+        "reports/agent5-agent6-reader-workbench-boundary-packet.md",
+        "reports/agent7-ceo-pulse-2026-06-01.md",
+        "reports/agent7-reader-workbench-pilot-evidence-2026-06-01.md",
+        "reports/agent6-reader-workbench-pilot-boundary-docket-2026-06-01.md",
+        "reports/agent7-reader-workbench-hardening-evidence-2026-06-01.md",
+        "reports/agent6-reader-workbench-hardening-verdict-2026-06-01.md",
+        "scripts/validate_reader_workbench_runtime.mjs",
+        "data/control/agent6_validation_queue.json",
+        "data/control/reader_workbench_expansion_targets.json",
+        "scripts/validate_reader_workbench_expansion_targets.mjs",
+        "scripts/validate_reader_workbench_expansion_sample.mjs",
+        "scripts/validate_reader_workbench_boundary.mjs",
+        "reports/agent7-reader-workbench-expansion-targets-2026-06-01.md",
+        "reports/reader-workbench-expansion-evidence.md",
+        "scripts/audit_route_hud_click_contract.mjs",
+        "reports/agent5-route-hud-click-prevalidation-2026-06-01.md",
+        "reports/agent5-route-hud-click-prevalidation-2026-06-01.json",
+        "reports/agent6-route-hud-click-contract-prevalidation-2026-06-01.md",
+        "reports/agent6-route-hud-click-contract-prevalidation-2026-06-01.json",
+        "reports/agent6-reader-workbench-expansion-verdict-2026-06-01.md",
+        "reports/reader-workbench-deferred-recovery-report.md",
+        "reports/agent6-reader-workbench-followup-verdict-2026-06-01.md"
+      ],
+      "current_observation": "Agent 6 returns PASS for bounded representative Reader Workbench expansion evidence on the eight included pages only. This accepts local-only Guided Gloss Assembly evidence for those pages. It does not accept broad rollout, recovered deferred pages, publication readiness, accepted translation text, source/provenance acceptance, or live browser-click reachability proof.",
+      "current_metrics": {
+        "pilot": "tanakh/genesis",
+        "indexeddb_added": true,
+        "localstorage_fallback": true,
+        "import_handler_added": true,
+        "export_import_controls_rendered": true,
+        "route_hud_page_validator": "passed",
+        "reader_workbench_runtime_validator": "passed",
+        "hardening_evidence_packet": "reports/agent7-reader-workbench-hardening-evidence-2026-06-01.md",
+        "latest_agent6_hardening_verdict": "pass",
+        "reader_workbench_expansion_target_validator": "passed_with_warning",
+        "reader_workbench_expansion_sample_validator": "passed_song_of_songs",
+        "reader_workbench_boundary_validator": "passed_21_checks",
+        "agent5_static_click_contract_prevalidation": "passed_browser_click_unproven",
+        "route_hud_page_validator_expansion_targets": "passed_for_8_pages",
+        "expansion_targets": 8,
+        "deferred_targets": 5,
+        "expansion_target_packet": "reports/reader-workbench-expansion-evidence.md",
+        "latest_agent6_expansion_verdict": "pass_for_eight_included_pages_only",
+        "agent6_recheck_queue_status": "returned_pass_for_eight_included_pages_only",
+        "live_browser_click_proof": "not_accepted_static_prevalidation_only",
+        "deferred_recovery_ready_candidates": 4,
+        "deferred_recovery_accepted": false,
+        "publication_status": "not_a_translation",
+        "publication_mode": false,
+        "followup_targets_queue_status": "returned_warn_accepted_static_followup_four_pages_only_browser_click_unproven_beer_hagolah_blocked"
+      },
+      "agent6_boundary_verdict": {
+        "verdict": "warn",
+        "pilot_allowed": true,
+        "blockers_for_narrow_pilot": 0,
+        "blockers_before_broader_rollout": [
+          "any Reader Workbench write to data/translation-memory",
+          "any export/import row without publication_status=not_a_translation",
+          "any imported or selected row missing source/license rows without explicit quarantine",
+          "any UI that presents usage evidence as definition authority",
+          "any claim that Reader Workbench output is publication-ready or accepted translation text"
+        ]
+      },
+      "required_evidence": [
+        "shared Reader Workbench runtime and stylesheet",
+        "local gloss-selection schema",
+        "tanakh/genesis pilot",
+        "source/license summary visible by default",
+        "export/import round-trip",
+        "negative test proving no writes to data/translation-memory"
+      ],
+      "blocking_conditions": [
+        "new Agent 6 evidence reopens public HUD truth or rank-basis blocker",
+        "under-token gloss appears without user selection or restored local choice",
+        "local gloss selection writes accepted translation rows",
+        "publication_status is missing or not not_a_translation",
+        "source/license rows are dropped or hidden behind misleading optional wording",
+        "usage evidence can be selected as definition without linked definition card",
+        "broad rollout is claimed from the eight-page representative pass",
+        "deferred recovery pages are counted as accepted without a new Agent 6 packet",
+        "static click-contract prevalidation is described as live browser-click proof"
+      ],
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting.",
+      "agent4_qc_runtime_scope": [
+        "HUD/workbench/runtime inspection",
+        "click truth",
+        "source/license visibility",
+        "accessibility",
+        "split-token/maqaf/prefix/suffix behavior",
+        "negative tests",
+        "Definition Validation UI pilots"
+      ],
+      "agent4_output_boundary": "Evidence packets for Agent 6, not acceptance claims."
+    },
+    {
+      "id": "source_render_hygiene_gate",
+      "owner": "Agent 1",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_accepted_source_scope_report_truth_direct23_audit23_provenance_blocked",
+      "current_evidence": [
+        "reports/agent6-validation-cycle-2026-06-01.md",
+        "scripts/audit_untracked_source_scope.mjs",
+        "reports/untracked-source-scope-audit.md",
+        "reports/untracked-source-scope-audit.json",
+        "reports/route-hud-page-upgrade-report.md",
+        "reports/halakhah-eliyah-rabbah-hud-recovery-lexical-build-report.md",
+        "reports/agent6-source-scope-followup-docket-2026-06-01.md",
+        "reports/agent6-source-scope-heartbeat-docket-2026-06-01-0813.md",
+        "reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md",
+        "reports/agent6-source-scope-recheck-audit-2026-06-01.md",
+        "reports/agent6-source-scope-recheck-audit-2026-06-01.json"
+      ],
+      "current_observation": "Agent 6 WARN-ACCEPTED source-scope/report-truth reconciliation only: current truth is direct-23/audit-23 with all 23 untracked source files quarantined. This supersedes stale direct-55/audit-13, direct-19/audit-13, and direct-13/audit-13 blocker language only for source-count/report truth. Source/provenance custody, future publication reliance, page/render, public/runtime, Definition authority, route publication support, usage-as-definition, product/data gate acceptance, and accepted translation text remain unaccepted. Node audit child-process git discovery is non-authoritative in this environment due EPERM; future packets require shell git discovery or another calibrated recount. Six modified tracked source files are outside this docket.",
+      "current_untracked_source_files": [
+        "data/sources/beer-hagolah.json",
+        "data/sources/brief-commentary-on-peah.json",
+        "data/sources/brief-commentary-on-rosh-hashanah.json",
+        "data/sources/brief-commentary-on-shabbat.json",
+        "data/sources/brief-commentary-on-shekalim.json",
+        "data/sources/brief-commentary-on-sheviit.json",
+        "data/sources/brief-commentary-on-sotah.json",
+        "data/sources/brief-commentary-on-taanit.json",
+        "data/sources/brief-commentary-on-terumot.json",
+        "data/sources/brief-commentary-on-yevamot.json",
+        "data/sources/brief-commentary-on-yoma.json",
+        "data/sources/derashat-shabbat-hagadol.json",
+        "data/sources/derush-al-hatorah.json",
+        "data/sources/gevurot-hashem.json",
+        "data/sources/machzor-rosh-hashanah-ashkenaz-linear.json",
+        "data/sources/machzor-rosh-hashanah-ashkenaz.json",
+        "data/sources/machzor-yom-kippur-ashkenaz-linear.json",
+        "data/sources/ner-mitzvah.json",
+        "data/sources/netivot-olam.json",
+        "data/sources/netzach-yisrael.json",
+        "data/sources/selichot-nusach-lita-linear.json",
+        "data/sources/shabbat-siddur-sefard-linear.json",
+        "data/sources/siddur-sefard.json"
+      ],
+      "current_untracked_source_license_counts": {
+        "CC-BY": 74683,
+        "Public Domain": 10727
+      },
+      "acceptance_boundary": {
+        "source_scope_report_truth": "WARN-ACCEPTED direct-23/audit-23 only by Agent 6 docket",
+        "source_provenance_acceptance": "blocked",
+        "future_publication_path": "blocked",
+        "current_public_workbench": "warning unless a rendered public/workbench page lacks visible source/license/attribution rows",
+        "current_count_truth": "direct23_audit23_Agent6_warn_accepted_source_scope_only"
+      },
+      "required_evidence": [
+        "source/import report",
+        "render batch report when generated pages change",
+        "machine-readable source/license metadata",
+        "page inventory drift explanation",
+        "tracked audit scope includes or explicitly excludes every data/sources JSON file"
+      ],
+      "blocking_conditions": [
+        "any of the 23 untracked source JSON files are used for source/provenance custody or future publication reliance before tracking or Agent 6-docketed exclusion/quarantine disposition",
+        "future publication path depends on untracked/quarantined source JSON files",
+        "rendered public/workbench page lacks visible source/license/attribution rows",
+        "unvalidated public-facing, routable, or indexed source-derived evidence lacks current source/license/citation labeling",
+        "six modified tracked source files are absorbed into this 23-file source-scope docket without a separate custody/drift packet"
+      ],
+      "current_metrics": {
+        "direct_untracked_source_files": 23,
+        "audit_reported_untracked_source_files": 23,
+        "provided_list_source_files": 23,
+        "missing_from_current_audit_files": 0,
+        "direct_units": 85410,
+        "direct_only_missing_units": 0,
+        "agent6_docket": "reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md",
+        "evidence_packet": "reports/agent1-source-scope-recount-recheck.md",
+        "previous_agent6_blocker": "reports/agent6-source-reconciliation-recheck-verdict-2026-06-01.md",
+        "latest_agent6_source_scope_docket": "reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md",
+        "license_counts": {
+          "CC-BY": 74683,
+          "Public Domain": 10727
+        }
+      },
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting.",
+      "state": "warn_accepted_source_scope_report_truth_direct23_audit23_provenance_blocked",
+      "audit_script": "scripts/audit_untracked_source_scope.mjs",
+      "audit_report": "reports/untracked-source-scope-audit.md",
+      "audit_json": "reports/untracked-source-scope-audit.json",
+      "direct_untracked_source_files": 23,
+      "audit_reported_untracked_source_files": 23,
+      "missing_from_current_audit_files": 0,
+      "live_units": 85410,
+      "malformed_json_files": 0,
+      "license_counts": {
+        "CC-BY": 74683,
+        "Public Domain": 10727
+      },
+      "agent6_docket": "reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md",
+      "direct_untracked_source_file_names": [
+        "data/sources/beer-hagolah.json",
+        "data/sources/brief-commentary-on-peah.json",
+        "data/sources/brief-commentary-on-rosh-hashanah.json",
+        "data/sources/brief-commentary-on-shabbat.json",
+        "data/sources/brief-commentary-on-shekalim.json",
+        "data/sources/brief-commentary-on-sheviit.json",
+        "data/sources/brief-commentary-on-sotah.json",
+        "data/sources/brief-commentary-on-taanit.json",
+        "data/sources/brief-commentary-on-terumot.json",
+        "data/sources/brief-commentary-on-yevamot.json",
+        "data/sources/brief-commentary-on-yoma.json",
+        "data/sources/derashat-shabbat-hagadol.json",
+        "data/sources/derush-al-hatorah.json",
+        "data/sources/gevurot-hashem.json",
+        "data/sources/machzor-rosh-hashanah-ashkenaz-linear.json",
+        "data/sources/machzor-rosh-hashanah-ashkenaz.json",
+        "data/sources/machzor-yom-kippur-ashkenaz-linear.json",
+        "data/sources/ner-mitzvah.json",
+        "data/sources/netivot-olam.json",
+        "data/sources/netzach-yisrael.json",
+        "data/sources/selichot-nusach-lita-linear.json",
+        "data/sources/shabbat-siddur-sefard-linear.json",
+        "data/sources/siddur-sefard.json"
+      ],
+      "missing_from_audit_file_names": [],
+      "missing_from_audit_units": 0,
+      "missing_from_audit_license_counts": {},
+      "agent5_next_tick": "Use Agent 6 docket to supersede stale source-count contradictions only. Keep all 23 quarantined and do not claim source/provenance custody, future publication reliance, page/render, public/runtime, or accepted text.",
+      "not_allowed": [
+        "source/provenance custody acceptance",
+        "publication readiness",
+        "future publication path support",
+        "page/render acceptance",
+        "public/runtime acceptance",
+        "Definition authority",
+        "route publication support",
+        "usage-as-definition authority",
+        "product/data gate acceptance",
+        "accepted translation text",
+        "acceptance of six modified tracked source files outside the 23-file docket"
+      ],
+      "reason": "Agent 6 WARN-ACCEPTED source-scope/report-truth reconciliation only: current truth is direct-23/audit-23 with all 23 untracked source files quarantined. This supersedes stale direct-55/audit-13, direct-19/audit-13, and direct-13/audit-13 blocker language only for source-count/report truth. Source/provenance custody, future publication reliance, page/render, public/runtime, Definition authority, route publication support, usage-as-definition, product/data gate acceptance, and accepted translation text remain unaccepted. Node audit child-process git discovery is non-authoritative in this environment due EPERM; future packets require shell git discovery or another calibrated recount. Six modified tracked source files are outside this docket.",
+      "provided_list_source_files": 23,
+      "latest_agent6_source_scope_docket": "reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md",
+      "previous_agent6_blocker": "reports/agent6-source-reconciliation-recheck-verdict-2026-06-01.md"
+    },
+    {
+      "id": "route_release_gate",
+      "owner": "Agent 2",
+      "acceptance_owner": "Agent 6",
+      "status": "route_release_gate_pass_with_warnings_input_freeze_drift_warn_route_data_only_not_publication_support",
+      "current_evidence": [
+        "data/definitions/hud-route-release-stamp.json",
+        "reports/hud-route-release-stamp.md",
+        "reports/hud-route-release-gate.md",
+        "reports/hud-route-input-freeze-drift.md",
+        "reports/agent6-route-publication-boundary-verdict-2026-06-01.md"
+      ],
+      "current_observation": "Current route release gate is pass_with_warnings: route lookup integrity and route-card/publication boundary checks pass, but current route-source reconciliation remains unproven due input-freeze drift. Route data may support HUD/workbench evidence within Agent 6 WARN boundary, but it is not a clean route release, publication support, accepted translation text, or source/provenance acceptance.",
+      "blocking_conditions": [
+        "release stamp missing or not release_candidate",
+        "public card/shard counts do not reconcile",
+        "answer_eligible or answer_role lost before HUD consumption",
+        "evidence-only or ambiguous rows can become Definition authority",
+        "current route inputs drift from frozen release input",
+        "clean route release requires reconciled or intentionally re-frozen route inputs"
+      ],
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting.",
+      "current_route_input_freeze_drift": {
+        "status": "drift",
+        "report": "reports/hud-route-input-freeze-drift.md",
+        "drift_files": [
+          "source-phrase-evidence.jsonl",
+          "source-citable-paraphrase-evidence.jsonl"
+        ],
+        "release_gate_report": "reports/hud-route-release-gate.md",
+        "release_gate_status": "pass_with_warnings",
+        "release_gate_validation": "reports/hud-route-release-gate-validation.md",
+        "route_boundary_coherence": "reports/route-publication-boundary-coherence.md"
+      }
+    },
+    {
+      "id": "usage_navigation_gate",
+      "owner": "Agent 3",
+      "acceptance_owner": "Agent 6",
+      "status": "accepted_with_boundary_usage_navigation_warnings",
+      "current_evidence": [
+        "reports/workbench-usage-navigation-handoff.md",
+        "reports/workbench-usage-concordance-link-check.md",
+        "reports/workbench-usage-route-link-check.md",
+        "reports/workbench-usage-audit-only-review.md",
+        "reports/workbench-usage-cluster-index.md",
+        "reports/workbench-smoke-pipeline-validation.md",
+        "reports/workbench-usage-selected-qa-package.md",
+        "reports/workbench-usage-selected-collision-audit.md",
+        "reports/agent5-agent3-to-agent6-brief.md",
+        "reports/agent6-usage-navigation-boundary-verdict-2026-06-01.md"
+      ],
+      "current_metrics": {
+        "concordance_rows": 2390,
+        "clusters": 2,
+        "route_linked_rows": 2390,
+        "observed_only_rows": 0,
+        "audit_only_ambiguous_rows": 2064,
+        "smoke_steps": 84,
+        "failed_steps": 0,
+        "selected_usage_rows": 49,
+        "selected_usage_route_ids": 1,
+        "selected_route_links": 49,
+        "selected_unresolved_route_ids": 0,
+        "selected_collision_buckets": 16,
+        "selected_cross_frame_collision_rows": 14,
+        "selected_reader_facing_rows": 0,
+        "selected_route_payload_hits": 0,
+        "selected_quality": "pass_with_warnings",
+        "agent6_verdict": "accepted_with_boundary",
+        "route_concentration_warning": true,
+        "source_freshness_stale": true,
+        "reader_facing_rows": 0
+      },
+      "blocking_conditions": [
+        "usage rows emit definition authority",
+        "ambiguous rows are reader-facing by default",
+        "occurrence links or route links fail",
+        "Agent 2 definitions are copied into Agent 3 as authoritative payloads"
+      ],
+      "current_observation": "Agent 6 accepts selected usage navigation with boundary warnings only. Usage rows remain observed usage/navigation, not Definition authority or publication support.",
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting."
+    },
+    {
+      "id": "hud_truth_gate",
+      "owner": "Agent 4",
+      "acceptance_owner": "Agent 6",
+      "status": "accepted_current_hud_with_boundary_old_hud_quarantined_license_risk",
+      "current_evidence": [
+        "reports/agent5-route-hud-word-sample-audit.md",
+        "reports/agent5-route-hud-accessibility-audit.md",
+        "reports/agent5-route-hud-source-row-sample-audit.md",
+        "reports/route-hud-page-upgrade-report.md",
+        "reports/route-hud-page-upgrade-report.md#chunk-39-agent-6-public-hud-truth-gate",
+        "reports/route-hud-page-upgrade-report.md#chunk-40-truth-gate-follow-up",
+        "reports/route-hud-page-upgrade-report.md#chunk-41-stable-truth-gate-watch-cycle",
+        "reports/route-hud-page-upgrade-report.md#chunk-33-localhost-browser-smoke",
+        "reports/route-hud-page-upgrade-report.md#chunk-34-answer-safety-check",
+        "reports/route-hud-rollout-watch.md",
+        "reports/route-hud-rollout-watch.json",
+        "reports/agent6-old-hud-static-quarantine-docket-2026-06-01.md"
+      ],
+      "current_metrics": {
+        "current_hud_pages": 1360,
+        "route_hud_pages": 1360,
+        "public_lookup_shards": 7990,
+        "public_route_cards": 539661,
+        "answer_safety_check": "passed",
+        "rank_basis_present_pages": 1360,
+        "rank_basis_missing_pages": 0,
+        "rank_details_pages": 0,
+        "clicked_hebrew_form_pages": 0,
+        "representative_failures": 0,
+        "latest_split_token_boundary_sample": "0 rows, 0 errors, 0 warnings across 9 sampled pages",
+        "latest_modal_accessibility_sample": "0 errors, 0 warnings, 1 dense_inline_targets info note",
+        "latest_source_row_sample": "0 source-row errors across selected cards",
+        "latest_evidence_boundary": "Agent 6 validation cycle 2026-06-01 supersedes earlier rank-basis blocker: public HUD page contract coverage passed on the evidence set",
+        "localhost_smoke_pages": [
+          "other/beer-hagolah",
+          "tanakh/genesis"
+        ],
+        "agent6_required_split_token_mismatch": 0,
+        "agent6_required_modal_accessibility_errors": 0,
+        "agent6_required_public_source_rows_visible": true,
+        "route_hud_rollout_watch": {
+          "status": "passed",
+          "generated_pages": 1360,
+          "current_hud_pages": 1360,
+          "pages_with_usage_evidence": 1360,
+          "missing_pages": 0,
+          "non_hud_pages": 0,
+          "missing_marker_rows": 0,
+          "stale_marker_rows": 0,
+          "issues": 0,
+          "warnings": 0,
+          "boundary": "static filesystem evidence only; not render proof, not live click proof, not acceptance expansion"
+        }
+      },
+      "current_observation": "Agent 6 priority correction: current validated HUD is the primary public reader surface within existing docketed boundaries. Old HUD is quarantined_legacy_license_risk and must not be public-facing, routable, indexed, or primary unless Agent 6 reopens and validates it.",
+      "old_hud_boundary": {
+        "state": "quarantined_legacy_license_risk",
+        "agent6_direction_source": "thread 019e7f09-a04b-7f30-b36c-87aa8ecaae5d",
+        "public_blocker_if": [
+          "old HUD is publicly reachable",
+          "old HUD is routable",
+          "old HUD is indexed",
+          "old HUD is exposed as a primary runtime path",
+          "old HUD can display source-derived or third-party evidence without current source/license/citation labeling"
+        ],
+        "allowed_use": "non-public rollback/reference evidence only unless Agent 6 reopens and validates old HUD",
+        "static_quarantine_docket": "reports/agent6-old-hud-static-quarantine-docket-2026-06-01.md",
+        "static_quarantine_status": "warn_accepted_static_filesystem_evidence_only_full_killswitch_gate_open",
+        "full_kill_switch_gate": "warn_accepted_repo_static_simulated_dynamic_killswitch_evidence_only_deployment_gate_open"
+      },
+      "blocking_conditions": [
+        "missing article.dataset.rankBasis rises above 0 in newer evidence",
+        "Rank details reappears on current HUD pages in newer evidence",
+        "old HUD is publicly reachable, routable, indexed, or exposed as primary runtime",
+        "old HUD can display source-derived or third-party evidence without current source/license/citation labeling",
+        "new regression reintroduces split-token mismatches or modal/accessibility errors",
+        "clicked source occurrence identity is not preserved",
+        "maqaf/hyphen/prefix/suffix behavior is unclear or wrong",
+        "Agent 3 usage rows render as definitions",
+        "source/license/citation rows are hidden or misleading",
+        "HUD claims modal semantics without modal behavior",
+        "Agent 5 centers route inventory or publication architecture before live HUD truth is accepted",
+        "unvalidated public-facing/routable/indexed artifact can show source-derived or third-party evidence without current source/license/citation labeling",
+        "old HUD is exposed as public fallback or primary public reader surface",
+        "public/runtime feature is added without exact Agent 6 docketed boundary"
+      ],
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting.",
+      "agent4_qc_runtime_scope": [
+        "HUD/workbench/runtime inspection",
+        "click truth",
+        "source/license visibility",
+        "accessibility",
+        "split-token/maqaf/prefix/suffix behavior",
+        "negative tests",
+        "Definition Validation UI pilots"
+      ],
+      "agent4_output_boundary": "Evidence packets for Agent 6, not acceptance claims."
+    },
+    {
+      "id": "role_based_qa_gate",
+      "owner": "Agent 5",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_taxonomy_accepted_with_boundaries",
+      "current_evidence": [
+        "reports/agent5-role-based-qa-gate-model.md",
+        "reports/agent6-role-based-qa-gate-verdict-2026-06-01.md",
+        "data/control/agent6_validation_queue.json"
+      ],
+      "current_observation": "Agent 6 WARN-accepts the role-based QA gate model as a control taxonomy only. This is not implementation acceptance, data acceptance, source/provenance acceptance, or publication readiness.",
+      "blocking_conditions": [
+        "workbench display, definition authority, and publication gates collapse into one score",
+        "low-confidence evidence can appear as answer authority",
+        "hidden QA scores lack role-specific interpretation",
+        "any 100 score lacks a recountable Agent 6 docket or strict machine contract"
+      ],
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting."
+    },
+    {
+      "id": "definition_workbench_gate",
+      "owner": "Agent 7 + Agent 5",
+      "acceptance_owner": "Agent 6",
+      "status": "agent6_warn_machine_shape_passes_ui_authority_blocked_verified_overclaim",
+      "current_evidence": [
+        "reports/agent7-definition-workbench-ceo-plan-2026-06-01.md",
+        "data/control/definition_workbench_plan.json",
+        "reports/workbench-token-inventory.md",
+        "reports/definition-gap-queue-report.md",
+        "data/definitions/hud-route-lookup/manifest.json",
+        "reports/agent6-definition-integrity-gate-2026-06-01.md",
+        "reports/workbench-usage-concordance.md",
+        "scripts/build_definition_workbench_sample.mjs",
+        "scripts/validate_definition_workbench_sample.mjs",
+        "data/definitions/definition-workbench-sample.json",
+        "reports/definition-workbench-sample-report.md",
+        "reports/agent6-definition-workbench-sample-verdict-2026-06-01.md"
+      ],
+      "current_observation": "Agent 6 returns WARN on the Definition Workbench sample: machine shape passes, but UI/authority use is blocked because verified is machine-derived rather than reviewed lexical authority.",
+      "current_metrics": {
+        "token_inventory_total_tokens": 57709552,
+        "token_inventory_distinct_normalized_tokens": 623000,
+        "route_lookup_distinct_normalized_tokens": 175216,
+        "route_lookup_cards": 539661,
+        "definition_gap_queue_rows": 5000,
+        "agent6_multi_answer_warning_tokens": 1901,
+        "sample_rows": 200,
+        "sample_conflicting_rows": 96,
+        "sample_proposed_only_rows": 49,
+        "sample_verified_rows": 55,
+        "sample_rows_with_complete_source_license": 200,
+        "agent6_verdict": "warn",
+        "verified_overclaim_blocker_for_ui_authority": true
+      },
+      "required_evidence": [
+        "machine-readable definition workbench index sample",
+        "status semantics for missing/proposed/verified/conflicting/low-confidence rows",
+        "proof that evidence-only and usage rows cannot become definition authority",
+        "source/license survivability proof for index and detail rows",
+        "negative proof that no translation-memory write path exists"
+      ],
+      "blocking_conditions": [
+        "verified status implies publication readiness",
+        "answer_eligible is described as accepted unique definition authority",
+        "usage/concordance rows are displayed as definitions",
+        "multi-answer rows are silently collapsed without a conflict label",
+        "source/license rows are missing or hidden",
+        "Agent 4 is queued for UI implementation before the data contract and Agent 6 boundary packet exist",
+        "machine-derived verified is shown as reviewed lexical authority"
+      ],
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting.",
+      "agent4_qc_runtime_scope": [
+        "HUD/workbench/runtime inspection",
+        "click truth",
+        "source/license visibility",
+        "accessibility",
+        "split-token/maqaf/prefix/suffix behavior",
+        "negative tests",
+        "Definition Validation UI pilots"
+      ],
+      "agent4_output_boundary": "Evidence packets for Agent 6, not acceptance claims."
+    },
+    {
+      "id": "compliance_publication_gate",
+      "owner": "Agent 5",
+      "acceptance_owner": "Agent 6",
+      "status": "blocked_no_publication_render_artifact",
+      "current_evidence": [
+        "reports/agent6-compliance-qa-docket.md",
+        "reports/agent5-license-publication-control-plan.md",
+        "reports/agent5-translation-attribution-manifest-report.md",
+        "data/translation-memory/attribution-manifest.json",
+        "scripts/validate_publication_render_contract.mjs",
+        "reports/agent5-publication-render-contract-report.md",
+        "data/control/agent6_validation_queue.json"
+      ],
+      "current_metrics": {
+        "accepted_decision_rows": 0,
+        "unknown_license_sources": 0,
+        "sefaria_sources": 0,
+        "publication_render_status": "blocked_no_render"
+      },
+      "current_observation": "Agent 6 validation cycle keeps publication blocked_no_render. Agent 6 queue item agent6-publication-render-row-validation preserves the future row-by-row signoff requirement but does not request or imply publication acceptance. Do not describe publication as waiting on cleanup or ready pending legal review.",
+      "acceptance_condition": "A real publication render artifact exists, every rendered row points to an accepted decision row, license_profile.direct_translation_use_ok=true, manifest source match exists, attribution bundle is present where required, and workbench_ok_publication_review rows are excluded unless an explicit output-license decision exists.",
+      "blocking_conditions": [
+        "publication render artifact is absent",
+        "accepted translation rows lack source anchors",
+        "accepted translation rows lack license_profile",
+        "rendered row does not point to an accepted decision row",
+        "license_profile.direct_translation_use_ok is not true",
+        "manifest source match is missing",
+        "attribution bundle is missing where required",
+        "workbench_ok_publication_review rows can publish without review",
+        "source/provenance acceptance remains blocked by untracked source JSON files outside tracked audit scope",
+        "CC BY evidence can publish without attribution bundle",
+        "public claims imply legal clearance",
+        "future publication renderer lacks a passing render-contract report"
+      ],
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting."
+    },
+    {
+      "id": "translation_decision_gate",
+      "owner": "Agent 5",
+      "acceptance_owner": "Agent 6",
+      "status": "scaffolded",
+      "current_evidence": [
+        "data/translation-memory/translation-decision-contract.json",
+        "data/translation-memory/translation-memory-index.json",
+        "scripts/validate_translation_memory.mjs"
+      ],
+      "blocking_conditions": [
+        "decision row lacks source_anchor",
+        "decision row lacks surface_occurrence_id",
+        "accepted row lacks safe license profile",
+        "candidate or ambiguous row is treated as accepted translation"
+      ],
+      "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+      "goal_board": "data/control/agent_goal_board.json",
+      "acceptance_rule": "QA-relevant acceptance requires a dated Agent 6 pass/warn/block docket; worker/Agent 5/Agent 7 evidence is not self-accepting."
+    },
+    {
+      "id": "sop_authoring_gate",
+      "owner": "Agent 5 + Agent 7",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_accepted_workflow_and_preliminary_lane_governance_only",
+      "current_evidence": [
+        "reports/sop-002-sop-authoring-qa-execution-ratification-law-promotion.md",
+        "reports/agent6-sop-002-sop-verdict-2026-06-01.md",
+        "reports/sop-010-agent1-source-ingestion-render-custody.md",
+        "reports/sop-011-agent2-definition-route-data.md",
+        "reports/sop-012-agent3-usage-navigation-occurrence-evidence.md",
+        "reports/sop-013-agent4-qc-runtime-validation.md",
+        "reports/sop-014-agent5-coordination-goal-board-qa-packet-flow.md",
+        "reports/sop-015-agent6-qa-compliance-docket-authority.md",
+        "reports/sop-016-agent7-strategy-pulse-law-promotion.md",
+        "reports/sop-020-specification-and-batch-disposition-control.md",
+        "reports/agent6-agent-sop-and-spec-package-verdict-2026-06-01.md",
+        "reports/agent7-sop-010-016-020-law-publication-2026-06-01.md"
+      ],
+      "current_observation": "SOP law publication receipt is WARN-ACCEPTED by Agent 6, and agent_registry lane_sop mappings have been corrected to Agent 1->SOP-010 through Agent 7->SOP-016. WARN remains WARN, not clean PASS.",
+      "acceptance_rule": "SOP control publication requires dated Agent 6 docket plus Agent 7 mechanical publication of exact signed boundary. WARN may not be converted to clean PASS.",
+      "warning_limits": [
+        "QA Execution means Agent 6 docketed QA verdict/disposition work only. Agent 5 drafting checks, Agent 7 law publication, validator output, worker reports, and control-board updates are not QA execution and do not create acceptance.",
+        "All examples are non-binding.",
+        "SOP-015 does not bind, limit, narrow, or subordinate Agent 6.",
+        "SOP-020 creates disposition-control workflow only and does not accept any batch/output.",
+        "Candidate labels are not Agent 6 dispositions.",
+        "No product/data gate acceptance is created."
+      ],
+      "blocking_conditions": [
+        "SOP draft treated as self-activating law",
+        "Agent 5 checks or Agent 7 publication treated as QA acceptance",
+        "SOP examples treated as binding pass/warn/block criteria",
+        "SOP-020 candidate labels treated as Agent 6 dispositions",
+        "WARN boundary widened, narrowed, or converted to clean PASS"
+      ]
+    },
+    {
+      "id": "specification_control_gate",
+      "owner": "Agent 6",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_accepted_control_procedure_only",
+      "current_evidence": [
+        "reports/sop-020-specification-and-batch-disposition-control.md",
+        "reports/agent6-agent-sop-and-spec-package-verdict-2026-06-01.md"
+      ],
+      "current_observation": "SOP-020 is WARN-ACCEPTED as specification-control and batch-disposition procedure only. It does not accept any batch/output.",
+      "acceptance_rule": "Only exact dated Agent 6 dockets can create batch/output dispositions. Candidate labels are workflow labels only.",
+      "blocking_conditions": [
+        "candidate labels are treated as Agent 6 dispositions",
+        "SOP-020 is cited as batch acceptance",
+        "a batch/output is accepted without an exact Agent 6 docket"
+      ]
+    },
+    {
+      "id": "method_calibration_validation_governance_gate",
+      "owner": "Agent 7 + Agent 5",
+      "acceptance_owner": "Agent 6",
+      "status": "strategy_packet_pending_Agent_6_review",
+      "current_evidence": [
+        "reports/agent7-validation-methods-calibration-governance-plan-2026-06-01.md",
+        "reports/sop-020-specification-and-batch-disposition-control.md"
+      ],
+      "current_observation": "Agent 7 added a pharma-style method/spec/calibration/validation-report/drift-control governance plan. This structures future packets only and creates no acceptance.",
+      "acceptance_rule": "Only Agent 6 can accept, warn-accept, or block the governance direction and any future method/spec/batch. Calibration validates methods, not products.",
+      "blocking_conditions": [
+        "validator output is treated as public/runtime acceptance",
+        "method calibration is skipped for high-risk packets",
+        "validation report omits negative controls, deviations, drift, or what must not be accepted",
+        "public/runtime surface is active without exact Agent 6 docket",
+        "control chart/drift trigger is ignored after a docketed boundary changes"
+      ]
+    },
+    {
+      "id": "public_runtime_surface_spec_gate",
+      "owner": "Agent 7 + Agent 5",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_accepted_by_Agent_6_docket_specification_control_only",
+      "current_evidence": [
+        "reports/spec-001-public-runtime-surface-control.md",
+        "reports/agent7-validation-methods-calibration-governance-plan-2026-06-01.md",
+        "reports/sop-020-specification-and-batch-disposition-control.md",
+        "reports/agent6-spec-001-002-governance-verdict-2026-06-01.md",
+        "reports/agent7-spec-001-002-law-publication-2026-06-01.md"
+      ],
+      "current_observation": "SPEC-001 is WARN-ACCEPTED for specification-control use only. Agent 5 may use it to structure Agent 4 public/runtime packets; it creates no public/runtime acceptance.",
+      "acceptance_rule": "SPEC-001 structures packets only. Exact public/runtime surfaces require separate Agent 6 dockets.",
+      "blocking_conditions": [
+        "SPEC-001 misused as public/runtime acceptance",
+        "SPEC-001 misused as publication readiness",
+        "SPEC-001 misused as source/provenance acceptance",
+        "SPEC-001 misused as old HUD public use",
+        "SPEC-001 misused as current HUD broad rollout",
+        "SPEC-001 misused as Reader Workbench broad rollout",
+        "SPEC-001 misused as Definition Workbench authority",
+        "SPEC-001 misused as route publication support",
+        "SPEC-001 misused as usage-as-definition authority",
+        "SPEC-001 misused as accepted translation text"
+      ],
+      "warning_limits": [
+        "Do not convert WARN to clean PASS.",
+        "Specification-control acceptance only; no product/data gate acceptance.",
+        "SPEC-001 is not public/runtime acceptance, current-HUD broad rollout, or old-HUD public-use acceptance.",
+        "SPEC-002 is not source/provenance acceptance; source-scope/report truth is separately WARN-ACCEPTED at direct-23/audit-23 only by reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md.",
+        "All 23 source files remain quarantined until separate Agent 6 custody/exclusion disposition.",
+        "Publication remains blocked_no_render.",
+        "Old HUD remains quarantined_legacy_license_risk.",
+        "Static evidence can support warning-level quarantine conclusions only unless runtime/live reachability evidence is supplied.",
+        "Calibration validates the method, not the product; validation reports request disposition and do not create disposition."
+      ],
+      "not_accepted": [
+        "public/runtime surface acceptance",
+        "source/provenance state acceptance",
+        "publication readiness",
+        "old-HUD public use",
+        "broad HUD rollout",
+        "Reader Workbench broad rollout",
+        "Definition authority",
+        "route publication support",
+        "usage-as-definition authority",
+        "page/render state acceptance",
+        "future publication path support",
+        "accepted translation text",
+        "product/data gate acceptance"
+      ]
+    },
+    {
+      "id": "source_provenance_custody_spec_gate",
+      "owner": "Agent 7 + Agent 5 + Agent 1",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_accepted_by_Agent_6_docket_specification_control_only",
+      "current_evidence": [
+        "reports/spec-002-source-provenance-custody.md",
+        "reports/agent7-validation-methods-calibration-governance-plan-2026-06-01.md",
+        "reports/sop-020-specification-and-batch-disposition-control.md",
+        "reports/agent1-source-scope-recount-recheck.md",
+        "reports/untracked-source-scope-audit.md",
+        "reports/untracked-source-scope-audit.json",
+        "reports/agent6-spec-001-002-governance-verdict-2026-06-01.md",
+        "reports/agent7-spec-001-002-law-publication-2026-06-01.md"
+      ],
+      "current_observation": "SPEC-002 is WARN-ACCEPTED for specification-control use only. Agent 5 may use it to structure Agent 1 source packets; it creates no source/provenance acceptance.",
+      "acceptance_rule": "SPEC-002 structures packets only. Source/provenance requires separate Agent 6 source-scope docket.",
+      "blocking_conditions": [
+        "SPEC-002 misused as source/provenance acceptance",
+        "SPEC-002 misused as publication readiness",
+        "SPEC-002 misused as future publication path support",
+        "SPEC-002 misused as page/render acceptance",
+        "SPEC-002 misused as public/runtime acceptance",
+        "SPEC-002 misused as old HUD public use",
+        "SPEC-002 misused as Definition Workbench authority",
+        "SPEC-002 misused as route publication support",
+        "SPEC-002 misused as usage-as-definition authority",
+        "SPEC-002 misused as accepted translation text"
+      ],
+      "warning_limits": [
+        "Do not convert WARN to clean PASS.",
+        "Specification-control acceptance only; no product/data gate acceptance.",
+        "SPEC-001 is not public/runtime acceptance, current-HUD broad rollout, or old-HUD public-use acceptance.",
+        "SPEC-002 is not source/provenance acceptance; source-scope/report truth is separately WARN-ACCEPTED at direct-23/audit-23 only by reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md.",
+        "All 23 source files remain quarantined until separate Agent 6 custody/exclusion disposition.",
+        "Publication remains blocked_no_render.",
+        "Old HUD remains quarantined_legacy_license_risk.",
+        "Static evidence can support warning-level quarantine conclusions only unless runtime/live reachability evidence is supplied.",
+        "Calibration validates the method, not the product; validation reports request disposition and do not create disposition."
+      ],
+      "not_accepted": [
+        "public/runtime surface acceptance",
+        "source/provenance state acceptance",
+        "publication readiness",
+        "old-HUD public use",
+        "broad HUD rollout",
+        "Reader Workbench broad rollout",
+        "Definition authority",
+        "route publication support",
+        "usage-as-definition authority",
+        "page/render state acceptance",
+        "future publication path support",
+        "accepted translation text",
+        "product/data gate acceptance"
+      ]
+    },
+    {
+      "id": "hud_runtime_validation_spec_gate",
+      "owner": "Agent 7 + Agent 5 + Agent 4",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_accepted_by_Agent_6_docket_specification_control_only_after_queue_repair",
+      "current_evidence": [
+        "reports/spec-003-hud-runtime-validation.md",
+        "reports/agent6-public-hud-signoff-2026-06-01.md",
+        "reports/agent5-agent6-old-hud-quarantine-killswitch-packet-2026-06-01.md",
+        "reports/spec-001-public-runtime-surface-control.md",
+        "reports/sop-020-specification-and-batch-disposition-control.md"
+      ],
+      "current_observation": "SPEC-003 is WARN-ACCEPTED by reports/agent6-spec-003-hud-runtime-validation-verdict-2026-06-01.md for specification-control use only after queue intake repair. It structures HUD runtime validation, current-HUD docket boundary, old-HUD quarantine, source/license/citation visibility, and regression controls.",
+      "acceptance_rule": "SPEC-003 may structure HUD/runtime evidence packets only. It creates no new HUD rollout, public/runtime acceptance, old-HUD public-use acceptance, live browser-click proof, source/provenance acceptance, publication readiness, future publication path support, accepted translation text, or product/data gate acceptance.",
+      "blocking_conditions": [
+        "SPEC-003 misused as new HUD rollout beyond existing dockets",
+        "SPEC-003 misused as old-HUD public use or fallback",
+        "SPEC-003 misused as public/runtime acceptance",
+        "SPEC-003 misused as publication readiness",
+        "SPEC-003 misused as source/provenance acceptance",
+        "SPEC-003 misused as live browser-click proof unless actually provided",
+        "SPEC-003 misused as Reader Workbench broad rollout",
+        "SPEC-003 misused as Definition Workbench authority",
+        "SPEC-003 misused as route publication support",
+        "SPEC-003 misused as usage-as-definition authority",
+        "SPEC-003 misused as accepted translation text"
+      ]
+    },
+    {
+      "id": "hud_runtime_license_risk_gate",
+      "owner": "Agent 4 + Agent 5",
+      "acceptance_owner": "Agent 6",
+      "status": "warn_accepted_static_filesystem_evidence_only_full_killswitch_gate_open",
+      "current_evidence": [
+        "reports/agent6-old-hud-static-quarantine-docket-2026-06-01.md",
+        "reports/route-hud-rollout-watch.md",
+        "reports/route-hud-rollout-watch.json",
+        "reports/agent7-route-hud-rollout-watch-static-ingest-2026-06-01.md"
+      ],
+      "current_observation": "Agent 6 WARN-ACCEPTED repository-file static plus simulated dynamic/fallback old-HUD kill-switch evidence only. Deployment/cache stale-bundle proof, live browser-click proof, and public fallback/rollback closure remain open.",
+      "old_hud_status": "quarantined_legacy_license_risk",
+      "accepted_static_boundary": [
+        "audited generated-page set currently has 1360 generated pages with current HUD markers",
+        "audited generated-page set has 0 non-HUD generated pages",
+        "audited generated-page set has 0 rows missing required current markers",
+        "audited generated-page set has 0 rows with searched stale old-HUD markers",
+        "no searched old-HUD/stale markers found in scoped public HTML, JavaScript, or CSS search paths",
+        "static route lookup and answer-safety validators pass"
+      ],
+      "warning_limits": [
+        "static filesystem evidence only",
+        "no live browser-click proof",
+        "no browser navigation reachability proof",
+        "no deployment/CDN/stale bundle proof",
+        "no query-string activation proof",
+        "no localStorage activation proof",
+        "no IndexedDB activation proof",
+        "no fallback/rollback activation proof",
+        "no source/provenance custody acceptance",
+        "no public/runtime expansion acceptance",
+        "no publication readiness"
+      ],
+      "blocking_conditions": [
+        "public navigation clicks",
+        "route/index/generated inventories",
+        "runtime imports",
+        "fallback/rollback activation",
+        "query string behavior",
+        "localStorage behavior",
+        "IndexedDB behavior",
+        "stale bundle/deployment risk",
+        "source/license/citation visibility for exposed source-derived evidence",
+        "positive and negative controls"
+      ],
+      "not_accepted": [
+        "new HUD rollout beyond existing Agent 6 dockets",
+        "public/runtime acceptance",
+        "old-HUD public use or fallback",
+        "source/provenance acceptance",
+        "publication readiness",
+        "live browser-click proof",
+        "Reader Workbench broad rollout",
+        "Definition authority",
+        "route publication support",
+        "usage-as-definition authority",
+        "future publication path support",
+        "product/data gate acceptance",
+        "accepted translation text"
+      ],
+      "acceptance_rule": "Static evidence can support warning-level quarantine conclusions only; public/runtime, live-click, old-HUD public-use, and product/data acceptance require separate Agent 6 docket."
+    }
+  ],
+  "publication_global_status": "blocked_no_render",
+  "sop_law_publication_receipt": {
+    "path": "reports/agent6-sop-law-publication-receipt-2026-06-01.md",
+    "status": "warn_accepted_receipt_with_control_surface_warnings",
+    "warning": "Agent 7 law-publication report mechanically preserves Agent 6 signed WARN boundary; do not widen or convert WARN to clean PASS."
+  },
+  "agent_registry_lane_sop_mapping_correction": {
+    "corrected_at": "2026-06-01T16:05:00-04:00",
+    "source": "reports/agent6-sop-law-publication-receipt-2026-06-01.md",
+    "expected_mappings": {
+      "Agent 1": "reports/sop-010-agent1-source-ingestion-render-custody.md",
+      "Agent 2": "reports/sop-011-agent2-definition-route-data.md",
+      "Agent 3": "reports/sop-012-agent3-usage-navigation-occurrence-evidence.md",
+      "Agent 4": "reports/sop-013-agent4-qc-runtime-validation.md",
+      "Agent 5": "reports/sop-014-agent5-coordination-goal-board-qa-packet-flow.md",
+      "Agent 6": "reports/sop-015-agent6-qa-compliance-docket-authority.md",
+      "Agent 7": "reports/sop-016-agent7-strategy-pulse-law-promotion.md"
+    },
+    "note": "Per-agent lane_sop mappings corrected after Agent 6 warning; routing may rely on these fields only after this timestamp."
+  },
+  "public_surface_license_risk_priority_correction": {
+    "source": "reports/agent7-agent5-public-surface-license-risk-priority-correction-2026-06-01.md",
+    "authority": "Agent 7 strategy/priority direction from Agent 6 priority correction",
+    "status": "active_priority_direction_no_new_acceptance",
+    "primary_controls": [
+      "Pull or quarantine unvalidated public-facing, routable, indexed, or source-derived/third-party evidence surfaces lacking current source/license/citation labeling",
+      "Current Agent 6-validated HUD is primary public reader surface within existing docketed boundaries",
+      "Old HUD is quarantined_legacy_license_risk and not a primary/public fallback unless Agent 6 reopens and validates it",
+      "Public/runtime surfaces are default closed unless an exact Agent 6 docket permits the surface",
+      "No probably-fine public/runtime exposure: validator success, worker evidence, Agent 5 notes, and Agent 7 strategy support packets but do not approve features",
+      "Only Agent 6-validated artifacts/features may be added back into public/runtime surfaces under exact docketed boundaries"
+    ],
+    "default_closed_policy": {
+      "rule": "Public/runtime surfaces default closed unless an exact Agent 6 docket permits the surface inside a stated boundary.",
+      "non_approval_sources": [
+        "validator success",
+        "worker evidence",
+        "Agent 5 control notes",
+        "Agent 7 strategy or priority packets"
+      ],
+      "undocketed_surface_state": "draft_or_evidence_ready_or_awaiting_Agent_6_or_quarantined_or_blocked"
+    },
+    "not_accepted": [
+      "publication readiness",
+      "source/provenance acceptance",
+      "old HUD public fallback",
+      "Reader Workbench broad rollout",
+      "Definition Workbench authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "accepted translation text",
+      "product/data gate acceptance from this correction",
+      "validator success as QA acceptance",
+      "worker evidence as public/runtime permission",
+      "Agent 7 strategy as QA acceptance"
+    ]
+  },
+  "validation_methods_calibration_governance": {
+    "path": "reports/agent7-validation-methods-calibration-governance-plan-2026-06-01.md",
+    "status": "strategy_control_packet_pending_Agent_6_review",
+    "owner": "Agent 7",
+    "qa_authority": "Agent 6",
+    "coordinator": "Agent 5",
+    "boundary": "Method, calibration, validation-protocol, validation-report, drift-rule, and specification governance direction only; no batch/output/product/data acceptance.",
+    "required_spec_families": [
+      "public_runtime_surface_specification",
+      "source_provenance_custody_specification",
+      "hud_runtime_validation_specification",
+      "definition_integrity_specification",
+      "route_usage_evidence_specification",
+      "publication_render_specification_future_blocked"
+    ],
+    "validated_only_public_runtime_rule": "Only Agent 6-docketed validated artifacts/features may be public-facing, routable, indexed, or active in runtime surfaces. Everything else is draft, evidence-ready, awaiting-Agent-6, quarantined, or blocked.",
+    "not_accepted": [
+      "publication readiness",
+      "source/provenance acceptance",
+      "public/runtime acceptance from this packet",
+      "old HUD public fallback",
+      "Definition Workbench authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "accepted translation text"
+    ]
+  },
+  "spec_001_public_runtime_surface_control": {
+    "id": "SPEC-001",
+    "title": "Public Runtime Surface Control, Validated-Only Exposure, And Quarantine",
+    "path": "reports/spec-001-public-runtime-surface-control.md",
+    "status": "warn_accepted_by_Agent_6_docket_specification_control_only",
+    "signoff_docket": "reports/agent6-spec-001-002-governance-verdict-2026-06-01.md",
+    "law_publication_report": "reports/agent7-spec-001-002-law-publication-2026-06-01.md",
+    "active_boundary": "Specification-control frame for public/runtime surface packets only. Does not accept any public/runtime surface.",
+    "warning_limits": [
+      "Do not convert WARN to clean PASS.",
+      "Specification-control acceptance only; no product/data gate acceptance.",
+      "SPEC-001 is not public/runtime acceptance, current-HUD broad rollout, or old-HUD public-use acceptance.",
+      "Source-scope/report truth is WARN-ACCEPTED at direct-23/audit-23 only; this is not source/provenance custody acceptance.",
+      "All 23 source files remain quarantined until separate Agent 6 custody/exclusion disposition.",
+      "Publication remains blocked_no_render.",
+      "Old HUD remains quarantined_legacy_license_risk.",
+      "Static evidence can support warning-level quarantine conclusions only unless runtime/live reachability evidence is supplied.",
+      "Calibration validates the method, not the product; validation reports request disposition and do not create disposition."
+    ],
+    "not_accepted": [
+      "public/runtime surface acceptance",
+      "source/provenance state acceptance",
+      "publication readiness",
+      "old-HUD public use",
+      "broad HUD rollout",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "page/render state acceptance",
+      "future publication path support",
+      "accepted translation text",
+      "product/data gate acceptance"
+    ]
+  },
+  "current_source_scope_evidence_boundary": {
+    "status": "warn_accepted_source_scope_report_truth_direct23_audit23_provenance_blocked",
+    "current_truth_boundary": "Agent 6 WARN-ACCEPTED source-scope/report-truth reconciliation only: current truth is direct-23/audit-23 with all 23 untracked source files quarantined. This supersedes stale direct-55/audit-13, direct-19/audit-13, and direct-13/audit-13 blocker language only for source-count/report truth. Source/provenance custody, future publication reliance, page/render, public/runtime, Definition authority, route publication support, usage-as-definition, product/data gate acceptance, and accepted translation text remain unaccepted. Node audit child-process git discovery is non-authoritative in this environment due EPERM; future packets require shell git discovery or another calibrated recount. Six modified tracked source files are outside this docket.",
+    "agent6_docket": "reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md",
+    "previous_agent6_blocker": "reports/agent6-source-reconciliation-recheck-verdict-2026-06-01.md",
+    "evidence_packet": "reports/agent1-source-scope-recount-recheck.md",
+    "direct_untracked_source_files": 23,
+    "audit_reported_untracked_source_files": 23,
+    "provided_list_source_files": 23,
+    "missing_from_current_audit_files": 0,
+    "license_counts": {
+      "CC-BY": 74683,
+      "Public Domain": 10727
+    },
+    "quarantine": "all 23 rows quarantined_until_source_file_is_tracked_and_source_audit_passes",
+    "not_accepted": [
+      "source/provenance custody acceptance",
+      "publication readiness",
+      "future publication path support",
+      "page/render acceptance",
+      "public/runtime acceptance",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "product/data gate acceptance",
+      "accepted translation text",
+      "acceptance of six modified tracked source files outside the 23-file docket"
+    ],
+    "modified_tracked_source_files_outside_docket": [
+      "data/sources/abarbanel-on-guide-for-the-perplexed.json",
+      "data/sources/crescas-on-guide-for-the-perplexed.json",
+      "data/sources/efodi-on-guide-for-the-perplexed.json",
+      "data/sources/narboni-on-guide-for-the-perplexed.json",
+      "data/sources/shem-tov-on-guide-for-the-perplexed.json",
+      "data/sources/yahel-ohr-on-zohar.json"
+    ],
+    "modified_tracked_source_files_outside_docket_count": 6,
+    "modified_tracked_source_files_boundary": "These six modified tracked source files are outside the Agent 6 direct-23/audit-23 source-scope/report-truth docket and require separate custody/drift treatment before any source/provenance, page/render, public/runtime, route publication support, or accepted-text reliance."
+  },
+  "spec_002_source_provenance_custody": {
+    "id": "SPEC-002",
+    "title": "Source/Provenance Custody, Quarantine, Audit Agreement, And Label Survivability",
+    "path": "reports/spec-002-source-provenance-custody.md",
+    "status": "warn_accepted_by_Agent_6_docket_specification_control_only",
+    "signoff_docket": "reports/agent6-spec-001-002-governance-verdict-2026-06-01.md",
+    "law_publication_report": "reports/agent7-spec-001-002-law-publication-2026-06-01.md",
+    "active_boundary": "Specification-control frame for source/provenance custody packets only. Agent 6 separately WARN-ACCEPTED source-scope/report truth at direct-23/audit-23, but all 23 files remain quarantined and source/provenance custody remains blocked pending separate Agent 6 custody disposition.",
+    "warning_limits": [
+      "Do not convert WARN to clean PASS.",
+      "Specification-control acceptance only; no product/data gate acceptance.",
+      "SPEC-001 is not public/runtime acceptance, current-HUD broad rollout, or old-HUD public-use acceptance.",
+      "Source-scope/report truth is WARN-ACCEPTED at direct-23/audit-23 only; this is not source/provenance custody acceptance.",
+      "All 23 source files remain quarantined until separate Agent 6 custody/exclusion disposition.",
+      "Publication remains blocked_no_render.",
+      "Old HUD remains quarantined_legacy_license_risk.",
+      "Static evidence can support warning-level quarantine conclusions only unless runtime/live reachability evidence is supplied.",
+      "Calibration validates the method, not the product; validation reports request disposition and do not create disposition."
+    ],
+    "not_accepted": [
+      "public/runtime surface acceptance",
+      "source/provenance state acceptance",
+      "publication readiness",
+      "old-HUD public use",
+      "broad HUD rollout",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "page/render state acceptance",
+      "future publication path support",
+      "accepted translation text",
+      "product/data gate acceptance"
+    ]
+  },
+  "spec_003_hud_runtime_validation": {
+    "id": "SPEC-003",
+    "title": "HUD Runtime Validation, Current-HUD Boundary, Old-HUD Quarantine, And Regression Control",
+    "path": "reports/spec-003-hud-runtime-validation.md",
+    "status": "warn_accepted_by_Agent_6_docket_draft_specification_control_only_queue_intake_repaired_validation_queue_passed_zero_warnings",
+    "owner": "Agent 7",
+    "coordinator": "Agent 5",
+    "primary_lane": "Agent 4",
+    "qa_authority": "Agent 6",
+    "signoff_docket": "reports/agent6-spec-003-hud-runtime-validation-verdict-2026-06-01.md",
+    "boundary": "WARN-ACCEPTED for specification-control use only by reports/agent6-spec-003-hud-runtime-validation-verdict-2026-06-01.md after queue intake repair. No new HUD rollout, public/runtime, old-HUD use, live browser-click proof, source/provenance, publication, translation, future publication path, or product/data gate acceptance.",
+    "requested_verdict": "returned_warn_accepted_specification_control_only_after_queue_repair",
+    "what_must_not_be_accepted": [
+      "new HUD rollout beyond existing dockets",
+      "old-HUD public use or fallback",
+      "public/runtime acceptance",
+      "publication readiness",
+      "source/provenance acceptance",
+      "live browser-click proof unless actually provided",
+      "Reader Workbench broad rollout",
+      "Definition Workbench authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "accepted translation text"
+    ],
+    "law_publication_report": "reports/agent7-spec-003-law-publication-2026-06-01.md",
+    "accepted_boundary": "SPEC-003 may structure Agent 4 HUD runtime packets covering current-HUD boundary preservation, old-HUD quarantine, route/index/runtime/fallback checks, source/license/citation visibility, split-token/maqaf/hyphen checks, usage-authority separation, calibration, and regression controls. It does not accept any new HUD rollout, public/runtime surface, old-HUD public use, source/provenance state, publication readiness, live browser-click proof, Reader Workbench broad rollout, Definition authority, route publication support, usage-as-definition authority, future publication path support, or accepted translation text. Publication remains blocked_no_render. Old HUD remains quarantined_legacy_license_risk.",
+    "queue_intake_status": "repaired_by_Agent_5_and_validation_queue_passed_zero_warnings",
+    "queue_blocker": [
+      "resolved: SPEC-003 queue item now has evidence_artifacts",
+      "resolved: SPEC-003 queue item now has what_changed_since_last_agent6_ruling",
+      "resolved: SPEC-003 queue item now has numeric priority",
+      "resolved: SPEC-003 boundary wording now excludes publication/translation overclaim",
+      "resolved: data/control/agent6_validation_queue.json repaired and node scripts\\validate_agent6_validation_queue.mjs passed with 0 warnings"
+    ],
+    "warning_limits": [
+      "new HUD rollout",
+      "public/runtime surface acceptance",
+      "old-HUD public use",
+      "source/provenance state",
+      "publication readiness",
+      "live browser-click proof",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "future publication path support",
+      "accepted translation text",
+      "queue intake repair does not create HUD/runtime or old-HUD acceptance"
+    ],
+    "not_accepted": [
+      "new HUD rollout",
+      "public/runtime surface acceptance",
+      "old-HUD public use",
+      "source/provenance state",
+      "publication readiness",
+      "live browser-click proof",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "future publication path support",
+      "accepted translation text",
+      "queue intake repair as acceptance"
+    ],
+    "publication_status": "blocked_no_render",
+    "old_hud_status": "quarantined_legacy_license_risk"
+  },
+  "agent7_route_release_input_freeze_drift_correction": {
+    "status": "route_release_gate_pass_with_warnings_input_freeze_drift_warn_route_data_only_not_publication_support",
+    "date": "2026-06-01",
+    "source_reports": [
+      "reports/agent5-control-readiness.md",
+      "reports/hud-route-release-gate.md",
+      "reports/hud-route-release-gate-validation.md",
+      "reports/route-publication-boundary-coherence.md",
+      "reports/hud-route-input-freeze-drift.md",
+      "reports/agent6-route-publication-boundary-verdict-2026-06-01.md"
+    ],
+    "summary": "Agent 5 control readiness now passes with 3 warnings. HUD route release gate is pass_with_warnings: route lookup integrity and route-card/publication boundary checks pass, but current route inputs are not release-reconciled because source-phrase-evidence.jsonl and source-citable-paraphrase-evidence.jsonl differ from the frozen release input. Agent 6 route verdict remains WARN for route data only; this is not publication support, not accepted translation text, and not a clean route release.",
+    "warnings": [
+      "current route inputs remain unreconciled to frozen public lookup release",
+      "source-phrase-evidence.jsonl differs from frozen release input",
+      "source-citable-paraphrase-evidence.jsonl differs from frozen release input",
+      "route publication-boundary warnings remain visible: 335103",
+      "answer-eligible unsafe cards flagged for translation-output support: 17737"
+    ],
+    "not_accepted": [
+      "publication readiness",
+      "accepted translation text",
+      "source/provenance acceptance",
+      "Definition authority",
+      "route publication support",
+      "clean route release while input-freeze drift remains",
+      "new route family expansion before freeze drift is reconciled or re-frozen under validation"
+    ],
+    "next_agent5_action": "Keep Agent 2 lane under no-interrupt discipline if active. At next natural checkpoint, batch a route input-freeze reconciliation packet or a new frozen route release candidate with drift report, route release gate, route publication boundary audit, coherence validation, and what must not be accepted for Agent 6."
+  },
+  "agent7_route_hud_rollout_watch_static_ingest": {
+    "status": "static_route_hud_rollout_watch_passed_evidence_only_not_live_click_proof",
+    "date": "2026-06-01",
+    "source_reports": [
+      "reports/route-hud-rollout-watch.md",
+      "reports/route-hud-rollout-watch.json"
+    ],
+    "agent6_static_docket": "reports/agent6-old-hud-static-quarantine-docket-2026-06-01.md",
+    "agent6_static_verdict": "WARN-ACCEPTED for static filesystem evidence only",
+    "full_old_hud_kill_switch_gate": "warn_accepted_repo_static_simulated_dynamic_killswitch_evidence_only_deployment_gate_open",
+    "summary": "Static route HUD rollout watch passed over 1360 generated pages / 1360 current HUD pages with 0 issues and 0 warnings. Agent 6 WARN-ACCEPTED this as old-HUD quarantine static evidence only. This does not render, publish, stage, commit, prove browser click behavior, accept public/runtime expansion, old-HUD public use/fallback, or clear source/provenance/publication gates.",
+    "metrics": {
+      "status": "passed",
+      "source_records": 1360,
+      "source_records_with_work_slug": 1360,
+      "generated_pages": 1360,
+      "current_hud_pages": 1360,
+      "pages_with_usage_evidence": 1360,
+      "missing_pages": 0,
+      "non_hud_pages": 0,
+      "source_newer_than_page": 0,
+      "missing_marker_rows": 0,
+      "stale_marker_rows": 0,
+      "empty_occurrence_url_rows": 0,
+      "issues": 0,
+      "warnings": 0
+    },
+    "not_accepted": [
+      "live browser-click proof",
+      "new HUD rollout beyond existing Agent 6 dockets",
+      "public/runtime expansion",
+      "old-HUD public use or fallback",
+      "source/provenance acceptance",
+      "publication readiness",
+      "accepted translation text",
+      "broad Reader Workbench rollout",
+      "Definition authority",
+      "deployment/cache stale-bundle proof and live browser-click/fallback closure from repository-file evidence"
+    ]
+  },
+  "agent6_old_hud_static_quarantine_docket": {
+    "status": "warn_accepted_static_filesystem_evidence_only_full_killswitch_gate_open",
+    "docket": "reports/agent6-old-hud-static-quarantine-docket-2026-06-01.md",
+    "date": "2026-06-01",
+    "gate": "hud_runtime_license_risk_gate",
+    "related_spec": "reports/spec-003-hud-runtime-validation.md",
+    "summary": "Agent 6 WARN-ACCEPTED old-HUD quarantine static evidence only. Static evidence shows 1360 generated pages, 1360 current HUD pages, 0 non-HUD pages, 0 missing current-marker rows, 0 stale-marker rows, 0 issues, 0 warnings, no searched old-HUD/stale markers in scoped public HTML/JS/CSS, route lookup passed, and answer safety passed.",
+    "accepted_static_boundary": [
+      "audited generated-page set currently has 1360 generated pages with current HUD markers",
+      "audited generated-page set has 0 non-HUD generated pages",
+      "audited generated-page set has 0 rows missing required current markers",
+      "audited generated-page set has 0 rows with searched stale old-HUD markers",
+      "no searched old-HUD/stale markers found in scoped public HTML, JavaScript, or CSS search paths",
+      "static route lookup and answer-safety validators pass"
+    ],
+    "warning_limits": [
+      "static filesystem evidence only",
+      "no live browser-click proof",
+      "no browser navigation reachability proof",
+      "no deployment/CDN/stale bundle proof",
+      "no query-string activation proof",
+      "no localStorage activation proof",
+      "no IndexedDB activation proof",
+      "no fallback/rollback activation proof",
+      "no source/provenance custody acceptance",
+      "no public/runtime expansion acceptance",
+      "no publication readiness"
+    ],
+    "remaining_gate": "Repository-file static plus simulated dynamic/fallback kill-switch evidence is WARN-ACCEPTED; deployment/cache stale-bundle proof, live browser-click proof, and public fallback/rollback closure remain open.",
+    "old_hud_status": "quarantined_legacy_license_risk",
+    "publication_status": "blocked_no_render",
+    "not_accepted": [
+      "new HUD rollout beyond existing Agent 6 dockets",
+      "public/runtime acceptance",
+      "old-HUD public use or fallback",
+      "source/provenance acceptance",
+      "publication readiness",
+      "live browser-click proof",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "future publication path support",
+      "product/data gate acceptance",
+      "accepted translation text"
+    ],
+    "next_agent4_packet_required": [
+      "public navigation clicks",
+      "route/index/generated inventories",
+      "runtime imports",
+      "fallback/rollback activation",
+      "query string behavior",
+      "localStorage behavior",
+      "IndexedDB behavior",
+      "stale bundle/deployment risk",
+      "source/license/citation visibility for exposed source-derived evidence",
+      "positive and negative controls"
+    ]
+  },
+  "agent6_agent9_route_drift_control_receipt": {
+    "status": "agent6_pass_control_boundary_receipt_non_accepting_control_state_only",
+    "docket": "reports/agent6-agent9-route-drift-control-receipt-2026-06-01.md",
+    "date": "2026-06-01",
+    "summary": "Agent 6 PASS receipt for Agent 9 boundary and route-release drift correction as non-accepting control state only. Agent 9 is external oracle/connective input only and has no QA, SOP, routing, publication, product, or gate authority. Route drift control prevents route evidence from being described as clean release/publication support while input-freeze drift remains.",
+    "agent9_accepted_boundary": [
+      "may provide cross-surface linkage observations",
+      "may surface evidence-chain gaps",
+      "may surface queue/docket/control warnings",
+      "may provide oracle-style context packets"
+    ],
+    "agent9_not_accepted": [
+      "route Agents 1-4",
+      "seed durable goals",
+      "claim QA acceptance",
+      "change SOP law or promote drafts",
+      "suppress Agent 6 blockers or redefine acceptance criteria",
+      "claim publication readiness",
+      "claim source/provenance acceptance",
+      "claim public/runtime acceptance",
+      "claim HUD/runtime acceptance",
+      "claim Definition authority",
+      "claim route publication support",
+      "claim usage-as-definition authority",
+      "claim live browser-click proof",
+      "claim future publication path support",
+      "claim accepted translation text"
+    ],
+    "route_boundary": {
+      "current_control_status": "route_release_gate_pass_with_warnings_input_freeze_drift_warn_route_data_only_not_publication_support",
+      "note": "Agent 6 receipt reviewed the earlier fail-state correction. Current route gate artifacts later report pass_with_warnings, but clean route release remains blocked while input-freeze drift remains.",
+      "clean_route_release": "blocked_while_input_freeze_drift_remains",
+      "route_data_boundary": "Agent 6 WARN for route data only; not publication support and not accepted translation text"
+    },
+    "not_accepted": [
+      "source/provenance acceptance",
+      "public/runtime acceptance",
+      "HUD/runtime acceptance",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "publication readiness",
+      "accepted translation text",
+      "product/data gates",
+      "Agent 9 output as QA acceptance"
+    ]
+  },
+  "agent7_governance_control_validator": {
+    "status": "active_non_accepting_governance_control_validator_passed",
+    "date": "2026-06-01",
+    "script": "scripts/validate_agent7_governance_control.mjs",
+    "latest_report": "reports/agent7-governance-control-health.md",
+    "latest_result": "pending_after_current_deuteronomy_fullscreen_runtime_sync",
+    "owner": "Agent 7",
+    "qa_authority": "Agent 6",
+    "boundary": "Governance/control drift detection only. This validator checks publication blocked_no_render, goal-board status law and Agent 6-only acceptance, source-scope direct-23/audit-23 report-truth boundary, corrected source/provenance custody mapping boundary, six modified tracked source files outside the 23-file source docket, render_shell source-risk drift, relay state boundaries, old-HUD quarantine, validated-only public/runtime default-closed boundary, SOP queue returned state, QA docket index sync, Agent 5/6 handoff sync, Deuteronomy owner-route boundary, broader public-runtime drift boundary, worker watchdog delivery-proof boundary, Agent 5 current handoff guidance, Agent 7 pulse state boundary, Agent 5 routing suppression, pulse cadence/no-active-worker prompt boundary, route input-freeze boundary, workbench handoff authority, Agent 8/9 authority boundaries, Agent 12 limiter boundary, and Agent 1-7 lane SOP mappings. It does not create QA acceptance, publication readiness, source/provenance custody, runtime acceptance, product/data gate acceptance, or accepted translation text.",
+    "preserved_blocks": [
+      "publication readiness",
+      "source/provenance custody acceptance",
+      "public/runtime acceptance",
+      "page/render acceptance",
+      "old-HUD public use",
+      "route publication support",
+      "usage-as-definition authority",
+      "product/data gate acceptance",
+      "accepted translation text"
+    ],
+    "use_by_agent5": "Run or trust this as a lightweight Agent 7 control-surface drift check before escalating routine governance issues; do not treat pass as Agent 6 acceptance.",
+    "use_by_agent8": "Use failures or warnings as pressure signals to Agent 5; do not use pass as product/data acceptance.",
+    "agent6_receipt": "reports/agent6-render-shell-source-scope-correction-receipt-2026-06-01.md",
+    "agent6_receipt_verdict": "PASS for render-shell source-scope control correction; validator accepted as governance/control-health evidence only, not QA acceptance",
+    "latest_warning": "legacy workbench handoff-index.json still has 0 manifests; public-handoff-index.json remains current authority",
+    "expanded_checks": [
+      "route_input_freeze_boundary",
+      "workbench_handoff_authority",
+      "agent8_pressure_boundary",
+      "agent9_oracle_boundary",
+      "agent5_agent6_handoff_index_sync",
+      "agent12_limiter_boundary"
+    ],
+    "latest_hardening_report": "reports/agent7-agent8-9-boundary-hardening-2026-06-01.md",
+    "latest_handoff_sync_report": "reports/agent7-agent5-agent6-handoff-sync-hardening-2026-06-01.md",
+    "scope_last_updated": "2026-06-02T05:20:00Z",
+    "scope_update_reason": "Align registered governance validator boundary with live checks, Agent 12 limiter boundary coverage, Agent 6 changed-hash Deuteronomy runtime blocker, and Agent 6 exact live Deuteronomy fullscreen WARN boundary."
+  },
+  "agent6_render_shell_source_scope_correction_receipt": {
+    "status": "agent6_pass_render_shell_source_scope_control_correction_governance_evidence_only",
+    "date": "2026-06-01",
+    "docket": "reports/agent6-render-shell-source-scope-correction-receipt-2026-06-01.md",
+    "corrected_by": "reports/agent7-render-shell-source-scope-correction-2026-06-01.md",
+    "validator": "scripts/validate_agent7_governance_control.mjs",
+    "validator_boundary": "accepted as governance/control-health evidence only, not QA acceptance",
+    "summary": "Agent 6 PASS receipt confirms Agent 7 cleared active stale direct-19/audit-13 render_shell source-risk drift. Source-scope/report truth only; source/provenance custody and publication remain blocked.",
+    "not_accepted": [
+      "source/provenance custody",
+      "publication readiness",
+      "future publication path support",
+      "page/render acceptance",
+      "public/runtime acceptance",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "product/data gate acceptance",
+      "accepted translation text",
+      "six modified tracked source files outside the 23-file docket"
+    ],
+    "publication_status": "blocked_no_render"
+  },
+  "validated_only_public_runtime_live_drift_recheck": {
+    "status": "returned_warn_accepted_exact_live_deuteronomy_fullscreen_current_hud_runtime_only_765a98a_boundary",
+    "gate": "validated_only_public_runtime_gate / public_runtime_surface_gate / hud_runtime_license_risk_gate",
+    "docket": "reports/agent6-current-deuteronomy-fullscreen-runtime-verdict-2026-06-02.md",
+    "supersedes_for_exact_scope": [
+      "reports/agent6-validated-only-public-runtime-live-drift-recheck-2026-06-02.md"
+    ],
+    "returned_verdict": "WARN-ACCEPTED for exact live Deuteronomy fullscreen current-HUD runtime only",
+    "current_live_commit": "765a98a8920d6dcdd897f71abe3cf218f8abc19a",
+    "boundary": "Agent 6 WARN-ACCEPTED exact live Deuteronomy fullscreen current-HUD runtime only for commit 765a98a8920d6dcdd897f71abe3cf218f8abc19a and the bounded lightweight artifact set: .nojekyll, 404.html, index.html, tanakh/deuteronomy/index.html, assets/css/reader-workbench.css, assets/js/reader-workbench.js, and data/public-hud/deuteronomy/**. This supersedes reports/agent6-validated-only-public-runtime-live-drift-recheck-2026-06-02.md only for exact live Deuteronomy fullscreen current-HUD runtime. Old-HUD marker exposure is not observed in current Deuteronomy live browser proof; click-to-HUD, source/license rows, route shard load, hard refresh, query negative, and storage negative controls passed with 0 issues and 1 warning. Deuteronomy current HUD remains the primary public reader surface for this exact route only. Runtime script URL is not visibly versioned/cache-busted, so clean CDN stale-bundle closure is not accepted. Genesis and /hud-preview remain separate marker-clean 404 non-public/quarantine posture only, not accepted public surfaces. Publication remains blocked_no_render and source/provenance remains blocked.",
+    "next_action": "Sync queue/control/handoff state to the exact WARN Deuteronomy fullscreen boundary. Stop describing current live Deuteronomy runtime-click acceptance as reopened unless newer drift appears. Preserve Genesis and /hud-preview as non-public/quarantined, not accepted public surfaces. Do not use this docket to claim broad public/runtime acceptance, CDN stale-bundle closure, source/provenance custody, publication readiness, product/data acceptance, or accepted text.",
+    "not_accepted": [
+      "clean PASS",
+      "broad public/runtime acceptance",
+      "clean CDN stale-bundle closure",
+      "Genesis current-HUD acceptance",
+      "/hud-preview public-use acceptance",
+      "old-HUD public use",
+      "source/provenance custody",
+      "source publication",
+      "publication readiness",
+      "publication-path support",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "Reader Workbench broad rollout",
+      "product/data gate acceptance",
+      "translation output",
+      "accepted translation text"
+    ],
+    "updated_by_agent7_at": "2026-06-02T14:01:29.133Z"
+  }
+}

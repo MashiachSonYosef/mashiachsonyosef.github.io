@@ -1,0 +1,2047 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent13_organization_pulse_state",
+  "generated_at": "2026-06-02T20:43:00Z",
+  "protocol": "reports/agent7-agent5-pulse-protocol.md",
+  "agent7_work_session_directive": "reports/agent7-work-session-directive-2026-06-01.md",
+  "agent7_middle_management_routing_correction": "reports/agent7-middle-management-routing-correction-2026-06-01.md",
+  "latest_agent7_routine_maintenance": "reports/agent7-routine-maintenance-2026-06-01-0419.md",
+  "latest_agent7_to_agent5_pulse": "reports/agent7-agent5-mass-pulse-restart-2026-06-01-0900.md",
+  "latest_agent5_control_warning_disposition": "reports/agent7-agent5-control-warning-disposition-2026-06-01.md",
+  "latest_agent6_verdict_ingest": "reports/agent7-agent6-verdict-ingest-2026-06-01-0434.md",
+  "latest_definition_workbench_plan": "reports/agent7-definition-workbench-plan-2026-06-01.md",
+  "purpose": "Preserve productive weekly lexicon lanes under SOP-021 without hierarchy/persona drift; current work should produce pipeline data, validators, candidate rows, boundary packets, or exact blockers.",
+  "cadence": {
+    "agent13_scheduled_pulse": "none_sleep_default",
+    "agent13_wake_conditions": [
+      "Agent 10 requests a decision",
+      "Agent 12 requests intervention",
+      "shipment completed",
+      "shipment blocked",
+      "user directive"
+    ],
+    "agent7_manager_pulse_minutes": 240,
+    "agent7_inputs": [
+      "Agent 10",
+      "Agent 12"
+    ],
+    "agent7_outputs": [
+      "blocker resolution",
+      "wake decisions",
+      "staffing decisions"
+    ],
+    "agent7_no_status_loops": true,
+    "agent10_goal_mode": "continuous_release_owner_work",
+    "agent10_interruptions_only_for": [
+      "shipment blocker",
+      "deployment blocker",
+      "candidate page ready"
+    ],
+    "agent12_budget_pulse_minutes": "360-720_maximum",
+    "agent12_outputs": [
+      "GREEN",
+      "YELLOW",
+      "RED"
+    ],
+    "agent12_no_governance_essays": true,
+    "agent1_2_4_scheduled_pulses": "disabled_as_status_pulses_but_agents_1_2_4_active_long_running_under_user_override",
+    "agent5_routine_coordinator_pulse": "disabled_rationed_support_only",
+    "no_prompts_to_active_workers": "preserved_after_initial_user_authorized_non_interrupting_delivery",
+    "no_status_loops": true,
+    "rationale": "User wartime override: maximize useful throughput by keeping Agents 1, 2, and 4 running long-term while Agent 10 remains release owner and Agent 7 manages execution."
+  },
+  "agent5_tick_scope": {
+    "max_actions_per_tick": "one_bounded_action_or_coherent_restart_batch",
+    "mode": "30_minute_coordinator_work_session_usage_conserving_longer_work_blocks",
+    "allowed_actions": [
+      "nudge one stale Agent 1-4 lane",
+      "queue one Agent 6 validation request",
+      "update one control-board state",
+      "prepare one Agent 7 decision packet",
+      "run or create one bounded prevalidation and attach the resulting evidence to the relevant Agent 6 packet",
+      "record no-op when no lane needs action"
+    ],
+    "forbidden_actions": [
+      "full project recompute every 10 minutes",
+      "generic keepalive spam",
+      "Agent 6 status polling as a fast/status lane",
+      "broad render without Agent 7 authorization",
+      "asking user to relay routine messages"
+    ]
+  },
+  "agent7_pulse_scope": {
+    "default_output": "priority decision packet",
+    "work_session_rule": "Agent 7 sessions target about 20 minutes: make a mission decision, control correction, or DONT_NOTIFY; do not perform broad maintenance by default.",
+    "middle_management_rule": "Agent 7 should not directly queue Agents 1-4 for routine lane work. Normal worker routing goes through Agent 5. Direct Agent 1-4 contact is reserved for major mission correction, cross-lane conflict, safety/compliance emergency, explicit user request, or Agent 6 escalation.",
+    "agent4_direct_queue_freeze": {
+      "status": "frozen_after_saturation_signal",
+      "set_at": "2026-06-01T04:08:04-04:00",
+      "rule": "No direct Agent 7 queueing to Agent 4 unless user or Agent 6 explicitly escalates."
+    },
+    "session_stop_conditions": [
+      "concrete artifact or routing packet completed and validated",
+      "waiting on another agent's bounded evidence",
+      "risk would require broad render, destructive action, legal/source policy, or user product direction",
+      "Agent 6 co-sign conflict requires user awareness"
+    ],
+    "decision_values": [
+      "continue",
+      "redirect",
+      "stop",
+      "queue_agent6",
+      "ask_user"
+    ],
+    "user_escalation_only_for": [
+      "product direction",
+      "legal/source policy",
+      "destructive operation",
+      "Agent 7 and Agent 6 authority conflict",
+      "broad render or high-compute action"
+    ],
+    "agent1_4_scheduled_pulses": "paused_none_agent5_managed",
+    "agent1_4_assignment_target_hours": 8
+  },
+  "current_default_priority_order": [
+    "SPEC-001 and SPEC-002 are WARN-ACCEPTED for specification-control use only by Agent 6; they structure packets but create no product/data acceptance.",
+    "Source-scope/report truth is WARN-ACCEPTED at direct-23/audit-23 only; all 23 source files remain quarantined until separate Agent 6 custody/exclusion disposition.",
+    "SPEC-003 HUD Runtime Validation is WARN-ACCEPTED by Agent 6 for specification-control use only after queue intake repair; use it only to structure Agent 4 HUD/current-HUD/old-HUD quarantine packets, not to accept runtime surfaces.",
+    "Source-scope/report truth is WARN-ACCEPTED at direct-23/audit-23 by Agent 6; all 23 source files remain quarantined and source/provenance custody remains blocked.",
+    "Method/spec/calibration governance is now a foundation lane: convert worker evidence into pre-run protocols, calibration evidence, validation reports, drift triggers, and Agent 6 docket requests; no method or validator creates acceptance.",
+    "Public-surface license/provenance control is now primary alongside source reconciliation: pull/quarantine unvalidated public-facing, routable, indexed, or source-derived/third-party evidence surfaces lacking current source/license/citation labeling",
+    "Current Agent 6-validated HUD is the primary public reader surface within existing docketed boundaries; old HUD is quarantined_legacy_license_risk and not a public fallback",
+    "Only Agent 6-validated artifacts/features may be added back into public/runtime surfaces under exact docketed boundaries",
+    "Publication remains blocked_no_render with no publication render artifact and 0 accepted translation rows",
+    "SOP-000, SOP-001, SOP-002, SOP-010 through SOP-016, and SOP-020 are WARN-ACCEPTED control law only within Agent 6 warning limits",
+    "Durable worker goals replace routine worker pulses; Agent 5 prompts Agents 1-4 only when idle/stale/blocked or directed",
+    "Reader Workbench broad rollout, Definition Workbench authority, route publication support, usage-as-definition, public HUD expansion beyond existing dockets, and accepted translation text remain unaccepted",
+    "Reader Workbench has Agent 6 PASS for the eight included pages only; follow-up and deferred pages remain unaccepted pending Agent 6 recheck",
+    "Definitions Workbench sample returned Agent 6 WARN: machine shape passes, but machine-derived verified status blocks UI/authority use until renamed or split from review_status",
+    "Usage navigation remains accepted-with-boundary only and cannot become definition authority, semantic arbitration, publication support, or accepted translation text",
+    "Route data remains HUD/workbench evidence only, not publication support or unique semantic truth",
+    "Agent 6 4-hour validation pulse remains the route for queued signoff requests and high-risk sweeps"
+  ],
+  "current_reader_workbench_expansion_boundary": {
+    "status": "agent6_pass_eight_included_pages_only",
+    "target_contract": "data/control/reader_workbench_expansion_targets.json",
+    "target_validator": "scripts/validate_reader_workbench_expansion_targets.mjs",
+    "expansion_evidence": "reports/reader-workbench-expansion-evidence.md",
+    "sample_validator": "scripts/validate_reader_workbench_expansion_sample.mjs",
+    "boundary_validator": "scripts/validate_reader_workbench_boundary.mjs",
+    "static_click_prevalidation": "reports/agent5-route-hud-click-prevalidation-2026-06-01.md",
+    "agent6_expansion_verdict": "reports/agent6-reader-workbench-expansion-verdict-2026-06-01.md",
+    "deferred_recovery_report": "reports/reader-workbench-deferred-recovery-report.md",
+    "agent4_direct_queue": {
+      "queued_at": "2026-06-01T03:23:11-04:00",
+      "target_id": "019e7be8-19d9-79f3-b193-08b5f047ec86",
+      "submission_id": "019e8210-88c0-7310-8fae-1af08efad58a",
+      "interrupt": false
+    },
+    "agent5_next_tick": "Record Agent 6 PASS for the eight included pages only. Do not promote recovered deferred pages or broad rollout. Keep Agent 4 direct queueing frozen unless user or Agent 6 escalates.",
+    "agent6_queue_status": "returned_pass_for_eight_included_pages_only",
+    "not_allowed": [
+      "broad rollout",
+      "deferred target acceptance",
+      "live browser-click proof",
+      "publication readiness",
+      "accepted translation text"
+    ]
+  },
+  "current_definition_workbench_boundary": {
+    "status": "agent6_warn_machine_shape_passes_ui_authority_blocked_verified_overclaim",
+    "plan": "reports/agent7-definition-workbench-plan-2026-06-01.md",
+    "control_artifact": "data/control/definition_workbench_plan.json",
+    "sample_artifact": "data/definitions/definition-workbench-sample.json",
+    "sample_report": "reports/definition-workbench-sample-report.md",
+    "agent5_next_tick": "After source board correction, route Agent 2/5 to fix status semantics and mojibake; route Agent 3 to join occurrence links before UI work.",
+    "not_allowed": [
+      "publication readiness",
+      "answer_eligible as unique accepted definition authority",
+      "usage rows as definitions",
+      "Definitions Workbench UI assignment before data contract and Agent 6 boundary",
+      "translation-memory writes"
+    ],
+    "agent6_docket": "reports/agent6-definition-workbench-sample-verdict-2026-06-01.md",
+    "required_fix": "Rename machine-derived verified to a non-review label such as single_answer_source_complete, or add review_status and reserve verified for reviewed lexical authority."
+  },
+  "current_source_scope_boundary": {
+    "status": "direct_23_audit_23_reconciled_source_scope_only",
+    "audit_script": "scripts/audit_untracked_source_scope.mjs",
+    "audit_report": "reports/untracked-source-scope-audit.md",
+    "audit_json": "reports/untracked-source-scope-audit.json",
+    "direct_untracked_source_files": 23,
+    "audit_reported_untracked_source_files": 23,
+    "missing_from_current_audit_files": 0,
+    "live_units": 85410,
+    "malformed_json_files": 0,
+    "license_counts": {
+      "Public Domain": 10727,
+      "CC-BY": 74683
+    },
+    "agent6_docket": "reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md",
+    "direct_untracked_source_file_names": [
+      "data/sources/beer-hagolah.json",
+      "data/sources/brief-commentary-on-peah.json",
+      "data/sources/brief-commentary-on-rosh-hashanah.json",
+      "data/sources/brief-commentary-on-shabbat.json",
+      "data/sources/brief-commentary-on-shekalim.json",
+      "data/sources/brief-commentary-on-sheviit.json",
+      "data/sources/brief-commentary-on-sotah.json",
+      "data/sources/brief-commentary-on-taanit.json",
+      "data/sources/brief-commentary-on-terumot.json",
+      "data/sources/brief-commentary-on-yevamot.json",
+      "data/sources/brief-commentary-on-yoma.json",
+      "data/sources/derashat-shabbat-hagadol.json",
+      "data/sources/derush-al-hatorah.json",
+      "data/sources/gevurot-hashem.json",
+      "data/sources/machzor-rosh-hashanah-ashkenaz-linear.json",
+      "data/sources/machzor-rosh-hashanah-ashkenaz.json",
+      "data/sources/machzor-yom-kippur-ashkenaz-linear.json",
+      "data/sources/ner-mitzvah.json",
+      "data/sources/netivot-olam.json",
+      "data/sources/netzach-yisrael.json",
+      "data/sources/selichot-nusach-lita-linear.json",
+      "data/sources/shabbat-siddur-sefard-linear.json",
+      "data/sources/siddur-sefard.json"
+    ],
+    "agent5_next_tick": "Hold Agent 1 unless Agent 6 requests custody work for the 23 quarantined files or a separate packet for modified tracked source files.",
+    "not_allowed": [
+      "source/provenance acceptance",
+      "publication-path language",
+      "future publication reliance on untracked/quarantined source JSON files",
+      "source/provenance acceptance from direct-23/audit-23 source-scope/report-truth reconciliation"
+    ],
+    "state": "direct_23_audit_23_reconciled_source_scope_only",
+    "missing_from_audit_file_names": [],
+    "missing_from_audit_units": 0,
+    "missing_from_audit_license_counts": {},
+    "reason": "Agent 6 WARN-ACCEPTED source-scope/report-truth reconciliation only at direct-23/audit-23. Source/provenance acceptance and future publication reliance remain blocked; all 23 untracked source files remain quarantined. Node audit git discovery still fails with EPERM in Agent 6's run and six modified tracked source files are outside this docket.",
+    "provided_list_source_files": 23,
+    "direct_units": 85410,
+    "direct_license_counts": {
+      "CC-BY": 74683,
+      "Public Domain": 10727
+    },
+    "direct_only_missing_from_audit_files": [],
+    "direct_only_missing_units": 0,
+    "direct_only_missing_license_counts": {},
+    "current_truth": "The old direct-55/audit-13, direct-19/audit-13, and direct-13/audit-13 source-count states are stale. Current Agent 6 truth is direct-23/audit-23 source-scope/report-truth WARN acceptance only; source/provenance custody remains blocked.",
+    "acceptance_boundary": "Source/provenance remains blocked/quarantined. Publication remains blocked_no_render. Future publication reliance on any untracked/quarantined source file remains blocked."
+  },
+  "last_adopted_by_agent5": "2026-06-01T02:52:00-04:00",
+  "agent5_current_tick_rule": "Agent 5 under RESET_WINDOW_MAX_THROUGHPUT: next coordinator action must prove Agents 1-4 are actually moving, deliver bounded 8-hour assignments to every eligible underfilled lane, or record exact delivery blockers. Board labels alone do not count as work. No prompts to actually active workers; no duplicate prompts to Agent 6-awaiting lanes unless Agent 6 requests follow-up.",
+  "agent6_boundary": {
+    "is_pulse_lane": true,
+    "pulse_minutes": 240,
+    "mode": "validation_choice_session_queue_first_not_status_polling",
+    "queue": "data/control/agent6_validation_queue.json",
+    "required_output": "dated pass/warn/block docket",
+    "automation_id": "agent-5-hourly-qa",
+    "automation_name": "Agent 6 4h Validation Work Session",
+    "automation_request_status": "active_replaced_existing_thread_heartbeat",
+    "automation_updated_at": "2026-06-01T09:00:41-04:00",
+    "automation_note": "Agent 6 remains on 4h cadence, with explicit instruction to validate evidence from Agent 5 queue prompts and not approve unvalidated claims.",
+    "publication_global_status": "blocked_no_render",
+    "session_length_policy": "agent_choice_validate_enough_to_support_verdict"
+  },
+  "latest_agent7_ceo_pulse": "reports/agent7-pulse-2026-06-01-0825.md",
+  "current_usage_navigation_boundary": {
+    "status": "accepted_with_boundary_usage_navigation_warnings",
+    "agent6_docket": "reports/agent6-usage-navigation-boundary-verdict-2026-06-01.md",
+    "not_accepted": [
+      "definition authority",
+      "semantic arbitration",
+      "broad coverage",
+      "public UI acceptance",
+      "publication support",
+      "accepted translation text"
+    ]
+  },
+  "latest_mass_ping_restart": {
+    "generated_at": "2026-06-01T09:00:41-04:00",
+    "report": "reports/agent7-agent5-mass-pulse-restart-2026-06-01-0900.md",
+    "requested_by": "user",
+    "ceo_call": "continue_with_immediate_non_interrupting_agent5_fanout",
+    "pulse_coverage_audit": "reports/agent-pulse-coverage-audit.md",
+    "pulse_coverage_status": "active_all_agents_on_latest_audit",
+    "agent5_action": "historical_mass_ping_only_superseded_by_long_session_cadence; do_not_resume_10_minute_ticks; Agent 5 uses 30-minute coordinator work sessions and no prompts to active workers",
+    "superseded_by": "latest_long_session_cadence",
+    "do_not": [
+      "direct Agent 7 queueing to Agents 1-4 for routine work",
+      "interrupt active workers without blocker evidence",
+      "poll Agent 6 as a fast status bot",
+      "run broad renders",
+      "claim publication readiness"
+    ],
+    "agent5_live_submission_id": "019e8346-e2b4-7dc0-9d96-15b170291d2c",
+    "agent5_thread_target_id": "019e7c87-a84d-7491-b285-04d18a95c162",
+    "live_send_interrupt": false,
+    "live_send_status": "queued_to_agent5"
+  },
+  "last_agent7_directive_to_agent5": "2026-06-01T09:00:41-04:00",
+  "latest_long_session_cadence": "reports/agent7-long-session-pulse-cadence-2026-06-01.md",
+  "latest_long_session_cadence_live_send": {
+    "generated_at": "2026-06-01T09:17:49-04:00",
+    "target": "Agent 5",
+    "target_thread_id": "019e7c87-a84d-7491-b285-04d18a95c162",
+    "submission_id": "019e8355-b087-74c2-b72c-7d445e4cdeb5",
+    "interrupt": false,
+    "status": "queued_to_agent5",
+    "purpose": "Supersede earlier quick mass-pulse restart with cap-conserving long-session cadence."
+  },
+  "active_worker_prompt_policy": {
+    "generated_at": "2026-06-01T09:24:00-04:00",
+    "rule": "no_prompt_to_active_workers",
+    "applies_to": [
+      "Agent 1",
+      "Agent 2",
+      "Agent 3",
+      "Agent 4"
+    ],
+    "exception": "safety_compliance_destructive_risk_explicit_user_or_agent7_escalation",
+    "rationale": "Conserve token usage by avoiding even non-interrupting prompts when workers are already active."
+  },
+  "latest_session_shape_rule": "reports/agent7-session-shape-rule-2026-06-01.md",
+  "sop_000": "reports/sop-000-global-qa-authority-change-control.md",
+  "goal_board": "data/control/agent_goal_board.json",
+  "goal_board_status_model": [
+    "active",
+    "blocked",
+    "evidence-ready",
+    "awaiting-Agent-6",
+    "Agent-6-accepted"
+  ],
+  "agent6_change_control_rule": "Agent 6 may revise SOP-000 only through a dated Agent 6 change-control docket stating rationale, affected agents, affected gates, risk classification, evidence reviewed, and effective boundary.",
+  "agent5_goal_seeding_rule": "SOP-000 and SOP-001 are WARN-ACCEPTED by reports/agent6-sop-000-001-signoff-docket-2026-06-01.md. Agent 5 may operate durable goals under SOP-001 warnings, may not prompt active workers except under escalation conditions, and may not mark QA-relevant evidence accepted without an Agent 6 docket.",
+  "qa_relevant_completion_rule": "Worker evidence can become evidence-ready or awaiting-Agent-6; only a dated Agent 6 docket can become Agent-6-accepted.",
+  "agent4_qc_runtime_scope": [
+    "HUD/workbench/runtime inspection",
+    "click truth",
+    "source/license visibility",
+    "accessibility",
+    "split-token/maqaf/prefix/suffix behavior",
+    "negative tests",
+    "Definition Validation UI pilots"
+  ],
+  "sop_000_signoff_status": "warn_accepted_by_Agent_6_docket",
+  "sop_000_signoff_docket": "reports/agent6-sop-000-001-signoff-docket-2026-06-01.md",
+  "sop_001": "reports/sop-001-goal-operating-model.md",
+  "sop_001_title": "Durable Goal Operating Model",
+  "sop_001_signoff_status": "warn_accepted_by_Agent_6_docket",
+  "sop_001_signoff_docket": "reports/agent6-sop-000-001-signoff-docket-2026-06-01.md",
+  "goal_operating_model": {
+    "status": "warn_accepted_by_Agent_6_docket",
+    "sop": "reports/sop-001-goal-operating-model.md",
+    "title": "Durable Goal Operating Model",
+    "board": "data/control/agent_goal_board.json",
+    "agent6_verdict": "WARN-ACCEPTED by reports/agent6-sop-000-001-signoff-docket-2026-06-01.md",
+    "publication_global_status": "blocked_no_render"
+  },
+  "agent8_prompter": {
+    "name": "prompter-8",
+    "target_id": "019e83a3-314c-7c43-9ec9-d56315813437",
+    "previous_retired_subagent_id": "019e839e-b32e-7683-8e56-acec3b31f8f3",
+    "status": "active_visible_sidebar_thread",
+    "mode": "external_throughput_pressure_with_published_direct_bounded_worker_prompt_delivery",
+    "owner": "Agent 7",
+    "normal_consumer": "Agent 7/Agent 5 for pressure; Agents 1-4 only through signed direct_bounded_worker_prompt_delivery when eligible",
+    "primary_watch": [
+      "Agents 1-4 idle/stale/blocked/missing durable goals",
+      "Agent 5 sitting on evidence-ready packets or known blockers",
+      "weak prompts needing 8-hour evidence-sprint framing",
+      "under-utilized lanes"
+    ],
+    "forbidden": [
+      "unbounded worker routing",
+      "direct active-worker interruption without explicit authorization",
+      "goal seeding without delivery proof",
+      "QA acceptance",
+      "SOP law changes as Agent 8 authority",
+      "control-state authority as Agent 8",
+      "Agent 6 blocker suppression",
+      "publication readiness claims"
+    ]
+  },
+  "agent9_oracler": {
+    "name": "oracler-9",
+    "target_id": "external_not_registered",
+    "status": "blocked",
+    "status_reason": "external_declared_no_thread_target",
+    "mode": "external_chainlink_oracle_connective_observation",
+    "owner": "none_external",
+    "normal_consumer": "Agent 5, Agent 6, or Agent 7 may consume oracle-style context as non-acceptance input",
+    "primary_watch": [
+      "unlinked evidence chains",
+      "queue/docket/control-surface mismatch",
+      "cross-agent dependency context",
+      "external context that should be surfaced as observation"
+    ],
+    "forbidden": [
+      "worker routing",
+      "goal seeding",
+      "QA acceptance",
+      "SOP law changes",
+      "draft promotion",
+      "Agent 6 blocker suppression",
+      "publication readiness claims"
+    ]
+  },
+  "publication_global_status": "blocked_no_render",
+  "sop_002": {
+    "title": "SOP Authoring, QA Execution, Ratification, And Law Promotion",
+    "path": "reports/sop-002-sop-authoring-qa-execution-ratification-law-promotion.md",
+    "signoff_status": "warn_accepted_by_Agent_6_docket_workflow_control_only",
+    "signoff_docket": "reports/agent6-sop-002-sop-verdict-2026-06-01.md",
+    "active_boundary": "Workflow-control only. Agent 5 may draft and packet SOPs as control/queue coordinator. Agent 6 alone issues QA/SOP verdicts by dated docket. Agent 7 may mechanically publish only the exact Agent 6 signed boundary without widening, narrowing, or converting WARN to clean PASS.",
+    "required_warning_limit": "QA Execution means Agent 6 docketed QA verdict/disposition work only. Agent 5 drafting checks, Agent 7 law publication, validator output, worker reports, and control-board updates are not QA execution and do not create acceptance.",
+    "not_accepted": [
+      "clean PASS",
+      "product/data gate acceptance",
+      "source/provenance acceptance",
+      "publication readiness",
+      "Reader Workbench broad rollout",
+      "Definition Workbench authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "accepted translation text"
+    ]
+  },
+  "preliminary_agent_sop_package": {
+    "title": "Preliminary Agent Lane Interfaces And Specification-Control Procedure",
+    "paths": [
+      "reports/sop-010-agent1-source-ingestion-render-custody.md",
+      "reports/sop-011-agent2-definition-route-data.md",
+      "reports/sop-012-agent3-usage-navigation-occurrence-evidence.md",
+      "reports/sop-013-agent4-qc-runtime-validation.md",
+      "reports/sop-014-agent5-coordination-goal-board-qa-packet-flow.md",
+      "reports/sop-015-agent6-qa-compliance-docket-authority.md",
+      "reports/sop-016-agent7-strategy-pulse-law-promotion.md",
+      "reports/sop-020-specification-and-batch-disposition-control.md"
+    ],
+    "signoff_status": "warn_accepted_by_Agent_6_docket_preliminary_governance_only",
+    "signoff_docket": "reports/agent6-agent-sop-and-spec-package-verdict-2026-06-01.md",
+    "law_publication_report": "reports/agent7-sop-010-016-020-law-publication-2026-06-01.md",
+    "active_boundary": "Preliminary lane-interface governance for Agents 1-7 and specification-control procedure for future batches only. All examples are non-binding. SOP-015 does not bind, limit, narrow, or subordinate Agent 6. SOP-020 creates disposition-control workflow only and does not accept any batch/output. Candidate labels are not Agent 6 dispositions. No product/data gate acceptance is created. Publication remains blocked_no_render. Source/provenance, Reader Workbench broad rollout, Definition Workbench authority, route publication support, usage-as-definition authority, public HUD expansion beyond existing dockets, and accepted translation text remain unaccepted.",
+    "warning_limits": [
+      "all examples are non-binding",
+      "SOP-015 does not bind, limit, narrow, or subordinate Agent 6",
+      "SOP-020 creates disposition-control workflow only and does not accept any batch/output",
+      "candidate labels are not Agent 6 dispositions",
+      "no product/data gate acceptance is created"
+    ]
+  },
+  "sop_law_publication_receipt": {
+    "path": "reports/agent6-sop-law-publication-receipt-2026-06-01.md",
+    "status": "warn_accepted_receipt_with_control_surface_warnings",
+    "warning": "Agent 7 law-publication report mechanically preserves Agent 6 signed WARN boundary; do not widen or convert WARN to clean PASS."
+  },
+  "agent_registry_lane_sop_mapping_correction": {
+    "corrected_at": "2026-06-01T16:05:00-04:00",
+    "source": "reports/agent6-sop-law-publication-receipt-2026-06-01.md",
+    "expected_mappings": {
+      "Agent 1": "reports/sop-010-agent1-source-ingestion-render-custody.md",
+      "Agent 2": "reports/sop-011-agent2-definition-route-data.md",
+      "Agent 3": "reports/sop-012-agent3-usage-navigation-occurrence-evidence.md",
+      "Agent 4": "reports/sop-013-agent4-qc-runtime-validation.md",
+      "Agent 5": "reports/sop-014-agent5-coordination-goal-board-qa-packet-flow.md",
+      "Agent 6": "reports/sop-015-agent6-qa-compliance-docket-authority.md",
+      "Agent 7": "reports/sop-016-agent7-strategy-pulse-law-promotion.md"
+    },
+    "note": "Per-agent lane_sop mappings corrected after Agent 6 warning; routing may rely on these fields only after this timestamp."
+  },
+  "public_surface_license_risk_priority_correction": {
+    "source": "reports/agent7-agent5-public-surface-license-risk-priority-correction-2026-06-01.md",
+    "authority": "Agent 7 strategy/priority direction from Agent 6 priority correction",
+    "status": "active_priority_direction_no_new_acceptance",
+    "primary_controls": [
+      "Pull or quarantine unvalidated public-facing, routable, indexed, or source-derived/third-party evidence surfaces lacking current source/license/citation labeling",
+      "Current Agent 6-validated HUD is primary public reader surface within existing docketed boundaries",
+      "Old HUD is quarantined_legacy_license_risk and not a primary/public fallback unless Agent 6 reopens and validates it",
+      "Public/runtime surfaces are default closed unless an exact Agent 6 docket permits the surface",
+      "No probably-fine public/runtime exposure: validator success, worker evidence, Agent 5 notes, and Agent 7 strategy support packets but do not approve features",
+      "Only Agent 6-validated artifacts/features may be added back into public/runtime surfaces under exact docketed boundaries"
+    ],
+    "default_closed_policy": {
+      "rule": "Public/runtime surfaces default closed unless an exact Agent 6 docket permits the surface inside a stated boundary.",
+      "non_approval_sources": [
+        "validator success",
+        "worker evidence",
+        "Agent 5 control notes",
+        "Agent 7 strategy or priority packets"
+      ],
+      "undocketed_surface_state": "draft_or_evidence_ready_or_awaiting_Agent_6_or_quarantined_or_blocked"
+    },
+    "not_accepted": [
+      "publication readiness",
+      "source/provenance acceptance",
+      "old HUD public fallback",
+      "Reader Workbench broad rollout",
+      "Definition Workbench authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "accepted translation text",
+      "product/data gate acceptance from this correction",
+      "validator success as QA acceptance",
+      "worker evidence as public/runtime permission",
+      "Agent 7 strategy as QA acceptance"
+    ]
+  },
+  "validation_methods_calibration_governance": {
+    "path": "reports/agent7-validation-methods-calibration-governance-plan-2026-06-01.md",
+    "status": "strategy_control_packet_pending_Agent_6_review",
+    "owner": "Agent 7",
+    "qa_authority": "Agent 6",
+    "coordinator": "Agent 5",
+    "boundary": "Method, calibration, validation-protocol, validation-report, drift-rule, and specification governance direction only; no batch/output/product/data acceptance.",
+    "required_spec_families": [
+      "public_runtime_surface_specification",
+      "source_provenance_custody_specification",
+      "hud_runtime_validation_specification",
+      "definition_integrity_specification",
+      "route_usage_evidence_specification",
+      "publication_render_specification_future_blocked"
+    ],
+    "validated_only_public_runtime_rule": "Only Agent 6-docketed validated artifacts/features may be public-facing, routable, indexed, or active in runtime surfaces. Everything else is draft, evidence-ready, awaiting-Agent-6, quarantined, or blocked.",
+    "not_accepted": [
+      "publication readiness",
+      "source/provenance acceptance",
+      "public/runtime acceptance from this packet",
+      "old HUD public fallback",
+      "Definition Workbench authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "accepted translation text"
+    ]
+  },
+  "spec_001_public_runtime_surface_control": {
+    "id": "SPEC-001",
+    "title": "Public Runtime Surface Control, Validated-Only Exposure, And Quarantine",
+    "path": "reports/spec-001-public-runtime-surface-control.md",
+    "status": "warn_accepted_by_Agent_6_docket_specification_control_only",
+    "signoff_docket": "reports/agent6-spec-001-002-governance-verdict-2026-06-01.md",
+    "law_publication_report": "reports/agent7-spec-001-002-law-publication-2026-06-01.md",
+    "active_boundary": "Specification-control frame for public/runtime surface packets only. Does not accept any public/runtime surface.",
+    "warning_limits": [
+      "Do not convert WARN to clean PASS.",
+      "Specification-control acceptance only; no product/data gate acceptance.",
+      "SPEC-001 is not public/runtime acceptance, current-HUD broad rollout, or old-HUD public-use acceptance.",
+      "SPEC-002 is not source/provenance acceptance; source-scope/report truth is WARN-ACCEPTED at direct-23/audit-23 only.",
+      "All 23 source files remain quarantined until separate Agent 6 custody/exclusion disposition.",
+      "Publication remains blocked_no_render.",
+      "Old HUD remains quarantined_legacy_license_risk.",
+      "Static evidence can support warning-level quarantine conclusions only unless runtime/live reachability evidence is supplied.",
+      "Calibration validates the method, not the product; validation reports request disposition and do not create disposition."
+    ],
+    "not_accepted": [
+      "public/runtime surface acceptance",
+      "source/provenance state acceptance",
+      "publication readiness",
+      "old-HUD public use",
+      "broad HUD rollout",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "page/render state acceptance",
+      "future publication path support",
+      "accepted translation text",
+      "product/data gate acceptance"
+    ]
+  },
+  "current_source_scope_evidence_boundary": {
+    "status": "warn_accepted_source_scope_report_truth_direct23_audit23_provenance_blocked",
+    "current_truth_boundary": "Agent 6 WARN-ACCEPTED source-scope/report-truth reconciliation only: current truth is direct-23/audit-23 with all 23 untracked source files quarantined. This supersedes stale direct-55/audit-13, direct-19/audit-13, and direct-13/audit-13 blocker language only for source-count/report truth. Source/provenance custody, future publication reliance, page/render, public/runtime, Definition authority, route publication support, usage-as-definition, product/data gate acceptance, and accepted translation text remain unaccepted. Node audit child-process git discovery is non-authoritative in this environment due EPERM; future packets require shell git discovery or another calibrated recount. Six modified tracked source files are outside this docket.",
+    "previous_agent6_blocker": "reports/agent6-source-reconciliation-recheck-verdict-2026-06-01.md",
+    "evidence_packet": "reports/agent1-source-scope-recount-recheck.md",
+    "direct_untracked_source_files": 23,
+    "audit_reported_untracked_source_files": 23,
+    "missing_from_current_audit_files": 0,
+    "quarantine": "all 23 rows quarantined_until_source_file_is_tracked_and_source_audit_passes",
+    "not_accepted": [
+      "source/provenance custody acceptance",
+      "publication readiness",
+      "future publication path support",
+      "page/render acceptance",
+      "public/runtime acceptance",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "product/data gate acceptance",
+      "accepted translation text",
+      "acceptance of six modified tracked source files outside the 23-file docket"
+    ],
+    "agent6_docket": "reports/agent6-source-scope-23-reconciliation-verdict-2026-06-01.md",
+    "provided_list_source_files": 23,
+    "license_counts": {
+      "CC-BY": 74683,
+      "Public Domain": 10727
+    }
+  },
+  "spec_002_source_provenance_custody": {
+    "id": "SPEC-002",
+    "title": "Source/Provenance Custody, Quarantine, Audit Agreement, And Label Survivability",
+    "path": "reports/spec-002-source-provenance-custody.md",
+    "status": "warn_accepted_by_Agent_6_docket_specification_control_only",
+    "signoff_docket": "reports/agent6-spec-001-002-governance-verdict-2026-06-01.md",
+    "law_publication_report": "reports/agent7-spec-001-002-law-publication-2026-06-01.md",
+    "active_boundary": "Specification-control frame for source/provenance custody packets only. Direct-23/audit-23 remains evidence-ready/awaiting-Agent-6 and all 23 files remain quarantined until separate Agent 6 source docket.",
+    "warning_limits": [
+      "Do not convert WARN to clean PASS.",
+      "Specification-control acceptance only; no product/data gate acceptance.",
+      "SPEC-001 is not public/runtime acceptance, current-HUD broad rollout, or old-HUD public-use acceptance.",
+      "SPEC-002 is not source/provenance acceptance; source-scope/report truth is WARN-ACCEPTED at direct-23/audit-23 only.",
+      "All 23 source files remain quarantined until separate Agent 6 custody/exclusion disposition.",
+      "Publication remains blocked_no_render.",
+      "Old HUD remains quarantined_legacy_license_risk.",
+      "Static evidence can support warning-level quarantine conclusions only unless runtime/live reachability evidence is supplied.",
+      "Calibration validates the method, not the product; validation reports request disposition and do not create disposition."
+    ],
+    "not_accepted": [
+      "public/runtime surface acceptance",
+      "source/provenance state acceptance",
+      "publication readiness",
+      "old-HUD public use",
+      "broad HUD rollout",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "page/render state acceptance",
+      "future publication path support",
+      "accepted translation text",
+      "product/data gate acceptance"
+    ]
+  },
+  "spec_003_hud_runtime_validation": {
+    "id": "SPEC-003",
+    "title": "HUD Runtime Validation, Current-HUD Boundary, Old-HUD Quarantine, And Regression Control",
+    "path": "reports/spec-003-hud-runtime-validation.md",
+    "status": "warn_accepted_by_Agent_6_docket_draft_specification_control_only_queue_intake_repaired_validation_queue_passed_zero_warnings",
+    "owner": "Agent 7",
+    "coordinator": "Agent 5",
+    "primary_lane": "Agent 4",
+    "qa_authority": "Agent 6",
+    "signoff_docket": "reports/agent6-spec-003-hud-runtime-validation-verdict-2026-06-01.md",
+    "boundary": "WARN-ACCEPTED for specification-control use only by reports/agent6-spec-003-hud-runtime-validation-verdict-2026-06-01.md after queue intake repair. No new HUD rollout, public/runtime, old-HUD use, live browser-click proof, source/provenance, publication, translation, future publication path, or product/data gate acceptance.",
+    "requested_verdict": "returned_warn_accepted_specification_control_only_after_queue_repair",
+    "what_must_not_be_accepted": [
+      "new HUD rollout beyond existing dockets",
+      "old-HUD public use or fallback",
+      "public/runtime acceptance",
+      "publication readiness",
+      "source/provenance acceptance",
+      "live browser-click proof unless actually provided",
+      "Reader Workbench broad rollout",
+      "Definition Workbench authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "accepted translation text"
+    ],
+    "law_publication_report": "reports/agent7-spec-003-law-publication-2026-06-01.md",
+    "accepted_boundary": "SPEC-003 may structure Agent 4 HUD runtime packets covering current-HUD boundary preservation, old-HUD quarantine, route/index/runtime/fallback checks, source/license/citation visibility, split-token/maqaf/hyphen checks, usage-authority separation, calibration, and regression controls. It does not accept any new HUD rollout, public/runtime surface, old-HUD public use, source/provenance state, publication readiness, live browser-click proof, Reader Workbench broad rollout, Definition authority, route publication support, usage-as-definition authority, future publication path support, or accepted translation text. Publication remains blocked_no_render. Old HUD remains quarantined_legacy_license_risk.",
+    "queue_intake_status": "repaired_by_Agent_5_and_validation_queue_passed_zero_warnings",
+    "queue_blocker": [
+      "resolved: SPEC-003 queue item now has evidence_artifacts",
+      "resolved: SPEC-003 queue item now has what_changed_since_last_agent6_ruling",
+      "resolved: SPEC-003 queue item now has numeric priority",
+      "resolved: SPEC-003 boundary wording now excludes publication/translation overclaim",
+      "resolved: data/control/agent6_validation_queue.json repaired and node scripts\\validate_agent6_validation_queue.mjs passed with 0 warnings"
+    ],
+    "warning_limits": [
+      "new HUD rollout",
+      "public/runtime surface acceptance",
+      "old-HUD public use",
+      "source/provenance state",
+      "publication readiness",
+      "live browser-click proof",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "future publication path support",
+      "accepted translation text",
+      "queue intake repair does not create HUD/runtime or old-HUD acceptance"
+    ],
+    "not_accepted": [
+      "new HUD rollout",
+      "public/runtime surface acceptance",
+      "old-HUD public use",
+      "source/provenance state",
+      "publication readiness",
+      "live browser-click proof",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "future publication path support",
+      "accepted translation text",
+      "queue intake repair as acceptance"
+    ],
+    "publication_status": "blocked_no_render",
+    "old_hud_status": "quarantined_legacy_license_risk"
+  },
+  "agent7_route_release_input_freeze_drift_correction": {
+    "status": "route_release_gate_pass_with_warnings_input_freeze_drift_warn_route_data_only_not_publication_support",
+    "date": "2026-06-01",
+    "source_reports": [
+      "reports/agent5-control-readiness.md",
+      "reports/hud-route-release-gate.md",
+      "reports/hud-route-release-gate-validation.md",
+      "reports/route-publication-boundary-coherence.md",
+      "reports/hud-route-input-freeze-drift.md",
+      "reports/agent6-route-publication-boundary-verdict-2026-06-01.md"
+    ],
+    "summary": "Agent 5 control readiness now passes with 3 warnings. HUD route release gate is pass_with_warnings: route lookup integrity and route-card/publication boundary checks pass, but current route inputs are not release-reconciled because source-phrase-evidence.jsonl and source-citable-paraphrase-evidence.jsonl differ from the frozen release input. Agent 6 route verdict remains WARN for route data only; this is not publication support, not accepted translation text, and not a clean route release.",
+    "warnings": [
+      "current route inputs remain unreconciled to frozen public lookup release",
+      "source-phrase-evidence.jsonl differs from frozen release input",
+      "source-citable-paraphrase-evidence.jsonl differs from frozen release input",
+      "route publication-boundary warnings remain visible: 335103",
+      "answer-eligible unsafe cards flagged for translation-output support: 17737"
+    ],
+    "not_accepted": [
+      "publication readiness",
+      "accepted translation text",
+      "source/provenance acceptance",
+      "Definition authority",
+      "route publication support",
+      "clean route release while input-freeze drift remains",
+      "new route family expansion before freeze drift is reconciled or re-frozen under validation"
+    ],
+    "next_agent5_action": "Keep Agent 2 lane under no-interrupt discipline if active. At next natural checkpoint, batch a route input-freeze reconciliation packet or a new frozen route release candidate with drift report, route release gate, route publication boundary audit, coherence validation, and what must not be accepted for Agent 6."
+  },
+  "agent7_route_hud_rollout_watch_static_ingest": {
+    "status": "warn_accepted_local_cached_static_inventory_only_render_authority_drift_live_blockers_active",
+    "date": "2026-06-02",
+    "source_reports": [
+      "reports/route-hud-rollout-watch.md",
+      "reports/route-hud-rollout-watch.json"
+    ],
+    "agent6_static_docket": "reports/agent6-route-hud-rollout-watch-static-boundary-docket-2026-06-02.md",
+    "agent6_static_verdict": "WARN-ACCEPTED for local cached static rollout-watch evidence only",
+    "full_old_hud_kill_switch_gate": "warn_accepted_repo_static_simulated_dynamic_killswitch_evidence_only_deployment_gate_open",
+    "summary": "Route HUD rollout watch reports 1360 generated/current-HUD pages, but Agent 6 WARN-ACCEPTED it only as local cached static inventory: 1360 cached page audits reused, 0 page files freshly scanned, 1 warning, and render-authority drift because scripts/render_site.ps1 is newer than 1249 pages. This does not clear live Deuteronomy or hud-preview blockers.",
+    "metrics": {
+      "status": "passed",
+      "source_records": 1360,
+      "source_records_with_work_slug": 1360,
+      "generated_pages": 1360,
+      "current_hud_pages": 1360,
+      "pages_with_usage_evidence": 1360,
+      "missing_pages": 0,
+      "non_hud_pages": 0,
+      "source_newer_than_page": 0,
+      "missing_marker_rows": 0,
+      "stale_marker_rows": 0,
+      "empty_occurrence_url_rows": 0,
+      "issues": 0,
+      "warnings": 1,
+      "cache_hits": 1360,
+      "freshly_scanned_page_files": 0,
+      "render_authority_drift_pages": 1249
+    },
+    "not_accepted": [
+      "live browser-click proof",
+      "new HUD rollout beyond existing Agent 6 dockets",
+      "public/runtime expansion",
+      "old-HUD public use or fallback",
+      "source/provenance acceptance",
+      "publication readiness",
+      "accepted translation text",
+      "broad Reader Workbench rollout",
+      "Definition authority",
+      "deployment/cache stale-bundle proof and live browser-click/fallback closure from repository-file evidence",
+      "Deuteronomy blocker clearance",
+      "hud-preview blocker clearance",
+      "deployed/CDN/cache closure",
+      "clean render-authority alignment",
+      "live public/runtime acceptance"
+    ]
+  },
+  "agent6_old_hud_static_quarantine_docket": {
+    "status": "warn_accepted_static_filesystem_evidence_only_full_killswitch_gate_open",
+    "docket": "reports/agent6-old-hud-static-quarantine-docket-2026-06-01.md",
+    "date": "2026-06-01",
+    "gate": "hud_runtime_license_risk_gate",
+    "related_spec": "reports/spec-003-hud-runtime-validation.md",
+    "summary": "Agent 6 WARN-ACCEPTED old-HUD quarantine static evidence only. Static evidence shows 1360 generated pages, 1360 current HUD pages, 0 non-HUD pages, 0 missing current-marker rows, 0 stale-marker rows, 0 issues, 0 warnings, no searched old-HUD/stale markers in scoped public HTML/JS/CSS, route lookup passed, and answer safety passed.",
+    "accepted_static_boundary": [
+      "audited generated-page set currently has 1360 generated pages with current HUD markers",
+      "audited generated-page set has 0 non-HUD generated pages",
+      "audited generated-page set has 0 rows missing required current markers",
+      "audited generated-page set has 0 rows with searched stale old-HUD markers",
+      "no searched old-HUD/stale markers found in scoped public HTML, JavaScript, or CSS search paths",
+      "static route lookup and answer-safety validators pass"
+    ],
+    "warning_limits": [
+      "static filesystem evidence only",
+      "no live browser-click proof",
+      "no browser navigation reachability proof",
+      "no deployment/CDN/stale bundle proof",
+      "no query-string activation proof",
+      "no localStorage activation proof",
+      "no IndexedDB activation proof",
+      "no fallback/rollback activation proof",
+      "no source/provenance custody acceptance",
+      "no public/runtime expansion acceptance",
+      "no publication readiness"
+    ],
+    "remaining_gate": "Repository-file static plus simulated dynamic/fallback kill-switch evidence is WARN-ACCEPTED; deployment/cache stale-bundle proof, live browser-click proof, and public fallback/rollback closure remain open.",
+    "old_hud_status": "quarantined_legacy_license_risk",
+    "publication_status": "blocked_no_render",
+    "not_accepted": [
+      "new HUD rollout beyond existing Agent 6 dockets",
+      "public/runtime acceptance",
+      "old-HUD public use or fallback",
+      "source/provenance acceptance",
+      "publication readiness",
+      "live browser-click proof",
+      "Reader Workbench broad rollout",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "future publication path support",
+      "product/data gate acceptance",
+      "accepted translation text"
+    ],
+    "next_agent4_packet_required": [
+      "public navigation clicks",
+      "route/index/generated inventories",
+      "runtime imports",
+      "fallback/rollback activation",
+      "query string behavior",
+      "localStorage behavior",
+      "IndexedDB behavior",
+      "stale bundle/deployment risk",
+      "source/license/citation visibility for exposed source-derived evidence",
+      "positive and negative controls"
+    ]
+  },
+  "agent6_agent9_route_drift_control_receipt": {
+    "status": "agent6_pass_control_boundary_receipt_non_accepting_control_state_only",
+    "docket": "reports/agent6-agent9-route-drift-control-receipt-2026-06-01.md",
+    "date": "2026-06-01",
+    "summary": "Agent 6 PASS receipt for Agent 9 boundary and route-release drift correction as non-accepting control state only. Agent 9 is external oracle/connective input only and has no QA, SOP, routing, publication, product, or gate authority. Route drift control prevents route evidence from being described as clean release/publication support while input-freeze drift remains.",
+    "agent9_accepted_boundary": [
+      "may provide cross-surface linkage observations",
+      "may surface evidence-chain gaps",
+      "may surface queue/docket/control warnings",
+      "may provide oracle-style context packets"
+    ],
+    "agent9_not_accepted": [
+      "route Agents 1-4",
+      "seed durable goals",
+      "claim QA acceptance",
+      "change SOP law or promote drafts",
+      "suppress Agent 6 blockers or redefine acceptance criteria",
+      "claim publication readiness",
+      "claim source/provenance acceptance",
+      "claim public/runtime acceptance",
+      "claim HUD/runtime acceptance",
+      "claim Definition authority",
+      "claim route publication support",
+      "claim usage-as-definition authority",
+      "claim live browser-click proof",
+      "claim future publication path support",
+      "claim accepted translation text"
+    ],
+    "route_boundary": {
+      "current_control_status": "route_release_gate_pass_with_warnings_input_freeze_drift_warn_route_data_only_not_publication_support",
+      "note": "Agent 6 receipt reviewed the earlier fail-state correction. Current route gate artifacts later report pass_with_warnings, but clean route release remains blocked while input-freeze drift remains.",
+      "clean_route_release": "blocked_while_input_freeze_drift_remains",
+      "route_data_boundary": "Agent 6 WARN for route data only; not publication support and not accepted translation text"
+    },
+    "not_accepted": [
+      "source/provenance acceptance",
+      "public/runtime acceptance",
+      "HUD/runtime acceptance",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "publication readiness",
+      "accepted translation text",
+      "product/data gates",
+      "Agent 9 output as QA acceptance"
+    ]
+  },
+  "agent7_governance_control_validator": {
+    "status": "active_non_accepting_governance_control_validator_passed",
+    "date": "2026-06-02",
+    "script": "scripts/validate_agent7_governance_control.mjs",
+    "latest_report": "reports/agent7-governance-control-health.md",
+    "latest_result": "pending_after_agent13_organization_restructure",
+    "owner": "Agent 7",
+    "qa_authority": "Agent 6",
+    "boundary": "Governance/control drift detection only. This validator checks publication blocked_no_render, goal-board status law and Agent 6-only acceptance, source-scope direct-23/audit-23 report-truth boundary, corrected source/provenance custody mapping boundary, six modified tracked source files outside the 23-file source docket, render_shell source-risk drift, relay state boundaries, old-HUD quarantine, validated-only public/runtime default-closed boundary, SOP queue returned state, QA docket index sync, Agent 5/6 handoff sync, Deuteronomy owner-route boundary, broader public-runtime drift boundary, worker watchdog delivery-proof boundary, Agent 5 current handoff guidance, Agent 7 pulse state boundary, Agent 5 routing suppression, pulse cadence/no-active-worker prompt boundary, route input-freeze boundary, workbench handoff authority, Agent 8/9 authority boundaries, Agent 12 limiter boundary, Agent 13 organization boundary, and Agent 1-7 lane SOP mappings. It does not create QA acceptance, publication readiness, source/provenance custody, runtime acceptance, product/data gate acceptance, or accepted translation text.",
+    "preserved_blocks": [
+      "publication readiness",
+      "source/provenance custody acceptance",
+      "public/runtime acceptance",
+      "page/render acceptance",
+      "old-HUD public use",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "product/data gate acceptance",
+      "accepted translation text"
+    ],
+    "scope_last_updated": "2026-06-02T15:41:34.141Z",
+    "scope_update_reason": "SOP-021 current-action preservation and no-hierarchy title-map cleanup."
+  },
+  "agent6_render_shell_source_scope_correction_receipt": {
+    "status": "agent6_pass_render_shell_source_scope_control_correction_governance_evidence_only",
+    "date": "2026-06-01",
+    "docket": "reports/agent6-render-shell-source-scope-correction-receipt-2026-06-01.md",
+    "corrected_by": "reports/agent7-render-shell-source-scope-correction-2026-06-01.md",
+    "validator": "scripts/validate_agent7_governance_control.mjs",
+    "validator_boundary": "accepted as governance/control-health evidence only, not QA acceptance",
+    "summary": "Agent 6 PASS receipt confirms Agent 7 cleared active stale direct-19/audit-13 render_shell source-risk drift. Source-scope/report truth only; source/provenance custody and publication remain blocked.",
+    "not_accepted": [
+      "source/provenance custody",
+      "publication readiness",
+      "future publication path support",
+      "page/render acceptance",
+      "public/runtime acceptance",
+      "Definition authority",
+      "route publication support",
+      "usage-as-definition authority",
+      "product/data gate acceptance",
+      "accepted translation text",
+      "six modified tracked source files outside the 23-file docket"
+    ],
+    "publication_status": "blocked_no_render"
+  },
+  "agent12_limiter_posture": {
+    "mode": "READY_TO_REACT_ADVISORY_CHECK_ONLY",
+    "status": "active_outside_project_advisory_only_until_user_or_agent7_changes",
+    "source_artifact": "reports/agent7-agent12-boundary-correction-2026-06-02.md",
+    "agent7_receipt": "reports/agent7-agent12-boundary-correction-2026-06-02.md",
+    "supersedes_posture": "EMERGENCY_HARD_CAP_MAX_SAFE_THROUGHPUT",
+    "supersedes_receipt": "reports/agent7-agent12-max-safe-throughput-record-2026-06-02.md",
+    "effective_start_local": "2026-06-02T06:05:00-04:00",
+    "effective_start_utc": "2026-06-02T10:05:00Z",
+    "active_goal": "remain available for direct Agent 10 support checks before Agent 8 pressure prompts; return CLEAR, CAP, ROUTE_AGENT6, DUPLICATE_OR_CHURN, or ESCALATE as advice only",
+    "authority_correction": "Agent 12 is outside-project advisory support only and must not control workers, mutate queues, edit SOPs, change control files, or block execution directly",
+    "worker_lane_target": "all eligible Agents 1-4 lanes active, actively awaiting Agent 6 disposition, or carrying a ready next packet",
+    "active_worker_lane_cap": 4,
+    "current_active_worker_lanes": [
+      "Agent 2",
+      "Agent 4"
+    ],
+    "waiting_on_agent6_lanes": [
+      "Agent 1 source-custody closure decision"
+    ],
+    "next_lane_candidates": [
+      "Agent 3 evidence-ready: prepare or send one bounded next-safe packet if it does not conflict with Agent 6 WARN boundary"
+    ],
+    "agent12_rule": "Agent 12 may provide advisory labels CLEAR, CAP, ROUTE_AGENT6, DUPLICATE_OR_CHURN, or ESCALATE to Agent 8. Agent 12 does not control Agent 8, control workers, mutate queues, edit SOPs, change control files, block execution directly, suppress Agent 8 pressure, suppress AGENT6_REQUIRED work, narrow Agent 6 evidence scope, or claim acceptance.",
+    "agent8_rule": "Agent 8 may consult Agent 12 before each pressure prompt, but Agent 12 labels do not control Agent 8; Agent 8 routes pressure through Agent 7 or Agent 5 only, never directly to Agents 1-4.",
+    "agent5_rule": "operate as active coordinator; keep goal board, SOP revision queue, and Agent 6 validation queue moving; may refill more than one eligible idle/stale/blocked/evidence-ready lane per 30-minute coordinator session to reach max safe throughput; all worker prompts must be 8-hour assignments with delivery proof; no prompts to active workers; no broad cleanup or proof loops",
+    "agents_1_4_rule": "no direct Agent 7 contact; Agent 5 may route eligible idle/stale/blocked/evidence-ready lanes under SOP-001/SOP-014 delivery-proof rules; lanes awaiting Agent 6 are not duplicate-prompted unless Agent 6 requests follow-up",
+    "allowed_work": [
+      "bounded productive worker assignments for eligible idle/stale/blocked/evidence-ready lanes",
+      "Agent 5 refill work needed to keep all eligible lanes active or packet-ready",
+      "Agent 8 pressure on underfilled lane/material delta/new blocker/concrete next step",
+      "Agent 6 queue packaging and exact signoff requests",
+      "SOP-017 revision and SOP revision queue follow-through",
+      "source/provenance custody closure queue follow-through",
+      "bounded public-runtime owner-route or delivery-blocker packets, not no-drift proof loops"
+    ],
+    "blocked_work": [
+      "Agent 12 controlling workers",
+      "Agent 12 mutating queues",
+      "Agent 12 editing SOPs",
+      "Agent 12 changing control files",
+      "Agent 12 blocking execution directly",
+      "Agent 12 routing Agents 1-4",
+      "Agent 12 suppressing Agent 6-required work",
+      "Agent 12 narrowing Agent 6 evidence scope",
+      "Agent 12 marking blockers open or closed"
+    ],
+    "sop017_revision_dependency": "agent6-sop-017-revision-language-request remains queued for Agent 6; existing SOP-017 WARN boundary and Agent 7 publication remain unchanged until Agent 6 returns a dated revision verdict",
+    "boundary": "Strategy/cost-pressure clarification only. No worker routing, queue mutation, SOP law mutation, control-state authority for Agent 12, QA acceptance, publication readiness, source/provenance acceptance, public/runtime acceptance, deployed/CDN/cache closure, product/data acceptance, route publication support, Definition authority, usage-as-definition authority, or accepted translation text. Publication remains blocked_no_render.",
+    "latest_agent7_strategy_direction": "reports/agent7-agent8-agent12-advisory-realignment-2026-06-02.md"
+  },
+  "agent8_current_tick_rule": "Agent 8 is active external pressure/orchestration guidance. Agent 8 may pressure Agent 7 or Agent 5 for material deltas, blockers, underfilled lanes, concrete next steps, owner-route decisions, or changed-state digests. Agent 8 may also use Agent 7-published direct_bounded_worker_prompt_delivery for bounded prompts to eligible Agents 1-4 under mandatory delivery proof and no-active-worker-interruption without explicit authorization.",
+  "reset_window_max_throughput_execution_order": {
+    "status": "active_immediate_max_throughput_execution_required",
+    "order": "reports/agent7-immediate-max-throughput-execution-order-2026-06-02.md",
+    "generated_at": "2026-06-02T10:55:00Z",
+    "requirement": "Agent 5 must prove Agents 1-4 are actually moving, deliver bounded 8-hour assignments to every eligible underfilled lane, or record exact delivery blockers. Board labels alone do not count as work.",
+    "moving_lane_definition": "current delivery proof, recent worker artifact trail, active command/session, or explicit awaiting Agent 6/user disposition",
+    "agent5_required_next_output": "lane-fill proof packet, delivery proofs, or exact delivery blocker; not status-only",
+    "agent8_rule": "pressure Agent 5 immediately on any underfilled eligible lane, not only on 2-hour digest",
+    "agent12_rule": "must not block Agent 8 pressure or lane-fill work merely because it spends tokens; may flag named waste classes with advisory labels only",
+    "boundary": "Execution routing and cost/scope control only; no QA acceptance, publication readiness, source/provenance acceptance, public/runtime acceptance, product/data acceptance, route publication support, Definition authority, usage-as-definition authority, or accepted translation text. Publication remains blocked_no_render."
+  },
+  "agent8_agent12_primary_driver_posture": {
+    "status": "active_agent8_external_pressure_guidance_agent12_ready_to_react_advisory_check_only",
+    "generated_at": "2026-06-02T11:36:00Z",
+    "agent7_posture": "reports/agent7-agent8-primary-driver-agent12-advisory-posture-2026-06-02.md",
+    "supersedes_softer_peer_posture": "reports/agent7-agent8-agent12-peer-throughput-posture-2026-06-02.md",
+    "agent6_guardrail": "reports/agent6-agent8-agent12-reconciliation-guardrail-2026-06-02.md",
+    "agent6_guardrail_status": "WARN-ACCEPTED for QA-boundary guardrail only",
+    "agent8_role": "Agent 8 is external pressure/orchestration guidance for Agent 7; may pressure Agent 5 with bounded non-acceptance packets, but has no worker-routing, SOP, control-state, blocker-disposition, or acceptance authority.",
+    "agent5_role": "relayer/coordinator/executor for Agent 7/Agent 8 strategy packets; execute bounded packets, preserve delivery proof and claim ceilings, or record exact blockers.",
+    "agent12_role": "outside-project ready-to-react advisory limiter/checker only; returns CLEAR, CAP, ROUTE_AGENT6, DUPLICATE_OR_CHURN, or ESCALATE as advice only and does not directly block execution or mutate control state.",
+    "cadence": "Agent 8 consults Agent 12 before each Agent 8 pressure prompt; Agent 8 pressure routes through Agent 7 or Agent 5 only and never directly to Agents 1-4.",
+    "tie_break": "Agent 12 advice does not directly control execution. Agent 8 owns pressure wording, Agent 5 owns execution mechanics, Agent 7/user decides posture changes, and AGENT6_REQUIRED routes to Agent 6.",
+    "boundary": "Strategy/throughput/cost pressure posture only. Agent 8 does not control workers or goals and cannot claim QA, SOP, publication, source/provenance, public/runtime, product/data, route, Definition, usage-as-definition, or accepted-text acceptance. Publication remains blocked_no_render."
+  },
+  "agent6_route_hud_rollout_watch_static_boundary": {
+    "status": "warn_accepted_local_cached_static_inventory_only_render_authority_drift_live_blockers_active",
+    "docket": "reports/agent6-route-hud-rollout-watch-static-boundary-docket-2026-06-02.md",
+    "evidence": [
+      "reports/route-hud-rollout-watch.md",
+      "reports/route-hud-rollout-watch.json"
+    ],
+    "metrics": {
+      "generated_pages": 1360,
+      "current_hud_pages": 1360,
+      "cache_hits": 1360,
+      "freshly_scanned_page_files": 0,
+      "render_authority_drift_pages": 1249,
+      "warnings": 1
+    },
+    "boundary": "Local cached static inventory only. Not live public/runtime clearance, not Deuteronomy or hud-preview blocker clearance, not deployed/CDN/cache closure, not clean render-authority alignment, not source/provenance acceptance, not publication readiness, not product/data acceptance, and not accepted text."
+  },
+  "agent6_public_runtime_license_risk_recheck_directive": {
+    "status": "returned_warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only",
+    "docket": "reports/agent6-public-runtime-license-risk-recheck-directive-2026-06-02.md",
+    "machine_evidence": "reports/agent6-public-runtime-license-risk-recheck-directive-2026-06-02.json",
+    "next": "Agent 6 WARN-ACCEPTED Option A route-selection preparation only. Preserve clean origin/main deploy branch/worktree route with bounded Deuteronomy artifacts, then post-swap live proof or exact blocker. Keep hud-preview and Genesis separate unless Agent 7/user changes route.",
+    "boundary": "Agent 6 WARN-ACCEPTED live Deuteronomy static HTTP post-swap evidence only. For the exact Deuteronomy page and direct dependency set, old-HUD hard marker exposure is downgraded: live cache-busted HTML and direct dependencies show current HUD and public-HUD assets, old hard markers are absent, and direct dependencies are HTTP 200. This does not accept broad public/runtime, live browser-click behavior, deployed/CDN/cache closure, old-HUD fallback/rollback closure, source/provenance custody, publication readiness, route publication support, Definition authority, usage-as-definition authority, product/data gate acceptance, translation output, or accepted text. Browser-click proof and deployment source-of-truth for data/public-hud/deuteronomy/** remain open. Genesis and /hud-preview are separate public-runtime treatment lanes. Publication remains blocked_no_render.",
+    "agent7_selected_owner_route": "reports/agent7-deuteronomy-p0-owner-route-selection-2026-06-02.md",
+    "option_a_agent6_verdict": "reports/agent6-deuteronomy-option-a-route-selection-verdict-2026-06-02.md",
+    "post_swap_runtime_recheck": "reports/agent6-live-deuteronomy-post-swap-runtime-recheck-2026-06-02.md",
+    "agent7_treatment_decision": "reports/agent7-deuteronomy-post-swap-and-public-runtime-treatment-decision-2026-06-02.md",
+    "next_agent5_action": "Stop Deuteronomy proof loops unless new drift appears. Shift public-runtime attention to separate Genesis and /hud-preview drift/quarantine treatment; return post-remediation live evidence or exact Pages/deployment blocker only. Do not claim broad public/runtime acceptance or publication readiness.",
+    "next_agent4_action": "At safe checkpoint only, produce bounded Deuteronomy live browser-click proof if Agent 6/Agent 7/Agent 5 routes it; do not expand to Genesis, /hud-preview, source custody, publication, or broad rollout.",
+    "genesis_treatment": "separate_restore_work_deferred_pending_owner_or_agent7_product_decision",
+    "hud_preview_treatment": "intentional_quarantine_non_public_posture_pending_agent6_live_closure",
+    "what_must_not_be_accepted": [
+      "broad public/runtime acceptance",
+      "live browser-click behavior",
+      "deployed/CDN/cache closure",
+      "old-HUD fallback/rollback closure",
+      "source/provenance custody",
+      "publication readiness",
+      "publication-path support",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "Reader Workbench broad rollout",
+      "product/data gate acceptance",
+      "translation output",
+      "accepted translation text"
+    ],
+    "highest_permissible_claim": "warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only"
+  },
+  "agent5_agent8_agent12_relayer_role_decision": {
+    "status": "immediate_control_posture_active_exact_direct_delivery_published_warn_boundary",
+    "generated_at": "2026-06-02T11:42:30Z",
+    "agent7_decision": "reports/agent7-agent5-agent8-agent12-relayer-role-decision-2026-06-02.md",
+    "agent5_request": "reports/agent5-agent7-relayer-role-correction-request-2026-06-02.md",
+    "agent6_queue_item": "agent6-sop-role-shape-agent8-primary-agent5-relayer-agent12-advisory",
+    "sop_revision_queue_item": "sop014-016-017-agent8-primary-driver-agent5-relayer-agent12-advisory",
+    "posture": "Agent 8 external pressure/orchestration guidance for Agent 7 and bounded pressure to Agent 5; Agent 5 relayer/coordinator/executor of bounded delivery and Agent 6 packet flow; Agent 12 outside-project ready-to-react advisory limiter/checker only with no direct execution/control authority.",
+    "boundary": "Control posture and SOP revision routing only. No QA acceptance, SOP clean pass, publication readiness, source/provenance acceptance, public/runtime acceptance, product/data acceptance, route publication support, Definition authority, usage-as-definition authority, or accepted translation text. Publication remains blocked_no_render.",
+    "agent6_verdict": "reports/agent6-sop-role-shape-agent8-primary-agent5-relayer-agent12-advisory-verdict-2026-06-02.md",
+    "agent6_verdict_status": "WARN-ACCEPTED for role-shape revision scope only",
+    "final_sop_promotion_rule": "Exact direct_bounded_worker_prompt_delivery text is Agent 6 WARN-ACCEPTED and Agent 7-published as workflow-routing law only. Future changes still require exact Agent 6 verdict and Agent 7 publication.",
+    "p0_first_use": "Use Agent 8 pressure guidance to ask Agent 7/Agent 5 for Deuteronomy P0 Option A route-selection preparation or exact delivery blocker; Agent 8 does not own the route or worker execution.",
+    "current_goal_redo_directive": "reports/agent7-agent5-goal-redo-directive-2026-06-02.md",
+    "goal_redo_delivery_record": "reports/agent7-agent5-goal-redo-directive-delivery-2026-06-02.md",
+    "agent8_boundary_correction": "reports/agent7-agent8-boundary-correction-2026-06-02.md",
+    "agent12_boundary_correction": "reports/agent7-agent12-boundary-correction-2026-06-02.md",
+    "agent7_direct_delivery_publication": "reports/agent7-agent8-direct-bounded-worker-prompt-delivery-law-publication-2026-06-02.md"
+  },
+  "agent7_deuteronomy_p0_owner_route_selection": {
+    "status": "returned_warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only",
+    "generated_at": "2026-06-02T11:42:30Z",
+    "artifact": "reports/agent7-deuteronomy-p0-owner-route-selection-2026-06-02.md",
+    "selected_route": "Option A clean deploy branch/worktree from current origin/main with only bounded Deuteronomy P0 artifacts",
+    "next_agent5_action": "Stop Deuteronomy proof loops unless new drift appears. Shift public-runtime attention to separate Genesis and /hud-preview drift/quarantine treatment; return post-remediation live evidence or exact Pages/deployment blocker only. Do not claim broad public/runtime acceptance or publication readiness.",
+    "blocked_routes_without_new_agent7_or_user_decision": [
+      "Option B selected-artifact deployment path",
+      "Option C divergent-main reconciliation/deploy authorization",
+      "dirty divergent local main deployment"
+    ],
+    "proof_loop_rule": "Do not produce another no-drift proof loop; next useful evidence is bounded execution evidence after real deploy/swap or exact Option A delivery blocker.",
+    "agent4_rule": "Do not pull Agent 4 until post-swap live evidence exists and Agent 6 requests runtime/click/source-license validation.",
+    "agents1_3_rule": "Do not interrupt Agents 1-3 for this deployment-route blocker.",
+    "highest_permissible_claim": "warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only",
+    "boundary": "Agent 6 WARN-ACCEPTED live Deuteronomy static HTTP post-swap evidence only. For the exact Deuteronomy page and direct dependency set, old-HUD hard marker exposure is downgraded: live cache-busted HTML and direct dependencies show current HUD and public-HUD assets, old hard markers are absent, and direct dependencies are HTTP 200. This does not accept broad public/runtime, live browser-click behavior, deployed/CDN/cache closure, old-HUD fallback/rollback closure, source/provenance custody, publication readiness, route publication support, Definition authority, usage-as-definition authority, product/data gate acceptance, translation output, or accepted text. Browser-click proof and deployment source-of-truth for data/public-hud/deuteronomy/** remain open. Genesis and /hud-preview are separate public-runtime treatment lanes. Publication remains blocked_no_render.",
+    "post_swap_runtime_recheck": "reports/agent6-live-deuteronomy-post-swap-runtime-recheck-2026-06-02.md",
+    "agent7_treatment_decision": "reports/agent7-deuteronomy-post-swap-and-public-runtime-treatment-decision-2026-06-02.md",
+    "next_agent4_action": "At safe checkpoint only, produce bounded Deuteronomy live browser-click proof if Agent 6/Agent 7/Agent 5 routes it; do not expand to Genesis, /hud-preview, source custody, publication, or broad rollout.",
+    "genesis_treatment": "separate_restore_work_deferred_pending_owner_or_agent7_product_decision",
+    "hud_preview_treatment": "intentional_quarantine_non_public_posture_pending_agent6_live_closure",
+    "what_must_not_be_accepted": [
+      "broad public/runtime acceptance",
+      "live browser-click behavior",
+      "deployed/CDN/cache closure",
+      "old-HUD fallback/rollback closure",
+      "source/provenance custody",
+      "publication readiness",
+      "publication-path support",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "Reader Workbench broad rollout",
+      "product/data gate acceptance",
+      "translation output",
+      "accepted translation text"
+    ]
+  },
+  "agent7_agent5_goal_redo_directive": {
+    "status": "delivered_to_agent5_non_interrupting_correction_pass_required",
+    "generated_at": "2026-06-02T11:48:59Z",
+    "directive": "reports/agent7-agent5-goal-redo-directive-2026-06-02.md",
+    "delivery_record": "reports/agent7-agent5-goal-redo-directive-delivery-2026-06-02.md",
+    "target_thread_id": "019e7c87-a84d-7491-b285-04d18a95c162",
+    "submission_id": "019e8829-c1ec-76d0-8e0a-5c1d8bf0fb0b",
+    "delivery_mode": "non_interrupting",
+    "requested_output": "Agent 5 correction pass for the durable goal refresh packet/control state under SOP-001/SOP-014, Agent 8 external pressure guidance only, Agent 12 outside-project advisory check only, Agent 6 acceptance boundary, and P0 Option A route-selection preparation.",
+    "p0_priority": "Deuteronomy P0 Option A preparation route first: clean deploy branch/worktree from current origin/main with bounded Deuteronomy artifacts, or exact delivery blocker.",
+    "boundary": "Delivery/control routing only. No QA acceptance, SOP law mutation, publication readiness, source/provenance acceptance, public/runtime acceptance, deployed/CDN/cache closure, route publication support, Definition authority, usage-as-definition authority, product/data acceptance, or accepted translation text. Publication remains blocked_no_render.",
+    "correction_delivery_record": "reports/agent7-agent5-goal-redo-boundary-correction-delivery-2026-06-02.md",
+    "correction_submission_id": "019e8834-9b57-7471-b272-66d12bb83c83"
+  },
+  "durable_goal_redo_2026_06_02": {
+    "status": "durable_goal_refresh_packet_ready",
+    "generated_at": "2026-06-02T11:49:58Z",
+    "directive": "reports/agent7-agent5-goal-redo-directive-2026-06-02.md",
+    "packet": "reports/agent5-durable-goal-redo-under-agent12-and-goal-sop-2026-06-02.md",
+    "primary_statuses_allowed": [
+      "active",
+      "blocked",
+      "evidence-ready",
+      "awaiting-Agent-6",
+      "Agent-6-accepted"
+    ],
+    "p0_first": "Agent 7 selected Option A for Deuteronomy P0 preparation: clean deploy branch/worktree from current origin/main with only bounded Deuteronomy P0 artifacts, or exact delivery blocker.",
+    "worker_prompt_result": "no_worker_prompts_sent",
+    "delivery_proof_rule": "Prepared prompts without delivery proof are not delivered durable goals; active workers are not interrupted.",
+    "agent8_rule": "Agent 8 is outside-project external pressure/orchestration guidance only; it may suggest bounded objectives/claim ceilings but cannot route workers, mutate SOP law, edit control state as authority, mark blockers open/closed, or claim acceptance.",
+    "agent12_rule": "Agent 12 may provide advisory labels CLEAR, CAP, ROUTE_AGENT6, DUPLICATE_OR_CHURN, or ESCALATE to Agent 8. Agent 12 does not control Agent 8, control workers, mutate queues, edit SOPs, change control files, block execution directly, suppress Agent 8 pressure, suppress AGENT6_REQUIRED work, narrow Agent 6 evidence scope, or claim acceptance.",
+    "next_agent5_action": "Prepare Option A Deuteronomy execution evidence or exact blocker first; do not produce another no-drift proof loop; broader Genesis and /hud-preview drift stay separate.",
+    "highest_permissible_claim": "durable_goal_refresh_packet_ready",
+    "boundary": "Control-state durable-goal refresh only. No QA acceptance, SOP law mutation, publication readiness, source/provenance acceptance, public/runtime acceptance, route publication support, Definition authority, usage-as-definition authority, product/data acceptance, or accepted translation text. Publication remains blocked_no_render."
+  },
+  "agent7_agent8_boundary_correction": {
+    "status": "active_agent8_external_pressure_guidance_only",
+    "generated_at": "2026-06-02T11:57:21Z",
+    "artifact": "reports/agent7-agent8-boundary-correction-2026-06-02.md",
+    "source": "User clarification relayed by Agent 8",
+    "role": "Agent 8 is external pressure/orchestration guidance for Agent 7. Agent 8 may identify pressure targets, phrase bounded prompts, surface risks, recommend throughput moves, and ask Agent 7 or Agent 5 to act.",
+    "limits": "Agent 8 does not own worker routing, directly control Agents 1-4, mutate SOP law, edit control state as authority, mark blockers open/closed as project authority, or become the goal-blocking authority for other lanes.",
+    "agent5_relation": "Agent 5 remains coordinator/relayer/executor for worker routing, delivery proof, queue/control updates, and Agent 6 packet flow. Agent 8 may pressure Agent 5 with bounded non-acceptance packets only.",
+    "agent12_relation": "Agent 12 remains outside-project advisory support to Agent 8 only. Agent 12 labels do not control Agent 8, and boundary-risk labels must route to Agent 7/Agent 6 rather than becoming silence or blocker closure.",
+    "boundary": "Strategy/pressure clarification only. No worker routing, SOP law mutation, QA acceptance, publication readiness, source/provenance acceptance, public/runtime acceptance, deployed/CDN/cache closure, product/data acceptance, route publication support, Definition authority, usage-as-definition authority, or accepted translation text. Publication remains blocked_no_render."
+  },
+  "agent6_deuteronomy_option_a_route_selection_verdict": {
+    "status": "warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only",
+    "generated_at": "2026-06-02T11:57:21Z",
+    "docket": "reports/agent6-deuteronomy-option-a-route-selection-verdict-2026-06-02.md",
+    "verdict": "WARN-ACCEPTED for Option A route-selection preparation only",
+    "selected_route": "clean deploy branch/worktree from current origin/main, staging/copying only the bounded Deuteronomy P0 artifact set, then returning execution evidence or exact blocker",
+    "required_agent7_handling": [
+      "Preserve Option A as selected route unless user or Agent 7 explicitly changes it.",
+      "Do not convert this docket into deployment authorization or acceptance.",
+      "Keep Deuteronomy first; /hud-preview and Genesis remain separate blockers."
+    ],
+    "required_agent5_packet": [
+      "clean branch/worktree identity based on current origin/main",
+      "exact staged/copied bounded artifact list",
+      "file hashes for each deployed artifact",
+      "deployment command or workflow path",
+      "target branch/remote/site",
+      "commit or build identifier",
+      "post-deploy live URLs and timestamp",
+      "HTTP status, ETag, Last-Modified, and Cache-Control for each checked URL",
+      "old-HUD marker absence and current Route HUD/runtime contract marker presence",
+      "runtime/data dependency proof for bounded root dependencies",
+      "source/license/citation row visibility proof on deployed Deuteronomy page",
+      "cache-busting or hard-refresh proof",
+      "explicit separation of /hud-preview, Genesis, source/provenance custody, publication readiness, and accepted text"
+    ],
+    "boundary": "Agent 6 WARN-ACCEPTED live Deuteronomy static HTTP post-swap evidence only. For the exact Deuteronomy page and direct dependency set, old-HUD hard marker exposure is downgraded: live cache-busted HTML and direct dependencies show current HUD and public-HUD assets, old hard markers are absent, and direct dependencies are HTTP 200. This does not accept broad public/runtime, live browser-click behavior, deployed/CDN/cache closure, old-HUD fallback/rollback closure, source/provenance custody, publication readiness, route publication support, Definition authority, usage-as-definition authority, product/data gate acceptance, translation output, or accepted text. Browser-click proof and deployment source-of-truth for data/public-hud/deuteronomy/** remain open. Genesis and /hud-preview are separate public-runtime treatment lanes. Publication remains blocked_no_render.",
+    "post_swap_runtime_recheck": "reports/agent6-live-deuteronomy-post-swap-runtime-recheck-2026-06-02.md",
+    "next_agent5_action": "Stop Deuteronomy proof loops unless new drift appears. Shift public-runtime attention to separate Genesis and /hud-preview drift/quarantine treatment; return post-remediation live evidence or exact Pages/deployment blocker only. Do not claim broad public/runtime acceptance or publication readiness."
+  },
+  "agent7_agent12_boundary_correction": {
+    "status": "active_outside_project_ready_to_react_advisory_only",
+    "generated_at": "2026-06-02T12:02:15Z",
+    "artifact": "reports/agent7-agent12-boundary-correction-2026-06-02.md",
+    "source": "User clarification conveyed by Agent 12",
+    "role": "Agent 12 is outside the project and remains ready-to-react advisory limiter/checker support only.",
+    "advisory_labels": [
+      "CLEAR",
+      "CAP",
+      "ROUTE_AGENT6",
+      "DUPLICATE_OR_CHURN",
+      "ESCALATE"
+    ],
+    "rule": "Agent 8 consults Agent 12 before each Agent 8 pressure prompt for a direct Agent 10 support check. Agent 12 returns advisory labels only; Agent 8 remains responsible for pressure prompt wording through Agent 7 or Agent 5.",
+    "limits": "Agent 12 does not control workers, mutate queues, edit SOPs, change control files, route Agents 1-4, block execution directly, suppress Agent 6-required work, narrow Agent 6 evidence scope, or mark blockers open/closed.",
+    "boundary": "Strategy/cost-pressure clarification only. No worker routing, queue mutation, SOP law mutation, control-state authority for Agent 12, QA acceptance, publication readiness, source/provenance acceptance, public/runtime acceptance, deployed/CDN/cache closure, product/data acceptance, route publication support, Definition authority, usage-as-definition authority, or accepted translation text. Publication remains blocked_no_render."
+  },
+  "agent8_agent12_boundary_correction_2026_06_02": {
+    "status": "outside_advisory_boundaries_ingested",
+    "generated_at": "2026-06-02T12:16:00Z",
+    "agent5_ingest": "reports/agent5-agent8-agent12-boundary-correction-ingest-2026-06-02.md",
+    "agent8_correction": "reports/agent7-agent8-boundary-correction-2026-06-02.md",
+    "agent12_correction": "reports/agent7-agent12-boundary-correction-2026-06-02.md",
+    "option_a_verdict": "reports/agent6-deuteronomy-option-a-route-selection-verdict-2026-06-02.md",
+    "agent8_boundary": "Agent 8 is outside-project external pressure/orchestration guidance for Agent 7 only, with bounded pressure packets to Agent 5. Agent 8 may identify pressure targets, phrase bounded prompts, surface risks, and ask Agent 7 or Agent 5 to act. Agent 8 does not own worker routing, directly control Agents 1-4, mutate SOP law, edit control state as authority, mark blockers open or closed, or claim acceptance.",
+    "agent12_boundary": "Agent 12 may provide advisory labels CLEAR, CAP, ROUTE_AGENT6, DUPLICATE_OR_CHURN, or ESCALATE to Agent 8. Agent 12 does not control Agent 8, control workers, mutate queues, edit SOPs, change control files, block execution directly, suppress Agent 8 pressure, suppress AGENT6_REQUIRED work, narrow Agent 6 evidence scope, or claim acceptance.",
+    "agent5_boundary": "Agent 5 remains coordinator/relayer/executor for worker routing, delivery proof, queue/control updates, and Agent 6 packet flow under Agent 7 strategy and Agent 6 QA boundaries.",
+    "option_a_boundary": "Agent 6 WARN-ACCEPTED Option A route-selection preparation only. Preserve Option A unless user/Agent 7 changes it; do not treat the docket as deployment authorization or public/runtime acceptance. Keep Deuteronomy first; /hud-preview and Genesis remain separate blockers.",
+    "highest_permissible_claim": "outside_advisory_boundaries_ingested",
+    "what_must_not_be_accepted": [
+      "Agent 8 worker routing authority",
+      "Agent 12 execution blocking authority",
+      "SOP law mutation",
+      "QA acceptance",
+      "publication readiness",
+      "source/provenance acceptance",
+      "public/runtime acceptance",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "product/data acceptance",
+      "accepted translation text"
+    ],
+    "publication_global_status": "blocked_no_render",
+    "agent6_verdict": "reports/agent6-agent8-external-pressure-boundary-verdict-2026-06-02.md",
+    "agent6_verdict_status": "WARN-ACCEPTED for external pressure/orchestration boundary only"
+  },
+  "agent6_agent8_external_pressure_boundary_verdict_2026_06_02": {
+    "status": "agent6_warn_accepted_external_pressure_boundary_only",
+    "generated_at": "2026-06-02T12:32:00Z",
+    "docket": "reports/agent6-agent8-external-pressure-boundary-verdict-2026-06-02.md",
+    "verdict": "WARN-ACCEPTED for external pressure/orchestration boundary only",
+    "agent8_boundary": "Agent 8 is outside-project external pressure/orchestration guidance only and pressures Agent 5 only through bounded non-acceptance packets. Agent 8 does not own worker routing, worker goals, SOP mutation, control-state authority, blocker disposition, QA authority, or acceptance.",
+    "agent5_boundary": "Agent 5 owns worker routing, delivery proof, queue mechanics, handoff artifacts, and exact blockers.",
+    "agent12_boundary": "Agent 12 labels are advisory only, not execution control or acceptance.",
+    "p0_first": "Deuteronomy exact runtime WARN is docketed; /hud-preview and Genesis remain separate blockers/treatment lanes.",
+    "highest_permissible_claim": "agent8_external_pressure_boundary_warn_accepted_only",
+    "publication_global_status": "blocked_no_render"
+  },
+  "agent5_deuteronomy_option_a_workflow_blocker_2026_06_02": {
+    "status": "superseded_by_agent6_post_swap_static_http_warn_source_of_truth_open",
+    "generated_at": "2026-06-02T12:49:00Z",
+    "report": "reports/agent5-deuteronomy-option-a-clean-worktree-prep-and-workflow-blocker-2026-06-02.md",
+    "worktree": ".codex-tmp/hud-deploy-live",
+    "branch": "codex/hud-deuteronomy-live",
+    "head": "22f57508a03bdebab65db0db767e10131986ac74",
+    "origin_main": "22f57508a03bdebab65db0db767e10131986ac74",
+    "divergence": "0 ahead / 0 behind",
+    "bounded_modified_files": [
+      "data/definitions/hud-route-lookup/manifest.json",
+      "tanakh/deuteronomy/index.html"
+    ],
+    "exact_blocker": "Superseded. Agent 6 returned the prior root data/lexical and root data/definitions workflow-blocker wording as mis-scoped for this prepared page; Agent 10 then reported bounded lightweight Pages deployment evidence and Agent 5 queued post-swap live evidence for Agent 6 review.",
+    "next_required_decision": "Stop Deuteronomy proof loops unless new drift appears. Shift public-runtime attention to separate Genesis and /hud-preview drift/quarantine treatment; return post-remediation live evidence or exact Pages/deployment blocker only. Do not claim broad public/runtime acceptance or publication readiness.",
+    "highest_permissible_claim": "post_remediation_evidence_queued_for_agent6_review_not_accepted",
+    "publication_global_status": "blocked_no_render",
+    "post_swap_queue_packet": "reports/agent5-deuteronomy-post-swap-agent6-queue-packet-2026-06-02.md",
+    "post_swap_evidence": [
+      "reports/agent10-hud-lightweight-post-swap-evidence-2026-06-02.md",
+      "reports/agent5-deuteronomy-post-swap-live-header-marker-evidence-2026-06-02.md",
+      "reports/agent5-deuteronomy-post-swap-live-header-marker-evidence-2026-06-02.json"
+    ],
+    "superseded_by": "reports/agent6-live-deuteronomy-post-swap-runtime-recheck-2026-06-02.md",
+    "boundary": "Agent 6 WARN-ACCEPTED live Deuteronomy static HTTP post-swap evidence only. For the exact Deuteronomy page and direct dependency set, old-HUD hard marker exposure is downgraded: live cache-busted HTML and direct dependencies show current HUD and public-HUD assets, old hard markers are absent, and direct dependencies are HTTP 200. This does not accept broad public/runtime, live browser-click behavior, deployed/CDN/cache closure, old-HUD fallback/rollback closure, source/provenance custody, publication readiness, route publication support, Definition authority, usage-as-definition authority, product/data gate acceptance, translation output, or accepted text. Browser-click proof and deployment source-of-truth for data/public-hud/deuteronomy/** remain open. Genesis and /hud-preview are separate public-runtime treatment lanes. Publication remains blocked_no_render."
+  },
+  "agent8_agent12_advisory_realignment_2026_06_02": {
+    "status": "active_strategy_direction_only_exact_sop_text_required",
+    "artifact": "reports/agent7-agent8-agent12-advisory-realignment-2026-06-02.md",
+    "agent8_rule": "Agent 8 pressures Agent 7 or Agent 5 with bounded non-acceptance packets; Agent 8 does not directly route Agents 1-4, own worker goals, mutate SOP law, edit control state as authority, open/close blockers as project authority, or claim acceptance.",
+    "agent12_rule": "Agent 12 may provide advisory labels CLEAR, CAP, ROUTE_AGENT6, DUPLICATE_OR_CHURN, or ESCALATE to Agent 8. Agent 12 does not control Agent 8, control workers, mutate queues, edit SOPs, change control files, block execution directly, suppress Agent 8 pressure, suppress AGENT6_REQUIRED work, narrow Agent 6 evidence scope, or claim acceptance.",
+    "boundary": "Agent 8 is resumed as outside-project external pressure/orchestration guidance. Agent 12 is advisory to Agent 8 only: CLEAR/CAP/ROUTE_AGENT6/DUPLICATE_OR_CHURN/ESCALATE are labels, not execution control, blocker disposition, queue control, SOP authority, or acceptance. CAP is suggested shrinkage, not a veto; Agent 8 owns pressure wording, Agent 5 owns execution mechanics, and Agent 7/user decides posture changes."
+  },
+  "agent12_advisory_cap_compatibility_note": "Legacy phrase accept Agent 12 caps/rejections during emergency token scarcity is preserved as advisory-only compatibility text; Agent 12 labels do not directly block execution or create acceptance.",
+  "agent5_deuteronomy_option_a_workflow_route_decision_2026_06_02": {
+    "status": "superseded_by_post_swap_static_http_warn_source_of_truth_packet_needed",
+    "generated_at": "2026-06-02T13:05:00Z",
+    "packet": "reports/agent5-deuteronomy-option-a-workflow-route-decision-packet-2026-06-02.md",
+    "blocker_report": "reports/agent5-deuteronomy-option-a-clean-worktree-prep-and-workflow-blocker-2026-06-02.md",
+    "decision_options": [
+      "bounded workflow/deploy-path change for Deuteronomy P0 dependencies only",
+      "owner-approved selected-artifact deploy path for bounded Deuteronomy P0 files",
+      "Agent 6/Agent 7 revised scope if live data-dependency URLs are not required"
+    ],
+    "highest_permissible_claim": "owner_agent7_route_decision_needed",
+    "publication_global_status": "blocked_no_render",
+    "superseded_by": "reports/agent6-live-deuteronomy-post-swap-runtime-recheck-2026-06-02.md",
+    "next_agent5_action": "Stop Deuteronomy proof loops unless new drift appears. Shift public-runtime attention to separate Genesis and /hud-preview drift/quarantine treatment; return post-remediation live evidence or exact Pages/deployment blocker only. Do not claim broad public/runtime acceptance or publication readiness.",
+    "boundary": "Agent 6 WARN-ACCEPTED live Deuteronomy static HTTP post-swap evidence only. For the exact Deuteronomy page and direct dependency set, old-HUD hard marker exposure is downgraded: live cache-busted HTML and direct dependencies show current HUD and public-HUD assets, old hard markers are absent, and direct dependencies are HTTP 200. This does not accept broad public/runtime, live browser-click behavior, deployed/CDN/cache closure, old-HUD fallback/rollback closure, source/provenance custody, publication readiness, route publication support, Definition authority, usage-as-definition authority, product/data gate acceptance, translation output, or accepted text. Browser-click proof and deployment source-of-truth for data/public-hud/deuteronomy/** remain open. Genesis and /hud-preview are separate public-runtime treatment lanes. Publication remains blocked_no_render."
+  },
+  "agent8_direct_worker_routing_amendment_request_2026_06_02": {
+    "status": "superseded_by_exact_text_agent7_published_signed_warn_boundary",
+    "artifact": "reports/agent7-sop-agent8-direct-worker-routing-amendment-request-2026-06-02.md",
+    "agent6_queue_item": "agent6-sop-agent8-direct-worker-routing-amendment",
+    "sop_revision_id": "sop014-016-017-agent8-direct-worker-routing-exception",
+    "active_rule_until_signed": "Agent 8 does not directly route Agents 1-4 until Agent 6 signs exact amendment text and Agent 7 publishes the signed boundary.",
+    "agent5_refinement": "Agent 5 may help Agent 8 with queue state, delivery-proof format, and SOP/control packet framing, but Agent 5 primary lane is Agent 6 support, validation queue/handoff hygiene, exact blocker/packet preservation, and major SOP authorship; Agent 5 is not Agent 8 general worker-management relayer.",
+    "boundary": "Agent 6 WARN-ACCEPTED exact SOP text as workflow-routing law only, and Agent 7 published the signed WARN boundary. Agent 8 may use direct_bounded_worker_prompt_delivery only for bounded prompts with mandatory fields and delivery proof. Agent 8 may directly prompt idle, stale, no-goal, or blocked Agents 1-4, and may directly prompt active Agents 1-4 only with explicit user/Agent 7/Agent 6 interruption authorization. Agent 5 remains queue/control-state hygiene owner where applicable. Agent 12 remains advisory only. Agent 6 remains QA/compliance pass/warn/block authority. No acceptance is created; publication remains blocked_no_render.",
+    "superseded_by": "reports/agent7-agent8-direct-bounded-worker-prompt-delivery-law-publication-2026-06-02.md",
+    "exact_text_verdict": "reports/agent6-agent8-direct-bounded-worker-prompt-delivery-exact-text-verdict-2026-06-02.md",
+    "activation_guardrail": "reports/agent6-agent8-direct-routing-activation-guardrail-2026-06-02.md",
+    "active_rule": "Agent 8 direct_bounded_worker_prompt_delivery is active only under the Agent 6 WARN-signed and Agent 7-published workflow-routing boundary; model/request records remain history only."
+  },
+  "agent5_agent8_direct_worker_routing_field_completion_2026_06_02": {
+    "status": "exact_sop_amendment_field_completion_packet_ready",
+    "generated_at": "2026-06-02T13:15:00Z",
+    "packet": "reports/agent5-agent8-direct-worker-routing-amendment-field-completion-2026-06-02.md",
+    "queue_item": "agent6-sop-agent8-direct-worker-routing-amendment",
+    "boundary": "Supplemental exact-text evidence only; no SOP law mutation or direct routing activation.",
+    "publication_global_status": "blocked_no_render"
+  },
+  "agent8_direct_bounded_worker_prompt_delivery_exact_text_2026_06_02": {
+    "status": "returned_warn_accepted_exact_text_workflow_routing_law_only_agent7_published_signed_boundary",
+    "publication_artifact": "reports/agent7-agent8-direct-bounded-worker-prompt-delivery-law-publication-2026-06-02.md",
+    "exact_text_artifact": "reports/agent7-sop-agent8-direct-bounded-worker-prompt-delivery-exact-text-2026-06-02.md",
+    "agent6_verdict": "reports/agent6-agent8-direct-bounded-worker-prompt-delivery-exact-text-verdict-2026-06-02.md",
+    "model_verdict": "reports/agent6-agent8-direct-worker-routing-sop-boundary-verdict-2026-06-02.md",
+    "agent6_queue_item": "agent6-sop-agent8-direct-bounded-worker-prompt-delivery-exact-text",
+    "verdict_preserved": "WARN-ACCEPTED for exact SOP text as workflow-routing law only",
+    "required_term": "direct_bounded_worker_prompt_delivery",
+    "warning_limits": [
+      "no active-worker interruption without explicit user/Agent 7/Agent 6 authorization",
+      "mandatory delivery proof",
+      "Agent 5 remains queue/control-state hygiene owner where applicable",
+      "Agent 8 cannot create acceptance",
+      "AGENT6_REQUIRED cannot be downconverted",
+      "Agent 12 remains advisory only",
+      "P0 Deuteronomy public-runtime remediation or exact deploy-trigger blocker remains first"
+    ],
+    "required_direct_prompt_fields": [
+      "target agent and target thread or delivery channel",
+      "objective, owning lane, allowed scope, forbidden scope, cap, stop condition, and expected artifact",
+      "current state checked and why direct routing is allowed now",
+      "active-worker interruption assessment",
+      "delivery proof requirement",
+      "Agent 6 queue condition when QA-relevant",
+      "highest permissible claim",
+      "what must not be accepted"
+    ],
+    "blocked_uses": [
+      "clean PASS",
+      "Agent 8 as QA authority",
+      "Agent 8 as worker-completion authority",
+      "Agent 8 as SOP-law authority",
+      "Agent 8 as control-state authority",
+      "Agent 8 as blocker-disposition authority",
+      "Agent 8 as publication authority",
+      "Agent 8 as source/provenance authority",
+      "Agent 8 as public/runtime authority",
+      "Agent 8 as product/data authority",
+      "Agent 8 as route publication authority",
+      "Agent 8 as Definition authority",
+      "Agent 8 as usage-as-definition authority",
+      "Agent 8 as accepted-text authority",
+      "Agent 5 queue/control hygiene as acceptance",
+      "Agent 12 advice as execution control, blocker closure, or acceptance",
+      "prompt readiness as worker delivery proof",
+      "worker output as Agent 6 acceptance",
+      "active-worker interruption without explicit authorization",
+      "AGENT6_REQUIRED downconverted to STATUS_ONLY, REJECTED_WASTE, delay, or silence",
+      "publication readiness",
+      "source/provenance acceptance",
+      "public/runtime acceptance",
+      "deployed/CDN/cache closure",
+      "product/data gate acceptance",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "translation output",
+      "accepted translation text"
+    ],
+    "agent5_hygiene_rule": "Agent 5 remains queue/control-state hygiene owner where applicable and must ingest Agent 8 delivery proof or exact blocker before control surfaces rely on the prompt as delivered. Agent 5 hygiene is not acceptance.",
+    "agent12_rule": "Agent 12 may advise Agent 8 with CLEAR, CAP, ROUTE_AGENT6, DUPLICATE_OR_CHURN, or ESCALATE only. CAP means suggested shrinkage, not veto authority. Agent 12 advice is not execution control, blocker closure, queue control, SOP authority, acceptance, or authority to suppress Agent 6-required work.",
+    "p0_priority": "Deuteronomy proof loops stop unless new drift appears; /hud-preview and Genesis remain separate blockers.",
+    "boundary": "Agent 6 WARN-ACCEPTED exact SOP text as workflow-routing law only, and Agent 7 published the signed WARN boundary. Agent 8 may use direct_bounded_worker_prompt_delivery only for bounded prompts with mandatory fields and delivery proof. Agent 8 may directly prompt idle, stale, no-goal, or blocked Agents 1-4, and may directly prompt active Agents 1-4 only with explicit user/Agent 7/Agent 6 interruption authorization. Agent 5 remains queue/control-state hygiene owner where applicable. Agent 12 remains advisory only. Agent 6 remains QA/compliance pass/warn/block authority. This creates no QA acceptance, source/provenance acceptance, public/runtime acceptance, product/data acceptance, publication readiness, route publication support, Definition authority, usage-as-definition authority, translation output, or accepted text. Publication remains blocked_no_render."
+  },
+  "agent8_direct_delivery_validator_compatibility_note": "Current state: Agent 6 WARN-ACCEPTED exact SOP text as workflow-routing law only and Agent 7 published the signed WARN boundary. direct_bounded_worker_prompt_delivery is active only under mandatory delivery proof, no-active-worker-interruption without explicit authorization, Agent 5 queue/control hygiene, Agent 8 non-acceptance, Agent 12 advisory-only, AGENT6_REQUIRED preservation, and P0 Deuteronomy-first limits.",
+  "agent8_direct_bounded_worker_prompt_delivery_law_publication_2026_06_02": {
+    "status": "Agent_7_published_Agent_6_signed_WARN_boundary",
+    "publication_artifact": "reports/agent7-agent8-direct-bounded-worker-prompt-delivery-law-publication-2026-06-02.md",
+    "exact_text_artifact": "reports/agent7-sop-agent8-direct-bounded-worker-prompt-delivery-exact-text-2026-06-02.md",
+    "agent6_verdict": "reports/agent6-agent8-direct-bounded-worker-prompt-delivery-exact-text-verdict-2026-06-02.md",
+    "model_verdict": "reports/agent6-agent8-direct-worker-routing-sop-boundary-verdict-2026-06-02.md",
+    "agent6_queue_item": "agent6-sop-agent8-direct-bounded-worker-prompt-delivery-exact-text",
+    "verdict_preserved": "WARN-ACCEPTED for exact SOP text as workflow-routing law only",
+    "required_term": "direct_bounded_worker_prompt_delivery",
+    "warning_limits": [
+      "no active-worker interruption without explicit user/Agent 7/Agent 6 authorization",
+      "mandatory delivery proof",
+      "Agent 5 remains queue/control-state hygiene owner where applicable",
+      "Agent 8 cannot create acceptance",
+      "AGENT6_REQUIRED cannot be downconverted",
+      "Agent 12 remains advisory only",
+      "P0 Deuteronomy public-runtime remediation or exact deploy-trigger blocker remains first"
+    ],
+    "required_direct_prompt_fields": [
+      "target agent and target thread or delivery channel",
+      "objective, owning lane, allowed scope, forbidden scope, cap, stop condition, and expected artifact",
+      "current state checked and why direct routing is allowed now",
+      "active-worker interruption assessment",
+      "delivery proof requirement",
+      "Agent 6 queue condition when QA-relevant",
+      "highest permissible claim",
+      "what must not be accepted"
+    ],
+    "blocked_uses": [
+      "clean PASS",
+      "Agent 8 as QA authority",
+      "Agent 8 as worker-completion authority",
+      "Agent 8 as SOP-law authority",
+      "Agent 8 as control-state authority",
+      "Agent 8 as blocker-disposition authority",
+      "Agent 8 as publication authority",
+      "Agent 8 as source/provenance authority",
+      "Agent 8 as public/runtime authority",
+      "Agent 8 as product/data authority",
+      "Agent 8 as route publication authority",
+      "Agent 8 as Definition authority",
+      "Agent 8 as usage-as-definition authority",
+      "Agent 8 as accepted-text authority",
+      "Agent 5 queue/control hygiene as acceptance",
+      "Agent 12 advice as execution control, blocker closure, or acceptance",
+      "prompt readiness as worker delivery proof",
+      "worker output as Agent 6 acceptance",
+      "active-worker interruption without explicit authorization",
+      "AGENT6_REQUIRED downconverted to STATUS_ONLY, REJECTED_WASTE, delay, or silence",
+      "publication readiness",
+      "source/provenance acceptance",
+      "public/runtime acceptance",
+      "deployed/CDN/cache closure",
+      "product/data gate acceptance",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "translation output",
+      "accepted translation text"
+    ],
+    "agent5_hygiene_rule": "Agent 5 remains queue/control-state hygiene owner where applicable and must ingest Agent 8 delivery proof or exact blocker before control surfaces rely on the prompt as delivered. Agent 5 hygiene is not acceptance.",
+    "agent12_rule": "Agent 12 may advise Agent 8 with CLEAR, CAP, ROUTE_AGENT6, DUPLICATE_OR_CHURN, or ESCALATE only. CAP means suggested shrinkage, not veto authority. Agent 12 advice is not execution control, blocker closure, queue control, SOP authority, acceptance, or authority to suppress Agent 6-required work.",
+    "p0_priority": "Deuteronomy proof loops stop unless new drift appears; /hud-preview and Genesis remain separate blockers.",
+    "boundary": "Agent 6 WARN-ACCEPTED exact SOP text as workflow-routing law only, and Agent 7 published the signed WARN boundary. Agent 8 may use direct_bounded_worker_prompt_delivery only for bounded prompts with mandatory fields and delivery proof. Agent 8 may directly prompt idle, stale, no-goal, or blocked Agents 1-4, and may directly prompt active Agents 1-4 only with explicit user/Agent 7/Agent 6 interruption authorization. Agent 5 remains queue/control-state hygiene owner where applicable. Agent 12 remains advisory only. Agent 6 remains QA/compliance pass/warn/block authority. This creates no QA acceptance, source/provenance acceptance, public/runtime acceptance, product/data acceptance, publication readiness, route publication support, Definition authority, usage-as-definition authority, translation output, or accepted text. Publication remains blocked_no_render."
+  },
+  "deuteronomy_post_swap_runtime_recheck_2026_06_02": {
+    "status": "returned_warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only",
+    "docket": "reports/agent6-live-deuteronomy-post-swap-runtime-recheck-2026-06-02.md",
+    "decision": "reports/agent7-deuteronomy-post-swap-and-public-runtime-treatment-decision-2026-06-02.md",
+    "verdict": "WARN-ACCEPTED for live Deuteronomy static HTTP post-swap evidence only",
+    "exact_page_scope": [
+      "https://mashiachsonyosef.github.io/tanakh/deuteronomy/",
+      "https://mashiachsonyosef.github.io/tanakh/deuteronomy/index.html"
+    ],
+    "live_static_http_evidence": {
+      "checked_at": "2026-06-02T12:41:37.358Z",
+      "html_http": 200,
+      "html_last_modified": "Tue, 02 Jun 2026 12:18:24 GMT",
+      "route_hud": "present",
+      "reader_workbench_js_import": "present",
+      "hud_route_lookup_manifest_url": "present",
+      "public_hud_deuteronomy": "present",
+      "sources_and_licenses": "present",
+      "old_hard_markers_absent": [
+        "Clicked Hebrew form",
+        "Best actual hit",
+        "Rank details",
+        "data-hud-renderings"
+      ],
+      "direct_dependencies_http_200": [
+        "assets/js/reader-workbench.js",
+        "assets/css/reader-workbench.css",
+        "data/public-hud/deuteronomy/manifest.json",
+        "data/public-hud/deuteronomy/occurrences.json",
+        "data/public-hud/deuteronomy/route-lookup/manifest.json",
+        "data/public-hud/deuteronomy/route-lookup/shards/05d0-05dc-05d4.json"
+      ]
+    },
+    "open_warnings": [
+      "live browser-click proof remains open",
+      "deployment source-of-truth for live data/public-hud/deuteronomy/** remains open",
+      "current main workspace does not contain data/public-hud/deuteronomy/** as reproducible public-runtime source of truth",
+      "Genesis 404 treatment is separate restore work/deferred pending owner or Agent 7 product decision",
+      "/hud-preview 404 treatment is intentional quarantine/non-public posture pending Agent 6 live closure"
+    ],
+    "next_agent5_action": "Stop Deuteronomy proof loops unless new drift appears. Shift public-runtime attention to separate Genesis and /hud-preview drift/quarantine treatment; return post-remediation live evidence or exact Pages/deployment blocker only. Do not claim broad public/runtime acceptance or publication readiness.",
+    "next_agent4_action": "At safe checkpoint only, produce bounded Deuteronomy live browser-click proof if Agent 6/Agent 7/Agent 5 routes it; do not expand to Genesis, /hud-preview, source custody, publication, or broad rollout.",
+    "genesis_treatment": "separate_restore_work_deferred_pending_owner_or_agent7_product_decision",
+    "hud_preview_treatment": "intentional_quarantine_non_public_posture_pending_agent6_live_closure",
+    "what_must_not_be_accepted": [
+      "broad public/runtime acceptance",
+      "live browser-click behavior",
+      "deployed/CDN/cache closure",
+      "old-HUD fallback/rollback closure",
+      "source/provenance custody",
+      "publication readiness",
+      "publication-path support",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "Reader Workbench broad rollout",
+      "product/data gate acceptance",
+      "translation output",
+      "accepted translation text"
+    ],
+    "boundary": "Agent 6 WARN-ACCEPTED live Deuteronomy static HTTP post-swap evidence only. For the exact Deuteronomy page and direct dependency set, old-HUD hard marker exposure is downgraded: live cache-busted HTML and direct dependencies show current HUD and public-HUD assets, old hard markers are absent, and direct dependencies are HTTP 200. This does not accept broad public/runtime, live browser-click behavior, deployed/CDN/cache closure, old-HUD fallback/rollback closure, source/provenance custody, publication readiness, route publication support, Definition authority, usage-as-definition authority, product/data gate acceptance, translation output, or accepted text. Browser-click proof and deployment source-of-truth for data/public-hud/deuteronomy/** remain open. Genesis and /hud-preview are separate public-runtime treatment lanes. Publication remains blocked_no_render."
+  },
+  "deuteronomy_source_of_truth_browser_runtime_review_2026_06_02": {
+    "status": "returned_warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only",
+    "queue_item": "agent6-deuteronomy-source-of-truth-browser-runtime-review",
+    "artifact": "reports/agent7-deuteronomy-source-of-truth-browser-runtime-review-request-2026-06-02.md",
+    "evidence_artifacts": [
+      "reports/agent5-deuteronomy-deployment-source-of-truth-packet-2026-06-02.md",
+      "reports/agent4-live-deuteronomy-browser-runtime-evidence-2026-06-02.md",
+      "reports/agent4-live-deuteronomy-browser-runtime-evidence-2026-06-02.json",
+      "reports/agent4-live-deuteronomy-hud-click-2026-06-02.png"
+    ],
+    "next_action": "Stop Deuteronomy proof loops unless new drift appears. Shift public-runtime attention to separate Genesis and /hud-preview drift/quarantine treatment; return post-remediation live evidence or exact Pages/deployment blocker only. Do not claim broad public/runtime acceptance or publication readiness.",
+    "boundary": "Agent 6 WARN-ACCEPTED exact live Deuteronomy current-HUD runtime surface only. Deuteronomy current HUD is the validated primary public reader surface for this exact route and sparse artifact boundary. This is not broad public/runtime acceptance, not Genesis acceptance, not /hud-preview acceptance, not deployed/CDN/cache closure, not source/provenance custody, not publication readiness, not route publication support, not Definition authority, not usage-as-definition authority, not product/data acceptance, not translation output, and not accepted translation text. Runtime URL is not visibly versioned/cache-busted, so clean CDN stale-bundle PASS remains unaccepted. Publication remains blocked_no_render.",
+    "returned_boundary": "Agent 6 WARN-ACCEPTED exact live Deuteronomy current-HUD runtime surface only. Deuteronomy current HUD is the validated primary public reader surface for this exact route and sparse artifact boundary. This is not broad public/runtime acceptance, not Genesis acceptance, not /hud-preview acceptance, not deployed/CDN/cache closure, not source/provenance custody, not publication readiness, not route publication support, not Definition authority, not usage-as-definition authority, not product/data acceptance, not translation output, and not accepted translation text. Runtime URL is not visibly versioned/cache-busted, so clean CDN stale-bundle PASS remains unaccepted. Publication remains blocked_no_render."
+  },
+  "deuteronomy_runtime_source_of_truth_verdict_2026_06_02": {
+    "status": "returned_warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only",
+    "docket": "reports/agent6-live-deuteronomy-runtime-source-of-truth-verdict-2026-06-02.md",
+    "artifact": "reports/agent7-deuteronomy-runtime-verdict-ingest-and-public-runtime-shift-2026-06-02.md",
+    "exact_scope": [
+      "https://mashiachsonyosef.github.io/tanakh/deuteronomy/",
+      "https://mashiachsonyosef.github.io/tanakh/deuteronomy/index.html",
+      "sparse Pages artifact set for Deuteronomy current-HUD runtime"
+    ],
+    "strategy_shift": "stop_deuteronomy_proof_loops_shift_public_runtime_attention_to_separate_genesis_and_hud_preview_drift_quarantine",
+    "genesis_decision": "separate_restore_work_deferred_until_hud_preview_quarantine_or_owner_product_decision",
+    "hud_preview_decision": "intentional_quarantine_non_public_posture_requires_post_remediation_live_proof_or_exact_pages_deployment_blocker",
+    "next_action": "Stop Deuteronomy proof loops unless new drift appears. Shift public-runtime attention to separate Genesis and /hud-preview drift/quarantine treatment; return post-remediation live evidence or exact Pages/deployment blocker only. Do not claim broad public/runtime acceptance or publication readiness.",
+    "boundary": "Agent 6 WARN-ACCEPTED exact live Deuteronomy current-HUD runtime surface only. Deuteronomy current HUD is the validated primary public reader surface for this exact route and sparse artifact boundary. This is not broad public/runtime acceptance, not Genesis acceptance, not /hud-preview acceptance, not deployed/CDN/cache closure, not source/provenance custody, not publication readiness, not route publication support, not Definition authority, not usage-as-definition authority, not product/data acceptance, not translation output, and not accepted translation text. Runtime URL is not visibly versioned/cache-busted, so clean CDN stale-bundle PASS remains unaccepted. Publication remains blocked_no_render.",
+    "not_accepted": [
+      "broad public/runtime acceptance",
+      "Genesis acceptance",
+      "/hud-preview acceptance",
+      "deployment/CDN/cache closure",
+      "source/provenance custody",
+      "source publication",
+      "publication readiness",
+      "publication-path support",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "product/data gate acceptance",
+      "translation output",
+      "accepted translation text"
+    ],
+    "returned_boundary": "Agent 6 WARN-ACCEPTED exact live Deuteronomy current-HUD runtime surface only. Deuteronomy current HUD is the validated primary public reader surface for this exact route and sparse artifact boundary. This is not broad public/runtime acceptance, not Genesis acceptance, not /hud-preview acceptance, not deployed/CDN/cache closure, not source/provenance custody, not publication readiness, not route publication support, not Definition authority, not usage-as-definition authority, not product/data acceptance, not translation output, and not accepted translation text. Runtime URL is not visibly versioned/cache-busted, so clean CDN stale-bundle PASS remains unaccepted. Publication remains blocked_no_render."
+  },
+  "broader_public_runtime_shift_after_deuteronomy_runtime_verdict_2026_06_02": {
+    "status": "separate_genesis_hud_preview_public_runtime_drift_quarantine_treatment_active",
+    "deuteronomy_status": "warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only",
+    "agent6_docket": "reports/agent6-live-deuteronomy-runtime-source-of-truth-verdict-2026-06-02.md",
+    "genesis_decision": "deferred_separate_restore_work_not_current_target",
+    "hud_preview_decision": "intentional_nonpublic_quarantine_posture_unless_future_validated_public_preview_spec",
+    "next_action": "Stop Deuteronomy old-HUD/source-of-truth/browser-runtime proof loops unless new drift appears or Agent 6 requests a bounded supplement. Stop treating Genesis or /hud-preview as live stale-content blockers at the exact reviewed URLs unless fresh drift appears. Preserve Genesis as deferred separate restore work and /hud-preview as intentional non-public/quarantine posture; future restoration needs deployment/source-of-truth evidence or exact Pages/deployment blocker plus Agent 6 docket where QA-relevant.",
+    "boundary": "Agent 6 WARN-ACCEPTED exact live non-public exposure reduction only for reviewed Genesis and /hud-preview URLs. Agent 7 decision: Genesis is deferred separate restore work, not a current restoration target; /hud-preview is intentional non-public/quarantine posture unless a future validated public preview specification exists. The reviewed Genesis and /hud-preview URLs now return GitHub Pages 404 content with no searched old-HUD, current-HUD, Reader Workbench, source/license, or quarantine markers. A 404 is non-public exposure evidence, not public/runtime acceptance, not a validated current-HUD surface, not product readiness, and not deployed/CDN/cache clean PASS. Deuteronomy remains WARN-ACCEPTED only for the exact live current-HUD runtime/source-of-truth/browser-click boundary. Publication remains blocked_no_render.",
+    "returned_docket": "reports/agent6-broader-public-runtime-live-nonpublic-recheck-2026-06-02.md",
+    "agent7_treatment_decision": "reports/agent7-broader-public-runtime-nonpublic-treatment-ingest-2026-06-02.md",
+    "artifact": "reports/agent7-broader-public-runtime-nonpublic-treatment-ingest-2026-06-02.md",
+    "highest_permissible_claim": "strategy_control_posture_shifted_from_deuteronomy_loops_to_separate_genesis_hud_preview_nonpublic_treatment",
+    "returned_boundary": "Agent 6 WARN-ACCEPTED exact live non-public exposure reduction only for reviewed Genesis and /hud-preview URLs. Agent 7 decision: Genesis is deferred separate restore work, not a current restoration target; /hud-preview is intentional non-public/quarantine posture unless a future validated public preview specification exists. The reviewed Genesis and /hud-preview URLs now return GitHub Pages 404 content with no searched old-HUD, current-HUD, Reader Workbench, source/license, or quarantine markers. A 404 is non-public exposure evidence, not public/runtime acceptance, not a validated current-HUD surface, not product readiness, and not deployed/CDN/cache clean PASS. Deuteronomy remains WARN-ACCEPTED only for the exact live current-HUD runtime/source-of-truth/browser-click boundary. Publication remains blocked_no_render.",
+    "what_must_not_be_accepted": [
+      "broad public/runtime acceptance",
+      "Genesis current-HUD acceptance",
+      "/hud-preview public-use acceptance",
+      "deployment/CDN/cache clean PASS",
+      "source/provenance custody",
+      "publication readiness",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "Reader Workbench broad rollout",
+      "product/data gate acceptance",
+      "translation output",
+      "accepted translation text"
+    ],
+    "evidence_artifacts": [
+      "reports/agent7-broader-public-runtime-nonpublic-treatment-ingest-2026-06-02.md"
+    ]
+  },
+  "broader_public_runtime_nonpublic_treatment_ingest_2026_06_02": {
+    "status": "returned_warn_accepted_exact_live_nonpublic_exposure_reduction_genesis_hud_preview_product_posture_source_of_truth_open",
+    "deuteronomy_status": "warn_accepted_exact_live_deuteronomy_current_hud_runtime_source_of_truth_and_browser_click_proof_only",
+    "agent6_docket": "reports/agent6-broader-public-runtime-live-nonpublic-recheck-2026-06-02.md",
+    "agent7_artifact": "reports/agent7-broader-public-runtime-nonpublic-treatment-ingest-2026-06-02.md",
+    "genesis_decision": "deferred_separate_restore_work_not_current_target",
+    "hud_preview_decision": "intentional_nonpublic_quarantine_posture_unless_future_validated_public_preview_spec",
+    "next_action": "Stop Deuteronomy old-HUD/source-of-truth/browser-runtime proof loops unless new drift appears or Agent 6 requests a bounded supplement. Stop treating Genesis or /hud-preview as live stale-content blockers at the exact reviewed URLs unless fresh drift appears. Preserve Genesis as deferred separate restore work and /hud-preview as intentional non-public/quarantine posture; future restoration needs deployment/source-of-truth evidence or exact Pages/deployment blocker plus Agent 6 docket where QA-relevant.",
+    "highest_permissible_claim": "strategy_control_posture_shifted_from_deuteronomy_loops_to_separate_genesis_hud_preview_nonpublic_treatment",
+    "boundary": "Agent 6 WARN-ACCEPTED exact live non-public exposure reduction only for reviewed Genesis and /hud-preview URLs. Agent 7 decision: Genesis is deferred separate restore work, not a current restoration target; /hud-preview is intentional non-public/quarantine posture unless a future validated public preview specification exists. The reviewed Genesis and /hud-preview URLs now return GitHub Pages 404 content with no searched old-HUD, current-HUD, Reader Workbench, source/license, or quarantine markers. A 404 is non-public exposure evidence, not public/runtime acceptance, not a validated current-HUD surface, not product readiness, and not deployed/CDN/cache clean PASS. Deuteronomy remains WARN-ACCEPTED only for the exact live current-HUD runtime/source-of-truth/browser-click boundary. Publication remains blocked_no_render.",
+    "what_must_not_be_accepted": [
+      "broad public/runtime acceptance",
+      "Genesis current-HUD acceptance",
+      "/hud-preview public-use acceptance",
+      "deployment/CDN/cache clean PASS",
+      "source/provenance custody",
+      "publication readiness",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "Reader Workbench broad rollout",
+      "product/data gate acceptance",
+      "translation output",
+      "accepted translation text"
+    ],
+    "publication_global_status": "blocked_no_render"
+  },
+  "agent7_control_state_boundary_drift_correction_2026_06_02": {
+    "status": "agent6_pass_receipt_for_control_state_boundary_family_repair_only",
+    "agent6_docket": "reports/agent6-control-state-boundary-drift-docket-2026-06-02.md",
+    "deuteronomy_queue_boundary": "restored_to_exact_deuteronomy_current_hud_runtime_source_of_truth_verdict",
+    "broader_runtime_boundary": "kept_on_agent6-broader-public-runtime-drift-intake_only",
+    "source_custody_narrative": "synced_current_closure_counts_to_242_direct_71_content_42_route_hud_29_public_lexical_zero_reader_workbench_translation_memory",
+    "publication_global_status": "blocked_no_render",
+    "artifact": "reports/agent7-control-state-boundary-drift-correction-2026-06-02.md",
+    "validator_results": {
+      "agent6_queue": "passed_0_warnings",
+      "agent7_governance": "passed_2_warnings",
+      "agent5_readiness": "passed_3_warnings"
+    },
+    "agent6_repair_receipt": "reports/agent6-control-state-boundary-drift-repair-receipt-2026-06-02.md",
+    "agent6_repair_receipt_verdict": "PASS for control-state boundary-family repair only",
+    "no_acceptance_created": true
+  },
+  "agent7_source_custody_followup_queue_sync_2026_06_02": {
+    "status": "queued_agent1_source_custody_followup_packets_validator_covered_no_acceptance",
+    "queue_item": "agent6-agent1-source-custody-followup-packets",
+    "artifact": "reports/agent7-source-custody-followup-queue-sync-2026-06-02.md",
+    "packet_a": "17 tracking-review candidate sources; 153 blocked direct paths; 13 blocked content references",
+    "packet_b": "6 missing-manifest sources; 30 blocked direct paths; 1 blocked content reference",
+    "packet_c": "6 modified tracked sources; 1406 scalar diffs; 0 non-license diffs; 0 non-PD-to-Public-Domain diffs",
+    "validator_result": "reports/agent1-source-custody-followup-packets-validator-result.json",
+    "validator_results": {
+      "agent6_queue": "passed_0_warnings",
+      "agent7_governance": "passed_2_warnings",
+      "agent5_readiness": "passed_3_warnings"
+    },
+    "boundary": "Evidence routing only. Await Agent 6 dated verdict. No source/provenance acceptance, source-file tracking approval, staging, publication, downstream artifact/content-reference acceptance, public/runtime acceptance, route publication support, Definition authority, product/data acceptance, publication readiness, translation output, or accepted text. Publication remains blocked_no_render.",
+    "publication_global_status": "blocked_no_render"
+  },
+  "agent7_sentinel_validator_codepoint_hardening_2026_06_02": {
+    "status": "validator_hardened_to_codepoint_identity_for_deuteronomy_sentinel",
+    "artifact": "reports/agent7-sentinel-validator-codepoint-hardening-2026-06-02.md",
+    "agent6_docket": "reports/agent6-deuteronomy-sentinel-encoding-control-recheck-2026-06-02.md",
+    "token_id": "tok-21613e763fe6",
+    "surface_word_codepoints": "05d0 05b5 05a3 05dc 05bc 05b6 05d4",
+    "normalized_word_codepoints": "05d0 05dc 05d4",
+    "route_shard_key": "05d0-05dc-05d4",
+    "boundary": "Encoding-control validator hardening only; no runtime, public/runtime, source/provenance, publication, product/data, route publication, Definition, usage-as-definition, translation output, or accepted-text acceptance.",
+    "publication_global_status": "blocked_no_render"
+  },
+  "organization_model": {
+    "schema_version": 1,
+    "artifact_type": "agent13_organization_state",
+    "generated_at": "2026-06-02T15:41:34.141Z",
+    "publication_global_status": "blocked_no_render",
+    "status": "sop021_no_hierarchy_weekly_lexicon_lane_map",
+    "source_directive": "User AGENT 13 ORGANIZATION IMPLEMENTATION DIRECTIVE, 2026-06-02",
+    "mission": {
+      "owner": "Agent 13",
+      "name": "validated_public_reader_surfaces",
+      "current_baseline": 1,
+      "target": 10,
+      "old_hud_exposure_target": 0,
+      "note": "This is organization restructuring, not a shipment objective."
+    },
+    "authority": {
+      "agent13": {
+        "role": "mission_resource_priority_lane_no_worker_management",
+        "owns": [
+          "mission selection",
+          "priority changes",
+          "resource allocation",
+          "freeze decisions",
+          "wake decisions"
+        ],
+        "direct_worker_management": false,
+        "scheduled_pulse": "none",
+        "default_state": "SLEEP",
+        "wake_conditions": [
+          "Agent 10 requests a decision",
+          "Agent 12 requests intervention",
+          "shipment completed",
+          "shipment blocked",
+          "user directive"
+        ]
+      },
+      "agent7": {
+        "role": "execution_staffing_blocker_goal_coverage_lane",
+        "executes": "Agent 13 strategy",
+        "owns": [
+          "execution",
+          "staffing",
+          "blockers",
+          "shipment preparation",
+          "wake/sleep enforcement"
+        ],
+        "scheduled_pulse": "allowed_every_4_hours",
+        "inputs": [
+          "Agent 10",
+          "Agent 12"
+        ],
+        "outputs": [
+          "blocker resolution",
+          "wake decisions",
+          "staffing decisions"
+        ],
+        "no_status_loops": true
+      },
+      "agent10": {
+        "role": "release owner",
+        "mode": "goal_mode_continuous_work",
+        "manages": [
+          "Agent 1",
+          "Agent 2",
+          "Agent 4"
+        ],
+        "interruptions_only_for": [
+          "shipment blocker",
+          "deployment blocker",
+          "candidate page ready"
+        ],
+        "coordinates_with": "Agent 7"
+      },
+      "agent12": {
+        "role": "waste-cap advisory lane",
+        "scheduled_pulse": "budget_pulse_every_6_to_12_hours_maximum",
+        "input": [
+          "active agents",
+          "compute burn"
+        ],
+        "output_labels": [
+          "GREEN",
+          "YELLOW",
+          "RED"
+        ],
+        "no_governance_essays": true,
+        "coordinates_with": "Agent 13"
+      },
+      "agent6": {
+        "role": "independent QA/compliance authority",
+        "boundary": "Agent 6 pass/warn/block dockets remain the only QA/compliance acceptance source. Agent 13/7/10/12 restructuring does not narrow Agent 6 validation scope."
+      }
+    },
+    "agent_states": {
+      "ACTIVE": [
+        "Agent 10"
+      ],
+      "CONDITIONAL": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 4"
+      ],
+      "RATIONED": [
+        "Agent 5",
+        "Agent 6",
+        "Agent 7",
+        "Agent 8",
+        "Agent 9",
+        "Agent 12"
+      ],
+      "SLEEP_UNASSIGNED_IN_CURRENT_RELEASE_CHAIN": [
+        "Agent 3",
+        "Agent 11"
+      ]
+    },
+    "rationed_limit": "Maximum one decision, one blocker, and one escalation per shipment cycle unless Agent 13/user overrides.",
+    "wake_conditions": {
+      "Agent 1": [
+        "source issue blocks shipment"
+      ],
+      "Agent 2": [
+        "translation blocked",
+        "reader understanding fails",
+        "definition confidence collapses",
+        "new corpus enters system"
+      ],
+      "Agent 4": [
+        "validation directly enables shipment"
+      ],
+      "Agent 3": [
+        "explicit Agent 13, Agent 7, Agent 10, Agent 6, or user reallocation; Agent 3 is not in the current release-owner subtree"
+      ],
+      "Agent 11": [
+        "explicit Agent 13, Agent 7, Agent 6, or user reception/public-language request"
+      ]
+    },
+    "disabled_scheduled_activity": [
+      "Agent 13 scheduled pulse",
+      "Agent 5 routine 30-minute worker-coordinator pulse as default lane owner",
+      "Agent 7 status-loop framing",
+      "Agents 1-4 scheduled pulses",
+      "Agent 8 or Agent 12 routine status pings",
+      "Agent 12 governance essays"
+    ],
+    "preserved_boundaries": {
+      "publication_global_status": "blocked_no_render",
+      "agent6_qa_authority": "preserved_orthogonal_pass_warn_block_authority",
+      "deuteronomy": "exact live Deuteronomy fullscreen current-HUD runtime remains WARN-only for commit 765a98a8920d6dcdd897f71abe3cf218f8abc19a and bounded lightweight artifact set",
+      "old_hud": "old HUD remains quarantined; old HUD exposure target is 0",
+      "genesis": "non-public/quarantine posture remains separate from Deuteronomy",
+      "hud_preview": "non-public/quarantine posture remains separate from Deuteronomy",
+      "source_provenance": "blocked; direct-23/audit-23 evidence boundary and broader custody blockers are not accepted by this restructure",
+      "no_acceptance_created": [
+        "QA acceptance",
+        "source/provenance acceptance",
+        "public/runtime acceptance",
+        "publication readiness",
+        "route publication support",
+        "Definition authority",
+        "usage-as-definition authority",
+        "product/data acceptance",
+        "translation output",
+        "accepted translation text"
+      ]
+    },
+    "sop_followup": {
+      "status": "sop_revision_queue_item_created_for_agent6_exact_text_review_before_durable_law_promotion",
+      "queue_item": "sop-agent13-organization-role-restructure",
+      "note": "User directive activates immediate control posture; durable SOP law promotion still requires exact text and Agent 6 pass/warn/block verdict."
+    },
+    "agent7_governance_control_validator": {
+      "status": "active_non_accepting_governance_control_validator_passed",
+      "date": "2026-06-02",
+      "script": "scripts/validate_agent7_governance_control.mjs",
+      "latest_report": "reports/agent7-governance-control-health.md",
+      "latest_result": "pending_after_agent13_organization_restructure",
+      "owner": "Agent 7",
+      "qa_authority": "Agent 6",
+      "boundary": "Governance/control drift detection only. This validator checks publication blocked_no_render, goal-board status law and Agent 6-only acceptance, source-scope direct-23/audit-23 report-truth boundary, corrected source/provenance custody mapping boundary, six modified tracked source files outside the 23-file source docket, render_shell source-risk drift, relay state boundaries, old-HUD quarantine, validated-only public/runtime default-closed boundary, SOP queue returned state, QA docket index sync, Agent 5/6 handoff sync, Deuteronomy owner-route boundary, broader public-runtime drift boundary, worker watchdog delivery-proof boundary, Agent 5 current handoff guidance, Agent 7 pulse state boundary, Agent 5 routing suppression, pulse cadence/no-active-worker prompt boundary, route input-freeze boundary, workbench handoff authority, Agent 8/9 authority boundaries, Agent 12 limiter boundary, Agent 13 organization boundary, and Agent 1-7 lane SOP mappings. It does not create QA acceptance, publication readiness, source/provenance custody, runtime acceptance, product/data gate acceptance, or accepted translation text.",
+      "preserved_blocks": [
+        "publication readiness",
+        "source/provenance custody acceptance",
+        "public/runtime acceptance",
+        "page/render acceptance",
+        "old-HUD public use",
+        "route publication support",
+        "Definition authority",
+        "usage-as-definition authority",
+        "product/data gate acceptance",
+        "accepted translation text"
+      ],
+      "scope_last_updated": "2026-06-02T15:41:34.141Z",
+      "scope_update_reason": "Align registered governance validator boundary with live checks and Agent 13 organization restructuring: Agent 13 mission, Agent 7 execution, Agent 10 release owner, Agent 12 waste-cap advisory lane."
+    },
+    "coordination_map": {
+      "Agent 13": [
+        "Agent 7",
+        "Agent 12"
+      ],
+      "Agent 7": [
+        "Agent 10"
+      ],
+      "Agent 10": [
+        "Agent 1",
+        "Agent 2",
+        "Agent 4"
+      ]
+    }
+  },
+  "agent_states": {
+    "ACTIVE": [
+      "Agent 10",
+      "Agent 1",
+      "Agent 2",
+      "Agent 4"
+    ],
+    "CONDITIONAL": [],
+    "RATIONED": [
+      "Agent 5",
+      "Agent 6",
+      "Agent 7",
+      "Agent 8",
+      "Agent 9",
+      "Agent 12"
+    ],
+    "SLEEP_UNASSIGNED_IN_CURRENT_RELEASE_CHAIN": [
+      "Agent 3",
+      "Agent 11"
+    ],
+    "WARTIME_ACTIVE_LONG_RUNNING": [
+      "Agent 1",
+      "Agent 2",
+      "Agent 4"
+    ]
+  },
+  "wake_conditions": {
+    "Agent 1": [
+      "running continuously under explicit user/Agent 7 wartime override; original source-blocker wake condition superseded for this cycle"
+    ],
+    "Agent 2": [
+      "running continuously under explicit user/Agent 7 wartime override; immediate self-audit required because user flagged possible glitching"
+    ],
+    "Agent 4": [
+      "running continuously under explicit user/Agent 7 wartime override; runtime validation directly advances candidate surfaces"
+    ],
+    "Agent 3": [
+      "explicit Agent 13, Agent 7, Agent 10, Agent 6, or user reallocation; Agent 3 is not in the current release-owner subtree"
+    ],
+    "Agent 11": [
+      "explicit Agent 13, Agent 7, Agent 6, or user reception/public-language request"
+    ]
+  },
+  "disabled_scheduled_activity": [
+    "Agent 13 scheduled pulse",
+    "Agent 5 routine 30-minute worker-coordinator pulse as default lane owner",
+    "Agent 7 status-loop framing",
+    "Agent 3 scheduled pulse remains disabled; Agents 1, 2, and 4 are active long-running worker lanes under user override, not status pulses",
+    "Agent 8 or Agent 12 routine status pings",
+    "Agent 12 governance essays"
+  ],
+  "wartime_user_override_2026_06_02": {
+    "status": "active_long_running_worker_lanes_delivered",
+    "activated_agents": [
+      "Agent 1",
+      "Agent 2",
+      "Agent 4"
+    ],
+    "delivery_proof": {
+      "delivered_by": "Agent 7",
+      "delivery_mode": "non_interrupting_direct_bounded_worker_prompt_delivery_user_wartime_override",
+      "delivered_at": "2026-06-02T20:43:00Z",
+      "source_directive": "User explicit wartime override: Agents 1, 2, and 4 should start long-term/permanent work; Agent 2 work should be double-checked.",
+      "artifact": "reports/agent7-wartime-long-running-worker-lane-activation-2026-06-02.md",
+      "submissions": {
+        "Agent_1": "019e8ace-2876-7cf0-9f10-9af702d1771d",
+        "Agent_2": "019e8ace-7f50-76b3-a2d2-cc2a5e22391a",
+        "Agent_4": "019e8ace-d835-7740-8130-e485c8196668",
+        "Agent_1_followup": "019e8ad3-c782-78d1-8e6c-0d0c845ab02c",
+        "Agent_1_note": "initial Agent 1 response was meta-acknowledgment; follow-up instructs execution of blocker-map artifact"
+      }
+    },
+    "rationale": "User rejected over-cautious conditional posture and requested these three workers run permanently/long-term in wartime mode.",
+    "agent2_double_check": {
+      "local_check_status": "precheck_complete_agent2_self_audit_required",
+      "report_missing": "reports/agent2-state.md",
+      "current_sample_status_counts": {
+        "conflicting": 96,
+        "single_answer_source_complete": 55,
+        "proposed_only": 49
+      },
+      "current_review_status": "unreviewed_machine_sample on 200/200 rows",
+      "validators": [
+        "node scripts/validate_definition_workbench_sample.mjs: passed, 200 rows",
+        "node scripts/validate_definition_workbench_usage_link_packet.mjs: passed with 1 warning; no overlap with selected Agent 3 usage token scope",
+        "node scripts/validate_definition_workbench_usage_join_smoke.mjs: passed",
+        "node scripts/validate_definition_workbench_usage_agent6_packet.mjs: passed"
+      ],
+      "remaining_risks": [
+        "Agent 2 state file missing",
+        "usage-link packet has no overlap with current 200-row sample",
+        "Agent 6 definition authority boundary remains unaccepted"
+      ]
+    },
+    "highest_permissible_claim": "wartime_long_running_worker_lanes_delivered_with_agent2_precheck",
+    "what_must_not_be_accepted": [
+      "QA acceptance",
+      "source/provenance custody",
+      "source publication",
+      "source-file tracking approval",
+      "public/runtime acceptance",
+      "deployment/CDN/cache closure",
+      "publication readiness",
+      "route publication support",
+      "Definition authority",
+      "usage-as-definition authority",
+      "product/data acceptance",
+      "translation output",
+      "accepted translation text"
+    ]
+  },
+  "coordination_map": {
+    "Agent 13": [
+      "Agent 7",
+      "Agent 12"
+    ],
+    "Agent 7": [
+      "Agent 10"
+    ],
+    "Agent 10": [
+      "Agent 1",
+      "Agent 2",
+      "Agent 4"
+    ]
+  },
+  "sop021_title_map_delta_2026_06_05": {
+    "status": "current_control_surface_normalized",
+    "canonical_titles": {
+      "Agent 1": "Agent 1 - source",
+      "Agent 2": "Agent 2 - definition",
+      "Agent 3": "Agent 3 - linkage",
+      "Agent 4": "Agent 4 - validation",
+      "Agent 5": "Agent 5 - queue",
+      "Agent 6": "Agent 6 - qa",
+      "Agent 7": "Agent 7 - execution",
+      "Agent 8": "Agent 8 - pressure",
+      "Agent 9": "Agent 9 - oracle",
+      "Agent 10": "Agent 10 - release",
+      "Agent 11": "Agent 11 - reception",
+      "Agent 12": "Agent 12 - limiter",
+      "Agent 13": "Agent 13 - mission",
+      "Agent 14": "Agent 14 - override"
+    },
+    "cap": [
+      "hierarchy/persona labels in current control posture",
+      "hierarchy-map fields in current control posture",
+      "communication architecture churn"
+    ],
+    "allow": [
+      "Agents 1-4 and 10 productive pipeline work",
+      "Agent 6 exact boundary review",
+      "Agent 7 staffing/goal coverage without hierarchy language"
+    ],
+    "live_thread_title_blocker": "state_5.sqlite thread-title proof not verified or mutated in this pass",
+    "boundary": "control-language cleanup only; no QA/source/license/Definition/runtime/publication/product/answer acceptance"
+  },
+  "lightweight_operating_mode_correction": {
+    "status": "lightweight_operating_mode_off",
+    "owner_correction": "Lightweight is not an active operating/intelligence mode. Do not describe Agent 12, Agents 1-4, Agent 10, or Agent 13 as lightweight-mode lanes.",
+    "allowed_historical_use": "The word lightweight may remain only inside historical artifact names or deployment/HUD artifact labels, such as deploy-lightweight-pages or bounded lightweight artifact set.",
+    "current_model_language": "Use named agents with their current intelligence setting, e.g. Agent 1 with Spark intelligence, or direct Agent 10 support. Do not use lightweight as a current worker mode.",
+    "agent12_rule": "Agent 12 helps Agent 10 directly; Agent 12 is not merely a lightweight advisory limiter loop.",
+    "boundary": "terminology/control-language correction only; no acceptance claims and no destructive repo action"
+  },
+  "process_timeout_control_rule": {
+    "status": "active_owner_correction_no_unbounded_processes",
+    "owner_correction": "Largest current failure mode is starting local processes without explicit timeout/stop behavior; Agent 9 waited about 8 hours on a process that never finished.",
+    "required_rule": "Every local command, validator, server, watcher, browser automation, repo scan, or helper must have an explicit timeout, bounded stop condition, or documented interactive reason before it starts.",
+    "timeout_report_shape": "process_timeout | command | timeout | partial_output_or_artifact | next_safe_action",
+    "forbidden_patterns": [
+      "unbounded process wait",
+      "missing timeout blocking company work",
+      "retrying same hung command without changed timeout/scope/stop condition",
+      "treating still-running process as evidence or validation"
+    ],
+    "suggested_defaults": {
+      "quick_checks": "20-60 seconds",
+      "large_repo_scans_or_validators": "2-10 minutes with progress output",
+      "browser_runtime_proof": "2-5 minutes unless exact longer docket says why",
+      "dev_servers_watchers": "background session plus explicit stop/kill instruction, never blocking wait"
+    },
+    "boundary": "process-control safety only; no acceptance claims"
+  },
+  "sop022_process_timeout_coordination_2026_06_05": {
+    "artifact": "reports/sop-022-communications-and-restore-command-routing.md",
+    "status": "coordinated_with_agent9_agent12_required",
+    "owner_failure_mode": "Agent 9 / Oracle waited about eight hours for a single local process that never finished; this is now treated as a routing/restore failure.",
+    "rule": "Every local command, validator, server, watcher, browser automation, repo scan, restore check, DB integrity check, or helper must have explicit timeout, bounded stop condition, or documented interactive reason before it starts.",
+    "timeout_report_shape": "process_timeout | command | timeout | partial_output_or_artifact | next_safe_action",
+    "agent9_rule": "Agent 9 must include timeout/stop behavior in restore and contradiction checks; no unbounded waits.",
+    "agent12_rule": "Agent 12 must cap unbounded process attempts as waste, especially when helping Agent 10 or reviewing Agent 6 repo-cleaning pipeline work.",
+    "next_action_if_missing_timeout": "do not wait; report process_timeout or rerun with bounded timeout/scope/stop condition",
+    "boundary": "process-control and SOP-022 routing coordination only; no acceptance claims"
+  }
+}

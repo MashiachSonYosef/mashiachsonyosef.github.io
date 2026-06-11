@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "artifact_type": "reader_workbench_expansion_targets",
+  "generated_at": "2026-06-01T03:02:13-04:00",
+  "owner": "Agent 7",
+  "status": "representative_expansion_targets_ready_for_agent4_evidence",
+  "purpose": "Bound the next Reader Workbench expansion evidence set so Agent 4 and Agent 5 can work without broad rollout or user relay.",
+  "global_boundary": {
+    "mode": "local_only_guided_gloss_assembly",
+    "publication_status": "not_a_translation",
+    "publication_ready": false,
+    "accepted_translation_text": false,
+    "agent6_required_before_broad_rollout": true
+  },
+  "required_checks": [
+    "node scripts/validate_reader_workbench_runtime.mjs",
+    "node scripts/validate_reader_workbench_expansion_targets.mjs",
+    "node scripts/validate_route_hud_page.mjs --page <each included page>",
+    "export/import sample from at least one non-Genesis included page proving source_name/source_id/source_url/license/license_url survive"
+  ],
+  "targets": [
+    {
+      "work_id": "genesis",
+      "work_slug": "tanakh/genesis",
+      "page_path": "tanakh/genesis/index.html",
+      "source_path": "data/sources/genesis.json",
+      "lane": "tanakh_base",
+      "include_in_next_expansion": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Existing pilot baseline and regression anchor."
+    },
+    {
+      "work_id": "song-of-songs",
+      "work_slug": "tanakh/song-of-songs",
+      "page_path": "tanakh/song-of-songs/index.html",
+      "source_path": "data/sources/song-of-songs.json",
+      "lane": "tanakh_poetry_base",
+      "include_in_next_expansion": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Poetic Tanakh base surface with Reader Workbench import/export controls already present."
+    },
+    {
+      "work_id": "yad-david-on-mishneh-torah-robbery-and-lost-property",
+      "work_slug": "halakhah/yad-david-on-mishneh-torah-robbery-and-lost-property",
+      "page_path": "halakhah/yad-david-on-mishneh-torah-robbery-and-lost-property/index.html",
+      "source_path": "data/sources/yad-david-on-mishneh-torah-robbery-and-lost-property.json",
+      "lane": "halakhah_commentary",
+      "include_in_next_expansion": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Longstanding route-HUD validator default and dense halakhah/commentary surface."
+    },
+    {
+      "work_id": "targum-jonathan-on-genesis",
+      "work_slug": "targum/targum-jonathan-on-genesis",
+      "page_path": "targum/targum-jonathan-on-genesis/index.html",
+      "source_path": "data/sources/targum-jonathan-on-genesis.json",
+      "lane": "aramaic_targum",
+      "include_in_next_expansion": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Aramaic/Targum surface for non-Hebrew route behavior."
+    },
+    {
+      "work_id": "yahel-ohr-on-zohar",
+      "work_slug": "gra/yahel-ohr-on-zohar",
+      "page_path": "gra/yahel-ohr-on-zohar/index.html",
+      "source_path": "data/sources/yahel-ohr-on-zohar.json",
+      "lane": "zohar_commentary",
+      "include_in_next_expansion": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Zohar/commentary terminology surface with tracked source custody and current Reader Workbench controls."
+    },
+    {
+      "work_id": "shem-tov-on-guide-for-the-perplexed",
+      "work_slug": "other/shem-tov-on-guide-for-the-perplexed",
+      "page_path": "other/shem-tov-on-guide-for-the-perplexed/index.html",
+      "source_path": "data/sources/shem-tov-on-guide-for-the-perplexed.json",
+      "lane": "jewish_thought_commentary",
+      "include_in_next_expansion": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Philosophic/commentary surface with tracked source custody."
+    },
+    {
+      "work_id": "sefat-emet",
+      "work_slug": "chasidut/sefat-emet",
+      "page_path": "chasidut/sefat-emet/index.html",
+      "source_path": "data/sources/sefat-emet.json",
+      "lane": "chasidut",
+      "include_in_next_expansion": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Chasidut prose surface already used in representative route-HUD checks."
+    },
+    {
+      "work_id": "zephaniah",
+      "work_slug": "tanakh/zephaniah",
+      "page_path": "tanakh/zephaniah/index.html",
+      "source_path": "data/sources/zephaniah.json",
+      "lane": "tanakh_prophets_base",
+      "include_in_next_expansion": true,
+      "source_audit_scope": "tracked_source",
+      "why": "Prophets base-text surface with current Reader Workbench controls and route-HUD validation."
+    }
+  ],
+  "deferred_targets": [
+    {
+      "work_id": "rashi-on-genesis",
+      "page_path": "tanakh/rashi-on-genesis/index.html",
+      "source_path": "data/sources/rashi-on-genesis.json",
+      "reason": "Current page has Reader Workbench runtime but lacks import control marker; keep as Agent 4 rerender candidate before expansion evidence."
+    },
+    {
+      "work_id": "abudarham",
+      "page_path": "halakhah/abudarham/index.html",
+      "source_path": "data/sources/abudarham.json",
+      "reason": "Current page lacks Reader Workbench markers; keep as Agent 4 rerender candidate, not an expansion-ready page."
+    },
+    {
+      "work_id": "ketem-paz-on-zohar",
+      "page_path": "kabbalah/ketem-paz-on-zohar/index.html",
+      "source_path": "data/sources/ketem-paz-on-zohar.json",
+      "reason": "Current page has Reader Workbench runtime but lacks import control marker; use gra/yahel-ohr-on-zohar for the bounded Zohar-commentary target until rerendered."
+    },
+    {
+      "work_id": "orot-ha-kodesh",
+      "page_path": "rav-kook/orot-ha-kodesh/index.html",
+      "source_path": "data/sources/orot-ha-kodesh.json",
+      "reason": "Current page has Reader Workbench runtime but lacks import control marker; defer modern-thought coverage until Agent 4 rerenders a complete page."
+    },
+    {
+      "work_id": "beer-hagolah",
+      "page_path": "other/beer-hagolah/index.html",
+      "source_path": "data/sources/beer-hagolah.json",
+      "reason": "Useful smoke page, but source file is currently outside tracked audit scope; exclude from expansion acceptance evidence until Agent 1 resolves source scope."
+    }
+  ]
+}
