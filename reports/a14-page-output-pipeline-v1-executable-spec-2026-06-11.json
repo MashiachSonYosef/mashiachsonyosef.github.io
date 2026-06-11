@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "artifact_type": "page_output_pipeline_v1_executable_spec",
+  "generated_at": "2026-06-11",
+  "status": "draft_ready_for_a10_review",
+  "boundary": {
+    "planning_spec_only": true,
+    "release_publication_runtime_acceptance": false,
+    "source_license_legal_acceptance": false,
+    "definition_answer_accepted_text_acceptance": false,
+    "repo_cleanup_action": false,
+    "lower_agent_work_order_by_itself": false
+  },
+  "pipeline_id": "page_output_pipeline_v1",
+  "embedded_packet": {
+    "packet_id": "render_intake_packet_v1",
+    "required_fields": [
+      "packet_id",
+      "target_pages",
+      "target_work_ids",
+      "changed_inputs",
+      "render_command",
+      "timeout_ms",
+      "expected_outputs",
+      "dirty_buckets",
+      "validators",
+      "proof_artifacts",
+      "blocker_shape",
+      "next_owner",
+      "stop_condition",
+      "authority_boundary"
+    ],
+    "minimum_render_command": "powershell -File scripts/render_site.ps1 -OnlyWorkIdsPath <work_ids.txt> -SkipOverlayExports -SkipLexicalPayloadFiles",
+    "minimum_timeout_ms": 300000,
+    "blocker_shape": "render_intake_packet_blocker | missing_field | command | timeout | target_pages | dirty_paths | next_owner | stop_condition"
+  },
+  "golden_fixtures": [
+    {
+      "fixture_role": "orot_flagship",
+      "path": "orot/index.html",
+      "purpose": "canonical A10/Orot page behavior"
+    },
+    {
+      "fixture_role": "ruth_same_contract",
+      "path": "tanakh/ruth/index.html",
+      "purpose": "same-contract proof outside Orot"
+    },
+    {
+      "fixture_role": "hard_display_gate_trap",
+      "path": "tanakh/daniel/index.html",
+      "purpose": "TBD / lemma-only / morphology / crossmatch guard"
+    },
+    {
+      "fixture_role": "reader_hint_smoke",
+      "path": "tanakh/malachi/index.html",
+      "purpose": "committed reader-hint gate smoke"
+    },
+    {
+      "fixture_role": "large_generated_surface",
+      "path": "rav-kook/orot-ha-kodesh/index.html",
+      "purpose": "large generated page surface"
+    }
+  ],
+  "validators": [
+    {
+      "id": "route_hud_page",
+      "command": "node scripts/validate_route_hud_page.mjs --page <target page(s)>",
+      "timeout_ms": 120000,
+      "scope": "target reader pages only"
+    },
+    {
+      "id": "reader_hints",
+      "command": "node scripts/validate_reader_hints_from_route_lookup.mjs",
+      "timeout_ms": 120000,
+      "scope": "only required when reader hints or route lookup outputs are touched"
+    },
+    {
+      "id": "definition_outputs",
+      "command": "node scripts/validate_definition_outputs.mjs",
+      "timeout_ms": 120000,
+      "scope": "only required when definition route artifacts are touched"
+    },
+    {
+      "id": "gap_manifest",
+      "command": "node scripts/validate_definition_expansion_gap_manifest.mjs",
+      "timeout_ms": 120000,
+      "scope": "only required when definition gap manifest/report is touched"
+    },
+    {
+      "id": "diff_check",
+      "command": "git diff --check -- <scoped paths>",
+      "timeout_ms": 120000,
+      "scope": "all paths proposed for the packet"
+    }
+  ],
+  "page_hud_invariants": [
+    {
+      "invariant_id": "book_header",
+      "requirement": "Normal book header and compact corpus/work metadata remain present.",
+      "fail_shape": "page_output_pipeline_blocker | page | book_header_missing | validator | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "source_passage",
+      "requirement": "Source passage is visible, RTL-safe, clickable, and copyable.",
+      "fail_shape": "page_output_pipeline_blocker | page | source_passage_missing_or_ltr_regressed | validator | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "prehud_rows",
+      "requirement": "One Hebrew token maps to one preHUD row for rendered token rows.",
+      "fail_shape": "page_output_pipeline_blocker | page | token_row_mismatch | count | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "source_to_prehud_jump",
+      "requirement": "Source token affordance jumps to matching preHUD row.",
+      "fail_shape": "page_output_pipeline_blocker | page | source_to_prehud_jump_missing | validator | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "hud_open",
+      "requirement": "HUD opens from token/source affordance and does not require hidden lore.",
+      "fail_shape": "route_hud_contract_blocker | page | hud_open_affordance_missing | validator | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "scroll_lock",
+      "requirement": "Body scroll is locked while HUD is open.",
+      "fail_shape": "route_hud_contract_blocker | page | scroll_lock_missing | validator | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "selected_vs_alternatives",
+      "requirement": "Selected/default route is visually and structurally separate from alternatives.",
+      "fail_shape": "route_hud_contract_blocker | page | selected_route_not_separated | validator | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "source_license",
+      "requirement": "Source/license details remain inspectable in HUD for displayed route-backed candidates.",
+      "fail_shape": "route_hud_contract_blocker | page | source_license_hidden | validator | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "match_basis",
+      "requirement": "PreHUD percent match and HUD match basis must not drift.",
+      "fail_shape": "route_hud_contract_blocker | page | match_basis_drift | token_id | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "quiet_tbd",
+      "requirement": "Unresolved or unsafe rows display quiet TBD, not replacement definition text.",
+      "fail_shape": "display_gate_blocker | page | unsafe_preHUD_text | token_id | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "evidence_only",
+      "requirement": "Crossmatch, lemma-only, morphology/form-reference, and usage-only rows remain evidence/navigation only unless the display gate explicitly clears them.",
+      "fail_shape": "display_gate_blocker | page | evidence_only_promoted | token_id | next_owner | stop_condition"
+    },
+    {
+      "invariant_id": "stale_markers",
+      "requirement": "No old escaped HUD markers, non-whitelisted data-hud-* attributes, or visible stale tok-* leaks.",
+      "fail_shape": "page_output_pipeline_blocker | page | stale_marker_or_token_leak | marker | next_owner | stop_condition"
+    }
+  ],
+  "dirty_buckets": [
+    {
+      "bucket": "page_html",
+      "examples": [
+        "tanakh/<work>/index.html",
+        "orot/index.html"
+      ],
+      "staging_rule": "stage only target pages validated by Route HUD validator"
+    },
+    {
+      "bucket": "shared_runtime_css_js",
+      "examples": [
+        "assets/js/reader-workbench.js",
+        "shared CSS"
+      ],
+      "staging_rule": "stage separately; run syntax and page/HUD smoke validators"
+    },
+    {
+      "bucket": "lexical_source_layer",
+      "examples": [
+        "data/lexical/source-layers/*.json",
+        "source-layer builder changes"
+      ],
+      "staging_rule": "stage only with source/lane proof and definition validators"
+    },
+    {
+      "bucket": "lexical_payload_chunks",
+      "examples": [
+        "data/lexical/<work>-chunks/**",
+        "manifests"
+      ],
+      "staging_rule": "stage with manifest/chunk parity checks"
+    },
+    {
+      "bucket": "token_index",
+      "examples": [
+        "data/lexical/token-index*.json",
+        "per-work token indexes"
+      ],
+      "staging_rule": "keep with matching generated page/lexical payload"
+    },
+    {
+      "bucket": "search_ranker_stats",
+      "examples": [
+        "data/search/**",
+        "data/reports/coverage/**",
+        "unresolved CSVs",
+        "stats/index.html"
+      ],
+      "staging_rule": "stage with ranker/shape checks"
+    },
+    {
+      "bucket": "definition_gap_manifest",
+      "examples": [
+        "data/definitions/definition-expansion-gap-manifest.json",
+        "definition gap report"
+      ],
+      "staging_rule": "stage after gap validator passes"
+    },
+    {
+      "bucket": "reader_hints_route_lookup",
+      "examples": [
+        "data/lexical/reader-hints/**",
+        "reader-hint report"
+      ],
+      "staging_rule": "stage only after reader-hint validator passes"
+    },
+    {
+      "bucket": "proof_report",
+      "examples": [
+        "reports/a14-*.md",
+        "reports/a14-*.json",
+        "A10 packets"
+      ],
+      "staging_rule": "evidence only; no acceptance claims"
+    },
+    {
+      "bucket": "unrelated_dirt",
+      "examples": [
+        "files outside packet scope"
+      ],
+      "staging_rule": "do not stage in packet"
+    },
+    {
+      "bucket": "blocked_review",
+      "examples": [
+        "paths with failed validator or missing source/license boundary"
+      ],
+      "staging_rule": "return exact blocker"
+    }
+  ],
+  "runner_order": [
+    "read packet and confirm required fields",
+    "run git status --short and record starting dirty set",
+    "run render command only if target_work_ids and target_pages are explicit",
+    "classify all dirty paths into dirty buckets",
+    "run scoped Route HUD validator on target pages only",
+    "run reader-hint and definition validators only when their inputs are touched",
+    "run git diff --check on scoped paths",
+    "produce proof artifact or exact blocker"
+  ],
+  "handoff_map": {
+    "A14": "target shape, fixture choice, desired output topology; returns complete packet fields or spec_incomplete",
+    "A10": "package truth, stage manifest, boundary packet assembly; returns pathspec/stage guidance or exact package blocker",
+    "A5": "completed render intake packet; returns runner proof, dirty buckets, or exact process timeout",
+    "A4": "changed page/runtime/data outputs; returns validator proof or exact failed invariant",
+    "A3": "crossmatch/linkage evidence needs; returns evidence matrix or missing pipeline blocker",
+    "A1_A6": "source/license-sensitive source rows; returns lane docket or exact boundary blocker",
+    "A2": "A1/A6-cleared transform inputs; returns candidate readiness packet with prehud_allowed=false unless gate clears",
+    "A7_owner": "activation/public-runtime/release questions; final approval or rejection outside this spec"
+  },
+  "stop_condition": "Runnable when target pages, work ids, changed inputs, command, timeout, expected outputs, dirty buckets, validators, proof artifact path, blocker shape, next owner, and authority boundary are all explicit."
+}

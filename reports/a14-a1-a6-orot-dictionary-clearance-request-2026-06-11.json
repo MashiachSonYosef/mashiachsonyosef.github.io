@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "artifact_type": "a14_a1_a6_orot_dictionary_clearance_request",
+  "generated_at": "2026-06-11",
+  "status": "request_ready_orot_only_no_active_output",
+  "target": {
+    "work_id": "orot",
+    "work_title": "Orot",
+    "reason": "Only current work whose unresolved token ids join to the old-dictionary source-family evidence matrix."
+  },
+  "input_artifacts": [
+    "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.json",
+    "reports/a14-dictionary-nc-corpus-expansion-pipeline-spec-2026-06-11.json",
+    "reports/a13-old-dictionary-safe-add-contract-2026-06-11.json",
+    "reports/agent1-old-dictionary-source-family-membership-manifest-2026-06-05.json"
+  ],
+  "row_subset": {
+    "unique_token_ids": 5,
+    "unique_occurrences": 46,
+    "source_family_memberships_nonexclusive": 7,
+    "source_family_occurrences_nonexclusive": 71,
+    "commercial_clean_candidate": {
+      "source_family": "Jastrow Dictionary",
+      "token_ids": [
+        "tok-f4684f98dd3c",
+        "tok-730582e0eb7b",
+        "tok-7e4936f25f7a",
+        "tok-139a2c161eac",
+        "tok-17ba65351831"
+      ],
+      "occurrences": 46
+    },
+    "noncommercial_educational_candidate": {
+      "source_family": "Klein Dictionary",
+      "token_ids": [
+        "tok-f4684f98dd3c",
+        "tok-17ba65351831"
+      ],
+      "occurrences": 25,
+      "required_policy": {
+        "derived_from_nc": true,
+        "commercial_export_allowed": false,
+        "attribution_required": true,
+        "corpus_contamination": false
+      }
+    },
+    "blocked_or_needs_review": {
+      "token_ids": [],
+      "occurrences": 0
+    }
+  },
+  "requested_a1_output": {
+    "owner": "A1",
+    "shape": "status | target | exact row subset | source_family lanes | source/custody basis | transform_allowed rows | blocked rows | handoff owner | stop condition",
+    "must_not_do": [
+      "no active lexical/source-layer mutation",
+      "no candidate text emission",
+      "no preHUD display decision",
+      "no source/license/legal acceptance claim"
+    ]
+  },
+  "requested_a6_output": {
+    "owner": "A6",
+    "shape": "status | target | exact row subset | boundary verdict | NC isolation | commercial-clean subset status | transform gate | blocker | stop condition",
+    "must_preserve": [
+      "Klein/NC stays separate from commercial-clean",
+      "A1/A6 clearance is not Definition authority",
+      "allowed transform remains false unless exact source/custody basis clears",
+      "preHUD remains false unless later A10 display gate clears a safe selectable route"
+    ]
+  },
+  "current_a14_a10_verdict": {
+    "matrix_validated": true,
+    "current_1400_work_readiness": "not active-output ready",
+    "exact_blocker": "source_family_row_clearance pending A1/A6 exact row-set approval",
+    "recommended_next_smallest_action": "A1/A6 Orot-only row clearance before A2 transform readiness"
+  },
+  "boundary": {
+    "planning_and_clearance_request_only": true,
+    "source_license_legal_acceptance": false,
+    "Definition_authority": false,
+    "accepted_gloss_or_answer_text": false,
+    "active_lexical_source_layer_mutation": false,
+    "prehud_display_promotion": false,
+    "public_runtime_release": false
+  },
+  "stop_condition": "A1/A6 return exact Orot row/subset clearance or exact blocker; no active transform/render work starts from this request alone."
+}

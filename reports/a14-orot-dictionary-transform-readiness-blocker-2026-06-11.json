@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "artifact_type": "a14_orot_dictionary_transform_readiness_blocker",
+  "generated_at": "2026-06-11",
+  "status": "blocked_no_active_transform_or_render",
+  "target": {
+    "work_id": "orot",
+    "work_title": "Orot",
+    "example_lock_status": "locked_as_planning_evidence_only"
+  },
+  "input_artifacts": [
+    "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.json",
+    "reports/a14-dictionary-nc-corpus-expansion-pipeline-spec-2026-06-11.json",
+    "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.json"
+  ],
+  "row_subset": {
+    "unique_token_ids": 5,
+    "unique_occurrences": 46,
+    "source_family_memberships_nonexclusive": 7,
+    "source_family_occurrences_nonexclusive": 71,
+    "commercial_clean_candidate": {
+      "source_family": "Jastrow Dictionary",
+      "token_ids": [
+        "tok-f4684f98dd3c",
+        "tok-730582e0eb7b",
+        "tok-7e4936f25f7a",
+        "tok-139a2c161eac",
+        "tok-17ba65351831"
+      ],
+      "occurrences": 46,
+      "allowed_for_transform_now": false
+    },
+    "noncommercial_educational_candidate": {
+      "source_family": "Klein Dictionary",
+      "token_ids": [
+        "tok-f4684f98dd3c",
+        "tok-17ba65351831"
+      ],
+      "occurrences": 25,
+      "allowed_for_transform_now": false,
+      "commercial_export_allowed": false
+    }
+  },
+  "agent_receipts": {
+    "A10": {
+      "verdict": "matrix coherent for planning only",
+      "readiness": "not deployment-ready for old/new-dictionary/NC activation",
+      "blocker": "source_family_row_clearance pending A1/A6 exact row-set approval"
+    },
+    "A1": {
+      "verdict": "pending_clearance",
+      "transform_allowed_rows": 0,
+      "blocked_rows": 0,
+      "next_owner": "Agent 6 first, then Agent 1 update packet"
+    },
+    "A6": {
+      "verdict": "WARN-ACCEPTED as Orot-only row/subset planning boundary evidence",
+      "NC_isolation": "required",
+      "commercial_clean_subset_status": "Jastrow subset may be carried as commercial-clean planning subset only",
+      "transform_gate": "blocked pending separate exact transform/output boundary",
+      "blocker": "no active transform/render/use authorization in this packet"
+    }
+  },
+  "current_decision": {
+    "A2_transform_readiness_allowed_now": false,
+    "A3_crossmatch_navigation_allowed_now": "evidence_only",
+    "A4_page_render_example_allowed_now": false,
+    "A10_package_truth_needed_for_next_step": true,
+    "prehud_allowed": false,
+    "display_eligible": false,
+    "active_output_allowed": false
+  },
+  "next_required_packet": {
+    "owner": "A1/A6 with A10 package framing",
+    "shape": "orot_dictionary_transform_boundary | exact token ids | source/custody basis | candidate text policy | transform_allowed rows | display/preHUD gate | blockers | stop condition",
+    "must_not_do": [
+      "no active lexical/source-layer mutation",
+      "no candidate text emission",
+      "no preHUD display decision",
+      "no page render",
+      "no source/license/legal/Definition/product/answer/accepted-text/publication/release acceptance"
+    ]
+  },
+  "stop_condition": "Hold Orot as the first locked evidence example until a separate transform/output boundary packet clears exact rows, or returns a permanent source/custody/display blocker."
+}

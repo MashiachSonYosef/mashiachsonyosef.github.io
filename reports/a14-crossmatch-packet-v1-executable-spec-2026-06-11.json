@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "artifact_type": "crossmatch_packet_v1_executable_spec",
+  "generated_at": "2026-06-11",
+  "status": "draft_ready_with_generalization_blocker",
+  "boundary": {
+    "evidence_navigation_only": true,
+    "release_publication_runtime_acceptance": false,
+    "source_license_legal_acceptance": false,
+    "definition_answer_accepted_text_acceptance": false,
+    "prehud_authority": false,
+    "route_mutation": false,
+    "repo_cleanup_action": false
+  },
+  "current_runnable_subtypes": [
+    {
+      "subtype": "phrase_abbrev_matrix",
+      "builder": "scripts/build_agent3_phrase_abbrev_crossmatch_matrix.mjs",
+      "validator": "scripts/validate_agent3_phrase_abbrev_crossmatch_matrix.mjs",
+      "output": "reports/agent3-a14-phrase-abbrev-pattern-crossmatch-matrix-2026-06-11.json",
+      "status": "validated_current_run"
+    }
+  ],
+  "required_row_fields": [
+    "row_id",
+    "token_id",
+    "surface",
+    "normalized_surface",
+    "lemma",
+    "source_family",
+    "license_lane",
+    "provenance",
+    "candidate_route_id",
+    "candidate_lexical_id",
+    "match_family",
+    "match_reason",
+    "confidence_percent",
+    "competing_candidate_count",
+    "display_eligible",
+    "hud_inspectable",
+    "prehud_allowed",
+    "evidence_only_reason",
+    "blocker",
+    "next_owner",
+    "stop_condition"
+  ],
+  "match_families": [
+    {
+      "match_family": "strict_hebrew",
+      "prehud_default": "blocked_until_selected_route_gate_clears",
+      "notes": "exact route-backed Hebrew evidence only"
+    },
+    {
+      "match_family": "strict_aramaic",
+      "prehud_default": "blocked_until_selected_route_gate_clears",
+      "notes": "exact route-backed Aramaic evidence only"
+    },
+    {
+      "match_family": "prefix_stem_suffix",
+      "prehud_default": "TBD",
+      "notes": "morphology evidence only unless downstream gate clears"
+    },
+    {
+      "match_family": "lemma_only",
+      "prehud_default": "TBD",
+      "notes": "HUD-inspectable evidence only"
+    },
+    {
+      "match_family": "crossmatch",
+      "prehud_default": "TBD",
+      "notes": "navigation/evidence only"
+    },
+    {
+      "match_family": "usage_evidence",
+      "prehud_default": "TBD",
+      "notes": "observed usage only"
+    },
+    {
+      "match_family": "morphology_form_reference",
+      "prehud_default": "TBD",
+      "notes": "never display form-reference text by default"
+    },
+    {
+      "match_family": "phrase_abbrev_matrix",
+      "prehud_default": "TBD",
+      "notes": "runnable subtype, project-authored abbreviation evidence only"
+    }
+  ],
+  "gates": {
+    "display_eligible_default": false,
+    "prehud_allowed_default": false,
+    "hud_inspectable_allowed_for_evidence_rows": true,
+    "nc_rows_public_output_allowed": false,
+    "payload_copy_allowed": false
+  },
+  "required_general_validator_checks": [
+    "JSON parses and artifact_type is correct",
+    "every row has required row-shape fields",
+    "prehud_allowed true requires display_eligible true and candidate_route_id",
+    "evidence-only match families have prehud_allowed false",
+    "source/license/provenance fields are present for HUD-inspectable rows",
+    "no forbidden authority fields contain truthy values",
+    "NC lane rows remain nonpublic/evidence-only",
+    "counts match row arrays and blocker arrays"
+  ],
+  "remaining_generalization_blocker": {
+    "blocker_shape": "crossmatch_packet_blocker | missing_general_builder | input_families | row_schema | validator | next_owner=A3 | stop_condition=general builder and no-payload-copy validator exist",
+    "missing_general_builder": true,
+    "missing_general_validator": true,
+    "runnable_subtype_available": "phrase_abbrev_matrix"
+  },
+  "stop_condition": "Only phrase_abbrev_matrix subtype is runnable until the general builder and no-payload-copy validator exist."
+}

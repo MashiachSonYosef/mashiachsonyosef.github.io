@@ -2,7 +2,7 @@
   "schema_version": 1,
   "artifact_type": "pipeline_preservation_manifest_v1",
   "generated_at": "2026-06-11",
-  "status": "draft_ready_with_spec_incomplete_blockers_marked",
+  "status": "approved_with_required_hardening",
   "purpose": "Preserve working product-output and evidence pipelines as executable contracts before company overhaul changes working paths.",
   "boundary": {
     "planning_spec_only": true,
@@ -17,7 +17,21 @@
     "reports/agent3-a14-phrase-abbrev-adoption-packet-2026-06-11.json",
     "reports/agent3-a14-phrase-abbrev-adoption-packet-2026-06-11.md",
     "reports/agent10-orot-ruth-book-hud-flagship-handoff-2026-06-07.json",
-    "reports/agent10-book-hud-batch1-orot-ruth-style-handoff-2026-06-07.md"
+    "reports/agent10-book-hud-batch1-orot-ruth-style-handoff-2026-06-07.md",
+    "reports/a14-page-output-pipeline-v1-executable-spec-2026-06-11.json",
+    "reports/a14-page-output-pipeline-v1-executable-spec-2026-06-11.md",
+    "reports/a14-crossmatch-packet-v1-executable-spec-2026-06-11.json",
+    "reports/a14-crossmatch-packet-v1-executable-spec-2026-06-11.md",
+    "reports/agent3-a14-phrase-abbrev-pattern-crossmatch-matrix-2026-06-11.json",
+    "reports/agent3-a14-phrase-abbrev-pattern-crossmatch-matrix-2026-06-11.md",
+    "reports/a14-dictionary-nc-corpus-expansion-pipeline-spec-2026-06-11.json",
+    "reports/a14-dictionary-nc-corpus-expansion-pipeline-spec-2026-06-11.md",
+    "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.json",
+    "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.md",
+    "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.json",
+    "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.md",
+    "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.json",
+    "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.md"
   ],
   "golden_fixtures": {
     "orot_flagship": "orot/index.html",
@@ -42,6 +56,14 @@
     "unrelated_dirt",
     "blocked_review"
   ],
+  "spec_validators": [
+    {
+      "id": "a14_pipeline_specs",
+      "command": "node scripts/validate_a14_pipeline_specs.mjs",
+      "timeout_ms": 60000,
+      "scope": "umbrella manifest, page-output executable spec, crossmatch spec, A3 phrase/abbrev matrix, required invariants, dirty buckets, and authority boundaries"
+    }
+  ],
   "forbidden_global_authority_claims": [
     "QA acceptance",
     "source/license/legal acceptance",
@@ -57,7 +79,7 @@
   "manifest_rows": [
     {
       "pipeline_id": "book_page_contract_v1",
-      "target_output": "Canonical reader/book page shell with source passage, preHUD rows, Route HUD popout trigger, stable page metadata, and no old HUD markers.",
+      "target_output": "Canonical reader/book page shell with stable corpus/work metadata and source passage preHUD wiring.",
       "canonical_artifacts": [
         "orot/index.html",
         "tanakh/ruth/index.html",
@@ -67,6 +89,20 @@
       "input_manifest": "render_intake_packet_v1.target_pages or explicit --page list",
       "commands": [
         "node scripts/validate_route_hud_page.mjs --page <target page(s)>"
+      ],
+      "invariants": [
+        "normal book header and compact corpus/work metadata",
+        "visible and clickable source passage area present",
+        "one Hebrew token per preHUD row",
+        "source token text is visible and copyable",
+        "source token click/keyboard jump maps to matching preHUD row",
+        "preHUD text remains TBD unless selected/display_eligible route exists",
+        "one preHUD row per underlying token in changed rows",
+        "no old escaped HUD markers",
+        "no stale tok-* leakage text in rendered row content",
+        "no LTR Hebrew rendering regression in source layout",
+        "no accepted text/definition authority implied",
+        "page scope is not accepted as definition output"
       ],
       "timeouts": {
         "validate_route_hud_page_ms": 120000
@@ -115,6 +151,19 @@
       "commands": [
         "node scripts/validate_route_hud_page.mjs --page <target page(s)>"
       ],
+      "invariants": [
+        "HUD opens from source token or preHUD affordance only",
+        "body scroll lock while HUD is open",
+        "selected/default route is distinct from alternatives",
+        "selected route displays only when route-backed and display-safe",
+        "HUD source/license area always inspectable",
+        "crossmatches shown as evidence-only navigation rows",
+        "preHUD and HUD percent/match basis remains consistent",
+        "no lemma-only/morphology/form-reference/usage-only text promoted into preHUD unless gate clears",
+        "no old escaped HUD markers or `data-hud-*` non-whitelisted attributes",
+        "no stale token-id (`tok-*`) leaks into visible HUD text",
+        "no accepted gloss/Definition authority claim"
+      ],
       "timeouts": {
         "validate_route_hud_page_ms": 120000
       },
@@ -156,7 +205,7 @@
     },
     {
       "pipeline_id": "page_output_pipeline_v1",
-      "target_output": "Visible book/HUD page output from inputs through render, including normal book shell, source passage, preHUD rows, Route HUD, source/license evidence, crossmatches, quiet TBD, and layout invariants.",
+      "target_output": "Visible book/HUD page output from inputs through render, including shell, source passage, preHUD rows, Route HUD, and evidence-only crossmatch behavior.",
       "canonical_artifacts": [
         "orot/index.html",
         "tanakh/ruth/index.html",
@@ -172,6 +221,22 @@
         "powershell -File scripts/render_site.ps1 -OnlyWorkIdsPath <work_ids.txt> -SkipOverlayExports -SkipLexicalPayloadFiles",
         "node scripts/validate_route_hud_page.mjs --page <rendered page(s)>",
         "node scripts/validate_reader_hints_from_route_lookup.mjs"
+      ],
+      "invariants": [
+        "normal book header and compact corpus/work metadata",
+        "source passage rendered as clickable tokenized anchors",
+        "one preHUD row per rendered token",
+        "HUD opens from token/source affordance",
+        "scroll lock while HUD is open and return link works",
+        "selected/default route separated from alternatives and match-backed",
+        "source/license evidence area is present for displayed route-backed candidates",
+        "crossmatch rows are evidence/navigation only",
+        "quiet TBD on unresolved/unsafe routes",
+        "preHUD/HUD % match basis must remain consistent",
+        "no stale old-HUD markers in page/runtime",
+        "no stale `tok-*` visible leaks",
+        "no LTR Hebrew regression",
+        "no accepted-text/Definition or answer claim"
       ],
       "timeouts": {
         "render_site_ms": 300000,
@@ -206,7 +271,8 @@
       "proof_artifacts": [
         "reports/agent10-orot-ruth-book-hud-flagship-handoff-2026-06-07.md",
         "reports/agent10-malachi-prehud-reader-hint-fix-a14-addendum-2026-06-07.json",
-        "reports/agent14-daniel-lemma-only-display-guard-2026-06-10.md"
+        "reports/agent14-daniel-lemma-only-display-guard-2026-06-10.md",
+        "reports/a14-page-output-pipeline-v1-executable-spec-2026-06-11.json"
       ],
       "blocker_shape": "page_output_pipeline_blocker | target_page | changed_inputs | failed_invariant | command | timeout | partial_output | next_owner | stop_condition",
       "owner_slot": "A14 target/output shape; A10 implementation standard/package truth; A5 repeatable runner; A4 changed-output validator",
@@ -258,7 +324,8 @@
       "proof_artifacts": [
         "reports/a14-definition-expansion-reference-abbrev-build-2026-06-11.md",
         "reports/a14-definition-expansion-rabbinic-reference-build-2026-06-11.md",
-        "reports/a14-definition-expansion-phrase-abbreviation-build-2026-06-11.md"
+        "reports/a14-definition-expansion-phrase-abbreviation-build-2026-06-11.md",
+        "reports/a14-page-output-pipeline-v1-executable-spec-2026-06-11.json"
       ],
       "blocker_shape": "render_intake_packet_blocker | missing_field | command | timeout | target_pages | dirty_paths | next_owner | stop_condition",
       "owner_slot": "A10 owns first complete packet/package truth; A5 runs repeatable packet after complete; A14 fills target/output expectations",
@@ -308,7 +375,9 @@
         "git diff --check -- <packet paths>"
       ],
       "proof_artifacts": [
-        "reports/agent3-a14-phrase-abbrev-adoption-packet-2026-06-11.json"
+        "reports/agent3-a14-phrase-abbrev-adoption-packet-2026-06-11.json",
+        "reports/a14-crossmatch-packet-v1-executable-spec-2026-06-11.json",
+        "reports/agent3-a14-phrase-abbrev-pattern-crossmatch-matrix-2026-06-11.json"
       ],
       "blocker_shape": "crossmatch_packet_blocker | missing_input | missing_builder_or_validator | row_field | evidence_only_reason | next_owner | stop_condition",
       "owner_slot": "A3 crossmatch/linkage/navigation; A14 prototype target selection; A10 package planning intake only",
@@ -325,8 +394,8 @@
       "status": "spec_incomplete",
       "known_blockers": [
         "missing_durable_manifest",
-        "missing_a3_builder_for_exact_phrase_abbrev_matrix",
-        "missing_a3_validator_for_no_payload_copy"
+        "missing_general_crossmatch_builder_contract",
+        "missing_general_crossmatch_validator_for_no_payload_copy"
       ]
     },
     {
@@ -340,8 +409,8 @@
       ],
       "input_manifest": "A14 target manifests plus data/lexical/source-layers/project-abbreviations.json and target work lexical chunks",
       "commands": [
-        "missing: node scripts/build_agent3_phrase_abbrev_crossmatch_matrix.mjs --input <durable manifest> --out reports/agent3-a14-phrase-abbrev-pattern-crossmatch-matrix-YYYY-MM-DD.json",
-        "missing: node scripts/validate_agent3_phrase_abbrev_crossmatch_matrix.mjs <matrix>"
+        "node scripts/build_agent3_phrase_abbrev_crossmatch_matrix.mjs",
+        "node scripts/validate_agent3_phrase_abbrev_crossmatch_matrix.mjs"
       ],
       "timeouts": {
         "build_matrix_ms": 120000,
@@ -357,11 +426,13 @@
         "blocked_review"
       ],
       "validators": [
-        "missing dedicated matrix validator",
+        "scripts/validate_agent3_phrase_abbrev_crossmatch_matrix.mjs",
         "git diff --check -- <matrix/report paths>"
       ],
       "proof_artifacts": [
-        "reports/agent3-a14-phrase-abbrev-adoption-packet-2026-06-11.md"
+        "reports/agent3-a14-phrase-abbrev-adoption-packet-2026-06-11.md",
+        "reports/agent3-a14-phrase-abbrev-pattern-crossmatch-matrix-2026-06-11.json",
+        "reports/agent3-a14-phrase-abbrev-pattern-crossmatch-matrix-2026-06-11.md"
       ],
       "blocker_shape": "missing_pipeline_blocker | command | input | output_schema | validator | durable_manifest | next_owner | stop_condition",
       "owner_slot": "A3 owns matrix; A14 preserves target shape; A10 consumes for package planning only",
@@ -375,12 +446,8 @@
         "preHUD eligibility"
       ],
       "stop_condition": "Matrix produced and validated, or exact missing_pipeline_blocker returned.",
-      "status": "spec_incomplete",
-      "known_blockers": [
-        "missing_durable_manifest",
-        "missing_a3_builder",
-        "missing_a3_validator"
-      ]
+      "status": "draft_ready",
+      "known_blockers": []
     },
     {
       "pipeline_id": "source_lane_contract_v1",
@@ -430,6 +497,68 @@
       ],
       "stop_condition": "Rows classified with exact blockers or cleared as candidate input for transform readiness.",
       "status": "draft_ready"
+    },
+    {
+      "pipeline_id": "dictionary_nc_corpus_expansion_pipeline_v1",
+      "target_output": "Evidence-first corpus-wide old/new dictionary and NC lane matrix, with Orot locked as the first planning example and no active output until row clearance and transform boundary packets exist.",
+      "canonical_artifacts": [
+        "reports/a14-dictionary-nc-corpus-expansion-pipeline-spec-2026-06-11.json",
+        "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.json",
+        "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.json",
+        "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.json",
+        "scripts/build_a14_dictionary_nc_corpus_coverage_matrix.mjs",
+        "scripts/validate_a14_dictionary_nc_corpus_coverage_matrix.mjs"
+      ],
+      "input_manifest": "old dictionary safe-add contract, source-family membership manifest, coverage JSON files, unresolved CSV files, definition gap manifest, route lookup manifest, A1/A6 receipts",
+      "commands": [
+        "node scripts/build_a14_dictionary_nc_corpus_coverage_matrix.mjs",
+        "node scripts/validate_a14_dictionary_nc_corpus_coverage_matrix.mjs"
+      ],
+      "timeouts": {
+        "build_dictionary_nc_matrix_ms": 120000,
+        "validate_dictionary_nc_matrix_ms": 120000
+      },
+      "expected_outputs": [
+        "dictionary/NC evidence matrix JSON/MD",
+        "dictionary/NC expansion pipeline spec JSON/MD",
+        "Orot-only row clearance request JSON/MD",
+        "Orot transform-readiness blocker JSON/MD",
+        "zero active lexical/source-layer, preHUD, display, render, or candidate-text output"
+      ],
+      "dirty_buckets": [
+        "source_license_evidence",
+        "definition_gap_manifest",
+        "proof_report",
+        "blocked_review"
+      ],
+      "validators": [
+        "scripts/validate_a14_dictionary_nc_corpus_coverage_matrix.mjs",
+        "JSON parse",
+        "git diff --check -- <dictionary/NC pipeline paths>"
+      ],
+      "proof_artifacts": [
+        "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.md",
+        "reports/a14-dictionary-nc-corpus-expansion-pipeline-spec-2026-06-11.md",
+        "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.md",
+        "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.md"
+      ],
+      "blocker_shape": "dictionary_nc_pipeline_blocker | work_id | token_ids | source_family | license_lane | transform_allowed | prehud_allowed | display_eligible | next_owner | stop_condition",
+      "owner_slot": "A14 pipeline shape; A1 source/custody lane; A6 boundary docket; A2 transform readiness only after clearance; A10 package truth",
+      "model_floor": "A5/weaker model can run the matrix builder/validator but cannot infer source clearance or transform authorization.",
+      "next_owner": "A1/A6 for exact row clearance; A2 only after cleared transform rows; A10 for package truth",
+      "gate": "Evidence-only until exact transform/output boundary exists; no source/license/legal/Definition/public-output acceptance.",
+      "forbidden_authority_claims": [
+        "source/license/legal acceptance",
+        "Definition authority",
+        "answer eligibility",
+        "accepted gloss/text",
+        "active lexical/source-layer mutation",
+        "preHUD display promotion",
+        "NC commercial-clean promotion",
+        "publication readiness"
+      ],
+      "stop_condition": "Matrix validates, Orot remains locked as planning evidence, and transform/render stays blocked until a separate exact transform/output boundary packet clears rows.",
+      "status": "draft_ready_evidence_first"
     },
     {
       "pipeline_id": "definition_transform_readiness_packet_v1",
@@ -548,6 +677,6 @@
       "status": "draft_ready"
     }
   ],
-  "a14_oversight_stop_condition": "A14 has drafted the umbrella manifest with golden fixtures, page/HUD contracts, render intake schema, A3 phrase-abbrev matrix contract, dirty buckets, validators, authority boundaries, and exact blocker names. Any path not executable by A5/weaker model is marked spec_incomplete.",
-  "next_recommended_design_output": "page_output_pipeline_v1 full schema with render_intake_packet_v1 embedded, followed by a3_phrase_abbrev_matrix_contract_v1 builder/validator workset."
+  "a14_oversight_stop_condition": "A14 has drafted the umbrella manifest with golden fixtures, page/HUD contracts, render intake schema, A3 phrase-abbrev matrix contract, dirty buckets, validators, authority boundaries, and exact blocker names. The self-check validator passes. Any path not executable by A5/weaker model is marked spec_incomplete.",
+  "next_recommended_design_output": "A10 review of page_output_pipeline_v1 executable spec, followed by implementing the general crossmatch_packet_v1 builder/validator from the new spec."
 }

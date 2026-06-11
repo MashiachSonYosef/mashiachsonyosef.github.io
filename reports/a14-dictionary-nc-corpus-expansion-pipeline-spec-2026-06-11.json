@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "artifact_type": "a14_dictionary_nc_corpus_expansion_pipeline_spec",
+  "generated_at": "2026-06-11",
+  "status": "draft_ready_evidence_first_no_active_dictionary_output",
+  "purpose": "Make the NC/new-dictionary corpus lane executable without promoting source-sensitive or noncommercial evidence into active reader/preHUD output.",
+  "boundary": {
+    "planning_and_evidence_only": true,
+    "source_license_legal_acceptance": false,
+    "Definition_authority": false,
+    "accepted_gloss_or_answer_text": false,
+    "active_lexical_source_layer_mutation": false,
+    "prehud_display_promotion": false,
+    "public_runtime_release": false
+  },
+  "current_evidence_artifacts": [
+    "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.json",
+    "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.md",
+    "reports/a13-old-dictionary-safe-add-contract-2026-06-11.json",
+    "reports/agent1-old-dictionary-source-family-membership-manifest-2026-06-05.json",
+    "data/definitions/definition-expansion-gap-manifest.json",
+    "data/definitions/hud-route-lookup/manifest.json"
+  ],
+  "current_findings": {
+    "coverage_work_rows": 1353,
+    "old_dictionary_source_family_join_current_matches_work_count": 1,
+    "matched_work_ids": [
+      "orot"
+    ],
+    "commercial_clean_candidate_matches": {
+      "work_count": 1,
+      "token_ids_nonexclusive": 5,
+      "occurrences_nonexclusive": 46
+    },
+    "noncommercial_educational_candidate_matches": {
+      "work_count": 1,
+      "token_ids_nonexclusive": 2,
+      "occurrences_nonexclusive": 25
+    },
+    "blocked_or_needs_review_matches": {
+      "work_count": 0,
+      "token_ids_nonexclusive": 0,
+      "occurrences_nonexclusive": 0
+    },
+    "interpretation": "The current old-dictionary evidence packets are not yet a corpus-wide active source layer. They are narrow preserved evidence, currently matching Orot by token id, and must not be treated as 1400-work usable output."
+  },
+  "pipeline_steps": [
+    {
+      "pipeline_step": "dictionary_nc_corpus_matrix",
+      "purpose": "Join lane-preserved old-dictionary token ids against current unresolved rows across all coverage works.",
+      "input_files": [
+        "reports/a13-old-dictionary-safe-add-contract-2026-06-11.json",
+        "reports/agent1-old-dictionary-source-family-membership-manifest-2026-06-05.json",
+        "data/reports/coverage/*.json",
+        "data/lexical/unresolved/*.csv"
+      ],
+      "command_script": "node scripts/build_a14_dictionary_nc_corpus_coverage_matrix.mjs",
+      "timeout_ms": 120000,
+      "output_files": [
+        "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.json",
+        "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.md"
+      ],
+      "schema_counts": "1353 coverage rows; 1353 unresolved CSVs; lane-preserved dictionary matches by work/source_family/license_lane",
+      "validator_check": "node scripts/validate_a14_dictionary_nc_corpus_coverage_matrix.mjs",
+      "package_bucket": "dictionary_nc_evidence_matrix",
+      "handoff_owner": "A14/A10",
+      "blocker": "none for evidence matrix; blocked for active output",
+      "stop_condition": "Matrix validates or returns exact count/boundary mismatch."
+    },
+    {
+      "pipeline_step": "corpus_wide_dictionary_candidate_generation",
+      "purpose": "Create corpus-wide candidate rows from actual dictionary/source data without reader/preHUD activation.",
+      "input_files": [
+        "A1-approved dictionary source-family files",
+        "A6 boundary packet",
+        "data/lexical/token-index.json",
+        "data/lexical/token-indexes/*.json"
+      ],
+      "command_script": "missing: dedicated non-active dictionary candidate builder",
+      "timeout_ms": 300000,
+      "output_files": [
+        "reports/<dictionary-candidate-matrix>.json",
+        "reports/<dictionary-candidate-matrix>.md"
+      ],
+      "schema_counts": "token_id | work_id | normalized_surface | source_family | license_lane | relation_class | occurrence_count | transform_allowed | display_eligible=false | prehud_allowed=false | blocker",
+      "validator_check": "missing: dedicated dictionary candidate matrix validator",
+      "package_bucket": "source_license_evidence",
+      "handoff_owner": "A1/A6 before A2",
+      "blocker": "No current BDB/Jastrow/Klein source-layer integration contract for corpus-wide active candidate generation; old packets are evidence-only.",
+      "stop_condition": "A1/A6 clear an exact row/subset contract or return source/custody/license blocker."
+    },
+    {
+      "pipeline_step": "source_boundary_clearance",
+      "purpose": "Separate commercial-clean candidates, NC educational candidates, blocked review candidates, and metadata-only evidence before transforms.",
+      "input_files": [
+        "dictionary candidate matrix",
+        "source/license/custody evidence",
+        "A1 lane manifest"
+      ],
+      "command_script": "A6 boundary review packet, no active render command",
+      "timeout_ms": 120000,
+      "output_files": [
+        "reports/<dictionary-boundary-verdict>.json",
+        "reports/<dictionary-boundary-verdict>.md"
+      ],
+      "schema_counts": "commercial_clean_candidate rows; noncommercial_educational_candidate rows; blocked_or_needs_review rows; allowed_transform_rows_now",
+      "validator_check": "JSON parse + lane invariants + no candidate text emitted unless cleared",
+      "package_bucket": "source_license_evidence",
+      "handoff_owner": "A6",
+      "blocker": "allowed_transform_rows_now is currently 0 in old-dictionary source-family manifest.",
+      "stop_condition": "Exact allowed row subset exists, or active transform remains blocked."
+    },
+    {
+      "pipeline_step": "definition_transform_readiness",
+      "purpose": "Turn only cleared rows into non-public candidate transform inputs.",
+      "input_files": [
+        "A1/A6-cleared row subset",
+        "definition transform readiness packet",
+        "display gate policy"
+      ],
+      "command_script": "missing until A1/A6 clearance exists",
+      "timeout_ms": 120000,
+      "output_files": [
+        "reports/<definition-transform-readiness>.json",
+        "reports/<definition-transform-readiness>.md"
+      ],
+      "schema_counts": "candidate rows; transform_allowed rows; display_eligible rows; prehud_allowed rows",
+      "validator_check": "display gate validator must reject NC, lemma-only, morphology/form-reference, usage-only, and unsafe source text from preHUD",
+      "package_bucket": "definition_gap_manifest",
+      "handoff_owner": "A2/A3/A10",
+      "blocker": "No cleared transform rows yet for old dictionaries/NC.",
+      "stop_condition": "Transform readiness validates with preHUD fail-closed or returns exact blocker."
+    },
+    {
+      "pipeline_step": "example_work_lock",
+      "purpose": "Choose a small set of example works only after candidate rows exist and page output invariants can be validated.",
+      "input_files": [
+        "dictionary candidate matrix",
+        "page_output_pipeline_v1",
+        "render_intake_packet_v1"
+      ],
+      "command_script": "node scripts/validate_route_hud_page.mjs --page <example pages>",
+      "timeout_ms": 120000,
+      "output_files": [
+        "reports/<example-lock-proof>.json",
+        "reports/<example-lock-proof>.md"
+      ],
+      "schema_counts": "example pages; route-backed display rows; TBD rows; evidence-only rows; NC-isolated rows",
+      "validator_check": "Route HUD validator + display-gate validator + scoped git diff --check",
+      "package_bucket": "page_html",
+      "handoff_owner": "A4/A10/A5",
+      "blocker": "Current only lockable old-dictionary evidence example is Orot; no corpus-wide candidate rowset exists.",
+      "stop_condition": "Examples validate under page/HUD contract or remain evidence-only."
+    }
+  ],
+  "review_order": [
+    "Review matrix result and accept that current old-dictionary evidence is not yet 1400-work active output.",
+    "Ask A1/A6 for exact source/custody/row subset clearance for corpus-wide candidate generation.",
+    "Build non-active dictionary candidate matrix across all works.",
+    "Select 3-5 example works from real candidate impact.",
+    "Run page_output_pipeline_v1 and Route HUD validators on examples only after candidate display gates exist.",
+    "Then discuss expansion."
+  ],
+  "stop_condition": "A14/A10 have a validated evidence matrix and a runnable blocker-shaped pipeline for the next source-boundary step; no active dictionary/NC output is claimed."
+}
