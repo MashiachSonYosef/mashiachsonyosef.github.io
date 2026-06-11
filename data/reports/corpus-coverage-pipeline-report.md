@@ -1,6 +1,6 @@
 # Corpus Coverage Pipeline Report
 
-Generated: 2026-06-11T11:13:34.987Z
+Generated: 2026-06-11T12:16:37.398Z
 
 ## Summary
 
@@ -9,10 +9,10 @@ Generated: 2026-06-11T11:13:34.987Z
 - Hebrew tokens: 69856069
 - Unique surface forms: 1172625
 - Unique normalized forms: 792770
-- Lexical coverage: 57.36%
-- Strict tokens: 25732475
+- Lexical coverage: 57.39%
+- Strict tokens: 25756285
 - Potential tokens: 14337344
-- Unresolved tokens: 29786250
+- Unresolved tokens: 29762440
 
 ## Generated Outputs
 
@@ -47,7 +47,7 @@ Generated: 2026-06-11T11:13:34.987Z
 20. לעיל (לעיל) — 43183
 21. דאם (דאמ) — 39658
 22. מ״ש (מ״ש) — 38587
-23. וזהו (וזהו) — 35920
+23. וזהו (וזהו) — 35919
 24. הכי (הכי) — 34486
 25. ע״א (ע״א) — 34165
 
