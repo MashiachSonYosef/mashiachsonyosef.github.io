@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "agent2_future_workset_intake_packet",
+  "workset_id": "fixture-next-agent2-workset-shape",
+  "target_work_or_subset": "fixture work/book/subset for Agent 2 intake validation only",
+  "input_artifacts": [
+    "reports/agent2-weekly-lexicon-current-handoff-bundle-2026-06-04.json"
+  ],
+  "command_or_expected_script": "node scripts/example_agent2_future_builder.mjs --input=reports/example.json --output=reports/example-output.json",
+  "output_path": "reports/example-output.json",
+  "output_schema": "agent2_future_nonpublic_reader_hint_or_transform_packet",
+  "validator_or_gate": "node scripts/example_agent2_future_validator.mjs reports/example-output.json",
+  "counts": {
+    "rows": 0,
+    "occurrences": 0
+  },
+  "source_lane_fields": [
+    "source_family",
+    "source_name",
+    "license_label",
+    "license_lane",
+    "source_url_or_citation",
+    "agent6_boundary_required"
+  ],
+  "allowed_license_lanes": [
+    "commercial_clean_candidate",
+    "noncommercial_educational_candidate",
+    "metadata_or_link_only",
+    "blocked_or_needs_review"
+  ],
+  "nc_partition_allowed": true,
+  "required_nc_flags": {
+    "derived_from_nc": true,
+    "commercial_export_allowed": false,
+    "attribution_required": true,
+    "owner_use_attestation": "noncommercial_educational_zero_profit_zero_kickback",
+    "corpus_contamination": false
+  },
+  "agent6_boundary_question": "If future rows are non-zero, may these exact row/subset candidates proceed within their preserved source/license lane under zero authority/public/answer posture?",
+  "stop_condition": "Stop after one bounded package or exact blocker while preserving zero authority/public/answer emissions.",
+  "zero_boundary": {
+    "definition_authority": false,
+    "usage_as_definition_authority": false,
+    "answer_acceptance": false,
+    "answer_eligible": false,
+    "accepted_gloss_text": false,
+    "public_reader_output": false,
+    "route_shard_edit": false,
+    "public_runtime_mutation": false,
+    "publication_readiness": false,
+    "source_license_acceptance": false,
+    "qa_acceptance": false,
+    "definition_content_storage": false,
+    "nc_commercial_authorization": false
+  }
+}

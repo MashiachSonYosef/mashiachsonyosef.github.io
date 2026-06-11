@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "artifact_type": "translation_memory_index",
+  "generated_at": "2026-05-31T16:25:40.893Z",
+  "generator": "scripts/build_translation_memory_from_options.mjs",
+  "contract": "data/translation-memory/translation-decision-contract.json",
+  "policy": "Early scaffold for future translation mode. Rows are not public translations; they preserve decision scaffolding and evidence links captured during workbench mode.",
+  "upstream_artifacts": [
+    {
+      "artifact_type": "hud_route_release_stamp",
+      "path": "data/definitions/hud-route-release-stamp.json",
+      "release_id": "hud-route-rc-2026-05-31T15-22-27-823Z",
+      "generated_at": "2026-05-31T15:33:11.728Z",
+      "status": "release_candidate"
+    },
+    {
+      "artifact_type": "workbench_public_handoff_index",
+      "path": "data/workbench-evidence/public-handoff-index.json",
+      "generated_at": "2026-05-31T16:23:01.987Z",
+      "selected_targets": 55,
+      "reader_facing_eligible_rows": 2390
+    },
+    {
+      "artifact_type": "translation_options_scaffold",
+      "path": "data/translation-options/orot-sample.json",
+      "generated_at": "2026-05-01T16:16:04.633Z",
+      "export_type": "translation_options_scaffold"
+    }
+  ],
+  "counts": {
+    "decision_files": 1,
+    "decision_rows": 40,
+    "accepted": 0,
+    "candidate": 8,
+    "ambiguous": 17,
+    "rejected": 0,
+    "blocked": 0,
+    "needs_review": 15
+  },
+  "decision_files": [
+    {
+      "path": "data/translation-memory/occurrence-decisions/orot-sample.jsonl",
+      "scope": "token",
+      "work_id": "orot",
+      "status": "scaffold_from_translation_options",
+      "row_count": 40,
+      "notes": "Generated from existing translation-options scaffold. Not a translation release."
+    }
+  ],
+  "source_rows": [
+    {
+      "source_name": "Project-authored translation memory index",
+      "source_family": "workspace",
+      "source_id": "translation-memory-index-v1",
+      "source_url": "local:data/translation-memory/translation-memory-index.json",
+      "license": "project-authored / CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "fields_used": [
+        "index schema",
+        "decision file registry",
+        "counts"
+      ],
+      "notes": "Index only. It does not publish a translation."
+    }
+  ]
+}

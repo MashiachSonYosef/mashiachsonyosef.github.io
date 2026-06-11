@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "artifact_type": "definition_workbench_status_contract_fixtures",
+  "policy": "Regression fixtures for Definition Workbench machine status semantics. Machine-derived rows may describe route shape, but they must not claim reviewed lexical authority.",
+  "expected_machine_complete_label": "single_answer_source_complete",
+  "expected_machine_review_status": "unreviewed_machine_sample",
+  "reserved_review_status": "verified",
+  "fixtures": [
+    {
+      "id": "single-answer-source-complete-valid",
+      "expect": "pass",
+      "row": {
+        "status": "single_answer_source_complete",
+        "review_status": "unreviewed_machine_sample",
+        "answer_card_count": 1,
+        "evidence_only_card_count": 2,
+        "route_card_count": 3,
+        "distinct_answer_definition_count": 1,
+        "multi_answer": false,
+        "source_license_complete": true,
+        "publication_boundary": {
+          "boundary_status": "blocked_no_render",
+          "reader_facing": false,
+          "ui_assignment": false,
+          "publication_claim": false,
+          "clears_publication_readiness": false,
+          "reviewed_lexical_authority": false,
+          "accepted_translation_output": false,
+          "source_publication": false,
+          "public_lookup_artifact": false,
+          "does_not_clear": [
+            "reviewed_lexical_authority",
+            "accepted_translation",
+            "publication_readiness"
+          ]
+        }
+      }
+    },
+    {
+      "id": "machine-status-verified-rejected",
+      "expect": "fail",
+      "expected_issue": "machine status must not be verified",
+      "row": {
+        "status": "verified",
+        "review_status": "unreviewed_machine_sample",
+        "answer_card_count": 1,
+        "evidence_only_card_count": 0,
+        "route_card_count": 1,
+        "distinct_answer_definition_count": 1,
+        "multi_answer": false,
+        "source_license_complete": true,
+        "publication_boundary": {
+          "boundary_status": "blocked_no_render",
+          "reader_facing": false,
+          "ui_assignment": false,
+          "publication_claim": false,
+          "clears_publication_readiness": false,
+          "reviewed_lexical_authority": false,
+          "accepted_translation_output": false,
+          "source_publication": false,
+          "public_lookup_artifact": false,
+          "does_not_clear": [
+            "reviewed_lexical_authority",
+            "accepted_translation",
+            "publication_readiness"
+          ]
+        }
+      }
+    },
+    {
+      "id": "machine-review-status-verified-rejected",
+      "expect": "fail",
+      "expected_issue": "review_status=verified is reserved",
+      "row": {
+        "status": "single_answer_source_complete",
+        "review_status": "verified",
+        "answer_card_count": 1,
+        "evidence_only_card_count": 0,
+        "route_card_count": 1,
+        "distinct_answer_definition_count": 1,
+        "multi_answer": false,
+        "source_license_complete": true,
+        "publication_boundary": {
+          "boundary_status": "blocked_no_render",
+          "reader_facing": false,
+          "ui_assignment": false,
+          "publication_claim": false,
+          "clears_publication_readiness": false,
+          "reviewed_lexical_authority": false,
+          "accepted_translation_output": false,
+          "source_publication": false,
+          "public_lookup_artifact": false,
+          "does_not_clear": [
+            "reviewed_lexical_authority",
+            "accepted_translation",
+            "publication_readiness"
+          ]
+        }
+      }
+    },
+    {
+      "id": "complete-status-needs-source-license",
+      "expect": "fail",
+      "expected_issue": "single_answer_source_complete requires source_license_complete=true",
+      "row": {
+        "status": "single_answer_source_complete",
+        "review_status": "unreviewed_machine_sample",
+        "answer_card_count": 1,
+        "evidence_only_card_count": 0,
+        "route_card_count": 1,
+        "distinct_answer_definition_count": 1,
+        "multi_answer": false,
+        "source_license_complete": false,
+        "publication_boundary": {
+          "boundary_status": "blocked_no_render",
+          "reader_facing": false,
+          "ui_assignment": false,
+          "publication_claim": false,
+          "clears_publication_readiness": false,
+          "reviewed_lexical_authority": false,
+          "accepted_translation_output": false,
+          "source_publication": false,
+          "public_lookup_artifact": false,
+          "does_not_clear": [
+            "reviewed_lexical_authority",
+            "accepted_translation",
+            "publication_readiness"
+          ]
+        }
+      }
+    },
+    {
+      "id": "multi-answer-warning-preserved",
+      "expect": "pass",
+      "row": {
+        "status": "conflicting",
+        "review_status": "unreviewed_machine_sample",
+        "answer_card_count": 3,
+        "evidence_only_card_count": 1,
+        "route_card_count": 4,
+        "distinct_answer_definition_count": 2,
+        "multi_answer": true,
+        "source_license_complete": true,
+        "publication_boundary": {
+          "boundary_status": "blocked_no_render",
+          "reader_facing": false,
+          "ui_assignment": false,
+          "publication_claim": false,
+          "clears_publication_readiness": false,
+          "reviewed_lexical_authority": false,
+          "accepted_translation_output": false,
+          "source_publication": false,
+          "public_lookup_artifact": false,
+          "does_not_clear": [
+            "reviewed_lexical_authority",
+            "accepted_translation",
+            "publication_readiness"
+          ]
+        }
+      }
+    },
+    {
+      "id": "publication-boundary-claim-rejected",
+      "expect": "fail",
+      "expected_issue": "publication_boundary.publication_claim must be false",
+      "row": {
+        "status": "single_answer_source_complete",
+        "review_status": "unreviewed_machine_sample",
+        "answer_card_count": 1,
+        "evidence_only_card_count": 0,
+        "route_card_count": 1,
+        "distinct_answer_definition_count": 1,
+        "multi_answer": false,
+        "source_license_complete": true,
+        "publication_boundary": {
+          "boundary_status": "blocked_no_render",
+          "reader_facing": false,
+          "ui_assignment": false,
+          "publication_claim": true,
+          "clears_publication_readiness": false,
+          "reviewed_lexical_authority": false,
+          "accepted_translation_output": false,
+          "source_publication": false,
+          "public_lookup_artifact": false,
+          "does_not_clear": [
+            "reviewed_lexical_authority",
+            "accepted_translation",
+            "publication_readiness"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ui-assignment-claim-rejected",
+      "expect": "fail",
+      "expected_issue": "publication_boundary.ui_assignment must be false",
+      "row": {
+        "status": "single_answer_source_complete",
+        "review_status": "unreviewed_machine_sample",
+        "answer_card_count": 1,
+        "evidence_only_card_count": 0,
+        "route_card_count": 1,
+        "distinct_answer_definition_count": 1,
+        "multi_answer": false,
+        "source_license_complete": true,
+        "publication_boundary": {
+          "boundary_status": "blocked_no_render",
+          "reader_facing": false,
+          "ui_assignment": true,
+          "publication_claim": false,
+          "clears_publication_readiness": false,
+          "reviewed_lexical_authority": false,
+          "accepted_translation_output": false,
+          "source_publication": false,
+          "public_lookup_artifact": false,
+          "does_not_clear": [
+            "reviewed_lexical_authority",
+            "accepted_translation",
+            "publication_readiness"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -2,9 +2,26 @@
   "schema_version": 1,
   "artifact_type": "hud_route_release_stamp",
   "release_id": "hud-route-rc-2026-05-31T16-55-29-957Z",
-  "generated_at": "2026-05-31T17:28:57.522Z",
+  "generated_at": "2026-06-01T16:00:31.659Z",
   "generator": "scripts/stamp_hud_route_release.mjs",
-  "policy": "Release-candidate stamp for frozen route inputs, regenerated HUD route store, local lookup, and public lookup. No new route family should be added until this stamp validates.",
+  "policy": "Release-candidate stamp for frozen route inputs, regenerated HUD route store, local lookup, and public lookup. This is route-data reconciliation only, not publication readiness. No new route family should be added until this stamp validates.",
+  "publication_boundary": {
+    "publication_status": "blocked_no_render",
+    "validates": [
+      "hud_route_release_stamp",
+      "public_hud_route_lookup_reconciliation"
+    ],
+    "does_not_clear": [
+      "translation_output",
+      "source_publication",
+      "public_lexical_export_reuse",
+      "accepted_definition_authority"
+    ],
+    "answer_eligible_scope": "hud_answer_slot_only_not_translation_or_publication_readiness",
+    "release_candidate_scope": "route_data_release_candidate_not_publication_readiness",
+    "warning_status_blocks_publication_claim": true,
+    "current_route_inputs_reconciled": "stamp_uses_frozen_inputs_validate_drift_separately"
+  },
   "frozen_inputs": {
     "freeze_manifest": ".local-cache/definition-route-freeze/current/route-input-freeze.json",
     "release_id": "hud-route-rc-2026-05-31T16-55-29-957Z",
@@ -136,11 +153,28 @@
   "public_lookup": {
     "manifest_path": "data/definitions/hud-route-lookup/manifest.json",
     "published_at": "2026-05-31T17:04:16.011Z",
+    "publication_boundary": {
+      "publication_status": "blocked_no_render",
+      "validates": [
+        "public_hud_route_lookup_manifest",
+        "public_hud_route_lookup_shards"
+      ],
+      "does_not_clear": [
+        "translation_output",
+        "source_publication",
+        "public_lexical_export_reuse",
+        "accepted_definition_authority"
+      ],
+      "answer_eligible_scope": "hud_answer_slot_only_not_translation_or_publication_readiness",
+      "route_lookup_scope": "definition_route_lookup_data_not_publication_readiness",
+      "warning_status_blocks_publication_claim": true,
+      "current_route_inputs_reconciled": "not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift"
+    },
     "file": {
       "path": "data/definitions/hud-route-lookup/manifest.json",
-      "byte_length": 1599371,
-      "sha256": "558f99c398790c05c9e99593dd7552117f6b1b2936b4d0a7c4598a0dd75853a1",
-      "modified_at": "2026-05-31T17:04:16.024Z"
+      "byte_length": 1600063,
+      "sha256": "3d0c5cb147e3b87e63a032a69802174f86b4eb3aff41ed6037ae758a14dded7a",
+      "modified_at": "2026-06-01T15:57:23.505Z"
     },
     "counts": {
       "cards_read": 539661,

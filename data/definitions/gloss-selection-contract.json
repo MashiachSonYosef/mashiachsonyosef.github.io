@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "contract_id": "gloss-selection-contract",
+  "title": "Reader Workbench gloss selection contract",
+  "purpose": "Local-only study selections over HUD route cards. These records support under-token gloss display and passage assembly without creating translation-memory rows or publication output.",
+  "storage_policy": "Browser-local first. Store in IndexedDB where available, localStorage fallback is allowed, and JSON export/import is the only v1 portability path.",
+  "publication_policy": "Every row must carry publication_status=not_a_translation. Gloss selections are study annotations and must not be interpreted as accepted translations.",
+  "required_selection_fields": [
+    "schema_version",
+    "artifact_type",
+    "selection_id",
+    "work_id",
+    "unit_id",
+    "source_ref",
+    "surface_occurrence_id",
+    "surface_token_id",
+    "surface_token_key",
+    "surface_text",
+    "normalized",
+    "selected_card_id",
+    "selected_definition",
+    "answer_eligible",
+    "answer_role",
+    "confidence_percent",
+    "source_rows",
+    "study_status",
+    "publication_status",
+    "created_at",
+    "updated_at"
+  ],
+  "required_assembly_fields": [
+    "schema_version",
+    "artifact_type",
+    "work_id",
+    "unit_id",
+    "source_ref",
+    "source_text_hash",
+    "selection_ids",
+    "assembled_gloss",
+    "assembly_mode",
+    "publication_status"
+  ],
+  "allowed_study_statuses": [
+    "draft",
+    "review",
+    "user_final"
+  ],
+  "allowed_publication_statuses": [
+    "not_a_translation"
+  ],
+  "selection_rules": [
+    "Under-token glosses appear only after a user selects a card or imports a local study sheet.",
+    "answer_eligible means eligible for the HUD answer slot, not accepted definition authority or publication readiness.",
+    "Usage evidence cards remain evidence by default and must not be labeled as selected definitions unless linked to a definition card.",
+    "User notes are private study notes and are not evidence rows.",
+    "Source/license rows from selected cards must be retained in exports."
+  ],
+  "source_rows": [
+    {
+      "source_name": "Project-authored Reader Workbench gloss selection contract",
+      "source_family": "workspace",
+      "source_id": "gloss-selection-contract-v1",
+      "source_url": "local:data/definitions/gloss-selection-contract.json",
+      "license": "project-authored / CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "fields_used": [
+        "schema",
+        "local storage policy",
+        "publication boundary"
+      ],
+      "notes": "Coordination contract only. It creates no translation output."
+    }
+  ]
+}

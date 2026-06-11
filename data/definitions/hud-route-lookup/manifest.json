@@ -4,6 +4,23 @@
   "source_local_manifest": ".local-cache/hud-route-lookup/manifest.json",
   "public_lookup": "data/definitions/hud-route-lookup",
   "lookup_strategy": "Compute the normalized-token prefix, fetch one keyed JSON shard, then read routes_by_normalized[normalized].",
+  "publication_boundary": {
+    "publication_status": "blocked_no_render",
+    "validates": [
+      "public_hud_route_lookup_manifest",
+      "public_hud_route_lookup_shards"
+    ],
+    "does_not_clear": [
+      "translation_output",
+      "source_publication",
+      "public_lexical_export_reuse",
+      "accepted_definition_authority"
+    ],
+    "answer_eligible_scope": "hud_answer_slot_only_not_translation_or_publication_readiness",
+    "route_lookup_scope": "definition_route_lookup_data_not_publication_readiness",
+    "warning_status_blocks_publication_claim": true,
+    "current_route_inputs_reconciled": "not_checked_by_public_lookup_manifest_validate_release_stamp_and_drift"
+  },
   "prefix_length": 3,
   "max_shard_bytes_policy": 10485760,
   "counts": {

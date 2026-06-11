@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "contract_id": "translation-decision-contract",
+  "title": "Translation decision memory contract",
+  "purpose": "Future translation mode should compose from workbench-captured decisions and evidence instead of collecting new lexical, morphology, usage, or license data.",
+  "license_policy": "Every decision row must keep source_rows for the source text and any definition, route, morphology, or usage evidence used. Imported copyrighted English translations are not allowed as evidence.",
+  "product_policy": "Workbench mode may expose dense evidence. Translation mode will later filter by decision_status, license_safe, and evidence links.",
+  "decision_statuses": [
+    "accepted",
+    "candidate",
+    "ambiguous",
+    "rejected",
+    "blocked",
+    "needs_review"
+  ],
+  "scopes": [
+    "token",
+    "phrase",
+    "clause",
+    "sentence"
+  ],
+  "required_row_fields": [
+    "schema_version",
+    "artifact_type",
+    "decision_id",
+    "work_id",
+    "unit_id",
+    "source_ref",
+    "surface_occurrence_id",
+    "surface_token_id",
+    "surface_text",
+    "normalized",
+    "source_anchor",
+    "scope",
+    "decision_status",
+    "english_rendering",
+    "literal_gloss",
+    "idiomatic_gloss",
+    "route_card_ids",
+    "usage_evidence_ids",
+    "morphology_ids",
+    "ambiguity_notes",
+    "rejection_reason",
+    "license_safe",
+    "license_profile",
+    "not_a_translation_yet",
+    "source_rows",
+    "created_by",
+    "created_at",
+    "validated_by"
+  ],
+  "optional_row_fields": [
+    "candidate_renderings",
+    "translation_notes",
+    "upstream_artifacts",
+    "source_option_status",
+    "source_lexical_status",
+    "source_anchor_quality"
+  ],
+  "source_anchor_policy": "Every decision row must preserve a source_ref, unit_id, token_position, stable unit text hash, and W3C Web Annotation inspired text selectors. TextQuoteSelector exact/prefix/suffix is the portability anchor and should preserve the source text's own quote/geresh spelling; validators may normalize display-equivalent Hebrew quotes before comparing to surface_text. TextPositionSelector is useful but brittle and must be backed by the quote selector.",
+  "license_profile_policy": "license_safe is only a workbench safety gate. license_profile.publication_class distinguishes publication_ok, publication_ok_with_attribution, workbench_ok_publication_review, and blocked_until_license_review. Future accepted translation rows may not rely on workbench_ok_publication_review or blocked_until_license_review sources for direct rendering unless a separate output-license decision exists.",
+  "translation_safe_rendering_rule": "Only decision_status=accepted, license_safe=true, and license_profile.direct_translation_use_ok=true rows may be used directly by a future translation renderer. Candidate and ambiguous rows may be shown in workbench mode but require review before translation publication.",
+  "workbench_display_rule": "Workbench mode may show accepted, candidate, ambiguous, and needs_review rows if each row is visibly labeled by decision_status and evidence type.",
+  "forbidden_row_fields": [
+    "imported_translation",
+    "source_translation",
+    "copyrighted_translation",
+    "ai_as_citation",
+    "license_override"
+  ],
+  "source_rows": [
+    {
+      "source_name": "Project-authored translation decision memory contract",
+      "source_family": "workspace",
+      "source_id": "translation-decision-contract-v1",
+      "source_url": "local:data/translation-memory/translation-decision-contract.json",
+      "license": "project-authored / CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "fields_used": [
+        "schema",
+        "status policy",
+        "license policy",
+        "future translation memory policy"
+      ],
+      "notes": "Coordination contract only. No external translation text is imported."
+    }
+  ]
+}

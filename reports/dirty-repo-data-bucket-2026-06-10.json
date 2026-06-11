@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "artifact_type": "dirty_repo_data_bucket_receipt",
+  "generated_on": "2026-06-10",
+  "status": "ready_for_scoped_staging",
+  "scope": {
+    "bucket": "data_artifacts",
+    "candidate_paths_staged": 458,
+    "excluded_paths": [
+      {
+        "path": "data/lexical/crossmatches/daniel.json",
+        "reason": "generated_at_only_diff",
+        "boundary": "crossmatch evidence remains HUD evidence/navigation only and is not preHUD display authority"
+      }
+    ],
+    "deletions_performed": 0
+  },
+  "data_shape": {
+    "json_files": 456,
+    "csv_files": 1,
+    "jsonl_files": 1,
+    "parse_failures": 0,
+    "page_surfaces_validated": 26
+  },
+  "validated_pages": [
+    "other/beer-hagolah/index.html",
+    "tosefta/brief-commentary-on-peah/index.html",
+    "tosefta/brief-commentary-on-rosh-hashanah/index.html",
+    "tosefta/brief-commentary-on-shabbat/index.html",
+    "tosefta/brief-commentary-on-shekalim/index.html",
+    "tosefta/brief-commentary-on-sheviit/index.html",
+    "tosefta/brief-commentary-on-sotah/index.html",
+    "tosefta/brief-commentary-on-taanit/index.html",
+    "tosefta/brief-commentary-on-terumot/index.html",
+    "tosefta/brief-commentary-on-yevamot/index.html",
+    "tosefta/brief-commentary-on-yoma/index.html",
+    "other/derashat-shabbat-hagadol/index.html",
+    "other/derush-al-hatorah/index.html",
+    "other/gevurot-hashem/index.html",
+    "liturgy/machzor-rosh-hashanah-ashkenaz/index.html",
+    "liturgy/machzor-rosh-hashanah-ashkenaz-linear/index.html",
+    "liturgy/machzor-yom-kippur-ashkenaz-linear/index.html",
+    "other/ner-mitzvah/index.html",
+    "other/netivot-olam/index.html",
+    "other/netzach-yisrael/index.html",
+    "halakhah/pitchei-teshuva-on-shulchan-arukh-even-haezer/index.html",
+    "halakhah/rabbi-akiva-eiger-on-shulchan-arukh-even-haezer/index.html",
+    "liturgy/selichot-nusach-lita-linear/index.html",
+    "liturgy/shabbat-siddur-sefard-linear/index.html",
+    "liturgy/siddur-sefard/index.html",
+    "halakhah/turei-zahav-on-shulchan-arukh-even-haezer/index.html"
+  ],
+  "validators": [
+    {
+      "command": "git diff --check -- data",
+      "status": "passed_with_crlf_warnings_only"
+    },
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page <26 mapped page surfaces>",
+      "status": "passed"
+    },
+    {
+      "command": "node scripts/validate_public_hud_route_lookup.mjs --skip-release-stamp",
+      "status": "passed"
+    },
+    {
+      "command": "node scripts/validate_hud_route_lookup.mjs --fixtures-only",
+      "status": "passed"
+    },
+    {
+      "command": "node scripts/validate_hud_route_fixtures.mjs",
+      "status": "passed"
+    },
+    {
+      "command": "node scripts/validate_hud_route_store.mjs",
+      "status": "passed"
+    },
+    {
+      "command": "node scripts/validate_definition_workbench_sample.mjs",
+      "status": "passed"
+    },
+    {
+      "command": "node scripts/validate_gloss_selection_contract.mjs",
+      "status": "passed",
+      "note": "timestamp-only report output not staged in this bucket"
+    },
+    {
+      "command": "node scripts/validate_translation_memory.mjs",
+      "status": "passed"
+    }
+  ],
+  "boundary": {
+    "source_license_legal_acceptance": false,
+    "definition_authority_acceptance": false,
+    "product_acceptance": false,
+    "answer_or_accepted_text_acceptance": false,
+    "public_runtime_or_release_acceptance": false,
+    "crossmatch_prehud_promotion": false
+  }
+}

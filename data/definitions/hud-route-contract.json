@@ -10,14 +10,17 @@
     "show_failed_routes_as_tiny_audit": true,
     "source_license_expanded_by_default": true,
     "supports_unbounded_cards": true,
-    "supports_horizontal_card_lanes": true,
+    "supports_horizontal_card_lanes": false,
+    "supports_compact_card_grids": true,
     "close_behavior": "explicit close button, Escape, or backdrop only; never close when an interior source/license area is clicked",
-    "forbidden_label_policy": "Route labels must name the actual route family. Vague maybe-labels are blocked."
+    "forbidden_label_policy": "Route labels must name the actual route family. Vague maybe-labels are blocked.",
+    "full_explanation_policy": "The full explanation view may preserve multiple surface labels or alternate gloss forms when they explain the same HUD gloss selection.",
+    "prehud_clean_policy": "Pre-HUD, compact cards, preview labels, and answer chips must show the most understandable surface-level version of the actual HUD gloss selection. Put alternate surface labels in the full explanation, not the pre-HUD label."
   },
   "route_sections": [
     {
       "section_id": "answer",
-      "title": "Best actual hit",
+      "title": "Definition",
       "display_role": "answer",
       "allows_placeholders": false
     },
@@ -34,16 +37,16 @@
       "empty_display": "audit_trace_only"
     },
     {
-      "section_id": "lemma",
-      "title": "Lemma matches",
-      "display_role": "evidence",
-      "empty_display": "audit_trace_only"
-    },
-    {
       "section_id": "morphology",
       "title": "Word-part breakdown",
       "display_role": "evidence",
       "empty_display": "omit"
+    },
+    {
+      "section_id": "lemma",
+      "title": "Lemma matches",
+      "display_role": "evidence",
+      "empty_display": "audit_trace_only"
     },
     {
       "section_id": "subphrase_evidence",
@@ -71,7 +74,7 @@
     },
     {
       "section_id": "source_license",
-      "title": "Full source and license rows",
+      "title": "Sources and licenses",
       "display_role": "provenance",
       "empty_display": "audit_trace_only"
     },
@@ -87,7 +90,7 @@
     "strict_language_route_priority_bonus": 20,
     "priority_bonus_changes_order_only": true,
     "soft_route_handicap": 20,
-    "adjusted_score_formula": "strict Hebrew, strict Aramaic, and morphology routes use raw score; lemma, subphrase, biblical paraphrase, and citable paraphrase use raw score minus 20",
+    "adjusted_score_formula": "strict Hebrew, strict Aramaic, and answer-eligible morphology routes use raw score; lemma, subphrase, biblical paraphrase, and citable paraphrase use raw score minus 20",
     "route_sort_order": "Sort by adjusted_score first, then raw_score, then route family tie-breakers.",
     "fallback_route_can_win_when_no_strict_route_exists": true,
     "biblical_paraphrase_and_citable_paraphrase_are_separate_families": true
@@ -107,6 +110,7 @@
     "display_label",
     "hebrew",
     "definition",
+    "full_explanation",
     "plain_note",
     "source_rows"
   ]
