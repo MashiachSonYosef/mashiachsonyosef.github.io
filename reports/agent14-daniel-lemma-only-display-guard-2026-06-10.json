@@ -1,0 +1,58 @@
+{
+  "artifact_type": "daniel_lemma_only_display_guard",
+  "status": "fixed_scoped_display_gate_repair",
+  "generated_at": "2026-06-10T20:54:22.1853860-04:00",
+  "files_changed": [
+    "assets/js/reader-workbench.js",
+    "reports/agent14-daniel-lemma-only-display-guard-2026-06-10.md",
+    "reports/agent14-daniel-lemma-only-display-guard-2026-06-10.json"
+  ],
+  "issue_found": "Daniel route lookup is fail-closed with zero route cards; risky path was stale/imported local selections and HUD answer selection accepting evidence-only route families without explicit preHUD eligibility.",
+  "evidence_type": {
+    "strict_route": false,
+    "lemma_only_or_crossmatch": true,
+    "hud_inspectable": true,
+    "prehud_allowed": false
+  },
+  "prehud_decision": "Fail closed to TBD unless current route/default-selection/display gate marks a safe selectable route-backed definition.",
+  "repair": [
+    "Added evidence-only route-family guard for lemma, morphology/form-reference, usage-only, and phrase-evidence routes.",
+    "Routed HUD answer selection and saved-gloss choices through isPrehudDisplayEligibleCard().",
+    "Required stored/imported selections to carry display_eligible and prehud_allowed.",
+    "Rejected stored/imported selections with evidence-only route labels or unsafe preHUD display text."
+  ],
+  "validators": [
+    {
+      "command": "node --check assets/js/reader-workbench.js",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page tanakh/daniel/index.html --page orot/index.html --page tanakh/ruth/index.html",
+      "result": "passed"
+    },
+    {
+      "command": "inline display-gate static guard",
+      "result": "passed",
+      "checks": 8
+    }
+  ],
+  "browser_proof": {
+    "url": "http://127.0.0.1:8801/tanakh/daniel/?daniel-display-guard=20260610b",
+    "prehud_rows": 5456,
+    "lexical_tokens": 5456,
+    "tbd_gloss_rows": 5456,
+    "tbd_match_cells": 5456,
+    "populated_prehud_rows": 0,
+    "god_yhwh_name_prehud_rows": 0,
+    "enabled_gloss_buttons": 0,
+    "definition_placeholder_visible": true,
+    "crossmatch_section_visible": true
+  },
+  "boundary": [
+    "no definition authority",
+    "no accepted gloss/text",
+    "no source/license/legal acceptance",
+    "no publication/release/public-runtime acceptance"
+  ],
+  "blocker": ""
+}

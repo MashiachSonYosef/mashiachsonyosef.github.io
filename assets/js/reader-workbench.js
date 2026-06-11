@@ -40,6 +40,7 @@
     ['usage_evidence', 'Usage evidence'],
     ['phrase_evidence', 'Licensed phrase uses'],
   ]);
+  const normalizeRouteLabel = (value) => String(value || '').toLowerCase().replace(/[\s-]+/g, '_');
   const usageEvidenceRouteTypes = new Set([
     'usage_evidence',
     'workbench_usage',
@@ -49,6 +50,18 @@
     'biblical_workbench_usage',
     'source_workbench_usage',
     'observed_usage',
+  ]);
+  const prehudEvidenceOnlyRouteTypes = new Set([
+    ...usageEvidenceRouteTypes,
+    'lemma',
+    'lemma_only',
+    'morphology',
+    'form_reference',
+    'form_reference_evidence',
+    'morphology_reference',
+    'morphology_form_reference',
+    'usage_only',
+    'phrase_evidence',
   ]);
   const requiredSelectionFields = [
     'schema_version',
@@ -500,6 +513,25 @@
     if (row?.answer_eligible !== true || !answerRoleAllowsDefinition(row?.answer_role)) {
       errors.push('selection must be answer-eligible, not evidence-only');
     }
+    if (row?.display_eligible !== true || row?.prehud_allowed !== true) {
+      errors.push('selection must carry current preHUD display eligibility');
+    }
+    if (isUnsafePrehudDisplay(row?.selected_definition)) {
+      errors.push('selected_definition is not safe for preHUD display');
+    }
+    const routeLabels = [
+      row?.selected_route_section,
+      row?.selected_route_type,
+      row?.selected_route_family,
+      row?.display_section,
+      row?.route_type,
+      row?.route_family,
+      row?.match_family,
+      row?.route_match_family,
+    ].map(normalizeRouteLabel).filter(Boolean);
+    if (routeLabels.some((label) => prehudEvidenceOnlyRouteTypes.has(label))) {
+      errors.push('selection route evidence is HUD-only, not preHUD display eligible');
+    }
     const sourceRows = cleanValues(row?.source_rows);
     if (!sourceRows.length || sourceRows.some((sourceRow) => !sourceRowHasPublicFields(sourceRow))) {
       errors.push('source_rows must include source_name, source_id, source_url, license, and license_url');
@@ -514,7 +546,7 @@
   function isUsageEvidenceCard(card) {
     if (!card) return false;
     const routeFields = [card.display_section, card.route_type, card.route_family, card.answer_role, card.meaning_quality]
-      .map((value) => String(value || '').toLowerCase().replace(/[\s-]+/g, '_'))
+      .map(normalizeRouteLabel)
       .filter(Boolean);
     return routeFields.some((value) => usageEvidenceRouteTypes.has(value)) || Boolean(card.usage_note || card.frame_label);
   }
@@ -552,9 +584,19 @@
     return card.meaning_quality === 'definition' && !['phrase_evidence', 'subphrase_evidence'].includes(routeSection(card));
   }
 
+  function isPrehudDisplayEligibleCard(card) {
+    if (!isAnswerEligible(card)) return false;
+    const routeLabels = [routeSection(card), card.route_type, card.route_family, card.match_family, card.route_match_family]
+      .map(normalizeRouteLabel)
+      .filter(Boolean);
+    if (routeLabels.some((label) => prehudEvidenceOnlyRouteTypes.has(label))) return false;
+    return !routeRenderings(card).some((line) => isUnsafePrehudDisplay(line));
+  }
+
   function canSaveGlossSelection(card) {
     return Boolean(
       card
+      && isPrehudDisplayEligibleCard(card)
       && card.answer_eligible === true
       && answerRoleAllowsDefinition(card.answer_role)
       && !isUsageEvidenceCard(card)
@@ -618,7 +660,7 @@
   }
 
   function selectRouteAnswer(cards) {
-    const candidates = cards.filter(isAnswerEligible).sort(compareRouteCards);
+    const candidates = cards.filter(isPrehudDisplayEligibleCard).sort(compareRouteCards);
     const exactAnswer = candidates.filter((card) => (card.lookup_relation || 'exact') === 'exact').sort(compareRouteCards)[0];
     const selected = exactAnswer || candidates[0] || null;
     const ambiguity = answerAmbiguity(selected, candidates);
@@ -812,6 +854,7 @@
 
   function applySelectionToToken(button, selection) {
     if (!button) return;
+    if (selectionContractErrors(selection).length) return;
     const selectedDefinition = selection?.selected_definition || '';
     setTokenGlossDisplay(button, selectedDefinition, selection?.match_percent ?? selection?.confidence_percent, !selectedDefinition);
     button.dataset.glossSelected = selection ? 'true' : 'false';
@@ -855,6 +898,13 @@
       normalized: button.dataset.normalized || normalizeHebrewKey(button.textContent),
       selected_card_id: card.card_id || '',
       selected_definition: rendering,
+      selected_route_section: routeSection(card),
+      selected_route_type: card.route_type || '',
+      selected_route_family: card.route_family || '',
+      selected_lookup_relation: card.lookup_relation || 'exact',
+      match_family: card.match_family || card.route_match_family || routeSection(card),
+      display_eligible: true,
+      prehud_allowed: true,
       answer_eligible: card.answer_eligible === true,
       answer_role: card.answer_role || (card.answer_eligible === true ? 'answer' : 'evidence'),
       confidence_percent: confidencePercent,
@@ -1213,7 +1263,7 @@
     const sourceNotes = buildSourceNotes(visibleCards);
     appendSelectedHudToken(panel, clickedForm || normalized || '', normalized);
 
-    const answerCandidates = visibleCards.filter(isAnswerEligible).sort(compareRouteCards);
+    const answerCandidates = visibleCards.filter(isPrehudDisplayEligibleCard).sort(compareRouteCards);
     const displayChoices = answerCandidates.length ? answerCandidates.slice(0, 8) : visibleCards.filter((card) => routeRenderings(card).length).sort(compareRouteCards).slice(0, 8);
     if (displayChoices.length) {
       const picker = createElement('section', 'route-section-card reader-picker-intro');
