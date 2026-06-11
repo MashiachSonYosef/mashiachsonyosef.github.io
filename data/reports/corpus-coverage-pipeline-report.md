@@ -1,18 +1,18 @@
 # Corpus Coverage Pipeline Report
 
-Generated: 2026-05-30T07:34:26.067Z
+Generated: 2026-06-11T02:11:21.039Z
 
 ## Summary
 
-- Works: 1164
-- Source units: 542071
-- Hebrew tokens: 49950328
-- Unique surface forms: 1020969
-- Unique normalized forms: 679441
-- Lexical coverage: 56.97%
-- Strict tokens: 18029321
-- Potential tokens: 10425199
-- Unresolved tokens: 21495808
+- Works: 1352
+- Source units: 724114
+- Hebrew tokens: 69414928
+- Unique surface forms: 1171196
+- Unique normalized forms: 791407
+- Lexical coverage: 56.76%
+- Strict tokens: 25153308
+- Potential tokens: 14245401
+- Unresolved tokens: 30016219
 
 ## Generated Outputs
 
@@ -25,56 +25,56 @@ Generated: 2026-05-30T07:34:26.067Z
 
 ## Top 25 Unresolved Tokens
 
-1. כתב (כתב) — 92400
-2. ה׳ (ה׳) — 89679
-3. דף (דפ) — 78418
-4. רבינו (רבינו) — 77663
-5. א׳ (א׳) — 52250
-6. ב׳ (ב׳) — 48221
-7. אסור (אסור) — 45404
-8. עכ״ל (עכ״ל) — 44531
-9. וזהו (וזהו) — 42813
-10. שכתב (שכתב) — 40130
-11. ג׳ (ג׳) — 39305
-12. חייב (חייב) — 36850
-13. וכתב (וכתב) — 36391
-14. משמע (משמע) — 35902
-15. נמי (נמי) — 33723
-16. ע״ב (ע״ב) — 33639
-17. ועיין (ועיינ) — 33515
-18. הי׳ (הי׳) — 31814
-19. ואמר (ואמר) — 29237
-20. עיין (עיינ) — 28826
-21. לאו (לאו) — 28160
-22. הרא״ש (הרא״ש) — 26850
-23. ע״א (ע״א) — 26302
-24. לעיל (לעיל) — 25757
-25. דאם (דאמ) — 24783
+1. כתב (כתב) — 133485
+2. ה׳ (ה׳) — 113266
+3. רבינו (רבינו) — 96392
+4. דף (דפ) — 96212
+5. א׳ (א׳) — 88004
+6. אסור (אסור) — 78294
+7. ב׳ (ב׳) — 75499
+8. עכ״ל (עכ״ל) — 62712
+9. משמע (משמע) — 59122
+10. חייב (חייב) — 57263
+11. שכתב (שכתב) — 56573
+12. ג׳ (ג׳) — 56438
+13. נמי (נמי) — 56413
+14. ועיין (ועיינ) — 54432
+15. וכתב (וכתב) — 46355
+16. לאו (לאו) — 46320
+17. עיין (עיינ) — 45784
+18. הי׳ (הי׳) — 44174
+19. ע״ב (ע״ב) — 43560
+20. וזהו (וזהו) — 42824
+21. לעיל (לעיל) — 42398
+22. דאם (דאמ) — 39656
+23. הרא״ש (הרא״ש) — 38635
+24. מ״ש (מ״ש) — 38503
+25. הכי (הכי) — 34471
 
 ## Top 25 Bad Potential Matches
 
-1. אומה in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: nut.
-2. אומן in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: nut.
-3. אמון in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-4. אמונה in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-5. אמת in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: female slave.
-6. אמת in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-7. אמתי in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: female slave.
-8. אשור in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-9. אתנו in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: donkey.
-10. אתנו in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-11. באגדה in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-12. באומה in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: nut.
-13. באמת in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: female slave.
-14. באמת in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-15. באשר in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-16. בבית in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: byte.
-17. בהדרגה in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-18. בהכרה in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: plot.
-19. בחבור in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-20. בימים in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-21. בית in abarbanel-on-guide-for-the-perplexed — בית/הבית byte homograph should not be a default Hebrew-context match.
-22. בית in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: byte.
-23. במדרגת in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-24. במדרגתה in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: ass.
-25. במה in abarbanel-on-guide-for-the-perplexed — Potential gloss contains noisy term: lama.
+1. אגודה in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+2. אומה in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: nut.
+3. אמון in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+4. אמונה in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+5. אמת in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: female slave.
+6. אמת in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+7. אֱמֶת in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: female slave.
+8. אֱמֶת in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+9. אשור in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+10. אתן in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: donkey.
+11. אתן in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+12. אֶתֵּן in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: donkey.
+13. אֶתֵּן in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+14. באגדה in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+15. באמת in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: female slave.
+16. באמת in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+17. באשר in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+18. בבית in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: byte.
+19. בְּבֵית in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: byte.
+20. בדיני in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+21. בהדרגה in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+22. בהכרה in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: plot.
+23. בהרחבת in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+24. בחברה in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.
+25. בחברו in a-new-israeli-commentary-on-pirkei-avot — Potential gloss contains noisy term: ass.

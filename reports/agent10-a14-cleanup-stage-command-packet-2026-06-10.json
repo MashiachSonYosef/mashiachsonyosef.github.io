@@ -1,0 +1,113 @@
+{
+  "artifact_type": "agent10_a14_cleanup_stage_command_packet",
+  "status": "pathspec_staging_commands_for_a14_review",
+  "head": "f4eee67e4",
+  "generated_at": "2026-06-11T02:47:03.209Z",
+  "boundary": {
+    "staging_performed": false,
+    "commit_performed": false,
+    "push_performed": false,
+    "deploy_performed": false,
+    "acceptance_claimed": false
+  },
+  "source_status_count_before_packet": 470,
+  "pathspecs": {
+    "scripts": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/scripts.txt",
+      "count": 1,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/scripts.txt"
+    },
+    "pages_or_dirs": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/pages_or_dirs.txt",
+      "count": 7,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/pages_or_dirs.txt"
+    },
+    "lexical_chunks_manifests": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/lexical_chunks_manifests.txt",
+      "count": 10,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/lexical_chunks_manifests.txt"
+    },
+    "occurrences": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/occurrences.txt",
+      "count": 5,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/occurrences.txt"
+    },
+    "token_indexes": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/token_indexes.txt",
+      "count": 5,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/token_indexes.txt"
+    },
+    "coverage_json": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/coverage_json.txt",
+      "count": 188,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/coverage_json.txt"
+    },
+    "unresolved_csv": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/unresolved_csv.txt",
+      "count": 188,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/unresolved_csv.txt"
+    },
+    "data_reports_core": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/data_reports_core.txt",
+      "count": 2,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/data_reports_core.txt"
+    },
+    "search_core": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/search_core.txt",
+      "count": 4,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/search_core.txt"
+    },
+    "normalized_forms": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/normalized_forms.txt",
+      "count": 48,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/normalized_forms.txt"
+    },
+    "root_or_other": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/root_or_other.txt",
+      "count": 4,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/root_or_other.txt"
+    },
+    "reports": {
+      "pathspec_file": "reports/agent10-a14-stage-pathspecs-2026-06-10/reports.txt",
+      "count": 8,
+      "command": "git add --pathspec-from-file=reports/agent10-a14-stage-pathspecs-2026-06-10/reports.txt"
+    }
+  },
+  "suggested_order": [
+    "scripts",
+    "pages_or_dirs",
+    "lexical_chunks_manifests",
+    "occurrences",
+    "token_indexes",
+    "coverage_json",
+    "unresolved_csv",
+    "data_reports_core",
+    "search_core",
+    "normalized_forms",
+    "root_or_other",
+    "reports"
+  ],
+  "safety_rules": [
+    "Run from repo root only: C:\\Users\\owner\\Documents\\translations.",
+    "Review scripts/render_site.ps1 diff before staging generated data.",
+    "Do not use git add -A.",
+    "Do not commit/push/deploy from this packet without owner/A14 approval.",
+    "After each bucket, run git diff --cached --name-status to verify staged scope.",
+    "If any command stages unrelated files, unstage that bucket and stop."
+  ],
+  "post_stage_validators": [
+    "node scripts\\validate_route_hud_page.mjs --page chasidut/bepardes-hachasidut-vehakabbalah/index.html kabbalah/ohr-penimi-on-talmud-eser-hasefirot/index.html kabbalah/shuvi-shuvi-hashulamit/index.html mishnah/a-new-israeli-commentary-on-pirkei-avot/index.html other/amudei-yerushalayim-on-jerusalem-talmud-nedarim/index.html rav-kook/orot-ha-kodesh/index.html tanakh/daniel/index.html",
+    "node scripts\\validate_reader_hints_from_route_lookup.mjs",
+    "custom coverage/unresolved/normalized-form shape check from reports/agent10-tbd-ranker-clean-repo-generation-check-2026-06-10.json",
+    "git diff --cached --check"
+  ],
+  "self_inclusion_correction": {
+    "status": "corrected",
+    "reason": "previous reports pathspec was captured before command packet and pathspec directory existed",
+    "added_to_reports_pathspec": [
+      "reports/agent10-a14-cleanup-stage-command-packet-2026-06-10.json",
+      "reports/agent10-a14-cleanup-stage-command-packet-2026-06-10.md",
+      "reports/agent10-a14-stage-pathspecs-2026-06-10/"
+    ]
+  }
+}

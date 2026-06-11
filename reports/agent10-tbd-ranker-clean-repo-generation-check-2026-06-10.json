@@ -1,0 +1,202 @@
+{
+  "artifact_type": "agent10_tbd_ranker_clean_repo_generation_check",
+  "status": "generated_ranker_outputs_validated_with_stage_scope_blockers",
+  "head_checked": "f4eee67e4",
+  "head_subject": "Quarantine final cleanup residuals",
+  "generated_at": "2026-06-11T02:09:18.456Z",
+  "boundary": {
+    "staging": false,
+    "commit": false,
+    "push": false,
+    "deploy": false,
+    "cleanup_acceptance": false,
+    "source_license_legal_acceptance": false,
+    "definition_authority": false,
+    "answer_acceptance": false,
+    "accepted_text": false,
+    "publication_readiness": false,
+    "public_runtime_acceptance": false
+  },
+  "validated_outputs": {
+    "coverage_json_count": 1352,
+    "unresolved_csv_count": 1352,
+    "bad_coverage_files": 0,
+    "bad_csv_files": 0,
+    "missing_coverage_for_unresolved": 0,
+    "missing_unresolved_for_coverage": 0,
+    "normalized_forms_manifest_present": true,
+    "normalized_form_row_count": 791407,
+    "normalized_form_chunk_count": 47,
+    "normalized_form_missing_chunks": 0,
+    "stats_total_works": 1352,
+    "stats_total_hebrew_tokens": 69414928,
+    "stats_lexical_coverage_percent": 56.76,
+    "stats_unresolved_tokens": 30016219
+  },
+  "validators": [
+    {
+      "command": "custom Node parse/shape check over data/reports/coverage, data/lexical/unresolved, and data/search/normalized-forms/manifest.json",
+      "result": "passed"
+    },
+    {
+      "command": "node scripts\\validate_route_hud_page.mjs --page chasidut/bepardes-hachasidut-vehakabbalah/index.html kabbalah/ohr-penimi-on-talmud-eser-hasefirot/index.html kabbalah/shuvi-shuvi-hashulamit/index.html mishnah/a-new-israeli-commentary-on-pirkei-avot/index.html other/amudei-yerushalayim-on-jerusalem-talmud-nedarim/index.html rav-kook/orot-ha-kodesh/index.html tanakh/daniel/index.html",
+      "result": "passed",
+      "pages": 7
+    },
+    {
+      "command": "node scripts\\validate_reader_hints_from_route_lookup.mjs",
+      "result": "passed",
+      "counts": {
+        "esther": "975/2654",
+        "ezra": "1107/3538",
+        "nehemiah": "1848/4822",
+        "obadiah": "118/249",
+        "malachi": "354/789"
+      }
+    },
+    {
+      "command": "git diff --check -- corpus_stats.json data\\lexical data\\reports data\\search stats\\index.html reports\\a09-new-library-targeted-lexical-build-2026-06-10.md",
+      "result": "passed_with_crlf_warnings_only"
+    }
+  ],
+  "dirty_buckets_before_this_report": {
+    "status_count": 463,
+    "modified_root_site_stat_files": 4,
+    "modified_data_report_core": 2,
+    "modified_search_core": 4,
+    "modified_normalized_form_search_outputs": 48,
+    "page_library_surfaces": 7,
+    "render_helper": 1,
+    "new_lexical_chunks_manifests": 10,
+    "new_occurrences": 5,
+    "new_token_indexes": 5,
+    "new_unresolved_csv": 188,
+    "new_coverage_json": 188,
+    "other_report": 1
+  },
+  "stage_review_guidance": [
+    "Treat as coherent generated-output candidate, not random dirt.",
+    "Do not stage with git add -A.",
+    "Preserve A10/Orot HUD and preHUD display-gate contract.",
+    "Review scripts/render_site.ps1 separately before staging because it changes targeted render behavior.",
+    "Review root/library/index changes separately from lexical/search data.",
+    "Stage five imported-work page/data surfaces only if A14 confirms intended tracking."
+  ],
+  "addendum": {
+    "current_dirty_count_after_a10_report": 465,
+    "active_generator_process": false,
+    "render_site_ps1_syntax": "passed",
+    "root_library_links_for_five_new_pages": "present",
+    "representative_encoding_check": {
+      "work_id": "bepardes-hachasidut-vehakabbalah",
+      "source_hebrew_codepoints": 414204,
+      "source_mojibake_markers": 0,
+      "token_index_hebrew_codepoints": 276186,
+      "token_index_mojibake_markers": 0,
+      "chunk_hebrew_codepoints": 11461,
+      "chunk_mojibake_markers": 0,
+      "page_hebrew_codepoints": 389341,
+      "page_mojibake_markers": 0
+    },
+    "new_work_counts": [
+      {
+        "work_id": "a-new-israeli-commentary-on-pirkei-avot",
+        "source_units": 1564,
+        "lexical_chunks": 27,
+        "chunk_token_sum": 26130,
+        "total_occurrences": 112097,
+        "matched_surface_forms": 7712,
+        "unmatched_surface_forms": 18418
+      },
+      {
+        "work_id": "amudei-yerushalayim-on-jerusalem-talmud-nedarim",
+        "source_units": 18,
+        "lexical_chunks": 2,
+        "chunk_token_sum": 1779,
+        "total_occurrences": 3856,
+        "matched_surface_forms": 619,
+        "unmatched_surface_forms": 1160
+      },
+      {
+        "work_id": "bepardes-hachasidut-vehakabbalah",
+        "source_units": 1031,
+        "lexical_chunks": 24,
+        "chunk_token_sum": 23056,
+        "total_occurrences": 84636,
+        "matched_surface_forms": 7789,
+        "unmatched_surface_forms": 15267
+      },
+      {
+        "work_id": "ohr-penimi-on-talmud-eser-hasefirot",
+        "source_units": 1655,
+        "lexical_chunks": 22,
+        "chunk_token_sum": 21170,
+        "total_occurrences": 427463,
+        "matched_surface_forms": 6201,
+        "unmatched_surface_forms": 14969
+      },
+      {
+        "work_id": "shuvi-shuvi-hashulamit",
+        "source_units": 123,
+        "lexical_chunks": 7,
+        "chunk_token_sum": 6322,
+        "total_occurrences": 19258,
+        "matched_surface_forms": 2653,
+        "unmatched_surface_forms": 3669
+      }
+    ],
+    "recommended_stage_buckets": [
+      {
+        "bucket": "render-helper delta",
+        "purpose": "targeted render behavior",
+        "minimum_review_gate": "review scripts/render_site.ps1 diff and keep syntax parse proof"
+      },
+      {
+        "bucket": "five imported-work page/data surfaces",
+        "purpose": "new visible/source-clickable work surfaces",
+        "minimum_review_gate": "Route HUD page validator plus root/library link check"
+      },
+      {
+        "bucket": "lexical/search/ranker generated data",
+        "purpose": "clean-repo TBD/unresolved ranker update",
+        "minimum_review_gate": "coverage/unresolved pair check, normalized-form chunk check, corpus stats summary"
+      },
+      {
+        "bucket": "root/library/stats/overlay generated surfaces",
+        "purpose": "navigation/report surface carry",
+        "minimum_review_gate": "root/library link check and stats/report parse"
+      },
+      {
+        "bucket": "A10/A09 reports",
+        "purpose": "staging evidence only",
+        "minimum_review_gate": "JSON parse where applicable and no acceptance claims"
+      }
+    ]
+  },
+  "process_timeouts": [
+    {
+      "command": "rg -n \"TBD|rank|reader-hint|reader hint|display gate|routeRenderings|form-reference|morphology\" scripts assets reports -g \"*.mjs\" -g \"*.js\" -g \"*.md\"",
+      "timeout": "30000 ms",
+      "partial_output_or_artifact": "timed out with partial output",
+      "next_safe_action": "narrowed to known generator/validator scripts"
+    },
+    {
+      "command": "node scripts\\build_reader_hints_from_route_lookup.mjs",
+      "timeout": "120000 ms",
+      "partial_output_or_artifact": "timed out after generated-at-only reader-hint diffs and temporary report",
+      "next_safe_action": "restored A10 proof side effects and used committed validator evidence"
+    },
+    {
+      "command": "combined git status/process monitor",
+      "timeout": "70000 ms",
+      "partial_output_or_artifact": "timed out while generator output was growing",
+      "next_safe_action": "narrowed to process-specific and output-shape checks"
+    }
+  ],
+  "process_notes": {
+    "duplicate_generator_processes_stopped": [8292, 18324],
+    "single_successful_rerun_pid": 37380,
+    "single_successful_rerun_result": "completed_with_normalized_forms_manifest_restored"
+  },
+  "stop_condition": "A14 can review/stage as scoped generated-output package if desired; A10 must not stage, commit, push, deploy, or claim cleanup acceptance from this evidence."
+}

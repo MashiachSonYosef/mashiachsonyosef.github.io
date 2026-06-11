@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amudei Yerushalayim on Jerusalem Talmud Nedarim</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr); gap: 18px; align-items: start; }
+    .hero-main { min-width: 0; }
+    .hero-ref { color: var(--accent); font-size: 0.5em; line-height: 1; vertical-align: super; margin-left: 0.08em; }
+    .hero-summary { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 0.88rem; margin: 0; }
+    .hero-summary span { border: 1px solid rgba(214,190,138,0.14); background: rgba(255,255,255,0.02); padding: 2px 7px; }
+    .hero-notes { border-left: 1px solid var(--line); padding-left: 14px; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .hero-notes ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 5px; }
+    .hero-notes li { padding-left: 0.1rem; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-tools { display: grid; gap: 8px; margin-bottom: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; }
+    .library-tools label { color: var(--accent); font-size: 0.86rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .library-search { width: 100%; border: 1px solid var(--line-2); border-radius: 0; background: rgba(10,11,13,0.88); color: var(--text); padding: 10px 12px; font: inherit; }
+    .library-search:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .library-empty { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 14px; margin-bottom: 18px; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .reader-token-wrap { display: inline-grid; grid-auto-rows: min-content; justify-items: center; align-items: start; vertical-align: baseline; gap: 0.12em; margin: 0.04em 0.1em 0.16em; max-width: min(34rem, calc(100vw - 32px)); }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .reader-token-wrap .lexical-word { margin: 0; }
+    .reader-gloss-line { display: block; direction: ltr; unicode-bidi: isolate; color: var(--muted); font-size: 0.58em; font-weight: 600; line-height: 1.22; width: max-content; max-width: min(22rem, calc(100vw - 40px)); text-align: center; white-space: normal; overflow: visible; overflow-wrap: break-word; word-break: normal; hyphens: auto; opacity: 0.88; border: 1px solid rgba(214,190,138,0.18); background: rgba(10,11,13,0.72); padding: 0.18em 0.42em 0.2em; border-radius: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: 2px solid rgba(214,190,138,0.78); outline-offset: 2px; }
+    .hud-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; width: calc(100vw - 24px); max-width: calc(100vw - 24px); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: -18px -18px 14px; padding: 14px 18px 10px; background: linear-gradient(180deg, var(--panel-2) 78%, rgba(0,0,0,0)); }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .route-hud-panel { display: grid; gap: 12px; min-width: 0; }
+    .route-selected-token { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--hebrew); padding: 12px 14px; text-align: center; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
+    .route-treatment-card { border: 1px solid rgba(147,167,209,0.28); background: rgba(147,167,209,0.06); color: var(--text); padding: 7px 9px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; font-size: 0.86rem; }
+    .route-treatment-card strong { color: var(--accent); font-weight: 400; }
+    .route-treatment-line { color: var(--text); margin: 0; }
+    .claim-treatment-line { color: var(--accent); font-size: 0.78rem; line-height: 1.25; margin: 0; }
+    .route-section-card, .route-audit-card, .route-source-card { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; min-width: 0; }
+    .route-answer-card { border-color: var(--line-2); background: linear-gradient(145deg, rgba(214,190,138,0.15), rgba(255,255,255,0.025)); }
+    .route-section-title { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    .route-section-title h3 { margin: 0; color: var(--text); font-size: 1rem; font-weight: 400; }
+    .route-section-title span { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+    .claim-row-list { display: grid; gap: 8px; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 7px; display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+    .route-answer-card .claim-row { border-color: var(--line-2); background: transparent; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 6px; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1rem; }
+    .claim-renderings { color: var(--text); margin: 0; font-size: 0.86rem; line-height: 1.28; }
+    .route-meta, .rank-details, .morphology-details { color: var(--muted); font-size: 0.76rem; }
+    .usage-evidence-details { display: grid; gap: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.3; }
+    .usage-evidence-details p { margin: 0; }
+    .usage-evidence-details strong { color: var(--accent); font-weight: 400; }
+    .rank-details, .morphology-details { margin-top: 4px; padding: 7px 9px; background: rgba(255,255,255,0.018); }
+    .phrase-line { color: var(--hebrew); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 0; margin: 6px 0; font-size: 1.16rem; text-align: right; }
+    .phrase-focus { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .phrase-context { color: var(--hebrew); opacity: 0.72; }
+    .hud-card-lane { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 7px; }
+    .hud-card-lane .claim-row { min-height: 100%; }
+    .source-footnotes { margin-top: 14px; font-size: 0.72rem; color: var(--muted); }
+    .source-footnote-row { margin: 4px 0; line-height: 1.28; }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.64rem; margin-left: 3px; vertical-align: super; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+  <link rel="stylesheet" href="../../assets/css/reader-workbench.css">
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <div class="hero-main">
+          <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+          <h1>Amudei Yerushalayim on Jerusalem Talmud Nedarim<sup class="hero-ref">1</sup></h1>
+          <p class="work-label">Commentary on Jerusalem Talmud Nedarim</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Jerusalem Talmud Nedarim</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
+          </section>
+        </div>
+          <p class="hero-summary">
+            <span>18 source units</span>
+            <span>1779 HUD forms</span>
+            <span>imported 2026-06-10</span>
+            <span>Words read right to left</span>
+          </p>
+        </div>
+        <div class="hero-notes" aria-label="Header source notes">
+          <ol>
+            <li>Hebrew version: Jerusalem, 1969-1970 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001824568/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</li>
+          </ol>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Amudei Yerushalayim on Jerusalem Talmud Nedarim <span class="hud-badge">Route HUD active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Amudei Yerushalayim on Jerusalem Talmud Nedarim <span class="hud-badge">Route HUD active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-1-1-1-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 1:1:1:1">1:1:1:1</a></li>
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-1-1-8-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 1:1:8:1">1:1:8:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-2-1-4-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 2:1:4:1">2:1:4:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-3-5-2-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 3:5:2:1">3:5:2:1</a></li>
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-3-9-2-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 3:9:2:1">3:9:2:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-4-2-2-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 4:2:2:1">4:2:2:1</a></li>
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-4-5-1-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 4:5:1:1">4:5:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-5-1-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:5:1:1">5:5:1:1</a></li>
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-5-1-2" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:5:1:2">5:5:1:2</a></li>
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-6-4-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:6:4:1">5:6:4:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-6-3-3-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 6:3:3:1">6:3:3:1</a></li>
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-6-8-3-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 6:8:3:1">6:8:3:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-7-1-3-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 7:1:3:1">7:1:3:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-8-1-7-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 8:1:7:1">8:1:7:1</a></li>
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-8-1-7-2" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 8:1:7:2">8:1:7:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-9-5-2-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 9:5:2:1">9:5:2:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-10-8-8-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 10:8:8:1">10:8:8:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-11-12-2-1" title="Amudei Yerushalayim on Jerusalem Talmud Nedarim 11:12:2:1">11:12:2:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-1">Chapter 1</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-1-1-1-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-1-1-1-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 1:1:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 1:1:1:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-1-1-1-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 1:1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל כינויי נדרים כנדרים כו׳.</strong> הנה התוס׳ בנדרים (ד&quot;ב ע&quot;א) והר&quot;ן שם והתוס׳ נזיר (ד&quot;ב א׳) הקשו למ&quot;ד כינויין המה לשון שבדו להן חכמים איך מביאין חולין לעזרה ומ&quot;ש התוס׳ דבנזיר לא אמרו כן צ&quot;ע מירושלמי ריש נזיר דגם שם הובא הפלוגתא הזאת. ולכאורה לא זכיתי להבין מה הקשו דהא בנזיר כ&quot;ט א׳ מבואר דר&quot;ל סובר חולין בעזרה דרבנן וא&quot;כ מאי מקשו על ר&quot;ל דסובר לשון שבדו להם חכמים איך מביא חב&quot;ע הא מדרבנן הוי קרבן וחב&quot;ע הוי רק מדרבנן. ושוב ראיתי להאורח מישור שהקשה כן. ונ&quot;ל לתרץ זה עפ&quot;י מ&quot;ש הג׳ מהרש&quot;ק אלי בתשובה והיא נדפסה בשו&quot;ת שיורי טהרה (ח&quot;ב סי׳ פ&quot;ג) דהיכא דמביא בתורת קרבן כ&quot;ע ס&quot;ל דחב&quot;ע דאורייתא ואני הקשיתי עליו מסוגיא דנזיר הנ&quot;ל דמבואר לר&quot;ל דחב&quot;ע מדרבנן אף דמביא בתורת קרבן וע&quot;ז תרץ הג&quot; הנ&quot;ל (שם סי׳ פ&quot;ז) דמיירי שהאב נתן לבנו מתנות והקטן הקדישן ומדאורייתא לא הוי הקדש וא&quot;כ לא הוי בתורת קרבן וע&quot;כ לא הוי האיסור כ&quot;א מדרבנן דהקדישו הקדש ומדרבנן הוי נזיר עכ&quot;ד וא&quot;כ מקשו התוס׳ שפיר דבשלמא בנזיר דמיירי בקטן יש לצייר כן ע&quot;פ הדרך שכתב הג׳ מהרש&quot;ק משא&quot;כ הכא דמיירי בגדול והוא יביא אותו בתורת קרבן כ&quot;ע ס&quot;ל דהוא מה&quot;ת לכך הקשו התוס׳ שפיר. ובזה י&quot;ל מה שהקשה השער המלך (פי&quot;ב מהל׳ עכו&quot;ם הי&quot;א וז&quot;ל מיהו הא קשיא לי דהא מבואר בפ׳ כ&quot;ש דכ&quot;ב דר׳ יהודא ס&quot;ל חב&quot;ע דרבנן וא&quot;כ איך אמר רבא אליבא דר׳ יהודא דעל ס׳ נזיר לא מצי מייתי קרבן משום חולין בעזרה הא כיון דחב&quot;ע דרבנן כל תיקונא גברא לא גזרו רבנן דומיא דהקפה עכ&quot;ל והניח בקושיא ולהנ&quot;ל א&quot;ש כיון דמייתי בתורת קרבן הוא מדאורייתא ואין מתירין משום תיקונא גברא איסור דאורייתא. והן אמת שמתוס׳ זבחים (ס&quot;ח א׳ ד&quot;ה אומר) ושם (ע&quot;ז ב׳ ד&quot;ה הדם) מוכח דס&quot;ל דאף היכא דמייתי בתורת קרבן הוא ג&quot;כ מדרבן. אך י&quot;ל דהתוס׳ בנדרים ונזיר ס&quot;ל כן. ועי׳ בא&quot;ז ה׳ בכורות סי׳ תק&quot;ד שהיה לו הגירסא אמר רשב&quot;ל אמר ריב&quot;ח וכתב שם שהוא תנא ע&quot;ש. וכ&quot;ה הנוסחא בנזיר בקצת דפוסים וא&quot;כ י&quot;ל דרשב&quot;ל אמר כן בשם ריב&quot;ח ולי׳ לא ס&quot;ל כן וא&quot;כ א&quot;ש דבריהם בפשיטות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-1-1-8-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-1-1-8-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 1:1:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 1:1:8:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-1-1-8-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 1:1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר ר׳ יודן בנדרים אסור כו׳.</strong> עי׳ במראה הפנים שכתב דהרשב&quot;א פסק כר׳ יודן דנדר בלשון שבועה ושבועה בלשון נדר לא מהני וכ&quot;כ הר&quot;ן וז&quot;ל משום דר׳ יודן ור׳ מנא קיימו בחד שיטה וע&quot;ז כתב המראה הפנים ואפשר דגרסי ר׳ מנא במקום ר׳ חנניה דלעיל דס&quot;ל נמי כר׳ יודן כדפרישת לעיל עכ&quot;ל. גם ראיתי להש&quot;ק שכתב דמדברי הרשב&quot;א והר&quot;ן נראה דגרסו ר׳ יודן ור׳ מנא בין בנדרים ובין בשבועות מותר אולם מדברי הרמב&quot;ן מוכח דגרס כגרסתינו עכ&quot;ד. אולם המה כתבו כל זה לפי שלא נגלה בימיהם דברי הרמב&quot;ן דשמה מבואר גירסתו ושליכא חילוק כלל בינו ובין גירסת הרשב&quot;א ושלא גריס ר׳ מנא במקום ר׳ חנניה וכך הוא גירסתו א&quot;ר׳ יודן בנדרים אסור ובשבועות מותר (פי׳ כשאומר עלי אסור בנדרים ומותר בשבועות) איסור הרי הוא עלי אסור הרי הוא עלי איסור אסיר שבועה הרי הוא עלי מותר הרי הוא עלי שבועה מותר א&quot;ר מנא איסור הרי היא מותר (פי׳ כשהזכיר בנדר ל׳ שבועה הרי עלי איסור אסור שבועה הרי עלי אסור הרי עלי שבועה מותר פי׳ דר׳ מנא ס&quot;ל ג&quot;כ דנדר בל׳ שבועה לא מהני ושבועה בל׳ נדר ג&quot;כ לא מהני ורק כשהזכיר בתחלה שבועה ובסופו עלי ס&quot;ל דאסור) וכ&quot;כ הריטב&quot;א פ&quot;ב דנדרים בשם הרמב&quot;ן בחי׳ שבועות שפי׳ כן דברי הירושלמי והנוסחא הלז הוא ג&quot;כ ברמב&quot;ן לנדרים פ&quot;ב ומבואר מכל זה גירסת הרמב&quot;ן והרשב&quot;א והר&quot;ן בהירושלמי ורק שהרמב&quot;ן ס&quot;ל דש&quot;ס דילן חולקת על הירושלמי. ומדי דברי בהך דינא דנדר בלשון שבועה ראיתי להעיר בדין נזירות בלשון שבועה אי מהני. וראיתי להש&quot;ך ביו&quot;ד (סי׳ ר&quot;ו סק&quot;י) עמש&quot;ש בש&quot;ע דבנזירות בלשון שבועה לד&quot;ה אסור. וע&quot;ז כתב הש&quot;ך דז&quot;א בב&quot;י אבל במבי&quot;ט ח&quot;א סי׳ ע&quot;ב בשם הרדב&quot;ז כתב דלכ&quot;ע מהני דהוא איסור גברא והמבי&quot;ט חלק עליו והש&quot;ך ס&quot;ל כהרידב&quot;ז ע&quot;ש. והנה מש&quot;ש הש&quot;ך שבב&quot;י לא נמצא זה לכאורה חשבתי למצוא. שכ&quot;ה דעת הב&quot;י שכתב כן בתשובתו באבקת רוכל סי׳ קצ&quot;ח דנזירות מועיל בלשון שבועה ותמה ע&quot;ז שם. אולם אחרי אשר עיינתי במבי&quot;ט מבואר דהתשובה הזאת איננה מתורת מרן והוא למהר&quot;י טיטייני&quot;ק ובטעות נחתם ע&quot;ז שם מרן. אולם בבדק הבית מבואר וכמ&quot;ש היד שאול. ואולם מ&quot;ש הש&quot;ך בשם הרדב&quot;ז דס&quot;ל דבנזירות לכ&quot;ע מהני הן אמת שכ&quot;ה ברדב&quot;ז ח&quot;א סי׳ מ&quot;ב וקל&quot;ג ובח&quot;ד סי׳ קכ&quot;ו ורע&quot;ט דבנזירות לכ&quot;ע מהני בלשון שבועה דהוי איסור גברא [ועוד כתב שם דכיון דנהגו כן להוציא בלשון שבועה מהני וכ&quot;כ בח&quot;א סי׳ קכ&quot;ד והמבי&quot;ט תמה עליו דזה לא מועיל רק בלשונות השבועה ולא בנ&quot;ד ע&quot;ש ותמהני עליו שבמחכ&quot;ת הקדושה לא ראה ברא&quot;ש פ&quot;ק דנדרים שכ&quot;כ לענין נדר בלשון שבועה דאף שדעתו דלא מהני מ&quot;מ כיון שנהגו כן צריכין להתירן שלא ינהגו קלות ראש בנדרים ע&quot;ש דהוא כדברי הרדב&quot;ז] וכ&quot;כ בח&quot;ה סימן ש&quot;א רמ&quot;ד והיא היא התשובה שהביאה המבי&quot;ט. וצל&quot;ע על הרדב&quot;ז ממ&quot;ש בח&quot;ה סי׳ ש&quot;א פ&quot;ה באשה שאמרה הריני נזירה כשמשון שלא אתקן לך בגד. וכתב הרדב&quot;ז דנידון זה הוא במחלוקת ואמאי תלה אותו במחלוקת הא בזה לכ&quot;ע מהני וצע&quot;ק (וי&quot;ל כיון שבלא&quot;ה דעתו שם להקל לכן לא רצה להאריך והוא דוחק) אמנם צל&quot;ע עמ&quot;ש הרדב&quot;ז ח&quot;א סי׳ תל&quot;ו בא׳ שנדר נזירות שמשון שיעשה השתדלות לישא אשה והוא מושבע ועומד שלא ישא אחרת וע&quot;ז כתב הרדב&quot;ז וז&quot;ל כבר ידעת כי הנזירות הוא מכלל הנדרים והנדרים חלים על דבר מצוה כדבר הרשות הלכך חלין נמי על השבועה עכ&quot;ל. והוא לכאורה תמוה דכיון דס&quot;ל בכל אלו המקומות דנזירות הוא איסור גברא כמו שבועות א&quot;כ מהראוי שלא תחול ע&quot;ד מצוה כמו שבועה ואמאי כתב כאן בהיפוך והיה מקום ליישב זה דמפקינן לה מהא דאמרינן בנזיר (דף ג׳) דמיין ושכר יזיר לאסור ייין מצוה כיין הרשות א&quot;כ מבואר דס&quot;ל דנזירות חלין ע&quot;ד מצוה. דמלבד דאין המסקנא בש&quot;ס כן. עשו&quot;ת מהרי&quot;ט בתשו׳ מהר&quot;י באסין ח&quot;א סי׳ נ&quot;א) עוד זאת הקשה דדברי הרדב&quot;ז שפתיו ברור מללו דהטעם דחלין ע&quot;ד מצוה דהוא כמו נדרים וא&quot;כ מבואר דכאן כתב ההיפוך ממ&quot;ש בכל המקומות שהבאתי למעלה דס&quot;ל דנזירות דמי לשבועה דהוי איסור חפצא. וכן יש לתמוה ע&quot;ד הריטב&quot;א שבספ&quot;ק דנדרים כתב דנזירות הוי איסור חפצא וכ&quot;כ בפ&quot;ב דנדרים. ואמנם בחי׳ לשבועות [דכ&quot;ד ע&quot;ב הובאו דבריו בדברי המגיה לחי׳ נזיר להרב המאירי ד&quot;ג] כתב על ההיא דבעי רב אסי נזיר שאמר שבועה שלא אוכל חרצן בכמה וז&quot;ל ופרש&quot;י דאין כאן שבועה ונראה מדברי רבינו ז&quot;ל דנזירות חיוב גברא הוא דאי איסור חפצא הוא הא קיי&quot;ל דשבועה חלה על הנדר ונדר על השבועה דהאי איסור גברא והאי איסור חפצא כו׳. וכן עיקר דהא נזיר לא אסר עליו מידי אלא שקבל עליו נזירות ורחמנא אסרו כו׳ עכ&quot;ל הרי דס&quot;ל דנזירות הוי איסור גברא היפוך דבריו מנדרים וצ&quot;ע. והנה דברי הרדב&quot;ז האלו יש ליישבם לפמ&quot;ש הרדב&quot;ז (בח&quot;ג סי׳ תקי&quot;ט) ובסי׳ תקנ&quot;ב באורך דנזירות מועיל בין בלשון נדר בין בלשון שבועה דיש בהן מה דאסר חפציו עליו כמו יין ולגבי טומאה ותגלחת אסר נפשיה מן חפצא דלא שייך בהו אסר חפצי׳ עליו ע&quot;ש באורך וכיון שכן זכינו דס&quot;ל דנזירות הוי איסור גברא ואיסור חפצא ודנינן להו לחומרא וע&quot;כ חל על דבר שאין בו ממש כמו שבועה וג&quot;כ חל על דבר מצוה כמו נדר וא&quot;ש דבריו והבן כי נכון הוא. אולם דברי הריטב&quot;א א&quot;א ליישב כן. ועי׳ ברדב&quot;ז שם בסי׳ תקי&quot;ט שהביא דברי הריטב&quot;א בריש נדרים דגם שם כתב דנזירות הוי איסור גברא ע&quot;ש וזה סותר דבריו מ&quot;ש בפ&quot;ק ובפ&quot;ב דנדרים. ואמת שלא מצאתי זה בחי׳ הריטב&quot;א נדרים שלפנינו וגם דבריו אלו היה מקום ליישבם כמ&quot;ש לדעת הרדב&quot;ז דהוי איסור גברא ואיסור חפצא. אולם דבריו שבשבועות א&quot;א ליישב כן דאם הוי איסור גברא ואיסור חפצא מהראוי שתחול על שבועות לחומרא. ובעיקר הדין עי׳ שו&quot;ת מהרי&quot;ט וחלק א׳ סימן נ&quot;ג ונ&quot;ד) ורשד&quot;ם (חלק יו&quot;ד סי׳ ע&quot;ו) ופמ&quot;א (ח&quot;א סי׳ ע&quot;ז):</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-2">Chapter 2</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-2-1-4-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-2-1-4-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 2:1:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 2:1:4:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-2-1-4-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 2:1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבועה שלא אוכל ג׳ ימים כו׳.</strong> הנה בילקוט נביאים (רמז תתרנ&quot;ו) איתא איך היו צמים ג׳ ימים לילה ויום ולא היו מתים אלא שהיו מפסיקין מבעוד יום. וראיתי בשו&quot;ת איתן האזרחי בק&quot;א (דס&quot;ג ע&quot;א) שכתב וז&quot;ל המדרש הזה צריך נגר ובר נגר להלמו וחל עלינו חובת הביאור כו׳ כי הקושיא אינו מה שהקשה ואיך היו צמים כו׳ והוא תמוה הלא אנחנו רואים כמה אנשים ונשים צמים כן׳ גם התירוץ שכתב לפי שהיו מפסיקין מבעו&quot;י אינו מובן כלל כי איך יתיישב הקושיא ואדרבא קשיא איך לא היו מתים עכ&quot;ל. ובאמת לק&quot;מ דמה שנתקשה על מה שהקשה המדרש ואיך היו צמים כו׳ לק&quot;מ דהא מבואר בירושלמי כאן שבועה שלא אוכל ג׳ ימים ממתינים אותו עד שיאכל ומלקין אותו ופי׳ הפ&quot;מ שקרוב להסתכן וכ&quot;כ הר&quot;ן בשבועות פ&quot;ג. ועי׳ בכ&quot;מ פ&quot;ה מה׳ שבועות והיינו אף דנמצאו אנשים שיכולים להתענות כמה ימים [עי׳ בש&quot;ס ע&quot;ז ד&quot;ח דאדם הראשון ישב ח׳ ימים בתענית והיינו לילה ויום עי׳ בתורת חיים שם. ועי׳ בפרקי דר&quot;א פרק א׳ גבי ר&quot;א בן הורקנוס עשה שתי שבתות ולא טעם כלום] אבל איך הכריזו כן על כל העדה אנשים ונשים דבודאי ימצאו בהם אנשים שמסתכנים שלא יהיו יכולים לעמוד בהצום ויסתכנו וכמו שכתב בירושלמי דממתינין אותו כו׳. ומה שהקשה על מ&quot;ש המדרש דמפסיקין היו לא ראה מ&quot;ש בשו&quot;ת הריב&quot;ש (סי׳ תט&quot;ז) וז&quot;ל פי׳ שלא היו ג׳ צומות שקבלו ג׳ צומות בלתי רצופים אלא שבכ&quot;א יפסיקו מבעו&quot;י כמו שאנו עושין בט&quot;ב וביוה&quot;כ ולזה אמר לילה ויום עכ&quot;ל ואתי שפיר דברי המדרש ואינו טעות ספר כמו שחשב האיתן האזרחי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-3">Chapter 3</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-3-5-2-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-3-5-2-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 3:5:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 3:5:2:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-3-5-2-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 3:5:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>למפריען קדשו או מכאן ולבא כו׳.</strong> כתב בשירי קרבן והפוסקים השמיטו בעיא זו ולא ידעתי למה וצ&quot;ע עכ&quot;ל ולענ&quot;ד לק&quot;מ עפ&quot;י מ&quot;ש בס׳ קהלת יעקב (אות א׳ סי׳ ק&quot;ד) להוכיח דש&quot;ס דילן ס&quot;ל דאמדינן דעתו שיחול ההקדש משעה הראשונה והוי כאמר מעכשיו כו׳ ע&quot;ש באורך וא&quot;כ אין מציאות להאיבעיא זאת לפי סוגית ש&quot;ס דילן דבודאי ס&quot;ל דחל ההקדש משעה הראשונה והוי כאמר מעכשיו וא&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-3-9-2-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-3-9-2-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 3:9:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 3:9:2:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-3-9-2-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 3:9:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר ר׳ יוחנן בר מרייה כתיב ביום ההוא כרת כו׳.</strong> כתב הפני משה דצ&quot;ל וירא ה׳ אל אברהם כו׳ ואתנה בריתי כו׳ ע&quot;ש. ובזה מיושב מה שהניח בצ&quot;ע הש&quot;ק על הר&quot;מ בפי׳ המשנה והתוי&quot;ט שכתב דההתחלה היא מואתנה את בריתי וכ&quot;כ ג&quot;כ הרמב&quot;ם בחיבורו (פ&quot;ג מה׳ מילה ה&quot;ט) דהוא היפוך דברי הירושלמי ולהנ&quot;ל א&quot;ש דגם הם היו גורסים כגירסת הפני משה. אמנם ראיתי בחי׳ המאירי לנדרים (ל&quot;א ב׳) שכתב וז&quot;ל וכשעיינו בשניהם לא מצינו בפרשת מילה אלא י&quot;ב בריתות כו׳ ומ&quot;מ פירשו בתלמוד המערב י&quot;ג בריתות אלו מביום ההוא כרת ה׳ את אברהם ברית כו׳ והוא בפרשת בתריס עכ&quot;ל מבואר שגרס כגרסתינו בירושלמי. אולם תמהני דלא קחשיב לברית עולם (ועמ&quot;ש המגיה שם) ואולי דסובר דוהקמותי את בריתי אתו לברית עולם הם א׳ דהפירוש שהברית שהקימותי אתו הוא ברית עולם וע&quot;כ הם נחשבים לא׳ והוא דחוק. ועי׳ בס׳ המפתח לרבינו ניסים גאון (דנ&quot;ב א׳) שגם שם קחשיב הי&quot;ג בריתות אך שם נדפסו בשיבוש וכמ&quot;ש המגיה שם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-4">Chapter 4</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-4-2-2-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-4-2-2-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 4:2:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 4:2:2:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-4-2-2-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 4:2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפי׳ בבעל חוב שדוחק נישמעינה מן הדא תדע לך כו׳.</strong> עי׳ פני משה כתובות (פי&quot;ג ה&quot;ב) מה שפי׳ בו ותמהני שלא זכר מדברי הש&quot;כ (סי׳ קכ&quot;ח סק&quot;ג) שכ׳ דהירושלמי מוכיח מדמקריב עליו קינין כו׳ אע&quot;פ שהיו ממשכנין אותו ומשני דהתם מיירי שכבר הפריש קרבנותיו ונאבדו ביד הכהן דתו לא מיחייב בעה&quot;ב. וראיתי לההפלאה בכתובות (דק&quot;ח א׳ ד&quot;ה אפי׳) שכ׳ ע&quot;ד הש&quot;כ ודבריו אינם מובנים כלל חדא דהא קיי&quot;ל חייבי חטאות ואשמות אין ממשכנין אותן וה&quot;ה בכל מחוסרי כפרה ומ&quot;ש דכשמסרם ביד הכהן ונאבד הכהן חייב באחריותן קשה דהא נתמעטו קדשים מדין שמירה אפי׳ מפשיעה כדקיי&quot;ל בח&quot;מ סי׳ ש&quot;א עכ&quot;ל. וכן הקשה השירי קרבן כאן. ולענ&quot;ד להצדיק דברי הש&quot;כ דמה שהקשה ההפלאה דהא בחייבי חטאות ואשמות אין ממשכנין אותן נ׳ דדעת הש&quot;כ דבאשם יולדות ממשכנין אותן דהא הטעם דאין ממשכנין משום דכיון דאסור לאכול בקדשים א&quot;כ ממילא מביא הקרבן אבל אשם יולדת דאין מעכבו מלאכול בקדשים כמבואר ברמב&quot;ם פ&quot;א מה׳ מח&quot;כ ואמת שהכ&quot;מ כ׳ שם דהוא ט&quot;ס. אולם בלח&quot;מ (פ&quot;ו מה׳ נזירות) כ׳ דהעיקר הוא כנוסחתינו א&quot;כ שוב ממשכנין דחיישינן דיאחר אותו מלהביא כיון שאין מעכבו מלאכול בקדשים והכא במשנה נזכר אשמות וע&quot;כ צדקו דברי הש&quot;כ. ועי&quot;ל לפמ&quot;ש הרמב&quot;ן הובא במל&quot;מ (פי&quot;ד מה׳ מעה&quot;ק הי&quot;ז) דהיכא דעברו ג׳ רגלים ממשכנין גם בחייבי חטאות ואשמות א&quot;כ י&quot;ל דהירושלמי הוכיח דהא סתמא קאמר כאן דמביא הכהן אע&quot;ג דעברו עליו ג׳ רגלים וא&quot;ש דברי הש&quot;כ ומה שהקשה ההפלאה על הש&quot;כ דהא קדשים נמעטו מדין שמירה י&quot;ל דהש&quot;כ אזיל לשיטתו בח&quot;מ (סי׳ ס&quot;ו ס&quot;ק קכ&quot;ו) דחייב בפשיעה. וע׳ בשדה יהושע בכתובות (דמ&quot;ב ע&quot;ד) שנוסחא אחרת היתה לו בירושלמי ע&quot;ש. וראיתי בתומים (סק&quot;א) שכ׳ על מ&quot;ש הש&quot;כ דאם הפריש קיני זבין ונפסלו דאין הבעה&quot;ב חייב לקנות אחרת דמעולם לא שמענו כזאת ובודאי משנפסל חייב להביא אחר. וראיתי להקצות החשן סק&quot;ב ולהנה&quot;מ שם שכתבו עליו דנעלם ממנו משנה מפורשת בשקלים (כ&quot;ז מ&quot;ז) דהקינין הפסולות היו באין משל ציבור או משל המספק והיא תמי׳ נפלאה דא&quot;כ הבעה&quot;ב פטור וליישב דברי התומים נראה לפמ&quot;ש בס׳ תפארת ישראל בשקלים שם דדוקא אם נפסלו מאותן שקנו הב&quot;ד אבל אם הביאו הן עצמן צריכות להביא אחירות וא&quot;כ נ&quot;ל דגם דעת התומים היתה כן וסובר דכיון דבמשנה סתמא קתני משמע אפי׳ הביאו הן עצמן ולא הב&quot;ד וא&quot;ש דבריו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-4-5-1-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-4-5-1-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 4:5:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 4:5:1:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-4-5-1-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 4:5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא יעשה עמו באומן דברי ר׳ מאיר.</strong> הקרבן העדה העיר בכאן דלמה לא פסקו כר׳ מאיר הא הלכה כר&quot;מ בגזירותיו ועשו&quot;ת חקר הלכה (סי׳ ה׳) שנשאל בזה ובשב שמעתתא (שער ז׳ סי׳ י&quot;א) תמה בזה וכ׳ שלא ראה מי שהעיר בזה ולא ראה דברי הש&quot;ק כאן. וגם מ&quot;ש שכל הראשונים ס&quot;ל דאין הלכה כר&quot;מ בקנסותיו לא ראה בס׳ יראים (סי׳ י׳ שנ&quot;ב) דגם בקנסותיו הלכה כמותו ועי׳ שאילת שלום סי׳ ט&quot;ז:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-5">Chapter 5</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-5-1-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-5-1-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:5:1:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:5:1:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-5-1-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קונם שאיני נהנה כוי&quot; כמ&quot;ד לאחר האיסור.</strong> הנה ראיתי להמחנה אפרים ה׳ שבועות (סי׳ ע׳) שכ׳ ונלע&quot;ד דהפי׳ דלמ&quot;ד לאחר האיסור כלומר דאין חכם מתיר אא&quot;כ חל הנדר מש&quot;ה קתני נשאל על הראשון ואח&quot;כ נשאל על השני שאין חכם מתיר הנדר עד שיחול ולמדנו מזה דאע&quot;פ שהוא נדר א׳ לא אמרינן הותר מקצתו הותר כולו כל כמה דלא חל האיסור עכ&quot;ל ובמחכת&quot;ה לא ראה בירושלמי נדרים (פ&quot;ו ה&quot;ג ופי&quot;א ה&quot;ט) שמבואר שם להדיא דהך מ&quot;ד דפליגי אם לאחר הנדר או לאחר האיסור המה ר׳ ישמעאל ור׳ עקיבא דפליגי אם הולכין אחר אמירת הנדר או אחר השעה שהנדר חל ולא כהמחנה אפרים שסבר דפליגי אם מתירין קודם שיחול הנדר ובירושלמי באלו המקומות מבואר ההיפוך והוא ברור. ועיין בקה&quot;ע שכ׳ וקאמר הך ברייתא דתני בה נשאל בין על הראשון בין על השני אתיא כר&quot;י דאזיל בתר חלות האיסור ואין שני הנדרים חלין באחת ולא שייך נדר שהותר מקצתו הותר כולו הלכך צריך לשאול גם על השני והך ברייתא דתני בה ואין נשאל על השני אתיא כר&quot;ע דבתר אמירה אזלינן ואז הי׳ הב׳ נדרים כא׳ הלכך כיון שנשאל על הראשון ה&quot;ל כנדר שהותר מקצתו ובטל כולו וא&quot;צ לשאול על השני. ה&quot;ג ברם כמ&quot;ד לאחר הנדר עכ&quot;ל. והנה מ&quot;ש דגרסינן כמ&quot;ד לאחר הנדר היא ט&quot;ס לפי שיטתו וצ&quot;ל ברם כמ&quot;ד לאחר האיסור. אולם לפ&quot;ד תקשה על הרמב&quot;ם שפסק בה׳ נדרים (פי&quot;ג הט&quot;ז) כר&quot;ע דאזלינן בתר האיסור ומדוע פסק בה׳ שבועות (פ&quot;ו הט&quot;ו) דצריך לשאול על שניהם וכ&quot;פ כל הפוסקים והא לפ&quot;ד הוי תרתי דסתרי וע&quot;כ נראה העיקר כמו שפי׳ הפ&quot;ע להיפוך וא&quot;ש פסקי הרמב&quot;ם והפוסקים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-5-1-2" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-5-1-2" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:5:1:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:5:1:2</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-5-1-2" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:5:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ר׳ יוחנן אמר מפני הבושה כו׳.</strong> בשירי קרבן הביא פי׳ הר&quot;ן דבנודר לתועלת חבירו לא יתירו לו אלא בפניו כדי שיתבייש ממנו ויקיים נדרו והשיג עליו דהא המודר הנאה בפניו קתני משמע שאסר עליו הנאתו וע&quot;ש עה שדחק ליישב דברי הר&quot;ן. ובמחכ&quot;ת לא ראה בשו&quot;ת הר&quot;ן (סי׳ י&quot;ז) שכ׳ ועוד ששם בנדרים יש מי שגרס המודר הנאה מחבירו בפניו אין מתירין לו אלא בפניו משמע דהא שלא בפניו מתירין לו אפילו שלא בפניו וסמכתי לפי גירסא זו לפי שאמרו בירושלמי דנדרים פ׳ השותפין והביאו בתוס׳ גיטין מטו&quot;ך בלשון הזה המודר הנאה מחבירו בפניו כו׳ ר׳ יוחנן אמר מפני הבושה כו׳ והיא שיטה מחוורת ואע&quot;פ שאינה מסכמת עם מה שכתבתי בפירושי בנדרים לפי שכתבתיה ע&quot;פ ספרינו ועדיין לא באו לידי התוס׳ מטו&quot;ך אפשר שאתקן שם מעט ואודיעכם עכ&quot;ל וא&quot;כ מה שדחק ליישב דברי הר&quot;ן ליתא דהר&quot;ן בעצמו הודה שדבריו המה נגד הירושלמי רק שהתנצל שכתב אותו קודם שראה אותו הגירסא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-6-4-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-6-4-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:6:4:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:6:4:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-5-6-4-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 5:6:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הדירו אביו מנכסיו כו׳.</strong> עיין בשירי קרבן שכ׳ וז&quot;ל כ׳ תוס׳ בבבא בתרא דף קל&quot;ג ע&quot;ב בד&quot;ה בא עליו כו׳ נראה לרשב&quot;א דהאי גברא הדירו נכסיו מבניו בחייו ובמותו כו׳ ע&quot;ש וקשה למה לי שהדירו במותו הא אפילו אם הדירו בחייו אסור בהן כל ימי חייו וכדתנן בבבא קמא פ׳ הגוזל וצ&quot;ע עכ&quot;ל. ולא ידעינא מאי קושיא הא אם לא הי׳ אומר במותו בודאי היו זוכין הבנים בלא המתנה מיונתן בן עוזיאל מכח ירושה כדאיתא במשנה בב&quot;ק (דף ק&quot;ח סוף ע&quot;ב) דאם אמר בחייו ירשנו הבנים וכ&quot;כ הרש&quot;ל בח&quot;ש והב&quot;ח בהגהותיו שם והוא ברור:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-6">Chapter 6</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-6-3-3-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-6-3-3-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 6:3:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 6:3:3:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-6-3-3-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 6:3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל נון דלא אכיל פחות מן ליטרא כילכוד אנא טעים כו׳.</strong> עיין בתפארת ישראל (ד&quot;ע ע&quot;ד) שהביא הגירסא פחות מליטרא כולכית כו׳ וכ׳ ומכאן קשה על המפרשים דכולכית הוא מין דג טמא וצ&quot;ע עכ&quot;ל. וראיתי בביאורי מהרא&quot;ל מה&quot;ר אליעזר לוי היילפערין בבאורו על רש&quot;י בחומש (פרשה שמיני דמ&quot;ו א׳) שיישב זה עפ&quot;י מ&quot;ש הבח ביורה דעה סי׳ פ&quot;ג דקודם שפירשו מותר. ורק אחר שפירשו אסור יע&quot;ש. ולדעתי שגה בזה ואינו עולה ארוכה כלל דהא אמרינן להלן בירושלמי לית הדא פליגא על ר׳ יוחנן דר׳ יוחנן אמר הלכו בנדרים אחר לשון בני אדם לית אורחיה דבר נש מימר לחבריה זבין לי נון וזבין ליה כלכוד וא&quot;כ נראה שהוא זבין ליה ומוציאו מן הציר כמו שמוציא שאר דגים כשקונה אותן. וא&quot;כ שוב הוי פירש וגם אם נדחוק לומר דמיירי דלוקחו עם הציר נראה ודאי דאין לשון בני אדם כן כשיאמר לחבירו ליקח לו דג בודאי כוונתו על סתם דג שיקח אותו ויבשלהו או יצלהו ולא שיקח לו כולכית שלא יוכל ליקח אותו מן הציר ויוכרח לישתות אותו בהכלי שקנהו אכן נראה דהסוברים דכולכית הוא דג טמא גורסים כילכוד כגירסא שלנו והוא מין דג אחר שהוא טהור ואיננו כולכית וז&quot;ב [עיין ערוך השלם ערך כלכית א׳, ב׳, מ&quot;ש ע&quot;ז:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-6-8-3-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-6-8-3-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 6:8:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 6:8:3:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-6-8-3-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 6:8:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עולשין חשובין הן לטמא טומאת אוכלין בשביעית.</strong> בשירי קרבן כ׳ וז&quot;ל הרמב&quot;ם בה׳ טומאת אוכלין השמיט עולשין שהן מטמאין טומאת אוכלין והי׳ נ&quot;ל לפום ריהטא שטעמו דמסיק הש&quot;ס משהתיר רבי וכו׳ לעולם אין העולשין מטמאין טומאת אוכלין אך קשה וכו׳ וצ&quot;ע עכ&quot;ל ובמחכ&quot;ת לא ראה בר&quot;מ ה׳ טומאת אוכלים (פ&quot;ג ה&quot;ג) וז&quot;ל עולשין שזרען לבהמה ונמלך עליהן לאדם אין מקבלין טומאה עד שיחשוב עליהן אחר שיתלשו שמחשבת חיבור אינה מחשבה. עולשין שליקטן לבהמתו והדיחן ונמלך עליהן לאדם צריכין הכשר שני אחר המחשבה עכ&quot;ל מבואר להדיא שלא השמיט הדין דעולשין מטמאין טומאת אוכלין דלא כהשירי קרבן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-7">Chapter 7</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-7-1-3-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-7-1-3-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 7:1:3:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 7:1:3:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-7-1-3-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 7:1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קרבייא לאו בשר כו׳.</strong> בקה&quot;ע הניח בצ&quot;ע ע&quot;ד ר&quot;י ההובא בטיו&quot;ד סי׳ ק&quot;י דקרבייא אינה חתיכה הראויה להתכבד דהא בגמ׳ אמרינן דזה לענין זביני כו׳. וגם זה רק דברי רשב&quot;ג ולא קיי&quot;ל כן ע&quot;ש. ולא ידענא מאי קושיא הא סוף סוף חזינן דאמרינן דמי שיכול לקנות בשר וקונה קרביים לאו בר אינש הוא א&quot;כ איך נאמר דהוא חה&quot;ל הא בודאי אינם מכבדים בזה אף שנאמר שהוא אכילה שע&quot;י הדחק עכ&quot;ז בודאי אינם מכבדים בזה ומ&quot;ש דזה רק מדברי רשב&quot;ג הנה רש&quot;י עי׳ דהיא מילתא אחריתא ואינו חולק כלל בזה. ומצאתי בחי׳ המאירי שגם הוא פי׳ כן ומ&quot;ש הקה&quot;ע בשם הרשב&quot;א נ&quot;ל דגם לדעת הרשב&quot;א שכ׳ דדברי רשב&quot;ג הוא לענין נדרים. ובזה הלכה כר&quot;ע עכ&quot;ז הדבר ההוא בעצמו גם ר&quot;ע מודה ולא נחלקו במציאות. וראי׳ מהא דאמר רבא בביצה (ל&quot;ג א׳) לשמעי׳ טוי לי בר אווזא ושדי מעי׳ לשונרא א&quot;כ מבואר שלא היה אוכל המעיים ואף לפמ&quot;ש התוס׳ שם ורש&quot;י בשבת (קמ&quot;ג א׳) דביו&quot;ט שיש בשר אינם אוכלים המעיים מבואר עכ&quot;פ מזה שאינה אכילה חשובה ושוב לא מקרי חה&quot;ל כנ&quot;ל פשוט וברור:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-8">Chapter 8</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-8-1-7-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-8-1-7-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 8:1:7:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 8:1:7:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-8-1-7-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 8:1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מעשה שגזרו תענית בחנוכה בלוד בבבלי ר&quot;ה דף י&quot;ח ע&quot;ב ושם הנוסחא ר&quot;א ורחץ ור׳ יהושע וסיפר ובמסורת הש&quot;ס נשמט הציון לר&quot;ה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-8-1-7-2" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-8-1-7-2" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 8:1:7:2">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 8:1:7:2</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-8-1-7-2" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 8:1:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רבי אבין ציים כל ערובת סוכות עי׳ בקה&quot;ע שהגיה שצ&quot;ל ערב שבת.</strong> וכן מצאתי ברוקח בשורש קדושת היחוד שהעתיק כן רק ששם הגירסא ר׳ אבא. ועי׳ בהגהת מהר&quot;ם די לונזאנו בסוף המס׳ שכ׳ ר׳ אבון ציים כל ערובת שבא כצ&quot;ל נ&quot;ב שבת שבין ר&quot;ה ליה&quot;כ עכ&quot;ל. ונ&quot;ל שכן היתה דעת הטור. ומיושב מ&quot;ש בסי׳ רמ&quot;ט שדרך אנשי מעשה להתענות בכל ע&quot;ש שהביא ראיה מדאמרינן בעירובין בפ׳ בכל מערבין הני בני בי רב דיתבי בתעניתא במעלי שבתא מהו לאשלומי אלמא שדרך להתענות בע&quot;ש. וראיתי למרן הב&quot;י שכ׳ ע&quot;ז שהראי׳ שהביא אינה מוכרחת וממקום אתר הו&quot;ל להביא ראיה מבוארת מירושלמי פ&quot;ב דתענית ר׳ אבון ציים כל ערובת שבא עכ&quot;ל. אמנם אם נאמר דהטור פי׳ כפי׳ הר&quot;מ די לונזאנו שקאי על שבת שבין ר&quot;ה ליה&quot;כ א&quot;ש. ועי׳ במ&quot;א סי׳ רמ&quot;ט סק&quot;ז כתב והב&quot;ח כתב בשם הפוסקים והירושלמי דאסור להתענות בע&quot;ש לא ידעתי היכן מצאו בירושלמי כן ועיינתי בב&quot;ח לא כתב כן בשם הירושלמי רק בשם הרוקח ודברי המ&quot;א צ&quot;ע או שט&quot;ס בהם. ומה שהקשה שם מההיא דר׳ אבון ציים כו׳ ודחק לומר שהי׳ איסטניס לפמ&quot;ש בשס הר&quot;ם די לונזאנו א&quot;ש בלא&quot;ה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-9">Chapter 9</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-9-5-2-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-9-5-2-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 9:5:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 9:5:2:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-9-5-2-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 9:5:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וגובין מן המטלטלין אמר רבי בא אף על גב דתימר דגובין מן המטלטלין כ׳.</strong> עיין מה שפירש הפני משה והוא דחוק ואתיא מרחוק ואין לו ביאור כלל ולולי דמסתפינא הייתי אומר דט&quot;ס בירושלמי וצריך להיות אף על גב דתימר אין גובין כו׳. והכוונה דהנה הב&quot;י באבן העזר סי׳ קי&quot;ט הביא פלוגתת הפוסקים אם יכול לגרש את אשתו אם אין לו לשלם כתובתה. ולדעתי היה נראה דהוא פלוגתא בין שני התלמודים. דהנה בירושלמי ב&quot;מ (פ&quot;ח הו&quot;ד) איתא דאשה שנתגרשה ולא נתן לה כתובתה חייב במזונותיה והרי&quot;ף פ׳ בתרא דכתובות כ׳ דמתלמודא דידן לא נראה כן. והיה נראה דבזה תליא פלוגתתן דלהירושלמי דחייב במזונותיה א&quot;כ משמע דאינו יכול לגרשה בלא כתובתה וכן כשגירשה חייב עדיין במזונותיה. אולם לשיטת תלמודא דידן דסובר שאינו חייב במזונותיה נראה דסובר דיכול לגרשה בלא כתובתה. ושוב ראיתי להג&quot;פ (סי׳ קי&quot;ט ס&quot;ק מ&quot;ו) שכ&quot;כ ע&quot;ש (והן אמת שנל&quot;ע ע&quot;ז דהא הב&quot;י הביא שם בשם תשובת הרי&quot;ף דאין לו לגרשה כשאין לו לשלם כתובתה וא&quot;כ לפ&quot;ז יהיו דברי הרי&quot;ף סותרין זה את זה. אך הב&quot;י כ׳ דלאו הרי&quot;ף חתום עלה ע&quot;ש) וא&quot;כ א&quot;ש. דהנה לכאורה מסוגית הש&quot;ס דנדרים שם מכח דיכול לגרשה כשאין לו לשלם כתובתה דאמרינן שם דהמטלטלים הם לפרנסתו ואינו צריך למכור המטלטלים לשלם לה כתובתה. ומצאתי בשו&quot;ת ס׳ יהושע בפסקים וכתבים (סימן מ&quot;ו) שהתעורר בזה. אך באמת הש&quot;ס דילן אזיל לשיטתו והירושלמי אזיל ג&quot;כ לשיטתו לכן אמר ר׳ בא דאע&quot;ג דהמטלטלים אינם משועבדים לכתובתה עכ&quot;ז אומרים לו שיתן כיון שנדרת ואתה מוכרח אותה לגרשה וצריך אתה לשלם לה כתובתה לכן תמכור המטלטלין לשלם כתובתה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-10">Chapter 10</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-10-8-8-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-10-8-8-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 10:8:8:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 10:8:8:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-10-8-8-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 10:8:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין נשאלין נדרים אלא [עטופים] (מעומד) כו׳.</strong> עיין בשירי קרבן מה שתמה על הש&quot;כ סי׳ רכ&quot;ח סק&quot;ט שכ׳ דבפתח צריך מיושב אבל בחרטה מתירין מעומד דהא מסקינן בסוף פרקין דגם בנדר הניתר ע&quot;י חרטה צריך עטיפה ע&quot;ש ולא ידענא מאי קושיא הא אדרבה אמרינן שם דלא צריך עטיפה בע&quot;י חרטה כמו בע&quot;י פתח וסגי בפלינס בעלמא וא&quot;כ חזינן דיש חילוק בין חרטה לפתח. ומזה ראיית הש&quot;כ לענין מיושב. ומ&quot;מ בעינן עטיפה קצת מפני הכבוד. ומ&quot;ש שהש&quot;כ סותר א&quot;ע ממ&quot;ש בסי׳ רמ&quot;ו דהא דשואלין הלכות מעומד היינו בזמן הבית א&quot;כ איך יליף מהירושלמי הזה דמתירין הנדרים מיושב (ט&quot;ס וצ&quot;ל מעומד) לק&quot;מ דהא הש&quot;כ כתב דאף דמן הדין היו השואל הלכות צריך לשאול מעומד עכ&quot;ז אחר חורבן הבית שירד חולשא לעולם והיו לומדים בישיבה שוב היו רשאין לישב אבל שאר דינים ונדר בזה גם היום מעומד והדינים המבוארים בירושלמי שצריך עטיפה והנשאל מיושב נשארים אדינם. ומה לי בזמן הבית או אח&quot;כ. ולכן מה שהקשה עוד שם ממה דמבואר בירושלמי דגם אחר החורבן היו מתעטפין לק&quot;מ דבזה גם הש&quot;כ מודה וז&quot;ב. ודרך אגב אעיר על מ&quot;ש הר&quot;מ בה׳ ת&quot;ת (פ&quot;ד ה&quot;ז) דהשואל היו בעמידה והרמ&quot;א בד&quot;מ השיג עליו מהירושלמי הזה. וכן ממה דאיתא בבבלי עמד השואל וכו׳ ובש&quot;כ שם חילק בין זמן הבית לאחר הבית וביד שאול השיג עליו דההוא ר&quot;ג היה נכדו ע&quot;ש. אולם בחי׳ הרשב&quot;א למגילה (ד&quot;כ ע&quot;ב) מבואר כדברי הש&quot;כ ובק&quot;נ פ&quot;ג דמגילה השיג עליו. ועיין ביערות דבש (ת&quot;ב סי׳ י&quot;א) תירץ דהיכא דשואל לפלפולא צריך לישב והשואל להלכה ומעשה צריך לעמוד וצל&quot;ע דהא בירושלמי אי׳ אגדות מעומד ומאי הלכה למעשה יש באגדות. ועיין בספר סדר משנה שכ׳ שדברי הר&quot;מ מבוארים בתוספתא פ&quot;ז דסנהדרין וכ׳ שם שהר&quot;מ ס&quot;ל דגם קודם חורבן היה לומד הרב מיושב. ומיושב בזה מה שתמה הטורי אבן במגילה דף כ&quot;ד מש&quot;ס עירובין דמשה רבינו היה לומד מיושב ולהנ&quot;ל א&quot;ש. ועמ&quot;ש הפרשת דרכים דרוש ט&quot;ו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-11">Chapter 11</h4>
+          <section class="unit" id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-11-12-2-1" data-unit data-lexical-unit data-unit-id="amudei-yerushalayim-on-jerusalem-talmud-nedarim-11-12-2-1" data-source-ref="Amudei Yerushalayim on Jerusalem Talmud Nedarim 11:12:2:1">
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Amudei Yerushalayim on Jerusalem Talmud Nedarim 11:12:2:1</h4></div>
+              <a class="anchor" href="#amudei-yerushalayim-on-jerusalem-talmud-nedarim-11-12-2-1" aria-label="Copy link to Amudei Yerushalayim on Jerusalem Talmud Nedarim 11:12:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>איסטרטיות נכנסו לעיר כו׳.</strong> עיין בס׳ בני אהובה (פכ&quot;ד מה׳ אישות ה&quot;כ) שהוכיח מדברי הירושלמי הללו כהמהרי&quot;ק דאשה שסברה שמותר לזנות אסורה לבעלה ע&quot;ש. ולכאורה לפי מה שפי׳ הפני משה אין ראיה כלל אולם דבריו תמוהים. עיין בשו&quot;ת נ&quot;ב (מה&quot;ת תאה&quot;ע סי׳ י&quot;ב) ולפ&quot;ד צדקו דברי הבני אהובה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-amudei-yerushalayim-on-jerusalem-talmud-nedarim-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>HUD data:</strong> Book-local token bridge plus route-card lookup files. Route rows are study evidence, not polished translations.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/amudei-yerushalayim-on-jerusalem-talmud-nedarim.manifest.json">HUD token manifest</a><a class="export-button" href="../../data/definitions/hud-route-lookup/manifest.json">Route lookup manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="reader-workbench-panel" data-reader-workbench hidden aria-live="polite">
+    <div class="reader-workbench-head"><h3>Reader Workbench</h3><span class="reader-workbench-status" data-reader-status>0 selected glosses | not_a_translation</span></div>
+    <p class="reader-workbench-assembly" data-reader-assembly></p>
+    <div class="reader-workbench-actions"><button class="reader-workbench-button" type="button" data-reader-export>Export study sheet</button><button class="reader-workbench-button" type="button" data-reader-import>Import study sheet</button><input type="file" accept="application/json" data-reader-import-file hidden></div>
+  </section>
+  <section class="lexical-hud" data-lexical-hud hidden role="dialog" aria-labelledby="route-hud-title" tabindex="-1">
+    <div class="hud-head"><h2 id="route-hud-title">Route HUD</h2><button class="hud-close" type="button" data-hud-close aria-label="Close route HUD">Close</button></div>
+    <div class="route-hud-panel" data-route-hud-panel id="route-hud-panel" aria-live="polite">
+      <p class="placeholder">Click a Hebrew form to load route cards.</p>
+    </div>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/amudei-yerushalayim-on-jerusalem-talmud-nedarim.json">{}</script>
+  <script type="application/json" data-lexical-config>{"work_id":"amudei-yerushalayim-on-jerusalem-talmud-nedarim","manifest_url":"../../data/lexical/amudei-yerushalayim-on-jerusalem-talmud-nedarim.manifest.json","occurrence_url":"../../data/lexical/occurrences/amudei-yerushalayim-on-jerusalem-talmud-nedarim.json","hud_route_lookup_manifest_url":"../../data/definitions/hud-route-lookup/manifest.json","reader_hints_url":"../../data/public-hud/amudei-yerushalayim-on-jerusalem-talmud-nedarim/reader-hints.json","root_href":"../../"}</script>
+  <script type="text/plain" data-hud-runtime-contract>
+    selectRouteAnswer
+    lookupCandidateTreatments
+    article.dataset.rankBasis
+    span.dataset.lexicalSurface
+    sourceRowHasPublicFields
+    selectionContractErrors
+    canSaveGlossSelection
+    Evidence only
+    Reader Workbench import rejected
+    aria-haspopup", "dialog"
+    aria-controls", "route-hud-panel"
+    aria-expanded", "false"
+    Definition
+    Strict Hebrew matches
+    Strict Aramaic matches
+    Lemma matches
+    Word-part breakdown
+    Citable definition/paraphrase matches
+    Usage evidence
+    observed usage only
+    Sources and licenses
+    answer_eligible
+    answer_role
+    prefix-stripped candidate
+    plural-suffix candidate
+    possessive-suffix candidate
+    maqaf component
+    closeRouteHud
+    restoreFocus
+    buttonToRestore.focus
+    Escape
+    hud.focus
+  </script>
+  <script src="../../assets/js/reader-workbench.js"></script>
+</body>
+</html>

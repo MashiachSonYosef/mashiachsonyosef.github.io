@@ -2118,14 +2118,14 @@ if ($OnlySitePages -and (Ensure-SourceCatalog -SourceDirectory $SourceDir)) {
   $catalog = Read-Json -Path 'data/catalog/source-catalog.json'
   $sources = @($catalog.sources | Sort-Object work_title)
 } else {
-  $sourceFiles = if ($targetWorkIds.Count -gt 0 -and $SkipSitePages) {
+  $sourceFiles = if ($targetWorkIds.Count -gt 0) {
     @($targetWorkIds | ForEach-Object { Join-Path $SourceDir "$_.json" } | Where-Object { Test-Path -LiteralPath $_ } | ForEach-Object { Get-Item -LiteralPath $_ })
   } else {
     @(Get-ChildItem -Path $SourceDir -Filter '*.json')
   }
 
   $sources = @($sourceFiles | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
-  if ($targetWorkIds.Count -gt 0 -and $SkipSitePages) {
+  if ($targetWorkIds.Count -gt 0) {
     $knownSourceIds = @{}
     foreach ($source in @($sources)) {
       if ($source.work_id) { $knownSourceIds[[string]$source.work_id] = $true }
@@ -2460,7 +2460,7 @@ function New-LibraryPageHtml {
   return $page.ToString()
 }
 
-if (-not $SkipSitePages) {
+if (-not $SkipSitePages -and $targetWorkIds.Count -eq 0) {
   Write-Utf8 -Path 'index.html' -Content (New-LibraryPageHtml -Sources $sources -HrefPrefix '' -HomeHref './' -AboutHref 'about/')
 
   $aboutPage = New-Object System.Text.StringBuilder
@@ -2881,6 +2881,6 @@ foreach ($source in $renderSources) {
   Write-Utf8 -Path "$($source.work_slug)\index.html" -Content $page.ToString()
 }
 
-if (-not $SkipOverlayExports) {
+if (-not $SkipOverlayExports -and $targetWorkIds.Count -eq 0) {
   Write-FullSiteOverlayManifest -Sources $sources
 }
