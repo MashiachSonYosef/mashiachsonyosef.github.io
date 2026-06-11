@@ -1,0 +1,35 @@
+{
+  "status": "validated_stage_candidate",
+  "artifact": "reports/dirty-repo-root-library-carry-2026-06-10.json",
+  "scope": [
+    "about/index.html",
+    "library/index.html",
+    "overlay-export.json"
+  ],
+  "bucket": "root_library_deploy_carry",
+  "validators": [
+    {
+      "name": "static_root_library_overlay_guard",
+      "result": "passed",
+      "evidence": [
+        "root Featured shelf remains single Orot card",
+        "root and library totals are 1360 works and 802869 source units",
+        "library has 1360 unique normal corpus cards",
+        "library has no data-featured-shelf marker",
+        "overlay-export.json row_count is 802869",
+        "overlay-export.json per_work_json length is 1360"
+      ]
+    },
+    {
+      "name": "git_diff_check_scoped",
+      "result": "passed",
+      "notes": "CRLF warnings only on unrelated/high-risk dirty files when checked together earlier; scoped root/library/overlay check required before commit"
+    }
+  ],
+  "featured_boundary": {
+    "root_featured_only_orot": true,
+    "library_featured_entries_added": false
+  },
+  "blocker": null,
+  "boundary": "root/library/overlay carry evidence only; no QA/source/license/legal/Definition/product/answer/accepted-text/public-runtime/release acceptance"
+}
