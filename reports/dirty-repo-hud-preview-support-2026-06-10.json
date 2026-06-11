@@ -1,0 +1,30 @@
+{
+  "status": "validated_preview_support_stage_candidate",
+  "artifact": "reports/dirty-repo-hud-preview-support-2026-06-10.json",
+  "scope": [
+    "hud-preview/routes/app.js"
+  ],
+  "bucket": "preview_support_surface",
+  "validators": [
+    {
+      "command": "node scripts/validate_hud_route_preview.mjs",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "evidence": "HUD route preview is quarantined from public runtime"
+    },
+    {
+      "command": "node --check hud-preview/routes/app.js",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- hud-preview/routes/app.js",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "notes": "CRLF warning only"
+    }
+  ],
+  "public_runtime_quarantined": true,
+  "blocker": null,
+  "boundary": "preview/support evidence only; no corpus Route HUD page change, no Featured addition, no public-runtime/release acceptance"
+}

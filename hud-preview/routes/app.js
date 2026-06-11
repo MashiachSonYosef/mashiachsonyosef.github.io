@@ -16,8 +16,8 @@ const metaParts = (card) => [card.route_family, card.language, card.match_type |
 const productionSections = new Set([
   "strict_hebrew",
   "strict_aramaic",
-  "lemma",
   "morphology",
+  "lemma",
   "subphrase_evidence",
   "biblical_paraphrase_evidence",
   "citable_paraphrase_evidence",
@@ -27,8 +27,8 @@ function rankCard(card) {
   const sectionRank = new Map([
     ["strict_hebrew", 0],
     ["strict_aramaic", 1],
-    ["lemma", 2],
-    ["morphology", 3],
+    ["morphology", 2],
+    ["lemma", 3],
     ["subphrase_evidence", 4],
     ["biblical_paraphrase_evidence", 5],
     ["citable_paraphrase_evidence", 6],
@@ -41,9 +41,7 @@ function rankCard(card) {
   const rawScore = Number.isFinite(card.raw_score)
     ? card.raw_score
     : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : null);
-  const answerRank = card.answer_eligible === true && card.answer_role === "answer" ? 0 : 1;
   return [
-    answerRank,
     -(adjustedScore ?? -1000),
     -(rawScore ?? -1000),
     sectionRank.get(card.display_section) ?? 9,
@@ -62,8 +60,62 @@ function compareCards(a, b) {
   return 0;
 }
 
+function routeRenderings(card) {
+  return [card?.definition, card?.meaning_claim].map((value) => String(value || "").trim()).filter(Boolean);
+}
+
+function answerRoleAllowsDefinition(role) {
+  const cleanRole = String(role || "").toLowerCase().replace(/[\s-]+/g, "_");
+  return ["", "answer", "definition", "reader_answer", "primary_definition"].includes(cleanRole);
+}
+
+function cardHasAnswerContract(card) {
+  return Object.prototype.hasOwnProperty.call(card || {}, "answer_eligible")
+    || Object.prototype.hasOwnProperty.call(card || {}, "answer_role");
+}
+
 function isAnswerEligible(card) {
-  return card?.answer_eligible === true && card?.answer_role === "answer";
+  if (!card || !productionSections.has(card.display_section) || !routeRenderings(card).length) return false;
+  if (card.answer_eligible === false || !answerRoleAllowsDefinition(card.answer_role)) return false;
+  if (card.answer_eligible === true) return true;
+  if (cardHasAnswerContract(card)) return false;
+  return card.meaning_quality === "definition" && !["phrase_evidence", "subphrase_evidence"].includes(card.display_section);
+}
+
+function answerTextKey(card) {
+  return routeRenderings(card)
+    .map((line) => String(line || "").replace(/\s+/g, " ").trim().toLowerCase())
+    .filter(Boolean)
+    .join(" | ");
+}
+
+function routeScore(card) {
+  const base = Number.isFinite(card.adjusted_score)
+    ? card.adjusted_score
+    : (Number.isFinite(card.raw_score) ? card.raw_score : (Number.isFinite(card.confidence_percent) ? card.confidence_percent : 0));
+  const penalty = Number.isFinite(card.lookup_penalty) ? card.lookup_penalty : 0;
+  return Math.max(0, Math.round(base - penalty));
+}
+
+function answerAmbiguity(primary, candidates) {
+  if (!primary) return { ambiguous: false, count: 0 };
+  const topScore = routeScore(primary);
+  const topRelation = primary.lookup_relation || "exact";
+  const close = candidates.filter((card) => (card.lookup_relation || "exact") === topRelation && Math.abs(routeScore(card) - topScore) <= 6);
+  const meanings = new Set(close.map(answerTextKey).filter(Boolean));
+  return { ambiguous: meanings.size > 1, count: meanings.size };
+}
+
+function selectRouteAnswer(cards) {
+  const candidates = cards.filter(isAnswerEligible).sort(compareCards);
+  const exactAnswer = candidates.filter((card) => (card.lookup_relation || "exact") === "exact").sort(compareCards)[0];
+  const selected = exactAnswer || candidates[0] || null;
+  const ambiguity = answerAmbiguity(selected, candidates);
+  return {
+    answerCard: ambiguity.ambiguous ? null : selected,
+    answerState: ambiguity.ambiguous ? "ambiguous" : (selected ? "definition" : "none"),
+    ambiguityCount: ambiguity.count,
+  };
 }
 
 function scoreLine(card) {
@@ -71,7 +123,7 @@ function scoreLine(card) {
   if (Number.isFinite(card.raw_score)) parts.push(`raw ${card.raw_score}`);
   if (Number.isFinite(card.score_handicap) && card.score_handicap) parts.push(`handicap ${card.score_handicap}`);
   if (Number.isFinite(card.adjusted_score)) parts.push(`adjusted ${card.adjusted_score}`);
-  return parts.length ? `<p class="source-mini">Rank: ${escapeHtml(parts.join(" / "))}</p>` : "";
+  return parts.length ? `<span class="rank-basis" hidden data-rank-basis="${escapeHtml(parts.join(" / "))}"></span>` : "";
 }
 
 function sourceSummary(rows = []) {
@@ -93,22 +145,19 @@ function phraseHtml(card) {
 }
 
 function renderCard(card, role = "evidence") {
-  const source = sourceSummary(card.source_rows || []);
+  const isAnswer = role === "answer";
   return `
-    <article class="route-card ${role === "answer" ? "answer-card" : ""}">
+    <article class="route-card ${isAnswer ? "answer-card" : ""}">
       <div class="route-head">
-        <span class="route-kind">${escapeHtml(role === "answer" ? "Best actual hit" : (card.display_label || card.route_type || "Route"))}</span>
+        <span class="route-kind">${escapeHtml(isAnswer ? "Definition" : (card.display_label || card.route_type || "Route"))}</span>
         <span class="confidence">${escapeHtml(confidence(card))}</span>
       </div>
-      <div class="route-form" lang="he" dir="rtl">${escapeHtml(card.hebrew || card.surface || "")}</div>
-      ${role === "answer" ? `<p class="route-meta">${escapeHtml(card.display_label || "")}</p>` : ""}
-      <p class="route-meta">${escapeHtml(metaParts(card))}</p>
-      <p class="definition">${escapeHtml(card.definition || "No definition claim in this row.")}</p>
+      ${isAnswer ? "" : `<div class="route-form" lang="he" dir="rtl">${escapeHtml(card.hebrew || card.surface || "")}</div>`}
+      ${isAnswer ? "" : `<p class="route-meta">${escapeHtml(metaParts(card))}</p>`}
+      ${card.definition ? `<p class="definition">${escapeHtml(card.definition)}</p>` : ""}
       ${phraseHtml(card)}
       ${card.plain_note ? `<p class="plain-note">${escapeHtml(card.plain_note)}</p>` : ""}
       ${scoreLine(card)}
-      ${source.source ? `<p class="source-mini">Source: ${escapeHtml(source.source)}</p>` : ""}
-      ${source.license ? `<p class="source-mini">License: ${escapeHtml(source.license)}</p>` : ""}
     </article>`;
 }
 
@@ -122,7 +171,6 @@ function renderSection(section) {
         <h3>${escapeHtml(section.title)}</h3>
         <span>${section.card_count} card${section.card_count === 1 ? "" : "s"}</span>
       </div>
-      <p class="scroll-note">Hover this lane and use wheel or trackpad to move sideways.</p>
       ${renderLane(section.cards)}
     </section>`;
 }
@@ -160,7 +208,7 @@ function renderLookupMeta(sample, row) {
 function renderSources(rows = []) {
   return `
     <section class="source-license-card">
-      <h3>Full source and license rows</h3>
+      <h3>Sources and licenses</h3>
       <div class="source-grid">
         ${rows.length ? rows.map((row) => `
           <article class="source-row">
@@ -193,7 +241,7 @@ function setActive(index) {
   });
   const routeSections = (sample.route_sections || []).filter((section) => section.cards && section.cards.length);
   const rankedCards = collectRankedCards(sample, storeRow, lookupRow);
-  const rankedAnswer = rankedCards.find(isAnswerEligible) || null;
+  const { answerCard: rankedAnswer, answerState, ambiguityCount } = selectRouteAnswer(rankedCards);
   const storeCards = storeRow && storeRow.cards && storeRow.cards.length ? {
     title: "Route-store direct cards",
     card_count: storeRow.cards.length,
@@ -207,13 +255,12 @@ function setActive(index) {
   const fixtureMismatch = sample.answer_card && rankedAnswer && sample.answer_card.card_id !== rankedAnswer.card_id;
   panel.innerHTML = `
     <div class="selected-token" lang="he" dir="rtl">${escapeHtml(sample.token)}</div>
-    ${rankedAnswer ? renderCard(rankedAnswer, "answer") : '<section class="answer-card"><p class="definition">No winning route for this token yet.</p></section>'}
+    ${rankedAnswer ? renderCard(rankedAnswer, "answer") : `<section class="answer-card"><div class="route-head"><span class="route-kind">${answerState === "ambiguous" ? "Definition candidates" : "Definition"}</span><span class="confidence">${answerState === "ambiguous" ? `${ambiguityCount || 2} options` : "not answer-eligible"}</span></div><p class="definition">${answerState === "ambiguous" ? "Ambiguous; compare evidence below." : "No winning route for this token yet."}</p></section>`}
     ${fixtureMismatch ? `<section class="audit-card"><h3>Ranking override</h3><p class="plain-note">The HUD-ranked answer differs from the fixture answer. Fixture: ${escapeHtml(sample.answer_card.display_label || sample.answer_card.card_id || "unknown")} -> Live rank: ${escapeHtml(rankedAnswer.display_label || rankedAnswer.card_id || "unknown")}.</p></section>` : ""}
     ${routeSections.map(renderSection).join("")}
     ${renderLookupMeta(sample, lookupRow)}
     ${renderAudit(sample, storeRow)}
-    ${renderSources(sample.source_license_groups || [])}
-    ${(lookupCards || storeCards) ? `<details class="audit-card"><summary>Debug storage views</summary>${lookupCards ? renderSection(lookupCards) : ""}${storeCards ? renderSection(storeCards) : ""}</details>` : ""}`;
+    ${renderSources(sample.source_license_groups || [])}`;
   panel.scrollIntoView({ block: "nearest" });
 }
 
@@ -227,14 +274,5 @@ tokenList.addEventListener("click", (event) => {
   const button = event.target.closest("button[data-index]");
   if (button) setActive(Number(button.dataset.index));
 });
-
-document.addEventListener("wheel", (event) => {
-  const lane = event.target.closest(".route-lane");
-  if (!lane) return;
-  const horizontalDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-  if (!horizontalDelta) return;
-  event.preventDefault();
-  lane.scrollLeft += horizontalDelta;
-}, { passive: false });
 
 setActive(0);
