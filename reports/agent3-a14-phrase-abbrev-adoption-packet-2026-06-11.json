@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "artifact_type": "agent3_phrase_abbrev_adoption_packet",
+  "generated_at": "2026-06-11T09:43:00-04:00",
+  "status": "adoption_contract_ready",
+  "lane": "Agent 3 crossmatch/linkage/navigation/occurrence evidence",
+  "boundary": {
+    "definition_authority": false,
+    "accepted_gloss_or_text": false,
+    "answer_eligibility": false,
+    "source_license_legal_acceptance": false,
+    "public_runtime_release_action": false,
+    "route_mutation": false
+  },
+  "pattern": "surface form / abbreviation / phrase window -> normalized forms -> possible base expansion -> source occurrence ids -> work/page/token-index evidence -> existing lexical/source layer hit -> unresolved/blocker class -> handoff owner",
+  "input_artifacts": [
+    "reports/a14-definition-expansion-phrase-abbreviation-build-2026-06-11.md",
+    ".local-cache/a14-reference-abbrev-targets-2026-06-11.txt",
+    ".local-cache/a14-rabbinic-reference-abbrev-targets-2026-06-11.txt",
+    ".local-cache/a14-phrase-abbrev-targets-2026-06-11.txt",
+    "data/lexical/source-layers/project-abbreviations.json",
+    "reports/workbench-usage-phrase-recurrence-index.md",
+    ".local-cache/workbench-evidence/usage-phrase-recurrence-index.json",
+    "reports/phrase-subphrase-bulk-workflow.md",
+    "reports/phrase-evidence-audit.md",
+    "reports/sitewide-abbreviation-layer-report.md"
+  ],
+  "bounded_input_counts": {
+    "a14_target_manifests": 3,
+    "work_ids_per_manifest": 5,
+    "unique_target_work_ids": 9,
+    "target_work_lexical_manifests_present": 9,
+    "target_work_lexical_manifests_expected": 9,
+    "project_abbreviation_entries": 84,
+    "max_work_entry_pairs": 756,
+    "prior_phrase_evidence_rows": 200000,
+    "prior_phrase_recurrence_rows": 2390,
+    "prior_phrase_recurrence_groups": 2244
+  },
+  "target_work_ids": [
+    "arukh-hashulchan",
+    "beit-yosef",
+    "divrei-yirmiyahu-on-mishneh-torah-sabbath",
+    "drisha",
+    "haamek-sheilah-on-sheiltot-drav-achai-gaon",
+    "machatzit-hashekel-on-orach-chayim",
+    "peri-megadim-on-orach-chayim",
+    "tzafnat-paneach-on-mishneh-torah-heave-offerings",
+    "urim-vetumim-tumim"
+  ],
+  "reusable_scripts": [
+    "scripts/build_workbench_usage_phrase_recurrence_index.mjs",
+    "scripts/validate_workbench_usage_phrase_recurrence_index.mjs",
+    "scripts/build_phrase_evidence.mjs",
+    "scripts/audit_phrase_evidence.mjs",
+    "scripts/build_workbench_usage_lookup_index.mjs",
+    "scripts/build_workbench_usage_graph.mjs",
+    "scripts/build_workbench_usage_concordance.mjs",
+    "scripts/check_workbench_usage_route_links.mjs",
+    "scripts/build_agent3_crossmatch_inventory_packet.mjs",
+    "scripts/validate_agent3_crossmatch_inventory_packet.mjs",
+    "scripts/build_lexical_cache.mjs",
+    "scripts/report_sitewide_lexical.mjs"
+  ],
+  "reusable_data": [
+    "data/lexical/<work-id>.manifest.json",
+    "data/lexical/<work-id>-chunks/*.json",
+    "data/lexical/source-layers/project-abbreviations.json",
+    "data/public-lexical/sitewide/normalized-lookup.json",
+    "data/public-lexical/sitewide/claim-index.jsonl"
+  ],
+  "proposed_first_bounded_workset": {
+    "workset_id": "agent3-a14-phrase-abbrev-pattern-crossmatch-2026-06-11",
+    "output_artifacts": [
+      "reports/agent3-a14-phrase-abbrev-pattern-crossmatch-matrix-2026-06-11.json",
+      "reports/agent3-a14-phrase-abbrev-pattern-crossmatch-matrix-2026-06-11.md"
+    ],
+    "scope": "9 unique A14 target works x 84 current project abbreviation entries; emit occurrence-linked rows or exact blockers only",
+    "fields": [
+      "pattern_id",
+      "surface",
+      "normalized",
+      "pattern_type",
+      "possible_expansion_or_base",
+      "work_ids",
+      "occurrence_count",
+      "sample_occurrence_ids",
+      "sample_source_refs",
+      "sample_page_anchors",
+      "sample_token_indices",
+      "existing_source_layer_hit",
+      "source_layer_id",
+      "source_row_keys",
+      "route_or_lexical_ids_if_any",
+      "evidence_only_reason",
+      "blocker_class",
+      "next_owner",
+      "stop_condition"
+    ]
+  },
+  "pattern_types": [
+    "abbreviation_reference",
+    "phrase_abbreviation",
+    "prefix_suffix_parsed_form",
+    "recurring_phrase_window",
+    "maqaf_subphrase_evidence",
+    "lemma_only_crossmatch",
+    "unsafe_prehud_blocked"
+  ],
+  "blockers": [
+    "missing_durable_manifest",
+    "missing_a3_builder",
+    "missing_a3_validator",
+    "ambiguous_expansion",
+    "lexical_manifest_missing",
+    "occurrence_link_missing",
+    "source_layer_pointer_missing",
+    "definition_payload_leak",
+    "route_selection_drift"
+  ],
+  "next_owner": {
+    "agent3": "first crossmatch matrix contract and evidence packet",
+    "a14": "product-facing prototype/build work",
+    "agent2": "route/lexical IDs and source-row pointers only when transform-ready",
+    "agent10": "release/package planning intake only",
+    "a07": "approval routes where approval is required",
+    "a06": "evidence/validator authority where validation evidence is requested"
+  },
+  "stop_condition": "Produce the bounded 9-work / 84-entry matrix with exact counts and validator output, or return exact missing_pipeline_blocker for command/input/output schema/validator/durable manifest."
+}
