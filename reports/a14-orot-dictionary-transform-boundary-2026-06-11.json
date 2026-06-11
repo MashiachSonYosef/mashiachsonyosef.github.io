@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "artifact_type": "a14_orot_dictionary_transform_boundary",
+  "generated_at": "2026-06-11",
+  "status": "blocked_no_active_transform_or_render",
+  "output_shape": "orot_dictionary_transform_boundary | exact token ids | source/custody basis | candidate text policy | transform_allowed rows | display/preHUD gate | blockers | stop condition",
+  "target": {
+    "work_id": "orot",
+    "work_title": "Orot",
+    "scope": "orot_only_old_dictionary_nc_planning_evidence"
+  },
+  "input_artifacts": [
+    "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.json",
+    "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.json",
+    "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.json",
+    "reports/a14-dictionary-nc-corpus-expansion-pipeline-spec-2026-06-11.json"
+  ],
+  "agent_receipts": {
+    "A10": {
+      "verdict": "coherent evidence matrix, planning only",
+      "exact_blocker": "source_family_row_clearance pending A1/A6 exact row-set approval",
+      "recommended_next_smallest_action": "Orot-only row clearance before A2 transform readiness"
+    },
+    "A1": {
+      "verdict": "pending_clearance",
+      "transform_allowed_rows": 0,
+      "blocked_rows": 0,
+      "next_owner": "Agent 6 first, then Agent 1 update packet"
+    },
+    "A6": {
+      "verdict": "WARN-ACCEPTED as Orot-only row/subset planning boundary evidence",
+      "NC_isolation": "required",
+      "commercial_clean_subset_status": "Jastrow 5-token / 46-occurrence subset may be carried as commercial-clean planning subset only",
+      "transform_gate": "blocked pending separate exact transform/output boundary",
+      "blocker": "no active transform/render/use authorization in this packet"
+    }
+  },
+  "exact_token_subset": {
+    "unique_token_ids": 5,
+    "unique_occurrences": 46,
+    "source_family_memberships_nonexclusive": 7,
+    "source_family_occurrences_nonexclusive": 71,
+    "commercial_clean_candidate": {
+      "source_family": "Jastrow Dictionary",
+      "license_lane": "commercial_clean_candidate",
+      "token_ids": [
+        "tok-f4684f98dd3c",
+        "tok-730582e0eb7b",
+        "tok-7e4936f25f7a",
+        "tok-139a2c161eac",
+        "tok-17ba65351831"
+      ],
+      "occurrences": 46
+    },
+    "noncommercial_educational_candidate": {
+      "source_family": "Klein Dictionary",
+      "license_lane": "noncommercial_educational_candidate",
+      "token_ids": [
+        "tok-f4684f98dd3c",
+        "tok-17ba65351831"
+      ],
+      "occurrences": 25,
+      "required_policy": {
+        "derived_from_nc": true,
+        "commercial_export_allowed": false,
+        "attribution_required": true,
+        "corpus_contamination": false
+      }
+    },
+    "blocked_or_needs_review": {
+      "token_ids": [],
+      "occurrences": 0
+    }
+  },
+  "source_custody_basis": {
+    "status": "not_cleared_for_transform",
+    "basis": "A1 preserved source-family lanes and A6 accepted only planning evidence; no exact transform/output authorization exists.",
+    "source_license_legal_acceptance": false
+  },
+  "candidate_text_policy": {
+    "policy": "no_candidate_text_emitted",
+    "candidate_text_present": false,
+    "candidate_text_emitted": false,
+    "dictionary_payload_copied": false
+  },
+  "transform_allowed": {
+    "rows": 0,
+    "allowed_now": false,
+    "reason": "A1 pending clearance and A6 blocked active transform/render/use authorization."
+  },
+  "display_prehud_gate": {
+    "active_output_allowed": false,
+    "display_eligible": false,
+    "prehud_allowed": false,
+    "reader_hint_allowed": false,
+    "route_hud_display_allowed": false,
+    "page_render_allowed": false
+  },
+  "blockers": [
+    {
+      "blocker_id": "no_active_transform_render_use_authorization",
+      "owner": "A1/A6 with A10 package framing",
+      "required_next_packet": "orot_dictionary_transform_boundary_update | exact token ids | source/custody basis | candidate text policy | transform_allowed rows | display/preHUD gate | blockers | stop condition"
+    }
+  ],
+  "boundary": {
+    "planning_evidence_only": true,
+    "source_license_legal_acceptance": false,
+    "Definition_authority": false,
+    "answer_eligibility": false,
+    "accepted_gloss_or_text": false,
+    "publication_readiness": false,
+    "release_readiness": false,
+    "public_runtime_acceptance": false,
+    "active_lexical_source_layer_mutation": false,
+    "page_render_mutation": false,
+    "prehud_display_promotion": false,
+    "nc_commercial_clean_promotion": false
+  },
+  "stop_condition": "Hold Orot as planning evidence only until a separate exact transform/output boundary packet clears rows, or returns a permanent source/custody/display blocker."
+}

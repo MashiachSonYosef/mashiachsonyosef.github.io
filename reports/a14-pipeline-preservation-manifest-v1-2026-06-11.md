@@ -29,7 +29,7 @@ Preserve the working paths as executable contracts before the company overhaul c
 | `crossmatch_packet_v1` | evidence/navigation crossmatch matrix | A3 linkage; A10 intake; A14 shape | spec_incomplete |
 | `a3_phrase_abbrev_matrix_contract_v1` | bounded phrase/abbrev matrix | A3 matrix owner; A14 preserves method | draft_ready (builder/validator added) |
 | `source_lane_contract_v1` | source-family/custody lanes | A1 lane; A6 docket; A10 package truth | draft_ready |
-| `dictionary_nc_corpus_expansion_pipeline_v1` | evidence-first dictionary/NC corpus matrix and Orot example lock | A14 shape; A1/A6 clearance; A10 package truth | draft_ready_evidence_first |
+| `dictionary_nc_corpus_expansion_pipeline_v1` | evidence-first dictionary/NC corpus matrix, Orot transform boundary, and next candidate-builder spec | A14 shape; A1/A6 clearance; A10 package truth | draft_ready_evidence_first |
 | `definition_transform_readiness_packet_v1` | A2-ready transform packet | A2 after A1/A6; A3 links; A10 packages | draft_ready |
 | `repo_clean_packet_v1` | classified dirty repo package | A10 pathspec truth; A5 staging; A6 docket | draft_ready |
 
@@ -64,12 +64,12 @@ This validator checks the umbrella manifest, page-output executable spec, crossm
 ## Spec-Incomplete Items
 
 - `crossmatch_packet_v1`: general packet still needs a broad builder and no-payload-copy / evidence-only validator. The spec artifact exists, and the bounded phrase/abbrev matrix path is the current runnable subtype.
-- `dictionary_nc_corpus_expansion_pipeline_v1`: the evidence matrix is runnable and Orot is locked as a planning example, but corpus-wide dictionary candidate generation remains blocked until A1/A6 supply exact source/custody row clearance.
+- `dictionary_nc_corpus_expansion_pipeline_v1`: the evidence matrix is runnable, Orot is locked as a planning example, and the transform boundary records zero transform-ready rows. Corpus-wide dictionary candidate generation remains blocked until A1/A6 supply an exact source/custody row contract.
 
 ## Next Design Output
 
 1. A10 review of `reports/a14-page-output-pipeline-v1-executable-spec-2026-06-11.md` / `.json`.
-2. A1/A6 exact Orot transform/output boundary packet, using `reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.md` as the current stop condition.
+2. A1/A6 exact Orot transform/output boundary update, using `reports/a14-orot-dictionary-transform-boundary-2026-06-11.md` as the current stop condition.
 3. Implement the general `crossmatch_packet_v1` builder/validator from `reports/a14-crossmatch-packet-v1-executable-spec-2026-06-11.md` / `.json`.
 
 Stop condition satisfied: this manifest preserves the umbrella map, names golden fixtures, records dirty buckets and validators, embeds exact blocker shapes, and marks non-executable paths as `spec_incomplete`.

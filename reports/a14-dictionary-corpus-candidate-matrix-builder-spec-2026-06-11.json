@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "artifact_type": "a14_dictionary_corpus_candidate_matrix_builder_spec",
+  "generated_at": "2026-06-11",
+  "status": "spec_ready_blocked_pending_source_row_contract",
+  "purpose": "Define the next corpus-wide old/new dictionary and NC candidate matrix builder without creating active lexical/source-layer data or reader-facing output.",
+  "boundary": {
+    "planning_spec_only": true,
+    "source_license_legal_acceptance": false,
+    "Definition_authority": false,
+    "accepted_gloss_or_answer_text": false,
+    "active_lexical_source_layer_mutation": false,
+    "candidate_text_emission": false,
+    "prehud_display_promotion": false,
+    "page_render_mutation": false,
+    "public_runtime_release": false
+  },
+  "current_blockers": [
+    {
+      "blocker_id": "missing_corpus_wide_dictionary_source_row_contract",
+      "detail": "No corpus-wide BDB/Jastrow/Klein source-row contract currently exists for candidate generation."
+    },
+    {
+      "blocker_id": "current_old_dictionary_evidence_is_orot_only_by_token_id",
+      "detail": "The committed evidence matrix joins current old-dictionary source-family token ids to only Orot."
+    },
+    {
+      "blocker_id": "source_family_row_clearance_pending",
+      "detail": "A1/A6 have not cleared any rows for active transform; allowed transform rows remain 0."
+    }
+  ],
+  "planned_builder": {
+    "script_path": "scripts/build_a14_dictionary_corpus_candidate_matrix.mjs",
+    "status": "not_implemented_in_this_packet",
+    "input_files": [
+      "A1/A6-cleared dictionary source-row contract",
+      "reports/a13-old-dictionary-safe-add-contract-2026-06-11.json",
+      "reports/agent1-old-dictionary-source-family-membership-manifest-2026-06-05.json",
+      "data/lexical/token-index.json",
+      "data/lexical/token-indexes/*.json",
+      "data/reports/coverage/*.json",
+      "data/lexical/unresolved/*.csv"
+    ],
+    "output_files": [
+      "reports/a14-dictionary-corpus-candidate-matrix-<date>.json",
+      "reports/a14-dictionary-corpus-candidate-matrix-<date>.md"
+    ],
+    "timeout_ms": 300000
+  },
+  "planned_row_shape": [
+    "token_id",
+    "work_id",
+    "normalized_surface",
+    "source_family",
+    "license_lane",
+    "relation_class",
+    "occurrence_count",
+    "source_ref",
+    "transform_allowed",
+    "display_eligible",
+    "prehud_allowed",
+    "blocker"
+  ],
+  "row_defaults": {
+    "transform_allowed": false,
+    "display_eligible": false,
+    "prehud_allowed": false,
+    "active_output_allowed": false,
+    "candidate_text_present": false,
+    "candidate_text_emitted": false
+  },
+  "lane_rules": {
+    "commercial_clean_candidate": "May remain candidate evidence only until A1/A6 source/custody and A10 package/display gates clear exact rows.",
+    "noncommercial_educational_candidate": "Klein/NC remains separate evidence only; commercial export and preHUD output are not allowed.",
+    "metadata_or_link_only": "Reference-only; no candidate text or preHUD output.",
+    "blocked_or_needs_review": "Blocked until source/custody/license review resolves."
+  },
+  "planned_validator": {
+    "script_path": "scripts/validate_a14_dictionary_corpus_candidate_matrix.mjs",
+    "status": "not_implemented_in_this_packet",
+    "must_require": [
+      "all planned row fields present",
+      "transform_allowed/display_eligible/prehud_allowed default false",
+      "no candidate text copied from dictionaries",
+      "Klein/NC rows remain noncommercial_educational_candidate",
+      "no source/license/legal/Definition/answer/publication acceptance fields are truthy",
+      "blocked rows carry blocker ids"
+    ]
+  },
+  "handoff": {
+    "next_owner": "A1/A6 for source-row contract, then A2 for transform readiness if rows clear",
+    "A10_role": "package truth and display-gate framing before any active output",
+    "stop_condition": "Do not implement the corpus-wide candidate builder until A1/A6 provide an exact source-row contract or an exact blocker."
+  }
+}

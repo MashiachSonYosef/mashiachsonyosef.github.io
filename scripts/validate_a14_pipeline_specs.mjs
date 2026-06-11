@@ -15,8 +15,11 @@ const FILES = {
   dictionaryMatrix: 'reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.json',
   dictionaryClearanceRequest: 'reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.json',
   dictionaryTransformBlocker: 'reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.json',
+  dictionaryTransformBoundary: 'reports/a14-orot-dictionary-transform-boundary-2026-06-11.json',
+  dictionaryCandidateBuilderSpec: 'reports/a14-dictionary-corpus-candidate-matrix-builder-spec-2026-06-11.json',
   dictionaryBuilder: 'scripts/build_a14_dictionary_nc_corpus_coverage_matrix.mjs',
   dictionaryValidator: 'scripts/validate_a14_dictionary_nc_corpus_coverage_matrix.mjs',
+  dictionaryTransformBoundaryValidator: 'scripts/validate_a14_orot_dictionary_transform_boundary.mjs',
   sourceLayer: 'data/lexical/source-layers/project-abbreviations.json',
 };
 
@@ -220,6 +223,7 @@ function validateManifest(manifest) {
   requireEqual(dictionary?.status, 'draft_ready_evidence_first', 'dictionary/NC manifest row status');
   requireIncludes(dictionary?.commands?.map(compactCommand), 'node scripts/build_a14_dictionary_nc_corpus_coverage_matrix.mjs', 'dictionary/NC commands');
   requireIncludes(dictionary?.validators, 'scripts/validate_a14_dictionary_nc_corpus_coverage_matrix.mjs', 'dictionary/NC validators');
+  requireIncludes(dictionary?.validators, 'scripts/validate_a14_orot_dictionary_transform_boundary.mjs', 'dictionary/NC transform boundary validator');
   requireIncludes(dictionary?.proof_artifacts, 'reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.md', 'dictionary/NC proof artifacts');
 }
 
@@ -317,6 +321,52 @@ function validateDictionaryNcPipeline(dictionarySpec, matrix, clearanceRequest, 
   requireEqual(transformBlocker.current_decision?.active_output_allowed, false, 'dictionary transform active output gate');
 }
 
+function validateOrotDictionaryTransformBoundary(transformBoundary, candidateBuilderSpec) {
+  requireEqual(transformBoundary.artifact_type, 'a14_orot_dictionary_transform_boundary', 'Orot transform boundary artifact_type');
+  requireEqual(transformBoundary.status, 'blocked_no_active_transform_or_render', 'Orot transform boundary status');
+  requireEqual(transformBoundary.target?.work_id, 'orot', 'Orot transform boundary target');
+  requireEqual(transformBoundary.exact_token_subset?.unique_token_ids, 5, 'Orot transform boundary token count');
+  requireEqual(transformBoundary.exact_token_subset?.commercial_clean_candidate?.source_family, 'Jastrow Dictionary', 'Orot Jastrow source family');
+  requireEqual(transformBoundary.exact_token_subset?.commercial_clean_candidate?.license_lane, 'commercial_clean_candidate', 'Orot Jastrow lane');
+  requireEqual(transformBoundary.exact_token_subset?.noncommercial_educational_candidate?.source_family, 'Klein Dictionary', 'Orot Klein source family');
+  requireEqual(transformBoundary.exact_token_subset?.noncommercial_educational_candidate?.license_lane, 'noncommercial_educational_candidate', 'Orot Klein lane');
+  requireEqual(transformBoundary.transform_allowed?.rows, 0, 'Orot transform allowed rows');
+  requireEqual(transformBoundary.transform_allowed?.allowed_now, false, 'Orot transform allowed now');
+  requireEqual(transformBoundary.candidate_text_policy?.candidate_text_present, false, 'Orot candidate text present');
+  requireEqual(transformBoundary.candidate_text_policy?.candidate_text_emitted, false, 'Orot candidate text emitted');
+  requireEqual(transformBoundary.display_prehud_gate?.active_output_allowed, false, 'Orot active output gate');
+  requireEqual(transformBoundary.display_prehud_gate?.display_eligible, false, 'Orot display gate');
+  requireEqual(transformBoundary.display_prehud_gate?.prehud_allowed, false, 'Orot preHUD gate');
+  requireEqual(transformBoundary.display_prehud_gate?.page_render_allowed, false, 'Orot page render gate');
+  if (!transformBoundary.blockers?.some((row) => row.blocker_id === 'no_active_transform_render_use_authorization')) {
+    errors.push('Orot transform boundary: missing no_active_transform_render_use_authorization blocker');
+  }
+
+  requireEqual(candidateBuilderSpec.artifact_type, 'a14_dictionary_corpus_candidate_matrix_builder_spec', 'candidate builder spec artifact_type');
+  requireEqual(candidateBuilderSpec.status, 'spec_ready_blocked_pending_source_row_contract', 'candidate builder spec status');
+  requireEqual(candidateBuilderSpec.boundary?.active_lexical_source_layer_mutation, false, 'candidate builder active source-layer boundary');
+  requireEqual(candidateBuilderSpec.boundary?.candidate_text_emission, false, 'candidate builder candidate-text boundary');
+  requireEqual(candidateBuilderSpec.boundary?.prehud_display_promotion, false, 'candidate builder preHUD boundary');
+  requireAllIncludes(candidateBuilderSpec.planned_row_shape, [
+    'token_id',
+    'work_id',
+    'normalized_surface',
+    'source_family',
+    'license_lane',
+    'relation_class',
+    'occurrence_count',
+    'source_ref',
+    'transform_allowed',
+    'display_eligible',
+    'prehud_allowed',
+    'blocker',
+  ], 'candidate builder planned row shape');
+  requireEqual(candidateBuilderSpec.row_defaults?.transform_allowed, false, 'candidate builder transform default');
+  requireEqual(candidateBuilderSpec.row_defaults?.display_eligible, false, 'candidate builder display default');
+  requireEqual(candidateBuilderSpec.row_defaults?.prehud_allowed, false, 'candidate builder preHUD default');
+  requireEqual(candidateBuilderSpec.row_defaults?.candidate_text_present, false, 'candidate builder candidate text default');
+}
+
 for (const relPath of Object.values(FILES)) requireFile(relPath);
 
 const manifest = readJson(FILES.manifest);
@@ -327,6 +377,8 @@ const dictionarySpec = readJson(FILES.dictionarySpec);
 const dictionaryMatrix = readJson(FILES.dictionaryMatrix);
 const dictionaryClearanceRequest = readJson(FILES.dictionaryClearanceRequest);
 const dictionaryTransformBlocker = readJson(FILES.dictionaryTransformBlocker);
+const dictionaryTransformBoundary = readJson(FILES.dictionaryTransformBoundary);
+const dictionaryCandidateBuilderSpec = readJson(FILES.dictionaryCandidateBuilderSpec);
 const sourceLayer = readJson(FILES.sourceLayer);
 
 validateManifest(manifest);
@@ -334,6 +386,7 @@ validatePageSpec(pageSpec);
 validateCrossmatchSpec(crossmatchSpec);
 validatePhraseMatrix(phraseMatrix, sourceLayer);
 validateDictionaryNcPipeline(dictionarySpec, dictionaryMatrix, dictionaryClearanceRequest, dictionaryTransformBlocker);
+validateOrotDictionaryTransformBoundary(dictionaryTransformBoundary, dictionaryCandidateBuilderSpec);
 
 for (const warning of warnings) console.warn(`WARN ${warning}`);
 if (errors.length) {

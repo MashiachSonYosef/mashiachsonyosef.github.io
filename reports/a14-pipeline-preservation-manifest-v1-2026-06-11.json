@@ -31,7 +31,11 @@
     "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.json",
     "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.md",
     "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.json",
-    "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.md"
+    "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.md",
+    "reports/a14-orot-dictionary-transform-boundary-2026-06-11.json",
+    "reports/a14-orot-dictionary-transform-boundary-2026-06-11.md",
+    "reports/a14-dictionary-corpus-candidate-matrix-builder-spec-2026-06-11.json",
+    "reports/a14-dictionary-corpus-candidate-matrix-builder-spec-2026-06-11.md"
   ],
   "golden_fixtures": {
     "orot_flagship": "orot/index.html",
@@ -506,8 +510,11 @@
         "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.json",
         "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.json",
         "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.json",
+        "reports/a14-orot-dictionary-transform-boundary-2026-06-11.json",
+        "reports/a14-dictionary-corpus-candidate-matrix-builder-spec-2026-06-11.json",
         "scripts/build_a14_dictionary_nc_corpus_coverage_matrix.mjs",
-        "scripts/validate_a14_dictionary_nc_corpus_coverage_matrix.mjs"
+        "scripts/validate_a14_dictionary_nc_corpus_coverage_matrix.mjs",
+        "scripts/validate_a14_orot_dictionary_transform_boundary.mjs"
       ],
       "input_manifest": "old dictionary safe-add contract, source-family membership manifest, coverage JSON files, unresolved CSV files, definition gap manifest, route lookup manifest, A1/A6 receipts",
       "commands": [
@@ -523,6 +530,8 @@
         "dictionary/NC expansion pipeline spec JSON/MD",
         "Orot-only row clearance request JSON/MD",
         "Orot transform-readiness blocker JSON/MD",
+        "Orot transform-boundary blocker JSON/MD",
+        "corpus-wide candidate matrix builder spec JSON/MD",
         "zero active lexical/source-layer, preHUD, display, render, or candidate-text output"
       ],
       "dirty_buckets": [
@@ -533,6 +542,7 @@
       ],
       "validators": [
         "scripts/validate_a14_dictionary_nc_corpus_coverage_matrix.mjs",
+        "scripts/validate_a14_orot_dictionary_transform_boundary.mjs",
         "JSON parse",
         "git diff --check -- <dictionary/NC pipeline paths>"
       ],
@@ -540,7 +550,9 @@
         "reports/a14-dictionary-nc-corpus-coverage-matrix-2026-06-11.md",
         "reports/a14-dictionary-nc-corpus-expansion-pipeline-spec-2026-06-11.md",
         "reports/a14-a1-a6-orot-dictionary-clearance-request-2026-06-11.md",
-        "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.md"
+        "reports/a14-orot-dictionary-transform-readiness-blocker-2026-06-11.md",
+        "reports/a14-orot-dictionary-transform-boundary-2026-06-11.md",
+        "reports/a14-dictionary-corpus-candidate-matrix-builder-spec-2026-06-11.md"
       ],
       "blocker_shape": "dictionary_nc_pipeline_blocker | work_id | token_ids | source_family | license_lane | transform_allowed | prehud_allowed | display_eligible | next_owner | stop_condition",
       "owner_slot": "A14 pipeline shape; A1 source/custody lane; A6 boundary docket; A2 transform readiness only after clearance; A10 package truth",
