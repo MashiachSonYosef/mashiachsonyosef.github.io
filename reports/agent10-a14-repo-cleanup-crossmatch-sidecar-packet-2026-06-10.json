@@ -1,0 +1,197 @@
+{
+  "artifact_type": "agent10_a14_repo_cleanup_crossmatch_sidecar_packet",
+  "generated_at": "2026-06-11T01:05:43.210Z",
+  "generated_by": "A10",
+  "current_head": "2a22fbbaa",
+  "recent_commits": [
+    "2a22fbbaa Record script helper artifacts",
+    "a0423d847 Guard Daniel preHUD display eligibility",
+    "30d409811 Record dirty repo manifest"
+  ],
+  "status": "sidecar_support_ready_current_dirty_state_reduced_no_deletions",
+  "counts": {
+    "total": 268,
+    "by_status": {
+      " M": 114,
+      "??": 154
+    },
+    "by_bucket": {
+      "root_library_surface": 2,
+      "other_data": 4,
+      "definition_route_data": 19,
+      "crossmatch_data": 1,
+      "lexical_generated_data": 182,
+      "source_license_data": 29,
+      "preview_support_surface": 1,
+      "other": 2,
+      "corpus_page": 1,
+      "overlay_exports": 23,
+      "reports_evidence": 2,
+      "scripts_validators_builders": 2
+    },
+    "deletions": 0,
+    "data_deletions": 0
+  },
+  "samples": {
+    "root_library_surface": [
+      " M about/index.html",
+      " M library/index.html"
+    ],
+    "other_data": [
+      " M data/build/orot/reader-hint-placeholder-candidates.json",
+      " M data/catalog/sefaria-safe-candidate-midrash-probe.json",
+      " M data/workbench-evidence/public-handoff-index.json",
+      "?? data/translation-memory/"
+    ],
+    "definition_route_data": [
+      " M data/definitions/definition-workbench-sample.json",
+      " M data/definitions/hud-route-contract.json",
+      " M data/definitions/hud-route-fixtures.json",
+      " M data/definitions/hud-route-lookup-sample.json",
+      " M data/definitions/hud-route-lookup/manifest.json",
+      " M data/definitions/hud-route-release-stamp.json",
+      " M data/definitions/hud-route-store-sample.json",
+      " M data/definitions/manifest.json",
+      " M data/definitions/route-publication-boundary-fixtures.json",
+      "?? data/definitions/agent2-definition-workbench-usage-joined-sample-planning.json"
+    ],
+    "crossmatch_data": [
+      " M data/lexical/crossmatches/daniel.json"
+    ],
+    "lexical_generated_data": [
+      " M data/lexical/orot-chunks/chunk-000.json",
+      " M data/lexical/orot-chunks/chunk-001.json",
+      " M data/lexical/orot-chunks/chunk-002.json",
+      " M data/lexical/orot-chunks/chunk-003.json",
+      " M data/lexical/orot-chunks/chunk-004.json",
+      " M data/lexical/orot-chunks/chunk-005.json",
+      " M data/lexical/orot-chunks/chunk-006.json",
+      " M data/lexical/orot-chunks/chunk-007.json",
+      " M data/lexical/orot-chunks/chunk-008.json",
+      " M data/lexical/orot-chunks/chunk-009.json"
+    ],
+    "source_license_data": [
+      " M data/sources/abarbanel-on-guide-for-the-perplexed.json",
+      " M data/sources/crescas-on-guide-for-the-perplexed.json",
+      " M data/sources/efodi-on-guide-for-the-perplexed.json",
+      " M data/sources/narboni-on-guide-for-the-perplexed.json",
+      " M data/sources/shem-tov-on-guide-for-the-perplexed.json",
+      " M data/sources/yahel-ohr-on-zohar.json",
+      "?? data/sources/beer-hagolah.json",
+      "?? data/sources/brief-commentary-on-peah.json",
+      "?? data/sources/brief-commentary-on-rosh-hashanah.json",
+      "?? data/sources/brief-commentary-on-shabbat.json"
+    ],
+    "preview_support_surface": [
+      " M hud-preview/routes/app.js"
+    ],
+    "other": [
+      " M overlay-export.json",
+      "?? tanakh/daniel/poc-1-1.html"
+    ],
+    "corpus_page": [
+      " M rav-kook/orot-ha-kodesh/index.html"
+    ],
+    "overlay_exports": [
+      "?? data/overlays/beer-hagolah.json",
+      "?? data/overlays/brief-commentary-on-peah.json",
+      "?? data/overlays/brief-commentary-on-rosh-hashanah.json",
+      "?? data/overlays/brief-commentary-on-shabbat.json",
+      "?? data/overlays/brief-commentary-on-shekalim.json",
+      "?? data/overlays/brief-commentary-on-sheviit.json",
+      "?? data/overlays/brief-commentary-on-sotah.json",
+      "?? data/overlays/brief-commentary-on-taanit.json",
+      "?? data/overlays/brief-commentary-on-terumot.json",
+      "?? data/overlays/brief-commentary-on-yevamot.json"
+    ],
+    "reports_evidence": [
+      "?? reports/agent10-live-public-old-hud-guard-2026-06-04-post-orot-reader-hint-candidate-patch.json",
+      "?? reports/agent11-reader-workbench-reception-proof-2026-06-03.json"
+    ],
+    "scripts_validators_builders": [
+      "?? scripts/run_agent10_it_pulse_scheduled.cmd",
+      "?? scripts/validate_agent7_governance_control.mjs"
+    ]
+  },
+  "high_risk_a10_paths": [
+    {
+      "path": "data/lexical/crossmatches/daniel.json",
+      "bucket": "crossmatch_data",
+      "a10_read": "generated_at-only dirty diff; evidence/navigation only; no preHUD promotion authority",
+      "validator": "JSON parse passed",
+      "proposed_action": "defer or stage only with generated_at-only cleanup decision from A14"
+    },
+    {
+      "path": "rav-kook/orot-ha-kodesh/index.html",
+      "bucket": "corpus_page",
+      "a10_read": "large diff but Route HUD validator passed; treat as generated reader page requiring A14 surface review before staging",
+      "validator": "node scripts/validate_route_hud_page.mjs --page rav-kook/orot-ha-kodesh/index.html passed",
+      "proposed_action": "do not revert blindly; stage only if A14 confirms this is intended Orot HaKodesh surface state"
+    },
+    {
+      "path": "hud-preview/routes/app.js",
+      "bucket": "preview_support_surface",
+      "a10_read": "preview/support runtime changed; not true corpus page; keep separate from production render cleanup",
+      "validator": "node --check passed",
+      "proposed_action": "separate preview-support packet or defer"
+    },
+    {
+      "path": "reports/dirty-repo-manifest-2026-06-10.md/json",
+      "bucket": "reports_evidence",
+      "a10_read": "committed baseline manifest says 988 dirty paths; current status is 268 dirty paths, no deletions",
+      "validator": "JSON parse inspected",
+      "proposed_action": "use current delta packet to continue cleanup from reduced state"
+    }
+  ],
+  "validators": [
+    {
+      "command": "git status --porcelain=v1",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "evidence": {
+        "dirty_paths": 268,
+        "deletions": 0,
+        "data_deletions": 0
+      }
+    },
+    {
+      "command": "git diff -- data/lexical/crossmatches/daniel.json",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "evidence": "generated_at-only diff observed"
+    },
+    {
+      "command": "node -e \"JSON.parse(...)\" for data/lexical/crossmatches/daniel.json",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page rav-kook/orot-ha-kodesh/index.html",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "node --check hud-preview/routes/app.js",
+      "timeout_ms": 60000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- high-risk A10 paths and dirty manifest",
+      "timeout_ms": 60000,
+      "result": "passed_with_crlf_warnings_only"
+    }
+  ],
+  "a10_recommendations": [
+    "Use current reduced dirty state, not the older 988-row count, as the next cleanup working set.",
+    "No tracked deletion and no data deletion are present in current status.",
+    "Daniel crossmatch is evidence/navigation only and currently generated_at-only; do not let it authorize preHUD display.",
+    "Keep Orot HaKodesh page diff separate as generated reader page/surface review; validator passes but that is not owner approval.",
+    "Keep hud-preview changes separate from true corpus render work.",
+    "Stage exact approved paths only; no git add -A, no reset --hard, no blind deletion."
+  ],
+  "boundary": [
+    "sidecar cleanup/crossmatch support only",
+    "no source/license/legal/Definition/product/answer/accepted-text/public-runtime/release acceptance",
+    "no staging/commit/push/deploy performed by A10"
+  ]
+}
