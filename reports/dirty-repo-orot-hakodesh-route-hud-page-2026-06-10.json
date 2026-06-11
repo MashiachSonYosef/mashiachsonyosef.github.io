@@ -1,0 +1,33 @@
+{
+  "status": "validated_stage_candidate",
+  "artifact": "reports/dirty-repo-orot-hakodesh-route-hud-page-2026-06-10.json",
+  "scope": [
+    "rav-kook/orot-ha-kodesh/index.html"
+  ],
+  "bucket": "generated_reader_page",
+  "validators": [
+    {
+      "command": "node scripts/validate_route_hud_page.mjs --page rav-kook/orot-ha-kodesh/index.html --page orot/index.html",
+      "timeout_ms": 120000,
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check -- rav-kook/orot-ha-kodesh/index.html",
+      "timeout_ms": 60000,
+      "result": "passed",
+      "notes": "CRLF warning only"
+    },
+    {
+      "command": "rg -n \"reader_layout_mode|route-hud|<big|data-lexical-config\" rav-kook/orot-ha-kodesh/index.html",
+      "timeout_ms": 30000,
+      "result": "passed",
+      "evidence": [
+        "reader_layout_mode=prehud_rows",
+        "Route HUD panel marker present",
+        "no old <big marker found"
+      ]
+    }
+  ],
+  "blocker": null,
+  "boundary": "generated reader page staging evidence only; no QA/source/license/legal/Definition/product/answer/accepted-text/public-runtime/release acceptance"
+}
